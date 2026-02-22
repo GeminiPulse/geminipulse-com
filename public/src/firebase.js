@@ -9,7 +9,19 @@ const firebaseConfig = {
     // Config goes here
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
-export const auth = getAuth(app);
+let app = null;
+export let db = null;
+export let auth = null;
+
+try {
+    // Only initialize if there are actually keys in the config object
+    if (Object.keys(firebaseConfig).length > 0 && firebaseConfig.projectId) {
+        app = initializeApp(firebaseConfig);
+        db = getFirestore(app);
+        auth = getAuth(app);
+    } else {
+        console.warn("No Firebase configuration found. Running in local mock mode.");
+    }
+} catch (error) {
+    console.error("Firebase initialization failed:", error);
+}

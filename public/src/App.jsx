@@ -70,6 +70,19 @@ const CommunityForum = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // If no db, use mock data
+    if (!db) {
+      console.warn("Using mock forum data because Firebase is not configured.");
+      setThreads([
+        { id: '1', title: "Best prompt structures for code generation using 1.5 Pro?", author: "CodeNinja", replies: 24, createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000), tags: ["Prompting", "Code"] },
+        { id: '2', title: "Has anyone managed to get the autonomous agent script working?", author: "AI_Explorer", replies: 8, createdAt: new Date(Date.now() - 5 * 60 * 60 * 1000), tags: ["Agents", "Help"] },
+        { id: '3', title: "Google dropping hints about the next model parameter size 👀", author: "DeepMindFan", replies: 142, createdAt: new Date(Date.now() - 24 * 60 * 60 * 1000), tags: ["Discussion", "Rumors"] },
+        { id: '4', title: "[Showcase] I built a full React App just using Gemini 1.5 Flash", author: "UX_Wizard", replies: 56, createdAt: new Date(Date.now() - 48 * 60 * 60 * 1000), tags: ["Showcase", "React"] }
+      ]);
+      setLoading(false);
+      return;
+    }
+
     // Real-time listener for forum threads
     const q = query(collection(db, 'forum_threads'), orderBy('createdAt', 'desc'), limit(10));
     const unsubscribe = onSnapshot(q, (snapshot) => {
