@@ -22,7 +22,7 @@ This site must feature a high-end, dark, space-tech aesthetic that feels "alive"
 - **Typography:** 
   - Headings: "Inter" or "Outfit" (tight tracking, geometric sans).
   - Data/Tech elements: `"JetBrains Mono"` or `"Fira Code"`.
-- **The "Pulse" Mechanism:** There must be a very slow, subtle, unobtrusive glowing radial gradient located in the bottom corner (or dynamically behind cards) that breathes/pulses. It should be classy and not distract readers.
+- **The "Pulse" Mechanism:** There must be a very slow, subtle, unobtrusive glowing radial gradient located in the bottom corner (or dynamically behind cards) that breathes/pulses. It should be classy and not distract readers. 
 
 ---
 
