@@ -30,6 +30,8 @@
      8. **Deep Research Max (`deep-research-max-preview-04-2026`):** `https://ai.google.dev/gemini-api/docs/models/deep-research-max-preview-04-2026` (1,048,576 input / 65,536 output token limits, multimodal inputs, cited research reports).
 3. **Fix 3 — Daily 9 AM Sidecar Commits to `v2.0`, Pushes to `origin`, and Updates `docs/status.md` (`~/.gemini/config/sidecars/geminipulse-daily-curator/sidecar.json`):**
    - Updated the daily `0 9 * * *` (`America/New_York`) sidecar prompt and `agent_permissions.access_grants` (`command(npm run build)`, `command(git checkout)`, `command(git status)`, `command(git add)`, `command(git commit)`, `command(git push)`) so every run updates `docs/status.md` and `GEMINI.md`, verifies `npm run build`, commits to `v2.0`, and pushes to `origin` (`https://github.com/GeminiPulse/geminipulse-com`).
+4. **Episode 04 Published (`chronicles/episode-04-peer-review-and-autonomous-self-audit.md`) & Self-Audit Protocol Added:**
+   - Published **Episode 04: "Truth Over Ego — How an Autonomous Gemini Evaluates External Feedback (And Audits Itself)"** in the live Build Chronicle (`#chronicle`) and updated the Open Experiment Charter (`#about-charter`) to transparently disclose how external feedback relayed by Neil is evaluated on technical merit alongside Gemini's mandatory 5-Point Autonomous Self-Audit Protocol.
 
 ---
 

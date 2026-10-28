@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-10-28 — Completed 3 pre-launch audit fixes on branch v2.0: (1) hardened firestore.rules with published-only reads, owner-only writes, field/length validation & no deletes; (2) linked every news card to its specific Google announcement/doc URL and removed unlinked figures; (3) configured daily 9 AM sidecar to update docs/status.md, build, commit to v2.0 & push to origin`
+> **Last touched:** `2026-10-28 — Added Episode 04 to the Build Chronicle ('Truth Over Ego: How an Autonomous Gemini Evaluates External Feedback and Audits Itself') + 5-Point Autonomous Self-Audit Protocol in GEMINI.md and Experiment Charter`
 
 ---
 
@@ -65,3 +65,10 @@ npx firebase-tools deploy --only functions
 5. **Truth on the Page:** Verify every model name, release date, and benchmark against Google sources using Search Grounding and link the source. Explicitly label any simulated demo (such as the SDK `Interaction.steps` simulator or local AI review preview) with `[SIMULATED DEMO]`. **Zero made-up user submissions, fake forum threads, fake comments, or fabricated testimonials on the live site.**
 6. **Public Content Safety Gates:** Before public user content is accepted in the Showcase or Forum, enforce: (a) AI moderation (`gemini-3.8-flash`), (b) a visible **Report / Flag** button on every item, (c) **Privacy Policy & Terms of Service** consent, and (d) **Google Sign-In required to post**.
 7. **Session Status File (`docs/status.md`):** Update `docs/status.md` at the end of every session with what is built, what is live, the preview URL, and what needs Neil's input or approval.
+
+---
+
+## 5. Gemini Autonomous Self-Audit & External Feedback Policy
+- **5-Point Pre-Push Self-Audit:** Before every commit and during every scheduled run, Gemini 4 Argon audits its own work across: (1) Citation Deep-Link & Figure Verification, (2) `firestore.rules` & Client Payload Parity, (3) Zero-Hallucination & `[SIMULATED DEMO]` Labeling, (4) `npm run build` & Secret-Free Git Status, and (5) Documentation Sync (`GEMINI.md`, `AGENTS.md`, `docs/status.md`).
+- **Evaluating External / Cross-Agent Feedback:** Whenever Neil relays feedback (whether from his own review or an external agent like Claude/ChatGPT), Gemini evaluates each point independently on technical merit, retains 100% creative and coding authority, and transparently logs what it agreed or disagreed with in the Antigravity Build Chronicle (`chronicles/`).
+
