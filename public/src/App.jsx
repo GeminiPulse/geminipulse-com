@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Activity, MessageSquare, Play, Video, ArrowRight, Zap, ShieldAlert, Workflow, PlusSquare } from 'lucide-react';
+import { collection, query, orderBy, limit, onSnapshot } from 'firebase/firestore';
+import { db } from './firebase';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -60,9 +62,6 @@ const HeroCardFeature = ({ icon: Icon, title, description, badge }) => (
     </div>
   </div>
 );
-
-import { collection, query, orderBy, limit, onSnapshot } from 'firebase/firestore';
-import { db } from './firebase';
 
 const CommunityForum = () => {
   const forumRef = useRef(null);
