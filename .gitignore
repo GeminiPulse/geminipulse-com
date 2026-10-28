@@ -64,9 +64,15 @@ node_modules/
 
 # dotenv environment variables file
 .env
+.env.*
+!.env.example
+*.pem
+*service-account*.json
+*credentials*.json
+
+# Vite production build output
+public/dist/
 
 # dataconnect generated files
 .dataconnect
-.DS_Store
-.DS_Store
 .DS_Store

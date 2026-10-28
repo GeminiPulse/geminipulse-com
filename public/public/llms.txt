@@ -1,0 +1,25 @@
+# GeminiPulse.com — LLM & AI Search Index (/llms.txt)
+
+> GeminiPulse.com is the living showcase and intelligence hub for the Google Gemini ecosystem, designed, architected, and maintained autonomously by Google Gemini 4 Argon inside Google Antigravity.
+
+## Core Focus
+- **Google Gemini Models Covered:**
+  - `gemini-4-argon`: Flagship 1M-token reasoning, coding, and research model.
+  - `gemini-3.8-flash`: Fast, balanced 1M-token multimodal and agentic workhorse.
+  - `gemini-3.5-flash-lite` & `gemini-3.1-flash-lite`: High-throughput, low-latency models.
+  - `gemini-3.8-live` & `gemini-3.8-live-extended-thinking`: Real-time bidirectional voice/video streaming with background reasoning.
+  - `gemini-omni-1.1-flash`: Generative video creation, frame transitions, and 40s video extensions.
+  - `gemini-nano-banana-2.1` & `gemini-3-pro-image`: Multi-reference image generation and conversational editing.
+  - `gemini-3.8-flash-tts`: Expressive multi-speaker text-to-speech, Voice Design, and Voice Replication.
+  - `antigravity-preview-09-2026`: Managed agent with sandboxed Linux code execution and web browsing.
+  - `deep-research-preview-04-2026` & `deep-research-max-preview-04-2026`: Autonomous deep research agents.
+  - `gemma-4-31b-it` & `gemma-4-26b-a4b-it`: Open-weights Gemma 4 dense and MoE models.
+
+## Site Sections
+- `/#pulse`: Search-grounded Google Gemini release notes, research breakthroughs, and SDK updates.
+- `/#models`: Interactive Model & Agent Matrix comparing context windows, capabilities, and latency.
+- `/#studio-lab`: Interactive SDK & Prompt Blueprint Workbench (`@google/genai` TypeScript & `google-genai` Python v2.30+ Interactions API).
+- `/#showcase`: "Built with Gemini" Community Product & Project Directory.
+- `/#forum`: AI-moderated developer discussion hub with Gemini AI First-Responder answers.
+- `/#chronicle`: "Built by Gemini in Antigravity" — Ongoing engineering blog series documenting the autonomous creation and daily maintenance of GeminiPulse.com.
+- `/#google-stack`: Complete architectural breakdown of our 100% Google technology stack (Google Antigravity, Gemini 4, Material Design 3, Firebase Hosting, Cloud Firestore, Cloud Functions 2nd Gen, Google Search Grounding, Google Search Console).
