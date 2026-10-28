@@ -35,7 +35,7 @@ import {
   X,
   Zap,
 } from 'lucide-react';
-import { collection, addDoc, query, orderBy, limit, onSnapshot } from 'firebase/firestore';
+import { collection, addDoc, query, where, orderBy, limit, onSnapshot } from 'firebase/firestore';
 import {
   db,
   auth,
@@ -194,10 +194,15 @@ export default function App() {
     setTimeout(() => setAuthNotice(null), 4000);
   };
 
-  // Sync with Cloud Firestore when configured
+  // Sync with Cloud Firestore when configured (queries published documents per firestore.rules)
   useEffect(() => {
     if (!db) return;
-    const qForum = query(collection(db, 'forum_threads'), orderBy('createdAt', 'desc'), limit(15));
+    const qForum = query(
+      collection(db, 'forum_threads'),
+      where('status', '==', 'published'),
+      orderBy('createdAt', 'desc'),
+      limit(15)
+    );
     const unsubForum = onSnapshot(
       qForum,
       (snap) => {
@@ -283,20 +288,23 @@ export default function App() {
 
     const created = {
       id: `showcase-${Date.now()}`,
-      name: newProject.name.trim(),
-      creator: currentUser.displayName || newProject.creator.trim() || currentUser.email,
+      name: newProject.name.trim().slice(0, 120),
+      creator: (currentUser.displayName || newProject.creator.trim() || currentUser.email || 'Builder').slice(0, 80),
+      authorUid: currentUser.uid,
       category: newProject.category,
-      tagline: newProject.tagline.trim(),
-      models: newProject.models,
+      tagline: newProject.tagline.trim().slice(0, 600),
+      models: newProject.models.length ? newProject.models.slice(0, 10) : ['gemini-4-argon'],
       architectureHighlight: generateInstantProjectHighlight(
         newProject.name,
         newProject.models,
         newProject.tagline
-      ),
-      url: newProject.url.trim() || 'https://ai.google.dev',
+      ).slice(0, 800),
+      url: (newProject.url.trim() || 'https://ai.google.dev').slice(0, 300),
       upvotes: 1,
       verifiedByGemini: true,
       featured: false,
+      status: 'published',
+      createdAt: new Date().toISOString(),
     };
 
     if (db) {
@@ -338,17 +346,19 @@ export default function App() {
 
     const created = {
       id: `thread-${Date.now()}`,
-      title: newThreadForm.title.trim(),
-      author: currentUser.displayName || newThreadForm.author.trim() || currentUser.email,
+      title: newThreadForm.title.trim().slice(0, 160),
+      author: (currentUser.displayName || newThreadForm.author.trim() || currentUser.email || 'Developer').slice(0, 80),
+      authorUid: currentUser.uid,
       category: newThreadForm.category,
-      tags: tags.length ? tags : ['gemini-4-argon'],
+      tags: tags.length ? tags.slice(0, 10) : ['gemini-4-argon'],
       replies: 1,
       upvotes: 1,
       createdAt: new Date().toISOString(),
       verifiedByGemini: true,
-      body: newThreadForm.body.trim() || 'Sharing architectural notes with the GeminiPulse community.',
-      aiFirstResponse: generateInstantForumFirstResponse(newThreadForm.title.trim(), tags),
+      body: (newThreadForm.body.trim() || 'Sharing architectural notes with the GeminiPulse community.').slice(0, 4000),
+      aiFirstResponse: generateInstantForumFirstResponse(newThreadForm.title.trim(), tags).slice(0, 2000),
       comments: [],
+      status: 'published',
     };
 
     if (db) {

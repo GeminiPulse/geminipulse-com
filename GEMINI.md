@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-10-28 — Clean-slate v2.0 rebuild in Google Antigravity (M3 Expressive UI, Search-Grounded Oct 28 2026 Gemini 4 Carbon & Argon + Genie 4 feed, Interactions API SDK Lab, YouTube Shorts Studio, Open Experiment Charter, Google Sign-In & Moderation gates, and docs/status.md)`
+> **Last touched:** `2026-10-28 — Completed 3 pre-launch audit fixes on branch v2.0: (1) hardened firestore.rules with published-only reads, owner-only writes, field/length validation & no deletes; (2) linked every news card to its specific Google announcement/doc URL and removed unlinked figures; (3) configured daily 9 AM sidecar to update docs/status.md, build, commit to v2.0 & push to origin`
 
 ---
 

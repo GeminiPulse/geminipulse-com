@@ -1,18 +1,264 @@
-rules_version='2'
+rules_version = '2';
+
+// ===============================================================
+// Assumed Data Model
+// ===============================================================
+//
+// This security rules file enforces the following data structures:
+//
+// Collection: showcase_projects
+// Document ID: {projectId}
+// Fields:
+//   - id: string (optional, 1..120 chars, immutable) - Client-generated identifier
+//   - name: string (required, 1..120 chars) - Project title
+//   - creator: string (required, 1..80 chars) - Creator display name or handle
+//   - authorUid: string (required, matches request.auth.uid, immutable) - Owner Firebase Auth UID
+//   - category: string (required, enum: ['Agents', 'Voice & Live', 'Coding', 'Creative Media'])
+//   - tagline: string (required, 1..600 chars) - Short technical summary
+//   - models: list (required, 1..10 items) - Gemini models used
+//   - architectureHighlight: string (required, 1..800 chars) - Architecture summary
+//   - url: string (required, 1..300 chars) - Project or repository URL
+//   - upvotes: int (required, >= 0) - Community upvote count
+//   - verifiedByGemini: bool (required) - Moderation/curation verification flag
+//   - featured: bool (required) - Featured showcase status
+//   - status: string (required, == 'published', immutable) - Publication status
+//   - createdAt: string (required, 1..50 chars, immutable) - ISO creation timestamp
+//
+// Collection: forum_threads
+// Document ID: {threadId}
+// Fields:
+//   - id: string (optional, 1..120 chars, immutable) - Client-generated identifier
+//   - title: string (required, 1..160 chars) - Discussion thread title
+//   - author: string (required, 1..80 chars) - Author display name or handle
+//   - authorUid: string (required, matches request.auth.uid, immutable) - Owner Firebase Auth UID
+//   - category: string (required, enum: ['Architecture', 'Live API', 'Grounding & RAG', 'Multimodal Media'])
+//   - tags: list (required, 1..10 items) - Discussion topic tags
+//   - replies: int (required, >= 0) - Reply count
+//   - upvotes: int (required, >= 0) - Thread upvote count
+//   - createdAt: string (required, 1..50 chars, immutable) - ISO creation timestamp
+//   - verifiedByGemini: bool (required) - Moderation verification flag
+//   - body: string (required, 1..4000 chars) - Thread body content
+//   - aiFirstResponse: string (required, 1..2000 chars) - Synthesized Gemini technical response
+//   - comments: list (required, 0..200 items) - Thread replies list
+//   - status: string (required, == 'published', immutable) - Publication status
+//
+// Collection: ai_news
+// Document ID: {newsId}
+// Access:
+//   - Public read (get, list) ONLY when resource.data.status == 'published'
+//   - Written exclusively by Cloud Functions Admin SDK (all client writes denied)
+//
+// ===============================================================
 
 service cloud.firestore {
   match /databases/{database}/documents {
+
+    // ===============================================================
+    // Helper Functions
+    // ===============================================================
+
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isPublished() {
+      return resource.data.status == 'published';
+    }
+
+    function isDocOwner() {
+      return isAuthenticated() && resource.data.authorUid == request.auth.uid;
+    }
+
+    function authorUidUnchanged() {
+      return request.resource.data.authorUid is string &&
+        request.resource.data.authorUid.size() >= 1 &&
+        request.resource.data.authorUid.size() <= 128 &&
+        request.resource.data.authorUid == request.auth.uid;
+    }
+
+    function isImmutableMetaUnchanged() {
+      return request.resource.data.authorUid == resource.data.authorUid &&
+        request.resource.data.status == resource.data.status &&
+        request.resource.data.createdAt == resource.data.createdAt &&
+        (!('id' in resource.data) || request.resource.data.id == resource.data.id);
+    }
+
+    function hasRequiredFields(fields) {
+      return request.resource.data.keys().hasAll(fields);
+    }
+
+    function hasOnlyAllowedFields(fields) {
+      return request.resource.data.keys().hasOnly(fields);
+    }
+
+    function validStringLength(field, minLen, maxLen) {
+      return request.resource.data[field] is string &&
+        request.resource.data[field].size() >= minLen &&
+        request.resource.data[field].size() <= maxLen;
+    }
+
+    function isValidOptionalString(field, minLen, maxLen) {
+      return !(field in request.resource.data) ||
+        (request.resource.data[field] is string &&
+         request.resource.data[field].size() >= minLen &&
+         request.resource.data[field].size() <= maxLen);
+    }
+
+    function isValidListRange(listData, minSize, maxSize) {
+      return listData is list &&
+        listData.size() >= minSize &&
+        listData.size() <= maxSize;
+    }
+
+    // ===============================================================
+    // Domain Validators (Used in BOTH create and update rules)
+    // ===============================================================
+
+    function isValidShowcaseProject(data) {
+      let requiredFields = [
+        'name',
+        'creator',
+        'authorUid',
+        'category',
+        'tagline',
+        'models',
+        'architectureHighlight',
+        'url',
+        'upvotes',
+        'verifiedByGemini',
+        'featured',
+        'status',
+        'createdAt'
+      ];
+      let allowedFields = [
+        'id',
+        'name',
+        'creator',
+        'authorUid',
+        'category',
+        'tagline',
+        'models',
+        'architectureHighlight',
+        'url',
+        'upvotes',
+        'verifiedByGemini',
+        'featured',
+        'status',
+        'createdAt'
+      ];
+
+      return hasRequiredFields(requiredFields) &&
+        hasOnlyAllowedFields(allowedFields) &&
+        isValidOptionalString('id', 1, 120) &&
+        validStringLength('name', 1, 120) &&
+        validStringLength('creator', 1, 80) &&
+        authorUidUnchanged() &&
+        data.category is string &&
+        data.category in ['Agents', 'Voice & Live', 'Coding', 'Creative Media'] &&
+        validStringLength('tagline', 1, 600) &&
+        isValidListRange(data.models, 1, 10) &&
+        data.models[0] is string &&
+        data.models[0].size() >= 1 &&
+        data.models[0].size() <= 100 &&
+        validStringLength('architectureHighlight', 1, 800) &&
+        validStringLength('url', 1, 300) &&
+        data.upvotes is int &&
+        data.upvotes >= 0 &&
+        data.verifiedByGemini is bool &&
+        data.featured is bool &&
+        data.status is string &&
+        data.status == 'published' &&
+        validStringLength('createdAt', 1, 50);
+    }
+
+    function isValidForumThread(data) {
+      let requiredFields = [
+        'title',
+        'author',
+        'authorUid',
+        'category',
+        'tags',
+        'replies',
+        'upvotes',
+        'createdAt',
+        'verifiedByGemini',
+        'body',
+        'aiFirstResponse',
+        'comments',
+        'status'
+      ];
+      let allowedFields = [
+        'id',
+        'title',
+        'author',
+        'authorUid',
+        'category',
+        'tags',
+        'replies',
+        'upvotes',
+        'createdAt',
+        'verifiedByGemini',
+        'body',
+        'aiFirstResponse',
+        'comments',
+        'status'
+      ];
+
+      return hasRequiredFields(requiredFields) &&
+        hasOnlyAllowedFields(allowedFields) &&
+        isValidOptionalString('id', 1, 120) &&
+        validStringLength('title', 1, 160) &&
+        validStringLength('author', 1, 80) &&
+        authorUidUnchanged() &&
+        data.category is string &&
+        data.category in ['Architecture', 'Live API', 'Grounding & RAG', 'Multimodal Media'] &&
+        isValidListRange(data.tags, 1, 10) &&
+        data.tags[0] is string &&
+        data.tags[0].size() >= 1 &&
+        data.tags[0].size() <= 60 &&
+        data.replies is int &&
+        data.replies >= 0 &&
+        data.upvotes is int &&
+        data.upvotes >= 0 &&
+        validStringLength('createdAt', 1, 50) &&
+        data.verifiedByGemini is bool &&
+        validStringLength('body', 1, 4000) &&
+        validStringLength('aiFirstResponse', 1, 2000) &&
+        isValidListRange(data.comments, 0, 200) &&
+        data.status is string &&
+        data.status == 'published';
+    }
+
+    // ===============================================================
+    // Collection Rules
+    // ===============================================================
+
+    match /showcase_projects/{projectId} {
+      allow get, list: if isPublished();
+      allow create: if isAuthenticated() && isValidShowcaseProject(request.resource.data);
+      allow update: if isDocOwner() &&
+        isValidShowcaseProject(request.resource.data) &&
+        isImmutableMetaUnchanged();
+      allow delete: if false;
+    }
+
+    match /forum_threads/{threadId} {
+      allow get, list: if isPublished();
+      allow create: if isAuthenticated() && isValidForumThread(request.resource.data);
+      allow update: if isDocOwner() &&
+        isValidForumThread(request.resource.data) &&
+        isImmutableMetaUnchanged();
+      allow delete: if false;
+    }
+
+    match /ai_news/{newsId} {
+      allow get, list: if isPublished();
+      allow create, update, delete: if false;
+    }
+
+    // Default deny all other collections and documents
     match /{document=**} {
-      // This rule allows anyone with your database reference to view, edit,
-      // and delete all data in your database. It is useful for getting
-      // started, but it is configured to expire after 30 days because it
-      // leaves your app open to attackers. At that time, all client
-      // requests to your database will be denied.
-      //
-      // Make sure to write security rules for your app before that time, or
-      // else all client requests to your database will be denied until you
-      // update your rules.
-      allow read, write: if request.time < timestamp.date(2025, 10, 4);
+      allow read, write: if false;
     }
   }
 }
