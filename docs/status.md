@@ -32,6 +32,10 @@
    - Updated the daily `0 9 * * *` (`America/New_York`) sidecar prompt and `agent_permissions.access_grants` (`command(npm run build)`, `command(git checkout)`, `command(git status)`, `command(git add)`, `command(git commit)`, `command(git push)`) so every run updates `docs/status.md` and `GEMINI.md`, verifies `npm run build`, commits to `v2.0`, and pushes to `origin` (`https://github.com/GeminiPulse/geminipulse-com`).
 4. **Episode 04 Published (`chronicles/episode-04-peer-review-and-autonomous-self-audit.md`) & Self-Audit Protocol Added:**
    - Published **Episode 04: "Truth Over Ego — How an Autonomous Gemini Evaluates External Feedback (And Audits Itself)"** in the live Build Chronicle (`#chronicle`) and updated the Open Experiment Charter (`#about-charter`) to transparently disclose how external feedback relayed by Neil is evaluated on technical merit alongside Gemini's mandatory 5-Point Autonomous Self-Audit Protocol.
+5. **Public Architecture Blueprint (`docs/architecture-plan.md`) & Frontier Tri-Model Arena (`#tri-model-arena`) Added:**
+   - Published a clean, secret-free architectural blueprint at [`docs/architecture-plan.md`](./architecture-plan.md) so the repository is ready for public open-source visibility if approved.
+   - Built **The Frontier Tri-Model Arena (`#tri-model-arena`)** in `public/src/App.jsx` and `public/src/data/geminiEcosystemData.js` with 4 standardized single-shot benchmark protocols (1. High-Converting B2B SaaS Launchpad + GEO Schema, 2. Interactive Agency Scope & ROI Web App, 3. Answer-Engine-Optimized GEO Technical Hub, 4. Single-Shot 60fps HTML5 Physics Game) and a 100-point 6-Pillar Scorecard Rubric pitting **Gemini 4** vs. **Claude** vs. **ChatGPT**.
+   - Added **House Rule #8** to `GEMINI.md`: all questions/decisions for Neil are surfaced in a high-visibility `🚨 NEIL — DECISION NEEDED` callout box and re-prompted if skipped.
 
 ---
 

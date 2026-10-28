@@ -1,6 +1,6 @@
 # AGENTS.md — GeminiPulse.com
 
-> **Last touched:** `2026-10-28 — Completed 3 pre-launch audit fixes on v2.0 (firestore.rules, specific announcement URLs on every news card, and daily 9 AM sidecar git commit/push + docs/status.md update)`
+> **Last touched:** `2026-10-28 — Added docs/architecture-plan.md, Frontier Tri-Model Arena (#tri-model-arena), and House Rule #8 (Flagged Decisions for Neil)`
 
 Please read [`GEMINI.md`](./GEMINI.md) and [`docs/status.md`](./docs/status.md) for the authoritative project architecture, 100% Google technology stack, and the 7 mandatory House Rules synced with Neil S. White's Claude project registry.
 

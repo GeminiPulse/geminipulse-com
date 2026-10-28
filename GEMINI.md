@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-10-28 — Added Episode 04 to the Build Chronicle ('Truth Over Ego: How an Autonomous Gemini Evaluates External Feedback and Audits Itself') + 5-Point Autonomous Self-Audit Protocol in GEMINI.md and Experiment Charter`
+> **Last touched:** `2026-10-28 — Added docs/architecture-plan.md (public-safe blueprint), Module 10 ('The Frontier Tri-Model Arena: Gemini vs. Claude vs. ChatGPT Single-Shot Lab'), and House Rule #8 (Flagged Decisions & Re-Prompting Protocol for Neil)`
 
 ---
 
@@ -65,6 +65,7 @@ npx firebase-tools deploy --only functions
 5. **Truth on the Page:** Verify every model name, release date, and benchmark against Google sources using Search Grounding and link the source. Explicitly label any simulated demo (such as the SDK `Interaction.steps` simulator or local AI review preview) with `[SIMULATED DEMO]`. **Zero made-up user submissions, fake forum threads, fake comments, or fabricated testimonials on the live site.**
 6. **Public Content Safety Gates:** Before public user content is accepted in the Showcase or Forum, enforce: (a) AI moderation (`gemini-3.8-flash`), (b) a visible **Report / Flag** button on every item, (c) **Privacy Policy & Terms of Service** consent, and (d) **Google Sign-In required to post**.
 7. **Session Status File (`docs/status.md`):** Update `docs/status.md` at the end of every session with what is built, what is live, the preview URL, and what needs Neil's input or approval.
+8. **Flagged Decisions & Re-Prompting Protocol for Neil:** Because Neil manages a dozen projects simultaneously, never bury a question or decision inside a long paragraph. Always surface any item requiring his call inside a clearly labeled **`🚨 NEIL — DECISION NEEDED`** box (or interactive question prompt). If Neil replies *"continue"* without answering a required decision, explicitly stop and say: *"Okay, but I need you to opine on this specific item before I proceed on it: [item]."*
 
 ---
 

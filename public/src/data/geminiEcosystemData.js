@@ -1024,3 +1024,124 @@ export const GOOGLE_STACK_ARCHITECTURE = [
     badge: 'SEO & AEO',
   },
 ];
+
+export const TRI_MODEL_RUBRIC = [
+  {
+    metric: '1. Wall-Clock Time & Token Cost ($)',
+    weight: '20%',
+    criteria: 'Exact generation duration (seconds), input/output/thinking tokens consumed, and total USD cost at current published API pricing.',
+  },
+  {
+    metric: '2. UI / UX & Visual Design System',
+    weight: '20%',
+    criteria: 'Typography hierarchy, spacing rhythm, dark/light contrast, micro-interactions, mobile responsiveness, and absence of generic template clichés.',
+  },
+  {
+    metric: '3. Single-Shot Code Quality & Execution',
+    weight: '20%',
+    criteria: 'Does the code run on the first shot with zero console errors, zero missing imports, and clean semantic architecture?',
+  },
+  {
+    metric: '4. SEO & GEO (Generative Engine Optimization)',
+    weight: '15%',
+    criteria: 'Semantic HTML5 landmarks, OpenGraph tags, valid Schema.org JSON-LD structured data, and AI answer-engine clarity (`/llms.txt` readiness).',
+  },
+  {
+    metric: '5. Sales, Positioning & Conversion Copy',
+    weight: '15%',
+    criteria: 'Hook clarity, value proposition differentiation, objection handling, and CTA architecture—evaluated from a 30-year agency lens.',
+  },
+  {
+    metric: '6. Accessibility (a11y) & Edge Cases',
+    weight: '10%',
+    criteria: 'Keyboard navigation, ARIA labels, focus states, and graceful handling of empty or invalid user inputs.',
+  },
+];
+
+export const TRI_MODEL_ARENA_EXPERIMENTS = [
+  {
+    id: 'arena-exp-01-saas-geo-launchpad',
+    number: 'EXPERIMENT #01',
+    category: 'Sales, Marketing & GEO Website',
+    title: 'Single-Shot High-Converting B2B SaaS Launchpad + Full SEO/GEO Schema',
+    status: 'PROTOCOL READY — Awaiting Live Recorded Run',
+    contenders: ['Google Gemini 4 Argon', 'Anthropic Claude (Opus / Sonnet)', 'OpenAI ChatGPT (Frontier)'],
+    marketFocus: 'Agencies, B2B Founders & Growth Marketers',
+    whyThisTestMatters:
+      'Most LLM coding tests ignore marketing psychology, SEO, and Generative Engine Optimization (GEO). This test measures which frontier model can build a production-ready landing page in one shot that both looks custom-designed and converts real buyers.',
+    singleShotPrompt: `Build a complete, single-file responsive HTML5 + Tailwind CSS + vanilla JS landing page for "PulseMetric", an AI revenue attribution platform for B2B founders.
+Requirements in a single shot (no placeholders or TODOs):
+1. Visual Design: Expressive modern dark/light toggleable aesthetic with custom SVG data visualization in the hero section.
+2. Sales & Conversion Architecture: Above-the-fold value proposition, interactive ROI/Savings slider that dynamically recalculates annual recovered ad spend, 3-tier pricing matrix with monthly/annual toggle, and objection-handling FAQ accordion.
+3. SEO & GEO (Generative Engine Optimization): Complete <head> meta tags, OpenGraph tags, valid Schema.org SoftwareApplication + FAQPage JSON-LD script block, and semantic <main>, <section>, <article>, and <nav> landmarks.`,
+    telemetryTemplate: {
+      gemini: 'Pending live recorded run (Time • Tokens • $ Cost • 6-Pillar Score)',
+      claude: 'Pending live recorded run (Time • Tokens • $ Cost • 6-Pillar Score)',
+      chatgpt: 'Pending live recorded run (Time • Tokens • $ Cost • 6-Pillar Score)',
+    },
+  },
+  {
+    id: 'arena-exp-02-interactive-roi-webapp',
+    number: 'EXPERIMENT #02',
+    category: 'Interactive Business Web App',
+    title: 'Single-Shot Client Scope & Dynamic Proposal Builder Web App',
+    status: 'PROTOCOL READY — Awaiting Live Recorded Run',
+    contenders: ['Google Gemini 4 Argon', 'Anthropic Claude (Opus / Sonnet)', 'OpenAI ChatGPT (Frontier)'],
+    marketFocus: 'Consultancies, Creative Agencies & Product Teams',
+    whyThisTestMatters:
+      'Tests stateful application logic, multi-step form ergonomics, real-time pricing math, localStorage persistence, and print/PDF-ready layout in a single prompt.',
+    singleShotPrompt: `Create a single-file interactive "Agency Scope & Proposal Configurator" web application (HTML5 + CSS + JS, zero external backend required).
+Requirements in a single shot:
+1. Interactive Scope Builder: Allow a prospective client to toggle deliverables across Brand Strategy, Web App Engineering, AI Automation, and Growth/SEO, adjusting timeline urgency (Standard vs. Sprint).
+2. Live Telemetry & Pricing Engine: Dynamically calculate itemized investment, estimated week-by-week milestone timeline bar chart, and projected ROI breakdown.
+3. Persistence & Export: Save draft state automatically to localStorage, include a "Reset" control, and provide a clean "Generate Print/PDF Proposal View" mode with @media print styling.`,
+    telemetryTemplate: {
+      gemini: 'Pending live recorded run (Time • Tokens • $ Cost • 6-Pillar Score)',
+      claude: 'Pending live recorded run (Time • Tokens • $ Cost • 6-Pillar Score)',
+      chatgpt: 'Pending live recorded run (Time • Tokens • $ Cost • 6-Pillar Score)',
+    },
+  },
+  {
+    id: 'arena-exp-03-geo-authority-engine',
+    number: 'EXPERIMENT #03',
+    category: 'SEO & GEO Authority Hub',
+    title: 'Single-Shot Answer-Engine-Optimized (GEO) Technical Comparison Hub',
+    status: 'PROTOCOL READY — Awaiting Live Recorded Run',
+    contenders: ['Google Gemini 4 Argon', 'Anthropic Claude (Opus / Sonnet)', 'OpenAI ChatGPT (Frontier)'],
+    marketFocus: 'Publishers, Niche Authority Sites & E-Commerce',
+    whyThisTestMatters:
+      'Evaluates how well each model structures machine-readable entity graphs, comparison tables, citation blocks, and embedded `/llms.txt` previews so Google Search and AI Overviews surface the page first.',
+    singleShotPrompt: `Build a single-file, ultra-fast Technical Buying Guide & Interactive Comparison Engine for "Enterprise Vector & Graph Databases 2026".
+Requirements in a single shot:
+1. Interactive Filtering & Sorting: Filter by latency, cloud provider, hybrid search support, and pricing model, with an interactive "Recommend My Stack" 3-question wizard.
+2. GEO & Structured Data: Include valid Schema.org TechArticle + ItemList JSON-LD, a citation-ready Executive Summary block at the top of the article, and a modal previewing the exact /llms.txt summary for AI crawlers.
+3. Accessibility & Core Web Vitals: Zero layout shift, full keyboard accessibility, and high-contrast daylight and dark reading modes.`,
+    telemetryTemplate: {
+      gemini: 'Pending live recorded run (Time • Tokens • $ Cost • 6-Pillar Score)',
+      claude: 'Pending live recorded run (Time • Tokens • $ Cost • 6-Pillar Score)',
+      chatgpt: 'Pending live recorded run (Time • Tokens • $ Cost • 6-Pillar Score)',
+    },
+  },
+  {
+    id: 'arena-exp-04-single-shot-arcade',
+    number: 'EXPERIMENT #04',
+    category: 'Viral Single-Shot HTML5 Game',
+    title: 'Single-Shot 60fps HTML5 Canvas Physics & Particle Arcade Game',
+    status: 'PROTOCOL READY — Awaiting Live Recorded Run',
+    contenders: ['Google Gemini 4 Argon', 'Anthropic Claude (Opus / Sonnet)', 'OpenAI ChatGPT (Frontier)'],
+    marketFocus: 'YouTube Shorts / Reddit Visual Benchmark',
+    whyThisTestMatters:
+      'While our core business is websites, apps, and marketing, single-shot HTML5 games are the ultimate visual stress test on YouTube—instantly revealing frame-rate smoothness, collision math, Web Audio API sound synthesis, and polish.',
+    singleShotPrompt: `Write a complete, single-file 60fps HTML5 Canvas arcade game called "Orbital Pulse" with zero external image or audio assets.
+Requirements in a single shot:
+1. Gameplay & Physics: Player controls a gravitational shield orbiting a central core, deflecting incoming energy pulses into matching spectrum targets while avoiding corrupted shards. Include combo multipliers, wave progression, and particle explosions.
+2. Procedural Web Audio: Synthesize retro-modern sound effects (deflect, combo chime, shield hit, wave clear) purely using the browser Web Audio API (with a Mute toggle).
+3. HUD & Polish: Start screen, live score/combo/FPS telemetry HUD, high-score persistence in localStorage, and instant Restart button.`,
+    telemetryTemplate: {
+      gemini: 'Pending live recorded run (Time • Tokens • $ Cost • 6-Pillar Score)',
+      claude: 'Pending live recorded run (Time • Tokens • $ Cost • 6-Pillar Score)',
+      chatgpt: 'Pending live recorded run (Time • Tokens • $ Cost • 6-Pillar Score)',
+    },
+  },
+];
+

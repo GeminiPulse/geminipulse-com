@@ -55,6 +55,8 @@ import {
   YOUTUBE_SHORTS_STUDIO,
   SOCIAL_DISTRIBUTION_PLAYBOOK,
   EXPERIMENT_CHARTER,
+  TRI_MODEL_RUBRIC,
+  TRI_MODEL_ARENA_EXPERIMENTS,
 } from './data/geminiEcosystemData';
 
 // Authentic 4-Point Google Gemini Sparkle Icon
@@ -154,6 +156,10 @@ export default function App() {
   const [activeShortId, setActiveShortId] = useState(YOUTUBE_SHORTS_STUDIO[0].id);
   const [copiedShortId, setCopiedShortId] = useState(null);
   const [copiedSocialId, setCopiedSocialId] = useState(null);
+
+  // Frontier Tri-Model Arena State (Gemini vs Claude vs ChatGPT)
+  const [activeArenaId, setActiveArenaId] = useState(TRI_MODEL_ARENA_EXPERIMENTS[0].id);
+  const [copiedArenaId, setCopiedArenaId] = useState(null);
 
   // Legal & Charter Modal State (null | 'about' | 'privacy' | 'terms')
   const [legalModalTab, setLegalModalTab] = useState(null);
@@ -425,6 +431,11 @@ export default function App() {
     [activeShortId]
   );
 
+  const activeArenaExperiment = useMemo(
+    () => TRI_MODEL_ARENA_EXPERIMENTS.find((exp) => exp.id === activeArenaId) || TRI_MODEL_ARENA_EXPERIMENTS[0],
+    [activeArenaId]
+  );
+
   const toggleModelInNewProject = (modelId) => {
     setNewProject((prev) => {
       const exists = prev.models.includes(modelId);
@@ -482,6 +493,7 @@ export default function App() {
               { href: '#pulse', label: 'Pulse Radar' },
               { href: '#models', label: 'Models & Agents' },
               { href: '#studio-lab', label: 'SDK Lab' },
+              { href: '#tri-model-arena', label: 'Tri-Model Arena' },
               { href: '#showcase', label: 'Built with Gemini' },
               { href: '#media-studio', label: 'YouTube & Reddit' },
               { href: '#forum', label: 'Forum' },
@@ -1001,6 +1013,156 @@ export default function App() {
               <div className="pt-3 border-t border-[var(--md-sys-color-outline)] text-[11px] font-mono m3-text-muted flex items-center justify-between">
                 <span>SDK: @google/genai &gt;= 2.29.1</span>
                 <span>55-day stateful retention</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =================================================================
+            MODULE 3.5: THE FRONTIER TRI-MODEL ARENA (#tri-model-arena)
+            ================================================================= */}
+        <section id="tri-model-arena" className="scroll-mt-24 space-y-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[var(--md-sys-color-outline)] pb-6">
+            <div>
+              <div className="text-xs font-mono uppercase tracking-wider text-amber-400 flex items-center gap-1.5 mb-2">
+                <Zap className="w-3.5 h-3.5" />
+                Single-Shot Head-to-Head Lab • Gemini vs. Claude vs. ChatGPT
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
+                The Frontier <span className="gemini-spectrum-text">Tri-Model Arena</span>
+              </h2>
+              <p className="m3-text-muted mt-1 max-w-3xl">
+                Most benchmarks only compare one company's models against themselves. Here, we run the <strong>exact same single-shot prompt</strong> across <strong>Google Gemini 4</strong>, <strong>Anthropic Claude</strong>, and <strong>OpenAI ChatGPT</strong>—scoring real-world outcomes on wall-clock speed, token cost ($), UI/UX, code quality, SEO/GEO, and sales/conversion effectiveness.
+              </p>
+            </div>
+
+            <div className="px-3.5 py-2 rounded-2xl bg-blue-500/15 border border-blue-400/30 text-blue-300 text-xs font-mono shrink-0">
+              [PROTOCOL READY] Zero fabricated scores • Copy prompt to test
+            </div>
+          </div>
+
+          {/* 4 Single-Shot Experiment Selector Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            {TRI_MODEL_ARENA_EXPERIMENTS.map((exp) => {
+              const active = exp.id === activeArenaExperiment.id;
+              return (
+                <button
+                  key={exp.id}
+                  onClick={() => setActiveArenaId(exp.id)}
+                  className={`p-4 rounded-2xl text-left transition-all cursor-pointer border ${
+                    active
+                      ? 'bg-blue-500/10 border-blue-400 shadow-md'
+                      : 'm3-card hover:border-blue-400/40'
+                  }`}
+                >
+                  <div className="flex items-center justify-between text-xs font-mono mb-1.5">
+                    <span className="text-amber-400 font-bold">{exp.number}</span>
+                    <span className="text-blue-400">{exp.category}</span>
+                  </div>
+                  <div className="font-bold text-sm leading-snug">{exp.title}</div>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Active Experiment Protocol & 6-Pillar Rubric */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            {/* Left: Identical Single-Shot Prompt & Contender Telemetry */}
+            <div className="lg:col-span-7 m3-card p-6 space-y-5 flex flex-col justify-between">
+              <div className="space-y-4">
+                <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[var(--md-sys-color-outline)] pb-4">
+                  <div>
+                    <span className="text-xs font-mono text-amber-400 font-bold">
+                      {activeArenaExperiment.number} • {activeArenaExperiment.category}
+                    </span>
+                    <h3 className="text-xl font-bold mt-0.5">{activeArenaExperiment.title}</h3>
+                    <div className="text-xs font-mono m3-text-muted mt-0.5">
+                      Market Lens: {activeArenaExperiment.marketFocus}
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={() => {
+                      navigator.clipboard.writeText(activeArenaExperiment.singleShotPrompt);
+                      setCopiedArenaId(activeArenaExperiment.id);
+                      setTimeout(() => setCopiedArenaId(null), 2000);
+                    }}
+                    className="bg-gemini-grad text-white text-xs font-semibold px-4 py-2 rounded-full inline-flex items-center gap-1.5 cursor-pointer shrink-0"
+                  >
+                    {copiedArenaId === activeArenaExperiment.id ? (
+                      <>
+                        <Check className="w-3.5 h-3.5" /> Copied Identical Prompt!
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="w-3.5 h-3.5" /> Copy Single-Shot Prompt
+                      </>
+                    )}
+                  </button>
+                </div>
+
+                <p className="text-xs sm:text-sm m3-text-muted leading-relaxed">
+                  {activeArenaExperiment.whyThisTestMatters}
+                </p>
+
+                <div className="space-y-1.5">
+                  <div className="text-xs font-mono uppercase text-blue-400 font-semibold">
+                    Identical Single-Shot Prompt (Run Unmodified in All 3 LLMs):
+                  </div>
+                  <pre className="p-4 rounded-xl bg-[#080a0f] text-gray-100 border border-[var(--md-sys-color-outline)] font-mono text-xs whitespace-pre-wrap leading-relaxed overflow-x-auto">
+                    {activeArenaExperiment.singleShotPrompt}
+                  </pre>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+                  {activeArenaExperiment.contenders.map((contender) => (
+                    <div
+                      key={contender}
+                      className="p-3 rounded-xl bg-[var(--md-sys-color-surface)] border border-[var(--md-sys-color-outline)] text-xs space-y-1"
+                    >
+                      <div className="font-bold text-[var(--md-sys-color-on-surface)]">{contender}</div>
+                      <div className="font-mono text-[11px] text-amber-400">
+                        {activeArenaExperiment.status}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="pt-3 border-t border-[var(--md-sys-color-outline)] text-xs font-mono m3-text-muted flex flex-wrap items-center justify-between gap-2">
+                <span>Rule #5 Compliance: Scores published only after live recorded execution</span>
+                <a href="https://github.com/GeminiPulse/geminipulse-com/blob/v2.0/docs/architecture-plan.md" target="_blank" rel="noreferrer" className="text-blue-400 hover:underline inline-flex items-center gap-1">
+                  View Open Blueprint (`docs/architecture-plan.md`) <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
+            </div>
+
+            {/* Right: 6-Pillar Scorecard Rubric */}
+            <div className="lg:col-span-5 m3-card p-6 space-y-4 flex flex-col justify-between">
+              <div className="space-y-3">
+                <div className="border-b border-[var(--md-sys-color-outline)] pb-3">
+                  <div className="text-xs font-mono text-purple-400 uppercase">Standardized Evaluation Matrix</div>
+                  <h3 className="font-bold text-base">6-Pillar Real-World Scorecard (100 Pts)</h3>
+                </div>
+
+                <div className="space-y-2.5">
+                  {TRI_MODEL_RUBRIC.map((item) => (
+                    <div
+                      key={item.metric}
+                      className="p-3 rounded-xl bg-[var(--md-sys-color-surface)] border border-[var(--md-sys-color-outline)] text-xs space-y-1"
+                    >
+                      <div className="flex items-center justify-between font-mono font-semibold">
+                        <span className="text-blue-400">{item.metric}</span>
+                        <span className="px-2 py-0.5 rounded bg-purple-500/15 text-purple-300">{item.weight}</span>
+                      </div>
+                      <p className="m3-text-muted leading-relaxed">{item.criteria}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-xs font-mono text-emerald-300">
+                Ready for YouTube Shorts & Full-Length Split-Screen Episodes (@GeminiPulseAI)
               </div>
             </div>
           </div>
