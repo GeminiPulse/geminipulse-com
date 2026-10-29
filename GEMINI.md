@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-10-28 22:07 EDT — https://geminipulse.com is LIVE over HTTPS (HTTP/2 200, SSL active), Firestore rules deployed, Experiment #01 live at https://geminipulse.com/arena/exp-01-gemini-4-argon.html, and daily sidecar mirrored at .antigravity/sidecars/geminipulse-daily-curator/sidecar.json`
+> **Last touched:** `2026-10-28 22:25 EDT — Enabled Google Sign-In on Firebase Auth, added geminipulse.com + www.geminipulse.com to authorizedDomains, and deployed composite Firestore indexes (firestore.indexes.json) + real-time listeners`
 
 ---
 

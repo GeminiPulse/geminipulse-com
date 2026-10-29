@@ -214,12 +214,41 @@ export default function App() {
       (snap) => {
         if (!snap.empty) {
           const liveThreads = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
-          setForumThreads([...liveThreads, ...INITIAL_FORUM_THREADS]);
+          const liveIds = new Set(liveThreads.map((t) => t.id));
+          setForumThreads([
+            ...liveThreads,
+            ...INITIAL_FORUM_THREADS.filter((t) => !liveIds.has(t.id)),
+          ]);
         }
       },
       () => {}
     );
-    return () => unsubForum();
+
+    const qShowcase = query(
+      collection(db, 'showcase_projects'),
+      where('status', '==', 'published'),
+      orderBy('createdAt', 'desc'),
+      limit(20)
+    );
+    const unsubShowcase = onSnapshot(
+      qShowcase,
+      (snap) => {
+        if (!snap.empty) {
+          const liveProjects = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+          const liveIds = new Set(liveProjects.map((p) => p.id));
+          setShowcaseProjects([
+            ...liveProjects,
+            ...INITIAL_SHOWCASE_PROJECTS.filter((p) => !liveIds.has(p.id)),
+          ]);
+        }
+      },
+      () => {}
+    );
+
+    return () => {
+      unsubForum();
+      unsubShowcase();
+    };
   }, []);
 
   useEffect(() => {

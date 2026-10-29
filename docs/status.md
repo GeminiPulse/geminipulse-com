@@ -48,11 +48,12 @@ Both custom domains are now registered on Firebase Hosting site `geminipulse-com
 
 ---
 
-## 3. What Needs Neil (2 Quick Optional Actions)
+## 3. What Needs Neil (Optional Future Milestones Only)
 
-1. **Enable Google Sign-In Provider in Firebase Auth Console (1 Click, Free):**
-   - Open **[https://console.firebase.google.com/project/geminipulse-com/authentication/providers](https://console.firebase.google.com/project/geminipulse-com/authentication/providers)** -> Click **Get started** -> Click **Google** -> Toggle **Enable** -> Select your support email (`neilstevenwhite@gmail.com`) -> Click **Save**.
-   - *(This activates live Google Sign-In on `geminipulse-com.web.app` and `geminipulse.com` for community Showcase and Forum submissions.)*
+1. **Google Sign-In Provider & Authorized Domains — COMPLETED (`2026-10-28 22:25 EDT`):**
+   - Google Sign-In is **Enabled** in Firebase Authentication.
+   - `geminipulse.com` and `www.geminipulse.com` are registered in Firebase Authentication's `authorizedDomains` alongside `geminipulse-com.web.app`.
+   - Composite indexes for `forum_threads` and `showcase_projects` (`status` ASC + `createdAt` DESC) are deployed in `firestore.indexes.json`.
 2. **Optional Blaze Billing Gate (House Rule #3 — Waiting for Your Explicit "Yes"):**
-   - Everything currently live (`https://geminipulse-com.web.app`, Firestore database + `firestore.rules`, custom domain SSL, and the Tri-Model Arena) runs on the **\$0.00/month Spark Free Plan**.
+   - Everything currently live (`https://geminipulse.com`, Google Sign-In, Firestore database + `firestore.rules` + indexes, custom domain SSL, and the Tri-Model Arena) runs on the **\$0.00/month Spark Free Plan**.
    - Upgrading to **Firebase Blaze (Pay-as-you-go)** is **only** needed when you want to deploy the 3 server-side Cloud Functions (`moderateForumPost`, `curateShowcaseProject`, `autonomousNewsGenerator` in `functions/index.js`). Estimated cost: **\$0.50 – \$3.00 / month** with a **\$10.00/mo budget alert**.
