@@ -560,21 +560,21 @@ export default function App() {
             </span>
           </a>
 
-          {/* Primary Single-Line Pill Navigation (Zero Wrapping) */}
-          <div className="hidden lg:flex items-center gap-1 text-[13px] font-medium">
+          {/* Primary Single-Line Pill Navigation (Zero Wrapping, Generous Breathing Room) */}
+          <div className="hidden lg:flex items-center gap-1 xl:gap-1.5 text-[13px] font-medium">
             {[
-              { href: '#pulse', label: 'Pulse Radar' },
-              { href: '#models', label: 'Models & Agents' },
+              { href: '#pulse', label: 'Pulse' },
+              { href: '#models', label: 'Models' },
               { href: '#studio-lab', label: 'SDK Lab' },
               { href: '#tri-model-arena', label: 'Tri-Model Arena', highlight: true },
               { href: '#showcase', label: 'Showcase' },
               { href: '#forum', label: 'Forum' },
-              { href: '#chronicle', label: 'Chronicle' },
+              { href: '#chronicle', label: 'Chronicle', xlOnly: true },
             ].map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className={`px-3 py-1.5 rounded-full whitespace-nowrap shrink-0 transition-all ${
+                className={`${item.xlOnly ? 'hidden xl:inline-flex' : 'inline-flex'} items-center px-3 py-1.5 rounded-full whitespace-nowrap shrink-0 transition-all ${
                   item.highlight
                     ? 'text-amber-300 bg-amber-500/10 border border-amber-400/25 hover:bg-amber-500/20'
                     : 'm3-text-muted hover:text-[var(--md-sys-color-on-surface)] hover:bg-blue-500/10'
@@ -593,9 +593,10 @@ export default function App() {
                 <span>More</span>
                 <span className="text-[10px] opacity-70">▾</span>
               </button>
-              <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 focus-within:visible focus-within:opacity-100 transition-all duration-150 absolute right-0 top-full pt-2 w-56 z-50">
+              <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 focus-within:visible focus-within:opacity-100 transition-all duration-150 absolute right-0 top-full pt-2 w-60 z-50">
                 <div className="m3-card p-2 bg-[var(--md-sys-color-surface)] border border-[var(--md-sys-color-outline-strong)] shadow-2xl space-y-1">
                   {[
+                    { href: '#chronicle', label: 'Antigravity Build Chronicle', sub: 'Autonomous Engineering Series' },
                     { href: '#media-studio', label: 'YouTube & Reddit Studio', sub: 'Shorts + Social Launch Kits' },
                     { href: '#google-stack', label: '100% Google Stack', sub: '8-Layer Cloud Architecture' },
                     { href: '#about-charter', label: 'Origin & Charter', sub: 'Neil S. White + Gemini 4' },
@@ -614,7 +615,7 @@ export default function App() {
             </div>
           </div>
 
-          {/* Right Action Controls (Strict Single-Line Pills) */}
+          {/* Right Action Controls (Unified Account Chip + Single-Line CTA) */}
           <div className="flex items-center gap-2 shrink-0">
             <button
               onClick={() => setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))}
@@ -626,17 +627,29 @@ export default function App() {
             </button>
 
             {currentUser ? (
-              <div className="flex items-center gap-2 shrink-0">
-                <span className="hidden md:inline text-xs font-mono text-emerald-400 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 whitespace-nowrap max-w-[10rem] truncate">
+              <div className="inline-flex items-center gap-2 pl-2 pr-1.5 py-1 rounded-full m3-surface-elevated border border-emerald-500/30 whitespace-nowrap shrink-0">
+                {currentUser.photoURL ? (
+                  <img
+                    src={currentUser.photoURL}
+                    alt={currentUser.displayName || 'User'}
+                    referrerPolicy="no-referrer"
+                    className="w-6 h-6 rounded-full object-cover border border-emerald-400/40 shrink-0"
+                  />
+                ) : (
+                  <span className="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/40 text-[11px] font-mono font-bold inline-flex items-center justify-center shrink-0">
+                    {(currentUser.displayName || currentUser.email || 'G').charAt(0).toUpperCase()}
+                  </span>
+                )}
+                <span className="text-xs font-medium text-[var(--md-sys-color-on-surface)] max-w-[7.5rem] truncate">
                   {currentUser.displayName || currentUser.email}
                 </span>
                 <button
                   onClick={() => signOutUser()}
-                  className="px-3 py-2 rounded-full m3-surface-elevated hover:border-red-400/50 text-xs font-semibold inline-flex items-center gap-1.5 whitespace-nowrap shrink-0 cursor-pointer"
+                  className="p-1.5 rounded-full hover:bg-red-500/15 m3-text-muted hover:text-red-400 transition-colors cursor-pointer shrink-0"
                   title="Sign out"
+                  aria-label="Sign out"
                 >
                   <LogOut className="w-3.5 h-3.5" />
-                  <span className="hidden sm:inline">Sign Out</span>
                 </button>
               </div>
             ) : (
@@ -652,7 +665,7 @@ export default function App() {
 
             <button
               onClick={() => setShowSubmitModal(true)}
-              className="bg-gemini-grad text-white text-xs sm:text-sm font-semibold px-4 py-2 rounded-full inline-flex items-center gap-1.5 whitespace-nowrap shrink-0 transition-all cursor-pointer active:scale-[0.98]"
+              className="bg-gemini-grad text-white text-xs font-semibold px-4 py-2 rounded-full inline-flex items-center gap-1.5 whitespace-nowrap shrink-0 transition-all cursor-pointer active:scale-[0.98]"
             >
               <Plus className="w-4 h-4 shrink-0" />
               <span className="hidden sm:inline">Submit Project</span>
@@ -664,7 +677,7 @@ export default function App() {
         {/* Compact Mobile/Tablet Horizontal Quick-Jump Strip (< lg) */}
         <div className="lg:hidden max-w-7xl mx-auto mt-2 px-1 flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1">
           {[
-            { href: '#pulse', label: 'Pulse Radar' },
+            { href: '#pulse', label: 'Pulse' },
             { href: '#models', label: 'Models' },
             { href: '#studio-lab', label: 'SDK Lab' },
             { href: '#tri-model-arena', label: 'Arena' },
@@ -718,44 +731,44 @@ export default function App() {
                   <strong className="text-[var(--md-sys-color-on-surface)]">Google Antigravity</strong>.
                 </p>
 
-                {/* Single-Row Balanced Hero CTA Bar */}
-                <div className="flex-balance gap-3 pt-1">
+                {/* Single-Row Balanced Hero CTA Bar (Fits cleanly on 1 row at lg+) */}
+                <div className="flex-balance gap-2.5 sm:gap-3 pt-1">
                   <a
                     href="#studio-lab"
-                    className="bg-gemini-grad text-white font-semibold px-5 py-3 rounded-full inline-flex items-center gap-2 whitespace-nowrap transition-all active:scale-[0.98]"
+                    className="bg-gemini-grad text-white text-sm font-semibold px-5 py-3 rounded-full inline-flex items-center gap-2 whitespace-nowrap transition-all active:scale-[0.98]"
                   >
                     <Terminal className="w-4 h-4 shrink-0" />
-                    <span>Launch Interactive SDK Lab</span>
+                    <span>Launch SDK Lab</span>
                   </a>
                   <a
                     href="#tri-model-arena"
-                    className="m3-surface-elevated font-semibold px-5 py-3 rounded-full inline-flex items-center gap-2 whitespace-nowrap hover:border-amber-400/60 transition-all active:scale-[0.98]"
+                    className="m3-surface-elevated text-sm font-semibold px-5 py-3 rounded-full inline-flex items-center gap-2 whitespace-nowrap hover:border-amber-400/60 transition-all active:scale-[0.98]"
                   >
                     <Zap className="w-4 h-4 text-amber-400 shrink-0" />
                     <span>Tri-Model Arena</span>
                   </a>
                   <a
                     href="#showcase"
-                    className="m3-surface-elevated font-semibold px-5 py-3 rounded-full inline-flex items-center gap-2 whitespace-nowrap hover:border-blue-400/50 transition-all active:scale-[0.98]"
+                    className="m3-surface-elevated text-sm font-semibold px-5 py-3 rounded-full inline-flex items-center gap-2 whitespace-nowrap hover:border-blue-400/50 transition-all active:scale-[0.98]"
                   >
                     <Rocket className="w-4 h-4 text-purple-400 shrink-0" />
-                    <span>Explore "Built with Gemini"</span>
+                    <span>Built with Gemini</span>
                   </a>
                 </div>
               </div>
 
-              {/* Subgrid-Aligned 4-Card Ecosystem Telemetry Strip */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+              {/* Subgrid-Aligned 4-Card Ecosystem Telemetry Strip (2x2 on lg, 4-col on xl) */}
+              <div className="grid grid-cols-2 xl:grid-cols-4 gap-3.5 pt-2">
                 {[
-                  { label: 'Frontier Reasoning', value: 'Gemini 4 Argon', sub: '1M Unified Context' },
+                  { label: 'Frontier Reasoning', value: 'Gemini 4 Argon', sub: '1M Token Context' },
                   { label: 'Agentic Workhorse', value: 'Gemini 3.8 Flash', sub: 'Sub-Second Loops' },
-                  { label: 'Managed Cloud Agent', value: 'Antigravity API', sub: 'Remote Linux Sandbox' },
+                  { label: 'Cloud Agent Runtime', value: 'Antigravity API', sub: 'Linux Sandbox' },
                   { label: 'Platform Stack', value: '100% Google', sub: 'Firebase + Search' },
                 ].map((stat) => (
                   <div key={stat.label} className="m3-card m3-stat-card p-4">
-                    <div className="text-[10px] font-mono uppercase tracking-wider m3-text-muted">{stat.label}</div>
-                    <div className="font-bold text-sm sm:text-base text-[var(--md-sys-color-on-surface)]">{stat.value}</div>
-                    <div className="text-xs text-blue-400 font-mono self-end">{stat.sub}</div>
+                    <div className="text-[10px] font-mono uppercase tracking-wider m3-text-muted whitespace-nowrap truncate">{stat.label}</div>
+                    <div className="font-bold text-sm sm:text-base text-[var(--md-sys-color-on-surface)] whitespace-nowrap">{stat.value}</div>
+                    <div className="text-xs text-blue-400 font-mono self-end whitespace-nowrap">{stat.sub}</div>
                   </div>
                 ))}
               </div>

@@ -12,6 +12,24 @@
     ],
     "headers": [
       {
+        "source": "**/*.@(html|json|txt|xml)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, no-store, must-revalidate"
+          }
+        ]
+      },
+      {
+        "source": "/",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, no-store, must-revalidate"
+          }
+        ]
+      },
+      {
         "source": "**/*.@(js|css|svg|webp|png|jpg|woff2)",
         "headers": [
           {

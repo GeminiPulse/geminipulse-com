@@ -130,6 +130,12 @@ html.light {
   box-shadow: 0 14px 36px -12px rgba(0, 0, 0, 0.45), 0 1px 0 0 rgba(255, 255, 255, 0.08) inset;
 }
 
+/* Guarantee zero multi-line button/link wrapping inside the top navigation bar */
+.m3-glass-pill a,
+.m3-glass-pill button {
+  white-space: nowrap;
+}
+
 /* Progressive-enhanced scroll-driven header compaction (modern-web-guidance: shrinking-header-on-scroll) */
 @keyframes navPillCompact {
   to {
