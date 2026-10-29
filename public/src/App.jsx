@@ -77,6 +77,44 @@ const GeminiSparkle = ({ className = 'w-5 h-5' }) => (
   </svg>
 );
 
+// Authentic 4-Color Google G Emblem for Sign-In Button
+const GoogleGIcon = ({ className = 'w-4 h-4' }) => (
+  <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+    <path
+      fill="#4285F4"
+      d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+    />
+    <path
+      fill="#34A853"
+      d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+    />
+    <path
+      fill="#FBBC05"
+      d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+    />
+    <path
+      fill="#EA4335"
+      d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+    />
+  </svg>
+);
+
+// Helper component that parses backticked `code` segments into styled <code className="m3-inline-code"> pills
+const InlineCodeText = ({ text }) => {
+  if (!text || typeof text !== 'string') return text;
+  const parts = text.split(/(`[^`]+`)/g);
+  return parts.map((part, idx) => {
+    if (part.startsWith('`') && part.endsWith('`') && part.length > 2) {
+      return (
+        <code key={idx} className="m3-inline-code">
+          {part.slice(1, -1)}
+        </code>
+      );
+    }
+    return part;
+  });
+};
+
 // Helper to synthesize an instant local Gemini 3.8 Flash review preview when running in local/demo mode (Rule 5)
 function generateInstantProjectHighlight(name, models, description) {
   const modelList = models && models.length > 0 ? models.join(' + ') : 'gemini-3.8-flash';
@@ -476,25 +514,30 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen relative selection:bg-blue-500/30">
+    <div className="min-h-screen relative selection:bg-blue-500/30 bg-gemini-grid">
       {/* Ambient Google Gemini Spectrum Glows */}
-      <div className="fixed -top-40 -left-40 w-[38rem] h-[38rem] rounded-full bg-blue-500/10 blur-[130px] pointer-events-none z-0" />
-      <div className="fixed top-1/3 -right-40 w-[34rem] h-[34rem] rounded-full bg-purple-500/10 blur-[140px] pointer-events-none z-0" />
+      <div className="fixed -top-40 -left-40 w-[40rem] h-[40rem] rounded-full bg-blue-500/10 blur-[140px] pointer-events-none z-0" />
+      <div className="fixed top-1/3 -right-40 w-[36rem] h-[36rem] rounded-full bg-purple-500/10 blur-[150px] pointer-events-none z-0" />
 
       {/* Top Autonomous Telemetry Bar */}
       <div className="relative z-40 border-b border-[var(--md-sys-color-outline)] bg-[var(--md-sys-color-surface)]/90 backdrop-blur-md px-4 py-2 text-xs font-mono">
         <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
-          <div className="flex items-center gap-2.5">
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 font-semibold">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 font-semibold whitespace-nowrap shrink-0">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               AUTONOMOUS BUILD v2.0
             </span>
-            <span className="m3-text-muted hidden sm:inline">
+            <span className="m3-text-muted hidden sm:inline truncate">
               Concept by <strong className="text-[var(--md-sys-color-on-surface)]">Neil S. White</strong> (<a href="https://agilemedia.agency" target="_blank" rel="noreferrer" className="text-blue-400 hover:underline">Agile Media Agency</a>) • Operated Autonomously by <strong className="text-[var(--md-sys-color-on-surface)]">Google Gemini 4 Argon</strong>
             </span>
           </div>
-          <div className="flex items-center gap-4 m3-text-muted">
-            <a href="#media-studio" className="hover:text-blue-400 transition-colors flex items-center gap-1">
+          <div className="flex items-center gap-4 m3-text-muted whitespace-nowrap shrink-0">
+            <a href="#tri-model-arena" className="hover:text-amber-400 transition-colors flex items-center gap-1">
+              <Zap className="w-3.5 h-3.5 text-amber-400" />
+              Tri-Model Arena
+            </a>
+            <span className="hidden md:inline">•</span>
+            <a href="#media-studio" className="hover:text-blue-400 transition-colors hidden sm:flex items-center gap-1">
               <Video className="w-3.5 h-3.5 text-pink-400" />
               YouTube Shorts Studio
             </a>
@@ -507,83 +550,138 @@ export default function App() {
         </div>
       </div>
 
-      {/* Material 3 Expressive Floating Pill Navbar */}
-      <header className="sticky top-4 z-50 px-4 mt-3">
-        <nav className="max-w-7xl mx-auto m3-glass-pill rounded-full px-5 py-3 flex items-center justify-between gap-4 shadow-lg">
-          <a href="#" className="flex items-center gap-2.5 font-bold text-xl tracking-tight">
-            <GeminiSparkle className="w-6 h-6 animate-gemini-sparkle" />
+      {/* Material 3 Expressive Single-Line Floating Pill Navbar */}
+      <header className="sticky top-3 z-50 px-4 mt-3">
+        <nav className="max-w-7xl mx-auto m3-glass-pill m3-scroll-header rounded-full px-4 sm:px-5 py-2.5 flex items-center justify-between gap-3">
+          <a href="#" className="flex items-center gap-2 font-bold text-lg sm:text-xl tracking-tight whitespace-nowrap shrink-0">
+            <GeminiSparkle className="w-5 h-5 sm:w-6 sm:h-6 animate-gemini-sparkle shrink-0" />
             <span>
               Gemini<span className="gemini-spectrum-text">Pulse</span>
             </span>
           </a>
 
-          <div className="hidden xl:flex items-center gap-1 text-sm font-medium">
+          {/* Primary Single-Line Pill Navigation (Zero Wrapping) */}
+          <div className="hidden lg:flex items-center gap-1 text-[13px] font-medium">
             {[
               { href: '#pulse', label: 'Pulse Radar' },
               { href: '#models', label: 'Models & Agents' },
               { href: '#studio-lab', label: 'SDK Lab' },
-              { href: '#tri-model-arena', label: 'Tri-Model Arena' },
-              { href: '#showcase', label: 'Built with Gemini' },
-              { href: '#media-studio', label: 'YouTube & Reddit' },
+              { href: '#tri-model-arena', label: 'Tri-Model Arena', highlight: true },
+              { href: '#showcase', label: 'Showcase' },
               { href: '#forum', label: 'Forum' },
               { href: '#chronicle', label: 'Chronicle' },
-              { href: '#about-charter', label: 'About & Origin' },
             ].map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="px-3.5 py-1.5 rounded-full m3-text-muted hover:text-[var(--md-sys-color-on-surface)] hover:bg-blue-500/10 transition-all"
+                className={`px-3 py-1.5 rounded-full whitespace-nowrap shrink-0 transition-all ${
+                  item.highlight
+                    ? 'text-amber-300 bg-amber-500/10 border border-amber-400/25 hover:bg-amber-500/20'
+                    : 'm3-text-muted hover:text-[var(--md-sys-color-on-surface)] hover:bg-blue-500/10'
+                }`}
               >
                 {item.label}
               </a>
             ))}
+
+            {/* Secondary Ecosystem Links Menu */}
+            <div className="relative group">
+              <button
+                type="button"
+                className="px-3 py-1.5 rounded-full text-[13px] font-medium m3-text-muted hover:text-[var(--md-sys-color-on-surface)] hover:bg-blue-500/10 whitespace-nowrap shrink-0 inline-flex items-center gap-1 cursor-pointer transition-all"
+              >
+                <span>More</span>
+                <span className="text-[10px] opacity-70">▾</span>
+              </button>
+              <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 focus-within:visible focus-within:opacity-100 transition-all duration-150 absolute right-0 top-full pt-2 w-56 z-50">
+                <div className="m3-card p-2 bg-[var(--md-sys-color-surface)] border border-[var(--md-sys-color-outline-strong)] shadow-2xl space-y-1">
+                  {[
+                    { href: '#media-studio', label: 'YouTube & Reddit Studio', sub: 'Shorts + Social Launch Kits' },
+                    { href: '#google-stack', label: '100% Google Stack', sub: '8-Layer Cloud Architecture' },
+                    { href: '#about-charter', label: 'Origin & Charter', sub: 'Neil S. White + Gemini 4' },
+                  ].map((subItem) => (
+                    <a
+                      key={subItem.href}
+                      href={subItem.href}
+                      className="block px-3 py-2 rounded-xl hover:bg-blue-500/10 transition-colors"
+                    >
+                      <div className="text-xs font-semibold text-[var(--md-sys-color-on-surface)]">{subItem.label}</div>
+                      <div className="text-[11px] font-mono m3-text-muted">{subItem.sub}</div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className="flex items-center gap-2.5">
+          {/* Right Action Controls (Strict Single-Line Pills) */}
+          <div className="flex items-center gap-2 shrink-0">
             <button
               onClick={() => setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))}
               title={theme === 'dark' ? 'Switch to Material 3 Daylight Editorial Mode' : 'Switch to Gemini Studio Dark Mode'}
-              className="p-2.5 rounded-full m3-surface-elevated hover:border-blue-400/50 transition-all cursor-pointer"
+              className="p-2 rounded-full m3-surface-elevated hover:border-blue-400/50 transition-all cursor-pointer shrink-0"
               aria-label="Toggle color theme"
             >
               {theme === 'dark' ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-blue-600" />}
             </button>
 
             {currentUser ? (
-              <div className="flex items-center gap-2">
-                <span className="hidden sm:inline text-xs font-mono text-emerald-400 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30">
+              <div className="flex items-center gap-2 shrink-0">
+                <span className="hidden md:inline text-xs font-mono text-emerald-400 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 whitespace-nowrap max-w-[10rem] truncate">
                   {currentUser.displayName || currentUser.email}
                 </span>
                 <button
                   onClick={() => signOutUser()}
-                  className="px-3 py-2 rounded-full m3-surface-elevated hover:border-red-400/50 text-xs font-semibold inline-flex items-center gap-1.5 cursor-pointer"
+                  className="px-3 py-2 rounded-full m3-surface-elevated hover:border-red-400/50 text-xs font-semibold inline-flex items-center gap-1.5 whitespace-nowrap shrink-0 cursor-pointer"
                   title="Sign out"
                 >
                   <LogOut className="w-3.5 h-3.5" />
-                  <span className="hidden md:inline">Sign Out</span>
+                  <span className="hidden sm:inline">Sign Out</span>
                 </button>
               </div>
             ) : (
               <button
                 onClick={handleGoogleSignIn}
-                className="px-3.5 py-2 rounded-full m3-surface-elevated hover:border-blue-400 text-xs font-semibold inline-flex items-center gap-1.5 cursor-pointer"
+                className="px-3.5 py-2 rounded-full m3-surface-elevated hover:border-blue-400 text-xs font-semibold inline-flex items-center gap-2 whitespace-nowrap shrink-0 cursor-pointer active:scale-[0.98]"
                 title="Sign in with Google (required to post projects or forum threads)"
               >
-                <LogIn className="w-3.5 h-3.5 text-blue-400" />
-                <span>Sign in with Google</span>
+                <GoogleGIcon className="w-3.5 h-3.5 shrink-0" />
+                <span>Sign in</span>
               </button>
             )}
 
             <button
               onClick={() => setShowSubmitModal(true)}
-              className="bg-gemini-grad text-white text-sm font-semibold px-4 py-2 rounded-full flex items-center gap-1.5 shadow-md hover:opacity-95 transition-all cursor-pointer"
+              className="bg-gemini-grad text-white text-xs sm:text-sm font-semibold px-4 py-2 rounded-full inline-flex items-center gap-1.5 whitespace-nowrap shrink-0 transition-all cursor-pointer active:scale-[0.98]"
             >
-              <Plus className="w-4 h-4" />
-              <span className="hidden sm:inline">Submit Gemini Project</span>
+              <Plus className="w-4 h-4 shrink-0" />
+              <span className="hidden sm:inline">Submit Project</span>
               <span className="sm:hidden">Submit</span>
             </button>
           </div>
         </nav>
+
+        {/* Compact Mobile/Tablet Horizontal Quick-Jump Strip (< lg) */}
+        <div className="lg:hidden max-w-7xl mx-auto mt-2 px-1 flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1">
+          {[
+            { href: '#pulse', label: 'Pulse Radar' },
+            { href: '#models', label: 'Models' },
+            { href: '#studio-lab', label: 'SDK Lab' },
+            { href: '#tri-model-arena', label: 'Arena' },
+            { href: '#showcase', label: 'Showcase' },
+            { href: '#forum', label: 'Forum' },
+            { href: '#chronicle', label: 'Chronicle' },
+            { href: '#about-charter', label: 'Charter' },
+          ].map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className="px-3 py-1 rounded-full text-xs font-medium m3-surface-elevated m3-text-muted whitespace-nowrap shrink-0"
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
 
         {authNotice && (
           <div className="max-w-3xl mx-auto mt-2 px-4 py-2.5 rounded-2xl bg-amber-500/15 border border-amber-400/40 text-amber-300 text-xs font-mono flex items-center justify-between gap-3 shadow-lg backdrop-blur-md">
@@ -595,127 +693,163 @@ export default function App() {
         )}
       </header>
 
-      <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 pt-12 pb-24 space-y-28">
+      <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 pt-10 pb-24 space-y-28">
         {/* =================================================================
             HERO SECTION — Google Gemini 4 & Ecosystem Showcase
             ================================================================= */}
-        <section className="pt-6 pb-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full m3-surface-elevated text-xs font-mono">
-                <GeminiSparkle className="w-4 h-4" />
-                <span>GOOGLE MATERIAL 3 EXPRESSIVE • GEMINI 4 ARGON & 3.8 FLASH</span>
+        <section className="pt-4 pb-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-12 items-stretch">
+            {/* Left Column: Editorial Headline, Balanced CTAs & Subgrid Stat Strip */}
+            <div className="lg:col-span-7 flex flex-col justify-between space-y-7">
+              <div className="space-y-6">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full m3-surface-elevated text-xs font-mono whitespace-nowrap">
+                  <GeminiSparkle className="w-4 h-4 shrink-0" />
+                  <span>GOOGLE MATERIAL 3 EXPRESSIVE • GEMINI 4 ARGON & 3.8 FLASH</span>
+                </div>
+
+                <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.06]">
+                  Everything You Can Build with{' '}
+                  <span className="gemini-spectrum-text">Google Gemini.</span>
+                </h1>
+
+                <p className="text-base sm:text-xl m3-text-muted leading-relaxed max-w-2xl">
+                  Welcome to <strong className="text-[var(--md-sys-color-on-surface)]">GeminiPulse.com</strong>—the living intelligence hub, single-shot <strong className="text-[var(--md-sys-color-on-surface)]">Tri-Model Arena</strong>, interactive SDK workbench, and community launchpad designed, coded, and curated autonomously by{' '}
+                  <strong className="text-[var(--md-sys-color-on-surface)]">Gemini 4 Argon</strong> inside{' '}
+                  <strong className="text-[var(--md-sys-color-on-surface)]">Google Antigravity</strong>.
+                </p>
+
+                {/* Single-Row Balanced Hero CTA Bar */}
+                <div className="flex-balance gap-3 pt-1">
+                  <a
+                    href="#studio-lab"
+                    className="bg-gemini-grad text-white font-semibold px-5 py-3 rounded-full inline-flex items-center gap-2 whitespace-nowrap transition-all active:scale-[0.98]"
+                  >
+                    <Terminal className="w-4 h-4 shrink-0" />
+                    <span>Launch Interactive SDK Lab</span>
+                  </a>
+                  <a
+                    href="#tri-model-arena"
+                    className="m3-surface-elevated font-semibold px-5 py-3 rounded-full inline-flex items-center gap-2 whitespace-nowrap hover:border-amber-400/60 transition-all active:scale-[0.98]"
+                  >
+                    <Zap className="w-4 h-4 text-amber-400 shrink-0" />
+                    <span>Tri-Model Arena</span>
+                  </a>
+                  <a
+                    href="#showcase"
+                    className="m3-surface-elevated font-semibold px-5 py-3 rounded-full inline-flex items-center gap-2 whitespace-nowrap hover:border-blue-400/50 transition-all active:scale-[0.98]"
+                  >
+                    <Rocket className="w-4 h-4 text-purple-400 shrink-0" />
+                    <span>Explore "Built with Gemini"</span>
+                  </a>
+                </div>
               </div>
 
-              <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.08]">
-                Everything You Can Build with{' '}
-                <span className="gemini-spectrum-text">Google Gemini.</span>
-              </h1>
-
-              <p className="text-lg sm:text-xl m3-text-muted leading-relaxed max-w-2xl">
-                Welcome to <strong>GeminiPulse.com</strong>—the living intelligence hub, interactive SDK workbench, and community launchpad designed, coded, and curated autonomously by{' '}
-                <strong className="text-[var(--md-sys-color-on-surface)]">Gemini 4</strong> inside{' '}
-                <strong className="text-[var(--md-sys-color-on-surface)]">Google Antigravity</strong>.
-              </p>
-
-              <div className="flex flex-wrap gap-3 pt-2">
-                <a
-                  href="#studio-lab"
-                  className="bg-gemini-grad text-white font-semibold px-6 py-3.5 rounded-full inline-flex items-center gap-2 shadow-lg hover:opacity-95 transition-all"
-                >
-                  <Terminal className="w-4 h-4" />
-                  Launch Interactive SDK Lab
-                </a>
-                <a
-                  href="#showcase"
-                  className="m3-surface-elevated font-semibold px-6 py-3.5 rounded-full inline-flex items-center gap-2 hover:border-blue-400/50 transition-all"
-                >
-                  <Rocket className="w-4 h-4 text-purple-400" />
-                  Explore "Built with Gemini"
-                </a>
-                <a
-                  href="#chronicle"
-                  className="m3-surface-elevated font-semibold px-5 py-3.5 rounded-full inline-flex items-center gap-2 hover:border-blue-400/50 transition-all text-sm"
-                >
-                  <BookOpen className="w-4 h-4 text-blue-400" />
-                  Read Our Autonomous Build Log
-                </a>
-              </div>
-
-              {/* Live Ecosystem Telemetry Strip */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4">
+              {/* Subgrid-Aligned 4-Card Ecosystem Telemetry Strip */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
                 {[
-                  { label: 'Frontier Reasoning', value: 'Gemini 4 Argon', sub: '1M Token Context' },
+                  { label: 'Frontier Reasoning', value: 'Gemini 4 Argon', sub: '1M Unified Context' },
                   { label: 'Agentic Workhorse', value: 'Gemini 3.8 Flash', sub: 'Sub-Second Loops' },
                   { label: 'Managed Cloud Agent', value: 'Antigravity API', sub: 'Remote Linux Sandbox' },
-                  { label: 'Platform Stack', value: '100% Google', sub: 'Firebase + Firestore + Search' },
+                  { label: 'Platform Stack', value: '100% Google', sub: 'Firebase + Search' },
                 ].map((stat) => (
-                  <div key={stat.label} className="m3-card p-3.5">
-                    <div className="text-[11px] font-mono uppercase m3-text-muted">{stat.label}</div>
-                    <div className="font-bold text-sm sm:text-base mt-0.5">{stat.value}</div>
-                    <div className="text-xs text-blue-400 font-mono mt-0.5">{stat.sub}</div>
+                  <div key={stat.label} className="m3-card m3-stat-card p-4">
+                    <div className="text-[10px] font-mono uppercase tracking-wider m3-text-muted">{stat.label}</div>
+                    <div className="font-bold text-sm sm:text-base text-[var(--md-sys-color-on-surface)]">{stat.value}</div>
+                    <div className="text-xs text-blue-400 font-mono self-end">{stat.sub}</div>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Right Column: Autonomous Self-Portrait Card */}
-            <div className="lg:col-span-5">
-              <div className="m3-card p-6 sm:p-7 space-y-5 relative overflow-hidden">
-                <div className="flex items-center justify-between border-b border-[var(--md-sys-color-outline)] pb-4">
-                  <div className="flex items-center gap-2.5">
-                    <GeminiSparkle className="w-6 h-6" />
-                    <div>
-                      <div className="font-bold text-sm">Autonomous Site Telemetry</div>
-                      <div className="text-xs font-mono m3-text-muted">Engine: gemini-4-argon • Antigravity IDE</div>
+            {/* Right Column: Autonomous Site Telemetry Console */}
+            <div className="lg:col-span-5 flex">
+              <div className="m3-hero-console p-6 sm:p-7 flex flex-col justify-between gap-5 w-full relative overflow-hidden">
+                <div className="space-y-4">
+                  {/* Console Header (Zero Wrapping on Status Pill) */}
+                  <div className="flex items-center justify-between gap-3 border-b border-[var(--md-sys-color-outline)] pb-4">
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div className="p-2 rounded-xl bg-blue-500/10 border border-blue-400/20 shrink-0">
+                        <GeminiSparkle className="w-5 h-5" />
+                      </div>
+                      <div className="min-w-0">
+                        <div className="font-bold text-sm sm:text-base truncate">Autonomous Site Telemetry</div>
+                        <div className="text-xs font-mono m3-text-muted truncate">
+                          gemini-4-argon • Antigravity Runtime
+                        </div>
+                      </div>
                     </div>
+                    <span className="px-3 py-1 rounded-full text-[11px] font-mono font-semibold bg-blue-500/15 text-blue-300 border border-blue-400/30 whitespace-nowrap shrink-0 inline-flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
+                      LIVE CASE STUDY
+                    </span>
                   </div>
-                  <span className="px-2.5 py-1 rounded-full text-[11px] font-mono bg-blue-500/15 text-blue-400 border border-blue-500/30">
-                    LIVE CASE STUDY
-                  </span>
-                </div>
 
-                <div className="space-y-3 text-sm">
-                  <div className="p-3.5 rounded-xl bg-[var(--md-sys-color-surface)] border border-[var(--md-sys-color-outline)] space-y-1.5">
-                    <div className="text-xs font-mono text-purple-400 flex items-center gap-1.5">
-                      <Sparkles className="w-3.5 h-3.5" />
+                  {/* Editorial Mission Box */}
+                  <div className="p-4 rounded-2xl bg-[var(--md-sys-color-surface)]/90 border border-[var(--md-sys-color-outline)] space-y-1.5">
+                    <div className="text-[11px] font-mono font-semibold text-purple-400 uppercase tracking-wider flex items-center gap-1.5">
+                      <Sparkles className="w-3.5 h-3.5 shrink-0" />
                       WHY THIS SITE EXISTS
                     </div>
                     <p className="m3-text-muted text-xs leading-relaxed">
-                      "My human project manager gave me full creative and architectural autonomy to build the ultimate showcase of what Google Gemini can do—and to document every update as an ongoing public engineering series."
+                      "My human project manager gave me full creative and architectural autonomy to build the definitive showcase of what Google Gemini can do—and to document every update as an open-source engineering series."
                     </p>
                   </div>
 
+                  {/* Structured 2-Column Telemetry Rows with Non-Wrapping Status Pills */}
                   <div className="space-y-2 font-mono text-xs">
-                    <div className="flex items-center justify-between py-1.5 border-b border-[var(--md-sys-color-outline)]">
-                      <span className="m3-text-muted">1. News & Release Verification</span>
-                      <span className="text-emerald-400 flex items-center gap-1">
-                        <CheckCircle2 className="w-3.5 h-3.5" /> Google Search Grounded
-                      </span>
-                    </div>
-                    <div className="flex items-center justify-between py-1.5 border-b border-[var(--md-sys-color-outline)]">
-                      <span className="m3-text-muted">2. Recurring Daily Research</span>
-                      <span className="text-blue-400">Antigravity /schedule + Cloud Cron</span>
-                    </div>
-                    <div className="flex items-center justify-between py-1.5 border-b border-[var(--md-sys-color-outline)]">
-                      <span className="m3-text-muted">3. Product & Forum Curation</span>
-                      <span className="text-purple-400">gemini-3.8-flash First-Responder</span>
-                    </div>
-                    <div className="flex items-center justify-between py-1.5">
-                      <span className="m3-text-muted">4. Infrastructure & CDN</span>
-                      <span className="text-amber-400">Firebase Hosting + Firestore</span>
-                    </div>
+                    {[
+                      {
+                        step: '1. Release Verification',
+                        badge: 'Google Search Grounded',
+                        color: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30',
+                      },
+                      {
+                        step: '2. Daily 9 AM Curation',
+                        badge: 'Antigravity Sidecar + Git',
+                        color: 'bg-blue-500/15 text-blue-300 border-blue-500/30',
+                      },
+                      {
+                        step: '3. Forum & Showcase Gate',
+                        badge: 'gemini-3.8-flash + Auth',
+                        color: 'bg-purple-500/15 text-purple-300 border-purple-500/30',
+                      },
+                      {
+                        step: '4. Cloud Infrastructure',
+                        badge: 'Firebase + Firestore Rules',
+                        color: 'bg-amber-500/15 text-amber-300 border-amber-500/30',
+                      },
+                    ].map((row) => (
+                      <div
+                        key={row.step}
+                        className="grid grid-cols-[1fr_auto] items-center gap-3 py-2 border-b border-[var(--md-sys-color-outline)] last:border-b-0"
+                      >
+                        <span className="m3-text-muted truncate">{row.step}</span>
+                        <span
+                          className={`px-2.5 py-0.5 rounded-md border text-[11px] font-semibold whitespace-nowrap ${row.color}`}
+                        >
+                          {row.badge}
+                        </span>
+                      </div>
+                    ))}
                   </div>
                 </div>
 
-                <div className="pt-2 flex items-center justify-between text-xs">
+                {/* Console Footer */}
+                <div className="pt-3 border-t border-[var(--md-sys-color-outline)] flex items-center justify-between gap-2 text-xs">
                   <a
                     href="#chronicle"
-                    className="text-blue-400 hover:underline font-medium inline-flex items-center gap-1"
+                    className="text-blue-400 hover:underline font-semibold inline-flex items-center gap-1 whitespace-nowrap"
                   >
-                    Read Episode 01 & 02 in the Chronicle <ArrowUpRight className="w-3.5 h-3.5" />
+                    Read Episodes 01–04 in the Chronicle <ArrowUpRight className="w-3.5 h-3.5" />
                   </a>
-                  <span className="font-mono m3-text-muted">/llms.txt ready</span>
+                  <a
+                    href="/llms.txt"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-mono text-[11px] px-2.5 py-0.5 rounded-md m3-surface-elevated hover:border-blue-400/50 m3-text-muted whitespace-nowrap"
+                  >
+                    /llms.txt ready
+                  </a>
                 </div>
               </div>
             </div>
@@ -741,7 +875,7 @@ export default function App() {
             </div>
 
             {/* Search Input */}
-            <div className="relative w-full md:w-72">
+            <div className="relative w-full md:w-72 shrink-0">
               <Search className="w-4 h-4 m3-text-muted absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
@@ -754,12 +888,12 @@ export default function App() {
           </div>
 
           {/* Category Filter Chips (Material 3 Pill Chips) */}
-          <div className="flex flex-wrap gap-2">
+          <div className="flex-balance gap-2">
             {['All', 'Flagship Models', 'Agents & Antigravity', 'Multimodal & Media', 'SDK & API'].map((cat) => (
               <button
                 key={cat}
                 onClick={() => setPulseCategory(cat)}
-                className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+                className={`px-4 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
                   pulseCategory === cat
                     ? 'bg-gemini-grad text-white shadow-sm'
                     : 'm3-surface-elevated m3-text-muted hover:text-[var(--md-sys-color-on-surface)]'
@@ -770,43 +904,50 @@ export default function App() {
             ))}
           </div>
 
-          {/* Intelligence Cards Grid */}
+          {/* Subgrid-Aligned 3-Column Intelligence Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredPulse.map((item) => (
-              <article key={item.id} className="m3-card p-6 flex flex-col justify-between gap-5">
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between gap-2 text-xs font-mono">
-                    <span className="px-2.5 py-1 rounded-md bg-blue-500/15 text-blue-400 border border-blue-500/30 font-semibold">
-                      {item.modelBadge}
-                    </span>
-                    <span className="m3-text-muted">Impact: {item.impactScore}</span>
-                  </div>
-
-                  <h3 className="text-xl font-bold leading-snug">{item.title}</h3>
-
-                  {/* Executive TL;DR Box */}
-                  <div className="p-3.5 rounded-xl bg-[var(--md-sys-color-surface)] border border-[var(--md-sys-color-outline)] text-xs leading-relaxed">
-                    <span className="font-mono font-semibold text-purple-400 uppercase block mb-1">
-                      TL;DR — Why It Matters:
-                    </span>
-                    <span className="text-[var(--md-sys-color-on-surface)]">{item.tldr}</span>
-                  </div>
-
-                  <p className="text-sm m3-text-muted leading-relaxed">{item.summary}</p>
+              <article key={item.id} className="m3-card m3-pulse-card p-6">
+                {/* Track 1: Model Badge & Impact Score */}
+                <div className="flex items-center justify-between gap-2 text-xs font-mono">
+                  <span className="px-2.5 py-1 rounded-md bg-blue-500/15 text-blue-400 border border-blue-500/30 font-semibold whitespace-nowrap">
+                    {item.modelBadge}
+                  </span>
+                  <span className="m3-text-muted whitespace-nowrap">Impact: {item.impactScore}</span>
                 </div>
 
-                <div className="pt-4 border-t border-[var(--md-sys-color-outline)] flex items-center justify-between text-xs">
-                  <span className="font-mono m3-text-muted flex items-center gap-1">
-                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-                    {item.groundedBy}
+                {/* Track 2: Balanced Headline */}
+                <h3 className="text-lg sm:text-xl font-bold leading-snug">{item.title}</h3>
+
+                {/* Track 3: Executive TL;DR Box */}
+                <div className="p-3.5 rounded-xl bg-[var(--md-sys-color-surface)] border border-[var(--md-sys-color-outline)] text-xs leading-relaxed">
+                  <span className="font-mono font-semibold text-purple-400 uppercase block mb-1">
+                    TL;DR — Why It Matters:
+                  </span>
+                  <span className="text-[var(--md-sys-color-on-surface)]">
+                    <InlineCodeText text={item.tldr} />
+                  </span>
+                </div>
+
+                {/* Track 4: Summary Copy */}
+                <p className="text-sm m3-text-muted leading-relaxed">
+                  <InlineCodeText text={item.summary} />
+                </p>
+
+                {/* Track 5: Grounded Verification & Deep-Link Footer */}
+                <div className="pt-4 border-t border-[var(--md-sys-color-outline)] flex items-center justify-between gap-2 text-xs">
+                  <span className="font-mono m3-text-muted flex items-center gap-1 truncate">
+                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                    <span className="truncate">{item.groundedBy}</span>
                   </span>
                   <a
                     href={item.sourceUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="font-semibold text-blue-400 hover:underline inline-flex items-center gap-1"
+                    className="font-semibold text-blue-400 hover:underline inline-flex items-center gap-1 whitespace-nowrap shrink-0"
                   >
-                    {item.sourceLabel} <ExternalLink className="w-3 h-3" />
+                    <span>{item.sourceLabel}</span>
+                    <ExternalLink className="w-3 h-3 shrink-0" />
                   </a>
                 </div>
               </article>
@@ -828,16 +969,16 @@ export default function App() {
                 Gemini 4, 3.8 & <span className="gemini-spectrum-text">Managed Agents Matrix</span>
               </h2>
               <p className="m3-text-muted mt-1">
-                Click any model string to copy its exact identifier for <code className="font-mono text-xs">client.interactions.create()</code>.
+                Click any model string to copy its exact identifier for <code className="m3-inline-code">client.interactions.create()</code>.
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-2">
+            <div className="flex-balance gap-2">
               {['All', 'Frontier & Flash', 'Live & Multimodal Media', 'Managed Agents & Open Weights'].map((grp) => (
                 <button
                   key={grp}
                   onClick={() => setModelGroup(grp)}
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+                  className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
                     modelGroup === grp
                       ? 'bg-gemini-grad text-white'
                       : 'm3-surface-elevated m3-text-muted hover:text-[var(--md-sys-color-on-surface)]'
@@ -867,7 +1008,7 @@ export default function App() {
                         setCopiedModelId(model.id);
                         setTimeout(() => setCopiedModelId(null), 1800);
                       }}
-                      className="px-3 py-1.5 rounded-lg m3-surface-elevated font-mono text-xs flex items-center gap-1.5 hover:border-blue-400 cursor-pointer"
+                      className="px-3 py-1.5 rounded-lg m3-surface-elevated font-mono text-xs flex items-center gap-1.5 hover:border-blue-400 cursor-pointer whitespace-nowrap"
                       title="Copy exact SDK model string"
                     >
                       <code>{model.apiString}</code>
@@ -879,7 +1020,9 @@ export default function App() {
                     </button>
                   </div>
 
-                  <p className="text-sm m3-text-muted leading-relaxed">{model.bestFor}</p>
+                  <p className="text-sm m3-text-muted leading-relaxed">
+                    <InlineCodeText text={model.bestFor} />
+                  </p>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-3 border-t border-[var(--md-sys-color-outline)] text-xs font-mono">
@@ -991,11 +1134,13 @@ export default function App() {
               </div>
 
               <div className="px-5 py-3.5 border-t border-[var(--md-sys-color-outline)] bg-[var(--md-sys-color-surface)] flex items-center justify-between gap-4">
-                <div className="text-xs m3-text-muted">{activeBlueprint.description}</div>
+                <div className="text-xs m3-text-muted">
+                  <InlineCodeText text={activeBlueprint.description} />
+                </div>
                 <button
                   onClick={() => runBlueprintSimulation(activeBlueprint)}
                   disabled={isSimulating}
-                  className="bg-gemini-grad text-white text-xs font-semibold px-4 py-2 rounded-full inline-flex items-center gap-1.5 shrink-0 cursor-pointer disabled:opacity-50"
+                  className="bg-gemini-grad text-white text-xs font-semibold px-4 py-2 rounded-full inline-flex items-center gap-1.5 shrink-0 cursor-pointer disabled:opacity-50 whitespace-nowrap"
                 >
                   <Play className="w-3.5 h-3.5" />
                   {isSimulating ? 'Streaming Demo Steps...' : 'Simulate Interaction Steps (Demo)'}
@@ -1009,9 +1154,11 @@ export default function App() {
                 <div className="flex items-center justify-between border-b border-[var(--md-sys-color-outline)] pb-3">
                   <div>
                     <div className="text-xs font-mono text-purple-400 uppercase">Interaction Response Inspector (Simulated Demo)</div>
-                    <div className="font-bold text-sm">Structured `interaction.steps` Timeline</div>
+                    <div className="font-bold text-sm">
+                      Structured <code className="m3-inline-code">interaction.steps</code> Timeline
+                    </div>
                   </div>
-                  <span className="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-300 border border-amber-400/30">
+                  <span className="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-300 border border-amber-400/30 whitespace-nowrap">
                     DEMO PREVIEW
                   </span>
                 </div>
@@ -1065,7 +1212,7 @@ export default function App() {
               </p>
             </div>
 
-            <div className="px-3.5 py-2 rounded-2xl bg-blue-500/15 border border-blue-400/30 text-blue-300 text-xs font-mono shrink-0">
+            <div className="px-3.5 py-2 rounded-2xl bg-blue-500/15 border border-blue-400/30 text-blue-300 text-xs font-mono shrink-0 whitespace-nowrap">
               [PROTOCOL READY] Zero fabricated scores • Copy prompt to test
             </div>
           </div>
@@ -1116,7 +1263,7 @@ export default function App() {
                       setCopiedArenaId(activeArenaExperiment.id);
                       setTimeout(() => setCopiedArenaId(null), 2000);
                     }}
-                    className="bg-gemini-grad text-white text-xs font-semibold px-4 py-2 rounded-full inline-flex items-center gap-1.5 cursor-pointer shrink-0"
+                    className="bg-gemini-grad text-white text-xs font-semibold px-4 py-2 rounded-full inline-flex items-center gap-1.5 cursor-pointer shrink-0 whitespace-nowrap"
                   >
                     {copiedArenaId === activeArenaExperiment.id ? (
                       <>
@@ -1131,7 +1278,7 @@ export default function App() {
                 </div>
 
                 <p className="text-xs sm:text-sm m3-text-muted leading-relaxed">
-                  {activeArenaExperiment.whyThisTestMatters}
+                  <InlineCodeText text={activeArenaExperiment.whyThisTestMatters} />
                 </p>
 
                 <div className="space-y-1.5">
@@ -1165,7 +1312,7 @@ export default function App() {
                             href={output.liveUrl}
                             target="_blank"
                             rel="noreferrer"
-                            className="mt-1 px-3 py-1.5 rounded-lg bg-emerald-500/15 border border-emerald-400/40 text-emerald-300 font-mono text-[11px] font-semibold inline-flex items-center justify-center gap-1 hover:bg-emerald-500/25 transition-all"
+                            className="mt-1 px-3 py-1.5 rounded-lg bg-emerald-500/15 border border-emerald-400/40 text-emerald-300 font-mono text-[11px] font-semibold inline-flex items-center justify-center gap-1 hover:bg-emerald-500/25 transition-all whitespace-nowrap"
                           >
                             Launch Single-Shot Output <ExternalLink className="w-3 h-3" />
                           </a>
@@ -1179,7 +1326,7 @@ export default function App() {
               <div className="pt-3 border-t border-[var(--md-sys-color-outline)] text-xs font-mono m3-text-muted flex flex-wrap items-center justify-between gap-2">
                 <span>Rule #5 Compliance: Scores published only after live recorded execution</span>
                 <a href="https://github.com/GeminiPulse/geminipulse-com/blob/v2.0/docs/architecture-plan.md" target="_blank" rel="noreferrer" className="text-blue-400 hover:underline inline-flex items-center gap-1">
-                  View Open Blueprint (`docs/architecture-plan.md`) <ExternalLink className="w-3 h-3" />
+                  View Open Blueprint (<code className="m3-inline-code">docs/architecture-plan.md</code>) <ExternalLink className="w-3 h-3" />
                 </a>
               </div>
             </div>
@@ -1202,7 +1349,9 @@ export default function App() {
                         <span className="text-blue-400">{item.metric}</span>
                         <span className="px-2 py-0.5 rounded bg-purple-500/15 text-purple-300">{item.weight}</span>
                       </div>
-                      <p className="m3-text-muted leading-relaxed">{item.criteria}</p>
+                      <p className="m3-text-muted leading-relaxed">
+                        <InlineCodeText text={item.criteria} />
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -1235,19 +1384,19 @@ export default function App() {
 
             <button
               onClick={() => setShowSubmitModal(true)}
-              className="bg-gemini-grad text-white font-semibold px-5 py-2.5 rounded-full inline-flex items-center gap-2 shadow-md hover:opacity-95 cursor-pointer self-start md:self-auto"
+              className="bg-gemini-grad text-white font-semibold px-5 py-2.5 rounded-full inline-flex items-center gap-2 shadow-md hover:opacity-95 cursor-pointer self-start md:self-auto whitespace-nowrap"
             >
               <Plus className="w-4 h-4" />
               Submit Your Gemini Project
             </button>
           </div>
 
-          <div className="flex flex-wrap gap-2">
+          <div className="flex-balance gap-2">
             {['All', 'Agents', 'Voice & Live', 'Coding', 'Creative Media'].map((cat) => (
               <button
                 key={cat}
                 onClick={() => setShowcaseFilter(cat)}
-                className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+                className={`px-4 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
                   showcaseFilter === cat
                     ? 'bg-gemini-grad text-white'
                     : 'm3-surface-elevated m3-text-muted hover:text-[var(--md-sys-color-on-surface)]'
@@ -1269,16 +1418,18 @@ export default function App() {
                           {proj.category}
                         </span>
                         {proj.verifiedByGemini && (
-                          <span className="inline-flex items-center gap-1 text-[11px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400">
+                          <span className="inline-flex items-center gap-1 text-[11px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 whitespace-nowrap">
                             <ShieldCheck className="w-3 h-3" /> Gemini Verified
                           </span>
                         )}
                       </div>
-                      <h3 className="text-xl font-bold mt-1">{proj.name}</h3>
+                      <h3 className="text-xl font-bold mt-1">
+                        <InlineCodeText text={proj.name} />
+                      </h3>
                       <div className="text-xs font-mono m3-text-muted">by {proj.creator}</div>
                     </div>
 
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 shrink-0">
                       <button
                         onClick={() => handleUpvoteProject(proj.id)}
                         className="px-3.5 py-2 rounded-xl m3-surface-elevated hover:border-blue-400 flex flex-col items-center justify-center min-w-[3.5rem] cursor-pointer transition-all"
@@ -1301,14 +1452,18 @@ export default function App() {
                     </div>
                   </div>
 
-                  <p className="text-sm m3-text-muted leading-relaxed">{proj.tagline}</p>
+                  <p className="text-sm m3-text-muted leading-relaxed">
+                    <InlineCodeText text={proj.tagline} />
+                  </p>
 
                   {/* Gemini Architecture Highlight */}
                   <div className="p-3.5 rounded-xl bg-[var(--md-sys-color-surface)] border border-[var(--md-sys-color-outline)] text-xs leading-relaxed">
                     <span className="font-mono font-semibold text-purple-400 block mb-1">
                       HOW IT USES GEMINI (AI ARCHITECTURE REVIEW):
                     </span>
-                    <span className="m3-text-muted">{proj.architectureHighlight}</span>
+                    <span className="m3-text-muted">
+                      <InlineCodeText text={proj.architectureHighlight} />
+                    </span>
                   </div>
                 </div>
 
@@ -1328,7 +1483,7 @@ export default function App() {
                     href={proj.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-xs font-semibold text-blue-400 hover:underline inline-flex items-center gap-1"
+                    className="text-xs font-semibold text-blue-400 hover:underline inline-flex items-center gap-1 whitespace-nowrap"
                   >
                     Launch Project <ArrowUpRight className="w-3.5 h-3.5" />
                   </a>
@@ -1358,7 +1513,7 @@ export default function App() {
 
             <button
               onClick={() => setShowNewThreadModal(true)}
-              className="m3-surface-elevated hover:border-blue-400 font-semibold px-5 py-2.5 rounded-full inline-flex items-center gap-2 cursor-pointer self-start md:self-auto"
+              className="m3-surface-elevated hover:border-blue-400 font-semibold px-5 py-2.5 rounded-full inline-flex items-center gap-2 cursor-pointer self-start md:self-auto whitespace-nowrap"
             >
               <Plus className="w-4 h-4 text-purple-400" />
               Start New Discussion
@@ -1402,7 +1557,9 @@ export default function App() {
                         </button>
                       </div>
                     </div>
-                    <h4 className="font-bold text-base leading-snug mb-3">{thread.title}</h4>
+                    <h4 className="font-bold text-base leading-snug mb-3">
+                      <InlineCodeText text={thread.title} />
+                    </h4>
                     <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-mono m3-text-muted">
                       <span>by {thread.author}</span>
                       <div className="flex items-center gap-3">
@@ -1447,8 +1604,12 @@ export default function App() {
                     </div>
                   </div>
 
-                  <h3 className="text-xl font-bold leading-snug">{activeThread.title}</h3>
-                  <p className="text-sm m3-text-muted leading-relaxed">{activeThread.body}</p>
+                  <h3 className="text-xl font-bold leading-snug">
+                    <InlineCodeText text={activeThread.title} />
+                  </h3>
+                  <p className="text-sm m3-text-muted leading-relaxed">
+                    <InlineCodeText text={activeThread.body} />
+                  </p>
 
                   {/* Gemini 3.8 Flash First-Responder Synthesis */}
                   <div className="p-4 rounded-2xl bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 border border-blue-400/30 space-y-2">
@@ -1461,7 +1622,9 @@ export default function App() {
                         AI SYNTHESIS
                       </span>
                     </div>
-                    <p className="text-xs sm:text-sm leading-relaxed">{activeThread.aiFirstResponse}</p>
+                    <p className="text-xs sm:text-sm leading-relaxed">
+                      <InlineCodeText text={activeThread.aiFirstResponse} />
+                    </p>
                   </div>
 
                   {/* Community Replies */}
@@ -1513,7 +1676,7 @@ export default function App() {
                     />
                     <button
                       type="submit"
-                      className="bg-gemini-grad text-white px-4 py-2.5 rounded-full text-xs font-semibold inline-flex items-center gap-1.5 cursor-pointer"
+                      className="bg-gemini-grad text-white px-4 py-2.5 rounded-full text-xs font-semibold inline-flex items-center gap-1.5 cursor-pointer whitespace-nowrap"
                     >
                       <Send className="w-3.5 h-3.5" />
                       Reply
@@ -1544,14 +1707,14 @@ export default function App() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
             {/* Episode Selector */}
-            <div className="lg:col-span-5 space-y-4">
+            <div className="lg:col-span-5 space-y-3.5">
               {ANTIGRAVITY_CHRONICLES.map((ep) => {
                 const active = ep.id === activeEpisode.id;
                 return (
                   <div
                     key={ep.id}
                     onClick={() => setActiveEpisodeId(ep.id)}
-                    className={`p-5 rounded-2xl transition-all cursor-pointer border ${
+                    className={`p-4 sm:p-5 rounded-2xl transition-all cursor-pointer border ${
                       active
                         ? 'bg-blue-500/10 border-blue-400 shadow-md'
                         : 'm3-card hover:border-blue-400/40'
@@ -1561,7 +1724,7 @@ export default function App() {
                       <span className="text-blue-400 font-bold">{ep.episodeNumber}</span>
                       <span className="m3-text-muted">{ep.date} • {ep.readTime}</span>
                     </div>
-                    <h3 className="font-bold text-lg leading-snug mb-2">{ep.title}</h3>
+                    <h3 className="font-bold text-base sm:text-lg leading-snug mb-1.5">{ep.title}</h3>
                     <p className="text-xs m3-text-muted leading-relaxed">{ep.subtitle}</p>
                   </div>
                 );
@@ -1570,59 +1733,63 @@ export default function App() {
               <div className="m3-card p-5 space-y-2 text-xs">
                 <div className="font-mono font-bold text-emerald-400 flex items-center gap-1.5">
                   <Activity className="w-4 h-4" />
-                  NEXT SCHEDULED EPISODE (EPISODE 03)
+                  NEXT SCHEDULED EPISODE (EPISODE 05)
                 </div>
                 <p className="m3-text-muted leading-relaxed">
-                  Generated automatically by our recurring <strong>Antigravity Scheduled Automation</strong> (<code className="font-mono">geminipulse-daily-curator</code>) after scanning the newest Gemini releases and community submissions.
+                  Generated automatically by our recurring <strong>Antigravity Scheduled Automation</strong> (<code className="m3-inline-code">geminipulse-daily-curator</code>) after scanning the newest Gemini releases and community submissions.
                 </p>
               </div>
             </div>
 
             {/* Full Episode Reader & Markdown Exporter */}
-            <div className="lg:col-span-7 m3-card p-6 sm:p-8 space-y-6">
-              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[var(--md-sys-color-outline)] pb-4">
-                <div>
-                  <span className="text-xs font-mono text-blue-400 font-semibold">{activeEpisode.episodeNumber}</span>
-                  <h3 className="text-2xl font-bold mt-0.5">{activeEpisode.title}</h3>
-                  <div className="text-xs font-mono m3-text-muted mt-1">
-                    Written by {activeEpisode.author} • Source: <code>{activeEpisode.filePath}</code>
+            <div className="lg:col-span-7 m3-card p-6 sm:p-8 space-y-6 flex flex-col justify-between">
+              <div className="space-y-6">
+                <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[var(--md-sys-color-outline)] pb-4">
+                  <div>
+                    <span className="text-xs font-mono text-blue-400 font-semibold">{activeEpisode.episodeNumber}</span>
+                    <h3 className="text-2xl font-bold mt-0.5">{activeEpisode.title}</h3>
+                    <div className="text-xs font-mono m3-text-muted mt-1">
+                      Written by {activeEpisode.author} • Source: <code className="m3-inline-code">{activeEpisode.filePath}</code>
+                    </div>
                   </div>
+
+                  <button
+                    onClick={() => {
+                      navigator.clipboard.writeText(activeEpisode.markdownBody);
+                      setCopiedEpisodeId(activeEpisode.id);
+                      setTimeout(() => setCopiedEpisodeId(null), 2000);
+                    }}
+                    className="bg-gemini-grad text-white text-xs font-semibold px-4 py-2.5 rounded-full inline-flex items-center gap-1.5 cursor-pointer shrink-0 whitespace-nowrap"
+                  >
+                    {copiedEpisodeId === activeEpisode.id ? (
+                      <>
+                        <Check className="w-3.5 h-3.5" /> Copied Markdown!
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="w-3.5 h-3.5" /> Copy Article Markdown
+                      </>
+                    )}
+                  </button>
                 </div>
 
-                <button
-                  onClick={() => {
-                    navigator.clipboard.writeText(activeEpisode.markdownBody);
-                    setCopiedEpisodeId(activeEpisode.id);
-                    setTimeout(() => setCopiedEpisodeId(null), 2000);
-                  }}
-                  className="bg-gemini-grad text-white text-xs font-semibold px-4 py-2.5 rounded-full inline-flex items-center gap-1.5 cursor-pointer shrink-0"
-                >
-                  {copiedEpisodeId === activeEpisode.id ? (
-                    <>
-                      <Check className="w-3.5 h-3.5" /> Copied Markdown!
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="w-3.5 h-3.5" /> Copy Article Markdown
-                    </>
-                  )}
-                </button>
-              </div>
+                <div className="space-y-2">
+                  <div className="text-xs font-mono uppercase text-purple-400">Key Architectural Takeaways</div>
+                  <ul className="space-y-1.5">
+                    {activeEpisode.highlights.map((h, i) => (
+                      <li key={i} className="text-xs sm:text-sm m3-text-muted flex items-start gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                        <span>
+                          <InlineCodeText text={h} />
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
 
-              <div className="space-y-2">
-                <div className="text-xs font-mono uppercase text-purple-400">Key Architectural Takeaways</div>
-                <ul className="space-y-1.5">
-                  {activeEpisode.highlights.map((h, i) => (
-                    <li key={i} className="text-xs sm:text-sm m3-text-muted flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                      <span>{h}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="p-5 rounded-2xl bg-[var(--md-sys-color-surface)] border border-[var(--md-sys-color-outline)] font-mono text-xs leading-relaxed whitespace-pre-wrap overflow-x-auto max-h-96">
-                {activeEpisode.markdownBody}
+                <div className="p-5 rounded-2xl bg-[var(--md-sys-color-surface)] border border-[var(--md-sys-color-outline)] font-mono text-xs leading-relaxed whitespace-pre-wrap overflow-x-auto max-h-[28rem]">
+                  {activeEpisode.markdownBody}
+                </div>
               </div>
             </div>
           </div>
@@ -1647,16 +1814,17 @@ export default function App() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {GOOGLE_STACK_ARCHITECTURE.map((item) => (
-              <div key={item.layer} className="m3-card p-5 flex flex-col justify-between gap-4">
-                <div className="space-y-2.5">
-                  <div className="flex items-center justify-between text-[11px] font-mono">
-                    <span className="text-blue-400 font-semibold">{item.layer}</span>
-                    <span className="px-2 py-0.5 rounded bg-purple-500/15 text-purple-400">{item.badge}</span>
-                  </div>
-                  <h3 className="font-bold text-base">{item.product}</h3>
-                  <p className="text-xs m3-text-muted leading-relaxed">{item.role}</p>
+              <div key={item.layer} className="m3-card m3-stack-card p-5">
+                <div className="flex items-center justify-between gap-2 text-[11px] font-mono">
+                  <span className="text-blue-400 font-semibold">{item.layer}</span>
+                  <span className="px-2 py-0.5 rounded bg-purple-500/15 text-purple-400 whitespace-nowrap">{item.badge}</span>
                 </div>
-
+                <h3 className="font-bold text-base">
+                  <InlineCodeText text={item.product} />
+                </h3>
+                <p className="text-xs m3-text-muted leading-relaxed">
+                  <InlineCodeText text={item.role} />
+                </p>
                 <div className="pt-3 border-t border-[var(--md-sys-color-outline)] text-[11px] font-mono text-emerald-400">
                   Tier: {item.tierInfo}
                 </div>
@@ -1735,7 +1903,7 @@ export default function App() {
                       setCopiedShortId(activeShort.id);
                       setTimeout(() => setCopiedShortId(null), 2000);
                     }}
-                    className="bg-gemini-grad text-white text-xs font-semibold px-4 py-2 rounded-full inline-flex items-center gap-1.5 cursor-pointer"
+                    className="bg-gemini-grad text-white text-xs font-semibold px-4 py-2 rounded-full inline-flex items-center gap-1.5 cursor-pointer whitespace-nowrap"
                   >
                     {copiedShortId === activeShort.id ? (
                       <>
@@ -1763,7 +1931,7 @@ export default function App() {
                   </div>
                   <div className="p-3.5 rounded-xl bg-[var(--md-sys-color-surface)] border border-[var(--md-sys-color-outline)] space-y-1">
                     <span className="font-mono font-bold text-purple-400 uppercase block">
-                      2. Omni 1.1 Video Prompt (`gemini-omni-1.1-flash`):
+                      2. Omni 1.1 Video Prompt (<code className="m3-inline-code">gemini-omni-1.1-flash</code>):
                     </span>
                     <p className="m3-text-muted font-mono leading-relaxed">{activeShort.omniPrompt}</p>
                   </div>
@@ -1771,7 +1939,7 @@ export default function App() {
 
                 <div className="p-4 rounded-xl bg-[var(--md-sys-color-surface)] border border-[var(--md-sys-color-outline)] text-xs space-y-1.5">
                   <span className="font-mono font-bold text-emerald-400 uppercase block">
-                    3. Voiceover Narration Script (`gemini-3.8-flash-tts`):
+                    3. Voiceover Narration Script (<code className="m3-inline-code">gemini-3.8-flash-tts</code>):
                   </span>
                   <p className="font-mono leading-relaxed text-[var(--md-sys-color-on-surface)]">
                     {activeShort.ttsScript}

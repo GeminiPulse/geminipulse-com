@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-10-28 22:25 EDT — Enabled Google Sign-In on Firebase Auth, added geminipulse.com + www.geminipulse.com to authorizedDomains, and deployed composite Firestore indexes (firestore.indexes.json) + real-time listeners`
+> **Last touched:** `2026-10-28 23:18 EDT — Completed Material 3 Expressive Design Audit (single-line non-wrapping pill navbar, CSS Subgrid card alignment, InlineCodeText syntax pills, scroll-driven header compaction, and live deploy to https://geminipulse.com)`
 
 ---
 

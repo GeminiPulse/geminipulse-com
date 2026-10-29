@@ -21,7 +21,7 @@ export const PULSE_INTELLIGENCE_FEED = [
   },
   {
     id: 'pulse-gemini-4-argon',
-    title: 'Gemini 4 Argon (`gemini-4-argon`): 1,048,576 Unified Context Window, Long Decode & $2/$10 Pricing',
+    title: 'Gemini 4 Argon: 1,048,576 Unified Context Window, Long Decode & $2/$10 Pricing',
     tldr: 'Google’s flagship developer reasoning model `gemini-4-argon` features a unified 1,048,576-token context window, 65,536 synchronous max output (up to 1,048,576 with long decode), and introductory pricing of $2.00/1M input and $10.00/1M output tokens through November 30, 2026.',
     summary:
       'Engineered for complex software engineering, mathematical and scientific problem solving, and multi-step agents, `gemini-4-argon` supports configurable thinking levels (`low`, `medium`, `high`), implicit context caching ($0.10/1M tokens), and Search/Maps grounding (5,000 free search requests/month shared across Gemini 3+ models).',
@@ -51,7 +51,7 @@ export const PULSE_INTELLIGENCE_FEED = [
   },
   {
     id: 'pulse-antigravity-managed-agent',
-    title: 'Gemini 4 Argon & Managed Agents in Google Antigravity (`antigravity-preview-09-2026`)',
+    title: 'Gemini 4 Argon & Managed Cloud Agents in Google Antigravity',
     tldr: 'The prebuilt `antigravity-preview-09-2026` managed agent on the Gemini Interactions API (`environment="remote"`) runs inside a hosted sandbox environment to reason, execute code, manage files, and search the web.',
     summary:
       'Built with `gemini-3.8-flash` by default and configurable with `gemini-4-argon` via `agent_config`, Antigravity Managed Agents support custom system instructions, inline tool extensions, and `max_total_tokens` budget controls.',
@@ -81,7 +81,7 @@ export const PULSE_INTELLIGENCE_FEED = [
   },
   {
     id: 'pulse-omni-1-1-video',
-    title: 'Gemini Omni Flash (`gemini-omni-1.1-flash`): Conversational Video Generation, Editing & Extension',
+    title: 'Gemini Omni 1.1 Flash: Conversational Video Generation, Editing & Extension',
     tldr: 'Gemini Omni Flash (`gemini-omni-1.1-flash`) turns text prompts and images into short videos and supports multi-turn conversational video editing and clip extension (`previous_interaction_id`) via the Interactions API.',
     summary:
       'Supports up to 3 reference video clips (up to 3 seconds each), 10-second uploaded video inputs for editing or end-of-clip extension, single-shot or multi-shot narrative prompting, and invisible SynthID provenance watermarking.',
@@ -96,7 +96,7 @@ export const PULSE_INTELLIGENCE_FEED = [
   },
   {
     id: 'pulse-nano-banana-2-1',
-    title: 'Gemini Nano Banana 2.1 (`gemini-nano-banana-2.1`) GA: 14-Image Fusion, 4K Output & Image Search Grounding',
+    title: 'Gemini Nano Banana 2.1 GA: 14-Image Reference Fusion, 4K Output & Image Search Grounding',
     tldr: 'Generally available October 6, 2026: `gemini-nano-banana-2.1` delivers `1K`, `2K`, and `4K` image generation, multi-image fusion across up to 14 reference images (up to 4 characters and 10 objects), and Grounding with Google Web and Image Search.',
     summary:
       'Fixes tiling artifacts on panoramic aspect ratios (`1:4`, `4:1`, `1:8`, `8:1`), improves infographic text rendering, and supports configurable Thinking levels (`minimal`, `medium`, `high`) across 131,072 input and 32,768 output tokens.',
@@ -111,7 +111,7 @@ export const PULSE_INTELLIGENCE_FEED = [
   },
   {
     id: 'pulse-deep-research-max',
-    title: 'Deep Research Max (`deep-research-max-preview-04-2026`): 1M-Context Autonomous Research Agent',
+    title: 'Deep Research Max: 1M-Context Autonomous Research & Synthesis Agent',
     tldr: 'Available on the Interactions API, the `deep-research-max-preview-04-2026` agent ingests Text, Image, PDF, Audio, and Video across a 1,048,576-token window (65,536 max output tokens) to produce cited research reports and visual charts.',
     summary:
       'Designed for "analyst-in-a-box" workloads rather than low-latency chat, Deep Research Max executes background multi-hop synthesis (`background=True`) with verifiable source citations.',
