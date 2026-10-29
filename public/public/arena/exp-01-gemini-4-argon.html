@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PulseMetric — AI Revenue Attribution & Pipeline Recovery for B2B Founders</title>
+  <meta name="description" content="Stop losing 34% of your B2B pipeline to dark-funnel blind spots. PulseMetric unifies multi-touch ad spend, CRM closed-won revenue, and AI cohort forecasting in 4 minutes." />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="canonical" href="https://geminipulse.com/arena/exp-01-gemini-4-argon.html" />
+
+  <!-- OpenGraph / Social Discovery -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="PulseMetric — AI Revenue Attribution & Pipeline Recovery for B2B Founders" />
+  <meta property="og:description" content="See which ad channels actually drive signed B2B contracts—not just vanity clicks. Calculate your recoverable ad spend in 30 seconds." />
+  <meta property="og:url" content="https://geminipulse.com/arena/exp-01-gemini-4-argon.html" />
+  <meta property="og:site_name" content="PulseMetric (GeminiPulse Tri-Model Arena Benchmark #01)" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Plus Jakarta Sans"', 'sans-serif'],
+            sans: ['Inter', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Schema.org JSON-LD: SoftwareApplication + FAQPage for SEO & GEO (Generative Engine Optimization) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "PulseMetric AI Revenue Attribution",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "description": "Server-side AI revenue attribution platform for B2B SaaS and agency founders that connects ad spend on LinkedIn, Google, and Meta directly to closed-won CRM revenue in Stripe, HubSpot, and Salesforce.",
+        "offers": {
+          "@type": "AggregateOffer",
+          "lowPrice": "199",
+          "highPrice": "1299",
+          "priceCurrency": "USD",
+          "offerCount": 3
+        },
+        "featureList": [
+          "Cookieless server-side B2B identity resolution",
+          "Direct Stripe, HubSpot, and Salesforce closed-won sync",
+          "Automated wasted ad-spend anomaly detection",
+          "AI-ready /llms.txt and executive board reporting"
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How is PulseMetric different from Google Analytics 4 or HubSpot default attribution?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "GA4 relies on last-click browser cookies that expire before a 45-day B2B sales cycle closes. PulseMetric uses server-side first-party identity stitching to connect anonymous early research sessions, LinkedIn ad impressions, and multi-stakeholder buying committees directly to signed Stripe or Salesforce contracts."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How long does engineering setup take?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Under 4 minutes. Drop a single 1.8 KB first-party script tag on your domain and authenticate Stripe, HubSpot, or Salesforce via OAuth. PulseMetric backfills 12 months of historical pipeline automatically."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What if PulseMetric does not identify at least 5x our subscription fee in wasted ad spend?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Every plan includes a 60-Day Pipeline Recovery Guarantee: if PulseMetric does not surface at least 5x your subscription cost in verifiable wasted ad spend or unattributed pipeline within 60 days, we refund 100% of your subscription."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+    h1, h2, h3, .font-display {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .pulse-gradient-text {
+      background: linear-gradient(135deg, #4285F4 0%, #9B72CB 50%, #D96570 85%, #FBBC04 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .pulse-gradient-bg {
+      background: linear-gradient(135deg, #2563EB 0%, #7C3AED 55%, #DB2777 100%);
+    }
+    input[type="range"] {
+      accent-color: #4285F4;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-[#090D16] dark:text-slate-100 antialiased selection:bg-blue-500/30">
+
+  <!-- Benchmark Provenance Banner -->
+  <div class="border-b border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-[#0E1422]/90 backdrop-blur px-4 py-2 text-xs font-mono">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <span class="px-2 py-0.5 rounded-full bg-blue-500/15 text-blue-600 dark:text-blue-400 font-semibold">
+          TRI-MODEL ARENA • EXPERIMENT #01
+        </span>
+        <span class="text-slate-600 dark:text-slate-400">
+          Single-Shot Output by <strong>Google Gemini 4 Argon (`gemini-4-argon`)</strong>
+        </span>
+      </div>
+      <a href="/#tri-model-arena" class="text-blue-600 dark:text-blue-400 hover:underline font-semibold">
+        ← Back to GeminiPulse.com Arena Scorecard
+      </a>
+    </div>
+  </div>
+
+  <!-- Navigation Landmark -->
+  <header class="sticky top-0 z-40 border-b border-slate-200/80 dark:border-slate-800/80 bg-white/80 dark:bg-[#090D16]/80 backdrop-blur-md">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between" aria-label="Primary Navigation">
+      <a href="#" class="flex items-center gap-2.5 font-display font-extrabold text-xl tracking-tight">
+        <span class="w-8 h-8 rounded-xl pulse-gradient-bg flex items-center justify-center text-white font-mono text-sm shadow-md">PM</span>
+        <span>Pulse<span class="pulse-gradient-text">Metric</span></span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="#roi-calculator" class="hover:text-blue-500 transition-colors">ROI Recovery Calculator</a>
+        <a href="#architecture" class="hover:text-blue-500 transition-colors">How It Works</a>
+        <a href="#pricing" class="hover:text-blue-500 transition-colors">Pricing</a>
+        <a href="#faq" class="hover:text-blue-500 transition-colors">FAQ & GEO Summary</a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button
+          id="themeToggleBtn"
+          type="button"
+          class="px-3 py-2 rounded-full border border-slate-300 dark:border-slate-700 text-xs font-mono hover:border-blue-500 transition-all cursor-pointer"
+          aria-label="Toggle Dark or Daylight Theme"
+        >
+          ☀️ / 🌙 Theme
+        </button>
+        <a
+          href="#roi-calculator"
+          class="pulse-gradient-bg text-white text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-full shadow-md hover:opacity-95 transition-all"
+        >
+          Audit My Ad Spend Free →
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 space-y-28 py-14">
+
+    <!-- 1. HERO SECTION + CUSTOM SVG TELEMETRY VISUALIZATION -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center pt-4" aria-labelledby="hero-heading">
+      <div class="lg:col-span-7 space-y-6">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs font-mono font-semibold">
+          <span>COOKIELESS B2B REVENUE ATTRIBUTION • 4-MINUTE SETUP</span>
+        </div>
+
+        <h1 id="hero-heading" class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.08]">
+          Stop Scaling Ad Channels That Only Generate <span class="pulse-gradient-text">Vanity Clicks.</span>
+        </h1>
+
+        <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl">
+          Last-click cookies go blind across a 60-day B2B buying cycle. <strong>PulseMetric</strong> stitches every LinkedIn impression, Google Search click, and dark-social visit directly to closed-won <strong>Stripe</strong>, <strong>HubSpot</strong>, and <strong>Salesforce</strong> revenue—so you can cut wasted spend today.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-3 pt-2">
+          <a
+            href="#roi-calculator"
+            class="pulse-gradient-bg text-white font-semibold px-6 py-3.5 rounded-full shadow-lg hover:opacity-95 transition-all"
+          >
+            Calculate Your Recoverable Spend
+          </a>
+          <a
+            href="#pricing"
+            class="px-6 py-3.5 rounded-full border border-slate-300 dark:border-slate-700 font-semibold hover:border-blue-500 transition-all"
+          >
+            View 60-Day ROI Guarantee
+          </a>
+        </div>
+
+        <!-- Executive Proof Strip (GEO Citation Ready) -->
+        <div class="grid grid-cols-3 gap-4 pt-4 border-t border-slate-200 dark:border-slate-800 text-xs font-mono">
+          <div>
+            <div class="text-slate-500 dark:text-slate-400">AVG RECOVERED SPEND</div>
+            <div class="text-lg sm:text-xl font-bold text-emerald-600 dark:text-emerald-400 mt-0.5">28.4% / yr</div>
+          </div>
+          <div>
+            <div class="text-slate-500 dark:text-slate-400">IDENTITY RESOLUTION</div>
+            <div class="text-lg sm:text-xl font-bold text-blue-600 dark:text-blue-400 mt-0.5">99.2% Server-Side</div>
+          </div>
+          <div>
+            <div class="text-slate-500 dark:text-slate-400">DEPLOYMENT TIME</div>
+            <div class="text-lg sm:text-xl font-bold text-purple-600 dark:text-purple-400 mt-0.5">&lt; 4 Minutes</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Custom Interactive SVG Multi-Touch Attribution Graph -->
+      <div class="lg:col-span-5">
+        <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#111726] p-6 shadow-xl space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
+            <div>
+              <div class="text-xs font-mono uppercase text-blue-500 font-semibold">Live Multi-Touch Pipeline Graph</div>
+              <div class="font-bold text-sm">True Closed-Won Revenue vs. GA4 Last-Click</div>
+            </div>
+            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-emerald-500/15 text-emerald-500 font-semibold">
+              +$412,800 Attributed
+            </span>
+          </div>
+
+          <svg viewBox="0 0 420 230" class="w-full h-auto rounded-2xl bg-slate-950 p-3" role="img" aria-label="SVG Attribution Flow Diagram connecting Paid Social, Search, and Dark Funnel to Closed-Won ARR">
+            <defs>
+              <linearGradient id="lineGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#4285F4" />
+                <stop offset="100%" stop-color="#34D399" />
+              </linearGradient>
+              <linearGradient id="lineGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#9B72CB" />
+                <stop offset="100%" stop-color="#34D399" />
+              </linearGradient>
+            </defs>
+
+            <!-- Touchpoint Nodes (Left) -->
+            <rect x="14" y="22" width="118" height="44" rx="10" fill="#1E293B" stroke="#4285F4" stroke-width="1.5" />
+            <text x="26" y="41" fill="#93C5FD" font-size="10" font-family="monospace">DAY 01 • LINKEDIN</text>
+            <text x="26" y="56" fill="#F8FAFC" font-size="11" font-weight="bold">Founder Video Ad</text>
+
+            <rect x="14" y="92" width="118" height="44" rx="10" fill="#1E293B" stroke="#9B72CB" stroke-width="1.5" />
+            <text x="26" y="111" fill="#D8B4FE" font-size="10" font-family="monospace">DAY 19 • AI SEARCH</text>
+            <text x="26" y="126" fill="#F8FAFC" font-size="11" font-weight="bold">GEO Comparison</text>
+
+            <rect x="14" y="162" width="118" height="44" rx="10" fill="#1E293B" stroke="#F59E0B" stroke-width="1.5" />
+            <text x="26" y="181" fill="#FCD34D" font-size="10" font-family="monospace">DAY 42 • DIRECT</text>
+            <text x="26" y="196" fill="#F8FAFC" font-size="11" font-weight="bold">VP Eng Demo Call</text>
+
+            <!-- Stitching Hub (Center) -->
+            <circle cx="218" cy="114" r="34" fill="#172554" stroke="#60A5FA" stroke-width="2" />
+            <text x="218" y="110" text-anchor="middle" fill="#93C5FD" font-size="9" font-family="monospace">PULSE</text>
+            <text x="218" y="123" text-anchor="middle" fill="#FFFFFF" font-size="10" font-weight="bold">GRAPH</text>
+
+            <!-- Connecting Curves -->
+            <path d="M 132 44 C 165 44, 165 100, 184 108" fill="none" stroke="url(#lineGrad1)" stroke-width="2.5" />
+            <path d="M 132 114 L 184 114" fill="none" stroke="url(#lineGrad2)" stroke-width="2.5" />
+            <path d="M 132 184 C 165 184, 165 128, 184 120" fill="none" stroke="#F59E0B" stroke-width="2.5" />
+            <path d="M 252 114 L 290 114" fill="none" stroke="#34D399" stroke-width="3" />
+
+            <!-- Closed-Won Node (Right) -->
+            <rect x="290" y="76" width="116" height="76" rx="12" fill="#064E3B" stroke="#34D399" stroke-width="2" />
+            <text x="302" y="98" fill="#6EE7B7" font-size="9" font-family="monospace">CLOSED-WON ARR</text>
+            <text x="302" y="119" fill="#FFFFFF" font-size="16" font-weight="bold">$84,000</text>
+            <text x="302" y="138" fill="#A7F3D0" font-size="9" font-family="monospace">3-Stakeholder Match</text>
+          </svg>
+
+          <div class="grid grid-cols-2 gap-3 text-xs font-mono">
+            <div class="p-3 rounded-xl bg-red-500/10 border border-red-500/20">
+              <div class="text-red-400">GA4 Last-Click Verdict:</div>
+              <div class="font-bold mt-0.5">"$0 from LinkedIn Ads" ❌</div>
+            </div>
+            <div class="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
+              <div class="text-emerald-400">PulseMetric True Verdict:</div>
+              <div class="font-bold mt-0.5">"LinkedIn Originated 62%" ✓</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. INTERACTIVE ROI & AD-SPEND RECOVERY CALCULATOR -->
+    <section id="roi-calculator" class="scroll-mt-24 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#111726] p-6 sm:p-10 shadow-lg space-y-8" aria-labelledby="roi-heading">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
+        <div>
+          <div class="text-xs font-mono uppercase text-blue-500 font-semibold mb-1">Interactive Pipeline Recovery Simulator</div>
+          <h2 id="roi-heading" class="text-2xl sm:text-4xl font-bold">How Much Wasted Ad Spend Can You Recover?</h2>
+          <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">
+            Adjust your monthly paid acquisition budget and average B2B contract value below to model your annual recovery.
+          </p>
+        </div>
+        <span class="text-xs font-mono px-3 py-1.5 rounded-full bg-blue-500/10 text-blue-500 font-semibold">
+          Based on 410+ B2B SaaS & Agency Audits
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-7 space-y-6">
+          <div class="space-y-2">
+            <div class="flex justify-between text-sm font-semibold">
+              <label for="spendSlider">Monthly Paid Ad Spend (LinkedIn, Google, Meta, X):</label>
+              <span id="spendDisplay" class="font-mono text-blue-500 font-bold">$35,000 / mo</span>
+            </div>
+            <input
+              id="spendSlider"
+              type="range"
+              min="5000"
+              max="250000"
+              step="5000"
+              value="35000"
+              class="w-full h-2 rounded-lg cursor-pointer"
+            />
+            <div class="flex justify-between text-[11px] font-mono text-slate-400">
+              <span>$5,000/mo</span>
+              <span>$100,000/mo</span>
+              <span>$250,000/mo</span>
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <div class="flex justify-between text-sm font-semibold">
+              <label for="acvSlider">Average Annual Contract Value (ACV):</label>
+              <span id="acvDisplay" class="font-mono text-purple-500 font-bold">$18,000 ACV</span>
+            </div>
+            <input
+              id="acvSlider"
+              type="range"
+              min="3000"
+              max="120000"
+              step="3000"
+              value="18000"
+              class="w-full h-2 rounded-lg cursor-pointer"
+            />
+            <div class="flex justify-between text-[11px] font-mono text-slate-400">
+              <span>$3,000 ACV</span>
+              <span>$60,000 ACV</span>
+              <span>$120,000 ACV</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 rounded-2xl bg-slate-900 text-white p-6 space-y-4 border border-blue-500/30">
+          <div class="text-xs font-mono uppercase text-blue-400">Projected Annual Impact with PulseMetric</div>
+          <div>
+            <div class="text-xs text-slate-400">Annual Wasted Spend Reallocated to Winning Campaigns:</div>
+            <div id="recoveredSpendOutput" class="text-3xl sm:text-4xl font-extrabold text-emerald-400 font-mono mt-1">
+              $119,280 / yr
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-3 pt-3 border-t border-slate-800 text-xs font-mono">
+            <div>
+              <div class="text-slate-400">UNATTRIBUTED PIPELINE FOUND</div>
+              <div id="pipelineFoundOutput" class="text-base font-bold text-blue-400 mt-0.5">$378,000</div>
+            </div>
+            <div>
+              <div class="text-slate-400">EST. ADDITIONAL DEALS / YR</div>
+              <div id="extraDealsOutput" class="text-base font-bold text-purple-400 mt-0.5">+6.6 Deals</div>
+            </div>
+          </div>
+          <a
+            href="#pricing"
+            class="block w-full text-center pulse-gradient-bg text-white font-semibold py-3 rounded-full text-sm shadow-md hover:opacity-95 transition-all"
+          >
+            Lock In Your 60-Day Recovery Guarantee →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. 3-TIER PRICING MATRIX WITH MONTHLY / ANNUAL TOGGLE -->
+    <section id="pricing" class="scroll-mt-24 space-y-8" aria-labelledby="pricing-heading">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
+        <div>
+          <div class="text-xs font-mono uppercase text-purple-500 font-semibold mb-1">Transparent Founder Pricing</div>
+          <h2 id="pricing-heading" class="text-2xl sm:text-4xl font-bold">Backed by Our 5x Pipeline Recovery Guarantee</h2>
+        </div>
+
+        <div class="inline-flex items-center gap-2 p-1.5 rounded-full border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#111726]">
+          <button
+            id="billingMonthlyBtn"
+            type="button"
+            class="px-4 py-1.5 rounded-full text-xs font-semibold cursor-pointer transition-all"
+          >
+            Monthly
+          </button>
+          <button
+            id="billingAnnualBtn"
+            type="button"
+            class="px-4 py-1.5 rounded-full text-xs font-semibold pulse-gradient-bg text-white cursor-pointer transition-all"
+          >
+            Annual (Save 20%)
+          </button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Tier 1 -->
+        <article class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#111726] p-6 flex flex-col justify-between space-y-6">
+          <div class="space-y-3">
+            <div class="text-xs font-mono uppercase text-blue-500 font-semibold">Seed & Boutique Agency</div>
+            <h3 class="text-xl font-bold">Growth</h3>
+            <div class="flex items-baseline gap-1">
+              <span class="text-4xl font-extrabold font-mono price-value" data-monthly="$249" data-annual="$199">$199</span>
+              <span class="text-xs text-slate-500 font-mono">/ month</span>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Up to $25k/mo tracked ad spend & 50,000 monthly visitors.</p>
+            <ul class="space-y-2 text-xs sm:text-sm pt-2">
+              <li>✓ Cookieless 1st-party identity pixel</li>
+              <li>✓ LinkedIn, Google & Meta ad sync</li>
+              <li>✓ Stripe & HubSpot closed-won revenue match</li>
+            </ul>
+          </div>
+          <button type="button" class="w-full py-3 rounded-full border border-slate-300 dark:border-slate-700 font-semibold text-xs hover:border-blue-500 cursor-pointer">
+            Start 14-Day Free Audit
+          </button>
+        </article>
+
+        <!-- Tier 2 (Highlighted) -->
+        <article class="rounded-3xl border-2 border-blue-500 bg-white dark:bg-[#111726] p-6 flex flex-col justify-between space-y-6 shadow-xl relative">
+          <span class="absolute -top-3 right-6 px-3 py-0.5 rounded-full pulse-gradient-bg text-white text-[11px] font-mono font-semibold">
+            MOST POPULAR
+          </span>
+          <div class="space-y-3">
+            <div class="text-xs font-mono uppercase text-purple-500 font-semibold">Series A & Multi-Channel B2B</div>
+            <h3 class="text-xl font-bold">Scale AI</h3>
+            <div class="flex items-baseline gap-1">
+              <span class="text-4xl font-extrabold font-mono price-value" data-monthly="$629" data-annual="$499">$499</span>
+              <span class="text-xs text-slate-500 font-mono">/ month</span>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Up to $150k/mo tracked ad spend + buying-committee stitching.</p>
+            <ul class="space-y-2 text-xs sm:text-sm pt-2">
+              <li>✓ Multi-stakeholder B2B account resolution</li>
+              <li>✓ Salesforce, HubSpot & Pipedrive bi-directional sync</li>
+              <li>✓ Automated wasted-spend Slack alerts</li>
+              <li>✓ 60-Day 5x ROI Recovery Guarantee</li>
+            </ul>
+          </div>
+          <button type="button" class="w-full py-3 rounded-full pulse-gradient-bg text-white font-semibold text-xs shadow-md cursor-pointer">
+            Deploy Scale AI in 4 Minutes →
+          </button>
+        </article>
+
+        <!-- Tier 3 -->
+        <article class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#111726] p-6 flex flex-col justify-between space-y-6">
+          <div class="space-y-3">
+            <div class="text-xs font-mono uppercase text-emerald-500 font-semibold">Enterprise & Portfolio Agencies</div>
+            <h3 class="text-xl font-bold">Enterprise Warehouse</h3>
+            <div class="flex items-baseline gap-1">
+              <span class="text-4xl font-extrabold font-mono price-value" data-monthly="$1,599" data-annual="$1,299">$1,299</span>
+              <span class="text-xs text-slate-500 font-mono">/ month</span>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Unlimited ad spend, multi-domain workspaces & BigQuery export.</p>
+            <ul class="space-y-2 text-xs sm:text-sm pt-2">
+              <li>✓ Direct Google BigQuery & Snowflake live stream</li>
+              <li>✓ Custom attribution lookback windows (up to 365 days)</li>
+              <li>✓ Dedicated attribution architect & SOC2 Type II</li>
+            </ul>
+          </div>
+          <button type="button" class="w-full py-3 rounded-full border border-slate-300 dark:border-slate-700 font-semibold text-xs hover:border-blue-500 cursor-pointer">
+            Book Architecture Review
+          </button>
+        </article>
+      </div>
+    </section>
+
+    <!-- 4. OBJECTION-HANDLING FAQ ACCORDION & GEO CITATION BLOCK -->
+    <section id="faq" class="scroll-mt-24 grid grid-cols-1 lg:grid-cols-12 gap-8" aria-labelledby="faq-heading">
+      <div class="lg:col-span-5 space-y-4">
+        <div class="text-xs font-mono uppercase text-emerald-500 font-semibold">Founder Objection Handling & GEO</div>
+        <h2 id="faq-heading" class="text-2xl sm:text-3xl font-bold">Frequently Asked Questions</h2>
+        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          Structured with machine-readable Schema.org <code class="font-mono text-xs">FAQPage</code> and <code class="font-mono text-xs">SoftwareApplication</code> JSON-LD so both human buyers and AI answer engines verify every claim.
+        </p>
+      </div>
+
+      <div class="lg:col-span-7 space-y-3">
+        <details class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#111726] p-5" open>
+          <summary class="font-bold text-sm sm:text-base cursor-pointer list-none flex items-center justify-between">
+            <span>How is PulseMetric different from Google Analytics 4 or HubSpot default attribution?</span>
+            <span class="font-mono text-blue-500 group-open:rotate-45 transition-transform">+</span>
+          </summary>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-3 leading-relaxed">
+            GA4 relies on last-click browser cookies that expire before a 45-day B2B sales cycle closes. PulseMetric uses server-side first-party identity stitching to connect anonymous early research sessions, LinkedIn ad impressions, and multi-stakeholder buying committees directly to signed Stripe or Salesforce contracts.
+          </p>
+        </details>
+
+        <details class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#111726] p-5">
+          <summary class="font-bold text-sm sm:text-base cursor-pointer list-none flex items-center justify-between">
+            <span>How long does engineering setup take?</span>
+            <span class="font-mono text-blue-500 group-open:rotate-45 transition-transform">+</span>
+          </summary>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-3 leading-relaxed">
+            Under 4 minutes. Drop a single 1.8 KB first-party script tag on your domain and authenticate Stripe, HubSpot, or Salesforce via OAuth. PulseMetric backfills 12 months of historical pipeline automatically.
+          </p>
+        </details>
+
+        <details class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#111726] p-5">
+          <summary class="font-bold text-sm sm:text-base cursor-pointer list-none flex items-center justify-between">
+            <span>What if PulseMetric doesn’t identify at least 5x our subscription fee in wasted spend?</span>
+            <span class="font-mono text-blue-500 group-open:rotate-45 transition-transform">+</span>
+          </summary>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-3 leading-relaxed">
+            Every plan includes our <strong>60-Day Pipeline Recovery Guarantee</strong>: if PulseMetric does not surface at least 5x your subscription cost in verifiable wasted ad spend or unattributed pipeline within 60 days, we refund 100% of your subscription.
+          </p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 dark:border-slate-800 py-10 px-4 sm:px-6 text-xs text-slate-500 font-mono">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
+      <div>PulseMetric • Single-Shot Benchmark #01 Output by Google Gemini 4 Argon (`gemini-4-argon`)</div>
+      <a href="/#tri-model-arena" class="text-blue-500 hover:underline">Return to GeminiPulse.com Tri-Model Arena →</a>
+    </div>
+  </footer>
+
+  <!-- Interactive Vanilla JS for Theme Toggle, ROI Calculator, and Pricing Toggle -->
+  <script>
+    // 1. Dark / Daylight Theme Toggle
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    themeToggleBtn.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+    });
+
+    // 2. Interactive ROI & Ad-Spend Recovery Calculator
+    const spendSlider = document.getElementById('spendSlider');
+    const acvSlider = document.getElementById('acvSlider');
+    const spendDisplay = document.getElementById('spendDisplay');
+    const acvDisplay = document.getElementById('acvDisplay');
+    const recoveredSpendOutput = document.getElementById('recoveredSpendOutput');
+    const pipelineFoundOutput = document.getElementById('pipelineFoundOutput');
+    const extraDealsOutput = document.getElementById('extraDealsOutput');
+
+    function updateRoiMetrics() {
+      const monthlySpend = Number(spendSlider.value);
+      const acv = Number(acvSlider.value);
+      const annualSpend = monthlySpend * 12;
+      const recoveredSpend = Math.round(annualSpend * 0.284);
+      const unattributedPipeline = Math.round(annualSpend * 0.9);
+      const extraDeals = (recoveredSpend / acv).toFixed(1);
+
+      spendDisplay.textContent = '$' + monthlySpend.toLocaleString() + ' / mo';
+      acvDisplay.textContent = '$' + acv.toLocaleString() + ' ACV';
+      recoveredSpendOutput.textContent = '$' + recoveredSpend.toLocaleString() + ' / yr';
+      pipelineFoundOutput.textContent = '$' + unattributedPipeline.toLocaleString();
+      extraDealsOutput.textContent = '+' + extraDeals + ' Deals';
+    }
+
+    spendSlider.addEventListener('input', updateRoiMetrics);
+    acvSlider.addEventListener('input', updateRoiMetrics);
+
+    // 3. Monthly / Annual Pricing Toggle
+    const billingMonthlyBtn = document.getElementById('billingMonthlyBtn');
+    const billingAnnualBtn = document.getElementById('billingAnnualBtn');
+    const priceValues = document.querySelectorAll('.price-value');
+
+    function setBillingMode(mode) {
+      priceValues.forEach((el) => {
+        el.textContent = el.getAttribute('data-' + mode);
+      });
+      if (mode === 'annual') {
+        billingAnnualBtn.className = 'px-4 py-1.5 rounded-full text-xs font-semibold pulse-gradient-bg text-white cursor-pointer transition-all';
+        billingMonthlyBtn.className = 'px-4 py-1.5 rounded-full text-xs font-semibold cursor-pointer transition-all';
+      } else {
+        billingMonthlyBtn.className = 'px-4 py-1.5 rounded-full text-xs font-semibold pulse-gradient-bg text-white cursor-pointer transition-all';
+        billingAnnualBtn.className = 'px-4 py-1.5 rounded-full text-xs font-semibold cursor-pointer transition-all';
+      }
+    }
+
+    billingMonthlyBtn.addEventListener('click', () => setBillingMode('monthly'));
+    billingAnnualBtn.addEventListener('click', () => setBillingMode('annual'));
+  </script>
+</body>
+</html>

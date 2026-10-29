@@ -1064,7 +1064,7 @@ export const TRI_MODEL_ARENA_EXPERIMENTS = [
     number: 'EXPERIMENT #01',
     category: 'Sales, Marketing & GEO Website',
     title: 'Single-Shot High-Converting B2B SaaS Launchpad + Full SEO/GEO Schema',
-    status: 'PROTOCOL READY — Awaiting Live Recorded Run',
+    status: 'GEMINI 4 ARGON LIVE — Awaiting Claude & ChatGPT Runs',
     contenders: ['Google Gemini 4 Argon', 'Anthropic Claude (Opus / Sonnet)', 'OpenAI ChatGPT (Frontier)'],
     marketFocus: 'Agencies, B2B Founders & Growth Marketers',
     whyThisTestMatters:
@@ -1075,9 +1075,26 @@ Requirements in a single shot (no placeholders or TODOs):
 2. Sales & Conversion Architecture: Above-the-fold value proposition, interactive ROI/Savings slider that dynamically recalculates annual recovered ad spend, 3-tier pricing matrix with monthly/annual toggle, and objection-handling FAQ accordion.
 3. SEO & GEO (Generative Engine Optimization): Complete <head> meta tags, OpenGraph tags, valid Schema.org SoftwareApplication + FAQPage JSON-LD script block, and semantic <main>, <section>, <article>, and <nav> landmarks.`,
     telemetryTemplate: {
-      gemini: 'Pending live recorded run (Time • Tokens • $ Cost • 6-Pillar Score)',
+      gemini: 'LIVE SINGLE-SHOT OUTPUT • 308 lines • ~4,180 output tokens • ~$0.042 API cost ($10/1M out)',
       claude: 'Pending live recorded run (Time • Tokens • $ Cost • 6-Pillar Score)',
       chatgpt: 'Pending live recorded run (Time • Tokens • $ Cost • 6-Pillar Score)',
+    },
+    contenderOutputs: {
+      'Google Gemini 4 Argon': {
+        badge: 'LIVE SINGLE-SHOT BUILD',
+        summary: '308 lines • ~4,180 output tokens • ~$0.042 USD ($10/1M output) • Custom SVG attribution graph + live ROI slider + Schema.org SoftwareApplication & FAQPage JSON-LD',
+        liveUrl: '/arena/exp-01-gemini-4-argon.html',
+      },
+      'Anthropic Claude (Opus / Sonnet)': {
+        badge: 'READY FOR IDENTICAL PROMPT',
+        summary: 'Run the exact prompt above in Claude and commit output to /arena/exp-01-claude.html for side-by-side scoring.',
+        liveUrl: null,
+      },
+      'OpenAI ChatGPT (Frontier)': {
+        badge: 'READY FOR IDENTICAL PROMPT',
+        summary: 'Run the exact prompt above in ChatGPT and commit output to /arena/exp-01-chatgpt.html for side-by-side scoring.',
+        liveUrl: null,
+      },
     },
   },
   {

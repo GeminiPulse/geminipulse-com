@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-10-28 — Added docs/architecture-plan.md (public-safe blueprint), Module 10 ('The Frontier Tri-Model Arena: Gemini vs. Claude vs. ChatGPT Single-Shot Lab'), and House Rule #8 (Flagged Decisions & Re-Prompting Protocol for Neil)`
+> **Last touched:** `2026-10-28 — Deployed Firebase Hosting (https://geminipulse-com.web.app) & Cloud Firestore Security Rules on $0 Spark tier, registered custom domains geminipulse.com + www.geminipulse.com, published Gemini 4 Argon's live single-shot output for Experiment #01 (/arena/exp-01-gemini-4-argon.html), and opened repository to Public`
 
 ---
 

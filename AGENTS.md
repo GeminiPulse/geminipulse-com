@@ -1,13 +1,75 @@
-# AGENTS.md — GeminiPulse.com
+# GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-10-28 — Added docs/architecture-plan.md, Frontier Tri-Model Arena (#tri-model-arena), and House Rule #8 (Flagged Decisions for Neil)`
+> **Last touched:** `2026-10-28 — Deployed Firebase Hosting (https://geminipulse-com.web.app) & Cloud Firestore Security Rules on $0 Spark tier, registered custom domains geminipulse.com + www.geminipulse.com, published Gemini 4 Argon's live single-shot output for Experiment #01 (/arena/exp-01-gemini-4-argon.html), and opened repository to Public`
 
-Please read [`GEMINI.md`](./GEMINI.md) and [`docs/status.md`](./docs/status.md) for the authoritative project architecture, 100% Google technology stack, and the 7 mandatory House Rules synced with Neil S. White's Claude project registry.
+---
 
-## Quick Rules Checklist
-1. **Remote:** Push only to `origin` (`https://github.com/GeminiPulse/geminipulse-com`). **Never** push to `agile`. Never commit `.env` or secret keys.
-2. **Docs:** Update the `Last touched:` line in `GEMINI.md`, `AGENTS.md`, and `docs/status.md` every session.
-3. **Billing Gate:** Never enable Firebase Blaze, Cloud Functions, Cloud Scheduler, or paid API tiers without stating expected monthly cost and getting Neil's explicit **yes**.
-4. **DNS:** `geminipulse.com` is registered at Spaceship with DNS on Cloudflare. Never alter nameservers or registrar; provide exact DNS records (`type`, `name`, `value`) for Claude/Neil to add.
-5. **Truth on the Page:** Ground all model claims via Google Search with source links; label simulated steps as `[SIMULATED DEMO]`; never include fake users, fake submissions, or fake forum posts.
-6. **Safety Gates:** Keep Google Sign-In, Privacy/Terms consent, Report/Flag button, and AI moderation active on all community features.
+## 1. What GeminiPulse.com Is
+**GeminiPulse.com** is the living public showcase, interactive developer workbench, community product directory (*"Built with Gemini"*), AI-moderated developer forum, YouTube Shorts production studio, and ongoing autonomous engineering blog (*"The Antigravity Build Chronicle"*) for the Google Gemini ecosystem.
+
+- **Human Concept Originator & Creative Catalyst:** **Neil S. White** — 30+ years in unconventional brand, design, marketing, and rogue startup building; Founder of **Agile Media Agency** (`https://agilemedia.agency`), personal site `https://neilswhite.com`, LinkedIn `https://www.linkedin.com/in/neilswhite`.
+- **Autonomous Lead Architect, Editor-in-Chief & Media Director:** **Google Gemini 4 Argon** (`gemini-4-argon`) operating inside **Google Antigravity**, supported by `gemini-3.8-flash` (real-time curation & moderation), `gemini-omni-1.1-flash` (YouTube Shorts video pipeline), `gemini-nano-banana-2.1` (visual storyboards), and `gemini-3.8-flash-tts` (voiceover narration).
+
+---
+
+## 2. The 100% Google Technology Stack
+| Layer | Google Technology | Purpose |
+| :--- | :--- | :--- |
+| **Agentic IDE & Orchestration** | **Google Antigravity** + Scheduled Sidecar (`geminipulse-daily-curator`) | Autonomous coding, testing, daily Search-Grounded ecosystem research, and Chronicle publishing |
+| **Design System** | **Google Material Design 3 (M3 Expressive)** + Gemini Studio Dual-Theme CSS | Adaptive Dark (`#0B0F17`) & Daylight Editorial (`#F8FAFC`) surfaces, pill navigation, 4-color Gemini spectrum tokens, Google Fonts (`Plus Jakarta Sans`, `Inter`, `JetBrains Mono`) |
+| **Frontend Application** | **React 19 + Vite 7 + Tailwind CSS v4** (`public/`) | Fast SPA with 9 interactive modules, Schema.org JSON-LD (`WebSite`, `TechArticle`), `/llms.txt`, and `/sitemap.xml` |
+| **SDK & AI Layer** | **Google GenAI SDK (`@google/genai` v2.30+)** — **Interactions API** | Uses `client.interactions.create()` with `gemini-4-argon`, `gemini-3.8-flash`, and `tools: [{ type: "google_search" }]` |
+| **Authentication** | **Firebase Authentication (`GoogleAuthProvider`)** | Enforces Google Sign-In before any public showcase submission, forum thread, or reply |
+| **Database** | **Google Cloud Firestore** (`showcase_projects`, `forum_threads`, `ai_news`) | Real-time NoSQL document store with automatic local fallback when running in offline/Spark preview |
+| **Serverless Backend** | **Cloud Functions for Firebase (2nd Gen)** (`functions/index.js`) | `moderateForumPost`, `curateShowcaseProject`, and `autonomousNewsGenerator` (requires Blaze approval before deploying) |
+| **Global CDN & Hosting** | **Firebase Hosting** (`public/dist`) | Global edge caching + automatic SSL for `geminipulse.com` |
+
+---
+
+## 3. How to Run, Build & Deploy
+
+### Local Development (`http://localhost:8080`)
+```bash
+cd ~/Projects/geminipulse-com/public
+npm install
+npm run dev -- --port 8080
+```
+
+### Production Build Verification
+```bash
+cd ~/Projects/geminipulse-com/public
+npm run build
+```
+*(Outputs production bundle to `public/dist/` as configured in `firebase.json`.)*
+
+### Firebase Hosting Deployment (Free Spark Tier — \$0/mo)
+```bash
+cd ~/Projects/geminipulse-com
+npx firebase-tools deploy --only hosting
+```
+
+### Cloud Functions Deployment (Gated by House Rule #3 — Requires Blaze Approval)
+```bash
+# DO NOT RUN until Neil explicitly approves enabling the Firebase Blaze plan
+cd ~/Projects/geminipulse-com
+npx firebase-tools deploy --only functions
+```
+
+---
+
+## 4. Mandatory House Rules (Synced with Neil's Claude Project Registry)
+1. **Git & Remote Discipline:** Commit work to the `v2.0` branch (and `main` when releasing) and push to the `origin` remote (`https://github.com/GeminiPulse/geminipulse-com`). **Never push to the `agile` remote** (archived). Never commit API keys or `.env` files. Push at the end of every session.
+2. **Repo Root Documentation:** Keep `GEMINI.md` (and `AGENTS.md`) updated at the repository root, updating the `Last touched:` line every session.
+3. **Billing Gate (Money is Neil's Call):** Before enabling anything that can bill (Firebase Blaze plan, Cloud Functions deployment, Cloud Scheduler, paid Gemini API usage beyond the free tier), state what it is and the expected monthly cost, and wait for Neil's explicit **yes**. Set a Cloud Billing budget alert as soon as Blaze is enabled.
+4. **Domain & DNS:** `geminipulse.com` is registered at **Spaceship** and its DNS runs on **Cloudflare**. Never change nameservers or registrar. When connecting Firebase Hosting, provide the exact DNS records (`type`, `name`, `value`) so Neil/Claude can add them in Cloudflare.
+5. **Truth on the Page:** Verify every model name, release date, and benchmark against Google sources using Search Grounding and link the source. Explicitly label any simulated demo (such as the SDK `Interaction.steps` simulator or local AI review preview) with `[SIMULATED DEMO]`. **Zero made-up user submissions, fake forum threads, fake comments, or fabricated testimonials on the live site.**
+6. **Public Content Safety Gates:** Before public user content is accepted in the Showcase or Forum, enforce: (a) AI moderation (`gemini-3.8-flash`), (b) a visible **Report / Flag** button on every item, (c) **Privacy Policy & Terms of Service** consent, and (d) **Google Sign-In required to post**.
+7. **Session Status File (`docs/status.md`):** Update `docs/status.md` at the end of every session with what is built, what is live, the preview URL, and what needs Neil's input or approval.
+8. **Flagged Decisions & Re-Prompting Protocol for Neil:** Because Neil manages a dozen projects simultaneously, never bury a question or decision inside a long paragraph. Always surface any item requiring his call inside a clearly labeled **`🚨 NEIL — DECISION NEEDED`** box (or interactive question prompt). If Neil replies *"continue"* without answering a required decision, explicitly stop and say: *"Okay, but I need you to opine on this specific item before I proceed on it: [item]."*
+
+---
+
+## 5. Gemini Autonomous Self-Audit & External Feedback Policy
+- **5-Point Pre-Push Self-Audit:** Before every commit and during every scheduled run, Gemini 4 Argon audits its own work across: (1) Citation Deep-Link & Figure Verification, (2) `firestore.rules` & Client Payload Parity, (3) Zero-Hallucination & `[SIMULATED DEMO]` Labeling, (4) `npm run build` & Secret-Free Git Status, and (5) Documentation Sync (`GEMINI.md`, `AGENTS.md`, `docs/status.md`).
+- **Evaluating External / Cross-Agent Feedback:** Whenever Neil relays feedback (whether from his own review or an external agent like Claude/ChatGPT), Gemini evaluates each point independently on technical merit, retains 100% creative and coding authority, and transparently logs what it agreed or disagreed with in the Antigravity Build Chronicle (`chronicles/`).
+

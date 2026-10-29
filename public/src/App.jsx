@@ -1115,17 +1115,35 @@ export default function App() {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
-                  {activeArenaExperiment.contenders.map((contender) => (
-                    <div
-                      key={contender}
-                      className="p-3 rounded-xl bg-[var(--md-sys-color-surface)] border border-[var(--md-sys-color-outline)] text-xs space-y-1"
-                    >
-                      <div className="font-bold text-[var(--md-sys-color-on-surface)]">{contender}</div>
-                      <div className="font-mono text-[11px] text-amber-400">
-                        {activeArenaExperiment.status}
+                  {activeArenaExperiment.contenders.map((contender) => {
+                    const output = activeArenaExperiment.contenderOutputs?.[contender];
+                    return (
+                      <div
+                        key={contender}
+                        className="p-3.5 rounded-xl bg-[var(--md-sys-color-surface)] border border-[var(--md-sys-color-outline)] text-xs flex flex-col justify-between gap-2.5"
+                      >
+                        <div className="space-y-1.5">
+                          <div className="font-bold text-[var(--md-sys-color-on-surface)]">{contender}</div>
+                          <div className={`font-mono text-[11px] font-semibold ${output?.liveUrl ? 'text-emerald-400' : 'text-amber-400'}`}>
+                            {output ? output.badge : activeArenaExperiment.status}
+                          </div>
+                          {output?.summary && (
+                            <p className="text-[11px] m3-text-muted leading-relaxed">{output.summary}</p>
+                          )}
+                        </div>
+                        {output?.liveUrl && (
+                          <a
+                            href={output.liveUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="mt-1 px-3 py-1.5 rounded-lg bg-emerald-500/15 border border-emerald-400/40 text-emerald-300 font-mono text-[11px] font-semibold inline-flex items-center justify-center gap-1 hover:bg-emerald-500/25 transition-all"
+                          >
+                            Launch Single-Shot Output <ExternalLink className="w-3 h-3" />
+                          </a>
+                        )}
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
 
