@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+/* Metric-calibrated system fallback for Plus Jakarta Sans to prevent font-swap CLS */
+@font-face {
+  font-family: 'Plus Jakarta Fallback';
+  src: local('Helvetica Neue'), local('Arial');
+  size-adjust: 103.5%;
+  ascent-override: 97%;
+  descent-override: 24%;
+  line-gap-override: 0%;
+}
+
 @theme {
   --color-gemini-void: #07090e;
   --color-gemini-navy: #10131c;
@@ -13,7 +23,7 @@
   --color-text-primary: #f3f5fb;
   --color-text-secondary: #9ca3b8;
 
-  --font-display: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Plus Jakarta Sans', 'Plus Jakarta Fallback', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 }

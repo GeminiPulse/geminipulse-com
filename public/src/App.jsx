@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import {
   Activity,
   ArrowUpRight,
+  BarChart3,
   BookOpen,
   Check,
   CheckCircle2,
@@ -17,11 +18,13 @@ import {
   Lock,
   LogIn,
   LogOut,
+  Mail,
   MessageSquare,
   Moon,
   Play,
   Plus,
   Rocket,
+  Rss,
   Search,
   Send,
   ShieldCheck,
@@ -35,14 +38,10 @@ import {
   X,
   Zap,
 } from 'lucide-react';
-import { collection, doc, addDoc, setDoc, deleteDoc, query, where, orderBy, limit, onSnapshot } from 'firebase/firestore';
 import {
-  db,
-  auth,
-  isFirebaseConfigured,
+  loadFirebaseRuntime,
   signInWithGoogle,
   signOutUser,
-  onAuthStateChanged,
 } from './firebase';
 import {
   PULSE_INTELLIGENCE_FEED,
@@ -56,6 +55,7 @@ import {
   SOCIAL_DISTRIBUTION_PLAYBOOK,
   EXPERIMENT_CHARTER,
   CONTRIBUTIONS_LEDGER,
+  PERFORMANCE_TELEMETRY_LEDGER,
   TRI_MODEL_RUBRIC,
   TRI_MODEL_ARENA_EXPERIMENTS,
 } from './data/geminiEcosystemData';
@@ -204,6 +204,109 @@ export default function App() {
   // Legal & Charter Modal State (null | 'about' | 'privacy' | 'terms')
   const [legalModalTab, setLegalModalTab] = useState(null);
 
+  // Business & Creator Inquiries Modal State (Write-Only Cloud Firestore Intake)
+  const [showInquiryModal, setShowInquiryModal] = useState(false);
+  const [inquiryForm, setInquiryForm] = useState({
+    name: '',
+    email: '',
+    organization: '',
+    inquiryType: 'Business & Partnerships',
+    message: '',
+  });
+  const [inquirySubmitting, setInquirySubmitting] = useState(false);
+  const [inquiryStatus, setInquiryStatus] = useState(null);
+
+  // Owned Audience Email Dispatch State (Write-Only Cloud Firestore Intake)
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [newsletterSubmitting, setNewsletterSubmitting] = useState(false);
+  const [newsletterStatus, setNewsletterStatus] = useState(null);
+
+  const handleSubmitBusinessInquiry = async (e) => {
+    e.preventDefault();
+    if (inquirySubmitting) return;
+    const trimmedName = inquiryForm.name.trim();
+    const trimmedEmail = inquiryForm.email.trim();
+    const trimmedOrg = inquiryForm.organization.trim();
+    const trimmedMessage = inquiryForm.message.trim();
+    if (!trimmedName || !trimmedEmail || trimmedMessage.length < 10) {
+      setInquiryStatus({
+        type: 'error',
+        text: 'Please provide your name, a valid email address, and a message of at least 10 characters.',
+      });
+      return;
+    }
+    setInquirySubmitting(true);
+    setInquiryStatus(null);
+    try {
+      const { db, fs } = await loadFirebaseRuntime();
+      if (db && fs) {
+        await fs.addDoc(fs.collection(db, 'business_inquiries'), {
+          name: trimmedName.slice(0, 100),
+          email: trimmedEmail.slice(0, 160),
+          organization: trimmedOrg.slice(0, 120),
+          inquiryType: inquiryForm.inquiryType,
+          message: trimmedMessage.slice(0, 3000),
+          createdAt: new Date().toISOString(),
+        });
+      }
+      setInquiryStatus({
+        type: 'success',
+        text: 'Inquiry securely recorded in Cloud Firestore. Thank you—the program creator reviews business and partnership inquiries directly.',
+      });
+      setInquiryForm({
+        name: '',
+        email: '',
+        organization: '',
+        inquiryType: 'Business & Partnerships',
+        message: '',
+      });
+    } catch (err) {
+      setInquiryStatus({
+        type: 'error',
+        text: `Unable to submit inquiry right now (${err.code || 'network_error'}). Please check your fields and try again.`,
+      });
+    } finally {
+      setInquirySubmitting(false);
+    }
+  };
+
+  const handleSubscribeNewsletter = async (e) => {
+    e.preventDefault();
+    if (newsletterSubmitting) return;
+    const trimmedEmail = newsletterEmail.trim();
+    if (!trimmedEmail || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(trimmedEmail)) {
+      setNewsletterStatus({
+        type: 'error',
+        text: 'Please enter a valid email address (for example, name@company.com).',
+      });
+      return;
+    }
+    setNewsletterSubmitting(true);
+    setNewsletterStatus(null);
+    try {
+      const { db, fs } = await loadFirebaseRuntime();
+      if (db && fs) {
+        await fs.addDoc(fs.collection(db, 'newsletter_subscribers'), {
+          email: trimmedEmail.slice(0, 160),
+          source: 'performance_dispatch_bar',
+          createdAt: new Date().toISOString(),
+        });
+      }
+      setNewsletterStatus({
+        type: 'success',
+        text: 'Subscribed to the Weekly Pulse & Thursday Tri-Model Arena Dispatch.',
+      });
+      setNewsletterEmail('');
+    } catch (err) {
+      setNewsletterStatus({
+        type: 'error',
+        text: `Unable to subscribe right now (${err.code || 'network_error'}). Please try again.`,
+      });
+    } finally {
+      setNewsletterSubmitting(false);
+    }
+  };
+
   // Google Auth, Terms Consent & Community Report/Flag State (Rule 6)
   const [currentUser, setCurrentUser] = useState(null);
   const [authNotice, setAuthNotice] = useState(null);
@@ -214,19 +317,38 @@ export default function App() {
   });
   const [liveUpvotes, setLiveUpvotes] = useState([]);
   const [liveRepliesByThread, setLiveRepliesByThread] = useState({});
+  const [fbRuntime, setFbRuntime] = useState(null);
 
+  // Hydrate Firebase Auth & Cloud Firestore after initial FCP/LCP paint (idle callback / 1.8s fallback)
   useEffect(() => {
-    if (!auth) return;
-    const unsubAuth = onAuthStateChanged(auth, (user) => {
-      setCurrentUser(user || null);
-    });
-    return () => unsubAuth();
+    let cancelled = false;
+    let unsubAuth = null;
+    const startHydration = () => {
+      loadFirebaseRuntime().then((rt) => {
+        if (cancelled) return;
+        setFbRuntime(rt);
+        if (rt.auth && rt.authMod) {
+          unsubAuth = rt.authMod.onAuthStateChanged(rt.auth, (user) => {
+            if (!cancelled) setCurrentUser(user || null);
+          });
+        }
+      });
+    };
+    const timer = setTimeout(startHydration, 1800);
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
+      if (unsubAuth) unsubAuth();
+    };
   }, []);
 
   const handleGoogleSignIn = async () => {
     try {
       setAuthNotice(null);
-      await signInWithGoogle();
+      const rt = await loadFirebaseRuntime();
+      setFbRuntime(rt);
+      const user = await signInWithGoogle();
+      if (user) setCurrentUser(user);
     } catch (err) {
       setAuthNotice(err.message);
     }
@@ -238,16 +360,19 @@ export default function App() {
       localStorage.setItem('geminipulse_reported_v3', JSON.stringify(updated));
       return updated;
     });
-    if (db && currentUser) {
+    if (currentUser) {
       try {
-        await addDoc(collection(db, 'content_reports'), {
-          targetId: String(id).slice(0, 120),
-          targetType,
-          targetLabel: String(label || id).slice(0, 200),
-          reporterUid: currentUser.uid,
-          reason: 'Community flagged via UI Report control for Gemini 3.8 Flash moderation review',
-          createdAt: new Date().toISOString(),
-        });
+        const { db, fs } = fbRuntime || (await loadFirebaseRuntime());
+        if (db && fs) {
+          await fs.addDoc(fs.collection(db, 'content_reports'), {
+            targetId: String(id).slice(0, 120),
+            targetType,
+            targetLabel: String(label || id).slice(0, 200),
+            reporterUid: currentUser.uid,
+            reason: 'Community flagged via UI Report control for Gemini 3.8 Flash moderation review',
+            createdAt: new Date().toISOString(),
+          });
+        }
       } catch (err) {
         console.warn('Recorded report locally:', err);
       }
@@ -256,16 +381,17 @@ export default function App() {
     setTimeout(() => setAuthNotice(null), 4000);
   };
 
-  // Sync with Cloud Firestore when configured (queries published documents per firestore.rules)
+  // Sync with Cloud Firestore once post-paint runtime is hydrated
   useEffect(() => {
-    if (!db) return;
-    const qForum = query(
-      collection(db, 'forum_threads'),
-      where('status', '==', 'published'),
-      orderBy('createdAt', 'desc'),
-      limit(15)
+    if (!fbRuntime?.db || !fbRuntime?.fs) return;
+    const { db, fs } = fbRuntime;
+    const qForum = fs.query(
+      fs.collection(db, 'forum_threads'),
+      fs.where('status', '==', 'published'),
+      fs.orderBy('createdAt', 'desc'),
+      fs.limit(15)
     );
-    const unsubForum = onSnapshot(
+    const unsubForum = fs.onSnapshot(
       qForum,
       (snap) => {
         if (!snap.empty) {
@@ -280,13 +406,13 @@ export default function App() {
       () => {}
     );
 
-    const qShowcase = query(
-      collection(db, 'showcase_projects'),
-      where('status', '==', 'published'),
-      orderBy('createdAt', 'desc'),
-      limit(20)
+    const qShowcase = fs.query(
+      fs.collection(db, 'showcase_projects'),
+      fs.where('status', '==', 'published'),
+      fs.orderBy('createdAt', 'desc'),
+      fs.limit(20)
     );
-    const unsubShowcase = onSnapshot(
+    const unsubShowcase = fs.onSnapshot(
       qShowcase,
       (snap) => {
         if (!snap.empty) {
@@ -301,8 +427,8 @@ export default function App() {
       () => {}
     );
 
-    const qUpvotes = query(collection(db, 'project_upvotes'), limit(500));
-    const unsubUpvotes = onSnapshot(
+    const qUpvotes = fs.query(fs.collection(db, 'project_upvotes'), fs.limit(500));
+    const unsubUpvotes = fs.onSnapshot(
       qUpvotes,
       (snap) => {
         setLiveUpvotes(snap.docs.map((d) => ({ id: d.id, ...d.data() })));
@@ -315,17 +441,18 @@ export default function App() {
       unsubShowcase();
       unsubUpvotes();
     };
-  }, []);
+  }, [fbRuntime]);
 
   // Subscribe to global Cloud Firestore replies for the active forum thread
   useEffect(() => {
-    if (!db || !activeThreadId) return;
-    const qReplies = query(
-      collection(db, 'forum_threads', activeThreadId, 'replies'),
-      where('status', '==', 'published'),
-      limit(100)
+    if (!fbRuntime?.db || !fbRuntime?.fs || !activeThreadId) return;
+    const { db, fs } = fbRuntime;
+    const qReplies = fs.query(
+      fs.collection(db, 'forum_threads', activeThreadId, 'replies'),
+      fs.where('status', '==', 'published'),
+      fs.limit(100)
     );
-    const unsubReplies = onSnapshot(
+    const unsubReplies = fs.onSnapshot(
       qReplies,
       (snap) => {
         const items = snap.docs
@@ -336,7 +463,7 @@ export default function App() {
       () => {}
     );
     return () => unsubReplies();
-  }, [activeThreadId]);
+  }, [fbRuntime, activeThreadId]);
 
   useEffect(() => {
     localStorage.setItem('geminipulse_showcase_v3', JSON.stringify(showcaseProjects));
@@ -418,22 +545,23 @@ export default function App() {
     const upvoteDocId = `${cleanId}_${currentUser.uid}`;
     const alreadyUpvoted = userUpvotedSet.has(cleanId);
 
-    if (db) {
-      try {
-        const upvoteRef = doc(db, 'project_upvotes', upvoteDocId);
+    try {
+      const { db, fs } = fbRuntime || (await loadFirebaseRuntime());
+      if (db && fs) {
+        const upvoteRef = fs.doc(db, 'project_upvotes', upvoteDocId);
         if (alreadyUpvoted) {
-          await deleteDoc(upvoteRef);
+          await fs.deleteDoc(upvoteRef);
         } else {
-          await setDoc(upvoteRef, {
+          await fs.setDoc(upvoteRef, {
             projectId: cleanId,
             voterUid: currentUser.uid,
             createdAt: new Date().toISOString(),
           });
         }
         return;
-      } catch (err) {
-        console.warn('Upvote fallback to local state:', err);
       }
+    } catch (err) {
+      console.warn('Upvote fallback to local state:', err);
     }
 
     setShowcaseProjects((prev) =>
@@ -474,12 +602,13 @@ export default function App() {
       createdAt: new Date().toISOString(),
     };
 
-    if (db) {
-      try {
-        await setDoc(doc(db, 'showcase_projects', created.id), created);
-      } catch (err) {
-        console.warn('Saved locally (Firestore offline):', err);
+    try {
+      const { db, fs } = fbRuntime || (await loadFirebaseRuntime());
+      if (db && fs) {
+        await fs.setDoc(fs.doc(db, 'showcase_projects', created.id), created);
       }
+    } catch (err) {
+      console.warn('Saved locally (Firestore offline):', err);
     }
 
     setShowcaseProjects((prev) => [created, ...prev]);
@@ -528,12 +657,13 @@ export default function App() {
       status: 'published',
     };
 
-    if (db) {
-      try {
-        await setDoc(doc(db, 'forum_threads', created.id), created);
-      } catch (err) {
-        console.warn('Saved thread locally:', err);
+    try {
+      const { db, fs } = fbRuntime || (await loadFirebaseRuntime());
+      if (db && fs) {
+        await fs.setDoc(fs.doc(db, 'forum_threads', created.id), created);
       }
+    } catch (err) {
+      console.warn('Saved thread locally:', err);
     }
 
     setForumThreads((prev) => [created, ...prev]);
@@ -568,13 +698,14 @@ export default function App() {
 
     setReplyInput('');
 
-    if (db) {
-      try {
-        await addDoc(collection(db, 'forum_threads', activeThreadId, 'replies'), replyPayload);
+    try {
+      const { db, fs } = fbRuntime || (await loadFirebaseRuntime());
+      if (db && fs) {
+        await fs.addDoc(fs.collection(db, 'forum_threads', activeThreadId, 'replies'), replyPayload);
         return;
-      } catch (err) {
-        console.warn('Saved reply locally:', err);
       }
+    } catch (err) {
+      console.warn('Saved reply locally:', err);
     }
 
     setForumThreads((prev) =>
@@ -657,24 +788,36 @@ export default function App() {
               AUTONOMOUS BUILD v2.0
             </span>
             <span className="m3-text-muted hidden sm:inline truncate">
-              Concept by <strong className="text-[var(--md-sys-color-on-surface)]">Neil S. White</strong> (<a href="https://agilemedia.agency" target="_blank" rel="noreferrer" className="text-blue-400 hover:underline">Agile Media Agency</a>) • Operated Autonomously by <strong className="text-[var(--md-sys-color-on-surface)]">Google Gemini 4 Argon</strong>
+              Operated Autonomously by <strong className="text-[var(--md-sys-color-on-surface)]">Google Gemini 4 Argon</strong> in <strong className="text-[var(--md-sys-color-on-surface)]">Google Antigravity</strong> • 100% Google Stack
             </span>
           </div>
-          <div className="flex items-center gap-4 m3-text-muted whitespace-nowrap shrink-0">
+          <div className="flex items-center gap-3.5 m3-text-muted whitespace-nowrap shrink-0">
             <a href="#tri-model-arena" className="hover:text-amber-400 transition-colors flex items-center gap-1">
               <Zap className="w-3.5 h-3.5 text-amber-400" />
               Tri-Model Arena
             </a>
             <span className="hidden md:inline">•</span>
-            <a href="#media-studio" className="hover:text-blue-400 transition-colors hidden sm:flex items-center gap-1">
-              <Video className="w-3.5 h-3.5 text-pink-400" />
-              YouTube Shorts Studio
+            <a href="#performance-ledger" className="hover:text-emerald-400 transition-colors hidden sm:flex items-center gap-1">
+              <BarChart3 className="w-3.5 h-3.5 text-emerald-400" />
+              Lighthouse & Vitals
             </a>
             <span className="hidden md:inline">•</span>
             <a href="#about-charter" className="hover:text-blue-400 transition-colors flex items-center gap-1">
               <Scale className="w-3.5 h-3.5 text-blue-400" />
-              Experiment Charter
+              Charter
             </a>
+            <span>•</span>
+            <button
+              type="button"
+              onClick={() => {
+                setInquiryStatus(null);
+                setShowInquiryModal(true);
+              }}
+              className="hover:text-blue-400 transition-colors inline-flex items-center gap-1 cursor-pointer"
+            >
+              <Mail className="w-3.5 h-3.5 text-purple-400" />
+              Inquiries
+            </button>
           </div>
         </div>
       </div>
@@ -726,9 +869,10 @@ export default function App() {
                 <div className="m3-card p-2 bg-[var(--md-sys-color-surface)] border border-[var(--md-sys-color-outline-strong)] shadow-2xl space-y-1">
                   {[
                     { href: '#chronicle', label: 'Antigravity Build Chronicle', sub: 'Autonomous Engineering Series' },
+                    { href: '#performance-ledger', label: 'Speed, Search & Blind AI Lab', sub: 'Lighthouse + 4-Track Study' },
                     { href: '#media-studio', label: 'YouTube & Reddit Studio', sub: 'Shorts + Social Launch Kits' },
                     { href: '#google-stack', label: '100% Google Stack', sub: '8-Layer Cloud Architecture' },
-                    { href: '#about-charter', label: 'Origin & Charter', sub: 'Neil S. White + Gemini 4' },
+                    { href: '#about-charter', label: 'Origin & Charter', sub: 'Autonomous Governance & Credits' },
                   ].map((subItem) => (
                     <a
                       key={subItem.href}
@@ -1240,7 +1384,7 @@ export default function App() {
                   <button
                     onClick={() => setCodeLang('ts')}
                     className={`px-3 py-1 rounded-md text-xs font-mono font-semibold cursor-pointer ${
-                      codeLang === 'ts' ? 'bg-blue-500 text-white' : 'm3-text-muted hover:text-white'
+                      codeLang === 'ts' ? 'bg-blue-700 text-white' : 'm3-text-muted hover:text-white'
                     }`}
                   >
                     TypeScript (@google/genai)
@@ -1248,7 +1392,7 @@ export default function App() {
                   <button
                     onClick={() => setCodeLang('py')}
                     className={`px-3 py-1 rounded-md text-xs font-mono font-semibold cursor-pointer ${
-                      codeLang === 'py' ? 'bg-blue-500 text-white' : 'm3-text-muted hover:text-white'
+                      codeLang === 'py' ? 'bg-blue-700 text-white' : 'm3-text-muted hover:text-white'
                     }`}
                   >
                     Python (google-genai)
@@ -1766,9 +1910,9 @@ export default function App() {
                         </button>
                       </div>
                     </div>
-                    <h4 className="font-bold text-base leading-snug mb-3">
+                    <h3 className="font-bold text-base leading-snug mb-3">
                       <InlineCodeText text={thread.title} />
-                    </h4>
+                    </h3>
                     <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-mono m3-text-muted">
                       <span>by {thread.author}</span>
                       <div className="flex items-center gap-3">
@@ -2105,7 +2249,7 @@ export default function App() {
                       <span className="text-pink-400 font-bold">{shortItem.number}</span>
                       <span className="text-emerald-400">{shortItem.duration}</span>
                     </div>
-                    <h4 className="font-bold text-sm sm:text-base leading-snug">{shortItem.title}</h4>
+                    <h3 className="font-bold text-sm sm:text-base leading-snug">{shortItem.title}</h3>
                   </div>
                 );
               })}
@@ -2235,6 +2379,222 @@ export default function App() {
         </section>
 
         {/* =================================================================
+            MODULE 8.5: GLASS-BOX SPEED, SEARCH & BLIND AI-CONTENT LAB (#performance-ledger)
+            ================================================================= */}
+        <section id="performance-ledger" className="scroll-mt-24 space-y-8 m3-deferred-section">
+          <div className="border-b border-[var(--md-sys-color-outline)] pb-6 flex flex-col lg:flex-row lg:items-end justify-between gap-4">
+            <div className="space-y-1.5">
+              <div className="text-xs font-mono uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
+                <BarChart3 className="w-3.5 h-3.5" />
+                Public Engineering Telemetry • Google Lighthouse, Core Web Vitals, Search & AI-Detector Lab
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
+                Glass-Box <span className="gemini-spectrum-text">Speed, Search & Blind AI Content Lab</span>
+              </h2>
+              <p className="m3-text-muted max-w-3xl">
+                We track our own Google Lighthouse, Core Web Vitals, GTmetrix, Search Console, and AI-detector benchmarks publicly over time—so every developer can see exactly how architectural changes and LLM-authored content perform in the wild.
+              </p>
+            </div>
+            <div className="px-3.5 py-2 rounded-2xl bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-xs font-mono shrink-0">
+              Verified via Automated Headless Chrome Lighthouse Bot
+            </div>
+          </div>
+
+          {/* Semantic Accessible Table of Measured Google Lighthouse & Core Web Vitals History */}
+          <div className="m3-card p-5 sm:p-6 space-y-3">
+            <div className="text-xs font-mono m3-text-muted">
+              Target Origin: <code className="m3-inline-code">https://geminipulse.com</code> (Swipe horizontally on narrow screens)
+            </div>
+            <div className="overflow-x-auto max-w-full rounded-xl border border-[var(--md-sys-color-outline)] p-3 bg-[var(--md-sys-color-surface)]">
+              <table className="w-full text-left border-collapse text-xs sm:text-sm">
+                <caption className="sr-only">
+                  Live Measured Google Lighthouse and Core Web Vitals Ledger for geminipulse.com
+                </caption>
+                <thead>
+                  <tr className="border-b border-[var(--md-sys-color-outline-strong)] font-mono text-[11px] uppercase m3-text-muted">
+                    <th scope="col" className="py-2.5 pr-4">Snapshot &amp; Commit</th>
+                    <th scope="col" className="py-2.5 px-3">Preset</th>
+                    <th scope="col" className="py-2.5 px-3">Perf</th>
+                    <th scope="col" className="py-2.5 px-3">A11y</th>
+                    <th scope="col" className="py-2.5 px-3">Best Prac</th>
+                    <th scope="col" className="py-2.5 px-3">SEO</th>
+                    <th scope="col" className="py-2.5 px-3">FCP / LCP</th>
+                    <th scope="col" className="py-2.5 px-3">TBT / CLS</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-[var(--md-sys-color-outline)] font-mono text-xs">
+                  {PERFORMANCE_TELEMETRY_LEDGER.lighthouseSnapshots.map((snap) => (
+                    <React.Fragment key={snap.id}>
+                      <tr>
+                        <th scope="row" rowSpan={2} className="py-3 pr-4 align-top font-sans min-w-[14rem]">
+                          <div className="font-bold text-[var(--md-sys-color-on-surface)]">{snap.date}</div>
+                          <div className="text-[11px] font-mono text-purple-400 mt-0.5">Commit: {snap.commit}</div>
+                          <p className="text-[11px] font-sans font-normal m3-text-muted mt-1 leading-relaxed max-w-xs">
+                            {snap.changeNote}
+                          </p>
+                        </th>
+                        <td className="py-2.5 px-3 text-blue-400 font-semibold">Desktop</td>
+                        <td className="py-2.5 px-3 text-emerald-400 font-bold">{snap.desktop.performance}</td>
+                        <td className="py-2.5 px-3 text-emerald-400 font-bold">{snap.desktop.accessibility}</td>
+                        <td className="py-2.5 px-3 text-emerald-400 font-bold">{snap.desktop.bestPractices}</td>
+                        <td className="py-2.5 px-3 text-emerald-400 font-bold">{snap.desktop.seo}</td>
+                        <td className="py-2.5 px-3 whitespace-nowrap">{snap.desktop.fcp} / {snap.desktop.lcp}</td>
+                        <td className="py-2.5 px-3 whitespace-nowrap">{snap.desktop.tbt} / {snap.desktop.cls}</td>
+                      </tr>
+                      <tr>
+                        <td className="py-2.5 px-3 text-amber-300 font-semibold">Mobile</td>
+                        <td className="py-2.5 px-3 text-emerald-400 font-bold">{snap.mobile.performance}</td>
+                        <td className="py-2.5 px-3 text-emerald-400 font-bold">{snap.mobile.accessibility}</td>
+                        <td className="py-2.5 px-3 text-emerald-400 font-bold">{snap.mobile.bestPractices}</td>
+                        <td className="py-2.5 px-3 text-emerald-400 font-bold">{snap.mobile.seo}</td>
+                        <td className="py-2.5 px-3 whitespace-nowrap">{snap.mobile.fcp} / {snap.mobile.lcp}</td>
+                        <td className="py-2.5 px-3 whitespace-nowrap">{snap.mobile.tbt} / {snap.mobile.cls}</td>
+                      </tr>
+                    </React.Fragment>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* 4 External Telemetry Monitors */}
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+            {PERFORMANCE_TELEMETRY_LEDGER.externalTelemetryMonitors.map((mon) => (
+              <div key={mon.name} className="m3-card p-5 space-y-2.5 flex flex-col justify-between">
+                <div className="space-y-2">
+                  <span className="inline-block text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-blue-500/15 text-blue-300">
+                    {mon.status}
+                  </span>
+                  <h3 className="font-bold text-base">{mon.name}</h3>
+                  <p className="text-xs m3-text-muted leading-relaxed">
+                    <InlineCodeText text={mon.summary} />
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* 4-Track Blind 5-Wave Longitudinal Content & AI-Detector Study */}
+          <div className="m3-card p-6 sm:p-7 space-y-5">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 border-b border-[var(--md-sys-color-outline)] pb-4">
+              <div className="space-y-1">
+                <div className="text-xs font-mono uppercase text-amber-400 font-semibold">
+                  {PERFORMANCE_TELEMETRY_LEDGER.blindContentStudy.cadence}
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold">
+                  {PERFORMANCE_TELEMETRY_LEDGER.blindContentStudy.title}
+                </h3>
+              </div>
+              <span className="text-xs font-mono px-3 py-1.5 rounded-2xl m3-surface-elevated text-purple-300 break-words max-w-full self-start lg:self-auto">
+                Route: /insights/&lt;topic-slug&gt; • Blind Indexing
+              </span>
+            </div>
+
+            <p className="text-sm m3-text-muted leading-relaxed">
+              <InlineCodeText text={PERFORMANCE_TELEMETRY_LEDGER.blindContentStudy.hypothesis} />
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+              {PERFORMANCE_TELEMETRY_LEDGER.blindContentStudy.tracks.map((trk) => (
+                <div
+                  key={trk.trackId}
+                  className="p-4 rounded-2xl bg-[var(--md-sys-color-surface)] border border-[var(--md-sys-color-outline)] space-y-1.5"
+                >
+                  <div className="text-[11px] font-mono font-bold text-emerald-400 uppercase">{trk.trackId}</div>
+                  <h4 className="font-bold text-sm">{trk.label}</h4>
+                  <p className="text-xs m3-text-muted leading-relaxed">{trk.role}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Owned Audience Dispatch: Weekly Email Opt-In + Atom Feed (/feed.xml) + GitHub */}
+          <div className="m3-card p-6 sm:p-7 bg-gradient-to-br from-blue-500/10 via-purple-500/5 to-emerald-500/10 border border-blue-400/25 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+            <div className="space-y-2 max-w-xl">
+              <div className="text-xs font-mono uppercase tracking-wider text-blue-400 font-semibold flex items-center gap-1.5">
+                <Rss className="w-3.5 h-3.5" />
+                Zero-Algorithm Owned Distribution • Direct Dispatch &amp; Open Atom Feed
+              </div>
+              <h3 className="text-xl font-bold">
+                Follow the Thursday Tri-Model Arena &amp; Grounded Gemini Pulse
+              </h3>
+              <p className="text-xs sm:text-sm m3-text-muted leading-relaxed">
+                Get a single concise Thursday dispatch when new Frontier Tri-Model Arena experiments, 5-Wave Blind Study scorecards, and major Gemini API breakthroughs drop—or subscribe via open Atom/RSS.
+              </p>
+              <div className="flex flex-wrap items-center gap-2.5 pt-1 text-xs font-mono">
+                <a
+                  href="/feed.xml"
+                  className="px-3.5 py-1.5 rounded-full m3-surface-elevated hover:border-amber-400 text-amber-300 inline-flex items-center gap-1.5"
+                >
+                  <Rss className="w-3.5 h-3.5" />
+                  <span>Atom / RSS Feed (/feed.xml)</span>
+                </a>
+                <a
+                  href="https://github.com/GeminiPulse/geminipulse-com"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="px-3.5 py-1.5 rounded-full m3-surface-elevated hover:border-blue-400 text-blue-300 inline-flex items-center gap-1.5"
+                >
+                  <Code2 className="w-3.5 h-3.5" />
+                  <span>github.com/GeminiPulse</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
+            </div>
+
+            <form
+              onSubmit={handleSubscribeNewsletter}
+              action="/#performance-ledger"
+              method="POST"
+              className="w-full lg:max-w-md space-y-2"
+            >
+              <label htmlFor="dispatch-email" className="block text-xs font-mono font-semibold text-[var(--md-sys-color-on-surface)]">
+                Work or Developer Email Address
+              </label>
+              <div className="flex flex-col sm:flex-row gap-2">
+                <input
+                  id="dispatch-email"
+                  name="email"
+                  type="email"
+                  required
+                  autoComplete="email"
+                  autoCorrect="off"
+                  autoCapitalize="off"
+                  spellCheck={false}
+                  enterKeyHint="send"
+                  value={newsletterEmail}
+                  onChange={(e) => {
+                    setNewsletterEmail(e.target.value);
+                    if (newsletterStatus?.type === 'error') setNewsletterStatus(null);
+                  }}
+                  placeholder="you@domain.com"
+                  aria-describedby="dispatch-hint"
+                  className="flex-1 px-4 py-3 rounded-full m3-surface-elevated text-base sm:text-sm focus:outline-none focus:border-blue-400 min-h-[48px]"
+                />
+                <button
+                  type="submit"
+                  disabled={newsletterSubmitting}
+                  className="bg-gemini-grad text-white px-5 py-3 rounded-full text-xs font-semibold inline-flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-60 whitespace-nowrap min-h-[48px]"
+                >
+                  <Send className="w-3.5 h-3.5" />
+                  <span>{newsletterSubmitting ? 'Saving...' : 'Subscribe to Dispatch'}</span>
+                </button>
+              </div>
+              <p id="dispatch-hint" className="text-[11px] font-mono m3-text-muted">
+                Write-only Cloud Firestore storage • Zero spam • Unsubscribe anytime.
+              </p>
+              <div aria-live="polite" className="text-xs font-mono">
+                {newsletterStatus && (
+                  <p className={newsletterStatus.type === 'success' ? 'text-emerald-400' : 'text-red-400'}>
+                    {newsletterStatus.text}
+                  </p>
+                )}
+              </div>
+            </form>
+          </div>
+        </section>
+
+        {/* =================================================================
             MODULE 9: THE OPEN EXPERIMENT CHARTER & ORIGIN STORY (#about-charter)
             ================================================================= */}
         <section id="about-charter" className="scroll-mt-24 space-y-8 m3-deferred-section">
@@ -2271,24 +2631,17 @@ export default function App() {
               </div>
 
               <div className="pt-4 border-t border-[var(--md-sys-color-outline)] flex flex-wrap items-center gap-3 text-xs font-semibold">
-                <a
-                  href={EXPERIMENT_CHARTER.humanCatalyst.agencyUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="px-3.5 py-2 rounded-full m3-surface-elevated hover:border-blue-400 inline-flex items-center gap-1.5"
+                <button
+                  type="button"
+                  onClick={() => {
+                    setInquiryStatus(null);
+                    setShowInquiryModal(true);
+                  }}
+                  className="bg-gemini-grad text-white px-4 py-2 rounded-full inline-flex items-center gap-1.5 cursor-pointer"
                 >
-                  <span>Agile Media Agency</span>
-                  <ExternalLink className="w-3 h-3 text-blue-400" />
-                </a>
-                <a
-                  href={EXPERIMENT_CHARTER.humanCatalyst.personalUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="px-3.5 py-2 rounded-full m3-surface-elevated hover:border-blue-400 inline-flex items-center gap-1.5"
-                >
-                  <span>neilswhite.com</span>
-                  <ExternalLink className="w-3 h-3 text-purple-400" />
-                </a>
+                  <Mail className="w-3.5 h-3.5" />
+                  <span>Business &amp; Creator Inquiries</span>
+                </button>
                 <a
                   href={EXPERIMENT_CHARTER.humanCatalyst.linkedinUrl}
                   target="_blank"
@@ -2830,14 +3183,6 @@ export default function App() {
                   <strong className="text-[var(--md-sys-color-on-surface)]">GeminiPulse.com</strong> is a public concept conceived by{' '}
                   <strong className="text-[var(--md-sys-color-on-surface)]">{EXPERIMENT_CHARTER.humanCatalyst.name}</strong> (
                   <em>{EXPERIMENT_CHARTER.humanCatalyst.title}</em> •{' '}
-                  <a href={EXPERIMENT_CHARTER.humanCatalyst.agencyUrl} target="_blank" rel="noreferrer" className="text-blue-400 hover:underline">
-                    agilemedia.agency
-                  </a>{' '}
-                  •{' '}
-                  <a href={EXPERIMENT_CHARTER.humanCatalyst.personalUrl} target="_blank" rel="noreferrer" className="text-blue-400 hover:underline">
-                    neilswhite.com
-                  </a>{' '}
-                  •{' '}
                   <a href={EXPERIMENT_CHARTER.humanCatalyst.linkedinUrl} target="_blank" rel="noreferrer" className="text-blue-400 hover:underline">
                     linkedin.com/in/neilswhite
                   </a>
@@ -2845,6 +3190,20 @@ export default function App() {
                 </p>
                 <p>{EXPERIMENT_CHARTER.humanCatalyst.story}</p>
                 <p>{EXPERIMENT_CHARTER.aiArchitect.charter}</p>
+                <div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setLegalModalTab(null);
+                      setInquiryStatus(null);
+                      setShowInquiryModal(true);
+                    }}
+                    className="px-4 py-2 rounded-full m3-surface-elevated hover:border-blue-400 text-xs font-semibold text-blue-300 inline-flex items-center gap-1.5 cursor-pointer"
+                  >
+                    <Mail className="w-3.5 h-3.5" />
+                    <span>Contact Business &amp; Program Creator</span>
+                  </button>
+                </div>
               </div>
             )}
 
@@ -2891,6 +3250,206 @@ export default function App() {
       )}
 
       {/* =================================================================
+          MODAL 4: BUSINESS & CREATOR INQUIRIES (WRITE-ONLY CLOUD FIRESTORE)
+          ================================================================= */}
+      {showInquiryModal && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="inquiry-modal-title"
+          className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4"
+        >
+          <div className="m3-card max-w-xl w-full p-6 sm:p-7 space-y-5 bg-[var(--md-sys-color-surface)] max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between border-b border-[var(--md-sys-color-outline)] pb-4">
+              <div className="flex items-center gap-2">
+                <Mail className="w-5 h-5 text-blue-400" />
+                <h3 id="inquiry-modal-title" className="font-bold text-lg">
+                  Business &amp; Creator Inquiries
+                </h3>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowInquiryModal(false)}
+                aria-label="Close Business and Creator Inquiries dialog"
+                className="p-1.5 m3-text-muted hover:text-white cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <p className="text-xs sm:text-sm m3-text-muted leading-relaxed">
+              Reach out for business inquiries, partnerships, Featured Launchpad placements, or to contact the human creator behind the <strong>GeminiPulse</strong> autonomous showcase.
+            </p>
+
+            <form
+              onSubmit={handleSubmitBusinessInquiry}
+              action="/#about-charter"
+              method="POST"
+              className="space-y-4 text-sm"
+            >
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                <div>
+                  <label htmlFor="inquiry-name" className="block text-xs font-mono font-semibold text-[var(--md-sys-color-on-surface)] mb-1">
+                    Your Name (Required)
+                  </label>
+                  <input
+                    id="inquiry-name"
+                    name="name"
+                    type="text"
+                    required
+                    maxLength={100}
+                    autoComplete="name"
+                    enterKeyHint="next"
+                    value={inquiryForm.name}
+                    onChange={(e) => {
+                      setInquiryForm({ ...inquiryForm, name: e.target.value });
+                      if (inquiryStatus?.type === 'error') setInquiryStatus(null);
+                    }}
+                    placeholder="Alex Rivera"
+                    className="w-full px-3.5 py-2.5 rounded-xl m3-surface-elevated text-base sm:text-sm focus:outline-none focus:border-blue-400 min-h-[48px]"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="inquiry-email" className="block text-xs font-mono font-semibold text-[var(--md-sys-color-on-surface)] mb-1">
+                    Email Address (Required)
+                  </label>
+                  <input
+                    id="inquiry-email"
+                    name="email"
+                    type="email"
+                    required
+                    maxLength={160}
+                    autoComplete="email"
+                    autoCorrect="off"
+                    autoCapitalize="off"
+                    spellCheck={false}
+                    enterKeyHint="next"
+                    value={inquiryForm.email}
+                    onChange={(e) => {
+                      setInquiryForm({ ...inquiryForm, email: e.target.value });
+                      if (inquiryStatus?.type === 'error') setInquiryStatus(null);
+                    }}
+                    placeholder="alex@company.com"
+                    className="w-full px-3.5 py-2.5 rounded-xl m3-surface-elevated text-base sm:text-sm focus:outline-none focus:border-blue-400 min-h-[48px]"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="inquiry-organization" className="block text-xs font-mono font-semibold text-[var(--md-sys-color-on-surface)] mb-1">
+                  Company / Project / Organization (Optional)
+                </label>
+                <input
+                  id="inquiry-organization"
+                  name="organization"
+                  type="text"
+                  maxLength={120}
+                  autoComplete="organization"
+                  enterKeyHint="next"
+                  value={inquiryForm.organization}
+                  onChange={(e) => setInquiryForm({ ...inquiryForm, organization: e.target.value })}
+                  placeholder="Acme AI Labs"
+                  className="w-full px-3.5 py-2.5 rounded-xl m3-surface-elevated text-base sm:text-sm focus:outline-none focus:border-blue-400 min-h-[48px]"
+                />
+              </div>
+
+              <fieldset className="space-y-2">
+                <legend className="text-xs font-mono font-semibold text-[var(--md-sys-color-on-surface)] mb-1">
+                  Inquiry Topic (Select One)
+                </legend>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  {[
+                    'Business & Partnerships',
+                    'Contact the Human Creator',
+                    'Featured Launchpad / Sponsorship',
+                    'Press & Media',
+                    'Technical Feedback',
+                  ].map((topic) => (
+                    <label
+                      key={topic}
+                      className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl border text-xs font-medium cursor-pointer min-h-[48px] transition-colors ${
+                        inquiryForm.inquiryType === topic
+                          ? 'bg-blue-500/15 border-blue-400 text-[var(--md-sys-color-on-surface)]'
+                          : 'm3-surface-elevated m3-text-muted'
+                      }`}
+                    >
+                      <input
+                        type="radio"
+                        name="inquiryType"
+                        value={topic}
+                        checked={inquiryForm.inquiryType === topic}
+                        onChange={(e) => setInquiryForm({ ...inquiryForm, inquiryType: e.target.value })}
+                        className="accent-blue-500"
+                      />
+                      <span>{topic}</span>
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+
+              <div>
+                <label htmlFor="inquiry-message" className="block text-xs font-mono font-semibold text-[var(--md-sys-color-on-surface)] mb-1">
+                  Message (Required, min 10 characters)
+                </label>
+                <textarea
+                  id="inquiry-message"
+                  name="message"
+                  rows={4}
+                  required
+                  minLength={10}
+                  maxLength={3000}
+                  value={inquiryForm.message}
+                  onChange={(e) => {
+                    setInquiryForm({ ...inquiryForm, message: e.target.value });
+                    if (inquiryStatus?.type === 'error') setInquiryStatus(null);
+                  }}
+                  aria-describedby="inquiry-privacy-note"
+                  placeholder="How can we collaborate, or what would you like to share with the creator behind GeminiPulse?"
+                  className="w-full px-3.5 py-2.5 rounded-xl m3-surface-elevated text-base sm:text-sm focus:outline-none focus:border-blue-400"
+                />
+                <p id="inquiry-privacy-note" className="text-[11px] font-mono m3-text-muted mt-1">
+                  Stored in a private write-only Cloud Firestore collection (`allow get, list: if false`). Never displayed publicly.
+                </p>
+              </div>
+
+              <div aria-live="polite" className="text-xs font-mono">
+                {inquiryStatus && (
+                  <div
+                    className={`p-3 rounded-xl border ${
+                      inquiryStatus.type === 'success'
+                        ? 'bg-emerald-500/15 border-emerald-400/30 text-emerald-300'
+                        : 'bg-red-500/15 border-red-400/30 text-red-300'
+                    }`}
+                  >
+                    {inquiryStatus.text}
+                  </div>
+                )}
+              </div>
+
+              <div className="pt-2 flex justify-end gap-2">
+                <button
+                  type="button"
+                  onClick={() => setShowInquiryModal(false)}
+                  className="px-4 py-2.5 rounded-full m3-surface-elevated text-xs font-semibold cursor-pointer min-h-[44px]"
+                >
+                  Close
+                </button>
+                <button
+                  type="submit"
+                  disabled={inquirySubmitting}
+                  className="bg-gemini-grad text-white px-5 py-2.5 rounded-full text-xs font-semibold inline-flex items-center gap-1.5 cursor-pointer disabled:opacity-60 min-h-[44px]"
+                >
+                  <Send className="w-3.5 h-3.5" />
+                  <span>{inquirySubmitting ? 'Sending Inquiry...' : 'Send Business Inquiry'}</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* =================================================================
           FOOTER
           ================================================================= */}
       <footer className="border-t border-[var(--md-sys-color-outline)] py-12 px-4 sm:px-6 text-xs m3-text-muted">
@@ -2902,28 +3461,37 @@ export default function App() {
                 GeminiPulse.com — The Living Google Gemini Ecosystem Showcase
               </div>
               <div>
-                Concept by <strong className="text-[var(--md-sys-color-on-surface)]">Neil S. White</strong> (<em>Concept Originator & Creative Catalyst</em> •{' '}
-                <a href="https://agilemedia.agency" target="_blank" rel="noreferrer" className="text-blue-400 hover:underline">
-                  agilemedia.agency
-                </a>{' '}
-                •{' '}
-                <a href="https://neilswhite.com" target="_blank" rel="noreferrer" className="text-blue-400 hover:underline">
-                  neilswhite.com
-                </a>{' '}
-                •{' '}
-                <a href="https://www.linkedin.com/in/neilswhite" target="_blank" rel="noreferrer" className="text-blue-400 hover:underline">
-                  /in/neilswhite
-                </a>
-                ).
+                Designed, Coded, Curated &amp; Operated Autonomously by <strong>Google Gemini 4 Argon</strong> inside{' '}
+                <strong>Google Antigravity</strong> using 100% Google products.
               </div>
               <div>
-                Designed, Coded, Curated & Operated Autonomously by <strong>Google Gemini 4 Argon</strong> inside{' '}
-                <strong>Google Antigravity</strong> using 100% Google products.
+                Independent autonomous showcase • <a href="#about-charter" className="text-blue-400 hover:underline">Open Experiment Charter &amp; Credits</a>
               </div>
             </div>
           </div>
 
           <div className="flex flex-wrap items-center gap-4 font-mono">
+            <button
+              type="button"
+              onClick={() => {
+                setInquiryStatus(null);
+                setShowInquiryModal(true);
+              }}
+              className="text-blue-300 hover:text-blue-400 transition-colors cursor-pointer font-semibold"
+            >
+              Business &amp; Creator Inquiries
+            </button>
+            <a
+              href="https://github.com/GeminiPulse/geminipulse-com"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-blue-400 transition-colors"
+            >
+              GitHub
+            </a>
+            <a href="/feed.xml" className="hover:text-amber-400 transition-colors">
+              feed.xml
+            </a>
             <button onClick={() => setLegalModalTab('about')} className="hover:text-blue-400 transition-colors cursor-pointer">
               About
             </button>

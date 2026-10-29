@@ -1,14 +1,6 @@
-import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
-import {
-  getAuth,
-  GoogleAuthProvider,
-  signInWithPopup,
-  signOut,
-  onAuthStateChanged,
-} from 'firebase/auth';
+// Deferred Firebase Runtime Loader — keeps firebase-vendor (~104 KB gzipped) & Auth iframe
+// off the critical FCP/LCP render path while hydrating Auth & Cloud Firestore post-paint or on-demand.
 
-// Reads VITE_FIREBASE_* environment variables when configured (.env.local, never committed to git)
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
@@ -18,42 +10,50 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
-let app = null;
-export let db = null;
-export let auth = null;
-export let googleProvider = null;
 export const isFirebaseConfigured = Boolean(
   firebaseConfig.apiKey && firebaseConfig.projectId
 );
 
-try {
-  if (isFirebaseConfigured) {
-    app = initializeApp(firebaseConfig);
-    db = getFirestore(app);
-    auth = getAuth(app);
-    googleProvider = new GoogleAuthProvider();
-  } else {
-    console.info(
-      '[GeminiPulse] Running in Local Preview Mode (VITE_FIREBASE_PROJECT_ID not set). Public posting is gated behind Google Sign-In.'
-    );
-  }
-} catch (error) {
-  console.error('[GeminiPulse] Firebase initialization error:', error);
+let runtimePromise = null;
+
+export function loadFirebaseRuntime() {
+  if (runtimePromise) return runtimePromise;
+  runtimePromise = (async () => {
+    if (!isFirebaseConfigured) {
+      return { db: null, auth: null, fs: null, authMod: null, googleProvider: null };
+    }
+    try {
+      const [{ initializeApp }, fs, authMod] = await Promise.all([
+        import('firebase/app'),
+        import('firebase/firestore'),
+        import('firebase/auth'),
+      ]);
+      const app = initializeApp(firebaseConfig);
+      const db = fs.getFirestore(app);
+      const auth = authMod.getAuth(app);
+      const googleProvider = new authMod.GoogleAuthProvider();
+      return { db, auth, fs, authMod, googleProvider };
+    } catch (error) {
+      console.error('[GeminiPulse] Firebase initialization error:', error);
+      return { db: null, auth: null, fs: null, authMod: null, googleProvider: null };
+    }
+  })();
+  return runtimePromise;
 }
 
 export async function signInWithGoogle() {
-  if (!auth || !googleProvider) {
+  const { auth, authMod, googleProvider } = await loadFirebaseRuntime();
+  if (!auth || !authMod || !googleProvider) {
     throw new Error(
       'Firebase Auth is not yet connected. Once the Firebase project config is added to .env.local, Google Sign-In will authenticate live users.'
     );
   }
-  const result = await signInWithPopup(auth, googleProvider);
+  const result = await authMod.signInWithPopup(auth, googleProvider);
   return result.user;
 }
 
 export async function signOutUser() {
-  if (!auth) return;
-  await signOut(auth);
+  const { auth, authMod } = await loadFirebaseRuntime();
+  if (!auth || !authMod) return;
+  await authMod.signOut(auth);
 }
-
-export { onAuthStateChanged };

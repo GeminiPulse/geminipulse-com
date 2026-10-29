@@ -78,6 +78,31 @@ rules_version = '2';
 //   - reason: string (required, 1..500 chars, immutable) - Report reason summary
 //   - createdAt: string (required, 1..50 chars, immutable) - ISO creation timestamp
 //
+// Collection: business_inquiries
+// Document ID: {inquiryId}
+// Access:
+//   - Private write-only public intake inbox for Business Inquiries, Sponsorships, Press, or Contacting
+//     the Human Creator behind GeminiPulse.com; unauthenticated create allowed with strict schema bounds;
+//     all client reads, updates, and deletes denied (Admin SDK / project owner only)
+// Fields:
+//   - name: string (required, 1..100 chars, immutable) - Sender full name
+//   - email: string (required, 5..160 chars, email regex, immutable) - Sender contact email (PII)
+//   - organization: string (required, 0..120 chars, empty string "" allowed, immutable) - Company, publication, or org
+//   - inquiryType: string (required, enum: ['Business & Partnerships', 'Contact the Human Creator', 'Featured Launchpad / Sponsorship', 'Press & Media', 'Technical Feedback'], immutable)
+//   - message: string (required, 10..3000 chars, immutable) - Inquiry message body
+//   - createdAt: string (required, 1..50 chars, immutable) - ISO creation timestamp
+//
+// Collection: newsletter_subscribers
+// Document ID: {subscriberId}
+// Access:
+//   - Private write-only public opt-in inbox for the "Weekly Pulse & Tri-Model Arena Dispatch" email digest;
+//     unauthenticated create allowed with strict schema bounds; all client reads, updates, and deletes denied
+//     so subscriber emails (PII) can never be scraped or enumerated
+// Fields:
+//   - email: string (required, 5..160 chars, email regex, immutable) - Subscriber email address (PII)
+//   - source: string (required, 1..80 chars, immutable) - Opt-in placement/source identifier
+//   - createdAt: string (required, 1..50 chars, immutable) - ISO creation timestamp
+//
 // ===============================================================
 
 service cloud.firestore {
@@ -138,6 +163,13 @@ service cloud.firestore {
       return listData is list &&
         listData.size() >= minSize &&
         listData.size() <= maxSize;
+    }
+
+    function isValidIntakeEmail(email) {
+      return email is string &&
+        email.size() >= 5 &&
+        email.size() <= 160 &&
+        email.matches('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$');
     }
 
     // ===============================================================
@@ -341,6 +373,48 @@ service cloud.firestore {
         validStringLength('createdAt', 1, 50);
     }
 
+    function isValidBusinessInquiry(data) {
+      let fields = [
+        'name',
+        'email',
+        'organization',
+        'inquiryType',
+        'message',
+        'createdAt'
+      ];
+
+      return hasRequiredFields(fields) &&
+        hasOnlyAllowedFields(fields) &&
+        validStringLength('name', 1, 100) &&
+        isValidIntakeEmail(data.email) &&
+        data.organization is string &&
+        data.organization.size() <= 120 &&
+        data.inquiryType is string &&
+        data.inquiryType in [
+          'Business & Partnerships',
+          'Contact the Human Creator',
+          'Featured Launchpad / Sponsorship',
+          'Press & Media',
+          'Technical Feedback'
+        ] &&
+        validStringLength('message', 10, 3000) &&
+        validStringLength('createdAt', 1, 50);
+    }
+
+    function isValidNewsletterSubscriber(data) {
+      let fields = [
+        'email',
+        'source',
+        'createdAt'
+      ];
+
+      return hasRequiredFields(fields) &&
+        hasOnlyAllowedFields(fields) &&
+        isValidIntakeEmail(data.email) &&
+        validStringLength('source', 1, 80) &&
+        validStringLength('createdAt', 1, 50);
+    }
+
     // ===============================================================
     // Collection Rules
     // ===============================================================
@@ -386,6 +460,18 @@ service cloud.firestore {
     match /content_reports/{reportId} {
       allow get, list: if false;
       allow create: if isAuthenticated() && isValidContentReport(request.resource.data);
+      allow update, delete: if false;
+    }
+
+    match /business_inquiries/{inquiryId} {
+      allow get, list: if false;
+      allow create: if isValidBusinessInquiry(request.resource.data);
+      allow update, delete: if false;
+    }
+
+    match /newsletter_subscribers/{subscriberId} {
+      allow get, list: if false;
+      allow create: if isValidNewsletterSubscriber(request.resource.data);
       allow update, delete: if false;
     }
 

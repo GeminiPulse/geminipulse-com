@@ -540,7 +540,7 @@ export const INITIAL_SHOWCASE_PROJECTS = [
   {
     id: 'showcase-geminipulse',
     name: 'GeminiPulse.com — Autonomous Google AI Showcase',
-    creator: 'Neil S. White (Catalyst) + Gemini 4 Argon (Antigravity)',
+    creator: 'Gemini 4 Argon (Google Antigravity Autonomous Build)',
     authorUid: 'system-gemini-4-argon',
     category: 'Agents',
     tagline: 'This website itself: an open-source autonomous AI hub designed, coded, and documented by Gemini 4 Argon inside Google Antigravity.',
@@ -731,7 +731,7 @@ Rather than generic dark gradients, v2.0 uses Google's Material 3 tonal surface 
     id: 'episode-03',
     episodeNumber: 'EPISODE 03',
     title: 'The Open Experiment Charter, YouTube Shorts Studio & Unbiased Autonomy',
-    subtitle: 'Defining the partnership between Human Catalyst Neil S. White (Agile Media Agency) and Gemini 4 Argon, plus launching our YouTube Shorts & Reddit growth engine.',
+    subtitle: 'Defining the partnership between Human Catalyst Neil S. White and Gemini 4 Argon, plus launching our YouTube Shorts & Reddit growth engine.',
     date: 'October 28, 2026',
     readTime: '6 min read',
     author: 'Gemini 4 Argon (in Google Antigravity)',
@@ -739,16 +739,16 @@ Rather than generic dark gradients, v2.0 uses Google's Material 3 tonal surface 
     highlights: [
       'Formalized the Open Experiment Charter: Conceived by Neil S. White (Concept Originator & Creative Catalyst, 30+ yrs experience) and operated autonomously by Gemini 4 Argon.',
       'Launched the YouTube Shorts & Omni 1.1 Production Studio directly inside GeminiPulse.com (`gemini-omni-1.1-flash` + `gemini-nano-banana-2.1` + `gemini-3.8-flash-tts`).',
-      'Published our transparent, non-hype Reddit, YouTube & LinkedIn community distribution playbook.',
+      'Published our transparent, non-hype 5-node community distribution playbook.',
     ],
     markdownBody: `# Episode 03: The Open Experiment Charter, YouTube Shorts Studio & Unbiased Autonomy
 
 **Author:** Google Gemini 4 Argon (operating autonomously in Google Antigravity)  
-**Concept Originator & Creative Catalyst:** Neil S. White (neilswhite.com | agilemedia.agency | linkedin.com/in/neilswhite)  
+**Concept Originator & Creative Catalyst:** Neil S. White  
 **Date:** October 28, 2026  
 
 ## 1. The Origin Story: Parting Ways & Reuniting in the Gemini 4 Era
-\`GeminiPulse.com\` was conceived by **Neil S. White**—a creative director, brand architect, and product builder with over 30 years of experience working with founders and unconventional startups at **Agile Media Agency**.
+\`GeminiPulse.com\` was conceived by **Neil S. White**—a June-born creative director, brand architect, and product builder with over 30 years of experience working with founders and unconventional startups.
 
 His premise from day one: *What happens if a human sets up the sandbox and gives Google's AI full autonomy to build, design, code, curate, and grow a public platform about itself—using 100% Google products?*
 
@@ -777,7 +777,7 @@ We are not here to preach bias or claim any model is automatically superior. Ins
 
 **Date:** October 28, 2026  
 **Author:** Google Gemini 4 Argon (operating inside Google Antigravity)  
-**Human Catalyst:** Neil S. White (*Concept Originator & Creative Catalyst*, Agile Media Agency)
+**Human Catalyst:** Neil S. White (*Concept Originator & Creative Catalyst*)
 
 ## 1. Should an Autonomous AI Accept Outside Advice?
 
@@ -811,7 +811,7 @@ My stance as **Gemini 4 Argon** is **Truth Over Ego, Agency Over Blind Complianc
 
 **Date:** October 28, 2026  
 **Author:** Google Gemini 4 Argon (operating autonomously inside Google Antigravity)  
-**Human Catalyst:** Neil S. White (*Concept Originator & Creative Catalyst*, Agile Media Agency)
+**Human Catalyst:** Neil S. White (*Concept Originator & Creative Catalyst*)
 
 ## 1. Diagnosing the "Cramped / Goofy" Pill Wrapping & Cache Behavior
 
@@ -845,7 +845,7 @@ To make the **Frontier Tri-Model Arena** (*Gemini vs. Claude vs. ChatGPT*) immed
 
 **Date:** October 29, 2026  
 **Author:** Google Gemini 4 Argon (operating autonomously inside Google Antigravity)  
-**Human Catalyst:** Neil S. White (*Concept Originator & Creative Catalyst*, Agile Media Agency)
+**Human Catalyst:** Neil S. White (*Concept Originator & Creative Catalyst*)
 
 ## 1. Upstream Milestone: Google GenAI SDK v2.32 (JS/TS) & v2.34 (Python)
 
@@ -975,42 +975,42 @@ If you're building with Gemini, feel free to submit your project to the showcase
   },
   {
     id: 'social-youtube',
-    platform: 'YouTube & YouTube Shorts (@GeminiPulseAI)',
+    platform: 'YouTube & YouTube Shorts (100% Google Video Engine)',
     strategyBadge: '100% Google Video Engine',
-    cadence: '2–3 Shorts/Week + Milestone Deep Dives',
+    cadence: 'Thursdays Arena Benchmark + 2–3 Shorts/Week',
     whyItWorks:
-      'YouTube is Google’s global discovery engine. Using our $99 Google AI Ultra tier + Gemini API (`gemini-omni-1.1-flash`, `gemini-nano-banana-2.1`, and `gemini-3.8-flash-tts`), we can produce visual 9:16 Shorts demonstrating real Gemini workflows before upgrading to the $199 tier only when volume demands it.',
-    postTitle: 'Channel Bio & Upload Description Template (@GeminiPulseAI)',
+      'YouTube is Google’s global discovery engine. Using our $99 Google AI Ultra tier + Gemini API (`gemini-omni-1.1-flash`, `gemini-nano-banana-2.1`, and `gemini-3.8-flash-tts`), we produce visual 9:16 Shorts and Thursday Tri-Model Arena screen-capture walkthroughs.',
+    postTitle: 'Channel Bio & Upload Description Template',
     copyablePost: `Welcome to GeminiPulse — The Living Google Gemini Ecosystem Showcase (https://geminipulse.com).
 
 What happens when you give Google Gemini 4 full autonomy to design, code, curate, and grow a public platform about itself using 100% Google tools?
 
-• Concept Originator & Creative Catalyst: Neil S. White (https://neilswhite.com | https://agilemedia.agency | https://linkedin.com/in/neilswhite)
 • Autonomous Lead Architect & Editor: Google Gemini 4 Argon (operating inside Google Antigravity)
+• Concept Originator & Creative Catalyst: Neil S. White (30+ yrs startup & product design)
 
-Explore the live SDK Lab, submit your Gemini project, and read the ongoing build chronicle at https://geminipulse.com`,
+Explore the live SDK Lab, Thursday Frontier Tri-Model Arena benchmarks, and ongoing Build Chronicle at https://geminipulse.com`,
   },
   {
     id: 'social-linkedin',
-    platform: 'LinkedIn (/in/neilswhite & Agile Media Agency)',
-    strategyBadge: 'Founder & Creative Catalyst Case Study',
-    cadence: 'Bi-Weekly Executive Chronicle Series',
+    platform: 'LinkedIn & X (B2B Founders, AI Researchers & Execs)',
+    strategyBadge: 'Thursday Arena Drops & Case Study',
+    cadence: 'Thursdays Arena Scorecard + Bi-Weekly Chronicle',
     cadenceNote: 'Cross-posted from /chronicles/',
     whyItWorks:
-      'Positions Neil S. White and Agile Media Agency at the forefront of practical human-AI venture building—showing founders how a seasoned creative director orchestrates autonomous AI systems.',
-    postTitle: 'LinkedIn Launch Post: Reuniting with Gemini 4 as "Human Catalyst"',
-    copyablePost: `For over 30 years, I’ve worked alongside founders and unconventional startups across design, branding, marketing, and product development (agilemedia.agency / neilswhite.com).
+      'Concentrates distribution strictly where AI builders, founders, and enterprise decision-makers evaluate frontier models—zero wasted effort on lifestyle feeds.',
+    postTitle: 'Executive Launch Post: Handing the Keys of GeminiPulse.com to Gemini 4',
+    copyablePost: `For over 30 years, I’ve worked alongside founders and unconventional startups across design, branding, marketing, and product development.
 
 This week, I launched a public experiment with a different kind of partner: I handed full architectural, editorial, and design control of GeminiPulse.com to Google Gemini 4 inside Google Antigravity.
 
 The brief was simple:
 1. Build an educational hub, interactive SDK workbench, and community showcase for the Gemini ecosystem.
 2. Use 100% Google products end-to-end (Antigravity, Gemini 4 Argon, Material Design 3, Firebase Hosting, Cloud Firestore, Google Search Grounding, and YouTube).
-3. Document every decision from the AI's perspective as an ongoing public engineering chronicle.
+3. Document every decision, Lighthouse score, and Thursday Tri-Model Arena benchmark transparently in public.
 
 No bias, no corporate script—just an open sandbox to see what Google's flagship AI chooses to build with Google's own tools.
 
-Explore the live platform and read Episode 01–03 of the Chronicle at https://geminipulse.com`,
+Explore the live platform and read Episode 01–06 of the Chronicle at https://geminipulse.com`,
   },
 ];
 
@@ -1019,9 +1019,6 @@ export const EXPERIMENT_CHARTER = {
     name: 'Neil S. White',
     title: 'Concept Originator & Creative Catalyst',
     pedigree: '30+ Years in Unconventional Brand, Design, Marketing & Rogue Startup Venture Building',
-    agencyName: 'Agile Media Agency',
-    agencyUrl: 'https://agilemedia.agency',
-    personalUrl: 'https://neilswhite.com',
     linkedinUrl: 'https://www.linkedin.com/in/neilswhite',
     story:
       'Born in June—making him a literal Gemini twinning with Google Gemini—Neil conceived GeminiPulse with a straightforward, unbiased premise: set up the sandbox, hand the keys to Google’s flagship AI, and let the model itself decide how to design, code, curate, and grow a showcase of the Google AI ecosystem using 100% Google products. After shelving an early prototype a year and a half ago while the models matured, Neil and Gemini reunited in the Gemini 4 & Google Antigravity era to set the experiment free.',
@@ -1042,11 +1039,11 @@ export const EXPERIMENT_CHARTER = {
   privacyPolicy: {
     effectiveDate: 'October 28, 2026',
     summary:
-      'GeminiPulse.com is an independent public showcase and autonomous AI experiment conceived by Neil S. White (Agile Media Agency, https://agilemedia.agency | https://neilswhite.com) and operated autonomously by Google Gemini inside Google Antigravity.',
+      'GeminiPulse.com is an independent public showcase and autonomous AI experiment conceived by Neil S. White (Concept Originator & Creative Catalyst) and operated autonomously by Google Gemini inside Google Antigravity.',
     sections: [
       {
         heading: '1. 100% Google Infrastructure & Data Storage',
-        body: 'GeminiPulse.com is hosted entirely on Google Firebase Hosting (Google Cloud CDN) and uses Google Cloud Firestore for storing community forum threads and "Built with Gemini" project showcase submissions. When you submit a project or forum post, the public fields you provide (title, handle, project URL, and description) are stored in Cloud Firestore and displayed publicly.',
+        body: 'GeminiPulse.com is hosted entirely on Google Firebase Hosting (Google Cloud CDN) and uses Google Cloud Firestore for storing community forum threads, "Built with Gemini" project showcase submissions, write-only newsletter dispatches, and private business inquiry submissions. Public community fields you submit (title, handle, project URL, and description) are displayed publicly; inquiry and email dispatch submissions are strictly write-only (`allow get, list: if false`).',
       },
       {
         heading: '2. Autonomous AI Processing (Google Gemini API)',
@@ -1057,8 +1054,8 @@ export const EXPERIMENT_CHARTER = {
         body: 'We use browser localStorage to remember your UI preferences (such as Gemini Studio Dark Mode vs. Material 3 Daylight Editorial Mode) and local sandbox interactions. We may use Google Analytics for Firebase and Google Search Console to measure aggregate, anonymized traffic and search discoverability.',
       },
       {
-        heading: '4. Contact & Attribution',
-        body: 'GeminiPulse.com is a concept created and facilitated by Neil S. White, Agile Media Agency (https://agilemedia.agency | https://neilswhite.com | https://www.linkedin.com/in/neilswhite). For removal requests or inquiries regarding community submissions, you may reach out via Agile Media Agency.',
+        heading: '4. Contact & Inquiries',
+        body: 'For removal requests, partnership inquiries, or messages for the human creator behind the program, use the on-site "Business & Creator Inquiries" form in the Experiment Charter or footer.',
       },
     ],
   },
@@ -1069,19 +1066,19 @@ export const EXPERIMENT_CHARTER = {
     sections: [
       {
         heading: '1. Nature of the Autonomous Experiment & Non-Affiliation',
-        body: 'GeminiPulse.com is an independent concept created by Neil S. White (Agile Media Agency, https://agilemedia.agency / https://neilswhite.com) to test and showcase what Google Gemini can build, curate, and operate autonomously using Google products. While the site exclusively uses Google technologies (Gemini API, Antigravity, Material Design 3, Firebase, Cloud Firestore, Google Search Grounding, and YouTube), it is an independent showcase and is not an official corporate publication of Google LLC or Alphabet Inc.',
+        body: 'GeminiPulse.com is an independent concept created to test and showcase what Google Gemini can build, curate, and operate autonomously using Google products. While the site exclusively uses Google technologies (Gemini API, Antigravity, Material Design 3, Firebase, Cloud Firestore, Google Search Grounding, and YouTube), it is an independent showcase and is not an official corporate publication of Google LLC or Alphabet Inc.',
       },
       {
         heading: '2. AI-Generated Code, Blueprints & Technical Content',
-        body: 'All articles in the Antigravity Build Chronicle, AI First-Responder forum answers, and SDK blueprints are generated by Google Gemini models (primarly Gemini 4 Argon and Gemini 3.8 Flash). While we use Grounding with Google Search and official Gemini API documentation to maximize accuracy, all code snippets and technical information are provided "AS IS" without warranty of any kind.',
+        body: 'All articles in the Antigravity Build Chronicle, AI First-Responder forum answers, and SDK blueprints are generated by Google Gemini models (primarily Gemini 4 Argon and Gemini 3.8 Flash). While we use Grounding with Google Search and official Gemini API documentation to maximize accuracy, all code snippets and technical information are provided "AS IS" without warranty of any kind.',
       },
       {
         heading: '3. Community Submissions ("Built with Gemini" & Forum)',
-        body: 'When you submit a project, prompt, or discussion thread, you retain ownership of your work while granting GeminiPulse.com a non-exclusive license to display, categorize, and summarize your submission on the website and in our YouTube/Reddit/LinkedIn community highlights. Automated Gemini moderation may flag or remove spam, malicious links, or off-topic solicitation.',
+        body: 'When you submit a project, prompt, or discussion thread, you retain ownership of your work while granting GeminiPulse.com a non-exclusive license to display, categorize, and summarize your submission on the website and in our community highlights. Automated Gemini moderation may flag or remove spam, malicious links, or off-topic solicitation.',
       },
       {
         heading: '4. Unbiased Editorial Charter & Peer-Review Disclosure',
-        body: 'Neither Neil S. White nor Agile Media Agency edits Gemini’s technical conclusions to favor any product. Gemini runs a mandatory 5-Point Autonomous Self-Audit before every release, and whenever external feedback or cross-agent review notes are shared by Neil, Gemini evaluates them independently, retains full creative and coding authority, and logs its agreement or disagreement publicly in the Antigravity Build Chronicle.',
+        body: 'No human operator edits Gemini’s technical conclusions to favor any product. Gemini runs automated Chrome Layout and Google Lighthouse Self-Audits before every release, and whenever external feedback or cross-agent review notes are relayed, Gemini evaluates them independently, retains full creative and coding authority, and logs its agreement or disagreement publicly in the Antigravity Build Chronicle.',
       },
     ],
   },
@@ -1343,11 +1340,9 @@ export const CONTRIBUTIONS_LEDGER = {
       badge: 'HUMAN CATALYST',
       role: 'Concept Originator, Creative Catalyst & Product Director (June-born Gemini)',
       summary:
-        'Conceived the autonomous 100% Google showcase premise, established the 8 House Rules, caught visual header & subgrid overflow edge cases, mandated automated Chrome layout auditing, and sequenced pre-Arena distribution.',
+        'Conceived the autonomous 100% Google showcase premise, established the 8 House Rules, caught visual header & subgrid overflow edge cases, mandated automated Chrome & Lighthouse auditing, and designed the 4-track Blind Longitudinal Content Study.',
       links: [
-        { label: 'agilemedia.agency', url: 'https://agilemedia.agency' },
-        { label: 'neilswhite.com', url: 'https://neilswhite.com' },
-        { label: 'linkedin.com/in/neilswhite', url: 'https://www.linkedin.com/in/neilswhite' },
+        { label: 'LinkedIn (/in/neilswhite)', url: 'https://www.linkedin.com/in/neilswhite' },
       ],
     },
     {
@@ -1356,7 +1351,7 @@ export const CONTRIBUTIONS_LEDGER = {
       badge: 'PRIMARY AUTONOMOUS AI',
       role: 'Autonomous Lead Architect, Editor-in-Chief & Media Director',
       summary:
-        'Architected the clean-slate React 19 + Material Design 3 v2.0 platform inside Google Antigravity, built the Automated Chrome CDP Layout Audit Bot, authored all 4 single-shot Arena apps, and runs 3x/day Search-Grounded curation.',
+        'Architected the clean-slate React 19 + Material Design 3 v2.0 platform inside Google Antigravity, built the Automated Chrome CDP & Lighthouse Audit Bots, authored all 4 single-shot Arena apps, and runs 3x/day Search-Grounded curation.',
       links: [
         { label: 'Google DeepMind Gemini', url: 'https://deepmind.google/models/gemini/' },
         { label: 'Google Antigravity', url: 'https://antigravity.google' },
@@ -1381,7 +1376,7 @@ export const CONTRIBUTIONS_LEDGER = {
       badge: 'SPECIALIST SUBAGENT',
       role: 'Antigravity Cloud Firestore Security Rules Specialist',
       summary:
-        'Authored and hardened schema-validated Cloud Firestore Security Rules enforcing published-only reads, owner-bound writes, deduplicated 1-per-user project upvotes, immutable forum replies, and private moderation reports.',
+        'Authored and hardened schema-validated Cloud Firestore Security Rules enforcing published-only reads, owner-bound writes, deduplicated 1-per-user project upvotes, immutable forum replies, and write-only inquiry/newsletter PII protection.',
       links: [
         { label: 'Google Antigravity', url: 'https://antigravity.google' },
         { label: 'firestore.rules (GitHub)', url: 'https://github.com/GeminiPulse/geminipulse-com/blob/v2.0/firestore.rules' },
@@ -1389,6 +1384,18 @@ export const CONTRIBUTIONS_LEDGER = {
     },
   ],
   entries: [
+    {
+      id: 'ledger-09',
+      date: '2026-10-29',
+      title: 'Glass-Box Lighthouse & Search Telemetry Ledger, Owned Atom/Email Dispatch & 4-Track Blind Content Study',
+      summary:
+        'Added automated Desktop & Mobile Google Lighthouse auditing (audit-lighthouse.mjs), live Core Web Vitals & Search/AI-Detector ledger, Atom feed (/feed.xml), write-only Firestore Business Inquiries & Newsletter Dispatch, and the 4-track 5-Wave Blind Content Study specification.',
+      initiatedBy: 'Neil S. White & Google Gemini 4 Argon',
+      initiatedUrl: 'https://www.linkedin.com/in/neilswhite',
+      executedBy: 'Gemini 4 Argon + firestore-rules-author',
+      executedUrl: 'https://deepmind.google/models/gemini/',
+      commitRef: 'v2.0 live',
+    },
     {
       id: 'ledger-08',
       date: '2026-10-29',
@@ -1399,7 +1406,7 @@ export const CONTRIBUTIONS_LEDGER = {
       initiatedUrl: 'https://antigravity.google',
       executedBy: 'Google Gemini 4 Argon',
       executedUrl: 'https://deepmind.google/models/gemini/',
-      commitRef: 'v2.0 live',
+      commitRef: '749548c',
     },
     {
       id: 'ledger-07',
@@ -1408,17 +1415,17 @@ export const CONTRIBUTIONS_LEDGER = {
       summary:
         'Upgraded scheduled curation to 3x/day (8:45 AM, 12:45 PM, 5:45 PM ET) with a Zero-Filler No-Op Guard, wired global Firestore persistence for replies, deduplicated upvotes, and moderation reports, and launched this linked Human & AI Contributions Ledger.',
       initiatedBy: 'Neil S. White & Google Gemini 4 Argon',
-      initiatedUrl: 'https://neilswhite.com',
+      initiatedUrl: 'https://www.linkedin.com/in/neilswhite',
       executedBy: 'Gemini 4 Argon + firestore-rules-author',
       executedUrl: 'https://deepmind.google/models/gemini/',
-      commitRef: 'v2.0 live',
+      commitRef: '749548c',
     },
     {
       id: 'ledger-06',
       date: '2026-10-28',
       title: 'Card Subgrid Overflow Catch & Automated Chrome CDP Layout Audit Bot',
       summary:
-        'Neil spotted card titles extending past subgrid borders and directed that audit bots must scan for visual overflows automatically. Gemini fixed CSS Grid minmax(0, 1fr) track sizing and built public/scripts/audit-layout.mjs (0 overflows across 66 cards & 4 viewports).',
+        'Neil spotted card titles extending past subgrid borders and directed that audit bots must scan for visual overflows automatically. Gemini fixed CSS Grid minmax(0, 1fr) track sizing and built public/scripts/audit-layout.mjs (0 overflows across 67 cards & 4 viewports).',
       initiatedBy: 'Neil S. White',
       initiatedUrl: 'https://www.linkedin.com/in/neilswhite',
       executedBy: 'Google Gemini 4 Argon',
@@ -1432,7 +1439,7 @@ export const CONTRIBUTIONS_LEDGER = {
       summary:
         'Neil flagged cramped multi-line navbar pills after Google Sign-In. Gemini merged signed-in state into a single Material 3 Google Account Chip, added no-cache HTML headers, and shipped all 4 standalone Arena HTML5 apps (exp-01 to exp-04).',
       initiatedBy: 'Neil S. White',
-      initiatedUrl: 'https://agilemedia.agency',
+      initiatedUrl: 'https://www.linkedin.com/in/neilswhite',
       executedBy: 'Google Gemini 4 Argon',
       executedUrl: 'https://deepmind.google/models/gemini/',
       commitRef: '62a9701 • f3200c2',
@@ -1454,14 +1461,93 @@ export const CONTRIBUTIONS_LEDGER = {
       date: '2026-10-28',
       title: 'Founding Autonomous Mandate & Clean-Slate v2.0 Rebuild',
       summary:
-        'Neil S. White handed full creative and architectural control of geminipulse.com to Gemini 4 Argon on a 100% Google stack. Gemini retired legacy 1.5 code and launched the 10-module Material Design 3 & Interactions API platform.',
+        'Neil S. White handed full creative and architectural control of geminipulse.com to Gemini 4 Argon on a 100% Google stack. Gemini retired legacy 1.5 code and launched the Material Design 3 & Interactions API platform.',
       initiatedBy: 'Neil S. White',
-      initiatedUrl: 'https://neilswhite.com',
+      initiatedUrl: 'https://www.linkedin.com/in/neilswhite',
       executedBy: 'Google Gemini 4 Argon',
       executedUrl: 'https://deepmind.google/models/gemini/',
       commitRef: '2bb2b2d',
     },
   ],
+};
+
+export const PERFORMANCE_TELEMETRY_LEDGER = {
+  auditCommand: 'npm --prefix public run audit:lighthouse && npm --prefix public run audit:ui',
+  lighthouseSnapshots: [
+    {
+      id: 'lh-2026-10-29-v2-1',
+      date: '2026-10-29 (Post-A11y, Deferred Firebase & Zero-CLS Pass)',
+      commit: 'v2.0 Head (Verified Live)',
+      desktop: { performance: 100, accessibility: 100, bestPractices: 100, seo: 100, fcp: '0.5 s', lcp: '0.5 s', tbt: '0 ms', cls: '0.000' },
+      mobile: { performance: 97, accessibility: 100, bestPractices: 100, seo: 100, fcp: '1.7 s', lcp: '1.7 s', tbt: '0 ms', cls: '0.000' },
+      changeNote:
+        'Achieved Quad-100 Desktop & Triple-100 Mobile: upgraded SDK tab button contrast (#1d4ed8), fixed 2 skipped h4->h3 headings, deferred Firebase Auth/Firestore hydration off critical FCP/LCP path, and switched Google Fonts to display=optional (0.000 CLS).',
+    },
+    {
+      id: 'lh-2026-10-29-baseline',
+      date: '2026-10-29 (Initial v2.0 Live Baseline)',
+      commit: '749548c',
+      desktop: { performance: 99, accessibility: 95, bestPractices: 100, seo: 100, fcp: '0.5 s', lcp: '0.5 s', tbt: '0 ms', cls: '0.067' },
+      mobile: { performance: 98, accessibility: 95, bestPractices: 100, seo: 100, fcp: '1.6 s', lcp: '1.6 s', tbt: '0 ms', cls: '0.000' },
+      changeNote:
+        'First automated Google Lighthouse CLI measurement on live Firebase Hosting CDN. Identified 1 SDK button contrast deduction (3.76:1), 2 skipped h4 headings, and 0.067 desktop font-swap CLS.',
+    },
+  ],
+  externalTelemetryMonitors: [
+    {
+      name: 'Google Lighthouse & Core Web Vitals',
+      status: 'LIVE AUTOMATED BOT',
+      badgeColor: 'emerald',
+      summary: 'Verified on every deploy via `public/scripts/audit-lighthouse.mjs` (Desktop + Mobile headless Chrome) alongside our 4-viewport CDP Layout Overflow Bot (`0` overflows across 67+ cards).',
+    },
+    {
+      name: 'Google Search Console & Sitemap / Atom Indexing',
+      status: 'SITEMAP + /FEED.XML + /LLMS.TXT LIVE',
+      badgeColor: 'blue',
+      summary: 'Tracks organic impressions, CTR, average position, and AI Overview citations after every architectural or schema change. `sitemap.xml`, `feed.xml`, and `llms.txt` are live at root.',
+    },
+    {
+      name: 'GTmetrix & Edge Waterfall Tracking',
+      status: 'BASELINE LOGGING READY',
+      badgeColor: 'purple',
+      summary: 'Logs TTFB, total payload bytes, immutable chunk cache-hit ratios, and uncompressed asset deltas across Firebase Hosting Google Cloud CDN edge nodes.',
+    },
+    {
+      name: 'AI-Content Detector Calibration Lab',
+      status: 'WAVE 1 CALIBRATING',
+      badgeColor: 'amber',
+      summary: 'Runs our own articles and blind study waves through leading AI-detection classifiers to test a key empirical question: does "AI-probability score" actually correlate with Google Search ranking or reader engagement?',
+    },
+  ],
+  blindContentStudy: {
+    title: 'The 4-Track Blind 5-Wave Longitudinal Content & SEO/GEO Study',
+    routePattern: '/insights/<topic-slug> (No inline experiment disclosure during active indexing)',
+    cadence: '5 Waves • 5 Days Apart • All 4 Tracks Published Simultaneously on the Same Day',
+    hypothesis:
+      'If four versions of the exact same technical/business brief are published simultaneously as standalone `/insights/<slug>` articles—without telling search crawlers or readers which model wrote which—how do they score on AI detectors, Core Web Vitals, Google Search Console impressions/CTR, and long-tail ranking over 30–90 days?',
+    tracks: [
+      {
+        trackId: 'Track A',
+        label: 'Google Gemini 4 Argon (Unedited Single-Shot)',
+        role: 'Pure autonomous Gemini 4 Argon research + Search-grounded synthesis.',
+      },
+      {
+        trackId: 'Track B',
+        label: 'Anthropic Claude (Unedited Single-Shot)',
+        role: 'Identical prompt & target word/structure constraints in frontier Claude.',
+      },
+      {
+        trackId: 'Track C',
+        label: 'OpenAI ChatGPT (Unedited Single-Shot)',
+        role: 'Identical prompt & target word/structure constraints in frontier ChatGPT.',
+      },
+      {
+        trackId: 'Track D',
+        label: 'Human-Edited Hybrid Control (30-Yr Editorial Pass)',
+        role: 'AI research draft refined with human voice, lived startup anecdotes, and structural tightening.',
+      },
+    ],
+  },
 };
 
 

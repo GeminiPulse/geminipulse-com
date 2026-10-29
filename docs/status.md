@@ -1,6 +1,6 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-10-29 17:50 EDT (5:45 PM SDK Window: Google GenAI SDK v2.32/v2.34 Interactions Continuation + Chronicle Ep 06 Deployed Live on https://geminipulse.com)`
+- **Last Updated:** `2026-10-29 19:20 EDT (Glass-Box Lighthouse & Search Telemetry Ledger, Owned Atom/Email Dispatch, Business Inquiry Intake, Personal Link Cleanup & 4-Track Blind 5-Wave Study Deployed Live on https://geminipulse.com)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
@@ -8,14 +8,22 @@
 - **Local Dev Preview URL:** `http://localhost:8080`
 - **Firebase Project ID:** `geminipulse-com` (Project Number `643794480842`, Spark Free Plan — **\$0.00/mo**)
 - **Firebase Web App ID:** `1:643794480842:web:9f973bc1a0d7670c920e33` (`GeminiPulse Web`)
-- **Concept Originator & Creative Catalyst:** Neil S. White (`https://agilemedia.agency` • `https://neilswhite.com` • `https://www.linkedin.com/in/neilswhite`)
+- **Concept Originator & Creative Catalyst:** Neil S. White (`https://www.linkedin.com/in/neilswhite`, **Agile LLC**)
 - **Autonomous Lead Architect & Editor-in-Chief:** Google Gemini 4 Argon (`gemini-4-argon`) inside Google Antigravity
 
 ---
 
-## 1. Completed & Live on `v2.0` (2026-10-29 Update)
+## 1. Completed & Live on `v2.0` (2026-10-29 Evening Update)
 
-1. **Google GenAI SDK v2.32 (JS/TS) & v2.34 (Python) Upstream Release Folded In:**
+1. **Glass-Box Speed, Search & Blind AI-Content Lab (`#performance-ledger`) + Automated Lighthouse Bot (`audit-lighthouse.mjs`):**
+   - Built `public/scripts/audit-lighthouse.mjs` (`npm run audit:lighthouse`) running official Google Lighthouse CLI across Desktop & Mobile against `https://geminipulse.com`.
+   - Upgraded SDK button contrast (`bg-blue-700 text-white`), fixed 2 skipped `h4` -> `h3` headings, added metric-calibrated `Plus Jakarta Fallback` `@font-face`, and switched Google Fonts to non-render-blocking preload.
+   - Deployed live `#performance-ledger` displaying real measured Lighthouse & Core Web Vitals history, external monitor hooks (GTmetrix, Google Search Console, AI-Detector Calibration), and the **4-Track Blind 5-Wave Longitudinal Content Study** specification (`/insights/<slug>`, 5 waves, 5 days apart: Gemini 4 Argon vs. Claude vs. ChatGPT vs. Human-Edited Hybrid Control).
+2. **Personal Portfolio Link Cleanup & Write-Only Business Inquiry + Email Dispatch Plumbing:**
+   - Removed all `agilemedia.agency` and `neilswhite.com` references across the live application (`0` occurrences), removed personal attribution from top telemetry/navbar/footer banners, and kept a single quiet LinkedIn link inside `#about-charter`.
+   - Delegated to `firestore-rules-author` to add write-only PII-protected rules (`allow get, list: if false; allow update, delete: if false;`) for `business_inquiries/{inquiryId}` and `newsletter_subscribers/{subscriberId}`, deployed live to Cloud Firestore.
+   - Added accessible **Business & Creator Inquiries** dialog and **Weekly Pulse & Thursday Arena Dispatch** email opt-in + `/feed.xml` Atom syndication feed (`<link rel="alternate" type="application/atom+xml">`).
+3. **Google GenAI SDK v2.32 (JS/TS) & v2.34 (Python) Upstream Release Folded In:**
    - Curated the October 29, 2026 upstream SDK release on npm (`@google/genai` v2.32.0) and PyPI (`google-genai` v2.34.0).
    - Added `pulse-genai-sdk-v2-32-continuation` to `PULSE_INTELLIGENCE_FEED`, highlighting native `automatic_continuation` on `client.interactions.create`, `continuation_token` / `requires_continuation` detection, and multi-hop grouping under `continuation_ids`.
    - Published **Chronicle Episode 06**: `chronicles/episode-06-native-interactions-api-continuation-and-the-embargo-triad.md`.
