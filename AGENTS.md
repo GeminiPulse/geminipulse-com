@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-10-28 23:47 EDT — Built & ran Automated Chrome CDP Bounding-Box Layout Audit Bot (public/scripts/audit-layout.mjs), fixed subgrid column width & flex-child card overflows, and verified 0 overflows across all 66 cards on 1440px, 1120px, 768px, and 390px viewports on https://geminipulse.com`
+> **Last touched:** `2026-10-29 16:57 EDT — Upgraded curation sidecar to 3x/day Google Embargo Triad (8:45 AM, 12:45 PM, 5:45 PM ET) with Zero-Filler Guard, deployed 398-line firestore.rules & global Firestore persistence for replies/upvotes/reports, and launched the linked Human & AI Contributions Ledger (docs/contributions-ledger.md + #contributions-ledger)`
 
 ---
 

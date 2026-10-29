@@ -35,7 +35,7 @@ import {
   X,
   Zap,
 } from 'lucide-react';
-import { collection, addDoc, query, where, orderBy, limit, onSnapshot } from 'firebase/firestore';
+import { collection, doc, addDoc, setDoc, deleteDoc, query, where, orderBy, limit, onSnapshot } from 'firebase/firestore';
 import {
   db,
   auth,
@@ -55,6 +55,7 @@ import {
   YOUTUBE_SHORTS_STUDIO,
   SOCIAL_DISTRIBUTION_PLAYBOOK,
   EXPERIMENT_CHARTER,
+  CONTRIBUTIONS_LEDGER,
   TRI_MODEL_RUBRIC,
   TRI_MODEL_ARENA_EXPERIMENTS,
 } from './data/geminiEcosystemData';
@@ -211,6 +212,8 @@ export default function App() {
     const saved = localStorage.getItem('geminipulse_reported_v3');
     return saved ? JSON.parse(saved) : [];
   });
+  const [liveUpvotes, setLiveUpvotes] = useState([]);
+  const [liveRepliesByThread, setLiveRepliesByThread] = useState({});
 
   useEffect(() => {
     if (!auth) return;
@@ -229,12 +232,26 @@ export default function App() {
     }
   };
 
-  const handleReportItem = (id, label) => {
+  const handleReportItem = async (id, label, targetType = 'showcase_project') => {
     setReportedIds((prev) => {
       const updated = prev.includes(id) ? prev : [...prev, id];
       localStorage.setItem('geminipulse_reported_v3', JSON.stringify(updated));
       return updated;
     });
+    if (db && currentUser) {
+      try {
+        await addDoc(collection(db, 'content_reports'), {
+          targetId: String(id).slice(0, 120),
+          targetType,
+          targetLabel: String(label || id).slice(0, 200),
+          reporterUid: currentUser.uid,
+          reason: 'Community flagged via UI Report control for Gemini 3.8 Flash moderation review',
+          createdAt: new Date().toISOString(),
+        });
+      } catch (err) {
+        console.warn('Recorded report locally:', err);
+      }
+    }
     setAuthNotice(`Flagged "${label}" for Gemini 3.8 Flash moderation review.`);
     setTimeout(() => setAuthNotice(null), 4000);
   };
@@ -252,7 +269,7 @@ export default function App() {
       qForum,
       (snap) => {
         if (!snap.empty) {
-          const liveThreads = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+          const liveThreads = snap.docs.map((d) => ({ ...d.data(), id: d.id }));
           const liveIds = new Set(liveThreads.map((t) => t.id));
           setForumThreads([
             ...liveThreads,
@@ -273,7 +290,7 @@ export default function App() {
       qShowcase,
       (snap) => {
         if (!snap.empty) {
-          const liveProjects = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+          const liveProjects = snap.docs.map((d) => ({ ...d.data(), id: d.id }));
           const liveIds = new Set(liveProjects.map((p) => p.id));
           setShowcaseProjects([
             ...liveProjects,
@@ -284,11 +301,42 @@ export default function App() {
       () => {}
     );
 
+    const qUpvotes = query(collection(db, 'project_upvotes'), limit(500));
+    const unsubUpvotes = onSnapshot(
+      qUpvotes,
+      (snap) => {
+        setLiveUpvotes(snap.docs.map((d) => ({ id: d.id, ...d.data() })));
+      },
+      () => {}
+    );
+
     return () => {
       unsubForum();
       unsubShowcase();
+      unsubUpvotes();
     };
   }, []);
+
+  // Subscribe to global Cloud Firestore replies for the active forum thread
+  useEffect(() => {
+    if (!db || !activeThreadId) return;
+    const qReplies = query(
+      collection(db, 'forum_threads', activeThreadId, 'replies'),
+      where('status', '==', 'published'),
+      limit(100)
+    );
+    const unsubReplies = onSnapshot(
+      qReplies,
+      (snap) => {
+        const items = snap.docs
+          .map((d) => ({ ...d.data(), id: d.id }))
+          .sort((a, b) => String(a.createdAt || '').localeCompare(String(b.createdAt || '')));
+        setLiveRepliesByThread((prev) => ({ ...prev, [activeThreadId]: items }));
+      },
+      () => {}
+    );
+    return () => unsubReplies();
+  }, [activeThreadId]);
 
   useEffect(() => {
     localStorage.setItem('geminipulse_showcase_v3', JSON.stringify(showcaseProjects));
@@ -336,13 +384,58 @@ export default function App() {
     });
   };
 
+  // Live aggregated upvote counts & current user's upvoted project IDs from Cloud Firestore
+  const liveUpvoteCounts = useMemo(() => {
+    const counts = {};
+    liveUpvotes.forEach((u) => {
+      if (u.projectId) {
+        counts[u.projectId] = (counts[u.projectId] || 0) + 1;
+      }
+    });
+    return counts;
+  }, [liveUpvotes]);
+
+  const userUpvotedSet = useMemo(() => {
+    if (!currentUser) return new Set();
+    return new Set(
+      liveUpvotes.filter((u) => u.voterUid === currentUser.uid).map((u) => u.projectId)
+    );
+  }, [liveUpvotes, currentUser]);
+
   // Filtered Showcase Projects
   const filteredShowcase = useMemo(() => {
     if (showcaseFilter === 'All') return showcaseProjects;
     return showcaseProjects.filter((p) => p.category === showcaseFilter);
   }, [showcaseProjects, showcaseFilter]);
 
-  const handleUpvoteProject = (id) => {
+  const handleUpvoteProject = async (id) => {
+    if (!currentUser) {
+      setAuthNotice('Sign in with Google to cast a verified global upvote (1 vote per Google account).');
+      setTimeout(() => setAuthNotice(null), 4000);
+      return;
+    }
+    const cleanId = String(id).slice(0, 120);
+    const upvoteDocId = `${cleanId}_${currentUser.uid}`;
+    const alreadyUpvoted = userUpvotedSet.has(cleanId);
+
+    if (db) {
+      try {
+        const upvoteRef = doc(db, 'project_upvotes', upvoteDocId);
+        if (alreadyUpvoted) {
+          await deleteDoc(upvoteRef);
+        } else {
+          await setDoc(upvoteRef, {
+            projectId: cleanId,
+            voterUid: currentUser.uid,
+            createdAt: new Date().toISOString(),
+          });
+        }
+        return;
+      } catch (err) {
+        console.warn('Upvote fallback to local state:', err);
+      }
+    }
+
     setShowcaseProjects((prev) =>
       prev.map((p) => (p.id === id ? { ...p, upvotes: (p.upvotes || 0) + 1 } : p))
     );
@@ -383,7 +476,7 @@ export default function App() {
 
     if (db) {
       try {
-        await addDoc(collection(db, 'showcase_projects'), created);
+        await setDoc(doc(db, 'showcase_projects', created.id), created);
       } catch (err) {
         console.warn('Saved locally (Firestore offline):', err);
       }
@@ -425,7 +518,7 @@ export default function App() {
       authorUid: currentUser.uid,
       category: newThreadForm.category,
       tags: tags.length ? tags.slice(0, 10) : ['gemini-4-argon'],
-      replies: 1,
+      replies: 0,
       upvotes: 1,
       createdAt: new Date().toISOString(),
       verifiedByGemini: true,
@@ -437,7 +530,7 @@ export default function App() {
 
     if (db) {
       try {
-        await addDoc(collection(db, 'forum_threads'), created);
+        await setDoc(doc(db, 'forum_threads', created.id), created);
       } catch (err) {
         console.warn('Saved thread locally:', err);
       }
@@ -455,13 +548,35 @@ export default function App() {
     setShowNewThreadModal(false);
   };
 
-  const handleAddReply = (e) => {
+  const handleAddReply = async (e) => {
     e.preventDefault();
     if (!currentUser) {
       setAuthNotice('Please sign in with Google to post a forum reply (House Rule #6).');
       return;
     }
-    if (!replyInput.trim()) return;
+    const cleanText = replyInput.trim().slice(0, 2000);
+    if (!cleanText || !activeThreadId) return;
+
+    const replyPayload = {
+      threadId: String(activeThreadId).slice(0, 120),
+      author: (currentUser.displayName || currentUser.email || 'Authenticated User').slice(0, 80),
+      authorUid: currentUser.uid,
+      text: cleanText,
+      status: 'published',
+      createdAt: new Date().toISOString(),
+    };
+
+    setReplyInput('');
+
+    if (db) {
+      try {
+        await addDoc(collection(db, 'forum_threads', activeThreadId, 'replies'), replyPayload);
+        return;
+      } catch (err) {
+        console.warn('Saved reply locally:', err);
+      }
+    }
+
     setForumThreads((prev) =>
       prev.map((t) => {
         if (t.id !== activeThreadId) return t;
@@ -469,9 +584,9 @@ export default function App() {
           ...(t.comments || []),
           {
             id: `c-${Date.now()}`,
-            author: currentUser.displayName || currentUser.email || 'Authenticated User',
+            author: replyPayload.author,
             time: 'Just now',
-            text: replyInput.trim(),
+            text: replyPayload.text,
           },
         ];
         return {
@@ -481,13 +596,26 @@ export default function App() {
         };
       })
     );
-    setReplyInput('');
   };
 
   const activeThread = useMemo(
     () => forumThreads.find((t) => t.id === activeThreadId) || forumThreads[0],
     [forumThreads, activeThreadId]
   );
+
+  const activeThreadReplies = useMemo(() => {
+    if (!activeThread) return [];
+    const liveList = liveRepliesByThread[activeThread.id] || [];
+    const formattedLive = liveList.map((r) => ({
+      id: r.id,
+      author: r.author,
+      time: r.createdAt ? new Date(r.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : 'Verified',
+      text: r.text,
+    }));
+    const existingIds = new Set(formattedLive.map((r) => r.id));
+    const localFallback = (activeThread.comments || []).filter((c) => !existingIds.has(c.id));
+    return [...localFallback, ...formattedLive];
+  }, [activeThread, liveRepliesByThread]);
 
   const activeEpisode = useMemo(
     () => ANTIGRAVITY_CHRONICLES.find((ep) => ep.id === activeEpisodeId) || ANTIGRAVITY_CHRONICLES[0],
@@ -1497,16 +1625,30 @@ export default function App() {
 
                     <div className="flex items-center gap-2 shrink-0">
                       <button
+                        type="button"
                         onClick={() => handleUpvoteProject(proj.id)}
-                        className="px-3.5 py-2 rounded-xl m3-surface-elevated hover:border-blue-400 flex flex-col items-center justify-center min-w-[3.5rem] cursor-pointer transition-all"
-                        title="Upvote this Gemini project"
+                        aria-pressed={userUpvotedSet.has(proj.id)}
+                        className={`px-3.5 py-2 rounded-xl m3-surface-elevated flex flex-col items-center justify-center min-w-[3.5rem] cursor-pointer transition-all ${
+                          userUpvotedSet.has(proj.id)
+                            ? 'border-blue-400 bg-blue-500/15 text-blue-300'
+                            : 'hover:border-blue-400'
+                        }`}
+                        title={
+                          userUpvotedSet.has(proj.id)
+                            ? 'Upvoted (click to remove your upvote)'
+                            : 'Upvote this Gemini project (Google Sign-In)'
+                        }
                       >
                         <ThumbsUp className="w-4 h-4 text-blue-400" />
-                        <span className="font-mono text-xs font-bold mt-0.5">{proj.upvotes}</span>
+                        <span className="font-mono text-xs font-bold mt-0.5">
+                          {(proj.upvotes || 0) + (liveUpvoteCounts[proj.id] || 0)}
+                        </span>
                       </button>
 
                       <button
-                        onClick={() => handleReportItem(proj.id, proj.name)}
+                        type="button"
+                        onClick={() => handleReportItem(proj.id, proj.name, 'showcase_project')}
+                        aria-pressed={reportedIds.includes(proj.id)}
                         className={`p-2.5 rounded-xl m3-surface-elevated hover:border-red-400/60 cursor-pointer transition-all ${
                           reportedIds.includes(proj.id) ? 'text-red-400 border-red-400/50' : 'm3-text-muted'
                         }`}
@@ -1611,8 +1753,9 @@ export default function App() {
                           type="button"
                           onClick={(e) => {
                             e.stopPropagation();
-                            handleReportItem(thread.id, thread.title);
+                            handleReportItem(thread.id, thread.title, 'forum_thread');
                           }}
+                          aria-pressed={reportedIds.includes(thread.id)}
                           className={`p-1 rounded hover:text-red-400 cursor-pointer ${
                             reportedIds.includes(thread.id) ? 'text-red-400' : 'm3-text-muted'
                           }`}
@@ -1629,7 +1772,7 @@ export default function App() {
                     <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-mono m3-text-muted">
                       <span>by {thread.author}</span>
                       <div className="flex items-center gap-3">
-                        <span>{thread.replies || 0} replies</span>
+                        <span>{(liveRepliesByThread[thread.id]?.length ?? thread.replies) || 0} replies</span>
                         <span>•</span>
                         <span>{thread.upvotes || 1} upvotes</span>
                       </div>
@@ -1658,7 +1801,8 @@ export default function App() {
                       <span className="text-xs font-mono m3-text-muted">Posted by {activeThread.author}</span>
                       <button
                         type="button"
-                        onClick={() => handleReportItem(activeThread.id, activeThread.title)}
+                        onClick={() => handleReportItem(activeThread.id, activeThread.title, 'forum_thread')}
+                        aria-pressed={reportedIds.includes(activeThread.id)}
                         className={`p-1.5 rounded-lg m3-surface-elevated hover:border-red-400/60 text-xs font-mono inline-flex items-center gap-1 cursor-pointer ${
                           reportedIds.includes(activeThread.id) ? 'text-red-400 border-red-400/50' : 'm3-text-muted'
                         }`}
@@ -1696,23 +1840,37 @@ export default function App() {
                   {/* Community Replies */}
                   <div className="space-y-2.5 pt-2">
                     <div className="text-xs font-mono uppercase m3-text-muted">
-                      Community Replies ({(activeThread.comments || []).length})
+                      Community Replies ({activeThreadReplies.length})
                     </div>
-                    {(activeThread.comments || []).length === 0 ? (
+                    {activeThreadReplies.length === 0 ? (
                       <div className="text-xs m3-text-muted italic">
                         No human replies yet. Sign in with Google to add the first verified community response!
                       </div>
                     ) : (
-                      activeThread.comments.map((c) => (
+                      activeThreadReplies.map((c) => (
                         <div
                           key={c.id}
                           className="p-3.5 rounded-xl bg-[var(--md-sys-color-surface)] border border-[var(--md-sys-color-outline)] text-xs space-y-1"
                         >
-                          <div className="flex justify-between font-mono m3-text-muted">
+                          <div className="flex items-center justify-between gap-2 font-mono m3-text-muted">
                             <span className="font-semibold text-[var(--md-sys-color-on-surface)]">{c.author}</span>
-                            <span>{c.time}</span>
+                            <div className="flex items-center gap-2">
+                              <span>{c.time}</span>
+                              <button
+                                type="button"
+                                onClick={() => handleReportItem(c.id, `Reply by ${c.author}`, 'forum_reply')}
+                                aria-pressed={reportedIds.includes(c.id)}
+                                className={`p-1 rounded hover:text-red-400 cursor-pointer ${
+                                  reportedIds.includes(c.id) ? 'text-red-400' : 'm3-text-muted'
+                                }`}
+                                title="Report / Flag this reply"
+                                aria-label="Report or flag reply"
+                              >
+                                <Flag className="w-3 h-3" />
+                              </button>
+                            </div>
                           </div>
-                          <p className="m3-text-muted">{c.text}</p>
+                          <p className="m3-text-muted break-words">{c.text}</p>
                         </div>
                       ))
                     )}
@@ -2189,6 +2347,113 @@ export default function App() {
                   Read Terms of Service & Disclosure
                 </button>
               </div>
+            </div>
+          </div>
+
+          {/* Linked Human & AI Contributions & Provenance Ledger */}
+          <div id="contributions-ledger" className="m3-card p-6 sm:p-8 space-y-6">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[var(--md-sys-color-outline)] pb-5">
+              <div className="space-y-1.5 min-w-0">
+                <div className="text-xs font-mono uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
+                  <ShieldCheck className="w-3.5 h-3.5 shrink-0" />
+                  Radical Provenance • Human & Cross-Agent Attribution Ledger
+                </div>
+                <h3 className="text-2xl font-bold">
+                  Open <span className="gemini-spectrum-text">Contributions & Credits Ledger</span>
+                </h3>
+                <p className="text-sm m3-text-muted max-w-3xl">
+                  Every human directive, UI critique, cross-agent peer audit, and autonomous engineering milestone folded into <strong>GeminiPulse.com</strong> is transparently credited below with direct links to each contributor’s sites and platforms.
+                </p>
+              </div>
+              <a
+                href={CONTRIBUTIONS_LEDGER.ledgerUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="px-4 py-2 rounded-full m3-surface-elevated hover:border-blue-400 text-xs font-mono font-semibold inline-flex items-center gap-1.5 whitespace-nowrap self-start md:self-auto"
+              >
+                <span>docs/contributions-ledger.md</span>
+                <ExternalLink className="w-3.5 h-3.5 text-blue-400" />
+              </a>
+            </div>
+
+            {/* Accredited Contributor Cards (Human & AI) */}
+            <ul role="list" className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+              {CONTRIBUTIONS_LEDGER.contributors.map((contributor) => (
+                <li
+                  key={contributor.id}
+                  className="p-4 rounded-2xl bg-[var(--md-sys-color-surface)] border border-[var(--md-sys-color-outline)] flex flex-col justify-between gap-3.5 min-w-0"
+                >
+                  <div className="space-y-2 min-w-0">
+                    <span className="inline-block text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-blue-500/15 text-blue-400">
+                      {contributor.badge}
+                    </span>
+                    <h4 className="font-bold text-base break-words">{contributor.name}</h4>
+                    <div className="text-xs font-semibold text-purple-400">{contributor.role}</div>
+                    <p className="text-xs m3-text-muted leading-relaxed">{contributor.summary}</p>
+                  </div>
+                  <div className="pt-3 border-t border-[var(--md-sys-color-outline)] flex flex-wrap gap-1.5">
+                    {contributor.links.map((lnk) => (
+                      <a
+                        key={lnk.url}
+                        href={lnk.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-[11px] font-mono px-2.5 py-1 rounded-full m3-surface-elevated hover:border-blue-400 text-blue-300 inline-flex items-center gap-1 max-w-full"
+                      >
+                        <span className="truncate">{lnk.label}</span>
+                        <ArrowUpRight className="w-3 h-3 shrink-0" />
+                      </a>
+                    ))}
+                  </div>
+                </li>
+              ))}
+            </ul>
+
+            {/* Chronological Provenance Timeline */}
+            <div className="space-y-3 pt-2">
+              <div className="text-xs font-mono uppercase m3-text-muted">
+                Recent Folded Directives, Peer Audits & Engineering Commits
+              </div>
+              <ol role="list" className="space-y-3">
+                {CONTRIBUTIONS_LEDGER.entries.map((entry) => (
+                  <li
+                    key={entry.id}
+                    className="p-4 rounded-2xl bg-[var(--md-sys-color-surface)] border border-[var(--md-sys-color-outline)] flex flex-col lg:flex-row lg:items-center justify-between gap-3 min-w-0"
+                  >
+                    <div className="space-y-1 min-w-0 flex-1">
+                      <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
+                        <span className="text-emerald-400 font-semibold">{entry.date}</span>
+                        <span className="m3-text-muted">•</span>
+                        <span className="px-2 py-0.5 rounded bg-purple-500/15 text-purple-300">
+                          {entry.commitRef}
+                        </span>
+                      </div>
+                      <h4 className="font-bold text-sm sm:text-base">{entry.title}</h4>
+                      <p className="text-xs m3-text-muted leading-relaxed">{entry.summary}</p>
+                    </div>
+                    <div className="flex flex-wrap lg:flex-col items-start lg:items-end gap-1.5 text-[11px] font-mono shrink-0">
+                      <a
+                        href={entry.initiatedUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-400/25 text-amber-300 hover:border-amber-400 inline-flex items-center gap-1"
+                      >
+                        <span>Catalyst: {entry.initiatedBy}</span>
+                        <ExternalLink className="w-3 h-3 shrink-0" />
+                      </a>
+                      <a
+                        href={entry.executedUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="px-2.5 py-1 rounded-full bg-blue-500/10 border border-blue-400/25 text-blue-300 hover:border-blue-400 inline-flex items-center gap-1"
+                      >
+                        <span>Built by: {entry.executedBy}</span>
+                        <ExternalLink className="w-3 h-3 shrink-0" />
+                      </a>
+                    </div>
+                  </li>
+                ))}
+              </ol>
             </div>
           </div>
         </section>

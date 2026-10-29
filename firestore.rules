@@ -48,6 +48,36 @@ rules_version = '2';
 //   - Public read (get, list) ONLY when resource.data.status == 'published'
 //   - Written exclusively by Cloud Functions Admin SDK (all client writes denied)
 //
+// Subcollection: forum_threads/{threadId}/replies
+// Document ID: {replyId}
+// Fields:
+//   - id: string (optional, 1..120 chars, immutable) - Client-generated identifier
+//   - threadId: string (required, 1..120 chars, == threadId path wildcard, immutable) - Parent thread ID
+//   - author: string (required, 1..80 chars, immutable) - Reply author display name or handle
+//   - authorUid: string (required, 1..128 chars, == request.auth.uid, immutable) - Owner Firebase Auth UID
+//   - text: string (required, 1..2000 chars, immutable) - Reply text content
+//   - status: string (required, == 'published', immutable) - Publication status
+//   - createdAt: string (required, 1..50 chars, immutable) - ISO creation timestamp
+//
+// Collection: project_upvotes
+// Document ID: {upvoteId} (deterministic: {projectId}_{request.auth.uid})
+// Fields:
+//   - projectId: string (required, 1..120 chars, immutable) - Target showcase project ID
+//   - voterUid: string (required, 1..128 chars, == request.auth.uid, immutable) - Voter Firebase Auth UID
+//   - createdAt: string (required, 1..50 chars, immutable) - ISO creation timestamp
+//
+// Collection: content_reports
+// Document ID: {reportId}
+// Access:
+//   - Write-only community abuse/moderation report inbox (House Rule #6); client reads/updates/deletes denied
+// Fields:
+//   - targetId: string (required, 1..120 chars, immutable) - Reported item ID
+//   - targetType: string (required, enum: ['showcase_project', 'forum_thread', 'forum_reply'], immutable)
+//   - targetLabel: string (required, 1..200 chars, immutable) - Human-readable label of reported content
+//   - reporterUid: string (required, 1..128 chars, == request.auth.uid, immutable) - Reporter Firebase Auth UID
+//   - reason: string (required, 1..500 chars, immutable) - Report reason summary
+//   - createdAt: string (required, 1..50 chars, immutable) - ISO creation timestamp
+//
 // ===============================================================
 
 service cloud.firestore {
@@ -229,6 +259,88 @@ service cloud.firestore {
         data.status == 'published';
     }
 
+    function isValidForumReply(data, threadId) {
+      let requiredFields = [
+        'threadId',
+        'author',
+        'authorUid',
+        'text',
+        'status',
+        'createdAt'
+      ];
+      let allowedFields = [
+        'id',
+        'threadId',
+        'author',
+        'authorUid',
+        'text',
+        'status',
+        'createdAt'
+      ];
+
+      return hasRequiredFields(requiredFields) &&
+        hasOnlyAllowedFields(allowedFields) &&
+        isValidOptionalString('id', 1, 120) &&
+        validStringLength('threadId', 1, 120) &&
+        data.threadId == threadId &&
+        validStringLength('author', 1, 80) &&
+        authorUidUnchanged() &&
+        validStringLength('text', 1, 2000) &&
+        data.status is string &&
+        data.status == 'published' &&
+        validStringLength('createdAt', 1, 50);
+    }
+
+    function isValidProjectUpvote(data) {
+      let requiredFields = [
+        'projectId',
+        'voterUid',
+        'createdAt'
+      ];
+      let allowedFields = [
+        'projectId',
+        'voterUid',
+        'createdAt'
+      ];
+
+      return hasRequiredFields(requiredFields) &&
+        hasOnlyAllowedFields(allowedFields) &&
+        validStringLength('projectId', 1, 120) &&
+        validStringLength('voterUid', 1, 128) &&
+        data.voterUid == request.auth.uid &&
+        validStringLength('createdAt', 1, 50);
+    }
+
+    function isValidContentReport(data) {
+      let requiredFields = [
+        'targetId',
+        'targetType',
+        'targetLabel',
+        'reporterUid',
+        'reason',
+        'createdAt'
+      ];
+      let allowedFields = [
+        'targetId',
+        'targetType',
+        'targetLabel',
+        'reporterUid',
+        'reason',
+        'createdAt'
+      ];
+
+      return hasRequiredFields(requiredFields) &&
+        hasOnlyAllowedFields(allowedFields) &&
+        validStringLength('targetId', 1, 120) &&
+        data.targetType is string &&
+        data.targetType in ['showcase_project', 'forum_thread', 'forum_reply'] &&
+        validStringLength('targetLabel', 1, 200) &&
+        validStringLength('reporterUid', 1, 128) &&
+        data.reporterUid == request.auth.uid &&
+        validStringLength('reason', 1, 500) &&
+        validStringLength('createdAt', 1, 50);
+    }
+
     // ===============================================================
     // Collection Rules
     // ===============================================================
@@ -249,11 +361,32 @@ service cloud.firestore {
         isValidForumThread(request.resource.data) &&
         isImmutableMetaUnchanged();
       allow delete: if false;
+
+      match /replies/{replyId} {
+        allow get, list: if isPublished();
+        allow create: if isAuthenticated() && isValidForumReply(request.resource.data, threadId);
+        allow update, delete: if false;
+      }
     }
 
     match /ai_news/{newsId} {
       allow get, list: if isPublished();
       allow create, update, delete: if false;
+    }
+
+    match /project_upvotes/{upvoteId} {
+      allow get, list: if true;
+      allow create: if isAuthenticated() &&
+        isValidProjectUpvote(request.resource.data) &&
+        upvoteId == request.resource.data.projectId + '_' + request.auth.uid;
+      allow update: if false;
+      allow delete: if isAuthenticated() && resource.data.voterUid == request.auth.uid;
+    }
+
+    match /content_reports/{reportId} {
+      allow get, list: if false;
+      allow create: if isAuthenticated() && isValidContentReport(request.resource.data);
+      allow update, delete: if false;
     }
 
     // Default deny all other collections and documents

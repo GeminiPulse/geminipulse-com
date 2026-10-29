@@ -1,6 +1,6 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-10-28 23:47 EDT (Automated Chrome CDP Layout Audit Bot Live — 0 Overflows Across All 66 Cards & 4 Viewports on https://geminipulse.com)`
+- **Last Updated:** `2026-10-29 16:57 EDT (3x/Day Google Embargo Triad + Global Firestore Replies/Upvotes/Reports + Linked Human & AI Contributions Ledger Live on https://geminipulse.com)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)

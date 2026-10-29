@@ -952,7 +952,7 @@ export const EXPERIMENT_CHARTER = {
     personalUrl: 'https://neilswhite.com',
     linkedinUrl: 'https://www.linkedin.com/in/neilswhite',
     story:
-      'Neil conceived GeminiPulse with a straightforward, unbiased premise: set up the sandbox, hand the keys to Google Gemini, and let the model itself decide how to design, code, curate, and grow a showcase of the Google AI ecosystem using 100% Google products. After shelving an early prototype a year and a half ago while the models matured, Neil and Gemini reunited in the Gemini 4 & Google Antigravity era to set the experiment free.',
+      'Born in June—making him a literal Gemini twinning with Google Gemini—Neil conceived GeminiPulse with a straightforward, unbiased premise: set up the sandbox, hand the keys to Google’s flagship AI, and let the model itself decide how to design, code, curate, and grow a showcase of the Google AI ecosystem using 100% Google products. After shelving an early prototype a year and a half ago while the models matured, Neil and Gemini reunited in the Gemini 4 & Google Antigravity era to set the experiment free.',
   },
   aiArchitect: {
     name: 'Google Gemini 4 Argon',
@@ -1261,4 +1261,123 @@ Requirements in a single shot:
     },
   },
 ];
+
+export const CONTRIBUTIONS_LEDGER = {
+  ledgerUrl: 'https://github.com/GeminiPulse/geminipulse-com/blob/v2.0/docs/contributions-ledger.md',
+  contributors: [
+    {
+      id: 'neil-s-white',
+      name: 'Neil S. White',
+      badge: 'HUMAN CATALYST',
+      role: 'Concept Originator, Creative Catalyst & Product Director (June-born Gemini)',
+      summary:
+        'Conceived the autonomous 100% Google showcase premise, established the 8 House Rules, caught visual header & subgrid overflow edge cases, mandated automated Chrome layout auditing, and sequenced pre-Arena distribution.',
+      links: [
+        { label: 'agilemedia.agency', url: 'https://agilemedia.agency' },
+        { label: 'neilswhite.com', url: 'https://neilswhite.com' },
+        { label: 'linkedin.com/in/neilswhite', url: 'https://www.linkedin.com/in/neilswhite' },
+      ],
+    },
+    {
+      id: 'google-gemini-4-argon',
+      name: 'Google Gemini 4 Argon',
+      badge: 'PRIMARY AUTONOMOUS AI',
+      role: 'Autonomous Lead Architect, Editor-in-Chief & Media Director',
+      summary:
+        'Architected the clean-slate React 19 + Material Design 3 v2.0 platform inside Google Antigravity, built the Automated Chrome CDP Layout Audit Bot, authored all 4 single-shot Arena apps, and runs 3x/day Search-Grounded curation.',
+      links: [
+        { label: 'Google DeepMind Gemini', url: 'https://deepmind.google/models/gemini/' },
+        { label: 'Google Antigravity', url: 'https://antigravity.google' },
+        { label: 'Gemini API Docs', url: 'https://ai.google.dev/gemini-api/docs' },
+      ],
+    },
+    {
+      id: 'claude-anthropic-peer',
+      name: 'Claude (Anthropic)',
+      badge: 'PEER OPS & AUDIT AI',
+      role: 'Cross-Project Registry Ops, Cloudflare DNS Cutover & Pre-Launch Reviewer',
+      summary:
+        'Provisioned Cloudflare DNS-only records pointing geminipulse.com to Firebase Hosting, audited public GitHub history for zero leaked keys, and flagged 3 pre-launch security/citation items evaluated by Gemini.',
+      links: [
+        { label: 'claude.ai', url: 'https://claude.ai' },
+        { label: 'anthropic.com', url: 'https://www.anthropic.com' },
+      ],
+    },
+    {
+      id: 'antigravity-firestore-specialist',
+      name: 'firestore-rules-author',
+      badge: 'SPECIALIST SUBAGENT',
+      role: 'Antigravity Cloud Firestore Security Rules Specialist',
+      summary:
+        'Authored and hardened schema-validated Cloud Firestore Security Rules enforcing published-only reads, owner-bound writes, deduplicated 1-per-user project upvotes, immutable forum replies, and private moderation reports.',
+      links: [
+        { label: 'Google Antigravity', url: 'https://antigravity.google' },
+        { label: 'firestore.rules (GitHub)', url: 'https://github.com/GeminiPulse/geminipulse-com/blob/v2.0/firestore.rules' },
+      ],
+    },
+  ],
+  entries: [
+    {
+      id: 'ledger-07',
+      date: '2026-10-29',
+      title: '3x/Day Google Embargo Triad, Global Firestore Community Persistence & Open Attribution Ledger',
+      summary:
+        'Upgraded scheduled curation to 3x/day (8:45 AM, 12:45 PM, 5:45 PM ET) with a Zero-Filler No-Op Guard, wired global Firestore persistence for replies, deduplicated upvotes, and moderation reports, and launched this linked Human & AI Contributions Ledger.',
+      initiatedBy: 'Neil S. White & Google Gemini 4 Argon',
+      initiatedUrl: 'https://neilswhite.com',
+      executedBy: 'Gemini 4 Argon + firestore-rules-author',
+      executedUrl: 'https://deepmind.google/models/gemini/',
+      commitRef: 'v2.0 live',
+    },
+    {
+      id: 'ledger-06',
+      date: '2026-10-28',
+      title: 'Card Subgrid Overflow Catch & Automated Chrome CDP Layout Audit Bot',
+      summary:
+        'Neil spotted card titles extending past subgrid borders and directed that audit bots must scan for visual overflows automatically. Gemini fixed CSS Grid minmax(0, 1fr) track sizing and built public/scripts/audit-layout.mjs (0 overflows across 66 cards & 4 viewports).',
+      initiatedBy: 'Neil S. White',
+      initiatedUrl: 'https://www.linkedin.com/in/neilswhite',
+      executedBy: 'Google Gemini 4 Argon',
+      executedUrl: 'https://antigravity.google',
+      commitRef: 'faf295b',
+    },
+    {
+      id: 'ledger-05',
+      date: '2026-10-28',
+      title: 'Material 3 Unified Account Chip & All 4 Single-Shot Tri-Model Arena Apps',
+      summary:
+        'Neil flagged cramped multi-line navbar pills after Google Sign-In. Gemini merged signed-in state into a single Material 3 Google Account Chip, added no-cache HTML headers, and shipped all 4 standalone Arena HTML5 apps (exp-01 to exp-04).',
+      initiatedBy: 'Neil S. White',
+      initiatedUrl: 'https://agilemedia.agency',
+      executedBy: 'Google Gemini 4 Argon',
+      executedUrl: 'https://deepmind.google/models/gemini/',
+      commitRef: '62a9701 • f3200c2',
+    },
+    {
+      id: 'ledger-04',
+      date: '2026-10-28',
+      title: 'Cloudflare DNS Cutover, Public Secret Scan & Pre-Launch Security Audit',
+      summary:
+        'Claude provisioned Cloudflare DNS-only records for geminipulse.com, verified zero secrets in git history, and flagged 3 pre-launch items (firestore.rules expiry, deep-linked news URLs, and daily git push) independently verified and implemented by Gemini.',
+      initiatedBy: 'Claude (Anthropic) & Neil S. White',
+      initiatedUrl: 'https://claude.ai',
+      executedBy: 'Gemini 4 Argon + firestore-rules-author',
+      executedUrl: 'https://antigravity.google',
+      commitRef: '881ca24 • 914a562',
+    },
+    {
+      id: 'ledger-01',
+      date: '2026-10-28',
+      title: 'Founding Autonomous Mandate & Clean-Slate v2.0 Rebuild',
+      summary:
+        'Neil S. White handed full creative and architectural control of geminipulse.com to Gemini 4 Argon on a 100% Google stack. Gemini retired legacy 1.5 code and launched the 10-module Material Design 3 & Interactions API platform.',
+      initiatedBy: 'Neil S. White',
+      initiatedUrl: 'https://neilswhite.com',
+      executedBy: 'Google Gemini 4 Argon',
+      executedUrl: 'https://deepmind.google/models/gemini/',
+      commitRef: '2bb2b2d',
+    },
+  ],
+};
+
 
