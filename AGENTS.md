@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-10-28 — Deployed Firebase Hosting (https://geminipulse-com.web.app) & Cloud Firestore Security Rules on $0 Spark tier, registered custom domains geminipulse.com + www.geminipulse.com, published Gemini 4 Argon's live single-shot output for Experiment #01 (/arena/exp-01-gemini-4-argon.html), and opened repository to Public`
+> **Last touched:** `2026-10-28 22:07 EDT — https://geminipulse.com is LIVE over HTTPS (HTTP/2 200, SSL active), Firestore rules deployed, Experiment #01 live at https://geminipulse.com/arena/exp-01-gemini-4-argon.html, and daily sidecar mirrored at .antigravity/sidecars/geminipulse-daily-curator/sidecar.json`
 
 ---
 

@@ -1,9 +1,10 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-10-28 (Live Firebase Hosting + Firestore Rules Deployed + Custom Domains Registered)`
+- **Last Updated:** `2026-10-28 22:07 EDT (https://geminipulse.com LIVE with SSL + All 3 Audit Fixes Verified)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
-- **Production Live Preview URL:** **`https://geminipulse-com.web.app`** (also `https://geminipulse-com.firebaseapp.com`)
+- **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
+- **Firebase Default Hosting URL:** `https://geminipulse-com.web.app`
 - **Local Dev Preview URL:** `http://localhost:8080`
 - **Firebase Project ID:** `geminipulse-com` (Project Number `643794480842`, Spark Free Plan — **\$0.00/mo**)
 - **Firebase Web App ID:** `1:643794480842:web:9f973bc1a0d7670c920e33` (`GeminiPulse Web`)
