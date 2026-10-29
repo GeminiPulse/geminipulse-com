@@ -552,9 +552,9 @@ export default function App() {
       </div>
 
       {/* Material 3 Expressive Single-Line Floating Pill Navbar */}
-      <header className="sticky top-3 z-50 px-4 mt-3">
-        <nav className="max-w-7xl mx-auto m3-glass-pill m3-scroll-header rounded-full px-4 sm:px-5 py-2.5 flex items-center justify-between gap-3">
-          <a href="#" className="flex items-center gap-2 font-bold text-lg sm:text-xl tracking-tight whitespace-nowrap shrink-0">
+      <header className="sticky top-3 z-50 px-3 sm:px-4 mt-3">
+        <nav className="max-w-7xl mx-auto m3-glass-pill m3-scroll-header rounded-full px-3 sm:px-5 py-2 sm:py-2.5 flex items-center justify-between gap-2 sm:gap-3">
+          <a href="#" className="flex items-center gap-1.5 sm:gap-2 font-bold text-base sm:text-xl tracking-tight whitespace-nowrap shrink-0">
             <GeminiSparkle className="w-5 h-5 sm:w-6 sm:h-6 animate-gemini-sparkle shrink-0" />
             <span>
               Gemini<span className="gemini-spectrum-text">Pulse</span>
@@ -617,7 +617,7 @@ export default function App() {
           </div>
 
           {/* Right Action Controls (Unified Account Chip + Single-Line CTA) */}
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
             <button
               onClick={() => setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))}
               title={theme === 'dark' ? 'Switch to Material 3 Daylight Editorial Mode' : 'Switch to Gemini Studio Dark Mode'}
@@ -628,7 +628,7 @@ export default function App() {
             </button>
 
             {currentUser ? (
-              <div className="inline-flex items-center gap-2 pl-2 pr-1.5 py-1 rounded-full m3-surface-elevated border border-emerald-500/30 whitespace-nowrap shrink-0">
+              <div className="inline-flex items-center gap-1.5 sm:gap-2 pl-1.5 sm:pl-2 pr-1 sm:pr-1.5 py-1 rounded-full m3-surface-elevated border border-emerald-500/30 whitespace-nowrap shrink-0">
                 {currentUser.photoURL ? (
                   <img
                     src={currentUser.photoURL}
@@ -641,7 +641,7 @@ export default function App() {
                     {(currentUser.displayName || currentUser.email || 'G').charAt(0).toUpperCase()}
                   </span>
                 )}
-                <span className="text-xs font-medium text-[var(--md-sys-color-on-surface)] max-w-[7.5rem] truncate">
+                <span className="text-xs font-medium text-[var(--md-sys-color-on-surface)] max-w-[5.5rem] sm:max-w-[7.5rem] truncate">
                   {currentUser.displayName || currentUser.email}
                 </span>
                 <button
@@ -656,7 +656,7 @@ export default function App() {
             ) : (
               <button
                 onClick={handleGoogleSignIn}
-                className="px-3.5 py-2 rounded-full m3-surface-elevated hover:border-blue-400 text-xs font-semibold inline-flex items-center gap-2 whitespace-nowrap shrink-0 cursor-pointer active:scale-[0.98]"
+                className="px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-full m3-surface-elevated hover:border-blue-400 text-xs font-semibold inline-flex items-center gap-1.5 sm:gap-2 whitespace-nowrap shrink-0 cursor-pointer active:scale-[0.98]"
                 title="Sign in with Google (required to post projects or forum threads)"
               >
                 <GoogleGIcon className="w-3.5 h-3.5 shrink-0" />
@@ -666,17 +666,17 @@ export default function App() {
 
             <button
               onClick={() => setShowSubmitModal(true)}
-              className="bg-gemini-grad text-white text-xs font-semibold px-4 py-2 rounded-full inline-flex items-center gap-1.5 whitespace-nowrap shrink-0 transition-all cursor-pointer active:scale-[0.98]"
+              className="bg-gemini-grad text-white text-xs font-semibold px-3 sm:px-4 py-1.5 sm:py-2 rounded-full inline-flex items-center gap-1 sm:gap-1.5 whitespace-nowrap shrink-0 transition-all cursor-pointer active:scale-[0.98]"
             >
-              <Plus className="w-4 h-4 shrink-0" />
+              <Plus className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
               <span className="hidden sm:inline">Submit Project</span>
               <span className="sm:hidden">Submit</span>
             </button>
           </div>
         </nav>
 
-        {/* Compact Mobile/Tablet Horizontal Quick-Jump Strip (< lg) */}
-        <div className="lg:hidden max-w-7xl mx-auto mt-2 px-1 flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1">
+        {/* Compact Mobile/Tablet Quick-Jump Strip (< lg) */}
+        <div className="lg:hidden max-w-7xl mx-auto mt-2 px-1 flex-balance items-center justify-center gap-1.5 py-1">
           {[
             { href: '#pulse', label: 'Pulse' },
             { href: '#models', label: 'Models' },
@@ -690,7 +690,7 @@ export default function App() {
             <a
               key={item.href}
               href={item.href}
-              className="px-3 py-1 rounded-full text-xs font-medium m3-surface-elevated m3-text-muted whitespace-nowrap shrink-0"
+              className="px-2.5 py-1 rounded-full text-xs font-medium m3-surface-elevated m3-text-muted whitespace-nowrap shrink-0"
             >
               {item.label}
             </a>
@@ -716,9 +716,9 @@ export default function App() {
             {/* Left Column: Editorial Headline, Balanced CTAs & Subgrid Stat Strip */}
             <div className="lg:col-span-7 flex flex-col justify-between space-y-7">
               <div className="space-y-6">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full m3-surface-elevated text-xs font-mono whitespace-nowrap">
+                <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-full m3-surface-elevated text-[11px] sm:text-xs font-mono max-w-full">
                   <GeminiSparkle className="w-4 h-4 shrink-0" />
-                  <span>GOOGLE MATERIAL 3 EXPRESSIVE • GEMINI 4 ARGON & 3.8 FLASH</span>
+                  <span className="truncate">GOOGLE MATERIAL 3 EXPRESSIVE • GEMINI 4 ARGON & 3.8 FLASH</span>
                 </div>
 
                 <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.06]">
@@ -835,7 +835,7 @@ export default function App() {
                     ].map((row) => (
                       <div
                         key={row.step}
-                        className="grid grid-cols-[1fr_auto] items-center gap-3 py-2 border-b border-[var(--md-sys-color-outline)] last:border-b-0"
+                        className="flex flex-wrap items-center justify-between gap-2 py-2 border-b border-[var(--md-sys-color-outline)] last:border-b-0 min-w-0"
                       >
                         <span className="m3-text-muted truncate">{row.step}</span>
                         <span
@@ -849,7 +849,7 @@ export default function App() {
                 </div>
 
                 {/* Console Footer */}
-                <div className="pt-3 border-t border-[var(--md-sys-color-outline)] flex items-center justify-between gap-2 text-xs">
+                <div className="pt-3 border-t border-[var(--md-sys-color-outline)] flex flex-wrap items-center justify-between gap-2 text-xs">
                   <a
                     href="#chronicle"
                     className="text-blue-400 hover:underline font-semibold inline-flex items-center gap-1 whitespace-nowrap"
@@ -918,39 +918,39 @@ export default function App() {
             ))}
           </div>
 
-          {/* Subgrid-Aligned 3-Column Intelligence Cards Grid */}
+          {/* 3-Column Intelligence Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredPulse.map((item) => (
               <article key={item.id} className="m3-card m3-pulse-card p-6">
                 {/* Track 1: Model Badge & Impact Score */}
-                <div className="flex items-center justify-between gap-2 text-xs font-mono">
-                  <span className="px-2.5 py-1 rounded-md bg-blue-500/15 text-blue-400 border border-blue-500/30 font-semibold whitespace-nowrap">
+                <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-mono min-w-0">
+                  <span className="px-2.5 py-1 rounded-md bg-blue-500/15 text-blue-400 border border-blue-500/30 font-semibold truncate max-w-full">
                     {item.modelBadge}
                   </span>
-                  <span className="m3-text-muted whitespace-nowrap">Impact: {item.impactScore}</span>
+                  <span className="m3-text-muted whitespace-nowrap shrink-0">Impact: {item.impactScore}</span>
                 </div>
 
                 {/* Track 2: Balanced Headline */}
-                <h3 className="text-lg sm:text-xl font-bold leading-snug">{item.title}</h3>
+                <h3 className="text-lg sm:text-xl font-bold leading-snug break-words min-w-0">{item.title}</h3>
 
                 {/* Track 3: Executive TL;DR Box */}
-                <div className="p-3.5 rounded-xl bg-[var(--md-sys-color-surface)] border border-[var(--md-sys-color-outline)] text-xs leading-relaxed">
+                <div className="p-3.5 rounded-xl bg-[var(--md-sys-color-surface)] border border-[var(--md-sys-color-outline)] text-xs leading-relaxed min-w-0">
                   <span className="font-mono font-semibold text-purple-400 uppercase block mb-1">
                     TL;DR — Why It Matters:
                   </span>
-                  <span className="text-[var(--md-sys-color-on-surface)]">
+                  <span className="text-[var(--md-sys-color-on-surface)] break-words">
                     <InlineCodeText text={item.tldr} />
                   </span>
                 </div>
 
                 {/* Track 4: Summary Copy */}
-                <p className="text-sm m3-text-muted leading-relaxed">
+                <p className="text-sm m3-text-muted leading-relaxed break-words min-w-0">
                   <InlineCodeText text={item.summary} />
                 </p>
 
                 {/* Track 5: Grounded Verification & Deep-Link Footer */}
-                <div className="pt-4 border-t border-[var(--md-sys-color-outline)] flex items-center justify-between gap-2 text-xs">
-                  <span className="font-mono m3-text-muted flex items-center gap-1 truncate">
+                <div className="pt-4 border-t border-[var(--md-sys-color-outline)] flex flex-wrap items-center justify-between gap-2 text-xs min-w-0">
+                  <span className="font-mono m3-text-muted flex items-center gap-1 min-w-0 truncate">
                     <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                     <span className="truncate">{item.groundedBy}</span>
                   </span>
@@ -1226,7 +1226,7 @@ export default function App() {
               </p>
             </div>
 
-            <div className="px-3.5 py-2 rounded-2xl bg-blue-500/15 border border-blue-400/30 text-blue-300 text-xs font-mono shrink-0 whitespace-nowrap">
+            <div className="px-3.5 py-2 rounded-2xl bg-blue-500/15 border border-blue-400/30 text-blue-300 text-xs font-mono shrink-0 max-w-full">
               [PROTOCOL READY] Zero fabricated scores • Copy prompt to test
             </div>
           </div>
@@ -1399,14 +1399,15 @@ export default function App() {
                     {activeArenaExperiment.number}: {activeArenaExperiment.title}
                   </span>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center gap-2">
                   <a
                     href={activeArenaExperiment.contenderOutputs['Google Gemini 4 Argon'].liveUrl}
                     target="_blank"
                     rel="noreferrer"
                     className="px-3 py-1 rounded-full bg-blue-500/15 text-blue-300 border border-blue-400/30 hover:bg-blue-500/25 inline-flex items-center gap-1 whitespace-nowrap"
                   >
-                    <span>Open Standalone App ({activeArenaExperiment.contenderOutputs['Google Gemini 4 Argon'].liveUrl})</span>
+                    <span>Open Standalone App</span>
+                    <span className="hidden sm:inline">({activeArenaExperiment.contenderOutputs['Google Gemini 4 Argon'].liveUrl})</span>
                     <ExternalLink className="w-3 h-3" />
                   </a>
                   <button
@@ -1475,10 +1476,10 @@ export default function App() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {filteredShowcase.map((proj) => (
               <div key={proj.id} className="m3-card p-6 flex flex-col justify-between gap-5">
-                <div className="space-y-3.5">
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <div className="flex items-center gap-2">
+                <div className="space-y-3.5 min-w-0">
+                  <div className="flex items-start justify-between gap-3 min-w-0">
+                    <div className="min-w-0 flex-1">
+                      <div className="flex flex-wrap items-center gap-2">
                         <span className="text-xs font-mono uppercase text-blue-400 font-semibold">
                           {proj.category}
                         </span>
@@ -1488,10 +1489,10 @@ export default function App() {
                           </span>
                         )}
                       </div>
-                      <h3 className="text-xl font-bold mt-1">
+                      <h3 className="text-xl font-bold mt-1 break-words">
                         <InlineCodeText text={proj.name} />
                       </h3>
-                      <div className="text-xs font-mono m3-text-muted">by {proj.creator}</div>
+                      <div className="text-xs font-mono m3-text-muted truncate">by {proj.creator}</div>
                     </div>
 
                     <div className="flex items-center gap-2 shrink-0">

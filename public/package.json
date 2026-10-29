@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "audit:ui": "node scripts/audit-layout.mjs",
     "lint": "eslint .",
     "preview": "vite preview"
   },

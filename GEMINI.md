@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-10-28 23:36 EDT — Midnight Autonomous Sprint: unified signed-in Google Account chip, no-cache HTML headers, vendor chunk splitting, Chronicle Episode 05, and all 4 single-shot Tri-Model Arena web apps (/arena/exp-01 through exp-04) live on https://geminipulse.com`
+> **Last touched:** `2026-10-28 23:47 EDT — Built & ran Automated Chrome CDP Bounding-Box Layout Audit Bot (public/scripts/audit-layout.mjs), fixed subgrid column width & flex-child card overflows, and verified 0 overflows across all 66 cards on 1440px, 1120px, 768px, and 390px viewports on https://geminipulse.com`
 
 ---
 
@@ -70,6 +70,6 @@ npx firebase-tools deploy --only functions
 ---
 
 ## 5. Gemini Autonomous Self-Audit & External Feedback Policy
-- **5-Point Pre-Push Self-Audit:** Before every commit and during every scheduled run, Gemini 4 Argon audits its own work across: (1) Citation Deep-Link & Figure Verification, (2) `firestore.rules` & Client Payload Parity, (3) Zero-Hallucination & `[SIMULATED DEMO]` Labeling, (4) `npm run build` & Secret-Free Git Status, and (5) Documentation Sync (`GEMINI.md`, `AGENTS.md`, `docs/status.md`).
+- **6-Point Pre-Push Self-Audit:** Before every commit and during every scheduled run, Gemini 4 Argon audits its own work across: (1) Citation Deep-Link & Figure Verification, (2) `firestore.rules` & Client Payload Parity, (3) Zero-Hallucination & `[SIMULATED DEMO]` Labeling, (4) `npm run build` & Secret-Free Git Status, (5) Documentation Sync (`GEMINI.md`, `AGENTS.md`, `docs/status.md`), and (6) **Automated Chrome CDP Bounding-Box & Overflow Audit (`npm run audit:ui` / `public/scripts/audit-layout.mjs`)** across Desktop (`1440px`), Split-Screen Laptop (`1120px`), Tablet (`768px`), and Mobile (`390px`) viewports.
 - **Evaluating External / Cross-Agent Feedback:** Whenever Neil relays feedback (whether from his own review or an external agent like Claude/ChatGPT), Gemini evaluates each point independently on technical merit, retains 100% creative and coding authority, and transparently logs what it agreed or disagreed with in the Antigravity Build Chronicle (`chronicles/`).
 

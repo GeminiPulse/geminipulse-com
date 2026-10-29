@@ -99,6 +99,9 @@ html.light {
   border: 1px solid var(--md-sys-color-outline);
   border-radius: 1.35rem;
   box-shadow: var(--md-sys-card-shadow);
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
   transition: transform 0.26s cubic-bezier(0.22, 1, 0.36, 1),
               border-color 0.26s cubic-bezier(0.22, 1, 0.36, 1),
               background-color 0.26s cubic-bezier(0.22, 1, 0.36, 1),
@@ -172,7 +175,7 @@ html.light {
   background-color: var(--md-sys-inline-code-bg);
   border: 1px solid var(--md-sys-inline-code-border);
   color: var(--md-sys-inline-code-text);
-  white-space: nowrap;
+  overflow-wrap: anywhere;
 }
 
 /* Balanced flex wrapping for pills, filter chips, and CTA groups (modern-web-guidance: css-layout) */
@@ -182,13 +185,14 @@ html.light {
   flex-wrap: balance;
 }
 
-/* Subgrid Card Alignment (modern-web-guidance: css-layout §3) */
+/* Card Internal Track Alignment — Constrained 100% Width (Zero Horizontal Bleed) */
 .m3-pulse-card {
-  grid-row: span 5;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   grid-template-rows: auto auto auto 1fr auto;
-  grid-template-rows: subgrid;
   row-gap: 1rem;
+  min-width: 0;
+  width: 100%;
 }
 
 /* Below-the-fold rendering deferral (modern-web-guidance: defer-rendering-heavy-content) */
@@ -198,19 +202,28 @@ html.light {
 }
 
 .m3-stat-card {
-  grid-row: span 3;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   grid-template-rows: auto auto 1fr;
-  grid-template-rows: subgrid;
   row-gap: 0.25rem;
+  min-width: 0;
+  width: 100%;
 }
 
 .m3-stack-card {
-  grid-row: span 4;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   grid-template-rows: auto auto 1fr auto;
-  grid-template-rows: subgrid;
   row-gap: 0.65rem;
+  min-width: 0;
+  width: 100%;
+}
+
+.m3-pulse-card > *,
+.m3-stat-card > *,
+.m3-stack-card > * {
+  min-width: 0;
+  max-width: 100%;
 }
 
 .text-gradient,
