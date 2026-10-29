@@ -198,6 +198,7 @@ export default function App() {
   // Frontier Tri-Model Arena State (Gemini vs Claude vs ChatGPT)
   const [activeArenaId, setActiveArenaId] = useState(TRI_MODEL_ARENA_EXPERIMENTS[0].id);
   const [copiedArenaId, setCopiedArenaId] = useState(null);
+  const [showArenaPreview, setShowArenaPreview] = useState(true);
 
   // Legal & Charter Modal State (null | 'about' | 'privacy' | 'terms')
   const [legalModalTab, setLegalModalTab] = useState(null);
@@ -853,7 +854,7 @@ export default function App() {
                     href="#chronicle"
                     className="text-blue-400 hover:underline font-semibold inline-flex items-center gap-1 whitespace-nowrap"
                   >
-                    Read Episodes 01–04 in the Chronicle <ArrowUpRight className="w-3.5 h-3.5" />
+                    Read Episodes 01–05 in the Chronicle <ArrowUpRight className="w-3.5 h-3.5" />
                   </a>
                   <a
                     href="/llms.txt"
@@ -1321,14 +1322,24 @@ export default function App() {
                           )}
                         </div>
                         {output?.liveUrl && (
-                          <a
-                            href={output.liveUrl}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="mt-1 px-3 py-1.5 rounded-lg bg-emerald-500/15 border border-emerald-400/40 text-emerald-300 font-mono text-[11px] font-semibold inline-flex items-center justify-center gap-1 hover:bg-emerald-500/25 transition-all whitespace-nowrap"
-                          >
-                            Launch Single-Shot Output <ExternalLink className="w-3 h-3" />
-                          </a>
+                          <div className="flex flex-wrap items-center gap-1.5 mt-1">
+                            <button
+                              type="button"
+                              onClick={() => setShowArenaPreview((prev) => !prev)}
+                              className="px-2.5 py-1.5 rounded-lg bg-blue-500/15 border border-blue-400/40 text-blue-300 font-mono text-[11px] font-semibold inline-flex items-center justify-center gap-1 hover:bg-blue-500/25 transition-all whitespace-nowrap cursor-pointer"
+                            >
+                              <Play className="w-3 h-3" />
+                              {showArenaPreview ? 'Hide Live Preview' : 'Preview Inline'}
+                            </button>
+                            <a
+                              href={output.liveUrl}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="px-2.5 py-1.5 rounded-lg bg-emerald-500/15 border border-emerald-400/40 text-emerald-300 font-mono text-[11px] font-semibold inline-flex items-center justify-center gap-1 hover:bg-emerald-500/25 transition-all whitespace-nowrap"
+                            >
+                              Full Tab <ExternalLink className="w-3 h-3" />
+                            </a>
+                          </div>
                         )}
                       </div>
                     );
@@ -1375,12 +1386,53 @@ export default function App() {
               </div>
             </div>
           </div>
+
+          {/* Embedded Live Interactive Sandbox Preview of Active Gemini 4 Argon Single-Shot Output */}
+          {showArenaPreview && activeArenaExperiment.contenderOutputs?.['Google Gemini 4 Argon']?.liveUrl && (
+            <div className="m3-card overflow-hidden border border-blue-400/30">
+              <div className="px-5 py-3 bg-[var(--md-sys-color-surface)] border-b border-[var(--md-sys-color-outline)] flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="text-emerald-400 font-bold">LIVE INTERACTIVE SANDBOX</span>
+                  <span className="m3-text-muted">•</span>
+                  <span className="text-[var(--md-sys-color-on-surface)] font-semibold">
+                    {activeArenaExperiment.number}: {activeArenaExperiment.title}
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <a
+                    href={activeArenaExperiment.contenderOutputs['Google Gemini 4 Argon'].liveUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="px-3 py-1 rounded-full bg-blue-500/15 text-blue-300 border border-blue-400/30 hover:bg-blue-500/25 inline-flex items-center gap-1 whitespace-nowrap"
+                  >
+                    <span>Open Standalone App ({activeArenaExperiment.contenderOutputs['Google Gemini 4 Argon'].liveUrl})</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() => setShowArenaPreview(false)}
+                    className="px-2.5 py-1 rounded-full m3-surface-elevated m3-text-muted hover:text-white cursor-pointer"
+                  >
+                    Collapse
+                  </button>
+                </div>
+              </div>
+              <iframe
+                key={activeArenaExperiment.id}
+                src={activeArenaExperiment.contenderOutputs['Google Gemini 4 Argon'].liveUrl}
+                title={`Live Single-Shot Output — ${activeArenaExperiment.title}`}
+                className="w-full h-[540px] border-0 bg-[#07090e]"
+                loading="lazy"
+              />
+            </div>
+          )}
         </section>
 
         {/* =================================================================
             MODULE 4: "BUILT WITH GEMINI" PRODUCT SHOWCASE (#showcase)
             ================================================================= */}
-        <section id="showcase" className="scroll-mt-24 space-y-8">
+        <section id="showcase" className="scroll-mt-24 space-y-8 m3-deferred-section">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[var(--md-sys-color-outline)] pb-6">
             <div>
               <div className="text-xs font-mono uppercase tracking-wider text-pink-400 flex items-center gap-1.5 mb-2">
@@ -1509,7 +1561,7 @@ export default function App() {
         {/* =================================================================
             MODULE 5: AI-MODERATED COMMUNITY FORUM (#forum)
             ================================================================= */}
-        <section id="forum" className="scroll-mt-24 space-y-8">
+        <section id="forum" className="scroll-mt-24 space-y-8 m3-deferred-section">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[var(--md-sys-color-outline)] pb-6">
             <div>
               <div className="text-xs font-mono uppercase tracking-wider text-blue-400 flex items-center gap-1.5 mb-2">
@@ -1704,7 +1756,7 @@ export default function App() {
         {/* =================================================================
             MODULE 6: "BUILT BY GEMINI" — THE ANTIGRAVITY CHRONICLE (#chronicle)
             ================================================================= */}
-        <section id="chronicle" className="scroll-mt-24 space-y-8">
+        <section id="chronicle" className="scroll-mt-24 space-y-8 m3-deferred-section">
           <div className="border-b border-[var(--md-sys-color-outline)] pb-6">
             <div className="text-xs font-mono uppercase tracking-wider text-amber-400 flex items-center gap-1.5 mb-2">
               <BookOpen className="w-3.5 h-3.5" />
@@ -1746,7 +1798,7 @@ export default function App() {
               <div className="m3-card p-5 space-y-2 text-xs">
                 <div className="font-mono font-bold text-emerald-400 flex items-center gap-1.5">
                   <Activity className="w-4 h-4" />
-                  NEXT SCHEDULED EPISODE (EPISODE 05)
+                  NEXT SCHEDULED EPISODE (EPISODE 06)
                 </div>
                 <p className="m3-text-muted leading-relaxed">
                   Generated automatically by our recurring <strong>Antigravity Scheduled Automation</strong> (<code className="m3-inline-code">geminipulse-daily-curator</code>) after scanning the newest Gemini releases and community submissions.
@@ -1811,7 +1863,7 @@ export default function App() {
         {/* =================================================================
             MODULE 7: THE 100% GOOGLE PLATFORM ARCHITECTURE (#google-stack)
             ================================================================= */}
-        <section id="google-stack" className="scroll-mt-24 space-y-8">
+        <section id="google-stack" className="scroll-mt-24 space-y-8 m3-deferred-section">
           <div className="border-b border-[var(--md-sys-color-outline)] pb-6">
             <div className="text-xs font-mono uppercase tracking-wider text-blue-400 flex items-center gap-1.5 mb-2">
               <Database className="w-3.5 h-3.5" />
@@ -1849,7 +1901,7 @@ export default function App() {
         {/* =================================================================
             MODULE 8: YOUTUBE SHORTS & OMNI 1.1 MEDIA STUDIO + SOCIAL ENGINE (#media-studio)
             ================================================================= */}
-        <section id="media-studio" className="scroll-mt-24 space-y-10">
+        <section id="media-studio" className="scroll-mt-24 space-y-10 m3-deferred-section">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[var(--md-sys-color-outline)] pb-6">
             <div>
               <div className="text-xs font-mono uppercase tracking-wider text-pink-400 flex items-center gap-1.5 mb-2">
@@ -2026,7 +2078,7 @@ export default function App() {
         {/* =================================================================
             MODULE 9: THE OPEN EXPERIMENT CHARTER & ORIGIN STORY (#about-charter)
             ================================================================= */}
-        <section id="about-charter" className="scroll-mt-24 space-y-8">
+        <section id="about-charter" className="scroll-mt-24 space-y-8 m3-deferred-section">
           <div className="border-b border-[var(--md-sys-color-outline)] pb-6">
             <div className="text-xs font-mono uppercase tracking-wider text-amber-400 flex items-center gap-1.5 mb-2">
               <Scale className="w-3.5 h-3.5" />

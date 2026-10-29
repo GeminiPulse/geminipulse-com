@@ -191,6 +191,12 @@ html.light {
   row-gap: 1rem;
 }
 
+/* Below-the-fold rendering deferral (modern-web-guidance: defer-rendering-heavy-content) */
+.m3-deferred-section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto none auto 720px;
+}
+
 .m3-stat-card {
   grid-row: span 3;
   display: grid;

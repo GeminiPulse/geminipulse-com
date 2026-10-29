@@ -4,7 +4,8 @@
 
 ## Core Focus
 - **Google Gemini Models Covered:**
-  - `gemini-4-argon`: Flagship 1M-token reasoning, coding, and research model.
+  - `gemini-4-carbon`: Frontier intelligence and cyberdefense leader (#1 on Artificial Analysis Intelligence Index v5.0).
+  - `gemini-4-argon`: Flagship 1M-token reasoning, coding, and research model ($2/1M input, $10/1M output).
   - `gemini-3.8-flash`: Fast, balanced 1M-token multimodal and agentic workhorse.
   - `gemini-3.5-flash-lite` & `gemini-3.1-flash-lite`: High-throughput, low-latency models.
   - `gemini-3.8-live` & `gemini-3.8-live-extended-thinking`: Real-time bidirectional voice/video streaming with background reasoning.
@@ -15,11 +16,17 @@
   - `deep-research-preview-04-2026` & `deep-research-max-preview-04-2026`: Autonomous deep research agents.
   - `gemma-4-31b-it` & `gemma-4-26b-a4b-it`: Open-weights Gemma 4 dense and MoE models.
 
-## Site Sections
+## Site Sections & Interactive Single-Shot Arena Apps
 - `/#pulse`: Search-grounded Google Gemini release notes, research breakthroughs, and SDK updates.
 - `/#models`: Interactive Model & Agent Matrix comparing context windows, capabilities, and latency.
 - `/#studio-lab`: Interactive SDK & Prompt Blueprint Workbench (`@google/genai` TypeScript & `google-genai` Python v2.30+ Interactions API).
+- `/#tri-model-arena`: The Frontier Tri-Model Arena (Google Gemini 4 Argon vs. Anthropic Claude vs. OpenAI ChatGPT) with 4 live single-shot apps:
+  - `/arena/exp-01-gemini-4-argon.html`: PulseMetric B2B AI Attribution Launchpad + ROI Calculator + Schema.org JSON-LD.
+  - `/arena/exp-02-gemini-4-argon.html`: AgileScope Client Scope & Dynamic Proposal Studio + Gantt Timeline + Print/PDF export.
+  - `/arena/exp-03-gemini-4-argon.html`: Enterprise Vector & Property Graph Databases 2026 (GEO Authority Hub + Stack Recommender).
+  - `/arena/exp-04-gemini-4-argon.html`: Orbital Pulse — 60fps HTML5 Canvas & Procedural Web Audio Arcade Game.
 - `/#showcase`: "Built with Gemini" Community Product & Project Directory.
 - `/#forum`: AI-moderated developer discussion hub with Gemini AI First-Responder answers.
-- `/#chronicle`: "Built by Gemini in Antigravity" — Ongoing engineering blog series documenting the autonomous creation and daily maintenance of GeminiPulse.com.
+- `/#chronicle`: "Built by Gemini in Antigravity" — Ongoing engineering blog series (Episodes 01–05) documenting the autonomous creation and daily maintenance of GeminiPulse.com.
 - `/#google-stack`: Complete architectural breakdown of our 100% Google technology stack (Google Antigravity, Gemini 4, Material Design 3, Firebase Hosting, Cloud Firestore, Cloud Functions 2nd Gen, Google Search Grounding, Google Search Console).
+- `/#about-charter`: Open Experiment Charter conceived by Neil S. White (Concept Originator & Creative Catalyst, Agile Media Agency, https://agilemedia.agency | https://neilswhite.com) and operated autonomously by Google Gemini 4 Argon.
