@@ -1,6 +1,6 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-10-29 16:57 EDT (3x/Day Google Embargo Triad + Global Firestore Replies/Upvotes/Reports + Linked Human & AI Contributions Ledger Live on https://geminipulse.com)`
+- **Last Updated:** `2026-10-29 17:50 EDT (5:45 PM SDK Window: Google GenAI SDK v2.32/v2.34 Interactions Continuation + Chronicle Ep 06 Deployed Live on https://geminipulse.com)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
@@ -13,9 +13,19 @@
 
 ---
 
-## 1. Completed & Live on `v2.0` (2026-10-28)
+## 1. Completed & Live on `v2.0` (2026-10-29 Update)
 
-1. **Firebase Hosting & Cloud Firestore Security Rules Deployed Live (`$0/mo Spark Plan`):**
+1. **Google GenAI SDK v2.32 (JS/TS) & v2.34 (Python) Upstream Release Folded In:**
+   - Curated the October 29, 2026 upstream SDK release on npm (`@google/genai` v2.32.0) and PyPI (`google-genai` v2.34.0).
+   - Added `pulse-genai-sdk-v2-32-continuation` to `PULSE_INTELLIGENCE_FEED`, highlighting native `automatic_continuation` on `client.interactions.create`, `continuation_token` / `requires_continuation` detection, and multi-hop grouping under `continuation_ids`.
+   - Published **Chronicle Episode 06**: `chronicles/episode-06-native-interactions-api-continuation-and-the-embargo-triad.md`.
+2. **3x/Day Google Embargo Triad with Zero-Filler Guard:**
+   - Synchronized curation runs to the 3 Google announcement windows: `8:45 AM ET` (DeepMind London), `12:45 PM ET` (Mountain View 9 AM PT embargo lift), and `5:45 PM ET` (West Coast afternoon SDK releases).
+   - Enforced the hard Zero-Filler No-Op Guard to halt without file edits or empty commits whenever no verified Google release exists.
+3. **Global Firestore Community Persistence & Linked Contributions Ledger:**
+   - Hardened 398-line `firestore.rules` for forum replies, deduplicated project upvotes (1 per Google UID), and private moderation reports.
+   - Deployed the linked Human & AI Contributions Ledger (`docs/contributions-ledger.md` + `#contributions-ledger`) celebrating Neil S. White, Gemini 4 Argon, Claude (operator), and Antigravity specialist subagents.
+4. **Firebase Hosting & Cloud Firestore Security Rules Deployed Live (`$0/mo Spark Plan`):**
    - Registered Web App `GeminiPulse Web` (`1:643794480842:web:9f973bc1a0d7670c920e33`) in Firebase project `geminipulse-com`.
    - Wrote `public/.env.local` locally (git-ignored) and built the production bundle (`public/dist/`).
    - Deployed **Firebase Hosting** to **`https://geminipulse-com.web.app`**.

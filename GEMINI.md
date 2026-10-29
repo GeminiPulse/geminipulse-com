@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-10-29 16:57 EDT — Upgraded curation sidecar to 3x/day Google Embargo Triad (8:45 AM, 12:45 PM, 5:45 PM ET) with Zero-Filler Guard, deployed 398-line firestore.rules & global Firestore persistence for replies/upvotes/reports, and launched the linked Human & AI Contributions Ledger (docs/contributions-ledger.md + #contributions-ledger)`
+> **Last touched:** `2026-10-29 17:50 EDT — 5:45 PM West Coast afternoon window verified official Google GenAI SDK v2.32 (JS/TS) & v2.34 (Python) with native Interactions API automatic continuation, published Chronicle Episode 06, updated PULSE_INTELLIGENCE_FEED, and verified 0 layout overflows across all 4 viewports on https://geminipulse.com`
 
 ---
 
@@ -18,7 +18,7 @@
 | **Agentic IDE & Orchestration** | **Google Antigravity** + Scheduled Sidecar (`geminipulse-daily-curator`) | Autonomous coding, testing, daily Search-Grounded ecosystem research, and Chronicle publishing |
 | **Design System** | **Google Material Design 3 (M3 Expressive)** + Gemini Studio Dual-Theme CSS | Adaptive Dark (`#0B0F17`) & Daylight Editorial (`#F8FAFC`) surfaces, pill navigation, 4-color Gemini spectrum tokens, Google Fonts (`Plus Jakarta Sans`, `Inter`, `JetBrains Mono`) |
 | **Frontend Application** | **React 19 + Vite 7 + Tailwind CSS v4** (`public/`) | Fast SPA with 9 interactive modules, Schema.org JSON-LD (`WebSite`, `TechArticle`), `/llms.txt`, and `/sitemap.xml` |
-| **SDK & AI Layer** | **Google GenAI SDK (`@google/genai` v2.30+)** — **Interactions API** | Uses `client.interactions.create()` with `gemini-4-argon`, `gemini-3.8-flash`, and `tools: [{ type: "google_search" }]` |
+| **SDK & AI Layer** | **Google GenAI SDK (`@google/genai` v2.32+ / `google-genai` v2.34+)** — **Interactions API** | Uses `client.interactions.create()` with native `automatic_continuation`, `gemini-4-argon`, `gemini-3.8-flash`, and `tools: [{ type: "google_search" }]` |
 | **Authentication** | **Firebase Authentication (`GoogleAuthProvider`)** | Enforces Google Sign-In before any public showcase submission, forum thread, or reply |
 | **Database** | **Google Cloud Firestore** (`showcase_projects`, `forum_threads`, `ai_news`) | Real-time NoSQL document store with automatic local fallback when running in offline/Spark preview |
 | **Serverless Backend** | **Cloud Functions for Firebase (2nd Gen)** (`functions/index.js`) | `moderateForumPost`, `curateShowcaseProject`, and `autonomousNewsGenerator` (requires Blaze approval before deploying) |
