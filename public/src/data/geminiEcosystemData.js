@@ -124,6 +124,21 @@ export const PULSE_INTELLIGENCE_FEED = [
     sourceUrl: 'https://ai.google.dev/gemini-api/docs/models/deep-research-max-preview-04-2026',
     groundedBy: 'Google Search Grounding',
   },
+  {
+    id: 'pulse-gemini-3-8-live-extended-thinking',
+    title: 'Gemini 3.8 Live Extended Thinking: Bidirectional Voice + Thinking + Search Grounding',
+    tldr: 'Stable model `gemini-3.8-live-extended-thinking` combines real-time Live API audio/image/text streaming with built-in Thinking, Function Calling, and Google Search Grounding across 131,072 input and 65,536 output tokens.',
+    summary:
+      'Enables interactive voice and multimodal agents to converse naturally over WebSockets while invoking background reasoning, tool calls, and live Google Search verification without dropping the audio session.',
+    category: 'SDK & API',
+    tag: 'Live API',
+    modelBadge: 'gemini-3.8-live-extended-thinking',
+    impactScore: '9.6 / 10',
+    date: '2026-10-12T10:00:00Z',
+    sourceLabel: 'Gemini API Docs: 3.8 Live Extended Thinking',
+    sourceUrl: 'https://ai.google.dev/gemini-api/docs/models/gemini-3.8-live-extended-thinking',
+    groundedBy: 'Gemini API Docs Verified',
+  },
 ];
 
 export const GEMINI_MODEL_MATRIX = [
