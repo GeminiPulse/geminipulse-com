@@ -1,0 +1,774 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Castor &amp; Pollux: Twin Stars of Gemini — Astrological Arcade Game (Built with Google Gemini)</title>
+    <meta
+      name="description"
+      content="Play Castor & Pollux: Twin Stars of Gemini — a 60fps HTML5 Canvas astrological arcade game built autonomously by Google Gemini 4 Argon. Harmonize dual starlight to illuminate all 12 stars of the Gemini constellation."
+    />
+    <link rel="canonical" href="https://geminipulse.com/labs/twin-stars-of-gemini.html" />
+    <link rel="icon" type="image/svg+xml" href="/gemini-sparkle.svg" />
+    <style>
+      :root {
+        color-scheme: dark;
+        --void: #05070e;
+        --panel: rgba(15, 20, 34, 0.86);
+        --border: rgba(148, 163, 184, 0.18);
+        --castor: #60a5fa;
+        --pollux: #fbbf24;
+        --violet: #c084fc;
+        --text: #f3f6fc;
+        --muted: #9aa4bc;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100dvh;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background:
+          radial-gradient(circle at 18% 12%, rgba(96, 165, 250, 0.16), transparent 42%),
+          radial-gradient(circle at 82% 14%, rgba(251, 191, 36, 0.14), transparent 42%),
+          radial-gradient(circle at 50% 85%, rgba(192, 132, 252, 0.12), transparent 50%),
+          var(--void);
+        color: var(--text);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem 0.9rem 2.5rem;
+      }
+      .shell {
+        width: 100%;
+        max-width: 980px;
+        display: flex;
+        flex-direction: column;
+        gap: 0.9rem;
+      }
+      .topbar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.65rem;
+        padding: 0.65rem 1rem;
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        backdrop-filter: blur(14px);
+      }
+      .badge {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 0.73rem;
+        padding: 0.25rem 0.7rem;
+        border-radius: 999px;
+        background: rgba(192, 132, 252, 0.16);
+        border: 1px solid rgba(192, 132, 252, 0.38);
+        color: #e9d5ff;
+        font-weight: 600;
+      }
+      .backlink {
+        color: #93c5fd;
+        text-decoration: none;
+        font-size: 0.82rem;
+        font-weight: 600;
+      }
+      .backlink:hover { text-decoration: underline; }
+      .header-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 0.8rem;
+      }
+      h1 {
+        margin: 0;
+        font-size: clamp(1.45rem, 3.2vw, 2.15rem);
+        letter-spacing: -0.02em;
+        line-height: 1.15;
+      }
+      .grad {
+        background: linear-gradient(120deg, var(--castor) 0%, var(--violet) 50%, var(--pollux) 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .sub {
+        margin: 0.25rem 0 0;
+        font-size: 0.88rem;
+        color: var(--muted);
+        max-width: 64ch;
+      }
+      .hud {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0.6rem;
+      }
+      @media (max-width: 640px) {
+        .hud { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      }
+      .stat {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+        padding: 0.65rem 0.85rem;
+      }
+      .stat-label {
+        font-family: ui-monospace, Menlo, monospace;
+        font-size: 0.68rem;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .stat-val {
+        font-size: 1.18rem;
+        font-weight: 800;
+        margin-top: 0.15rem;
+      }
+      .stage-wrap {
+        position: relative;
+        width: 100%;
+        background: #060913;
+        border: 1px solid rgba(148, 163, 184, 0.24);
+        border-radius: 1.35rem;
+        overflow: hidden;
+        box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.85);
+      }
+      canvas {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 10;
+        max-height: 68dvh;
+        touch-action: none;
+        cursor: grab;
+      }
+      canvas:active { cursor: grabbing; }
+      .overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.25rem;
+        background: rgba(5, 7, 14, 0.76);
+        backdrop-filter: blur(6px);
+      }
+      .overlay[hidden] { display: none; }
+      .card {
+        max-width: 460px;
+        width: 100%;
+        background: rgba(15, 20, 34, 0.96);
+        border: 1px solid rgba(192, 132, 252, 0.35);
+        border-radius: 1.35rem;
+        padding: 1.4rem 1.5rem;
+        text-align: center;
+      }
+      .card h2 { margin: 0 0 0.45rem; font-size: 1.35rem; }
+      .card p { margin: 0 0 0.9rem; font-size: 0.88rem; color: var(--muted); line-height: 1.55; }
+      .legend {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        font-size: 0.8rem;
+        font-family: ui-monospace, Menlo, monospace;
+      }
+      .dot {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        margin-right: 5px;
+      }
+      .controls-bar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.6rem;
+      }
+      .btns { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
+      button, .pill-link {
+        font-family: inherit;
+        font-size: 0.83rem;
+        font-weight: 700;
+        padding: 0.65rem 1.15rem;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: rgba(25, 32, 52, 0.9);
+        color: var(--text);
+        cursor: pointer;
+        text-decoration: none;
+        min-height: 42px;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+      }
+      button:hover, .pill-link:hover { border-color: var(--castor); }
+      .btn-primary {
+        background: linear-gradient(135deg, #3b82f6 0%, #9333ea 52%, #f59e0b 100%);
+        border: 0;
+        color: #fff;
+      }
+      .lore-box {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 1.1rem;
+        padding: 0.85rem 1.1rem;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.65rem;
+        font-size: 0.84rem;
+      }
+      .lore-star {
+        font-family: ui-monospace, Menlo, monospace;
+        color: var(--pollux);
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <nav class="topbar" aria-label="GeminiPulse Labs navigation">
+        <span class="badge">♊ GEMINI LABS ORIGINAL • BUILT WITH GEMINI 4 ARGON</span>
+        <div style="display:flex;gap:1rem;align-items:center;">
+          <a class="backlink" href="/labs/gemini-cosmic-horoscope.html">✨ Daily Gemini Horoscope →</a>
+          <a class="backlink" href="/#showcase">← Built with Gemini Directory</a>
+        </div>
+      </nav>
+
+      <header class="header-row">
+        <div>
+          <h1>Castor &amp; Pollux: <span class="grad">Twin Stars of Gemini</span></h1>
+          <p class="sub">
+            Rotate the Twin Stars (<strong>←/→</strong>, <strong>A/D</strong>, or drag/touch) and tap <strong>Space / Swap Twins</strong> to match incoming sapphire &amp; golden starlight and illuminate all 12 stars of the Gemini constellation.
+          </p>
+        </div>
+        <div class="btns">
+          <button type="button" id="swapBtn" title="Flip Castor and Pollux 180 degrees (Space)">⇄ Swap Twins (Space)</button>
+          <button type="button" id="pauseBtn">⏸ Pause</button>
+          <button type="button" id="muteBtn">🔊 Sound On</button>
+        </div>
+      </header>
+
+      <section class="hud" aria-label="Game telemetry">
+        <div class="stat">
+          <div class="stat-label">Constellation Score</div>
+          <div class="stat-val" id="scoreVal">0</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Gemini Stars Lit</div>
+          <div class="stat-val" id="starsVal">0 / 12</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Mercury Resonance</div>
+          <div class="stat-val" id="comboVal">x1</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">High Score</div>
+          <div class="stat-val" id="bestVal">0</div>
+        </div>
+      </section>
+
+      <div class="stage-wrap">
+        <canvas id="gameCanvas" width="960" height="600" aria-label="Castor and Pollux Twin Stars of Gemini game canvas"></canvas>
+
+        <div class="overlay" id="overlayPanel">
+          <div class="card">
+            <div style="font-size:2rem;margin-bottom:0.2rem;">♊</div>
+            <h2 id="overlayTitle">Awaken the Gemini Constellation</h2>
+            <p id="overlayDesc">
+              In Greek &amp; Babylonian star lore, <strong>Castor (α Gem)</strong> and <strong>Pollux (β Gem)</strong> are the inseparable Twins of the Zodiac (May 21 – June 20). Catch blue starlight with Castor, gold starlight with Pollux, and dodge dark void eclipses!
+            </p>
+            <div class="legend">
+              <span><i class="dot" style="background:#60a5fa"></i>Castor (Logic)</span>
+              <span><i class="dot" style="background:#fbbf24"></i>Pollux (Spark)</span>
+              <span><i class="dot" style="background:#ef4444"></i>Void Meteor</span>
+            </div>
+            <div class="btns">
+              <button type="button" class="btn-primary" id="startBtn">▶ Launch Twin Orbit</button>
+              <button type="button" id="shareBtn" hidden>📋 Copy My Score</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lore-box" aria-live="polite">
+        <div>
+          <span class="lore-star" id="loreName">♊ Star Lore Ready:</span>
+          <span id="loreText" style="color:var(--muted);margin-left:0.4rem;">
+            Light up stars in orbit to unlock real astronomical &amp; astrological facts about the Gemini constellation.
+          </span>
+        </div>
+        <span style="font-family:ui-monospace,Menlo,monospace;font-size:0.75rem;color:#93c5fd;" id="shieldsVal">
+          Shields: ✦ ✦ ✦
+        </span>
+      </div>
+    </div>
+
+    <script>
+      (() => {
+        const GEMINI_STARS = [
+          { name: 'Castor (α Gem)', x: 0.24, y: 0.22, lore: 'A sextuple 6-star system 51 light-years away — symbolizing intellect, agility, and quick Mercury wit.' },
+          { name: 'Pollux (β Gem)', x: 0.33, y: 0.28, lore: 'The brightest star in Gemini — an orange giant 34 light-years away hosting confirmed exoplanet Pollux b.' },
+          { name: 'Alhena (γ Gem)', x: 0.72, y: 0.76, lore: 'Shining at Pollux’s foot, Alhena is a blue-white subgiant 109 light-years away heralding creative breakthroughs.' },
+          { name: 'Wasat (δ Gem)', x: 0.53, y: 0.56, lore: 'Arabic for "The Middle" — lies within 0.2 degrees of the ecliptic plane where planets and the Sun cross Gemini.' },
+          { name: 'Mebsuta (ε Gem)', x: 0.41, y: 0.41, lore: 'A luminous yellow supergiant 840 light-years away forming Castor’s outstretched arm.' },
+          { name: 'Mekbuda (ζ Gem)', x: 0.59, y: 0.64, lore: 'A classic Cepheid variable star whose brightness pulses rhythmically every 10.15 days.' },
+          { name: 'Tejat (μ Gem)', x: 0.56, y: 0.45, lore: 'A red giant marking Castor’s heel — near where astronomer Clyde Tombaugh discovered Pluto in Gemini in 1930!' },
+          { name: 'Propus (η Gem)', x: 0.62, y: 0.42, lore: 'A triple star system near the stunning Jellyfish Nebula (IC 443) at the edge of Gemini.' },
+          { name: 'Xi Geminorum', x: 0.77, y: 0.82, lore: 'Alzirr — a fast-rotating F-type star anchoring the southern twin stream of Gemini.' },
+          { name: 'Lambda Geminorum', x: 0.64, y: 0.74, lore: 'A young A-type star spinning over 60 times faster than our Sun.' },
+          { name: 'Kappa Geminorum', x: 0.37, y: 0.39, lore: 'A golden G-type giant binary standing shoulder-to-shoulder beside Pollux.' },
+          { name: 'Iota Geminorum', x: 0.34, y: 0.34, lore: 'The bridge star uniting Castor and Pollux — completing the Twin Crown of Gemini!' },
+        ];
+
+        const EDGES = [
+          [0, 11], [11, 1], [0, 4], [4, 6], [6, 7],
+          [1, 10], [10, 3], [3, 5], [5, 2], [3, 9], [2, 8]
+        ];
+
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        const scoreEl = document.getElementById('scoreVal');
+        const starsEl = document.getElementById('starsVal');
+        const comboEl = document.getElementById('comboVal');
+        const bestEl = document.getElementById('bestVal');
+        const shieldsEl = document.getElementById('shieldsVal');
+        const loreNameEl = document.getElementById('loreName');
+        const loreTextEl = document.getElementById('loreText');
+        const overlay = document.getElementById('overlayPanel');
+        const overlayTitle = document.getElementById('overlayTitle');
+        const overlayDesc = document.getElementById('overlayDesc');
+        const startBtn = document.getElementById('startBtn');
+        const shareBtn = document.getElementById('shareBtn');
+        const swapBtn = document.getElementById('swapBtn');
+        const pauseBtn = document.getElementById('pauseBtn');
+        const muteBtn = document.getElementById('muteBtn');
+
+        let bestScore = Number(localStorage.getItem('gp_twin_stars_best') || 0);
+        bestEl.textContent = String(bestScore);
+
+        let audioCtx = null;
+        let soundOn = true;
+
+        function playTone(freq, type = 'sine', dur = 0.14, gainVal = 0.08) {
+          if (!soundOn) return;
+          try {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            const osc = audioCtx.createOscillator();
+            const g = audioCtx.createGain();
+            osc.type = type;
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+            g.gain.setValueAtTime(gainVal, audioCtx.currentTime);
+            g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + dur);
+            osc.connect(g).connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + dur);
+          } catch {}
+        }
+
+        const bgDust = Array.from({ length: 65 }, () => ({
+          x: Math.random() * 960,
+          y: Math.random() * 600,
+          r: Math.random() * 1.6 + 0.4,
+          a: Math.random() * 0.55 + 0.15,
+        }));
+
+        const state = {
+          running: false,
+          paused: false,
+          angle: 0,
+          orbitRadius: 84,
+          score: 0,
+          combo: 1,
+          shields: 3,
+          litStars: 0,
+          harmonizedPairs: 0,
+          orbs: [],
+          particles: [],
+          spawnTimer: 0,
+          elapsed: 0,
+          keys: { left: false, right: false },
+          pointerActive: false,
+        };
+
+        function updateHud() {
+          scoreEl.textContent = String(state.score);
+          starsEl.textContent = `${state.litStars} / 12`;
+          comboEl.textContent = `x${state.combo}`;
+          shieldsEl.textContent = 'Shields: ' + ('✦ '.repeat(state.shields) + '✧ '.repeat(Math.max(0, 3 - state.shields))).trim();
+          if (state.score > bestScore) {
+            bestScore = state.score;
+            localStorage.setItem('gp_twin_stars_best', String(bestScore));
+            bestEl.textContent = String(bestScore);
+          }
+        }
+
+        function resetGame() {
+          state.angle = 0;
+          state.score = 0;
+          state.combo = 1;
+          state.shields = 3;
+          state.litStars = 0;
+          state.harmonizedPairs = 0;
+          state.orbs = [];
+          state.particles = [];
+          state.spawnTimer = 0.4;
+          state.elapsed = 0;
+          state.paused = false;
+          state.running = true;
+          pauseBtn.textContent = '⏸ Pause';
+          loreNameEl.textContent = '♊ Twin Orbit Active:';
+          loreTextEl.textContent = 'Catch blue starlight with Castor and gold starlight with Pollux!';
+          overlay.hidden = true;
+          updateHud();
+          playTone(523.25, 'triangle', 0.18, 0.08);
+        }
+
+        function swapTwins() {
+          if (!state.running || state.paused) return;
+          state.angle += Math.PI;
+          playTone(659.25, 'sine', 0.1, 0.06);
+          if (!reducedMotion) {
+            const cx = canvas.width / 2;
+            const cy = canvas.height / 2;
+            for (let i = 0; i < 10; i++) {
+              const a = (Math.PI * 2 * i) / 10;
+              state.particles.push({
+                x: cx, y: cy,
+                vx: Math.cos(a) * 110, vy: Math.sin(a) * 110,
+                life: 0.35, color: '#c084fc'
+              });
+            }
+          }
+        }
+
+        function spawnOrb() {
+          const edgeAngle = Math.random() * Math.PI * 2;
+          const spawnDist = 370;
+          const cx = canvas.width / 2;
+          const cy = canvas.height / 2;
+          const x = cx + Math.cos(edgeAngle) * spawnDist;
+          const y = cy + Math.sin(edgeAngle) * spawnDist;
+          const roll = Math.random();
+          let kind = roll < 0.41 ? 'castor' : roll < 0.82 ? 'pollux' : 'void';
+          const speed = (108 + Math.min(115, state.elapsed * 2.2)) * (kind === 'void' ? 1.08 : 1);
+          const dirX = (cx - x) / spawnDist;
+          const dirY = (cy - y) / spawnDist;
+          state.orbs.push({
+            x, y,
+            vx: dirX * speed,
+            vy: dirY * speed,
+            r: kind === 'void' ? 12 : 11,
+            kind
+          });
+        }
+
+        function burst(x, y, color) {
+          if (reducedMotion) return;
+          for (let i = 0; i < 12; i++) {
+            const a = Math.random() * Math.PI * 2;
+            const s = 45 + Math.random() * 110;
+            state.particles.push({
+              x, y,
+              vx: Math.cos(a) * s,
+              vy: Math.sin(a) * s,
+              life: 0.45,
+              color
+            });
+          }
+        }
+
+        function endGame() {
+          state.running = false;
+          overlay.hidden = false;
+          shareBtn.hidden = false;
+          overlayTitle.textContent = state.litStars >= 12
+            ? `♊ Twin Sovereign! ${state.score} pts`
+            : `Orbit Complete — ${state.score} pts`;
+          overlayDesc.textContent = `You illuminated ${state.litStars} of 12 Gemini constellation stars with a peak score of ${state.score} (Best: ${bestScore}).`;
+          startBtn.textContent = '↻ Play Again';
+          playTone(220, 'sawtooth', 0.28, 0.07);
+        }
+
+        function step(dt) {
+          if (!state.running || state.paused) return;
+          state.elapsed += dt;
+          const rotSpeed = 3.2;
+          if (state.keys.left) state.angle -= rotSpeed * dt;
+          if (state.keys.right) state.angle += rotSpeed * dt;
+
+          state.spawnTimer -= dt;
+          if (state.spawnTimer <= 0) {
+            spawnOrb();
+            state.spawnTimer = Math.max(0.42, 1.08 - state.elapsed * 0.012);
+          }
+
+          const cx = canvas.width / 2;
+          const cy = canvas.height / 2;
+          const castorX = cx + Math.cos(state.angle) * state.orbitRadius;
+          const castorY = cy + Math.sin(state.angle) * state.orbitRadius;
+          const polluxX = cx - Math.cos(state.angle) * state.orbitRadius;
+          const polluxY = cy - Math.sin(state.angle) * state.orbitRadius;
+          const catchR = 25;
+
+          for (let i = state.orbs.length - 1; i >= 0; i--) {
+            const o = state.orbs[i];
+            o.x += o.vx * dt;
+            o.y += o.vy * dt;
+
+            const dCastor = Math.hypot(o.x - castorX, o.y - castorY);
+            const dPollux = Math.hypot(o.x - polluxX, o.y - polluxY);
+            const dCenter = Math.hypot(o.x - cx, o.y - cy);
+
+            if (dCastor < catchR + o.r || dPollux < catchR + o.r) {
+              const hitCastor = dCastor <= dPollux;
+              const matched =
+                (hitCastor && o.kind === 'castor') || (!hitCastor && o.kind === 'pollux');
+
+              if (matched) {
+                state.score += 25 * state.combo;
+                state.combo = Math.min(12, state.combo + 1);
+                state.harmonizedPairs += 1;
+                burst(o.x, o.y, hitCastor ? '#60a5fa' : '#fbbf24');
+                playTone(440 + state.combo * 38, 'triangle', 0.13, 0.08);
+
+                if (state.litStars < 12 && state.harmonizedPairs % 2 === 0) {
+                  const unlocked = GEMINI_STARS[state.litStars];
+                  state.litStars += 1;
+                  state.score += 100;
+                  loreNameEl.textContent = `★ Star ${state.litStars}/12 Unlocked — ${unlocked.name}:`;
+                  loreTextEl.textContent = unlocked.lore;
+                  playTone(880, 'sine', 0.24, 0.09);
+                }
+              } else {
+                state.shields -= 1;
+                state.combo = 1;
+                burst(o.x, o.y, '#ef4444');
+                playTone(165, 'sawtooth', 0.2, 0.08);
+              }
+              state.orbs.splice(i, 1);
+              updateHud();
+              if (state.shields <= 0) {
+                endGame();
+                return;
+              }
+              continue;
+            }
+
+            if (dCenter < 14) {
+              // Missed photon passed straight through center core
+              if (o.kind !== 'void') {
+                state.combo = 1;
+                updateHud();
+              }
+              state.orbs.splice(i, 1);
+            }
+          }
+
+          for (let i = state.particles.length - 1; i >= 0; i--) {
+            const p = state.particles[i];
+            p.x += p.vx * dt;
+            p.y += p.vy * dt;
+            p.life -= dt;
+            if (p.life <= 0) state.particles.splice(i, 1);
+          }
+        }
+
+        function draw() {
+          const w = canvas.width;
+          const h = canvas.height;
+          ctx.clearRect(0, 0, w, h);
+
+          // Deep zodiac space background
+          for (const d of bgDust) {
+            ctx.fillStyle = `rgba(226, 232, 240, ${d.a})`;
+            ctx.beginPath();
+            ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+            ctx.fill();
+          }
+
+          // Gemini Constellation Map
+          ctx.lineWidth = 1.4;
+          for (const [aIdx, bIdx] of EDGES) {
+            const lit = state.litStars > Math.max(aIdx, bIdx);
+            const a = GEMINI_STARS[aIdx];
+            const b = GEMINI_STARS[bIdx];
+            ctx.strokeStyle = lit ? 'rgba(192, 132, 252, 0.45)' : 'rgba(148, 163, 184, 0.1)';
+            ctx.beginPath();
+            ctx.moveTo(a.x * w, a.y * h);
+            ctx.lineTo(b.x * w, b.y * h);
+            ctx.stroke();
+          }
+
+          GEMINI_STARS.forEach((st, idx) => {
+            const isLit = idx < state.litStars;
+            const sx = st.x * w;
+            const sy = st.y * h;
+            ctx.fillStyle = isLit ? (idx % 2 === 0 ? '#93c5fd' : '#fde68a') : 'rgba(148, 163, 184, 0.22)';
+            ctx.beginPath();
+            ctx.arc(sx, sy, isLit ? 4.2 : 2.3, 0, Math.PI * 2);
+            ctx.fill();
+            if (isLit) {
+              ctx.font = '11px ui-monospace, Menlo, monospace';
+              ctx.fillStyle = 'rgba(226, 232, 240, 0.62)';
+              ctx.fillText(st.name.split(' ')[0], sx + 7, sy + 3);
+            }
+          });
+
+          const cx = w / 2;
+          const cy = h / 2;
+
+          // Twin Orbit Ring
+          ctx.strokeStyle = 'rgba(148, 163, 184, 0.22)';
+          ctx.lineWidth = 1.5;
+          ctx.setLineDash([5, 6]);
+          ctx.beginPath();
+          ctx.arc(cx, cy, state.orbitRadius, 0, Math.PI * 2);
+          ctx.stroke();
+          ctx.setLineDash([]);
+
+          // Center Gemini Glyph
+          ctx.fillStyle = 'rgba(192, 132, 252, 0.35)';
+          ctx.font = '20px Inter, sans-serif';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText('♊', cx, cy);
+          ctx.textAlign = 'start';
+
+          const castorX = cx + Math.cos(state.angle) * state.orbitRadius;
+          const castorY = cy + Math.sin(state.angle) * state.orbitRadius;
+          const polluxX = cx - Math.cos(state.angle) * state.orbitRadius;
+          const polluxY = cy - Math.sin(state.angle) * state.orbitRadius;
+
+          // Celestial Tether
+          const grad = ctx.createLinearGradient(castorX, castorY, polluxX, polluxY);
+          grad.addColorStop(0, 'rgba(96, 165, 250, 0.65)');
+          grad.addColorStop(0.5, 'rgba(192, 132, 252, 0.25)');
+          grad.addColorStop(1, 'rgba(251, 191, 36, 0.65)');
+          ctx.strokeStyle = grad;
+          ctx.lineWidth = 2.5;
+          ctx.beginPath();
+          ctx.moveTo(castorX, castorY);
+          ctx.lineTo(polluxX, polluxY);
+          ctx.stroke();
+
+          // Castor Orb (Blue)
+          ctx.shadowBlur = 18;
+          ctx.shadowColor = '#60a5fa';
+          ctx.fillStyle = '#60a5fa';
+          ctx.beginPath();
+          ctx.arc(castorX, castorY, 15, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.fillStyle = '#eff6ff';
+          ctx.beginPath();
+          ctx.arc(castorX, castorY, 6, 0, Math.PI * 2);
+          ctx.fill();
+
+          // Pollux Orb (Gold)
+          ctx.shadowColor = '#fbbf24';
+          ctx.fillStyle = '#fbbf24';
+          ctx.beginPath();
+          ctx.arc(polluxX, polluxY, 15, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.fillStyle = '#fefce8';
+          ctx.beginPath();
+          ctx.arc(polluxX, polluxY, 6, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.shadowBlur = 0;
+
+          // Incoming Photons & Void Meteors
+          for (const o of state.orbs) {
+            ctx.fillStyle =
+              o.kind === 'castor' ? '#60a5fa' : o.kind === 'pollux' ? '#fbbf24' : '#ef4444';
+            ctx.beginPath();
+            ctx.arc(o.x, o.y, o.r, 0, Math.PI * 2);
+            ctx.fill();
+            if (o.kind === 'void') {
+              ctx.strokeStyle = '#fca5a5';
+              ctx.lineWidth = 2;
+              ctx.stroke();
+            }
+          }
+
+          // Particles
+          for (const p of state.particles) {
+            ctx.globalAlpha = Math.max(0, p.life * 2);
+            ctx.fillStyle = p.color;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 2.6, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          ctx.globalAlpha = 1;
+        }
+
+        let lastTs = performance.now();
+        function loop(now) {
+          const dt = Math.min(0.05, (now - lastTs) / 1000);
+          lastTs = now;
+          step(dt);
+          draw();
+          requestAnimationFrame(loop);
+        }
+        requestAnimationFrame(loop);
+
+        window.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') state.keys.left = true;
+          if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') state.keys.right = true;
+          if (e.code === 'Space') {
+            e.preventDefault();
+            if (!state.running) resetGame();
+            else swapTwins();
+          }
+          if (e.key === 'p' || e.key === 'P') pauseBtn.click();
+        });
+        window.addEventListener('keyup', (e) => {
+          if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') state.keys.left = false;
+          if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') state.keys.right = false;
+        });
+
+        function aimPointer(e) {
+          if (!state.running || state.paused) return;
+          const rect = canvas.getBoundingClientRect();
+          const px = ((e.clientX - rect.left) / rect.width) * canvas.width;
+          const py = ((e.clientY - rect.top) / rect.height) * canvas.height;
+          state.angle = Math.atan2(py - canvas.height / 2, px - canvas.width / 2);
+        }
+        canvas.addEventListener('pointerdown', (e) => {
+          state.pointerActive = true;
+          aimPointer(e);
+        });
+        canvas.addEventListener('pointermove', (e) => {
+          if (state.pointerActive) aimPointer(e);
+        });
+        window.addEventListener('pointerup', () => { state.pointerActive = false; });
+
+        startBtn.addEventListener('click', resetGame);
+        swapBtn.addEventListener('click', swapTwins);
+        pauseBtn.addEventListener('click', () => {
+          if (!state.running) return;
+          state.paused = !state.paused;
+          pauseBtn.textContent = state.paused ? '▶ Resume' : '⏸ Pause';
+        });
+        muteBtn.addEventListener('click', () => {
+          soundOn = !soundOn;
+          muteBtn.textContent = soundOn ? '🔊 Sound On' : '🔇 Muted';
+        });
+        shareBtn.addEventListener('click', async () => {
+          const msg = `♊ I lit ${state.litStars}/12 stars of the Gemini Constellation (${state.score} pts) in Castor & Pollux: Twin Stars of Gemini! Play free at https://geminipulse.com/labs/twin-stars-of-gemini.html`;
+          try {
+            await navigator.clipboard.writeText(msg);
+            shareBtn.textContent = '✓ Copied Score!';
+            setTimeout(() => { shareBtn.textContent = '📋 Copy My Score'; }, 2200);
+          } catch {}
+        });
+      })();
+    </script>
+  </body>
+</html>

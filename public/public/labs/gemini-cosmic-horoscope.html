@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gemini Twin-Star Cosmic Oracle &amp; Daily Horoscope — Built with Google Gemini</title>
+    <meta
+      name="description"
+      content="Explore your daily Gemini Twin-Star Horoscope, real astronomical lunar phase, Castor & Pollux dual-mind reading (Strategy vs. Creative Spark), and 12-sign compatibility matcher."
+    />
+    <link rel="canonical" href="https://geminipulse.com/labs/gemini-cosmic-horoscope.html" />
+    <link rel="icon" type="image/svg+xml" href="/gemini-sparkle.svg" />
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #060812;
+        --surface: rgba(16, 21, 36, 0.88);
+        --surface-hi: rgba(24, 31, 52, 0.94);
+        --border: rgba(148, 163, 184, 0.18);
+        --blue: #60a5fa;
+        --gold: #fbbf24;
+        --violet: #c084fc;
+        --emerald: #34d399;
+        --text: #f3f6fc;
+        --muted: #9aa4bc;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background:
+          radial-gradient(circle at 12% 8%, rgba(96, 165, 250, 0.16), transparent 40%),
+          radial-gradient(circle at 88% 10%, rgba(251, 191, 36, 0.14), transparent 42%),
+          radial-gradient(circle at 50% 90%, rgba(192, 132, 252, 0.14), transparent 50%),
+          var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        min-height: 100dvh;
+      }
+      .wrap {
+        max-width: 1060px;
+        margin: 0 auto;
+        padding: 1.2rem 1.1rem 3.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.35rem;
+      }
+      .topbar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.7rem;
+        padding: 0.65rem 1.05rem;
+        border-radius: 999px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+      }
+      .pill {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 0.73rem;
+        padding: 0.25rem 0.75rem;
+        border-radius: 999px;
+        background: rgba(251, 191, 36, 0.15);
+        border: 1px solid rgba(251, 191, 36, 0.38);
+        color: #fde68a;
+        font-weight: 600;
+      }
+      a { color: #93c5fd; text-decoration: none; font-size: 0.84rem; font-weight: 600; }
+      a:hover { text-decoration: underline; }
+      .hero {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+        gap: 1.15rem;
+        align-items: stretch;
+      }
+      @media (max-width: 820px) {
+        .hero { grid-template-columns: 1fr; }
+      }
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 1.35rem;
+        padding: 1.35rem 1.45rem;
+      }
+      h1 {
+        margin: 0 0 0.45rem;
+        font-size: clamp(1.65rem, 3.4vw, 2.4rem);
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+      }
+      .grad {
+        background: linear-gradient(120deg, var(--blue) 0%, var(--violet) 48%, var(--gold) 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .muted { color: var(--muted); font-size: 0.92rem; margin: 0; }
+      .sky-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.65rem;
+        margin-top: 0.85rem;
+      }
+      .sky-box {
+        background: var(--surface-hi);
+        border: 1px solid var(--border);
+        border-radius: 0.95rem;
+        padding: 0.7rem 0.85rem;
+      }
+      .mono-sm {
+        font-family: ui-monospace, Menlo, monospace;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .sky-val { font-weight: 700; font-size: 0.95rem; margin-top: 0.15rem; }
+      .finder-bar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.65rem;
+        margin-top: 1rem;
+      }
+      input[type="date"], select {
+        background: var(--surface-hi);
+        color: var(--text);
+        border: 1px solid var(--border);
+        border-radius: 0.85rem;
+        padding: 0.6rem 0.85rem;
+        font-family: inherit;
+        font-size: 0.88rem;
+        min-height: 42px;
+      }
+      .signs-strip {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 0.5rem;
+      }
+      @media (max-width: 720px) {
+        .signs-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      }
+      .sign-btn {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+        padding: 0.6rem 0.5rem;
+        color: var(--text);
+        cursor: pointer;
+        text-align: center;
+        transition: border-color 0.18s ease, background 0.18s ease;
+        min-height: 58px;
+      }
+      .sign-btn:hover { border-color: var(--blue); }
+      .sign-btn[aria-pressed="true"] {
+        background: linear-gradient(145deg, rgba(96, 165, 250, 0.2), rgba(192, 132, 252, 0.18));
+        border-color: var(--gold);
+      }
+      .sign-glyph { font-size: 1.25rem; display: block; line-height: 1.2; }
+      .sign-name { font-size: 0.78rem; font-weight: 700; }
+      .sign-dates { font-size: 0.66rem; color: var(--muted); display: block; }
+      .reading-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.1rem;
+      }
+      @media (max-width: 780px) {
+        .reading-grid { grid-template-columns: 1fr; }
+      }
+      .twin-tag {
+        display: inline-block;
+        font-family: ui-monospace, Menlo, monospace;
+        font-size: 0.72rem;
+        padding: 0.22rem 0.6rem;
+        border-radius: 0.5rem;
+        margin-bottom: 0.55rem;
+        font-weight: 700;
+      }
+      .crown-banner {
+        padding: 0.75rem 1rem;
+        border-radius: 1rem;
+        background: linear-gradient(120deg, rgba(251, 191, 36, 0.16), rgba(192, 132, 252, 0.16));
+        border: 1px solid rgba(251, 191, 36, 0.45);
+        color: #fef08a;
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+      .crown-banner[hidden] { display: none; }
+      .btn {
+        background: linear-gradient(135deg, #3b82f6 0%, #9333ea 52%, #f59e0b 100%);
+        color: #fff;
+        border: 0;
+        border-radius: 999px;
+        padding: 0.65rem 1.2rem;
+        font-weight: 700;
+        font-size: 0.84rem;
+        cursor: pointer;
+        min-height: 42px;
+      }
+      .compat-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <nav class="topbar" aria-label="GeminiPulse Labs navigation">
+        <span class="pill">♊ GEMINI COSMIC ORACLE • BUILT WITH GOOGLE GEMINI 4 ARGON</span>
+        <div style="display:flex;gap:1rem;align-items:center;">
+          <a href="/labs/twin-stars-of-gemini.html">🎮 Play Twin Stars Game →</a>
+          <a href="/#showcase">← Built with Gemini Directory</a>
+        </div>
+      </nav>
+
+      <section class="hero">
+        <div class="card">
+          <h1>The <span class="grad">Gemini Twin-Star</span> Daily Horoscope</h1>
+          <p class="muted">
+            Named for the mythological Twins <strong>Castor &amp; Pollux</strong> (May 21 – June 20, Air Sign ruled by Mercury), every sign carries two complementary currents: your <strong>Castor Mind</strong> (logic, strategy &amp; craft) and your <strong>Pollux Spark</strong> (intuition, luck &amp; human connection).
+          </p>
+          <div class="finder-bar">
+            <label for="birthInput" class="mono-sm" style="color:var(--text);">Find by Birthday:</label>
+            <input type="date" id="birthInput" value="1990-06-12" />
+            <button type="button" class="btn" id="copyReadingBtn">📋 Share Today’s Reading</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="mono-sm" style="color:var(--gold);">Live Astronomical Sky Ephemeris</div>
+          <div style="font-weight:800;font-size:1.1rem;margin-top:0.2rem;" id="todayDateLabel">Today’s Celestial State</div>
+          <div class="sky-grid">
+            <div class="sky-box">
+              <div class="mono-sm">Lunar Phase</div>
+              <div class="sky-val" id="moonPhaseVal">Calculating…</div>
+            </div>
+            <div class="sky-box">
+              <div class="mono-sm">Lunar Illumination</div>
+              <div class="sky-val" id="moonIllumVal">--%</div>
+            </div>
+            <div class="sky-box">
+              <div class="mono-sm">Mercury Signal</div>
+              <div class="sky-val" id="mercuryVal">Direct &amp; Crisp</div>
+            </div>
+            <div class="sky-box">
+              <div class="mono-sm">Twin Focus Star</div>
+              <div class="sky-val" id="focusStarVal">Pollux (β Gem)</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div id="twinCrownBanner" class="crown-banner">
+        ♊ TWIN-BORN SOVEREIGN DETECTED (May 21 – June 20): You share your solar sign directly with Gemini! Double Mercury resonance active today—trust rapid synthesis and bold dual-track experiments.
+      </div>
+
+      <section aria-label="Choose Zodiac Sign">
+        <div class="signs-strip" id="signsGrid"></div>
+      </section>
+
+      <section class="card" aria-live="polite">
+        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:0.75rem;border-bottom:1px solid var(--border);padding-bottom:0.9rem;margin-bottom:1rem;">
+          <div>
+            <div class="mono-sm" id="signMeta">AIR SIGN • RULED BY MERCURY</div>
+            <h2 style="margin:0.15rem 0 0;font-size:1.55rem;" id="signHeading">♊ Gemini (May 21 – Jun 20)</h2>
+          </div>
+          <div style="display:flex;gap:0.65rem;flex-wrap:wrap;font-family:ui-monospace,Menlo,monospace;font-size:0.78rem;">
+            <span style="padding:0.35rem 0.75rem;border-radius:999px;background:rgba(52,211,153,0.14);border:1px solid rgba(52,211,153,0.35);color:#6ee7b7;" id="powerHourVal">Power Window: 10:00 AM</span>
+            <span style="padding:0.35rem 0.75rem;border-radius:999px;background:rgba(192,132,252,0.14);border:1px solid rgba(192,132,252,0.35);color:#e9d5ff;" id="cosmicNumVal">Twin Vector: 11 • 38</span>
+          </div>
+        </div>
+
+        <div class="reading-grid">
+          <div class="sky-box" style="padding:1.1rem 1.2rem;">
+            <span class="twin-tag" style="background:rgba(96,165,250,0.16);color:#93c5fd;border:1px solid rgba(96,165,250,0.35);">
+              ★ CASTOR MIND • WORK, BUILDERS &amp; DECISIONS
+            </span>
+            <p style="margin:0;font-size:0.93rem;" id="castorReading"></p>
+          </div>
+
+          <div class="sky-box" style="padding:1.1rem 1.2rem;">
+            <span class="twin-tag" style="background:rgba(251,191,36,0.16);color:#fde68a;border:1px solid rgba(251,191,36,0.35);">
+              ✦ POLLUX SPARK • CREATIVITY, LUCK &amp; PEOPLE
+            </span>
+            <p style="margin:0;font-size:0.93rem;" id="polluxReading"></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="compat-row">
+          <div>
+            <div class="mono-sm" style="color:var(--violet);">Twin-Aspect Synergy Matcher</div>
+            <h3 style="margin:0.2rem 0 0.25rem;font-size:1.18rem;">Check Cosmic &amp; Co-Founder Compatibility</h3>
+            <p class="muted" style="font-size:0.86rem;" id="compatText"></p>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;">
+            <label for="partnerSelect" class="mono-sm">Compare With:</label>
+            <select id="partnerSelect"></select>
+            <div style="font-size:1.35rem;font-weight:800;color:var(--emerald);min-width:4.5rem;text-align:right;" id="compatScore">96%</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      (() => {
+        const SIGNS = [
+          { id: 'gemini', glyph: '♊', name: 'Gemini', dates: 'May 21 – Jun 20', element: 'Air', ruler: 'Mercury' },
+          { id: 'cancer', glyph: '♋', name: 'Cancer', dates: 'Jun 21 – Jul 22', element: 'Water', ruler: 'Moon' },
+          { id: 'leo', glyph: '♌', name: 'Leo', dates: 'Jul 23 – Aug 22', element: 'Fire', ruler: 'Sun' },
+          { id: 'virgo', glyph: '♍', name: 'Virgo', dates: 'Aug 23 – Sep 22', element: 'Earth', ruler: 'Mercury' },
+          { id: 'libra', glyph: '♎', name: 'Libra', dates: 'Sep 23 – Oct 22', element: 'Air', ruler: 'Venus' },
+          { id: 'scorpio', glyph: '♏', name: 'Scorpio', dates: 'Oct 23 – Nov 21', element: 'Water', ruler: 'Pluto & Mars' },
+          { id: 'sagittarius', glyph: '♐', name: 'Sagittarius', dates: 'Nov 22 – Dec 21', element: 'Fire', ruler: 'Jupiter' },
+          { id: 'capricorn', glyph: '♑', name: 'Capricorn', dates: 'Dec 22 – Jan 19', element: 'Earth', ruler: 'Saturn' },
+          { id: 'aquarius', glyph: '♒', name: 'Aquarius', dates: 'Jan 20 – Feb 18', element: 'Air', ruler: 'Uranus & Saturn' },
+          { id: 'pisces', glyph: '♓', name: 'Pisces', dates: 'Feb 19 – Mar 20', element: 'Water', ruler: 'Neptune' },
+          { id: 'aries', glyph: '♈', name: 'Aries', dates: 'Mar 21 – Apr 19', element: 'Fire', ruler: 'Mars' },
+          { id: 'taurus', glyph: '♉', name: 'Taurus', dates: 'Apr 20 – May 20', element: 'Earth', ruler: 'Venus' },
+        ];
+
+        const CASTOR_POOL = [
+          'Cut scope down to one clean, shippable one-pager today. When you eliminate two distractions before noon, a stalled technical or business puzzle clicks effortlessly into place.',
+          'Your pattern-recognition is running ahead of the room. Write down the simple plain-English checklist first—others will rally behind your clarity.',
+          'A side experiment you almost shelved holds real leverage. Test a lightweight prototype before investing heavy infrastructure; speed of iteration wins today.',
+          'Mercury favors direct architecture and crisp agreements. Clarify ownership early, automate the repetitive loop, and protect your deep-focus block.',
+          'Two seemingly unrelated ideas in your notebook belong together. Bridge them into a single offer or tool and watch friction disappear.',
+          'Audit what is actually live versus assumed. Fixing one tiny bottleneck at the front door unlocks disproportionate momentum across the whole week.',
+        ];
+
+        const POLLUX_POOL = [
+          'Playfulness is your secret magnet right now. A lighthearted message, game, or unexpected creative twist opens a door that formal pitches could not.',
+          'Expect high-voltage synergy with fellow builders and curious minds. Share what you are making before it feels "finished"—someone watching wants to collaborate.',
+          'Step away from noisy feeds and follow genuine curiosity. Evening conversations spark an unconventional angle worth capturing immediately.',
+          'Generosity compounds fast under today’s lunar angle: spotlighting someone else’s craft brings warm reciprocity from an unexpected corner.',
+          'Trust your instinctive read on tone and timing. When an opportunity feels energizing and light rather than heavy, lean all the way in.',
+          'Double-twin luck favors bold naming and memorable storytelling. Let personality shine through your work instead of blending into templates.',
+        ];
+
+        const WINDOWS = ['8:45 AM', '10:15 AM', '1:30 PM', '3:45 PM', '7:15 PM', '9:00 PM'];
+
+        // Real synodic lunar phase calculation from known reference new moon (2000-01-06 18:14 UTC)
+        const now = new Date();
+        document.getElementById('todayDateLabel').textContent = now.toLocaleDateString('en-US', {
+          weekday: 'long', month: 'short', day: 'numeric', year: 'numeric'
+        });
+
+        const synodic = 29.53058867;
+        const daysSinceRef = (now.getTime() - Date.UTC(2000, 0, 6, 18, 14, 0)) / 86400000;
+        const phaseRatio = ((daysSinceRef % synodic) + synodic) % synodic / synodic;
+        const illum = Math.round((1 - Math.cos(phaseRatio * Math.PI * 2)) * 50);
+        const phaseNames = [
+          '🌑 New Moon', '🌒 Waxing Crescent', '🌓 First Quarter', '🌔 Waxing Gibbous',
+          '🌕 Full Moon', '🌖 Waning Gibbous', '🌗 Last Quarter', '🌘 Waning Crescent'
+        ];
+        const phaseIdx = Math.floor(((phaseRatio + 0.0625) % 1) * 8);
+        document.getElementById('moonPhaseVal').textContent = phaseNames[phaseIdx];
+        document.getElementById('moonIllumVal').textContent = `${illum}% Lit`;
+
+        const daySeed = now.getFullYear() * 10000 + (now.getMonth() + 1) * 100 + now.getDate();
+        document.getElementById('mercuryVal').textContent =
+          daySeed % 3 === 0 ? 'High-Velocity Synthesis' : daySeed % 3 === 1 ? 'Direct & Grounded' : 'Twin-Channel Flow';
+        document.getElementById('focusStarVal').textContent =
+          daySeed % 2 === 0 ? 'Pollux (β Gem)' : 'Castor (α Gem)';
+
+        function hash(str) {
+          let h = 2166136261;
+          for (let i = 0; i < str.length; i++) {
+            h ^= str.charCodeAt(i);
+            h = Math.imul(h, 16777619);
+          }
+          return Math.abs(h);
+        }
+
+        let activeSignId = 'gemini';
+        const signsGrid = document.getElementById('signsGrid');
+        const partnerSelect = document.getElementById('partnerSelect');
+
+        SIGNS.forEach((s) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'sign-btn';
+          btn.dataset.sign = s.id;
+          btn.setAttribute('aria-pressed', String(s.id === activeSignId));
+          btn.innerHTML = `<span class="sign-glyph">${s.glyph}</span><span class="sign-name">${s.name}</span><span class="sign-dates">${s.dates}</span>`;
+          btn.addEventListener('click', () => selectSign(s.id));
+          signsGrid.appendChild(btn);
+
+          const opt = document.createElement('option');
+          opt.value = s.id;
+          opt.textContent = `${s.glyph} ${s.name} (${s.element})`;
+          if (s.id === 'aquarius') opt.selected = true;
+          partnerSelect.appendChild(opt);
+        });
+
+        function updateCompatibility() {
+          const a = SIGNS.find((s) => s.id === activeSignId);
+          const b = SIGNS.find((s) => s.id === partnerSelect.value) || SIGNS[0];
+          const pairKey = [a.element, b.element].sort().join('-');
+          let base = 82;
+          let note = '';
+          if (a.id === b.id) {
+            base = a.id === 'gemini' ? 98 : 92;
+            note = `Twin-Mirror Alignment (${a.name} + ${b.name}): Instant shorthand, rapid ideation, and shared wavelength—anchor big ideas with a written finish line.`;
+          } else if (a.element === b.element) {
+            base = 95;
+            note = `Trine ${a.element} Resonance (${a.name} + ${b.name}): Effortless momentum—ideas flow naturally without over-explaining.`;
+          } else if (pairKey === 'Air-Fire' || pairKey === 'Earth-Water') {
+            base = 93;
+            note = `Complementary Catalyst (${a.element} + ${b.element}): Air feeds Fire and Water nourishes Earth—one sparks vision while the other amplifies execution.`;
+          } else {
+            base = 84;
+            note = `Cross-Element Contrast (${a.name} ${a.element} + ${b.name} ${b.element}): Different blind spots make you a stronger founding duo when roles are clearly split.`;
+          }
+          document.getElementById('compatScore').textContent = `${base}%`;
+          document.getElementById('compatText').textContent = note;
+        }
+
+        function selectSign(signId) {
+          activeSignId = signId;
+          document.querySelectorAll('.sign-btn').forEach((b) => {
+            b.setAttribute('aria-pressed', String(b.dataset.sign === signId));
+          });
+          const s = SIGNS.find((x) => x.id === signId) || SIGNS[0];
+          document.getElementById('twinCrownBanner').hidden = s.id !== 'gemini';
+          document.getElementById('signMeta').textContent = `${s.element.toUpperCase()} SIGN • RULED BY ${s.ruler.toUpperCase()}`;
+          document.getElementById('signHeading').textContent = `${s.glyph} ${s.name} (${s.dates})`;
+
+          const h1 = hash(`${daySeed}:${s.id}:castor`);
+          const h2 = hash(`${daySeed}:${s.id}:pollux`);
+          document.getElementById('castorReading').textContent = CASTOR_POOL[h1 % CASTOR_POOL.length];
+          document.getElementById('polluxReading').textContent = POLLUX_POOL[h2 % POLLUX_POOL.length];
+          document.getElementById('powerHourVal').textContent = `Power Window: ${WINDOWS[h1 % WINDOWS.length]}`;
+          document.getElementById('cosmicNumVal').textContent = `Twin Vector: ${(h1 % 29) + 3} • ${(h2 % 59) + 11}`;
+          updateCompatibility();
+        }
+
+        function signFromMonthDay(m, d) {
+          if ((m === 5 && d >= 21) || (m === 6 && d <= 20)) return 'gemini';
+          if ((m === 6 && d >= 21) || (m === 7 && d <= 22)) return 'cancer';
+          if ((m === 7 && d >= 23) || (m === 8 && d <= 22)) return 'leo';
+          if ((m === 8 && d >= 23) || (m === 9 && d <= 22)) return 'virgo';
+          if ((m === 9 && d >= 23) || (m === 10 && d <= 22)) return 'libra';
+          if ((m === 10 && d >= 23) || (m === 11 && d <= 21)) return 'scorpio';
+          if ((m === 11 && d >= 22) || (m === 12 && d <= 21)) return 'sagittarius';
+          if ((m === 12 && d >= 22) || (m === 1 && d <= 19)) return 'capricorn';
+          if ((m === 1 && d >= 20) || (m === 2 && d <= 18)) return 'aquarius';
+          if ((m === 2 && d >= 19) || (m === 3 && d <= 20)) return 'pisces';
+          if ((m === 3 && d >= 21) || (m === 4 && d <= 19)) return 'aries';
+          return 'taurus';
+        }
+
+        document.getElementById('birthInput').addEventListener('change', (e) => {
+          const parts = e.target.value.split('-').map(Number);
+          if (parts.length === 3 && parts[1] && parts[2]) {
+            selectSign(signFromMonthDay(parts[1], parts[2]));
+          }
+        });
+        partnerSelect.addEventListener('change', updateCompatibility);
+
+        document.getElementById('copyReadingBtn').addEventListener('click', async (e) => {
+          const s = SIGNS.find((x) => x.id === activeSignId);
+          const msg = `${s.glyph} ${s.name} Twin-Star Reading (${document.getElementById('moonPhaseVal').textContent}):\n★ Castor Mind: ${document.getElementById('castorReading').textContent}\n✦ Pollux Spark: ${document.getElementById('polluxReading').textContent}\nExplore yours at https://geminipulse.com/labs/gemini-cosmic-horoscope.html`;
+          try {
+            await navigator.clipboard.writeText(msg);
+            e.target.textContent = '✓ Copied Today’s Reading!';
+            setTimeout(() => { e.target.textContent = '📋 Share Today’s Reading'; }, 2200);
+          } catch {}
+        });
+
+        selectSign('gemini');
+      })();
+    </script>
+  </body>
+</html>

@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-10-29 21:50 EDT — Fixed live Google Sign-In lazy chunk loading regression (removed custom Rollup firebase-* manualChunks override & hardened idempotent Firebase Auth initialization in public/src/firebase.js), shipped native <dialog> Support & Contribute Portal (STRIPE_SUPPORT_CONFIG for Agile LLC -> GeminiPulse Stripe Payment Links), and verified live E2E + Lighthouse + 4-viewport Layout Audits`
+> **Last touched:** `2026-10-29 22:00 EDT — Shipped "Castor & Pollux: Twin Stars of Gemini" 60fps astrological arcade game (/labs/twin-stars-of-gemini.html) + "Gemini Twin-Star Cosmic Oracle & Daily Horoscope" (/labs/gemini-cosmic-horoscope.html), populated #showcase with 5 real curated "Found by GeminiPulse" ecosystem apps + provenance badges, and added the Subdomain & Domain-Portfolio Micro-App Launchpad roadmap`
 
 ---
 

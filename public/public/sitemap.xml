@@ -31,6 +31,18 @@
     <priority>0.95</priority>
   </url>
   <url>
+    <loc>https://geminipulse.com/labs/twin-stars-of-gemini.html</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/labs/gemini-cosmic-horoscope.html</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
     <loc>https://geminipulse.com/partners</loc>
     <lastmod>2026-10-29</lastmod>
     <changefreq>monthly</changefreq>

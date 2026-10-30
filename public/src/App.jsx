@@ -162,10 +162,18 @@ export default function App() {
   const [isSimulating, setIsSimulating] = useState(false);
   const [copiedCode, setCopiedCode] = useState(false);
 
-  // Showcase State (Hybrid Firestore + LocalStorage persistence — v3 Truth-on-the-Page dataset)
+  // Showcase State (Hybrid Firestore + LocalStorage persistence — v4 merges curated/Labs items with user submissions)
   const [showcaseProjects, setShowcaseProjects] = useState(() => {
-    const saved = localStorage.getItem('geminipulse_showcase_v3');
-    return saved ? JSON.parse(saved) : INITIAL_SHOWCASE_PROJECTS;
+    try {
+      const saved = localStorage.getItem('geminipulse_showcase_v4');
+      if (!saved) return INITIAL_SHOWCASE_PROJECTS;
+      const parsed = JSON.parse(saved);
+      const seedIds = new Set(INITIAL_SHOWCASE_PROJECTS.map((p) => p.id));
+      const userAdded = Array.isArray(parsed) ? parsed.filter((p) => !seedIds.has(p.id)) : [];
+      return [...userAdded, ...INITIAL_SHOWCASE_PROJECTS];
+    } catch {
+      return INITIAL_SHOWCASE_PROJECTS;
+    }
   });
   const [showcaseFilter, setShowcaseFilter] = useState('All');
   const [showSubmitModal, setShowSubmitModal] = useState(false);
@@ -595,7 +603,7 @@ export default function App() {
   }, [fbRuntime, activeThreadId]);
 
   useEffect(() => {
-    localStorage.setItem('geminipulse_showcase_v3', JSON.stringify(showcaseProjects));
+    localStorage.setItem('geminipulse_showcase_v4', JSON.stringify(showcaseProjects));
   }, [showcaseProjects]);
 
   useEffect(() => {
@@ -2348,18 +2356,18 @@ export default function App() {
         {/* =================================================================
             MODULE 4: "BUILT WITH GEMINI" PRODUCT SHOWCASE (#showcase)
             ================================================================= */}
-        <section id="showcase" className="scroll-mt-24 space-y-8 m3-deferred-section">
+        <section id="showcase" className="scroll-mt-24 space-y-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[var(--md-sys-color-outline)] pb-6">
-            <div>
-              <div className="text-xs font-mono uppercase tracking-wider text-pink-400 flex items-center gap-1.5 mb-2">
+            <div className="space-y-2">
+              <div className="text-xs font-mono uppercase tracking-wider text-pink-400 flex items-center gap-1.5">
                 <Rocket className="w-3.5 h-3.5" />
-                Community Product Directory • Auto-Reviewed by Gemini 3.8 Flash
+                Gemini Labs Originals • Curated Ecosystem Discoveries • Community Directory
               </div>
               <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
                 Built with <span className="gemini-spectrum-text">Google Gemini</span>
               </h2>
-              <p className="m3-text-muted mt-1">
-                Discover real applications, voice agents, and developer tools built with Gemini—or submit your own project for instant AI architectural tagging.
+              <p className="m3-text-muted max-w-3xl">
+                Play and explore 1-page micro-apps &amp; games built right here in <strong>GeminiPulse Labs</strong> (<code>/labs/*</code>), real-world apps we found built with Google Gemini, and community submissions.
               </p>
             </div>
 
@@ -2373,7 +2381,15 @@ export default function App() {
           </div>
 
           <div className="flex-balance gap-2">
-            {['All', 'Agents', 'Voice & Live', 'Coding', 'Creative Media'].map((cat) => (
+            {[
+              'All',
+              'Games & Cosmic',
+              'Tools & Labs',
+              'Agents',
+              'Voice & Live',
+              'Coding',
+              'Creative Media',
+            ].map((cat) => (
               <button
                 key={cat}
                 onClick={() => setShowcaseFilter(cat)}
@@ -2389,7 +2405,17 @@ export default function App() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {filteredShowcase.map((proj) => (
+            {filteredShowcase.map((proj) => {
+              const provLabel = proj.provenanceBadge || 'Community Submission';
+              const provStyle =
+                provLabel === 'Gemini Labs Original'
+                  ? 'bg-amber-500/15 text-amber-300 border border-amber-400/35'
+                  : provLabel === 'Found by GeminiPulse'
+                  ? 'bg-purple-500/15 text-purple-300 border border-purple-400/35'
+                  : provLabel === 'Official Google Reference'
+                  ? 'bg-blue-500/15 text-blue-300 border border-blue-400/30'
+                  : 'bg-emerald-500/15 text-emerald-300 border border-emerald-400/35';
+              return (
               <div key={proj.id} className="m3-card p-6 flex flex-col justify-between gap-5">
                 <div className="space-y-3.5 min-w-0">
                   <div className="flex items-start justify-between gap-3 min-w-0">
@@ -2397,6 +2423,10 @@ export default function App() {
                       <div className="flex flex-wrap items-center gap-2">
                         <span className="text-xs font-mono uppercase text-blue-400 font-semibold">
                           {proj.category}
+                        </span>
+                        <span className={`inline-flex items-center gap-1 text-[11px] font-mono px-2.5 py-0.5 rounded-full whitespace-nowrap ${provStyle}`}>
+                          {provLabel === 'Gemini Labs Original' ? '♊ ' : ''}
+                          {provLabel}
                         </span>
                         {proj.verifiedByGemini && (
                           <span className="inline-flex items-center gap-1 text-[11px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 whitespace-nowrap">
@@ -2476,15 +2506,23 @@ export default function App() {
 
                   <a
                     href={proj.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-xs font-semibold text-blue-400 hover:underline inline-flex items-center gap-1 whitespace-nowrap"
+                    target={proj.url.startsWith('/') ? '_self' : '_blank'}
+                    rel={proj.url.startsWith('/') ? undefined : 'noreferrer'}
+                    className="text-xs font-semibold text-blue-400 hover:underline inline-flex items-center gap-1 whitespace-nowrap min-h-[28px]"
                   >
-                    Launch Project <ArrowUpRight className="w-3.5 h-3.5" />
+                    <span>
+                      {proj.id === 'showcase-twin-stars-game'
+                        ? 'Play Game Now'
+                        : proj.url.startsWith('/labs/')
+                        ? 'Open Interactive Lab'
+                        : 'Launch Project'}
+                    </span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
                   </a>
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
         </section>
 

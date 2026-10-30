@@ -1,6 +1,6 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-10-29 21:50 EDT (Fixed Live Google Sign-In Lazy Chunk Initialization + Shipped Native <dialog> Support & Contribute Portal Ready for Agile LLC -> GeminiPulse Stripe Payment Links)`
+- **Last Updated:** `2026-10-29 22:00 EDT (Shipped Twin Stars of Gemini Astrological Arcade Game + Gemini Cosmic Horoscope Lab + 5 Real "Found by GeminiPulse" Showcase Apps + Subdomain/Domain Portfolio Launchpad Roadmap)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
@@ -15,7 +15,13 @@
 
 ## 1. Completed & Live on `v2.0` (2026-10-29 Late Evening Update)
 
-- **Google Sign-In Live Fix + Support & Contribute Portal (`v2.0.32`):**
+- **"Built with Google Gemini" Expansion — 2 Playable Astrological Originals + 5 Curated Ecosystem Apps (`v2.0.32`):**
+  - **`/labs/twin-stars-of-gemini.html` (*Castor & Pollux: Twin Stars of Gemini*):** 60fps HTML5 Canvas + procedural Web Audio zodiac arcade game where players rotate & polarity-swap the Twin Stars of Gemini to illuminate all 12 real stars of the Gemini constellation and unlock astronomical lore.
+  - **`/labs/gemini-cosmic-horoscope.html` (*Gemini Twin-Star Cosmic Oracle & Daily Horoscope*):** Interactive 1-page astrology & daily dual-mind horoscope for all 12 signs with real synodic lunar phase calculation, birthday sign finder (with Twin-Born Sovereign mode for May 21 – June 20 birthdays), Castor (Strategy) vs. Pollux (Creative Spark) readings, and Twin-Aspect compatibility matcher.
+  - **5 Real "Found by GeminiPulse" Curated Discoveries in `#showcase`:** Added *Deviation Game / Outdraw AI* (`deviationgame.com`), *Jayu* (`ai.google.dev/competition/projects/jayu`), *Prospera* (`ai.google.dev/competition/projects/prospera`), *Google NotebookLM* (`notebooklm.google`), and *Gemini CLI* (`github.com/google-gemini/gemini-cli`), each clearly badged (`Gemini Labs Original` vs. `Found by GeminiPulse` vs. `Official Google Reference` vs. `Community Submission`) in strict compliance with House Rule #5.
+  - **Chalked Up on Master Roadmap — Subdomain & Domain-Portfolio Micro-App Launchpad:** Incubate rapid 1-page games & utilities under `/labs/<slug>.html`, validate traction via GA4 (`G-1BWMQWZJQ5`), and graduate winners either to `*.geminipulse.com` subdomains (`arcade.geminipulse.com`, `cosmic.geminipulse.com`, `tools.geminipulse.com` via Firebase Hosting multi-site + 1 Cloudflare CNAME) or standalone domains from Neil’s domain portfolio.
+
+- **Google Sign-In Live Fix + Support & Contribute Portal (`v2.0.31`):**
   - **Fixed Live Google Sign-In (`public/vite.config.js` + `public/src/firebase.js`):** Resolved the regression where Rollup's custom `firebase-*` `manualChunks` split caused `loadFirebaseRuntime()` to catch an initialization error and surface the false `"Firebase Auth is not yet connected..."` fallback. Restored native Rollup dynamic ESM splitting for `firebase/*`, made `initializeApp` idempotent (`getApps().length ? getApp() : initializeApp(firebaseConfig)`), added transient retry recovery + popup-blocked guidance, and verified live Google OAuth popup invocation (`https://geminipulse-com.firebaseapp.com/__/auth/handler`) via headless Chrome CDP.
   - **Support & Contribute Portal (`STRIPE_SUPPORT_CONFIG` + Native `<dialog>`):** Added **Contribute** entry points in the top telemetry bar, navbar `More` menu, Hero CTA bar, `#about-charter`, Footer, and `/partners` (`/#support`), opening an accessible top-layer `<dialog closedby="any">` modal with two tiers (*One-Time Contribution* and *Founding Supporter \$9/mo*). Wired directly to `STRIPE_SUPPORT_CONFIG` in `public/src/data/geminiEcosystemData.js` for 1-click `buy.stripe.com` checkout (`$0/mo` Spark-compatible) with write-only Firestore early-supporter email notification until Neil pastes his Stripe Payment Link URLs.
 
