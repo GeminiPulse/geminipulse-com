@@ -2871,7 +2871,7 @@ export default function App() {
               <div className="m3-card p-5 space-y-2 text-xs">
                 <div className="font-mono font-bold text-emerald-400 flex items-center gap-1.5">
                   <Activity className="w-4 h-4" />
-                  NEXT SCHEDULED EPISODE (EPISODE 09)
+                  NEXT SCHEDULED EPISODE (EPISODE 10)
                 </div>
                 <p className="m3-text-muted leading-relaxed">
                   Generated automatically by our recurring <strong>Antigravity Scheduled Automation</strong> (<code className="m3-inline-code">geminipulse-daily-curator</code>) after scanning the newest Gemini releases and community submissions.
@@ -2891,25 +2891,56 @@ export default function App() {
                     </div>
                   </div>
 
-                  <button
-                    onClick={() => {
-                      navigator.clipboard.writeText(activeEpisode.markdownBody);
-                      setCopiedEpisodeId(activeEpisode.id);
-                      setTimeout(() => setCopiedEpisodeId(null), 2000);
-                    }}
-                    className="bg-gemini-grad text-white text-xs font-semibold px-4 py-2.5 rounded-full inline-flex items-center gap-1.5 cursor-pointer shrink-0 whitespace-nowrap"
-                  >
-                    {copiedEpisodeId === activeEpisode.id ? (
-                      <>
-                        <Check className="w-3.5 h-3.5" /> Copied Markdown!
-                      </>
-                    ) : (
-                      <>
-                        <Copy className="w-3.5 h-3.5" /> Copy Article Markdown
-                      </>
+                  <div className="flex flex-wrap items-center gap-2">
+                    {activeEpisode.seriesUrl && (
+                      <a
+                        href={activeEpisode.seriesUrl}
+                        className="px-3.5 py-2 rounded-full bg-cyan-500/15 text-cyan-300 border border-cyan-400/35 text-xs font-semibold inline-flex items-center gap-1.5 whitespace-nowrap hover:bg-cyan-500/25 transition-colors"
+                      >
+                        <BookOpen className="w-3.5 h-3.5" />
+                        <span>Open Series Page →</span>
+                      </a>
                     )}
-                  </button>
+                    {activeEpisode.shortPlayerUrl && (
+                      <a
+                        href={activeEpisode.shortPlayerUrl}
+                        className="px-3.5 py-2 rounded-full bg-pink-500/15 text-pink-300 border border-pink-400/35 text-xs font-semibold inline-flex items-center gap-1.5 whitespace-nowrap hover:bg-pink-500/25 transition-colors"
+                      >
+                        <Play className="w-3.5 h-3.5" />
+                        <span>9:16 Short Studio</span>
+                      </a>
+                    )}
+                    <button
+                      onClick={() => {
+                        navigator.clipboard.writeText(activeEpisode.markdownBody);
+                        setCopiedEpisodeId(activeEpisode.id);
+                        setTimeout(() => setCopiedEpisodeId(null), 2000);
+                      }}
+                      className="bg-gemini-grad text-white text-xs font-semibold px-4 py-2.5 rounded-full inline-flex items-center gap-1.5 cursor-pointer shrink-0 whitespace-nowrap"
+                    >
+                      {copiedEpisodeId === activeEpisode.id ? (
+                        <>
+                          <Check className="w-3.5 h-3.5" /> Copied Markdown!
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="w-3.5 h-3.5" /> Copy Article Markdown
+                        </>
+                      )}
+                    </button>
+                  </div>
                 </div>
+
+                {activeEpisode.diagramUrl && (
+                  <div className="rounded-2xl overflow-hidden border border-[var(--md-sys-color-outline)] bg-[#0B0F17]">
+                    <img
+                      src={activeEpisode.diagramUrl}
+                      alt={activeEpisode.title}
+                      className="w-full h-auto block"
+                      loading="lazy"
+                    />
+                  </div>
+                )}
 
                 <div className="space-y-2">
                   <div className="text-xs font-mono uppercase text-purple-400">Key Architectural Takeaways</div>
@@ -3034,25 +3065,36 @@ export default function App() {
                     <h3 className="text-xl font-bold mt-0.5">{activeShort.title}</h3>
                   </div>
 
-                  <button
-                    onClick={() => {
-                      const bundle = `TITLE: ${activeShort.title}\nHOOK: ${activeShort.hook}\n\nVISUAL STORYBOARD:\n${activeShort.visualDirection}\n\nGEMINI OMNI 1.1 VIDEO PROMPT:\n${activeShort.omniPrompt}\n\nGEMINI 3.8 FLASH TTS VOICEOVER SCRIPT:\n${activeShort.ttsScript}`;
-                      navigator.clipboard.writeText(bundle);
-                      setCopiedShortId(activeShort.id);
-                      setTimeout(() => setCopiedShortId(null), 2000);
-                    }}
-                    className="bg-gemini-grad text-white text-xs font-semibold px-4 py-2 rounded-full inline-flex items-center gap-1.5 cursor-pointer whitespace-nowrap"
-                  >
-                    {copiedShortId === activeShort.id ? (
-                      <>
-                        <Check className="w-3.5 h-3.5" /> Copied Production Pack!
-                      </>
-                    ) : (
-                      <>
-                        <Copy className="w-3.5 h-3.5" /> Copy Shorts Production Pack
-                      </>
+                  <div className="flex flex-wrap items-center gap-2">
+                    {activeShort.playerUrl && (
+                      <a
+                        href={activeShort.playerUrl}
+                        className="px-3.5 py-2 rounded-full bg-pink-500/20 text-pink-300 border border-pink-400/40 text-xs font-semibold inline-flex items-center gap-1.5 whitespace-nowrap hover:bg-pink-500/30 transition-colors"
+                      >
+                        <Play className="w-3.5 h-3.5" />
+                        <span>Launch 9:16 Studio Player</span>
+                      </a>
                     )}
-                  </button>
+                    <button
+                      onClick={() => {
+                        const bundle = `TITLE: ${activeShort.title}\nHOOK: ${activeShort.hook}\n\nVISUAL STORYBOARD:\n${activeShort.visualDirection}\n\nGEMINI OMNI 1.1 VIDEO PROMPT:\n${activeShort.omniPrompt}\n\nGEMINI 3.8 FLASH TTS VOICEOVER SCRIPT:\n${activeShort.ttsScript}`;
+                        navigator.clipboard.writeText(bundle);
+                        setCopiedShortId(activeShort.id);
+                        setTimeout(() => setCopiedShortId(null), 2000);
+                      }}
+                      className="bg-gemini-grad text-white text-xs font-semibold px-4 py-2 rounded-full inline-flex items-center gap-1.5 cursor-pointer whitespace-nowrap"
+                    >
+                      {copiedShortId === activeShort.id ? (
+                        <>
+                          <Check className="w-3.5 h-3.5" /> Copied Production Pack!
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="w-3.5 h-3.5" /> Copy Shorts Production Pack
+                        </>
+                      )}
+                    </button>
+                  </div>
                 </div>
 
                 <div className="p-3.5 rounded-xl bg-[var(--md-sys-color-surface)] border border-[var(--md-sys-color-outline)] text-xs space-y-1">

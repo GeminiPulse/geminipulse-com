@@ -87,7 +87,19 @@ The pro fix: Give writing tools to writing agents, and security tools to rules a
 
 7/7 We published the full visual infographic and deep-dive article on GeminiPulse.com (Episode 08 of the Antigravity Chronicle).
 
-Read the breakdown: https://geminipulse.com/#chronicle
+Read the breakdown: https://geminipulse.com/series/making-the-switch/part-1-from-wordpress-to-antigravity.html
 
 [Attach: making-the-switch-rosetta-stone.svg]
 ```
+
+---
+
+## 4. PART 2 — 45-Second YouTube Short #06 Script (MySQL & phpMyAdmin → Cloud Firestore)
+
+| Timestamp | Visual Direction (Screen Action) | Audio / Voiceover Narration | On-Screen Graphic / Text |
+| :--- | :--- | :--- | :--- |
+| **0:00 – 0:08** | Split screen: Top shows classic phpMyAdmin table list (`wp_posts`, `wp_postmeta` with 180,000 rows); bottom shows dark-mode Cloud Firestore JSON document cards. | *"Switching from WordPress to AI coding and wondering where phpMyAdmin and your MySQL tables went? Here is the 45-second Database Rosetta Stone."* | **Where Did phpMyAdmin Go?! 🗄️** |
+| **0:09 – 0:18** | Red arrows crossing out a 3-table `LEFT JOIN` query on `wp_postmeta`, snapping into a single self-contained JSON card (`showcase_projects`). | *"Instead of scattering one post across 25 rows in wp_postmeta and running slow SQL joins, a Cloud Firestore document is one clean, self-contained JSON object."* | **wp_postmeta Joins ➡️ 1 Clean JSON Doc 📄** |
+| **0:19 – 0:28** | Highlighting `wp-config.php` (`DB_PASSWORD`) vs. `firestore.rules` (`request.auth.uid == authorUid`). | *"Worried about seeing your Firebase config in frontend JavaScript? In WordPress, a leaked wp-config password means game over. In Firebase, that config is just a public address—Firestore Security Rules lock every document at Google’s edge."* | **Frontend Config ≠ Root Password 🛡️** |
+| **0:29 – 0:37** | Cursor clicking "Purge Cache" repeatedly vs. `onSnapshot()` streaming live cards in milliseconds. | *"And forget fighting caching plugins. With Firestore's onSnapshot listener, new community submissions stream live to every open browser in milliseconds."* | **Stop Clicking 'Purge Cache' ⚡** |
+| **0:38 – 0:45** | Interactive SQL-to-Firestore Translator on `geminipulse.com/series/making-the-switch/part-2-from-mysql-phpmyadmin-to-firestore.html`. | *"Try our interactive SQL-to-Firestore code translator in Part 2 of mAiking the swAitch—live right now at GeminiPulse.com!"* | **Interactive SQL ↔ Firestore Translator at geminipulse.com** |

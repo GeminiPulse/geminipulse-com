@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-10-30 18:00 EDT — Published Chronicle Episode 08 ('Making the Switch: The Webmaster's Rosetta Stone'), created custom brand SVG diagram, registered Short #05, launched standalone series page, verified clean build v2.0.43`
+> **Last touched:** `2026-10-30 18:12 EDT — Published 'mAiking the swAitch' Part 1 & Part 2 Series (WordPress/FTP to Antigravity + MySQL/phpMyAdmin to Cloud Firestore), Episodes 08 & 09, 2 Brand SVG Rosetta Stone diagrams, Interactive 9:16 YouTube Shorts #05 & #06 Studio Player + TTS CLI script, verified 0-overflow build v2.0.44`
 
 ---
 

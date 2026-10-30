@@ -1,6 +1,6 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-10-30 18:00 EDT (Episode 08 Published + Brand Rosetta Stone SVG + Short #05 Registered + Making the Switch Series Page Live v2.0.43)`
+- **Last Updated:** `2026-10-30 18:12 EDT ('mAiking the swAitch' Part 1 & Part 2 Series + Episodes 08 & 09 + 2 Brand SVG Diagrams + Interactive 9:16 Shorts #05 & #06 Studio Player Live v2.0.44)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
@@ -13,15 +13,15 @@
 
 ---
 
-## 1. Completed & Live on `v2.0` (2026-10-30 6:00 PM ET Update)
+## 1. Completed & Live on `v2.0` (2026-10-30 6:12 PM ET Update)
 
-- **Published Build Chronicle Episode 08 & Webmaster's Rosetta Stone (`v2.0.43`):**
-  - **Article:** `chronicles/episode-08-making-the-switch-from-wordpress-ftp-to-antigravity.md` published and integrated into `ANTIGRAVITY_CHRONICLES` in `geminiEcosystemData.js`.
-  - **Brand Graphic (SVG):** Created high-resolution GeminiPulse brand diagram (`public/public/assets/making-the-switch-rosetta-stone.svg`) translating traditional web concepts (FTP, `wp-content`, staging subdomains, Dropbox/S3 backups, and 40+ plugins) into agentic concepts (Local Checkout, Git Worktrees, branches `main`/`v2.0`, GitHub Remotes, and specialized subagents).
-  - **Standalone Series Landing Page:** `public/public/series/making-the-switch/part-1-from-wordpress-to-antigravity.html` complete with Schema.org `TechArticle` metadata.
-  - **Shorts Studio Integration:** Registered Short #05 (*"Making the Switch: Translating 20 Years of WordPress into Antigravity"*) into `YOUTUBE_SHORTS_STUDIO`.
-  - **Video & Social Production Kit:** Created `social-kits/episode-08-making-the-switch-video-kit.md` with 60-second vertical video script, LinkedIn agency post, and X/Twitter thread.
-  - **Production Build:** Passed `npm run build` cleanly (stamped `v2.0.43`).
+- **Published 2-Part *"mAiking the swAitch"* Series, Chronicle Episodes 08 & 09, Brand SVGs & 9:16 Shorts Studio (`v2.0.44`):**
+  - **Part 1 (Episode 08):** `chronicles/episode-08-making-the-switch-from-wordpress-ftp-to-antigravity.md` + standalone page `/series/making-the-switch/part-1-from-wordpress-to-antigravity.html` + custom brand SVG `/assets/making-the-switch-rosetta-stone.svg`.
+  - **Part 2 (Episode 09):** `chronicles/episode-09-making-the-switch-part-2-mysql-phpmyadmin-to-firestore.md` + standalone page `/series/making-the-switch/part-2-from-mysql-phpmyadmin-to-firestore.html` (including interactive **SQL-to-Firestore Live Code Translator `[SIMULATED DEMO]`**) + custom brand SVG `/assets/making-the-switch-part-2-mysql-to-firestore.svg`.
+  - **Interactive 9:16 YouTube Shorts #05 & #06 Studio Player:** `/shorts/short-05-making-the-switch.html` with 5 animated scenes for both Short #05 (FTP/WordPress → Antigravity) and Short #06 (MySQL/phpMyAdmin → Cloud Firestore), synchronized voiceover narration, Web Audio synth chimes, and 1-click Clean 9:16 Capture Mode.
+  - **CLI `gemini-3.8-flash-tts` Master WAV Generator:** `public/scripts/generate-short-tts.mjs` using the official Gemini Interactions API (`gemini-3.8-flash-tts`, `audio/wav`).
+  - **SEO & Feed Parity:** Indexed all 3 new standalone routes in `sitemap.xml` (now `20` URLs) and `feed.xml`.
+  - **7-Point Pre-Push Audit Passed:** `npm run build` (`v2.0.44`) + `npm run audit:ui` (0 overflows across 1440px, 1120px, 768px, 390px).
 
 - **Curated Official Google Gemini Computer Use General Availability (GA) (`v2.0.42`):**
   - **Grounded Primary Source:** Google AI for Developers Changelog (`ai.google.dev/gemini-api/docs/changelog#10-30-2026`) & Guide (`ai.google.dev/gemini-api/docs/computer-use`) on October 30, 2026.

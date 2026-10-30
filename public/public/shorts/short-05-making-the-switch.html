@@ -1,0 +1,666 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mAiking the swAitch — 9:16 YouTube Shorts Studio Player (#05 &amp; #06) | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Interactive 9:16 YouTube Shorts Studio Player & Storyboard for GeminiPulse's 'mAiking the swAitch' series: Part 1 (WordPress & FTP to Antigravity) and Part 2 (MySQL & phpMyAdmin to Cloud Firestore)."
+    />
+    <link rel="canonical" href="https://geminipulse.com/shorts/short-05-making-the-switch.html" />
+    <link rel="icon" type="image/svg+xml" href="/gemini-sparkle.svg" />
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #07090e;
+        --surface: #111622;
+        --surface-2: #162032;
+        --border: rgba(255, 255, 255, 0.12);
+        --text: #f3f5fb;
+        --muted: #9da4b8;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: "Plus Jakarta Sans", Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: radial-gradient(circle at 20% 10%, rgba(26, 115, 232, 0.15), transparent 45%),
+                    radial-gradient(circle at 80% 90%, rgba(147, 51, 234, 0.14), transparent 50%),
+                    var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+      }
+      .wrap { max-width: 1180px; margin: 0 auto; padding: 1.5rem 1.25rem 4rem; }
+      a { color: #93c5fd; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .top-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.25rem; }
+      .episode-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+      .ep-btn {
+        background: var(--surface);
+        color: var(--muted);
+        border: 1px solid var(--border);
+        padding: 0.55rem 1rem;
+        border-radius: 999px;
+        font-size: 0.82rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.15s;
+      }
+      .ep-btn.active {
+        background: linear-gradient(90deg, #1a73e8, #7b2cbf);
+        color: #fff;
+        border-color: transparent;
+      }
+      .studio-grid {
+        display: grid;
+        grid-template-columns: 400px 1fr;
+        gap: 2rem;
+        align-items: start;
+      }
+      @media (max-width: 920px) {
+        .studio-grid { grid-template-columns: 1fr; justify-items: center; }
+      }
+
+      /* 9:16 Vertical Phone Stage */
+      .phone-shell {
+        width: 378px;
+        height: 672px;
+        max-width: 100%;
+        background: #0b0f17;
+        border-radius: 28px;
+        border: 2px solid rgba(56, 189, 248, 0.35);
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75), 0 0 40px rgba(26, 115, 232, 0.2);
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 16px;
+        user-select: none;
+      }
+      body.clean-capture .hide-on-capture { display: none !important; }
+      body.clean-capture .studio-grid { grid-template-columns: 1fr; justify-items: center; }
+      body.clean-capture .wrap { padding: 0.5rem; }
+
+      .story-bars {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 4px;
+        z-index: 5;
+      }
+      .story-bar {
+        height: 4px;
+        background: rgba(255, 255, 255, 0.18);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+      .story-bar-fill {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, #00d2ff, #f59e0b);
+        transition: width 0.15s linear;
+      }
+      .short-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 10px;
+        font-size: 0.72rem;
+        font-family: ui-monospace, Menlo, monospace;
+        color: #cbd5e1;
+        z-index: 5;
+      }
+      .channel-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(15, 23, 42, 0.85);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-weight: 700;
+      }
+      .spark-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #00d2ff;
+        box-shadow: 0 0 8px #00d2ff;
+      }
+
+      /* Dynamic Visual Stage */
+      .visual-stage {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 12px;
+        margin: 12px 0;
+        z-index: 4;
+      }
+      .scene-badge {
+        align-self: flex-start;
+        font-family: ui-monospace, Menlo, monospace;
+        font-size: 0.68rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        padding: 3px 9px;
+        border-radius: 6px;
+        background: rgba(56, 189, 248, 0.15);
+        color: #38bdf8;
+        border: 1px solid rgba(56, 189, 248, 0.3);
+      }
+      .scene-headline {
+        font-size: 1.32rem;
+        font-weight: 800;
+        line-height: 1.2;
+        margin: 0;
+        background: linear-gradient(90deg, #ffffff, #93c5fd);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .compare-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .mock-card {
+        border-radius: 14px;
+        padding: 12px;
+        border: 1px solid var(--border);
+        background: rgba(22, 32, 50, 0.92);
+        transition: transform 0.3s ease;
+      }
+      .mock-card.trad { border-left: 4px solid #f59e0b; }
+      .mock-card.agy { border-left: 4px solid #00d2ff; box-shadow: 0 0 20px rgba(0, 210, 255, 0.12); }
+      .mock-label {
+        font-family: ui-monospace, Menlo, monospace;
+        font-size: 0.66rem;
+        text-transform: uppercase;
+        font-weight: 700;
+        margin-bottom: 4px;
+        display: flex;
+        justify-content: space-between;
+      }
+      .mock-title { font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
+      .mock-code {
+        font-family: ui-monospace, Menlo, monospace;
+        font-size: 0.72rem;
+        padding: 6px 8px;
+        border-radius: 8px;
+        background: #070a10;
+        color: #7dd3fc;
+        overflow-x: auto;
+      }
+
+      /* Captions Overlay */
+      .caption-box {
+        background: rgba(7, 9, 14, 0.92);
+        border: 1px solid rgba(251, 191, 36, 0.45);
+        border-radius: 14px;
+        padding: 10px 12px;
+        min-height: 76px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 0.92rem;
+        font-weight: 700;
+        line-height: 1.35;
+        color: #fef08a;
+        z-index: 5;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+      }
+
+      /* Controls Bar */
+      .player-controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 0.85rem;
+        justify-content: center;
+      }
+      .ctrl-btn {
+        background: var(--surface-2);
+        color: #fff;
+        border: 1px solid var(--border);
+        padding: 0.55rem 0.95rem;
+        border-radius: 0.65rem;
+        font-size: 0.8rem;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      .ctrl-btn.primary {
+        background: linear-gradient(90deg, #1a73e8, #9333ea);
+        border-color: transparent;
+      }
+
+      /* Right Panel */
+      .panel-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+        padding: 1.25rem;
+        margin-bottom: 1rem;
+      }
+      .eyebrow {
+        font-family: ui-monospace, Menlo, monospace;
+        font-size: 0.74rem;
+        text-transform: uppercase;
+        color: #38bdf8;
+        letter-spacing: 0.06em;
+      }
+      pre {
+        background: #080b11;
+        border: 1px solid var(--border);
+        border-radius: 0.65rem;
+        padding: 0.85rem;
+        overflow-x: auto;
+        font-size: 0.78rem;
+        color: #cbd5e1;
+        white-space: pre-wrap;
+      }
+      .scene-jump-list { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.6rem; }
+      .scene-chip {
+        font-size: 0.74rem;
+        padding: 0.35rem 0.7rem;
+        border-radius: 0.5rem;
+        background: #0b0f17;
+        border: 1px solid var(--border);
+        color: var(--muted);
+        cursor: pointer;
+      }
+      .scene-chip.active { border-color: #00d2ff; color: #00d2ff; font-weight: 700; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="top-bar hide-on-capture">
+        <div>
+          <a href="/#shorts">← Back to GeminiPulse Shorts Studio</a>
+          <span style="margin: 0 0.5rem; color: #475569;">|</span>
+          <a href="/series/making-the-switch/part-1-from-wordpress-to-antigravity.html">Read Part 1</a>
+          <span style="margin: 0 0.5rem; color: #475569;">|</span>
+          <a href="/series/making-the-switch/part-2-from-mysql-phpmyadmin-to-firestore.html">Read Part 2</a>
+        </div>
+        <div class="episode-tabs">
+          <button class="ep-btn active" id="ep-short-05" onclick="switchEpisode('short05')">
+            Short #05: WordPress &amp; FTP → Antigravity
+          </button>
+          <button class="ep-btn" id="ep-short-06" onclick="switchEpisode('short06')">
+            Short #06: MySQL &amp; phpMyAdmin → Firestore
+          </button>
+        </div>
+      </div>
+
+      <div class="studio-grid">
+        <!-- Left: 9:16 Vertical Short Stage -->
+        <div>
+          <div class="phone-shell" id="phone-stage">
+            <div>
+              <div class="story-bars" id="story-bars">
+                <div class="story-bar"><div class="story-bar-fill" id="bar-0"></div></div>
+                <div class="story-bar"><div class="story-bar-fill" id="bar-1"></div></div>
+                <div class="story-bar"><div class="story-bar-fill" id="bar-2"></div></div>
+                <div class="story-bar"><div class="story-bar-fill" id="bar-3"></div></div>
+                <div class="story-bar"><div class="story-bar-fill" id="bar-4"></div></div>
+              </div>
+              <div class="short-header">
+                <span class="channel-pill"><span class="spark-dot"></span> @geminipulse</span>
+                <span id="short-timer">00:00 / 00:45</span>
+              </div>
+            </div>
+
+            <div class="visual-stage" id="visual-stage">
+              <span class="scene-badge" id="scene-badge">SCENE 1 OF 5 • HOOK</span>
+              <h2 class="scene-headline" id="scene-headline"></h2>
+              <div class="compare-stack">
+                <div class="mock-card trad">
+                  <div class="mock-label">
+                    <span style="color:#fbbf24;" id="trad-tag">2012 TRADITIONAL WEB</span>
+                    <span style="color:#94a3b8;">BEFORE</span>
+                  </div>
+                  <div class="mock-title" id="trad-title"></div>
+                  <div class="mock-code" id="trad-code"></div>
+                </div>
+                <div class="mock-card agy">
+                  <div class="mock-label">
+                    <span style="color:#38bdf8;" id="agy-tag">2026 GOOGLE ANTIGRAVITY</span>
+                    <span style="color:#34d399;">NOW ⚡</span>
+                  </div>
+                  <div class="mock-title" id="agy-title"></div>
+                  <div class="mock-code" id="agy-code"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="caption-box" id="caption-box"></div>
+          </div>
+
+          <div class="player-controls">
+            <button class="ctrl-btn primary" id="play-btn" onclick="togglePlay()">▶ Play Short + Voiceover</button>
+            <button class="ctrl-btn" onclick="restartShort()">↺ Restart</button>
+            <button class="ctrl-btn" id="clean-btn" onclick="toggleCleanMode()">🎥 Clean 9:16 Capture Mode</button>
+          </div>
+        </div>
+
+        <!-- Right: Production Workbench & Gemini TTS / Omni Prompts -->
+        <div class="hide-on-capture">
+          <div class="panel-card">
+            <div class="eyebrow">Interactive Storyboard &amp; Voiceover Studio • [SIMULATED DEMO]</div>
+            <h1 style="font-size: 1.45rem; margin: 0.35rem 0;" id="panel-title">
+              Short #05: mAiking the swAitch (WordPress &amp; FTP to Antigravity)
+            </h1>
+            <p style="font-size: 0.9rem; color: var(--muted); margin: 0.4rem 0 0.8rem;">
+              Click <strong>Play Short + Voiceover</strong> to run the 5-scene vertical animation with synchronized browser TTS narration and ambient synth, or jump to any scene below:
+            </p>
+            <div class="scene-jump-list" id="scene-jumps"></div>
+          </div>
+
+          <div class="panel-card">
+            <div class="eyebrow">1. Gemini 3.8 Flash TTS Voiceover Generation (CLI Master WAV)</div>
+            <p style="font-size: 0.85rem; color: var(--muted); margin: 0.35rem 0;">
+              Generate the studio 24kHz <code>.wav</code> narration file locally using <code>gemini-3.8-flash-tts</code>:
+            </p>
+            <pre id="cli-command">GEMINI_API_KEY="your_key" node public/scripts/generate-short-tts.mjs short-05</pre>
+          </div>
+
+          <div class="panel-card">
+            <div class="eyebrow">2. Gemini Omni 1.1 Flash Video Prompt (9:16 Vertical Render)</div>
+            <pre id="omni-prompt"></pre>
+          </div>
+
+          <div class="panel-card">
+            <div class="eyebrow">3. YouTube Shorts Metadata &amp; Description (Copy-Ready)</div>
+            <pre id="yt-metadata"></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const SHORTS_DATA = {
+        short05: {
+          title: "Short #05: mAiking the swAitch — 20 Years of WordPress & FTP to Antigravity",
+          cli: 'GEMINI_API_KEY="your_key" node public/scripts/generate-short-tts.mjs short-05',
+          omni: "Vertical 9:16 side-by-side motion graphic: Top half shows a vintage 2012 FileZilla FTP client uploading wp-content files over port 21; bottom half glows in dark obsidian (#0B0F17) revealing Google Antigravity IDE with Local Checkout, Git Worktree, and specialized AI subagents, 60fps.",
+          ytMeta: `TITLE: Still Thinking in WordPress & FTP? The 45s AI Coding Rosetta Stone 🚀 #Shorts
+DESCRIPTION:
+If you know WordPress, FileZilla FTP, and cPanel, you ALREADY know how to use Google Antigravity and agentic AI.
+1️⃣ FTP Folder ➡️ Local Checkout
+2️⃣ Staging Subdomain ➡️ Git Worktree
+3️⃣ Live public_html vs Staging ➡️ Branch main vs v2.0
+4️⃣ 50 Bloated WP Plugins ➡️ Specialized AI Subagents
+
+Read the full Rosetta Stone guide: https://geminipulse.com/series/making-the-switch/part-1-from-wordpress-to-antigravity.html
+#GoogleGemini #Antigravity #WordPress #WebDevelopment #AICoding`,
+          scenes: [
+            {
+              badge: "SCENE 1 (0:00–0:09) • THE HOOK",
+              headline: "Stop Being Intimidated by AI Coding 🚀",
+              tradTag: "2012 CLASSIC WEBMASTER",
+              tradTitle: "FileZilla FTP + cPanel + WordPress",
+              tradCode: "ftp://mysite.com:21/public_html/wp-content/",
+              agyTag: "2026 GOOGLE ANTIGRAVITY",
+              agyTitle: "You Already Know This Workflow",
+              agyCode: "~/Projects/geminipulse-com (Branch: v2.0)",
+              caption: "Still thinking about websites like it's 2012 with FTP, cPanel, and WordPress backups? Don't worry—you already know how to use AI coding."
+            },
+            {
+              badge: "SCENE 2 (0:09–0:18) • CHECKOUTS & WORKTREES",
+              headline: "The 10-Second Rosetta Stone 🗺️",
+              tradTag: "OLD STAGING SETUP",
+              tradTitle: "Theme Folder & staging.mysite.com",
+              tradCode: "Copy 4,000 PHP files + clone MySQL DB",
+              agyTag: "ANTIGRAVITY EQUIVALENT",
+              agyTitle: "Local Checkout & Git Worktree",
+              agyCode: "git worktree add ../staging-feature",
+              caption: "That 'Local Checkout'? Just your folder on your Mac. That 'Git Worktree'? An instant local staging site created in 1 second for free."
+            },
+            {
+              badge: "SCENE 3 (0:18–0:27) • ZERO LIVE CRASHES",
+              headline: "Goodbye FTP White Screen of Death 🔒",
+              tradTag: "THE FTP NIGHTMARE",
+              tradTitle: "Editing functions.php Live on Server",
+              tradCode: "HTTP 500 Fatal Error: missing semicolon!",
+              agyTag: "BRANCH ISOLATION",
+              agyTitle: "Locked 'main' vs Active 'v2.0'",
+              agyCode: "npm run build ✓ -> git push origin v2.0",
+              caption: "Remember panicking when a live FTP edit crashed your site? In Git, your live site sits safely on 'main' while you and the AI build on 'v2.0'."
+            },
+            {
+              badge: "SCENE 4 (0:27–0:37) • PLUGIN BLOAT VS SUBAGENTS",
+              headline: "Don't Bloat Your AI Agent! ⚡",
+              tradTag: "WORDPRESS PLUGIN TRAP",
+              tradTitle: "50 Monolithic Plugins Installed",
+              tradCode: "⚠️ PHP Memory Exhausted • 4.8s Load Time",
+              agyTag: "MODULAR SUBAGENTS",
+              agyTitle: "Dedicated Specialist Subagents",
+              agyCode: "chronicle-writer • firestore-rules-author",
+              caption: "In WordPress, 50 plugins kill page speed. In AI, 50 tools burn all your tokens. Give writing tools to writing agents, and security tools to rules agents!"
+            },
+            {
+              badge: "SCENE 5 (0:37–0:45) • FULL GUIDE LIVE",
+              headline: "mAiking the swAitch at GeminiPulse.com ✨",
+              tradTag: "PART 1 & PART 2 LIVE NOW",
+              tradTitle: "WordPress + MySQL Rosetta Stone",
+              tradCode: "geminipulse.com/#chronicle",
+              agyTag: "100% GOOGLE STACK",
+              agyTitle: "Subscribe to @geminipulse",
+              agyCode: "Next Up: phpMyAdmin to Cloud Firestore →",
+              caption: "Read the complete Webmaster's Rosetta Stone—including Part 2 on MySQL to Cloud Firestore—right now at GeminiPulse.com!"
+            }
+          ]
+        },
+        short06: {
+          title: "Short #06: mAiking the swAitch Part 2 — MySQL & phpMyAdmin to Cloud Firestore",
+          cli: 'GEMINI_API_KEY="your_key" node public/scripts/generate-short-tts.mjs short-06',
+          omni: "Vertical 9:16 tech explainer animation: Top half shows legacy phpMyAdmin SQL tables with slow LEFT JOIN queries on wp_postmeta; bottom half transforms into glowing Google Cloud Firestore JSON document cards streaming in real time via onSnapshot, 60fps.",
+          ytMeta: `TITLE: Where Did phpMyAdmin Go?! MySQL to Cloud Firestore in 45s 🔥 #Shorts
+DESCRIPTION:
+Moving from WordPress & MySQL to Google Cloud Firestore? Here is your Database Rosetta Stone:
+1️⃣ wp_posts + wp_postmeta Joins ➡️ Self-Contained JSON Documents
+2️⃣ wp-config.php Root Password ➡️ Public Config + firestore.rules
+3️⃣ Page Reloads & Cache Purging ➡️ Real-Time onSnapshot() Streams
+4️⃣ Manual SQL Escaping ➡️ Antigravity firestore-rules-author Subagent
+
+Read Part 2: https://geminipulse.com/series/making-the-switch/part-2-from-mysql-phpmyadmin-to-firestore.html
+#CloudFirestore #Firebase #MySQL #WordPress #GoogleGemini`,
+          scenes: [
+            {
+              badge: "SCENE 1 (0:00–0:09) • THE DB QUESTION",
+              headline: "Where Did phpMyAdmin Go?! 🗄️",
+              tradTag: "CLASSIC WORDPRESS DB",
+              tradTitle: "MySQL Tables (wp_posts + wp_postmeta)",
+              tradCode: "localhost:3306 • 180,000 meta rows",
+              agyTag: "GOOGLE CLOUD FIRESTORE",
+              agyTitle: "Serverless Collections & JSON Docs",
+              agyCode: "collection(db, 'showcase_projects')",
+              caption: "Switching from WordPress to AI coding and wondering where phpMyAdmin and your MySQL tables went? Here is the 45-second Database Rosetta Stone."
+            },
+            {
+              badge: "SCENE 2 (0:09–0:18) • GOODBYE WP_POSTMETA",
+              headline: "Zero SQL Joins Required 📄",
+              tradTag: "RELATIONAL SPAGHETTI",
+              tradTitle: "3-Table LEFT JOIN for Custom Fields",
+              tradCode: "SELECT * FROM wp_posts JOIN wp_postmeta...",
+              agyTag: "SELF-CONTAINED JSON",
+              agyTitle: "1 Document = All Project Fields",
+              agyCode: "{ title, primaryModel, projectUrl, upvotes }",
+              caption: "Instead of scattering one post across 25 rows in wp_postmeta and running slow SQL joins, a Firestore document is one clean JSON object."
+            },
+            {
+              badge: "SCENE 3 (0:18–0:27) • API KEY PANIC SOLVED",
+              headline: "Why Is My Config in Frontend JS?! 🛡️",
+              tradTag: "WP-CONFIG.PHP SECRET",
+              tradTitle: "Leaked DB_PASSWORD = Game Over",
+              tradCode: "define('DB_PASSWORD', 'root_secret');",
+              agyTag: "EDGE SECURITY RULES",
+              agyTitle: "firestore.rules Enforces Ownership",
+              agyCode: "allow create: if request.auth.uid == authorUid",
+              caption: "In WordPress, a leaked wp-config password means game over. In Firebase, your config is just a public address—firestore.rules locks every document at Google's edge."
+            },
+            {
+              badge: "SCENE 4 (0:27–0:37) • REAL-TIME STREAMING",
+              headline: "Stop Clicking 'Purge Cache' ⚡",
+              tradTag: "STALE PHP CACHING",
+              tradTitle: "WP Rocket + Manual Cache Purge",
+              tradCode: "🔄 Refresh page to see new comments",
+              agyTag: "LIVE ONSNAPSHOT()",
+              agyTitle: "Millisecond Real-Time Push",
+              agyCode: "onSnapshot(q, snap => setItems(snap.docs))",
+              caption: "Forget fighting caching plugins. With Firestore's onSnapshot listener, new community submissions stream live to every open browser in milliseconds."
+            },
+            {
+              badge: "SCENE 5 (0:37–0:45) • PART 2 LIVE NOW",
+              headline: "Try the SQL-to-Firestore Translator ✨",
+              tradTag: "INTERACTIVE WORKBENCH",
+              tradTitle: "Compare PHP/MySQL vs Firestore",
+              tradCode: "geminipulse.com/series/making-the-switch/",
+              agyTag: "BUILT WITH ANTIGRAVITY",
+              agyTitle: "Follow @geminipulse for Part 3",
+              agyCode: "100% Google Stack • $0 Spark Tier",
+              caption: "Test our interactive SQL-to-Firestore code translator in Part 2 of Making the Switch—live right now at GeminiPulse.com!"
+            }
+          ]
+        }
+      };
+
+      let currentEpKey = 'short05';
+      let currentSceneIdx = 0;
+      let isPlaying = false;
+      let sceneTimer = null;
+      let audioCtx = null;
+
+      function renderEpisodeMeta() {
+        const ep = SHORTS_DATA[currentEpKey];
+        document.getElementById('panel-title').textContent = ep.title;
+        document.getElementById('cli-command').textContent = ep.cli;
+        document.getElementById('omni-prompt').textContent = ep.omni;
+        document.getElementById('yt-metadata').textContent = ep.ytMeta;
+
+        const jumps = document.getElementById('scene-jumps');
+        jumps.innerHTML = '';
+        ep.scenes.forEach((sc, i) => {
+          const btn = document.createElement('button');
+          btn.className = 'scene-chip' + (i === currentSceneIdx ? ' active' : '');
+          btn.textContent = 'Scene ' + (i + 1);
+          btn.onclick = () => {
+            stopPlayback();
+            showScene(i);
+          };
+          jumps.appendChild(btn);
+        });
+      }
+
+      function showScene(idx) {
+        const ep = SHORTS_DATA[currentEpKey];
+        currentSceneIdx = idx;
+        const sc = ep.scenes[idx];
+
+        document.getElementById('scene-badge').textContent = sc.badge;
+        document.getElementById('scene-headline').textContent = sc.headline;
+        document.getElementById('trad-tag').textContent = sc.tradTag;
+        document.getElementById('trad-title').textContent = sc.tradTitle;
+        document.getElementById('trad-code').textContent = sc.tradCode;
+        document.getElementById('agy-tag').textContent = sc.agyTag;
+        document.getElementById('agy-title').textContent = sc.agyTitle;
+        document.getElementById('agy-code').textContent = sc.agyCode;
+        document.getElementById('caption-box').textContent = '"' + sc.caption + '"';
+
+        const sec = idx * 9;
+        document.getElementById('short-timer').textContent =
+          '00:' + String(sec).padStart(2, '0') + ' / 00:45';
+
+        for (let i = 0; i < 5; i++) {
+          const fill = document.getElementById('bar-' + i);
+          fill.style.width = i < idx ? '100%' : i === idx ? '100%' : '0%';
+        }
+        renderEpisodeMeta();
+      }
+
+      function playTransitionChime(freq) {
+        try {
+          if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+          gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.45);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start();
+          osc.stop(audioCtx.currentTime + 0.45);
+        } catch (_) {}
+      }
+
+      function speakSceneAndAdvance(idx) {
+        if (!isPlaying) return;
+        const ep = SHORTS_DATA[currentEpKey];
+        if (idx >= ep.scenes.length) {
+          stopPlayback();
+          return;
+        }
+        showScene(idx);
+        playTransitionChime(320 + idx * 55);
+
+        if ('speechSynthesis' in window) {
+          window.speechSynthesis.cancel();
+          const utter = new SpeechSynthesisUtterance(ep.scenes[idx].caption);
+          utter.rate = 1.06;
+          utter.pitch = 1.0;
+          utter.onend = () => {
+            if (isPlaying) {
+              sceneTimer = setTimeout(() => speakSceneAndAdvance(idx + 1), 650);
+            }
+          };
+          window.speechSynthesis.speak(utter);
+        } else {
+          sceneTimer = setTimeout(() => speakSceneAndAdvance(idx + 1), 8500);
+        }
+      }
+
+      function togglePlay() {
+        if (isPlaying) {
+          stopPlayback();
+        } else {
+          isPlaying = true;
+          document.getElementById('play-btn').textContent = '⏸ Pause Short';
+          speakSceneAndAdvance(currentSceneIdx);
+        }
+      }
+
+      function stopPlayback() {
+        isPlaying = false;
+        if (sceneTimer) clearTimeout(sceneTimer);
+        if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+        document.getElementById('play-btn').textContent = '▶ Play Short + Voiceover';
+      }
+
+      function restartShort() {
+        stopPlayback();
+        showScene(0);
+        togglePlay();
+      }
+
+      function switchEpisode(key) {
+        stopPlayback();
+        currentEpKey = key;
+        document.getElementById('ep-short-05').className = key === 'short05' ? 'ep-btn active' : 'ep-btn';
+        document.getElementById('ep-short-06').className = key === 'short06' ? 'ep-btn active' : 'ep-btn';
+        showScene(0);
+      }
+
+      function toggleCleanMode() {
+        document.body.classList.toggle('clean-capture');
+        const btn = document.getElementById('clean-btn');
+        btn.textContent = document.body.classList.contains('clean-capture')
+          ? '✕ Exit Clean Capture'
+          : '🎥 Clean 9:16 Capture Mode';
+      }
+
+      showScene(0);
+    </script>
+  </body>
+</html>

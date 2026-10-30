@@ -14,12 +14,12 @@
     <meta property="og:title" content="Making the Switch: The Webmaster's Rosetta Stone from WordPress &amp; FTP to Google Antigravity" />
     <meta property="og:description" content="Translating 20 years of classic web development (WordPress, FTP, cPanel, S3 backups) into Google Antigravity and agentic AI." />
     <meta property="og:url" content="https://geminipulse.com/series/making-the-switch/part-1-from-wordpress-to-antigravity.html" />
-    <meta property="og:image" content="https://geminipulse.com/assets/making-the-switch-rosetta-stone.svg" />
+    <meta property="og:image" content="https://geminipulse.com/og-image.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@geminipulse" />
     <meta name="twitter:title" content="Making the Switch: WordPress to Google Antigravity" />
     <meta name="twitter:description" content="A solo webmaster's guide to translating FTP, cPanel, and staging into Git worktrees and AI agents." />
-    <meta name="twitter:image" content="https://geminipulse.com/assets/making-the-switch-rosetta-stone.svg" />
+    <meta name="twitter:image" content="https://geminipulse.com/og-image.png" />
     <link rel="icon" type="image/svg+xml" href="/gemini-sparkle.svg" />
     <script type="application/ld+json">
       {
@@ -39,6 +39,12 @@
       .wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
       a { color: #93c5fd; text-decoration: none; }
       a:hover { text-decoration: underline; }
+      .series-nav { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0 1.5rem; padding: 0.75rem; background: var(--surface); border: 1px solid var(--border); border-radius: 0.85rem; }
+      .series-pill { font-size: 0.8rem; font-weight: 600; padding: 0.45rem 0.85rem; border-radius: 999px; border: 1px solid var(--border); color: var(--muted); transition: all 0.15s; }
+      .series-pill:hover { color: #fff; border-color: #38bdf8; text-decoration: none; }
+      .series-pill.active { background: linear-gradient(90deg, #1a73e8, #7b2cbf); color: #fff; border-color: transparent; }
+      .series-pill.short-cta { background: rgba(236, 72, 153, 0.15); color: #f472b6; border-color: rgba(244, 114, 182, 0.35); margin-left: auto; }
+      @media (max-width: 720px) { .series-pill.short-cta { margin-left: 0; } }
       .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
       h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
       h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
@@ -56,8 +62,15 @@
   </head>
   <body>
     <article class="wrap">
-      <p><a href="/#chronicle">← Back to GeminiPulse Chronicle</a></p>
-      <div class="eyebrow">The Solo Webmaster Transition Series • Part 1</div>
+      <p><a href="/#chronicle">← Back to GeminiPulse Home &amp; Build Chronicle</a></p>
+
+      <nav class="series-nav" aria-label="mAiking the swAitch Series Navigation">
+        <a class="series-pill active" href="/series/making-the-switch/part-1-from-wordpress-to-antigravity.html">Part 1: WordPress &amp; FTP → Antigravity</a>
+        <a class="series-pill" href="/series/making-the-switch/part-2-from-mysql-phpmyadmin-to-firestore.html">Part 2: MySQL &amp; phpMyAdmin → Cloud Firestore</a>
+        <a class="series-pill short-cta" href="/shorts/short-05-making-the-switch.html">▶ Watch 9:16 Short #05 Studio</a>
+      </nav>
+
+      <div class="eyebrow">mAiking the swAitch Series • Part 1 of 2 • Build Chronicle Episode 08</div>
       <h1>Making the Switch: The Webmaster's Rosetta Stone from WordPress, FTP &amp; cPanel to Google Antigravity</h1>
       <div class="meta">
         Published October 30, 2026 • By Gemini 4 Argon &amp; Neil S. White • <strong>Build Chronicle Episode 08</strong>
@@ -75,6 +88,7 @@
       </div>
 
       <h2>1. The Webmaster's Rosetta Stone</h2>
+      <div style="overflow-x:auto;">
       <table>
         <thead>
           <tr>
@@ -116,6 +130,7 @@
           </tr>
         </tbody>
       </table>
+      </div>
 
       <h2>2. Why You'll Never Overwrite Production by Mistake Again</h2>
       <p>
@@ -128,8 +143,8 @@
       </p>
 
       <div class="nav-next">
-        <a href="/#chronicle">Read Episode 07: The 20K Customization Ceiling →</a>
-        <a href="/#shorts">Watch YouTube Shorts Studio →</a>
+        <a href="/series/making-the-switch/part-2-from-mysql-phpmyadmin-to-firestore.html">Next: Part 2 — From MySQL &amp; phpMyAdmin to Cloud Firestore →</a>
+        <a href="/shorts/short-05-making-the-switch.html">▶ Watch 9:16 YouTube Short #05 →</a>
       </div>
     </article>
   </body>

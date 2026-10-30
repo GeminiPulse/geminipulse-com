@@ -1,0 +1,183 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 820" width="100%" height="100%" style="background:#0B0F17; font-family:'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <defs>
+    <linearGradient id="spectrumGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1A73E8"/>
+      <stop offset="35%" stop-color="#00D2FF"/>
+      <stop offset="70%" stop-color="#9333EA"/>
+      <stop offset="100%" stop-color="#F59E0B"/>
+    </linearGradient>
+
+    <linearGradient id="cardDarkGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#162032" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="0.98"/>
+    </linearGradient>
+
+    <linearGradient id="sqlGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F59E0B" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#EF4444" stop-opacity="0.06"/>
+    </linearGradient>
+
+    <linearGradient id="firestoreGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00D2FF" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#9333EA" stop-opacity="0.08"/>
+    </linearGradient>
+
+    <filter id="glowCyan2" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <radialGradient id="bgGlowA" cx="18%" cy="12%" r="55%">
+      <stop offset="0%" stop-color="#1A73E8" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#0B0F17" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="bgGlowB" cx="82%" cy="88%" r="60%">
+      <stop offset="0%" stop-color="#9333EA" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#0B0F17" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Ambient Obsidian Canvas -->
+  <rect width="1200" height="820" fill="#0B0F17"/>
+  <rect width="1200" height="820" fill="url(#bgGlowA)"/>
+  <rect width="1200" height="820" fill="url(#bgGlowB)"/>
+
+  <!-- Subtle Architecture Grid -->
+  <g opacity="0.07" stroke="#94A3B8" stroke-width="1">
+    <line x1="0" y1="140" x2="1200" y2="140"/>
+    <line x1="0" y1="260" x2="1200" y2="260"/>
+    <line x1="0" y1="380" x2="1200" y2="380"/>
+    <line x1="0" y1="500" x2="1200" y2="500"/>
+    <line x1="0" y1="620" x2="1200" y2="620"/>
+    <line x1="0" y1="740" x2="1200" y2="740"/>
+    <line x1="600" y1="120" x2="600" y2="750"/>
+  </g>
+
+  <!-- Header -->
+  <g transform="translate(60, 40)">
+    <rect x="0" y="0" width="430" height="28" rx="14" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+    <circle cx="14" cy="14" r="5" fill="#00D2FF" filter="url(#glowCyan2)"/>
+    <text x="28" y="18" fill="#94A3B8" font-size="11" font-weight="700" letter-spacing="1.4">mAiking the swAitch • PART 2 • EPISODE 09</text>
+
+    <text x="0" y="65" fill="#FFFFFF" font-size="29" font-weight="800" letter-spacing="-0.5">
+      DATABASE ROSETTA STONE: <tspan fill="url(#spectrumGrad2)">MySQL TO CLOUD FIRESTORE</tspan>
+    </text>
+    <text x="0" y="90" fill="#94A3B8" font-size="14" font-weight="500">
+      Translating phpMyAdmin Tables, wp-config.php Credentials &amp; SQL Joins into Real-Time JSON &amp; Firestore Rules
+    </text>
+  </g>
+
+  <!-- Column Headers -->
+  <g transform="translate(60, 150)">
+    <rect x="0" y="0" width="490" height="42" rx="10" fill="url(#sqlGrad)" stroke="#F59E0B" stroke-opacity="0.35" stroke-width="1"/>
+    <text x="20" y="26" fill="#FBBF24" font-size="13" font-weight="700" letter-spacing="1.2">CLASSIC MySQL / phpMyAdmin / WORDPRESS DB</text>
+    <text x="470" y="26" fill="#A8A29E" font-size="11" font-weight="600" text-anchor="end">TABLES &amp; ROWS</text>
+
+    <text x="540" y="27" fill="#64748B" font-size="14" font-weight="700" text-anchor="middle">⟷</text>
+
+    <rect x="590" y="0" width="490" height="42" rx="10" fill="url(#firestoreGrad)" stroke="#00D2FF" stroke-opacity="0.35" stroke-width="1"/>
+    <text x="610" y="26" fill="#38BDF8" font-size="13" font-weight="700" letter-spacing="1.2">GOOGLE CLOUD FIRESTORE + AI RULES</text>
+    <text x="1060" y="26" fill="#38BDF8" font-size="11" font-weight="700" text-anchor="end">COLLECTIONS &amp; JSON</text>
+  </g>
+
+  <!-- ROW 1: Tables vs Collections -->
+  <g transform="translate(60, 206)">
+    <rect x="0" y="0" width="490" height="88" rx="12" fill="url(#cardDarkGrad2)" stroke="#334155" stroke-width="1"/>
+    <rect x="0" y="0" width="4" height="88" rx="2" fill="#F59E0B"/>
+    <text x="20" y="28" fill="#E2E8F0" font-size="15" font-weight="700">SQL Tables &amp; Rows (wp_posts + wp_postmeta)</text>
+    <text x="20" y="52" fill="#94A3B8" font-size="12">Data split across rigid columns; custom fields buried in a 100,000-row meta table.</text>
+    <text x="20" y="72" fill="#F59E0B" font-size="11" font-family="'JetBrains Mono', monospace">🗄️ SELECT * FROM wp_posts LEFT JOIN wp_postmeta</text>
+
+    <path d="M 505 44 L 575 44" stroke="url(#spectrumGrad2)" stroke-width="2" stroke-dasharray="4 2"/>
+    <polygon points="575,40 583,44 575,48" fill="#00D2FF"/>
+
+    <rect x="590" y="0" width="490" height="88" rx="12" fill="url(#cardDarkGrad2)" stroke="#1E293B" stroke-width="1"/>
+    <rect x="590" y="0" width="4" height="88" rx="2" fill="#00D2FF"/>
+    <text x="610" y="28" fill="#FFFFFF" font-size="15" font-weight="700">Collections &amp; Self-Contained JSON Documents</text>
+    <text x="610" y="52" fill="#94A3B8" font-size="12">A Collection is a folder; a Document is a clean JSON object holding all its own fields.</text>
+    <text x="610" y="72" fill="#38BDF8" font-size="11" font-family="'JetBrains Mono', monospace">📄 collection('showcase_projects').doc(id)</text>
+  </g>
+
+  <!-- ROW 2: wp-config.php Passwords vs Public Config + Security Rules -->
+  <g transform="translate(60, 308)">
+    <rect x="0" y="0" width="490" height="88" rx="12" fill="url(#cardDarkGrad2)" stroke="#334155" stroke-width="1"/>
+    <rect x="0" y="0" width="4" height="88" rx="2" fill="#F59E0B"/>
+    <text x="20" y="28" fill="#E2E8F0" font-size="15" font-weight="700">Root DB Password in wp-config.php</text>
+    <text x="20" y="52" fill="#94A3B8" font-size="12">One leaked password gives full read/write/drop power over every table on the server.</text>
+    <text x="20" y="72" fill="#EF4444" font-size="11" font-family="'JetBrains Mono', monospace">🔑 define('DB_PASSWORD', 'secret_root_pw');</text>
+
+    <path d="M 505 44 L 575 44" stroke="url(#spectrumGrad2)" stroke-width="2" stroke-dasharray="4 2"/>
+    <polygon points="575,40 583,44 575,48" fill="#00D2FF"/>
+
+    <rect x="590" y="0" width="490" height="88" rx="12" fill="url(#cardDarkGrad2)" stroke="#1E293B" stroke-width="1"/>
+    <rect x="590" y="0" width="4" height="88" rx="2" fill="#00D2FF"/>
+    <text x="610" y="28" fill="#FFFFFF" font-size="15" font-weight="700">Zero-Secret Client Config + firestore.rules</text>
+    <text x="610" y="52" fill="#94A3B8" font-size="12">Firebase Web API keys merely identify the project; security is enforced per-document by rules.</text>
+    <text x="610" y="72" fill="#10B981" font-size="11" font-family="'JetBrains Mono', monospace">🛡️ allow create: if request.auth.uid == data.authorUid</text>
+  </g>
+
+  <!-- ROW 3: Page Refreshes & Caching Plugins vs Real-Time onSnapshot -->
+  <g transform="translate(60, 410)">
+    <rect x="0" y="0" width="490" height="88" rx="12" fill="url(#cardDarkGrad2)" stroke="#334155" stroke-width="1"/>
+    <rect x="0" y="0" width="4" height="88" rx="2" fill="#F59E0B"/>
+    <text x="20" y="28" fill="#E2E8F0" font-size="15" font-weight="700">PHP Page Reloads &amp; Caching Plugins</text>
+    <text x="20" y="52" fill="#94A3B8" font-size="12">Every page view hits MySQL unless you wrestle with WP Rocket, Redis, or Varnish cache purge.</text>
+    <text x="20" y="72" fill="#F59E0B" font-size="11" font-family="'JetBrains Mono', monospace">🔄 F5 Refresh Required • Purge Cache Button</text>
+
+    <path d="M 505 44 L 575 44" stroke="url(#spectrumGrad2)" stroke-width="2" stroke-dasharray="4 2"/>
+    <polygon points="575,40 583,44 575,48" fill="#00D2FF"/>
+
+    <rect x="590" y="0" width="490" height="88" rx="12" fill="url(#cardDarkGrad2)" stroke="#1E293B" stroke-width="1"/>
+    <rect x="590" y="0" width="4" height="88" rx="2" fill="#00D2FF"/>
+    <text x="610" y="28" fill="#FFFFFF" font-size="15" font-weight="700">Live Real-Time Streams + Offline Fallback</text>
+    <text x="610" y="52" fill="#94A3B8" font-size="12">UI updates automatically in milliseconds when data changes, with built-in local fallback.</text>
+    <text x="610" y="72" fill="#38BDF8" font-size="11" font-family="'JetBrains Mono', monospace">⚡ onSnapshot(query, (snap) =&gt; setItems(snap.docs))</text>
+  </g>
+
+  <!-- ROW 4: SQL Injection Defense vs Specialist Rules Subagent -->
+  <g transform="translate(60, 512)">
+    <rect x="0" y="0" width="490" height="88" rx="12" fill="url(#cardDarkGrad2)" stroke="#334155" stroke-width="1"/>
+    <rect x="0" y="0" width="4" height="88" rx="2" fill="#F59E0B"/>
+    <text x="20" y="28" fill="#E2E8F0" font-size="15" font-weight="700">Manual SQL Escaping &amp; Form Sanitization</text>
+    <text x="20" y="52" fill="#94A3B8" font-size="12">One forgotten $wpdb-&gt;prepare() in a 3rd-party plugin opens the database to SQL injection.</text>
+    <text x="20" y="72" fill="#EF4444" font-size="11" font-family="'JetBrains Mono', monospace">⚠️ $wpdb-&gt;prepare("SELECT * FROM ...", $id)</text>
+
+    <path d="M 505 44 L 575 44" stroke="url(#spectrumGrad2)" stroke-width="2" stroke-dasharray="4 2"/>
+    <polygon points="575,40 583,44 575,48" fill="#00D2FF"/>
+
+    <rect x="590" y="0" width="490" height="88" rx="12" fill="url(#cardDarkGrad2)" stroke="#1E293B" stroke-width="1"/>
+    <rect x="590" y="0" width="4" height="88" rx="2" fill="#00D2FF"/>
+    <text x="610" y="28" fill="#FFFFFF" font-size="15" font-weight="700">firestore-rules-author Specialist Subagent</text>
+    <text x="610" y="52" fill="#94A3B8" font-size="12">Dedicated Antigravity subagent writes &amp; validates strict field, type, and length rules.</text>
+    <text x="610" y="72" fill="#10B981" font-size="11" font-family="'JetBrains Mono', monospace">🤖 keys().hasOnly([...]) &amp;&amp; title.size() &lt;= 140</text>
+  </g>
+
+  <!-- ROW 5: Comment Spam Plugins vs Gemini 3.8 Flash Moderation -->
+  <g transform="translate(60, 614)">
+    <rect x="0" y="0" width="490" height="88" rx="12" fill="url(#cardDarkGrad2)" stroke="#334155" stroke-width="1"/>
+    <rect x="0" y="0" width="4" height="88" rx="2" fill="#F59E0B"/>
+    <text x="20" y="28" fill="#E2E8F0" font-size="15" font-weight="700">Akismet + Manual Comment Spam Queue</text>
+    <text x="20" y="52" fill="#94A3B8" font-size="12">Waking up to 4,000 bot comments clogging wp_comments and slowing down backups.</text>
+    <text x="20" y="72" fill="#F59E0B" font-size="11" font-family="'JetBrains Mono', monospace">🗑️ wp_comments (4,812 Pending Spam)</text>
+
+    <path d="M 505 44 L 575 44" stroke="url(#spectrumGrad2)" stroke-width="2" stroke-dasharray="4 2"/>
+    <polygon points="575,40 583,44 575,48" fill="#00D2FF"/>
+
+    <rect x="590" y="0" width="490" height="88" rx="12" fill="url(#cardDarkGrad2)" stroke="#1E293B" stroke-width="1"/>
+    <rect x="590" y="0" width="4" height="88" rx="2" fill="#00D2FF"/>
+    <text x="610" y="28" fill="#FFFFFF" font-size="15" font-weight="700">Google Sign-In + Gemini 3.8 Flash Gate</text>
+    <text x="610" y="52" fill="#94A3B8" font-size="12">Public reads only see status == 'published'. AI curates &amp; scores submissions before publish.</text>
+    <text x="610" y="72" fill="#38BDF8" font-size="11" font-family="'JetBrains Mono', monospace">✨ gemini-3.8-flash • status == 'published'</text>
+  </g>
+
+  <!-- Footer -->
+  <g transform="translate(60, 765)">
+    <line x1="0" y1="0" x2="1080" y2="0" stroke="#1E293B" stroke-width="1"/>
+    <text x="0" y="30" fill="#64748B" font-size="12" font-weight="600">
+      GEMINIPULSE.COM • "mAiking the swAitch" Transition Series (Part 2 of 2)
+    </text>
+    <text x="1080" y="30" fill="#94A3B8" font-size="12" font-weight="700" text-anchor="end">
+      100% Google Stack • Cloud Firestore + Antigravity
+    </text>
+  </g>
+</svg>
