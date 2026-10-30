@@ -4575,6 +4575,14 @@ export default function App() {
               YouTube
             </a>
             <a
+              href="https://x.com/geminipulse"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-sky-400 transition-colors"
+            >
+              X (@geminipulse)
+            </a>
+            <a
               href="https://www.reddit.com/r/GeminiPulse/"
               target="_blank"
               rel="noreferrer"

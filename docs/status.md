@@ -1,6 +1,6 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-10-30 02:13 EDT (Claimed & Wired 4 of 5 Unified @geminipulse Channels Live: GitHub + YouTube + LinkedIn /company/geminipulse + Reddit r/GeminiPulse; Mapped AGILE LLC Stripe Org)`
+- **Last Updated:** `2026-10-30 02:30 EDT (Completed 5-for-5 Unified @geminipulse Handle Sweep: GitHub + YouTube + X @geminipulse + LinkedIn /company/geminipulse + Reddit r/GeminiPulse — All Wired Live)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
@@ -15,12 +15,13 @@
 
 ## 1. Completed & Live on `v2.0` (2026-10-30 Early Morning Update)
 
-- **4 of 5 Unified `geminipulse` Social & Developer Channels Claimed & Wired Live (`v2.0.34` – `v2.0.35`):**
-  - **YouTube Brand Channel (`@geminipulse`):** **`https://www.youtube.com/@geminipulse`** (`UCBdEVURRcRJGKILofUqmMQQ`), created as a dedicated Brand Account channel under `neilstevenwhite@gmail.com` with full bio and external links (`https://geminipulse.com` and `https://github.com/GeminiPulse/geminipulse-com`) published via YouTube Studio.
+- **5 of 5 Unified `geminipulse` Social & Developer Channels Claimed, Cross-Linked & Wired Live (`v2.0.34` – `v2.0.36`):**
+  - **YouTube Brand Channel (`@geminipulse`):** **`https://www.youtube.com/@geminipulse`** (`UCBdEVURRcRJGKILofUqmMQQ`), created as a dedicated Brand Account channel under `neilstevenwhite@gmail.com` with full bio and all 5 official external links (`GeminiPulse.com`, `GitHub`, `X`, `Reddit`, `LinkedIn`) published via YouTube Studio.
+  - **X Business Professional Account (`@geminipulse`):** **`https://x.com/geminipulse`** (`2116050579877171200`), created via `neilstevenwhite+geminipulse@gmail.com`, uploaded official `512x512` `gemini-sparkle` avatar, converted to free `$0.00` X Business Professional Account (`Science & Technology`), and published bio + `https://geminipulse.com`.
   - **LinkedIn Company Page (`/company/geminipulse`):** **`https://www.linkedin.com/company/geminipulse/`** (`146914991`), created with industry (`Technology, Information and Internet`), website (`https://geminipulse.com`), and official tagline.
   - **Reddit Community (`r/GeminiPulse`):** **`https://www.reddit.com/r/GeminiPulse/`** (Public, SFW, moderated by `u/kree8iv73`), created with community description linking to `https://geminipulse.com`.
   - **GitHub Organization (`GeminiPulse`):** **`https://github.com/GeminiPulse/geminipulse-com`** (live public repo).
-  - **Wired onto `https://geminipulse.com`:** All 4 live channels are now linked in Schema.org `Organization.sameAs` (`public/index.html`), `#video-showcase`, `#forum`, and the site footer (`public/src/App.jsx`). *(Channel #5, X `@geminipulse`, is confirmed available and ready to claim via `neilstevenwhite+geminipulse@gmail.com`.)*
+  - **Wired onto `https://geminipulse.com`:** All 5 live channels are now linked in Schema.org `Organization.sameAs` + `twitter:site` (`public/index.html`), `#video-showcase`, `#forum`, the site footer (`public/src/App.jsx`), and `/llms.txt`.
   - **Stripe `AGILE LLC` Organization Mapped:** Confirmed Stripe Organization **`AGILE LLC`** (`org_6Vb01fQPSQtfJ9TZ3ZDK932`) with 3 enabled US sub-accounts; Chrome tab parked on Organization Management (`Add account`) ready for Neil's 1-click `GeminiPulse` sub-account creation + 2FA confirmation.
 
 - **Google Search Console Verified Live + `sitemap.xml` (`15` Pages) Submitted (`v2.0.33`):**

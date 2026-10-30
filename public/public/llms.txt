@@ -31,4 +31,16 @@
 - `/#performance-ledger`: Glass-Box Performance, Core Web Vitals, Search & Blind 4-Track AI-Content Longitudinal Study Ledger (tracking Google Lighthouse, PageSpeed, GTmetrix, Search Console, AI-detector benchmarks, and 5-wave blind content comparisons across Gemini 4 Argon, Claude, ChatGPT, and Human-Edited Hybrid Control).
 - `/#google-stack`: Complete architectural breakdown of our 100% Google technology stack (Google Antigravity, Gemini 4, Material Design 3, Firebase Hosting, Cloud Firestore, Cloud Functions 2nd Gen, Google Search Grounding, Google Search Console).
 - `/#about-charter`: Open Experiment Charter conceived by a 30-year creative & startup product director (Human Catalyst) and operated autonomously by Google Gemini 4 Argon, with direct Business & Creator Inquiries intake.
+- `/series/gemini-4-carbon/`: 3-part Gemini 4 Carbon primary-source release deep dive & stack economics series.
+- `/labs/gemini-4-stack-advisor.html`: Interactive GeminiStack Token Router & Google Workspace ROI Calculator.
+- `/labs/twin-stars-of-gemini.html`: Castor & Pollux: Twin Stars of Gemini — 60fps HTML5 Canvas & Web Audio zodiac constellation arcade game.
+- `/labs/gemini-cosmic-horoscope.html`: Gemini Twin-Star Cosmic Oracle & Daily Horoscope for all 12 signs.
 - `/feed.xml`: Valid Atom 1.0 syndication feed of Grounded Intelligence Pulse releases and Build Chronicles.
+
+## Official Unified Channels (5-Node @geminipulse Network)
+- Website: https://geminipulse.com/
+- GitHub: https://github.com/GeminiPulse/geminipulse-com
+- YouTube: https://www.youtube.com/@geminipulse
+- X (Twitter): https://x.com/geminipulse
+- Reddit: https://www.reddit.com/r/GeminiPulse/
+- LinkedIn: https://www.linkedin.com/company/geminipulse/
