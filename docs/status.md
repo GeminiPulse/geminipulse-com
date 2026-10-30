@@ -1,6 +1,6 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-10-30 01:22 EDT (Claimed & Published Official YouTube Brand Channel https://www.youtube.com/@geminipulse + Dual-Verified Google Search Console & Submitted sitemap.xml with 15 Pages)`
+- **Last Updated:** `2026-10-30 02:13 EDT (Claimed & Wired 4 of 5 Unified @geminipulse Channels Live: GitHub + YouTube + LinkedIn /company/geminipulse + Reddit r/GeminiPulse; Mapped AGILE LLC Stripe Org)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
@@ -15,10 +15,13 @@
 
 ## 1. Completed & Live on `v2.0` (2026-10-30 Early Morning Update)
 
-- **Official `@geminipulse` YouTube Brand Channel Claimed, Customized & Wired Live (`v2.0.34`):**
-  - **Live Channel:** **`https://www.youtube.com/@geminipulse`** (`https://www.youtube.com/channel/UCBdEVURRcRJGKILofUqmMQQ`), created as a dedicated Brand Account channel under `neilstevenwhite@gmail.com` with full bio and clickable header links (`https://geminipulse.com` and `https://github.com/GeminiPulse/geminipulse-com`) published via YouTube Studio.
-  - **Wired onto `https://geminipulse.com`:** Linked in Schema.org `Organization.sameAs` (`public/index.html`), `#video-showcase`, and the site footer (`public/src/App.jsx`).
-  - **Cross-Channel Handle Availability Confirmed:** Verified `r/GeminiPulse` on Reddit (`"We couldn't find that community"`) and `@geminipulse` on X (`"This account doesn't exist"`) are both 100% available, with Chrome tabs queued at login/signup alongside LinkedIn (`/company/setup/new/`), Stripe Dashboard, Google Workspace Referral (Impact Advocate), and Google Cloud Affiliate (CJ Affiliate).
+- **4 of 5 Unified `geminipulse` Social & Developer Channels Claimed & Wired Live (`v2.0.34` – `v2.0.35`):**
+  - **YouTube Brand Channel (`@geminipulse`):** **`https://www.youtube.com/@geminipulse`** (`UCBdEVURRcRJGKILofUqmMQQ`), created as a dedicated Brand Account channel under `neilstevenwhite@gmail.com` with full bio and external links (`https://geminipulse.com` and `https://github.com/GeminiPulse/geminipulse-com`) published via YouTube Studio.
+  - **LinkedIn Company Page (`/company/geminipulse`):** **`https://www.linkedin.com/company/geminipulse/`** (`146914991`), created with industry (`Technology, Information and Internet`), website (`https://geminipulse.com`), and official tagline.
+  - **Reddit Community (`r/GeminiPulse`):** **`https://www.reddit.com/r/GeminiPulse/`** (Public, SFW, moderated by `u/kree8iv73`), created with community description linking to `https://geminipulse.com`.
+  - **GitHub Organization (`GeminiPulse`):** **`https://github.com/GeminiPulse/geminipulse-com`** (live public repo).
+  - **Wired onto `https://geminipulse.com`:** All 4 live channels are now linked in Schema.org `Organization.sameAs` (`public/index.html`), `#video-showcase`, `#forum`, and the site footer (`public/src/App.jsx`). *(Channel #5, X `@geminipulse`, is confirmed available and ready to claim via `neilstevenwhite+geminipulse@gmail.com`.)*
+  - **Stripe `AGILE LLC` Organization Mapped:** Confirmed Stripe Organization **`AGILE LLC`** (`org_6Vb01fQPSQtfJ9TZ3ZDK932`) with 3 enabled US sub-accounts; Chrome tab parked on Organization Management (`Add account`) ready for Neil's 1-click `GeminiPulse` sub-account creation + 2FA confirmation.
 
 - **Google Search Console Verified Live + `sitemap.xml` (`15` Pages) Submitted (`v2.0.33`):**
   - **Dual-Verified URL Prefix (`https://geminipulse.com/`):** Verified ownership under `neilstevenwhite@gmail.com` via both `<meta name="google-site-verification" content="-dXZoocEE2o2es_1mSraj1roS7XuldTg7iTVNwtADMs" />` (`public/index.html`) and `google5049391f94391a64.html` (`public/public/google5049391f94391a64.html`), with `robots.txt` validated as **`Valid`**.

@@ -2557,13 +2557,25 @@ export default function App() {
               </p>
             </div>
 
-            <button
-              onClick={() => setShowNewThreadModal(true)}
-              className="m3-surface-elevated hover:border-blue-400 font-semibold px-5 py-2.5 rounded-full inline-flex items-center gap-2 cursor-pointer self-start md:self-auto whitespace-nowrap"
-            >
-              <Plus className="w-4 h-4 text-purple-400" />
-              Start New Discussion
-            </button>
+            <div className="flex flex-wrap items-center gap-2.5 self-start md:self-auto shrink-0">
+              <a
+                href="https://www.reddit.com/r/GeminiPulse/"
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => trackPulseEvent('official_reddit_click', { location: 'forum_header' })}
+                className="m3-surface-elevated hover:border-amber-400 text-xs font-semibold px-4 py-2.5 rounded-full inline-flex items-center gap-1.5 whitespace-nowrap"
+              >
+                <span>r/GeminiPulse</span>
+                <ArrowUpRight className="w-3.5 h-3.5 text-amber-400" />
+              </a>
+              <button
+                onClick={() => setShowNewThreadModal(true)}
+                className="m3-surface-elevated hover:border-blue-400 font-semibold px-5 py-2.5 rounded-full inline-flex items-center gap-2 cursor-pointer whitespace-nowrap"
+              >
+                <Plus className="w-4 h-4 text-purple-400" />
+                Start New Discussion
+              </button>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -4561,6 +4573,22 @@ export default function App() {
               className="hover:text-red-400 transition-colors"
             >
               YouTube
+            </a>
+            <a
+              href="https://www.reddit.com/r/GeminiPulse/"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-amber-400 transition-colors"
+            >
+              r/GeminiPulse
+            </a>
+            <a
+              href="https://www.linkedin.com/company/geminipulse/"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-blue-400 transition-colors"
+            >
+              LinkedIn
             </a>
             <a
               href="https://github.com/GeminiPulse/geminipulse-com"
