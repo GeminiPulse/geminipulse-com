@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-10-30 10:18 EDT — Activated LIVE Stripe Checkout Payment Links (One-Time Supporter Pass + $9/mo Founding Supporter) & Customer Portal on geminipulse.com/#support (v2.0.41), 5-for-5 Twin-Star social brand kit live, Zero-PII verified`
+> **Last touched:** `2026-10-30 17:45 EDT — Curated official Google Gemini Computer Use GA (Interactions & GenerateContent API), published 3-part deep dive series + interactive Agile Labs simulator [SIMULATED DEMO], registered Episode 07, verified 0-overflow layout across 4 viewports (v2.0.42)`
 
 ---
 

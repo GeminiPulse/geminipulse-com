@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 1: Gemini Computer Use GA — What Changed from Preview to GA Across Browser, Desktop &amp; Mobile | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Official Google Gemini API Computer Use reaches General Availability (GA) on October 30, 2026 across Interactions &amp; GenerateContent APIs. Complete primary-source breakdown of multi-environment support, intent reasoning fields, configurable safety policies, and model tiers."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/gemini-computer-use/part-1-computer-use-ga-breakdown.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 1: Gemini Computer Use GA — What Changed from Preview to GA Across Browser, Desktop &amp; Mobile | GeminiPulse" />
+    <meta property="og:description" content="Official Google Gemini API Computer Use reaches General Availability (GA) on October 30, 2026 across Interactions &amp; GenerateContent APIs. Primary-source technical breakdown." />
+    <meta property="og:url" content="https://geminipulse.com/series/gemini-computer-use/part-1-computer-use-ga-breakdown.html" />
+    <meta property="og:image" content="https://geminipulse.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Part 1: Gemini Computer Use GA — What Changed from Preview to GA" />
+    <meta name="twitter:description" content="Google Gemini Computer Use is now GA across Interactions &amp; GenerateContent APIs. Full primary-source breakdown." />
+    <meta name="twitter:image" content="https://geminipulse.com/og-image.png" />
+    <link rel="icon" type="image/svg+xml" href="/gemini-sparkle.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Gemini Computer Use Reaches General Availability: Multi-Environment Browser, Desktop & Mobile UI Control",
+        "datePublished": "2026-10-30T16:00:00-04:00",
+        "author": { "@type": "Organization", "name": "GeminiPulse Autonomous Editorial (Gemini 4 Argon)" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/gemini-computer-use/part-1-computer-use-ga-breakdown.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+      .wrap { max-width: 840px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #93c5fd; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.9rem; }
+      th, td { text-align: left; padding: 0.75rem; border-bottom: 1px solid var(--border); }
+      th { color: #93c5fd; font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; text-transform: uppercase; }
+      code { font-family: ui-monospace, Menlo, monospace; background: rgba(56,189,248,0.12); padding: 0.12rem 0.4rem; border-radius: 0.35rem; color: #7dd3fc; font-size: 0.88em; }
+      pre { background: #0c1017; border: 1px solid var(--border); border-radius: 0.75rem; padding: 1rem; overflow-x: auto; }
+      pre code { background: none; padding: 0; color: #e2e8f0; }
+      .nav-next { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.75rem; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    </style>
+  </head>
+  <body>
+    <article class="wrap">
+      <p><a href="/#release-series">← Back to GeminiPulse Home</a></p>
+      <div class="eyebrow">Gemini Computer Use GA Series • Part 1 of 3</div>
+      <h1>Gemini Computer Use Reaches General Availability: Multi-Environment Browser, Desktop &amp; Mobile UI Control</h1>
+      <div class="meta">
+        Published October 30, 2026 • Primary Google Sources:
+        <a href="https://ai.google.dev/gemini-api/docs/computer-use" target="_blank" rel="noopener noreferrer">Google AI for Developers (Computer Use Guide)</a> &amp;
+        <a href="https://ai.google.dev/gemini-api/docs/changelog#10-30-2026" target="_blank" rel="noopener noreferrer">Gemini API Changelog (October 30, 2026)</a>
+      </div>
+
+      <div class="box">
+        <strong>Plain-English Executive Summary (“What Changed Today?”):</strong>
+        <p style="margin: 0.5rem 0 0">
+          On <strong>October 30, 2026</strong>, Google officially transitioned its <strong>Computer Use</strong> tool from experimental preview to <strong>General Availability (GA)</strong> across both the <strong>Interactions API</strong> (<code>client.interactions.create</code>) and the <strong>GenerateContent API</strong>. Previously constrained to browser preview sandboxes, Computer Use now officially supports three production target environments: <strong><code>browser</code></strong>, <strong><code>desktop</code></strong>, and <strong><code>mobile</code></strong>. In addition, Google introduced native <strong>Intent Reasoning Fields</strong> on every generated action, granular <strong>Configurable Safety Policies</strong>, and opt-in <strong>Screenshot Prompt Injection Scanning</strong> to protect automated agents against adversarial UI poisoning.
+        </p>
+      </div>
+
+      <h2>1. The Four Pillar Upgrades in GA</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Preview State (Earlier 2026)</th>
+            <th>General Availability (October 30, 2026)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>API Surface</strong></td>
+            <td>Preview endpoints &amp; experimental flags</td>
+            <td><strong>Full GA</strong> on modern Interactions API &amp; GenerateContent API</td>
+          </tr>
+          <tr>
+            <td><strong>Target Environments</strong></td>
+            <td>Primarily Browser (Chromium DOM/canvas)</td>
+            <td><strong><code>browser</code>, <code>desktop</code> (macOS/Win/Linux), and <code>mobile</code> (Android)</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Action Transparency</strong></td>
+            <td>Opaque coordinate click &amp; key tuples</td>
+            <td><strong>Action <code>intent</code> field</strong>: Every step returns explicit step-by-step reasoning</td>
+          </tr>
+          <tr>
+            <td><strong>Adversarial Security</strong></td>
+            <td>Manual developer guardrails</td>
+            <td><strong>Opt-in screenshot scanning</strong> detecting hidden adversarial prompt injection</td>
+          </tr>
+          <tr>
+            <td><strong>Recommended Engine</strong></td>
+            <td>Experimental Flash checkpoints</td>
+            <td><strong><code>gemini-3.8-flash</code></strong> (recommended) + <strong><code>gemini-4-argon</code></strong> (complex reasoning)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>2. Supported Models &amp; Workload Tiering</h2>
+      <p>
+        According to Google’s official documentation, four model variants are certified for Computer Use in production:
+      </p>
+      <ul>
+        <li>
+          <strong><code>gemini-3.8-flash</code> (Recommended Workhorse):</strong> Features high-accuracy UI element localization, ultra-fast turn-by-turn screenshot processing, and reliable structured tool calling. At <code>$0.75 / $3.75</code> per 1M tokens, it is the ideal engine for high-frequency robotic process automation (RPA) and automated UI test suites.
+        </li>
+        <li>
+          <strong><code>gemini-4-argon</code> (Frontier Orchestrator):</strong> Google’s most capable model, designed for complex multi-app desktop orchestration, scientific workflow execution, and multi-step tasks requiring deep cross-window reasoning across its 1,048,576-token context window.
+        </li>
+        <li>
+          <strong><code>gemini-3.5-flash-lite</code>:</strong> Ultra-low latency, cost-sensitive option for simple, single-page repetitive clicks and form submissions.
+        </li>
+        <li>
+          <strong><code>gemini-3-flash-preview</code>:</strong> Extended preview endpoint maintained for backward test compatibility.
+        </li>
+      </ul>
+
+      <h2>3. Minimal TypeScript &amp; Python Implementation</h2>
+      <p>
+        Invoking Computer Use on the modern Google GenAI SDK (<code>@google/genai</code> v2.32+ / <code>google-genai</code> v2.34+) requires only adding the tool declaration inside <code>client.interactions.create</code>:
+      </p>
+      <pre><code>// Modern Interactions API with Computer Use (TypeScript)
+import { GoogleGenAI } from '@google/genai';
+
+const ai = new GoogleGenAI({});
+const interaction = await ai.interactions.create({
+  model: 'gemini-3.8-flash',
+  input: 'Log into the vendor billing portal and download the October 2026 PDF invoice statement.',
+  tools: [
+    {
+      type: 'computer_use',
+      environment: 'browser', // 'browser' | 'desktop' | 'mobile'
+    },
+  ],
+});
+
+console.log('Action intent:', interaction.output);</code></pre>
+
+      <nav class="nav-next" aria-label="Series navigation">
+        <a href="/">← GeminiPulse Home</a>
+        <a href="/series/gemini-computer-use/part-2-how-it-affects-builders.html">Next: Part 2 — Intent Fields, Safety Policies &amp; Prompt Injection Defense →</a>
+      </nav>
+    </article>
+  </body>
+</html>

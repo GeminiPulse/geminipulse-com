@@ -1,6 +1,6 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-10-30 10:18 EDT (LIVE Stripe Checkout Payment Links & Customer Portal Active v2.0.41 + 5-for-5 Twin-Star Avatars & Banners Live + 1200x630 OG Card Live + Repo-Wide Zero-PII Verified)`
+- **Last Updated:** `2026-10-30 17:45 EDT (Google Gemini Computer Use GA Curated + 3-Part Deep-Dive Series & Agile Labs Simulator Live + Episode 07 Registered v2.0.42)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
@@ -13,7 +13,28 @@
 
 ---
 
-## 1. Completed & Live on `v2.0` (2026-10-30 Overnight Wrap-Up)
+## 1. Completed & Live on `v2.0` (2026-10-30 5:45 PM ET Curation Check)
+
+- **Curated Official Google Gemini Computer Use General Availability (GA) (`v2.0.42`):**
+  - **Grounded Primary Source:** Google AI for Developers Changelog (`ai.google.dev/gemini-api/docs/changelog#10-30-2026`) & Guide (`ai.google.dev/gemini-api/docs/computer-use`) on October 30, 2026.
+  - **Core Capabilities Promoted to GA:** Multi-environment support (`browser`, `desktop`, `mobile`), native `intent` reasoning explanation on every action payload, configurable safety policies, and opt-in screenshot scanning for adversarial prompt injection detection.
+  - **Model Tiering:** Recommended `gemini-3.8-flash` for high-frequency low-latency UI agent loops (`$0.75 / $3.75` per 1M tokens) + `gemini-4-argon` for frontier multi-window orchestration.
+  - **Feed Integration:** Added to `PULSE_INTELLIGENCE_FEED` in `public/src/data/geminiEcosystemData.js`.
+
+- **Published 3-Part Deep-Dive Series (`public/public/series/gemini-computer-use/`):**
+  - **Part 1 (`part-1-computer-use-ga-breakdown.html`):** *Gemini Computer Use Reaches General Availability: Multi-Environment Browser, Desktop & Mobile UI Control* (Preview vs. GA delta, model tiering, minimal TypeScript/Python snippet).
+  - **Part 2 (`part-2-how-it-affects-builders.html`):** *How Gemini Computer Use Affects Builders: Intent Fields, Safety Policies & Prompt Injection Defense* (Telemetry observability, client execution loops with Playwright/Puppeteer, screenshot defense).
+  - **Part 3 (`part-3-concrete-business-use-cases.html`):** *5 Concrete Business & Enterprise Use Cases for Gemini Computer Use GA* (Vendor invoice reconcile, autonomous regression QA, competitor pricing scanner, legacy ERP form filling, Android flow verification).
+
+- **Published Companion Agile Labs Simulator (`public/public/labs/`):**
+  - **Interactive Workbench (`gemini-computer-use-simulator.html` [SIMULATED DEMO]):** Interactive UI allowing builders to test target environments (`browser`, `desktop`, `mobile`), model tiers (`gemini-3.8-flash` vs `gemini-4-argon`), prompt injection interception, and inspect turn-by-turn intent and bounding-box coordinates with copy-and-paste SDK blueprints.
+
+- **Antigravity Build Chronicle Episode 07 Registered (`v2.0.42`):**
+  - *Episode 07: The 20K Customization Ceiling — Context Hygiene, Quota Preservation, and Tool Pruning in Antigravity* registered into `ANTIGRAVITY_CHRONICLES` and `feed.xml`.
+
+- **SEO & Distribution Parity:**
+  - `sitemap.xml` updated to index all 4 new standalone pages (now `17` discovered pages).
+  - `feed.xml` Atom stream updated with Computer Use GA series and Episode 07.
 
 - **LIVE Stripe Supporter Checkout & Self-Serve Customer Portal Active (`v2.0.41`):**
   - **One-Time Supporter Pass (`\$15` suggested / `\$5` min):** `https://buy.stripe.com/cNidR9h2J469b3jdgn7Re00` (`HTTP/2 200`, redirects post-payment to `https://geminipulse.com/?support=thanks#support`).

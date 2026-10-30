@@ -1447,6 +1447,15 @@ export default function App() {
                     <span className="truncate">{item.groundedBy}</span>
                   </span>
                   <div className="flex flex-wrap items-center gap-2">
+                    {item.id === 'pulse-gemini-computer-use-ga' && (
+                      <a
+                        href="/series/gemini-computer-use/part-1-computer-use-ga-breakdown.html"
+                        onClick={() => trackPulseEvent('release_series_jump', { from: 'computer_use_card' })}
+                        className="px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-400/35 font-semibold whitespace-nowrap hover:bg-cyan-500/30 transition-colors"
+                      >
+                        3-Part Series →
+                      </a>
+                    )}
                     {item.id === 'pulse-gemini-4-carbon' && (
                       <a
                         href="#release-series"
@@ -1460,9 +1469,9 @@ export default function App() {
                       href={item.sourceUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="font-semibold text-blue-400 hover:underline inline-flex items-center gap-1 whitespace-nowrap shrink-0"
+                      className="font-semibold text-blue-400 hover:underline inline-flex items-center gap-1 min-w-0 break-words"
                     >
-                      <span>{item.sourceLabel}</span>
+                      <span className="break-words">{item.sourceLabel}</span>
                       <ExternalLink className="w-3 h-3 shrink-0" />
                     </a>
                   </div>
