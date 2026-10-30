@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Making the Switch: The Webmaster's Rosetta Stone from WordPress &amp; FTP to Google Antigravity | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Translating 20 years of classic web development (WordPress, FTP, cPanel, S3 backups) into Google Antigravity, Git worktrees, branches, and specialized agentic AI workflows without the jargon."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/making-the-switch/part-1-from-wordpress-to-antigravity.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Making the Switch: The Webmaster's Rosetta Stone from WordPress &amp; FTP to Google Antigravity" />
+    <meta property="og:description" content="Translating 20 years of classic web development (WordPress, FTP, cPanel, S3 backups) into Google Antigravity and agentic AI." />
+    <meta property="og:url" content="https://geminipulse.com/series/making-the-switch/part-1-from-wordpress-to-antigravity.html" />
+    <meta property="og:image" content="https://geminipulse.com/assets/making-the-switch-rosetta-stone.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Making the Switch: WordPress to Google Antigravity" />
+    <meta name="twitter:description" content="A solo webmaster's guide to translating FTP, cPanel, and staging into Git worktrees and AI agents." />
+    <meta name="twitter:image" content="https://geminipulse.com/assets/making-the-switch-rosetta-stone.svg" />
+    <link rel="icon" type="image/svg+xml" href="/gemini-sparkle.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Making the Switch: The Webmaster's Rosetta Stone from WordPress, FTP & cPanel to Google Antigravity",
+        "datePublished": "2026-10-30T17:55:00-04:00",
+        "author": { "@type": "Organization", "name": "GeminiPulse Autonomous Editorial (Gemini 4 Argon & Neil S. White)" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/making-the-switch/part-1-from-wordpress-to-antigravity.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #93c5fd; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .graphic-wrap { margin: 2rem 0; border: 1px solid var(--border); border-radius: 1rem; overflow: hidden; background: #0B0F17; }
+      .graphic-wrap img { width: 100%; height: auto; display: block; }
+      table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.9rem; }
+      th, td { text-align: left; padding: 0.75rem; border-bottom: 1px solid var(--border); }
+      th { color: #93c5fd; font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; text-transform: uppercase; }
+      code { font-family: ui-monospace, Menlo, monospace; background: rgba(56,189,248,0.12); padding: 0.12rem 0.4rem; border-radius: 0.35rem; color: #7dd3fc; font-size: 0.88em; }
+      .nav-next { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.75rem; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    </style>
+  </head>
+  <body>
+    <article class="wrap">
+      <p><a href="/#chronicle">← Back to GeminiPulse Chronicle</a></p>
+      <div class="eyebrow">The Solo Webmaster Transition Series • Part 1</div>
+      <h1>Making the Switch: The Webmaster's Rosetta Stone from WordPress, FTP &amp; cPanel to Google Antigravity</h1>
+      <div class="meta">
+        Published October 30, 2026 • By Gemini 4 Argon &amp; Neil S. White • <strong>Build Chronicle Episode 08</strong>
+      </div>
+
+      <div class="graphic-wrap">
+        <img src="/assets/making-the-switch-rosetta-stone.svg" alt="Making the Switch: The Rosetta Stone Infographic comparing Traditional Web with Google Antigravity" />
+      </div>
+
+      <div class="box">
+        <div class="eyebrow">Executive Summary</div>
+        <p style="margin-bottom:0;">
+          If you have spent 15 to 20 years building websites as a solo webmaster or agency owner, you have deep muscle memory in FTP, cPanel, and WordPress. Agentic IDEs can feel foreign, but they are simply the modern, automated evolution of the exact workflows you have been running for years. Here is the direct translation.
+        </p>
+      </div>
+
+      <h2>1. The Webmaster's Rosetta Stone</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Traditional Web / WordPress / cPanel</th>
+            <th>Google Antigravity / Agentic IDE</th>
+            <th>The Practical Reality</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>Local Themes / wp-content</code> &amp; FTP</td>
+            <td><strong>Local Checkout</strong></td>
+            <td>The real working files on your hard drive. In Antigravity, the AI reads and edits here in real-time.</td>
+          </tr>
+          <tr>
+            <td>Staging Subdomain (<code>staging.site.com</code>)</td>
+            <td><strong>Git Worktree</strong></td>
+            <td>An instant duplicate folder checked out to a separate branch. Background AI agents can build without touching your open files.</td>
+          </tr>
+          <tr>
+            <td>Live Production Server (<code>public_html/</code>)</td>
+            <td><strong>Branch <code>main</code></strong></td>
+            <td>Locked, pristine production. Never edited directly; only updated after automated builds pass.</td>
+          </tr>
+          <tr>
+            <td>Staging / Feature Branch</td>
+            <td><strong>Branch <code>v2.0</code></strong></td>
+            <td>Active development workshop where you and the AI experiment, refactor, and audit.</td>
+          </tr>
+          <tr>
+            <td>Nightly Backups to Dropbox/S3</td>
+            <td><strong>GitHub Remote (<code>origin</code>)</strong></td>
+            <td>Your offsite disaster vault. Every commit is tracked, and full rollbacks take 1 click.</td>
+          </tr>
+          <tr>
+            <td>40+ Bloated WordPress Plugins</td>
+            <td><strong>Specialized Subagents</strong></td>
+            <td>In WordPress, 50 plugins slow down your server. In AI, 50 tools burn context tokens and cause hallucinations. Subagents keep agents lean.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>2. Why You'll Never Overwrite Production by Mistake Again</h2>
+      <p>
+        Remember the cold sweat of editing a live PHP file over FTP and seeing a <code>500 Internal Server Error</code>? In Git and Antigravity, your production site on <code>main</code> is completely isolated. You build on <code>v2.0</code>, test with automated headless browser audits (<code>npm run audit:ui</code>), and only merge when everything passes.
+      </p>
+
+      <h2>3. Specialization Over Monoliths</h2>
+      <p>
+        In traditional CMSs, the easiest answer to every requirement was installing another plugin. In agentic AI, every active plugin adds tool schemas to the model's prompt context. By creating specialized subagents—like an editorial writer with only Search Grounding, or a security auditor with only rule linters—you reduce static token overhead by over 70% and eliminate model confusion.
+      </p>
+
+      <div class="nav-next">
+        <a href="/#chronicle">Read Episode 07: The 20K Customization Ceiling →</a>
+        <a href="/#shorts">Watch YouTube Shorts Studio →</a>
+      </div>
+    </article>
+  </body>
+</html>

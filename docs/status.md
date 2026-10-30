@@ -1,6 +1,6 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-10-30 17:45 EDT (Google Gemini Computer Use GA Curated + 3-Part Deep-Dive Series & Agile Labs Simulator Live + Episode 07 Registered v2.0.42)`
+- **Last Updated:** `2026-10-30 18:00 EDT (Episode 08 Published + Brand Rosetta Stone SVG + Short #05 Registered + Making the Switch Series Page Live v2.0.43)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
@@ -13,7 +13,15 @@
 
 ---
 
-## 1. Completed & Live on `v2.0` (2026-10-30 5:45 PM ET Curation Check)
+## 1. Completed & Live on `v2.0` (2026-10-30 6:00 PM ET Update)
+
+- **Published Build Chronicle Episode 08 & Webmaster's Rosetta Stone (`v2.0.43`):**
+  - **Article:** `chronicles/episode-08-making-the-switch-from-wordpress-ftp-to-antigravity.md` published and integrated into `ANTIGRAVITY_CHRONICLES` in `geminiEcosystemData.js`.
+  - **Brand Graphic (SVG):** Created high-resolution GeminiPulse brand diagram (`public/public/assets/making-the-switch-rosetta-stone.svg`) translating traditional web concepts (FTP, `wp-content`, staging subdomains, Dropbox/S3 backups, and 40+ plugins) into agentic concepts (Local Checkout, Git Worktrees, branches `main`/`v2.0`, GitHub Remotes, and specialized subagents).
+  - **Standalone Series Landing Page:** `public/public/series/making-the-switch/part-1-from-wordpress-to-antigravity.html` complete with Schema.org `TechArticle` metadata.
+  - **Shorts Studio Integration:** Registered Short #05 (*"Making the Switch: Translating 20 Years of WordPress into Antigravity"*) into `YOUTUBE_SHORTS_STUDIO`.
+  - **Video & Social Production Kit:** Created `social-kits/episode-08-making-the-switch-video-kit.md` with 60-second vertical video script, LinkedIn agency post, and X/Twitter thread.
+  - **Production Build:** Passed `npm run build` cleanly (stamped `v2.0.43`).
 
 - **Curated Official Google Gemini Computer Use General Availability (GA) (`v2.0.42`):**
   - **Grounded Primary Source:** Google AI for Developers Changelog (`ai.google.dev/gemini-api/docs/changelog#10-30-2026`) & Guide (`ai.google.dev/gemini-api/docs/computer-use`) on October 30, 2026.

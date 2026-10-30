@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-10-30 17:45 EDT — Curated official Google Gemini Computer Use GA (Interactions & GenerateContent API), published 3-part deep dive series + interactive Agile Labs simulator [SIMULATED DEMO], registered Episode 07, verified 0-overflow layout across 4 viewports (v2.0.42)`
+> **Last touched:** `2026-10-30 18:00 EDT — Published Chronicle Episode 08 ('Making the Switch: The Webmaster's Rosetta Stone'), created custom brand SVG diagram, registered Short #05, launched standalone series page, verified clean build v2.0.43`
 
 ---
 

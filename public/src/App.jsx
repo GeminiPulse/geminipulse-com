@@ -2871,7 +2871,7 @@ export default function App() {
               <div className="m3-card p-5 space-y-2 text-xs">
                 <div className="font-mono font-bold text-emerald-400 flex items-center gap-1.5">
                   <Activity className="w-4 h-4" />
-                  NEXT SCHEDULED EPISODE (EPISODE 06)
+                  NEXT SCHEDULED EPISODE (EPISODE 09)
                 </div>
                 <p className="m3-text-muted leading-relaxed">
                   Generated automatically by our recurring <strong>Antigravity Scheduled Automation</strong> (<code className="m3-inline-code">geminipulse-daily-curator</code>) after scanning the newest Gemini releases and community submissions.

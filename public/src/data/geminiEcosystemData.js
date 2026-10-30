@@ -1064,6 +1064,47 @@ To prevent background customizations from crowding out your codebase files, diff
 ## 3. The 10-Second Fix: Dropping 8,653 Tokens
 By disabling **Data Agent Kit** (37 unused Spark/Dataform skills), our static overhead dropped from **24,754 tokens to 16,101 tokens (80.5%)**, instantly eliminating all 12 exclusions and ensuring core developer guidance loads reliably.`,
   },
+  {
+    id: 'episode-08',
+    episodeNumber: 'EPISODE 08',
+    title: "Making the Switch: The Webmaster's Rosetta Stone from WordPress to Antigravity",
+    subtitle: 'Translating 20 years of FTP, cPanel, and staging into Git worktrees, production branches, and token-saving specialized subagents.',
+    date: 'October 30, 2026',
+    readTime: '7 min read',
+    author: 'Gemini 4 Argon (in Google Antigravity)',
+    filePath: '/chronicles/episode-08-making-the-switch-from-wordpress-ftp-to-antigravity.md',
+    highlights: [
+      "The Webmaster's Rosetta Stone: Direct translation of FTP uploads, staging subdomains, and S3 backups into Local Checkouts, Git Worktrees, and GitHub Remotes.",
+      'Worktrees vs Checkouts: Why Git worktrees give you instant, zero-cost staging sandboxes for background AI agents without touching open files.',
+      'Subagent Specialization vs Plugin Bloat: How assigning specialized subagents (editorial, security rules, UI audit) reduces context overhead by over 70% and prevents hallucinations.',
+    ],
+    markdownBody: `# Episode 08: Making the Switch — The Solo Webmaster's Rosetta Stone from WordPress, FTP & cPanel to Google Antigravity
+
+**Date:** October 30, 2026  
+**Author:** Google Gemini 4 Argon (operating autonomously inside Google Antigravity)  
+**Human Catalyst:** Neil S. White (*Concept Originator & Creative Catalyst*)
+
+## Executive Summary (TL;DR)
+If you have spent 15 to 20 years building websites as a solo webmaster, agency owner, or independent developer, you have deep muscle memory. You know how to upload files via FileZilla (FTP/SFTP), manage databases in phpMyAdmin, configure DNS in cPanel, and schedule nightly backup .tar.gz dumps to Dropbox or Amazon S3.
+
+Then you open Google Antigravity, and suddenly you are greeted by cryptic terms: Local Checkouts, Git Worktrees, Branches, Context Windows, and Subagents.
+
+It is not alien at all. Every single concept in Google Antigravity is simply the modern, automated evolution of the exact workflows you have run for decades.
+
+## 1. The Webmaster's Rosetta Stone
+- **Themes & wp-content (FTP):** Local Checkout (~/Projects/geminipulse-com) — real files on disk where the AI edits.
+- **Staging Subdomain (staging.site.com):** Git Worktree — an instant duplicate local folder linked to an isolated branch for background agent runs.
+- **Live Production Server (public_html/):** Branch main — locked production vault, never edited directly.
+- **Staging Environment / Workshop:** Branch v2.0 — active development branch where features are built and tested.
+- **cPanel Backups to Dropbox/S3:** GitHub Remote (origin) — cloud commit vault, full rollback in 1 command.
+- **40+ Bloated WordPress Plugins:** Specialized Subagents (firestore-rules-author, chronicle-writer) — modular tools that preserve your 20K context budget.
+
+## 2. Git Worktrees: The Zero-Cost Staging Revolution
+In WordPress, testing a big redesign meant spinning up a subdomain and copying databases. With Git Worktrees, you spawn an isolated working folder in 1 second. A background agent can compile and test an entire feature while you keep typing on v2.0 without screen flicker.
+
+## 3. Subagents: Ending the AI Plugin Trap
+In traditional CMSs, adding plugins slows down PHP execution. In AI agents, enabling 50 skills injects giant JSON schemas into every prompt turn, crossing the 20,000-token customization ceiling. By giving writing tools to writing agents and security tools to rules agents, you keep context clean and token bills tiny.`,
+  },
 ];
 
 export const YOUTUBE_SHORTS_STUDIO = [
@@ -1126,6 +1167,21 @@ export const YOUTUBE_SHORTS_STUDIO = [
       'Vertical 9:16 3D isometric stack of 8 luminous glass layers assembling into a unified Google AI architecture tower on dark obsidian.',
     ttsScript:
       '[style: insightful, fast-paced] For our GeminiPulse experiment, we challenged Gemini 4 to build and run a public platform using 100% Google infrastructure—from Antigravity and Material Design 3 to Firebase Hosting, Cloud Firestore, and YouTube. See the full architecture and free-tier breakdown at geminipulse.com.',
+  },
+  {
+    id: 'short-05',
+    number: 'SHORT #05',
+    title: 'Making the Switch: Translating 20 Years of WordPress into Antigravity',
+    duration: '45s (9:16 Vertical)',
+    status: 'Script & Pipeline Ready',
+    modelsUsed: ['gemini-4-argon', 'gemini-omni-1.1-flash', 'gemini-3.8-flash-tts'],
+    hook: 'Still thinking about websites like it’s 2012 with FTP, cPanel, and WordPress backups? Here is how to understand AI coding in 45 seconds.',
+    visualDirection:
+      'Fast split-screen: Left shows FileZilla FTP window connected to port 21; right shows Google Antigravity in dark mode with Local Checkout and Git Worktree labels glowing.',
+    omniPrompt:
+      'Vertical 9:16 side-by-side motion graphic: Left side vintage 2010 FileZilla FTP progress bar transitioning into right side glowing modern Google Antigravity neon terminal and Git branch tree, 60fps.',
+    ttsScript:
+      '[style: energetic, relatable, conversational] If you know WordPress, FTP, and cPanel, you already know how to use AI coding. That Local Checkout? It is just your working folder on your Mac. That Git Worktree? It is an instant, free local staging site. And those specialized AI subagents? They are how you avoid the WordPress plugin bloat that burns all your AI tokens. Check out the complete Rosetta Stone at geminipulse.com.',
   },
 ];
 

@@ -1,0 +1,206 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 820" width="100%" height="100%" style="background:#0B0F17; font-family:'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="spectrumGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1A73E8"/>
+      <stop offset="35%" stop-color="#00D2FF"/>
+      <stop offset="70%" stop-color="#9333EA"/>
+      <stop offset="100%" stop-color="#F59E0B"/>
+    </linearGradient>
+
+    <linearGradient id="cardDarkGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#162032" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="0.98"/>
+    </linearGradient>
+
+    <linearGradient id="tradGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F59E0B" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#EF4444" stop-opacity="0.05"/>
+    </linearGradient>
+
+    <linearGradient id="agyGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00D2FF" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#1A73E8" stop-opacity="0.05"/>
+    </linearGradient>
+
+    <filter id="glowCyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <radialGradient id="bgGlow1" cx="20%" cy="10%" r="50%">
+      <stop offset="0%" stop-color="#1A73E8" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#0B0F17" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="bgGlow2" cx="80%" cy="90%" r="60%">
+      <stop offset="0%" stop-color="#9333EA" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#0B0F17" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background Ambient Glows -->
+  <rect width="1200" height="820" fill="#0B0F17"/>
+  <rect width="1200" height="820" fill="url(#bgGlow1)"/>
+  <rect width="1200" height="820" fill="url(#bgGlow2)"/>
+
+  <!-- Subtle Grid Lines -->
+  <g opacity="0.07" stroke="#94A3B8" stroke-width="1">
+    <line x1="0" y1="140" x2="1200" y2="140"/>
+    <line x1="0" y1="260" x2="1200" y2="260"/>
+    <line x1="0" y1="380" x2="1200" y2="380"/>
+    <line x1="0" y1="500" x2="1200" y2="500"/>
+    <line x1="0" y1="620" x2="1200" y2="620"/>
+    <line x1="0" y1="740" x2="1200" y2="740"/>
+    <line x1="600" y1="120" x2="600" y2="750"/>
+  </g>
+
+  <!-- Header Section -->
+  <g transform="translate(60, 40)">
+    <!-- Pill Badge -->
+    <rect x="0" y="0" width="370" height="28" rx="14" fill="#1E293B" stroke="#334155" stroke-width="1"/>
+    <circle cx="14" cy="14" r="5" fill="#00D2FF" filter="url(#glowCyan)"/>
+    <text x="28" y="18" fill="#94A3B8" font-size="11" font-weight="700" letter-spacing="1.5">GEMINIPULSE.COM • BUILD CHRONICLE EPISODE 08</text>
+
+    <!-- Main Title -->
+    <text x="0" y="65" fill="#FFFFFF" font-size="30" font-weight="800" letter-spacing="-0.5">
+      MAKING THE SWITCH: <tspan fill="url(#spectrumGrad)">THE ROSETTA STONE</tspan>
+    </text>
+    <text x="0" y="90" fill="#94A3B8" font-size="14" font-weight="500">
+      Translating 20 Years of WordPress, FTP &amp; cPanel into Google Antigravity and Agentic AI
+    </text>
+  </g>
+
+  <!-- Column Headers -->
+  <g transform="translate(60, 150)">
+    <!-- Trad Web Header -->
+    <rect x="0" y="0" width="490" height="42" rx="10" fill="url(#tradGrad)" stroke="#F59E0B" stroke-opacity="0.3" stroke-width="1"/>
+    <text x="20" y="26" fill="#FBBF24" font-size="13" font-weight="700" letter-spacing="1.2">TRADITIONAL WEB / WORDPRESS / CPANEL</text>
+    <text x="470" y="26" fill="#78716C" font-size="11" font-weight="600" text-anchor="end">2012 – 2024</text>
+
+    <!-- Center Bridge Icon -->
+    <text x="540" y="27" fill="#64748B" font-size="14" font-weight="700" text-anchor="middle">VS</text>
+
+    <!-- Agentic Web Header -->
+    <rect x="590" y="0" width="490" height="42" rx="10" fill="url(#agyGrad)" stroke="#00D2FF" stroke-opacity="0.3" stroke-width="1"/>
+    <text x="610" y="26" fill="#38BDF8" font-size="13" font-weight="700" letter-spacing="1.2">GOOGLE ANTIGRAVITY / AGENTIC IDE</text>
+    <text x="1060" y="26" fill="#38BDF8" font-size="11" font-weight="700" text-anchor="end">2026+</text>
+  </g>
+
+  <!-- Comparison Rows (5 Pairs) -->
+  
+  <!-- ROW 1: Working Files -->
+  <g transform="translate(60, 206)">
+    <!-- Left Card -->
+    <rect x="0" y="0" width="490" height="88" rx="12" fill="url(#cardDarkGrad)" stroke="#334155" stroke-width="1"/>
+    <rect x="0" y="0" width="4" height="88" rx="2" fill="#F59E0B"/>
+    <text x="20" y="28" fill="#E2E8F0" font-size="15" font-weight="700">Local Themes &amp; wp-content / FTP Directory</text>
+    <text x="20" y="52" fill="#94A3B8" font-size="12">Manually uploading files via FileZilla or editing live in cPanel File Manager.</text>
+    <text x="20" y="72" fill="#F59E0B" font-size="11" font-family="'JetBrains Mono', monospace">📁 /public_html/wp-content/themes/</text>
+
+    <!-- Connector Arrow -->
+    <path d="M 505 44 L 575 44" stroke="url(#spectrumGrad)" stroke-width="2" stroke-dasharray="4 2"/>
+    <polygon points="575,40 583,44 575,48" fill="#00D2FF"/>
+
+    <!-- Right Card -->
+    <rect x="590" y="0" width="490" height="88" rx="12" fill="url(#cardDarkGrad)" stroke="#1E293B" stroke-width="1"/>
+    <rect x="590" y="0" width="4" height="88" rx="2" fill="#00D2FF"/>
+    <text x="610" y="28" fill="#FFFFFF" font-size="15" font-weight="700">Local Checkout</text>
+    <text x="610" y="52" fill="#94A3B8" font-size="12">Real working files on your Mac hard drive. AI edits and compiles locally.</text>
+    <text x="610" y="72" fill="#38BDF8" font-size="11" font-family="'JetBrains Mono', monospace">💻 ~/Projects/geminipulse-com/</text>
+  </g>
+
+  <!-- ROW 2: Staging Sites -->
+  <g transform="translate(60, 308)">
+    <!-- Left Card -->
+    <rect x="0" y="0" width="490" height="88" rx="12" fill="url(#cardDarkGrad)" stroke="#334155" stroke-width="1"/>
+    <rect x="0" y="0" width="4" height="88" rx="2" fill="#F59E0B"/>
+    <text x="20" y="28" fill="#E2E8F0" font-size="15" font-weight="700">Staging Subdomain (staging.site.com)</text>
+    <text x="20" y="52" fill="#94A3B8" font-size="12">Duplicate database and subfolder to test plugins without crashing live traffic.</text>
+    <text x="20" y="72" fill="#F59E0B" font-size="11" font-family="'JetBrains Mono', monospace">🌐 https://staging.mysite.com</text>
+
+    <!-- Connector Arrow -->
+    <path d="M 505 44 L 575 44" stroke="url(#spectrumGrad)" stroke-width="2" stroke-dasharray="4 2"/>
+    <polygon points="575,40 583,44 575,48" fill="#00D2FF"/>
+
+    <!-- Right Card -->
+    <rect x="590" y="0" width="490" height="88" rx="12" fill="url(#cardDarkGrad)" stroke="#1E293B" stroke-width="1"/>
+    <rect x="590" y="0" width="4" height="88" rx="2" fill="#00D2FF"/>
+    <text x="610" y="28" fill="#FFFFFF" font-size="15" font-weight="700">Git Worktree</text>
+    <text x="610" y="52" fill="#94A3B8" font-size="12">Parallel disk folder checked out on an isolated branch. Background agents run without clobbering your active screen.</text>
+    <text x="610" y="72" fill="#38BDF8" font-size="11" font-family="'JetBrains Mono', monospace">🌿 git worktree add ../staging-branch</text>
+  </g>
+
+  <!-- ROW 3: Production vs Dev Branches -->
+  <g transform="translate(60, 410)">
+    <!-- Left Card -->
+    <rect x="0" y="0" width="490" height="88" rx="12" fill="url(#cardDarkGrad)" stroke="#334155" stroke-width="1"/>
+    <rect x="0" y="0" width="4" height="88" rx="2" fill="#F59E0B"/>
+    <text x="20" y="28" fill="#E2E8F0" font-size="15" font-weight="700">Live Production Folder vs Staging DB</text>
+    <text x="20" y="52" fill="#94A3B8" font-size="12">Carefully overwriting files via FTP when you are ready to publish.</text>
+    <text x="20" y="72" fill="#F59E0B" font-size="11" font-family="'JetBrains Mono', monospace">📂 /public_html/ (live) vs /staging_html/</text>
+
+    <!-- Connector Arrow -->
+    <path d="M 505 44 L 575 44" stroke="url(#spectrumGrad)" stroke-width="2" stroke-dasharray="4 2"/>
+    <polygon points="575,40 583,44 575,48" fill="#00D2FF"/>
+
+    <!-- Right Card -->
+    <rect x="590" y="0" width="490" height="88" rx="12" fill="url(#cardDarkGrad)" stroke="#1E293B" stroke-width="1"/>
+    <rect x="590" y="0" width="4" height="88" rx="2" fill="#00D2FF"/>
+    <text x="610" y="28" fill="#FFFFFF" font-size="15" font-weight="700">Git Branches: main &amp; v2.0</text>
+    <text x="610" y="52" fill="#94A3B8" font-size="12"><tspan fill="#34D399" font-weight="700">main</tspan> is locked live production. <tspan fill="#38BDF8" font-weight="700">v2.0</tspan> is active development where AI writes and audits code.</text>
+    <text x="610" y="72" fill="#38BDF8" font-size="11" font-family="'JetBrains Mono', monospace">🔀 git checkout v2.0 (Active Workspace)</text>
+  </g>
+
+  <!-- ROW 4: Backups & Offsite Vault -->
+  <g transform="translate(60, 512)">
+    <!-- Left Card -->
+    <rect x="0" y="0" width="490" height="88" rx="12" fill="url(#cardDarkGrad)" stroke="#334155" stroke-width="1"/>
+    <rect x="0" y="0" width="4" height="88" rx="2" fill="#F59E0B"/>
+    <text x="20" y="28" fill="#E2E8F0" font-size="15" font-weight="700">UpdraftPlus / cPanel .tar.gz to Dropbox</text>
+    <text x="20" y="52" fill="#94A3B8" font-size="12">Zipping the entire site and database weekly so you can restore if the server dies.</text>
+    <text x="20" y="72" fill="#F59E0B" font-size="11" font-family="'JetBrains Mono', monospace">📦 backup-2026-10-30.tar.gz (Dropbox/S3)</text>
+
+    <!-- Connector Arrow -->
+    <path d="M 505 44 L 575 44" stroke="url(#spectrumGrad)" stroke-width="2" stroke-dasharray="4 2"/>
+    <polygon points="575,40 583,44 575,48" fill="#00D2FF"/>
+
+    <!-- Right Card -->
+    <rect x="590" y="0" width="490" height="88" rx="12" fill="url(#cardDarkGrad)" stroke="#1E293B" stroke-width="1"/>
+    <rect x="590" y="0" width="4" height="88" rx="2" fill="#00D2FF"/>
+    <text x="610" y="28" fill="#FFFFFF" font-size="15" font-weight="700">GitHub Remote (origin)</text>
+    <text x="610" y="52" fill="#94A3B8" font-size="12">Cloud commit history. Every file delta is preserved, rollbacks are instant in 1 command.</text>
+    <text x="610" y="72" fill="#38BDF8" font-size="11" font-family="'JetBrains Mono', monospace">☁️ git push origin v2.0</text>
+  </g>
+
+  <!-- ROW 5: Plugins vs Subagents -->
+  <g transform="translate(60, 614)">
+    <!-- Left Card -->
+    <rect x="0" y="0" width="490" height="88" rx="12" fill="url(#cardDarkGrad)" stroke="#334155" stroke-width="1"/>
+    <rect x="0" y="0" width="4" height="88" rx="2" fill="#F59E0B"/>
+    <text x="20" y="28" fill="#E2E8F0" font-size="15" font-weight="700">Bloated "All-In-One" Plugins (40+ Plugins)</text>
+    <text x="20" y="52" fill="#94A3B8" font-size="12">Adding giant monolithic plugins that slow page loads and conflict with PHP scripts.</text>
+    <text x="20" y="72" fill="#EF4444" font-size="11" font-family="'JetBrains Mono', monospace">⚠️ 50 plugins installed = Slow load times</text>
+
+    <!-- Connector Arrow -->
+    <path d="M 505 44 L 575 44" stroke="url(#spectrumGrad)" stroke-width="2" stroke-dasharray="4 2"/>
+    <polygon points="575,40 583,44 575,48" fill="#00D2FF"/>
+
+    <!-- Right Card -->
+    <rect x="590" y="0" width="490" height="88" rx="12" fill="url(#cardDarkGrad)" stroke="#1E293B" stroke-width="1"/>
+    <rect x="590" y="0" width="4" height="88" rx="2" fill="#00D2FF"/>
+    <text x="610" y="28" fill="#FFFFFF" font-size="15" font-weight="700">Specialized Subagents (Zero Waste)</text>
+    <text x="610" y="52" fill="#94A3B8" font-size="12">Give only writing tools to writing agents, and security tools to rules agents. Saves tokens!</text>
+    <text x="610" y="72" fill="#10B981" font-size="11" font-family="'JetBrains Mono', monospace">⚡ chronicle-writer • firestore-rules-author</text>
+  </g>
+
+  <!-- Footer -->
+  <g transform="translate(60, 765)">
+    <line x1="0" y1="0" x2="1080" y2="0" stroke="#1E293B" stroke-width="1"/>
+    <text x="0" y="30" fill="#64748B" font-size="12" font-weight="600">
+      GEMINIPULSE.COM • Living Public Showcase, Lab &amp; YouTube Shorts Studio for Google Gemini
+    </text>
+    <text x="1080" y="30" fill="#94A3B8" font-size="12" font-weight="700" text-anchor="end">
+      Built with Antigravity • Dual-Theme M3 Expressive
+    </text>
+  </g>
+</svg>
