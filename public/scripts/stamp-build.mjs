@@ -54,6 +54,19 @@ const statusHtml = `<!doctype html>
     <title>System &amp; Build Status (${buildId}) — GeminiPulse.com</title>
     <meta name="description" content="Live build verification stamp, Google Cloud & Firebase subsystem status, Lighthouse scores, and analytics wiring for GeminiPulse.com." />
     <link rel="canonical" href="https://geminipulse.com/status" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="System &amp; Build Status (${buildId}) — GeminiPulse.com" />
+    <meta property="og:description" content="Live build verification stamp, Google Cloud &amp; Firebase subsystem status, Lighthouse scores, and analytics wiring for GeminiPulse.com." />
+    <meta property="og:url" content="https://geminipulse.com/status" />
+    <meta property="og:image" content="https://geminipulse.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="System &amp; Build Status (${buildId}) — GeminiPulse.com" />
+    <meta name="twitter:description" content="Live build verification stamp, Google Cloud &amp; Firebase subsystem status, Lighthouse scores, and analytics wiring for GeminiPulse.com." />
+    <meta name="twitter:image" content="https://geminipulse.com/og-image.png" />
     <link rel="icon" type="image/svg+xml" href="/gemini-sparkle.svg" />
     <style>
       :root {

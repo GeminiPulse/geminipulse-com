@@ -34,7 +34,7 @@
 
 ## 3. Two-Track Trust & Monetization Architecture (Agile LLC -> GeminiPulse Sub-Account)
 
-Operated under **Agile LLC** via a dedicated **Stripe Organization Sub-Account** displaying `GeminiPulse` on customer statements while filing cleanly under Agile LLC's EIN:
+Operated under **Agile LLC** via a dedicated **Stripe Organization Sub-Account** displaying `GeminiPulse` on customer statements:
 
 1. **Track 1 — Verified Builder Identity (`$0` Free via Google Sign-In + GitHub/Domain Verification):**
    - Keeping verification free maximizes community trust and prevents "bought-verdict" skepticism around Arena benchmarks.

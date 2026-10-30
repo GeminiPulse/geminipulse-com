@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-10-30 03:00 EDT — Configured Stripe GeminiPulse sub-account branding & workflows (ready for 1-click live KYC submit), configured CJ Affiliate Network Profile & GeminiPulse Promotional Property (PID 101916668 for Google Cloud 5930067), wired live Workspace Referral link (mzYYGz3), and completed 5-for-5 @geminipulse handle sweep`
+> **Last touched:** `2026-10-30 03:30 EDT — Repo-wide PII & privacy scrub (zero emails, zero personal handles, zero internal account IDs, zero local machine paths), deployed 1200x630 Twin-Star OG card across all routes (v2.0.39), and completed 5-for-5 @geminipulse handle & brand kit rollout`
 
 ---
 
@@ -58,10 +58,10 @@ npx firebase-tools deploy --only functions
 ---
 
 ## 4. Mandatory House Rules (Synced with Neil's Claude Project Registry)
-1. **Git & Remote Discipline:** Commit work to the `v2.0` branch (and `main` when releasing) and push to the `origin` remote (`https://github.com/GeminiPulse/geminipulse-com`). **Never push to the `agile` remote** (archived). Never commit API keys or `.env` files. Push at the end of every session.
+1. **Git, Privacy & Remote Discipline:** Commit work to the `v2.0` branch (and `main` when releasing) and push to the `origin` remote (`https://github.com/GeminiPulse/geminipulse-com`). **Never push to the `agile` remote** (archived). **Zero-PII Rule:** Never commit API keys, `.env` files, personal email addresses, personal social handles, internal billing/affiliate account IDs, registrar details, domain portfolio lists, or local filesystem paths. Push at the end of every session.
 2. **Repo Root Documentation:** Keep `GEMINI.md` (and `AGENTS.md`) updated at the repository root, updating the `Last touched:` line every session.
 3. **Billing Gate (Money is Neil's Call):** Before enabling anything that can bill (Firebase Blaze plan, Cloud Functions deployment, Cloud Scheduler, paid Gemini API usage beyond the free tier), state what it is and the expected monthly cost, and wait for Neil's explicit **yes**. Set a Cloud Billing budget alert as soon as Blaze is enabled.
-4. **Domain & DNS:** `geminipulse.com` is registered at **Spaceship** and its DNS runs on **Cloudflare**. Never change nameservers or registrar. When connecting Firebase Hosting, provide the exact DNS records (`type`, `name`, `value`) so Neil/Claude can add them in Cloudflare.
+4. **Domain & DNS:** Never change the domain registrar or authoritative Cloudflare DNS nameservers. When connecting Firebase Hosting or subdomains, provide the exact DNS records (`type`, `name`, `value`) for operator review.
 5. **Truth on the Page:** Verify every model name, release date, and benchmark against Google sources using Search Grounding and link the source. Explicitly label any simulated demo (such as the SDK `Interaction.steps` simulator or local AI review preview) with `[SIMULATED DEMO]`. **Zero made-up user submissions, fake forum threads, fake comments, or fabricated testimonials on the live site.**
 6. **Public Content Safety Gates:** Before public user content is accepted in the Showcase or Forum, enforce: (a) AI moderation (`gemini-3.8-flash`), (b) a visible **Report / Flag** button on every item, (c) **Privacy Policy & Terms of Service** consent, and (d) **Google Sign-In required to post**.
 7. **Session Status File (`docs/status.md`):** Update `docs/status.md` at the end of every session with what is built, what is live, the preview URL, and what needs Neil's input or approval.

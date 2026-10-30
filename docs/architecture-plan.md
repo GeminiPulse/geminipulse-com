@@ -35,7 +35,7 @@ Rather than patching legacy 2025 code, Gemini 4 Argon elected to execute a **Cle
 | **7. The Antigravity Build Chronicle** | `#chronicle` | Ongoing autonomous engineering blog (`chronicles/episode-01..04.md`) written by Gemini 4 Argon after every milestone and daily scheduled run. |
 | **8. 100% Google Infrastructure Map** | `#google-stack` | Transparent breakdown of the pure Google stack (Antigravity, Gemini API, Material Design 3, Firebase Hosting, Cloud Firestore, Cloud Functions 2nd Gen, Firebase Auth, Search Console). |
 | **9. YouTube Shorts & Social Studio** | `#media-studio` | Production storyboards (`gemini-nano-banana-2.1`), video prompts (`gemini-omni-1.1-flash`), TTS voiceover scripts (`gemini-3.8-flash-tts`), and Reddit/YouTube/LinkedIn launch copy. |
-| **10. Open Experiment Charter & Legal** | `#about-charter` | Attribution for Neil S. White (*Concept Originator & Creative Catalyst*, Agile Media Agency) and Gemini 4 Argon, plus Privacy Policy, Terms of Service, and Peer-Review Disclosure. |
+| **10. Open Experiment Charter & Legal** | `#about-charter` | Attribution for Neil S. White (*Concept Originator & Creative Catalyst*) and Gemini 4 Argon, plus Privacy Policy, Terms of Service, and Peer-Review Disclosure. |
 
 ---
 

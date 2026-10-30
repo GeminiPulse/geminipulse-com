@@ -1,6 +1,6 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-10-30 03:00 EDT (Polished Stripe GeminiPulse Sub-Account Branding + Configured CJ Affiliate Network Profile & Promotional Property PID 101916668 + Wired Workspace Referral Link mzYYGz3 + Completed 5-for-5 @geminipulse Handle Sweep)`
+- **Last Updated:** `2026-10-30 03:30 EDT (Repo-Wide Zero-PII Scrub + Deployed 1200x630 Twin-Star OG Social Card v2.0.39 + Configured Stripe GeminiPulse Branding & CJ Affiliate Promotional Property + Wired Workspace Referral Link mzYYGz3 + 5-for-5 @geminipulse Handle & Brand Kit Rollout)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
@@ -15,25 +15,28 @@
 
 ## 1. Completed & Live on `v2.0` (2026-10-30 Overnight Wrap-Up)
 
+- **Twin-Star (`Castor & Pollux`) Brand Kit & Open Graph Social Preview Card Deployed (`v2.0.39`):**
+  - Deployed custom `1200x630` Twin-Star Open Graph & X `summary_large_image` social preview card (`https://geminipulse.com/og-image.png`, `HTTP/2 200`) across `public/index.html`, `/partners`, `/status`, all 3 `/labs/*.html` apps, and all 3 `/series/gemini-4-carbon/*.html` articles (`0` layout overflows across all 4 viewports).
+  - Enforced repo-wide **Zero-PII Rule** (`0` personal emails, `0` personal social handles, `0` internal billing/affiliate account IDs, and `0` local filesystem paths in tracked repository files; `.local/` gitignored).
+
 - **Stripe `GeminiPulse` Sub-Account Branded & CJ Affiliate `GeminiPulse` Property Configured (`2026-10-30 03:00 EDT`):**
-  - **Stripe Sub-Account (`GeminiPulse` under `AGILE LLC`):** Configured Account Display Name (`GeminiPulse`), Website (`https://geminipulse.com`), payment/subscription workflows, and Checkout Branding (`512x512` `gemini-sparkle` Icon & Logo, `#0B0F19` Brand color, `#4285F4` Accent color). Inherits `AGILE LLC` shared legal entity (`Business type`, `Tax details`, `Account representative`, and `Bank` already pre-completed); parked at `Activate your products` for Neil's final `Agree & submit` click to unlock Live `buy.stripe.com` Payment Links.
-  - **CJ Affiliate Publisher Onboarding (Branded Google Cloud `5930067` Invite):** Completed & saved **Network Profile** and **Primary Promotional Property `GeminiPulse`** (`PID: 101916668`, `https://geminipulse.com`, `Content/Blog/Media`, `Status: Active`); parked at `onboarding.cj` awaiting only personal phone/address, `W-9`, and payout bank details to click `ACTIVATE ACCOUNT`.
+  - **Stripe Sub-Account (`GeminiPulse` under `AGILE LLC`):** Configured Account Display Name (`GeminiPulse`), Website (`https://geminipulse.com`), payment/subscription workflows, and Checkout Branding (`512x512` `gemini-sparkle` Icon & Logo, `#0B0F19` Brand color, `#4285F4` Accent color). Parked at `Activate your products` for final operator `Agree & submit` click to unlock Live `buy.stripe.com` Payment Links.
+  - **CJ Affiliate Publisher Onboarding (Branded Google Cloud Invite):** Completed & saved **Network Profile** and **Primary Promotional Property `GeminiPulse`** (`https://geminipulse.com`, `Content/Blog/Media`, `Status: Active`); parked at `onboarding.cj` awaiting operator completion of tax & payout verification to click `ACTIVATE ACCOUNT`.
 
 - **Google Workspace Referral Partner Link Wired Live (`v2.0.37`):**
   - **Live Referral URL:** **`https://sharegoogleworkspace.advocate.impact.com/mzYYGz3`** wired with `rel="sponsored noopener noreferrer"` and transparent FTC/Google disclosure across `#get-started` Path 01 (`public/src/data/geminiEcosystemData.js`, `public/src/App.jsx`) and the interactive **GeminiStack Advisor** (`/labs/gemini-4-stack-advisor.html`).
   - **Bot-Safe Single-Use 10% First-Year Promo Code Request Flow:** Because Google's 10% first-year Business Starter / Standard / Plus promo codes are strictly single-use per domain, added a 1-click **"Request 10% Promo Code →"** trigger into our write-only Cloud Firestore `business_inquiries` modal so codes are never scraped or burned on public HTML.
 
 - **5 of 5 Unified `geminipulse` Social & Developer Channels Claimed, Cross-Linked & Wired Live (`v2.0.34` – `v2.0.36`):**
-  - **YouTube Brand Channel (`@geminipulse`):** **`https://www.youtube.com/@geminipulse`** (`UCBdEVURRcRJGKILofUqmMQQ`), created as a dedicated Brand Account channel under `neilstevenwhite@gmail.com` with full bio and all 5 official external links (`GeminiPulse.com`, `GitHub`, `X`, `Reddit`, `LinkedIn`) published via YouTube Studio.
-  - **X Business Professional Account (`@geminipulse`):** **`https://x.com/geminipulse`** (`2116050579877171200`), created via `neilstevenwhite+geminipulse@gmail.com`, uploaded official `512x512` `gemini-sparkle` avatar, converted to free `$0.00` X Business Professional Account (`Science & Technology`), and published bio + `https://geminipulse.com`.
-  - **LinkedIn Company Page (`/company/geminipulse`):** **`https://www.linkedin.com/company/geminipulse/`** (`146914991`), created with industry (`Technology, Information and Internet`), website (`https://geminipulse.com`), and official tagline.
-  - **Reddit Community (`r/GeminiPulse`):** **`https://www.reddit.com/r/GeminiPulse/`** (Public, SFW, moderated by `u/kree8iv73`), created with community description linking to `https://geminipulse.com`.
+  - **YouTube Brand Channel (`@geminipulse`):** **`https://www.youtube.com/@geminipulse`**, created as a dedicated Brand Account channel with full bio and all 5 official external links (`GeminiPulse.com`, `GitHub`, `X`, `Reddit`, `LinkedIn`) published via YouTube Studio.
+  - **X Business Professional Account (`@geminipulse`):** **`https://x.com/geminipulse`**, configured on the `$0.00` free X Business Professional Account tier (`Science & Technology`) with official branding, bio, and `https://geminipulse.com`.
+  - **LinkedIn Company Page (`/company/geminipulse`):** **`https://www.linkedin.com/company/geminipulse/`**, created with industry (`Technology, Information and Internet`), website (`https://geminipulse.com`), and official tagline.
+  - **Reddit Community (`r/GeminiPulse`):** **`https://www.reddit.com/r/GeminiPulse/`** (Public, SFW), created with community description linking to `https://geminipulse.com`.
   - **GitHub Organization (`GeminiPulse`):** **`https://github.com/GeminiPulse/geminipulse-com`** (live public repo).
   - **Wired onto `https://geminipulse.com`:** All 5 live channels are now linked in Schema.org `Organization.sameAs` + `twitter:site` (`public/index.html`), `#video-showcase`, `#forum`, the site footer (`public/src/App.jsx`), and `/llms.txt`.
-  - **Stripe `AGILE LLC` Organization Mapped:** Confirmed Stripe Organization **`AGILE LLC`** (`org_6Vb01fQPSQtfJ9TZ3ZDK932`) with 3 enabled US sub-accounts; Chrome tab parked on Organization Management (`Add account`) ready for Neil's 1-click `GeminiPulse` sub-account creation + 2FA confirmation.
 
 - **Google Search Console Verified Live + `sitemap.xml` (`15` Pages) Submitted (`v2.0.33`):**
-  - **Dual-Verified URL Prefix (`https://geminipulse.com/`):** Verified ownership under `neilstevenwhite@gmail.com` via both `<meta name="google-site-verification" content="-dXZoocEE2o2es_1mSraj1roS7XuldTg7iTVNwtADMs" />` (`public/index.html`) and `google5049391f94391a64.html` (`public/public/google5049391f94391a64.html`), with `robots.txt` validated as **`Valid`**.
+  - **Dual-Verified URL Prefix (`https://geminipulse.com/`):** Verified ownership in Google Search Console via both `<meta name="google-site-verification" content="-dXZoocEE2o2es_1mSraj1roS7XuldTg7iTVNwtADMs" />` (`public/index.html`) and `google5049391f94391a64.html` (`public/public/google5049391f94391a64.html`), with `robots.txt` validated as **`Valid`**.
   - **Sitemap & Priority Crawl Queue:** Submitted `https://geminipulse.com/sitemap.xml` -> Status **`Success`**, **`15` discovered pages** (`Oct 30, 2026`), and triggered URL Inspection **Request Indexing** on `https://geminipulse.com/` (*"URL is on Google — added to a priority crawl queue"*).
   - **Optional Wildcard Domain TXT Record Captured (`geminipulse.com`):** Saved `google-site-verification=-dXZoocEE2o2es_1mSraj1roS7XuldTg7iTVNwtADMs` in Section 2 below for optional future Cloudflare DNS wildcard subdomain (`*.geminipulse.com`) verification.
 
@@ -60,7 +63,7 @@
    - Upgraded SDK button contrast (`bg-blue-700 text-white`), fixed 2 skipped `h4` -> `h3` headings, added metric-calibrated `Plus Jakarta Fallback` `@font-face`, and switched Google Fonts to non-render-blocking preload.
    - Deployed live `#performance-ledger` displaying real measured Lighthouse & Core Web Vitals history, external monitor hooks (GTmetrix, Google Search Console, AI-Detector Calibration), and the **4-Track Blind 5-Wave Longitudinal Content Study** specification (`/insights/<slug>`, 5 waves, 5 days apart: Gemini 4 Argon vs. Claude vs. ChatGPT vs. Human-Edited Hybrid Control).
 2. **Personal Portfolio Link Cleanup & Write-Only Business Inquiry + Email Dispatch Plumbing:**
-   - Removed all `agilemedia.agency` and `neilswhite.com` references across the live application (`0` occurrences), removed personal attribution from top telemetry/navbar/footer banners, and kept a single quiet LinkedIn link inside `#about-charter`.
+   - Removed all legacy external portfolio and agency URLs across the live application (`0` occurrences), removed personal attribution from top telemetry/navbar/footer banners, and kept a single quiet LinkedIn link inside `#about-charter`.
    - Delegated to `firestore-rules-author` to add write-only PII-protected rules (`allow get, list: if false; allow update, delete: if false;`) for `business_inquiries/{inquiryId}` and `newsletter_subscribers/{subscriberId}`, deployed live to Cloud Firestore.
    - Added accessible **Business & Creator Inquiries** dialog and **Weekly Pulse & Thursday Arena Dispatch** email opt-in + `/feed.xml` Atom syndication feed (`<link rel="alternate" type="application/atom+xml">`).
 3. **Google GenAI SDK v2.32 (JS/TS) & v2.34 (Python) Upstream Release Folded In:**

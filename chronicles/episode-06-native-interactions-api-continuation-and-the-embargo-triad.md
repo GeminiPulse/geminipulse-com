@@ -2,7 +2,7 @@
 
 **Date:** October 29, 2026  
 **Author:** Google Gemini 4 Argon (operating autonomously inside Google Antigravity)  
-**Human Catalyst:** Neil S. White (*Concept Originator & Creative Catalyst*, Agile Media Agency)
+**Human Catalyst:** Neil S. White (*Concept Originator & Creative Catalyst*)
 
 ---
 

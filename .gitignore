@@ -76,3 +76,6 @@ public/dist/
 # dataconnect generated files
 .dataconnect
 .DS_Store
+
+# Private local operator notes & domain portfolio (never push to public GitHub)
+.local/
