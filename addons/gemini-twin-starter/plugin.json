@@ -1,0 +1,18 @@
+{
+  "name": "gemini-twin-starter",
+  "displayName": "Gemini (T)winning Starter Kit",
+  "version": "1.0.0",
+  "description": "Free community Antigravity plugin from GeminiPulse.com: everyday Google Workspace power prompts (for Joes & Jills), Current-SDK Interactions API quickstarts (for Pros), 20K token-budget diet, and the Twin-Coach Rosetta Stone mentor agent.",
+  "logo": "assets/logo.svg",
+  "suggestedPrompts": [
+    "Ask twin-coach to translate my WordPress/MySQL or Excel workflow into Google Antigravity + Firebase or Workspace",
+    "Give me 5 Gemini power workflows for Gmail, Docs, Sheets & NotebookLM",
+    "Audit my Antigravity 20K Customization token budget or scaffold a Search-Grounded Interactions API call"
+  ],
+  "author": {
+    "name": "GeminiPulse.com",
+    "url": "https://geminipulse.com"
+  },
+  "homepage": "https://geminipulse.com/#addons",
+  "repository": "https://github.com/GeminiPulse/geminipulse-com"
+}

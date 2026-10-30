@@ -1,0 +1,17 @@
+{
+  "geminipulse-house-rules-gate": {
+    "enabled": false,
+    "PreToolUse": [
+      {
+        "matcher": "run_command",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node ./scripts/house-rules-guard.mjs",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

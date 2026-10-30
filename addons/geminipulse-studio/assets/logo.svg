@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" fill="none">
+  <defs>
+    <linearGradient id="gpBg" x1="28" y1="28" x2="228" y2="228" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#1E1B4B" />
+    </linearGradient>
+    <linearGradient id="gpSpectrum" x1="44" y1="44" x2="212" y2="212" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#4285F4" />
+      <stop offset="42%" stop-color="#9B72CB" />
+      <stop offset="76%" stop-color="#D96570" />
+      <stop offset="100%" stop-color="#FBBC04" />
+    </linearGradient>
+    <linearGradient id="gpTwin" x1="140" y1="52" x2="206" y2="118" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#34A853" />
+      <stop offset="100%" stop-color="#4285F4" />
+    </linearGradient>
+  </defs>
+  <!-- 12.5% transparent outer margin baked in (32px inset on 256x256) -->
+  <rect x="32" y="32" width="192" height="192" rx="44" fill="url(#gpBg)" stroke="url(#gpSpectrum)" stroke-width="8" />
+  <!-- Orbit ring connecting Castor & Pollux -->
+  <circle cx="128" cy="128" r="58" stroke="#4285F4" stroke-opacity="0.35" stroke-width="3" stroke-dasharray="8 8" />
+  <!-- Primary Star (Castor - Pro Architecture) -->
+  <path d="M114 60C114 92.0325 139.967 118 172 118C139.967 118 114 143.967 114 176C114 143.967 88.0325 118 56 118C88.0325 118 114 92.0325 114 60Z" fill="url(#gpSpectrum)" />
+  <!-- Twin Star (Pollux - Everyday (T)winning) -->
+  <path d="M174 128C174 146.778 189.222 162 208 162C189.222 162 174 177.222 174 196C174 177.222 158.778 162 140 162C158.778 162 174 146.778 174 128Z" fill="url(#gpTwin)" />
+  <!-- Pulse Telemetry Dot -->
+  <circle cx="78" cy="180" r="8" fill="#34A853" />
+</svg>

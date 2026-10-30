@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" fill="none">
+  <defs>
+    <linearGradient id="tsBg" x1="32" y1="32" x2="224" y2="224" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0B0F17" />
+      <stop offset="100%" stop-color="#172554" />
+    </linearGradient>
+    <linearGradient id="tsStar" x1="56" y1="56" x2="200" y2="200" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#4285F4" />
+      <stop offset="50%" stop-color="#9B72CB" />
+      <stop offset="100%" stop-color="#FBBC04" />
+    </linearGradient>
+  </defs>
+  <rect x="32" y="32" width="192" height="192" rx="44" fill="url(#tsBg)" stroke="#34A853" stroke-width="8" />
+  <path d="M108 64C108 92.7188 131.281 116 160 116C131.281 116 108 139.281 108 168C108 139.281 84.7188 116 56 116C84.7188 116 108 92.7188 108 64Z" fill="url(#tsStar)" />
+  <path d="M172 132C172 149.673 186.327 164 204 164C186.327 164 172 178.327 172 196C172 178.327 157.673 164 140 164C157.673 164 172 149.673 172 132Z" fill="#34A853" />
+</svg>

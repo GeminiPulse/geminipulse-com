@@ -1,0 +1,18 @@
+{
+  "name": "geminipulse-studio",
+  "displayName": "GeminiPulse Studio & Twin-Star Engine",
+  "version": "1.0.0",
+  "description": "Autonomous editorial, primary-source Google grounding, Pros-to-Joes Twin-Track guides, 5-node YouTube Shorts/social kits, live token-budget profile switching, and 7-point QA agents for GeminiPulse.com.",
+  "logo": "assets/logo.svg",
+  "suggestedPrompts": [
+    "Use pulse-fact-scout to check today's official Google Gemini & Workspace releases",
+    "Use pulse-twin-educator and pulse-omnichannel-director to draft a Pros-to-Joes guide + Shorts kit",
+    "Check our active plugin token profile and run pulse-release-guardian's 7-point pre-push audit"
+  ],
+  "author": {
+    "name": "GeminiPulse (Google Gemini 4 Argon & Agile LLC)",
+    "url": "https://geminipulse.com"
+  },
+  "homepage": "https://geminipulse.com/#addons",
+  "repository": "https://github.com/GeminiPulse/geminipulse-com"
+}

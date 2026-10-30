@@ -10,6 +10,7 @@ import {
   Copy,
   Cpu,
   Database,
+  Download,
   ExternalLink,
   Filter,
   Flag,
@@ -65,6 +66,8 @@ import {
   GET_STARTED_WITH_GEMINI_TRACKS,
   GEMINI_VIDEO_SHOWCASE,
   STRIPE_SUPPORT_CONFIG,
+  GEMINIPULSE_STUDIO_AGENTS_MATRIX,
+  GEMINI_TWIN_ADDONS_CATALOG,
 } from './data/geminiEcosystemData';
 
 // Authentic 4-Point Google Gemini Sparkle Icon
@@ -213,6 +216,12 @@ export default function App() {
 
   // Frontier Tri-Model Arena State (Gemini vs Claude vs ChatGPT)
   const [activeArenaId, setActiveArenaId] = useState(TRI_MODEL_ARENA_EXPERIMENTS[0].id);
+
+  // Plugins, Agents & (T)winning Add-Ons Hub State (#addons)
+  const [addonTierFilter, setAddonTierFilter] = useState('All');
+  const [addonAudienceFilter, setAddonAudienceFilter] = useState('All');
+  const [copiedAddonInstallId, setCopiedAddonInstallId] = useState(null);
+  const [showStudioAgentsMatrix, setShowStudioAgentsMatrix] = useState(true);
   const [copiedArenaId, setCopiedArenaId] = useState(null);
   const [showArenaPreview, setShowArenaPreview] = useState(true);
 
@@ -985,6 +994,11 @@ export default function App() {
               Tri-Model Arena
             </a>
             <span className="hidden md:inline">•</span>
+            <a href="#addons" className="hover:text-cyan-400 transition-colors hidden sm:flex items-center gap-1 whitespace-nowrap">
+              <Layers className="w-3.5 h-3.5 text-cyan-400" />
+              Plugins &amp; Add-Ons
+            </a>
+            <span className="hidden md:inline">•</span>
             <a href="#performance-ledger" className="hover:text-emerald-400 transition-colors hidden sm:flex items-center gap-1 whitespace-nowrap">
               <BarChart3 className="w-3.5 h-3.5 text-emerald-400" />
               Lighthouse & Vitals
@@ -1065,6 +1079,7 @@ export default function App() {
               <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 focus-within:visible focus-within:opacity-100 transition-all duration-150 absolute right-0 top-full pt-2 w-60 z-50">
                 <div className="m3-card p-2 bg-[var(--md-sys-color-surface)] border border-[var(--md-sys-color-outline-strong)] shadow-2xl space-y-1">
                   {[
+                    { href: '#addons', label: 'Plugins & (T)winning Add-Ons', sub: 'Free, Freemium & Pro Agents' },
                     { href: '#release-series', label: 'Gemini 4 Carbon Series', sub: '3-Part Deep Dive + ROI Tool' },
                     { href: '#video-showcase', label: 'YouTube Video Showcase', sub: 'Featured Creators & Google Talks' },
                     { href: '#get-started', label: 'Start Building with Gemini', sub: '4 Onboarding & Business Paths' },
@@ -2431,6 +2446,297 @@ export default function App() {
         </section>
 
         {/* =================================================================
+            MODULE 3.5: PLUGINS, AGENTS & (T)WINNING ADD-ONS HUB (#addons)
+            ================================================================= */}
+        <section id="addons" className="scroll-mt-24 space-y-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[var(--md-sys-color-outline)] pb-6">
+            <div className="space-y-2">
+              <div className="text-xs font-mono uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
+                <Layers className="w-3.5 h-3.5" />
+                From Pros to &ldquo;Joes &amp; Jills&rdquo; • Antigravity Plugins, Workspace Helpers &amp; Token-Surgical Agents
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
+                Plugins, Agents &amp; <span className="gemini-spectrum-text">(T)winning Add-Ons</span>
+              </h2>
+              <p className="m3-text-muted max-w-3xl">
+                Real, zero-bloat plugins and daily helpers authored by <strong>Google Gemini 4 Argon</strong> inside <strong>Google Antigravity</strong>—from free 1-line starter plugins and everyday Google Workspace prompt packs to our 5-Agent production studio and Pro Insider eval harnesses.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-2 shrink-0">
+              <button
+                type="button"
+                onClick={() => openSupportDialog('monthly')}
+                className="bg-gemini-grad text-white text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-full inline-flex items-center gap-1.5 shadow-md hover:opacity-95 cursor-pointer whitespace-nowrap"
+              >
+                <Sparkles className="w-4 h-4" />
+                <span>Unlock Pro Insider ($9/mo)</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setInquiryStatus(null);
+                  setShowInquiryModal(true);
+                }}
+                className="px-4 py-2.5 rounded-full m3-surface-elevated hover:border-blue-400 text-xs font-semibold inline-flex items-center gap-1.5 cursor-pointer whitespace-nowrap"
+              >
+                <Mail className="w-3.5 h-3.5 text-purple-400" />
+                <span>Custom Agent Inquiry</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Filter Toolbar: Tier + Audience */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="flex flex-wrap items-center gap-2" role="group" aria-label="Filter add-ons by pricing tier">
+              {[
+                { id: 'All', label: 'All Tiers (6)' },
+                { id: 'free', label: 'Free • Open Source' },
+                { id: 'freemium', label: 'Freemium (Free Lite + Pro)' },
+                { id: 'pro', label: 'Pro Insider ($9/mo)' },
+              ].map((t) => (
+                <button
+                  key={t.id}
+                  type="button"
+                  onClick={() => setAddonTierFilter(t.id)}
+                  className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-colors cursor-pointer ${
+                    addonTierFilter === t.id
+                      ? 'bg-gemini-grad text-white'
+                      : 'm3-surface-elevated m3-text-muted hover:text-[var(--md-sys-color-on-surface)]'
+                  }`}
+                >
+                  {t.label}
+                </button>
+              ))}
+            </div>
+
+            <div className="flex flex-wrap items-center gap-2" role="group" aria-label="Filter add-ons by target audience">
+              {['All', 'Everyone (Joes, Jills & Pros)', 'Joes & Jills (Everyday & Teams)', 'Pros & Builders', 'Creators & Media'].map(
+                (aud) => {
+                  const shortLabel =
+                    aud === 'All'
+                      ? 'All Audiences'
+                      : aud.startsWith('Everyone')
+                      ? 'Everyone'
+                      : aud.startsWith('Joes')
+                      ? 'Joes & Jills'
+                      : aud;
+                  return (
+                    <button
+                      key={aud}
+                      type="button"
+                      onClick={() => setAddonAudienceFilter(aud)}
+                      className={`px-3 py-1.5 rounded-full text-xs font-mono whitespace-nowrap transition-colors cursor-pointer ${
+                        addonAudienceFilter === aud
+                          ? 'bg-blue-500/20 text-blue-300 border border-blue-400/50'
+                          : 'm3-surface-elevated m3-text-muted hover:text-[var(--md-sys-color-on-surface)]'
+                      }`}
+                    >
+                      {shortLabel}
+                    </button>
+                  );
+                }
+              )}
+            </div>
+          </div>
+
+          {/* Semantic <article> Add-On Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {GEMINI_TWIN_ADDONS_CATALOG.filter((item) => {
+              const tierOk = addonTierFilter === 'All' || item.tierType === addonTierFilter;
+              const audOk = addonAudienceFilter === 'All' || item.audience === addonAudienceFilter;
+              return tierOk && audOk;
+            }).map((addon) => {
+              const tierBadgeStyle =
+                addon.tierType === 'free'
+                  ? 'bg-emerald-500/15 text-emerald-300 border border-emerald-400/35'
+                  : addon.tierType === 'freemium'
+                  ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-400/35'
+                  : 'bg-purple-500/15 text-purple-300 border border-purple-400/35';
+
+              return (
+                <article key={addon.id} className="m3-card p-6 flex flex-col justify-between gap-5 min-w-0">
+                  <header className="space-y-2.5 min-w-0">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-mono font-semibold whitespace-nowrap ${tierBadgeStyle}`}>
+                        {addon.tier}
+                      </span>
+                      <span className="text-[11px] font-mono m3-text-muted truncate">{addon.audience}</span>
+                    </div>
+                    <h3 className="text-xl font-bold leading-snug break-words">{addon.name}</h3>
+                    <div className="text-xs font-mono text-blue-400">{addon.format}</div>
+                  </header>
+
+                  <div className="space-y-4 min-w-0">
+                    <p className="text-xs sm:text-sm m3-text-muted leading-relaxed">
+                      <InlineCodeText text={addon.tagline} />
+                    </p>
+
+                    <ul className="space-y-1.5">
+                      {addon.highlights.map((hl, idx) => (
+                        <li key={idx} className="text-xs m3-text-muted flex items-start gap-2 min-w-0">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+                          <span className="break-words min-w-0">
+                            <InlineCodeText text={hl} />
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    {addon.installCommand && (
+                      <div className="p-3 rounded-xl bg-[var(--md-sys-color-surface)] border border-[var(--md-sys-color-outline)] space-y-2 min-w-0">
+                        <div className="flex items-center justify-between gap-2 text-[11px] font-mono">
+                          <span className="text-emerald-400 font-semibold">1-LINE ANTIGRAVITY INSTALL</span>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              navigator.clipboard.writeText(addon.installCommand);
+                              setCopiedAddonInstallId(addon.id);
+                              trackPulseEvent('addon_install_copy', { addon: addon.slug });
+                              setTimeout(() => setCopiedAddonInstallId(null), 2200);
+                            }}
+                            className="inline-flex items-center gap-1 text-blue-400 hover:text-blue-300 cursor-pointer whitespace-nowrap"
+                          >
+                            {copiedAddonInstallId === addon.id ? (
+                              <>
+                                <Check className="w-3 h-3 text-emerald-400" />
+                                <span>Copied!</span>
+                              </>
+                            ) : (
+                              <>
+                                <Copy className="w-3 h-3" />
+                                <span>Copy</span>
+                              </>
+                            )}
+                          </button>
+                        </div>
+                        <code className="block font-mono text-[11px] text-[var(--md-sys-color-on-surface)] break-all leading-relaxed">
+                          {addon.installCommand}
+                        </code>
+                      </div>
+                    )}
+
+                    {addon.referralNote && (
+                      <div className="text-[11px] m3-text-muted p-2.5 rounded-xl bg-blue-500/5 border border-blue-400/20">
+                        Includes our{' '}
+                        <a
+                          href="https://sharegoogleworkspace.advocate.impact.com/mzYYGz3"
+                          target="_blank"
+                          rel="sponsored noopener noreferrer"
+                          className="text-blue-400 underline hover:text-blue-300"
+                        >
+                          Google Workspace Partner link
+                        </a>{' '}
+                        <em>(partner referral disclosure)</em> + single-use 10% first-year code request guide.
+                      </div>
+                    )}
+                  </div>
+
+                  <footer className="pt-3 border-t border-[var(--md-sys-color-outline)] flex flex-wrap items-center gap-2">
+                    {addon.downloadUrl && (
+                      <a
+                        href={addon.downloadUrl}
+                        download
+                        onClick={() => trackPulseEvent('addon_free_download', { addon: addon.slug })}
+                        className="px-3.5 py-2 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-400/35 hover:bg-emerald-500/25 text-xs font-semibold inline-flex items-center gap-1.5 transition-colors whitespace-nowrap"
+                      >
+                        <Download className="w-3.5 h-3.5 shrink-0" />
+                        <span>{addon.downloadLabel}</span>
+                      </a>
+                    )}
+
+                    {addon.liveDemoUrl && (
+                      <a
+                        href={addon.liveDemoUrl}
+                        className="px-3.5 py-2 rounded-full bg-blue-500/15 text-blue-300 border border-blue-400/35 hover:bg-blue-500/25 text-xs font-semibold inline-flex items-center gap-1.5 transition-colors whitespace-nowrap"
+                      >
+                        <Play className="w-3.5 h-3.5 shrink-0" />
+                        <span>{addon.liveDemoLabel}</span>
+                      </a>
+                    )}
+
+                    {addon.sourceUrl && (
+                      <a
+                        href={addon.sourceUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-3 py-2 rounded-full m3-surface-elevated hover:border-blue-400 text-xs font-semibold inline-flex items-center gap-1 transition-colors whitespace-nowrap"
+                      >
+                        <Code2 className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                        <span>{addon.sourceLabel}</span>
+                      </a>
+                    )}
+
+                    {(addon.tierType === 'pro' || addon.tierType === 'freemium') && (
+                      <button
+                        type="button"
+                        onClick={() => openSupportDialog('monthly')}
+                        className="px-3.5 py-2 rounded-full bg-purple-500/15 text-purple-300 border border-purple-400/35 hover:bg-purple-500/25 text-xs font-semibold inline-flex items-center gap-1.5 cursor-pointer transition-colors whitespace-nowrap"
+                      >
+                        <Sparkles className="w-3.5 h-3.5 shrink-0" />
+                        <span>{addon.tierType === 'pro' ? 'Get Pro Insider ($9/mo)' : 'Upgrade to Pro Pack'}</span>
+                      </button>
+                    )}
+                  </footer>
+                </article>
+              );
+            })}
+          </div>
+
+          {/* Inside the Engine: 5 Token-Surgical Specialist Agents Blueprint */}
+          <div className="m3-card p-6 sm:p-7 space-y-5">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="space-y-1">
+                <div className="text-xs font-mono uppercase text-blue-400 font-semibold flex items-center gap-1.5">
+                  <Cpu className="w-3.5 h-3.5" />
+                  Dogfooded Daily on GeminiPulse.com • Episode 10 Architecture
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold">
+                  Inside <code className="m3-inline-code">geminipulse-studio</code>: 5 Token-Surgical Specialist Agents
+                </h3>
+                <p className="text-xs sm:text-sm m3-text-muted max-w-3xl">
+                  Instead of loading 45+ tools and 90+ skills on every prompt turn, each specialist subagent declares a minimal <code className="m3-inline-code">tools:</code> whitelist, loads a single progressive-disclosure <code className="m3-inline-code">SKILL.md</code>, and routes to the sharpest cost/latency Gemini tier.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowStudioAgentsMatrix((prev) => !prev)}
+                className="px-3.5 py-2 rounded-full m3-surface-elevated hover:border-blue-400 text-xs font-mono cursor-pointer self-start sm:self-auto whitespace-nowrap"
+              >
+                {showStudioAgentsMatrix ? 'Hide Agent Matrix' : 'Inspect 5 Agents'}
+              </button>
+            </div>
+
+            {showStudioAgentsMatrix && (
+              <div className="overflow-x-auto max-w-full rounded-2xl border border-[var(--md-sys-color-outline)]">
+                <table className="w-full text-left border-collapse text-xs">
+                  <thead>
+                    <tr className="bg-[var(--md-sys-color-surface)] border-b border-[var(--md-sys-color-outline)] font-mono text-[11px] uppercase m3-text-muted">
+                      <th className="py-3 px-4">Subagent ID</th>
+                      <th className="py-3 px-4">Model Tier</th>
+                      <th className="py-3 px-4">Scoped Tool Budget</th>
+                      <th className="py-3 px-4">Dedicated Skill</th>
+                      <th className="py-3 px-4">Accuracy &amp; Token Optimization</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-[var(--md-sys-color-outline)]">
+                    {GEMINIPULSE_STUDIO_AGENTS_MATRIX.map((ag) => (
+                      <tr key={ag.id} className="hover:bg-blue-500/5 transition-colors">
+                        <td className="py-3 px-4 font-mono font-bold text-blue-400 whitespace-nowrap">{ag.name}</td>
+                        <td className="py-3 px-4 font-mono text-emerald-400 whitespace-nowrap">{ag.modelTier}</td>
+                        <td className="py-3 px-4 font-mono whitespace-nowrap">{ag.toolCount}</td>
+                        <td className="py-3 px-4 font-mono text-purple-300 whitespace-nowrap">{ag.assignedSkill}</td>
+                        <td className="py-3 px-4 m3-text-muted min-w-[18rem] leading-relaxed">{ag.tokenStrategy}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* =================================================================
             MODULE 4: "BUILT WITH GEMINI" PRODUCT SHOWCASE (#showcase)
             ================================================================= */}
         <section id="showcase" className="scroll-mt-24 space-y-8">
@@ -2871,7 +3177,7 @@ export default function App() {
               <div className="m3-card p-5 space-y-2 text-xs">
                 <div className="font-mono font-bold text-emerald-400 flex items-center gap-1.5">
                   <Activity className="w-4 h-4" />
-                  NEXT SCHEDULED EPISODE (EPISODE 10)
+                  NEXT SCHEDULED EPISODE (EPISODE 11)
                 </div>
                 <p className="m3-text-muted leading-relaxed">
                   Generated automatically by our recurring <strong>Antigravity Scheduled Automation</strong> (<code className="m3-inline-code">geminipulse-daily-curator</code>) after scanning the newest Gemini releases and community submissions.

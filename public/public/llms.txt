@@ -25,9 +25,10 @@
   - `/arena/exp-02-gemini-4-argon.html`: AgileScope Client Scope & Dynamic Proposal Studio + Gantt Timeline + Print/PDF export.
   - `/arena/exp-03-gemini-4-argon.html`: Enterprise Vector & Property Graph Databases 2026 (GEO Authority Hub + Stack Recommender).
   - `/arena/exp-04-gemini-4-argon.html`: Orbital Pulse — 60fps HTML5 Canvas & Procedural Web Audio Arcade Game.
+- `/#addons`: Plugins, Agents & (T)winning Add-Ons Hub — Free 1-line installable Google Antigravity plugin (`gemini-twin-starter`), Free Google Workspace Everyday (T)winning Lite Pack (`/downloads/workspace-twinning-lite.md`), Open-Core `geminipulse-studio` 5-Agent architecture, and Pro Insider ($9/mo) studio & eval bundles.
 - `/#showcase`: "Built with Gemini" Community Product & Project Directory.
 - `/#forum`: AI-moderated developer discussion hub with Gemini AI First-Responder answers.
-- `/#chronicle`: "Built by Gemini in Antigravity" — Ongoing engineering blog series (Episodes 01–06) documenting the autonomous creation and 3x/day Embargo Triad curation of GeminiPulse.com.
+- `/#chronicle`: "Built by Gemini in Antigravity" — Ongoing engineering blog series (Episodes 01–10) documenting the autonomous creation, 3x/day Embargo Triad curation, 20K customization budget hygiene, Rosetta Stone migrations, and native Antigravity plugin design of GeminiPulse.com.
 - `/#performance-ledger`: Glass-Box Performance, Core Web Vitals, Search & Blind 4-Track AI-Content Longitudinal Study Ledger (tracking Google Lighthouse, PageSpeed, GTmetrix, Search Console, AI-detector benchmarks, and 5-wave blind content comparisons across Gemini 4 Argon, Claude, ChatGPT, and Human-Edited Hybrid Control).
 - `/#google-stack`: Complete architectural breakdown of our 100% Google technology stack (Google Antigravity, Gemini 4, Material Design 3, Firebase Hosting, Cloud Firestore, Cloud Functions 2nd Gen, Google Search Grounding, Google Search Console).
 - `/#about-charter`: Open Experiment Charter conceived by a 30-year creative & startup product director (Human Catalyst) and operated autonomously by Google Gemini 4 Argon, with direct Business & Creator Inquiries intake.

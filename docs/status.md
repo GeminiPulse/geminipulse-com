@@ -1,6 +1,6 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-10-30 18:12 EDT ('mAiking the swAitch' Part 1 & Part 2 Series + Episodes 08 & 09 + 2 Brand SVG Diagrams + Interactive 9:16 Shorts #05 & #06 Studio Player Live v2.0.44)`
+- **Last Updated:** `2026-10-30 18:35 EDT (Authored & Installed Native Antigravity Plugin 'geminipulse-studio' + 5 Token-Surgical Subagents + Free Community 'gemini-twin-starter' Plugin + /#addons Free/Freemium/Pro Hub & Episode 10 Live v2.0.45)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
@@ -13,7 +13,17 @@
 
 ---
 
-## 1. Completed & Live on `v2.0` (2026-10-30 6:12 PM ET Update)
+## 1. Completed & Live on `v2.0` (2026-10-30 6:35 PM ET Update)
+
+- **Authored & Installed Native Antigravity Plugin `geminipulse-studio`, Free Community `gemini-twin-starter` Plugin & `/#addons` Hub (`v2.0.45`):**
+  - **Installed First-Party Global Antigravity Plugin (`~/.gemini/config/plugins/geminipulse-studio/` + Open-Core Mirror `addons/geminipulse-studio/`):**
+    - Verified via `LanguageServerService/GetAllPlugins`: 5 tool-pruned specialist subagents (`pulse-fact-scout`, `pulse-twin-educator`, `pulse-omnichannel-director`, `pulse-arena-architect`, `pulse-release-guardian`), 5 progressive-disclosure skills, 1 routing rule (`rules/AGENTS.md`), Twin-Star SVG logo (`assets/logo.svg`), and opt-in `PreToolUse` guardrail (`hooks.json`).
+    - Includes 3 zero-token deterministic Node CLIs: `pulse-content-cli.mjs` (Dual-Theme HTML + JSON-LD + `sitemap.xml` + `feed.xml` scaffolder), `pulse-preflight-audit.mjs` (<200ms Zero-PII/git/sitemap checker), and `pulse-plugin-profile.mjs` (live `lsrpc JetboxWriteState` plugin profile switcher shedding ~9K–12K tokens/turn in `lean-editorial` mode with zero restart).
+  - **Packaged Free Community Antigravity Plugin (`addons/gemini-twin-starter/` -> `/downloads/gemini-twin-starter.tar.gz` + `/downloads/install-gemini-twin-starter.sh`):**
+    - Bundles the `twin-coach` Rosetta Stone mentor agent + `google-suite-power-prompts`, `interactions-api-quickstart`, and `antigravity-token-diet` skills, plus the free downloadable **Google Workspace Everyday `(T)winning` Lite Pack** (`/downloads/workspace-twinning-lite.md`).
+  - **Launched `/#addons` ("Plugins, Agents & `(T)winning` Add-Ons — Free, Freemium & Pro") + Chronicle Episode 10:**
+    - Filterable by Tier (`Free • Open Source`, `Freemium`, `Pro Insider $9/mo`) and Audience (`Everyone`, `Joes & Jills`, `Pros & Builders`, `Creators & Media`), wired directly to real downloads and live Stripe Pro Insider checkout.
+    - Published `chronicles/episode-10-building-the-geminipulse-studio-plugin-and-twin-star-agents.md` and updated `feed.xml` & `llms.txt`.
 
 - **Published 2-Part *"mAiking the swAitch"* Series, Chronicle Episodes 08 & 09, Brand SVGs & 9:16 Shorts Studio (`v2.0.44`):**
   - **Part 1 (Episode 08):** `chronicles/episode-08-making-the-switch-from-wordpress-ftp-to-antigravity.md` + standalone page `/series/making-the-switch/part-1-from-wordpress-to-antigravity.html` + custom brand SVG `/assets/making-the-switch-rosetta-stone.svg`.
