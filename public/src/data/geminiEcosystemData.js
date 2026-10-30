@@ -1754,9 +1754,10 @@ export const GET_STARTED_WITH_GEMINI_TRACKS = [
     title: 'Run Gemini Inside Gmail, Docs, Sheets & Meet',
     bestFor: 'Founders, agencies, operators & teams who want frontier AI inside daily business tools on their own domain.',
     summary:
-      'Google Workspace now weaves Gemini natively into business Gmail, Docs, Sheets, Slides, Drive, and Meet—letting teams draft proposals from call transcripts, analyze spreadsheets, and consolidate separate $20/seat AI chat tools.',
-    ctaLabel: 'Explore Google Workspace Plans',
-    ctaUrl: 'https://workspace.google.com/pricing',
+      'Google Workspace weaves Gemini natively into business Gmail, Docs, Sheets, Slides, Drive, and Meet—consolidating separate $20/seat AI chat tools. Includes a 14-day trial + single-use 10% first-year promo codes on request.',
+    ctaLabel: 'Start 14-Day Workspace Trial',
+    ctaUrl: 'https://sharegoogleworkspace.advocate.impact.com/mzYYGz3',
+    isReferral: true,
     secondaryLabel: 'Calculate Team Savings →',
     secondaryUrl: '/labs/gemini-4-stack-advisor.html',
   },

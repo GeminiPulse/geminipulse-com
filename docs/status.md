@@ -1,6 +1,6 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-10-30 02:30 EDT (Completed 5-for-5 Unified @geminipulse Handle Sweep: GitHub + YouTube + X @geminipulse + LinkedIn /company/geminipulse + Reddit r/GeminiPulse — All Wired Live)`
+- **Last Updated:** `2026-10-30 02:34 EDT (Wired Live Google Workspace Referral Link mzYYGz3 + Private 10% Promo Code Request Flow; Completed 5-for-5 @geminipulse Handle Sweep)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
@@ -14,6 +14,10 @@
 ---
 
 ## 1. Completed & Live on `v2.0` (2026-10-30 Early Morning Update)
+
+- **Google Workspace Referral Partner Link Wired Live (`v2.0.37`):**
+  - **Live Referral URL:** **`https://sharegoogleworkspace.advocate.impact.com/mzYYGz3`** wired with `rel="sponsored noopener noreferrer"` and transparent FTC/Google disclosure across `#get-started` Path 01 (`public/src/data/geminiEcosystemData.js`, `public/src/App.jsx`) and the interactive **GeminiStack Advisor** (`/labs/gemini-4-stack-advisor.html`).
+  - **Bot-Safe Single-Use 10% First-Year Promo Code Request Flow:** Because Google's 10% first-year Business Starter / Standard / Plus promo codes are strictly single-use per domain, added a 1-click **"Request 10% Promo Code →"** trigger into our write-only Cloud Firestore `business_inquiries` modal so codes are never scraped or burned on public HTML.
 
 - **5 of 5 Unified `geminipulse` Social & Developer Channels Claimed, Cross-Linked & Wired Live (`v2.0.34` – `v2.0.36`):**
   - **YouTube Brand Channel (`@geminipulse`):** **`https://www.youtube.com/@geminipulse`** (`UCBdEVURRcRJGKILofUqmMQQ`), created as a dedicated Brand Account channel under `neilstevenwhite@gmail.com` with full bio and all 5 official external links (`GeminiPulse.com`, `GitHub`, `X`, `Reddit`, `LinkedIn`) published via YouTube Studio.

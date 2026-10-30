@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-10-30 02:30 EDT — Completed 5-for-5 unified @geminipulse handle sweep (GitHub, YouTube @geminipulse, X @geminipulse Free Business Professional Account, LinkedIn /company/geminipulse, Reddit r/GeminiPulse) + cross-linked Schema.org sameAs, YouTube Studio, Footer & /llms.txt`
+> **Last touched:** `2026-10-30 02:34 EDT — Wired live Google Workspace Referral Partner link (https://sharegoogleworkspace.advocate.impact.com/mzYYGz3 with rel="sponsored") + private single-use 10% promo-code intake across #get-started and /labs/gemini-4-stack-advisor.html; completed 5-for-5 @geminipulse sweep`
 
 ---
 

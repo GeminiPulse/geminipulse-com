@@ -1882,11 +1882,11 @@ export default function App() {
                   </p>
                 </div>
 
-                <div className="pt-4 border-t border-[var(--md-sys-color-outline)] flex-balance items-center justify-between gap-2.5">
+                <div className="pt-4 border-t border-[var(--md-sys-color-outline)] flex flex-wrap items-center justify-between gap-2.5">
                   <a
                     href={track.ctaUrl}
                     target="_blank"
-                    rel="noreferrer"
+                    rel={track.isReferral ? 'sponsored noopener noreferrer' : 'noreferrer'}
                     onClick={() => trackPulseEvent('get_started_cta_click', { track_id: track.id })}
                     className="bg-blue-700 hover:bg-blue-600 text-white text-xs font-semibold px-4 py-2 rounded-full inline-flex items-center gap-1.5 whitespace-nowrap transition-colors"
                   >
@@ -1902,6 +1902,29 @@ export default function App() {
                 </div>
               </article>
             ))}
+          </div>
+
+          <div className="m3-surface-elevated rounded-2xl p-4 sm:px-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs m3-text-muted">
+            <span>
+              <strong className="text-[var(--md-sys-color-on-surface)]">Google Workspace 10% First-Year Discount &amp; Disclosure:</strong>{' '}
+              The Workspace trial link is an official Google Workspace Referral Partner link (we may earn a referral bonus at no extra cost to you; zero impact on Arena scores). Because Google’s 10% first-year promo codes (Starter, Standard &amp; Plus) are single-use per domain, request a fresh code privately.
+            </span>
+            <button
+              type="button"
+              onClick={() => {
+                setInquiryForm((prev) => ({
+                  ...prev,
+                  inquiryType: 'Business & Partnerships',
+                  message:
+                    'Requesting a single-use 10% first-year Google Workspace promo code (Starter / Standard / Plus) for our business domain: ',
+                }));
+                setInquiryStatus(null);
+                setShowInquiryModal(true);
+              }}
+              className="px-3.5 py-2 rounded-full bg-emerald-500/15 border border-emerald-400/35 text-emerald-300 hover:bg-emerald-500/25 font-semibold whitespace-nowrap cursor-pointer shrink-0 self-start sm:self-auto"
+            >
+              Request 10% Promo Code →
+            </button>
           </div>
         </section>
 
