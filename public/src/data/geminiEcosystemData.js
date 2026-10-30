@@ -1624,9 +1624,9 @@ export const PERFORMANCE_TELEMETRY_LEDGER = {
     },
     {
       name: 'Google Search Console & Sitemap / Atom Indexing',
-      status: 'SITEMAP + /FEED.XML + /LLMS.TXT LIVE',
-      badgeColor: 'blue',
-      summary: 'Tracks organic impressions, CTR, average position, and AI Overview citations after every architectural or schema change. `sitemap.xml`, `feed.xml`, and `llms.txt` are live at root.',
+      status: 'VERIFIED • 15 URLS SUBMITTED',
+      badgeColor: 'emerald',
+      summary: 'Dual-verified in Google Search Console (HTML meta tag + `google5049391f94391a64.html`) with `/sitemap.xml` submitted (`Success`, 15 discovered pages), valid `robots.txt`, `/feed.xml`, and `/llms.txt`.',
     },
     {
       name: 'GTmetrix & Edge Waterfall Tracking',

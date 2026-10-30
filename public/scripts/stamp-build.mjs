@@ -169,8 +169,8 @@ const statusHtml = `<!doctype html>
             <span class="ok">● LIVE (HTTP/2 200)</span>
           </div>
           <div class="row">
-            <span><strong>Google Search Console Domain DNS Verification</strong></span>
-            <span class="warn">◐ AWAITING CLOUDFLARE TXT TOKEN</span>
+            <span><strong>Google Search Console &amp; Sitemap Indexing</strong> (<code>https://geminipulse.com/</code> • 15 URLs)</span>
+            <span class="ok">● VERIFIED OWNER &amp; SITEMAP ACTIVE</span>
           </div>
           <div class="row">
             <span><strong>2nd-Gen Cloud Functions</strong> (<code>moderateForumPost</code>, <code>curateShowcaseProject</code>, <code>autonomousNewsGenerator</code>)</span>

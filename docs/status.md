@@ -1,6 +1,6 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-10-29 22:00 EDT (Shipped Twin Stars of Gemini Astrological Arcade Game + Gemini Cosmic Horoscope Lab + 5 Real "Found by GeminiPulse" Showcase Apps + Subdomain/Domain Portfolio Launchpad Roadmap)`
+- **Last Updated:** `2026-10-30 01:05 EDT (Verified https://geminipulse.com/ in Google Search Console via Dual HTML Tag + HTML File, Submitted sitemap.xml with 15 Discovered Pages, Queued Priority Indexing & Saved Domain TXT Token)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
@@ -13,7 +13,12 @@
 
 ---
 
-## 1. Completed & Live on `v2.0` (2026-10-29 Late Evening Update)
+## 1. Completed & Live on `v2.0` (2026-10-30 Early Morning Update)
+
+- **Google Search Console Verified Live + `sitemap.xml` (`15` Pages) Submitted (`v2.0.33`):**
+  - **Dual-Verified URL Prefix (`https://geminipulse.com/`):** Verified ownership under `neilstevenwhite@gmail.com` via both `<meta name="google-site-verification" content="-dXZoocEE2o2es_1mSraj1roS7XuldTg7iTVNwtADMs" />` (`public/index.html`) and `google5049391f94391a64.html` (`public/public/google5049391f94391a64.html`), with `robots.txt` validated as **`Valid`**.
+  - **Sitemap & Priority Crawl Queue:** Submitted `https://geminipulse.com/sitemap.xml` -> Status **`Success`**, **`15` discovered pages** (`Oct 30, 2026`), and triggered URL Inspection **Request Indexing** on `https://geminipulse.com/` (*"URL is on Google — added to a priority crawl queue"*).
+  - **Optional Wildcard Domain TXT Record Captured (`geminipulse.com`):** Saved `google-site-verification=-dXZoocEE2o2es_1mSraj1roS7XuldTg7iTVNwtADMs` in Section 2 below for optional future Cloudflare DNS wildcard subdomain (`*.geminipulse.com`) verification.
 
 - **"Built with Google Gemini" Expansion — 2 Playable Astrological Originals + 5 Curated Ecosystem Apps (`v2.0.32`):**
   - **`/labs/twin-stars-of-gemini.html` (*Castor & Pollux: Twin Stars of Gemini*):** 60fps HTML5 Canvas + procedural Web Audio zodiac arcade game where players rotate & polarity-swap the Twin Stars of Gemini to illuminate all 12 real stars of the Gemini constellation and unlock astronomical lore.
@@ -82,6 +87,7 @@ Both custom domains are now registered on Firebase Hosting site `geminipulse-com
 | **`A`** | `@` (`geminipulse.com`) | `199.36.158.100` | **DNS Only (Grey Cloud)** | Points apex `geminipulse.com` to Firebase Hosting global CDN & enables Google-managed SSL |
 | **`TXT`** | `@` (`geminipulse.com`) | `hosting-site=geminipulse-com` | **DNS Only** | Verifies site ownership for `projects/geminipulse-com/sites/geminipulse-com` |
 | **`CNAME`** | `www` (`www.geminipulse.com`) | `geminipulse-com.web.app` | **DNS Only (Grey Cloud)** | Points `www` to Firebase Hosting (configured to redirect to `geminipulse.com`) |
+| **`TXT`** *(Optional)* | `@` (`geminipulse.com`) | `google-site-verification=-dXZoocEE2o2es_1mSraj1roS7XuldTg7iTVNwtADMs` | **DNS Only** | Optional Domain-level Search Console verification for future `*.geminipulse.com` subdomains (`https://geminipulse.com/` is already dual-verified & indexing!) |
 
 *(Remember to remove any old parking `A` / `AAAA` / `CNAME` records on `@` and `www` in Cloudflare so Google Trust Services can auto-provision the SSL certificate cleanly.)*
 
