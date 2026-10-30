@@ -1613,22 +1613,35 @@ export default function App() {
                 Handpicked daily from AI creators, hidden-gem technical educators, and official Google channels—with Gemini AI executive summaries and zero-bloat click-to-play embeds that credit every view directly to the creator.
               </p>
             </div>
-            <button
-              type="button"
-              onClick={() => {
-                setInquiryForm((prev) => ({
-                  ...prev,
-                  inquiryType: 'Press & Media',
-                  message: 'Creator Video Nomination for GeminiPulse Video Showcase — YouTube URL: ',
-                }));
-                setInquiryStatus(null);
-                setShowInquiryModal(true);
-              }}
-              className="px-4 py-2.5 rounded-full m3-surface-elevated hover:border-pink-400 text-xs font-semibold inline-flex items-center gap-1.5 whitespace-nowrap cursor-pointer shrink-0"
-            >
-              <Plus className="w-3.5 h-3.5 text-pink-400" />
-              <span>Nominate a Creator Video</span>
-            </button>
+            <div className="flex flex-wrap items-center gap-2.5 shrink-0">
+              <a
+                href="https://www.youtube.com/@geminipulse"
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => trackPulseEvent('official_youtube_click', { location: 'video_showcase' })}
+                className="px-4 py-2.5 rounded-full m3-surface-elevated hover:border-red-400 text-xs font-semibold inline-flex items-center gap-1.5 whitespace-nowrap"
+              >
+                <Video className="w-3.5 h-3.5 text-red-400" />
+                <span>@geminipulse Channel</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </a>
+              <button
+                type="button"
+                onClick={() => {
+                  setInquiryForm((prev) => ({
+                    ...prev,
+                    inquiryType: 'Press & Media',
+                    message: 'Creator Video Nomination for GeminiPulse Video Showcase — YouTube URL: ',
+                  }));
+                  setInquiryStatus(null);
+                  setShowInquiryModal(true);
+                }}
+                className="px-4 py-2.5 rounded-full m3-surface-elevated hover:border-pink-400 text-xs font-semibold inline-flex items-center gap-1.5 whitespace-nowrap cursor-pointer shrink-0"
+              >
+                <Plus className="w-3.5 h-3.5 text-pink-400" />
+                <span>Nominate a Creator Video</span>
+              </button>
+            </div>
           </div>
 
           {/* Featured Video of the Day Hero Card */}
@@ -4541,6 +4554,14 @@ export default function App() {
             >
               Business &amp; Creator Inquiries
             </button>
+            <a
+              href="https://www.youtube.com/@geminipulse"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-red-400 transition-colors"
+            >
+              YouTube
+            </a>
             <a
               href="https://github.com/GeminiPulse/geminipulse-com"
               target="_blank"
