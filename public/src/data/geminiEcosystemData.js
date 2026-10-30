@@ -1934,9 +1934,9 @@ export const GEMINI_VIDEO_SHOWCASE = [
 // Paste live https://buy.stripe.com/... Payment Link URLs below to activate 1-click Stripe Checkout.
 export const STRIPE_SUPPORT_CONFIG = {
   merchantDisplayName: 'GeminiPulse (Agile LLC)',
-  oneTimePaymentLinkUrl: '',
-  monthlySupporterLinkUrl: '',
-  customerPortalUrl: '',
+  oneTimePaymentLinkUrl: 'https://buy.stripe.com/cNidR9h2J469b3jdgn7Re00',
+  monthlySupporterLinkUrl: 'https://buy.stripe.com/7sYeVdbIp6eh4EVa4b7Re01',
+  customerPortalUrl: 'https://billing.stripe.com/p/login/cNidR9h2J469b3jdgn7Re00',
   tiers: [
     {
       id: 'one-time',

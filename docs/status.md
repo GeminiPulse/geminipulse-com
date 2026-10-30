@@ -1,6 +1,6 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-10-30 04:18 EDT (5-for-5 Twin-Star Studio Avatars & Safe-Zone Banners Verified Live Across YouTube, X, LinkedIn, Reddit & GitHub Org + 1200x630 OG Card Live v2.0.39 + Repo-Wide Zero-PII Scrub)`
+- **Last Updated:** `2026-10-30 10:18 EDT (LIVE Stripe Checkout Payment Links & Customer Portal Active v2.0.41 + 5-for-5 Twin-Star Avatars & Banners Live + 1200x630 OG Card Live + Repo-Wide Zero-PII Verified)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
@@ -14,6 +14,12 @@
 ---
 
 ## 1. Completed & Live on `v2.0` (2026-10-30 Overnight Wrap-Up)
+
+- **LIVE Stripe Supporter Checkout & Self-Serve Customer Portal Active (`v2.0.41`):**
+  - **One-Time Supporter Pass (`\$15` suggested / `\$5` min):** `https://buy.stripe.com/cNidR9h2J469b3jdgn7Re00` (`HTTP/2 200`, redirects post-payment to `https://geminipulse.com/?support=thanks#support`).
+  - **Monthly Founding Supporter & Pro Insider (`\$9/mo`):** `https://buy.stripe.com/7sYeVdbIp6eh4EVa4b7Re01` (`HTTP/2 200`, redirects post-payment to `https://geminipulse.com/?support=welcome#support`).
+  - **Self-Serve Stripe Customer Portal:** `https://billing.stripe.com/p/login/cNidR9h2J469b3jdgn7Re00` (`HTTP/2 200`, 1-click subscription management, card updates, and invoice history).
+  - Wired live across `STRIPE_SUPPORT_CONFIG` (`public/src/data/geminiEcosystemData.js`), post-checkout native `<dialog>` confirmation in `public/src/App.jsx`, `/partners`, and `/status` (`$0.00/mo` Spark-compatible, Radar Lite `$0.00` included, zero paid Stripe add-ons).
 
 - **Twin-Star (`Castor & Pollux`) Brand Kit Live Across All 5 Channels + Open Graph Preview Card Deployed (`v2.0.39`):**
   - **5-for-5 Platform Avatar & Safe-Zone Banner Rollout Verified Live on Platform CDNs:**

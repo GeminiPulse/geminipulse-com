@@ -408,12 +408,22 @@ export default function App() {
     if (dlg && dlg.open) {
       dlg.close();
     }
-    if (typeof window !== 'undefined' && window.location.hash === '#support') {
-      window.history.replaceState(null, '', window.location.pathname + window.location.search);
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location.href);
+      const hadSupportParam = url.searchParams.has('support');
+      if (hadSupportParam) url.searchParams.delete('support');
+      if (url.hash === '#support' || hadSupportParam) {
+        const cleanSearch = url.searchParams.toString();
+        window.history.replaceState(
+          null,
+          '',
+          url.pathname + (cleanSearch ? `?${cleanSearch}` : '') + (url.hash === '#support' ? '' : url.hash)
+        );
+      }
     }
   }, []);
 
-  // Safari fallback for <dialog closedby="any"> light-dismiss + #support deep-link opener
+  // Safari fallback for <dialog closedby="any"> light-dismiss + #support / ?support= return opener
   useEffect(() => {
     const dlg = supportDialogRef.current;
     let removeFallback = null;
@@ -433,6 +443,28 @@ export default function App() {
     }
 
     const checkHash = () => {
+      const params = new URLSearchParams(window.location.search);
+      const supportReturn = params.get('support');
+      if (supportReturn === 'welcome' || supportReturn === 'thanks') {
+        const isMonthly = supportReturn === 'welcome';
+        setSupportTier(isMonthly ? 'monthly' : 'one-time');
+        setSupportStatus({
+          type: 'success',
+          heading: isMonthly
+            ? 'Welcome Aboard — Founding Supporter Membership Active!'
+            : 'Thank You — GeminiPulse Supporter Contribution Confirmed!',
+          text: isMonthly
+            ? 'Your Founding Supporter & Pro Insider membership is live via Stripe. Check your email for your Stripe receipt, and use the Manage Existing Membership link below anytime to update or cancel in one click.'
+            : 'Your contribution directly fuels weekly Thursday Frontier Tri-Model Arena benchmark runs, open-source web utilities, and independent Google Gemini ecosystem coverage.',
+        });
+        if (dlg && !dlg.open) {
+          dlg.showModal();
+        }
+        trackPulseEvent('stripe_checkout_return', {
+          tier: isMonthly ? 'monthly' : 'one-time',
+        });
+        return;
+      }
       if (window.location.hash === '#support') {
         openSupportDialog('one-time');
       }
@@ -4341,11 +4373,24 @@ export default function App() {
               <div className="p-5 rounded-2xl bg-emerald-500/12 border border-emerald-400/35 space-y-2.5">
                 <div className="flex items-center gap-2.5 text-emerald-300 font-bold text-base">
                   <CheckCircle2 className="w-5 h-5 shrink-0" />
-                  <span>Thank You — Early Supporter Interest Recorded</span>
+                  <span>{supportStatus.heading || 'Thank You — Early Supporter Interest Recorded'}</span>
                 </div>
                 <p className="text-xs sm:text-sm text-[var(--md-sys-color-on-surface)] leading-relaxed">
                   {supportStatus.text}
                 </p>
+                {STRIPE_SUPPORT_CONFIG.customerPortalUrl && (
+                  <div className="pt-1">
+                    <a
+                      href={STRIPE_SUPPORT_CONFIG.customerPortalUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-xs font-mono text-blue-300 hover:underline inline-flex items-center gap-1"
+                    >
+                      <span>Manage Existing Membership in Stripe Portal</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </a>
+                  </div>
+                )}
               </div>
               <div className="flex flex-wrap items-center justify-between gap-2 pt-1">
                 <a

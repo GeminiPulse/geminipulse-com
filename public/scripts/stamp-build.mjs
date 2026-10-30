@@ -186,6 +186,10 @@ const statusHtml = `<!doctype html>
             <span class="ok">● VERIFIED OWNER &amp; SITEMAP ACTIVE</span>
           </div>
           <div class="row">
+            <span><strong>Stripe Supporter Checkout &amp; Customer Portal</strong> (<a href="/#support">/#support</a> • One-Time &amp; $9/mo Founding Supporter)</span>
+            <span class="ok">● LIVE CHECKOUT ACTIVE</span>
+          </div>
+          <div class="row">
             <span><strong>2nd-Gen Cloud Functions</strong> (<code>moderateForumPost</code>, <code>curateShowcaseProject</code>, <code>autonomousNewsGenerator</code>)</span>
             <span class="warn">◐ STANDBY (Gated on Blaze Approval — House Rule #3)</span>
           </div>
