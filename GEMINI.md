@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-10-30 02:34 EDT — Wired live Google Workspace Referral Partner link (https://sharegoogleworkspace.advocate.impact.com/mzYYGz3 with rel="sponsored") + private single-use 10% promo-code intake across #get-started and /labs/gemini-4-stack-advisor.html; completed 5-for-5 @geminipulse sweep`
+> **Last touched:** `2026-10-30 03:00 EDT — Configured Stripe GeminiPulse sub-account branding & workflows (ready for 1-click live KYC submit), configured CJ Affiliate Network Profile & GeminiPulse Promotional Property (PID 101916668 for Google Cloud 5930067), wired live Workspace Referral link (mzYYGz3), and completed 5-for-5 @geminipulse handle sweep`
 
 ---
 

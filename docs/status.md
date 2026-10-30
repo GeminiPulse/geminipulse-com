@@ -1,6 +1,6 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-10-30 02:34 EDT (Wired Live Google Workspace Referral Link mzYYGz3 + Private 10% Promo Code Request Flow; Completed 5-for-5 @geminipulse Handle Sweep)`
+- **Last Updated:** `2026-10-30 03:00 EDT (Polished Stripe GeminiPulse Sub-Account Branding + Configured CJ Affiliate Network Profile & Promotional Property PID 101916668 + Wired Workspace Referral Link mzYYGz3 + Completed 5-for-5 @geminipulse Handle Sweep)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
@@ -13,7 +13,11 @@
 
 ---
 
-## 1. Completed & Live on `v2.0` (2026-10-30 Early Morning Update)
+## 1. Completed & Live on `v2.0` (2026-10-30 Overnight Wrap-Up)
+
+- **Stripe `GeminiPulse` Sub-Account Branded & CJ Affiliate `GeminiPulse` Property Configured (`2026-10-30 03:00 EDT`):**
+  - **Stripe Sub-Account (`GeminiPulse` under `AGILE LLC`):** Configured Account Display Name (`GeminiPulse`), Website (`https://geminipulse.com`), payment/subscription workflows, and Checkout Branding (`512x512` `gemini-sparkle` Icon & Logo, `#0B0F19` Brand color, `#4285F4` Accent color). Inherits `AGILE LLC` shared legal entity (`Business type`, `Tax details`, `Account representative`, and `Bank` already pre-completed); parked at `Activate your products` for Neil's final `Agree & submit` click to unlock Live `buy.stripe.com` Payment Links.
+  - **CJ Affiliate Publisher Onboarding (Branded Google Cloud `5930067` Invite):** Completed & saved **Network Profile** and **Primary Promotional Property `GeminiPulse`** (`PID: 101916668`, `https://geminipulse.com`, `Content/Blog/Media`, `Status: Active`); parked at `onboarding.cj` awaiting only personal phone/address, `W-9`, and payout bank details to click `ACTIVATE ACCOUNT`.
 
 - **Google Workspace Referral Partner Link Wired Live (`v2.0.37`):**
   - **Live Referral URL:** **`https://sharegoogleworkspace.advocate.impact.com/mzYYGz3`** wired with `rel="sponsored noopener noreferrer"` and transparent FTC/Google disclosure across `#get-started` Path 01 (`public/src/data/geminiEcosystemData.js`, `public/src/App.jsx`) and the interactive **GeminiStack Advisor** (`/labs/gemini-4-stack-advisor.html`).
