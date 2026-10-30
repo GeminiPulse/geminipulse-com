@@ -16,6 +16,7 @@ export const isFirebaseConfigured = Boolean(
 );
 
 let runtimePromise = null;
+let lastInitError = null;
 
 export function loadFirebaseRuntime() {
   if (runtimePromise) return runtimePromise;
@@ -32,15 +33,17 @@ export function loadFirebaseRuntime() {
       };
     }
     try {
-      const [{ initializeApp }, fs, authMod] = await Promise.all([
+      const [{ getApp, getApps, initializeApp }, fs, authMod] = await Promise.all([
         import('firebase/app'),
         import('firebase/firestore'),
         import('firebase/auth'),
       ]);
-      const app = initializeApp(firebaseConfig);
+      const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
       const db = fs.getFirestore(app);
       const auth = authMod.getAuth(app);
       const googleProvider = new authMod.GoogleAuthProvider();
+      googleProvider.setCustomParameters({ prompt: 'select_account' });
+      lastInitError = null;
 
       let analytics = null;
       let analyticsMod = null;
@@ -58,6 +61,9 @@ export function loadFirebaseRuntime() {
 
       return { db, auth, fs, authMod, googleProvider, analytics, analyticsMod };
     } catch (error) {
+      lastInitError = error;
+      // Clear cached promise so a subsequent Sign-In click can retry cleanly
+      runtimePromise = null;
       console.error('[GeminiPulse] Firebase initialization error:', error);
       return {
         db: null,
@@ -87,13 +93,31 @@ export async function trackPulseEvent(eventName, params = {}) {
 export async function signInWithGoogle() {
   const { auth, authMod, googleProvider } = await loadFirebaseRuntime();
   if (!auth || !authMod || !googleProvider) {
+    if (!isFirebaseConfigured) {
+      throw new Error('Google Sign-In is not configured in this build environment.');
+    }
     throw new Error(
-      'Firebase Auth is not yet connected. Once the Firebase project config is added to .env.local, Google Sign-In will authenticate live users.'
+      `Unable to load Google Sign-In (${lastInitError?.message || 'network_chunk_error'}). Please refresh the page and try again.`
     );
   }
-  const result = await authMod.signInWithPopup(auth, googleProvider);
-  trackPulseEvent('login', { method: 'Google' });
-  return result.user;
+  try {
+    const result = await authMod.signInWithPopup(auth, googleProvider);
+    trackPulseEvent('login', { method: 'Google' });
+    return result.user;
+  } catch (err) {
+    if (
+      err?.code === 'auth/popup-closed-by-user' ||
+      err?.code === 'auth/cancelled-popup-request'
+    ) {
+      return null;
+    }
+    if (err?.code === 'auth/popup-blocked') {
+      throw new Error(
+        'Your browser blocked the Google Sign-In popup. Please allow popups for geminipulse.com and click Sign in again.'
+      );
+    }
+    throw err;
+  }
 }
 
 export async function signOutUser() {

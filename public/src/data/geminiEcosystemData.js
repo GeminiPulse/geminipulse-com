@@ -1824,5 +1824,43 @@ export const GEMINI_VIDEO_SHOWCASE = [
   },
 ];
 
+// Centralized Stripe Payment Links config (operated via Agile LLC -> GeminiPulse Stripe sub-account).
+// Paste live https://buy.stripe.com/... Payment Link URLs below to activate 1-click Stripe Checkout.
+export const STRIPE_SUPPORT_CONFIG = {
+  merchantDisplayName: 'GeminiPulse (Agile LLC)',
+  oneTimePaymentLinkUrl: '',
+  monthlySupporterLinkUrl: '',
+  customerPortalUrl: '',
+  tiers: [
+    {
+      id: 'one-time',
+      badge: 'ONE-TIME CONTRIBUTION • PAY WHAT YOU WANT',
+      title: 'Fuel Autonomous Compute & Arena Benchmarks',
+      priceLabel: 'Custom Amount ($5 / $15 / $50+)',
+      summary:
+        'Directly supports weekly Thursday Frontier Tri-Model Arena token runs (Gemini 4 vs. Claude vs. ChatGPT), open-source Agile Labs micro-tools, and independent ad-light benchmarks.',
+      perks: [
+        '100% independent — never influences Arena benchmark scores (House Rule #5)',
+        'Optional public credit on our Open Contributions & Supporters Ledger',
+        'Processed securely via Stripe (GeminiPulse account under Agile LLC)',
+      ],
+    },
+    {
+      id: 'monthly',
+      badge: 'MONTHLY MEMBERSHIP • FOUNDING SUPPORTER',
+      title: 'Founding Supporter & Pro Insider',
+      priceLabel: '$9 / month (Cancel anytime)',
+      summary:
+        'Become an ongoing supporter of the GeminiPulse open experiment as we expand weekly benchmarks, deep-dive release series, and downloadable prompt & eval packs.',
+      perks: [
+        'Early access to Thursday Tri-Model Arena raw prompt & evaluation packs',
+        'Founding Supporter recognition badge once Stripe membership sync activates',
+        'Priority topic & model requests for upcoming Arena & Agile Labs builds',
+      ],
+    },
+  ],
+};
+
+
 
 

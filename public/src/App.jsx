@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Activity,
   ArrowUpRight,
@@ -14,6 +14,7 @@ import {
   Filter,
   Flag,
   Globe,
+  Heart,
   Layers,
   Lock,
   LogIn,
@@ -63,6 +64,7 @@ import {
   GEMINI_4_CARBON_RELEASE_SERIES,
   GET_STARTED_WITH_GEMINI_TRACKS,
   GEMINI_VIDEO_SHOWCASE,
+  STRIPE_SUPPORT_CONFIG,
 } from './data/geminiEcosystemData';
 
 // Authentic 4-Point Google Gemini Sparkle Icon
@@ -367,6 +369,117 @@ export default function App() {
       if (user) setCurrentUser(user);
     } catch (err) {
       setAuthNotice(err.message);
+    }
+  };
+
+  // Support / Contribute Native <dialog> State (Stripe Payment Links via Agile LLC -> GeminiPulse)
+  const supportDialogRef = useRef(null);
+  const [supportTier, setSupportTier] = useState('one-time');
+  const [supportEmail, setSupportEmail] = useState('');
+  const [supportSubmitting, setSupportSubmitting] = useState(false);
+  const [supportStatus, setSupportStatus] = useState(null);
+
+  const openSupportDialog = useCallback(
+    (initialTier = 'one-time') => {
+      setSupportTier(initialTier);
+      setSupportStatus(null);
+      if (currentUser?.email) {
+        setSupportEmail((prev) => prev || currentUser.email);
+      }
+      const dlg = supportDialogRef.current;
+      if (dlg && !dlg.open) {
+        dlg.showModal();
+      }
+      trackPulseEvent('support_modal_open', { tier: initialTier });
+    },
+    [currentUser]
+  );
+
+  const closeSupportDialog = useCallback(() => {
+    const dlg = supportDialogRef.current;
+    if (dlg && dlg.open) {
+      dlg.close();
+    }
+    if (typeof window !== 'undefined' && window.location.hash === '#support') {
+      window.history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+  }, []);
+
+  // Safari fallback for <dialog closedby="any"> light-dismiss + #support deep-link opener
+  useEffect(() => {
+    const dlg = supportDialogRef.current;
+    let removeFallback = null;
+    if (dlg && typeof HTMLDialogElement !== 'undefined' && !('closedBy' in HTMLDialogElement.prototype)) {
+      const onBackdropClick = (event) => {
+        if (event.target !== dlg) return;
+        const rect = dlg.getBoundingClientRect();
+        const isInside =
+          rect.top <= event.clientY &&
+          event.clientY <= rect.top + rect.height &&
+          rect.left <= event.clientX &&
+          event.clientX <= rect.left + rect.width;
+        if (!isInside) dlg.close();
+      };
+      dlg.addEventListener('click', onBackdropClick);
+      removeFallback = () => dlg.removeEventListener('click', onBackdropClick);
+    }
+
+    const checkHash = () => {
+      if (window.location.hash === '#support') {
+        openSupportDialog('one-time');
+      }
+    };
+    checkHash();
+    window.addEventListener('hashchange', checkHash);
+    return () => {
+      window.removeEventListener('hashchange', checkHash);
+      if (removeFallback) removeFallback();
+    };
+  }, [openSupportDialog]);
+
+  const handleSupportPledgeSubmit = async (e) => {
+    e.preventDefault();
+    if (supportSubmitting) return;
+    const trimmedEmail = supportEmail.trim();
+    if (!trimmedEmail || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(trimmedEmail)) {
+      setSupportStatus({
+        type: 'error',
+        text: 'Please enter a valid email address so we can send your direct Stripe link.',
+      });
+      return;
+    }
+    setSupportSubmitting(true);
+    setSupportStatus(null);
+    const sourceKey =
+      supportTier === 'monthly'
+        ? 'stripe_supporter_pledge_monthly'
+        : 'stripe_supporter_pledge_onetime';
+    try {
+      const { db, fs } = await loadFirebaseRuntime();
+      if (db && fs) {
+        await fs.addDoc(fs.collection(db, 'newsletter_subscribers'), {
+          email: trimmedEmail.slice(0, 160),
+          source: sourceKey,
+          createdAt: new Date().toISOString(),
+        });
+      }
+      trackPulseEvent('support_pledge_submit', { tier: supportTier });
+      setSupportStatus({
+        type: 'success',
+        tier: supportTier,
+        text:
+          supportTier === 'monthly'
+            ? 'You are on the Founding Supporter ($9/mo) early list! We recorded your email in Cloud Firestore and will notify you the moment the GeminiPulse Stripe link goes live.'
+            : 'Thank you for backing GeminiPulse! We recorded your email in Cloud Firestore and will send the direct Stripe Contribution link as soon as checkout activates.',
+      });
+      setSupportEmail('');
+    } catch (err) {
+      setSupportStatus({
+        type: 'error',
+        text: `Unable to save right now (${err.code || 'network_error'}). Please try again.`,
+      });
+    } finally {
+      setSupportSubmitting(false);
     }
   };
 
@@ -826,21 +939,30 @@ export default function App() {
               Operated Autonomously by <strong className="text-[var(--md-sys-color-on-surface)]">Google Gemini 4 Argon</strong> in <strong className="text-[var(--md-sys-color-on-surface)]">Google Antigravity</strong> • 100% Google Stack
             </span>
           </div>
-          <div className="flex items-center gap-3.5 m3-text-muted whitespace-nowrap shrink-0">
-            <a href="#tri-model-arena" className="hover:text-amber-400 transition-colors flex items-center gap-1">
+          <div className="flex flex-wrap items-center gap-x-3.5 gap-y-1 m3-text-muted">
+            <a href="#tri-model-arena" className="hover:text-amber-400 transition-colors flex items-center gap-1 whitespace-nowrap">
               <Zap className="w-3.5 h-3.5 text-amber-400" />
               Tri-Model Arena
             </a>
             <span className="hidden md:inline">•</span>
-            <a href="#performance-ledger" className="hover:text-emerald-400 transition-colors hidden sm:flex items-center gap-1">
+            <a href="#performance-ledger" className="hover:text-emerald-400 transition-colors hidden sm:flex items-center gap-1 whitespace-nowrap">
               <BarChart3 className="w-3.5 h-3.5 text-emerald-400" />
               Lighthouse & Vitals
             </a>
             <span className="hidden md:inline">•</span>
-            <a href="#about-charter" className="hover:text-blue-400 transition-colors flex items-center gap-1">
+            <a href="#about-charter" className="hover:text-blue-400 transition-colors hidden sm:flex items-center gap-1 whitespace-nowrap">
               <Scale className="w-3.5 h-3.5 text-blue-400" />
               Charter
             </a>
+            <span className="hidden sm:inline">•</span>
+            <button
+              type="button"
+              onClick={() => openSupportDialog('one-time')}
+              className="text-pink-300 hover:text-pink-200 transition-colors inline-flex items-center gap-1 cursor-pointer font-semibold whitespace-nowrap"
+            >
+              <Heart className="w-3.5 h-3.5 text-pink-400" />
+              <span>Contribute</span>
+            </button>
             <span>•</span>
             <button
               type="button"
@@ -848,7 +970,7 @@ export default function App() {
                 setInquiryStatus(null);
                 setShowInquiryModal(true);
               }}
-              className="hover:text-blue-400 transition-colors inline-flex items-center gap-1 cursor-pointer"
+              className="hover:text-blue-400 transition-colors inline-flex items-center gap-1 cursor-pointer whitespace-nowrap"
             >
               <Mail className="w-3.5 h-3.5 text-purple-400" />
               Inquiries
@@ -921,6 +1043,17 @@ export default function App() {
                       <div className="text-[11px] font-mono m3-text-muted">{subItem.sub}</div>
                     </a>
                   ))}
+                  <button
+                    type="button"
+                    onClick={() => openSupportDialog('one-time')}
+                    className="w-full text-left block px-3 py-2 rounded-xl hover:bg-pink-500/10 transition-colors cursor-pointer border-t border-[var(--md-sys-color-outline)] pt-2.5"
+                  >
+                    <div className="text-xs font-semibold text-pink-300 flex items-center gap-1.5">
+                      <Heart className="w-3.5 h-3.5 text-pink-400 shrink-0" />
+                      <span>Contribute &amp; Support</span>
+                    </div>
+                    <div className="text-[11px] font-mono m3-text-muted">Fuel Open Compute &amp; Arena</div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -1066,6 +1199,14 @@ export default function App() {
                     <Rocket className="w-4 h-4 text-purple-400 shrink-0" />
                     <span>Built with Gemini</span>
                   </a>
+                  <button
+                    type="button"
+                    onClick={() => openSupportDialog('one-time')}
+                    className="m3-surface-elevated text-sm font-semibold px-5 py-3 rounded-full inline-flex items-center gap-2 whitespace-nowrap hover:border-pink-400/60 transition-all active:scale-[0.98] cursor-pointer"
+                  >
+                    <Heart className="w-4 h-4 text-pink-400 shrink-0" />
+                    <span>Contribute</span>
+                  </button>
                 </div>
               </div>
 
@@ -3208,6 +3349,14 @@ export default function App() {
 
               <div className="pt-4 border-t border-[var(--md-sys-color-outline)] flex flex-wrap items-center gap-3 text-xs font-semibold">
                 <button
+                  type="button"
+                  onClick={() => openSupportDialog('one-time')}
+                  className="px-4 py-2 rounded-full bg-pink-500/15 border border-pink-400/35 text-pink-200 hover:border-pink-400 inline-flex items-center gap-1.5 cursor-pointer"
+                >
+                  <Heart className="w-3.5 h-3.5 text-pink-400 shrink-0" />
+                  <span>Contribute / Support Project</span>
+                </button>
+                <button
                   onClick={() => setLegalModalTab('privacy')}
                   className="px-4 py-2 rounded-full m3-surface-elevated hover:border-blue-400 cursor-pointer"
                 >
@@ -4068,6 +4217,243 @@ export default function App() {
       )}
 
       {/* =================================================================
+          MODAL 5: SUPPORT & CONTRIBUTE TO GEMINIPULSE (NATIVE <dialog> + STRIPE)
+          ================================================================= */}
+      <dialog
+        {...{ closedby: 'any' }}
+        ref={supportDialogRef}
+        aria-labelledby="support-dialog-title"
+        className="m3-native-dialog"
+      >
+        <div className="m3-card w-full p-6 sm:p-7 space-y-5 bg-[var(--md-sys-color-surface)] border border-[var(--md-sys-color-outline-strong)] max-h-[88dvh] overflow-y-auto">
+          <div className="flex items-center justify-between border-b border-[var(--md-sys-color-outline)] pb-4 gap-3">
+            <div className="flex items-center gap-2.5 min-w-0">
+              <div className="p-2 rounded-xl bg-pink-500/15 border border-pink-400/30 shrink-0">
+                <Heart className="w-5 h-5 text-pink-400" />
+              </div>
+              <div className="min-w-0">
+                <h3 id="support-dialog-title" className="font-bold text-lg truncate">
+                  Support &amp; Contribute to GeminiPulse
+                </h3>
+                <div className="text-[11px] font-mono m3-text-muted truncate">
+                  {STRIPE_SUPPORT_CONFIG.merchantDisplayName} • 100% Editorial Independence
+                </div>
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={closeSupportDialog}
+              aria-label="Close Support and Contribute dialog"
+              className="p-2 rounded-full m3-text-muted hover:text-[var(--md-sys-color-on-surface)] cursor-pointer min-h-[40px] min-w-[40px] inline-flex items-center justify-center shrink-0"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+
+          {supportStatus?.type === 'success' ? (
+            <div aria-live="polite" className="space-y-4 py-2">
+              <div className="p-5 rounded-2xl bg-emerald-500/12 border border-emerald-400/35 space-y-2.5">
+                <div className="flex items-center gap-2.5 text-emerald-300 font-bold text-base">
+                  <CheckCircle2 className="w-5 h-5 shrink-0" />
+                  <span>Thank You — Early Supporter Interest Recorded</span>
+                </div>
+                <p className="text-xs sm:text-sm text-[var(--md-sys-color-on-surface)] leading-relaxed">
+                  {supportStatus.text}
+                </p>
+              </div>
+              <div className="flex flex-wrap items-center justify-between gap-2 pt-1">
+                <a
+                  href="/partners"
+                  className="text-xs font-mono text-purple-300 hover:underline inline-flex items-center gap-1 min-h-[36px]"
+                >
+                  <span>Explore Commercial Launchpad &amp; Sponsorships (/partners)</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </a>
+                <button
+                  type="button"
+                  onClick={closeSupportDialog}
+                  className="bg-gemini-grad text-white px-5 py-2.5 rounded-full text-xs font-semibold cursor-pointer min-h-[44px]"
+                >
+                  Return to GeminiPulse
+                </button>
+              </div>
+            </div>
+          ) : (
+            <>
+              <p className="text-xs sm:text-sm m3-text-muted leading-relaxed">
+                <strong>GeminiPulse.com</strong> is a free, open showcase of what you can build and run on the Google Gemini ecosystem. Contributions help fund weekly{' '}
+                <strong>Thursday Frontier Tri-Model Arena</strong> token runs, open-source Agile Labs tools, and ad-light independent benchmarks.
+              </p>
+
+              {/* Two Support Tiers: One-Time Contribution vs. Monthly Founding Supporter */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                {STRIPE_SUPPORT_CONFIG.tiers.map((tier) => {
+                  const isSelected = supportTier === tier.id;
+                  const liveStripeUrl =
+                    tier.id === 'monthly'
+                      ? STRIPE_SUPPORT_CONFIG.monthlySupporterLinkUrl
+                      : STRIPE_SUPPORT_CONFIG.oneTimePaymentLinkUrl;
+                  return (
+                    <div
+                      key={tier.id}
+                      onClick={() => setSupportTier(tier.id)}
+                      className={`p-4 rounded-2xl border transition-all flex flex-col justify-between gap-3 cursor-pointer ${
+                        isSelected
+                          ? 'bg-pink-500/10 border-pink-400/60'
+                          : 'm3-surface-elevated hover:border-blue-400/40'
+                      }`}
+                    >
+                      <div className="space-y-2">
+                        <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-pink-300">
+                          {tier.badge}
+                        </div>
+                        <div className="font-bold text-sm sm:text-base text-[var(--md-sys-color-on-surface)]">
+                          {tier.title}
+                        </div>
+                        <div className="text-xs font-mono font-semibold text-emerald-300">
+                          {tier.priceLabel}
+                        </div>
+                        <p className="text-xs m3-text-muted leading-relaxed">{tier.summary}</p>
+                        <ul className="space-y-1 pt-1 text-[11px] m3-text-muted">
+                          {tier.perks.map((perk) => (
+                            <li key={perk} className="flex items-start gap-1.5">
+                              <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+                              <span>{perk}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {liveStripeUrl ? (
+                        <a
+                          href={liveStripeUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          onClick={() =>
+                            trackPulseEvent('stripe_checkout_click', { tier: tier.id })
+                          }
+                          className="w-full bg-gemini-grad text-white text-xs font-semibold px-4 py-2.5 rounded-full inline-flex items-center justify-center gap-1.5 min-h-[44px]"
+                        >
+                          <span>Continue to Stripe Checkout</span>
+                          <ArrowUpRight className="w-3.5 h-3.5 shrink-0" />
+                        </a>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() => setSupportTier(tier.id)}
+                          className={`w-full text-xs font-semibold px-4 py-2 rounded-full min-h-[40px] cursor-pointer transition-colors ${
+                            isSelected
+                              ? 'bg-pink-500/25 text-pink-200 border border-pink-400/50'
+                              : 'm3-surface-elevated m3-text-muted'
+                          }`}
+                        >
+                          {isSelected ? '✓ Selected Tier' : 'Select This Tier'}
+                        </button>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* If live Stripe URL is not yet pasted, show honest Truth-on-the-Page early supporter notification form */}
+              {!(supportTier === 'monthly'
+                ? STRIPE_SUPPORT_CONFIG.monthlySupporterLinkUrl
+                : STRIPE_SUPPORT_CONFIG.oneTimePaymentLinkUrl) && (
+                <form
+                  onSubmit={handleSupportPledgeSubmit}
+                  className="p-4 rounded-2xl m3-surface-elevated space-y-3"
+                >
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <span className="text-xs font-mono font-semibold text-amber-300">
+                      ⚡ Stripe Payment Link Activating ({STRIPE_SUPPORT_CONFIG.merchantDisplayName})
+                    </span>
+                    <span className="text-[11px] font-mono m3-text-muted">
+                      Selected: {supportTier === 'monthly' ? 'Founding Supporter ($9/mo)' : 'One-Time Contribution'}
+                    </span>
+                  </div>
+                  <p className="text-xs m3-text-muted leading-relaxed">
+                    We are connecting our dedicated <strong>GeminiPulse</strong> Stripe checkout link right now. Leave your email below and we’ll send you the direct Stripe link the moment it goes live (or use{' '}
+                    <button
+                      type="button"
+                      onClick={() => {
+                        closeSupportDialog();
+                        setInquiryForm((prev) => ({
+                          ...prev,
+                          inquiryType: 'Featured Launchpad / Sponsorship',
+                        }));
+                        setInquiryStatus(null);
+                        setShowInquiryModal(true);
+                      }}
+                      className="text-blue-300 hover:underline font-semibold cursor-pointer"
+                    >
+                      Business &amp; Sponsorship Inquiries
+                    </button>{' '}
+                    for commercial sponsorships).
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-2">
+                    <label htmlFor="support-pledge-email" className="sr-only">
+                      Your email address for Stripe contribution link
+                    </label>
+                    <input
+                      id="support-pledge-email"
+                      type="email"
+                      required
+                      maxLength={160}
+                      autoComplete="email"
+                      value={supportEmail}
+                      onChange={(e) => {
+                        setSupportEmail(e.target.value);
+                        if (supportStatus?.type === 'error') setSupportStatus(null);
+                      }}
+                      placeholder="you@company.com"
+                      className="flex-1 px-3.5 py-2.5 rounded-xl bg-[var(--md-sys-color-surface)] border border-[var(--md-sys-color-outline)] text-base sm:text-sm focus:outline-none focus:border-pink-400 min-h-[44px]"
+                    />
+                    <button
+                      type="submit"
+                      disabled={supportSubmitting}
+                      className="bg-gemini-grad text-white px-5 py-2.5 rounded-full text-xs font-semibold inline-flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-60 min-h-[44px] whitespace-nowrap"
+                    >
+                      <Heart className="w-3.5 h-3.5 shrink-0" />
+                      <span>
+                        {supportSubmitting ? 'Saving...' : 'Send Me the Stripe Link'}
+                      </span>
+                    </button>
+                  </div>
+                  {supportStatus?.type === 'error' && (
+                    <div role="alert" className="text-xs font-mono text-red-300">
+                      {supportStatus.text}
+                    </div>
+                  )}
+                </form>
+              )}
+
+              <div className="pt-2 border-t border-[var(--md-sys-color-outline)] flex flex-wrap items-center justify-between gap-2 text-[11px] font-mono m3-text-muted">
+                <span>Editorial Firewall: Contributions never alter benchmark scores.</span>
+                {STRIPE_SUPPORT_CONFIG.customerPortalUrl ? (
+                  <a
+                    href={STRIPE_SUPPORT_CONFIG.customerPortalUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-blue-300 hover:underline"
+                  >
+                    Manage Existing Membership →
+                  </a>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={closeSupportDialog}
+                    className="hover:text-[var(--md-sys-color-on-surface)] cursor-pointer min-h-[32px] px-2"
+                  >
+                    Close
+                  </button>
+                )}
+              </div>
+            </>
+          )}
+        </div>
+      </dialog>
+
+      {/* =================================================================
           FOOTER
           ================================================================= */}
       <footer className="border-t border-[var(--md-sys-color-outline)] py-12 px-4 sm:px-6 text-xs m3-text-muted">
@@ -4096,6 +4482,14 @@ export default function App() {
             >
               ● Build {buildMeta.buildId}
             </a>
+            <button
+              type="button"
+              onClick={() => openSupportDialog('one-time')}
+              className="text-pink-300 hover:text-pink-200 transition-colors cursor-pointer font-semibold inline-flex items-center gap-1"
+            >
+              <Heart className="w-3.5 h-3.5 text-pink-400 shrink-0" />
+              <span>Contribute</span>
+            </button>
             <a href="/partners" className="text-purple-300 hover:text-purple-200 transition-colors font-semibold">
               Partners &amp; Sponsor
             </a>

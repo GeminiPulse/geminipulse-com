@@ -1,6 +1,6 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-10-29 21:26 EDT (3-Part Gemini 4 Carbon Series, Agile Labs GeminiStack ROI Mini-Project, Curated YouTube Creator Video Showcase, Start Building Hub, /status + /partners Routes, Inquiry Completion UX & Live GA4 G-1BWMQWZJQ5 Deployed on https://geminipulse.com)`
+- **Last Updated:** `2026-10-29 21:50 EDT (Fixed Live Google Sign-In Lazy Chunk Initialization + Shipped Native <dialog> Support & Contribute Portal Ready for Agile LLC -> GeminiPulse Stripe Payment Links)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
@@ -14,6 +14,10 @@
 ---
 
 ## 1. Completed & Live on `v2.0` (2026-10-29 Late Evening Update)
+
+- **Google Sign-In Live Fix + Support & Contribute Portal (`v2.0.32`):**
+  - **Fixed Live Google Sign-In (`public/vite.config.js` + `public/src/firebase.js`):** Resolved the regression where Rollup's custom `firebase-*` `manualChunks` split caused `loadFirebaseRuntime()` to catch an initialization error and surface the false `"Firebase Auth is not yet connected..."` fallback. Restored native Rollup dynamic ESM splitting for `firebase/*`, made `initializeApp` idempotent (`getApps().length ? getApp() : initializeApp(firebaseConfig)`), added transient retry recovery + popup-blocked guidance, and verified live Google OAuth popup invocation (`https://geminipulse-com.firebaseapp.com/__/auth/handler`) via headless Chrome CDP.
+  - **Support & Contribute Portal (`STRIPE_SUPPORT_CONFIG` + Native `<dialog>`):** Added **Contribute** entry points in the top telemetry bar, navbar `More` menu, Hero CTA bar, `#about-charter`, Footer, and `/partners` (`/#support`), opening an accessible top-layer `<dialog closedby="any">` modal with two tiers (*One-Time Contribution* and *Founding Supporter \$9/mo*). Wired directly to `STRIPE_SUPPORT_CONFIG` in `public/src/data/geminiEcosystemData.js` for 1-click `buy.stripe.com` checkout (`$0/mo` Spark-compatible) with write-only Firestore early-supporter email notification until Neil pastes his Stripe Payment Link URLs.
 
 0. **3-Part Gemini 4 Carbon Release Series, Agile Labs Mini-Project, YouTube Video Showcase, `/status` + `/partners` & Live GA4 (`G-1BWMQWZJQ5`):**
    - **3-Part Gemini 4 Carbon Deep-Dive Series (`#release-series` + `/series/gemini-4-carbon/*.html`):** Cites 100% direct official Google primary documentation (`blog.google/.../introducing-gemini-4-carbon/`), translates dry specs into *"What Changed vs. Argon → How Does This Affect Me? → 5 Concrete Business & Security Use Cases"*, and publishes 3 standalone crawlable HTML pages indexed in `sitemap.xml` and `feed.xml`.

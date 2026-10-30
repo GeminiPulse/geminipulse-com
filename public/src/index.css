@@ -277,6 +277,29 @@ html.light {
     linear-gradient(to bottom, rgba(148, 163, 184, 0.04) 1px, transparent 1px);
 }
 
+/* Native modal <dialog> scroll containment & backdrop (modern-web-guidance: dialog, prevent-page-scroll-under-modal-dialog) */
+dialog.m3-native-dialog {
+  margin: auto;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--md-sys-color-on-surface);
+  max-width: min(42rem, calc(100vw - 1.5rem));
+  max-height: calc(100dvh - 2rem);
+  width: 100%;
+}
+
+dialog:modal {
+  overscroll-behavior: contain;
+}
+
+dialog::backdrop {
+  overflow: hidden;
+  overscroll-behavior: contain;
+  background-color: rgba(4, 7, 14, 0.75);
+  backdrop-filter: blur(6px);
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;

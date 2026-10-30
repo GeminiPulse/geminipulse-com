@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-10-29 21:26 EDT — Shipped 3-Part Gemini 4 Carbon Release Series (#release-series + standalone /series/gemini-4-carbon/* pages), Agile Labs GeminiStack ROI Calculator (/labs/gemini-4-stack-advisor.html), Curated YouTube Video Showcase (#video-showcase with click-to-play lite embeds), Start Building Hub (#get-started + MadeWithJules.com teaser), Live Build Stamp (/status) & Partnerships (/partners) pages, topic-aware Inquiry completion UX, and live GA4 (G-1BWMQWZJQ5)`
+> **Last touched:** `2026-10-29 21:50 EDT — Fixed live Google Sign-In lazy chunk loading regression (removed custom Rollup firebase-* manualChunks override & hardened idempotent Firebase Auth initialization in public/src/firebase.js), shipped native <dialog> Support & Contribute Portal (STRIPE_SUPPORT_CONFIG for Agile LLC -> GeminiPulse Stripe Payment Links), and verified live E2E + Lighthouse + 4-viewport Layout Audits`
 
 ---
 
