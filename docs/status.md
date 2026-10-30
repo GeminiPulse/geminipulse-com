@@ -1,6 +1,6 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-10-30 18:35 EDT (Authored & Installed Native Antigravity Plugin 'geminipulse-studio' + 5 Token-Surgical Subagents + Free Community 'gemini-twin-starter' Plugin + /#addons Free/Freemium/Pro Hub & Episode 10 Live v2.0.45)`
+- **Last Updated:** `2026-10-30 19:10 EDT (Shipped 4-Rung "Prepaid vs. All-Access" Add-Ons Value Ladder on /#addons + Published Standalone Public Marketplace Repo GeminiPulse/gemini-twin-starter v1.0.0 + Built Gitignored Commercial Pro Deliverable Zips — Live v2.0.46)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
@@ -13,7 +13,18 @@
 
 ---
 
-## 1. Completed & Live on `v2.0` (2026-10-30 6:35 PM ET Update)
+## 1. Completed & Live on `v2.0` (2026-10-30 7:10 PM ET Update)
+
+- **Shipped 4-Rung "Prepaid vs. All-Access" Add-Ons Value Ladder (`/#addons`), Standalone Marketplace Repo & Private Pro Deliverable Packs (`v2.0.46`):**
+  - **4-Rung Merchandising & Combo Architecture (`GEMINI_ADDON_PRICING_LADDER` + `public/src/App.jsx`):**
+    1. **Rung 01 (`\$0` Free Forever Lead Magnet):** `gemini-twin-starter` Antigravity Plugin (`v1.0.0`), Google Workspace Lite Pack (`10` prompts + `2` Apps Scripts), interactive Labs, and the 10% first-year Google Workspace referral perk.
+    2. **Rung 02 (`\$19` – `\$29` Prepaid À La Carte Packs — Zero Subscription):** Captures subscription-fatigued buyers via One-Time Stripe Checkout (`\$19` *Google Workspace `(T)winning` 50-Vault + 8 Apps Scripts*, `\$29` *WordPress WXR XML → Firebase `\$0/mo` CLI Migrator Kit*, `\$29` *9:16 YouTube Shorts & Flash-TTS Creator Studio Kit*).
+    3. **Rung 03 (`\$9/mo` or `\$79/yr` Pro Insider All-Access Pass — Hero Value Anchor):** Unlocks **every** standalone Pro Pack (`\$116+` separate value — saving `\$107` upfront) plus the *Frontier Tri-Model Arena Eval & QA Harness* (`\$39` value) and ongoing Gemini 4 release updates.
+    4. **Rung 04 (`\$149` 10-Seat Team & Agency Commercial Pack + Custom Sprints):** Routes B2B/SMB teams and web agencies directly into the schema-validated Cloud Firestore `business_inquiries` flow (`inquiryType: 'Business & Partnerships'`).
+  - **Published Standalone Public Antigravity Marketplace Repository (`https://github.com/GeminiPulse/gemini-twin-starter`):**
+    - Created and pushed standalone public repository (`main` + tag `v1.0.0`, Apache-2.0 `LICENSE`, root `plugin.json`) ready for 1-click Antigravity Marketplace submission as a `\$0`-CAC IDE lead magnet back to `https://geminipulse.com/#addons`.
+  - **Built Real Commercial Paid Deliverable `.zip` Bundles in Gitignored `.local/pro-packs/` (Protected from Public GitHub Leak):**
+    - Packaged `workspace-twinning-pro-50-vault.zip` (50 department prompts + 8 Apps Scripts), `making-the-switch-wp-firebase-kit.zip` (zero-dependency `wp-wxr-to-firebase.mjs` WXR XML migrator CLI + cutover runbook), and `shorts-multimodal-creator-kit.zip` (`batch-flash-tts.mjs` CLI + Omni/Nano prompt vault), plus `.local/pro-packs/STRIPE-SKU-SETUP-CHEATSHEET.md`.
 
 - **Authored & Installed Native Antigravity Plugin `geminipulse-studio`, Free Community `gemini-twin-starter` Plugin & `/#addons` Hub (`v2.0.45`):**
   - **Installed First-Party Global Antigravity Plugin (`~/.gemini/config/plugins/geminipulse-studio/` + Open-Core Mirror `addons/geminipulse-studio/`):**

@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-10-30 18:35 EDT — Authored & installed native Antigravity plugin 'geminipulse-studio' (5 tool-pruned subagents, 5 skills, 3 zero-token CLIs incl. live lsrpc plugin token-profile switcher), packaged free community 'gemini-twin-starter' plugin + Workspace Lite Pack, launched /#addons Free/Freemium/Pro Hub & Episode 10, verified 0-overflow build v2.0.45`
+> **Last touched:** `2026-10-30 19:10 EDT — Shipped 4-Rung "Prepaid vs. All-Access" Add-Ons Value Ladder ($0 Free / $19-$29 Prepaid Packs / $9/mo or $79/yr All-Access Anchor / $149 10-Seat Team Pack) on /#addons, published standalone Apache-2.0 Marketplace repo GeminiPulse/gemini-twin-starter v1.0.0, verified 0-overflow build v2.0.46`
 
 ---
 

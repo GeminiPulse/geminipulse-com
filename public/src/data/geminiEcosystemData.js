@@ -2219,6 +2219,78 @@ export const GEMINIPULSE_STUDIO_AGENTS_MATRIX = [
   },
 ];
 
+// 4-Rung "Prepaid vs. All-Access" Value Ladder & Combo Merchandising Architecture (#addons)
+export const GEMINI_ADDON_PRICING_LADDER = [
+  {
+    id: 'rung-free',
+    badge: 'RUNG 01 • FREE FOREVER',
+    title: 'Community Starter & Labs',
+    priceLabel: '$0',
+    subLabel: 'Zero signup wall • Open Source',
+    featured: false,
+    ctaType: 'scroll-free',
+    ctaLabel: 'Download Free Kits ↓',
+    summary:
+      'Instant value for newcomers and builders: install our open-source Antigravity starter plugin, grab the 10-prompt Workspace Lite sheet, and run all 6 interactive Labs.',
+    perks: [
+      '`gemini-twin-starter` Antigravity Plugin (`v1.0.0`)',
+      'Workspace Lite Pack (10 prompts + 2 Apps Scripts)',
+      '10% First-Year Google Workspace reader referral perk',
+    ],
+  },
+  {
+    id: 'rung-prepaid',
+    badge: 'RUNG 02 • PREPAID SINGLE PACKS',
+    title: 'À La Carte Weekend Packs',
+    priceLabel: '$19 – $29',
+    subLabel: 'One-time purchase • Zero subscription',
+    featured: false,
+    ctaType: 'prepaid-modal',
+    ctaLabel: 'Pick a Single Pack ($19–$29)',
+    summary:
+      'Hate subscriptions? Grab the exact standalone pack you need once—whether automating Gmail/Sheets ($19) or migrating off $40/mo WordPress hosting ($29).',
+    perks: [
+      '$19 Workspace Pro 50-Workflow + 8-Apps-Script Vault',
+      '$29 WordPress WXR XML → Firebase `$0/mo` CLI Migrator',
+      '$29 9:16 YouTube Shorts + Flash-TTS Creator Studio Kit',
+    ],
+  },
+  {
+    id: 'rung-all-access',
+    badge: '⭐ BEST VALUE COMBO • SAVE $107',
+    title: 'Pro Insider All-Access Pass',
+    priceLabel: '$9 / mo',
+    subLabel: 'or $79 / yr (2.5 mos free) • Cancel anytime',
+    featured: true,
+    ctaType: 'monthly-all-access',
+    ctaLabel: 'Unlock All $116+ Packs ($9/mo)',
+    summary:
+      'Unlocks EVERY standalone Pro Pack ($116+ separate value) immediately, plus continuous Gemini 4 model updates and weekly Thursday Tri-Model Arena raw eval drops.',
+    perks: [
+      'Includes ALL 3 Prepaid Pro Packs ($19 + $29 + $29 value)',
+      'Includes Pro 5-Agent Studio + Thursday Arena Eval Harness ($39 value)',
+      'Continuous updates as new Gemini 4 & SDK releases ship',
+    ],
+  },
+  {
+    id: 'rung-agency',
+    badge: 'RUNG 04 • TEAMS & AGENCIES',
+    title: '10-Seat Team & Custom Sprints',
+    priceLabel: '$149',
+    subLabel: 'One-time 10-seat pack • Custom builds available',
+    featured: false,
+    ctaType: 'agency-inquiry',
+    ctaLabel: 'Request Team Pack / Custom Build',
+    summary:
+      'Built for web agencies, consultancies, and SMBs rolling out Google Workspace playbooks, Antigravity token profiles, and WordPress-to-Firebase migrations across staff or clients.',
+    perks: [
+      'Commercial license for up to 10 team or agency seats',
+      'All Pro Workspace, Migration, Shorts & Eval packs included',
+      'Optional custom Antigravity plugin or migration advisory sprint',
+    ],
+  },
+];
+
 // Free, Freemium & Pro Insider Plugins, Agents & (T)winning Helpers Showcase (#addons)
 export const GEMINI_TWIN_ADDONS_CATALOG = [
   {
@@ -2227,6 +2299,7 @@ export const GEMINI_TWIN_ADDONS_CATALOG = [
     slug: 'gemini-twin-starter',
     tier: 'Free • Open Source',
     tierType: 'free',
+    standalonePrice: null,
     audience: 'Everyone (Joes, Jills & Pros)',
     format: 'Antigravity Plugin (1 Agent + 3 Skills)',
     tagline:
@@ -2234,39 +2307,79 @@ export const GEMINI_TWIN_ADDONS_CATALOG = [
     highlights: [
       'Includes `twin-coach` subagent translating WordPress/FTP/MySQL/Excel into Google Antigravity, Firestore & Workspace',
       'Includes `google-suite-power-prompts`, `interactions-api-quickstart` (`@google/genai` v2.32+), and `antigravity-token-diet`',
-      'Verified clean 5.9 KB `.tar.gz` bundle — zero external dependencies, 100% open source on GitHub',
+      'Published in its own standalone Apache-2.0 repo (`GeminiPulse/gemini-twin-starter` v1.0.0) for 1-line install',
     ],
     installCommand: 'curl -fsSL https://geminipulse.com/downloads/install-gemini-twin-starter.sh | bash',
     downloadUrl: '/downloads/gemini-twin-starter.tar.gz',
-    downloadLabel: 'Download Plugin (.tar.gz)',
-    sourceUrl: 'https://github.com/GeminiPulse/geminipulse-com/tree/v2.0/addons/gemini-twin-starter',
-    sourceLabel: 'Inspect Source on GitHub',
+    downloadLabel: 'Download Free (.tar.gz)',
+    sourceUrl: 'https://github.com/GeminiPulse/gemini-twin-starter',
+    sourceLabel: 'GitHub Repo (v1.0.0)',
   },
   {
     id: 'addon-workspace-twin-pack',
-    name: 'Google Workspace Everyday (T)winning Pack',
+    name: 'Google Workspace (T)winning 50-Vault',
     slug: 'google-workspace-twin-pack',
-    tier: 'Freemium (Free Lite + Pro 50-Pack)',
+    tier: 'Free Lite • $19 Pro Vault (or $9/mo)',
     tierType: 'freemium',
+    standalonePrice: '$19',
     audience: 'Joes & Jills (Everyday & Teams)',
-    format: 'Prompt Cheat-Sheet + 2 Google Apps Scripts',
+    format: '50 Department Prompts + 8 Google Apps Scripts',
     tagline:
       'Built for non-coders, founders, marketers, and busy teams who want to save 5+ hours every week inside Gmail, Google Docs, Sheets, Slides, Meet, and Google NotebookLM—zero terminal required.',
     highlights: [
-      'Free Lite Download today: 10 battle-tested Gemini side-panel prompts + 2 copy-paste Google Apps Script automations',
-      'Covers Inbox-to-Sheets action logging, 1-click Weekly Status Doc generation, and NotebookLM Audio Overviews',
-      'Pro Insider ($9/mo) unlocks the expanded 50-workflow Sales, Ops, Finance & Marketing department playbook',
+      'Free Lite Download today: 10 Gemini side-panel prompts + 2 copy-paste Google Apps Script automations',
+      '$19 Pro Vault: Full 50-workflow playbook across Executive, Sales, Finance/Sheets, Marketing, Ops & NotebookLM',
+      'Includes 8 ready-to-run Apps Scripts (Inbox-to-Sheets, Calendar Dossier, Drive Audit, Invoice Reminder Drafts) — FREE inside $9/mo Pro Insider',
     ],
     downloadUrl: '/downloads/workspace-twinning-lite.md',
-    downloadLabel: 'Download Free Lite Pack (.md)',
+    downloadLabel: 'Free Lite Pack (.md)',
     referralNote: true,
+  },
+  {
+    id: 'addon-making-the-switch-kit',
+    name: '"mAiking the swAitch" WP → Firebase Kit',
+    slug: 'making-the-switch-migrator',
+    tier: 'Free Guides • $29 CLI Kit (or $9/mo)',
+    tierType: 'freemium',
+    standalonePrice: '$29',
+    audience: 'Everyone (Joes, Jills & Pros)',
+    format: 'wp-wxr-to-firebase CLI + Security Rules + Runbook',
+    tagline:
+      'Pays for itself in 3 weeks by retiring $35–$50/mo cPanel/WP hosting and 45 vulnerable PHP plugins in favor of $0/mo Firebase Hosting CDN, Cloud Firestore JSON, and AI-authored Security Rules.',
+    highlights: [
+      'Free Live Today: Part 1 & Part 2 Rosetta Stone guides + Interactive SQL-to-Firestore Live Translator',
+      '$29 Pro Migrator Kit: Zero-dependency `wp-wxr-to-firebase.mjs` CLI converting WordPress Export `.xml` into Static HTML5, Markdown, Firestore JSON, `sitemap.xml` & 301 redirects',
+      'Includes hardened `firestore.rules` starter + Zero-Downtime Cloudflare DNS Cutover Runbook — FREE inside $9/mo Pro Insider',
+    ],
+    liveDemoUrl: '/series/making-the-switch/part-2-from-mysql-phpmyadmin-to-firestore.html',
+    liveDemoLabel: 'Free SQL Translator',
+  },
+  {
+    id: 'addon-shorts-omni-studio',
+    name: '9:16 YouTube Shorts & Flash-TTS Studio Kit',
+    slug: 'youtube-shorts-omni-kit',
+    tier: '$29 One-Time • Free in $9/mo Insider',
+    tierType: 'pro',
+    standalonePrice: '$29',
+    audience: 'Creators & Media',
+    format: 'HTML5 9:16 Capture Studio + Batch TTS CLI + 5-Node Kit',
+    tagline:
+      'Turn technical posts and tutorials into faceless 9:16 YouTube Shorts using 100% Google multimodal models: `gemini-3.8-flash-tts` (24kHz WAV), `gemini-nano-banana-2.1`, and `gemini-omni-1.1-flash`.',
+    highlights: [
+      'Customizable 5-scene 9:16 HTML5 Capture Studio template with 1-click Clean Capture Mode & Web Audio chimes',
+      'Batch `gemini-3.8-flash-tts` Interactions API WAV generator CLI + Omni/Nano prompt vault & 5-Channel Launch Kit',
+      'Preview Short #05 & #06 free in your browser — buy standalone ($29) or get it included in $9/mo Pro Insider',
+    ],
+    liveDemoUrl: '/shorts/short-05-making-the-switch.html',
+    liveDemoLabel: 'Live 9:16 Preview',
   },
   {
     id: 'addon-geminipulse-studio',
     name: 'GeminiPulse Studio & 5-Agent Engine',
     slug: 'geminipulse-studio',
-    tier: 'Freemium • Open-Core Studio',
+    tier: 'Open-Core Free • Pro Updates in $9/mo',
     tierType: 'freemium',
+    standalonePrice: null,
     audience: 'Pros & Builders',
     format: 'Antigravity Production Plugin (5 Agents + 5 Skills + 3 CLIs)',
     tagline:
@@ -2274,64 +2387,29 @@ export const GEMINI_TWIN_ADDONS_CATALOG = [
     highlights: [
       'Live `pulse-plugin-profile.mjs` switches Antigravity between `lean-editorial` (~10K tokens/turn saved), `web-qa`, and `firebase-backend` with zero restart',
       'Includes `pulse-content-cli.mjs` (Dual-Theme HTML + JSON-LD + `sitemap.xml` + `feed.xml` in 50ms) & `pulse-preflight-audit.mjs`',
-      'Inspect the complete open-core architecture on GitHub or unlock ongoing Pro Studio updates with Pro Insider ($9/mo)',
+      'Inspect the complete open-core architecture free on GitHub or unlock ongoing Pro Studio bundles in $9/mo Pro Insider',
     ],
     sourceUrl: 'https://github.com/GeminiPulse/geminipulse-com/tree/v2.0/addons/geminipulse-studio',
-    sourceLabel: 'Inspect 5-Agent Source on GitHub',
-  },
-  {
-    id: 'addon-making-the-switch-kit',
-    name: '"mAiking the swAitch" WordPress → Firebase Kit',
-    slug: 'making-the-switch-migrator',
-    tier: 'Freemium (Free Guides + Pro Kit)',
-    tierType: 'freemium',
-    audience: 'Everyone (Joes, Jills & Pros)',
-    format: 'Rosetta Stone Guides + SQL-to-Firestore Translator',
-    tagline:
-      'Retire $40/mo cPanel hosting, fragile FTP edits, and 45 vulnerable PHP plugins in favor of $0/mo Firebase Hosting CDN, real-time Cloud Firestore JSON, and AI-authored Security Rules.',
-    highlights: [
-      'Free Live Today: Part 1 (WordPress/FTP → Antigravity) & Part 2 (MySQL/phpMyAdmin → Firestore) + Interactive SQL Translator',
-      'Plain-English Rosetta Stone diagrams mapping Local Checkouts, Git Worktrees, and `firestore.rules` edge security',
-      'Pro Insider ($9/mo) includes our `wp_posts` XML-to-Static-HTML converter script & zero-downtime Cloudflare DNS cutover checklist',
-    ],
-    liveDemoUrl: '/series/making-the-switch/part-2-from-mysql-phpmyadmin-to-firestore.html',
-    liveDemoLabel: 'Try Free SQL → Firestore Translator',
-  },
-  {
-    id: 'addon-shorts-omni-studio',
-    name: '9:16 YouTube Shorts & Flash-TTS Studio Kit',
-    slug: 'youtube-shorts-omni-kit',
-    tier: 'Pro Insider ($9/mo Included)',
-    tierType: 'pro',
-    audience: 'Creators & Media',
-    format: 'HTML5 9:16 Capture Player + TTS & Omni Prompts',
-    tagline:
-      'Turn technical posts and tutorials into faceless 9:16 YouTube Shorts using 100% Google multimodal models: `gemini-3.8-flash-tts` (24kHz WAV), `gemini-nano-banana-2.1`, and `gemini-omni-1.1-flash`.',
-    highlights: [
-      'Interactive 5-scene 9:16 browser Studio Player with 1-click Clean Capture Mode & Web Audio chimes',
-      'Includes Node CLI `gemini-3.8-flash-tts` Interactions API master WAV exporter & 5-Node Social Launch Kit templates',
-      'Test the live interactive Short #05 & #06 Studio Player free in your browser before joining Pro Insider',
-    ],
-    liveDemoUrl: '/shorts/short-05-making-the-switch.html',
-    liveDemoLabel: 'Preview Live 9:16 Shorts Player',
+    sourceLabel: 'Open-Core Source',
   },
   {
     id: 'addon-arena-eval-harness',
     name: 'Frontier Tri-Model Arena Eval & QA Harness',
     slug: 'tri-model-arena-harness',
-    tier: 'Pro Insider ($9/mo Included)',
+    tier: '$39 Value • Included in $9/mo Insider',
     tierType: 'pro',
+    standalonePrice: '$39',
     audience: 'Pros & Builders',
     format: '6-Pillar Rubric + CDP Layout & Lighthouse Bots',
     tagline:
       'Benchmark `gemini-4-argon`, `gemini-4-carbon`, and `gemini-3.8-flash` on real engineering & GEO tasks with reproducible latency/cost tracking, 4-viewport Chrome CDP overflow checks, and Lighthouse CLI automation.',
     highlights: [
-      'Exact single-shot prompt packs and 100-point 6-pillar scoring rubrics from our Thursday Frontier Tri-Model Arena',
+      'Weekly Thursday Frontier Tri-Model Arena raw single-shot prompt packs & 100-point 6-pillar scoring rubrics',
       'Automated headless Chrome CDP bounding-box auditor (`1440px`, `1120px`, `768px`, `390px`) + Desktop/Mobile Lighthouse runner',
-      'Explore all 4 live unmodified single-shot Arena HTML5 apps in `#tri-model-arena` today',
+      'Included automatically for all $9/mo (and $79/yr) Pro Insider members — test all 4 live Arena apps below',
     ],
     liveDemoUrl: '#tri-model-arena',
-    liveDemoLabel: 'Explore Live Arena Sandbox',
+    liveDemoLabel: 'Live Arena Sandbox',
   },
 ];
 

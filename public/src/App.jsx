@@ -67,6 +67,7 @@ import {
   GEMINI_VIDEO_SHOWCASE,
   STRIPE_SUPPORT_CONFIG,
   GEMINIPULSE_STUDIO_AGENTS_MATRIX,
+  GEMINI_ADDON_PRICING_LADDER,
   GEMINI_TWIN_ADDONS_CATALOG,
 } from './data/geminiEcosystemData';
 
@@ -392,13 +393,18 @@ export default function App() {
   // Support / Contribute Native <dialog> State (Stripe Payment Links via Agile LLC -> GeminiPulse)
   const supportDialogRef = useRef(null);
   const [supportTier, setSupportTier] = useState('one-time');
+  const [selectedAddonPack, setSelectedAddonPack] = useState(null);
   const [supportEmail, setSupportEmail] = useState('');
   const [supportSubmitting, setSupportSubmitting] = useState(false);
   const [supportStatus, setSupportStatus] = useState(null);
 
   const openSupportDialog = useCallback(
-    (initialTier = 'one-time') => {
-      setSupportTier(initialTier);
+    (initialTier = 'one-time', addonPack = null) => {
+      const resolvedTier = typeof initialTier === 'string' ? initialTier : 'one-time';
+      const resolvedPack =
+        addonPack && typeof addonPack === 'object' && addonPack.name ? addonPack : null;
+      setSupportTier(resolvedTier);
+      setSelectedAddonPack(resolvedPack);
       setSupportStatus(null);
       if (currentUser?.email) {
         setSupportEmail((prev) => prev || currentUser.email);
@@ -407,7 +413,10 @@ export default function App() {
       if (dlg && !dlg.open) {
         dlg.showModal();
       }
-      trackPulseEvent('support_modal_open', { tier: initialTier });
+      trackPulseEvent('support_modal_open', {
+        tier: resolvedTier,
+        addon: resolvedPack?.slug || 'general',
+      });
     },
     [currentUser]
   );
@@ -2466,24 +2475,134 @@ export default function App() {
             <div className="flex flex-wrap items-center gap-2 shrink-0">
               <button
                 type="button"
-                onClick={() => openSupportDialog('monthly')}
+                onClick={() =>
+                  openSupportDialog('monthly', {
+                    name: 'Pro Insider All-Access Pass ($116+ Bundle)',
+                    slug: 'pro-insider-all-access',
+                    standalonePrice: '$116+ value included',
+                  })
+                }
                 className="bg-gemini-grad text-white text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-full inline-flex items-center gap-1.5 shadow-md hover:opacity-95 cursor-pointer whitespace-nowrap"
               >
                 <Sparkles className="w-4 h-4" />
-                <span>Unlock Pro Insider ($9/mo)</span>
+                <span>All-Access Pass ($9/mo)</span>
               </button>
               <button
                 type="button"
                 onClick={() => {
                   setInquiryStatus(null);
+                  setInquiryForm((prev) => ({
+                    ...prev,
+                    inquiryType: 'Business & Partnerships',
+                    message:
+                      prev.message ||
+                      'Interested in the $149 Agency & Team 10-Seat Commercial Pack (or a Custom Antigravity Plugin Sprint): ',
+                  }));
                   setShowInquiryModal(true);
                 }}
                 className="px-4 py-2.5 rounded-full m3-surface-elevated hover:border-blue-400 text-xs font-semibold inline-flex items-center gap-1.5 cursor-pointer whitespace-nowrap"
               >
                 <Mail className="w-3.5 h-3.5 text-purple-400" />
-                <span>Custom Agent Inquiry</span>
+                <span>10-Seat Team / Custom ($149+)</span>
               </button>
             </div>
+          </div>
+
+          {/* 4-Rung "Prepaid vs. All-Access" Value Ladder & Combo Offers */}
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4" aria-label="Add-on pricing options and bundles">
+            {GEMINI_ADDON_PRICING_LADDER.map((rung) => {
+              const handleRungAction = () => {
+                trackPulseEvent('addon_ladder_click', { rung: rung.id });
+                if (rung.ctaType === 'scroll-free') {
+                  setAddonTierFilter('free');
+                  setAddonAudienceFilter('All');
+                  const gridEl = document.getElementById('addons-catalog-grid');
+                  if (gridEl) gridEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else if (rung.ctaType === 'prepaid-modal') {
+                  openSupportDialog('one-time', {
+                    name: 'À La Carte Prepaid Pro Pack ($19 or $29)',
+                    slug: 'prepaid-single-pack',
+                    standalonePrice: '$19 or $29',
+                  });
+                } else if (rung.ctaType === 'monthly-all-access') {
+                  openSupportDialog('monthly', {
+                    name: 'Pro Insider All-Access Pass ($116+ Bundle)',
+                    slug: 'pro-insider-all-access',
+                    standalonePrice: '$116+ value included',
+                  });
+                } else if (rung.ctaType === 'agency-inquiry') {
+                  setInquiryStatus(null);
+                  setInquiryForm((prev) => ({
+                    ...prev,
+                    inquiryType: 'Business & Partnerships',
+                    message:
+                      prev.message ||
+                      'Interested in the $149 Agency & Team 10-Seat Commercial Pack (or a Custom Antigravity Plugin / Migration Sprint): ',
+                  }));
+                  setShowInquiryModal(true);
+                }
+              };
+
+              return (
+                <article
+                  key={rung.id}
+                  className={`m3-card p-5 flex flex-col justify-between gap-4 min-w-0 ${
+                    rung.featured ? 'border-purple-400/60 bg-purple-500/[0.05]' : ''
+                  }`}
+                >
+                  <header className="space-y-1.5 min-w-0">
+                    <div
+                      className={`text-[10px] font-mono font-bold uppercase tracking-wider break-words ${
+                        rung.featured ? 'text-purple-300' : 'text-emerald-400'
+                      }`}
+                    >
+                      {rung.badge}
+                    </div>
+                    <h3 className="text-base sm:text-lg font-bold leading-snug break-words">
+                      {rung.title}
+                    </h3>
+                    <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5 pt-0.5">
+                      <span className="text-2xl font-extrabold tracking-tight text-[var(--md-sys-color-on-surface)]">
+                        {rung.priceLabel}
+                      </span>
+                      <span className="text-[11px] font-mono m3-text-muted break-words">
+                        {rung.subLabel}
+                      </span>
+                    </div>
+                  </header>
+
+                  <div className="space-y-3 min-w-0">
+                    <p className="text-xs m3-text-muted leading-relaxed break-words">
+                      {rung.summary}
+                    </p>
+                    <ul className="space-y-1.5">
+                      {rung.perks.map((perk, idx) => (
+                        <li key={idx} className="text-[11px] m3-text-muted flex items-start gap-1.5 min-w-0">
+                          <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+                          <span className="break-words min-w-0">
+                            <InlineCodeText text={perk} />
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <footer className="pt-3 border-t border-[var(--md-sys-color-outline)]">
+                    <button
+                      type="button"
+                      onClick={handleRungAction}
+                      className={`w-full px-3.5 py-2.5 rounded-full text-xs font-semibold inline-flex items-center justify-center text-center leading-snug cursor-pointer transition-colors min-h-[40px] ${
+                        rung.featured
+                          ? 'bg-gemini-grad text-white shadow-sm hover:opacity-95'
+                          : 'm3-surface-elevated hover:border-blue-400 text-[var(--md-sys-color-on-surface)]'
+                      }`}
+                    >
+                      {rung.ctaLabel}
+                    </button>
+                  </footer>
+                </article>
+              );
+            })}
           </div>
 
           {/* Filter Toolbar: Tier + Audience */}
@@ -2541,7 +2660,7 @@ export default function App() {
           </div>
 
           {/* Semantic <article> Add-On Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div id="addons-catalog-grid" className="scroll-mt-28 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {GEMINI_TWIN_ADDONS_CATALOG.filter((item) => {
               const tierOk = addonTierFilter === 'All' || item.tierType === addonTierFilter;
               const audOk = addonAudienceFilter === 'All' || item.audience === addonAudienceFilter;
@@ -2667,14 +2786,25 @@ export default function App() {
                       </a>
                     )}
 
+                    {addon.standalonePrice && (
+                      <button
+                        type="button"
+                        onClick={() => openSupportDialog('one-time', addon)}
+                        className="px-3.5 py-2 rounded-full bg-amber-500/15 text-amber-300 border border-amber-400/35 hover:bg-amber-500/25 text-xs font-semibold inline-flex items-center gap-1.5 cursor-pointer transition-colors whitespace-nowrap"
+                      >
+                        <Zap className="w-3.5 h-3.5 shrink-0" />
+                        <span>Buy {addon.standalonePrice} Once</span>
+                      </button>
+                    )}
+
                     {(addon.tierType === 'pro' || addon.tierType === 'freemium') && (
                       <button
                         type="button"
-                        onClick={() => openSupportDialog('monthly')}
+                        onClick={() => openSupportDialog('monthly', addon)}
                         className="px-3.5 py-2 rounded-full bg-purple-500/15 text-purple-300 border border-purple-400/35 hover:bg-purple-500/25 text-xs font-semibold inline-flex items-center gap-1.5 cursor-pointer transition-colors whitespace-nowrap"
                       >
                         <Sparkles className="w-3.5 h-3.5 shrink-0" />
-                        <span>{addon.tierType === 'pro' ? 'Get Pro Insider ($9/mo)' : 'Upgrade to Pro Pack'}</span>
+                        <span>{addon.standalonePrice ? 'Free in $9/mo' : 'Pro Updates ($9/mo)'}</span>
                       </button>
                     )}
                   </footer>
@@ -4768,10 +4898,42 @@ export default function App() {
             </div>
           ) : (
             <>
-              <p className="text-xs sm:text-sm m3-text-muted leading-relaxed">
-                <strong>GeminiPulse.com</strong> is a free, open showcase of what you can build and run on the Google Gemini ecosystem. Contributions help fund weekly{' '}
-                <strong>Thursday Frontier Tri-Model Arena</strong> token runs, open-source Agile Labs tools, and ad-light independent benchmarks.
-              </p>
+              {selectedAddonPack ? (
+                <div className="p-4 rounded-2xl bg-purple-500/10 border border-purple-400/40 space-y-2">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-purple-300">
+                      SELECTED ADD-ON • {selectedAddonPack.name}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setSelectedAddonPack(null)}
+                      className="text-[11px] font-mono text-blue-300 hover:underline cursor-pointer"
+                    >
+                      View general supporter info
+                    </button>
+                  </div>
+                  <p className="text-xs m3-text-muted leading-relaxed">
+                    Choose how you want to grab <strong>{selectedAddonPack.name}</strong>:{' '}
+                    {selectedAddonPack.standalonePrice && !selectedAddonPack.standalonePrice.includes('bundle') && !selectedAddonPack.standalonePrice.includes('value') ? (
+                      <>
+                        pick <strong>One-Time Contribution</strong> below and enter{' '}
+                        <strong className="text-amber-300">{selectedAddonPack.standalonePrice}</strong> at Stripe for a zero-subscription Prepaid download (dispatched straight to your Stripe receipt email), <em>or</em> unlock{' '}
+                        <strong className="text-emerald-300">ALL $116+ of Pro Packs</strong> immediately with the{' '}
+                        <strong>$9/mo Pro Insider All-Access Pass</strong>.
+                      </>
+                    ) : (
+                      <>
+                        unlock <strong className="text-emerald-300">ALL $116+ of Pro Packs</strong> (`Workspace 50-Vault`, `WP → Firebase CLI`, `9:16 Shorts Studio`, and `Arena Eval Harness`) with the <strong>$9/mo Pro Insider All-Access Pass</strong>, or enter <strong className="text-amber-300">$19</strong> / <strong className="text-amber-300">$29</strong> on One-Time Checkout for a single Prepaid pack.
+                      </>
+                    )}
+                  </p>
+                </div>
+              ) : (
+                <p className="text-xs sm:text-sm m3-text-muted leading-relaxed">
+                  <strong>GeminiPulse.com</strong> is a free, open showcase of what you can build and run on the Google Gemini ecosystem. Contributions help fund weekly{' '}
+                  <strong>Thursday Frontier Tri-Model Arena</strong> token runs, open-source Agile Labs tools, and ad-light independent benchmarks.
+                </p>
+              )}
 
               {/* Two Support Tiers: One-Time Contribution vs. Monthly Founding Supporter */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
