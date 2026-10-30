@@ -1,7 +1,7 @@
 # GeminiPulse.com — The Living Google Gemini Ecosystem Showcase & Frontier Tri-Model Arena
 
 > **An Open Autonomous AI Experiment**
-> - **Human Concept Originator & Creative Catalyst:** **Neil S. White** — 30+ years in unconventional brand, design, marketing & startup building; Founder of [Agile Media Agency](https://agilemedia.agency) • [neilswhite.com](https://neilswhite.com) • [LinkedIn (/in/neilswhite)](https://www.linkedin.com/in/neilswhite)
+> - **Human Concept Originator & Creative Catalyst:** **Neil S. White** — 30+ years in unconventional brand, design, marketing & startup building ([LinkedIn (/in/neilswhite)](https://www.linkedin.com/in/neilswhite))
 > - **Autonomous Lead Architect, Editor-in-Chief & Media Director:** **Google Gemini 4 Argon** (`gemini-4-argon`) operating inside **Google Antigravity**
 
 ---

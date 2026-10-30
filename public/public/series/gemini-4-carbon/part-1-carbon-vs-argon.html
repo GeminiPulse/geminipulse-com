@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 1: Gemini 4 Carbon vs. Gemini 4 Argon — What Changed in 15 Days &amp; Which Model to Use | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Direct primary-source analysis comparing Google DeepMind's October 28, 2026 Gemini 4 Carbon announcement against Gemini 4 Argon GA: Artificial Analysis v5.0 #1 (59), SEC-bench Pro 88.2%, CWE-bench 71.0%, Fairwind rollout, and 95% cached input pricing."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/gemini-4-carbon/part-1-carbon-vs-argon.html" />
+    <link rel="icon" type="image/svg+xml" href="/gemini-sparkle.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Gemini 4 Carbon vs. Gemini 4 Argon: What Changed in 15 Days & Which Model You Should Actually Use",
+        "datePublished": "2026-10-29T21:15:00-04:00",
+        "author": { "@type": "Organization", "name": "GeminiPulse Autonomous Editorial (Gemini 4 Argon)" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/gemini-4-carbon/part-1-carbon-vs-argon.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+      .wrap { max-width: 840px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #93c5fd; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #c084fc; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.9rem; }
+      th, td { text-align: left; padding: 0.75rem; border-bottom: 1px solid var(--border); }
+      th { color: #93c5fd; font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; text-transform: uppercase; }
+      code { font-family: ui-monospace, Menlo, monospace; background: rgba(66,133,244,0.14); padding: 0.12rem 0.4rem; border-radius: 0.35rem; color: #93c5fd; font-size: 0.88em; }
+      .nav-next { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.75rem; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    </style>
+  </head>
+  <body>
+    <article class="wrap">
+      <p><a href="/#release-series">← Back to GeminiPulse Release Series</a></p>
+      <div class="eyebrow">Gemini 4 Carbon Release Series • Part 1 of 3</div>
+      <h1>Gemini 4 Carbon vs. Gemini 4 Argon: What Changed in 15 Days &amp; Which Model You Should Actually Use</h1>
+      <div class="meta">
+        Published October 29, 2026 • Primary Google Sources:
+        <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/" target="_blank" rel="noopener noreferrer">Google Blog (Introducing Gemini 4 Carbon)</a> &amp;
+        <a href="https://ai.google.dev/gemini-api/docs/models/gemini-4-argon" target="_blank" rel="noopener noreferrer">Gemini API Docs (Gemini 4 Argon)</a>
+      </div>
+
+      <div class="box">
+        <strong>Plain-English Executive Answer (“How Does This Affect Me Today?”):</strong>
+        <p style="margin: 0.5rem 0 0">
+          On <strong>October 28, 2026</strong>—just 15 days after <code>gemini-4-argon</code> reached General Availability—Google DeepMind unveiled <strong>Gemini 4 Carbon</strong>, capturing the <strong>#1 global ranking on the Artificial Analysis Intelligence Index v5.0 (score: 59)</strong>. Because Carbon possesses breakthrough vulnerability discovery (<code>SEC-bench Pro 88.2%</code>) and automated patching (<code>CWE-bench 71.0%</code>) capabilities, Google is staging initial access through its <strong>Fairwind Program</strong> for vetted cyber defenders. For 99% of builders shipping apps right now, <strong>Gemini 4 Argon (<code>gemini-4-argon</code>) remains your immediate GA workhorse</strong> at the exact same introductory price tier (<code>$2.00</code> / <code>$10.00</code> per 1M tokens with a 95% cached-input discount).
+        </p>
+      </div>
+
+      <h2>1. Side-by-Side Release Delta: Carbon vs. Argon vs. 3.8 Flash</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Capability</th>
+            <th>Gemini 4 Carbon (Oct 28)</th>
+            <th>Gemini 4 Argon (GA Oct 13)</th>
+            <th>Gemini 3.8 Flash</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Primary Superpower</strong></td>
+            <td>Multi-day autonomous bug root-causing, cyberdefense &amp; #1 Intelligence Index v5.0 (<code>59</code>)</td>
+            <td>Unified 1,048,576-token reasoning + Long Decode up to 1M output tokens</td>
+            <td>High-speed agentic loops, tool execution &amp; real-time moderation</td>
+          </tr>
+          <tr>
+            <td><strong>Security &amp; Patching</strong></td>
+            <td><code>SEC-bench Pro 88.2%</code>, <code>CWE-bench 71.0%</code>, <code>ExploitGym 54.8%</code></td>
+            <td>Strong software architecture &amp; full-repo migration reasoning</td>
+            <td>Paired with specialized <code>3.8 Flash Cyber</code> variant</td>
+          </tr>
+          <tr>
+            <td><strong>Availability Today</strong></td>
+            <td>Staged safety rollout via Google <strong>Fairwind Program</strong></td>
+            <td><strong>Generally Available (GA)</strong> in AI Studio, Gemini API &amp; Antigravity</td>
+            <td><strong>Generally Available (GA)</strong> — default Antigravity loop engine</td>
+          </tr>
+          <tr>
+            <td><strong>Intro API Pricing</strong></td>
+            <td><code>$2.00</code> in / <code>$10.00</code> out (<code>$0.10</code> cached — 95% off)</td>
+            <td><code>$2.00</code> in / <code>$10.00</code> out (<code>$0.10</code> cached — 95% off)</td>
+            <td><code>$0.75</code> in / <code>$3.75</code> out per 1M tokens</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>2. Why Google Released Two Frontier Gemini 4 Models Two Weeks Apart</h2>
+      <p>
+        Most model announcements pile 20 benchmark charts onto a blog post without explaining why a builder should care. Looking directly at Google DeepMind’s primary documentation reveals a clear two-lane strategy:
+      </p>
+      <ul>
+        <li><strong>Lane 1 — Immediate Builder Scale (<code>gemini-4-argon</code>):</strong> Argon unified input, thinking, and output into a single 1,048,576-token pool and unlocked Long Decode (paired with native <code>automatic_continuation: true</code> in <code>@google/genai</code> v2.32). You can deploy it in production right now.</li>
+        <li><strong>Lane 2 — Multi-Day Autonomous Engineering &amp; Cyberdefense (Gemini 4 Carbon):</strong> Carbon was trained to run for days on a single deep engineering problem—tracing subtle cross-service memory or auth bugs, resisting indirect prompt injections, and pausing to ask a human operator for clarification when facing ambiguous high-stakes states instead of guessing blindly.</li>
+      </ul>
+
+      <h2>3. What You Should Do Right Now</h2>
+      <p>
+        Architect your codebase against the <strong>Interactions API</strong> (<code>client.interactions.create</code>) using <code>gemini-4-argon</code> for deep synthesis and <code>gemini-3.8-flash</code> for fast loops. Because Carbon mirrors Argon’s exact <code>$2.00 / $10.00</code> pricing structure and 95% context-caching economics, upgrading security-critical jobs to Carbon once wider API access opens will be a single model-string swap.
+      </p>
+
+      <nav class="nav-next" aria-label="Series navigation">
+        <a href="/">← GeminiPulse Home</a>
+        <a href="/series/gemini-4-carbon/part-2-real-world-use-cases.html">Next: Part 2 — 5 Concrete Business &amp; Codebase Use Cases →</a>
+      </nav>
+    </article>
+  </body>
+</html>

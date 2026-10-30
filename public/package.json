@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node scripts/stamp-build.mjs",
     "build": "vite build",
     "audit:ui": "node scripts/audit-layout.mjs",
     "audit:lighthouse": "node scripts/audit-lighthouse.mjs",

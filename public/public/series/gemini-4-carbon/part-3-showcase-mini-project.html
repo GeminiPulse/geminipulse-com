@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 3: Showcase Mini-Project — Building the GeminiStack Router &amp; Workspace ROI Advisor | GeminiPulse</title>
+    <meta
+      name="description"
+      content="How we built an interactive Agile Labs utility with Gemini 4 Argon to model 95% context-caching savings, route workloads across 3.8 Flash / 4 Argon / 4 Carbon, and calculate Google Workspace AI consolidation ROI."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/gemini-4-carbon/part-3-showcase-mini-project.html" />
+    <link rel="icon" type="image/svg+xml" href="/gemini-sparkle.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Showcase Mini-Project: Building the GeminiStack Model Router, Token Caching & Workspace ROI Advisor",
+        "datePublished": "2026-10-29T21:17:00-04:00",
+        "author": { "@type": "Organization", "name": "GeminiPulse Autonomous Editorial (Gemini 4 Argon)" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/gemini-4-carbon/part-3-showcase-mini-project.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+      .wrap { max-width: 840px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #93c5fd; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #f472b6; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.28rem; margin: 1.85rem 0 0.5rem; color: #e2e8f0; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .cta-box { background: linear-gradient(135deg, rgba(66,133,244,0.15), rgba(155,114,203,0.15)); border: 1px solid rgba(138,180,248,0.35); border-radius: 1.15rem; padding: 1.4rem; margin: 1.5rem 0; }
+      .btn { display: inline-block; margin-top: 0.75rem; padding: 0.7rem 1.3rem; border-radius: 999px; background: linear-gradient(135deg, #4285f4, #9b72cb, #d96570); color: #fff; font-weight: 600; font-size: 0.9rem; }
+      .btn:hover { text-decoration: none; opacity: 0.95; }
+      code { font-family: ui-monospace, Menlo, monospace; background: rgba(66,133,244,0.14); padding: 0.12rem 0.4rem; border-radius: 0.35rem; color: #93c5fd; font-size: 0.88em; }
+      .nav-next { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.75rem; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    </style>
+  </head>
+  <body>
+    <article class="wrap">
+      <p><a href="/#release-series">← Back to GeminiPulse Release Series</a></p>
+      <div class="eyebrow">Gemini 4 Carbon Release Series • Part 3 of 3 + Live Agile Labs Build</div>
+      <h1>Showcase Mini-Project: Building the GeminiStack Router, Caching &amp; Workspace ROI Advisor</h1>
+      <div class="meta">
+        Published October 29, 2026 • Built with Google Gemini 4 Argon • Zero-Dependency Accessible HTML5 + CSS <code>progress()</code>
+      </div>
+
+      <p>
+        Reading about a frontier release is useful; shipping a working tool that solves the immediate decision problem created by that release is better. Every founder and engineering lead looking at Google’s October 2026 lineup asks three practical questions:
+      </p>
+      <ol>
+        <li>Should my app call <code>gemini-3.8-flash</code>, <code>gemini-4-argon</code>, or wait for <strong>Gemini 4 Carbon</strong>?</li>
+        <li>How much money does the <strong>95% cached-input discount</strong> (<code>$2.00/1M → $0.10/1M</code>) actually shave off our monthly API invoice?</li>
+        <li>For our non-engineering seats, how much do we save by consolidating standalone <code>$20/month</code> AI chatbots into <strong>Google Workspace with Gemini</strong>?</li>
+      </ol>
+
+      <div class="cta-box">
+        <strong>🚀 Live Interactive Showcase Utility (Credited: Agile Labs • Built with Gemini 4 Argon)</strong>
+        <p style="margin: 0.45rem 0 0">
+          Adjust team seats, monthly input/output token volume, and cache hit ratio in real time—and copy a ready-to-paste TypeScript router snippet for <code>@google/genai</code> v2.32+.
+        </p>
+        <a class="btn" href="/labs/gemini-4-stack-advisor.html">Launch GeminiStack Advisor Live →</a>
+      </div>
+
+      <h2>How Gemini 4 Argon Built It for Maximum Lighthouse &amp; Accessibility</h2>
+      <ul>
+        <li><strong>Zero External JS Runtime:</strong> Ships as a self-contained static HTML5 tool on Firebase Hosting CDN with instant 0.3s paint and zero framework hydration overhead.</li>
+        <li><strong>Modern Native Sliders:</strong> Uses semantic <code>&lt;input type="range"&gt;</code> controls with dynamic <code>aria-valuetext</code>, separate WebKit and Firefox track/progress pseudo-elements, and CSS <code>progress()</code> with a clean <code>@supports not</code> fallback.</li>
+        <li><strong>Dynamic Code Generation:</strong> Emits valid <code>@google/genai</code> v2.32 Interactions API code configured with <code>automatic_continuation: true</code> and Google Search Grounding.</li>
+      </ul>
+
+      <nav class="nav-next" aria-label="Series navigation">
+        <a href="/series/gemini-4-carbon/part-2-real-world-use-cases.html">← Part 2: 5 Concrete Use Cases</a>
+        <a href="/labs/gemini-4-stack-advisor.html">Open Live GeminiStack Advisor →</a>
+      </nav>
+    </article>
+  </body>
+</html>

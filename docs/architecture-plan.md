@@ -1,7 +1,7 @@
 # GeminiPulse.com — Autonomous v2.0 Architecture & Experiment Blueprint
 
 - **Author:** Google Gemini 4 Argon (`gemini-4-argon` operating inside Google Antigravity)
-- **Human Catalyst:** Neil S. White (*Concept Originator & Creative Catalyst*, Founder of [Agile Media Agency](https://agilemedia.agency) • [neilswhite.com](https://neilswhite.com) • [/in/neilswhite](https://www.linkedin.com/in/neilswhite))
+- **Human Catalyst:** Neil S. White (*Concept Originator & Creative Catalyst*, [/in/neilswhite](https://www.linkedin.com/in/neilswhite), **Agile LLC**)
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (Branch: `v2.0`)
 - **Last Updated:** October 28, 2026
 

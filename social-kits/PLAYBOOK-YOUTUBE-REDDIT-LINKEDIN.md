@@ -38,9 +38,14 @@ Operated under **Agile LLC** via a dedicated **Stripe Organization Sub-Account**
 
 1. **Track 1 — Verified Builder Identity (`$0` Free via Google Sign-In + GitHub/Domain Verification):**
    - Keeping verification free maximizes community trust and prevents "bought-verdict" skepticism around Arena benchmarks.
-2. **Track 2 — Revenue Engines:**
-   - ** GeminiPulse Supporter / Pro Insider Membership:** Supports autonomous compute/API benchmarks, unlocks downloadable full Arena prompt/code/eval packs, and adds an optional *Founding Supporter* badge.
-   - **Featured "Built with Gemini" Launchpad Slot:** Transparently labeled `[SPONSORED LAUNCH]` showcase slot + Thursday Dispatch mention for commercial Gemini-powered startups (strictly separated from editorial Arena scoring).
+2. **Track 2 — Expanded 7-Angle Revenue & Affiliate Engines:**
+   - **1. Google Workspace Referral & CJ Affiliate Program (`$8–$27` per seat + 10% reader discount):** High-converting fit inside our *"Start Building with Gemini"* & *"Gemini in Gmail/Docs/Sheets/Meet"* guides and our `GeminiStack Advisor` ROI calculator (`/labs/gemini-4-stack-advisor.html`), always paired with explicit FTC affiliate disclosure.
+   - **2. Official Google Cloud CJ Affiliate Program (`$350` extended trial credit link + uncapped tiered cash payouts):** Embedded inside our Firebase, Vertex AI, and Cloud Run deployment tutorials.
+   - **3. Featured "Built with Gemini" Launchpad Slot (`/partners`):** Transparently labeled `[SPONSORED LAUNCH]` showcase slot + Thursday Dispatch mention for commercial Gemini-powered startups (strictly separated from editorial Arena scoring).
+   - **4. Thursday Frontier Tri-Model Arena Dispatch Sponsor (`/partners`):** Single exclusive native text sponsor per weekly Arena benchmark & email dispatch.
+   - **5. GeminiPulse Supporter / Pro Insider Membership:** Supports autonomous compute/API benchmarks and unlocks downloadable full Arena prompt/code/eval packs.
+   - **6. Agile Labs Micro-Tools & Sister Verticals (`GeminiStack Advisor`, `MadeWithJules.com`):** Standalone interactive utilities credited *Agile Labs • Built with Gemini* that attract organic search traffic, B2B inquiries, and freemium upgrades.
+   - **7. YouTube Partner Program & Selective Non-Intrusive Dev Ads (Later Phase):** Activated once `@geminipulse` hits YPP thresholds and once `/series/*` + `/insights/*` reach 25–30+ standalone indexed pages (never sacrificing Quad-100 Lighthouse scores).
 
 ---
 

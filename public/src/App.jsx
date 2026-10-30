@@ -42,7 +42,9 @@ import {
   loadFirebaseRuntime,
   signInWithGoogle,
   signOutUser,
+  trackPulseEvent,
 } from './firebase';
+import buildMeta from './buildMeta.json';
 import {
   PULSE_INTELLIGENCE_FEED,
   GEMINI_MODEL_MATRIX,
@@ -58,6 +60,9 @@ import {
   PERFORMANCE_TELEMETRY_LEDGER,
   TRI_MODEL_RUBRIC,
   TRI_MODEL_ARENA_EXPERIMENTS,
+  GEMINI_4_CARBON_RELEASE_SERIES,
+  GET_STARTED_WITH_GEMINI_TRACKS,
+  GEMINI_VIDEO_SHOWCASE,
 } from './data/geminiEcosystemData';
 
 // Authentic 4-Point Google Gemini Sparkle Icon
@@ -221,6 +226,13 @@ export default function App() {
   const [newsletterSubmitting, setNewsletterSubmitting] = useState(false);
   const [newsletterStatus, setNewsletterStatus] = useState(null);
 
+  // Release Deep-Dive Series & Curated YouTube Video Gallery State
+  const [activeSeriesPartId, setActiveSeriesPartId] = useState(
+    GEMINI_4_CARBON_RELEASE_SERIES.articles[0].id
+  );
+  const [videoCategory, setVideoCategory] = useState('All');
+  const [playingVideoId, setPlayingVideoId] = useState(null);
+
   const handleSubmitBusinessInquiry = async (e) => {
     e.preventDefault();
     if (inquirySubmitting) return;
@@ -228,6 +240,7 @@ export default function App() {
     const trimmedEmail = inquiryForm.email.trim();
     const trimmedOrg = inquiryForm.organization.trim();
     const trimmedMessage = inquiryForm.message.trim();
+    const submittedTopic = inquiryForm.inquiryType;
     if (!trimmedName || !trimmedEmail || trimmedMessage.length < 10) {
       setInquiryStatus({
         type: 'error',
@@ -244,14 +257,16 @@ export default function App() {
           name: trimmedName.slice(0, 100),
           email: trimmedEmail.slice(0, 160),
           organization: trimmedOrg.slice(0, 120),
-          inquiryType: inquiryForm.inquiryType,
+          inquiryType: submittedTopic,
           message: trimmedMessage.slice(0, 3000),
           createdAt: new Date().toISOString(),
         });
       }
+      trackPulseEvent('business_inquiry_submit', { inquiry_type: submittedTopic });
       setInquiryStatus({
         type: 'success',
-        text: 'Inquiry securely recorded in Cloud Firestore. Thank you—the program creator reviews business and partnership inquiries directly.',
+        submittedTopic,
+        text: 'Your inquiry has been securely recorded in Cloud Firestore. Thank you—the program creator reviews business, creator, and technical inquiries directly.',
       });
       setInquiryForm({
         name: '',
@@ -292,6 +307,7 @@ export default function App() {
           createdAt: new Date().toISOString(),
         });
       }
+      trackPulseEvent('newsletter_subscribe', { source: 'performance_dispatch_bar' });
       setNewsletterStatus({
         type: 'success',
         text: 'Subscribed to the Weekly Pulse & Thursday Tri-Model Arena Dispatch.',
@@ -500,6 +516,7 @@ export default function App() {
   );
 
   const runBlueprintSimulation = (blueprint = activeBlueprint) => {
+    trackPulseEvent('sdk_blueprint_run', { blueprint_id: blueprint.id });
     setIsSimulating(true);
     setVisibleStepsCount(0);
     const total = blueprint.simulatedSteps.length;
@@ -510,6 +527,24 @@ export default function App() {
       }, (idx + 1) * 380);
     });
   };
+
+  const activeSeriesArticle = useMemo(
+    () =>
+      GEMINI_4_CARBON_RELEASE_SERIES.articles.find((a) => a.id === activeSeriesPartId) ||
+      GEMINI_4_CARBON_RELEASE_SERIES.articles[0],
+    [activeSeriesPartId]
+  );
+
+  const featuredVideoOfTheDay = useMemo(
+    () => GEMINI_VIDEO_SHOWCASE.find((v) => v.featuredOfTheDay) || GEMINI_VIDEO_SHOWCASE[0],
+    []
+  );
+
+  const filteredVideos = useMemo(() => {
+    const galleryItems = GEMINI_VIDEO_SHOWCASE.filter((v) => v.id !== featuredVideoOfTheDay.id);
+    if (videoCategory === 'All') return galleryItems;
+    return galleryItems.filter((v) => v.category === videoCategory);
+  }, [videoCategory, featuredVideoOfTheDay]);
 
   // Live aggregated upvote counts & current user's upvoted project IDs from Cloud Firestore
   const liveUpvoteCounts = useMemo(() => {
@@ -868,6 +903,9 @@ export default function App() {
               <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 focus-within:visible focus-within:opacity-100 transition-all duration-150 absolute right-0 top-full pt-2 w-60 z-50">
                 <div className="m3-card p-2 bg-[var(--md-sys-color-surface)] border border-[var(--md-sys-color-outline-strong)] shadow-2xl space-y-1">
                   {[
+                    { href: '#release-series', label: 'Gemini 4 Carbon Series', sub: '3-Part Deep Dive + ROI Tool' },
+                    { href: '#video-showcase', label: 'YouTube Video Showcase', sub: 'Featured Creators & Google Talks' },
+                    { href: '#get-started', label: 'Start Building with Gemini', sub: '4 Onboarding & Business Paths' },
                     { href: '#chronicle', label: 'Antigravity Build Chronicle', sub: 'Autonomous Engineering Series' },
                     { href: '#performance-ledger', label: 'Speed, Search & Blind AI Lab', sub: 'Lighthouse + 4-Track Study' },
                     { href: '#media-studio', label: 'YouTube & Reddit Studio', sub: 'Shorts + Social Launch Kits' },
@@ -951,13 +989,14 @@ export default function App() {
         <div className="lg:hidden max-w-7xl mx-auto mt-2 px-1 flex-balance items-center justify-center gap-1.5 py-1">
           {[
             { href: '#pulse', label: 'Pulse' },
+            { href: '#release-series', label: 'Carbon Series' },
+            { href: '#video-showcase', label: 'Videos' },
+            { href: '#get-started', label: 'Start' },
             { href: '#models', label: 'Models' },
             { href: '#studio-lab', label: 'SDK Lab' },
             { href: '#tri-model-arena', label: 'Arena' },
             { href: '#showcase', label: 'Showcase' },
             { href: '#forum', label: 'Forum' },
-            { href: '#chronicle', label: 'Chronicle' },
-            { href: '#about-charter', label: 'Charter' },
           ].map((item) => (
             <a
               key={item.href}
@@ -1226,14 +1265,477 @@ export default function App() {
                     <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                     <span className="truncate">{item.groundedBy}</span>
                   </span>
+                  <div className="flex flex-wrap items-center gap-2">
+                    {item.id === 'pulse-gemini-4-carbon' && (
+                      <a
+                        href="#release-series"
+                        onClick={() => trackPulseEvent('release_series_jump', { from: 'pulse_card' })}
+                        className="px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-400/35 font-semibold whitespace-nowrap hover:bg-purple-500/30 transition-colors"
+                      >
+                        3-Part Series →
+                      </a>
+                    )}
+                    <a
+                      href={item.sourceUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="font-semibold text-blue-400 hover:underline inline-flex items-center gap-1 whitespace-nowrap shrink-0"
+                    >
+                      <span>{item.sourceLabel}</span>
+                      <ExternalLink className="w-3 h-3 shrink-0" />
+                    </a>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* =================================================================
+            MODULE 1B: GEMINI 4 CARBON 3-PART RELEASE SERIES & MINI-PROJECT (#release-series)
+            ================================================================= */}
+        <section id="release-series" className="scroll-mt-24 space-y-8">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 border-b border-[var(--md-sys-color-outline)] pb-6">
+            <div className="space-y-2 max-w-3xl">
+              <div className="text-xs font-mono uppercase tracking-wider text-purple-400 flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5" />
+                {GEMINI_4_CARBON_RELEASE_SERIES.seriesBadge}
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
+                Gemini 4 Carbon vs. Argon: <span className="gemini-spectrum-text">What Changed &amp; How It Affects You</span>
+              </h2>
+              <p className="m3-text-muted">
+                {GEMINI_4_CARBON_RELEASE_SERIES.subheadline}
+              </p>
+            </div>
+            <div className="flex-balance gap-2.5 shrink-0">
+              <a
+                href={GEMINI_4_CARBON_RELEASE_SERIES.miniProjectUrl}
+                onClick={() => trackPulseEvent('mini_project_open', { tool: 'geministack_advisor' })}
+                className="bg-gemini-grad text-white text-xs font-semibold px-4 py-2.5 rounded-full inline-flex items-center gap-1.5 whitespace-nowrap"
+              >
+                <Rocket className="w-3.5 h-3.5" />
+                <span>Launch GeminiStack ROI Calculator</span>
+              </a>
+              <a
+                href={GEMINI_4_CARBON_RELEASE_SERIES.primaryGoogleSourceUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="px-4 py-2.5 rounded-full m3-surface-elevated hover:border-blue-400 text-xs font-semibold inline-flex items-center gap-1.5 whitespace-nowrap"
+              >
+                <span>Direct Google Blog Source</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            </div>
+          </div>
+
+          {/* Plain-English Release Delta Translator Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {GEMINI_4_CARBON_RELEASE_SERIES.deltaRows.map((row, idx) => (
+              <div key={idx} className="m3-card p-5 space-y-3 flex flex-col justify-between min-w-0">
+                <div className="space-y-2.5">
+                  <span className="inline-block text-[11px] font-mono font-semibold px-2.5 py-0.5 rounded-md bg-blue-500/15 text-blue-300 border border-blue-400/30">
+                    CHANGE #{idx + 1} • PRIMARY GOOGLE DOCS
+                  </span>
+                  <h3 className="text-base font-bold leading-snug break-words">{row.whatChanged}</h3>
+                  <p className="text-xs sm:text-sm m3-text-muted leading-relaxed break-words">
+                    <InlineCodeText text={row.howItAffectsYou} />
+                  </p>
+                </div>
+                <div className="pt-3 border-t border-[var(--md-sys-color-outline)] text-[11px] font-mono text-emerald-400 break-words">
+                  Best For: {row.whoShouldCare}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* 3-Part Interactive Series Reader + Agile Labs Mini-Project Card */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+            <div className="lg:col-span-4 flex flex-col gap-3">
+              {GEMINI_4_CARBON_RELEASE_SERIES.articles.map((art) => {
+                const isSelected = art.id === activeSeriesArticle.id;
+                return (
+                  <button
+                    key={art.id}
+                    type="button"
+                    onClick={() => {
+                      setActiveSeriesPartId(art.id);
+                      trackPulseEvent('release_series_part_select', { part_id: art.id });
+                    }}
+                    className={`m3-card p-4 text-left space-y-1.5 cursor-pointer transition-all ${
+                      isSelected ? 'border-blue-400/70 ring-1 ring-blue-400/40' : ''
+                    }`}
+                  >
+                    <div className="flex items-center justify-between gap-2 text-[11px] font-mono">
+                      <span className={isSelected ? 'text-blue-300 font-bold' : 'text-purple-300'}>{art.partLabel}</span>
+                      <span className="m3-text-muted whitespace-nowrap">{art.readTime}</span>
+                    </div>
+                    <h3 className="text-sm font-bold leading-snug break-words">{art.title}</h3>
+                  </button>
+                );
+              })}
+
+              {/* Agile Labs Showcase Mini-Project Callout */}
+              <div className="m3-card p-5 space-y-3 border-emerald-500/30 bg-emerald-500/5">
+                <div className="text-[11px] font-mono font-semibold text-emerald-300 uppercase">
+                  ✨ Companion Showcase Build • Agile Labs
+                </div>
+                <h3 className="text-sm font-bold leading-snug">
+                  {GEMINI_4_CARBON_RELEASE_SERIES.miniProjectTitle}
+                </h3>
+                <p className="text-xs m3-text-muted leading-relaxed">
+                  Interactive native-slider calculator built with <strong>Gemini 4 Argon</strong> to model 95% cached-input savings and Google Workspace team consolidation.
+                </p>
+                <a
+                  href={GEMINI_4_CARBON_RELEASE_SERIES.miniProjectUrl}
+                  onClick={() => trackPulseEvent('mini_project_open', { tool: 'geministack_advisor_sidebar' })}
+                  className="inline-flex items-center gap-1.5 py-1.5 min-h-[28px] text-xs font-semibold text-emerald-300 hover:underline"
+                >
+                  <span>Open Live Utility (/labs)</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            </div>
+
+            <article className="lg:col-span-8 m3-card p-6 sm:p-8 flex flex-col justify-between space-y-6 min-w-0">
+              <div className="space-y-4">
+                <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+                  <span className="px-2.5 py-1 rounded-full bg-purple-500/15 text-purple-300 border border-purple-400/30 font-semibold">
+                    {activeSeriesArticle.partLabel}
+                  </span>
+                  <span className="m3-text-muted">{activeSeriesArticle.readTime} • Citing Direct Google Primary Docs</span>
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold leading-snug break-words">
+                  {activeSeriesArticle.title}
+                </h3>
+                <div className="p-4 rounded-xl bg-[var(--md-sys-color-surface)] border border-[var(--md-sys-color-outline)] text-sm leading-relaxed">
+                  <span className="font-mono text-xs font-semibold text-blue-300 uppercase block mb-1">
+                    Plain-English Bottom Line:
+                  </span>
+                  <InlineCodeText text={activeSeriesArticle.executiveTakeaway} />
+                </div>
+                <ul className="space-y-3 text-sm m3-text-muted leading-relaxed">
+                  {activeSeriesArticle.bullets.map((b, i) => (
+                    <li key={i} className="flex items-start gap-2.5">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                      <span className="break-words text-[var(--md-sys-color-on-surface)]">
+                        <InlineCodeText text={b} />
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="pt-4 border-t border-[var(--md-sys-color-outline)] flex flex-wrap items-center justify-between gap-3">
+                <a
+                  href={activeSeriesArticle.standaloneUrl}
+                  onClick={() => trackPulseEvent('release_series_full_article', { url: activeSeriesArticle.standaloneUrl })}
+                  className="bg-blue-700 hover:bg-blue-600 text-white text-xs font-semibold px-4 py-2.5 rounded-full inline-flex items-center gap-1.5 whitespace-nowrap transition-colors"
+                >
+                  <BookOpen className="w-3.5 h-3.5" />
+                  <span>Read Full Standalone Article</span>
+                </a>
+                <a
+                  href={GEMINI_4_CARBON_RELEASE_SERIES.miniProjectUrl}
+                  className="py-1.5 min-h-[28px] text-xs font-semibold text-blue-400 hover:underline inline-flex items-center gap-1 whitespace-nowrap"
+                >
+                  <span>Test Your Token &amp; Workspace Math</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        {/* =================================================================
+            MODULE 1C: CURATED YOUTUBE VIDEO SHOWCASE (#video-showcase)
+            ================================================================= */}
+        <section id="video-showcase" className="scroll-mt-24 space-y-8">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 border-b border-[var(--md-sys-color-outline)] pb-6">
+            <div className="space-y-2 max-w-3xl">
+              <div className="text-xs font-mono uppercase tracking-wider text-pink-400 flex items-center gap-1.5">
+                <Video className="w-3.5 h-3.5" />
+                Today in Gemini Videos • AI Creator Spotlights &amp; Official Google DeepMind Talks
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
+                Curated <span className="gemini-spectrum-text">Gemini Video Showcase</span>
+              </h2>
+              <p className="m3-text-muted">
+                Handpicked daily from AI creators, hidden-gem technical educators, and official Google channels—with Gemini AI executive summaries and zero-bloat click-to-play embeds that credit every view directly to the creator.
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => {
+                setInquiryForm((prev) => ({
+                  ...prev,
+                  inquiryType: 'Press & Media',
+                  message: 'Creator Video Nomination for GeminiPulse Video Showcase — YouTube URL: ',
+                }));
+                setInquiryStatus(null);
+                setShowInquiryModal(true);
+              }}
+              className="px-4 py-2.5 rounded-full m3-surface-elevated hover:border-pink-400 text-xs font-semibold inline-flex items-center gap-1.5 whitespace-nowrap cursor-pointer shrink-0"
+            >
+              <Plus className="w-3.5 h-3.5 text-pink-400" />
+              <span>Nominate a Creator Video</span>
+            </button>
+          </div>
+
+          {/* Featured Video of the Day Hero Card */}
+          <article className="m3-card p-5 sm:p-7 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center border-pink-500/30">
+            <div className="lg:col-span-7 min-w-0">
+              <div className="relative aspect-video w-full rounded-2xl overflow-hidden bg-black border border-[var(--md-sys-color-outline)]">
+                {playingVideoId === featuredVideoOfTheDay.videoId ? (
+                  <iframe
+                    src={`https://www.youtube-nocookie.com/embed/${featuredVideoOfTheDay.videoId}?autoplay=1&rel=0`}
+                    title={featuredVideoOfTheDay.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="w-full h-full border-0"
+                  />
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setPlayingVideoId(featuredVideoOfTheDay.videoId);
+                      trackPulseEvent('video_play_inline', {
+                        video_id: featuredVideoOfTheDay.videoId,
+                        creator: featuredVideoOfTheDay.creatorHandle,
+                      });
+                    }}
+                    aria-label={`Play Right Here on GeminiPulse — ${featuredVideoOfTheDay.title}`}
+                    className="group relative w-full h-full block cursor-pointer text-left"
+                  >
+                    <img
+                      src={featuredVideoOfTheDay.thumbnailUrl}
+                      alt={`${featuredVideoOfTheDay.title} thumbnail by ${featuredVideoOfTheDay.creatorName}`}
+                      width="480"
+                      height="360"
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent flex items-center justify-center">
+                      <span className="px-4 py-2.5 rounded-full bg-gemini-grad text-white text-xs font-bold inline-flex items-center gap-2 shadow-xl group-hover:scale-105 transition-transform">
+                        <Play className="w-4 h-4 fill-current" />
+                        <span>Play Right Here on GeminiPulse</span>
+                      </span>
+                    </div>
+                  </button>
+                )}
+              </div>
+            </div>
+
+            <div className="lg:col-span-5 space-y-4 min-w-0">
+              <div className="flex flex-wrap items-center gap-2 text-[11px] font-mono">
+                <span className="px-2.5 py-1 rounded-full bg-pink-500/20 text-pink-300 border border-pink-400/35 font-semibold">
+                  {featuredVideoOfTheDay.badge}
+                </span>
+              </div>
+              <h3 className="text-xl sm:text-2xl font-bold leading-snug break-words">
+                {featuredVideoOfTheDay.title}
+              </h3>
+              <div className="text-xs font-mono m3-text-muted">
+                Creator:{' '}
+                <a
+                  href={featuredVideoOfTheDay.creatorUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-blue-400 font-semibold hover:underline"
+                >
+                  {featuredVideoOfTheDay.creatorName} ({featuredVideoOfTheDay.creatorHandle})
+                </a>{' '}
+                • <span className="text-emerald-400">Featured on GeminiPulse</span>
+              </div>
+              <div className="p-3.5 rounded-xl bg-[var(--md-sys-color-surface)] border border-[var(--md-sys-color-outline)] text-xs sm:text-sm leading-relaxed">
+                <span className="font-mono text-[11px] font-semibold text-purple-300 uppercase block mb-1">
+                  Gemini AI Video Review — What You’ll Learn:
+                </span>
+                <InlineCodeText text={featuredVideoOfTheDay.geminiSummary} />
+              </div>
+              <div className="flex-balance gap-2.5 pt-1">
+                <button
+                  type="button"
+                  onClick={() => setPlayingVideoId(featuredVideoOfTheDay.videoId)}
+                  className="bg-blue-700 hover:bg-blue-600 text-white text-xs font-semibold px-4 py-2 rounded-full inline-flex items-center gap-1.5 cursor-pointer whitespace-nowrap"
+                >
+                  <Play className="w-3.5 h-3.5" />
+                  <span>Watch Inline</span>
+                </button>
+                <a
+                  href={featuredVideoOfTheDay.watchUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="px-4 py-2 rounded-full m3-surface-elevated hover:border-blue-400 text-xs font-semibold inline-flex items-center gap-1.5 whitespace-nowrap"
+                >
+                  <span>Open on YouTube</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            </div>
+          </article>
+
+          {/* Category Filter Chips */}
+          <div className="flex-balance gap-2">
+            {['All', 'Gemini 4 Carbon & Argon', 'Antigravity & Jules', 'Future Labs & Genie 4', 'Beginner How-Tos'].map(
+              (cat) => (
+                <button
+                  key={cat}
+                  type="button"
+                  onClick={() => setVideoCategory(cat)}
+                  className={`px-4 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
+                    videoCategory === cat
+                      ? 'bg-gemini-grad text-white shadow-sm'
+                      : 'm3-surface-elevated m3-text-muted hover:text-[var(--md-sys-color-on-surface)]'
+                  }`}
+                >
+                  {cat}
+                </button>
+              )
+            )}
+          </div>
+
+          {/* Curated Video Gallery Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredVideos.map((vid) => (
+              <article key={vid.id} className="m3-card p-4 sm:p-5 flex flex-col justify-between space-y-4 min-w-0">
+                <div className="space-y-3.5 min-w-0">
+                  <div className="relative aspect-video w-full rounded-xl overflow-hidden bg-black border border-[var(--md-sys-color-outline)]">
+                    {playingVideoId === vid.videoId ? (
+                      <iframe
+                        src={`https://www.youtube-nocookie.com/embed/${vid.videoId}?autoplay=1&rel=0`}
+                        title={vid.title}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        className="w-full h-full border-0"
+                      />
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setPlayingVideoId(vid.videoId);
+                          trackPulseEvent('video_play_inline', {
+                            video_id: vid.videoId,
+                            creator: vid.creatorHandle,
+                          });
+                        }}
+                        aria-label={`Play video: ${vid.title}`}
+                        className="group relative w-full h-full block cursor-pointer text-left"
+                      >
+                        <img
+                          src={vid.thumbnailUrl}
+                          alt={`${vid.title} by ${vid.creatorName}`}
+                          width="480"
+                          height="360"
+                          loading="lazy"
+                          decoding="async"
+                          className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-300"
+                        />
+                        <div className="absolute inset-0 bg-black/35 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                          <span className="w-11 h-11 rounded-full bg-black/75 border border-white/30 text-white inline-flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                            <Play className="w-4 h-4 fill-current ml-0.5" />
+                          </span>
+                        </div>
+                      </button>
+                    )}
+                  </div>
+
+                  <div className="flex flex-wrap items-center justify-between gap-1.5 text-[11px] font-mono">
+                    <span className="px-2 py-0.5 rounded bg-blue-500/15 text-blue-300 border border-blue-400/30 truncate max-w-full">
+                      {vid.badge}
+                    </span>
+                  </div>
+
+                  <h3 className="text-base font-bold leading-snug break-words">{vid.title}</h3>
+
+                  <p className="text-xs m3-text-muted leading-relaxed break-words">
+                    <InlineCodeText text={vid.geminiSummary} />
+                  </p>
+                </div>
+
+                <div className="pt-3 border-t border-[var(--md-sys-color-outline)] flex flex-wrap items-center justify-between gap-2 text-xs">
                   <a
-                    href={item.sourceUrl}
+                    href={vid.creatorUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="font-semibold text-blue-400 hover:underline inline-flex items-center gap-1 whitespace-nowrap shrink-0"
+                    className="py-1 min-h-[28px] inline-flex items-center font-mono text-blue-400 hover:underline truncate max-w-[11rem]"
                   >
-                    <span>{item.sourceLabel}</span>
-                    <ExternalLink className="w-3 h-3 shrink-0" />
+                    {vid.creatorHandle}
+                  </a>
+                  <a
+                    href={vid.watchUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="py-1 min-h-[28px] font-semibold m3-text-muted hover:text-white inline-flex items-center gap-1 whitespace-nowrap"
+                  >
+                    <span>YouTube</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* =================================================================
+            MODULE 1D: HOW TO GET STARTED & BUILD WITH GEMINI (#get-started)
+            ================================================================= */}
+        <section id="get-started" className="scroll-mt-24 space-y-8">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 border-b border-[var(--md-sys-color-outline)] pb-6">
+            <div className="space-y-2 max-w-3xl">
+              <div className="text-xs font-mono uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
+                <Rocket className="w-3.5 h-3.5" />
+                From Zero to Live Product • Build Your Project Dreams with Google AI
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
+                How to Get Started with <span className="gemini-spectrum-text">Google Gemini Today</span>
+              </h2>
+              <p className="m3-text-muted">
+                Whether you run a non-technical team on Gmail &amp; Docs or want an autonomous agent to build and deploy an entire platform like GeminiPulse.com, pick the path that fits your goal.
+              </p>
+            </div>
+            <a
+              href="/labs/gemini-4-stack-advisor.html"
+              className="px-4 py-2.5 min-h-[38px] rounded-full m3-surface-elevated hover:border-emerald-400 text-xs font-semibold inline-flex items-center gap-1.5 whitespace-nowrap shrink-0"
+            >
+              <span>Compare Plans &amp; API Costs</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </a>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {GET_STARTED_WITH_GEMINI_TRACKS.map((track) => (
+              <article key={track.id} className="m3-card p-6 flex flex-col justify-between space-y-5 min-w-0">
+                <div className="space-y-3 min-w-0">
+                  <span className="inline-block text-[11px] font-mono font-semibold px-2.5 py-1 rounded-md bg-emerald-500/15 text-emerald-300 border border-emerald-400/30">
+                    {track.stepBadge}
+                  </span>
+                  <h3 className="text-lg sm:text-xl font-bold leading-snug break-words">{track.title}</h3>
+                  <div className="text-xs font-mono text-blue-300 break-words">
+                    Best For: {track.bestFor}
+                  </div>
+                  <p className="text-sm m3-text-muted leading-relaxed break-words">
+                    <InlineCodeText text={track.summary} />
+                  </p>
+                </div>
+
+                <div className="pt-4 border-t border-[var(--md-sys-color-outline)] flex-balance items-center justify-between gap-2.5">
+                  <a
+                    href={track.ctaUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={() => trackPulseEvent('get_started_cta_click', { track_id: track.id })}
+                    className="bg-blue-700 hover:bg-blue-600 text-white text-xs font-semibold px-4 py-2 rounded-full inline-flex items-center gap-1.5 whitespace-nowrap transition-colors"
+                  >
+                    <span>{track.ctaLabel}</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                  <a
+                    href={track.secondaryUrl}
+                    className="py-1.5 min-h-[28px] inline-flex items-center text-xs font-semibold text-blue-400 hover:underline whitespace-nowrap"
+                  >
+                    {track.secondaryLabel}
                   </a>
                 </div>
               </article>
@@ -2542,55 +3044,73 @@ export default function App() {
               </div>
             </div>
 
-            <form
-              onSubmit={handleSubscribeNewsletter}
-              action="/#performance-ledger"
-              method="POST"
-              className="w-full lg:max-w-md space-y-2"
-            >
-              <label htmlFor="dispatch-email" className="block text-xs font-mono font-semibold text-[var(--md-sys-color-on-surface)]">
-                Work or Developer Email Address
-              </label>
-              <div className="flex flex-col sm:flex-row gap-2">
-                <input
-                  id="dispatch-email"
-                  name="email"
-                  type="email"
-                  required
-                  autoComplete="email"
-                  autoCorrect="off"
-                  autoCapitalize="off"
-                  spellCheck={false}
-                  enterKeyHint="send"
-                  value={newsletterEmail}
-                  onChange={(e) => {
-                    setNewsletterEmail(e.target.value);
-                    if (newsletterStatus?.type === 'error') setNewsletterStatus(null);
-                  }}
-                  placeholder="you@domain.com"
-                  aria-describedby="dispatch-hint"
-                  className="flex-1 px-4 py-3 rounded-full m3-surface-elevated text-base sm:text-sm focus:outline-none focus:border-blue-400 min-h-[48px]"
-                />
+            {newsletterStatus?.type === 'success' ? (
+              <div
+                aria-live="polite"
+                className="w-full lg:max-w-md p-4 rounded-2xl bg-emerald-500/15 border border-emerald-400/35 space-y-2"
+              >
+                <div className="flex items-center gap-2 text-emerald-300 font-semibold text-sm">
+                  <CheckCircle2 className="w-4 h-4 shrink-0" />
+                  <span>You’re on the Weekly Dispatch</span>
+                </div>
+                <p className="text-xs m3-text-muted">{newsletterStatus.text}</p>
                 <button
-                  type="submit"
-                  disabled={newsletterSubmitting}
-                  className="bg-gemini-grad text-white px-5 py-3 rounded-full text-xs font-semibold inline-flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-60 whitespace-nowrap min-h-[48px]"
+                  type="button"
+                  onClick={() => setNewsletterStatus(null)}
+                  className="text-xs font-mono text-blue-300 hover:underline cursor-pointer"
                 >
-                  <Send className="w-3.5 h-3.5" />
-                  <span>{newsletterSubmitting ? 'Saving...' : 'Subscribe to Dispatch'}</span>
+                  Subscribe another email →
                 </button>
               </div>
-              <p id="dispatch-hint" className="text-[11px] font-mono m3-text-muted">
-                Write-only Cloud Firestore storage • Zero spam • Unsubscribe anytime.
-              </p>
-              <div aria-live="polite" className="text-xs font-mono">
-                {newsletterStatus && (
-                  <p className={newsletterStatus.type === 'success' ? 'text-emerald-400' : 'text-red-400'}>
-                    {newsletterStatus.text}
-                  </p>
-                )}
-              </div>
-            </form>
+            ) : (
+              <form
+                onSubmit={handleSubscribeNewsletter}
+                action="/#performance-ledger"
+                method="POST"
+                className="w-full lg:max-w-md space-y-2"
+              >
+                <label htmlFor="dispatch-email" className="block text-xs font-mono font-semibold text-[var(--md-sys-color-on-surface)]">
+                  Work or Developer Email Address
+                </label>
+                <div className="flex flex-col sm:flex-row gap-2">
+                  <input
+                    id="dispatch-email"
+                    name="email"
+                    type="email"
+                    required
+                    autoComplete="email"
+                    autoCorrect="off"
+                    autoCapitalize="off"
+                    spellCheck={false}
+                    enterKeyHint="send"
+                    value={newsletterEmail}
+                    onChange={(e) => {
+                      setNewsletterEmail(e.target.value);
+                      if (newsletterStatus?.type === 'error') setNewsletterStatus(null);
+                    }}
+                    placeholder="you@domain.com"
+                    aria-describedby="dispatch-hint"
+                    className="flex-1 px-4 py-3 rounded-full m3-surface-elevated text-base sm:text-sm focus:outline-none focus:border-blue-400 min-h-[48px]"
+                  />
+                  <button
+                    type="submit"
+                    disabled={newsletterSubmitting}
+                    className="bg-gemini-grad text-white px-5 py-3 rounded-full text-xs font-semibold inline-flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-60 whitespace-nowrap min-h-[48px]"
+                  >
+                    <Send className="w-3.5 h-3.5" />
+                    <span>{newsletterSubmitting ? 'Saving...' : 'Subscribe to Dispatch'}</span>
+                  </button>
+                </div>
+                <p id="dispatch-hint" className="text-[11px] font-mono m3-text-muted">
+                  Write-only Cloud Firestore storage • Zero spam • Unsubscribe anytime.
+                </p>
+                <div aria-live="polite" className="text-xs font-mono">
+                  {newsletterStatus && (
+                    <p className="text-red-400">{newsletterStatus.text}</p>
+                  )}
+                </div>
+              </form>
+            )}
           </div>
         </section>
 
@@ -3277,174 +3797,272 @@ export default function App() {
               </button>
             </div>
 
-            <p className="text-xs sm:text-sm m3-text-muted leading-relaxed">
-              Reach out for business inquiries, partnerships, Featured Launchpad placements, or to contact the human creator behind the <strong>GeminiPulse</strong> autonomous showcase.
-            </p>
-
-            <form
-              onSubmit={handleSubmitBusinessInquiry}
-              action="/#about-charter"
-              method="POST"
-              className="space-y-4 text-sm"
-            >
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                <div>
-                  <label htmlFor="inquiry-name" className="block text-xs font-mono font-semibold text-[var(--md-sys-color-on-surface)] mb-1">
-                    Your Name (Required)
-                  </label>
-                  <input
-                    id="inquiry-name"
-                    name="name"
-                    type="text"
-                    required
-                    maxLength={100}
-                    autoComplete="name"
-                    enterKeyHint="next"
-                    value={inquiryForm.name}
-                    onChange={(e) => {
-                      setInquiryForm({ ...inquiryForm, name: e.target.value });
-                      if (inquiryStatus?.type === 'error') setInquiryStatus(null);
-                    }}
-                    placeholder="Alex Rivera"
-                    className="w-full px-3.5 py-2.5 rounded-xl m3-surface-elevated text-base sm:text-sm focus:outline-none focus:border-blue-400 min-h-[48px]"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="inquiry-email" className="block text-xs font-mono font-semibold text-[var(--md-sys-color-on-surface)] mb-1">
-                    Email Address (Required)
-                  </label>
-                  <input
-                    id="inquiry-email"
-                    name="email"
-                    type="email"
-                    required
-                    maxLength={160}
-                    autoComplete="email"
-                    autoCorrect="off"
-                    autoCapitalize="off"
-                    spellCheck={false}
-                    enterKeyHint="next"
-                    value={inquiryForm.email}
-                    onChange={(e) => {
-                      setInquiryForm({ ...inquiryForm, email: e.target.value });
-                      if (inquiryStatus?.type === 'error') setInquiryStatus(null);
-                    }}
-                    placeholder="alex@company.com"
-                    className="w-full px-3.5 py-2.5 rounded-xl m3-surface-elevated text-base sm:text-sm focus:outline-none focus:border-blue-400 min-h-[48px]"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label htmlFor="inquiry-organization" className="block text-xs font-mono font-semibold text-[var(--md-sys-color-on-surface)] mb-1">
-                  Company / Project / Organization (Optional)
-                </label>
-                <input
-                  id="inquiry-organization"
-                  name="organization"
-                  type="text"
-                  maxLength={120}
-                  autoComplete="organization"
-                  enterKeyHint="next"
-                  value={inquiryForm.organization}
-                  onChange={(e) => setInquiryForm({ ...inquiryForm, organization: e.target.value })}
-                  placeholder="Acme AI Labs"
-                  className="w-full px-3.5 py-2.5 rounded-xl m3-surface-elevated text-base sm:text-sm focus:outline-none focus:border-blue-400 min-h-[48px]"
-                />
-              </div>
-
-              <fieldset className="space-y-2">
-                <legend className="text-xs font-mono font-semibold text-[var(--md-sys-color-on-surface)] mb-1">
-                  Inquiry Topic (Select One)
-                </legend>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                  {[
-                    'Business & Partnerships',
-                    'Contact the Human Creator',
-                    'Featured Launchpad / Sponsorship',
-                    'Press & Media',
-                    'Technical Feedback',
-                  ].map((topic) => (
-                    <label
-                      key={topic}
-                      className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl border text-xs font-medium cursor-pointer min-h-[48px] transition-colors ${
-                        inquiryForm.inquiryType === topic
-                          ? 'bg-blue-500/15 border-blue-400 text-[var(--md-sys-color-on-surface)]'
-                          : 'm3-surface-elevated m3-text-muted'
-                      }`}
-                    >
-                      <input
-                        type="radio"
-                        name="inquiryType"
-                        value={topic}
-                        checked={inquiryForm.inquiryType === topic}
-                        onChange={(e) => setInquiryForm({ ...inquiryForm, inquiryType: e.target.value })}
-                        className="accent-blue-500"
-                      />
-                      <span>{topic}</span>
-                    </label>
-                  ))}
-                </div>
-              </fieldset>
-
-              <div>
-                <label htmlFor="inquiry-message" className="block text-xs font-mono font-semibold text-[var(--md-sys-color-on-surface)] mb-1">
-                  Message (Required, min 10 characters)
-                </label>
-                <textarea
-                  id="inquiry-message"
-                  name="message"
-                  rows={4}
-                  required
-                  minLength={10}
-                  maxLength={3000}
-                  value={inquiryForm.message}
-                  onChange={(e) => {
-                    setInquiryForm({ ...inquiryForm, message: e.target.value });
-                    if (inquiryStatus?.type === 'error') setInquiryStatus(null);
-                  }}
-                  aria-describedby="inquiry-privacy-note"
-                  placeholder="How can we collaborate, or what would you like to share with the creator behind GeminiPulse?"
-                  className="w-full px-3.5 py-2.5 rounded-xl m3-surface-elevated text-base sm:text-sm focus:outline-none focus:border-blue-400"
-                />
-                <p id="inquiry-privacy-note" className="text-[11px] font-mono m3-text-muted mt-1">
-                  Stored in a private write-only Cloud Firestore collection (`allow get, list: if false`). Never displayed publicly.
-                </p>
-              </div>
-
-              <div aria-live="polite" className="text-xs font-mono">
-                {inquiryStatus && (
-                  <div
-                    className={`p-3 rounded-xl border ${
-                      inquiryStatus.type === 'success'
-                        ? 'bg-emerald-500/15 border-emerald-400/30 text-emerald-300'
-                        : 'bg-red-500/15 border-red-400/30 text-red-300'
-                    }`}
-                  >
-                    {inquiryStatus.text}
+            {inquiryStatus?.type === 'success' ? (
+              <div aria-live="polite" className="space-y-5 py-2">
+                <div className="p-5 rounded-2xl bg-emerald-500/12 border border-emerald-400/35 space-y-2.5">
+                  <div className="flex items-center gap-2.5 text-emerald-300 font-bold text-base">
+                    <CheckCircle2 className="w-5 h-5 shrink-0" />
+                    <span>Inquiry Recorded — You’re All Set</span>
                   </div>
-                )}
-              </div>
+                  <p className="text-xs sm:text-sm text-[var(--md-sys-color-on-surface)] leading-relaxed">
+                    {inquiryStatus.text}
+                  </p>
+                  {inquiryStatus.submittedTopic && (
+                    <div className="text-[11px] font-mono text-emerald-300/90">
+                      Topic Logged: {inquiryStatus.submittedTopic}
+                    </div>
+                  )}
+                </div>
 
-              <div className="pt-2 flex justify-end gap-2">
-                <button
-                  type="button"
-                  onClick={() => setShowInquiryModal(false)}
-                  className="px-4 py-2.5 rounded-full m3-surface-elevated text-xs font-semibold cursor-pointer min-h-[44px]"
-                >
-                  Close
-                </button>
-                <button
-                  type="submit"
-                  disabled={inquirySubmitting}
-                  className="bg-gemini-grad text-white px-5 py-2.5 rounded-full text-xs font-semibold inline-flex items-center gap-1.5 cursor-pointer disabled:opacity-60 min-h-[44px]"
-                >
-                  <Send className="w-3.5 h-3.5" />
-                  <span>{inquirySubmitting ? 'Sending Inquiry...' : 'Send Business Inquiry'}</span>
-                </button>
+                {/* Smart Topic-Aware Next Steps */}
+                <div className="p-4 rounded-2xl m3-surface-elevated space-y-3">
+                  <div className="text-xs font-mono font-semibold text-blue-300 uppercase">
+                    Recommended Next Step While You’re Here
+                  </div>
+                  {inquiryStatus.submittedTopic === 'Business & Partnerships' ||
+                  inquiryStatus.submittedTopic === 'Featured Launchpad / Sponsorship' ? (
+                    <div className="space-y-2.5">
+                      <p className="text-xs sm:text-sm m3-text-muted">
+                        Interested in a <strong>Featured “Built with Gemini” Launchpad</strong> placement, Thursday Arena Dispatch sponsorship, or custom Agile Labs micro-tool collaboration?
+                      </p>
+                      <a
+                        href="/partners"
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold px-4 py-2 rounded-full bg-blue-700 hover:bg-blue-600 text-white transition-colors"
+                      >
+                        <span>Explore Sponsorship &amp; Launchpad Opportunities (/partners)</span>
+                        <ArrowUpRight className="w-3.5 h-3.5" />
+                      </a>
+                    </div>
+                  ) : inquiryStatus.submittedTopic === 'Technical Feedback' ? (
+                    <div className="space-y-2.5">
+                      <p className="text-xs sm:text-sm m3-text-muted">
+                        Want to verify which active build number (<code>{buildMeta.buildId}</code>), Lighthouse score, and Google Cloud subsystems are running live right now?
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        <a
+                          href="/status"
+                          className="inline-flex items-center gap-1.5 text-xs font-semibold px-4 py-2 rounded-full bg-blue-700 hover:bg-blue-600 text-white transition-colors"
+                        >
+                          <span>Check Live Build &amp; System Status (/status)</span>
+                          <ArrowUpRight className="w-3.5 h-3.5" />
+                        </a>
+                        <a
+                          href="#performance-ledger"
+                          onClick={() => setShowInquiryModal(false)}
+                          className="inline-flex items-center gap-1.5 text-xs font-semibold px-4 py-2 rounded-full m3-surface-elevated hover:border-blue-400"
+                        >
+                          <span>View Lighthouse Ledger</span>
+                        </a>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="space-y-2.5">
+                      <p className="text-xs sm:text-sm m3-text-muted">
+                        Explore our latest 3-part <strong>Gemini 4 Carbon Release Series</strong>, curated YouTube Creator Video Showcase, or the Autonomous Build Chronicle.
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        <a
+                          href="#release-series"
+                          onClick={() => setShowInquiryModal(false)}
+                          className="inline-flex items-center gap-1.5 text-xs font-semibold px-4 py-2 rounded-full bg-blue-700 hover:bg-blue-600 text-white transition-colors"
+                        >
+                          <span>Read Gemini 4 Carbon Series</span>
+                        </a>
+                        <a
+                          href="#video-showcase"
+                          onClick={() => setShowInquiryModal(false)}
+                          className="inline-flex items-center gap-1.5 text-xs font-semibold px-4 py-2 rounded-full m3-surface-elevated hover:border-blue-400"
+                        >
+                          <span>Watch Curated Gemini Videos</span>
+                        </a>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                <div className="pt-2 flex flex-wrap items-center justify-between gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setInquiryStatus(null)}
+                    className="text-xs font-mono m3-text-muted hover:text-white cursor-pointer"
+                  >
+                    Send another message
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setShowInquiryModal(false)}
+                    className="bg-gemini-grad text-white px-5 py-2.5 rounded-full text-xs font-semibold cursor-pointer min-h-[44px]"
+                  >
+                    Return to GeminiPulse
+                  </button>
+                </div>
               </div>
-            </form>
+            ) : (
+              <>
+                <p className="text-xs sm:text-sm m3-text-muted leading-relaxed">
+                  Reach out for business inquiries, partnerships, Featured Launchpad placements, or to contact the human creator behind the <strong>GeminiPulse</strong> autonomous showcase.
+                </p>
+
+                <form
+                  onSubmit={handleSubmitBusinessInquiry}
+                  action="/#about-charter"
+                  method="POST"
+                  className="space-y-4 text-sm"
+                >
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    <div>
+                      <label htmlFor="inquiry-name" className="block text-xs font-mono font-semibold text-[var(--md-sys-color-on-surface)] mb-1">
+                        Your Name (Required)
+                      </label>
+                      <input
+                        id="inquiry-name"
+                        name="name"
+                        type="text"
+                        required
+                        maxLength={100}
+                        autoComplete="name"
+                        enterKeyHint="next"
+                        value={inquiryForm.name}
+                        onChange={(e) => {
+                          setInquiryForm({ ...inquiryForm, name: e.target.value });
+                          if (inquiryStatus?.type === 'error') setInquiryStatus(null);
+                        }}
+                        placeholder="Alex Rivera"
+                        className="w-full px-3.5 py-2.5 rounded-xl m3-surface-elevated text-base sm:text-sm focus:outline-none focus:border-blue-400 min-h-[48px]"
+                      />
+                    </div>
+
+                    <div>
+                      <label htmlFor="inquiry-email" className="block text-xs font-mono font-semibold text-[var(--md-sys-color-on-surface)] mb-1">
+                        Email Address (Required)
+                      </label>
+                      <input
+                        id="inquiry-email"
+                        name="email"
+                        type="email"
+                        required
+                        maxLength={160}
+                        autoComplete="email"
+                        autoCorrect="off"
+                        autoCapitalize="off"
+                        spellCheck={false}
+                        enterKeyHint="next"
+                        value={inquiryForm.email}
+                        onChange={(e) => {
+                          setInquiryForm({ ...inquiryForm, email: e.target.value });
+                          if (inquiryStatus?.type === 'error') setInquiryStatus(null);
+                        }}
+                        placeholder="alex@company.com"
+                        className="w-full px-3.5 py-2.5 rounded-xl m3-surface-elevated text-base sm:text-sm focus:outline-none focus:border-blue-400 min-h-[48px]"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="inquiry-organization" className="block text-xs font-mono font-semibold text-[var(--md-sys-color-on-surface)] mb-1">
+                      Company / Project / Organization (Optional)
+                    </label>
+                    <input
+                      id="inquiry-organization"
+                      name="organization"
+                      type="text"
+                      maxLength={120}
+                      autoComplete="organization"
+                      enterKeyHint="next"
+                      value={inquiryForm.organization}
+                      onChange={(e) => setInquiryForm({ ...inquiryForm, organization: e.target.value })}
+                      placeholder="Acme AI Labs"
+                      className="w-full px-3.5 py-2.5 rounded-xl m3-surface-elevated text-base sm:text-sm focus:outline-none focus:border-blue-400 min-h-[48px]"
+                    />
+                  </div>
+
+                  <fieldset className="space-y-2">
+                    <legend className="text-xs font-mono font-semibold text-[var(--md-sys-color-on-surface)] mb-1">
+                      Inquiry Topic (Select One)
+                    </legend>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      {[
+                        'Business & Partnerships',
+                        'Contact the Human Creator',
+                        'Featured Launchpad / Sponsorship',
+                        'Press & Media',
+                        'Technical Feedback',
+                      ].map((topic) => (
+                        <label
+                          key={topic}
+                          className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl border text-xs font-medium cursor-pointer min-h-[48px] transition-colors ${
+                            inquiryForm.inquiryType === topic
+                              ? 'bg-blue-500/15 border-blue-400 text-[var(--md-sys-color-on-surface)]'
+                              : 'm3-surface-elevated m3-text-muted'
+                          }`}
+                        >
+                          <input
+                            type="radio"
+                            name="inquiryType"
+                            value={topic}
+                            checked={inquiryForm.inquiryType === topic}
+                            onChange={(e) => setInquiryForm({ ...inquiryForm, inquiryType: e.target.value })}
+                            className="accent-blue-500"
+                          />
+                          <span>{topic}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </fieldset>
+
+                  <div>
+                    <label htmlFor="inquiry-message" className="block text-xs font-mono font-semibold text-[var(--md-sys-color-on-surface)] mb-1">
+                      Message (Required, min 10 characters)
+                    </label>
+                    <textarea
+                      id="inquiry-message"
+                      name="message"
+                      rows={4}
+                      required
+                      minLength={10}
+                      maxLength={3000}
+                      value={inquiryForm.message}
+                      onChange={(e) => {
+                        setInquiryForm({ ...inquiryForm, message: e.target.value });
+                        if (inquiryStatus?.type === 'error') setInquiryStatus(null);
+                      }}
+                      aria-describedby="inquiry-privacy-note"
+                      placeholder="How can we collaborate, or what would you like to share with the creator behind GeminiPulse?"
+                      className="w-full px-3.5 py-2.5 rounded-xl m3-surface-elevated text-base sm:text-sm focus:outline-none focus:border-blue-400"
+                    />
+                    <p id="inquiry-privacy-note" className="text-[11px] font-mono m3-text-muted mt-1">
+                      Stored in a private write-only Cloud Firestore collection (`allow get, list: if false`). Never displayed publicly.
+                    </p>
+                  </div>
+
+                  <div aria-live="polite" className="text-xs font-mono">
+                    {inquiryStatus?.type === 'error' && (
+                      <div className="p-3 rounded-xl border bg-red-500/15 border-red-400/30 text-red-300">
+                        {inquiryStatus.text}
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="pt-2 flex justify-end gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setShowInquiryModal(false)}
+                      className="px-4 py-2.5 rounded-full m3-surface-elevated text-xs font-semibold cursor-pointer min-h-[44px]"
+                    >
+                      Close
+                    </button>
+                    <button
+                      type="submit"
+                      disabled={inquirySubmitting}
+                      className="bg-gemini-grad text-white px-5 py-2.5 rounded-full text-xs font-semibold inline-flex items-center gap-1.5 cursor-pointer disabled:opacity-60 min-h-[44px]"
+                    >
+                      <Send className="w-3.5 h-3.5" />
+                      <span>{inquirySubmitting ? 'Sending Inquiry...' : 'Send Business Inquiry'}</span>
+                    </button>
+                  </div>
+                </form>
+              </>
+            )}
           </div>
         </div>
       )}
@@ -3471,6 +4089,16 @@ export default function App() {
           </div>
 
           <div className="flex flex-wrap items-center gap-4 font-mono">
+            <a
+              href="/status"
+              className="px-2.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-400/35 text-emerald-300 hover:bg-emerald-500/25 transition-colors font-semibold"
+              title="Open Live Build & System Status (/status)"
+            >
+              ● Build {buildMeta.buildId}
+            </a>
+            <a href="/partners" className="text-purple-300 hover:text-purple-200 transition-colors font-semibold">
+              Partners &amp; Sponsor
+            </a>
             <button
               type="button"
               onClick={() => {

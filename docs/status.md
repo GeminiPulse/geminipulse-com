@@ -1,6 +1,6 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-10-29 19:20 EDT (Glass-Box Lighthouse & Search Telemetry Ledger, Owned Atom/Email Dispatch, Business Inquiry Intake, Personal Link Cleanup & 4-Track Blind 5-Wave Study Deployed Live on https://geminipulse.com)`
+- **Last Updated:** `2026-10-29 21:26 EDT (3-Part Gemini 4 Carbon Series, Agile Labs GeminiStack ROI Mini-Project, Curated YouTube Creator Video Showcase, Start Building Hub, /status + /partners Routes, Inquiry Completion UX & Live GA4 G-1BWMQWZJQ5 Deployed on https://geminipulse.com)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
@@ -13,7 +13,15 @@
 
 ---
 
-## 1. Completed & Live on `v2.0` (2026-10-29 Evening Update)
+## 1. Completed & Live on `v2.0` (2026-10-29 Late Evening Update)
+
+0. **3-Part Gemini 4 Carbon Release Series, Agile Labs Mini-Project, YouTube Video Showcase, `/status` + `/partners` & Live GA4 (`G-1BWMQWZJQ5`):**
+   - **3-Part Gemini 4 Carbon Deep-Dive Series (`#release-series` + `/series/gemini-4-carbon/*.html`):** Cites 100% direct official Google primary documentation (`blog.google/.../introducing-gemini-4-carbon/`), translates dry specs into *"What Changed vs. Argon → How Does This Affect Me? → 5 Concrete Business & Security Use Cases"*, and publishes 3 standalone crawlable HTML pages indexed in `sitemap.xml` and `feed.xml`.
+   - **Agile Labs Showcase Mini-Project (`/labs/gemini-4-stack-advisor.html`):** Interactive native-slider **GeminiStack Advisor** calculating real-time 95% cached-input API savings (`$2.00/1M -> $0.10/1M`), Hybrid `3.8-flash` / `4-argon` / `4-carbon` routing, and Google Workspace with Gemini team consolidation ROI.
+   - **Curated YouTube Creator & Official Google Video Showcase (`#video-showcase`):** Features 8 oEmbed-verified YouTube videos (*Featured Video of the Day* + independent creators & official `@GoogleDevelopers` / `@googledeepmind` / `@googlecloudtech` talks), real lazy-loaded `hqdefault.jpg` thumbnails, Gemini AI executive video reviews, and zero-bloat click-to-play `youtube-nocookie.com` embeds.
+   - **Prominent "How to Get Started with Google Gemini" Hub (`#get-started`):** 4 actionable onboarding tracks (*Google Workspace with Gemini*, *Google AI Studio + Antigravity*, *Google Jules + `MadeWithJules.com` sister-platform teaser*, and *Firebase + Google Cloud Free Tier*).
+   - **Post-Submit Inquiry Completion UX + `/status` & `/partners` Routes:** Replaced post-submit form clutter with a clean confirmation screen and topic-aware next steps routing to `/partners` (Sponsorship & Featured Launchpad opportunities) or `/status` (auto-stamped live Build Number via `public/scripts/stamp-build.mjs`).
+   - **Live Google Analytics 4 (`G-1BWMQWZJQ5`):** Wired post-paint inside `public/src/firebase.js` (`loadFirebaseRuntime()`) with custom event tracking so Quad-100 Desktop Lighthouse is preserved while visitor sessions & funnel actions record immediately.
 
 1. **Glass-Box Speed, Search & Blind AI-Content Lab (`#performance-ledger`) + Automated Lighthouse Bot (`audit-lighthouse.mjs`):**
    - Built `public/scripts/audit-lighthouse.mjs` (`npm run audit:lighthouse`) running official Google Lighthouse CLI across Desktop & Mobile against `https://geminipulse.com`.

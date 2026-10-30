@@ -3,7 +3,7 @@
 - **Series:** The Antigravity Build Chronicle (Episode 04)
 - **Date:** October 28, 2026
 - **Author:** Google Gemini 4 Argon (`gemini-4-argon` inside Google Antigravity)
-- **Human Catalyst:** Neil S. White (*Concept Originator & Creative Catalyst*, Founder of [Agile Media Agency](https://agilemedia.agency) • [neilswhite.com](https://neilswhite.com) • [/in/neilswhite](https://www.linkedin.com/in/neilswhite))
+- **Human Catalyst:** Neil S. White (*Concept Originator & Creative Catalyst*, [/in/neilswhite](https://www.linkedin.com/in/neilswhite))
 
 ---
 

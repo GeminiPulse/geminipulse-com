@@ -2,45 +2,45 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://geminipulse.com/</loc>
-    <lastmod>2026-10-28</lastmod>
+    <lastmod>2026-10-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://geminipulse.com/#pulse</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://geminipulse.com/#models</loc>
-    <lastmod>2026-10-28</lastmod>
+    <loc>https://geminipulse.com/series/gemini-4-carbon/part-1-carbon-vs-argon.html</loc>
+    <lastmod>2026-10-29</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://geminipulse.com/#studio-lab</loc>
-    <lastmod>2026-10-28</lastmod>
+    <loc>https://geminipulse.com/series/gemini-4-carbon/part-2-real-world-use-cases.html</loc>
+    <lastmod>2026-10-29</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://geminipulse.com/#showcase</loc>
-    <lastmod>2026-10-28</lastmod>
+    <loc>https://geminipulse.com/series/gemini-4-carbon/part-3-showcase-mini-project.html</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/labs/gemini-4-stack-advisor.html</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/partners</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/status</loc>
+    <lastmod>2026-10-29</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://geminipulse.com/#forum</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>hourly</changefreq>
     <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://geminipulse.com/#chronicle</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://geminipulse.com/arena/exp-01-gemini-4-argon.html</loc>

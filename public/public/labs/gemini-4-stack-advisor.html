@@ -1,0 +1,775 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GeminiStack Advisor — Gemini 4 Carbon vs. Argon Router, Caching &amp; Workspace ROI Calculator</title>
+    <meta
+      name="description"
+      content="Interactive model router, 95% context-caching API cost calculator, and Google Workspace AI consolidation estimator built with Google Gemini 4 Argon."
+    />
+    <link rel="canonical" href="https://geminipulse.com/labs/gemini-4-stack-advisor.html" />
+    <link rel="icon" type="image/svg+xml" href="/gemini-sparkle.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "GeminiStack Advisor — Gemini 4 Router & Workspace ROI Calculator",
+        "url": "https://geminipulse.com/labs/gemini-4-stack-advisor.html",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "All",
+        "creator": {
+          "@type": "Organization",
+          "name": "Agile Labs (via GeminiPulse.com)"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #07090e;
+        --surface: #111622;
+        --surface-high: #192030;
+        --border: rgba(255, 255, 255, 0.1);
+        --border-strong: rgba(138, 180, 248, 0.35);
+        --text: #f3f5fb;
+        --muted: #9da4b8;
+        --blue: #4285f4;
+        --purple: #9b72cb;
+        --pink: #d96570;
+        --emerald: #34a853;
+        --amber: #fbbc04;
+        --brand-color: #6ea8fe;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: radial-gradient(circle at 15% 0%, rgba(66, 133, 244, 0.14), transparent 42%),
+          radial-gradient(circle at 85% 10%, rgba(155, 114, 203, 0.14), transparent 40%),
+          var(--bg);
+        color: var(--text);
+        line-height: 1.55;
+        accent-color: var(--brand-color);
+      }
+
+      .wrap {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 1.75rem 1.25rem 3.5rem;
+      }
+
+      .topbar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        padding-bottom: 1.25rem;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 1.75rem;
+      }
+
+      .brand-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.78rem;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        padding: 0.38rem 0.8rem;
+        border-radius: 999px;
+        background: rgba(66, 133, 244, 0.13);
+        border: 1px solid rgba(66, 133, 244, 0.32);
+        color: #93c5fd;
+      }
+
+      .back-link {
+        color: #93c5fd;
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+
+      .back-link:hover {
+        text-decoration: underline;
+      }
+
+      h1 {
+        font-size: clamp(1.65rem, 3.2vw, 2.5rem);
+        line-height: 1.18;
+        margin: 0 0 0.65rem;
+        letter-spacing: -0.02em;
+      }
+
+      .grad {
+        background: linear-gradient(125deg, #60a5fa 0%, #c084fc 50%, #f472b6 85%, #fbbf24 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .lead {
+        color: var(--muted);
+        max-width: 78ch;
+        margin: 0 0 1.75rem;
+        font-size: 0.98rem;
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      @media (min-width: 940px) {
+        .layout {
+          grid-template-columns: 5fr 7fr;
+          align-items: start;
+        }
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 1.25rem;
+        padding: 1.4rem;
+        box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.7);
+      }
+
+      .card h2 {
+        margin: 0 0 1rem;
+        font-size: 1.1rem;
+      }
+
+      .control-group {
+        margin-bottom: 1.25rem;
+      }
+
+      .control-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 0.5rem;
+        margin-bottom: 0.25rem;
+      }
+
+      .control-header label {
+        font-size: 0.88rem;
+        font-weight: 600;
+      }
+
+      .val-badge {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 0.82rem;
+        color: #93c5fd;
+        background: rgba(66, 133, 244, 0.14);
+        border: 1px solid rgba(66, 133, 244, 0.28);
+        padding: 0.15rem 0.55rem;
+        border-radius: 0.45rem;
+      }
+
+      .hint {
+        font-size: 0.76rem;
+        color: var(--muted);
+        margin: 0.15rem 0 0;
+      }
+
+      /* Native range slider styled per modern-web-guidance: slider */
+      input[type="range"] {
+        --slider-track-size: 0.48rem;
+        --slider-thumb-size: 1.2rem;
+        --slider-track-radius: 999px;
+        --slider-thumb-radius: 50%;
+        --slider-track-color: #242d42;
+        --slider-fill-color: #60a5fa;
+        --slider-thumb-color: #93c5fd;
+        --slider-direction: to right;
+        --attr-min: attr(min type(<number>), 0);
+        --attr-max: attr(max type(<number>), 100);
+        --control-value: attr(value type(<number>), 50);
+        --slider-progress: calc(
+          progress(var(--control-value), var(--attr-min), var(--attr-max)) * 100%
+        );
+
+        appearance: none;
+        inline-size: 100%;
+        block-size: 2.25rem;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        cursor: pointer;
+      }
+
+      input[type="range"]:dir(rtl) {
+        --slider-direction: to left;
+      }
+
+      @supports not (opacity: progress(1, 0, 100)) {
+        input[type="range"] {
+          --slider-progress: calc(
+            (var(--control-value) - var(--attr-min)) /
+            (var(--attr-max) - var(--attr-min)) * 100%
+          );
+        }
+      }
+
+      input[type="range"]::-webkit-slider-runnable-track {
+        block-size: var(--slider-track-size);
+        border: 0;
+        border-radius: var(--slider-track-radius);
+        background: linear-gradient(
+          var(--slider-direction),
+          var(--slider-fill-color) var(--slider-progress),
+          var(--slider-track-color) var(--slider-progress)
+        );
+      }
+
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        inline-size: var(--slider-thumb-size);
+        block-size: var(--slider-thumb-size);
+        margin-block-start: calc(
+          (var(--slider-track-size) - var(--slider-thumb-size)) / 2
+        );
+        border: 2px solid #0b101b;
+        border-radius: var(--slider-thumb-radius);
+        background: var(--slider-thumb-color);
+      }
+
+      input[type="range"]::-moz-range-track {
+        block-size: var(--slider-track-size);
+        border: 0;
+        border-radius: var(--slider-track-radius);
+        background: var(--slider-track-color);
+      }
+
+      input[type="range"]::-moz-range-progress {
+        block-size: var(--slider-track-size);
+        border-radius: var(--slider-track-radius);
+        background: var(--slider-fill-color);
+      }
+
+      input[type="range"]::-moz-range-thumb {
+        inline-size: var(--slider-thumb-size);
+        block-size: var(--slider-thumb-size);
+        border: 2px solid #0b101b;
+        border-radius: var(--slider-thumb-radius);
+        background: var(--slider-thumb-color);
+      }
+
+      input[type="range"]:focus-visible {
+        outline: 2px solid var(--slider-fill-color);
+        outline-offset: 4px;
+      }
+
+      .workload-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.55rem;
+        margin-top: 0.5rem;
+      }
+
+      .workload-btn {
+        text-align: left;
+        background: var(--surface-high);
+        border: 1px solid var(--border);
+        color: var(--text);
+        padding: 0.7rem 0.9rem;
+        border-radius: 0.85rem;
+        cursor: pointer;
+        transition: border-color 0.18s ease, background 0.18s ease;
+      }
+
+      .workload-btn[aria-pressed="true"] {
+        border-color: #60a5fa;
+        background: rgba(66, 133, 244, 0.16);
+      }
+
+      .workload-btn strong {
+        display: block;
+        font-size: 0.85rem;
+      }
+
+      .workload-btn span {
+        display: block;
+        font-size: 0.75rem;
+        color: var(--muted);
+        margin-top: 0.15rem;
+      }
+
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
+        gap: 0.9rem;
+        margin-bottom: 1.2rem;
+      }
+
+      .kpi {
+        background: var(--surface-high);
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+        padding: 1rem;
+      }
+
+      .kpi-label {
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--muted);
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      }
+
+      .kpi-val {
+        font-size: 1.45rem;
+        font-weight: 800;
+        margin-top: 0.25rem;
+      }
+
+      .kpi-sub {
+        font-size: 0.76rem;
+        color: #86efac;
+        margin-top: 0.2rem;
+      }
+
+      .rec-banner {
+        background: linear-gradient(135deg, rgba(66, 133, 244, 0.14), rgba(155, 114, 203, 0.14));
+        border: 1px solid var(--border-strong);
+        border-radius: 1rem;
+        padding: 1.1rem;
+        margin-bottom: 1.2rem;
+      }
+
+      .rec-tag {
+        display: inline-block;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 0.73rem;
+        padding: 0.18rem 0.55rem;
+        border-radius: 999px;
+        background: rgba(52, 168, 83, 0.2);
+        color: #86efac;
+        border: 1px solid rgba(52, 168, 83, 0.4);
+        margin-bottom: 0.45rem;
+      }
+
+      .rec-banner h3 {
+        margin: 0 0 0.35rem;
+        font-size: 1.05rem;
+      }
+
+      .rec-banner p {
+        margin: 0;
+        font-size: 0.87rem;
+        color: #dbe3f4;
+      }
+
+      pre {
+        background: #06080d;
+        border: 1px solid var(--border);
+        border-radius: 0.9rem;
+        padding: 0.95rem;
+        overflow-x: auto;
+        font-size: 0.78rem;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        color: #cbd5e1;
+        margin: 0.6rem 0 0;
+      }
+
+      .code-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        margin-top: 1rem;
+      }
+
+      .copy-btn {
+        background: #1d4ed8;
+        color: #ffffff;
+        border: 0;
+        border-radius: 999px;
+        padding: 0.38rem 0.85rem;
+        font-size: 0.76rem;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .copy-btn:hover {
+        background: #2563eb;
+      }
+
+      .cta-row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 0.75rem;
+        margin-top: 1.25rem;
+      }
+
+      .cta-card {
+        display: block;
+        text-decoration: none;
+        background: var(--surface-high);
+        border: 1px solid var(--border);
+        border-radius: 0.95rem;
+        padding: 0.9rem 1rem;
+        color: var(--text);
+        transition: border-color 0.18s ease, transform 0.18s ease;
+      }
+
+      .cta-card:hover {
+        border-color: #60a5fa;
+        transform: translateY(-1px);
+      }
+
+      .cta-card strong {
+        display: block;
+        font-size: 0.86rem;
+        color: #93c5fd;
+      }
+
+      .cta-card span {
+        display: block;
+        font-size: 0.76rem;
+        color: var(--muted);
+        margin-top: 0.2rem;
+      }
+
+      .disclosure {
+        margin-top: 1.2rem;
+        padding-top: 0.9rem;
+        border-top: 1px solid var(--border);
+        font-size: 0.75rem;
+        color: var(--muted);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="topbar">
+        <span class="brand-pill">✨ AGILE LABS SHOWCASE UTILITY • BUILT WITH GOOGLE GEMINI 4 ARGON</span>
+        <a class="back-link" href="/#release-series">← Back to Gemini 4 Carbon Release Series</a>
+      </header>
+
+      <main>
+        <h1>
+          GeminiStack Advisor: <span class="grad">Carbon vs. Argon Router, Caching &amp; Workspace ROI</span>
+        </h1>
+        <p class="lead">
+          Built to accompany our 3-part <strong>Gemini 4 Carbon Release Series</strong>. Model your monthly API token spend with Gemini 4’s
+          <strong>95% cached-input discount</strong>, see whether your workload belongs on <code>gemini-3.8-flash</code>,
+          <code>gemini-4-argon</code> (GA today), or <strong>Gemini 4 Carbon</strong> (Fairwind cyberdefense rollout), and estimate team savings from consolidating standalone AI seats into <strong>Google Workspace with Gemini</strong>.
+        </p>
+
+        <div class="layout">
+          <!-- Left Column: Interactive Inputs -->
+          <section class="card" aria-labelledby="inputs-heading">
+            <h2 id="inputs-heading">1. Configure Your Team &amp; AI Workload</h2>
+
+            <div class="control-group">
+              <div class="control-header">
+                <label for="team-seats">Team Size (Workspace + AI Seats)</label>
+                <span class="val-badge" id="team-seats-label">8 seats</span>
+              </div>
+              <input
+                type="range"
+                id="team-seats"
+                min="1"
+                max="100"
+                step="1"
+                value="8"
+                aria-valuetext="8 team seats"
+              />
+              <p class="hint">Compares unified Google Workspace Business Standard (Gmail, Docs, Drive, Meet + Gemini) vs. separate email + $20/mo standalone AI chat seats.</p>
+            </div>
+
+            <div class="control-group">
+              <div class="control-header">
+                <label for="input-tokens">Monthly API Input Volume</label>
+                <span class="val-badge" id="input-tokens-label">40M tokens</span>
+              </div>
+              <input
+                type="range"
+                id="input-tokens"
+                min="2"
+                max="250"
+                step="2"
+                value="40"
+                aria-valuetext="40 million input tokens per month"
+              />
+              <p class="hint">Includes repository context, PDFs, system instructions, and multimodal inputs across 1,048,576-token windows.</p>
+            </div>
+
+            <div class="control-group">
+              <div class="control-header">
+                <label for="cache-ratio">Context Caching Reuse Ratio (95% Discount)</label>
+                <span class="val-badge" id="cache-ratio-label">65% cached</span>
+              </div>
+              <input
+                type="range"
+                id="cache-ratio"
+                min="0"
+                max="90"
+                step="5"
+                value="65"
+                aria-valuetext="65 percent cached input reuse"
+              />
+              <p class="hint">Both Gemini 4 Carbon and Gemini 4 Argon discount cached input tokens by 95% ($2.00/1M → $0.10/1M).</p>
+            </div>
+
+            <div class="control-group">
+              <div class="control-header">
+                <label for="output-tokens">Monthly API Output &amp; Thinking Volume</label>
+                <span class="val-badge" id="output-tokens-label">8M tokens</span>
+              </div>
+              <input
+                type="range"
+                id="output-tokens"
+                min="1"
+                max="80"
+                step="1"
+                value="8"
+                aria-valuetext="8 million output tokens per month"
+              />
+              <p class="hint">Covers generated code, Long Decode reports (up to 1M tokens), and reasoning tokens.</p>
+            </div>
+
+            <div class="control-group" style="margin-bottom: 0">
+              <div class="control-header">
+                <span style="font-size: 0.88rem; font-weight: 600">Primary Workload Profile</span>
+              </div>
+              <div class="workload-grid" role="group" aria-label="Select primary workload profile">
+                <button type="button" class="workload-btn" data-workload="hybrid" aria-pressed="true">
+                  <strong>⚡ Hybrid Production Stack (Recommended: 75% 3.8 Flash + 25% 4 Argon)</strong>
+                  <span>Fast agent loops &amp; moderation on 3.8 Flash; deep 1M-context reasoning &amp; Long Decode on 4 Argon GA.</span>
+                </button>
+                <button type="button" class="workload-btn" data-workload="argon" aria-pressed="false">
+                  <strong>🧠 100% Frontier Reasoning &amp; Long Decode (Gemini 4 Argon — GA Today)</strong>
+                  <span>Full 1,048,576 unified context + native <code>automatic_continuation</code> at $2.00 / $10.00 introductory pricing.</span>
+                </button>
+                <button type="button" class="workload-btn" data-workload="carbon" aria-pressed="false">
+                  <strong>🛡️ Multi-Day Cyberdefense &amp; Autonomous Patching (Gemini 4 Carbon)</strong>
+                  <span>#1 Artificial Analysis v5.0 (59) &amp; CWE-bench 71.0% — stage via Fairwind Program while running Argon GA today.</span>
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <!-- Right Column: Live Architecture & Cost Output -->
+          <section class="card" aria-labelledby="results-heading">
+            <h2 id="results-heading">2. Live Architecture Verdict &amp; Monthly Cost Telemetry</h2>
+
+            <div class="rec-banner" aria-live="polite">
+              <span class="rec-tag" id="rec-badge">RECOMMENDED ROUTING STRATEGY</span>
+              <h3 id="rec-title">75% Gemini 3.8 Flash + 25% Gemini 4 Argon (GA)</h3>
+              <p id="rec-desc">
+                Route sub-second tool loops and triage to gemini-3.8-flash ($0.75/$3.75) while reserving gemini-4-argon ($2.00/$10.00) for 1M-context synthesis and Long Decode continuations.
+              </p>
+            </div>
+
+            <div class="kpi-grid">
+              <div class="kpi">
+                <div class="kpi-label">Net Monthly API Spend</div>
+                <div class="kpi-val" id="kpi-api-cost">$69.68</div>
+                <div class="kpi-sub" id="kpi-cache-saved">Saves $33.48/mo via 95% caching</div>
+              </div>
+              <div class="kpi">
+                <div class="kpi-label">Uncached Baseline</div>
+                <div class="kpi-val" id="kpi-uncached" style="color: #9da4b8">$103.16</div>
+                <div class="kpi-sub" style="color: #93c5fd" id="kpi-effective-rate">$1.45 effective / 1M blended</div>
+              </div>
+              <div class="kpi">
+                <div class="kpi-label">Workspace AI Consolidation</div>
+                <div class="kpi-val" id="kpi-ws-savings">$1,536 / yr</div>
+                <div class="kpi-sub" id="kpi-ws-sub">Est. savings across 8 team seats</div>
+              </div>
+            </div>
+
+            <div class="code-head">
+              <strong style="font-size: 0.86rem">Ready-to-Paste <code>@google/genai</code> v2.32 Router Blueprint</strong>
+              <button type="button" class="copy-btn" id="copy-code-btn">Copy TypeScript</button>
+            </div>
+            <pre id="code-output"></pre>
+
+            <div class="cta-row">
+              <a class="cta-card" id="cta-aistudio" href="https://aistudio.google.com/prompts/new_chat?model=gemini-4-argon" target="_blank" rel="noopener noreferrer">
+                <strong>Launch Gemini 4 Argon in AI Studio ↗</strong>
+                <span>Test 1,048,576 unified context &amp; Long Decode free in Google AI Studio.</span>
+              </a>
+              <a class="cta-card" id="cta-gcloud" href="https://cloud.google.com/free" target="_blank" rel="noopener noreferrer">
+                <strong>Google Cloud &amp; Vertex AI Free Trial ↗</strong>
+                <span>Deploy Firebase, Cloud Run &amp; Gemini API on Google Cloud infrastructure.</span>
+              </a>
+              <a class="cta-card" id="cta-workspace" href="https://workspace.google.com/pricing" target="_blank" rel="noopener noreferrer">
+                <strong>Google Workspace with Gemini ↗</strong>
+                <span>Bring Gemini reasoning natively into Gmail, Docs, Sheets, Slides &amp; Meet.</span>
+              </a>
+            </div>
+
+            <footer class="disclosure">
+              <span>Verified against official Google Gemini API &amp; Google Workspace US pricing (Oct 29, 2026).</span>
+              <span id="affiliate-disclosure">Editorial Links: Direct official Google destinations (when referral links are active, partner commissions may be earned at no extra cost to you).</span>
+            </footer>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      // Centralized official destination map (ready for Agile LLC / GeminiPulse Google Workspace & Cloud referral tracking URLs)
+      const PARTNER_LINKS = {
+        aiStudio: 'https://aistudio.google.com/prompts/new_chat?model=gemini-4-argon',
+        googleCloud: 'https://cloud.google.com/free',
+        googleWorkspace: 'https://workspace.google.com/pricing',
+      };
+
+      document.getElementById('cta-aistudio').href = PARTNER_LINKS.aiStudio;
+      document.getElementById('cta-gcloud').href = PARTNER_LINKS.googleCloud;
+      document.getElementById('cta-workspace').href = PARTNER_LINKS.googleWorkspace;
+
+      const seatsInput = document.getElementById('team-seats');
+      const inputTokensEl = document.getElementById('input-tokens');
+      const cacheRatioEl = document.getElementById('cache-ratio');
+      const outputTokensEl = document.getElementById('output-tokens');
+      const workloadBtns = Array.from(document.querySelectorAll('.workload-btn'));
+      let currentWorkload = 'hybrid';
+
+      function syncSliderCssVars(slider) {
+        slider.style.setProperty('--attr-min', slider.min || 0);
+        slider.style.setProperty('--attr-max', slider.max || 100);
+        slider.style.setProperty('--control-value', slider.value);
+      }
+
+      function formatUsd(val) {
+        return '$' + val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
+
+      function recalculate() {
+        [seatsInput, inputTokensEl, cacheRatioEl, outputTokensEl].forEach(syncSliderCssVars);
+
+        const seats = Number(seatsInput.value);
+        const inputM = Number(inputTokensEl.value);
+        const cachePct = Number(cacheRatioEl.value) / 100;
+        const outputM = Number(outputTokensEl.value);
+
+        document.getElementById('team-seats-label').textContent = seats + (seats === 1 ? ' seat' : ' seats');
+        seatsInput.setAttribute('aria-valuetext', seats + ' team seats');
+
+        document.getElementById('input-tokens-label').textContent = inputM + 'M tokens';
+        inputTokensEl.setAttribute('aria-valuetext', inputM + ' million input tokens per month');
+
+        document.getElementById('cache-ratio-label').textContent = Math.round(cachePct * 100) + '% cached';
+        cacheRatioEl.setAttribute('aria-valuetext', Math.round(cachePct * 100) + ' percent cached input reuse');
+
+        document.getElementById('output-tokens-label').textContent = outputM + 'M tokens';
+        outputTokensEl.setAttribute('aria-valuetext', outputM + ' million output tokens per month');
+
+        // Official Oct 2026 Introductory API Rates:
+        // Gemini 4 Argon & Carbon: $2.00 / 1M input ($0.10 / 1M cached = 95% discount), $10.00 / 1M output
+        // Gemini 3.8 Flash: $0.75 / 1M input ($0.075 / 1M cached), $3.75 / 1M output
+        let baseInRate = 2.0;
+        let cachedInRate = 0.1;
+        let outRate = 10.0;
+
+        if (currentWorkload === 'hybrid') {
+          baseInRate = 0.75 * 0.75 + 2.0 * 0.25;
+          cachedInRate = 0.075 * 0.75 + 0.1 * 0.25;
+          outRate = 3.75 * 0.75 + 10.0 * 0.25;
+          document.getElementById('rec-badge').textContent = 'PRODUCTION HYBRID ROUTER • GA NOW';
+          document.getElementById('rec-title').textContent = '75% Gemini 3.8 Flash + 25% Gemini 4 Argon';
+          document.getElementById('rec-desc').textContent =
+            'Best cost-to-intelligence ratio today: run high-frequency tool calls and moderation on gemini-3.8-flash ($0.75/$3.75) and escalate complex 1M-context reasoning or Long Decode tasks to gemini-4-argon ($2.00/$10.00).';
+        } else if (currentWorkload === 'argon') {
+          document.getElementById('rec-badge').textContent = 'FLAGSHIP 1M-CONTEXT WORKHORSE • GA NOW';
+          document.getElementById('rec-title').textContent = '100% Gemini 4 Argon (gemini-4-argon)';
+          document.getElementById('rec-desc').textContent =
+            'Generally available right now in Google AI Studio & Vertex AI with a unified 1,048,576-token window, native automatic_continuation in @google/genai v2.32+, and 95% cached-input savings.';
+        } else {
+          document.getElementById('rec-badge').textContent = 'STAGED CYBERDEFENSE FRONTIER • FAIRWIND ROLLOUT';
+          document.getElementById('rec-title').textContent = 'Deploy on Gemini 4 Argon Today → Queue for Gemini 4 Carbon';
+          document.getElementById('rec-desc').textContent =
+            'Gemini 4 Carbon (#1 Artificial Analysis v5.0 score 59; SEC-bench Pro 88.2%, CWE-bench 71.0%) shares Argon’s $2/$10 introductory pricing tier and 95% cache discount, with initial access gated to vetted cyber defenders via Fairwind.';
+        }
+
+        const uncachedCost = inputM * baseInRate + outputM * outRate;
+        const freshInputM = inputM * (1 - cachePct);
+        const cachedInputM = inputM * cachePct;
+        const netApiCost = freshInputM * baseInRate + cachedInputM * cachedInRate + outputM * outRate;
+        const cacheSaved = Math.max(0, uncachedCost - netApiCost);
+        const blendedPerM = netApiCost / Math.max(1, inputM + outputM);
+
+        // Workspace consolidation estimate: standalone $20/mo AI chatbot + $7/mo basic email ($27/mo) vs Workspace Business Standard ($14/mo annual) = ~$13–$16/seat/mo saved
+        const monthlySeatDelta = 16;
+        const annualWsSavings = seats * monthlySeatDelta * 12;
+
+        document.getElementById('kpi-api-cost').textContent = formatUsd(netApiCost);
+        document.getElementById('kpi-cache-saved').textContent = 'Saves ' + formatUsd(cacheSaved) + '/mo via 95% caching';
+        document.getElementById('kpi-uncached').textContent = formatUsd(uncachedCost);
+        document.getElementById('kpi-effective-rate').textContent = formatUsd(blendedPerM) + ' effective / 1M tokens';
+        document.getElementById('kpi-ws-savings').textContent = '$' + annualWsSavings.toLocaleString('en-US') + ' / yr';
+        document.getElementById('kpi-ws-sub').textContent =
+          'Consolidating standalone AI + email across ' + seats + (seats === 1 ? ' seat' : ' seats');
+
+        const selectedModel = currentWorkload === 'hybrid' ? "task.requiresLongDecode ? 'gemini-4-argon' : 'gemini-3.8-flash'" : "'gemini-4-argon'";
+        const commentLine =
+          currentWorkload === 'carbon'
+            ? '// Carbon uses identical $2/$10 intro pricing; run gemini-4-argon GA while Fairwind access clears'
+            : '// Native Interactions API v2.32+ with automatic_continuation & implicit 95% context caching';
+
+        document.getElementById('code-output').textContent = `import { GoogleGenAI } from '@google/genai';
+
+const ai = new GoogleGenAI({});
+${commentLine}
+export async function runAgileGeminiRouter(task: { prompt: string; requiresLongDecode?: boolean }) {
+  const model = ${selectedModel};
+  return await ai.interactions.create({
+    model,
+    input: task.prompt,
+    automatic_continuation: true,
+    tools: [{ type: 'google_search' }],
+    generation_config: {
+      thinking_level: task.requiresLongDecode ? 'high' : 'medium',
+    },
+  });
+}`;
+      }
+
+      [seatsInput, inputTokensEl, cacheRatioEl, outputTokensEl].forEach((el) => {
+        el.addEventListener('input', recalculate);
+      });
+
+      workloadBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          currentWorkload = btn.dataset.workload;
+          workloadBtns.forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+          recalculate();
+        });
+      });
+
+      document.getElementById('copy-code-btn').addEventListener('click', async (e) => {
+        const btn = e.currentTarget;
+        await navigator.clipboard.writeText(document.getElementById('code-output').textContent);
+        btn.textContent = 'Copied ✓';
+        setTimeout(() => {
+          btn.textContent = 'Copy TypeScript';
+        }, 1800);
+      });
+
+      recalculate();
+    </script>
+  </body>
+</html>

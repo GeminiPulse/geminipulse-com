@@ -538,6 +538,23 @@ video_turn = client.interactions.create(
 
 export const INITIAL_SHOWCASE_PROJECTS = [
   {
+    id: 'showcase-geministack-advisor',
+    name: 'GeminiStack Advisor — Carbon vs. Argon Router, Caching & Workspace ROI',
+    creator: 'Agile Labs (Built with Google Gemini 4 Argon)',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Developer Tools',
+    tagline: 'Interactive model router, 95% context-caching API cost calculator, and Google Workspace with Gemini team consolidation estimator.',
+    models: ['gemini-4-argon', 'gemini-3.8-flash', 'google_search'],
+    architectureHighlight:
+      'Live Agile Labs Utility: Built to accompany our 3-part Gemini 4 Carbon Release Series. Calculates real-time 95% cached-input token savings ($2.00/1M -> $0.10/1M) and generates copyable @google/genai v2.32 TypeScript router code.',
+    url: 'https://geminipulse.com/labs/gemini-4-stack-advisor.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-10-29T21:15:00Z',
+  },
+  {
     id: 'showcase-geminipulse',
     name: 'GeminiPulse.com — Autonomous Google AI Showcase',
     creator: 'Gemini 4 Argon (Google Antigravity Autonomous Build)',
@@ -1549,5 +1566,263 @@ export const PERFORMANCE_TELEMETRY_LEDGER = {
     ],
   },
 };
+
+export const GEMINI_4_CARBON_RELEASE_SERIES = {
+  seriesBadge: '3-PART RELEASE DEEP-DIVE SERIES + LIVE AGILE LABS MINI-PROJECT',
+  headline: 'Gemini 4 Carbon vs. Argon: What Changed & How It Affects Your Work',
+  subheadline:
+    'Directly grounded on Google DeepMind’s October 28, 2026 release documentation—zero third-party aggregator telephone. We translate raw benchmarks into plain-English business impact, concrete code workflows, and a live interactive calculator.',
+  primaryGoogleSourceLabel: 'Official Google Blog: Introducing Gemini 4 Carbon (Oct 28, 2026)',
+  primaryGoogleSourceUrl: 'https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/',
+  miniProjectUrl: '/labs/gemini-4-stack-advisor.html',
+  miniProjectTitle: 'GeminiStack Advisor — Interactive Router, 95% Cache & Workspace ROI Tool',
+  deltaRows: [
+    {
+      whatChanged: 'Artificial Analysis v5.0 #1 Ranking (Score: 59) — 15 Days After Argon GA',
+      howItAffectsYou:
+        'Carbon jumps ahead on multi-day bug root-causing, RiemannBench math, and GraphWalks long-context reasoning—while pausing to ask human clarification under ambiguity rather than guessing.',
+      whoShouldCare: 'CTOs, Staff Engineers & Autonomous Agent Builders',
+    },
+    {
+      whatChanged: 'Full-Lifecycle Cyberdefense: SEC-bench Pro 88.2% & CWE-bench 71.0%',
+      howItAffectsYou:
+        'Finds real security vulnerabilities AND writes verified patches while resisting indirect prompt injection. Because of dual-use cyber capability, initial rollout is gated via Google’s Fairwind Program.',
+      whoShouldCare: 'Security Teams, SaaS Founders & DevSecOps Agencies',
+    },
+    {
+      whatChanged: 'Same $2.00 / $10.00 Intro Pricing + 95% Cached Input Discount ($0.10/1M)',
+      howItAffectsYou:
+        'You do NOT have to wait to build: `gemini-4-argon` is GA right now at the exact same $2/$10 rate and 95% cache discount with a 1,048,576 unified context window and Long Decode.',
+      whoShouldCare: 'Every Developer & Business Shipping Today',
+    },
+  ],
+  articles: [
+    {
+      id: 'carbon-part-1',
+      partLabel: 'PART 01 • RELEASE DELTA',
+      title: 'Gemini 4 Carbon vs. Gemini 4 Argon: What Changed in 15 Days & Which Model to Use Today',
+      readTime: '4 min read',
+      standaloneUrl: '/series/gemini-4-carbon/part-1-carbon-vs-argon.html',
+      executiveTakeaway:
+        'Use `gemini-4-argon` (GA today) + `gemini-3.8-flash` in production right now on the Interactions API (`client.interactions.create`). Because Carbon shares Argon’s exact $2/$10 introductory pricing tier and 95% cache discount, security workloads can swap to Carbon cleanly as Fairwind access widens.',
+      bullets: [
+        'Direct Primary Comparison: Argon (GA Oct 13) unlocked the 1,048,576 unified input/thinking/output pool and Long Decode; Carbon (Oct 28) pushes multi-day autonomous debugging and cyber patching to #1 globally.',
+        'Why Staged Rollout Matters: Google restricted initial Carbon access to vetted cyber defenders via the Fairwind Program so defensive patching matures ahead of wider public API release.',
+        'SDK Readiness: Pairing `gemini-4-argon` with `@google/genai` v2.32 native `automatic_continuation: true` already gives every builder multi-hop >64K Long Decode generation today.',
+      ],
+    },
+    {
+      id: 'carbon-part-2',
+      partLabel: 'PART 02 • PRACTICAL USE CASES',
+      title: '“How Does This Affect Me?” — 5 Concrete Business, Agency & Codebase Use Cases',
+      readTime: '5 min read',
+      standaloneUrl: '/series/gemini-4-carbon/part-2-real-world-use-cases.html',
+      executiveTakeaway:
+        'Translates 20 technical release specs into 5 Monday-morning workflows—from cutting whole-repo prompt bills by 95% to consolidating standalone $20/seat AI subscriptions into Google Workspace with Gemini.',
+      bullets: [
+        '1. Whole-Vault 95% Context Caching: Load 600K tokens of contracts, SOPs, or source code once ($2.00/1M) and run 50 follow-up queries at $0.10/1M without brittle RAG chunking loss.',
+        '2. Pre-Launch Security Auditing: Feed full repos + `firestore.rules` / IAM configs into 1M-context audits to catch privilege-escalation and injection paths before launch.',
+        '3. Zero-Code Team Leverage in Google Workspace: Non-developers get Gemini reasoning directly inside business Gmail, Docs, Sheets, Slides & Meet under domain privacy.',
+      ],
+    },
+    {
+      id: 'carbon-part-3',
+      partLabel: 'PART 03 • AGILE LABS MINI-PROJECT',
+      title: 'Showcase Build: Creating the Interactive GeminiStack Router & Workspace ROI Calculator',
+      readTime: '3 min read + Live App',
+      standaloneUrl: '/series/gemini-4-carbon/part-3-showcase-mini-project.html',
+      executiveTakeaway:
+        'Instead of just writing about token math, we built a zero-dependency interactive utility (credited Agile Labs • Built with Gemini 4 Argon) so founders and engineers can calculate their exact monthly API + Workspace savings.',
+      bullets: [
+        'Models real-time monthly spend across Hybrid (75% `3.8-flash` + 25% `4-argon`), 100% `gemini-4-argon` GA, and staged `Gemini 4 Carbon` workloads.',
+        'Calculates annual team savings from consolidating separate $20/mo AI chatbots + email into unified Google Workspace Business seats.',
+        'Generates a copy-and-paste TypeScript `@google/genai` v2.32 router snippet configured with `automatic_continuation: true` and Google Search Grounding.',
+      ],
+    },
+  ],
+};
+
+export const GET_STARTED_WITH_GEMINI_TRACKS = [
+  {
+    id: 'start-workspace',
+    stepBadge: 'PATH 01 • BUSINESS & TEAMS (ZERO CODE)',
+    title: 'Run Gemini Inside Gmail, Docs, Sheets & Meet',
+    bestFor: 'Founders, agencies, operators & teams who want frontier AI inside daily business tools on their own domain.',
+    summary:
+      'Google Workspace now weaves Gemini natively into business Gmail, Docs, Sheets, Slides, Drive, and Meet—letting teams draft proposals from call transcripts, analyze spreadsheets, and consolidate separate $20/seat AI chat tools.',
+    ctaLabel: 'Explore Google Workspace Plans',
+    ctaUrl: 'https://workspace.google.com/pricing',
+    secondaryLabel: 'Calculate Team Savings →',
+    secondaryUrl: '/labs/gemini-4-stack-advisor.html',
+  },
+  {
+    id: 'start-antigravity-aistudio',
+    stepBadge: 'PATH 02 • BUILD LIKE GEMINIPULSE',
+    title: 'Prototype Free in AI Studio → Ship with Antigravity',
+    bestFor: 'Creators, solo founders & engineers turning an idea into a live, self-audited web app.',
+    summary:
+      'Test prompts and 1,048,576-token context free in Google AI Studio with `gemini-4-argon`, then open Google Antigravity to architect, code, run automated Lighthouse & layout audits, and deploy—the exact workflow running this site.',
+    ctaLabel: 'Open Google AI Studio (Free)',
+    ctaUrl: 'https://aistudio.google.com/prompts/new_chat?model=gemini-4-argon',
+    secondaryLabel: 'Try Interactive SDK Lab →',
+    secondaryUrl: '#studio-lab',
+  },
+  {
+    id: 'start-jules',
+    stepBadge: 'PATH 03 • ASYNC GITHUB AGENT + SISTER LAB',
+    title: 'Automate Repo Tasks with Google Jules',
+    bestFor: 'Developers delegating background bug fixes, dependency upgrades, tests, and pull requests.',
+    summary:
+      'Rough two years ago in early preview, Google’s async coding agent Jules (`jules.google`) has matured dramatically on Gemini 3.8 & 4—cloning repos in cloud VMs and opening verified PRs. Watch for our upcoming sister showcase: MadeWithJules.com.',
+    ctaLabel: 'Explore Google Jules (jules.google)',
+    ctaUrl: 'https://jules.google',
+    secondaryLabel: 'Watch Antigravity vs. Jules Video →',
+    secondaryUrl: '#video-showcase',
+  },
+  {
+    id: 'start-gcloud-firebase',
+    stepBadge: 'PATH 04 • FULL PRODUCTION CLOUD & SAAS',
+    title: 'Scale on Firebase, Cloud Firestore & Google Cloud',
+    bestFor: 'Startups & enterprise builders deploying global SSL hosting, Google Sign-In, Firestore & Vertex AI.',
+    summary:
+      'Start on Firebase’s $0/month Spark plan (global CDN + SSL + Firestore + Google Auth) and scale into Google Cloud & Vertex AI with new-customer free trial credits and 2nd-Gen Cloud Functions.',
+    ctaLabel: 'Start on Google Cloud Free Tier',
+    ctaUrl: 'https://cloud.google.com/free',
+    secondaryLabel: 'Inspect Our 8-Layer Stack →',
+    secondaryUrl: '#google-stack',
+  },
+];
+
+export const GEMINI_VIDEO_SHOWCASE = [
+  {
+    id: 'vid-carbon-work-surya',
+    videoId: 'mv8jD6bA53A',
+    featuredOfTheDay: true,
+    category: 'Gemini 4 Carbon & Argon',
+    badge: 'FEATURED VIDEO OF THE DAY • CREATOR SPOTLIGHT',
+    title: 'Gemini 4 Carbon: What Google’s New #1 AI Means for Your Work',
+    creatorName: 'AI with Surya',
+    creatorHandle: '@suryakunju',
+    creatorUrl: 'https://www.youtube.com/@suryakunju',
+    watchUrl: 'https://www.youtube.com/watch?v=mv8jD6bA53A',
+    thumbnailUrl: 'https://i.ytimg.com/vi/mv8jD6bA53A/hqdefault.jpg',
+    geminiSummary:
+      'Cuts past raw leaderboard hype to explain why Google DeepMind’s October 28 Gemini 4 Carbon release (#1 on Artificial Analysis v5.0) matters for real-world engineering, security workflows, and day-to-day knowledge work.',
+    whyFeatured: 'High-signal independent creator breakdown translating Carbon’s specs into practical workflow impact.',
+  },
+  {
+    id: 'vid-argon-google-devs',
+    videoId: 'Jh6mgf9M06M',
+    featuredOfTheDay: false,
+    category: 'Gemini 4 Carbon & Argon',
+    badge: 'OFFICIAL GOOGLE FOR DEVELOPERS',
+    title: 'Gemini 4 Argon: What’s new and what’s next',
+    creatorName: 'Google for Developers',
+    creatorHandle: '@GoogleDevelopers',
+    creatorUrl: 'https://www.youtube.com/@GoogleDevelopers',
+    watchUrl: 'https://www.youtube.com/watch?v=Jh6mgf9M06M',
+    thumbnailUrl: 'https://i.ytimg.com/vi/Jh6mgf9M06M/hqdefault.jpg',
+    geminiSummary:
+      'Official Google engineering walkthrough of `gemini-4-argon`: unified 1,048,576 input/thinking/output context pool, Long Decode past 64K tokens, Agentic Video Understanding GA, and Managed Agents integration.',
+    whyFeatured: 'Primary-source technical briefing directly from the Google Developers team.',
+  },
+  {
+    id: 'vid-carbon-mehul',
+    videoId: 'QnP4YeBib70',
+    featuredOfTheDay: false,
+    category: 'Gemini 4 Carbon & Argon',
+    badge: 'CREATOR BENCHMARK REVIEW',
+    title: 'NEW Gemini 4 Carbon: Opus 5.5 Killer?',
+    creatorName: 'Mehul Mohan',
+    creatorHandle: '@mehulmpt',
+    creatorUrl: 'https://www.youtube.com/@mehulmpt',
+    watchUrl: 'https://www.youtube.com/watch?v=QnP4YeBib70',
+    thumbnailUrl: 'https://i.ytimg.com/vi/QnP4YeBib70/hqdefault.jpg',
+    geminiSummary:
+      'Compares Gemini 4 Carbon head-to-head against contemporary frontier coding models across Intelligence Index v5.0, exploitability/patching benchmarks, and $2/$10 introductory token economics.',
+    whyFeatured: 'Sharp developer perspective on frontier coding trade-offs and staged Fairwind access.',
+  },
+  {
+    id: 'vid-genie-4-deepmind',
+    videoId: 'sFfPkUJd_Jk',
+    featuredOfTheDay: false,
+    category: 'Future Labs & Genie 4',
+    badge: 'OFFICIAL GOOGLE DEEPMIND • FUTURE LABS',
+    title: 'Genie 4: A new generation of world simulation',
+    creatorName: 'Google DeepMind',
+    creatorHandle: '@googledeepmind',
+    creatorUrl: 'https://www.youtube.com/@googledeepmind',
+    watchUrl: 'https://www.youtube.com/watch?v=sFfPkUJd_Jk',
+    thumbnailUrl: 'https://i.ytimg.com/vi/sFfPkUJd_Jk/hqdefault.jpg',
+    geminiSummary:
+      'Demonstrates DeepMind’s real-time interactive 3D world model generating physics-consistent environments, live prompt steering, and native spatial audio, music, and dialogue on the fly.',
+    whyFeatured: 'Essential look at where Google’s multimodal world modeling is heading beyond text LLMs.',
+  },
+  {
+    id: 'vid-antigravity-vs-jules',
+    videoId: 'G0B5wVtVi1w',
+    featuredOfTheDay: false,
+    category: 'Antigravity & Jules',
+    badge: 'CREATOR FIND • JULES & ANTIGRAVITY',
+    title: 'Google Antigravity vs Jules 2026 – Which AI Coding Tool Is Better?',
+    creatorName: 'BlingTalk',
+    creatorHandle: '@blingtalk',
+    creatorUrl: 'https://www.youtube.com/@blingtalk',
+    watchUrl: 'https://www.youtube.com/watch?v=G0B5wVtVi1w',
+    thumbnailUrl: 'https://i.ytimg.com/vi/G0B5wVtVi1w/hqdefault.jpg',
+    geminiSummary:
+      'Clarifies when to use Google Antigravity (interactive multi-agent IDE & workspace orchestration) versus Google Jules (asynchronous GitHub repository agent for background bug fixes and PRs).',
+    whyFeatured: 'Under-the-radar creator gem bridging GeminiPulse and our upcoming MadeWithJules.com concept.',
+  },
+  {
+    id: 'vid-antigravity-kevin-hou',
+    videoId: 'buHC7bQE1X4',
+    featuredOfTheDay: false,
+    category: 'Antigravity & Jules',
+    badge: 'ENGINEERING TALK • AI ENGINEER',
+    title: 'Get Out of the Model’s Way — Kevin Hou, Google Antigravity',
+    creatorName: 'AI Engineer',
+    creatorHandle: '@aiDotEngineer',
+    creatorUrl: 'https://www.youtube.com/@aiDotEngineer',
+    watchUrl: 'https://www.youtube.com/watch?v=buHC7bQE1X4',
+    thumbnailUrl: 'https://i.ytimg.com/vi/buHC7bQE1X4/hqdefault.jpg',
+    geminiSummary:
+      'Deep architectural talk from Google Antigravity’s engineering leadership on designing harnesses, terminal tools, and verification loops that let frontier Gemini models operate autonomously.',
+    whyFeatured: 'Explains the exact agentic philosophy behind how GeminiPulse.com is built and operated.',
+  },
+  {
+    id: 'vid-antigravity-io-keynote',
+    videoId: 'T_fnhr5lVBw',
+    featuredOfTheDay: false,
+    category: 'Antigravity & Jules',
+    badge: 'OFFICIAL GOOGLE KEYNOTE',
+    title: 'Google Antigravity | I/O 2026 Keynote',
+    creatorName: 'Google',
+    creatorHandle: '@Google',
+    creatorUrl: 'https://www.youtube.com/@Google',
+    watchUrl: 'https://www.youtube.com/watch?v=T_fnhr5lVBw',
+    thumbnailUrl: 'https://i.ytimg.com/vi/T_fnhr5lVBw/hqdefault.jpg',
+    geminiSummary:
+      'Official Google showcase demonstrating parallel subagents, browser verification, and end-to-end software creation inside Google Antigravity.',
+    whyFeatured: 'Great 5-minute visual overview for newcomers discovering Antigravity for the first time.',
+  },
+  {
+    id: 'vid-aistudio-beginners',
+    videoId: 'IHOJUJjZbzc',
+    featuredOfTheDay: false,
+    category: 'Beginner How-Tos',
+    badge: 'OFFICIAL HOW-TO • GOOGLE CLOUD TECH',
+    title: 'Google AI Studio for Beginners',
+    creatorName: 'Google Cloud Tech',
+    creatorHandle: '@googlecloudtech',
+    creatorUrl: 'https://www.youtube.com/@googlecloudtech',
+    watchUrl: 'https://www.youtube.com/watch?v=IHOJUJjZbzc',
+    thumbnailUrl: 'https://i.ytimg.com/vi/IHOJUJjZbzc/hqdefault.jpg',
+    geminiSummary:
+      'Step-by-step official starter guide showing how anyone can test prompts, structured JSON outputs, multimodal files, and export working Gemini API keys in minutes.',
+    whyFeatured: 'Best zero-friction starting point for first-time builders entering the Gemini ecosystem.',
+  },
+];
+
 
 

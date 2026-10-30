@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>System &amp; Build Status (v2.0.30) — GeminiPulse.com</title>
+    <meta name="description" content="Live build verification stamp, Google Cloud & Firebase subsystem status, Lighthouse scores, and analytics wiring for GeminiPulse.com." />
+    <link rel="canonical" href="https://geminipulse.com/status" />
+    <link rel="icon" type="image/svg+xml" href="/gemini-sparkle.svg" />
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #07090e;
+        --surface: #111622;
+        --surface-high: #181f2f;
+        --border: rgba(255, 255, 255, 0.1);
+        --text: #f3f5fb;
+        --muted: #9da4b8;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: radial-gradient(circle at 20% 0%, rgba(52, 168, 83, 0.12), transparent 45%), var(--bg);
+        color: var(--text);
+        line-height: 1.55;
+      }
+      .wrap { max-width: 980px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      .top {
+        display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+        gap: 0.75rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem;
+      }
+      .pill {
+        display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.38rem 0.85rem;
+        border-radius: 999px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.78rem;
+        background: rgba(52, 168, 83, 0.16); border: 1px solid rgba(52, 168, 83, 0.4); color: #86efac;
+      }
+      .dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 10px #4ade80; }
+      a { color: #93c5fd; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      h1 { font-size: clamp(1.7rem, 3.2vw, 2.4rem); margin: 0 0 0.5rem; letter-spacing: -0.02em; }
+      .sub { color: var(--muted); margin: 0 0 1.75rem; font-size: 0.96rem; }
+      .hero-box {
+        background: var(--surface); border: 1px solid rgba(138, 180, 248, 0.32); border-radius: 1.25rem;
+        padding: 1.4rem; margin-bottom: 1.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;
+      }
+      .kv-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); font-family: ui-monospace, Menlo, monospace; }
+      .kv-val { font-size: 1.25rem; font-weight: 800; margin-top: 0.2rem; font-family: ui-monospace, Menlo, monospace; color: #93c5fd; }
+      .card { background: var(--surface); border: 1px solid var(--border); border-radius: 1.25rem; padding: 1.4rem; margin-bottom: 1.25rem; }
+      .card h2 { margin: 0 0 0.9rem; font-size: 1.08rem; }
+      .row {
+        display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem;
+        padding: 0.75rem 0; border-bottom: 1px solid var(--border); font-size: 0.9rem;
+      }
+      .row:last-child { border-bottom: 0; padding-bottom: 0; }
+      .ok { color: #86efac; font-family: ui-monospace, Menlo, monospace; font-size: 0.8rem; font-weight: 600; }
+      .warn { color: #fcd34d; font-family: ui-monospace, Menlo, monospace; font-size: 0.8rem; font-weight: 600; }
+      .btns { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
+      .btn {
+        display: inline-block; padding: 0.65rem 1.15rem; border-radius: 999px; font-size: 0.85rem; font-weight: 600;
+        background: var(--surface-high); border: 1px solid var(--border); color: var(--text);
+      }
+      .btn-primary { background: linear-gradient(135deg, #4285f4, #9b72cb, #d96570); color: #fff; border: 0; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="top">
+        <span class="pill"><span class="dot"></span> ALL CORE GOOGLE SYSTEMS OPERATIONAL</span>
+        <a href="/">← Return to GeminiPulse.com</a>
+      </header>
+      <main>
+        <h1>GeminiPulse Live Build &amp; System Status</h1>
+        <p class="sub">
+          Use this page to verify in one glance that your browser is serving the exact same production build deployed by Google Gemini 4 Argon inside Google Antigravity.
+        </p>
+
+        <section class="hero-box" aria-label="Build verification stamp">
+          <div>
+            <div class="kv-label">Active Build Number</div>
+            <div class="kv-val" id="build-id">v2.0.30</div>
+          </div>
+          <div>
+            <div class="kv-label">Deployed Timestamp (ET)</div>
+            <div class="kv-val" style="font-size: 0.98rem; color: #f3f5fb">Oct 29, 2026, 21:36:09 EDT</div>
+          </div>
+          <div>
+            <div class="kv-label">Branch / Parent Commit</div>
+            <div class="kv-val" style="font-size: 0.98rem; color: #86efac">v2.0 @ 8cea3b1</div>
+          </div>
+          <div>
+            <div class="kv-label">Desktop Lighthouse</div>
+            <div class="kv-val" style="font-size: 0.98rem; color: #86efac">100 / 100 / 100 / 100</div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>100% Google Stack Subsystem Health</h2>
+          <div class="row">
+            <span><strong>Firebase Hosting Global CDN &amp; SSL</strong> (<code>geminipulse.com</code>)</span>
+            <span class="ok">● OPERATIONAL ($0 Spark Tier)</span>
+          </div>
+          <div class="row">
+            <span><strong>Cloud Firestore &amp; 398-Line Security Rules</strong> (<code>showcase</code>, <code>forum</code>, write-only <code>business_inquiries</code> &amp; <code>newsletter_subscribers</code>)</span>
+            <span class="ok">● OPERATIONAL</span>
+          </div>
+          <div class="row">
+            <span><strong>Firebase Authentication</strong> (<code>GoogleAuthProvider</code> on <code>geminipulse.com</code>)</span>
+            <span class="ok">● OPERATIONAL</span>
+          </div>
+          <div class="row">
+            <span><strong>Google Analytics 4 Telemetry</strong> (<code>G-1BWMQWZJQ5</code> — Post-Paint Deferred Loader)</span>
+            <span class="ok">● ACTIVE &amp; RECORDING</span>
+          </div>
+          <div class="row">
+            <span><strong>3x/Day Embargo Triad Curator</strong> (<code>8:45 AM</code>, <code>12:45 PM</code>, <code>5:45 PM ET</code> — Direct Google Primary Sources Only)</span>
+            <span class="ok">● SCHEDULED</span>
+          </div>
+          <div class="row">
+            <span><strong>Atom Feed, Sitemap &amp; AI Index</strong> (<a href="/feed.xml">/feed.xml</a> • <a href="/sitemap.xml">/sitemap.xml</a> • <a href="/llms.txt">/llms.txt</a>)</span>
+            <span class="ok">● LIVE (HTTP/2 200)</span>
+          </div>
+          <div class="row">
+            <span><strong>Google Search Console Domain DNS Verification</strong></span>
+            <span class="warn">◐ AWAITING CLOUDFLARE TXT TOKEN</span>
+          </div>
+          <div class="row">
+            <span><strong>2nd-Gen Cloud Functions</strong> (<code>moderateForumPost</code>, <code>curateShowcaseProject</code>, <code>autonomousNewsGenerator</code>)</span>
+            <span class="warn">◐ STANDBY (Gated on Blaze Approval — House Rule #3)</span>
+          </div>
+        </section>
+
+        <div class="btns">
+          <a class="btn btn-primary" href="/#performance-ledger">Open Glass-Box Lighthouse Ledger →</a>
+          <a class="btn" href="/labs/gemini-4-stack-advisor.html">Launch GeminiStack Advisor Mini-Project</a>
+          <a class="btn" href="/partners">View Sponsorship &amp; Launchpad Info</a>
+          <a class="btn" href="/">Back to Homepage</a>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

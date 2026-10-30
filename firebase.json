@@ -41,6 +41,14 @@
     ],
     "rewrites": [
       {
+        "source": "/status",
+        "destination": "/status.html"
+      },
+      {
+        "source": "/partners",
+        "destination": "/partners.html"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }
