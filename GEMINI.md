@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-10-31 00:08 EDT — Built Look D: The Fraternal Twin Engine (look-d-fraternal-twins.html: α Castor Editorial ⇄ β Pollux Kinetic Studio via directional View Transitions + 2 companion Twin-Star WebP illustrations) & refined Look B above-the-fold split; production public/src/App.jsx untouched`
+> **Last touched:** `2026-10-31 00:18 EDT — Preserved permanent Brand Evolution Case Study Portfolio under public/public/prototypes/ (Era 0 frozen v2.0 baseline snapshot + Round 1 Tests A/B/C + Round 2 Look D Fraternal Twins); production public/src/App.jsx untouched`
 
 ---
 
