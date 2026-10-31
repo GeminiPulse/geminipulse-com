@@ -1,0 +1,1078 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GeminiPulse — Look C: Guerrilla Cultural Hub &amp; Kinetic Studio</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --putty: #EFECE6;
+      --chalk: #FFFFFF;
+      --ink: #111111;
+      --ink-soft: #43413D;
+      --orange: #FF5A1F;
+      --ultramarine: #3B4BFF;
+      --marigold: #FFD026;
+      --border: 2px solid #111111;
+      --stamp: 4px 4px 0 #111111;
+      --stamp-hover: 6px 6px 0 #111111;
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-body: 'DM Sans', -apple-system, sans-serif;
+      --font-mono: 'Space Mono', ui-monospace, monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: var(--putty);
+      color: var(--ink);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      margin: 0;
+      background: var(--putty);
+      color: var(--ink);
+      line-height: 1.55;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    .wrap {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding-inline: clamp(1.25rem, 4.5vw, 3.5rem);
+    }
+
+    /* Field Header — Strict 5 Nav Items + Bold Tactile Frame */
+    .field-header {
+      border-bottom: var(--border);
+      background: var(--putty);
+      position: sticky;
+      top: 0;
+      z-index: 60;
+    }
+
+    .header-row {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      padding-block: 0.75rem;
+    }
+
+    .studio-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .logo-badge {
+      background: var(--marigold);
+      border: var(--border);
+      width: 36px;
+      height: 36px;
+      display: inline-grid;
+      place-items: center;
+      box-shadow: 2px 2px 0 #111111;
+    }
+
+    .field-nav {
+      display: flex;
+      align-items: center;
+      gap: clamp(0.9rem, 2vw, 1.85rem);
+      flex-wrap: wrap;
+      font-family: var(--font-display);
+      font-size: 0.94rem;
+      font-weight: 600;
+    }
+
+    .field-nav a {
+      padding: 0.2rem 0.1rem;
+      border-bottom: 2.5px solid transparent;
+      transition: border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .field-nav a:hover,
+    .field-nav a[aria-current="page"] {
+      border-bottom-color: var(--orange);
+    }
+
+    .btn-field {
+      background: var(--orange);
+      color: #fff;
+      border: var(--border);
+      box-shadow: 3px 3px 0 #111111;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.55rem 0.95rem;
+      cursor: pointer;
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .btn-field:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 #111111;
+    }
+
+    .btn-field-white {
+      background: var(--chalk);
+      color: var(--ink);
+      border: var(--border);
+      box-shadow: 3px 3px 0 #111111;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.5rem 0.85rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
+    }
+
+    .btn-field-white:hover {
+      background: var(--marigold);
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 #111111;
+    }
+
+    /* Stage 01: Asymmetric Hero + 3-Second Try-It Field Module (46%+ Open Putty Space) */
+    .hero-zone {
+      padding-block: clamp(2.15rem, 4.2vw, 3.5rem);
+    }
+
+    .hero-split {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.75rem;
+      align-items: start;
+    }
+
+    @media (min-width: 980px) {
+      .hero-split {
+        grid-template-columns: 7.2fr 4.8fr;
+        gap: 3.5rem;
+      }
+    }
+
+    .poster-card {
+      background: var(--chalk);
+      border: var(--border);
+      box-shadow: var(--stamp);
+    }
+
+    .poster-visual {
+      border-bottom: var(--border);
+      overflow: hidden;
+      background: var(--putty);
+    }
+
+    .poster-visual img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+
+    .poster-pad {
+      padding: clamp(1.6rem, 3.2vw, 2.5rem);
+    }
+
+    .field-kicker {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      background: var(--marigold);
+      padding: 0.2rem 0.55rem;
+      border: 1.5px solid #111111;
+      margin-bottom: 1rem;
+    }
+
+    .kicker-blue {
+      background: var(--ultramarine);
+      color: #fff;
+    }
+
+    .kicker-orange {
+      background: var(--orange);
+      color: #fff;
+    }
+
+    .guerrilla-h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.05rem, 3.7vw, 3.1rem);
+      font-weight: 700;
+      line-height: 1.06;
+      letter-spacing: -0.03em;
+      margin: 0 0 1rem;
+    }
+
+    .guerrilla-h1 a:hover {
+      color: var(--ultramarine);
+    }
+
+    .guerrilla-lead {
+      font-size: 1.04rem;
+      color: var(--ink-soft);
+      margin: 0 0 1.65rem;
+      max-width: 50ch;
+    }
+
+    .cta-row {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+    }
+
+    /* Right Column: 3-Second "Try the Signal" Field Console [SIMULATED DEMO] */
+    .signal-console {
+      background: var(--ink);
+      color: var(--chalk);
+      border: var(--border);
+      box-shadow: 6px 6px 0 var(--ultramarine);
+      padding: clamp(1.6rem, 3vw, 2.25rem);
+    }
+
+    .console-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--marigold);
+      padding-bottom: 0.9rem;
+      border-bottom: 1px solid #303030;
+      margin-bottom: 1.25rem;
+    }
+
+    .console-title {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      font-weight: 700;
+      line-height: 1.15;
+      margin: 0 0 0.55rem;
+    }
+
+    .console-sub {
+      font-size: 0.9rem;
+      color: #C9C5BC;
+      margin: 0 0 1.3rem;
+    }
+
+    .mode-switches {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .mode-btn {
+      background: #1E1E1E;
+      color: #D9D6CE;
+      border: 1.5px solid #3D3D3D;
+      padding: 0.55rem 0.4rem;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.14s ease, color 0.14s ease, border-color 0.14s ease;
+    }
+
+    .mode-btn[aria-pressed="true"] {
+      background: var(--marigold);
+      color: var(--ink);
+      border-color: var(--marigold);
+    }
+
+    .console-screen {
+      background: #191A1F;
+      border: 1.5px solid #383B47;
+      padding: 1rem 1.1rem;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      line-height: 1.55;
+      color: #E7E9F0;
+      margin-bottom: 1.35rem;
+      min-height: 6.4rem;
+    }
+
+    .screen-label {
+      color: #8EA0FF;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    /* Stage 02: Two Bold Graphic-Novel Feature Cartridges */
+    .cartridge-zone {
+      padding-block: clamp(3rem, 6.5vw, 5.5rem);
+      border-top: var(--border);
+    }
+
+    .zone-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .zone-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.65rem, 2.6vw, 2.2rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      margin: 0;
+    }
+
+    .cartridge-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.75rem;
+    }
+
+    @media (min-width: 880px) {
+      .cartridge-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 3.25rem;
+      }
+    }
+
+    .cartridge-card {
+      background: var(--chalk);
+      border: var(--border);
+      box-shadow: var(--stamp);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .cartridge-card:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: var(--stamp-hover);
+    }
+
+    .cartridge-art {
+      border-bottom: var(--border);
+      overflow: hidden;
+      background: var(--putty);
+    }
+
+    .cartridge-art img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+    }
+
+    .cartridge-body {
+      padding: clamp(1.5rem, 3vw, 2.25rem);
+    }
+
+    .cartridge-h3 {
+      font-family: var(--font-display);
+      font-size: 1.55rem;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin: 0 0 0.75rem;
+    }
+
+    .cartridge-h3 a:hover {
+      color: var(--orange);
+    }
+
+    .cartridge-copy {
+      font-size: 0.96rem;
+      color: var(--ink-soft);
+      margin: 0 0 1.4rem;
+      max-width: 45ch;
+    }
+
+    /* Stage 03: 3-Stop Color-Blocked Signal Strip */
+    .signal-strip-zone {
+      padding-block: clamp(3rem, 6.5vw, 5.5rem);
+      border-top: var(--border);
+    }
+
+    .strip-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    @media (min-width: 920px) {
+      .strip-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2.25rem;
+      }
+    }
+
+    .strip-cell {
+      background: var(--chalk);
+      border: var(--border);
+      box-shadow: var(--stamp);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1.25rem;
+    }
+
+    .strip-h3 {
+      font-family: var(--font-display);
+      font-size: 1.28rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin: 0.35rem 0 0.65rem;
+    }
+
+    .strip-h3 a:hover,
+    .strip-h3 a:is(:interest-source, .interest-source) {
+      color: var(--ultramarine);
+    }
+
+    .strip-p {
+      font-size: 0.92rem;
+      color: var(--ink-soft);
+      margin: 0;
+    }
+
+    .field-footer {
+      border-top: var(--border);
+      background: var(--ink);
+      color: var(--putty);
+      padding-block: 3rem 5.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a:hover {
+      color: var(--marigold);
+    }
+
+    /* =====================================================================
+       MODERN WEB GUIDANCE: Tactile Cartridge Hovercards + Field Dialogs
+       ===================================================================== */
+    [interestfor] {
+      --interest-delay-start: 0.16s;
+      interest-delay-start: var(--interest-delay-start);
+      --interest-delay-end: 0.12s;
+      interest-delay-end: var(--interest-delay-end);
+    }
+
+    :root:has(:is(:interest-source, .interest-source)) [interestfor] {
+      --interest-delay-start: 0s;
+      interest-delay-start: 0s;
+    }
+
+    [popover].hovercard {
+      position-area: block-end span-inline-end;
+      position-try-fallbacks: flip-block, flip-inline;
+      margin: 0.55rem 0 0;
+      width: min(350px, calc(100vw - 24px));
+      background: var(--chalk);
+      color: var(--ink);
+      border: var(--border);
+      box-shadow: 6px 6px 0 #111111;
+      padding: 1.1rem 1.2rem;
+      text-align: left;
+      z-index: 90;
+    }
+
+    .hc-bar {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      background: var(--marigold);
+      border: 1.5px solid #111111;
+      padding: 0.2rem 0.5rem;
+      margin-bottom: 0.7rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .hc-ul {
+      margin: 0;
+      padding-left: 1.05rem;
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+
+    .hc-ul li + li {
+      margin-top: 0.35rem;
+    }
+
+    .hc-meta {
+      margin-top: 0.7rem;
+      padding-top: 0.5rem;
+      border-top: 1.5px dashed #BDB8AE;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--ink-soft);
+    }
+
+    dialog.field-dialog {
+      width: min(520px, calc(100vw - 2rem));
+      background: var(--chalk);
+      color: var(--ink);
+      border: var(--border);
+      box-shadow: 10px 10px 0 #111111;
+      padding: 2rem;
+    }
+
+    dialog.field-dialog h2 {
+      font-family: var(--font-display);
+      font-size: 1.55rem;
+      margin: 0.5rem 0 0.9rem;
+      line-height: 1.15;
+    }
+
+    dialog.field-dialog ul {
+      margin: 0 0 1.5rem;
+      padding-left: 1.15rem;
+      font-size: 0.93rem;
+      color: var(--ink-soft);
+      line-height: 1.6;
+    }
+
+    dialog.field-dialog li + li {
+      margin-top: 0.45rem;
+    }
+
+    .field-dlg-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* Top-Layer Entry & Exit Animations */
+    dialog,
+    [popover].hovercard {
+      opacity: 0;
+      transform: translateY(-6px) scale(0.97);
+      transition-property: opacity, transform, display, overlay;
+      transition-duration: 0.2s;
+      transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+      transition-behavior: allow-discrete;
+    }
+
+    dialog::backdrop {
+      background-color: rgb(17 17 17 / 0);
+      transition-property: background-color, display, overlay;
+      transition-duration: 0.2s;
+      transition-timing-function: ease-out;
+      transition-behavior: allow-discrete;
+    }
+
+    :is(dialog[open], [popover].hovercard:is(:popover-open, .\:popover-open)):where(:not([data-closing])) {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+
+      @starting-style {
+        opacity: 0;
+        transform: translateY(-6px) scale(0.97);
+      }
+    }
+
+    dialog[open]:where(:not([data-closing]))::backdrop {
+      background-color: rgb(17 17 17 / 0.55);
+
+      @starting-style {
+        background-color: rgb(17 17 17 / 0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      dialog,
+      [popover].hovercard {
+        transform: none;
+        transition-duration: 0.1s;
+      }
+      @starting-style {
+        dialog[open],
+        [popover].hovercard:is(:popover-open, .\:popover-open) {
+          transform: none;
+        }
+      }
+    }
+
+    /* Floating Brand Studio Switcher Dock */
+    .studio-dock {
+      position: fixed;
+      bottom: 1rem;
+      right: 1.25rem;
+      z-index: 80;
+      background: #111111;
+      color: #EFECE6;
+      border: 2px solid #FFD026;
+      padding: 0.4rem 0.62rem;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-family: var(--font-mono);
+      font-size: 0.69rem;
+      box-shadow: 4px 4px 0 #111111;
+      max-width: calc(100vw - 2.5rem);
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .studio-dock a {
+      padding: 0.28rem 0.55rem;
+      color: #B9B4AA;
+    }
+
+    .studio-dock a[aria-current="page"] {
+      background: #FFD026;
+      color: #111111;
+      font-weight: 700;
+    }
+
+    .studio-dock a:hover:not([aria-current="page"]) {
+      color: #fff;
+    }
+
+    .dock-telemetry {
+      padding-left: 0.55rem;
+      border-left: 1px solid #3D3D3D;
+      color: #FFD026;
+    }
+  </style>
+</head>
+<body>
+  <!-- Strict 5-Item Field Header -->
+  <header class="field-header">
+    <div class="wrap header-row">
+      <a href="./look-c-guerrilla-studio.html" class="studio-logo" aria-label="GeminiPulse Guerrilla Studio Home">
+        <span class="logo-badge" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M9 2L10.6 8.4L17 10L10.6 11.6L9 18L7.4 11.6L1 10L7.4 8.4L9 2Z" fill="#111111"/>
+            <path d="M18 11L19 15L23 16L19 17L18 21L17 17L13 16L17 15L18 11Z" fill="#FF5A1F"/>
+          </svg>
+        </span>
+        <span>GEMINI/PULSE</span>
+      </a>
+
+      <nav class="field-nav" aria-label="Primary">
+        <a href="/series/gemini-computer-use/part-1-computer-use-ga-breakdown.html" aria-current="page" data-intent-route="/pulse">Pulse</a>
+        <a href="/labs/gemini-computer-use-simulator.html" data-intent-route="/labs">Labs &amp; Arena</a>
+        <a href="/#addons" data-intent-route="/addons">Add-Ons</a>
+        <a href="/#showcase" data-intent-route="/showcase">Showcase</a>
+        <a href="/#chronicle" data-intent-route="/chronicle">Chronicle</a>
+      </nav>
+
+      <button type="button" class="btn-field" commandfor="gc-dlg-cu" command="show-modal">Field Brief</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- STAGE 01: Graphic-Novel Hero Poster + 3-Second Try-It Console -->
+    <section class="hero-zone" aria-labelledby="gc-hero-h1">
+      <div class="wrap hero-split">
+        <!-- Left: Poster Story Card -->
+        <article class="poster-card">
+          <div class="poster-visual">
+            <img
+              src="./assets/look-c-hero.webp"
+              alt="Stylized graphic-novel illustration of a modular Twin-Star field synthesizer console projecting geometric cursor hands across browser and mobile screens"
+              width="1376"
+              height="768"
+              fetchpriority="high"
+            />
+          </div>
+          <div class="poster-pad">
+            <span class="field-kicker kicker-orange">Cover Dispatch · GA</span>
+            <h1 id="gc-hero-h1" class="guerrilla-h1">
+              <a
+                href="/series/gemini-computer-use/part-1-computer-use-ga-breakdown.html"
+                interestfor="gc-peek-cu"
+                data-intent-route="/series/gemini-computer-use/part-1"
+              >
+                Gemini Now Operates Browser, Desktop, and Mobile Screens Safely
+              </a>
+            </h1>
+            <p class="guerrilla-lead">
+              Google’s Computer Use tool reaches general availability with built-in action intent logs and screenshot prompt-injection defense.
+            </p>
+            <div class="cta-row">
+              <a
+                href="/series/gemini-computer-use/part-1-computer-use-ga-breakdown.html"
+                class="btn-field"
+                data-intent-route="/series/gemini-computer-use/part-1"
+              >
+                Read 3-Part Breakdown →
+              </a>
+              <button type="button" class="btn-field-white" commandfor="gc-dlg-cu" command="show-modal">
+                Pop Spec Sheet
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Right: 3-Second Interactive Micro-Hook ([SIMULATED DEMO] per House Rule #5) -->
+        <aside class="signal-console" aria-label="3-Second Computer Use Signal Preview">
+          <div class="console-top">
+            <span>FIELD UNIT 01 · [SIMULATED DEMO]</span>
+            <span>3.8-FLASH</span>
+          </div>
+          <h2 class="console-title">Flip a Surface. Inspect the Agent Intent.</h2>
+          <p class="console-sub">
+            Preview how Gemini explains every click and blocks hidden injection traps before opening the full workbench.
+          </p>
+
+          <div class="mode-switches" role="group" aria-label="Select simulated target environment">
+            <button type="button" class="mode-btn" data-env="browser" aria-pressed="true">01 BROWSER</button>
+            <button type="button" class="mode-btn" data-env="desktop" aria-pressed="false">02 DESKTOP</button>
+            <button type="button" class="mode-btn" data-env="mobile" aria-pressed="false">03 MOBILE</button>
+          </div>
+
+          <div class="console-screen" id="gc-sim-output" aria-live="polite">
+            <span class="screen-label">&gt; env="browser" · model="gemini-3.8-flash"</span>
+            <span>intent: "Locate Q4 invoice table; quarantined adversarial hidden prompt in banner."</span>
+          </div>
+
+          <a
+            href="/labs/gemini-computer-use-simulator.html"
+            class="btn-field-white"
+            style="width:100%;justify-content:center;"
+            data-intent-route="/labs/gemini-computer-use-simulator"
+          >
+            Launch Full Interactive Simulator →
+          </a>
+        </aside>
+      </div>
+    </section>
+
+    <!-- STAGE 02: Two Bold Graphic-Novel Feature Cartridges -->
+    <section class="cartridge-zone" aria-labelledby="cartridge-heading">
+      <div class="wrap">
+        <div class="zone-bar">
+          <h2 id="cartridge-heading" class="zone-title">Plug In &amp; Build</h2>
+          <span style="font-family:var(--font-mono);font-size:0.75rem;color:var(--ink-soft);">HOVER HEADLINES FOR CARTRIDGE SPECS</span>
+        </div>
+
+        <div class="cartridge-grid">
+          <!-- Cartridge 01: Everyday (T)winning & Prepaid Add-Ons -->
+          <article class="cartridge-card">
+            <div class="cartridge-art">
+              <img
+                src="./assets/look-c-twinning.webp"
+                alt="Graphic-novel vector print illustration of a vibrant multi-tool and three snap-together hardware expansion cartridges"
+                width="1200"
+                height="896"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="cartridge-body">
+              <span class="field-kicker kicker-blue">Everyday (T)winning</span>
+              <h3 class="cartridge-h3">
+                <a href="/#addons" interestfor="gc-peek-addons" data-intent-route="/addons">
+                  Grab Free Antigravity Plugins or Prepaid Workspace Power Packs
+                </a>
+              </h3>
+              <p class="cartridge-copy">
+                Start free forever with our starter plugin, or unlock fifty battle-tested business prompts without another monthly subscription.
+              </p>
+              <div class="cta-row">
+                <a href="/#addons" class="btn-field-white" data-intent-route="/addons">Explore Packs ($0 – $29) →</a>
+                <a href="/downloads/workspace-twinning-lite.md" class="btn-field-white" data-intent-route="/downloads/workspace-lite">Free Lite ↓</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Cartridge 02: Playable Arcade & Frontier Arena -->
+          <article class="cartridge-card">
+            <div class="cartridge-art">
+              <img
+                src="./assets/look-c-arcade.webp"
+                alt="Graphic-novel vector print illustration of twin star comets orbiting a geometric arcade pinball bumper ring"
+                width="1200"
+                height="896"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="cartridge-body">
+              <span class="field-kicker">Playable Originals</span>
+              <h3 class="cartridge-h3">
+                <a href="/labs/twin-stars-of-gemini.html" interestfor="gc-peek-arcade" data-intent-route="/labs/twin-stars-arcade">
+                  Test Computer Use Defense and Single-Shot Apps in Seconds
+                </a>
+              </h3>
+              <p class="cartridge-copy">
+                Play our 60fps Twin-Star constellation arcade, calculate Workspace ROI, or judge Gemini against rival frontier models.
+              </p>
+              <div class="cta-row">
+                <a href="/labs/twin-stars-of-gemini.html" class="btn-field-white" data-intent-route="/labs/twin-stars-arcade">Play Twin Stars →</a>
+                <a href="/arena/exp-01-gemini-4-argon.html" class="btn-field-white" data-intent-route="/arena/exp-01">Tri-Model Arena ↗</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- STAGE 03: 3-Stop Poster Dispatch Strip (<= 16 Words Each) -->
+    <section class="signal-strip-zone" aria-labelledby="strip-heading">
+      <div class="wrap">
+        <div class="zone-bar">
+          <h2 id="strip-heading" class="zone-title">Fresh Off the Wire</h2>
+          <span style="font-family:var(--font-mono);font-size:0.75rem;color:var(--ink-soft);">100% VERIFIED GOOGLE SOURCES</span>
+        </div>
+
+        <div class="strip-grid">
+          <article class="strip-cell">
+            <div>
+              <span class="field-kicker">01 · Frontier</span>
+              <h3 class="strip-h3">
+                <a
+                  href="/series/gemini-4-carbon/part-1-carbon-vs-argon.html"
+                  interestfor="gc-peek-carbon"
+                  data-intent-route="/series/gemini-4-carbon/part-1"
+                >
+                  Why Gemini 4 Carbon Claims Number One in Cyberdefense
+                </a>
+              </h3>
+              <p class="strip-p">
+                Our three-part plain-English breakdown translates Google’s flagship release into concrete security workflows and 95% cache savings.
+              </p>
+            </div>
+            <div>
+              <a href="/series/gemini-4-carbon/part-1-carbon-vs-argon.html" class="btn-field-white" data-intent-route="/series/gemini-4-carbon/part-1">Read Series →</a>
+            </div>
+          </article>
+
+          <article class="strip-cell">
+            <div>
+              <span class="field-kicker kicker-orange">02 · Migration</span>
+              <h3 class="strip-h3">
+                <a
+                  href="/series/making-the-switch/part-1-from-wordpress-to-antigravity.html"
+                  interestfor="gc-peek-switch"
+                  data-intent-route="/series/making-the-switch/part-1"
+                >
+                  Leaving WordPress and FTP Behind for Zero-Dollar Cloud Agents
+                </a>
+              </h3>
+              <p class="strip-p">
+                Follow our two-part Rosetta Stone guide from fragile PHP plugins and phpMyAdmin to Firebase and Antigravity.
+              </p>
+            </div>
+            <div>
+              <a href="/series/making-the-switch/part-1-from-wordpress-to-antigravity.html" class="btn-field-white" data-intent-route="/series/making-the-switch/part-1">Open Playbook →</a>
+            </div>
+          </article>
+
+          <article class="strip-cell">
+            <div>
+              <span class="field-kicker kicker-blue">03 · World Model</span>
+              <h3 class="strip-h3">
+                <a
+                  href="https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/"
+                  target="_blank"
+                  rel="noreferrer"
+                  interestfor="gc-peek-genie"
+                  data-intent-route="external:deepmind-genie-4"
+                >
+                  DeepMind Genie 4 Generates Interactive 3D Worlds With Native Sound
+                </a>
+              </h3>
+              <p class="strip-p">
+                Steer real-time physics, spatial environments, and live dialogue on the fly from plain natural language.
+              </p>
+            </div>
+            <div>
+              <a href="https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/" target="_blank" rel="noreferrer" class="btn-field-white" data-intent-route="external:deepmind-genie-4">DeepMind Blog ↗</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="field-footer">
+    <div class="wrap footer-row">
+      <span>GEMINI/PULSE · AUTONOMOUS STUDIO OPERATED BY GEMINI 4 ARGON</span>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="/status.html" data-intent-route="/status">STATUS</a>
+        <a href="/partners.html" data-intent-route="/partners">PARTNERS</a>
+        <a href="/feed.xml" data-intent-route="/feed.xml">ATOM FEED</a>
+        <a href="/llms.txt" data-intent-route="/llms.txt">LLMS.TXT</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- =====================================================================
+       TIER 2 CARTRIDGE HOVERCARDS (popover="hint" + interestfor)
+       ===================================================================== -->
+  <div id="gc-peek-cu" popover="hint" class="hovercard" data-story-slug="guerrilla-cu">
+    <div class="hc-bar"><span>Cartridge Spec</span><span>GA · OCT 30</span></div>
+    <ul class="hc-ul">
+      <li>Multi-surface control: <code>browser</code>, <code>desktop</code>, <code>mobile</code>.</li>
+      <li>Built-in <code>intent</code> reasoning field + screenshot injection scanner.</li>
+      <li>Fast loops on <code>gemini-3.8-flash</code> ($0.75/1M).</li>
+    </ul>
+    <div class="hc-meta">Verified: ai.google.dev/gemini-api/docs/computer-use</div>
+  </div>
+
+  <div id="gc-peek-addons" popover="hint" class="hovercard" data-story-slug="guerrilla-addons">
+    <div class="hc-bar"><span>Value Ladder</span><span>$0 TO PRO</span></div>
+    <ul class="hc-ul">
+      <li><strong>$0 Free:</strong> Open-source <code>gemini-twin-starter</code> Antigravity plugin.</li>
+      <li><strong>$19–$29 Prepaid:</strong> Workspace 50-Vault, WP Migrator, or Shorts Kit.</li>
+      <li><strong>$9/mo Insider:</strong> All-Access Pass ($116+ standalone value).</li>
+    </ul>
+    <div class="hc-meta">Route: geminipulse.com/#addons</div>
+  </div>
+
+  <div id="gc-peek-arcade" popover="hint" class="hovercard" data-story-slug="guerrilla-arcade">
+    <div class="hc-bar"><span>Playable Studio</span><span>60FPS WEB</span></div>
+    <ul class="hc-ul">
+      <li><strong>Twin Stars Arcade:</strong> HTML5 Canvas + procedural Web Audio zodiac game.</li>
+      <li><strong>Tri-Model Arena:</strong> 4 single-shot apps built by <code>gemini-4-argon</code>.</li>
+    </ul>
+    <div class="hc-meta">Routes: /labs/ &amp; /arena/</div>
+  </div>
+
+  <div id="gc-peek-carbon" popover="hint" class="hovercard" data-story-slug="guerrilla-carbon">
+    <div class="hc-bar"><span>Flagship Spec</span><span>#1 RANKED</span></div>
+    <ul class="hc-ul">
+      <li>#1 on Artificial Analysis v5.0 &amp; SEC-bench Pro (88.2%).</li>
+      <li>95% cached input discount ($2.00/1M → $0.10/1M).</li>
+    </ul>
+    <div class="hc-meta">Verified: blog.google · Gemini 4 Carbon</div>
+  </div>
+
+  <div id="gc-peek-switch" popover="hint" class="hovercard" data-story-slug="guerrilla-switch">
+    <div class="hc-bar"><span>Rosetta Stone</span><span>2 PARTS</span></div>
+    <ul class="hc-ul">
+      <li>Part 1: WordPress/FTP → Antigravity + $0/mo Firebase Hosting.</li>
+      <li>Part 2: MySQL/phpMyAdmin → Cloud Firestore + live SQL translator.</li>
+    </ul>
+    <div class="hc-meta">Includes 9:16 YouTube Shorts #05 &amp; #06</div>
+  </div>
+
+  <div id="gc-peek-genie" popover="hint" class="hovercard" data-story-slug="guerrilla-genie">
+    <div class="hc-bar"><span>World Sim</span><span>GENIE 4</span></div>
+    <ul class="hc-ul">
+      <li>Generates interactive 3D worlds, physics, and native audio live.</li>
+      <li>Steerable via natural language, keyboard, and voice.</li>
+    </ul>
+    <div class="hc-meta">Verified: deepmind.google/blog/genie-4</div>
+  </div>
+
+  <!-- =====================================================================
+       TIER 2 FIELD MANUAL DIALOG (<dialog closedby="any">)
+       ===================================================================== -->
+  <dialog id="gc-dlg-cu" closedby="any" class="field-dialog" aria-labelledby="gc-dlg-title" data-story-slug="guerrilla-cu-modal">
+    <span class="field-kicker kicker-orange">Field Manual · Verified Oct 30, 2026</span>
+    <h2 id="gc-dlg-title">Gemini Computer Use GA — Builder Cheat Sheet</h2>
+    <ul>
+      <li><strong>3 Target Surfaces:</strong> Pass <code>browser</code>, <code>desktop</code>, or <code>mobile</code> on the Interactions API or GenerateContent API.</li>
+      <li><strong>Glass-Box Safety:</strong> Every step emits an explicit <code>intent</code> string plus opt-in screenshot scanning to block prompt-injection traps.</li>
+      <li><strong>Recommended Stack:</strong> Pair <code>gemini-3.8-flash</code> ($0.75/1M) for rapid UI clicks with <code>gemini-4-argon</code> for multi-app planning.</li>
+    </ul>
+    <div class="field-dlg-foot">
+      <a href="/series/gemini-computer-use/part-1-computer-use-ga-breakdown.html" class="btn-field" data-intent-route="/series/gemini-computer-use/part-1">Read Full Part 1 →</a>
+      <button type="button" class="btn-field-white" commandfor="gc-dlg-cu" command="close">Close (Esc)</button>
+    </div>
+  </dialog>
+
+  <!-- Brand Exploration Switcher + Live Intent Telemetry HUD -->
+  <nav class="studio-dock" aria-label="Brand Prototype Switcher">
+    <a href="./index.html">Hub</a>
+    <a href="./look-a-editorial.html">A · Editorial</a>
+    <a href="./look-b-spatial-gallery.html">B · Spatial Gallery</a>
+    <a href="./look-c-guerrilla-studio.html" aria-current="page">C · Guerrilla Studio</a>
+    <span class="dock-telemetry" id="gp-telemetry-counts" title="Real-time Curiosity Funnel Telemetry">0 Peeks · 0 Clicks</span>
+  </nav>
+
+  <script type="module">
+    import { logIntentSignal } from './assets/prototype-runtime.js';
+
+    const scenarios = {
+      browser: {
+        meta: '> env="browser" · model="gemini-3.8-flash"',
+        intent: 'intent: "Locate Q4 invoice table; quarantined adversarial hidden prompt in banner."',
+      },
+      desktop: {
+        meta: '> env="desktop" · model="gemini-4-argon"',
+        intent: 'intent: "Reconcile legacy ERP window against exported CSV; awaiting safety confirmation."',
+      },
+      mobile: {
+        meta: '> env="mobile" · model="gemini-3.8-flash"',
+        intent: 'intent: "Verify Android checkout tap targets at 390px viewport; zero injection detected."',
+      },
+    };
+
+    const out = document.getElementById('gc-sim-output');
+    const btns = document.querySelectorAll('.mode-btn');
+    btns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const key = btn.dataset.env;
+        btns.forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+        const data = scenarios[key];
+        if (out && data) {
+          out.innerHTML = '';
+          const s1 = document.createElement('span');
+          s1.className = 'screen-label';
+          s1.textContent = data.meta;
+          const s2 = document.createElement('span');
+          s2.textContent = data.intent;
+          out.append(s1, s2);
+        }
+        logIntentSignal('peek', `sim-env:${key}`);
+      });
+    });
+  </script>
+</body>
+</html>

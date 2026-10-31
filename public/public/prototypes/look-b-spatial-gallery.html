@@ -1,0 +1,1057 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GeminiPulse — Look B: Cinematic Gallery &amp; Spatial Minimalism</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --canvas: #FAFAFC;
+      --plinth: #F1F3F7;
+      --plinth-hover: #EAECEF;
+      --glass: rgba(255, 255, 255, 0.82);
+      --ink: #0A0B0E;
+      --muted: #636875;
+      --faint: #9298A6;
+      --hairline: rgba(10, 11, 14, 0.08);
+      --hairline-strong: rgba(10, 11, 14, 0.16);
+      --cobalt: #2563EB;
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: var(--canvas);
+      color: var(--ink);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      margin: 0;
+      background: var(--canvas);
+      color: var(--ink);
+      line-height: 1.55;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    .shell {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding-inline: clamp(1.5rem, 5vw, 4rem);
+    }
+
+    /* Ultra-Restrained Floating Spatial Header (Max 5 Nav Links) */
+    .spatial-header {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      background: rgba(250, 250, 252, 0.82);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .header-inner {
+      min-height: 64px;
+      padding-block: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-weight: 600;
+      font-size: 1.02rem;
+      letter-spacing: -0.025em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: clamp(0.9rem, 2vw, 2rem);
+      flex-wrap: wrap;
+      font-size: 0.86rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .nav-links a {
+      transition: color 0.18s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a[aria-current="page"] {
+      color: var(--ink);
+    }
+
+    .btn-pill-dark {
+      background: var(--ink);
+      color: #fff;
+      border: 0;
+      border-radius: 999px;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 0.55rem 1.1rem;
+      cursor: pointer;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+
+    .btn-pill-dark:hover {
+      opacity: 0.86;
+    }
+
+    .btn-pill-ghost {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--hairline-strong);
+      border-radius: 999px;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 0.52rem 1.05rem;
+      cursor: pointer;
+      transition: background-color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .btn-pill-ghost:hover {
+      background: var(--plinth);
+    }
+
+    /* Stage 01: Panoramic Gallery Spotlight (54%+ Open Whitespace) */
+    .hero-stage {
+      padding-top: clamp(2.75rem, 5vw, 4.25rem);
+      padding-bottom: clamp(3.5rem, 6vw, 5.5rem);
+    }
+
+    .hero-copy {
+      max-width: 760px;
+      margin: 0 auto clamp(2rem, 3.8vw, 2.75rem);
+      text-align: center;
+    }
+
+    .micro-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.15rem;
+    }
+
+    .hero-headline {
+      font-size: clamp(2.35rem, 4.8vw, 3.85rem);
+      font-weight: 600;
+      line-height: 1.05;
+      letter-spacing: -0.038em;
+      margin: 0 0 1.25rem;
+      text-wrap: balance;
+    }
+
+    .hero-headline a:hover {
+      color: var(--cobalt);
+    }
+
+    .hero-teaser {
+      font-size: clamp(1.02rem, 1.4vw, 1.18rem);
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 52ch;
+      margin: 0 auto 2rem;
+      text-wrap: pretty;
+    }
+
+    .hero-cta-pair {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .hero-plinth {
+      background: var(--plinth);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--hairline);
+    }
+
+    .hero-plinth img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hero-plinth:hover img {
+      transform: scale(1.015);
+    }
+
+    /* Stage 02: Asymmetric Spatial Bento Pair (Zero Nested Sub-Boxes) */
+    .bento-stage {
+      padding-block: clamp(3.5rem, 7vw, 6rem);
+    }
+
+    .stage-caption {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 2.25rem;
+      flex-wrap: wrap;
+    }
+
+    .stage-caption h2 {
+      font-size: 1.45rem;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      margin: 0;
+    }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    @media (min-width: 900px) {
+      .bento-grid {
+        grid-template-columns: 6.5fr 5.5fr;
+        gap: 2.25rem;
+      }
+    }
+
+    .bento-surface {
+      background: var(--plinth);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: background-color 0.25s ease;
+    }
+
+    .bento-surface:hover {
+      background: var(--plinth-hover);
+    }
+
+    .bento-media {
+      overflow: hidden;
+    }
+
+    .bento-media img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .bento-surface:hover .bento-media img {
+      transform: scale(1.02);
+    }
+
+    .bento-body {
+      padding: clamp(1.75rem, 3vw, 2.5rem);
+    }
+
+    .bento-title {
+      font-size: clamp(1.32rem, 1.9vw, 1.62rem);
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      margin: 0.5rem 0 0.75rem;
+    }
+
+    .bento-title a:hover {
+      color: var(--cobalt);
+    }
+
+    .bento-desc {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin: 0 0 1.4rem;
+      max-width: 44ch;
+    }
+
+    .bento-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .quiet-route {
+      font-size: 0.86rem;
+      font-weight: 500;
+      color: var(--ink);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .quiet-route:hover {
+      color: var(--cobalt);
+    }
+
+    /* Stage 03: Whisper-Clean Signal Index (1-Line Rows + Audience Lens) */
+    .index-stage {
+      padding-block: clamp(3.5rem, 7vw, 6.5rem);
+      border-top: 1px solid var(--hairline);
+    }
+
+    .lens-bar {
+      display: inline-flex;
+      background: var(--plinth);
+      padding: 0.25rem;
+      border-radius: 999px;
+      gap: 0.2rem;
+    }
+
+    .lens-btn {
+      background: transparent;
+      border: 0;
+      border-radius: 999px;
+      padding: 0.38rem 0.9rem;
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--muted);
+      cursor: pointer;
+      transition: background-color 0.18s ease, color 0.18s ease;
+    }
+
+    .lens-btn[aria-pressed="true"] {
+      background: #fff;
+      color: var(--ink);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+    }
+
+    .signal-rows {
+      margin-top: 2rem;
+      border-top: 1px solid var(--hairline);
+    }
+
+    .signal-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+      padding-block: 1.55rem;
+      border-bottom: 1px solid var(--hairline);
+      align-items: baseline;
+      transition: opacity 0.2s ease;
+    }
+
+    .signal-row[hidden] {
+      display: none;
+    }
+
+    @media (min-width: 820px) {
+      .signal-row {
+        grid-template-columns: 150px minmax(0, 1fr) auto;
+        gap: 2rem;
+      }
+    }
+
+    .row-tag {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--faint);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .row-headline {
+      font-size: 1.12rem;
+      font-weight: 500;
+      letter-spacing: -0.015em;
+      margin: 0 0 0.25rem;
+    }
+
+    .row-headline a:hover,
+    .row-headline a:is(:interest-source, .interest-source) {
+      color: var(--cobalt);
+    }
+
+    .row-sub {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .row-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      justify-self: start;
+    }
+
+    @media (min-width: 820px) {
+      .row-actions {
+        justify-self: end;
+      }
+    }
+
+    .spec-chip {
+      background: transparent;
+      border: 1px solid var(--hairline-strong);
+      border-radius: 999px;
+      padding: 0.3rem 0.75rem;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      cursor: pointer;
+    }
+
+    .spec-chip:hover {
+      color: var(--ink);
+      border-color: var(--ink);
+    }
+
+    .spatial-footer {
+      padding-block: 3.5rem 6rem;
+      border-top: 1px solid var(--hairline);
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+
+    .footer-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-nav {
+      display: flex;
+      gap: 1.75rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-nav a:hover {
+      color: var(--ink);
+    }
+
+    /* =====================================================================
+       MODERN WEB GUIDANCE: Frosted Optical Hovercards + Top-Layer Dialogs
+       ===================================================================== */
+    [interestfor] {
+      --interest-delay-start: 0.16s;
+      interest-delay-start: var(--interest-delay-start);
+      --interest-delay-end: 0.12s;
+      interest-delay-end: var(--interest-delay-end);
+    }
+
+    :root:has(:is(:interest-source, .interest-source)) [interestfor] {
+      --interest-delay-start: 0s;
+      interest-delay-start: 0s;
+    }
+
+    [popover].hovercard {
+      position-area: block-end span-inline-end;
+      position-try-fallbacks: flip-block, flip-inline;
+      margin: 0.6rem 0 0;
+      width: min(340px, calc(100vw - 24px));
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: saturate(180%) blur(24px);
+      -webkit-backdrop-filter: saturate(180%) blur(24px);
+      color: var(--ink);
+      border: 1px solid var(--hairline-strong);
+      border-radius: var(--radius-md);
+      box-shadow: 0 20px 48px rgba(10, 11, 14, 0.1);
+      padding: 1.15rem 1.25rem;
+      text-align: left;
+      z-index: 90;
+    }
+
+    .hc-top {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--faint);
+      margin-bottom: 0.6rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .hc-points {
+      margin: 0;
+      padding-left: 1rem;
+      font-size: 0.82rem;
+      color: var(--ink);
+      line-height: 1.52;
+    }
+
+    .hc-points li + li {
+      margin-top: 0.35rem;
+    }
+
+    .hc-foot {
+      margin-top: 0.75rem;
+      padding-top: 0.55rem;
+      border-top: 1px solid var(--hairline);
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--muted);
+    }
+
+    dialog.spatial-dialog {
+      width: min(500px, calc(100vw - 2rem));
+      background: #fff;
+      color: var(--ink);
+      border: 1px solid var(--hairline-strong);
+      border-radius: var(--radius-lg);
+      padding: 2.1rem;
+      box-shadow: 0 32px 80px rgba(10, 11, 14, 0.18);
+    }
+
+    dialog.spatial-dialog h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      margin: 0.45rem 0 0.9rem;
+    }
+
+    dialog.spatial-dialog ul {
+      margin: 0 0 1.6rem;
+      padding-left: 1.1rem;
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    dialog.spatial-dialog li + li {
+      margin-top: 0.45rem;
+    }
+
+    .dlg-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    /* Top-Layer Entry & Exit Animations */
+    dialog,
+    [popover].hovercard {
+      opacity: 0;
+      transform: translateY(6px) scale(0.98);
+      transition-property: opacity, transform, display, overlay;
+      transition-duration: 0.25s;
+      transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+      transition-behavior: allow-discrete;
+    }
+
+    dialog::backdrop {
+      background-color: rgb(10 11 14 / 0);
+      backdrop-filter: blur(6px);
+      transition-property: background-color, display, overlay;
+      transition-duration: 0.25s;
+      transition-timing-function: ease-out;
+      transition-behavior: allow-discrete;
+    }
+
+    :is(dialog[open], [popover].hovercard:is(:popover-open, .\:popover-open)):where(:not([data-closing])) {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+
+      @starting-style {
+        opacity: 0;
+        transform: translateY(6px) scale(0.98);
+      }
+    }
+
+    dialog[open]:where(:not([data-closing]))::backdrop {
+      background-color: rgb(10 11 14 / 0.28);
+
+      @starting-style {
+        background-color: rgb(10 11 14 / 0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      dialog,
+      [popover].hovercard {
+        transform: none;
+        transition-duration: 0.1s;
+      }
+      @starting-style {
+        dialog[open],
+        [popover].hovercard:is(:popover-open, .\:popover-open) {
+          transform: none;
+        }
+      }
+    }
+
+    /* Floating Brand Studio Switcher Dock */
+    .studio-dock {
+      position: fixed;
+      bottom: 1rem;
+      right: 1.25rem;
+      z-index: 80;
+      background: rgba(10, 11, 14, 0.92);
+      backdrop-filter: blur(16px);
+      color: #FAFAFC;
+      border-radius: 999px;
+      padding: 0.38rem 0.62rem;
+      display: flex;
+      align-items: center;
+      gap: 0.42rem;
+      font-family: var(--font-mono);
+      font-size: 0.69rem;
+      box-shadow: 0 12px 32px rgba(10, 11, 14, 0.22);
+      max-width: calc(100vw - 2.5rem);
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .studio-dock a {
+      padding: 0.3rem 0.65rem;
+      border-radius: 999px;
+      color: #A1A6B3;
+    }
+
+    .studio-dock a[aria-current="page"] {
+      background: #FAFAFC;
+      color: #0A0B0E;
+      font-weight: 600;
+    }
+
+    .studio-dock a:hover:not([aria-current="page"]) {
+      color: #fff;
+    }
+
+    .dock-telemetry {
+      padding-inline: 0.55rem 0.35rem;
+      border-left: 1px solid rgba(255, 255, 255, 0.16);
+      color: #93C5FD;
+    }
+  </style>
+</head>
+<body>
+  <!-- Strict 5-Item Minimalist Spatial Header -->
+  <header class="spatial-header">
+    <div class="shell header-inner">
+      <a href="./look-b-spatial-gallery.html" class="brand" aria-label="GeminiPulse Observatory Home">
+        <!-- Custom Bauhaus Optical Twin-Prism SVG -->
+        <svg width="24" height="24" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+          <rect x="2.5" y="5.5" width="14" height="17" rx="3" stroke="currentColor" stroke-width="1.5"/>
+          <rect x="11.5" y="5.5" width="14" height="17" rx="3" stroke="#2563EB" stroke-width="1.5" fill="rgba(37,99,235,0.08)"/>
+        </svg>
+        <span>GeminiPulse</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="/series/gemini-computer-use/part-1-computer-use-ga-breakdown.html" aria-current="page" data-intent-route="/pulse">Pulse</a>
+        <a href="/labs/gemini-computer-use-simulator.html" data-intent-route="/labs">Labs &amp; Arena</a>
+        <a href="/#addons" data-intent-route="/addons">Add-Ons</a>
+        <a href="/#showcase" data-intent-route="/showcase">Showcase</a>
+        <a href="/#chronicle" data-intent-route="/chronicle">Chronicle</a>
+      </nav>
+
+      <button type="button" class="btn-pill-dark" commandfor="dlg-spatial-cu" command="show-modal">Quick Brief</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- STAGE 01: Full-Bleed Gallery Object Spotlight -->
+    <section class="hero-stage" aria-labelledby="spatial-hero-title">
+      <div class="shell">
+        <div class="hero-copy">
+          <div class="micro-eyebrow">Cover Dispatch · October 30, 2026</div>
+          <h1 id="spatial-hero-title" class="hero-headline">
+            <a
+              href="/series/gemini-computer-use/part-1-computer-use-ga-breakdown.html"
+              interestfor="sp-peek-cu"
+              data-intent-route="/series/gemini-computer-use/part-1"
+            >
+              Gemini Now Operates Browser, Desktop, and Mobile Screens Safely.
+            </a>
+          </h1>
+          <p class="hero-teaser">
+            Google’s Computer Use tool reaches general availability with built-in action intent logs and screenshot prompt-injection defense.
+          </p>
+          <div class="hero-cta-pair">
+            <a
+              href="/series/gemini-computer-use/part-1-computer-use-ga-breakdown.html"
+              class="btn-pill-dark"
+              data-intent-route="/series/gemini-computer-use/part-1"
+            >
+              Read the Story
+            </a>
+            <a
+              href="/labs/gemini-computer-use-simulator.html"
+              class="btn-pill-ghost"
+              data-intent-route="/labs/gemini-computer-use-simulator"
+            >
+              Open Interactive Simulator [DEMO]
+            </a>
+          </div>
+        </div>
+
+        <figure class="hero-plinth" style="margin:0;">
+          <img
+            src="./assets/look-b-hero.webp"
+            alt="Minimalist architectural studio study of three frosted optical glass planes aligned on an anodized aluminum gimbal with a focused cobalt and amber light beam"
+            width="1376"
+            height="768"
+            fetchpriority="high"
+          />
+        </figure>
+      </div>
+    </section>
+
+    <!-- STAGE 02: Asymmetric Spatial Bento Pair -->
+    <section class="bento-stage" aria-labelledby="bento-heading">
+      <div class="shell">
+        <div class="stage-caption">
+          <h2 id="bento-heading">Curated Highlights</h2>
+          <span style="font-family:var(--font-mono);font-size:0.72rem;color:var(--faint);">HOVER ANY HEADLINE FOR SPECS</span>
+        </div>
+
+        <div class="bento-grid">
+          <!-- Bento Left: Genie 4 -->
+          <article class="bento-surface">
+            <div class="bento-media">
+              <img
+                src="./assets/look-b-genie.webp"
+                alt="Architectural glass sphere enclosing a miniature Bauhaus sculptural terrain with concentric acoustic ripples"
+                width="1200"
+                height="896"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="bento-body">
+              <div class="micro-eyebrow" style="margin-bottom:0.35rem;">World Models</div>
+              <h3 class="bento-title">
+                <a
+                  href="https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/"
+                  target="_blank"
+                  rel="noreferrer"
+                  interestfor="sp-peek-genie"
+                  data-intent-route="external:deepmind-genie-4"
+                >
+                  DeepMind Genie 4 Generates Interactive 3D Worlds With Native Sound
+                </a>
+              </h3>
+              <p class="bento-desc">
+                Steer real-time physics, spatial environments, and live dialogue on the fly from plain natural language.
+              </p>
+              <div class="bento-footer">
+                <a
+                  href="https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="quiet-route"
+                  data-intent-route="external:deepmind-genie-4"
+                >
+                  <span>Explore DeepMind Release</span>
+                  <span aria-hidden="true">↗</span>
+                </a>
+                <button type="button" class="spec-chip" commandfor="dlg-spatial-genie" command="show-modal">Specs</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Bento Right: Frontier Tri-Model Arena -->
+          <article class="bento-surface">
+            <div class="bento-media">
+              <img
+                src="./assets/look-b-arena.webp"
+                alt="Precision frosted quartz prism, brushed titanium cylinder, and matte ceramic cube balanced on an anodized beam"
+                width="1200"
+                height="896"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="bento-body">
+              <div class="micro-eyebrow" style="margin-bottom:0.35rem;">Playable Labs</div>
+              <h3 class="bento-title">
+                <a
+                  href="/arena/exp-01-gemini-4-argon.html"
+                  interestfor="sp-peek-arena"
+                  data-intent-route="/arena/exp-01"
+                >
+                  Test Computer Use Defense and Single-Shot Apps in Seconds
+                </a>
+              </h3>
+              <p class="bento-desc">
+                Inspect live agent bounding boxes, calculate Workspace ROI, or judge Gemini against rival frontier models.
+              </p>
+              <div class="bento-footer">
+                <a href="/arena/exp-01-gemini-4-argon.html" class="quiet-route" data-intent-route="/arena/exp-01">
+                  <span>Enter Tri-Model Arena</span>
+                  <span aria-hidden="true">→</span>
+                </a>
+                <a href="/labs/gemini-4-stack-advisor.html" class="spec-chip" data-intent-route="/labs/gemini-4-stack-advisor">ROI Tool</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- STAGE 03: Whisper-Clean Single-Line Signal Index with Audience Lens -->
+    <section class="index-stage" aria-labelledby="index-heading">
+      <div class="shell">
+        <div class="stage-caption">
+          <h2 id="index-heading">The Signal Index</h2>
+          <div class="lens-bar" role="group" aria-label="Filter signals by reader lens">
+            <button type="button" class="lens-btn" data-lens="all" aria-pressed="true">All Signals</button>
+            <button type="button" class="lens-btn" data-lens="everyday" aria-pressed="false">Everyday Teams</button>
+            <button type="button" class="lens-btn" data-lens="builders" aria-pressed="false">Product Builders</button>
+          </div>
+        </div>
+
+        <div class="signal-rows">
+          <article class="signal-row" data-audience="builders everyday">
+            <div class="row-tag">Frontier Report</div>
+            <div>
+              <h3 class="row-headline">
+                <a
+                  href="/series/gemini-4-carbon/part-1-carbon-vs-argon.html"
+                  interestfor="sp-peek-carbon"
+                  data-intent-route="/series/gemini-4-carbon/part-1"
+                >
+                  Why Gemini 4 Carbon Claims Number One in Cyberdefense
+                </a>
+              </h3>
+              <p class="row-sub">Our three-part plain-English breakdown translates Google’s flagship release into concrete security workflows and 95% cache savings.</p>
+            </div>
+            <div class="row-actions">
+              <button type="button" class="spec-chip" commandfor="dlg-spatial-carbon" command="show-modal">Brief</button>
+              <a href="/series/gemini-4-carbon/part-1-carbon-vs-argon.html" class="quiet-route" data-intent-route="/series/gemini-4-carbon/part-1">Read →</a>
+            </div>
+          </article>
+
+          <article class="signal-row" data-audience="everyday">
+            <div class="row-tag">Migration Guide</div>
+            <div>
+              <h3 class="row-headline">
+                <a
+                  href="/series/making-the-switch/part-1-from-wordpress-to-antigravity.html"
+                  interestfor="sp-peek-switch"
+                  data-intent-route="/series/making-the-switch/part-1"
+                >
+                  Leaving WordPress and FTP Behind for Zero-Dollar Cloud Agents
+                </a>
+              </h3>
+              <p class="row-sub">Follow our two-part Rosetta Stone guide from fragile PHP plugins and phpMyAdmin to Firebase and Antigravity.</p>
+            </div>
+            <div class="row-actions">
+              <a href="/shorts/short-05-making-the-switch.html" class="spec-chip" data-intent-route="/shorts/short-05">60s Video</a>
+              <a href="/series/making-the-switch/part-1-from-wordpress-to-antigravity.html" class="quiet-route" data-intent-route="/series/making-the-switch/part-1">Read →</a>
+            </div>
+          </article>
+
+          <article class="signal-row" data-audience="everyday">
+            <div class="row-tag">Everyday (T)winning</div>
+            <div>
+              <h3 class="row-headline">
+                <a href="/#addons" data-intent-route="/addons">
+                  Grab Free Antigravity Plugins or Prepaid Workspace Power Packs
+                </a>
+              </h3>
+              <p class="row-sub">Start free forever with our starter plugin, or unlock fifty battle-tested business prompts without another monthly subscription.</p>
+            </div>
+            <div class="row-actions">
+              <a href="/downloads/workspace-twinning-lite.md" class="spec-chip" data-intent-route="/downloads/workspace-lite">Free Pack ↓</a>
+              <a href="/#addons" class="quiet-route" data-intent-route="/addons">Explore →</a>
+            </div>
+          </article>
+
+          <article class="signal-row" data-audience="builders">
+            <div class="row-tag">SDK &amp; API</div>
+            <div>
+              <h3 class="row-headline">
+                <a
+                  href="https://github.com/googleapis/js-genai/releases/tag/v2.32.0"
+                  target="_blank"
+                  rel="noreferrer"
+                  interestfor="sp-peek-sdk"
+                  data-intent-route="external:js-genai-v2.32"
+                >
+                  Long Multi-Step Agent Runs Now Resume Automatically Without Glue Code
+                </a>
+              </h3>
+              <p class="row-sub">GenAI SDK v2.32 adds native continuation tokens so million-token workflows never drop mid-stream.</p>
+            </div>
+            <div class="row-actions">
+              <a href="https://github.com/googleapis/js-genai/releases/tag/v2.32.0" target="_blank" rel="noreferrer" class="quiet-route" data-intent-route="external:js-genai-v2.32">GitHub ↗</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="spatial-footer">
+    <div class="shell footer-flex">
+      <span>GeminiPulse · Curated Autonomously by Gemini 4 Argon</span>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="/status.html" data-intent-route="/status">Status</a>
+        <a href="/partners.html" data-intent-route="/partners">Partners</a>
+        <a href="/feed.xml" data-intent-route="/feed.xml">Atom Feed</a>
+        <a href="/llms.txt" data-intent-route="/llms.txt">llms.txt</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- =====================================================================
+       TIER 2 OPTICAL HOVERCARDS (popover="hint" + interestfor)
+       ===================================================================== -->
+  <div id="sp-peek-cu" popover="hint" class="hovercard" data-story-slug="spatial-computer-use">
+    <div class="hc-top"><span>Optical Spec</span><span>GA · Oct 30</span></div>
+    <ul class="hc-points">
+      <li>Controls browser, desktop, and mobile surfaces via Interactions API.</li>
+      <li>Includes step-by-step <code>intent</code> explanations and prompt-injection defense.</li>
+      <li>Optimized for <code>gemini-3.8-flash</code> ($0.75/1M) &amp; <code>gemini-4-argon</code>.</li>
+    </ul>
+    <div class="hc-foot">ai.google.dev/gemini-api/docs/computer-use</div>
+  </div>
+
+  <div id="sp-peek-genie" popover="hint" class="hovercard" data-story-slug="spatial-genie-4">
+    <div class="hc-top"><span>Optical Spec</span><span>Genie 4</span></div>
+    <ul class="hc-points">
+      <li>Real-time interactive 3D world generation with physics simulation.</li>
+      <li>Native synchronized ambient sound, music, and live dialogue.</li>
+    </ul>
+    <div class="hc-foot">deepmind.google/blog/genie-4</div>
+  </div>
+
+  <div id="sp-peek-arena" popover="hint" class="hovercard" data-story-slug="spatial-arena">
+    <div class="hc-top"><span>Optical Spec</span><span>4 Live Builds</span></div>
+    <ul class="hc-points">
+      <li>4 single-shot apps built autonomously by <code>gemini-4-argon</code>.</li>
+      <li>Includes 60fps Orbital Pulse arcade + B2B ROI Attribution Studio.</li>
+    </ul>
+    <div class="hc-foot">/arena/exp-01-gemini-4-argon.html</div>
+  </div>
+
+  <div id="sp-peek-carbon" popover="hint" class="hovercard" data-story-slug="spatial-carbon">
+    <div class="hc-top"><span>Optical Spec</span><span>#1 Frontier</span></div>
+    <ul class="hc-points">
+      <li>Ranked #1 on Artificial Analysis v5.0 &amp; SEC-bench Pro (88.2%).</li>
+      <li>$2/1M input · $0.10/1M cached input (95% savings).</li>
+    </ul>
+    <div class="hc-foot">blog.google · Gemini 4 Carbon</div>
+  </div>
+
+  <div id="sp-peek-switch" popover="hint" class="hovercard" data-story-slug="spatial-switch">
+    <div class="hc-top"><span>Optical Spec</span><span>2-Part Guide</span></div>
+    <ul class="hc-points">
+      <li>Part 1: WordPress &amp; FTP → Antigravity + $0/mo Firebase Spark.</li>
+      <li>Part 2: MySQL/phpMyAdmin → Cloud Firestore + live SQL translator.</li>
+    </ul>
+    <div class="hc-foot">/series/making-the-switch/</div>
+  </div>
+
+  <div id="sp-peek-sdk" popover="hint" class="hovercard" data-story-slug="spatial-sdk">
+    <div class="hc-top"><span>Optical Spec</span><span>SDK v2.32</span></div>
+    <ul class="hc-points">
+      <li>Native <code>automatic_continuation</code> on <code>client.interactions.create()</code>.</li>
+      <li>Adds video upscale parameter &amp; Python 3.15 support.</li>
+    </ul>
+    <div class="hc-foot">github.com/googleapis/js-genai</div>
+  </div>
+
+  <!-- =====================================================================
+       TIER 2 LIGHT-DISMISS DIALOGS (<dialog closedby="any">)
+       ===================================================================== -->
+  <dialog id="dlg-spatial-cu" closedby="any" class="spatial-dialog" aria-labelledby="sp-dlg-1" data-story-slug="spatial-cu-modal">
+    <div class="micro-eyebrow" style="margin-bottom:0;">Executive Summary · Oct 30, 2026</div>
+    <h2 id="sp-dlg-1">Gemini Computer Use (GA)</h2>
+    <ul>
+      <li><strong>Multi-Surface Control:</strong> Operates browser, desktop, and mobile interfaces from screenshot state.</li>
+      <li><strong>Built-In Guardrails:</strong> Emits explicit <code>intent</code> traces per action and scans screenshots against adversarial prompt injections.</li>
+      <li><strong>Cost Efficiency:</strong> Pair <code>gemini-3.8-flash</code> ($0.75/1M) for UI loops with <code>gemini-4-argon</code> for orchestration.</li>
+    </ul>
+    <div class="dlg-actions">
+      <a href="/series/gemini-computer-use/part-1-computer-use-ga-breakdown.html" class="btn-pill-dark" data-intent-route="/series/gemini-computer-use/part-1">Open Full Breakdown</a>
+      <button type="button" class="btn-pill-ghost" commandfor="dlg-spatial-cu" command="close">Dismiss</button>
+    </div>
+  </dialog>
+
+  <dialog id="dlg-spatial-genie" closedby="any" class="spatial-dialog" aria-labelledby="sp-dlg-2" data-story-slug="spatial-genie-modal">
+    <div class="micro-eyebrow" style="margin-bottom:0;">Executive Summary · Oct 28, 2026</div>
+    <h2 id="sp-dlg-2">Google DeepMind Genie 4</h2>
+    <ul>
+      <li><strong>Interactive 3D + Native Audio:</strong> Generates explorable 3D worlds with live physics, ambient audio, and dialogue.</li>
+      <li><strong>Steerable Live:</strong> Responds in real time to natural language, keyboard, and voice inputs.</li>
+    </ul>
+    <div class="dlg-actions">
+      <a href="https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/" target="_blank" rel="noreferrer" class="btn-pill-dark" data-intent-route="external:deepmind-genie-4">Read DeepMind Source ↗</a>
+      <button type="button" class="btn-pill-ghost" commandfor="dlg-spatial-genie" command="close">Dismiss</button>
+    </div>
+  </dialog>
+
+  <dialog id="dlg-spatial-carbon" closedby="any" class="spatial-dialog" aria-labelledby="sp-dlg-3" data-story-slug="spatial-carbon-modal">
+    <div class="micro-eyebrow" style="margin-bottom:0;">Executive Summary · Oct 28, 2026</div>
+    <h2 id="sp-dlg-3">Gemini 4 Carbon vs. Argon</h2>
+    <ul>
+      <li><strong>#1 Intelligence &amp; Cyberdefense:</strong> Tops Artificial Analysis v5.0 and scores 88.2% on SEC-bench Pro.</li>
+      <li><strong>95% Cached Input Savings:</strong> Drops repeated context reads from $2.00/1M down to $0.10/1M tokens.</li>
+    </ul>
+    <div class="dlg-actions">
+      <a href="/series/gemini-4-carbon/part-1-carbon-vs-argon.html" class="btn-pill-dark" data-intent-route="/series/gemini-4-carbon/part-1">Read 3-Part Series</a>
+      <button type="button" class="btn-pill-ghost" commandfor="dlg-spatial-carbon" command="close">Dismiss</button>
+    </div>
+  </dialog>
+
+  <!-- Brand Exploration Switcher + Live Intent Telemetry HUD -->
+  <nav class="studio-dock" aria-label="Brand Prototype Switcher">
+    <a href="./index.html">Hub</a>
+    <a href="./look-a-editorial.html">A · Editorial</a>
+    <a href="./look-b-spatial-gallery.html" aria-current="page">B · Spatial Gallery</a>
+    <a href="./look-c-guerrilla-studio.html">C · Guerrilla Studio</a>
+    <span class="dock-telemetry" id="gp-telemetry-counts" title="Real-time Curiosity Funnel Telemetry">0 Peeks · 0 Clicks</span>
+  </nav>
+
+  <script type="module">
+    import { logIntentSignal } from './assets/prototype-runtime.js';
+
+    const lensBtns = document.querySelectorAll('.lens-btn');
+    const rows = document.querySelectorAll('.signal-row');
+    lensBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const lens = btn.dataset.lens;
+        lensBtns.forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+        rows.forEach((row) => {
+          const aud = row.dataset.audience || '';
+          row.hidden = lens !== 'all' && !aud.includes(lens);
+        });
+        logIntentSignal('peek', `lens:${lens}`);
+      });
+    });
+  </script>
+</body>
+</html>

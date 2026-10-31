@@ -1,11 +1,11 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-10-30 19:10 EDT (Shipped 4-Rung "Prepaid vs. All-Access" Add-Ons Value Ladder on /#addons + Published Standalone Public Marketplace Repo GeminiPulse/gemini-twin-starter v1.0.0 + Built Gitignored Commercial Pro Deliverable Zips — Live v2.0.46)`
+- **Last Updated:** `2026-10-30 23:34 EDT (Built 3 Divergent Brand & Decoupled Cognitive IA Homepage Prototypes under public/public/prototypes/ with 9 Bespoke WebP Illustrations — Production public/src/App.jsx Untouched Awaiting Neil's Direction Call)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
 - **Firebase Default Hosting URL:** `https://geminipulse-com.web.app`
-- **Local Dev Preview URL:** `http://localhost:8080`
+- **Local Dev Preview URL:** `http://localhost:8080` *(Brand Prototypes Hub: `http://localhost:8080/prototypes/`)*
 - **Firebase Project ID:** `geminipulse-com` (Project Number `643794480842`, Spark Free Plan — **\$0.00/mo**)
 - **Firebase Web App ID:** `1:643794480842:web:9f973bc1a0d7670c920e33` (`GeminiPulse Web`)
 - **Concept Originator & Creative Catalyst:** Neil S. White (`https://www.linkedin.com/in/neilswhite`, **Agile LLC**)
@@ -13,7 +13,15 @@
 
 ---
 
-## 1. Completed & Live on `v2.0` (2026-10-30 7:10 PM ET Update)
+## 1. Completed & Live on `v2.0` (2026-10-30 11:34 PM ET Update)
+
+- **Built 3 Divergent Brand Identity & Decoupled Cognitive IA Homepage Prototypes (`public/public/prototypes/` — Production `public/src/App.jsx` 100% Untouched):**
+  - **Decoupled 5-Route Gateway IA Proposal:** Consolidates the 16-section homepage scroll into **5 primary navigation routes** (`/pulse`, `/labs`, `/addons`, `/showcase`, `/chronicle`), enforcing `46–55%` open negative space, `≤18-word` card teasers (`≤24` cap), zero nested `TL;DR` boxes, native HTML hovercards (`interestfor` + `popover="hint"`), light-dismiss `<dialog closedby="any">` briefs, and live pre-click `peek` vs. `route_commit` intent telemetry (`prototype-runtime.js`).
+  - **3 Clickable Local Preview Prototypes (`0` Horizontal Overflows Across `1440px` & `390px` via Chrome CDP):**
+    1. **Look A — Editorial Magazine & Daylight Authority (`http://localhost:8080/prototypes/look-a-editorial.html`):** Warm `#F6F3EC` cotton paper (+ Late Ink `#151412` toggle), `Newsreader` serif + `Plus Jakarta Sans`, 3 tactile two-tone Risograph WebP illustrations (`look-a-hero.webp`, `look-a-carbon.webp`, `look-a-switch.webp`), and archival Margin Note hovercards.
+    2. **Look B — Cinematic Gallery & Spatial Minimalism (`http://localhost:8080/prototypes/look-b-spatial-gallery.html`):** `55%` open `#FAFAFC` alabaster whitespace, tight `Inter` display typography, 3 Dieter Rams frosted optical glass & anodized aluminum studio studies (`look-b-hero.webp`, `look-b-genie.webp`, `look-b-arena.webp`), and a 1-click Reader Lens Signal Index (`All Signals` · `Everyday Teams` · `Product Builders`).
+    3. **Look C — Guerrilla Cultural Hub & Kinetic Studio (`http://localhost:8080/prototypes/look-c-guerrilla-studio.html`):** Warm `#EFECE6` putty chassis, `2px` ink poster frames, `Space Grotesk`, 3 graphic-novel halftone vector illustrations (`look-c-hero.webp`, `look-c-twinning.webp`, `look-c-arcade.webp`), and a 3-second interactive Computer Use Field Unit (`[SIMULATED DEMO]`).
+  - **Awaiting Neil's Creative Direction Call:** Pick Look A, Look B, Look C, or a hybrid recipe before touching production `public/src/App.jsx` or redeploying Firebase Hosting.
 
 - **Shipped 4-Rung "Prepaid vs. All-Access" Add-Ons Value Ladder (`/#addons`), Standalone Marketplace Repo & Private Pro Deliverable Packs (`v2.0.46`):**
   - **4-Rung Merchandising & Combo Architecture (`GEMINI_ADDON_PRICING_LADDER` + `public/src/App.jsx`):**
