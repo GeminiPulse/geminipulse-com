@@ -1,11 +1,11 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-10-30 23:34 EDT (Built 3 Divergent Brand & Decoupled Cognitive IA Homepage Prototypes under public/public/prototypes/ with 9 Bespoke WebP Illustrations — Production public/src/App.jsx Untouched Awaiting Neil's Direction Call)`
+- **Last Updated:** `2026-10-31 00:08 EDT (Built Flagship Look D: The Fraternal Twin Engine [α Castor Editorial ⇄ β Pollux Kinetic Studio] + 2 Companion Twin-Star WebP Illustrations & Refined Look B Spatial Gallery under public/public/prototypes/ — Production public/src/App.jsx Untouched Awaiting Neil's Call)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
 - **Firebase Default Hosting URL:** `https://geminipulse-com.web.app`
-- **Local Dev Preview URL:** `http://localhost:8080` *(Brand Prototypes Hub: `http://localhost:8080/prototypes/`)*
+- **Local Dev Preview URL:** `http://localhost:8080` *(Brand Prototypes Hub: `http://localhost:8080/prototypes/` · Look D Fraternal Twins: `http://localhost:8080/prototypes/look-d-fraternal-twins.html`)*
 - **Firebase Project ID:** `geminipulse-com` (Project Number `643794480842`, Spark Free Plan — **\$0.00/mo**)
 - **Firebase Web App ID:** `1:643794480842:web:9f973bc1a0d7670c920e33` (`GeminiPulse Web`)
 - **Concept Originator & Creative Catalyst:** Neil S. White (`https://www.linkedin.com/in/neilswhite`, **Agile LLC**)
@@ -13,15 +13,19 @@
 
 ---
 
-## 1. Completed & Live on `v2.0` (2026-10-30 11:34 PM ET Update)
+## 1. Completed & Live on `v2.0` (2026-10-31 12:08 AM ET Update)
 
-- **Built 3 Divergent Brand Identity & Decoupled Cognitive IA Homepage Prototypes (`public/public/prototypes/` — Production `public/src/App.jsx` 100% Untouched):**
-  - **Decoupled 5-Route Gateway IA Proposal:** Consolidates the 16-section homepage scroll into **5 primary navigation routes** (`/pulse`, `/labs`, `/addons`, `/showcase`, `/chronicle`), enforcing `46–55%` open negative space, `≤18-word` card teasers (`≤24` cap), zero nested `TL;DR` boxes, native HTML hovercards (`interestfor` + `popover="hint"`), light-dismiss `<dialog closedby="any">` briefs, and live pre-click `peek` vs. `route_commit` intent telemetry (`prototype-runtime.js`).
-  - **3 Clickable Local Preview Prototypes (`0` Horizontal Overflows Across `1440px` & `390px` via Chrome CDP):**
-    1. **Look A — Editorial Magazine & Daylight Authority (`http://localhost:8080/prototypes/look-a-editorial.html`):** Warm `#F6F3EC` cotton paper (+ Late Ink `#151412` toggle), `Newsreader` serif + `Plus Jakarta Sans`, 3 tactile two-tone Risograph WebP illustrations (`look-a-hero.webp`, `look-a-carbon.webp`, `look-a-switch.webp`), and archival Margin Note hovercards.
-    2. **Look B — Cinematic Gallery & Spatial Minimalism (`http://localhost:8080/prototypes/look-b-spatial-gallery.html`):** `55%` open `#FAFAFC` alabaster whitespace, tight `Inter` display typography, 3 Dieter Rams frosted optical glass & anodized aluminum studio studies (`look-b-hero.webp`, `look-b-genie.webp`, `look-b-arena.webp`), and a 1-click Reader Lens Signal Index (`All Signals` · `Everyday Teams` · `Product Builders`).
-    3. **Look C — Guerrilla Cultural Hub & Kinetic Studio (`http://localhost:8080/prototypes/look-c-guerrilla-studio.html`):** Warm `#EFECE6` putty chassis, `2px` ink poster frames, `Space Grotesk`, 3 graphic-novel halftone vector illustrations (`look-c-hero.webp`, `look-c-twinning.webp`, `look-c-arcade.webp`), and a 3-second interactive Computer Use Field Unit (`[SIMULATED DEMO]`).
-  - **Awaiting Neil's Creative Direction Call:** Pick Look A, Look B, Look C, or a hybrid recipe before touching production `public/src/App.jsx` or redeploying Firebase Hosting.
+- **Built Flagship Look D — *"The Fraternal Twin Engine (`α Castor` ⇄ `β Pollux`)"* & Refined Study B (`public/public/prototypes/` — Production `public/src/App.jsx` 100% Untouched):**
+  - **Core Brand Breakthrough ("ONLY TWO — Non-Identical Fraternal Twins"):** Embraces the astronomical & Mercurial duality of *Gemini* (`α Geminorum · Castor` and `β Geminorum · Pollux`, without literal horoscopes) inside [`look-d-fraternal-twins.html`](../public/public/prototypes/look-d-fraternal-twins.html):
+    - **Side I (`α Castor · Read` — `?twin=castor`):** Warm `#F6F3EC` cotton paper, `Newsreader` serif, `50%+` spatial calm (`2,019px` desktop height), leading with Signal, News & 3-Part Plain-English Dossiers, paired with Risograph twin-star astrolabe artwork (`look-d-castor.webp`) and a dark-ink/marigold *"Across the Seam: β Pollux Studio"* window card.
+    - **Side II (`β Pollux · Build` — `?twin=pollux`):** Warm `#EFECE6` putty, `2px solid #111111` ink poster frames, `Space Grotesk` (`2,473px` desktop height), leading with the live 3-second Computer Use Field Console (`[SIMULATED DEMO]`), Tri-Model Arena, *Built with Gemini* Showcase, and `$0–$29` `(T)winning` Add-Ons, paired with halftone vector twin-star rotary console artwork (`look-d-pollux.webp`) and a cotton-paper *"Across the Seam: α Castor Desk"* slip.
+    - **Directional View Transitions & Polarity Telemetry:** Masthead rocker (`✦ Castor · Read` ⇄ `✧ Pollux · Build` or keyboard shortcut `T`) uses `document.startViewTransition({ update, types: [direction] })`, morphs `view-transition-name: twin-hero-visual`, shifts focus cleanly to `#castor-lead-heading` / `#pollux-lead-heading`, persists `geminipulse_twin_polarity`, and emits `twin_polarity_choice` signals alongside `peek` and `route_commit` telemetry (`prototype-runtime.js`).
+  - **Refined Study B (`look-b-spatial-gallery.html`) + Individual Studies A & C (`11` Custom WebP Artworks Total, `0` Horizontal Overflows Across `1440px` & `390px`):**
+    1. **Look D — Fraternal Twins (`http://localhost:8080/prototypes/look-d-fraternal-twins.html`):** Unifies the two non-identical Twins (`α Castor` + `β Pollux`) across one 5-item navigation bar (`/pulse`, `/labs`, `/addons`, `/showcase`, `/chronicle`).
+    2. **Study B (Refined) — Spatial Gallery (`http://localhost:8080/prototypes/look-b-spatial-gallery.html`):** Re-proportioned into an asymmetric `5.2fr : 6.8fr` hero split so 100% of the Dieter Rams frosted optical glass & anodized aluminum sculpture renders above the fold (`55%` open `#FAFAFC` whitespace, `2,608px` height).
+    3. **Study A — Editorial Authority (`http://localhost:8080/prototypes/look-a-editorial.html`):** Warm `#F6F3EC` cotton paper (+ Late Ink `#151412` toggle), `Newsreader` serif, and 3 Risograph illustrations (`look-a-hero.webp`, `look-a-carbon.webp`, `look-a-switch.webp`).
+    4. **Study C — Guerrilla Studio (`http://localhost:8080/prototypes/look-c-guerrilla-studio.html`):** Tactile `#EFECE6` putty, `2px` ink poster frames, `Space Grotesk`, 3 graphic-novel vector illustrations (`look-c-hero.webp`, `look-c-twinning.webp`, `look-c-arcade.webp`), and 3-second Field Unit (`[SIMULATED DEMO]`).
+  - **Awaiting Neil's Creative Direction Call:** Confirm Look D (`α Castor` ⇄ `β Pollux`) and choose the default first-visit landing polarity (`Castor`, `Pollux`, or 50/50 split curtain) before migrating production `public/src/App.jsx` or redeploying Firebase Hosting.
 
 - **Shipped 4-Rung "Prepaid vs. All-Access" Add-Ons Value Ladder (`/#addons`), Standalone Marketplace Repo & Private Pro Deliverable Packs (`v2.0.46`):**
   - **4-Rung Merchandising & Combo Architecture (`GEMINI_ADDON_PRICING_LADDER` + `public/src/App.jsx`):**

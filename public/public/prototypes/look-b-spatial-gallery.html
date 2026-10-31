@@ -144,16 +144,29 @@
       background: var(--plinth);
     }
 
-    /* Stage 01: Panoramic Gallery Spotlight (54%+ Open Whitespace) */
+    /* Stage 01: Asymmetric Architectural Gallery Spotlight (52%+ Open Whitespace) */
     .hero-stage {
-      padding-top: clamp(2.75rem, 5vw, 4.25rem);
+      padding-top: clamp(2.5rem, 5vw, 4.25rem);
       padding-bottom: clamp(3.5rem, 6vw, 5.5rem);
     }
 
+    .hero-gallery-split {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    @media (min-width: 960px) {
+      .hero-gallery-split {
+        grid-template-columns: 5.2fr 6.8fr;
+        gap: 3.5rem;
+      }
+    }
+
     .hero-copy {
-      max-width: 760px;
-      margin: 0 auto clamp(2rem, 3.8vw, 2.75rem);
-      text-align: center;
+      max-width: 540px;
+      text-align: left;
     }
 
     .micro-eyebrow {
@@ -161,16 +174,16 @@
       font-size: 0.7rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 1.15rem;
+      color: var(--cobalt);
+      margin-bottom: 1rem;
     }
 
     .hero-headline {
-      font-size: clamp(2.35rem, 4.8vw, 3.85rem);
+      font-size: clamp(2.15rem, 3.6vw, 3.15rem);
       font-weight: 600;
-      line-height: 1.05;
-      letter-spacing: -0.038em;
-      margin: 0 0 1.25rem;
+      line-height: 1.07;
+      letter-spacing: -0.036em;
+      margin: 0 0 1.15rem;
       text-wrap: balance;
     }
 
@@ -179,20 +192,19 @@
     }
 
     .hero-teaser {
-      font-size: clamp(1.02rem, 1.4vw, 1.18rem);
+      font-size: 1.03rem;
       color: var(--muted);
-      line-height: 1.6;
-      max-width: 52ch;
-      margin: 0 auto 2rem;
+      line-height: 1.62;
+      max-width: 46ch;
+      margin: 0 0 1.75rem;
       text-wrap: pretty;
     }
 
     .hero-cta-pair {
-      display: inline-flex;
+      display: flex;
       align-items: center;
-      gap: 0.85rem;
+      gap: 0.75rem;
       flex-wrap: wrap;
-      justify-content: center;
     }
 
     .hero-plinth {
@@ -200,6 +212,7 @@
       border-radius: var(--radius-lg);
       overflow: hidden;
       border: 1px solid var(--hairline);
+      box-shadow: 0 24px 60px rgba(10, 11, 14, 0.05);
     }
 
     .hero-plinth img {
@@ -683,7 +696,7 @@
   <main>
     <!-- STAGE 01: Full-Bleed Gallery Object Spotlight -->
     <section class="hero-stage" aria-labelledby="spatial-hero-title">
-      <div class="shell">
+      <div class="shell hero-gallery-split">
         <div class="hero-copy">
           <div class="micro-eyebrow">Cover Dispatch · October 30, 2026</div>
           <h1 id="spatial-hero-title" class="hero-headline">
@@ -711,7 +724,7 @@
               class="btn-pill-ghost"
               data-intent-route="/labs/gemini-computer-use-simulator"
             >
-              Open Interactive Simulator [DEMO]
+              Try Simulator [DEMO]
             </a>
           </div>
         </div>
@@ -1031,8 +1044,9 @@
   <nav class="studio-dock" aria-label="Brand Prototype Switcher">
     <a href="./index.html">Hub</a>
     <a href="./look-a-editorial.html">A · Editorial</a>
-    <a href="./look-b-spatial-gallery.html" aria-current="page">B · Spatial Gallery</a>
-    <a href="./look-c-guerrilla-studio.html">C · Guerrilla Studio</a>
+    <a href="./look-b-spatial-gallery.html" aria-current="page">B · Spatial</a>
+    <a href="./look-c-guerrilla-studio.html">C · Guerrilla</a>
+    <a href="./look-d-fraternal-twins.html">D · Fraternal Twins ♊</a>
     <span class="dock-telemetry" id="gp-telemetry-counts" title="Real-time Curiosity Funnel Telemetry">0 Peeks · 0 Clicks</span>
   </nav>
 
