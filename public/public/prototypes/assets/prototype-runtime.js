@@ -63,25 +63,35 @@ export async function closeTopLayer(element) {
   }
 }
 
-// 3. Curiosity Funnel Telemetry State (Peeks vs. High-Intent Route Commits)
+// 3. Curiosity Funnel Telemetry State (4 Uncontaminated Intent Buckets)
 const telemetryState = {
   peeks: 0,
   briefs: 0,
+  flips: 0,
   commits: 0,
-  lastEvent: 'Ready — hover or focus a headline',
+  lastEvent: 'Ready — hover a headline or tap Brief',
 };
 
 export function logIntentSignal(type, detail) {
   if (type === 'peek') telemetryState.peeks += 1;
-  if (type === 'brief') telemetryState.briefs += 1;
-  if (type === 'commit') telemetryState.commits += 1;
+  else if (type === 'brief') telemetryState.briefs += 1;
+  else if (type === 'flip' || type === 'twin_polarity_choice' || type === 'demo_interact' || type === 'lens_filter') {
+    telemetryState.flips += 1;
+  } else if (type === 'commit') {
+    telemetryState.commits += 1;
+  }
   telemetryState.lastEvent = `${type.toUpperCase()}: ${detail}`;
 
-  const countEl = document.getElementById('gp-telemetry-counts');
+  const summary =
+    telemetryState.flips > 0 || telemetryState.briefs > 0
+      ? `${telemetryState.peeks} Peeks · ${telemetryState.briefs} Briefs · ${telemetryState.flips} Flips · ${telemetryState.commits} Clicks`
+      : `${telemetryState.peeks} Peeks · ${telemetryState.briefs} Briefs · ${telemetryState.commits} Clicks`;
+
+  document.querySelectorAll('#gp-telemetry-counts, [data-telemetry-hud]').forEach((el) => {
+    el.textContent = summary;
+  });
+
   const lastEl = document.getElementById('gp-telemetry-last');
-  if (countEl) {
-    countEl.textContent = `${telemetryState.peeks} Peeks · ${telemetryState.commits} Clicks`;
-  }
   if (lastEl) {
     lastEl.textContent = telemetryState.lastEvent;
   }
@@ -90,15 +100,21 @@ export function logIntentSignal(type, detail) {
 function initHovercardPositionFallback() {
   const supportsAnchorArea = window.CSS?.supports?.('position-area', 'block-end');
   const triggers = document.querySelectorAll('[interestfor]');
+  const boundCards = new WeakSet();
+  const activeTriggerByCard = new WeakMap();
 
   triggers.forEach((trigger) => {
     const targetId = trigger.getAttribute('interestfor');
     const card = targetId ? document.getElementById(targetId) : null;
     if (!card) return;
 
-    const positionCard = () => {
+    const rememberTrigger = () => activeTriggerByCard.set(card, trigger);
+    trigger.addEventListener('pointerenter', rememberTrigger);
+    trigger.addEventListener('focusin', rememberTrigger);
+
+    const positionCard = (anchorEl) => {
       if (supportsAnchorArea) return;
-      const rect = trigger.getBoundingClientRect();
+      const rect = (anchorEl || trigger).getBoundingClientRect();
       const cardWidth = Math.min(360, window.innerWidth - 24);
       const left = Math.max(12, Math.min(rect.left, window.innerWidth - cardWidth - 12));
       const spaceBelow = window.innerHeight - rect.bottom;
@@ -110,12 +126,17 @@ function initHovercardPositionFallback() {
       card.style.margin = '0';
     };
 
-    card.addEventListener('beforetoggle', (e) => {
-      if (e.newState === 'open') {
-        positionCard();
-        logIntentSignal('peek', card.dataset.storySlug || targetId);
-      }
-    });
+    if (!boundCards.has(card)) {
+      boundCards.add(card);
+      card.addEventListener('beforetoggle', (e) => {
+        if (e.newState === 'open') {
+          positionCard(activeTriggerByCard.get(card) || trigger);
+          if (card.dataset.telemetryIgnore !== 'true') {
+            logIntentSignal('peek', card.dataset.storySlug || targetId);
+          }
+        }
+      });
+    }
 
     // Progressive keyboard/hover fallback if interestfor polyfill is still loading or blocked offline
     let hoverTimer = null;

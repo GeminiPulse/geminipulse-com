@@ -1,0 +1,1827 @@
+<!doctype html>
+<html lang="en" data-twin="castor">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GeminiPulse — Look D v1 (Pre-Critic Snapshot: α Castor ⇄ β Pollux)</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    /* =====================================================================
+       FRATERNAL TWIN DESIGN TOKENS
+       α CASTOR (The Editorial Mind — Signal, Dossiers & Plain-English News)
+       β POLLUX (The Kinetic Studio — Playable Demos, Showcase & Add-Ons)
+       ===================================================================== */
+    :root,
+    html[data-twin="castor"] {
+      --bg: #F6F3EC;
+      --surface: #FBF9F5;
+      --ink: #121316;
+      --muted: #57544E;
+      --faint: #858077;
+      --border-color: #DCD7CC;
+      --border-strong: #121316;
+      --border-width: 1px;
+      --accent: #E03E1A;
+      --accent-secondary: #1939B7;
+      --badge-bg: transparent;
+      --card-shadow: none;
+      --font-display: 'Newsreader', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+    }
+
+    html[data-twin="pollux"] {
+      --bg: #EFECE6;
+      --surface: #FFFFFF;
+      --ink: #111111;
+      --muted: #42403C;
+      --faint: #6E6A63;
+      --border-color: #111111;
+      --border-strong: #111111;
+      --border-width: 2px;
+      --accent: #FF5A1F;
+      --accent-secondary: #3B4BFF;
+      --badge-bg: #FFD026;
+      --card-shadow: 5px 5px 0 #111111;
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'Space Mono', ui-monospace, monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.58;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding-inline: clamp(1.25rem, 4.2vw, 3.5rem);
+    }
+
+    /* Celestial / Mercurial Micro-Bar (Astronomical Wit, Zero Corny Horoscopes) */
+    .celestial-bar {
+      border-bottom: 1px solid var(--border-color);
+      font-family: var(--font-mono);
+      font-size: 0.71rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-block: 0.55rem;
+      background: var(--bg);
+    }
+
+    html[data-twin="pollux"] .celestial-bar {
+      background: #111111;
+      color: #EFECE6;
+      border-bottom: 2px solid #111111;
+    }
+
+    .celestial-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .star-pip {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      background: var(--accent);
+      border-radius: 50%;
+      margin-right: 0.45rem;
+      vertical-align: middle;
+    }
+
+    html[data-twin="pollux"] .star-pip {
+      background: #FFD026;
+      border-radius: 0;
+      transform: rotate(45deg);
+    }
+
+    .kbd-hint {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      opacity: 0.85;
+    }
+
+    .kbd-key {
+      display: inline-block;
+      padding: 0.05rem 0.38rem;
+      border: 1px solid currentColor;
+      border-radius: 3px;
+      font-weight: 700;
+      margin-inline: 0.15rem;
+    }
+
+    .greek-sym {
+      text-transform: none;
+      font-family: 'Newsreader', Georgia, serif;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 1.08em;
+    }
+
+    /* Unified Masthead + Signature Fraternal Twin Polarity Rocker */
+    .twin-header {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      background: var(--bg);
+      border-bottom: var(--border-width) solid var(--border-strong);
+      padding-block: 0.9rem;
+    }
+
+    .header-grid {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.15rem;
+      flex-wrap: wrap;
+    }
+
+    .brand-lockup {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      view-transition-name: twin-brand;
+      width: fit-content;
+    }
+
+    .brand-wordmark {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 2.1vw, 1.75rem);
+      font-weight: 600;
+      letter-spacing: -0.028em;
+      line-height: 1;
+    }
+
+    html[data-twin="castor"] .brand-wordmark em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--accent);
+    }
+
+    html[data-twin="pollux"] .brand-wordmark {
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.035em;
+    }
+
+    html[data-twin="pollux"] .brand-wordmark em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    /* Strict 5-Item Primary Navigation */
+    .primary-nav {
+      display: flex;
+      align-items: center;
+      gap: clamp(0.9rem, 1.8vw, 1.75rem);
+      flex-wrap: wrap;
+    }
+
+    .primary-nav a {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--muted);
+      padding-block: 0.2rem;
+      border-bottom: 2px solid transparent;
+      transition: color 0.16s ease, border-color 0.16s ease;
+    }
+
+    .primary-nav a:hover,
+    .primary-nav a[data-active="true"] {
+      color: var(--ink);
+      border-bottom-color: var(--accent);
+    }
+
+    /* THE SIGNATURE FRATERNAL TWIN ROCKER (Only TWO — Non-Identical Twins!) */
+    .twin-rocker {
+      display: inline-grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1.5px solid #121316;
+      background: #E8E3D8;
+      padding: 3px;
+      gap: 3px;
+      view-transition-name: twin-rocker-bar;
+    }
+
+    html[data-twin="pollux"] .twin-rocker {
+      border: 2px solid #111111;
+      background: #111111;
+      box-shadow: 3px 3px 0 var(--accent-secondary);
+    }
+
+    .rocker-half {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      padding: 0.44rem 0.78rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      text-align: left;
+      transition: background-color 0.15s ease, color 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .rocker-castor {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #4A4741;
+    }
+
+    .rocker-pollux {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: #3A3833;
+    }
+
+    html[data-twin="pollux"] .rocker-castor {
+      color: #CFCAC0;
+    }
+
+    .rocker-half[aria-pressed="true"].rocker-castor {
+      background: #FBF9F5;
+      color: #121316;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .rocker-half[aria-pressed="true"].rocker-pollux {
+      background: #FFD026;
+      color: #111111;
+    }
+
+    .rocker-sub {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      opacity: 0.78;
+      display: none;
+    }
+
+    @media (min-width: 1120px) {
+      .rocker-sub {
+        display: inline;
+      }
+    }
+
+    /* =====================================================================
+       SIDE I: α CASTOR VIEW (Editorial Authority + 50% Airy Whitespace)
+       ===================================================================== */
+    .castor-stage-1 {
+      padding-block: clamp(2.4rem, 4.8vw, 4rem);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .castor-front-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    @media (min-width: 960px) {
+      .castor-front-grid {
+        grid-template-columns: 7fr 4.6fr;
+        gap: 3.75rem;
+      }
+      .castor-wire-col {
+        border-left: 1px solid var(--border-color);
+        padding-left: 3rem;
+      }
+    }
+
+    .eyebrow-castor {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.71rem;
+      font-weight: 500;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: #E03E1A;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .castor-art-frame {
+      background: #FBF9F5;
+      border: 1px solid #DCD7CC;
+      overflow: hidden;
+      margin: 0 0 1.6rem;
+    }
+
+    .castor-art-frame img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+
+    .castor-h1 {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: clamp(2.15rem, 3.9vw, 3.35rem);
+      font-weight: 500;
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      margin: 0 0 1rem;
+      max-width: 19ch;
+      outline: none;
+    }
+
+    .castor-h1 a:hover {
+      color: #E03E1A;
+    }
+
+    .castor-teaser {
+      font-size: 1.06rem;
+      line-height: 1.62;
+      color: #57544E;
+      margin: 0 0 1.55rem;
+      max-width: 54ch;
+    }
+
+    .action-cluster {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+      flex-wrap: wrap;
+    }
+
+    .castor-primary-link {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #121316;
+      border-bottom: 1.5px solid #E03E1A;
+      padding-bottom: 0.15rem;
+    }
+
+    .castor-primary-link:hover {
+      color: #E03E1A;
+    }
+
+    .castor-ghost-btn {
+      background: transparent;
+      border: 1px dashed #C7C1B4;
+      color: #57544E;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      padding: 0.36rem 0.7rem;
+      cursor: pointer;
+    }
+
+    .castor-ghost-btn:hover {
+      border-color: #121316;
+      color: #121316;
+    }
+
+    .cross-twin-pill {
+      background: #111111;
+      color: #FFD026;
+      border: 1.5px solid #111111;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.71rem;
+      font-weight: 700;
+      padding: 0.38rem 0.75rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: transform 0.14s ease;
+    }
+
+    .cross-twin-pill:hover {
+      transform: translateY(-1px);
+    }
+
+    .wire-header {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.73rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #57544E;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid #121316;
+      margin: 0 0 1.5rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .castor-wire-item {
+      padding-bottom: 1.5rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid #DCD7CC;
+    }
+
+    .castor-wire-h3 {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 1.32rem;
+      font-weight: 500;
+      line-height: 1.22;
+      margin: 0 0 0.45rem;
+    }
+
+    .castor-wire-h3 a:hover,
+    .castor-wire-h3 a:is(:interest-source, .interest-source) {
+      color: #E03E1A;
+    }
+
+    .castor-wire-p {
+      font-size: 0.91rem;
+      color: #57544E;
+      margin: 0;
+    }
+
+    /* THE FRATERNAL WINDOW: Pollux Peeking Through Castor's Paper Canvas! */
+    .sibling-window-pollux {
+      background: #111111;
+      color: #EFECE6;
+      border: 2px solid #111111;
+      box-shadow: 5px 5px 0 #3B4BFF;
+      padding: 1.35rem 1.4rem;
+      margin-top: 1.75rem;
+    }
+
+    .sibling-window-pollux .sw-kicker {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: #FFD026;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      display: block;
+      margin-bottom: 0.45rem;
+    }
+
+    .sibling-window-pollux h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.18rem;
+      line-height: 1.2;
+      margin: 0 0 0.5rem;
+      color: #FFFFFF;
+    }
+
+    .sibling-window-pollux p {
+      font-size: 0.86rem;
+      color: #C7C3B9;
+      margin: 0 0 1rem;
+    }
+
+    .btn-flip-to-pollux {
+      width: 100%;
+      background: #FFD026;
+      color: #111111;
+      border: 0;
+      padding: 0.58rem 0.9rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .btn-flip-to-pollux:hover {
+      background: #FF5A1F;
+      color: #FFFFFF;
+    }
+
+    .castor-stage-2 {
+      padding-block: clamp(3.5rem, 6.5vw, 5.5rem);
+      border-bottom: 1px solid #DCD7CC;
+    }
+
+    .castor-sec-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      border-bottom: 1px solid #121316;
+      padding-bottom: 0.8rem;
+      margin-bottom: 2.75rem;
+      flex-wrap: wrap;
+    }
+
+    .castor-sec-head h2 {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: clamp(1.6rem, 2.4vw, 2.1rem);
+      font-weight: 500;
+      margin: 0;
+    }
+
+    .two-col-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    @media (min-width: 860px) {
+      .two-col-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 3.5rem;
+      }
+    }
+
+    .dossier-thumb {
+      border: 1px solid #DCD7CC;
+      background: #FBF9F5;
+      overflow: hidden;
+      margin: 0 0 1.25rem;
+    }
+
+    .dossier-thumb img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+    }
+
+    .dossier-h3 {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 1.65rem;
+      font-weight: 500;
+      line-height: 1.18;
+      margin: 0 0 0.65rem;
+    }
+
+    .dossier-h3 a:hover {
+      color: #E03E1A;
+    }
+
+    /* =====================================================================
+       SIDE II: β POLLUX VIEW (Kinetic Studio — Demos, Showcase & Add-Ons)
+       ===================================================================== */
+    .pollux-stage-1 {
+      padding-block: clamp(2.25rem, 4.5vw, 3.75rem);
+      border-bottom: 2px solid #111111;
+    }
+
+    .pollux-hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    @media (min-width: 980px) {
+      .pollux-hero-grid {
+        grid-template-columns: 6.8fr 5.2fr;
+        gap: 3.25rem;
+      }
+    }
+
+    .pollux-card {
+      background: #FFFFFF;
+      border: 2px solid #111111;
+      box-shadow: 5px 5px 0 #111111;
+    }
+
+    .pollux-hero-art {
+      border-bottom: 2px solid #111111;
+      overflow: hidden;
+      background: #EFECE6;
+    }
+
+    .pollux-hero-art img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+
+    .pollux-pad {
+      padding: clamp(1.5rem, 3vw, 2.25rem);
+    }
+
+    .pollux-chip {
+      display: inline-block;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.69rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: #FFD026;
+      color: #111111;
+      border: 1.5px solid #111111;
+      padding: 0.18rem 0.55rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .chip-orange {
+      background: #FF5A1F;
+      color: #FFFFFF;
+    }
+
+    .chip-blue {
+      background: #3B4BFF;
+      color: #FFFFFF;
+    }
+
+    .pollux-h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.95rem, 3.4vw, 2.85rem);
+      font-weight: 700;
+      line-height: 1.07;
+      letter-spacing: -0.03em;
+      margin: 0 0 0.9rem;
+      outline: none;
+    }
+
+    .pollux-lead {
+      font-size: 1rem;
+      color: #42403C;
+      margin: 0 0 1.45rem;
+      max-width: 48ch;
+    }
+
+    .btn-pollux-orange {
+      background: #FF5A1F;
+      color: #FFFFFF;
+      border: 2px solid #111111;
+      box-shadow: 3px 3px 0 #111111;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.55rem 0.95rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .btn-pollux-white {
+      background: #FFFFFF;
+      color: #111111;
+      border: 2px solid #111111;
+      box-shadow: 3px 3px 0 #111111;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.73rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.52rem 0.85rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .btn-pollux-white:hover {
+      background: #FFD026;
+    }
+
+    /* Interactive 3-Second Field Unit Console ([SIMULATED DEMO]) */
+    .field-console {
+      background: #111111;
+      color: #EFECE6;
+      border: 2px solid #111111;
+      box-shadow: 6px 6px 0 #3B4BFF;
+      padding: clamp(1.5rem, 2.8vw, 2.1rem);
+    }
+
+    .fc-bar {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.69rem;
+      color: #FFD026;
+      border-bottom: 1px solid #2F2F2F;
+      padding-bottom: 0.75rem;
+      margin-bottom: 1.15rem;
+    }
+
+    .fc-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+      line-height: 1.15;
+      margin: 0 0 0.5rem;
+      color: #FFFFFF;
+    }
+
+    .fc-desc {
+      font-size: 0.89rem;
+      color: #C7C3B9;
+      margin: 0 0 1.15rem;
+    }
+
+    .fc-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.45rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .fc-tab {
+      background: #1D1D1D;
+      color: #D5D1C8;
+      border: 1.5px solid #3C3C3C;
+      padding: 0.5rem 0.35rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.69rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .fc-tab[aria-pressed="true"] {
+      background: #FFD026;
+      color: #111111;
+      border-color: #FFD026;
+    }
+
+    .fc-readout {
+      background: #181A20;
+      border: 1.5px solid #393D4A;
+      padding: 0.95rem 1rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      line-height: 1.55;
+      color: #E7E9F2;
+      margin-bottom: 1.2rem;
+      min-height: 6.1rem;
+    }
+
+    .fc-meta {
+      color: #93A5FF;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .pollux-stage-2 {
+      padding-block: clamp(3.25rem, 6vw, 5.25rem);
+      border-bottom: 2px solid #111111;
+    }
+
+    .pollux-sec-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 2.25rem;
+      flex-wrap: wrap;
+    }
+
+    .pollux-sec-bar h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.6rem, 2.5vw, 2.15rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      margin: 0;
+    }
+
+    .pollux-cartridge-art {
+      border-bottom: 2px solid #111111;
+      overflow: hidden;
+      background: #EFECE6;
+    }
+
+    .pollux-cartridge-art img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+    }
+
+    .pollux-h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.48rem;
+      font-weight: 700;
+      line-height: 1.15;
+      margin: 0 0 0.65rem;
+    }
+
+    .pollux-h3 a:hover,
+    .pollux-h3 a:is(:interest-source, .interest-source) {
+      color: #3B4BFF;
+    }
+
+    /* THE FRATERNAL WINDOW IN POLLUX: Castor's Cotton-Paper Editorial Slip! */
+    .pollux-stage-3 {
+      padding-block: clamp(3rem, 5.5vw, 4.75rem);
+      border-bottom: 2px solid #111111;
+    }
+
+    .sibling-window-castor {
+      background: #F6F3EC;
+      color: #121316;
+      border: 1.5px solid #121316;
+      padding: clamp(1.6rem, 3.2vw, 2.5rem);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+      align-items: center;
+    }
+
+    @media (min-width: 880px) {
+      .sibling-window-castor {
+        grid-template-columns: 7.5fr 4.5fr;
+      }
+    }
+
+    .sibling-window-castor h3 {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: clamp(1.55rem, 2.3vw, 2rem);
+      font-weight: 500;
+      line-height: 1.15;
+      margin: 0.35rem 0 0.6rem;
+    }
+
+    .sibling-window-castor p {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.95rem;
+      color: #57544E;
+      margin: 0;
+      max-width: 52ch;
+    }
+
+    .btn-flip-to-castor {
+      background: #121316;
+      color: #F6F3EC;
+      border: 1px solid #121316;
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 1.02rem;
+      padding: 0.75rem 1.35rem;
+      cursor: pointer;
+      justify-self: start;
+    }
+
+    @media (min-width: 880px) {
+      .btn-flip-to-castor {
+        justify-self: end;
+      }
+    }
+
+    .btn-flip-to-castor:hover {
+      background: #E03E1A;
+      border-color: #E03E1A;
+      color: #FFFFFF;
+    }
+
+    /* Shared Colophon Footer */
+    .twin-footer {
+      padding-block: 2.75rem 5.5rem;
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.4rem;
+      flex-wrap: wrap;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    /* =====================================================================
+       VIEW TRANSITIONS API (same-document-transitions + directional types)
+       Only the currently active Twin hero carries `twin-hero-visual`!
+       ===================================================================== */
+    #view-castor:not([hidden]) .castor-art-frame,
+    #view-pollux:not([hidden]) .pollux-hero-art {
+      view-transition-name: twin-hero-visual;
+    }
+
+    ::view-transition-old(twin-hero-visual),
+    ::view-transition-new(twin-hero-visual) {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    ::view-transition-group(root) {
+      animation-duration: 0.36s;
+      animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    @keyframes twin-slide-out-left {
+      to { opacity: 0; transform: translateX(-28px); }
+    }
+    @keyframes twin-slide-in-right {
+      from { opacity: 0; transform: translateX(28px); }
+    }
+    @keyframes twin-slide-out-right {
+      to { opacity: 0; transform: translateX(28px); }
+    }
+    @keyframes twin-slide-in-left {
+      from { opacity: 0; transform: translateX(-28px); }
+    }
+
+    html:active-view-transition-type(to-pollux)::view-transition-old(root) {
+      animation-name: twin-slide-out-left;
+    }
+    html:active-view-transition-type(to-pollux)::view-transition-new(root) {
+      animation-name: twin-slide-in-right;
+    }
+    html:active-view-transition-type(to-castor)::view-transition-old(root) {
+      animation-name: twin-slide-out-right;
+    }
+    html:active-view-transition-type(to-castor)::view-transition-new(root) {
+      animation-name: twin-slide-in-left;
+    }
+
+    /* =====================================================================
+       HOVERCARDS & LIGHT-DISMISS DIALOGS (Adapts to Active Twin Palette!)
+       ===================================================================== */
+    [interestfor] {
+      --interest-delay-start: 0.16s;
+      interest-delay-start: var(--interest-delay-start);
+      --interest-delay-end: 0.12s;
+      interest-delay-end: var(--interest-delay-end);
+    }
+
+    :root:has(:is(:interest-source, .interest-source)) [interestfor] {
+      --interest-delay-start: 0s;
+      interest-delay-start: 0s;
+    }
+
+    [popover].hovercard {
+      position-area: block-end span-inline-end;
+      position-try-fallbacks: flip-block, flip-inline;
+      margin: 0.55rem 0 0;
+      width: min(350px, calc(100vw - 24px));
+      background: var(--surface);
+      color: var(--ink);
+      border: var(--border-width) solid var(--border-strong);
+      box-shadow: var(--card-shadow, 0 18px 40px rgba(0, 0, 0, 0.16));
+      padding: 1.1rem 1.2rem;
+      text-align: left;
+      z-index: 90;
+    }
+
+    html[data-twin="castor"] [popover].hovercard {
+      box-shadow: 0 18px 40px rgba(18, 19, 22, 0.14);
+    }
+
+    .hc-head {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.45rem;
+      margin-bottom: 0.65rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .hc-items {
+      margin: 0;
+      padding-left: 1.05rem;
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+
+    .hc-items li + li {
+      margin-top: 0.35rem;
+    }
+
+    .hc-foot {
+      margin-top: 0.7rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid var(--border-color);
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--muted);
+    }
+
+    dialog.twin-dialog {
+      width: min(520px, calc(100vw - 2rem));
+      background: var(--surface);
+      color: var(--ink);
+      border: var(--border-width) solid var(--border-strong);
+      box-shadow: 0 28px 64px rgba(0, 0, 0, 0.25);
+      padding: 2rem;
+    }
+
+    dialog.twin-dialog h2 {
+      font-family: var(--font-display);
+      font-size: 1.55rem;
+      margin: 0.45rem 0 0.85rem;
+      line-height: 1.18;
+    }
+
+    dialog.twin-dialog ul {
+      margin: 0 0 1.5rem;
+      padding-left: 1.15rem;
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    dialog.twin-dialog li + li {
+      margin-top: 0.45rem;
+    }
+
+    dialog,
+    [popover].hovercard {
+      opacity: 0;
+      transform: translateY(-6px) scale(0.97);
+      transition-property: opacity, transform, display, overlay;
+      transition-duration: 0.22s;
+      transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+      transition-behavior: allow-discrete;
+    }
+
+    dialog::backdrop {
+      background-color: rgb(17 17 17 / 0);
+      backdrop-filter: blur(2px);
+      transition-property: background-color, display, overlay;
+      transition-duration: 0.22s;
+      transition-timing-function: ease-out;
+      transition-behavior: allow-discrete;
+    }
+
+    :is(dialog[open], [popover].hovercard:is(:popover-open, .\:popover-open)):where(:not([data-closing])) {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+
+      @starting-style {
+        opacity: 0;
+        transform: translateY(-6px) scale(0.97);
+      }
+    }
+
+    dialog[open]:where(:not([data-closing]))::backdrop {
+      background-color: rgb(17 17 17 / 0.5);
+
+      @starting-style {
+        background-color: rgb(17 17 17 / 0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      ::view-transition-group(*),
+      ::view-transition-old(*),
+      ::view-transition-new(*) {
+        animation: none !important;
+      }
+      dialog,
+      [popover].hovercard {
+        transform: none;
+        transition-duration: 0.1s;
+      }
+      @starting-style {
+        dialog[open],
+        [popover].hovercard:is(:popover-open, .\:popover-open) {
+          transform: none;
+        }
+      }
+    }
+
+    /* Floating Brand Studio Switcher Dock */
+    .studio-dock {
+      position: fixed;
+      bottom: 1rem;
+      right: 1.25rem;
+      z-index: 80;
+      background: #121316;
+      color: #F6F3EC;
+      border: 1.5px solid #FFD026;
+      padding: 0.4rem 0.62rem;
+      display: flex;
+      align-items: center;
+      gap: 0.42rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+      max-width: calc(100vw - 2.5rem);
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .studio-dock a {
+      padding: 0.28rem 0.52rem;
+      color: #B6B1A7;
+    }
+
+    .studio-dock a[aria-current="page"] {
+      background: #FFD026;
+      color: #111111;
+      font-weight: 700;
+    }
+
+    .studio-dock a:hover:not([aria-current="page"]) {
+      color: #FFFFFF;
+    }
+
+    .dock-telemetry {
+      padding-left: 0.5rem;
+      border-left: 1px solid #383631;
+      color: #FFD026;
+    }
+  </style>
+</head>
+<body>
+  <!-- Celestial / Mercurial Identity Strip -->
+  <div class="celestial-bar">
+    <div class="container celestial-inner">
+      <span id="twin-celestial-status">
+        <span class="star-pip"></span>♊ <span class="greek-sym">α</span> GEMINORUM · CASTOR — THE EDITORIAL TWIN (SIGNAL, NEWS &amp; DOSSIERS)
+      </span>
+      <span class="kbd-hint">FRATERNAL DUALITY · PRESS <span class="kbd-key">T</span> TO FLIP TWINS</span>
+    </div>
+  </div>
+
+  <!-- Unified Masthead: Brand + Strict 5-Item Nav + Signature Fraternal Twin Rocker -->
+  <header class="twin-header">
+    <div class="container header-grid">
+      <a href="./look-d-fraternal-twins.html" class="brand-lockup" aria-label="GeminiPulse Fraternal Twins Home">
+        <!-- Custom Twin-Star Seal (α Vermilion/Orange + β Prussian/Ultramarine) -->
+        <svg width="30" height="30" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+          <path d="M13 4L15 13L24 15L15 17L13 26L11 17L2 15L11 13L13 4Z" fill="var(--accent)"/>
+          <path d="M24 11L25.6 18.4L33 20L25.6 21.6L24 29L22.4 21.6L15 20L22.4 18.4L24 11Z" fill="var(--accent-secondary)"/>
+        </svg>
+        <span class="brand-wordmark">Gemini<em>Pulse</em></span>
+      </a>
+
+      <nav class="primary-nav" aria-label="Primary">
+        <a href="/series/gemini-computer-use/part-1-computer-use-ga-breakdown.html" id="nav-pulse" data-active="true" data-intent-route="/pulse">Pulse</a>
+        <a href="/labs/gemini-computer-use-simulator.html" id="nav-labs" data-intent-route="/labs">Labs &amp; Arena</a>
+        <a href="/#addons" data-intent-route="/addons">Add-Ons</a>
+        <a href="/#showcase" data-intent-route="/showcase">Showcase</a>
+        <a href="/#chronicle" data-intent-route="/chronicle">Chronicle</a>
+      </nav>
+
+      <!-- THE TWO FRATERNAL TWINS SWITCH -->
+      <div class="twin-rocker" role="group" aria-label="Choose your Gemini Twin personality">
+        <button
+          type="button"
+          class="rocker-half rocker-castor"
+          data-set-twin="castor"
+          aria-pressed="true"
+          interestfor="peek-twin-castor"
+        >
+          <span>✦ Castor</span>
+          <span class="rocker-sub">· Read</span>
+        </button>
+        <button
+          type="button"
+          class="rocker-half rocker-pollux"
+          data-set-twin="pollux"
+          aria-pressed="false"
+          interestfor="peek-twin-pollux"
+        >
+          <span>✧ Pollux</span>
+          <span class="rocker-sub">· Build</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- =====================================================================
+       TWIN I: α CASTOR — THE EDITORIAL MIND (News, Dossiers & Plain-English Signal)
+       ===================================================================== -->
+  <main id="view-castor" aria-label="Castor Editorial View">
+    <section class="castor-stage-1">
+      <div class="container castor-front-grid">
+        <!-- 62% Cover Story -->
+        <article>
+          <div class="eyebrow-castor">
+            <span>Cover Dispatch · <span class="greek-sym">α</span> Castor Desk</span>
+            <span style="color:#858077;">· Oct 30, 2026</span>
+          </div>
+
+          <figure class="castor-art-frame">
+            <img
+              src="./assets/look-d-castor.webp"
+              alt="Risograph celestial editorial print of twin vermilion and prussian eight-point stars linked by an engraved astrolabe across browser and mobile frames"
+              width="1376"
+              height="768"
+              fetchpriority="high"
+            />
+          </figure>
+
+          <h1 id="castor-lead-heading" class="castor-h1" tabindex="-1">
+            <a
+              href="/series/gemini-computer-use/part-1-computer-use-ga-breakdown.html"
+              interestfor="tw-peek-cu"
+              data-intent-route="/series/gemini-computer-use/part-1"
+            >
+              Gemini Now Operates Browser, Desktop, and Mobile Screens Safely
+            </a>
+          </h1>
+
+          <p class="castor-teaser">
+            Google’s Computer Use tool reaches general availability with built-in action intent logs and screenshot prompt-injection defense.
+          </p>
+
+          <div class="action-cluster">
+            <a
+              href="/series/gemini-computer-use/part-1-computer-use-ga-breakdown.html"
+              class="castor-primary-link"
+              data-intent-route="/series/gemini-computer-use/part-1"
+            >
+              Read Three-Part Dossier →
+            </a>
+            <button type="button" class="castor-ghost-btn" commandfor="tw-dlg-cu" command="show-modal">
+              Margin Brief
+            </button>
+            <button type="button" class="cross-twin-pill" data-flip-twin="pollux">
+              <span>✧ Test It on Pollux</span>
+            </button>
+          </div>
+        </article>
+
+        <!-- 38% Wire + Tactile Window Into Pollux -->
+        <aside class="castor-wire-col" aria-label="On the Wire and Sibling Twin Portal">
+          <h2 class="wire-header">
+            <span>On the Wire</span>
+            <span>Hover for Specs</span>
+          </h2>
+
+          <article class="castor-wire-item">
+            <div class="eyebrow-castor"><span>01 · SDK &amp; API</span></div>
+            <h3 class="castor-wire-h3">
+              <a
+                href="https://github.com/googleapis/js-genai/releases/tag/v2.32.0"
+                target="_blank"
+                rel="noreferrer"
+                interestfor="tw-peek-sdk"
+                data-intent-route="external:js-genai-v2.32"
+              >
+                Long Multi-Step Agent Runs Now Resume Automatically Without Glue Code
+              </a>
+            </h3>
+            <p class="castor-wire-p">
+              GenAI SDK v2.32 adds native continuation tokens so million-token workflows never drop mid-stream.
+            </p>
+          </article>
+
+          <article class="castor-wire-item" style="border-bottom:0;margin-bottom:0;padding-bottom:0;">
+            <div class="eyebrow-castor"><span>02 · World Models</span></div>
+            <h3 class="castor-wire-h3">
+              <a
+                href="https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/"
+                target="_blank"
+                rel="noreferrer"
+                interestfor="tw-peek-genie"
+                data-intent-route="external:deepmind-genie-4"
+              >
+                DeepMind Genie 4 Generates Interactive 3D Worlds With Native Sound
+              </a>
+            </h3>
+            <p class="castor-wire-p">
+              Steer real-time physics, spatial environments, and live dialogue on the fly from plain natural language.
+            </p>
+          </article>
+
+          <!-- Peeking Across the Fraternal Seam: Pollux's Kinetic Studio Window! -->
+          <div class="sibling-window-pollux">
+            <span class="sw-kicker">✧ Across the Seam · <span class="greek-sym">β</span> Pollux Studio</span>
+            <h3>Done Reading? Touch the Demos &amp; Playable Builds.</h3>
+            <p>
+              Flip to your fraternal twin for the live Computer Use console, 4 single-shot Arena apps, and $0 starter plugins.
+            </p>
+            <button type="button" class="btn-flip-to-pollux" data-flip-twin="pollux">
+              Flip to Pollux Studio (Press T) ✧
+            </button>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Castor Stage 2: Deep Dossiers -->
+    <section class="castor-stage-2" aria-labelledby="castor-dossiers-h2">
+      <div class="container">
+        <div class="castor-sec-head">
+          <h2 id="castor-dossiers-h2">Plain-English Dossiers</h2>
+          <span style="font-family:var(--font-mono);font-size:0.74rem;color:var(--muted);">100% Grounded in Primary Google Sources</span>
+        </div>
+
+        <div class="two-col-grid">
+          <article>
+            <figure class="dossier-thumb">
+              <img
+                src="./assets/look-a-carbon.webp"
+                alt="Risograph print illustration of a carbon crystal lattice interlocking with an architectural vault key"
+                width="1200"
+                height="896"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+            <div class="eyebrow-castor"><span>Frontier Report</span></div>
+            <h3 class="dossier-h3">
+              <a
+                href="/series/gemini-4-carbon/part-1-carbon-vs-argon.html"
+                interestfor="tw-peek-carbon"
+                data-intent-route="/series/gemini-4-carbon/part-1"
+              >
+                Why Gemini 4 Carbon Claims Number One in Cyberdefense
+              </a>
+            </h3>
+            <p class="castor-wire-p" style="margin-bottom:1.1rem;max-width:48ch;">
+              Our three-part plain-English breakdown translates Google’s flagship release into concrete security workflows and 95% cache savings.
+            </p>
+            <a href="/series/gemini-4-carbon/part-1-carbon-vs-argon.html" class="castor-primary-link" data-intent-route="/series/gemini-4-carbon/part-1">Read Carbon Series →</a>
+          </article>
+
+          <article>
+            <figure class="dossier-thumb">
+              <img
+                src="./assets/look-a-switch.webp"
+                alt="Risograph print illustration of a heavy mechanical filing cabinet transforming into weightless paper gliders guided by twin stars"
+                width="1200"
+                height="896"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+            <div class="eyebrow-castor"><span>Migration Playbook</span></div>
+            <h3 class="dossier-h3">
+              <a
+                href="/series/making-the-switch/part-1-from-wordpress-to-antigravity.html"
+                interestfor="tw-peek-switch"
+                data-intent-route="/series/making-the-switch/part-1"
+              >
+                Leaving WordPress and FTP Behind for Zero-Dollar Cloud Agents
+              </a>
+            </h3>
+            <p class="castor-wire-p" style="margin-bottom:1.1rem;max-width:48ch;">
+              Follow our two-part Rosetta Stone guide from fragile PHP plugins and phpMyAdmin to Firebase and Antigravity.
+            </p>
+            <a href="/series/making-the-switch/part-1-from-wordpress-to-antigravity.html" class="castor-primary-link" data-intent-route="/series/making-the-switch/part-1">Read Migration Guide →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =====================================================================
+       TWIN II: β POLLUX — THE KINETIC STUDIO (Playable Demos, Showcase & Add-Ons)
+       ===================================================================== -->
+  <main id="view-pollux" hidden aria-label="Pollux Interactive Studio View">
+    <section class="pollux-stage-1">
+      <div class="container pollux-hero-grid">
+        <!-- Left: Kinetic Launchpad Poster -->
+        <article class="pollux-card">
+          <div class="pollux-hero-art">
+            <img
+              src="./assets/look-d-pollux.webp"
+              alt="Graphic-novel halftone vector illustration of twin orange and ultramarine star dials on a modular hardware console launching live app cartridges"
+              width="1376"
+              height="768"
+              fetchpriority="low"
+            />
+          </div>
+          <div class="pollux-pad">
+            <span class="pollux-chip chip-orange"><span class="greek-sym">β</span> Pollux Studio · Hands-On</span>
+            <h1 id="pollux-lead-heading" class="pollux-h1" tabindex="-1">
+              Don’t Just Read the Spec. Touch Every Gemini Build Live.
+            </h1>
+            <p class="pollux-lead">
+              Test prompt-injection shields, judge four single-shot frontier apps in the Arena, or model 95% cache savings in seconds.
+            </p>
+            <div class="action-cluster">
+              <a href="/arena/exp-01-gemini-4-argon.html" class="btn-pollux-orange" data-intent-route="/arena/exp-01">
+                Enter Tri-Model Arena →
+              </a>
+              <a href="/labs/gemini-4-stack-advisor.html" class="btn-pollux-white" data-intent-route="/labs/gemini-4-stack-advisor">
+                95% Cache ROI Slider ↗
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Right: Live 3-Second Interactive Field Console ([SIMULATED DEMO] per Rule #5) -->
+        <aside class="field-console" aria-label="3-Second Computer Use Interactive Console">
+          <div class="fc-bar">
+            <span>FIELD UNIT 01 · [SIMULATED DEMO]</span>
+            <span>COMPUTER USE GA</span>
+          </div>
+          <h2 class="fc-title">Flip a Surface. Watch Gemini Act.</h2>
+          <p class="fc-desc">
+            Inspect live agent intent traces and adversarial screenshot defense across three target environments.
+          </p>
+
+          <div class="fc-tabs" role="group" aria-label="Simulated environment selector">
+            <button type="button" class="fc-tab" data-env="browser" aria-pressed="true">01 BROWSER</button>
+            <button type="button" class="fc-tab" data-env="desktop" aria-pressed="false">02 DESKTOP</button>
+            <button type="button" class="fc-tab" data-env="mobile" aria-pressed="false">03 MOBILE</button>
+          </div>
+
+          <div class="fc-readout" id="pollux-sim-screen" aria-live="polite">
+            <span class="fc-meta">&gt; env="browser" · model="gemini-3.8-flash" ($0.75/1M)</span>
+            <span>intent: "Extract Q4 vendor invoice rows; quarantined hidden prompt-injection banner."</span>
+          </div>
+
+          <div class="action-cluster">
+            <a
+              href="/labs/gemini-computer-use-simulator.html"
+              class="btn-pollux-white"
+              style="flex:1;justify-content:center;"
+              data-intent-route="/labs/gemini-computer-use-simulator"
+            >
+              Launch Full Simulator Lab →
+            </a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Pollux Stage 2: Showcase Originals & (T)winning Add-On Cartridges -->
+    <section class="pollux-stage-2" aria-labelledby="pollux-builds-h2">
+      <div class="container">
+        <div class="pollux-sec-bar">
+          <h2 id="pollux-builds-h2">Showcase Originals &amp; (T)winning Packs</h2>
+          <span style="font-family:var(--font-mono);font-size:0.74rem;color:var(--muted);">HOVER ANY CARTRIDGE FOR SPECS</span>
+        </div>
+
+        <div class="two-col-grid">
+          <!-- Cartridge 1: Built with Gemini Showcase & Twin-Star Arcade -->
+          <article class="pollux-card">
+            <div class="pollux-cartridge-art">
+              <img
+                src="./assets/look-c-arcade.webp"
+                alt="Graphic-novel vector illustration of twin star comets orbiting an isometric arcade pinball ring"
+                width="1200"
+                height="896"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="pollux-pad">
+              <span class="pollux-chip">Built With Gemini</span>
+              <h3 class="pollux-h3">
+                <a href="/labs/twin-stars-of-gemini.html" interestfor="tw-peek-showcase" data-intent-route="/labs/twin-stars-arcade">
+                  Play Our 60fps Twin-Star Arcade and Curated Ecosystem Apps
+                </a>
+              </h3>
+              <p class="pollux-lead" style="margin-bottom:1.25rem;">
+                Rotate Castor and Pollux in pure HTML5 Canvas, or explore real Gemini builds from NotebookLM to Outdraw.
+              </p>
+              <div class="action-cluster">
+                <a href="/labs/twin-stars-of-gemini.html" class="btn-pollux-white" data-intent-route="/labs/twin-stars-arcade">Play Twin Stars →</a>
+                <a href="/#showcase" class="btn-pollux-white" data-intent-route="/showcase">Browse Directory ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Cartridge 2: (T)winning Add-Ons & Plugins -->
+          <article class="pollux-card">
+            <div class="pollux-cartridge-art">
+              <img
+                src="./assets/look-c-twinning.webp"
+                alt="Graphic-novel vector illustration of a multi-tool and three snap-together hardware expansion cartridges"
+                width="1200"
+                height="896"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="pollux-pad">
+              <span class="pollux-chip chip-blue">Everyday (T)winning</span>
+              <h3 class="pollux-h3">
+                <a href="/#addons" interestfor="tw-peek-addons" data-intent-route="/addons">
+                  Grab Free Antigravity Plugins or Prepaid Workspace Power Packs
+                </a>
+              </h3>
+              <p class="pollux-lead" style="margin-bottom:1.25rem;">
+                Start free forever with our open-source starter plugin, or unlock fifty business prompts with zero monthly subscription.
+              </p>
+              <div class="action-cluster">
+                <a href="/#addons" class="btn-pollux-white" data-intent-route="/addons">Open Add-Ons Rack →</a>
+                <a href="/downloads/workspace-twinning-lite.md" class="btn-pollux-white" data-intent-route="/downloads/workspace-lite">Free Lite ↓</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pollux Stage 3: Peeking Back Across the Seam Into Castor's Editorial Desk -->
+    <section class="pollux-stage-3" aria-label="Castor Editorial Sibling Window">
+      <div class="container">
+        <div class="sibling-window-castor">
+          <div>
+            <div class="eyebrow-castor" style="margin-bottom:0.2rem;"><span>✦ Across the Seam · <span class="greek-sym">α</span> Castor Desk</span></div>
+            <h3>Want the Plain-English Journalism Behind Today’s Releases?</h3>
+            <p>
+              Switch to your editorial twin for search-grounded dispatches on Computer Use GA, Gemini 4 Carbon’s #1 cyberdefense rank, and leaving WordPress behind.
+            </p>
+          </div>
+          <button type="button" class="btn-flip-to-castor" data-flip-twin="castor">
+            ✦ Flip to Castor Editorial
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="twin-footer">
+    <div class="container footer-inner">
+      <span><strong>GeminiPulse.com</strong> · Two Non-Identical Twins (<span class="greek-sym">α</span> Castor Editorial ⇄ <span class="greek-sym">β</span> Pollux Studio) · One 100% Google Stack</span>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="/status.html" data-intent-route="/status">Status</a>
+        <a href="/partners.html" data-intent-route="/partners">Partners</a>
+        <a href="/feed.xml" data-intent-route="/feed.xml">Atom Feed</a>
+        <a href="/llms.txt" data-intent-route="/llms.txt">/llms.txt</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- =====================================================================
+       TIER 2 HOVERCARDS (popover="hint" + interestfor)
+       ===================================================================== -->
+  <div id="peek-twin-castor" popover="hint" class="hovercard" data-story-slug="twin-castor-hint">
+    <div class="hc-head"><span><span class="greek-sym">α</span> Castor · The Strategist</span><span>Shortcut: T</span></div>
+    <ul class="hc-items">
+      <li><strong>Aesthetic:</strong> Warm cotton paper, optical serif type &amp; tactile Risograph prints.</li>
+      <li><strong>Gravity:</strong> Search-grounded news, 3-part plain-English dossiers &amp; ROI analysis.</li>
+    </ul>
+  </div>
+
+  <div id="peek-twin-pollux" popover="hint" class="hovercard" data-story-slug="twin-pollux-hint">
+    <div class="hc-head"><span><span class="greek-sym">β</span> Pollux · The Maker</span><span>Shortcut: T</span></div>
+    <ul class="hc-items">
+      <li><strong>Aesthetic:</strong> Tactile putty &amp; ink poster frames with graphic-novel vector art.</li>
+      <li><strong>Gravity:</strong> Live 3-second demos, Tri-Model Arena, Showcase &amp; Add-On packs.</li>
+    </ul>
+  </div>
+
+  <div id="tw-peek-cu" popover="hint" class="hovercard" data-story-slug="twin-computer-use">
+    <div class="hc-head"><span>GA Spec</span><span>Oct 30, 2026</span></div>
+    <ul class="hc-items">
+      <li>Controls <code>browser</code>, <code>desktop</code>, and <code>mobile</code> UIs via Interactions API.</li>
+      <li>Emits step-by-step <code>intent</code> logs + screenshot prompt-injection scanning.</li>
+      <li>Pair <code>gemini-3.8-flash</code> ($0.75/1M) with <code>gemini-4-argon</code>.</li>
+    </ul>
+    <div class="hc-foot">ai.google.dev/gemini-api/docs/computer-use</div>
+  </div>
+
+  <div id="tw-peek-sdk" popover="hint" class="hovercard" data-story-slug="twin-sdk">
+    <div class="hc-head"><span>SDK Release</span><span>Oct 29, 2026</span></div>
+    <ul class="hc-items">
+      <li><code>@google/genai</code> v2.32 (JS/TS) &amp; <code>google-genai</code> v2.34 (Python).</li>
+      <li>Native <code>automatic_continuation</code> on <code>client.interactions.create()</code>.</li>
+    </ul>
+    <div class="hc-foot">github.com/googleapis/js-genai</div>
+  </div>
+
+  <div id="tw-peek-genie" popover="hint" class="hovercard" data-story-slug="twin-genie">
+    <div class="hc-head"><span>DeepMind</span><span>Genie 4</span></div>
+    <ul class="hc-items">
+      <li>Generates interactive 3D worlds, physics, and native audio on the fly.</li>
+      <li>Steerable live via text prompts, keyboard, and voice.</li>
+    </ul>
+    <div class="hc-foot">deepmind.google/blog/genie-4</div>
+  </div>
+
+  <div id="tw-peek-carbon" popover="hint" class="hovercard" data-story-slug="twin-carbon">
+    <div class="hc-head"><span>Flagship</span><span>#1 Frontier</span></div>
+    <ul class="hc-items">
+      <li>#1 on Artificial Analysis v5.0 &amp; SEC-bench Pro (88.2%).</li>
+      <li>95% cached input discount ($2.00/1M → $0.10/1M).</li>
+    </ul>
+    <div class="hc-foot">blog.google · Gemini 4 Carbon</div>
+  </div>
+
+  <div id="tw-peek-switch" popover="hint" class="hovercard" data-story-slug="twin-switch">
+    <div class="hc-head"><span>2-Part Series</span><span>$0/mo Stack</span></div>
+    <ul class="hc-items">
+      <li>Part 1: WordPress &amp; FTP → Antigravity + Firebase Hosting.</li>
+      <li>Part 2: MySQL/phpMyAdmin → Cloud Firestore + SQL translator demo.</li>
+    </ul>
+    <div class="hc-foot">/series/making-the-switch/</div>
+  </div>
+
+  <div id="tw-peek-showcase" popover="hint" class="hovercard" data-story-slug="twin-showcase">
+    <div class="hc-head"><span>Showcase</span><span>Originals + Curated</span></div>
+    <ul class="hc-items">
+      <li><strong>Originals:</strong> 60fps <em>Twin Stars of Gemini</em> Canvas arcade &amp; ROI calculators.</li>
+      <li><strong>Curated:</strong> NotebookLM, Gemini CLI, Outdraw AI, Jayu &amp; Prospera.</li>
+    </ul>
+    <div class="hc-foot">geminipulse.com/#showcase</div>
+  </div>
+
+  <div id="tw-peek-addons" popover="hint" class="hovercard" data-story-slug="twin-addons">
+    <div class="hc-head"><span>4-Rung Value Ladder</span><span>$0 – $29</span></div>
+    <ul class="hc-items">
+      <li><strong>$0 Free:</strong> Open-source <code>gemini-twin-starter</code> Antigravity plugin.</li>
+      <li><strong>$19–$29 Prepaid:</strong> Workspace 50-Vault, WP Migrator, or Shorts Kit.</li>
+      <li><strong>$9/mo Insider:</strong> All-Access Pass ($116+ standalone value).</li>
+    </ul>
+    <div class="hc-foot">geminipulse.com/#addons</div>
+  </div>
+
+  <!-- Executive Brief Modal (<dialog closedby="any">) -->
+  <dialog id="tw-dlg-cu" closedby="any" class="twin-dialog" aria-labelledby="tw-dlg-title" data-story-slug="twin-cu-modal">
+    <div class="eyebrow-castor"><span>Verified Primary Source · Oct 30, 2026</span></div>
+    <h2 id="tw-dlg-title">Gemini Computer Use Reaches General Availability</h2>
+    <ul>
+      <li><strong>What Shipped:</strong> Multi-surface UI control across <code>browser</code>, <code>desktop</code>, and <code>mobile</code> on the Interactions API and GenerateContent API.</li>
+      <li><strong>Glass-Box Guardrails:</strong> Every step emits a human-readable <code>intent</code> string plus opt-in screenshot scanning against prompt injection.</li>
+      <li><strong>Twin Tip:</strong> Read the 3-part dossier here in <strong>Castor</strong>, or flip to <strong>Pollux</strong> to test the interactive simulator.</li>
+    </ul>
+    <div class="action-cluster" style="justify-content:space-between;">
+      <a href="/series/gemini-computer-use/part-1-computer-use-ga-breakdown.html" class="castor-primary-link" data-intent-route="/series/gemini-computer-use/part-1">Open Full Part 1 →</a>
+      <button type="button" class="castor-ghost-btn" commandfor="tw-dlg-cu" command="close">Close (Esc)</button>
+    </div>
+  </dialog>
+
+  <!-- Brand Exploration Switcher + Live Twin Telemetry Dock -->
+  <nav class="studio-dock" aria-label="Brand Evolution Switcher">
+    <a href="./index.html">Case Study Hub</a>
+    <a href="./era-0-v2-baseline.html">Era 0</a>
+    <a href="./look-a-editorial.html">1A</a>
+    <a href="./look-b-spatial-gallery.html">1B</a>
+    <a href="./look-c-guerrilla-studio.html">1C</a>
+    <a href="./look-d-v1-pre-critic.html" aria-current="page">2D · v1</a>
+    <a href="./look-d-fraternal-twins.html">2D · v2 Polished</a>
+    <span class="dock-telemetry" id="gp-telemetry-counts" title="Real-time Curiosity Funnel Telemetry">0 Peeks · 0 Clicks</span>
+  </nav>
+
+  <script type="module">
+    import { logIntentSignal } from './assets/prototype-runtime.js';
+
+    const root = document.documentElement;
+    const viewCastor = document.getElementById('view-castor');
+    const viewPollux = document.getElementById('view-pollux');
+    const statusText = document.getElementById('twin-celestial-status');
+    const navPulse = document.getElementById('nav-pulse');
+    const navLabs = document.getElementById('nav-labs');
+    const rockerBtns = document.querySelectorAll('[data-set-twin]');
+
+    function applyTwinDOM(targetTwin) {
+      const isPollux = targetTwin === 'pollux';
+      root.setAttribute('data-twin', targetTwin);
+      viewCastor.hidden = isPollux;
+      viewPollux.hidden = !isPollux;
+
+      rockerBtns.forEach((btn) => {
+        btn.setAttribute('aria-pressed', String(btn.dataset.setTwin === targetTwin));
+      });
+
+      if (navPulse && navLabs) {
+        navPulse.setAttribute('data-active', String(!isPollux));
+        navLabs.setAttribute('data-active', String(isPollux));
+      }
+
+      if (statusText) {
+        statusText.innerHTML = isPollux
+          ? '<span class="star-pip"></span>♊ <span class="greek-sym">β</span> GEMINORUM · POLLUX — THE KINETIC TWIN (LIVE DEMOS, SHOWCASE &amp; ADD-ONS)'
+          : '<span class="star-pip"></span>♊ <span class="greek-sym">α</span> GEMINORUM · CASTOR — THE EDITORIAL TWIN (SIGNAL, NEWS &amp; DOSSIERS)';
+      }
+
+      try {
+        localStorage.setItem('geminipulse_twin_polarity', targetTwin);
+      } catch {
+        // ignore storage errors
+      }
+    }
+
+    function focusTwinHeading(targetTwin, shouldMoveFocus) {
+      if (!shouldMoveFocus) return;
+      const headingId = targetTwin === 'pollux' ? 'pollux-lead-heading' : 'castor-lead-heading';
+      document.getElementById(headingId)?.focus({ preventScroll: true });
+    }
+
+    function switchTwin(targetTwin, { moveFocus = false, scrollTop = false } = {}) {
+      const current = root.getAttribute('data-twin') || 'castor';
+      if (current === targetTwin) return;
+
+      const direction = targetTwin === 'pollux' ? 'to-pollux' : 'to-castor';
+      logIntentSignal('peek', `twin:${targetTwin}`);
+
+      const update = () => {
+        applyTwinDOM(targetTwin);
+        if (scrollTop) window.scrollTo({ top: 0, behavior: 'instant' });
+      };
+
+      if (typeof document.startViewTransition !== 'function') {
+        update();
+        focusTwinHeading(targetTwin, moveFocus);
+        return;
+      }
+
+      let transition;
+      try {
+        transition = document.startViewTransition({ update, types: [direction] });
+      } catch {
+        transition = document.startViewTransition(update);
+      }
+
+      transition.finished.finally(() => {
+        focusTwinHeading(targetTwin, moveFocus);
+      });
+    }
+
+    // Restore saved Twin preference or ?twin=pollux URL param
+    const urlTwin = new URLSearchParams(window.location.search).get('twin');
+    let savedTwin = null;
+    try {
+      savedTwin = localStorage.getItem('geminipulse_twin_polarity');
+    } catch {}
+    if (urlTwin === 'pollux' || urlTwin === 'castor') {
+      applyTwinDOM(urlTwin);
+    } else if (savedTwin === 'pollux') {
+      applyTwinDOM('pollux');
+    }
+
+    rockerBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        switchTwin(btn.dataset.setTwin, { moveFocus: true, scrollTop: false });
+      });
+    });
+
+    document.querySelectorAll('[data-flip-twin]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        switchTwin(btn.dataset.flipTwin, { moveFocus: true, scrollTop: true });
+      });
+    });
+
+    // Keyboard shortcut: Press 'T' anywhere (outside inputs/dialogs) to flip Twins
+    document.addEventListener('keydown', (e) => {
+      if (e.key.toLowerCase() !== 't' || e.metaKey || e.ctrlKey || e.altKey) return;
+      const tag = document.activeElement?.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || document.querySelector('dialog[open]')) return;
+      const next = root.getAttribute('data-twin') === 'pollux' ? 'castor' : 'pollux';
+      switchTwin(next, { moveFocus: true, scrollTop: false });
+    });
+
+    // Pollux 3-Second Field Console Simulator
+    const simData = {
+      browser: {
+        meta: '> env="browser" · model="gemini-3.8-flash" ($0.75/1M)',
+        intent: 'intent: "Extract Q4 vendor invoice rows; quarantined hidden prompt-injection banner."',
+      },
+      desktop: {
+        meta: '> env="desktop" · model="gemini-4-argon" ($2.00/1M)',
+        intent: 'intent: "Reconcile legacy ERP window against exported CSV; awaiting safety confirmation."',
+      },
+      mobile: {
+        meta: '> env="mobile" · model="gemini-3.8-flash" ($0.75/1M)',
+        intent: 'intent: "Verify Android checkout tap targets at 390px viewport; zero injection detected."',
+      },
+    };
+
+    const simScreen = document.getElementById('pollux-sim-screen');
+    const simTabs = document.querySelectorAll('.fc-tab');
+    simTabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const env = tab.dataset.env;
+        simTabs.forEach((t) => t.setAttribute('aria-pressed', String(t === tab)));
+        const d = simData[env];
+        if (simScreen && d) {
+          simScreen.innerHTML = '';
+          const m = document.createElement('span');
+          m.className = 'fc-meta';
+          m.textContent = d.meta;
+          const txt = document.createElement('span');
+          txt.textContent = d.intent;
+          simScreen.append(m, txt);
+        }
+        logIntentSignal('peek', `pollux-sim:${env}`);
+      });
+    });
+  </script>
+</body>
+</html>

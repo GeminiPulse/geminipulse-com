@@ -1,11 +1,11 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-10-31 00:18 EDT (Preserved Complete Brand Evolution Case Study Portfolio [Era 0 Frozen v2.0 Monolith + Round 1 Tests A/B/C + Round 2 Look D Fraternal Twins] under public/public/prototypes/ — Production public/src/App.jsx Untouched Awaiting Neil's Call)`
+- **Last Updated:** `2026-10-31 14:30 EDT (Completed All 7 Surgical Upgrades on Look D v2 [ui-craft-critic Composite 6.4 -> 9.4/10; Mobile 5.2/4.7 -> 9.4/9.3] + Preserved Pre-Critic Snapshot look-d-v1-pre-critic.html — Production public/src/App.jsx Untouched Awaiting Neil's Call)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
 - **Firebase Default Hosting URL:** `https://geminipulse-com.web.app`
-- **Local Dev Preview URL:** `http://localhost:8080` *(Brand Evolution Portfolio Hub: `http://localhost:8080/prototypes/` · Look D Fraternal Twins: `http://localhost:8080/prototypes/look-d-fraternal-twins.html`)*
+- **Local Dev Preview URL:** `http://localhost:8080` *(Brand Evolution Portfolio Hub: `http://localhost:8080/prototypes/` · Look D v2 Polished: `http://localhost:8080/prototypes/look-d-fraternal-twins.html` · Look D v1 Pre-Critic Snapshot: `http://localhost:8080/prototypes/look-d-v1-pre-critic.html`)*
 - **Firebase Project ID:** `geminipulse-com` (Project Number `643794480842`, Spark Free Plan — **\$0.00/mo**)
 - **Firebase Web App ID:** `1:643794480842:web:9f973bc1a0d7670c920e33` (`GeminiPulse Web`)
 - **Concept Originator & Creative Catalyst:** Neil S. White (`https://www.linkedin.com/in/neilswhite`, **Agile LLC**)
@@ -13,22 +13,32 @@
 
 ---
 
-## 1. Completed & Live on `v2.0` (2026-10-31 12:18 AM ET Update)
+## 1. Completed & Live on `v2.0` (2026-10-31 02:30 PM ET Update)
 
-- **Archived Permanent Brand Evolution & Cognitive UX Case Study Portfolio (`public/public/prototypes/` — Production `public/src/App.jsx` 100% Untouched):**
-  - **Era 0 Baseline Frozen Time Capsule (`era-0-v2-baseline.html` + `era-0-v2-baseline.webp`):** Captured a 100% self-contained, zero-script, zero-secret HTML + inlined CSS snapshot of the original `v2.0` live monolith (`16` stacked sections, `24,043px` scroll height, `35+` fold-1 pills) so the exact "Before" state remains clickable forever even after `App.jsx` is upgraded.
-  - **Chronological Case Study Hub (`prototypes/index.html`) + Cross-Exhibit Switcher Dock (`Case Study Hub | Era 0 | 1A | 1B | 1C | 2D`):** Permanently preserves all 5 evolutionary exhibits (`Era 0` Baseline, `Round 1A` Editorial Magazine, `Round 1B` Refined Spatial Gallery, `Round 1C` Guerrilla Studio, and `Round 2D` Fraternal Twins) plus all `11` custom editorial WebP illustrations and `1` Era 0 baseline WebP capture.
-  - **Core Brand Breakthrough ("ONLY TWO — Non-Identical Fraternal Twins"):** Embraces the astronomical & Mercurial duality of *Gemini* (`α Geminorum · Castor` and `β Geminorum · Pollux`, without literal horoscopes) inside [`look-d-fraternal-twins.html`](../public/public/prototypes/look-d-fraternal-twins.html):
-    - **Side I (`α Castor · Read` — `?twin=castor`):** Warm `#F6F3EC` cotton paper, `Newsreader` serif, `50%+` spatial calm (`2,019px` desktop height), leading with Signal, News & 3-Part Plain-English Dossiers, paired with Risograph twin-star astrolabe artwork (`look-d-castor.webp`) and a dark-ink/marigold *"Across the Seam: β Pollux Studio"* window card.
-    - **Side II (`β Pollux · Build` — `?twin=pollux`):** Warm `#EFECE6` putty, `2px solid #111111` ink poster frames, `Space Grotesk` (`2,473px` desktop height), leading with the live 3-second Computer Use Field Console (`[SIMULATED DEMO]`), Tri-Model Arena, *Built with Gemini* Showcase, and `$0–$29` `(T)winning` Add-Ons, paired with halftone vector twin-star rotary console artwork (`look-d-pollux.webp`) and a cotton-paper *"Across the Seam: α Castor Desk"* slip.
-    - **Directional View Transitions & Polarity Telemetry:** Masthead rocker (`✦ Castor · Read` ⇄ `✧ Pollux · Build` or keyboard shortcut `T`) uses `document.startViewTransition({ update, types: [direction] })`, morphs `view-transition-name: twin-hero-visual`, shifts focus cleanly to `#castor-lead-heading` / `#pollux-lead-heading`, persists `geminipulse_twin_polarity`, and emits `twin_polarity_choice` signals alongside `peek` and `route_commit` telemetry (`prototype-runtime.js`).
-  - **All 5 Clickable Portfolio Exhibits (`0` Horizontal Overflows Across `1440px` & `390px`):**
+- **Executed All 7 Surgical UX, Mobile & WCAG 2.1 AA Upgrades on Look D `v2` (`ui-craft-critic` Composite `6.4` → `9.4 / 10`) + Preserved Pre-Critic `v1` Snapshot (`public/public/prototypes/` — Production `public/src/App.jsx` 100% Untouched):**
+  - **Before/After Critic Snapshot Archived (`look-d-v1-pre-critic.html` vs. `look-d-fraternal-twins.html`):** Preserved the pre-critic `v1` synthesis (`look-d-v1-pre-critic.html`) alongside `v2` polished (`look-d-fraternal-twins.html`) inside [`prototypes/index.html`](../public/public/prototypes/index.html) and the in-flow `.studio-dock` switcher (`Case Study Hub | Era 0 | 1A | 1B | 1C | 2D · v1 | 2D · v2 Polished`).
+  - **Independent `ui-craft-critic` Before (`v1`) → After (`v2`) Verification Scorecard (`Chrome 156` Headless CDP at `1440px` & `390px`):**
+    - **`α Castor` Desktop (`1440px`):** `8.3` → **`9.6 / 10`** (`+1.3`)
+    - **`α Castor` Mobile (`390px`):** `5.2` → **`9.4 / 10`** (`+4.2`)
+    - **`β Pollux` Desktop (`1440px`):** `7.3` → **`9.4 / 10`** (`+2.1`)
+    - **`β Pollux` Mobile (`390px`):** `4.7` → **`9.3 / 10`** (`+4.6`)
+    - **Overall Composite:** `6.4` → **`9.4 / 10`** (`+3.0` full points; `0` horizontal overflows, `0px²` `.studio-dock` overlap, `0` WCAG AA contrast failures across Castor Day [`5.54:1+`], Castor `Late Ink` [`7.25:1+`], and Pollux [`5.07:1+`; `#111111` on `#FF5A1F` = `6.73:1`]).
+  - **All 7 Upgrades + Both Anti-Clutter Guardrails Enforced:**
+    1. **Mobile `390px` Masthead Rescue (`#1`):** `.twin-header` compressed `-49%` from `193px–196px` down to **`98.4px` (Castor) / `101.4px` (Pollux)** (`≤ 106px` cap), keeping `✦ Read · Castor` and `✧ Build · Pollux` visible at 100% of widths, 5 single-row nav links, `PRESS [T]` hidden on touch, and `0.00px` desktop flip jitter (`70.00px` → `70.00px`).
+    2. **Touch & Pointer Tier-2 Parity (`#2`):** Pointer-only `1px` dotted resting cue on `[interestfor]` links + `11/11` Castor `Brief` and `4/4` Pollux `Specs` `<button commandfor="...">` controls opening `<dialog closedby="any">` modals on `390px` touch.
+    3. **WCAG 2.1 AA (`4.5:1+`) & Landmark Hygiene (`#3`):** Single `<main id="twin-stage">` landmark, skip link, `:focus-visible` outlines, and `5.07:1+` minimum normal-text contrast across all surfaces.
+    4. **Uncontaminated 4-Bucket Telemetry & `?twin=` Sync (`#4`):** `prototype-runtime.js` tracks `Peeks · Briefs · Flips · Clicks` (`WeakSet`-deduped, rocker tooltips excluded via `data-telemetry-ignore="true"`), while syncing `?twin=castor|pollux`, `document.title`, and active hero `fetchpriority="high"`.
+    5. **Protected Creative Tension & Round 1 Content Wins (`#5`):** Kept the single sculptural `Across the Seam` portal card while removing the duplicate black cover button; restored Wire 03 (`Gemini 3.8 Flash` `\$0.75/1M`) and `Watch 60s Short ↗` on *mAiking the swAitch*.
+    6. **Strict Guardrail #1 — Quiet Signal Index & 3-Cartridge Rack (`#6`):** Castor's `#castor-index-h2` uses quiet editorial text links (`border-radius: 0px`, transparent background, `1px` active bottom rule — zero rounded pills) filtering `5` single-line rows (`8–9 words` each, `≤ 12w` cap); Pollux Stage 2 unpacks into `01 Originals`, `02 Showcase`, and `03 Everyday (T)winning Packs (\$0–\$29)` plus a 1-line Plain-English Field Console caption.
+    7. **Strict Guardrail #2 — Masthead Purity (`#7`):** Zero extra buttons added to `.twin-header`; `☾ Late Ink` (`#151412` nocturnal paper) lives subtly in `.celestial-bar` and `Subscribe` triggers from `.dispatch-strip` / `.twin-footer`.
+  - **All 6 Clickable Portfolio Exhibits (`0` Horizontal Overflows Across `1440px` & `390px`):**
     0. **Era 0 — Original v2.0 Live Monolith (`http://localhost:8080/prototypes/era-0-v2-baseline.html`):** Frozen read-only HTML+CSS time capsule (`24,043px` scroll, `16` sections).
     1. **Round 1A — Editorial Authority (`http://localhost:8080/prototypes/look-a-editorial.html`):** Warm `#F6F3EC` cotton paper (+ Late Ink `#151412` toggle), `Newsreader` serif, and 3 Risograph illustrations (`look-a-hero.webp`, `look-a-carbon.webp`, `look-a-switch.webp`).
     2. **Round 1B — Spatial Gallery (`http://localhost:8080/prototypes/look-b-spatial-gallery.html`):** Asymmetric `5.2fr : 6.8fr` hero split showing 100% of the Dieter Rams frosted optical glass & anodized aluminum sculpture above the fold (`55%` open `#FAFAFC` whitespace, `2,608px` height).
     3. **Round 1C — Guerrilla Studio (`http://localhost:8080/prototypes/look-c-guerrilla-studio.html`):** Tactile `#EFECE6` putty, `2px` ink poster frames, `Space Grotesk`, 3 graphic-novel vector illustrations (`look-c-hero.webp`, `look-c-twinning.webp`, `look-c-arcade.webp`), and 3-second Field Unit (`[SIMULATED DEMO]`).
-    4. **Round 2D — Fraternal Twins (`http://localhost:8080/prototypes/look-d-fraternal-twins.html`):** Unifies the two non-identical Twins (`α Castor` + `β Pollux`) across one 5-item navigation bar (`/pulse`, `/labs`, `/addons`, `/showcase`, `/chronicle`).
-  - **Awaiting Neil's Creative Direction Call:** Confirm Look D (`α Castor` ⇄ `β Pollux`) and choose the default first-visit landing polarity (`Castor`, `Pollux`, or 50/50 split curtain) before migrating production `public/src/App.jsx` or redeploying Firebase Hosting.
+    4. **Round 2D `v1` — Pre-Critic Snapshot (`http://localhost:8080/prototypes/look-d-v1-pre-critic.html`):** Initial Fraternal Twins synthesis preserved for before/after mobile & accessibility comparison (`6.4 / 10` composite).
+    5. **Round 3D `v2` — Post-Critic Polished (`http://localhost:8080/prototypes/look-d-fraternal-twins.html`):** Mobile-rescued (`98px–101px` header), touch-dialog-equipped, WCAG AA `5.07:1+` Fraternal Twins (`9.4 / 10` composite).
+  - **Awaiting Neil's Creative Direction Call:** Approve migrating production `public/src/App.jsx` to the `v2` Fraternal Twin Engine (`9.4 / 10`) and pick the default Visit #1 landing polarity (`Castor First`, `Pollux First`, or `50/50 Threshold Split`).
 
 - **Shipped 4-Rung "Prepaid vs. All-Access" Add-Ons Value Ladder (`/#addons`), Standalone Marketplace Repo & Private Pro Deliverable Packs (`v2.0.46`):**
   - **4-Rung Merchandising & Combo Architecture (`GEMINI_ADDON_PRICING_LADDER` + `public/src/App.jsx`):**
