@@ -1,0 +1,2328 @@
+<!doctype html>
+<html lang="en" data-mode="split">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GeminiPulse — Choose Your Lens (/read Magazine ⇄ /build Workbench)</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* =====================================================================
+       LOOK E — ABOVE-THE-FOLD TWIN THRESHOLD & (0,0) CONTINUITY BRIDGE
+       - Default Arrival: 50/50 Split Threshold (/read Magazine vs /build Workbench)
+       - /read (α Castor): Fashion-Forward Futuristic Editorial Magazine (#F6F5F1 + Outfit)
+       - /build (β Pollux): Hands-On Operator & Builder Workbench (#0D121B + Space Grotesk)
+       - Independent Continuity Box: Locked at (0,0) of Column 2, expands/contracts downward
+       ===================================================================== */
+    :root {
+      /* Opt-in to intrinsic keyword interpolation (modern-web-guidance: animate-to-intrinsic-sizes) */
+      interpolate-size: allow-keywords;
+
+      /* /read (α Castor — Fashion-Forward Editorial Magazine) */
+      --read-bg: #F6F5F1;
+      --read-surface: #FFFFFF;
+      --read-ink: #111318;
+      --read-muted: #464B57;
+      --read-line: #DCD9D0;
+      --read-cobalt: #183EC2;
+      --read-vermilion: #B82A0B;
+
+      /* /build (β Pollux — Hands-On Action & Workbench) */
+      --build-bg: #0D121B;
+      --build-surface: #141C2B;
+      --build-surface-alt: #192336;
+      --build-ink: #F3F6FC;
+      --build-muted: #B6C2D9;
+      --build-line: #27344D;
+      --build-cyan: #38BDF8;
+      --build-amber: #FBBF24;
+
+      /* Active Canvas Tokens (Default Split / Read) */
+      --canvas-bg: #F6F5F1;
+      --canvas-ink: #111318;
+      --masthead-bg: rgba(246, 245, 241, 0.92);
+      --masthead-line: #DCD9D0;
+      --focus-ring: #183EC2;
+
+      --font-editorial: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-workbench: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+    }
+
+    html[data-mode="build"] {
+      --canvas-bg: #0D121B;
+      --canvas-ink: #F3F6FC;
+      --masthead-bg: rgba(13, 18, 27, 0.94);
+      --masthead-line: #253147;
+      --focus-ring: #38BDF8;
+    }
+
+    html[data-mode="split"] {
+      --canvas-bg: #111318;
+      --canvas-ink: #111318;
+      --masthead-bg: #FFFFFF;
+      --masthead-line: #DCD9D0;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-block-size: 100svh;
+      background-color: var(--canvas-bg);
+      color: var(--canvas-ink);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      body {
+        transition: background-color 0.4s cubic-bezier(0.22, 1, 0.36, 1), color 0.3s ease;
+      }
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    .visually-hidden:where(:not(:focus-within, :active)) {
+      position: absolute !important;
+      clip-path: inset(50%) !important;
+      overflow: hidden !important;
+      width: 1px !important;
+      height: 1px !important;
+      margin: -1px !important;
+      padding: 0 !important;
+      border: 0 !important;
+      white-space: nowrap !important;
+    }
+
+    .skip-link:focus {
+      position: fixed;
+      top: 0.5rem;
+      left: 0.5rem;
+      z-index: 300;
+      background: #FBBF24;
+      color: #0D121B;
+      padding: 0.55rem 0.9rem;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      border-radius: 6px;
+    }
+
+    :where(a:any-link, button, input, [tabindex="-1"]):focus-visible {
+      outline: 2.5px solid var(--focus-ring);
+      outline-offset: 3px;
+    }
+
+    .greek-sym {
+      text-transform: none;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-style: italic;
+      font-weight: 700;
+    }
+
+    /* =====================================================================
+       PAGE SHELL: STRICTLY ABOVE-THE-FOLD FIRST SCREEN (100svh)
+       ===================================================================== */
+    .viewport-shell {
+      min-block-size: 100svh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* =====================================================================
+       CENTER-LOGO SPLIT-HIERARCHY MASTHEAD
+       Left Wing: /read (α Castor)   |   Center: GeminiPulse   |   Right Wing: /build (β Pollux)
+       ===================================================================== */
+    .split-masthead {
+      position: sticky;
+      top: 0;
+      z-index: 80;
+      background: var(--masthead-bg);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--masthead-line);
+    }
+
+    html[data-mode="split"] .split-masthead {
+      background: linear-gradient(90deg, #F6F5F1 0%, #F6F5F1 50%, #0D121B 50%, #0D121B 100%);
+      border-bottom: 1px solid rgba(125, 135, 155, 0.28);
+    }
+
+    .masthead-inner {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0.55rem clamp(0.85rem, 2.5vw, 2rem);
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 0.75rem;
+      min-block-size: 62px;
+    }
+
+    .wing {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      min-width: 0;
+    }
+
+    .wing-read {
+      justify-content: flex-start;
+    }
+
+    .wing-build {
+      justify-content: flex-end;
+    }
+
+    html[data-mode="split"] .wing-read {
+      color: var(--read-ink);
+    }
+
+    html[data-mode="split"] .wing-build {
+      color: var(--build-ink);
+    }
+
+    /* Mode Pill Triggers on Left & Right Wings */
+    .wing-pill {
+      appearance: none;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 0.34rem 0.78rem;
+      min-block-size: 32px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.38rem;
+      white-space: nowrap;
+      transition: transform 0.16s ease, background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .wing-pill-read {
+      background: rgba(24, 62, 194, 0.1);
+      color: var(--read-cobalt);
+      border-color: rgba(24, 62, 194, 0.28);
+    }
+
+    html[data-mode="build"] .wing-pill-read {
+      background: rgba(243, 246, 252, 0.08);
+      color: #DCE4F5;
+      border-color: rgba(243, 246, 252, 0.22);
+    }
+
+    html[data-mode="read"] .wing-pill-read {
+      background: var(--read-cobalt);
+      color: #FFFFFF;
+      border-color: var(--read-cobalt);
+    }
+
+    .wing-pill-build {
+      background: rgba(56, 189, 248, 0.14);
+      color: #0B4F71;
+      border-color: rgba(14, 116, 144, 0.32);
+    }
+
+    html[data-mode="split"] .wing-pill-build {
+      background: rgba(56, 189, 248, 0.16);
+      color: var(--build-cyan);
+      border-color: rgba(56, 189, 248, 0.38);
+    }
+
+    html[data-mode="build"] .wing-pill-build {
+      background: var(--build-amber);
+      color: #0D121B;
+      border-color: var(--build-amber);
+    }
+
+    .wing-links {
+      display: none;
+      align-items: center;
+      gap: 0.15rem;
+    }
+
+    @media (min-width: 1040px) {
+      .wing-links {
+        display: inline-flex;
+      }
+    }
+
+    .wing-link {
+      appearance: none;
+      background: transparent;
+      border: 0;
+      padding: 0.32rem 0.55rem;
+      min-block-size: 32px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: inherit;
+      opacity: 0.82;
+      white-space: nowrap;
+    }
+
+    .wing-link:hover {
+      opacity: 1;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .wing-link[data-current="true"] {
+      opacity: 1;
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 5px;
+    }
+
+    /* Center Brand Anchor + Split Reset Trigger */
+    .center-brand-cluster {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #FFFFFF;
+      color: #111318;
+      padding: 0.3rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid #D5D9E2;
+      box-shadow: 0 4px 16px rgba(13, 18, 27, 0.08);
+    }
+
+    html[data-mode="build"] .center-brand-cluster {
+      background: #161F30;
+      color: #F3F6FC;
+      border-color: #2E3D59;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+    }
+
+    .brand-home-btn {
+      appearance: none;
+      background: transparent;
+      border: 0;
+      padding: 0.1rem 0.2rem;
+      color: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      min-block-size: 30px;
+    }
+
+    .brand-wordmark {
+      font-family: var(--font-editorial);
+      font-weight: 700;
+      font-size: 1.08rem;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-wordmark span {
+      background: linear-gradient(90deg, #183EC2, #D9481E);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    html[data-mode="build"] .brand-wordmark span {
+      background: linear-gradient(90deg, #38BDF8, #FBBF24);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .split-toggle-chip {
+      appearance: none;
+      border: 1px solid #CFD5E2;
+      background: #F3F5F9;
+      color: #283040;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 0.18rem 0.5rem;
+      min-block-size: 26px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    html[data-mode="split"] .split-toggle-chip {
+      background: #111318;
+      color: #FFFFFF;
+      border-color: #111318;
+    }
+
+    html[data-mode="build"] .split-toggle-chip {
+      background: #233047;
+      color: #E2E8F4;
+      border-color: #384B6E;
+    }
+
+    /* Mobile Sub-Row so all hierarchies stay 1-tap accessible at 390px (<= 96px total header) */
+    @media (max-width: 720px) {
+      html[data-mode="split"] .split-masthead {
+        background: #FFFFFF;
+      }
+      .masthead-inner {
+        grid-template-columns: 1fr;
+        gap: 0.38rem;
+        padding-block: 0.45rem;
+      }
+      .center-brand-cluster {
+        order: -1;
+        justify-self: center;
+      }
+      .mobile-wings-row {
+        display: contents;
+      }
+      .masthead-inner {
+        grid-template-columns: 1fr 1fr;
+      }
+      .center-brand-cluster {
+        grid-column: 1 / -1;
+      }
+      .wing-read {
+        justify-content: flex-start;
+      }
+      .wing-build {
+        justify-content: flex-end;
+      }
+      html[data-mode="split"] .wing-pill-build {
+        background: #0D121B;
+        color: #FBBF24;
+        border-color: #0D121B;
+      }
+    }
+
+    /* =====================================================================
+       MAIN STAGE CONTAINER
+       ===================================================================== */
+    #threshold-stage {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* =====================================================================
+       STATE 0: 50/50 FIRST-VISIT SPLIT THRESHOLD (?view=split)
+       Immediately answers: "Where am I? What is /read vs /build? Why stay?"
+       ===================================================================== */
+    .split-threshold {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* Compact Unifying Orientation Ribbon right below Masthead */
+    .orientation-ribbon {
+      background: #FFFFFF;
+      color: #111318;
+      border-bottom: 1px solid #DCD9D0;
+      padding: 0.55rem clamp(1rem, 3vw, 2.25rem);
+    }
+
+    .orientation-inner {
+      max-width: 1320px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+    }
+
+    .orientation-statement {
+      font-size: 0.87rem;
+      color: #2C313C;
+      margin: 0;
+    }
+
+    .orientation-statement strong {
+      color: #111318;
+      font-weight: 700;
+    }
+
+    .orientation-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-compare-modal {
+      appearance: none;
+      background: transparent;
+      border: 1px solid #8A92A3;
+      color: #111318;
+      border-radius: 999px;
+      padding: 0.24rem 0.72rem;
+      min-block-size: 28px;
+      font-family: var(--font-mono);
+      font-size: 0.69rem;
+      font-weight: 600;
+    }
+
+    .btn-compare-modal:hover {
+      background: #111318;
+      color: #FFFFFF;
+      border-color: #111318;
+    }
+
+    .remember-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: var(--font-mono);
+      font-size: 0.69rem;
+      color: #464B57;
+      cursor: pointer;
+    }
+
+    /* The True 50/50 Twin Split Grid */
+    .split-halves {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 900px) {
+      .split-halves {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .half-pane {
+      padding: clamp(1.35rem, 2.6vw, 2.35rem) clamp(1.15rem, 3vw, 2.75rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1.15rem;
+    }
+
+    .half-read {
+      background: var(--read-bg);
+      color: var(--read-ink);
+      border-bottom: 1px solid var(--read-line);
+    }
+
+    @media (min-width: 900px) {
+      .half-read {
+        border-bottom: 0;
+        border-right: 1px solid rgba(125, 135, 155, 0.3);
+      }
+    }
+
+    .half-build {
+      background:
+        linear-gradient(rgba(56, 189, 248, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56, 189, 248, 0.04) 1px, transparent 1px),
+        var(--build-bg);
+      background-size: 28px 28px;
+      color: var(--build-ink);
+    }
+
+    .half-inner {
+      max-width: 560px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1.1rem;
+      height: 100%;
+    }
+
+    .route-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .half-read .route-kicker {
+      color: var(--read-cobalt);
+    }
+
+    .half-build .route-kicker {
+      color: var(--build-cyan);
+    }
+
+    .route-slug {
+      padding: 0.15rem 0.48rem;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+
+    .half-read .route-slug {
+      background: rgba(24, 62, 194, 0.1);
+      color: var(--read-cobalt);
+    }
+
+    .half-build .route-slug {
+      background: rgba(56, 189, 248, 0.14);
+      color: var(--build-cyan);
+    }
+
+    .half-h2 {
+      font-size: clamp(1.55rem, 2.35vw, 2.15rem);
+      line-height: 1.1;
+      letter-spacing: -0.032em;
+      margin: 0.45rem 0 0.45rem;
+    }
+
+    .half-read .half-h2 {
+      font-family: var(--font-editorial);
+      font-weight: 600;
+    }
+
+    .half-build .half-h2 {
+      font-family: var(--font-workbench);
+      font-weight: 700;
+    }
+
+    .half-summary {
+      font-size: 0.94rem;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .half-read .half-summary {
+      color: var(--read-muted);
+    }
+
+    .half-build .half-summary {
+      color: var(--build-muted);
+    }
+
+    /* Visual + Live Content Proof Card Inside Each Split Half */
+    .split-proof-card {
+      border-radius: 14px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 540px) {
+      .split-proof-card {
+        grid-template-columns: 4.5fr 5.5fr;
+      }
+    }
+
+    .half-read .split-proof-card {
+      background: var(--read-surface);
+      border: 1px solid var(--read-line);
+      box-shadow: 0 10px 28px rgba(17, 19, 24, 0.05);
+    }
+
+    .half-build .split-proof-card {
+      background: var(--build-surface);
+      border: 1px solid var(--build-line);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .proof-art img {
+      width: 100%;
+      height: 100%;
+      min-height: 148px;
+      max-height: 185px;
+      object-fit: cover;
+    }
+
+    .proof-body {
+      padding: 0.95rem 1.05rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 0.45rem;
+    }
+
+    .proof-tag {
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .half-read .proof-tag {
+      color: var(--read-vermilion);
+    }
+
+    .half-build .proof-tag {
+      color: var(--build-amber);
+    }
+
+    .proof-headline {
+      font-size: 0.96rem;
+      font-weight: 700;
+      line-height: 1.28;
+      margin: 0;
+    }
+
+    .proof-bridge-note {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      opacity: 0.86;
+    }
+
+    /* Exclusive What-You-Get List (3 Crisp Bullets Per Side) */
+    .exclusive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 0.42rem;
+      font-size: 0.84rem;
+    }
+
+    .exclusive-list li {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+
+    .half-read .exclusive-list li::before {
+      content: "✦";
+      color: var(--read-cobalt);
+      font-size: 0.76rem;
+      flex-shrink: 0;
+    }
+
+    .half-build .exclusive-list li::before {
+      content: "⚡";
+      color: var(--build-amber);
+      font-size: 0.76rem;
+      flex-shrink: 0;
+    }
+
+    .half-cta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      padding-top: 0.35rem;
+    }
+
+    .btn-enter-read {
+      appearance: none;
+      background: var(--read-ink);
+      color: #FFFFFF;
+      border: 1.5px solid var(--read-ink);
+      border-radius: 10px;
+      padding: 0.72rem 1.25rem;
+      min-block-size: 44px;
+      font-family: var(--font-editorial);
+      font-size: 0.92rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .btn-enter-read:hover {
+      background: var(--read-cobalt);
+      border-color: var(--read-cobalt);
+    }
+
+    .btn-enter-build {
+      appearance: none;
+      background: var(--build-amber);
+      color: #0D121B;
+      border: 1.5px solid var(--build-amber);
+      border-radius: 10px;
+      padding: 0.72rem 1.25rem;
+      min-block-size: 44px;
+      font-family: var(--font-workbench);
+      font-size: 0.92rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .btn-enter-build:hover {
+      background: #FDE047;
+      border-color: #FDE047;
+    }
+
+    .reversible-hint {
+      font-family: var(--font-mono);
+      font-size: 0.69rem;
+      opacity: 0.78;
+    }
+
+    /* =====================================================================
+       STATES 1 & 2: PERSISTENT ABOVE-THE-FOLD SINGLE-TWIN WORKSPACE
+       - Column 1 (60%): Active Twin Hero (/read Magazine OR /build Workbench)
+       - Column 2 (40%): Starts at LOCKED (0,0) with #continuity-box!
+       ===================================================================== */
+    .single-twin-stage {
+      flex: 1;
+      display: flex;
+      align-items: stretch;
+      background:
+        var(--stage-pattern, none),
+        var(--canvas-bg);
+      background-size: 28px 28px;
+    }
+
+    html[data-mode="build"] .single-twin-stage {
+      --stage-pattern:
+        linear-gradient(rgba(56, 189, 248, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56, 189, 248, 0.04) 1px, transparent 1px);
+    }
+
+    .single-twin-grid {
+      max-width: 1320px;
+      width: 100%;
+      margin: 0 auto;
+      padding: clamp(1.25rem, 2.4vw, 2rem) clamp(1rem, 3vw, 2.25rem);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(1.35rem, 2.8vw, 2.5rem);
+      align-items: start;
+    }
+
+    @media (min-width: 960px) {
+      .single-twin-grid {
+        grid-template-columns: 7fr 5fr;
+      }
+    }
+
+    /* =====================================================================
+       COLUMN 1A — /read (α Castor) FASHION-FORWARD FUTURISTIC MAGAZINE
+       Modern geometric display ('Outfit'), zero Victorian serif, zero SDK jargon
+       ===================================================================== */
+    .read-lead-feature {
+      display: flex;
+      flex-direction: column;
+      gap: 0.95rem;
+    }
+
+    .read-header-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--read-line);
+      padding-bottom: 0.55rem;
+    }
+
+    .read-section-pill {
+      font-family: var(--font-mono);
+      font-size: 0.71rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--read-cobalt);
+    }
+
+    .read-date {
+      font-family: var(--font-mono);
+      font-size: 0.71rem;
+      color: var(--read-muted);
+    }
+
+    .read-hero-frame {
+      margin: 0;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--read-line);
+      background: #ECEAE3;
+    }
+
+    .read-hero-frame img {
+      width: 100%;
+      aspect-ratio: 16 / 8.6;
+      object-fit: cover;
+    }
+
+    .read-h1 {
+      font-family: var(--font-editorial);
+      font-size: clamp(1.85rem, 3.1vw, 2.75rem);
+      font-weight: 600;
+      line-height: 1.07;
+      letter-spacing: -0.035em;
+      color: var(--read-ink);
+      margin: 0;
+      max-width: 22ch;
+    }
+
+    .read-deck {
+      font-size: 1rem;
+      line-height: 1.55;
+      color: var(--read-muted);
+      margin: 0;
+      max-width: 60ch;
+    }
+
+    .read-cta-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      padding-top: 0.25rem;
+    }
+
+    .btn-read-article {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: var(--read-ink);
+      color: #FFFFFF;
+      padding: 0.68rem 1.2rem;
+      min-block-size: 42px;
+      border-radius: 10px;
+      font-family: var(--font-editorial);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .btn-read-article:hover {
+      background: var(--read-cobalt);
+    }
+
+    .btn-jump-example {
+      appearance: none;
+      background: rgba(24, 62, 194, 0.08);
+      color: var(--read-cobalt);
+      border: 1px solid rgba(24, 62, 194, 0.32);
+      padding: 0.66rem 1.05rem;
+      min-block-size: 42px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .btn-jump-example:hover {
+      background: var(--read-cobalt);
+      color: #FFFFFF;
+    }
+
+    /* =====================================================================
+       COLUMN 1B — /build (β Pollux) HANDS-ON ACTION & ROLE WORKBENCH
+       Bite-sized steps for Small Business Owners, Employees & Developers
+       ===================================================================== */
+    .build-lead-workbench {
+      display: flex;
+      flex-direction: column;
+      gap: 0.95rem;
+      color: var(--build-ink);
+    }
+
+    .build-header-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--build-line);
+      padding-bottom: 0.55rem;
+    }
+
+    .build-section-pill {
+      font-family: var(--font-mono);
+      font-size: 0.71rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--build-cyan);
+    }
+
+    .human-pledge {
+      font-family: var(--font-mono);
+      font-size: 0.69rem;
+      color: var(--build-amber);
+    }
+
+    .build-h1 {
+      font-family: var(--font-workbench);
+      font-size: clamp(1.75rem, 2.85vw, 2.45rem);
+      font-weight: 700;
+      line-height: 1.09;
+      letter-spacing: -0.03em;
+      margin: 0;
+      max-width: 24ch;
+    }
+
+    /* Role Tabs: Small Business / Employees / Developers */
+    .role-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .role-tab {
+      appearance: none;
+      background: var(--build-surface);
+      color: var(--build-muted);
+      border: 1px solid var(--build-line);
+      border-radius: 8px;
+      padding: 0.45rem 0.85rem;
+      min-block-size: 36px;
+      font-family: var(--font-mono);
+      font-size: 0.73rem;
+      font-weight: 600;
+    }
+
+    .role-tab[aria-selected="true"] {
+      background: rgba(56, 189, 248, 0.16);
+      color: #FFFFFF;
+      border-color: var(--build-cyan);
+    }
+
+    /* Bite-Sized 3-Step Action Recipe Card */
+    .action-recipe-card {
+      background: var(--build-surface);
+      border: 1px solid var(--build-line);
+      border-radius: 14px;
+      padding: 1.15rem 1.25rem;
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .recipe-top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .recipe-title {
+      font-family: var(--font-workbench);
+      font-size: 1.12rem;
+      font-weight: 700;
+      margin: 0;
+      color: #FFFFFF;
+    }
+
+    .recipe-time {
+      font-family: var(--font-mono);
+      font-size: 0.69rem;
+      color: var(--build-amber);
+      background: rgba(251, 191, 36, 0.12);
+      padding: 0.18rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    .chunk-steps {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 0.55rem;
+    }
+
+    .chunk-steps li {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.65rem;
+      align-items: baseline;
+      font-size: 0.88rem;
+      color: #DCE4F5;
+      background: var(--build-surface-alt);
+      border: 1px solid rgba(56, 189, 248, 0.14);
+      padding: 0.58rem 0.78rem;
+      border-radius: 8px;
+    }
+
+    .step-num {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--build-cyan);
+    }
+
+    .build-cta-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    /* =====================================================================
+       COLUMN 2 — LOCKED TOP-LEFT (0,0) CONTINUITY BRIDGE + COMPANION STACK
+       - #continuity-box NEVER jumps coordinates between /read and /build!
+       - Its top-left (0,0) stays pinned at the top of Column 2.
+       - Its bottom edge smoothly expands downward for larger /build content
+         (pushing #col2-below-stack down) and shrinks upward for compact /read
+         content (pulling #col2-below-stack smoothly back up!).
+       ===================================================================== */
+    .col2-rail {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .continuity-box {
+      /* Independent Dichroic Smoked-Titanium & Frosted Pearl-Indigo Material
+         Works harmoniously against BOTH Alabaster (#F6F5F1) and Carbon (#0D121B) */
+      position: relative;
+      transform-origin: top left;
+      border-radius: 16px;
+      padding: 1.5px;
+      background: linear-gradient(135deg, #2C58E8 0%, #9E4770 48%, #F59E0B 100%);
+      box-shadow: 0 16px 38px rgba(17, 22, 36, 0.16);
+      overflow: hidden;
+      block-size: auto;
+      block-size: calc-size(auto, size);
+    }
+
+    html[data-mode="build"] .continuity-box {
+      box-shadow: 0 20px 46px rgba(0, 0, 0, 0.48);
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .continuity-box {
+        transition: block-size 0.44s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+      }
+    }
+
+    .continuity-surface {
+      background: linear-gradient(160deg, #192030 0%, #1F1D2C 100%);
+      color: #F7F8FC;
+      border-radius: 14.5px;
+      padding: 1.05rem 1.15rem;
+      overflow: hidden;
+    }
+
+    .cb-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      padding-bottom: 0.6rem;
+      margin-bottom: 0.7rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.13);
+      font-family: var(--font-mono);
+      font-size: 0.67rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .cb-kicker {
+      color: #93C5FD;
+    }
+
+    html[data-mode="build"] .cb-kicker {
+      color: #FCD34D;
+    }
+
+    .cb-anchor-badge {
+      color: #C7D0E4;
+      font-weight: 500;
+    }
+
+    /* Inner morphing panels inside #continuity-box */
+    .cb-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .cb-panel[data-entering="down"] {
+        animation: cb-slide-in-down 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .cb-panel[data-entering="up"] {
+        animation: cb-slide-in-up 0.36s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+    }
+
+    @keyframes cb-slide-in-down {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes cb-slide-in-up {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .cb-title {
+      font-family: var(--font-editorial);
+      font-size: 1.08rem;
+      font-weight: 600;
+      line-height: 1.24;
+      margin: 0;
+      color: #FFFFFF;
+    }
+
+    .cb-desc {
+      font-size: 0.84rem;
+      line-height: 1.48;
+      color: #CBD3E6;
+      margin: 0;
+    }
+
+    .cb-action-btn {
+      appearance: none;
+      width: 100%;
+      background: #F7F8FC;
+      color: #111318;
+      border: 0;
+      border-radius: 9px;
+      padding: 0.58rem 0.9rem;
+      min-block-size: 38px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .cb-action-btn:hover {
+      background: #E2E8F8;
+    }
+
+    /* Expanded Interactive 3-Step Working Example inside Continuity Box (/build state) */
+    .sim-step-pills {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.38rem;
+    }
+
+    .sim-pill {
+      appearance: none;
+      background: rgba(255, 255, 255, 0.07);
+      color: #DCE3F2;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 7px;
+      padding: 0.4rem 0.35rem;
+      min-block-size: 34px;
+      font-family: var(--font-mono);
+      font-size: 0.67rem;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .sim-pill[aria-pressed="true"] {
+      background: #FBBF24;
+      color: #0D121B;
+      border-color: #FBBF24;
+      font-weight: 700;
+    }
+
+    .sim-output-box {
+      background: rgba(9, 13, 21, 0.72);
+      border: 1px solid rgba(147, 197, 253, 0.24);
+      border-radius: 9px;
+      padding: 0.72rem 0.82rem;
+      display: grid;
+      gap: 0.35rem;
+    }
+
+    .sim-plain {
+      font-size: 0.81rem;
+      color: #F7F8FC;
+      line-height: 1.42;
+    }
+
+    .sim-code {
+      font-family: var(--font-mono);
+      font-size: 0.69rem;
+      color: #7DD3FC;
+    }
+
+    .cb-return-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      padding-top: 0.35rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .cb-link-subtle {
+      appearance: none;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      color: #F7F8FC;
+      border-radius: 7px;
+      padding: 0.38rem 0.7rem;
+      min-block-size: 32px;
+      font-family: var(--font-mono);
+      font-size: 0.69rem;
+      font-weight: 600;
+    }
+
+    .cb-link-subtle:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    /* Sibling Stack Directly Underneath #continuity-box (Glides Down & Up Smoothly!) */
+    .col2-below-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .read-wire-card {
+      background: var(--read-surface);
+      border: 1px solid var(--read-line);
+      border-radius: 13px;
+      padding: 0.9rem 1.05rem;
+      display: grid;
+      gap: 0.32rem;
+    }
+
+    .rw-cat {
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--read-vermilion);
+    }
+
+    .rw-cat.cat-cobalt {
+      color: var(--read-cobalt);
+    }
+
+    .rw-h3 {
+      font-family: var(--font-editorial);
+      font-size: 1.02rem;
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--read-ink);
+      margin: 0;
+    }
+
+    .rw-h3 a:hover {
+      color: var(--read-cobalt);
+    }
+
+    .rw-p {
+      font-size: 0.82rem;
+      color: var(--read-muted);
+      margin: 0;
+      line-height: 1.45;
+    }
+
+    .build-kit-card {
+      background: var(--build-surface);
+      border: 1px solid var(--build-line);
+      border-radius: 13px;
+      padding: 0.9rem 1.05rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      color: var(--build-ink);
+    }
+
+    .bk-title {
+      font-family: var(--font-workbench);
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin: 0.2rem 0 0;
+    }
+
+    .bk-link {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--build-cyan);
+      white-space: nowrap;
+      padding: 0.4rem 0.7rem;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 8px;
+    }
+
+    /* =====================================================================
+       SIDE-BY-SIDE "/READ VS /BUILD" COMPARISON DIALOG (<dialog closedby="any">)
+       ===================================================================== */
+    dialog.compare-dialog {
+      width: min(720px, calc(100vw - 1.5rem));
+      background: #FFFFFF;
+      color: #111318;
+      border: 1px solid #DCD9D0;
+      border-radius: 18px;
+      padding: clamp(1.25rem, 3vw, 2rem);
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.35);
+    }
+
+    dialog.compare-dialog::backdrop {
+      background: rgba(13, 18, 27, 0.58);
+      backdrop-filter: blur(3px);
+    }
+
+    .dlg-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      border-bottom: 1px solid #E5E2DA;
+      padding-bottom: 0.75rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .dlg-head h2 {
+      font-family: var(--font-editorial);
+      font-size: 1.35rem;
+      margin: 0;
+    }
+
+    .dlg-close {
+      appearance: none;
+      background: #F3F4F6;
+      border: 1px solid #D1D5DB;
+      color: #111318;
+      border-radius: 8px;
+      padding: 0.35rem 0.75rem;
+      min-block-size: 32px;
+      font-family: var(--font-mono);
+      font-size: 0.73rem;
+      font-weight: 700;
+    }
+
+    .compare-cols {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    @media (min-width: 640px) {
+      .compare-cols {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .cmp-box {
+      border-radius: 12px;
+      padding: 1.05rem;
+    }
+
+    .cmp-read {
+      background: #F6F5F1;
+      border: 1px solid #DCD9D0;
+    }
+
+    .cmp-build {
+      background: #0D121B;
+      color: #F3F6FC;
+      border: 1px solid #27344D;
+    }
+
+    .cmp-box h3 {
+      margin: 0.3rem 0 0.45rem;
+      font-size: 1.08rem;
+    }
+
+    .cmp-box p {
+      font-size: 0.84rem;
+      margin: 0 0 0.7rem;
+      opacity: 0.88;
+    }
+
+    .cmp-box ul {
+      margin: 0;
+      padding-left: 1.1rem;
+      font-size: 0.82rem;
+      display: grid;
+      gap: 0.38rem;
+    }
+
+    /* =====================================================================
+       QUIET PROTOTYPE CASE-STUDY DOCK (Bottom Strip)
+       ===================================================================== */
+    .studio-dock {
+      border-top: 1px solid rgba(125, 135, 155, 0.25);
+      background: #111318;
+      color: #D5DBE8;
+      padding: 0.42rem 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+    }
+
+    .studio-dock-inner {
+      max-width: 1360px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.4rem 0.9rem;
+    }
+
+    .dock-links {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.35rem 0.7rem;
+    }
+
+    .dock-links a {
+      color: #AAB4C8;
+    }
+
+    .dock-links a:hover,
+    .dock-links a[aria-current="page"] {
+      color: #FBBF24;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      ::view-transition-group(*),
+      ::view-transition-old(*),
+      ::view-transition-new(*) {
+        animation: none !important;
+      }
+      .continuity-box,
+      body {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#threshold-stage" class="skip-link visually-hidden">Skip to main content</a>
+
+  <div class="viewport-shell">
+    <!-- ===================================================================
+         SPLIT-HIERARCHY MASTHEAD:
+         Left: /read (α Castor) · Center: GeminiPulse · Right: /build (β Pollux)
+         You can jump directly into any /read or /build vertical in 1 click!
+         =================================================================== -->
+    <header class="split-masthead">
+      <div class="masthead-inner">
+        <!-- LEFT HIERARCHY: /read · α Castor -->
+        <div class="wing wing-read" role="navigation" aria-label="Read Castor Magazine Navigation">
+          <button
+            type="button"
+            class="wing-pill wing-pill-read"
+            data-switch-mode="read"
+            aria-pressed="false"
+          >
+            <span>✦ /read</span>
+            <span>· <span class="greek-sym">α</span> Castor</span>
+          </button>
+          <div class="wing-links">
+            <button type="button" class="wing-link" data-switch-mode="read" data-read-topic="releases" data-current="true">Releases</button>
+            <button type="button" class="wing-link" data-switch-mode="read" data-read-topic="markets">AI Markets</button>
+            <button type="button" class="wing-link" data-switch-mode="read" data-read-topic="voices">Voices</button>
+          </div>
+        </div>
+
+        <!-- CENTER LOGO & 50/50 SPLIT OVERVIEW TRIGGER -->
+        <div class="center-brand-cluster">
+          <button
+            type="button"
+            class="brand-home-btn"
+            data-switch-mode="split"
+            title="View 50/50 Split Threshold"
+          >
+            <svg width="22" height="22" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+              <path d="M13 4L15 13L24 15L15 17L13 26L11 17L2 15L11 13L13 4Z" fill="#183EC2"/>
+              <path d="M24 11L25.6 18.4L33 20L25.6 21.6L24 29L22.4 21.6L15 20L22.4 18.4L24 11Z" fill="#F59E0B"/>
+            </svg>
+            <span class="brand-wordmark">Gemini<span>Pulse</span></span>
+          </button>
+          <button
+            type="button"
+            class="split-toggle-chip"
+            data-switch-mode="split"
+            aria-pressed="true"
+            id="btn-split-overview"
+          >
+            50/50 Split
+          </button>
+        </div>
+
+        <!-- RIGHT HIERARCHY: /build · β Pollux -->
+        <div class="wing wing-build" role="navigation" aria-label="Build Pollux Workbench Navigation">
+          <div class="wing-links">
+            <button type="button" class="wing-link" data-switch-mode="build" data-build-role="smb" data-current="true">Small Biz</button>
+            <button type="button" class="wing-link" data-switch-mode="build" data-build-role="employee">At Work</button>
+            <button type="button" class="wing-link" data-switch-mode="build" data-build-role="dev">Code Labs</button>
+          </div>
+          <button
+            type="button"
+            class="wing-pill wing-pill-build"
+            data-switch-mode="build"
+            aria-pressed="false"
+          >
+            <span>⚡ /build</span>
+            <span>· <span class="greek-sym">β</span> Pollux</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ===================================================================
+         ABOVE-THE-FOLD MAIN STAGE
+         =================================================================== -->
+    <main id="threshold-stage">
+      <!-- =================================================================
+           VIEW 0: DEFAULT FIRST-VISIT 50/50 SPLIT THRESHOLD
+           Crystal-clear answer in 3 seconds: What is this site, and which side fits my intent?
+           ================================================================= -->
+      <section class="split-threshold" id="stage-split" aria-labelledby="split-read-h2">
+        <div class="orientation-ribbon">
+          <div class="orientation-inner">
+            <p class="orientation-statement">
+              <strong>One AI Hub, Two Connected Twins:</strong> Read what’s changing in Gemini &amp; AI markets—or put it to work in 5-minute steps.
+            </p>
+            <div class="orientation-controls">
+              <button
+                type="button"
+                class="btn-compare-modal"
+                commandfor="dlg-read-vs-build"
+                command="show-modal"
+              >
+                What’s in /read vs. /build?
+              </button>
+              <label class="remember-label">
+                <input type="checkbox" id="chk-remember-twin" />
+                <span>Remember my default side</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="split-halves">
+          <!-- LEFT HALF: /read · α Castor (The Magazine) -->
+          <article class="half-pane half-read">
+            <div class="half-inner">
+              <div>
+                <div class="route-kicker">
+                  <span class="route-slug">/read</span>
+                  <span>· <span class="greek-sym">α</span> Castor · The Magazine</span>
+                </div>
+                <h2 class="half-h2" id="split-read-h2" tabindex="-1">
+                  Understand Gemini Releases, AI Markets &amp; Where It’s Going.
+                </h2>
+                <p class="half-summary">
+                  Every Google Gemini update decoded on release day, plus broader AI finance shifts and industry voices—zero code walls.
+                </p>
+              </div>
+
+              <div class="split-proof-card">
+                <div class="proof-art">
+                  <img
+                    src="./assets/look-e-read-editorial.webp"
+                    alt="Suspended cobalt and coral dichroic glass prisms in a sunlit architectural gallery"
+                    width="1376"
+                    height="768"
+                    fetchpriority="high"
+                  />
+                </div>
+                <div class="proof-body">
+                  <span class="proof-tag">Today in /read · Release + Market</span>
+                  <h3 class="proof-headline">Google’s Screen-Operating AI Arrives—What Changes for Teams &amp; Software Margins</h3>
+                  <span class="proof-bridge-note">⇄ Linked directly to a 3-step /build working example</span>
+                </div>
+              </div>
+
+              <ul class="exclusive-list" aria-label="What you get in Read">
+                <li><span><strong>Every Gemini Release Decoded:</strong> What launched today and what it actually means.</span></li>
+                <li><span><strong>AI Finance &amp; Market Landscape:</strong> Pricing shifts, business economics, and macro trends.</span></li>
+                <li><span><strong>Ecosystem Commentary:</strong> Curated talks, videos, and what credible voices are saying.</span></li>
+              </ul>
+
+              <div class="half-cta-row">
+                <button type="button" class="btn-enter-read" data-switch-mode="read">
+                  <span>Enter /read Magazine</span>
+                  <span aria-hidden="true">→</span>
+                </button>
+                <span class="reversible-hint">Switch to /build anytime from the top bar</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- RIGHT HALF: /build · β Pollux (The Action Workbench) -->
+          <article class="half-pane half-build">
+            <div class="half-inner">
+              <div>
+                <div class="route-kicker">
+                  <span class="route-slug">/build</span>
+                  <span>· <span class="greek-sym">β</span> Pollux · The Workbench</span>
+                </div>
+                <h2 class="half-h2" id="split-build-h2">
+                  Put AI Into Action at Work, in Your Business, or in Code.
+                </h2>
+                <p class="half-summary">
+                  Bite-sized working examples, human-enhancing workflows for employees and small business owners, and playable developer labs.
+                </p>
+              </div>
+
+              <div class="split-proof-card">
+                <div class="proof-art">
+                  <img
+                    src="./assets/look-e-build-workbench.webp"
+                    alt="Modular brushed aluminum and anodized graphite workflow blocks with glowing cyan and amber light conduits"
+                    width="1376"
+                    height="768"
+                    fetchpriority="high"
+                  />
+                </div>
+                <div class="proof-body">
+                  <span class="proof-tag">Today in /build · Working Example</span>
+                  <h3 class="proof-headline">3-Minute Recipe: Turn Vendor Invoices Into Clean Sheets While Blocking Ad Traps</h3>
+                  <span class="proof-bridge-note">⚡ Interactive [SIMULATED DEMO] + Small-Biz Steps</span>
+                </div>
+              </div>
+
+              <ul class="exclusive-list" aria-label="What you get in Build">
+                <li><span><strong>Small Business &amp; Employee Playbooks:</strong> Enhance your workflow—never replace people.</span></li>
+                <li><span><strong>Quick Working Examples:</strong> Small, practical steps paired with every new Gemini release.</span></li>
+                <li><span><strong>Live Labs &amp; Starter Kits:</strong> Interactive sandboxes, ROI sliders, and $0 IDE plugins.</span></li>
+              </ul>
+
+              <div class="half-cta-row">
+                <button type="button" class="btn-enter-build" data-switch-mode="build">
+                  <span>Enter /build Workbench</span>
+                  <span aria-hidden="true">→</span>
+                </button>
+                <span class="reversible-hint">1-click access to /read always above</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- =================================================================
+           VIEWS 1 & 2: SINGLE-TWIN ABOVE-THE-FOLD STAGE (/read ⇄ /build)
+           Shares the exact 2-column grid so #continuity-box stays pinned at
+           top-left (0,0) of Column 2 and expands/shrinks smoothly!
+           ================================================================= -->
+      <section class="single-twin-stage" id="stage-single" hidden aria-live="polite">
+        <div class="single-twin-grid">
+          <!-- COLUMN 1: Swaps cleanly between /read Editorial Cover and /build Role Workbench -->
+          <div id="col1-primary">
+            <!-- /read Primary Feature -->
+            <article class="read-lead-feature" id="primary-read">
+              <div class="read-header-meta">
+                <span class="read-section-pill" id="read-active-kicker">Gemini Release &amp; Market Impact</span>
+                <span class="read-date">Updated Today · 4 Min Read</span>
+              </div>
+
+              <figure class="read-hero-frame">
+                <img
+                  src="./assets/look-e-read-editorial.webp"
+                  alt="Suspended cobalt and coral dichroic glass prisms in a sunlit architectural gallery"
+                  width="1376"
+                  height="768"
+                />
+              </figure>
+
+              <h1 class="read-h1" id="heading-read" tabindex="-1">
+                Google’s Screen-Operating AI Enters the Workplace—What Changes for Teams
+              </h1>
+
+              <p class="read-deck" id="deck-read">
+                Gemini Computer Use reaches general availability with plain-English action logs, reshaping how lean teams handle browser ops and software costs.
+              </p>
+
+              <div class="read-cta-bar">
+                <a
+                  href="/series/gemini-computer-use/part-1-computer-use-ga-breakdown.html"
+                  class="btn-read-article"
+                >
+                  <span>Read Full Release Analysis</span>
+                  <span aria-hidden="true">→</span>
+                </a>
+                <button
+                  type="button"
+                  class="btn-jump-example"
+                  data-switch-mode="build"
+                >
+                  ⇄ Open Live Working Example in /build
+                </button>
+              </div>
+            </article>
+
+            <!-- /build Primary Action Workbench -->
+            <article class="build-lead-workbench" id="primary-build" hidden>
+              <div class="build-header-meta">
+                <span class="build-section-pill">Hands-On Action &amp; Workflows · /build</span>
+                <span class="human-pledge">✦ Built to Enhance People, Never Replace Them</span>
+              </div>
+
+              <h1 class="build-h1" id="heading-build" tabindex="-1">
+                Pick Your Role. Put Today’s Gemini Update to Work in 5 Minutes.
+              </h1>
+
+              <div class="role-tabs" role="tablist" aria-label="Choose your action track">
+                <button type="button" class="role-tab" role="tab" data-role="smb" aria-selected="true">
+                  Small Business / Solopreneur
+                </button>
+                <button type="button" class="role-tab" role="tab" data-role="employee" aria-selected="false">
+                  Employee / Team Workflow
+                </button>
+                <button type="button" class="role-tab" role="tab" data-role="dev" aria-selected="false">
+                  Developer / Technical
+                </button>
+              </div>
+
+              <div class="action-recipe-card" id="role-recipe-panel">
+                <div class="recipe-top">
+                  <h2 class="recipe-title" id="recipe-title">
+                    Run Leaner Client &amp; Back-Office Ops Without Extra SaaS Bloat
+                  </h2>
+                  <span class="recipe-time" id="recipe-time">3 Bite-Sized Steps · ~5 Min</span>
+                </div>
+
+                <ol class="chunk-steps" id="recipe-steps">
+                  <li>
+                    <span class="step-num">STEP 01</span>
+                    <span>Drop vendor PDFs or browser tables into Gemini Workspace to draft clean Google Sheets trackers in 90 seconds.</span>
+                  </li>
+                  <li>
+                    <span class="step-num">STEP 02</span>
+                    <span>Review Gemini’s plain-English intent log before approving any action—keeping your business judgment in control.</span>
+                  </li>
+                  <li>
+                    <span class="step-num">STEP 03</span>
+                    <span>Test the interactive invoice &amp; safety walkthrough in the Continuity Module on the right →</span>
+                  </li>
+                </ol>
+
+                <div class="build-cta-bar">
+                  <a href="/labs/gemini-4-stack-advisor.html" class="btn-enter-build">
+                    <span>Open Small-Biz ROI &amp; Stack Calculator</span>
+                    <span aria-hidden="true">→</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- ===============================================================
+               COLUMN 2: STARTS AT LOCKED (0,0) WITH #continuity-box
+               Top-left pixel never jumps! Expands downward on /build, shrinks
+               upward on /read, smoothly moving #col2-below-stack down and up.
+               =============================================================== -->
+          <div class="col2-rail">
+            <aside class="continuity-box" id="continuity-box" aria-label="Twin Continuity Bridge">
+              <div class="continuity-surface">
+                <div class="cb-topbar">
+                  <span class="cb-kicker" id="cb-kicker">⇄ Paired /build Working Example</span>
+                  <span class="cb-anchor-badge">Twin Bridge</span>
+                </div>
+
+                <!-- COMPACT PANEL (Shown in /read — Smaller height!) -->
+                <div class="cb-panel" id="cb-panel-compact">
+                  <h2 class="cb-title">Don’t Just Read About Computer Use—Try the 3-Step Example.</h2>
+                  <p class="cb-desc">
+                    Watch how this exact release extracts invoice rows and blocks hidden ad-banner traps in 3 seconds.
+                  </p>
+                  <button type="button" class="cb-action-btn" data-switch-mode="build">
+                    <span>Expand Working Example in /build</span>
+                    <span aria-hidden="true">⚡ ↘</span>
+                  </button>
+                </div>
+
+                <!-- EXPANDED PANEL (Shown in /build — Larger height, expands downward from (0,0)!) -->
+                <div class="cb-panel" id="cb-panel-expanded" hidden>
+                  <h2 class="cb-title">Live Working Example: Screen Action &amp; Safety Check <span style="font-family:var(--font-mono);font-size:0.68rem;color:#FCD34D;">[SIMULATED DEMO]</span></h2>
+                  <p class="cb-desc">
+                    Click each quick step to see what happens under the hood before trying it in your own workflow:
+                  </p>
+
+                  <div class="sim-step-pills" role="group" aria-label="Working example steps">
+                    <button type="button" class="sim-pill" data-sim-step="1" aria-pressed="true">1. Scan Page</button>
+                    <button type="button" class="sim-pill" data-sim-step="2" aria-pressed="false">2. Block Trap</button>
+                    <button type="button" class="sim-pill" data-sim-step="3" aria-pressed="false">3. Fill Sheet</button>
+                  </div>
+
+                  <div class="sim-output-box" id="sim-output" aria-live="polite">
+                    <span class="sim-plain" id="sim-plain">Step 1: Gemini reads your open vendor portal table and explains its next click in plain English before acting.</span>
+                    <span class="sim-code" id="sim-code">model: "gemini-3.8-flash" ($0.75/1M) · intent: "Locate Q4 line items"</span>
+                  </div>
+
+                  <div class="cb-return-row">
+                    <a href="/labs/gemini-computer-use-simulator.html" style="font-family:var(--font-mono);font-size:0.72rem;color:#7DD3FC;font-weight:700;">
+                      Full Interactive Lab ↗
+                    </a>
+                    <button type="button" class="cb-link-subtle" data-switch-mode="read">
+                      ↖ Back to /read Story
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </aside>
+
+            <!-- SIBLING STACK DIRECTLY BELOW #continuity-box
+                 Moves smoothly down when #continuity-box grows, and glides up when #continuity-box shrinks! -->
+            <div class="col2-below-stack" id="col2-below-stack">
+              <!-- Shown in /read (2 crisp editorial dispatches: Finance/Market + Voices) -->
+              <div id="below-read" style="display:grid;gap:0.75rem;">
+                <article class="read-wire-card">
+                  <span class="rw-cat">AI Finance &amp; Market Landscape</span>
+                  <h3 class="rw-h3">
+                    <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/" target="_blank" rel="noreferrer">
+                      Why 75¢-Per-Million Agent Loops Shift Small-Business Margins
+                    </a>
+                  </h3>
+                  <p class="rw-p">
+                    Falling inference costs turn enterprise-only automation into everyday operating leverage for independent firms.
+                  </p>
+                </article>
+
+                <article class="read-wire-card">
+                  <span class="rw-cat cat-cobalt">Industry Voices &amp; Video Signal</span>
+                  <h3 class="rw-h3">
+                    <a href="/series/gemini-4-carbon/part-1-what-changed-vs-argon.html">
+                      What Analysts &amp; Builders Are Saying About Gemini 4 Carbon’s 95% Cache Cut
+                    </a>
+                  </h3>
+                  <p class="rw-p">
+                    A 3-minute synthesis of benchmark reactions, real cost math, and where frontier models head next.
+                  </p>
+                </article>
+              </div>
+
+              <!-- Shown in /build (1 compact starter kit card pushed cleanly below the expanded Continuity Box) -->
+              <div id="below-build" hidden>
+                <div class="build-kit-card">
+                  <div>
+                    <span class="proof-tag" style="color:var(--build-cyan);">Free Starter Download · $0</span>
+                    <h3 class="bk-title">Workspace Prompt Pack &amp; Antigravity Starter Plugin</h3>
+                  </div>
+                  <a href="/#addons" class="bk-link">Grab Kit →</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Prototype Switcher Strip (Preserves 1-click access to Look D & Case Study Hub) -->
+    <footer class="studio-dock" aria-label="Brand Evolution Prototype Switcher">
+      <div class="studio-dock-inner">
+        <span><strong>Look E · Above-the-Fold Threshold Study</strong> (Look D v2 preserved untouched)</span>
+        <nav class="dock-links" aria-label="Prototype Exhibits">
+          <a href="./index.html">Case Study Hub</a>
+          <span aria-hidden="true">·</span>
+          <a href="./era-0-v2-baseline.html">Era 0</a>
+          <span aria-hidden="true">·</span>
+          <a href="./look-a-editorial.html">1A</a>
+          <span aria-hidden="true">·</span>
+          <a href="./look-b-spatial-gallery.html">1B</a>
+          <span aria-hidden="true">·</span>
+          <a href="./look-c-guerrilla-studio.html">1C</a>
+          <span aria-hidden="true">·</span>
+          <a href="./look-d-fraternal-twins.html">2D · v2</a>
+          <span aria-hidden="true">·</span>
+          <a href="./look-e-twin-threshold.html" aria-current="page">3E · Threshold Split</a>
+        </nav>
+      </div>
+    </footer>
+  </div>
+
+  <!-- =====================================================================
+       SIDE-BY-SIDE "/READ VS /BUILD" QUICK COMPARISON MODAL (<dialog closedby="any">)
+       ===================================================================== -->
+  <dialog id="dlg-read-vs-build" class="compare-dialog" closedby="any" aria-labelledby="dlg-cmp-title">
+    <div class="dlg-head">
+      <h2 id="dlg-cmp-title">Two Connected Twins: What You Get in /read vs. /build</h2>
+      <button type="button" class="dlg-close" commandfor="dlg-read-vs-build" command="close">Close ✕</button>
+    </div>
+    <div class="compare-cols">
+      <div class="cmp-box cmp-read">
+        <span class="route-kicker" style="color:#183EC2;">/read · <span class="greek-sym">α</span> Castor</span>
+        <h3>The AI &amp; Gemini Magazine</h3>
+        <p>For staying sharp on the AI landscape, business economics, and every official Gemini release—without setup steps or code clutter.</p>
+        <ul>
+          <li><strong>Release-Day Breakdowns:</strong> Every Google Gemini update translated into plain English.</li>
+          <li><strong>AI Finance &amp; Market Impact:</strong> How AI shifts pricing, margins, and industry competition.</li>
+          <li><strong>Curated Voices &amp; Videos:</strong> What respected analysts and creators are saying—with 1-click bridges to working /build examples.</li>
+        </ul>
+      </div>
+      <div class="cmp-box cmp-build">
+        <span class="route-kicker" style="color:#38BDF8;">/build · <span class="greek-sym">β</span> Pollux</span>
+        <h3>The Hands-On Action Workbench</h3>
+        <p>For employees, small business owners, and developers who want practical 5-minute steps to put Gemini to work immediately.</p>
+        <ul>
+          <li><strong>Role-Based Workflows:</strong> Human-enhancing guides for operating a small business or upgrading your daily job.</li>
+          <li><strong>Working Release Examples:</strong> Bite-sized, interactive recipes showing how to actually use new Gemini features.</li>
+          <li><strong>Playable Labs &amp; Kits:</strong> Live browser simulators (<code>[SIMULATED DEMO]</code>), ROI calculators, and $0 starter plugins.</li>
+        </ul>
+      </div>
+    </div>
+  </dialog>
+
+  <script type="module">
+    // 1. Progressive feature-detected Invoker Commands & <dialog closedby="any"> fallback (modern-web-guidance)
+    const supportsCommandInvoker = 'commandForElement' in HTMLButtonElement.prototype;
+    if (!supportsCommandInvoker) {
+      import('https://esm.run/invokers-polyfill').catch(() => {});
+    }
+
+    const compareDialog = document.getElementById('dlg-read-vs-build');
+    if (compareDialog && !('closedBy' in HTMLDialogElement.prototype)) {
+      compareDialog.addEventListener('click', (event) => {
+        if (event.target !== compareDialog) return;
+        const rect = compareDialog.getBoundingClientRect();
+        const inside =
+          rect.top <= event.clientY &&
+          event.clientY <= rect.top + rect.height &&
+          rect.left <= event.clientX &&
+          event.clientX <= rect.left + rect.width;
+        if (!inside) compareDialog.close();
+      });
+    }
+
+    document.addEventListener('click', (event) => {
+      const cmdBtn = event.target.closest('button[commandfor]');
+      if (!cmdBtn || supportsCommandInvoker) return;
+      const target = document.getElementById(cmdBtn.getAttribute('commandfor'));
+      if (!target) return;
+      const cmd = cmdBtn.getAttribute('command');
+      if (cmd === 'show-modal' && !target.open) target.showModal();
+      else if (cmd === 'close' && target.open) target.close();
+    });
+
+    // 2. Role-Based Action Tracks in /build (Small Business / Employee / Developer)
+    const ROLE_DATA = {
+      smb: {
+        title: 'Run Leaner Client & Back-Office Ops Without Extra SaaS Bloat',
+        time: 'Small Business · ~5 Min',
+        steps: [
+          'Drop vendor PDFs or browser tables into Gemini Workspace to draft clean Google Sheets trackers in 90 seconds.',
+          'Review Gemini’s plain-English intent log before approving any action—keeping your business judgment in control.',
+          'Test the interactive invoice & safety walkthrough in the Continuity Module on the right →',
+        ],
+      },
+      employee: {
+        title: 'Clear Repetitive Docs, Sheets & Research Drudgery From Your Workday',
+        time: 'At Work · ~4 Min',
+        steps: [
+          'Turn messy meeting notes and inbox threads into structured executive briefs inside Google Docs in one prompt.',
+          'Use Gemini as a second set of eyes to spot spreadsheet anomalies—enhancing your output, never replacing your voice.',
+          'Click through the 3-step live example on the right to see safe browser assistance in action →',
+        ],
+      },
+      dev: {
+        title: 'Wire Computer Use GA + Native SDK v2.32 Continuation Into Your Stack',
+        time: 'Technical · Copy & Run',
+        steps: [
+          'Route high-frequency UI verification loops to gemini-3.8-flash ($0.75/1M input) with screenshot injection scanning enabled.',
+          'Enable automatic_continuation in @google/genai v2.32+ so multi-step agent runs never drop mid-stream.',
+          'Inspect the live action-intent payload in the Continuity Module on the right or launch the full simulator →',
+        ],
+      },
+    };
+
+    function setActiveRole(roleKey) {
+      const data = ROLE_DATA[roleKey] || ROLE_DATA.smb;
+      document.querySelectorAll('.role-tab').forEach((btn) => {
+        btn.setAttribute('aria-selected', String(btn.dataset.role === roleKey));
+      });
+      document.querySelectorAll('[data-build-role]').forEach((btn) => {
+        btn.dataset.current = String(btn.dataset.buildRole === roleKey);
+      });
+      document.getElementById('recipe-title').textContent = data.title;
+      document.getElementById('recipe-time').textContent = data.time;
+      const list = document.getElementById('recipe-steps');
+      list.replaceChildren(
+        ...data.steps.map((text, idx) => {
+          const li = document.createElement('li');
+          const num = document.createElement('span');
+          num.className = 'step-num';
+          num.textContent = `STEP 0${idx + 1}`;
+          const body = document.createElement('span');
+          body.textContent = text;
+          li.append(num, body);
+          return li;
+        })
+      );
+    }
+
+    document.querySelectorAll('.role-tab').forEach((btn) => {
+      btn.addEventListener('click', () => setActiveRole(btn.dataset.role));
+    });
+
+    // 3. Read Topic Quick Switcher (Releases / AI Markets / Voices)
+    const READ_TOPICS = {
+      releases: {
+        kicker: 'Gemini Release & Market Impact',
+        heading: 'Google’s Screen-Operating AI Enters the Workplace—What Changes for Teams',
+        deck: 'Gemini Computer Use reaches general availability with plain-English action logs, reshaping how lean teams handle browser ops and software costs.',
+      },
+      markets: {
+        kicker: 'AI Finance & Market Landscape',
+        heading: '75¢-Per-Million Agent Loops Are Rewriting Software Economics for Small Firms',
+        deck: 'Why collapsing Gemini 3.8 Flash and 95% cached Carbon pricing shift AI ROI from giant enterprises to nimble operators.',
+      },
+      voices: {
+        kicker: 'Ecosystem Voices & Video Signal',
+        heading: 'What Independent Analysts & Builders Are Saying About Multi-Window Agents',
+        deck: 'A plain-English synthesis of this week’s sharpest talks, creator benchmarks, and where practical AI workflows go next.',
+      },
+    };
+
+    function setReadTopic(topicKey) {
+      const data = READ_TOPICS[topicKey] || READ_TOPICS.releases;
+      document.getElementById('read-active-kicker').textContent = data.kicker;
+      document.getElementById('heading-read').textContent = data.heading;
+      document.getElementById('deck-read').textContent = data.deck;
+      document.querySelectorAll('[data-read-topic]').forEach((btn) => {
+        btn.dataset.current = String(btn.dataset.readTopic === topicKey);
+      });
+    }
+
+    // 4. Interactive 3-Step Working Example inside Continuity Box ([SIMULATED DEMO])
+    const SIM_STEPS = {
+      '1': {
+        plain: 'Step 1: Gemini reads your open vendor portal table and explains its next click in plain English before acting.',
+        code: 'model: "gemini-3.8-flash" ($0.75/1M) · intent: "Locate Q4 invoice rows"',
+      },
+      '2': {
+        plain: 'Step 2: Screenshot safety scan spots a hidden prompt-injection trap inside a sidebar banner and blocks it automatically.',
+        code: 'safety_scan: "BLOCKED adversarial text in region [740, 120]" · human_control: true',
+      },
+      '3': {
+        plain: 'Step 3: Clean line items copy straight into your Google Sheet tracker—saving 25 minutes of manual re-typing.',
+        code: 'status: "READY_FOR_REVIEW" · rows_prepared: 14 · zero_unapproved_writes: true',
+      },
+    };
+
+    document.querySelectorAll('[data-sim-step]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const step = btn.dataset.simStep;
+        document.querySelectorAll('[data-sim-step]').forEach((b) => {
+          b.setAttribute('aria-pressed', String(b === btn));
+        });
+        const info = SIM_STEPS[step];
+        if (info) {
+          document.getElementById('sim-plain').textContent = info.plain;
+          document.getElementById('sim-code').textContent = info.code;
+        }
+      });
+    });
+
+    // 5. Mode Switching + Pinned (0,0) Continuity Box Expansion/Contraction Choreography
+    const htmlEl = document.documentElement;
+    const stageSplit = document.getElementById('stage-split');
+    const stageSingle = document.getElementById('stage-single');
+    const primaryRead = document.getElementById('primary-read');
+    const primaryBuild = document.getElementById('primary-build');
+    const continuityBox = document.getElementById('continuity-box');
+    const cbKicker = document.getElementById('cb-kicker');
+    const cbCompact = document.getElementById('cb-panel-compact');
+    const cbExpanded = document.getElementById('cb-panel-expanded');
+    const belowRead = document.getElementById('below-read');
+    const belowBuild = document.getElementById('below-build');
+    const rememberChk = document.getElementById('chk-remember-twin');
+
+    const TITLES = {
+      split: 'GeminiPulse — Choose Your Lens (/read Magazine ⇄ /build Workbench)',
+      read: 'GeminiPulse /read — α Castor (Gemini Releases, AI Markets & Landscape)',
+      build: 'GeminiPulse /build — β Pollux (Practical Workflows, How-Tos & Live Labs)',
+    };
+
+    function syncControls(mode) {
+      htmlEl.dataset.mode = mode;
+      document.title = TITLES[mode] || TITLES.split;
+
+      document.querySelectorAll('.wing-pill-read').forEach((b) => {
+        b.setAttribute('aria-pressed', String(mode === 'read'));
+      });
+      document.querySelectorAll('.wing-pill-build').forEach((b) => {
+        b.setAttribute('aria-pressed', String(mode === 'build'));
+      });
+      const splitChip = document.getElementById('btn-split-overview');
+      if (splitChip) splitChip.setAttribute('aria-pressed', String(mode === 'split'));
+
+      const url = new URL(window.location.href);
+      url.searchParams.set('view', mode);
+      window.history.replaceState({}, '', url);
+
+      if (rememberChk?.checked && (mode === 'read' || mode === 'build')) {
+        try {
+          localStorage.setItem('gp_preferred_twin', mode);
+        } catch {
+          // ignore storage quota errors
+        }
+      }
+    }
+
+    function applyDOMForMode(mode, directionHint = '') {
+      syncControls(mode);
+
+      if (mode === 'split') {
+        stageSplit.hidden = false;
+        stageSingle.hidden = true;
+        return;
+      }
+
+      stageSplit.hidden = true;
+      stageSingle.hidden = false;
+
+      const isBuild = mode === 'build';
+      primaryRead.hidden = isBuild;
+      primaryBuild.hidden = !isBuild;
+
+      cbKicker.textContent = isBuild
+        ? '⚡ Active Working Example · Paired With /read'
+        : '⇄ Paired /build Working Example';
+
+      cbCompact.hidden = isBuild;
+      cbExpanded.hidden = !isBuild;
+      if (directionHint) {
+        const activePanel = isBuild ? cbExpanded : cbCompact;
+        activePanel.dataset.entering = directionHint;
+      }
+
+      belowRead.hidden = isBuild;
+      belowBuild.hidden = !isBuild;
+    }
+
+    function routeFocusForMode(mode) {
+      const targetId =
+        mode === 'split'
+          ? 'split-read-h2'
+          : mode === 'build'
+            ? 'heading-build'
+            : 'heading-read';
+      document.getElementById(targetId)?.focus({ preventScroll: true });
+    }
+
+    function switchMode(nextMode, options = {}) {
+      const prevMode = htmlEl.dataset.mode || 'split';
+      if (nextMode === prevMode && !options.force) return;
+
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // CASE A: Switching directly between /read <-> /build
+      // Keep #continuity-box pinned at exact top-left (0,0) of Column 2,
+      // and smoothly morph its block-size downward (read -> build) or upward (build -> read)
+      // so the content underneath glides down or up in real-time!
+      if ((prevMode === 'read' && nextMode === 'build') || (prevMode === 'build' && nextMode === 'read')) {
+        if (prefersReduced) {
+          applyDOMForMode(nextMode);
+          routeFocusForMode(nextMode);
+          return;
+        }
+
+        const startHeight = continuityBox.getBoundingClientRect().height;
+        const direction = nextMode === 'build' ? 'down' : 'up';
+
+        continuityBox.style.blockSize = `${startHeight}px`;
+        applyDOMForMode(nextMode, direction);
+
+        // Measure natural target intrinsic height while temporarily unlocked
+        continuityBox.style.blockSize = 'auto';
+        const endHeight = continuityBox.getBoundingClientRect().height;
+
+        // Lock back to startHeight, force style flush, then transition smoothly to endHeight
+        continuityBox.style.blockSize = `${startHeight}px`;
+        continuityBox.getBoundingClientRect();
+        continuityBox.style.blockSize = `${endHeight}px`;
+
+        const cleanup = () => {
+          continuityBox.style.blockSize = '';
+          routeFocusForMode(nextMode);
+        };
+        continuityBox.addEventListener('transitionend', cleanup, { once: true });
+        setTimeout(() => {
+          if (continuityBox.style.blockSize) cleanup();
+        }, 500);
+        return;
+      }
+
+      // CASE B: Entering from 50/50 Split Threshold <-> Single Twin (View Transition Metamorphosis)
+      if (!document.startViewTransition || prefersReduced) {
+        applyDOMForMode(nextMode);
+        routeFocusForMode(nextMode);
+        return;
+      }
+
+      const transition = document.startViewTransition(() => {
+        applyDOMForMode(nextMode);
+      });
+      transition.finished.finally(() => {
+        routeFocusForMode(nextMode);
+      });
+    }
+
+    // Wire all [data-switch-mode] triggers (including direct sub-nav links on both wings!)
+    document.querySelectorAll('[data-switch-mode]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const targetMode = btn.dataset.switchMode;
+        if (btn.dataset.readTopic) setReadTopic(btn.dataset.readTopic);
+        if (btn.dataset.buildRole) setActiveRole(btn.dataset.buildRole);
+        switchMode(targetMode, { force: Boolean(btn.dataset.readTopic || btn.dataset.buildRole) });
+      });
+    });
+
+    rememberChk?.addEventListener('change', () => {
+      try {
+        if (!rememberChk.checked) {
+          localStorage.removeItem('gp_preferred_twin');
+        } else if (htmlEl.dataset.mode === 'read' || htmlEl.dataset.mode === 'build') {
+          localStorage.setItem('gp_preferred_twin', htmlEl.dataset.mode);
+        }
+      } catch {
+        // ignore
+      }
+    });
+
+    // Initial state from ?view=split|read|build or saved localStorage preference
+    const params = new URLSearchParams(window.location.search);
+    const urlView = params.get('view');
+    let savedPref = null;
+    try {
+      savedPref = localStorage.getItem('gp_preferred_twin');
+    } catch {
+      // ignore
+    }
+    if (savedPref && rememberChk) rememberChk.checked = true;
+
+    const initialMode =
+      urlView === 'read' || urlView === 'build' || urlView === 'split'
+        ? urlView
+        : savedPref === 'read' || savedPref === 'build'
+          ? savedPref
+          : 'split';
+
+    applyDOMForMode(initialMode);
+  </script>
+</body>
+</html>

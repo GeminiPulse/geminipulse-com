@@ -1,11 +1,11 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-10-31 14:30 EDT (Completed All 7 Surgical Upgrades on Look D v2 [ui-craft-critic Composite 6.4 -> 9.4/10; Mobile 5.2/4.7 -> 9.4/9.3] + Preserved Pre-Critic Snapshot look-d-v1-pre-critic.html — Production public/src/App.jsx Untouched Awaiting Neil's Call)`
+- **Last Updated:** `2026-11-01 18:52 EST (Built Round 4 Look E Above-the-Fold 50/50 Twin Threshold & Pinned (0,0) Continuity Bridge Study [look-e-twin-threshold.html] — Look D v2 & Production public/src/App.jsx 100% Untouched)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
 - **Firebase Default Hosting URL:** `https://geminipulse-com.web.app`
-- **Local Dev Preview URL:** `http://localhost:8080` *(Brand Evolution Portfolio Hub: `http://localhost:8080/prototypes/` · Look D v2 Polished: `http://localhost:8080/prototypes/look-d-fraternal-twins.html` · Look D v1 Pre-Critic Snapshot: `http://localhost:8080/prototypes/look-d-v1-pre-critic.html`)*
+- **Local Dev Preview URL:** `http://localhost:8080` *(Brand Evolution Portfolio Hub: `http://localhost:8080/prototypes/` · Look E Above-the-Fold Threshold: `http://localhost:8080/prototypes/look-e-twin-threshold.html` · Look D v2 Preserved: `http://localhost:8080/prototypes/look-d-fraternal-twins.html`)*
 - **Firebase Project ID:** `geminipulse-com` (Project Number `643794480842`, Spark Free Plan — **\$0.00/mo**)
 - **Firebase Web App ID:** `1:643794480842:web:9f973bc1a0d7670c920e33` (`GeminiPulse Web`)
 - **Concept Originator & Creative Catalyst:** Neil S. White (`https://www.linkedin.com/in/neilswhite`, **Agile LLC**)
@@ -13,7 +13,14 @@
 
 ---
 
-## 1. Completed & Live on `v2.0` (2026-10-31 02:30 PM ET Update)
+## 1. Completed & Live on `v2.0` (2026-11-01 06:52 PM ET Update)
+
+- **Built Round 4 `Look E` — Above-the-Fold 50/50 Twin Threshold & Pinned `(0,0)` Dichroic Continuity Bridge (`public/public/prototypes/look-e-twin-threshold.html` — Look D `v2` & Production `public/src/App.jsx` 100% Untouched):**
+  - **Strictly First-Screen Above-the-Fold Landing Study (`900px === 900px` on `1440×900` Desktop Across All 3 Views; `0` Horizontal Overflows at `1440px` & `390px`):**
+    1. **Center-Logo Split-Hierarchy Masthead (`63.00px` Desktop / `95.05px` Mobile, `0.00px` Mode-Flip Jitter):** Centers `GeminiPulse` (+ `50/50 Split` trigger) between the **`/read` (`α Castor`)** left wing (`Releases` · `AI Markets` · `Voices`) and the **`/build` (`β Pollux`)** right wing (`Small Biz` · `At Work` · `Code Labs`) so visitors can jump directly into any vertical from anywhere in 1 click.
+    2. **Default First-Visit `50/50 Split Threshold` (`?view=split`):** Answers *"Where am I and why stay?"* in under 3 seconds—contrasting `/read` (*Gemini releases, AI finance & market shifts, and ecosystem voices*) against `/build` (*5-minute human-enhancing workflows for employees & small business owners, working release examples, and live labs*), paired with a `<dialog closedby="any">` side-by-side comparison modal and `Remember my default side` toggle.
+    3. **Unmistakable Visual & Typographic Divergence:** `/read` uses fashion-forward contemporary geometric display typography (`Outfit` + `Plus Jakarta Sans` on `#F6F5F1` alabaster gallery stone with dichroic glass art `look-e-read-editorial.webp`—eliminating Victorian serif formality and developer `01 · SDK & API` tags), while `/build` shifts into a `#0D121B` carbon-slate blueprint workbench (`Space Grotesk` + `JetBrains Mono` with modular hardware art `look-e-build-workbench.webp` and role-based `Small Business` / `Employee` / `Developer` 3-step tabs).
+    4. **Pinned `(0,0)` Dichroic Smoked-Titanium Continuity Bridge (`Δx = 0.00px`, `Δy = 0.00px`):** Locked at `x = 840.66px, y = 95.00px` in Column 2 across both `/read` and `/build`; smoothly expands its bottom edge downward (`215.28px` → `364.53px`, `+149.25px`) when opening the live 3-step `[SIMULATED DEMO]` working example in `/build` (pushing the lower stack cleanly down `326.28px` → `475.53px`) and contracts upward when returning to `/read`.
 
 - **Executed All 7 Surgical UX, Mobile & WCAG 2.1 AA Upgrades on Look D `v2` (`ui-craft-critic` Composite `6.4` → `9.4 / 10`) + Preserved Pre-Critic `v1` Snapshot (`public/public/prototypes/` — Production `public/src/App.jsx` 100% Untouched):**
   - **Before/After Critic Snapshot Archived (`look-d-v1-pre-critic.html` vs. `look-d-fraternal-twins.html`):** Preserved the pre-critic `v1` synthesis (`look-d-v1-pre-critic.html`) alongside `v2` polished (`look-d-fraternal-twins.html`) inside [`prototypes/index.html`](../public/public/prototypes/index.html) and the in-flow `.studio-dock` switcher (`Case Study Hub | Era 0 | 1A | 1B | 1C | 2D · v1 | 2D · v2 Polished`).
