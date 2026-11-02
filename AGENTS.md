@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-11-01 23:18 EST — Built Look F Clean Self-Explanatory Above-the-Fold Arrival (public/public/prototypes/look-f-clean-split.html) using Google modern-web-guidance only (detaching custom creative-ux-studio plugin rules); Look D v2, Look E & production public/src/App.jsx untouched`
+> **Last touched:** `2026-11-02 17:45 EST — Curated Official Google Gemini 2.5 Pro & Flash Deprecation & Dec 1 Auto-Routing Release; Published 3-Part Deep-Dive Series (/series/gemini-2-5-migration/), Interactive Migration Readiness Scanner (/labs/gemini-migration-readiness-scanner.html), Elevated TEKTHRILL Computer Use GA to Featured Video of the Day, Updated sitemap.xml & feed.xml`
 
 ---
 

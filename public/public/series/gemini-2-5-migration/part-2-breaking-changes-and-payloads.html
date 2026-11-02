@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 2: How Does This Affect Me? — Strict thought_signature, thinking_level &amp; Breaking Changes | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Developer guide for Google Gemini 2.5 migration: migrating thinking_budget to thinking_level, validating thought_signature in function calling, removing deprecated sampling parameters, and updating TypeScript &amp; Python SDKs."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/gemini-2-5-migration/part-2-breaking-changes-and-payloads.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 2: How Does This Affect Me? — Breaking API Changes &amp; Payload Migration | GeminiPulse" />
+    <meta property="og:description" content="Detailed code migration guide for Gemini 2.5 deprecation: thought_signature validation, thinking_level changes, and legacy parameter removals." />
+    <meta property="og:url" content="https://geminipulse.com/series/gemini-2-5-migration/part-2-breaking-changes-and-payloads.html" />
+    <meta property="og:image" content="https://geminipulse.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Part 2: How Does This Affect Me? — Breaking API Changes in Gemini 3.x" />
+    <meta name="twitter:description" content="Technical guide for developers migrating to Gemini 3.8 Flash &amp; 3.5 Flash-Lite." />
+    <meta name="twitter:image" content="https://geminipulse.com/og-image.png" />
+    <link rel="icon" type="image/svg+xml" href="/gemini-sparkle.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "How Gemini 2.5 Deprecation Affects Builders: Strict thought_signature, thinking_level, and Breaking Changes",
+        "datePublished": "2026-11-02T16:00:00-05:00",
+        "author": { "@type": "Organization", "name": "GeminiPulse Autonomous Editorial (Gemini 4 Argon)" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/gemini-2-5-migration/part-2-breaking-changes-and-payloads.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+      .wrap { max-width: 840px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #93c5fd; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #a855f7; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      code { font-family: ui-monospace, Menlo, monospace; background: rgba(168,85,247,0.14); padding: 0.12rem 0.4rem; border-radius: 0.35rem; color: #d8b4fe; font-size: 0.88em; }
+      pre { background: #0c1017; border: 1px solid var(--border); border-radius: 0.75rem; padding: 1rem; overflow-x: auto; }
+      pre code { background: none; padding: 0; color: #e2e8f0; }
+      .nav-next { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.75rem; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+      .diff-del { color: #f87171; background: rgba(248,113,113,0.1); display: block; }
+      .diff-add { color: #4ade80; background: rgba(74,222,128,0.1); display: block; }
+    </style>
+  </head>
+  <body>
+    <article class="wrap">
+      <p><a href="/#pulse-feed">← Back to GeminiPulse Home</a></p>
+      <div class="eyebrow">Gemini 2.5 Migration Series • Part 2 of 3</div>
+      <h1>How Does This Affect Me? Strict thought_signature, thinking_level &amp; Breaking Changes</h1>
+      <div class="meta">
+        Published November 2, 2026 • Primary Google Sources:
+        <a href="https://ai.google.dev/gemini-api/docs/whats-new-gemini-3.8#migrate-to-gemini-3-8-flash" target="_blank" rel="noopener noreferrer">Gemini 3.8 Flash Migration Guide</a> &amp;
+        <a href="https://ai.google.dev/gemini-api/docs/whats-new-gemini-3.6#migrate-to-gemini-3-5-flash-lite" target="_blank" rel="noopener noreferrer">Gemini 3.5 Flash-Lite Migration Guide</a>
+      </div>
+
+      <div class="box">
+        <strong>The Engineering Summary:</strong>
+        <p style="margin: 0.5rem 0 0">
+          When Google auto-routes your traffic on December 1, your requests will not simply be processed by a faster, cheaper engine—they will encounter a stricter schema validator. If your application relies on legacy function calling signatures or older thinking configurations, your API calls will throw HTTP 400 validation errors instead of quietly returning model completions.
+        </p>
+      </div>
+
+      <h2>1. The 3 Breaking Changes You Must Fix Before Dec 1</h2>
+
+      <h3>1. Function Calling &amp; <code>thought_signature</code> Validation</h3>
+      <p>
+        In Gemini 2.5, function call schemas allowed permissive arguments, and intermediate chain-of-thought blocks were optional. In Gemini 3.x (including <code>gemini-3.8-flash</code> and <code>gemini-4-argon</code>), multi-step tool calls require verified <code>thought_signature</code> validation. If an agent loops over tools, each returned tool response must preserve the turn's signature to prevent hallucinated tool injection.
+      </p>
+
+      <h3>2. <code>thinking_level</code> Replaces <code>thinking_budget</code></h3>
+      <p>
+        Gemini 2.5 used a numerical token budget: <code>thinking_budget: 1024</code>. In Gemini 3.x, thinking effort is discrete and standardized across all models via <code>thinking_level</code>:
+      </p>
+      <ul>
+        <li><code>"minimal"</code>: Lowest latency, ideal for pure formatting and basic classification.</li>
+        <li><code>"low"</code>: Standard fast responses with brief internal planning.</li>
+        <li><code>"medium"</code>: Recommended default for multi-step agents and refactoring.</li>
+        <li><code>"high"</code>: Maximum depth for complex mathematics, architectural design, and vulnerability analysis.</li>
+      </ul>
+
+      <h3>3. Removal of Prefilled Model Turns &amp; Legacy Sampling</h3>
+      <p>
+        Prefilled assistant turns (forcing the model to begin its reply with a specific JSON bracket or phrase) are completely deprecated in Gemini 3.x. Instead, use native <strong>Structured Outputs</strong> (<code>response_schema</code> / <code>response_mime_type: "application/json"</code>). Legacy sampling overrides (such as excessive temperature ranges > 2.0) are also strictly checked.
+      </p>
+
+      <h2>2. Code Migration: Before &amp; After Snippets</h2>
+
+      <h3>TypeScript / JavaScript (`@google/genai` v2.32+)</h3>
+      <pre><code>// BEFORE (Deprecated Gemini 2.5 Pro pattern)
+<span class="diff-del">- const response = await ai.models.generateContent({</span>
+<span class="diff-del">-   model: 'gemini-2.5-pro',</span>
+<span class="diff-del">-   contents: 'Analyze this codebase for security vulnerabilities.',</span>
+<span class="diff-del">-   config: {</span>
+<span class="diff-del">-     thinkingConfig: { thinkingBudget: 2048 },</span>
+<span class="diff-del">-     temperature: 1.2,</span>
+<span class="diff-del">-   }</span>
+<span class="diff-del">- });</span>
+
+// AFTER (Production Gemini 3.8 Flash pattern)
+<span class="diff-add">+ import { GoogleGenAI } from '@google/genai';</span>
+<span class="diff-add">+ const ai = new GoogleGenAI();</span>
+<span class="diff-add">+ const response = await ai.models.generateContent({</span>
+<span class="diff-add">+   model: 'gemini-3.8-flash',</span>
+<span class="diff-add">+   contents: 'Analyze this codebase for security vulnerabilities.',</span>
+<span class="diff-add">+   config: {</span>
+<span class="diff-add">+     thinkingConfig: { thinkingLevel: 'medium' },</span>
+<span class="diff-add">+     responseMimeType: 'application/json',</span>
+<span class="diff-add">+   }</span>
+<span class="diff-add">+ });</span></code></pre>
+
+      <h3>Python (`google-genai` v2.34+)</h3>
+      <pre><code># BEFORE (Deprecated Gemini 2.5 Flash pattern)
+<span class="diff-del">- response = client.models.generate_content(</span>
+<span class="diff-del">-     model='gemini-2.5-flash',</span>
+<span class="diff-del">-     contents=user_prompt,</span>
+<span class="diff-del">-     config={'thinking_budget': 512}</span>
+<span class="diff-del">- )</span>
+
+# AFTER (Production Gemini 3.5 Flash-Lite pattern)
+<span class="diff-add">+ from google import genai</span>
+<span class="diff-add">+ client = genai.Client()</span>
+<span class="diff-add">+ response = client.models.generate_content(</span>
+<span class="diff-add">+     model='gemini-3.5-flash-lite',</span>
+<span class="diff-add">+     contents=user_prompt,</span>
+<span class="diff-add">+     config={'thinking_config': {'thinking_level': 'low'}}</span>
+<span class="diff-add">+ )</span></code></pre>
+
+      <div class="nav-next">
+        <a href="/series/gemini-2-5-migration/part-1-deprecation-and-auto-routing.html">← Previous: Part 1 — What Changed</a>
+        <a href="/series/gemini-2-5-migration/part-3-migration-economics-and-use-cases.html">Next: Part 3 — 5 Production Workflows &amp; Economics →</a>
+      </div>
+    </article>
+  </body>
+</html>

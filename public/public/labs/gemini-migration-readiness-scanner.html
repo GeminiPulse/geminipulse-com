@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gemini 2.5 → 3.x Migration &amp; Payload Readiness Scanner [SIMULATED DEMO] | Agile Labs</title>
+    <meta
+      name="description"
+      content="Interactive developer utility to audit Gemini API payloads for deprecated 2.5 models, thinking_budget parameters, and unverified tool signatures. Estimate cost savings and generate modern 3.x SDK code."
+    />
+    <link rel="canonical" href="https://geminipulse.com/labs/gemini-migration-readiness-scanner.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Gemini 2.5 → 3.x Migration &amp; Payload Readiness Scanner [SIMULATED DEMO]" />
+    <meta property="og:description" content="Audit Gemini API payloads for deprecated 2.5 models, thinking_budget parameters, and unverified tool signatures. Calculate monthly savings and export modern SDK code." />
+    <meta property="og:url" content="https://geminipulse.com/labs/gemini-migration-readiness-scanner.html" />
+    <meta property="og:image" content="https://geminipulse.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Gemini 2.5 → 3.x Migration Readiness Scanner [SIMULATED DEMO]" />
+    <meta name="twitter:description" content="Interactive developer utility for the Gemini 2.5 deprecation &amp; December 1 auto-routing cutover." />
+    <meta name="twitter:image" content="https://geminipulse.com/og-image.png" />
+    <link rel="icon" type="image/svg+xml" href="/gemini-sparkle.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Gemini 2.5 to 3.x Migration Readiness Scanner",
+        "url": "https://geminipulse.com/labs/gemini-migration-readiness-scanner.html",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "All",
+        "creator": {
+          "@type": "Organization",
+          "name": "Agile Labs (via GeminiPulse.com)"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #07090e;
+        --surface: #111622;
+        --surface-high: #192030;
+        --border: rgba(255, 255, 255, 0.1);
+        --border-strong: rgba(245, 158, 11, 0.35);
+        --text: #f3f5fb;
+        --muted: #9da4b8;
+        --amber: #f59e0b;
+        --emerald: #10b981;
+        --red: #ef4444;
+        --blue: #3b82f6;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: radial-gradient(circle at 20% 0%, rgba(245, 158, 11, 0.12), transparent 40%),
+                    radial-gradient(circle at 80% 10%, rgba(59, 130, 246, 0.12), transparent 40%),
+                    var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+      .wrap { max-width: 1100px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #93c5fd; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .badge-sim {
+        display: inline-block;
+        font-family: ui-monospace, Menlo, monospace;
+        font-size: 0.72rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 0.25rem 0.65rem;
+        border-radius: 9999px;
+        background: rgba(245, 158, 11, 0.15);
+        color: #fbbf24;
+        border: 1px solid rgba(245, 158, 11, 0.3);
+        margin-bottom: 0.75rem;
+      }
+      h1 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); line-height: 1.2; margin: 0.5rem 0 0.5rem; }
+      .lead { color: #cbd5e1; font-size: 1.05rem; max-width: 800px; margin-bottom: 2rem; }
+      .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+      @media (max-width: 840px) { .grid-2 { grid-template-columns: 1fr; } }
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+        padding: 1.5rem;
+      }
+      .card h2 { font-size: 1.25rem; margin: 0 0 1rem; color: #f1f5f9; display: flex; align-items: center; justify-content: space-between; }
+      .preset-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+      .btn-preset {
+        background: var(--surface-high);
+        border: 1px solid var(--border);
+        color: #cbd5e1;
+        padding: 0.4rem 0.75rem;
+        border-radius: 0.5rem;
+        font-size: 0.82rem;
+        cursor: pointer;
+        transition: all 0.15s ease;
+      }
+      .btn-preset:hover, .btn-preset.active {
+        background: rgba(245, 158, 11, 0.2);
+        border-color: rgba(245, 158, 11, 0.5);
+        color: #fde68a;
+      }
+      textarea {
+        width: 100%;
+        height: 260px;
+        background: #090d14;
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        padding: 1rem;
+        color: #e2e8f0;
+        font-family: ui-monospace, Menlo, monospace;
+        font-size: 0.85rem;
+        line-height: 1.5;
+        resize: vertical;
+        box-sizing: border-box;
+      }
+      textarea:focus { outline: none; border-color: #f59e0b; }
+      .btn-scan {
+        width: 100%;
+        background: linear-gradient(135deg, #f59e0b, #d97706);
+        color: #0b0f17;
+        font-weight: 700;
+        font-size: 0.95rem;
+        padding: 0.85rem;
+        border-radius: 0.75rem;
+        border: none;
+        cursor: pointer;
+        margin-top: 1rem;
+        transition: opacity 0.15s ease;
+      }
+      .btn-scan:hover { opacity: 0.92; }
+      .audit-item {
+        padding: 0.85rem;
+        border-radius: 0.65rem;
+        margin-bottom: 0.75rem;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.02);
+        font-size: 0.9rem;
+      }
+      .audit-item.danger { border-color: rgba(239, 68, 68, 0.4); background: rgba(239, 68, 68, 0.08); }
+      .audit-item.warning { border-color: rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.08); }
+      .audit-item.success { border-color: rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.08); }
+      .audit-title { font-weight: 600; margin-bottom: 0.25rem; }
+      .slider-group { margin: 1.25rem 0; }
+      .slider-label { display: flex; justify-content: space-between; font-size: 0.88rem; margin-bottom: 0.35rem; color: var(--muted); }
+      .slider-label strong { color: #f1f5f9; }
+      input[type=range] { width: 100%; accent-color: #f59e0b; }
+      .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+      .stat-card {
+        background: #090d14;
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        padding: 1rem;
+        text-align: center;
+      }
+      .stat-val { font-size: 1.5rem; font-weight: 700; font-family: ui-monospace, Menlo, monospace; margin: 0.25rem 0; }
+      .stat-sub { font-size: 0.75rem; color: var(--muted); }
+      pre { background: #090d14; border: 1px solid var(--border); border-radius: 0.75rem; padding: 1rem; overflow-x: auto; }
+      pre code { font-family: ui-monospace, Menlo, monospace; font-size: 0.82rem; color: #e2e8f0; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <p><a href="/#agile-labs">← Back to Agile Labs &amp; Workbench</a></p>
+      <div class="badge-sim">[SIMULATED DEMO] • Agile Labs Interactive Utility</div>
+      <h1>Gemini 2.5 → 3.x Migration &amp; Payload Readiness Scanner</h1>
+      <p class="lead">
+        Prepare your systems for the December 1, 2026 automatic routing cutover. Audit your request payloads for deprecated models (<code>gemini-2.5-pro</code>, <code>gemini-2.5-flash</code>), verify <code>thought_signature</code> tool validation, convert legacy <code>thinking_budget</code> to <code>thinking_level</code>, and calculate your net monthly token savings.
+      </p>
+
+      <div class="grid-2">
+        <!-- Column 1: Input & Presets -->
+        <div class="card">
+          <h2>
+            <span>1. Inspect Payload</span>
+            <span style="font-size: 0.75rem; color: var(--muted); font-weight: 400;">JSON / Config Object</span>
+          </h2>
+
+          <div class="preset-bar">
+            <button class="btn-preset active" id="btn-pre-1" onclick="loadPreset('pro')">Legacy 2.5 Pro (At Risk)</button>
+            <button class="btn-preset" id="btn-pre-2" onclick="loadPreset('flash')">Legacy 2.5 Flash (Prefill/Budget)</button>
+            <button class="btn-preset" id="btn-pre-3" onclick="loadPreset('clean')">Modern 3.8 Flash (Validated)</button>
+          </div>
+
+          <textarea id="payload-input" spellcheck="false"></textarea>
+          <button class="btn-scan" onclick="runAudit()">Run Migration Audit ⚡</button>
+        </div>
+
+        <!-- Column 2: Audit Results -->
+        <div class="card">
+          <h2>
+            <span>2. Readiness Verdict</span>
+            <span id="verdict-pill" style="font-size: 0.75rem; padding: 0.2rem 0.5rem; border-radius: 9999px; background: rgba(239,68,68,0.2); color: #f87171;">FAIL (ACTION REQUIRED)</span>
+          </h2>
+
+          <div id="audit-results-list">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- ROI & Token Savings Calculator -->
+      <div class="card" style="margin-top: 1.5rem;">
+        <h2>
+          <span>3. Real-Time Monthly Savings Calculator</span>
+          <span style="font-size: 0.8rem; color: #10b981; font-weight: 600;">Up to 78% Cost Reduction</span>
+        </h2>
+        <div class="grid-2">
+          <div>
+            <div class="slider-group">
+              <div class="slider-label">
+                <span>Monthly Input Volume</span>
+                <strong id="val-input">50M tokens</strong>
+              </div>
+              <input type="range" id="range-input" min="1" max="500" value="50" oninput="updateCalculator()" />
+            </div>
+
+            <div class="slider-group">
+              <div class="slider-label">
+                <span>Monthly Output Volume</span>
+                <strong id="val-output">10M tokens</strong>
+              </div>
+              <input type="range" id="range-output" min="1" max="100" value="10" oninput="updateCalculator()" />
+            </div>
+
+            <div class="slider-group">
+              <div class="slider-label">
+                <span>Workload Migration Track</span>
+              </div>
+              <select id="select-track" onchange="updateCalculator()" style="width: 100%; background: #090d14; border: 1px solid var(--border); color: #f1f5f9; padding: 0.6rem; border-radius: 0.5rem; font-size: 0.9rem;">
+                <option value="pro_to_38">gemini-2.5-pro → gemini-3.8-flash ($3.50/$10.50 → $0.75/$3.75)</option>
+                <option value="flash_to_35">gemini-2.5-flash → gemini-3.5-flash-lite ($0.35/$1.05 → $0.10/$0.40)</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <div class="stat-grid">
+              <div class="stat-card">
+                <div class="stat-sub">Legacy Monthly Spend</div>
+                <div class="stat-val" id="stat-legacy" style="color: #f87171;">$280.00</div>
+                <div class="stat-sub">Pre-deprecation rate</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-sub">Modern 3.x Spend</div>
+                <div class="stat-val" id="stat-modern" style="color: #38bdf8;">$75.00</div>
+                <div class="stat-sub">Gemini 3 generation rates</div>
+              </div>
+            </div>
+
+            <div class="stat-card" style="margin-top: 1rem; border-color: rgba(16,185,129,0.4); background: rgba(16,185,129,0.06);">
+              <div class="stat-sub" style="color: #6ee7b7;">Net Monthly Cost Savings</div>
+              <div class="stat-val" id="stat-savings" style="color: #34d399;">$205.00 / month (-73.2%)</div>
+              <div class="stat-sub">Calculated via official Google GenAI pricing</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Clean Code Generator -->
+      <div class="card" style="margin-top: 1.5rem;">
+        <h2>4. One-Click Validated Code Generator</h2>
+        <p style="font-size: 0.9rem; color: var(--muted); margin-top: 0;">
+          Use the modern Google GenAI SDK (v2.32+ TypeScript / v2.34+ Python) with compliant parameters:
+        </p>
+        <pre><code id="code-output">// Generating clean code snippet...</code></pre>
+      </div>
+
+      <p style="text-align: center; margin-top: 2.5rem; font-size: 0.85rem; color: var(--muted);">
+        GeminiPulse Agile Labs • Directly grounded on Google Developer Documentation (ai.google.dev) • [SIMULATED DEMO]
+      </p>
+    </div>
+
+    <script>
+      const PRESETS = {
+        pro: {
+          model: "gemini-2.5-pro",
+          contents: "Review this pull request for logic regressions and SQL injections.",
+          config: {
+            thinkingConfig: {
+              thinkingBudget: 2048
+            },
+            temperature: 1.2,
+            tools: [{ functionDeclarations: [{ name: "queryDatabase" }] }]
+          }
+        },
+        flash: {
+          model: "gemini-2.5-flash",
+          contents: [
+            { role: "user", parts: [{ text: "Classify incoming customer inquiry." }] },
+            { role: "model", parts: [{ text: "{\"category\":" }] }
+          ],
+          config: {
+            thinkingBudget: 512,
+            topP: 0.95
+          }
+        },
+        clean: {
+          model: "gemini-3.8-flash",
+          contents: "Review this pull request for logic regressions and SQL injections.",
+          config: {
+            thinkingConfig: {
+              thinkingLevel: "medium"
+            },
+            responseMimeType: "application/json",
+            tools: [{ functionDeclarations: [{ name: "queryDatabase" }] }],
+            toolConfig: { thoughtSignatureEnforced: true }
+          }
+        }
+      };
+
+      function loadPreset(key) {
+        document.querySelectorAll('.btn-preset').forEach(b => b.classList.remove('active'));
+        if (key === 'pro') document.getElementById('btn-pre-1').classList.add('active');
+        if (key === 'flash') document.getElementById('btn-pre-2').classList.add('active');
+        if (key === 'clean') document.getElementById('btn-pre-3').classList.add('active');
+
+        document.getElementById('payload-input').value = JSON.stringify(PRESETS[key], null, 2);
+        runAudit();
+      }
+
+      function runAudit() {
+        const raw = document.getElementById('payload-input').value;
+        let payload = {};
+        try {
+          payload = JSON.parse(raw);
+        } catch (e) {
+          showResults([
+            { type: 'danger', title: 'Invalid JSON Syntax', desc: 'Could not parse JSON. Check commas, quotation marks, and braces.' }
+          ], false);
+          return;
+        }
+
+        const issues = [];
+        let isPass = true;
+
+        // 1. Model check
+        const m = payload.model || '';
+        if (m === 'gemini-2.5-pro') {
+          isPass = false;
+          issues.push({
+            type: 'danger',
+            title: '🚨 Deprecated Model: gemini-2.5-pro',
+            desc: 'Model removed from AI Studio. Effective Dec 1, 2026, auto-routes to gemini-3.8-flash. Update model string immediately.'
+          });
+        } else if (m === 'gemini-2.5-flash') {
+          isPass = false;
+          issues.push({
+            type: 'danger',
+            title: '🚨 Deprecated Model: gemini-2.5-flash',
+            desc: 'Model removed from AI Studio. Effective Dec 1, 2026, auto-routes to gemini-3.5-flash-lite. Update model string immediately.'
+          });
+        } else if (m.startsWith('gemini-3.') || m.startsWith('gemini-4-')) {
+          issues.push({
+            type: 'success',
+            title: '✅ Modern Model String: ' + m,
+            desc: 'Using current production Gemini 3/4 generation model.'
+          });
+        } else {
+          issues.push({
+            type: 'warning',
+            title: '⚠️ Unrecognized Model String: ' + m,
+            desc: 'Verify model name against official Google AI for Developers models documentation.'
+          });
+        }
+
+        // 2. Thinking parameters
+        const tc = (payload.config && payload.config.thinkingConfig) || payload.thinkingConfig || {};
+        const tb = tc.thinkingBudget || (payload.config && payload.config.thinking_budget) || payload.thinking_budget;
+        const tl = tc.thinkingLevel || tc.thinking_level;
+
+        if (tb !== undefined) {
+          isPass = false;
+          issues.push({
+            type: 'danger',
+            title: '🚨 Deprecated Parameter: thinking_budget',
+            desc: 'Gemini 3.x deprecates numerical token budgets. Replace with thinkingConfig.thinkingLevel: "minimal" | "low" | "medium" | "high".'
+          });
+        } else if (tl !== undefined) {
+          issues.push({
+            type: 'success',
+            title: '✅ Valid Thinking Level: ' + tl,
+            desc: 'Standardized thinking level specified compliant with Gemini 3 generation standards.'
+          });
+        }
+
+        // 3. Prefilled model turns
+        if (Array.isArray(payload.contents)) {
+          const hasPrefill = payload.contents.some(c => c.role === 'model');
+          if (hasPrefill) {
+            isPass = false;
+            issues.push({
+              type: 'danger',
+              title: '🚨 Prefilled Assistant Turn Detected',
+              desc: 'Gemini 3.x rejects prefilled assistant turns. Use native responseMimeType: "application/json" or responseSchema instead.'
+            });
+          }
+        }
+
+        // 4. Tools validation
+        const tools = (payload.config && payload.config.tools) || payload.tools;
+        if (tools && tools.length > 0) {
+          const toolConfig = (payload.config && payload.config.toolConfig) || payload.toolConfig;
+          if (!toolConfig || !toolConfig.thoughtSignatureEnforced) {
+            issues.push({
+              type: 'warning',
+              title: '⚠️ Function Calling Thought Signature Validation',
+              desc: 'Ensure multi-turn loops handle Google’s strict thought_signature payload verification to prevent 400 Bad Request responses.'
+            });
+          } else {
+            issues.push({
+              type: 'success',
+              title: '✅ Tool Signatures Verified',
+              desc: 'Thought signatures verified for deterministic function calling.'
+            });
+          }
+        }
+
+        showResults(issues, isPass);
+        updateCodeGenerator(payload, isPass);
+      }
+
+      function showResults(issues, isPass) {
+        const list = document.getElementById('audit-results-list');
+        list.innerHTML = '';
+        const pill = document.getElementById('verdict-pill');
+
+        if (isPass) {
+          pill.style.background = 'rgba(16,185,129,0.2)';
+          pill.style.color = '#34d399';
+          pill.textContent = 'PASS (3.X PRODUCTION READY)';
+        } else {
+          pill.style.background = 'rgba(239,68,68,0.2)';
+          pill.style.color = '#f87171';
+          pill.textContent = 'FAIL (ACTION REQUIRED BEFORE DEC 1)';
+        }
+
+        issues.forEach(i => {
+          const d = document.createElement('div');
+          d.className = 'audit-item ' + i.type;
+          d.innerHTML = '<div class="audit-title">' + i.title + '</div><div>' + i.desc + '</div>';
+          list.appendChild(d);
+        });
+      }
+
+      function updateCalculator() {
+        const inputM = parseFloat(document.getElementById('range-input').value);
+        const outputM = parseFloat(document.getElementById('range-output').value);
+        document.getElementById('val-input').textContent = inputM + 'M tokens';
+        document.getElementById('val-output').textContent = outputM + 'M tokens';
+
+        const track = document.getElementById('select-track').value;
+        let legacyRateIn = 3.50, legacyRateOut = 10.50;
+        let modernRateIn = 0.75, modernRateOut = 3.75;
+
+        if (track === 'flash_to_35') {
+          legacyRateIn = 0.35; legacyRateOut = 1.05;
+          modernRateIn = 0.10; modernRateOut = 0.40;
+        }
+
+        const legacyTotal = (inputM * legacyRateIn) + (outputM * legacyRateOut);
+        const modernTotal = (inputM * modernRateIn) + (outputM * modernRateOut);
+        const savings = legacyTotal - modernTotal;
+        const pct = ((savings / legacyTotal) * 100).toFixed(1);
+
+        document.getElementById('stat-legacy').textContent = '$' + legacyTotal.toFixed(2);
+        document.getElementById('stat-modern').textContent = '$' + modernTotal.toFixed(2);
+        document.getElementById('stat-savings').textContent = '$' + savings.toFixed(2) + ' / mo (-' + pct + '%)';
+      }
+
+      function updateCodeGenerator(payload, isPass) {
+        const targetModel = (payload.model === 'gemini-2.5-flash') ? 'gemini-3.5-flash-lite' : 'gemini-3.8-flash';
+        const code = `import { GoogleGenAI } from '@google/genai';
+
+// Upgraded to official Google GenAI SDK (v2.32+)
+const ai = new GoogleGenAI();
+
+const response = await ai.models.generateContent({
+  model: '${targetModel}', // Migrated from deprecated 2.5
+  contents: 'Your prompt or message contents',
+  config: {
+    thinkingConfig: {
+      thinkingLevel: 'medium' // 'minimal' | 'low' | 'medium' | 'high'
+    },
+    responseMimeType: 'application/json' // Native structured outputs
+  }
+});
+
+console.log(response.text);`;
+
+        document.getElementById('code-output').textContent = code;
+      }
+
+      // Initialize
+      loadPreset('pro');
+      updateCalculator();
+    </script>
+  </body>
+</html>

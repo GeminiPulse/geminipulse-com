@@ -1,6 +1,6 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-11-01 23:18 EST (Built Look F Clean Self-Explanatory Arrival [look-f-clean-split.html] Using Google Modern-Web-Guidance Only — Look D v2, Look E & Production public/src/App.jsx 100% Untouched)`
+- **Last Updated:** `2026-11-02 17:45 EST (Curated Official Google Gemini 2.5 Deprecation & Dec 1 Auto-Routing Notice; Published 3-Part Deep-Dive Series, Migration Readiness Scanner & TEKTHRILL Video of the Day)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
@@ -13,7 +13,28 @@
 
 ---
 
-## 1. Completed & Live on `v2.0` (2026-11-01 11:18 PM ET Update)
+## 1. Completed & Live on `v2.0` (2026-11-02 5:45 PM ET Update)
+
+- **Curated Official Google Gemini 2.5 Pro & Flash Deprecation & December 1 Auto-Routing Notice (`v2.0.47`):**
+  - **Grounded Primary Source:** Google AI for Developers Changelog (`ai.google.dev/gemini-api/docs/changelog#11-02-2026`) & Deprecations Guide (`ai.google.dev/gemini-api/docs/deprecations#gemini-2.5-pro-models`) on November 2, 2026.
+  - **Core Release Facts:** Google has officially deprecated `gemini-2.5-pro` and `gemini-2.5-flash`, removing them from Google AI Studio. Effective December 1, 2026, all API requests pointing to legacy 2.5 models will automatically route to `gemini-3.8-flash` ($0.75 / $3.75) and `gemini-3.5-flash-lite` ($0.10 / $0.40) and be billed at those lower rates (saving up to 78%).
+  - **Breaking Migrations:** Strict tool calling & `thought_signature` validation (no silent execution drift), `thinking_level` (`minimal`, `low`, `medium`, `high`) replacing deprecated numerical `thinking_budget`, and removal of prefilled assistant turns and legacy sampling parameters.
+  - **Added to `PULSE_INTELLIGENCE_FEED`:** Added leading entry citing official Google source URL in `public/src/data/geminiEcosystemData.js`.
+
+- **Published 3-Part Deep-Dive Migration Series (`public/public/series/gemini-2-5-migration/`):**
+  - **Part 1 (`part-1-deprecation-and-auto-routing.html`):** *Gemini 2.5 Sunset & Auto-Routing — What Changed on November 2, 2026 & The Dec 1 Cutover* (Deprecation table, auto-routing fallback architecture, timeline).
+  - **Part 2 (`part-2-breaking-changes-and-payloads.html`):** *How Does This Affect Me? — Strict thought_signature, thinking_level & Breaking Payload Migrations* (Tool validation, parameter schema changes, before/after TypeScript & Python SDK snippets).
+  - **Part 3 (`part-3-migration-economics-and-use-cases.html`):** *Migration Economics & 5 Production Workflows — Slashing Token Bills 60–80%* (Financial volume analysis, 5 production workflows: support bots, CI code review, document parsing, log triage, agent swarms).
+
+- **Published Interactive Agile Labs Simulator (`public/public/labs/gemini-migration-readiness-scanner.html`):**
+  - **Interactive Readiness Scanner [SIMULATED DEMO]:** Zero-dependency interactive tool allowing developers to paste request JSON, scan for deprecated models and legacy thinking parameters, calculate real-time monthly token savings, and generate clean modern SDK code.
+
+- **Updated YouTube Video Showcase (`GEMINI_VIDEO_SHOWCASE`):**
+  - Verified HTTP `200 OK` via YouTube oEmbed for TEKTHRILL's October 31 deep-dive *"Gemini Computer Use Is Now Generally Available: How Google's Screen-Clicking AI Works"* (`cON4RnddXCY`) and elevated to Featured Video of the Day, retaining Surya's Carbon breakdown and Google for Developers' Argon briefing.
+
+- **SEO, Feed & Telemetry Parity:**
+  - Indexed all 4 new standalone routes in `sitemap.xml` (now 25 URLs) and `feed.xml`.
+  - Updated `docs/daily-telemetry-report.md` for the November 2, 2026 5:45 PM ET window.
 
 - **Built `Look F` — Clean, Self-Explanatory Above-the-Fold Arrival (`public/public/prototypes/look-f-clean-split.html` — Built with Google `modern-web-guidance` Only; Look D `v2`, Look E & Production `public/src/App.jsx` 100% Untouched):**
   - **Detached Custom `creative-ux-studio` (`brand-ux-director`) Dogma:** Eliminated the forced 55% whitespace voids (`justify-content: space-between` that stranded content on `1920px+` full-screen monitors), removed confusing mid-card article walls from the decision screen, and dropped Greek codename riddles in favor of a centered, self-explanatory top orientation header (*"Two ways to stay ahead with Google Gemini"*), two cohesive doors (**`READ`** vs. **`BUILD`**), and 3 scannable 2-word topic tiles per side (`Gemini Releases`, `AI & Markets`, `Voices & Video` vs. `Small Business`, `At Work (DIY)`, `Live Labs & Code`).

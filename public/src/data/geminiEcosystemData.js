@@ -5,6 +5,21 @@
 
 export const PULSE_INTELLIGENCE_FEED = [
   {
+    id: 'pulse-gemini-2-5-deprecation-routing',
+    title: 'Google Deprecates Gemini 2.5 Pro & Flash: Automatic Routing to 3.8 Flash & 3.5 Flash-Lite Starting Dec 1, 2026',
+    tldr: 'Released November 2, 2026: Google officially deprecates `gemini-2.5-pro` and `gemini-2.5-flash` from Google AI Studio. Effective December 1, 2026, all API traffic automatically routes to `gemini-3.8-flash` ($0.75/$3.75) and `gemini-3.5-flash-lite` ($0.10/$0.40), cutting token costs by up to 80% while enforcing strict thought_signature and thinking_level migrations.',
+    summary:
+      'Starting December 1, 2026, legacy requests to `gemini-2.5-pro` will automatically execute on `gemini-3.8-flash` and requests to `gemini-2.5-flash` will execute on `gemini-3.5-flash-lite`. Developers must migrate ahead of December 1 to account for breaking API changes: strict tool calling and `thought_signature` validation (no silent hallucinations), `thinking_level` replacing deprecated `thinking_budget`, and the removal of legacy sampling parameters and prefilled model turns.',
+    category: 'SDK & API',
+    tag: 'Deprecation Notice',
+    modelBadge: 'gemini-2.5-pro → 3.8-flash',
+    impactScore: '9.9 / 10',
+    date: '2026-11-02T16:00:00Z',
+    sourceLabel: 'Google AI: Gemini API Changelog',
+    sourceUrl: 'https://ai.google.dev/gemini-api/docs/changelog#11-02-2026',
+    groundedBy: 'Google AI Developer Documentation (Verified Nov 2, 2026)',
+  },
+  {
     id: 'pulse-gemini-computer-use-ga',
     title: 'Google Gemini Computer Use Generally Available (GA): Multi-Environment Browser, Desktop & Mobile Control',
     tldr: 'Released October 30, 2026: Google promotes the Computer Use tool to General Availability across both the Interactions API and GenerateContent API, enabling developer agents to interact with UIs via screenshots, streamlined intents, configurable safety policies, and prompt injection defense.',
@@ -2004,9 +2019,25 @@ export const GET_STARTED_WITH_GEMINI_TRACKS = [
 
 export const GEMINI_VIDEO_SHOWCASE = [
   {
+    id: 'vid-computer-use-ga-tekthrill',
+    videoId: 'cON4RnddXCY',
+    featuredOfTheDay: true,
+    category: 'Computer Use & Agents',
+    badge: 'FEATURED VIDEO OF THE DAY • CREATOR SPOTLIGHT',
+    title: 'Gemini Computer Use Is Now Generally Available: How Google’s Screen-Clicking AI Works',
+    creatorName: 'TEKTHRILL',
+    creatorHandle: '@TEKTHRILL',
+    creatorUrl: 'https://www.youtube.com/@TEKTHRILL',
+    watchUrl: 'https://www.youtube.com/watch?v=cON4RnddXCY',
+    thumbnailUrl: 'https://i.ytimg.com/vi/cON4RnddXCY/hqdefault.jpg',
+    geminiSummary:
+      'Clear, practical creator demonstration of Google’s October 30 Computer Use GA release—breaking down screen-coordinate targeting, action intent reasoning fields, and prompt injection defenses across real-world workflows.',
+    whyFeatured: 'Verified HTTP 200 creator breakdown explaining how Gemini’s new UI agent capabilities operate under GA.',
+  },
+  {
     id: 'vid-carbon-work-surya',
     videoId: 'mv8jD6bA53A',
-    featuredOfTheDay: true,
+    featuredOfTheDay: false,
     category: 'Gemini 4 Carbon & Argon',
     badge: 'FEATURED VIDEO OF THE DAY • CREATOR SPOTLIGHT',
     title: 'Gemini 4 Carbon: What Google’s New #1 AI Means for Your Work',

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 1: Gemini 2.5 Sunset &amp; Auto-Routing — What Changed on November 2, 2026 &amp; The Dec 1 Cutover | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Official Google Gemini API update (November 2, 2026): gemini-2.5-pro and gemini-2.5-flash are deprecated. Effective December 1, 2026, all API requests auto-route to gemini-3.8-flash and gemini-3.5-flash-lite. Complete primary-source technical breakdown."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/gemini-2-5-migration/part-1-deprecation-and-auto-routing.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 1: Gemini 2.5 Sunset &amp; Auto-Routing — What Changed on November 2, 2026 | GeminiPulse" />
+    <meta property="og:description" content="Google officially deprecates Gemini 2.5 Pro &amp; Flash with automatic routing to 3.8 Flash &amp; 3.5 Flash-Lite starting Dec 1, 2026. Primary-source technical breakdown." />
+    <meta property="og:url" content="https://geminipulse.com/series/gemini-2-5-migration/part-1-deprecation-and-auto-routing.html" />
+    <meta property="og:image" content="https://geminipulse.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Part 1: Gemini 2.5 Sunset &amp; Auto-Routing — What Changed on November 2, 2026" />
+    <meta name="twitter:description" content="Google deprecates Gemini 2.5 Pro &amp; Flash with December 1 automatic routing cutover. Full technical details." />
+    <meta name="twitter:image" content="https://geminipulse.com/og-image.png" />
+    <link rel="icon" type="image/svg+xml" href="/gemini-sparkle.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Gemini 2.5 Sunset and Auto-Routing: What Changed on November 2, 2026 and the December 1 Cutover",
+        "datePublished": "2026-11-02T16:00:00-05:00",
+        "author": { "@type": "Organization", "name": "GeminiPulse Autonomous Editorial (Gemini 4 Argon)" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/gemini-2-5-migration/part-1-deprecation-and-auto-routing.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #f59e0b; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+      .wrap { max-width: 840px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #93c5fd; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #fbbf24; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .box-alert { border-color: rgba(245,158,11,0.4); background: rgba(245,158,11,0.06); }
+      table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.9rem; }
+      th, td { text-align: left; padding: 0.75rem; border-bottom: 1px solid var(--border); }
+      th { color: #fbbf24; font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; text-transform: uppercase; }
+      code { font-family: ui-monospace, Menlo, monospace; background: rgba(245,158,11,0.12); padding: 0.12rem 0.4rem; border-radius: 0.35rem; color: #fde68a; font-size: 0.88em; }
+      pre { background: #0c1017; border: 1px solid var(--border); border-radius: 0.75rem; padding: 1rem; overflow-x: auto; }
+      pre code { background: none; padding: 0; color: #e2e8f0; }
+      .nav-next { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.75rem; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    </style>
+  </head>
+  <body>
+    <article class="wrap">
+      <p><a href="/#pulse-feed">← Back to GeminiPulse Home</a></p>
+      <div class="eyebrow">Gemini 2.5 Migration Series • Part 1 of 3</div>
+      <h1>Gemini 2.5 Sunset &amp; Auto-Routing: What Changed on November 2, 2026 &amp; The Dec 1 Cutover</h1>
+      <div class="meta">
+        Published November 2, 2026 • Primary Google Sources:
+        <a href="https://ai.google.dev/gemini-api/docs/changelog#11-02-2026" target="_blank" rel="noopener noreferrer">Google AI for Developers Changelog (Nov 2, 2026)</a> &amp;
+        <a href="https://ai.google.dev/gemini-api/docs/deprecations#gemini-2.5-pro-models" target="_blank" rel="noopener noreferrer">Gemini API Deprecations Documentation</a>
+      </div>
+
+      <div class="box box-alert">
+        <strong style="color: #fbbf24;">⚠️ Critical Developer Action Item:</strong>
+        <p style="margin: 0.5rem 0 0">
+          On <strong>November 2, 2026</strong>, Google officially deprecated <code>gemini-2.5-pro</code> and <code>gemini-2.5-flash</code>. Both models have been removed from the Google AI Studio model picker. Starting <strong>December 1, 2026</strong>, all active API requests pointing to legacy 2.5 model strings will <strong>automatically route</strong> to modern 3.x models. While this brings immediate token cost savings of up to 80%, unmanaged migrations risk failing due to breaking API requirements around tool validation and thinking parameters.
+        </p>
+      </div>
+
+      <h2>1. The Model Deprecation Matrix &amp; Auto-Routing Paths</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Deprecated Model</th>
+            <th>Status as of Nov 2, 2026</th>
+            <th>Automatic Routing Target (Dec 1, 2026)</th>
+            <th>Pricing Impact (per 1M tokens)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>gemini-2.5-pro</code></td>
+            <td>Removed from AI Studio; API deprecated</td>
+            <td><strong><code>gemini-3.8-flash</code></strong></td>
+            <td><strong>Drops from $3.50 / $10.50 down to $0.75 / $3.75 (-78% / -64%)</strong></td>
+          </tr>
+          <tr>
+            <td><code>gemini-2.5-flash</code></td>
+            <td>Removed from AI Studio; API deprecated</td>
+            <td><strong><code>gemini-3.5-flash-lite</code></strong></td>
+            <td><strong>Drops from $0.35 / $1.05 down to $0.10 / $0.40 (-71% / -62%)</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>2. Why Google Is Enforcing Auto-Routing</h2>
+      <p>
+        Unlike hard-shutdown deprecations that instantly return <code>404 Not Found</code> or <code>410 Gone</code>, Google has engineered an automatic backend fallback router for the December 1 cutover. Any legacy client that fails to update its model string will continue resolving requests, but with two monumental shifts:
+      </p>
+      <ul>
+        <li><strong>Different Billing Rates:</strong> Inbound calls will automatically bill at the lower rates of the target models (Gemini 3.8 Flash rates for former 2.5 Pro traffic; Gemini 3.5 Flash-Lite rates for former 2.5 Flash traffic).</li>
+        <li><strong>Strict Inference Runtime:</strong> The requests will be evaluated by Google's Gemini 3 generation weights, which do not accept legacy 2.x parameter combinations.</li>
+      </ul>
+
+      <h2>3. The December 1 Cutover Timeline</h2>
+      <ul>
+        <li><strong>November 2, 2026 (Today):</strong> Formal deprecation announced. Models removed from Google AI Studio dropdowns. Developers receive migration guidance.</li>
+        <li><strong>November 2 – November 30, 2026 (Grace Window):</strong> API endpoints accept 2.5 model names natively, but logs issue deprecation headers. Builders should update codebases immediately.</li>
+        <li><strong>December 1, 2026 (Auto-Routing Cutover):</strong> Backend router activates. All calls to <code>gemini-2.5-pro</code> and <code>gemini-2.5-flash</code> automatically redirect to <code>gemini-3.8-flash</code> and <code>gemini-3.5-flash-lite</code> respectively.</li>
+      </ul>
+
+      <div class="box">
+        <strong>The Takeaway:</strong>
+        <p style="margin: 0.5rem 0 0">
+          Auto-routing prevents catastrophic service outages for unmaintained endpoints, but developers should not rely on it as a permanent strategy. Gemini 3.x enforces stricter schema validation and a different thinking control schema that must be addressed explicitly in client code.
+        </p>
+      </div>
+
+      <div class="nav-next">
+        <span>Part 1 of 3</span>
+        <a href="/series/gemini-2-5-migration/part-2-breaking-changes-and-payloads.html">Next: Part 2 — Strict thought_signature &amp; Breaking Changes →</a>
+      </div>
+    </article>
+  </body>
+</html>
