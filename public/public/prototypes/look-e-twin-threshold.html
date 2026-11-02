@@ -3,68 +3,58 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>GeminiPulse — Choose Your Lens (/read Magazine ⇄ /build Workbench)</title>
+  <title>GeminiPulse — Two Fraternal Twins (READ · α Castor ⇄ BUILD · β Pollux)</title>
   <meta name="robots" content="noindex" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,SOFT,WONK,wght@0,9..144,0,0,600;0,9..144,0,0,700;1,9..144,0,0,500&family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     /* =====================================================================
-       LOOK E — ABOVE-THE-FOLD TWIN THRESHOLD & (0,0) CONTINUITY BRIDGE
-       - Default Arrival: 50/50 Split Threshold (/read Magazine vs /build Workbench)
-       - /read (α Castor): Fashion-Forward Futuristic Editorial Magazine (#F6F5F1 + Outfit)
-       - /build (β Pollux): Hands-On Operator & Builder Workbench (#0D121B + Space Grotesk)
-       - Independent Continuity Box: Locked at (0,0) of Column 2, expands/contracts downward
+       LOOK E (v2) — TRUE FRATERNAL TWINS: SAME FAMILY DNA, TWO DISTINCT EDGES
+       Shared Family Genetics:
+         - Deep Ink (#111316), Signal Vermilion (#D9381E / #FF5A1F), Ultramarine (#1939B7)
+         - Custom two-tone Risograph & graphic-novel halftone ink artwork (Zero 3D SaaS slop)
+       Fraternal Divergence:
+         - READ · α CASTOR (The Magazine): Warm Cotton Broadsheet (#F6F3EC), exposed 1px
+           architectural hairline grid, 0px shadows, avant-garde Fraunces optical display.
+         - BUILD · β POLLUX (The Action Studio): Industrial Putty Chassis (#E6E1D6) with
+           drafting dot-matrix, 2px solid #111111 hard-ink frames, 5px 5px 0 #111111
+           brutalist offset shadows, tactile hardware switches, Space Grotesk + Space Mono.
+         - CONTINUITY BOX (#continuity-box): Pinned at exact (0,0) top-left of Column 2
+           in both READ and BUILD; Ultramarine Drafting Plate (#162D9C) that expands its
+           bottom edge downward for BUILD and shrinks upward for READ.
        ===================================================================== */
     :root {
       /* Opt-in to intrinsic keyword interpolation (modern-web-guidance: animate-to-intrinsic-sizes) */
       interpolate-size: allow-keywords;
 
-      /* /read (α Castor — Fashion-Forward Editorial Magazine) */
-      --read-bg: #F6F5F1;
-      --read-surface: #FFFFFF;
-      --read-ink: #111318;
-      --read-muted: #464B57;
-      --read-line: #DCD9D0;
-      --read-cobalt: #183EC2;
-      --read-vermilion: #B82A0B;
+      /* Shared Family Ink & Signal Accents */
+      --ink: #111316;
+      --vermilion: #C92A0E;
+      --pollux-orange: #FF5A1F;
+      --ultramarine: #1939B7;
+      --gold-pip: #FFD026;
 
-      /* /build (β Pollux — Hands-On Action & Workbench) */
-      --build-bg: #0D121B;
-      --build-surface: #141C2B;
-      --build-surface-alt: #192336;
-      --build-ink: #F3F6FC;
-      --build-muted: #B6C2D9;
-      --build-line: #27344D;
-      --build-cyan: #38BDF8;
-      --build-amber: #FBBF24;
+      /* Twin I: READ · α Castor (Editorial Magazine Surface) */
+      --castor-bg: #F6F3EC;
+      --castor-surface: #FBF9F4;
+      --castor-muted: #48453E;
+      --castor-rule: #CFC8B8;
+      --castor-strong-rule: #111316;
 
-      /* Active Canvas Tokens (Default Split / Read) */
-      --canvas-bg: #F6F5F1;
-      --canvas-ink: #111318;
-      --masthead-bg: rgba(246, 245, 241, 0.92);
-      --masthead-line: #DCD9D0;
-      --focus-ring: #183EC2;
+      /* Twin II: BUILD · β Pollux (Tactile Guerrilla Studio Surface) */
+      --pollux-bg: #E6E1D6;
+      --pollux-surface: #F7F5F0;
+      --pollux-card: #FFFFFF;
+      --pollux-muted: #3A3833;
+      --pollux-shadow: 5px 5px 0 #111316;
+      --pollux-shadow-sm: 3px 3px 0 #111316;
 
-      --font-editorial: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-workbench: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-mono: 'JetBrains Mono', ui-monospace, monospace;
-    }
-
-    html[data-mode="build"] {
-      --canvas-bg: #0D121B;
-      --canvas-ink: #F3F6FC;
-      --masthead-bg: rgba(13, 18, 27, 0.94);
-      --masthead-line: #253147;
-      --focus-ring: #38BDF8;
-    }
-
-    html[data-mode="split"] {
-      --canvas-bg: #111318;
-      --canvas-ink: #111318;
-      --masthead-bg: #FFFFFF;
-      --masthead-line: #DCD9D0;
+      /* Typography */
+      --font-castor-display: 'Fraunces', Georgia, serif;
+      --font-castor-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-pollux-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Space Mono', ui-monospace, monospace;
     }
 
     *, *::before, *::after {
@@ -75,16 +65,16 @@
       margin: 0;
       padding: 0;
       min-block-size: 100svh;
-      background-color: var(--canvas-bg);
-      color: var(--canvas-ink);
-      font-family: var(--font-body);
+      background: var(--castor-bg);
+      color: var(--ink);
+      font-family: var(--font-castor-body);
       -webkit-font-smoothing: antialiased;
     }
 
-    @media (prefers-reduced-motion: no-preference) {
-      body {
-        transition: background-color 0.4s cubic-bezier(0.22, 1, 0.36, 1), color 0.3s ease;
-      }
+    html[data-mode="build"] body {
+      background-color: var(--pollux-bg);
+      background-image: radial-gradient(rgba(17, 19, 22, 0.22) 0.85px, transparent 0.85px);
+      background-size: 18px 18px;
     }
 
     a {
@@ -124,17 +114,17 @@
       top: 0.5rem;
       left: 0.5rem;
       z-index: 300;
-      background: #FBBF24;
-      color: #0D121B;
+      background: var(--gold-pip);
+      color: var(--ink);
       padding: 0.55rem 0.9rem;
       font-family: var(--font-mono);
       font-size: 0.78rem;
       font-weight: 700;
-      border-radius: 6px;
+      border: 2px solid var(--ink);
     }
 
     :where(a:any-link, button, input, [tabindex="-1"]):focus-visible {
-      outline: 2.5px solid var(--focus-ring);
+      outline: 2.5px solid var(--ultramarine);
       outline-offset: 3px;
     }
 
@@ -146,7 +136,7 @@
     }
 
     /* =====================================================================
-       PAGE SHELL: STRICTLY ABOVE-THE-FOLD FIRST SCREEN (100svh)
+       VIEWPORT SHELL (Strictly Above-the-Fold 100svh Desktop Experience)
        ===================================================================== */
     .viewport-shell {
       min-block-size: 100svh;
@@ -155,38 +145,42 @@
     }
 
     /* =====================================================================
-       CENTER-LOGO SPLIT-HIERARCHY MASTHEAD
-       Left Wing: /read (α Castor)   |   Center: GeminiPulse   |   Right Wing: /build (β Pollux)
+       SPLIT-HIERARCHY MASTHEAD (Exposed Architectural Frame)
+       Left: READ · α Castor (Releases / AI Markets / Voices)
+       Center: GeminiPulse + 50/50 Split Trigger
+       Right: BUILD · β Pollux (Small Biz / At Work / Code Labs)
        ===================================================================== */
-    .split-masthead {
+    .twin-masthead {
       position: sticky;
       top: 0;
-      z-index: 80;
-      background: var(--masthead-bg);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--masthead-line);
+      z-index: 90;
+      background: var(--castor-bg);
+      border-bottom: 2px solid var(--ink);
     }
 
-    html[data-mode="split"] .split-masthead {
-      background: linear-gradient(90deg, #F6F5F1 0%, #F6F5F1 50%, #0D121B 50%, #0D121B 100%);
-      border-bottom: 1px solid rgba(125, 135, 155, 0.28);
+    html[data-mode="split"] .twin-masthead {
+      background: linear-gradient(90deg, var(--castor-bg) 0%, var(--castor-bg) 50%, var(--pollux-bg) 50%, var(--pollux-bg) 100%);
     }
 
-    .masthead-inner {
-      max-width: 1360px;
+    html[data-mode="build"] .twin-masthead {
+      background: var(--pollux-bg);
+    }
+
+    .masthead-grid {
+      max-width: 1380px;
       margin: 0 auto;
-      padding: 0.55rem clamp(0.85rem, 2.5vw, 2rem);
+      padding: 0.45rem clamp(0.75rem, 2.2vw, 1.75rem);
       display: grid;
       grid-template-columns: 1fr auto 1fr;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.65rem;
       min-block-size: 62px;
     }
 
     .wing {
       display: flex;
       align-items: center;
-      gap: 0.45rem;
+      gap: 0.5rem;
       min-width: 0;
     }
 
@@ -198,224 +192,174 @@
       justify-content: flex-end;
     }
 
-    html[data-mode="split"] .wing-read {
-      color: var(--read-ink);
-    }
-
-    html[data-mode="split"] .wing-build {
-      color: var(--build-ink);
-    }
-
-    /* Mode Pill Triggers on Left & Right Wings */
-    .wing-pill {
+    /* Left Twin Switcher Button (Castor Editorial Styling: 1px Rule, Warm Paper/Vermilion) */
+    .btn-wing-castor {
       appearance: none;
-      border: 1px solid transparent;
-      border-radius: 999px;
-      padding: 0.34rem 0.78rem;
-      min-block-size: 32px;
+      background: var(--castor-surface);
+      color: var(--ink);
+      border: 1.5px solid var(--ink);
+      padding: 0.34rem 0.72rem;
+      min-block-size: 34px;
       font-family: var(--font-mono);
       font-size: 0.72rem;
       font-weight: 700;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.03em;
       display: inline-flex;
       align-items: center;
       gap: 0.38rem;
       white-space: nowrap;
-      transition: transform 0.16s ease, background-color 0.2s ease, border-color 0.2s ease;
     }
 
-    .wing-pill-read {
-      background: rgba(24, 62, 194, 0.1);
-      color: var(--read-cobalt);
-      border-color: rgba(24, 62, 194, 0.28);
+    .btn-wing-castor[aria-pressed="true"] {
+      background: var(--ink);
+      color: var(--castor-bg);
     }
 
-    html[data-mode="build"] .wing-pill-read {
-      background: rgba(243, 246, 252, 0.08);
-      color: #DCE4F5;
-      border-color: rgba(243, 246, 252, 0.22);
+    .btn-wing-castor:hover {
+      border-color: var(--vermilion);
     }
 
-    html[data-mode="read"] .wing-pill-read {
-      background: var(--read-cobalt);
-      color: #FFFFFF;
-      border-color: var(--read-cobalt);
+    /* Right Twin Switcher Button (Pollux Hardware Styling: 2px Ink + Hard Offset Shadow) */
+    .btn-wing-pollux {
+      appearance: none;
+      background: var(--pollux-orange);
+      color: var(--ink);
+      border: 2px solid var(--ink);
+      box-shadow: 3px 3px 0 var(--ink);
+      padding: 0.32rem 0.75rem;
+      min-block-size: 34px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.38rem;
+      white-space: nowrap;
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
     }
 
-    .wing-pill-build {
-      background: rgba(56, 189, 248, 0.14);
-      color: #0B4F71;
-      border-color: rgba(14, 116, 144, 0.32);
+    .btn-wing-pollux:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 var(--ink);
     }
 
-    html[data-mode="split"] .wing-pill-build {
-      background: rgba(56, 189, 248, 0.16);
-      color: var(--build-cyan);
-      border-color: rgba(56, 189, 248, 0.38);
+    .btn-wing-pollux[aria-pressed="true"] {
+      background: var(--gold-pip);
     }
 
-    html[data-mode="build"] .wing-pill-build {
-      background: var(--build-amber);
-      color: #0D121B;
-      border-color: var(--build-amber);
-    }
-
-    .wing-links {
+    .wing-cats {
       display: none;
       align-items: center;
       gap: 0.15rem;
     }
 
-    @media (min-width: 1040px) {
-      .wing-links {
+    @media (min-width: 1080px) {
+      .wing-cats {
         display: inline-flex;
       }
     }
 
-    .wing-link {
+    .wing-cat-btn {
       appearance: none;
       background: transparent;
       border: 0;
-      padding: 0.32rem 0.55rem;
-      min-block-size: 32px;
-      border-radius: 6px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: inherit;
-      opacity: 0.82;
+      padding: 0.3rem 0.5rem;
+      min-block-size: 30px;
+      font-family: var(--font-mono);
+      font-size: 0.71rem;
+      font-weight: 700;
+      color: var(--ink);
       white-space: nowrap;
     }
 
-    .wing-link:hover {
-      opacity: 1;
+    .wing-cat-btn:hover,
+    .wing-cat-btn[data-current="true"] {
       text-decoration: underline;
+      text-decoration-thickness: 2px;
       text-underline-offset: 4px;
     }
 
-    .wing-link[data-current="true"] {
-      opacity: 1;
-      text-decoration: underline;
-      text-decoration-thickness: 2px;
-      text-underline-offset: 5px;
+    .wing-read .wing-cat-btn[data-current="true"] {
+      color: var(--vermilion);
     }
 
-    /* Center Brand Anchor + Split Reset Trigger */
-    .center-brand-cluster {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: #FFFFFF;
-      color: #111318;
-      padding: 0.3rem 0.85rem;
-      border-radius: 999px;
-      border: 1px solid #D5D9E2;
-      box-shadow: 0 4px 16px rgba(13, 18, 27, 0.08);
+    .wing-build .wing-cat-btn[data-current="true"] {
+      color: var(--ultramarine);
     }
 
-    html[data-mode="build"] .center-brand-cluster {
-      background: #161F30;
-      color: #F3F6FC;
-      border-color: #2E3D59;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
-    }
-
-    .brand-home-btn {
-      appearance: none;
-      background: transparent;
-      border: 0;
-      padding: 0.1rem 0.2rem;
-      color: inherit;
+    /* Center Emblem Lockup Sitting Directly on the Seam */
+    .center-seam-emblem {
       display: inline-flex;
       align-items: center;
       gap: 0.45rem;
-      min-block-size: 30px;
+      background: var(--ink);
+      color: var(--castor-bg);
+      padding: 0.3rem 0.5rem 0.3rem 0.75rem;
+      border: 2px solid var(--ink);
     }
 
-    .brand-wordmark {
-      font-family: var(--font-editorial);
+    .brand-reset-btn {
+      appearance: none;
+      background: transparent;
+      border: 0;
+      color: inherit;
+      padding: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      min-block-size: 28px;
+    }
+
+    .brand-name {
+      font-family: var(--font-pollux-display);
+      font-size: 1.02rem;
       font-weight: 700;
-      font-size: 1.08rem;
       letter-spacing: -0.03em;
     }
 
-    .brand-wordmark span {
-      background: linear-gradient(90deg, #183EC2, #D9481E);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+    .brand-name em {
+      font-family: var(--font-castor-display);
+      font-style: italic;
+      font-weight: 600;
+      color: var(--gold-pip);
     }
 
-    html[data-mode="build"] .brand-wordmark span {
-      background: linear-gradient(90deg, #38BDF8, #FBBF24);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .split-toggle-chip {
+    .split-gate-btn {
       appearance: none;
-      border: 1px solid #CFD5E2;
-      background: #F3F5F9;
-      color: #283040;
+      background: var(--castor-bg);
+      color: var(--ink);
+      border: 1px solid var(--castor-bg);
+      padding: 0.16rem 0.48rem;
+      min-block-size: 24px;
       font-family: var(--font-mono);
-      font-size: 0.65rem;
+      font-size: 0.64rem;
       font-weight: 700;
-      padding: 0.18rem 0.5rem;
-      min-block-size: 26px;
-      border-radius: 999px;
-      white-space: nowrap;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
     }
 
-    html[data-mode="split"] .split-toggle-chip {
-      background: #111318;
-      color: #FFFFFF;
-      border-color: #111318;
+    .split-gate-btn[aria-pressed="true"] {
+      background: var(--gold-pip);
+      border-color: var(--gold-pip);
+      color: var(--ink);
     }
 
-    html[data-mode="build"] .split-toggle-chip {
-      background: #233047;
-      color: #E2E8F4;
-      border-color: #384B6E;
-    }
-
-    /* Mobile Sub-Row so all hierarchies stay 1-tap accessible at 390px (<= 96px total header) */
     @media (max-width: 720px) {
-      html[data-mode="split"] .split-masthead {
-        background: #FFFFFF;
+      .masthead-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.35rem;
+        padding-block: 0.4rem;
       }
-      .masthead-inner {
-        grid-template-columns: 1fr;
-        gap: 0.38rem;
-        padding-block: 0.45rem;
-      }
-      .center-brand-cluster {
+      .center-seam-emblem {
+        grid-column: 1 / -1;
         order: -1;
         justify-self: center;
-      }
-      .mobile-wings-row {
-        display: contents;
-      }
-      .masthead-inner {
-        grid-template-columns: 1fr 1fr;
-      }
-      .center-brand-cluster {
-        grid-column: 1 / -1;
-      }
-      .wing-read {
-        justify-content: flex-start;
-      }
-      .wing-build {
-        justify-content: flex-end;
-      }
-      html[data-mode="split"] .wing-pill-build {
-        background: #0D121B;
-        color: #FBBF24;
-        border-color: #0D121B;
       }
     }
 
     /* =====================================================================
-       MAIN STAGE CONTAINER
+       MAIN STAGE
        ===================================================================== */
     #threshold-stage {
       flex: 1;
@@ -424,388 +368,458 @@
     }
 
     /* =====================================================================
-       STATE 0: 50/50 FIRST-VISIT SPLIT THRESHOLD (?view=split)
-       Immediately answers: "Where am I? What is /read vs /build? Why stay?"
+       STATE 0: THE FRATERNAL TWIN 50/50 SPLIT THRESHOLD (?view=split)
+       - Giant, unmistakable READ · α CASTOR vs BUILD · β POLLUX at the top!
+       - Clear 1-sentence descriptor under each.
+       - The 3 clickable main categories directly underneath each twin.
+       - Distinct fraternal visual craft (1px Editorial Broadsheet vs 2px Hard-Shadow Studio)
+         while unmistakably belonging to the same family!
        ===================================================================== */
-    .split-threshold {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-    }
-
-    /* Compact Unifying Orientation Ribbon right below Masthead */
-    .orientation-ribbon {
-      background: #FFFFFF;
-      color: #111318;
-      border-bottom: 1px solid #DCD9D0;
-      padding: 0.55rem clamp(1rem, 3vw, 2.25rem);
-    }
-
-    .orientation-inner {
-      max-width: 1320px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 0.5rem 1rem;
-    }
-
-    .orientation-statement {
-      font-size: 0.87rem;
-      color: #2C313C;
-      margin: 0;
-    }
-
-    .orientation-statement strong {
-      color: #111318;
-      font-weight: 700;
-    }
-
-    .orientation-controls {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-    }
-
-    .btn-compare-modal {
-      appearance: none;
-      background: transparent;
-      border: 1px solid #8A92A3;
-      color: #111318;
-      border-radius: 999px;
-      padding: 0.24rem 0.72rem;
-      min-block-size: 28px;
-      font-family: var(--font-mono);
-      font-size: 0.69rem;
-      font-weight: 600;
-    }
-
-    .btn-compare-modal:hover {
-      background: #111318;
-      color: #FFFFFF;
-      border-color: #111318;
-    }
-
-    .remember-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      font-family: var(--font-mono);
-      font-size: 0.69rem;
-      color: #464B57;
-      cursor: pointer;
-    }
-
-    /* The True 50/50 Twin Split Grid */
-    .split-halves {
+    .fraternal-split {
       flex: 1;
       display: grid;
       grid-template-columns: 1fr;
     }
 
-    @media (min-width: 900px) {
-      .split-halves {
+    @media (min-width: 920px) {
+      .fraternal-split {
         grid-template-columns: 1fr 1fr;
       }
     }
 
-    .half-pane {
-      padding: clamp(1.35rem, 2.6vw, 2.35rem) clamp(1.15rem, 3vw, 2.75rem);
+    /* Left Twin Column: READ · α CASTOR (Editorial Broadsheet Architecture) */
+    .twin-pane-castor {
+      background: var(--castor-bg);
+      color: var(--ink);
+      border-bottom: 2px solid var(--ink);
+      padding: clamp(1.1rem, 2.2vw, 1.85rem) clamp(1rem, 2.8vw, 2.35rem);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 1.15rem;
     }
 
-    .half-read {
-      background: var(--read-bg);
-      color: var(--read-ink);
-      border-bottom: 1px solid var(--read-line);
-    }
-
-    @media (min-width: 900px) {
-      .half-read {
+    @media (min-width: 920px) {
+      .twin-pane-castor {
         border-bottom: 0;
-        border-right: 1px solid rgba(125, 135, 155, 0.3);
+        border-right: 2px solid var(--ink);
       }
     }
 
-    .half-build {
-      background:
-        linear-gradient(rgba(56, 189, 248, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(56, 189, 248, 0.04) 1px, transparent 1px),
-        var(--build-bg);
-      background-size: 28px 28px;
-      color: var(--build-ink);
+    /* Right Twin Column: BUILD · β POLLUX (Tactile Guerrilla Studio Architecture) */
+    .twin-pane-pollux {
+      background-color: var(--pollux-bg);
+      background-image: radial-gradient(rgba(17, 19, 22, 0.22) 0.85px, transparent 0.85px);
+      background-size: 18px 18px;
+      color: var(--ink);
+      padding: clamp(1.1rem, 2.2vw, 1.85rem) clamp(1rem, 2.8vw, 2.35rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
-    .half-inner {
-      max-width: 560px;
+    .pane-inner {
+      max-width: 575px;
       width: 100%;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 1.1rem;
+      gap: 0.9rem;
       height: 100%;
     }
 
-    .route-kicker {
-      display: inline-flex;
+    /* LEVEL 1 HIERARCHY: MONUMENTAL TWIN NAME + ROLE */
+    .twin-monument-head {
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 0.7rem;
+    }
+
+    .twin-pane-castor .twin-monument-head {
+      border-bottom: 1px solid var(--ink);
+    }
+
+    .twin-super-kicker {
+      display: flex;
       align-items: center;
-      gap: 0.5rem;
+      justify-content: space-between;
       font-family: var(--font-mono);
-      font-size: 0.72rem;
+      font-size: 0.71rem;
       font-weight: 700;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+    }
+
+    .twin-pane-castor .twin-super-kicker {
+      color: var(--vermilion);
+    }
+
+    .twin-pane-pollux .twin-super-kicker {
+      color: var(--ultramarine);
+    }
+
+    .twin-giant-title {
+      margin: 0;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.35rem 0.75rem;
+      line-height: 0.98;
+    }
+
+    /* Castor Giant Title: High-Fashion Editorial Display */
+    .twin-pane-castor .twin-giant-title {
+      font-family: var(--font-castor-display);
+      font-size: clamp(2.35rem, 3.8vw, 3.35rem);
+      font-weight: 700;
+      letter-spacing: -0.035em;
+    }
+
+    .twin-pane-castor .twin-subname {
+      font-family: var(--font-castor-display);
+      font-style: italic;
+      font-weight: 500;
+      font-size: clamp(1.25rem, 2vw, 1.65rem);
+      color: var(--vermilion);
+    }
+
+    /* Pollux Giant Title: Stencil/Brutalist Industrial Block */
+    .twin-pane-pollux .twin-giant-title {
+      font-family: var(--font-pollux-display);
+      font-size: clamp(2.35rem, 3.8vw, 3.35rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
       text-transform: uppercase;
     }
 
-    .half-read .route-kicker {
-      color: var(--read-cobalt);
-    }
-
-    .half-build .route-kicker {
-      color: var(--build-cyan);
-    }
-
-    .route-slug {
-      padding: 0.15rem 0.48rem;
-      border-radius: 4px;
+    .twin-pane-pollux .twin-subname {
+      font-family: var(--font-mono);
+      font-size: clamp(1rem, 1.55vw, 1.3rem);
       font-weight: 700;
+      background: var(--pollux-orange);
+      color: var(--ink);
+      padding: 0.12rem 0.5rem;
+      border: 2px solid var(--ink);
+      box-shadow: 3px 3px 0 var(--ink);
     }
 
-    .half-read .route-slug {
-      background: rgba(24, 62, 194, 0.1);
-      color: var(--read-cobalt);
-    }
-
-    .half-build .route-slug {
-      background: rgba(56, 189, 248, 0.14);
-      color: var(--build-cyan);
-    }
-
-    .half-h2 {
-      font-size: clamp(1.55rem, 2.35vw, 2.15rem);
-      line-height: 1.1;
-      letter-spacing: -0.032em;
-      margin: 0.45rem 0 0.45rem;
-    }
-
-    .half-read .half-h2 {
-      font-family: var(--font-editorial);
-      font-weight: 600;
-    }
-
-    .half-build .half-h2 {
-      font-family: var(--font-workbench);
+    /* LEVEL 2 HIERARCHY: DESCRIPTOR TITLE + 1-SENTENCE SUMMARY */
+    .twin-descriptor-title {
+      margin: 0.5rem 0 0.2rem;
+      font-size: clamp(1.08rem, 1.45vw, 1.26rem);
       font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--ink);
     }
 
-    .half-summary {
-      font-size: 0.94rem;
-      line-height: 1.5;
+    .twin-pane-castor .twin-descriptor-title {
+      font-family: var(--font-castor-display);
+    }
+
+    .twin-pane-pollux .twin-descriptor-title {
+      font-family: var(--font-pollux-display);
+    }
+
+    .twin-one-sentence {
       margin: 0;
+      font-size: 0.88rem;
+      line-height: 1.45;
     }
 
-    .half-read .half-summary {
-      color: var(--read-muted);
+    .twin-pane-castor .twin-one-sentence {
+      color: var(--castor-muted);
     }
 
-    .half-build .half-summary {
-      color: var(--build-muted);
+    .twin-pane-pollux .twin-one-sentence {
+      color: var(--pollux-muted);
     }
 
-    /* Visual + Live Content Proof Card Inside Each Split Half */
-    .split-proof-card {
-      border-radius: 14px;
-      overflow: hidden;
+    /* BESPOKE ART + INDICATING LEAD STORY STRIP (With Authentic Risograph & Halftone Ink Art!) */
+    .split-art-feature {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: 4.3fr 5.7fr;
+      align-items: stretch;
     }
 
-    @media (min-width: 540px) {
-      .split-proof-card {
-        grid-template-columns: 4.5fr 5.5fr;
-      }
+    /* Castor Lead Strip: 1px Hairline Magazine Frame, 0px Shadow */
+    .twin-pane-castor .split-art-feature {
+      background: var(--castor-surface);
+      border: 1px solid var(--ink);
     }
 
-    .half-read .split-proof-card {
-      background: var(--read-surface);
-      border: 1px solid var(--read-line);
-      box-shadow: 0 10px 28px rgba(17, 19, 24, 0.05);
+    /* Pollux Lead Strip: 2px Hard-Ink Cartridge Frame + 5px Offset Shadow */
+    .twin-pane-pollux .split-art-feature {
+      background: var(--pollux-card);
+      border: 2px solid var(--ink);
+      box-shadow: var(--pollux-shadow);
     }
 
-    .half-build .split-proof-card {
-      background: var(--build-surface);
-      border: 1px solid var(--build-line);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    .saf-img-wrap {
+      border-right: 1px solid var(--ink);
+      overflow: hidden;
     }
 
-    .proof-art img {
+    .twin-pane-pollux .saf-img-wrap {
+      border-right: 2px solid var(--ink);
+    }
+
+    .saf-img-wrap img {
       width: 100%;
       height: 100%;
-      min-height: 148px;
-      max-height: 185px;
+      min-height: 112px;
+      max-height: 132px;
       object-fit: cover;
     }
 
-    .proof-body {
-      padding: 0.95rem 1.05rem;
+    .saf-copy {
+      padding: 0.65rem 0.85rem;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      gap: 0.45rem;
+      justify-content: center;
+      gap: 0.25rem;
     }
 
-    .proof-tag {
+    .saf-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.64rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--vermilion);
+    }
+
+    .twin-pane-pollux .saf-kicker {
+      color: var(--ultramarine);
+    }
+
+    .saf-title {
+      margin: 0;
+      font-size: 0.88rem;
+      font-weight: 700;
+      line-height: 1.24;
+    }
+
+    .twin-pane-castor .saf-title {
+      font-family: var(--font-castor-display);
+      font-size: 0.94rem;
+    }
+
+    .twin-pane-pollux .saf-title {
+      font-family: var(--font-pollux-display);
+    }
+
+    .saf-bridge {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--ultramarine);
+      font-weight: 700;
+    }
+
+    /* LEVEL 3 HIERARCHY: THE 3 MAIN SUBCATEGORIES UNDERNEATH EACH TWIN
+       Castor: 1px Hairline Editorial Index Rows
+       Pollux: 2px Tactile Hardware Cartridge Modules with Offset Shadows */
+    .subcats-header {
       font-family: var(--font-mono);
       font-size: 0.66rem;
       font-weight: 700;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
+      color: var(--castor-muted);
+      margin-bottom: -0.35rem;
     }
 
-    .half-read .proof-tag {
-      color: var(--read-vermilion);
+    /* Castor's 3 Editorial Magazine Sections (Hairline Rules) */
+    .castor-subcats {
+      border-top: 1px solid var(--ink);
+      display: grid;
     }
 
-    .half-build .proof-tag {
-      color: var(--build-amber);
+    .castor-subcat-row {
+      appearance: none;
+      width: 100%;
+      text-align: left;
+      background: transparent;
+      border: 0;
+      border-bottom: 1px solid var(--castor-rule);
+      padding: 0.52rem 0.25rem;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: baseline;
+      gap: 0.65rem;
+      transition: background-color 0.15s ease, padding-left 0.15s ease;
     }
 
-    .proof-headline {
-      font-size: 0.96rem;
-      font-weight: 700;
-      line-height: 1.28;
-      margin: 0;
+    .castor-subcat-row:last-child {
+      border-bottom: 1px solid var(--ink);
     }
 
-    .proof-bridge-note {
+    .castor-subcat-row:hover {
+      background: rgba(201, 42, 14, 0.06);
+      padding-left: 0.55rem;
+    }
+
+    .csc-num {
       font-family: var(--font-mono);
       font-size: 0.68rem;
-      opacity: 0.86;
+      font-weight: 700;
+      color: var(--vermilion);
     }
 
-    /* Exclusive What-You-Get List (3 Crisp Bullets Per Side) */
-    .exclusive-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
+    .csc-main {
+      font-size: 0.83rem;
+      color: var(--castor-muted);
+    }
+
+    .csc-main strong {
+      font-family: var(--font-castor-display);
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-right: 0.35rem;
+    }
+
+    .csc-arrow {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: var(--ink);
+    }
+
+    /* Pollux's 3 Tactile Studio Cartridges (2px Frames + Hard Offset Shadows) */
+    .pollux-subcats {
       display: grid;
-      gap: 0.42rem;
-      font-size: 0.84rem;
+      gap: 0.45rem;
     }
 
-    .exclusive-list li {
-      display: flex;
-      align-items: baseline;
-      gap: 0.5rem;
+    .pollux-subcat-box {
+      appearance: none;
+      width: 100%;
+      text-align: left;
+      background: var(--pollux-surface);
+      border: 2px solid var(--ink);
+      box-shadow: var(--pollux-shadow-sm);
+      padding: 0.46rem 0.7rem;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 0.6rem;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
     }
 
-    .half-read .exclusive-list li::before {
-      content: "✦";
-      color: var(--read-cobalt);
-      font-size: 0.76rem;
-      flex-shrink: 0;
+    .pollux-subcat-box:hover {
+      background: #FFFFFF;
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 var(--ink);
     }
 
-    .half-build .exclusive-list li::before {
-      content: "⚡";
-      color: var(--build-amber);
-      font-size: 0.76rem;
-      flex-shrink: 0;
+    .psc-badge {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 700;
+      background: var(--ink);
+      color: var(--gold-pip);
+      padding: 0.12rem 0.38rem;
     }
 
-    .half-cta-row {
+    .psc-main {
+      font-size: 0.81rem;
+      color: var(--pollux-muted);
+    }
+
+    .psc-main strong {
+      font-family: var(--font-pollux-display);
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-right: 0.35rem;
+    }
+
+    .psc-go {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--ultramarine);
+    }
+
+    /* Bottom Action Row of Each Twin Half */
+    .twin-enter-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 0.75rem;
       flex-wrap: wrap;
-      padding-top: 0.35rem;
+      padding-top: 0.15rem;
     }
 
-    .btn-enter-read {
+    .btn-enter-castor {
       appearance: none;
-      background: var(--read-ink);
-      color: #FFFFFF;
-      border: 1.5px solid var(--read-ink);
-      border-radius: 10px;
-      padding: 0.72rem 1.25rem;
-      min-block-size: 44px;
-      font-family: var(--font-editorial);
-      font-size: 0.92rem;
+      background: var(--ink);
+      color: var(--castor-bg);
+      border: 1.5px solid var(--ink);
+      padding: 0.62rem 1.15rem;
+      min-block-size: 42px;
+      font-family: var(--font-castor-display);
+      font-size: 0.94rem;
       font-weight: 600;
       display: inline-flex;
       align-items: center;
       gap: 0.45rem;
     }
 
-    .btn-enter-read:hover {
-      background: var(--read-cobalt);
-      border-color: var(--read-cobalt);
+    .btn-enter-castor:hover {
+      background: var(--vermilion);
+      border-color: var(--vermilion);
     }
 
-    .btn-enter-build {
+    .btn-enter-pollux {
       appearance: none;
-      background: var(--build-amber);
-      color: #0D121B;
-      border: 1.5px solid var(--build-amber);
-      border-radius: 10px;
-      padding: 0.72rem 1.25rem;
-      min-block-size: 44px;
-      font-family: var(--font-workbench);
-      font-size: 0.92rem;
+      background: var(--pollux-orange);
+      color: var(--ink);
+      border: 2px solid var(--ink);
+      box-shadow: var(--pollux-shadow);
+      padding: 0.6rem 1.15rem;
+      min-block-size: 42px;
+      font-family: var(--font-pollux-display);
+      font-size: 0.9rem;
       font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
       display: inline-flex;
       align-items: center;
       gap: 0.45rem;
     }
 
-    .btn-enter-build:hover {
-      background: #FDE047;
-      border-color: #FDE047;
+    .btn-enter-pollux:hover {
+      background: var(--gold-pip);
     }
 
-    .reversible-hint {
+    .split-meta-note {
       font-family: var(--font-mono);
-      font-size: 0.69rem;
-      opacity: 0.78;
+      font-size: 0.67rem;
+      color: var(--castor-muted);
     }
 
     /* =====================================================================
-       STATES 1 & 2: PERSISTENT ABOVE-THE-FOLD SINGLE-TWIN WORKSPACE
-       - Column 1 (60%): Active Twin Hero (/read Magazine OR /build Workbench)
-       - Column 2 (40%): Starts at LOCKED (0,0) with #continuity-box!
+       STATES 1 & 2: SINGLE-TWIN ABOVE-THE-FOLD STAGE (READ ⇄ BUILD)
+       - READ (α Castor): Exposed 1px Magazine Grid on #F6F3EC Cotton Paper
+       - BUILD (β Pollux): 2px Hard-Shadow Workshop Cartridges on #E6E1D6 Putty
+       - Shared Right Rail Origin: #continuity-box stays locked at (0,0) of
+         Column 2 (0.00px jump!) and expands/contracts its bottom edge smoothly.
        ===================================================================== */
     .single-twin-stage {
       flex: 1;
       display: flex;
       align-items: stretch;
-      background:
-        var(--stage-pattern, none),
-        var(--canvas-bg);
-      background-size: 28px 28px;
-    }
-
-    html[data-mode="build"] .single-twin-stage {
-      --stage-pattern:
-        linear-gradient(rgba(56, 189, 248, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(56, 189, 248, 0.04) 1px, transparent 1px);
     }
 
     .single-twin-grid {
-      max-width: 1320px;
+      max-width: 1340px;
       width: 100%;
       margin: 0 auto;
-      padding: clamp(1.25rem, 2.4vw, 2rem) clamp(1rem, 3vw, 2.25rem);
+      padding: clamp(1rem, 2vw, 1.65rem) clamp(1rem, 2.6vw, 2rem);
       display: grid;
       grid-template-columns: 1fr;
-      gap: clamp(1.35rem, 2.8vw, 2.5rem);
+      gap: clamp(1.25rem, 2.5vw, 2.25rem);
       align-items: start;
     }
 
@@ -815,692 +829,516 @@
       }
     }
 
-    /* =====================================================================
-       COLUMN 1A — /read (α Castor) FASHION-FORWARD FUTURISTIC MAGAZINE
-       Modern geometric display ('Outfit'), zero Victorian serif, zero SDK jargon
-       ===================================================================== */
-    .read-lead-feature {
+    /* COLUMN 1A — READ · α CASTOR (Editorial Broadsheet Front Page) */
+    .castor-front-article {
+      border-top: 2px solid var(--ink);
+      padding-top: 0.65rem;
       display: flex;
       flex-direction: column;
-      gap: 0.95rem;
+      gap: 0.8rem;
     }
 
-    .read-header-meta {
+    @media (min-width: 960px) {
+      html[data-mode="read"] #col1-primary {
+        border-right: 1px solid var(--ink);
+        padding-right: clamp(1.25rem, 2.5vw, 2.25rem);
+      }
+    }
+
+    .castor-rubric-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      border-bottom: 1px solid var(--read-line);
-      padding-bottom: 0.55rem;
-    }
-
-    .read-section-pill {
       font-family: var(--font-mono);
-      font-size: 0.71rem;
+      font-size: 0.7rem;
       font-weight: 700;
-      letter-spacing: 0.07em;
       text-transform: uppercase;
-      color: var(--read-cobalt);
+      letter-spacing: 0.07em;
+      color: var(--vermilion);
     }
 
-    .read-date {
-      font-family: var(--font-mono);
-      font-size: 0.71rem;
-      color: var(--read-muted);
-    }
-
-    .read-hero-frame {
+    .castor-art-box {
       margin: 0;
-      border-radius: 16px;
+      border: 1px solid var(--ink);
+      background: var(--castor-surface);
       overflow: hidden;
-      border: 1px solid var(--read-line);
-      background: #ECEAE3;
     }
 
-    .read-hero-frame img {
+    .castor-art-box img {
       width: 100%;
-      aspect-ratio: 16 / 8.6;
+      aspect-ratio: 16 / 8.3;
       object-fit: cover;
     }
 
-    .read-h1 {
-      font-family: var(--font-editorial);
-      font-size: clamp(1.85rem, 3.1vw, 2.75rem);
-      font-weight: 600;
-      line-height: 1.07;
-      letter-spacing: -0.035em;
-      color: var(--read-ink);
+    .castor-lead-h1 {
+      font-family: var(--font-castor-display);
+      font-size: clamp(1.85rem, 3vw, 2.65rem);
+      font-weight: 700;
+      line-height: 1.06;
+      letter-spacing: -0.032em;
       margin: 0;
-      max-width: 22ch;
+      color: var(--ink);
     }
 
-    .read-deck {
-      font-size: 1rem;
-      line-height: 1.55;
-      color: var(--read-muted);
+    .castor-lead-deck {
+      font-size: 0.96rem;
+      line-height: 1.54;
+      color: var(--castor-muted);
       margin: 0;
       max-width: 60ch;
     }
 
-    .read-cta-bar {
+    .castor-actions {
       display: flex;
       align-items: center;
       gap: 0.75rem;
       flex-wrap: wrap;
-      padding-top: 0.25rem;
+      padding-top: 0.2rem;
     }
 
-    .btn-read-article {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      background: var(--read-ink);
-      color: #FFFFFF;
-      padding: 0.68rem 1.2rem;
-      min-block-size: 42px;
-      border-radius: 10px;
-      font-family: var(--font-editorial);
-      font-weight: 600;
-      font-size: 0.9rem;
-    }
-
-    .btn-read-article:hover {
-      background: var(--read-cobalt);
-    }
-
-    .btn-jump-example {
+    .btn-castor-outline {
       appearance: none;
-      background: rgba(24, 62, 194, 0.08);
-      color: var(--read-cobalt);
-      border: 1px solid rgba(24, 62, 194, 0.32);
-      padding: 0.66rem 1.05rem;
-      min-block-size: 42px;
-      border-radius: 10px;
-      font-size: 0.85rem;
-      font-weight: 600;
+      background: transparent;
+      color: var(--ultramarine);
+      border: 1.5px solid var(--ultramarine);
+      padding: 0.58rem 1rem;
+      min-block-size: 40px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
     }
 
-    .btn-jump-example:hover {
-      background: var(--read-cobalt);
+    .btn-castor-outline:hover {
+      background: var(--ultramarine);
       color: #FFFFFF;
     }
 
-    /* =====================================================================
-       COLUMN 1B — /build (β Pollux) HANDS-ON ACTION & ROLE WORKBENCH
-       Bite-sized steps for Small Business Owners, Employees & Developers
-       ===================================================================== */
-    .build-lead-workbench {
+    /* COLUMN 1B — BUILD · β POLLUX (Tactile Hardware & Action Workshop) */
+    .pollux-workbench-card {
+      background: var(--pollux-card);
+      border: 2px solid var(--ink);
+      box-shadow: var(--pollux-shadow);
+      padding: clamp(1rem, 2vw, 1.45rem);
       display: flex;
       flex-direction: column;
-      gap: 0.95rem;
-      color: var(--build-ink);
+      gap: 0.85rem;
     }
 
-    .build-header-meta {
+    .pw-top-strip {
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 0.5rem;
-      border-bottom: 1px solid var(--build-line);
+      border-bottom: 2px solid var(--ink);
       padding-bottom: 0.55rem;
     }
 
-    .build-section-pill {
-      font-family: var(--font-mono);
-      font-size: 0.71rem;
-      font-weight: 700;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-      color: var(--build-cyan);
-    }
-
-    .human-pledge {
+    .pw-badge {
       font-family: var(--font-mono);
       font-size: 0.69rem;
-      color: var(--build-amber);
+      font-weight: 700;
+      text-transform: uppercase;
+      background: var(--pollux-orange);
+      color: var(--ink);
+      padding: 0.16rem 0.5rem;
+      border: 1.5px solid var(--ink);
     }
 
-    .build-h1 {
-      font-family: var(--font-workbench);
-      font-size: clamp(1.75rem, 2.85vw, 2.45rem);
+    .pw-pledge {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
       font-weight: 700;
-      line-height: 1.09;
+      color: var(--ultramarine);
+    }
+
+    .pollux-lead-h1 {
+      font-family: var(--font-pollux-display);
+      font-size: clamp(1.65rem, 2.5vw, 2.2rem);
+      font-weight: 700;
+      line-height: 1.08;
       letter-spacing: -0.03em;
       margin: 0;
-      max-width: 24ch;
     }
 
-    /* Role Tabs: Small Business / Employees / Developers */
-    .role-tabs {
-      display: flex;
-      flex-wrap: wrap;
+    /* Tactile Hardware Role Switches */
+    .role-switches {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
       gap: 0.45rem;
     }
 
-    .role-tab {
+    .role-switch-btn {
       appearance: none;
-      background: var(--build-surface);
-      color: var(--build-muted);
-      border: 1px solid var(--build-line);
-      border-radius: 8px;
-      padding: 0.45rem 0.85rem;
+      background: var(--pollux-surface);
+      color: var(--ink);
+      border: 2px solid var(--ink);
+      padding: 0.44rem 0.5rem;
       min-block-size: 36px;
       font-family: var(--font-mono);
-      font-size: 0.73rem;
-      font-weight: 600;
+      font-size: 0.69rem;
+      font-weight: 700;
+      text-align: center;
     }
 
-    .role-tab[aria-selected="true"] {
-      background: rgba(56, 189, 248, 0.16);
-      color: #FFFFFF;
-      border-color: var(--build-cyan);
+    .role-switch-btn[aria-selected="true"] {
+      background: var(--ink);
+      color: var(--gold-pip);
+      box-shadow: 3px 3px 0 var(--pollux-orange);
     }
 
-    /* Bite-Sized 3-Step Action Recipe Card */
-    .action-recipe-card {
-      background: var(--build-surface);
-      border: 1px solid var(--build-line);
-      border-radius: 14px;
-      padding: 1.15rem 1.25rem;
+    .recipe-box {
+      background: var(--pollux-surface);
+      border: 2px solid var(--ink);
+      padding: 0.9rem 1rem;
       display: grid;
-      gap: 0.85rem;
+      gap: 0.65rem;
     }
 
-    .recipe-top {
+    .recipe-head {
       display: flex;
       align-items: baseline;
       justify-content: space-between;
-      gap: 0.75rem;
+      gap: 0.5rem;
       flex-wrap: wrap;
     }
 
-    .recipe-title {
-      font-family: var(--font-workbench);
-      font-size: 1.12rem;
+    .recipe-h2 {
+      font-family: var(--font-pollux-display);
+      font-size: 1.04rem;
       font-weight: 700;
       margin: 0;
-      color: #FFFFFF;
     }
 
-    .recipe-time {
+    .recipe-tag {
       font-family: var(--font-mono);
-      font-size: 0.69rem;
-      color: var(--build-amber);
-      background: rgba(251, 191, 36, 0.12);
-      padding: 0.18rem 0.5rem;
-      border-radius: 4px;
+      font-size: 0.66rem;
+      font-weight: 700;
+      background: var(--gold-pip);
+      border: 1.5px solid var(--ink);
+      padding: 0.1rem 0.42rem;
     }
 
-    .chunk-steps {
+    .step-blocks {
       list-style: none;
       margin: 0;
       padding: 0;
       display: grid;
-      gap: 0.55rem;
+      gap: 0.45rem;
     }
 
-    .chunk-steps li {
+    .step-blocks li {
+      background: #FFFFFF;
+      border: 1.5px solid var(--ink);
+      padding: 0.48rem 0.68rem;
       display: grid;
       grid-template-columns: auto 1fr;
-      gap: 0.65rem;
+      gap: 0.55rem;
       align-items: baseline;
-      font-size: 0.88rem;
-      color: #DCE4F5;
-      background: var(--build-surface-alt);
-      border: 1px solid rgba(56, 189, 248, 0.14);
-      padding: 0.58rem 0.78rem;
-      border-radius: 8px;
+      font-size: 0.83rem;
     }
 
-    .step-num {
+    .sb-num {
       font-family: var(--font-mono);
-      font-size: 0.7rem;
+      font-size: 0.67rem;
       font-weight: 700;
-      color: var(--build-cyan);
-    }
-
-    .build-cta-bar {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      flex-wrap: wrap;
+      color: var(--vermilion);
     }
 
     /* =====================================================================
-       COLUMN 2 — LOCKED TOP-LEFT (0,0) CONTINUITY BRIDGE + COMPANION STACK
-       - #continuity-box NEVER jumps coordinates between /read and /build!
-       - Its top-left (0,0) stays pinned at the top of Column 2.
-       - Its bottom edge smoothly expands downward for larger /build content
-         (pushing #col2-below-stack down) and shrinks upward for compact /read
-         content (pulling #col2-below-stack smoothly back up!).
+       COLUMN 2 — PINNED TOP-LEFT (0,0) ULTRAMARINE BLUEPRINT CONTINUITY BOX
+       - Styled in the shared family's Deep Ultramarine (#162D9C) + Cream (#F6F3EC)
+         + Vermilion (#FF5A1F) so it belongs natively to BOTH Castor & Pollux!
+       - Top-left (0,0) never jumps! Bottom edge expands downward on BUILD
+         and contracts upward on READ, moving #col2-below-stack smoothly!
        ===================================================================== */
     .col2-rail {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 0.95rem;
     }
 
     .continuity-box {
-      /* Independent Dichroic Smoked-Titanium & Frosted Pearl-Indigo Material
-         Works harmoniously against BOTH Alabaster (#F6F5F1) and Carbon (#0D121B) */
       position: relative;
       transform-origin: top left;
-      border-radius: 16px;
-      padding: 1.5px;
-      background: linear-gradient(135deg, #2C58E8 0%, #9E4770 48%, #F59E0B 100%);
-      box-shadow: 0 16px 38px rgba(17, 22, 36, 0.16);
+      background: #162D9C;
+      color: #F6F3EC;
+      border: 2px solid var(--ink);
+      box-shadow: 5px 5px 0 var(--ink);
+      padding: 0.95rem 1.1rem;
       overflow: hidden;
       block-size: auto;
       block-size: calc-size(auto, size);
     }
 
-    html[data-mode="build"] .continuity-box {
-      box-shadow: 0 20px 46px rgba(0, 0, 0, 0.48);
-    }
-
     @media (prefers-reduced-motion: no-preference) {
       .continuity-box {
-        transition: block-size 0.44s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+        transition: block-size 0.44s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
       }
     }
 
-    .continuity-surface {
-      background: linear-gradient(160deg, #192030 0%, #1F1D2C 100%);
-      color: #F7F8FC;
-      border-radius: 14.5px;
-      padding: 1.05rem 1.15rem;
-      overflow: hidden;
-    }
-
-    .cb-topbar {
+    .cb-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 0.5rem;
-      padding-bottom: 0.6rem;
-      margin-bottom: 0.7rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.13);
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.6rem;
+      border-bottom: 1px solid rgba(246, 243, 236, 0.26);
       font-family: var(--font-mono);
-      font-size: 0.67rem;
+      font-size: 0.66rem;
       font-weight: 700;
       letter-spacing: 0.06em;
       text-transform: uppercase;
     }
 
     .cb-kicker {
-      color: #93C5FD;
+      color: var(--gold-pip);
     }
 
-    html[data-mode="build"] .cb-kicker {
-      color: #FCD34D;
+    .cb-Origin-tag {
+      color: #D4DEFF;
     }
 
-    .cb-anchor-badge {
-      color: #C7D0E4;
-      font-weight: 500;
-    }
-
-    /* Inner morphing panels inside #continuity-box */
     .cb-panel {
       display: flex;
       flex-direction: column;
-      gap: 0.65rem;
+      gap: 0.6rem;
     }
 
     @media (prefers-reduced-motion: no-preference) {
       .cb-panel[data-entering="down"] {
-        animation: cb-slide-in-down 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+        animation: cb-morph-down 0.38s cubic-bezier(0.22, 1, 0.36, 1);
       }
       .cb-panel[data-entering="up"] {
-        animation: cb-slide-in-up 0.36s cubic-bezier(0.22, 1, 0.36, 1);
+        animation: cb-morph-up 0.36s cubic-bezier(0.22, 1, 0.36, 1);
       }
     }
 
-    @keyframes cb-slide-in-down {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    @keyframes cb-morph-down {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes cb-slide-in-up {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    @keyframes cb-morph-up {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .cb-title {
-      font-family: var(--font-editorial);
-      font-size: 1.08rem;
-      font-weight: 600;
-      line-height: 1.24;
+      font-family: var(--font-pollux-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.22;
       margin: 0;
       color: #FFFFFF;
     }
 
     .cb-desc {
-      font-size: 0.84rem;
-      line-height: 1.48;
-      color: #CBD3E6;
+      font-size: 0.82rem;
+      line-height: 1.45;
+      color: #E2E8FF;
       margin: 0;
     }
 
-    .cb-action-btn {
+    .cb-trigger-btn {
       appearance: none;
       width: 100%;
-      background: #F7F8FC;
-      color: #111318;
-      border: 0;
-      border-radius: 9px;
-      padding: 0.58rem 0.9rem;
+      background: var(--gold-pip);
+      color: var(--ink);
+      border: 2px solid var(--ink);
+      box-shadow: 3px 3px 0 var(--ink);
+      padding: 0.52rem 0.85rem;
       min-block-size: 38px;
-      font-size: 0.82rem;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
       font-weight: 700;
+      text-transform: uppercase;
       display: inline-flex;
       align-items: center;
       justify-content: space-between;
-      gap: 0.5rem;
     }
 
-    .cb-action-btn:hover {
-      background: #E2E8F8;
+    .cb-trigger-btn:hover {
+      background: #FFE066;
     }
 
-    /* Expanded Interactive 3-Step Working Example inside Continuity Box (/build state) */
-    .sim-step-pills {
+    /* Interactive 3-Step Working Example inside Expanded Continuity Box */
+    .cb-step-tabs {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 0.38rem;
-    }
-
-    .sim-pill {
-      appearance: none;
-      background: rgba(255, 255, 255, 0.07);
-      color: #DCE3F2;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      border-radius: 7px;
-      padding: 0.4rem 0.35rem;
-      min-block-size: 34px;
-      font-family: var(--font-mono);
-      font-size: 0.67rem;
-      font-weight: 600;
-      text-align: center;
-    }
-
-    .sim-pill[aria-pressed="true"] {
-      background: #FBBF24;
-      color: #0D121B;
-      border-color: #FBBF24;
-      font-weight: 700;
-    }
-
-    .sim-output-box {
-      background: rgba(9, 13, 21, 0.72);
-      border: 1px solid rgba(147, 197, 253, 0.24);
-      border-radius: 9px;
-      padding: 0.72rem 0.82rem;
-      display: grid;
       gap: 0.35rem;
     }
 
-    .sim-plain {
-      font-size: 0.81rem;
-      color: #F7F8FC;
-      line-height: 1.42;
-    }
-
-    .sim-code {
+    .cb-step-btn {
+      appearance: none;
+      background: rgba(17, 19, 22, 0.35);
+      color: #F6F3EC;
+      border: 1.5px solid rgba(246, 243, 236, 0.45);
+      padding: 0.38rem 0.3rem;
+      min-block-size: 32px;
       font-family: var(--font-mono);
-      font-size: 0.69rem;
-      color: #7DD3FC;
+      font-size: 0.66rem;
+      font-weight: 700;
     }
 
-    .cb-return-row {
+    .cb-step-btn[aria-pressed="true"] {
+      background: var(--gold-pip);
+      color: var(--ink);
+      border-color: var(--ink);
+    }
+
+    .cb-readout {
+      background: #0E1742;
+      border: 1.5px solid rgba(246, 243, 236, 0.3);
+      padding: 0.65rem 0.75rem;
+      display: grid;
+      gap: 0.3rem;
+    }
+
+    .cb-plain {
+      font-size: 0.8rem;
+      color: #FFFFFF;
+      line-height: 1.4;
+    }
+
+    .cb-code {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--gold-pip);
+    }
+
+    .cb-foot-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 0.5rem;
-      padding-top: 0.35rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      padding-top: 0.3rem;
+      border-top: 1px solid rgba(246, 243, 236, 0.22);
     }
 
-    .cb-link-subtle {
+    .cb-back-btn {
       appearance: none;
-      background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.28);
-      color: #F7F8FC;
-      border-radius: 7px;
-      padding: 0.38rem 0.7rem;
-      min-block-size: 32px;
+      background: var(--castor-bg);
+      color: var(--ink);
+      border: 1.5px solid var(--ink);
+      padding: 0.32rem 0.65rem;
+      min-block-size: 30px;
       font-family: var(--font-mono);
-      font-size: 0.69rem;
-      font-weight: 600;
-    }
-
-    .cb-link-subtle:hover {
-      background: rgba(255, 255, 255, 0.12);
-    }
-
-    /* Sibling Stack Directly Underneath #continuity-box (Glides Down & Up Smoothly!) */
-    .col2-below-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .read-wire-card {
-      background: var(--read-surface);
-      border: 1px solid var(--read-line);
-      border-radius: 13px;
-      padding: 0.9rem 1.05rem;
-      display: grid;
-      gap: 0.32rem;
-    }
-
-    .rw-cat {
-      font-family: var(--font-mono);
-      font-size: 0.66rem;
+      font-size: 0.67rem;
       font-weight: 700;
-      letter-spacing: 0.07em;
+    }
+
+    /* Sibling Stack Underneath #continuity-box (Moves Down/Up Smoothly!) */
+    .castor-wire-stack {
+      border-top: 2px solid var(--ink);
+      display: grid;
+    }
+
+    .castor-wire-item {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--castor-rule);
+      display: grid;
+      gap: 0.28rem;
+    }
+
+    .castor-wire-item:last-child {
+      border-bottom: 1px solid var(--ink);
+    }
+
+    .cw-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 700;
       text-transform: uppercase;
-      color: var(--read-vermilion);
+      letter-spacing: 0.07em;
+      color: var(--vermilion);
     }
 
-    .rw-cat.cat-cobalt {
-      color: var(--read-cobalt);
-    }
-
-    .rw-h3 {
-      font-family: var(--font-editorial);
+    .cw-h3 {
+      font-family: var(--font-castor-display);
       font-size: 1.02rem;
       font-weight: 600;
-      line-height: 1.25;
-      color: var(--read-ink);
+      line-height: 1.24;
       margin: 0;
     }
 
-    .rw-h3 a:hover {
-      color: var(--read-cobalt);
+    .cw-h3 a:hover {
+      color: var(--vermilion);
     }
 
-    .rw-p {
-      font-size: 0.82rem;
-      color: var(--read-muted);
+    .cw-p {
+      font-size: 0.81rem;
+      color: var(--castor-muted);
       margin: 0;
-      line-height: 1.45;
+      line-height: 1.42;
     }
 
-    .build-kit-card {
-      background: var(--build-surface);
-      border: 1px solid var(--build-line);
-      border-radius: 13px;
-      padding: 0.9rem 1.05rem;
+    .pollux-kit-module {
+      background: var(--pollux-card);
+      border: 2px solid var(--ink);
+      box-shadow: var(--pollux-shadow);
+      padding: 0.85rem 1rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 0.75rem;
-      color: var(--build-ink);
     }
 
-    .bk-title {
-      font-family: var(--font-workbench);
-      font-size: 0.95rem;
+    .pkm-title {
+      font-family: var(--font-pollux-display);
+      font-size: 0.94rem;
       font-weight: 700;
       margin: 0.2rem 0 0;
     }
 
-    .bk-link {
+    .pkm-btn {
       font-family: var(--font-mono);
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 700;
-      color: var(--build-cyan);
+      background: var(--pollux-surface);
+      border: 2px solid var(--ink);
+      box-shadow: 2px 2px 0 var(--ink);
+      padding: 0.4rem 0.68rem;
       white-space: nowrap;
-      padding: 0.4rem 0.7rem;
-      border: 1px solid rgba(56, 189, 248, 0.35);
-      border-radius: 8px;
     }
 
     /* =====================================================================
-       SIDE-BY-SIDE "/READ VS /BUILD" COMPARISON DIALOG (<dialog closedby="any">)
-       ===================================================================== */
-    dialog.compare-dialog {
-      width: min(720px, calc(100vw - 1.5rem));
-      background: #FFFFFF;
-      color: #111318;
-      border: 1px solid #DCD9D0;
-      border-radius: 18px;
-      padding: clamp(1.25rem, 3vw, 2rem);
-      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.35);
-    }
-
-    dialog.compare-dialog::backdrop {
-      background: rgba(13, 18, 27, 0.58);
-      backdrop-filter: blur(3px);
-    }
-
-    .dlg-head {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 1rem;
-      border-bottom: 1px solid #E5E2DA;
-      padding-bottom: 0.75rem;
-      margin-bottom: 1.1rem;
-    }
-
-    .dlg-head h2 {
-      font-family: var(--font-editorial);
-      font-size: 1.35rem;
-      margin: 0;
-    }
-
-    .dlg-close {
-      appearance: none;
-      background: #F3F4F6;
-      border: 1px solid #D1D5DB;
-      color: #111318;
-      border-radius: 8px;
-      padding: 0.35rem 0.75rem;
-      min-block-size: 32px;
-      font-family: var(--font-mono);
-      font-size: 0.73rem;
-      font-weight: 700;
-    }
-
-    .compare-cols {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-
-    @media (min-width: 640px) {
-      .compare-cols {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    .cmp-box {
-      border-radius: 12px;
-      padding: 1.05rem;
-    }
-
-    .cmp-read {
-      background: #F6F5F1;
-      border: 1px solid #DCD9D0;
-    }
-
-    .cmp-build {
-      background: #0D121B;
-      color: #F3F6FC;
-      border: 1px solid #27344D;
-    }
-
-    .cmp-box h3 {
-      margin: 0.3rem 0 0.45rem;
-      font-size: 1.08rem;
-    }
-
-    .cmp-box p {
-      font-size: 0.84rem;
-      margin: 0 0 0.7rem;
-      opacity: 0.88;
-    }
-
-    .cmp-box ul {
-      margin: 0;
-      padding-left: 1.1rem;
-      font-size: 0.82rem;
-      display: grid;
-      gap: 0.38rem;
-    }
-
-    /* =====================================================================
-       QUIET PROTOTYPE CASE-STUDY DOCK (Bottom Strip)
+       QUIET CASE STUDY DOCK
        ===================================================================== */
     .studio-dock {
-      border-top: 1px solid rgba(125, 135, 155, 0.25);
-      background: #111318;
-      color: #D5DBE8;
-      padding: 0.42rem 1rem;
+      border-top: 2px solid var(--ink);
+      background: var(--ink);
+      color: #E5E1D8;
+      padding: 0.38rem 1rem;
       font-family: var(--font-mono);
-      font-size: 0.68rem;
+      font-size: 0.67rem;
     }
 
     .studio-dock-inner {
-      max-width: 1360px;
+      max-width: 1380px;
       margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 0.4rem 0.9rem;
+      gap: 0.35rem 0.85rem;
     }
 
     .dock-links {
       display: flex;
       align-items: center;
       flex-wrap: wrap;
-      gap: 0.35rem 0.7rem;
+      gap: 0.35rem 0.65rem;
     }
 
     .dock-links a {
-      color: #AAB4C8;
+      color: #C7C2B6;
     }
 
     .dock-links a:hover,
     .dock-links a[aria-current="page"] {
-      color: #FBBF24;
+      color: var(--gold-pip);
       text-decoration: underline;
       text-underline-offset: 3px;
     }
@@ -1511,8 +1349,7 @@
       ::view-transition-new(*) {
         animation: none !important;
       }
-      .continuity-box,
-      body {
+      .continuity-box {
         transition: none !important;
       }
     }
@@ -1523,308 +1360,326 @@
 
   <div class="viewport-shell">
     <!-- ===================================================================
-         SPLIT-HIERARCHY MASTHEAD:
-         Left: /read (α Castor) · Center: GeminiPulse · Right: /build (β Pollux)
-         You can jump directly into any /read or /build vertical in 1 click!
+         SPLIT-HIERARCHY MASTHEAD
+         Left: READ · α Castor (Editorial) | Center: GeminiPulse | Right: BUILD · β Pollux (Studio)
          =================================================================== -->
-    <header class="split-masthead">
-      <div class="masthead-inner">
-        <!-- LEFT HIERARCHY: /read · α Castor -->
-        <div class="wing wing-read" role="navigation" aria-label="Read Castor Magazine Navigation">
+    <header class="twin-masthead">
+      <div class="masthead-grid">
+        <!-- LEFT WING: READ · α CASTOR -->
+        <div class="wing wing-read" role="navigation" aria-label="Read Castor Editorial Hierarchy">
           <button
             type="button"
-            class="wing-pill wing-pill-read"
+            class="btn-wing-castor"
             data-switch-mode="read"
             aria-pressed="false"
           >
-            <span>✦ /read</span>
+            <span>✦ READ</span>
             <span>· <span class="greek-sym">α</span> Castor</span>
           </button>
-          <div class="wing-links">
-            <button type="button" class="wing-link" data-switch-mode="read" data-read-topic="releases" data-current="true">Releases</button>
-            <button type="button" class="wing-link" data-switch-mode="read" data-read-topic="markets">AI Markets</button>
-            <button type="button" class="wing-link" data-switch-mode="read" data-read-topic="voices">Voices</button>
+          <div class="wing-cats">
+            <button type="button" class="wing-cat-btn" data-switch-mode="read" data-read-topic="releases" data-current="true">01 Releases</button>
+            <button type="button" class="wing-cat-btn" data-switch-mode="read" data-read-topic="markets">02 AI Markets</button>
+            <button type="button" class="wing-cat-btn" data-switch-mode="read" data-read-topic="voices">03 Voices</button>
           </div>
         </div>
 
-        <!-- CENTER LOGO & 50/50 SPLIT OVERVIEW TRIGGER -->
-        <div class="center-brand-cluster">
+        <!-- CENTER SEAM LOGO & 50/50 SPLIT GATEWAY -->
+        <div class="center-seam-emblem">
           <button
             type="button"
-            class="brand-home-btn"
+            class="brand-reset-btn"
             data-switch-mode="split"
-            title="View 50/50 Split Threshold"
+            title="Return to 50/50 Twin Threshold"
           >
-            <svg width="22" height="22" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-              <path d="M13 4L15 13L24 15L15 17L13 26L11 17L2 15L11 13L13 4Z" fill="#183EC2"/>
-              <path d="M24 11L25.6 18.4L33 20L25.6 21.6L24 29L22.4 21.6L15 20L22.4 18.4L24 11Z" fill="#F59E0B"/>
+            <svg width="20" height="20" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+              <path d="M13 4L15 13L24 15L15 17L13 26L11 17L2 15L11 13L13 4Z" fill="#FF5A1F"/>
+              <path d="M24 11L25.6 18.4L33 20L25.6 21.6L24 29L22.4 21.6L15 20L22.4 18.4L24 11Z" fill="#FFD026"/>
             </svg>
-            <span class="brand-wordmark">Gemini<span>Pulse</span></span>
+            <span class="brand-name">Gemini<em>Pulse</em></span>
           </button>
           <button
             type="button"
-            class="split-toggle-chip"
+            class="split-gate-btn"
             data-switch-mode="split"
             aria-pressed="true"
             id="btn-split-overview"
           >
-            50/50 Split
+            50/50 Twins
           </button>
         </div>
 
-        <!-- RIGHT HIERARCHY: /build · β Pollux -->
-        <div class="wing wing-build" role="navigation" aria-label="Build Pollux Workbench Navigation">
-          <div class="wing-links">
-            <button type="button" class="wing-link" data-switch-mode="build" data-build-role="smb" data-current="true">Small Biz</button>
-            <button type="button" class="wing-link" data-switch-mode="build" data-build-role="employee">At Work</button>
-            <button type="button" class="wing-link" data-switch-mode="build" data-build-role="dev">Code Labs</button>
+        <!-- RIGHT WING: BUILD · β POLLUX -->
+        <div class="wing wing-build" role="navigation" aria-label="Build Pollux Action Hierarchy">
+          <div class="wing-cats">
+            <button type="button" class="wing-cat-btn" data-switch-mode="build" data-build-role="smb" data-current="true">[01] Small Biz</button>
+            <button type="button" class="wing-cat-btn" data-switch-mode="build" data-build-role="employee">[02] At Work</button>
+            <button type="button" class="wing-cat-btn" data-switch-mode="build" data-build-role="dev">[03] Labs &amp; Code</button>
           </div>
           <button
             type="button"
-            class="wing-pill wing-pill-build"
+            class="btn-wing-pollux"
             data-switch-mode="build"
             aria-pressed="false"
           >
-            <span>⚡ /build</span>
+            <span>✧ BUILD</span>
             <span>· <span class="greek-sym">β</span> Pollux</span>
           </button>
         </div>
       </div>
     </header>
 
-    <!-- ===================================================================
-         ABOVE-THE-FOLD MAIN STAGE
-         =================================================================== -->
     <main id="threshold-stage">
       <!-- =================================================================
-           VIEW 0: DEFAULT FIRST-VISIT 50/50 SPLIT THRESHOLD
-           Crystal-clear answer in 3 seconds: What is this site, and which side fits my intent?
+           STATE 0: THE FRATERNAL 50/50 SPLIT THRESHOLD (?view=split)
+           1. Monumental Twin Titles: READ · α Castor vs BUILD · β Pollux
+           2. Clear Descriptor + 1-Sentence Summary
+           3. Lead Visual Proof (Risograph Print vs Halftone Studio Print)
+           4. The 3 Main Categories Directly Underneath Each Twin
            ================================================================= -->
-      <section class="split-threshold" id="stage-split" aria-labelledby="split-read-h2">
-        <div class="orientation-ribbon">
-          <div class="orientation-inner">
-            <p class="orientation-statement">
-              <strong>One AI Hub, Two Connected Twins:</strong> Read what’s changing in Gemini &amp; AI markets—or put it to work in 5-minute steps.
-            </p>
-            <div class="orientation-controls">
-              <button
-                type="button"
-                class="btn-compare-modal"
-                commandfor="dlg-read-vs-build"
-                command="show-modal"
-              >
-                What’s in /read vs. /build?
+      <section class="fraternal-split" id="stage-split" aria-label="Choose Your Fraternal Twin Experience">
+        <!-- LEFT FRATERNAL TWIN: READ · α CASTOR (Editorial Broadsheet) -->
+        <article class="twin-pane-castor">
+          <div class="pane-inner">
+            <header class="twin-monument-head">
+              <div class="twin-super-kicker">
+                <span>Twin I · geminipulse.com/read</span>
+                <span>Editorial Broadsheet</span>
+              </div>
+              <h1 class="twin-giant-title" id="split-read-h2" tabindex="-1">
+                <span>READ</span>
+                <span class="twin-subname"><span class="greek-sym">α</span> Castor</span>
+              </h1>
+              <h2 class="twin-descriptor-title">
+                The AI &amp; Gemini Magazine — Releases, Markets &amp; Landscape
+              </h2>
+              <p class="twin-one-sentence">
+                Every Google Gemini release decoded on launch day, plus how AI shifts finance, business margins, and industry voices.
+              </p>
+            </header>
+
+            <!-- Indicating Lead Story with Tactile Two-Tone Risograph Art -->
+            <div class="split-art-feature">
+              <div class="saf-img-wrap">
+                <img
+                  src="./assets/look-d-castor.webp"
+                  alt="Two-tone Risograph editorial print of twin vermilion and prussian stars across browser and mobile screens"
+                  width="1376"
+                  height="768"
+                  fetchpriority="high"
+                />
+              </div>
+              <div class="saf-copy">
+                <span class="saf-kicker">Cover Story · Oct 30 Release</span>
+                <h3 class="saf-title">Google’s Screen-Operating AI Arrives—What Changes for Teams &amp; SaaS Margins</h3>
+                <span class="saf-bridge">⇄ Links directly to its 3-step BUILD working example</span>
+              </div>
+            </div>
+
+            <!-- The 3 Main Subcategories Under READ · α Castor (1px Magazine Index) -->
+            <div>
+              <div class="subcats-header" style="margin-bottom:0.3rem;">Three Main Sections in READ · <span class="greek-sym">α</span> Castor:</div>
+              <div class="castor-subcats" role="group" aria-label="Read Castor main categories">
+                <button type="button" class="castor-subcat-row" data-switch-mode="read" data-read-topic="releases">
+                  <span class="csc-num">01</span>
+                  <span class="csc-main"><strong>Gemini Releases Decoded</strong> What just launched &amp; what it means in plain English</span>
+                  <span class="csc-arrow">→</span>
+                </button>
+                <button type="button" class="castor-subcat-row" data-switch-mode="read" data-read-topic="markets">
+                  <span class="csc-num">02</span>
+                  <span class="csc-main"><strong>AI Finance &amp; Market Impact</strong> Token economics, business margins &amp; market shifts</span>
+                  <span class="csc-arrow">→</span>
+                </button>
+                <button type="button" class="castor-subcat-row" data-switch-mode="read" data-read-topic="voices">
+                  <span class="csc-num">03</span>
+                  <span class="csc-main"><strong>Voices &amp; Video Signal</strong> What analysts, founders &amp; creators are saying</span>
+                  <span class="csc-arrow">→</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="twin-enter-row">
+              <button type="button" class="btn-enter-castor" data-switch-mode="read">
+                <span>Enter READ · <span class="greek-sym">α</span> Castor</span>
+                <span aria-hidden="true">→</span>
               </button>
-              <label class="remember-label">
-                <input type="checkbox" id="chk-remember-twin" />
-                <span>Remember my default side</span>
-              </label>
+              <span class="split-meta-note">Or jump straight to any section above</span>
             </div>
           </div>
-        </div>
+        </article>
 
-        <div class="split-halves">
-          <!-- LEFT HALF: /read · α Castor (The Magazine) -->
-          <article class="half-pane half-read">
-            <div class="half-inner">
-              <div>
-                <div class="route-kicker">
-                  <span class="route-slug">/read</span>
-                  <span>· <span class="greek-sym">α</span> Castor · The Magazine</span>
-                </div>
-                <h2 class="half-h2" id="split-read-h2" tabindex="-1">
-                  Understand Gemini Releases, AI Markets &amp; Where It’s Going.
-                </h2>
-                <p class="half-summary">
-                  Every Google Gemini update decoded on release day, plus broader AI finance shifts and industry voices—zero code walls.
-                </p>
+        <!-- RIGHT FRATERNAL TWIN: BUILD · β POLLUX (Tactile Action Studio) -->
+        <article class="twin-pane-pollux">
+          <div class="pane-inner">
+            <header class="twin-monument-head">
+              <div class="twin-super-kicker">
+                <span>Twin II · geminipulse.com/build</span>
+                <span>Hands-On Action Studio</span>
               </div>
+              <h1 class="twin-giant-title" id="split-build-h2">
+                <span>BUILD</span>
+                <span class="twin-subname"><span class="greek-sym">β</span> Pollux</span>
+              </h1>
+              <h2 class="twin-descriptor-title">
+                The Practical Workbench — Workflows, Examples &amp; Live Labs
+              </h2>
+              <p class="twin-one-sentence">
+                Bite-sized 5-minute steps to enhance your job or operate a small business with AI, plus working examples and developer kits.
+              </p>
+            </header>
 
-              <div class="split-proof-card">
-                <div class="proof-art">
-                  <img
-                    src="./assets/look-e-read-editorial.webp"
-                    alt="Suspended cobalt and coral dichroic glass prisms in a sunlit architectural gallery"
-                    width="1376"
-                    height="768"
-                    fetchpriority="high"
-                  />
-                </div>
-                <div class="proof-body">
-                  <span class="proof-tag">Today in /read · Release + Market</span>
-                  <h3 class="proof-headline">Google’s Screen-Operating AI Arrives—What Changes for Teams &amp; Software Margins</h3>
-                  <span class="proof-bridge-note">⇄ Linked directly to a 3-step /build working example</span>
-                </div>
+            <!-- Indicating Lead Build with Graphic-Novel Halftone Vector Art -->
+            <div class="split-art-feature">
+              <div class="saf-img-wrap">
+                <img
+                  src="./assets/look-d-pollux.webp"
+                  alt="Graphic-novel halftone vector illustration of twin orange and ultramarine dials launching live workflow cartridges"
+                  width="1376"
+                  height="768"
+                  fetchpriority="high"
+                />
               </div>
-
-              <ul class="exclusive-list" aria-label="What you get in Read">
-                <li><span><strong>Every Gemini Release Decoded:</strong> What launched today and what it actually means.</span></li>
-                <li><span><strong>AI Finance &amp; Market Landscape:</strong> Pricing shifts, business economics, and macro trends.</span></li>
-                <li><span><strong>Ecosystem Commentary:</strong> Curated talks, videos, and what credible voices are saying.</span></li>
-              </ul>
-
-              <div class="half-cta-row">
-                <button type="button" class="btn-enter-read" data-switch-mode="read">
-                  <span>Enter /read Magazine</span>
-                  <span aria-hidden="true">→</span>
-                </button>
-                <span class="reversible-hint">Switch to /build anytime from the top bar</span>
+              <div class="saf-copy">
+                <span class="saf-kicker">Featured Working Example · [SIMULATED DEMO]</span>
+                <h3 class="saf-title">3-Minute Recipe: Turn Vendor Invoices Into Clean Sheets While Blocking Ad Traps</h3>
+                <span class="saf-bridge">✧ Paired with today’s Computer Use GA release</span>
               </div>
             </div>
-          </article>
 
-          <!-- RIGHT HALF: /build · β Pollux (The Action Workbench) -->
-          <article class="half-pane half-build">
-            <div class="half-inner">
-              <div>
-                <div class="route-kicker">
-                  <span class="route-slug">/build</span>
-                  <span>· <span class="greek-sym">β</span> Pollux · The Workbench</span>
-                </div>
-                <h2 class="half-h2" id="split-build-h2">
-                  Put AI Into Action at Work, in Your Business, or in Code.
-                </h2>
-                <p class="half-summary">
-                  Bite-sized working examples, human-enhancing workflows for employees and small business owners, and playable developer labs.
-                </p>
-              </div>
-
-              <div class="split-proof-card">
-                <div class="proof-art">
-                  <img
-                    src="./assets/look-e-build-workbench.webp"
-                    alt="Modular brushed aluminum and anodized graphite workflow blocks with glowing cyan and amber light conduits"
-                    width="1376"
-                    height="768"
-                    fetchpriority="high"
-                  />
-                </div>
-                <div class="proof-body">
-                  <span class="proof-tag">Today in /build · Working Example</span>
-                  <h3 class="proof-headline">3-Minute Recipe: Turn Vendor Invoices Into Clean Sheets While Blocking Ad Traps</h3>
-                  <span class="proof-bridge-note">⚡ Interactive [SIMULATED DEMO] + Small-Biz Steps</span>
-                </div>
-              </div>
-
-              <ul class="exclusive-list" aria-label="What you get in Build">
-                <li><span><strong>Small Business &amp; Employee Playbooks:</strong> Enhance your workflow—never replace people.</span></li>
-                <li><span><strong>Quick Working Examples:</strong> Small, practical steps paired with every new Gemini release.</span></li>
-                <li><span><strong>Live Labs &amp; Starter Kits:</strong> Interactive sandboxes, ROI sliders, and $0 IDE plugins.</span></li>
-              </ul>
-
-              <div class="half-cta-row">
-                <button type="button" class="btn-enter-build" data-switch-mode="build">
-                  <span>Enter /build Workbench</span>
-                  <span aria-hidden="true">→</span>
+            <!-- The 3 Main Subcategories Under BUILD · β Pollux (2px Hard-Shadow Cartridges) -->
+            <div>
+              <div class="subcats-header" style="margin-bottom:0.35rem;color:var(--pollux-muted);">Three Main Sections in BUILD · <span class="greek-sym">β</span> Pollux:</div>
+              <div class="pollux-subcats" role="group" aria-label="Build Pollux main categories">
+                <button type="button" class="pollux-subcat-box" data-switch-mode="build" data-build-role="smb">
+                  <span class="psc-badge">01</span>
+                  <span class="psc-main"><strong>Small Business &amp; Solopreneurs</strong> Operate leaner client, proposal &amp; admin workflows</span>
+                  <span class="psc-go">OPEN ↗</span>
                 </button>
-                <span class="reversible-hint">1-click access to /read always above</span>
+                <button type="button" class="pollux-subcat-box" data-switch-mode="build" data-build-role="employee">
+                  <span class="psc-badge">02</span>
+                  <span class="psc-main"><strong>At Work &amp; 5-Min Examples</strong> Enhance your daily role in Docs, Sheets &amp; browser tasks</span>
+                  <span class="psc-go">OPEN ↗</span>
+                </button>
+                <button type="button" class="pollux-subcat-box" data-switch-mode="build" data-build-role="dev">
+                  <span class="psc-badge">03</span>
+                  <span class="psc-main"><strong>Live Labs, SDKs &amp; $0 Kits</strong> Playable simulators, ROI sliders &amp; starter plugins</span>
+                  <span class="psc-go">OPEN ↗</span>
+                </button>
               </div>
             </div>
-          </article>
-        </div>
+
+            <div class="twin-enter-row">
+              <button type="button" class="btn-enter-pollux" data-switch-mode="build">
+                <span>Enter BUILD · <span class="greek-sym">β</span> Pollux</span>
+                <span aria-hidden="true">✧</span>
+              </button>
+              <span class="split-meta-note" style="color:var(--pollux-muted);">Built to enhance people, never replace them</span>
+            </div>
+          </div>
+        </article>
       </section>
 
       <!-- =================================================================
-           VIEWS 1 & 2: SINGLE-TWIN ABOVE-THE-FOLD STAGE (/read ⇄ /build)
-           Shares the exact 2-column grid so #continuity-box stays pinned at
-           top-left (0,0) of Column 2 and expands/shrinks smoothly!
+           STATES 1 & 2: SINGLE-TWIN ABOVE-THE-FOLD STAGE (READ ⇄ BUILD)
+           Column 2 starts at LOCKED (0,0) with #continuity-box so it never
+           jumps across the screen—expanding downward for BUILD and shrinking
+           upward for READ!
            ================================================================= -->
       <section class="single-twin-stage" id="stage-single" hidden aria-live="polite">
         <div class="single-twin-grid">
-          <!-- COLUMN 1: Swaps cleanly between /read Editorial Cover and /build Role Workbench -->
+          <!-- COLUMN 1: Swaps between Castor Magazine Front Page and Pollux Tactile Studio -->
           <div id="col1-primary">
-            <!-- /read Primary Feature -->
-            <article class="read-lead-feature" id="primary-read">
-              <div class="read-header-meta">
-                <span class="read-section-pill" id="read-active-kicker">Gemini Release &amp; Market Impact</span>
-                <span class="read-date">Updated Today · 4 Min Read</span>
+            <!-- READ · α Castor Editorial Front Page -->
+            <article class="castor-front-article" id="primary-read">
+              <div class="castor-rubric-bar">
+                <span id="read-active-kicker">01 · Gemini Releases Decoded</span>
+                <span style="color:var(--castor-muted);">READ · <span class="greek-sym">α</span> Castor Magazine</span>
               </div>
 
-              <figure class="read-hero-frame">
+              <figure class="castor-art-box">
                 <img
-                  src="./assets/look-e-read-editorial.webp"
-                  alt="Suspended cobalt and coral dichroic glass prisms in a sunlit architectural gallery"
+                  src="./assets/look-d-castor.webp"
+                  alt="Two-tone Risograph editorial print of twin vermilion and prussian stars across browser and mobile screens"
                   width="1376"
                   height="768"
                 />
               </figure>
 
-              <h1 class="read-h1" id="heading-read" tabindex="-1">
+              <h1 class="castor-lead-h1" id="heading-read" tabindex="-1">
                 Google’s Screen-Operating AI Enters the Workplace—What Changes for Teams
               </h1>
 
-              <p class="read-deck" id="deck-read">
-                Gemini Computer Use reaches general availability with plain-English action logs, reshaping how lean teams handle browser ops and software costs.
+              <p class="castor-lead-deck" id="deck-read">
+                Gemini Computer Use reaches general availability with plain-English action logs and screenshot prompt-injection defense—shifting how lean teams handle browser workflows.
               </p>
 
-              <div class="read-cta-bar">
+              <div class="castor-actions">
                 <a
                   href="/series/gemini-computer-use/part-1-computer-use-ga-breakdown.html"
-                  class="btn-read-article"
+                  class="btn-enter-castor"
                 >
-                  <span>Read Full Release Analysis</span>
+                  <span>Read Three-Part Dossier</span>
                   <span aria-hidden="true">→</span>
                 </a>
                 <button
                   type="button"
-                  class="btn-jump-example"
+                  class="btn-castor-outline"
                   data-switch-mode="build"
                 >
-                  ⇄ Open Live Working Example in /build
+                  ⇄ See Working Example in BUILD · Pollux
                 </button>
               </div>
             </article>
 
-            <!-- /build Primary Action Workbench -->
-            <article class="build-lead-workbench" id="primary-build" hidden>
-              <div class="build-header-meta">
-                <span class="build-section-pill">Hands-On Action &amp; Workflows · /build</span>
-                <span class="human-pledge">✦ Built to Enhance People, Never Replace Them</span>
+            <!-- BUILD · β Pollux Tactile Action Studio -->
+            <article class="pollux-workbench-card" id="primary-build" hidden>
+              <div class="pw-top-strip">
+                <span class="pw-badge">BUILD · <span class="greek-sym">β</span> Pollux Action Studio</span>
+                <span class="pw-pledge">✦ Enhance Your Work Process — Never Replace People</span>
               </div>
 
-              <h1 class="build-h1" id="heading-build" tabindex="-1">
-                Pick Your Role. Put Today’s Gemini Update to Work in 5 Minutes.
+              <h1 class="pollux-lead-h1" id="heading-build" tabindex="-1">
+                Pick Your Track. Put Today’s Gemini Release Into Action in 5 Minutes.
               </h1>
 
-              <div class="role-tabs" role="tablist" aria-label="Choose your action track">
-                <button type="button" class="role-tab" role="tab" data-role="smb" aria-selected="true">
-                  Small Business / Solopreneur
+              <div class="role-switches" role="tablist" aria-label="Action tracks">
+                <button type="button" class="role-switch-btn" role="tab" data-role="smb" aria-selected="true">
+                  [01] SMALL BUSINESS
                 </button>
-                <button type="button" class="role-tab" role="tab" data-role="employee" aria-selected="false">
-                  Employee / Team Workflow
+                <button type="button" class="role-switch-btn" role="tab" data-role="employee" aria-selected="false">
+                  [02] AT WORK / ROLE
                 </button>
-                <button type="button" class="role-tab" role="tab" data-role="dev" aria-selected="false">
-                  Developer / Technical
+                <button type="button" class="role-switch-btn" role="tab" data-role="dev" aria-selected="false">
+                  [03] LABS &amp; CODE
                 </button>
               </div>
 
-              <div class="action-recipe-card" id="role-recipe-panel">
-                <div class="recipe-top">
-                  <h2 class="recipe-title" id="recipe-title">
-                    Run Leaner Client &amp; Back-Office Ops Without Extra SaaS Bloat
+              <div class="recipe-box">
+                <div class="recipe-head">
+                  <h2 class="recipe-h2" id="recipe-title">
+                    Run Leaner Client &amp; Admin Ops Without Extra SaaS Bloat
                   </h2>
-                  <span class="recipe-time" id="recipe-time">3 Bite-Sized Steps · ~5 Min</span>
+                  <span class="recipe-tag" id="recipe-time">3 Small Steps · ~5 Min</span>
                 </div>
 
-                <ol class="chunk-steps" id="recipe-steps">
+                <ol class="step-blocks" id="recipe-steps">
                   <li>
-                    <span class="step-num">STEP 01</span>
+                    <span class="sb-num">STEP 01</span>
                     <span>Drop vendor PDFs or browser tables into Gemini Workspace to draft clean Google Sheets trackers in 90 seconds.</span>
                   </li>
                   <li>
-                    <span class="step-num">STEP 02</span>
+                    <span class="sb-num">STEP 02</span>
                     <span>Review Gemini’s plain-English intent log before approving any action—keeping your business judgment in control.</span>
                   </li>
                   <li>
-                    <span class="step-num">STEP 03</span>
-                    <span>Test the interactive invoice &amp; safety walkthrough in the Continuity Module on the right →</span>
+                    <span class="sb-num">STEP 03</span>
+                    <span>Test the live 3-step invoice &amp; safety walkthrough in the Ultramarine Continuity Box on the right →</span>
                   </li>
                 </ol>
 
-                <div class="build-cta-bar">
-                  <a href="/labs/gemini-4-stack-advisor.html" class="btn-enter-build">
-                    <span>Open Small-Biz ROI &amp; Stack Calculator</span>
-                    <span aria-hidden="true">→</span>
+                <div>
+                  <a href="/labs/gemini-4-stack-advisor.html" class="btn-enter-pollux">
+                    <span>Launch Small-Biz ROI &amp; Stack Calculator</span>
+                    <span aria-hidden="true">↗</span>
                   </a>
                 </div>
               </div>
@@ -1832,98 +1687,96 @@
           </div>
 
           <!-- ===============================================================
-               COLUMN 2: STARTS AT LOCKED (0,0) WITH #continuity-box
-               Top-left pixel never jumps! Expands downward on /build, shrinks
-               upward on /read, smoothly moving #col2-below-stack down and up.
+               COLUMN 2: LOCKED (0,0) ULTRAMARINE BLUEPRINT CONTINUITY BOX
+               Top-left (0,0) stays pinned in place! Expands downward on BUILD
+               (pushing lower stack down) and contracts upward on READ (pulling
+               magazine wire stories smoothly back up).
                =============================================================== -->
           <div class="col2-rail">
-            <aside class="continuity-box" id="continuity-box" aria-label="Twin Continuity Bridge">
-              <div class="continuity-surface">
-                <div class="cb-topbar">
-                  <span class="cb-kicker" id="cb-kicker">⇄ Paired /build Working Example</span>
-                  <span class="cb-anchor-badge">Twin Bridge</span>
+            <aside class="continuity-box" id="continuity-box" aria-label="Across the Seam Continuity Bridge">
+              <div class="cb-header">
+                <span class="cb-kicker" id="cb-kicker">⇄ Paired in BUILD · β Pollux</span>
+                <span class="cb-Origin-tag">Across the Seam</span>
+              </div>
+
+              <!-- COMPACT STATE (Shown in READ — Smaller height!) -->
+              <div class="cb-panel" id="cb-panel-compact">
+                <h2 class="cb-title">Done Reading? Try the 3-Step Working Example for This Release.</h2>
+                <p class="cb-desc">
+                  Watch how Computer Use extracts invoice rows and blocks hidden prompt-injection traps in 3 seconds.
+                </p>
+                <button type="button" class="cb-trigger-btn" data-switch-mode="build">
+                  <span>Expand Working Example in BUILD</span>
+                  <span aria-hidden="true">✧ ↘</span>
+                </button>
+              </div>
+
+              <!-- EXPANDED STATE (Shown in BUILD — Larger height, expands downward from locked (0,0)!) -->
+              <div class="cb-panel" id="cb-panel-expanded" hidden>
+                <h2 class="cb-title">Live Working Example: Screen Action &amp; Trap Blocker <span style="font-family:var(--font-mono);font-size:0.66rem;color:var(--gold-pip);">[SIMULATED DEMO]</span></h2>
+                <p class="cb-desc">
+                  Click each step to test the workflow paired with today’s READ cover story:
+                </p>
+
+                <div class="cb-step-tabs" role="group" aria-label="Working example steps">
+                  <button type="button" class="cb-step-btn" data-sim-step="1" aria-pressed="true">01 SCAN TABLE</button>
+                  <button type="button" class="cb-step-btn" data-sim-step="2" aria-pressed="false">02 BLOCK TRAP</button>
+                  <button type="button" class="cb-step-btn" data-sim-step="3" aria-pressed="false">03 FILL SHEET</button>
                 </div>
 
-                <!-- COMPACT PANEL (Shown in /read — Smaller height!) -->
-                <div class="cb-panel" id="cb-panel-compact">
-                  <h2 class="cb-title">Don’t Just Read About Computer Use—Try the 3-Step Example.</h2>
-                  <p class="cb-desc">
-                    Watch how this exact release extracts invoice rows and blocks hidden ad-banner traps in 3 seconds.
-                  </p>
-                  <button type="button" class="cb-action-btn" data-switch-mode="build">
-                    <span>Expand Working Example in /build</span>
-                    <span aria-hidden="true">⚡ ↘</span>
+                <div class="cb-readout" id="sim-output" aria-live="polite">
+                  <span class="cb-plain" id="sim-plain">Step 1: Gemini reads your open vendor portal table and explains its next click in plain English before acting.</span>
+                  <span class="cb-code" id="sim-code">&gt; model="gemini-3.8-flash" ($0.75/1M) · intent="Locate Q4 invoice rows"</span>
+                </div>
+
+                <div class="cb-foot-row">
+                  <a href="/labs/gemini-computer-use-simulator.html" style="font-family:var(--font-mono);font-size:0.71rem;color:var(--gold-pip);font-weight:700;">
+                    Open Full Simulator Lab ↗
+                  </a>
+                  <button type="button" class="cb-back-btn" data-switch-mode="read">
+                    ↖ Shrink Back to READ Story
                   </button>
-                </div>
-
-                <!-- EXPANDED PANEL (Shown in /build — Larger height, expands downward from (0,0)!) -->
-                <div class="cb-panel" id="cb-panel-expanded" hidden>
-                  <h2 class="cb-title">Live Working Example: Screen Action &amp; Safety Check <span style="font-family:var(--font-mono);font-size:0.68rem;color:#FCD34D;">[SIMULATED DEMO]</span></h2>
-                  <p class="cb-desc">
-                    Click each quick step to see what happens under the hood before trying it in your own workflow:
-                  </p>
-
-                  <div class="sim-step-pills" role="group" aria-label="Working example steps">
-                    <button type="button" class="sim-pill" data-sim-step="1" aria-pressed="true">1. Scan Page</button>
-                    <button type="button" class="sim-pill" data-sim-step="2" aria-pressed="false">2. Block Trap</button>
-                    <button type="button" class="sim-pill" data-sim-step="3" aria-pressed="false">3. Fill Sheet</button>
-                  </div>
-
-                  <div class="sim-output-box" id="sim-output" aria-live="polite">
-                    <span class="sim-plain" id="sim-plain">Step 1: Gemini reads your open vendor portal table and explains its next click in plain English before acting.</span>
-                    <span class="sim-code" id="sim-code">model: "gemini-3.8-flash" ($0.75/1M) · intent: "Locate Q4 line items"</span>
-                  </div>
-
-                  <div class="cb-return-row">
-                    <a href="/labs/gemini-computer-use-simulator.html" style="font-family:var(--font-mono);font-size:0.72rem;color:#7DD3FC;font-weight:700;">
-                      Full Interactive Lab ↗
-                    </a>
-                    <button type="button" class="cb-link-subtle" data-switch-mode="read">
-                      ↖ Back to /read Story
-                    </button>
-                  </div>
                 </div>
               </div>
             </aside>
 
-            <!-- SIBLING STACK DIRECTLY BELOW #continuity-box
-                 Moves smoothly down when #continuity-box grows, and glides up when #continuity-box shrinks! -->
-            <div class="col2-below-stack" id="col2-below-stack">
-              <!-- Shown in /read (2 crisp editorial dispatches: Finance/Market + Voices) -->
-              <div id="below-read" style="display:grid;gap:0.75rem;">
-                <article class="read-wire-card">
-                  <span class="rw-cat">AI Finance &amp; Market Landscape</span>
-                  <h3 class="rw-h3">
+            <!-- SIBLING STACK DIRECTLY BELOW #continuity-box -->
+            <div id="col2-below-stack">
+              <!-- Shown in READ: Sections 02 (AI Finance & Markets) & 03 (Voices) -->
+              <div class="castor-wire-stack" id="below-read">
+                <article class="castor-wire-item">
+                  <span class="cw-kicker">02 · AI Finance &amp; Market Impact</span>
+                  <h3 class="cw-h3">
                     <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/" target="_blank" rel="noreferrer">
                       Why 75¢-Per-Million Agent Loops Shift Small-Business Margins
                     </a>
                   </h3>
-                  <p class="rw-p">
+                  <p class="cw-p">
                     Falling inference costs turn enterprise-only automation into everyday operating leverage for independent firms.
                   </p>
                 </article>
 
-                <article class="read-wire-card">
-                  <span class="rw-cat cat-cobalt">Industry Voices &amp; Video Signal</span>
-                  <h3 class="rw-h3">
+                <article class="castor-wire-item">
+                  <span class="cw-kicker" style="color:var(--ultramarine);">03 · Voices &amp; Video Signal</span>
+                  <h3 class="cw-h3">
                     <a href="/series/gemini-4-carbon/part-1-what-changed-vs-argon.html">
                       What Analysts &amp; Builders Are Saying About Gemini 4 Carbon’s 95% Cache Cut
                     </a>
                   </h3>
-                  <p class="rw-p">
-                    A 3-minute synthesis of benchmark reactions, real cost math, and where frontier models head next.
+                  <p class="cw-p">
+                    A 3-minute synthesis of benchmark reactions, real cost math, and where practical AI goes next.
                   </p>
                 </article>
               </div>
 
-              <!-- Shown in /build (1 compact starter kit card pushed cleanly below the expanded Continuity Box) -->
+              <!-- Shown in BUILD: Section 03 Starter Kits Cartridge pushed cleanly down -->
               <div id="below-build" hidden>
-                <div class="build-kit-card">
+                <div class="pollux-kit-module">
                   <div>
-                    <span class="proof-tag" style="color:var(--build-cyan);">Free Starter Download · $0</span>
-                    <h3 class="bk-title">Workspace Prompt Pack &amp; Antigravity Starter Plugin</h3>
+                    <span class="saf-kicker">03 · Free Starter Kit ($0)</span>
+                    <h3 class="pkm-title">Workspace Prompt Vault &amp; Antigravity Starter Plugin</h3>
                   </div>
-                  <a href="/#addons" class="bk-link">Grab Kit →</a>
+                  <a href="/#addons" class="pkm-btn">GRAB KIT →</a>
                 </div>
               </div>
             </div>
@@ -1932,10 +1785,10 @@
       </section>
     </main>
 
-    <!-- Prototype Switcher Strip (Preserves 1-click access to Look D & Case Study Hub) -->
+    <!-- Prototype Switcher Strip -->
     <footer class="studio-dock" aria-label="Brand Evolution Prototype Switcher">
       <div class="studio-dock-inner">
-        <span><strong>Look E · Above-the-Fold Threshold Study</strong> (Look D v2 preserved untouched)</span>
+        <span><strong>Look E · Fraternal Twin Threshold &amp; (0,0) Continuity Bridge</strong> (Look D v2 preserved untouched)</span>
         <nav class="dock-links" aria-label="Prototype Exhibits">
           <a href="./index.html">Case Study Hub</a>
           <span aria-hidden="true">·</span>
@@ -1949,84 +1802,22 @@
           <span aria-hidden="true">·</span>
           <a href="./look-d-fraternal-twins.html">2D · v2</a>
           <span aria-hidden="true">·</span>
-          <a href="./look-e-twin-threshold.html" aria-current="page">3E · Threshold Split</a>
+          <a href="./look-e-twin-threshold.html" aria-current="page">3E · Fraternal Split</a>
         </nav>
       </div>
     </footer>
   </div>
 
-  <!-- =====================================================================
-       SIDE-BY-SIDE "/READ VS /BUILD" QUICK COMPARISON MODAL (<dialog closedby="any">)
-       ===================================================================== -->
-  <dialog id="dlg-read-vs-build" class="compare-dialog" closedby="any" aria-labelledby="dlg-cmp-title">
-    <div class="dlg-head">
-      <h2 id="dlg-cmp-title">Two Connected Twins: What You Get in /read vs. /build</h2>
-      <button type="button" class="dlg-close" commandfor="dlg-read-vs-build" command="close">Close ✕</button>
-    </div>
-    <div class="compare-cols">
-      <div class="cmp-box cmp-read">
-        <span class="route-kicker" style="color:#183EC2;">/read · <span class="greek-sym">α</span> Castor</span>
-        <h3>The AI &amp; Gemini Magazine</h3>
-        <p>For staying sharp on the AI landscape, business economics, and every official Gemini release—without setup steps or code clutter.</p>
-        <ul>
-          <li><strong>Release-Day Breakdowns:</strong> Every Google Gemini update translated into plain English.</li>
-          <li><strong>AI Finance &amp; Market Impact:</strong> How AI shifts pricing, margins, and industry competition.</li>
-          <li><strong>Curated Voices &amp; Videos:</strong> What respected analysts and creators are saying—with 1-click bridges to working /build examples.</li>
-        </ul>
-      </div>
-      <div class="cmp-box cmp-build">
-        <span class="route-kicker" style="color:#38BDF8;">/build · <span class="greek-sym">β</span> Pollux</span>
-        <h3>The Hands-On Action Workbench</h3>
-        <p>For employees, small business owners, and developers who want practical 5-minute steps to put Gemini to work immediately.</p>
-        <ul>
-          <li><strong>Role-Based Workflows:</strong> Human-enhancing guides for operating a small business or upgrading your daily job.</li>
-          <li><strong>Working Release Examples:</strong> Bite-sized, interactive recipes showing how to actually use new Gemini features.</li>
-          <li><strong>Playable Labs &amp; Kits:</strong> Live browser simulators (<code>[SIMULATED DEMO]</code>), ROI calculators, and $0 starter plugins.</li>
-        </ul>
-      </div>
-    </div>
-  </dialog>
-
   <script type="module">
-    // 1. Progressive feature-detected Invoker Commands & <dialog closedby="any"> fallback (modern-web-guidance)
-    const supportsCommandInvoker = 'commandForElement' in HTMLButtonElement.prototype;
-    if (!supportsCommandInvoker) {
-      import('https://esm.run/invokers-polyfill').catch(() => {});
-    }
-
-    const compareDialog = document.getElementById('dlg-read-vs-build');
-    if (compareDialog && !('closedBy' in HTMLDialogElement.prototype)) {
-      compareDialog.addEventListener('click', (event) => {
-        if (event.target !== compareDialog) return;
-        const rect = compareDialog.getBoundingClientRect();
-        const inside =
-          rect.top <= event.clientY &&
-          event.clientY <= rect.top + rect.height &&
-          rect.left <= event.clientX &&
-          event.clientX <= rect.left + rect.width;
-        if (!inside) compareDialog.close();
-      });
-    }
-
-    document.addEventListener('click', (event) => {
-      const cmdBtn = event.target.closest('button[commandfor]');
-      if (!cmdBtn || supportsCommandInvoker) return;
-      const target = document.getElementById(cmdBtn.getAttribute('commandfor'));
-      if (!target) return;
-      const cmd = cmdBtn.getAttribute('command');
-      if (cmd === 'show-modal' && !target.open) target.showModal();
-      else if (cmd === 'close' && target.open) target.close();
-    });
-
-    // 2. Role-Based Action Tracks in /build (Small Business / Employee / Developer)
+    // 1. Role-Based Action Tracks in BUILD · β Pollux
     const ROLE_DATA = {
       smb: {
-        title: 'Run Leaner Client & Back-Office Ops Without Extra SaaS Bloat',
+        title: 'Run Leaner Client & Admin Ops Without Extra SaaS Bloat',
         time: 'Small Business · ~5 Min',
         steps: [
           'Drop vendor PDFs or browser tables into Gemini Workspace to draft clean Google Sheets trackers in 90 seconds.',
           'Review Gemini’s plain-English intent log before approving any action—keeping your business judgment in control.',
-          'Test the interactive invoice & safety walkthrough in the Continuity Module on the right →',
+          'Test the live 3-step invoice & safety walkthrough in the Ultramarine Continuity Box on the right →',
         ],
       },
       employee: {
@@ -2035,23 +1826,23 @@
         steps: [
           'Turn messy meeting notes and inbox threads into structured executive briefs inside Google Docs in one prompt.',
           'Use Gemini as a second set of eyes to spot spreadsheet anomalies—enhancing your output, never replacing your voice.',
-          'Click through the 3-step live example on the right to see safe browser assistance in action →',
+          'Click through the 3-step working example on the right to see safe browser assistance in action →',
         ],
       },
       dev: {
         title: 'Wire Computer Use GA + Native SDK v2.32 Continuation Into Your Stack',
-        time: 'Technical · Copy & Run',
+        time: 'Labs & Code · Copy & Run',
         steps: [
           'Route high-frequency UI verification loops to gemini-3.8-flash ($0.75/1M input) with screenshot injection scanning enabled.',
           'Enable automatic_continuation in @google/genai v2.32+ so multi-step agent runs never drop mid-stream.',
-          'Inspect the live action-intent payload in the Continuity Module on the right or launch the full simulator →',
+          'Inspect the live action-intent payload in the Continuity Box on the right or launch the full simulator →',
         ],
       },
     };
 
     function setActiveRole(roleKey) {
       const data = ROLE_DATA[roleKey] || ROLE_DATA.smb;
-      document.querySelectorAll('.role-tab').forEach((btn) => {
+      document.querySelectorAll('.role-switch-btn').forEach((btn) => {
         btn.setAttribute('aria-selected', String(btn.dataset.role === roleKey));
       });
       document.querySelectorAll('[data-build-role]').forEach((btn) => {
@@ -2064,7 +1855,7 @@
         ...data.steps.map((text, idx) => {
           const li = document.createElement('li');
           const num = document.createElement('span');
-          num.className = 'step-num';
+          num.className = 'sb-num';
           num.textContent = `STEP 0${idx + 1}`;
           const body = document.createElement('span');
           body.textContent = text;
@@ -2074,24 +1865,24 @@
       );
     }
 
-    document.querySelectorAll('.role-tab').forEach((btn) => {
+    document.querySelectorAll('.role-switch-btn').forEach((btn) => {
       btn.addEventListener('click', () => setActiveRole(btn.dataset.role));
     });
 
-    // 3. Read Topic Quick Switcher (Releases / AI Markets / Voices)
+    // 2. Read Category Switcher in READ · α Castor
     const READ_TOPICS = {
       releases: {
-        kicker: 'Gemini Release & Market Impact',
+        kicker: '01 · Gemini Releases Decoded',
         heading: 'Google’s Screen-Operating AI Enters the Workplace—What Changes for Teams',
-        deck: 'Gemini Computer Use reaches general availability with plain-English action logs, reshaping how lean teams handle browser ops and software costs.',
+        deck: 'Gemini Computer Use reaches general availability with plain-English action logs and screenshot prompt-injection defense—shifting how lean teams handle browser workflows.',
       },
       markets: {
-        kicker: 'AI Finance & Market Landscape',
-        heading: '75¢-Per-Million Agent Loops Are Rewriting Software Economics for Small Firms',
+        kicker: '02 · AI Finance & Market Impact',
+        heading: '75¢-Per-Million Agent Loops Are Rewriting Software Margins for Small Firms',
         deck: 'Why collapsing Gemini 3.8 Flash and 95% cached Carbon pricing shift AI ROI from giant enterprises to nimble operators.',
       },
       voices: {
-        kicker: 'Ecosystem Voices & Video Signal',
+        kicker: '03 · Voices & Video Signal',
         heading: 'What Independent Analysts & Builders Are Saying About Multi-Window Agents',
         deck: 'A plain-English synthesis of this week’s sharpest talks, creator benchmarks, and where practical AI workflows go next.',
       },
@@ -2107,19 +1898,19 @@
       });
     }
 
-    // 4. Interactive 3-Step Working Example inside Continuity Box ([SIMULATED DEMO])
+    // 3. Interactive 3-Step Working Example inside Continuity Box ([SIMULATED DEMO])
     const SIM_STEPS = {
       '1': {
         plain: 'Step 1: Gemini reads your open vendor portal table and explains its next click in plain English before acting.',
-        code: 'model: "gemini-3.8-flash" ($0.75/1M) · intent: "Locate Q4 invoice rows"',
+        code: '> model="gemini-3.8-flash" ($0.75/1M) · intent="Locate Q4 invoice rows"',
       },
       '2': {
         plain: 'Step 2: Screenshot safety scan spots a hidden prompt-injection trap inside a sidebar banner and blocks it automatically.',
-        code: 'safety_scan: "BLOCKED adversarial text in region [740, 120]" · human_control: true',
+        code: '> safety_scan="BLOCKED adversarial text in [740, 120]" · human_control=true',
       },
       '3': {
         plain: 'Step 3: Clean line items copy straight into your Google Sheet tracker—saving 25 minutes of manual re-typing.',
-        code: 'status: "READY_FOR_REVIEW" · rows_prepared: 14 · zero_unapproved_writes: true',
+        code: '> status="READY_FOR_REVIEW" · rows_prepared=14 · zero_unapproved_writes=true',
       },
     };
 
@@ -2137,7 +1928,7 @@
       });
     });
 
-    // 5. Mode Switching + Pinned (0,0) Continuity Box Expansion/Contraction Choreography
+    // 4. Mode Switching + Pinned (0,0) Continuity Box Expansion/Contraction Choreography
     const htmlEl = document.documentElement;
     const stageSplit = document.getElementById('stage-split');
     const stageSingle = document.getElementById('stage-single');
@@ -2149,22 +1940,21 @@
     const cbExpanded = document.getElementById('cb-panel-expanded');
     const belowRead = document.getElementById('below-read');
     const belowBuild = document.getElementById('below-build');
-    const rememberChk = document.getElementById('chk-remember-twin');
 
     const TITLES = {
-      split: 'GeminiPulse — Choose Your Lens (/read Magazine ⇄ /build Workbench)',
-      read: 'GeminiPulse /read — α Castor (Gemini Releases, AI Markets & Landscape)',
-      build: 'GeminiPulse /build — β Pollux (Practical Workflows, How-Tos & Live Labs)',
+      split: 'GeminiPulse — Two Fraternal Twins (READ · α Castor ⇄ BUILD · β Pollux)',
+      read: 'GeminiPulse /read — α Castor (The AI & Gemini Magazine)',
+      build: 'GeminiPulse /build — β Pollux (The Hands-On Action Studio)',
     };
 
     function syncControls(mode) {
       htmlEl.dataset.mode = mode;
       document.title = TITLES[mode] || TITLES.split;
 
-      document.querySelectorAll('.wing-pill-read').forEach((b) => {
+      document.querySelectorAll('.btn-wing-castor').forEach((b) => {
         b.setAttribute('aria-pressed', String(mode === 'read'));
       });
-      document.querySelectorAll('.wing-pill-build').forEach((b) => {
+      document.querySelectorAll('.btn-wing-pollux').forEach((b) => {
         b.setAttribute('aria-pressed', String(mode === 'build'));
       });
       const splitChip = document.getElementById('btn-split-overview');
@@ -2173,14 +1963,6 @@
       const url = new URL(window.location.href);
       url.searchParams.set('view', mode);
       window.history.replaceState({}, '', url);
-
-      if (rememberChk?.checked && (mode === 'read' || mode === 'build')) {
-        try {
-          localStorage.setItem('gp_preferred_twin', mode);
-        } catch {
-          // ignore storage quota errors
-        }
-      }
     }
 
     function applyDOMForMode(mode, directionHint = '') {
@@ -2199,9 +1981,9 @@
       primaryRead.hidden = isBuild;
       primaryBuild.hidden = !isBuild;
 
-      cbKicker.textContent = isBuild
-        ? '⚡ Active Working Example · Paired With /read'
-        : '⇄ Paired /build Working Example';
+      cbKicker.innerHTML = isBuild
+        ? '✧ Active Working Example · Paired With READ · <span class="greek-sym">α</span> Castor'
+        : '⇄ Paired in BUILD · <span class="greek-sym">β</span> Pollux';
 
       cbCompact.hidden = isBuild;
       cbExpanded.hidden = !isBuild;
@@ -2230,10 +2012,9 @@
 
       const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      // CASE A: Switching directly between /read <-> /build
+      // Direct switch between READ <-> BUILD:
       // Keep #continuity-box pinned at exact top-left (0,0) of Column 2,
-      // and smoothly morph its block-size downward (read -> build) or upward (build -> read)
-      // so the content underneath glides down or up in real-time!
+      // and smoothly expand its bottom edge downward (read -> build) or shrink upward (build -> read)
       if ((prevMode === 'read' && nextMode === 'build') || (prevMode === 'build' && nextMode === 'read')) {
         if (prefersReduced) {
           applyDOMForMode(nextMode);
@@ -2247,11 +2028,9 @@
         continuityBox.style.blockSize = `${startHeight}px`;
         applyDOMForMode(nextMode, direction);
 
-        // Measure natural target intrinsic height while temporarily unlocked
         continuityBox.style.blockSize = 'auto';
         const endHeight = continuityBox.getBoundingClientRect().height;
 
-        // Lock back to startHeight, force style flush, then transition smoothly to endHeight
         continuityBox.style.blockSize = `${startHeight}px`;
         continuityBox.getBoundingClientRect();
         continuityBox.style.blockSize = `${endHeight}px`;
@@ -2267,7 +2046,6 @@
         return;
       }
 
-      // CASE B: Entering from 50/50 Split Threshold <-> Single Twin (View Transition Metamorphosis)
       if (!document.startViewTransition || prefersReduced) {
         applyDOMForMode(nextMode);
         routeFocusForMode(nextMode);
@@ -2282,7 +2060,6 @@
       });
     }
 
-    // Wire all [data-switch-mode] triggers (including direct sub-nav links on both wings!)
     document.querySelectorAll('[data-switch-mode]').forEach((btn) => {
       btn.addEventListener('click', () => {
         const targetMode = btn.dataset.switchMode;
@@ -2292,35 +2069,12 @@
       });
     });
 
-    rememberChk?.addEventListener('change', () => {
-      try {
-        if (!rememberChk.checked) {
-          localStorage.removeItem('gp_preferred_twin');
-        } else if (htmlEl.dataset.mode === 'read' || htmlEl.dataset.mode === 'build') {
-          localStorage.setItem('gp_preferred_twin', htmlEl.dataset.mode);
-        }
-      } catch {
-        // ignore
-      }
-    });
-
-    // Initial state from ?view=split|read|build or saved localStorage preference
     const params = new URLSearchParams(window.location.search);
     const urlView = params.get('view');
-    let savedPref = null;
-    try {
-      savedPref = localStorage.getItem('gp_preferred_twin');
-    } catch {
-      // ignore
-    }
-    if (savedPref && rememberChk) rememberChk.checked = true;
-
     const initialMode =
       urlView === 'read' || urlView === 'build' || urlView === 'split'
         ? urlView
-        : savedPref === 'read' || savedPref === 'build'
-          ? savedPref
-          : 'split';
+        : 'split';
 
     applyDOMForMode(initialMode);
   </script>
