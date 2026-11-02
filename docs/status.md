@@ -1,11 +1,11 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-11-01 21:25 EST (Rebuilt Round 4 Look E Fraternal Twin Threshold & Pinned (0,0) Ultramarine Continuity Bridge [look-e-twin-threshold.html] — Look D v2 & Production public/src/App.jsx 100% Untouched)`
+- **Last Updated:** `2026-11-01 23:18 EST (Built Look F Clean Self-Explanatory Arrival [look-f-clean-split.html] Using Google Modern-Web-Guidance Only — Look D v2, Look E & Production public/src/App.jsx 100% Untouched)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
 - **Firebase Default Hosting URL:** `https://geminipulse-com.web.app`
-- **Local Dev Preview URL:** `http://localhost:8080` *(Brand Evolution Portfolio Hub: `http://localhost:8080/prototypes/` · Look E Fraternal Twin Threshold: `http://localhost:8080/prototypes/look-e-twin-threshold.html` · Look D v2 Preserved: `http://localhost:8080/prototypes/look-d-fraternal-twins.html`)*
+- **Local Dev Preview URL:** `http://localhost:8080` *(Brand Evolution Portfolio Hub: `http://localhost:8080/prototypes/` · Look F Clean Split: `http://localhost:8080/prototypes/look-f-clean-split.html` · Look E: `http://localhost:8080/prototypes/look-e-twin-threshold.html` · Look D v2: `http://localhost:8080/prototypes/look-d-fraternal-twins.html`)*
 - **Firebase Project ID:** `geminipulse-com` (Project Number `643794480842`, Spark Free Plan — **\$0.00/mo**)
 - **Firebase Web App ID:** `1:643794480842:web:9f973bc1a0d7670c920e33` (`GeminiPulse Web`)
 - **Concept Originator & Creative Catalyst:** Neil S. White (`https://www.linkedin.com/in/neilswhite`, **Agile LLC**)
@@ -13,7 +13,11 @@
 
 ---
 
-## 1. Completed & Live on `v2.0` (2026-11-01 09:25 PM ET Update)
+## 1. Completed & Live on `v2.0` (2026-11-01 11:18 PM ET Update)
+
+- **Built `Look F` — Clean, Self-Explanatory Above-the-Fold Arrival (`public/public/prototypes/look-f-clean-split.html` — Built with Google `modern-web-guidance` Only; Look D `v2`, Look E & Production `public/src/App.jsx` 100% Untouched):**
+  - **Detached Custom `creative-ux-studio` (`brand-ux-director`) Dogma:** Eliminated the forced 55% whitespace voids (`justify-content: space-between` that stranded content on `1920px+` full-screen monitors), removed confusing mid-card article walls from the decision screen, and dropped Greek codename riddles in favor of a centered, self-explanatory top orientation header (*"Two ways to stay ahead with Google Gemini"*), two cohesive doors (**`READ`** vs. **`BUILD`**), and 3 scannable 2-word topic tiles per side (`Gemini Releases`, `AI & Markets`, `Voices & Video` vs. `Small Business`, `At Work (DIY)`, `Live Labs & Code`).
+  - **Verified Across All 4 Viewports (`0` Horizontal Overflows):** Full-screen `1920×1080` (`1920 === 1920`), Desktop `1440×900` (`1440 === 1440`), 60% Window `1080×860` (`1065 === 1065`), and 30% Narrow Stacked `480×860` (`480 === 480`), with `#continuity-box` pinned at `x = 837, y = 80.8` across `READ` and `BUILD`.
 
 - **Rebuilt Round 4 `Look E` — Above-the-Fold Fraternal Twin Threshold & Pinned `(0,0)` Ultramarine Continuity Bridge (`public/public/prototypes/look-e-twin-threshold.html` — Look D `v2` & Production `public/src/App.jsx` 100% Untouched):**
   - **Restored True Fraternal Twin DNA (Same Tactile Ink Family, Two Unmistakable Personalities — `900px === 900px` Above-the-Fold Fit on `1440×900` Desktop Across All 3 Views; `0` Horizontal Overflows at `1440px` & `390px`):**
