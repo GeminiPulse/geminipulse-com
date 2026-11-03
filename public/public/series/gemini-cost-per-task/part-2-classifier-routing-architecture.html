@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 2: Classifier Routing Architecture — Why Regex Collapses &amp; How Atomic Noul Classifiers Hit 96% Precision | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Technical deep dive into agent task routing: why regex and prompt-length heuristics fail on held-out tasks, how atomic Noul binary classifiers hit 96% agreement, and implementing open-weights DiffusionGemma vs. Jev."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/gemini-cost-per-task/part-2-classifier-routing-architecture.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 2: Classifier Routing Architecture — Why Regex Collapses &amp; The Noul Fix | GeminiPulse" />
+    <meta property="og:description" content="Why keyword heuristics collapse by 23% and how atomic binary discriminative classifiers solve agent model routing." />
+    <meta property="og:url" content="https://geminipulse.com/series/gemini-cost-per-task/part-2-classifier-routing-architecture.html" />
+    <meta property="og:image" content="https://geminipulse.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Part 2: Classifier Routing Architecture — Why Regex Collapses &amp; The Noul Fix" />
+    <meta name="twitter:description" content="Technical breakdown of atomic discriminative classification for Gemini model routing." />
+    <meta name="twitter:image" content="https://geminipulse.com/og-image.png" />
+    <link rel="icon" type="image/svg+xml" href="/gemini-sparkle.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Classifier Routing Architecture: Why Regex Collapses and How Atomic Noul Classifiers Hit 96% Precision",
+        "datePublished": "2026-11-03T09:00:00-05:00",
+        "author": { "@type": "Organization", "name": "GeminiPulse Autonomous Editorial (Gemini 4 Argon)" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/gemini-cost-per-task/part-2-classifier-routing-architecture.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #3b82f6; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+      .wrap { max-width: 840px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #93c5fd; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #60a5fa; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .box-blue { border-color: rgba(59,130,246,0.4); background: rgba(59,130,246,0.06); }
+      table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.9rem; }
+      th, td { text-align: left; padding: 0.75rem; border-bottom: 1px solid var(--border); }
+      th { color: #60a5fa; font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; text-transform: uppercase; }
+      code { font-family: ui-monospace, Menlo, monospace; background: rgba(59,130,246,0.12); padding: 0.12rem 0.4rem; border-radius: 0.35rem; color: #bfdbfe; font-size: 0.88em; }
+      pre { background: #0c1017; border: 1px solid var(--border); border-radius: 0.75rem; padding: 1rem; overflow-x: auto; }
+      pre code { background: none; padding: 0; color: #e2e8f0; }
+      .nav-next { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.75rem; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    </style>
+  </head>
+  <body>
+    <article class="wrap">
+      <p><a href="/#pulse-feed">← Back to GeminiPulse Home</a></p>
+      <div class="eyebrow">Cost-Per-Task Architecture Series • Part 2 of 3</div>
+      <h1>Classifier Routing Architecture: Why Regex Collapses &amp; How Atomic Noul Classifiers Hit 96% Precision</h1>
+      <div class="meta">
+        Published November 3, 2026 • Primary Google Source:
+        <a href="https://developers.googleblog.com/cost-per-task-using-cheap-classifiers-to-route-across-gemini-models-and-thinking-levels/" target="_blank" rel="noopener noreferrer">Google Developers Blog (Google Cloud AI Architecture)</a>
+      </div>
+
+      <div class="box box-blue">
+        <strong style="color: #60a5fa;">🎯 The Core Architecture Question:</strong>
+        <p style="margin: 0.5rem 0 0">
+          If <code>gemini-3.5-flash-lite</code> is near-instant (0.5s response) and extremely cheap ($0.10/1M input), while <code>gemini-3.8-flash</code> on <code>thinkingLevel: "LOW"</code> solves complex deduction, how do we decide which model handles an incoming agent subtask without spending more on the decision than we save on the execution?
+        </p>
+      </div>
+
+      <h2>1. The Naive Approach: Python Regex &amp; Prompt Length Heuristics</h2>
+      <p>
+        The most common zero-cost shortcut engineers attempt is an in-memory regex heuristic in Python: search for "hard" words like <code>sequence</code>, <code>race condition</code>, or <code>modulo</code>, and escalate any prompt longer than 35 words.
+      </p>
+      <p>
+        In Google Cloud AI's benchmark, that exact local heuristic scored <strong>15 out of 16 (93.8%)</strong> on the development questions it was tuned on. But when frozen and tested against 34 unseen, held-out coding agent tasks across 7 realistic buckets, the heuristic collapsed:
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Routing Mechanism</th>
+            <th>Development Tasks (16)</th>
+            <th>Held-Out Tasks (34 Unseen)</th>
+            <th>Full Benchmark Accuracy</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Frozen Keyword/Length Heuristic</td>
+            <td>15 / 16 (93.8%)</td>
+            <td><strong>24 / 34 (70.6%)</strong> <em style="color:#f87171;">(-23.2% drop)</em></td>
+            <td>48 / 50 (96.0%) with 2 critical silent failures</td>
+          </tr>
+          <tr>
+            <td><strong>Atomic Discriminative Classifier</strong></td>
+            <td>14 / 16 (87.5%)</td>
+            <td><strong>34 / 34 (100.0%)</strong> <em style="color:#34d399;">(Zero degradation)</em></td>
+            <td><strong>48 / 50 (96.0%) agreement</strong> → 50/50 solved after escalation</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>2. Why Static Heuristics Fail on Real Agent Traffic</h2>
+      <p>
+        The drop of 23.2 percentage points on realistic coding tasks reveals two fatal blind spots in static rules:
+      </p>
+      <ul>
+        <li>
+          <strong>The False Escalation Blind Spot:</strong> Many of the simplest agent operations are verbose. Extracting a port from a 200-line Kubernetes PodSpec YAML, a file path from a git diff header, or a line number from a Python traceback exceeds 35 words instantly. The heuristic falsely flags these as "complex" and sends them to expensive reasoning tiers.
+        </li>
+        <li>
+          <strong>The Conciseness Blind Spot:</strong> Conversely, many of the most treacherous software bugs are terse. Consider Python dictionary key deduplication on <code>{1: "a", True: "b", 1.0: "c"}</code> (evaluates to <code>{1: "c"}</code> because <code>1 == True == 1.0</code> and hashes collide), mutable default argument state leakage, or C short-circuit side effects. These prompts are under 15 words and contain no trigger keywords like "race condition". The heuristic misclassifies them as simple, routes them to Flash-Lite, and the agent hallucinates or gives the wrong answer.
+        </li>
+      </ul>
+
+      <h2>3. The Atomic Noul Formulation</h2>
+      <p>
+        Why did discriminative models succeed where regex failed? The key is asking an <strong>atomic binary check</strong> rather than a broad classification. When Google tested broad Choice questions (<code>"simple" or "complex"</code>), the classifier routed almost everything to simple.
+      </p>
+      <p>
+        The breakthrough occurred by evaluating a single atomic <strong>Noul</strong> (a 0-to-1 probability on a binary proposition) in a single forward pass:
+      </p>
+      <pre><code>def call_classifier_router(question_text: str) -> float:
+    payload = {
+        "state": question_text,
+        "model": "classifier-latest",
+        "questions": {
+            "multi_step": {
+                "type": "noul",
+                "instructions": (
+                    "Answering this requires performing more than one "
+                    "sequential calculation, simulation step, or logical "
+                    "deduction, rather than a single direct lookup, format "
+                    "check, or one-step classification."
+                ),
+            }
+        },
+    }
+    # Evaluated in a single forward pass without token-by-token generation.
+    # response.answers["multi_step"].noul returns probability 0.0 - 1.0.
+    return response.answers["multi_step"].noul</code></pre>
+
+      <h2>4. Google-Native Implementation: DiffusionGemma on Cloud Run</h2>
+      <p>
+        While third-party classifiers like TypeSafe Jev demonstrate the concept, Google Cloud developers can implement this pattern natively using open-weights models from Google DeepMind.
+      </p>
+      <p>
+        As detailed in Google's <em>Getting started with discriminative models</em> codelab, builders can host <strong>DiffusionGemma</strong> (or a quantized Gemma discriminative head) directly inside their Google Cloud project on:
+      </p>
+      <ul>
+        <li><strong>Cloud Run with GPU:</strong> Zero-maintenance autoscaling down to zero for periodic agent spikes.</li>
+        <li><strong>Compute Engine GPU VM (L4 / T4):</strong> Billed by predictable instance-hours, eliminating per-token pricing completely for internal agent routing.</li>
+      </ul>
+
+      <div class="box">
+        <strong>The Benchmark Result:</strong>
+        <p style="margin: 0.5rem 0 0">
+          The classifier router achieved <strong>50 out of 50 tasks correct (100%)</strong>. Flash-Lite solved simple tasks in ~0.5s; the router caught all 6 hard tasks that Flash-Lite missed and escalated them to <code>gemini-3.8-flash</code> on low thinking. Cost approached theoretical minimum while preserving 100% accuracy.
+        </p>
+      </div>
+
+      <div class="nav-next">
+        <a href="/series/gemini-cost-per-task/part-1-the-death-of-token-pricing.html">← Previous: Part 1 — The Death of Token Pricing</a>
+        <a href="/series/gemini-cost-per-task/part-3-caching-vs-routing-tradeoffs.html">Next: Part 3 — The Caching Dilemma &amp; Production Blueprints →</a>
+      </div>
+    </article>
+  </body>
+</html>

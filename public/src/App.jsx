@@ -1471,6 +1471,24 @@ export default function App() {
                     <span className="truncate">{item.groundedBy}</span>
                   </span>
                   <div className="flex flex-wrap items-center gap-2">
+                    {item.id === 'pulse-cost-per-task-classifier-routing' && (
+                      <a
+                        href="/series/gemini-cost-per-task/part-1-the-death-of-token-pricing.html"
+                        onClick={() => trackPulseEvent('release_series_jump', { from: 'cost_per_task_card' })}
+                        className="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/35 font-semibold whitespace-nowrap hover:bg-emerald-500/30 transition-colors"
+                      >
+                        3-Part Series &amp; Simulator →
+                      </a>
+                    )}
+                    {item.id === 'pulse-gemini-2-5-deprecation-routing' && (
+                      <a
+                        href="/series/gemini-2-5-migration/part-1-deprecation-and-auto-routing.html"
+                        onClick={() => trackPulseEvent('release_series_jump', { from: 'gemini_2_5_card' })}
+                        className="px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/35 font-semibold whitespace-nowrap hover:bg-amber-500/30 transition-colors"
+                      >
+                        3-Part Series →
+                      </a>
+                    )}
                     {item.id === 'pulse-gemini-computer-use-ga' && (
                       <a
                         href="/series/gemini-computer-use/part-1-computer-use-ga-breakdown.html"

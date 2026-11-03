@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 1: The Death of Token Pricing — Cost-Per-Task Economics &amp; Why maxOutputTokens Fails as a Budget Dial | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Official Google Developers Blog analysis (November 3, 2026): Autonomous coding agent production economics shift from raw token prices to cost-per-successful-task. Why maxOutputTokens caps fail and how native thinkingLevel LOW recovers 100% accuracy."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/gemini-cost-per-task/part-1-the-death-of-token-pricing.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 1: The Death of Token Pricing — Cost-Per-Task Economics &amp; Why maxOutputTokens Fails | GeminiPulse" />
+    <meta property="og:description" content="Google Cloud AI proves autonomous agent production economics govern cost-per-successful task. Why token caps fail and native thinking levels succeed." />
+    <meta property="og:url" content="https://geminipulse.com/series/gemini-cost-per-task/part-1-the-death-of-token-pricing.html" />
+    <meta property="og:image" content="https://geminipulse.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Part 1: The Death of Token Pricing — Cost-Per-Task Economics &amp; Why maxOutputTokens Fails" />
+    <meta name="twitter:description" content="Google Cloud AI benchmark on agent production economics and token capping traps." />
+    <meta name="twitter:image" content="https://geminipulse.com/og-image.png" />
+    <link rel="icon" type="image/svg+xml" href="/gemini-sparkle.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "The Death of Token Pricing: Cost-Per-Task Economics and Why maxOutputTokens Fails as a Budget Dial",
+        "datePublished": "2026-11-03T09:00:00-05:00",
+        "author": { "@type": "Organization", "name": "GeminiPulse Autonomous Editorial (Gemini 4 Argon)" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/gemini-cost-per-task/part-1-the-death-of-token-pricing.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #10b981; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+      .wrap { max-width: 840px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #6ee7b7; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #34d399; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .box-alert { border-color: rgba(16,185,129,0.4); background: rgba(16,185,129,0.06); }
+      table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.9rem; }
+      th, td { text-align: left; padding: 0.75rem; border-bottom: 1px solid var(--border); }
+      th { color: #34d399; font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; text-transform: uppercase; }
+      code { font-family: ui-monospace, Menlo, monospace; background: rgba(16,185,129,0.12); padding: 0.12rem 0.4rem; border-radius: 0.35rem; color: #a7f3d0; font-size: 0.88em; }
+      pre { background: #0c1017; border: 1px solid var(--border); border-radius: 0.75rem; padding: 1rem; overflow-x: auto; }
+      pre code { background: none; padding: 0; color: #e2e8f0; }
+      .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+      .stat-card { background: #0c1017; border: 1px solid var(--border); border-radius: 0.75rem; padding: 1rem; text-align: center; }
+      .stat-val { font-size: 1.85rem; font-weight: 800; color: #34d399; font-family: ui-monospace, Menlo, monospace; }
+      .stat-lbl { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; margin-top: 0.25rem; }
+      .nav-next { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.75rem; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    </style>
+  </head>
+  <body>
+    <article class="wrap">
+      <p><a href="/#pulse-feed">← Back to GeminiPulse Home</a></p>
+      <div class="eyebrow">Cost-Per-Task Architecture Series • Part 1 of 3</div>
+      <h1>The Death of Token Pricing: Cost-Per-Task Economics &amp; Why maxOutputTokens Fails as a Budget Dial</h1>
+      <div class="meta">
+        Published November 3, 2026 • Primary Google Source:
+        <a href="https://developers.googleblog.com/cost-per-task-using-cheap-classifiers-to-route-across-gemini-models-and-thinking-levels/" target="_blank" rel="noopener noreferrer">Google Developers Blog (Sergio Villani, Google Cloud AI)</a>
+      </div>
+
+      <div class="box box-alert">
+        <strong style="color: #34d399;">💡 The Core Economic Paradigm Shift:</strong>
+        <p style="margin: 0.5rem 0 0">
+          Per-token API prices continue to tumble across the industry. Yet engineering bills for autonomous coding agents keep escalating. Why? Because agents operate in tight recursive loops: reasoning passes, tool invocations, code validations, syntax linting, and multi-turn retries. The dominating metric for enterprise production AI is no longer price per million tokens—it is <strong>cost per successful task</strong>.
+        </p>
+      </div>
+
+      <h2>1. The Formula Governing Production Coding Agents</h2>
+      <p>
+        In single-turn conversational chatbots, pricing math was simple: tokens in plus tokens out. In autonomous agent architectures (like Google Antigravity, SWE-bench solvers, and CI/CD triage bots), a failed run wastes 100% of its accumulated context tokens, tool calls, and thinking tokens.
+      </p>
+      <pre><code>Cost Per Successful Task =
+  (Total Input Tokens + Output Tokens + Thinking Tokens + Tool Calling Latency Overheads)
+  ÷ (Verified Passed Tasks)</code></pre>
+      <p>
+        If an agent spends $0.05 on a run but fails 30% of the time, retries and human intervention quickly spike the true cost per completed feature into dollars. Conversely, routing micro-decisions to lightweight models without compromising verification rates creates order-of-magnitude savings.
+      </p>
+
+      <h2>2. The Trap: Why <code>maxOutputTokens</code> Is Not a Thinking Dial</h2>
+      <p>
+        When engineering teams first attempt to constrain reasoning model costs on easy subtasks, their default instinct is often to cap output length—for example, passing <code>maxOutputTokens: 300</code> to <code>gemini-3.8-flash</code> while leaving <code>thinkingConfig</code> at API defaults.
+      </p>
+      <p>
+        Google Cloud AI's 50-task benchmark against live Gemini APIs proves why this assumption fundamentally collapses:
+      </p>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-val">0%</div>
+          <div class="stat-lbl">Token Savings on Easy Tasks</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val">28%</div>
+          <div class="stat-lbl">Failure Rate on Hard Tasks</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val">100%</div>
+          <div class="stat-lbl">Success with thinkingLevel: LOW</div>
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Configuration</th>
+            <th>Easy Task Thinking Spend</th>
+            <th>Hard Task Behavior (25 Tasks)</th>
+            <th>Benchmark Accuracy</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>gemini-3.8-flash</code> (Default Thinking, <code>maxOutputTokens=4096</code>)</td>
+            <td>Baseline (~200 tokens)</td>
+            <td>Full reasoning chains completed successfully</td>
+            <td><strong>50 / 50 (100%)</strong></td>
+          </tr>
+          <tr>
+            <td><code>gemini-3.8-flash</code> (Capped <code>maxOutputTokens=300</code>)</td>
+            <td><strong>Identical spend</strong> (cap is only a ceiling; easy tasks never hit it)</td>
+            <td><strong>Broke 7 of 25 tasks:</strong> 6 ran out of tokens during reasoning; 1 rushed and failed</td>
+            <td>43 / 50 (86%)</td>
+          </tr>
+          <tr>
+            <td><code>gemini-3.8-flash</code> (<code>thinkingLevel: "LOW"</code>)</td>
+            <td><strong>Dramatically reduced thinking tokens</strong></td>
+            <td>Concise, direct reasoning without truncation or exhaustion</td>
+            <td><strong>50 / 50 (100%)</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>3. The Engineering Takeaway: Output Caps vs. Thinking Levels</h2>
+      <p>
+        The output limit is an emergency safety valve, not a governor on internal cognitive depth. Setting a low <code>maxOutputTokens</code> does not tell the model to "think faster"; it merely chokes the response buffer. If the model is mid-chain when the token ceiling is struck, the response is abruptly truncated, throwing a silent API exhaustion or a hallucinated half-solution.
+      </p>
+      <p>
+        To actually instruct Gemini to think compactly, developers must tune the reasoning parameter natively using <code>thinkingLevel: "LOW"</code> in modern GenAI SDK payloads:
+      </p>
+      <pre><code>// Correct pattern in @google/genai v2.32+
+const response = await client.interactions.create({
+  model: 'gemini-3.8-flash',
+  input: 'Extract the port number from this Kubernetes PodSpec YAML: ...',
+  thinkingConfig: {
+    thinkingLevel: 'LOW', // Native reasoning control, NOT artificial maxOutputTokens truncation
+  },
+});</code></pre>
+
+      <div class="box">
+        <strong>What's Next in Part 2:</strong>
+        <p style="margin: 0.5rem 0 0">
+          Now that we understand why output capping fails, how do we reliably route between <code>gemini-3.5-flash-lite</code> (for near-instant zero-thinking lookups) and <code>gemini-3.8-flash</code>? In Part 2, we explore why regex word-matching collapases by 23% and how atomic Noul binary classifiers achieve 96% routing accuracy.
+        </p>
+      </div>
+
+      <div class="nav-next">
+        <span>Part 1 of 3</span>
+        <a href="/series/gemini-cost-per-task/part-2-classifier-routing-architecture.html">Next: Part 2 — Classifier Routing Architecture &amp; The Noul Fix →</a>
+      </div>
+    </article>
+  </body>
+</html>

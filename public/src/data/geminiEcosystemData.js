@@ -5,6 +5,21 @@
 
 export const PULSE_INTELLIGENCE_FEED = [
   {
+    id: 'pulse-cost-per-task-classifier-routing',
+    title: 'Cost Per Task: Google Releases Blueprint for Cheap Classifiers to Route Across Gemini Models & Thinking Levels',
+    tldr: 'Released November 3, 2026: Google Cloud AI publishes benchmark results proving that routing agent tasks via lightweight classifiers (Jev or open-weights DiffusionGemma) paired with `thinkingLevel: "LOW"` on `gemini-3.8-flash` beats plain Flash, keyword heuristics, and token capping—achieving 100% accuracy while dramatically cutting cost-per-successful-task.',
+    summary:
+      'Authored by Sergio Villani (Google Cloud AI): Production economics for autonomous coding agents now pivot on cost per successful task rather than raw per-token API pricing. Experiments reveal regex/keyword heuristics collapse by 23.2% on unseen tasks and capping maxOutputTokens breaks 28% of complex tasks without reducing easy-task thinking spend. In contrast, atomic Noul questions routed to `gemini-3.5-flash-lite` with escalation to `gemini-3.8-flash` (`thinkingLevel: "LOW"`) achieved 100% benchmark accuracy (50/50) at near-optimal latency and cost, while highlighting critical trade-offs with implicit context caching.',
+    category: 'Agents & Antigravity',
+    tag: 'Architecture Blueprint',
+    modelBadge: 'gemini-3.8-flash / 3.5-flash-lite',
+    impactScore: '9.9 / 10',
+    date: '2026-11-03T14:00:00Z',
+    sourceLabel: 'Google Developers Blog: Cost Per Task Guide',
+    sourceUrl: 'https://developers.googleblog.com/cost-per-task-using-cheap-classifiers-to-route-across-gemini-models-and-thinking-levels/',
+    groundedBy: 'Google Cloud AI & Developers Blog (Verified Nov 3, 2026)',
+  },
+  {
     id: 'pulse-gemini-2-5-deprecation-routing',
     title: 'Google Deprecates Gemini 2.5 Pro & Flash: Automatic Routing to 3.8 Flash & 3.5 Flash-Lite Starting Dec 1, 2026',
     tldr: 'Released November 2, 2026: Google officially deprecates `gemini-2.5-pro` and `gemini-2.5-flash` from Google AI Studio. Effective December 1, 2026, all API traffic automatically routes to `gemini-3.8-flash` ($0.75/$3.75) and `gemini-3.5-flash-lite` ($0.10/$0.40), cutting token costs by up to 80% while enforcing strict thought_signature and thinking_level migrations.',

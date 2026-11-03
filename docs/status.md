@@ -1,6 +1,6 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-11-03 03:23 EST (Built Look I Celestial Couture Magazine & Interactive 8-Star Gemini Constellation Atlas Prototype while permanently preserving Look H)`
+- **Last Updated:** `2026-11-03 12:45 EST (12:45 PM Curation Check: Published Cost Per Task & Classifier Routing Series Parts 1–3 + Live Agile Labs Routing Simulator /labs/gemini-cost-per-task-calculator.html from Sergio Villani's Google Developers Blog benchmark)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
@@ -13,7 +13,24 @@
 
 ---
 
-## 1. Completed & Live on `v2.0` (2026-11-03 3:23 AM ET Update)
+## 1. Completed & Live on `v2.0` (2026-11-03 12:45 PM ET Update)
+
+- **Published 3-Part Architecture Series: "Cost Per Task: Using Cheap Classifiers to Route Across Gemini Models and Thinking Levels" (`public/public/series/gemini-cost-per-task/`):**
+  - **Direct Primary Google Source:** Sergio Villani, Google Cloud AI on Google Developers Blog (Nov 3, 2026).
+  - **Part 1 (`part-1-the-death-of-token-pricing.html`):** Shifting from per-token pricing to cost-per-successful-task. Benchmark proving output capping (`maxOutputTokens=300`) does not save tokens on easy tasks and breaks 28% of complex tasks. Native `thinkingLevel: "LOW"` on `gemini-3.8-flash` solves 100% of tasks.
+  - **Part 2 (`part-2-classifier-routing-architecture.html`):** Why regex and prompt length heuristics collapse by 23.2% on unseen tasks. The atomic Noul binary classification formulation (`instructions: "Answering requires performing more than one sequential calculation, simulation step, or logical deduction..."`). Google's open-weights DiffusionGemma discriminative model codelab vs. Jev.
+  - **Part 3 (`part-3-caching-vs-routing-tradeoffs.html`):** Production blueprints resolving the conflict between dynamic routing and 75–90% implicit Context Caching. Split architectures: route short atomic calls; lock multi-turn sessions. Jeff Nelson's BigQuery & Cloud Run cascade pattern + BigQuery agent telemetry schema.
+- **Published Companion Agile Labs Mini-Project: Gemini Cost-Per-Task & Routing Simulator (`public/public/labs/gemini-cost-per-task-calculator.html`):**
+  - Interactive simulator labeled `[SIMULATED DEMO]` per House Rule #5.
+  - Models 10,000 to 1,000,000 monthly tasks, simple vs. complex task mix, and short vs. context-heavy topologies.
+  - Live calculations comparing Default Flash, Output Capping (showing 28% hard fails), Low Thinking (100% solved), Regex Heuristics, and Classifier Routing.
+  - 1-click copy TypeScript `@google/genai` v2.32+ and Python `google-genai` v2.34+ routing code.
+- **Updated `PULSE_INTELLIGENCE_FEED` in `geminiEcosystemData.js`:**
+  - Added `pulse-cost-per-task-classifier-routing` citing `https://developers.googleblog.com/cost-per-task-using-cheap-classifiers-to-route-across-gemini-models-and-thinking-levels/`.
+  - Added jump buttons in `App.jsx` for the new series and the Nov 2 Gemini 2.5 migration series.
+- **Updated Sitemaps & Feeds:**
+  - `sitemap.xml` updated with all 4 new standalone URLs.
+  - `feed.xml` updated with the Atom feed entry.
 
 - **Built `Look I` — The Celestial Couture Magazine & Interactive 8-Star Gemini Constellation Atlas (`public/public/prototypes/look-i-celestial-couture-atlas.html` — Look H, Look G, Look F, Look E, Look D `v2` & Production `public/src/App.jsx` 100% Preserved):**
   - **Distinct Silicon Valley × Parisian High-Fashion Editorial Aesthetic (Zero Resemblance to `thefutureisyesterday.com`):** Replaces red-orange/cobalt/beige newsprint with **Velvet Midnight Obsidian (`#070A10`)**, **Parisian Porcelain Silk (`#F6F4EE`)**, **Burnished Champagne Gold (`#C8A25A` / `#ECCF92`)** for $\alpha$ Castor, and **Optical Celadon Emerald (`#2D9C86` / `#6CE0C8`)** for $\beta$ Pollux, set in sculpted **`Cormorant Garamond`**, **`Plus Jakarta Sans`**, and **`JetBrains Mono`**.

@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 3: The Caching Dilemma &amp; Production Blueprints — When to Route vs. Lock In Context Caching | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Production architecture for Gemini agent engineering: resolving the tension between dynamic model routing and 75-90% Context Caching discounts, plus live telemetry blueprints on Cloud Logging and BigQuery."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/gemini-cost-per-task/part-3-caching-vs-routing-tradeoffs.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 3: The Caching Dilemma &amp; Production Blueprints | GeminiPulse" />
+    <meta property="og:description" content="Resolve the tension between dynamic model routing and 75-90% Context Caching in production Gemini agents." />
+    <meta property="og:url" content="https://geminipulse.com/series/gemini-cost-per-task/part-3-caching-vs-routing-tradeoffs.html" />
+    <meta property="og:image" content="https://geminipulse.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Part 3: The Caching Dilemma &amp; Production Blueprints" />
+    <meta name="twitter:description" content="Production architectural blueprints for Gemini agent routing, context caching, and BigQuery telemetry." />
+    <meta name="twitter:image" content="https://geminipulse.com/og-image.png" />
+    <link rel="icon" type="image/svg+xml" href="/gemini-sparkle.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "The Caching Dilemma and Production Blueprints: When to Route vs. When to Lock In Context Caching",
+        "datePublished": "2026-11-03T09:00:00-05:00",
+        "author": { "@type": "Organization", "name": "GeminiPulse Autonomous Editorial (Gemini 4 Argon)" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/gemini-cost-per-task/part-3-caching-vs-routing-tradeoffs.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #a855f7; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+      .wrap { max-width: 840px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #c084fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #c084fc; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .case-card { background: #0c1017; border: 1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem; margin: 1.25rem 0; }
+      .case-title { font-size: 1.1rem; font-weight: 700; color: #f1f5f9; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: space-between; }
+      .badge-arch { font-family: ui-monospace, Menlo, monospace; font-size: 0.72rem; padding: 0.15rem 0.5rem; border-radius: 9999px; background: rgba(168,85,247,0.15); color: #d8b4fe; border: 1px solid rgba(168,85,247,0.3); }
+      code { font-family: ui-monospace, Menlo, monospace; background: rgba(168,85,247,0.12); padding: 0.12rem 0.4rem; border-radius: 0.35rem; color: #e9d5ff; font-size: 0.88em; }
+      pre { background: #0c1017; border: 1px solid var(--border); border-radius: 0.75rem; padding: 1rem; overflow-x: auto; }
+      pre code { background: none; padding: 0; color: #e2e8f0; }
+      .nav-next { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.75rem; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    </style>
+  </head>
+  <body>
+    <article class="wrap">
+      <p><a href="/#pulse-feed">← Back to GeminiPulse Home</a></p>
+      <div class="eyebrow">Cost-Per-Task Architecture Series • Part 3 of 3</div>
+      <h1>The Caching Dilemma &amp; Production Blueprints: When to Route vs. Lock In Context Caching</h1>
+      <div class="meta">
+        Published November 3, 2026 • Primary Google Source:
+        <a href="https://developers.googleblog.com/cost-per-task-using-cheap-classifiers-to-route-across-gemini-models-and-thinking-levels/" target="_blank" rel="noopener noreferrer">Google Developers Blog (Google Cloud AI Production Architecture)</a>
+      </div>
+
+      <div class="box">
+        <strong style="color: #c084fc;">⚠️ The Hidden Architectural Conflict:</strong>
+        <p style="margin: 0.5rem 0 0">
+          In isolation, routing short tasks saves money and cuts latency. But in modern agent harnesses, <strong>routing and context caching pull in opposite directions</strong>. Gemini Context Caching delivers a 75% to 90% discount when re-sending massive prompt blocks (such as codebase ASTs and tool manifests). However, context caches are tied to a specific model. If an agent bounces between Flash-Lite and Flash turn-by-turn, it either pays to maintain dual caches or destroys the caching discount entirely.
+        </p>
+      </div>
+
+      <h2>1. The Two Halves of Production Agent Traffic</h2>
+      <p>
+        To maximize both speed and cost-efficiency without losing caching advantages, production teams split their architecture across two distinct workload topologies:
+      </p>
+
+      <div class="case-card">
+        <div class="case-title">
+          <span>Topology A: Short, Self-Contained Atomic Tasks</span>
+          <span class="badge-arch">ROUTE WITH CLASSIFIER</span>
+        </div>
+        <p><strong>Workload:</strong> Commit diff inspections, syntax error parsers, CI test failure extractions, log filtering, git conflict classification.</p>
+        <p><strong>Context Profile:</strong> Under 4,000 tokens per call. No large ongoing conversational state.</p>
+        <p><strong>Routing Strategy:</strong> Evaluate with the atomic Noul classifier. Send simple tasks to <code>gemini-3.5-flash-lite</code> ($0.10/1M, 0.5s latency). Escalate complex tasks to <code>gemini-3.8-flash</code> on <code>thinkingLevel: "LOW"</code>.</p>
+        <p><strong>Financial Impact:</strong> Cuts latency by up to 60% and slashes micro-decision spend to negligible levels.</p>
+      </div>
+
+      <div class="case-card">
+        <div class="case-title">
+          <span>Topology B: Multi-Turn Context-Heavy Agent Sessions</span>
+          <span class="badge-arch">LOCK MODEL + CONTEXT CACHE</span>
+        </div>
+        <p><strong>Workload:</strong> Google Antigravity autonomous development, SWE-bench coding runs, multi-file refactors, deep architectural reviews.</p>
+        <p><strong>Context Profile:</strong> 100K to 1M tokens of repository structure, schemas, and accumulated conversation history resent on every turn.</p>
+        <p><strong>Routing Strategy:</strong> <strong>Do not route mid-loop.</strong> Lock the entire session to a single model—either <code>gemini-3.8-flash</code> or <code>gemini-4-argon</code>. Warm an implicit Context Cache on Turn 1 and consume the 75%–90% caching discount across all subsequent turns.</p>
+        <p><strong>Financial Impact:</strong> Preserves the cache discount ($0.10/1M tokens cached input vs. full prompt rates), preventing cache misses that dwarf any minor model routing savings.</p>
+      </div>
+
+      <h2>2. High-Volume Warehouse Batching: The Cascade Pattern</h2>
+      <p>
+        For enterprise batch analytics, document processing, and data warehouse enrichment, Google Cloud advocates <strong>Jeff Nelson's BigQuery &amp; Cloud Run cascade pattern</strong>:
+      </p>
+      <ul>
+        <li><strong>Step 1 (Ingest &amp; Classify):</strong> Inbound records in BigQuery are classified in high-throughput micro-batches via Cloud Run discriminative endpoints.</li>
+        <li><strong>Step 2 (Partitioned Execution):</strong> 80% of rows identified as direct lookups are dispatched to <code>gemini-3.5-flash-lite</code> jobs.</li>
+        <li><strong>Step 3 (Targeted Escalation):</strong> Only the remaining 20% of anomalous or multi-step deductions are sent to <code>gemini-3.8-flash</code>, maintaining strict enterprise budgets while ensuring zero degradation in extraction accuracy.</li>
+      </ul>
+
+      <h2>3. The Essential Telemetry Stack: Measuring What Agents Actually Spend</h2>
+      <p>
+        Because token pricing can be deceptive, Google recommends streaming full agent execution metrics directly into <strong>Cloud Logging and BigQuery</strong>:
+      </p>
+      <pre><code>// Production telemetry schema for autonomous agents
+interface AgentTaskTelemetry {
+  taskId: string;
+  model: 'gemini-3.5-flash-lite' | 'gemini-3.8-flash' | 'gemini-4-argon';
+  thinkingLevel?: 'LOW' | 'MEDIUM' | 'HIGH';
+  routerVerdict: 'SIMPLE' | 'COMPLEX';
+  classifierConfidence: number;
+  inputTokens: number;
+  outputTokens: number;
+  thinkingTokens: number;
+  cachedTokens: number;
+  durationMs: number;
+  truncated: boolean; // Vital: flags if maxOutputTokens killed reasoning
+  passedVerification: boolean; // Vital: denominator for Cost Per Successful Task
+}</code></pre>
+      <p>
+        By querying this telemetry in BigQuery, platform engineers can track their real <strong>Cost Per Successful Task</strong> over time, identify tasks driving unexpected thinking spikes, and catch silent truncation errors before they impact users.
+      </p>
+
+      <h2>4. Try the Live Simulator</h2>
+      <p>
+        To test these production economics directly against your own agent workloads, explore our companion interactive tool:
+      </p>
+      <div class="box" style="text-align: center; border-color: rgba(168,85,247,0.4);">
+        <h3 style="margin: 0 0 0.5rem; color: #f1f5f9;">Gemini Cost-Per-Task &amp; Routing Simulator [SIMULATED DEMO]</h3>
+        <p style="margin: 0 0 1rem; color: var(--muted); font-size: 0.95rem;">
+          Simulate task success rates, output token caps, thinking levels, and context caching trade-offs across 100,000 monthly tasks.
+        </p>
+        <a
+          href="/labs/gemini-cost-per-task-calculator.html"
+          style="display: inline-block; background: #9333ea; color: #fff; padding: 0.65rem 1.4rem; border-radius: 9999px; font-weight: 600;"
+        >
+          Launch Interactive Simulator →
+        </a>
+      </div>
+
+      <div class="nav-next">
+        <a href="/series/gemini-cost-per-task/part-2-classifier-routing-architecture.html">← Previous: Part 2 — Classifier Routing Architecture</a>
+        <a href="/#pulse-feed">Return to GeminiPulse Intelligence Feed →</a>
+      </div>
+    </article>
+  </body>
+</html>
