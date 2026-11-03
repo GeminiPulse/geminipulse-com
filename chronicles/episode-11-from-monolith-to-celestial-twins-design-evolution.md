@@ -173,3 +173,23 @@ After testing **Look J v2** ([preserved at `look-j-v2-archive.html`](https://gem
 5. **Futuristic Digital HUD Article Brief Card (`#star-hud-card`) + Active 3-Dot Linear Constellation Table of Contents:**
    - Because a short star label like `ε MEBSUTA · Releases Decoded` sparks curiosity without explaining the full article, clicking any star now renders a sleek **Futuristic Digital HUD Brief Card** in the lower-right of the 3D stage (connected to the focused star by a `0.65px` hairline telemetry leader line `#hud-leader-line` and animated with a subtle computer-render scanline sweep).
    - The HUD card displays **Category Tags**, **Date (`NOV 3, 2026`)**, **Estimated Reading Time (`⏱ 4 MIN READ`)**, the **Full Article Title**, a **Plain-English Summary**, and an **Active 3-Dot Linear Constellation Table of Contents (`01` — `02` — `03`)** where a miniature hairline focus circle glides smoothly along a straight line of dots when hovering or clicking chapters—both inside the HUD card and mirrored inside the Slide-Up Porcelain Silk Article Reader.
+
+---
+
+## 11. Round 12: Chromatic Twin Separation (2-Row Slide-Up Comparison), Outer Sky Horizon Glows, Full 360° 3D Orbit & Deterministic Seeded Starfield (`Look J v3 → Look J v4`)
+
+After reviewing **Look J v3** ([preserved at `look-j-v3-archive.html`](https://geminipulse.com/prototypes/look-j-v3-archive.html)), Neil highlighted four final refinements for the homepage hero and slide-up salons in **[Look J v4](https://geminipulse.com/prototypes/look-j-3d-celestial-navigator.html)**, plus a future brand-mark exploration note:
+
+1. **Clear Chromatic Separation Between Left (`α Castor`) and Right (`β Pollux`) in the Bottom Peek Dock + 2-Row Live Comparison Inside the Slide-Up Drawer:**
+   - Rather than relying on a thick dividing line or nearly identical off-white backgrounds (`#EEF5FC` vs. `#FAF3E6`), the 56px bottom peek dock now uses saturated **Glacial Sky-Blue (`#BAD9FA → #DCEBFE`, `12.4:1` WCAG AAA contrast)** on the left (`α Castor`) and **Warm Amber-Gold (`#F3C87E → #FBE6C2`, `12.1:1` WCAG AAA contrast)** on the right (`β Pollux`).
+   - Inside the slide-up drawer (`#salon-sheet`), we rendered a **2-Row Live Chromatic Comparison** so both color directions can be evaluated side by side:
+     - **Row A (Top Row): Saturated Daylight Tints** (Dark ink on `#B8D8FA → #DFEFFD` Glacial Sky-Blue for Castor vs. `#F2C578 → #FCE8C3` Warm Amber-Gold for Pollux — `12.4:1` / `12.1:1` WCAG AAA).
+     - **Row B (Bottom Row): Nocturnal Light-on-Dark Tints** (Starlight ink on `#07162C → #0C2342` Deep Sapphire Night for Castor vs. `#211104 → #2E1907` Deep Amber-Bronze Night for Pollux — `13.5:1` / `13.1:1` WCAG AAA), plus a 1-click toggle button in the drawer header to preview the 56px bottom peek dock in Nocturnal mode.
+2. **Subtle Outer-Left (Sapphire) & Outer-Right (Golden-Amber) Sky Horizon Glows:**
+   - Kept the central sky deep midnight blue (`#050811`) while adding subtle outer-left Sapphire (`rgba(46, 152, 255, 0.165)`) and outer-right Golden-Amber (`rgba(245, 156, 48, 0.16)`) radial horizon glows at `-6%` and `106%` that frame the two Twins without meeting in the middle.
+3. **Full 360° 3D Rotational Freedom When Dragging the Constellation:**
+   - Removed the `±38°` horizontal yaw clamp on pointer drag (`cam.targetYaw = baseYaw + dx * 0.45`) so visitors can spin the 3D Gemini constellation a full `360°` (or continuously through `720°+`) in either direction, paired with live Z-depth SVG sorting (`projMajor[b].z - projMajor[a].z`), shortest-arc angle normalization (`shortestDiff`) when clicking a star after a 360° spin, and bounded periodic sine parallax on the background Twin engravings.
+4. **Deterministic Seeded Starfield Particles (`0x47454D49`):**
+   - Replaced `Math.random()` in `initParticles()` with a deterministic 32-bit `mulberry32` PRNG seeded with `0x47454D49` (`"GEMI"`) so all 260 background field stars and $M35$ cluster stars remain at the exact same coordinates across every browser refresh.
+5. **Logged Follow-Up Note on the `GEMINIPULSE` Wordmark (`GEMIN♊PULSE` / `GEM♊N♊PULSE`):**
+   - Logged for a dedicated follow-up session after locking the homepage: explore incorporating the `♊` pillar symbol directly in place of one or both `I`s in `GEMINIPULSE` rather than inside a separate left circle.

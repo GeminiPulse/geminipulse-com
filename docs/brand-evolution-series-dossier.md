@@ -1,12 +1,12 @@
 # GeminiPulse.com — Design Process & Brand Evolution Blog Series Master Dossier (`docs/brand-evolution-series-dossier.md`)
 
-> **Last Updated:** `2026-11-03 17:12 EST`
-> **Purpose:** Complete historical, visual, and technical archive of the 11-Round GeminiPulse.com Brand & Cognitive UX Evolution (`Era 0` → `Look J v3`), structured for our upcoming multi-part **Design Process & Evolution Blog Series** and Agency Case Study.
+> **Last Updated:** `2026-11-03 18:18 EST`
+> **Purpose:** Complete historical, visual, and technical archive of the 12-Round GeminiPulse.com Brand & Cognitive UX Evolution (`Era 0` → `Look J v4`), structured for our upcoming multi-part **Design Process & Evolution Blog Series** and Agency Case Study.
 > **Live Interactive Portfolio Hub:** [`https://geminipulse.com/prototypes/`](https://geminipulse.com/prototypes/)
 
 ---
 
-## 1. Master Inventory of All 14 Preserved Interactive Prototypes
+## 1. Master Inventory of All 15 Preserved Interactive Prototypes
 
 Every prototype below is permanently preserved in `public/public/prototypes/` and deployed live on `https://geminipulse.com/prototypes/`:
 
@@ -26,7 +26,8 @@ Every prototype below is permanently preserved in `public/public/prototypes/` an
 | **Round 8I (v2)** | **Celestial Couture Magazine & Authoritative IAU Constellation Atlas** *(Saved 50/50 Split)* | [`look-i-celestial-couture-atlas.html`](https://geminipulse.com/prototypes/look-i-celestial-couture-atlas.html) | **Astrophysical Color Alignment + Reduction**: Blue-White (`#D6EBFF`) for A1V `α Castor`, Golden-Orange (`#FFD296`) for K0III `β Pollux`, Ethereal Digital Purple (`#A385FF`), authoritative 2-legged IAU/NOIRLab stick-figure constellation with Live Sky `LST` orientation toggle, pulsing hover-reveal Twin pills, and unified `"YOU ARE HERE"` 8-star progress bar. | `assets/look-i-celestial-twins.webp`, `assets/shot-look-i-1440x900.webp`, `assets/shot-look-i-mekbuda.webp` |
 | **Round 9J (v1)** | **Full-Viewport 3D Pointillist Constellation Navigator (v1 Archive)** | [`look-j-v1-archive.html`](https://geminipulse.com/prototypes/look-j-v1-archive.html) | Initial full-viewport 3D stage with `1280×390` SVG coordinate box, instant focus-beacon snap, and unfeathered center illustration seam on narrow windows. | `assets/shot-look-j-v1-archive.webp` |
 | **Round 10J (v2)** | **Full-Viewport 3D Relational-Pivot Constellation Navigator (v2 Archive)** | [`look-j-v2-archive.html`](https://geminipulse.com/prototypes/look-j-v2-archive.html) | Commanding `1000×520` 3D stage, True Relational 3D Foreground Pivot, Depth-Proportional Star Pills (`0.68×`–`1.28×`), and 2.6s sinusoidal easing before HUD card & watchmaker hairline pass. | `assets/shot-look-j-v2-archive.webp` |
-| **Round 11J (v3)** | **Full-Viewport 3D Navigator + Watchmaker Hairlines, Quintic Ramp & Futuristic Digital HUD Card** *(Latest Lead)* | [`look-j-3d-celestial-navigator.html`](https://geminipulse.com/prototypes/look-j-3d-celestial-navigator.html) | **Zero Rectangular Click Focus Box + 2.25s Quintic S-Curve Mid-Flight Speed Ramp + `0.55px–0.85px` Watchmaker Hairline Circles/Orbits + Subordinate `7.6px` Cyan/Gold Star Prefixes vs. `12.2px` Bold White Article Titles + Futuristic Digital HUD Brief Card with Active 3-Dot Linear Constellation Table of Contents.** | `assets/shot-look-j-1440x900.webp`, `assets/shot-look-j-3d-orbit.webp`, `assets/shot-look-j-drawer-open.webp` |
+| **Round 11J (v3)** | **Full-Viewport 3D Navigator + Watchmaker Hairlines & HUD Card (v3 Archive)** | [`look-j-v3-archive.html`](https://geminipulse.com/prototypes/look-j-v3-archive.html) | Watchmaker `0.55px–0.85px` hairlines, Quintic S-Curve Ramp, subordinate `7.6px` Cyan/Gold star codes, Futuristic Digital HUD Brief Card + 3-Dot Linear Constellation TOC, prior to 2-row chromatic separation and 360° orbit unlock. | `assets/shot-look-j-v3-archive.webp` |
+| **Round 12J (v4)** | **Full-Viewport 3D Navigator + 2-Row Chromatic Comparison, Outer Sky Glows, 360° Orbit & Seeded Starfield** *(Latest Lead)* | [`look-j-3d-celestial-navigator.html`](https://geminipulse.com/prototypes/look-j-3d-celestial-navigator.html) | **Glacial Sky-Blue (`#BAD9FA → #DCEBFE`, 12.4:1 AAA) vs. Warm Amber-Gold (`#F3C87E → #FBE6C2`, 12.1:1 AAA) Bottom Dock + 2-Row Slide-Up Drawer Comparison (Row A: Saturated Daylight Tints vs. Row B: Nocturnal Light-on-Dark Tints) + Outer-Left Sapphire & Outer-Right Golden-Amber Sky Glows + Full 360° 3D Rotational Drag with Live Z-Depth SVG Sorting + Deterministic Seeded PRNG Starfield (`0x47454D49`).** | `assets/shot-look-j-1440x900.webp`, `assets/shot-look-j-drawer-open.webp`, `assets/shot-look-j-3d-orbit.webp` |
 
 ---
 
@@ -46,10 +47,20 @@ When we publish the public blog series on **GeminiPulse.com**, it will be struct
 - **Focus:** The tension between functional clarity (`Look G`) and unforgettable visual soul (`Look H`). Shows how we fused classical marble/clockwork intaglio engraving (`look-h-twin-oracle.webp`), warm newsprint, and a solid `#181816` Nocturnal Workbench into `GEMINI in two MINDS.`—and why Neil made the call to **save Look H as a time capsule** rather than let GeminiPulse look like the visual twin of his other site, `thefutureisyesterday.com`.
 - **Visual Exhibits:** Full-page renders of `Look G` (`shot-look-g-1440x900.webp`) and `Look H` (`shot-look-h-1440x900.webp`, `look-h-twin-oracle.webp`).
 
-### Part 4: *The Constellation IS the Navigation — Where Silicon Valley Meets French Couture (`Look I`)*
-- **Focus:** How a single creative prompt from Neil (*"keep the inspiration, like a modern magazine that Silicon Valley to French fashion would find alluring... and maybe the hero IS the Gemini Constellation illustration and clicking on stars takes you places"*) produced **Look I**.
+### Part 4: *The Constellation IS the Navigation — Where Silicon Valley Meets French Couture (`Look I → Look J v4`)*
+- **Focus:** How a single creative prompt from Neil (*"keep the inspiration, like a modern magazine that Silicon Valley to French fashion would find alluring... and maybe the hero IS the Gemini Constellation illustration and clicking on stars takes you places"*) produced **Look I** and evolved through four 3D precision passes into **Look J v4**.
 - **Deep Dive:**
-  - Designing the **Velvet Midnight Obsidian (`#070A10`) + Parisian Porcelain Silk (`#F6F4EE`) + Burnished Champagne Gold (`#ECCF92`) + Optical Celadon (`#6CE0C8`)** palette and `Cormorant Garamond` typography.
-  - Art-directing the panoramic copperplate engraving (`look-i-celestial-twins.webp`) so classical marble Castor and haute-horlogerie clockwork Pollux gaze across an open celestial corridor.
-  - Plotting the real IAU **Gemini (`♊`)** constellation (`α Castor`, `ε Mebsuta`, `μ Tejat`, `η Propus + M35` on the left chain; `β Pollux`, `δ Wasat`, `ζ Mekbuda`, `γ Alhena` on the right chain) as an interactive 8-star navigation map inside a zero-scroll `100svh` desktop stage.
-- **Visual Exhibits:** `look-i-celestial-twins.webp`, `shot-look-i-1440x900.webp`, and `shot-look-i-mekbuda.webp`.
+  - Designing the **Velvet Midnight Obsidian (`#050811`) + Glacial Sky-Blue (`#BAD9FA`) + Warm Amber-Gold (`#F3C87E`) + Ethereal Digital Purple (`#A385FF`)** palette and `Cormorant Garamond` typography.
+  - Art-directing the panoramic copperplate engraving (`look-i-celestial-twins.webp`) so classical marble Castor and haute-horlogerie clockwork Pollux gaze across an open celestial corridor with subtle outer-left Sapphire and outer-right Golden-Amber sky horizon glows.
+  - Plotting the real IAU **Gemini (`♊`)** constellation (`α Castor`, `ε Mebsuta`, `μ Tejat`, `η Propus + M35` on the left chain; `β Pollux`, `δ Wasat`, `ζ Mekbuda`, `γ Alhena` on the right chain) in true 3D light-year depth (`34 LY` to `1,200 LY`), with full `360°` rotational freedom, deterministic seeded starfield particles (`0x47454D49`), Quintic S-Curve Ramp slewing, `0.55px` watchmaker hairlines, and a Futuristic Digital HUD Article Brief Card + 3-Dot Linear Constellation Table of Contents.
+- **Visual Exhibits:** `look-i-celestial-twins.webp`, `shot-look-i-1440x900.webp`, `shot-look-j-1440x900.webp`, `shot-look-j-drawer-open.webp`, and `shot-look-j-3d-orbit.webp`.
+
+---
+
+## 3. Logged Follow-Up Design Backlog (To Tackle After Nailing the Homepage)
+
+1. **`GEMINIPULSE` Wordmark & `♊` Pillar Symbol Integration (Logged Per Neil's Note):**
+   - **Concept:** Instead of placing the `♊` Roman pillar emblem inside a separate circular badge to the left of `GEMINIPULSE`, explore integrating the `♊` pillar glyph directly into the wordmark itself in place of one or both `I`s (e.g., `GEMIN♊PULSE` or `GEM♊N♊PULSE`, or custom typographic ligature pillars).
+   - **Timing:** Intentionally deferred so we do not get distracted while perfecting the 3D Constellation Navigator and Twin Salons; scheduled as a dedicated brand-mark study once the homepage template is locked.
+2. **Interior Page Templates & Mobile Portrait Adaptation:**
+   - Extend the locked Celestial Couture + Twin Salon language to individual Article/Signal pages, Interactive Workbench Labs, Community Showcase, and Mobile Portrait (`390px`) viewports.

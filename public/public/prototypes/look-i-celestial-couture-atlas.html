@@ -2558,6 +2558,8 @@ const interaction = await client.interactions.create({
 
     // Wire SVG Constellation Star Nodes
     document.querySelectorAll(".star-node").forEach((node) => {
+      node.style.outline = "none";
+      node.addEventListener("mousedown", (e) => e.preventDefault());
       node.addEventListener("click", () => selectStar(node.dataset.star));
       node.addEventListener("dblclick", () => {
         selectStar(node.dataset.star);
@@ -2573,6 +2575,7 @@ const interaction = await client.interactions.create({
 
     // Wire "You Are Here" Progress Bar Steps
     document.querySelectorAll("[data-select-star]").forEach((btn) => {
+      btn.addEventListener("mousedown", (e) => e.preventDefault());
       btn.addEventListener("click", () => selectStar(btn.dataset.selectStar));
     });
 

@@ -1,11 +1,11 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-11-03 17:45 EST (5:45 PM Curation Check: Curated Google DeepMind's Nov 3 Agentic Cheminformatics Release in Google Antigravity & 10,000-Scientist Tier Grant, Published 3-Part Deep-Dive Series /series/antigravity-cheminformatics/*, Launched Agile Labs Interactive Companion /labs/antigravity-cheminformatics-explorer.html, Updated sitemap.xml & feed.xml, Verified YouTube Video Showcase 200 OK)`
+- **Last Updated:** `2026-11-03 18:22 EST (Built & Deployed Look J v4 /prototypes/look-j-3d-celestial-navigator.html with Glacial Sky-Blue vs. Warm Amber-Gold 56px Peek Dock, 2-Row Slide-Up Drawer Chromatic Comparison [Row A: Daylight Tints vs. Row B: Nocturnal Tints], Outer Sky Horizon Glows, Full 360° 3D Rotational Drag, Deterministic Seeded Starfield, Preserved Look J v3 at /prototypes/look-j-v3-archive.html, and Logged Future GEMINIPULSE Logo Exploration Note)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
 - **Firebase Default Hosting URL:** `https://geminipulse-com.web.app`
-- **Local Dev Preview URL:** `http://localhost:8080` *(Look J v3 3D Navigator + HUD Card + Constellation TOC: `http://localhost:8080/prototypes/look-j-3d-celestial-navigator.html` · Look J v2 Archive: `http://localhost:8080/prototypes/look-j-v2-archive.html` · Look J v1 Archive: `http://localhost:8080/prototypes/look-j-v1-archive.html` · Look I v2 50/50 Split: `http://localhost:8080/prototypes/look-i-celestial-couture-atlas.html` · Look I v1 Archive: `http://localhost:8080/prototypes/look-i-v1-archive.html` · Saved Look H: `http://localhost:8080/prototypes/look-h-avant-twin-journal.html` · Brand Evolution Portfolio Hub: `http://localhost:8080/prototypes/`)*
+- **Local Dev Preview URL:** `http://localhost:8080` *(Look J v4 3D Navigator + 2-Row Chromatic Comparison + 360° Orbit: `http://localhost:8080/prototypes/look-j-3d-celestial-navigator.html` · Look J v3 Archive: `http://localhost:8080/prototypes/look-j-v3-archive.html` · Look J v2 Archive: `http://localhost:8080/prototypes/look-j-v2-archive.html` · Look J v1 Archive: `http://localhost:8080/prototypes/look-j-v1-archive.html` · Look I v2 50/50 Split: `http://localhost:8080/prototypes/look-i-celestial-couture-atlas.html` · Look I v1 Archive: `http://localhost:8080/prototypes/look-i-v1-archive.html` · Saved Look H: `http://localhost:8080/prototypes/look-h-avant-twin-journal.html` · Brand Evolution Portfolio Hub: `http://localhost:8080/prototypes/`)*
 - **Firebase Project ID:** `geminipulse-com` (Project Number `643794480842`, Spark Free Plan — **\$0.00/mo**)
 - **Firebase Web App ID:** `1:643794480842:web:9f973bc1a0d7670c920e33` (`GeminiPulse Web`)
 - **Concept Originator & Creative Catalyst:** Neil S. White (`https://www.linkedin.com/in/neilswhite`, **Agile LLC**)
@@ -13,7 +13,22 @@
 
 ---
 
-## 1. Completed & Live on `v2.0` (2026-11-03 5:45 PM ET Update)
+## 1. Completed & Live on `v2.0` (2026-11-03 6:22 PM ET Update)
+
+- **Built & Deployed `Look J v4` (`/prototypes/look-j-3d-celestial-navigator.html`) + Preserved `Look J v3` (`/prototypes/look-j-v3-archive.html`):**
+  1. **Chromatic Separation in 56px Bottom Peek Dock + 2-Row Live Comparison in Slide-Up Drawer (`#salon-sheet`):**
+     - Replaced the nearly identical off-white bottom dock backgrounds with saturated **Glacial Sky-Blue (`#BAD9FA → #DCEBFE`, `12.4:1` WCAG AAA contrast)** on the left (`α Castor`) and **Warm Amber-Gold (`#F3C87E → #FBE6C2`, `12.1:1` WCAG AAA contrast)** on the right (`β Pollux`).
+     - Rendered two stacked 50/50 rows inside `#salon-sheet` for live comparison:
+       - **Row A (Top Row): Saturated Daylight Tints** (Dark ink on `#B8D8FA → #DFEFFD` Glacial Sky-Blue for Castor vs. `#F2C578 → #FCE8C3` Warm Amber-Gold for Pollux — `12.4:1` / `12.1:1` WCAG AAA).
+       - **Row B (Bottom Row): Nocturnal Light-on-Dark Tints** (Starlight ink on `#07162C → #0C2342` Deep Sapphire Night for Castor vs. `#211104 → #2E1907` Deep Amber-Bronze Night for Pollux — `13.5:1` / `13.1:1` WCAG AAA), plus a 1-click toggle button in the drawer header to preview the 56px bottom peek dock in Nocturnal mode.
+  2. **Subtle Outer-Left Sapphire & Outer-Right Golden-Amber Sky Horizon Glows:**
+     - Added radial horizon glows at `-6% 52%` (`rgba(46, 152, 255, 0.165)`) and `106% 52%` (`rgba(245, 156, 48, 0.16)`) while keeping the central sky deep midnight blue (`#050811`).
+  3. **Full 360° 3D Rotational Freedom When Dragging the Constellation:**
+     - Removed the `±38°` horizontal yaw clamp on pointer drag (`cam.targetYaw = baseYaw + dx * 0.45`) with live Z-depth SVG layer sorting (`projMajor[b].z - projMajor[a].z`), shortest-arc angle normalization (`shortestDiff`) on star click, and bounded periodic sine parallax on the background Twin engravings.
+  4. **Deterministic Seeded Starfield Particles (`0x47454D49`):**
+     - Replaced `Math.random()` in `initParticles()` with `createSeededRandom(0x47454D49)` so all 260 background field stars and $M35$ cluster stars remain at identical coordinates across browser refreshes.
+  5. **Logged Follow-Up Note on the `GEMINIPULSE` Wordmark (`GEMIN♊PULSE` / `GEM♊N♊PULSE`):**
+     - Logged in `docs/brand-evolution-series-dossier.md` and `chronicles/episode-11-from-monolith-to-celestial-twins-design-evolution.md` to explore incorporating the `♊` pillar symbol directly in place of one or both `I`s in `GEMINIPULSE` once the homepage is locked.
 
 - **Curated & Published Google DeepMind Landmark Platform Release: "Agentic Cheminformatics with Google Antigravity & 10,000-Scientist Tier Grant":**
   - **Direct Primary Google Source:** Zoi Tsangalidou, Ruijie (Kelly) Zhang, Sukhdeep Singh, and Michael V. LeVine on Google DeepMind Blog (Nov 3, 2026 17:01 UTC / 12:01 PM ET; modified 17:16 UTC).

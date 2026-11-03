@@ -300,9 +300,13 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      /* Subtle outer-left Sapphire (Castor) & outer-right Golden-Amber (Pollux) horizon glows
+         that frame the deep midnight-blue central sky without meeting in the middle */
       background:
-        radial-gradient(ellipse 62% 58% at 50% 50%, rgba(163, 133, 255, 0.13) 0%, rgba(18, 25, 44, 0.32) 55%, rgba(6, 8, 15, 0.98) 100%),
-        var(--obsidian);
+        radial-gradient(ellipse 35% 74% at 1% 52%, rgba(46, 152, 255, 0.165) 0%, rgba(24, 88, 178, 0.065) 52%, transparent 82%),
+        radial-gradient(ellipse 35% 74% at 99% 52%, rgba(245, 156, 48, 0.16) 0%, rgba(188, 102, 20, 0.06) 52%, transparent 82%),
+        radial-gradient(ellipse 60% 56% at 50% 50%, rgba(163, 133, 255, 0.11) 0%, rgba(13, 20, 38, 0.42) 54%, rgba(5, 8, 17, 0.98) 100%),
+        #050811;
       cursor: grab;
       user-select: none;
     }
@@ -1348,17 +1352,17 @@
     }
 
     /* =========================================================================
-       4. BOTTOM PORCELAIN SILK PEEK DOCK (56px) + RESPONSIVE GUARDRAILS
-       Zero collision even on narrow browser windows!
+       4. BOTTOM CHROMATIC TWIN PEEK DOCK (56px) + RESPONSIVE GUARDRAILS
+       Distinct Saturated Glacial Sky-Blue (Castor) vs. Warm Amber-Gold (Pollux)
+       with 12.1:1+ WCAG AAA Contrast (plus Nocturnal Toggle Support!)
        ========================================================================= */
     .porcelain-peek-dock {
       position: relative;
       z-index: 24;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      background: var(--silk);
-      color: var(--ink);
-      border-block-start: 1px solid var(--hairline-light);
+      background: #D5EAFC;
+      color: #071D36;
     }
 
     .peek-half {
@@ -1369,22 +1373,40 @@
       gap: 10px;
       padding: 0 clamp(14px, 2vw, 32px);
       cursor: pointer;
-      transition: background 0.22s ease;
+      transition: filter 0.2s ease, background 0.25s ease;
       overflow: hidden;
       min-inline-size: 0;
     }
 
     .peek-castor {
-      border-inline-end: 1px solid var(--hairline-light);
-      background: linear-gradient(90deg, rgba(126, 184, 255, 0.1) 0%, var(--silk) 55%);
+      border-block-start: 1.5px solid #5CA4F0;
+      border-inline-end: 1px solid rgba(11, 59, 112, 0.24);
+      background: linear-gradient(90deg, #BAD9FA 0%, #CEE5FC 54%, #DCEBFE 100%);
+      color: #071D36;
     }
 
     .peek-pollux {
-      background: linear-gradient(270deg, rgba(245, 158, 63, 0.1) 0%, var(--silk-elevated) 55%);
+      border-block-start: 1.5px solid #E59632;
+      background: linear-gradient(270deg, #F3C87E 0%, #F8DBA8 54%, #FBE6C2 100%);
+      color: #261202;
     }
 
     .peek-half:hover {
-      background-color: #EFECE3;
+      filter: brightness(0.97);
+    }
+
+    /* Optional Nocturnal Peek Mode when toggled in the drawer bar */
+    html[data-peek-theme="night"] .peek-castor {
+      border-block-start-color: #38BDF8;
+      border-inline-end-color: rgba(56, 189, 248, 0.28);
+      background: linear-gradient(90deg, #07172E 0%, #0C2344 55%, #091C36 100%);
+      color: #F0F7FF;
+    }
+
+    html[data-peek-theme="night"] .peek-pollux {
+      border-block-start-color: #F59E3F;
+      background: linear-gradient(270deg, #211104 0%, #2E1807 55%, #1B0E04 100%);
+      color: #FFF7EB;
     }
 
     .peek-left-group {
@@ -1402,53 +1424,74 @@
       gap: 7px;
       font-family: var(--mono);
       font-size: 9px;
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--castor-ink);
+      color: #093566;
       white-space: nowrap;
       flex-shrink: 0;
     }
 
     .peek-pollux .peek-twin-label {
-      color: var(--pollux-ink);
+      color: #6E3204;
+    }
+
+    html[data-peek-theme="night"] .peek-castor .peek-twin-label {
+      color: #7DD3FC;
+    }
+
+    html[data-peek-theme="night"] .peek-pollux .peek-twin-label {
+      color: #FDBA74;
     }
 
     .peek-dot {
       inline-size: 7px;
       block-size: 7px;
       border-radius: 50%;
-      background: var(--castor-glow);
-      box-shadow: 0 0 8px var(--castor-glow);
+      background: #0284C7;
+      box-shadow: 0 0 8px rgba(2, 132, 199, 0.55);
     }
 
-    .peek-pollux .peek-dot {
-      background: var(--pollux-glow);
-      box-shadow: 0 0 8px var(--pollux-glow);
+    .peek-pollux .peek-dot,
+    .spread-pollux .peek-dot {
+      background: #D97706;
+      box-shadow: 0 0 8px rgba(217, 119, 6, 0.55);
     }
 
     .peek-live-headline {
       font-family: var(--serif);
       font-size: clamp(15px, 1.2vw, 19px);
       font-weight: 600;
-      color: var(--ink);
+      color: inherit;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       padding-inline-start: 10px;
-      border-inline-start: 1px solid var(--hairline-light);
+      border-inline-start: 1px solid rgba(15, 23, 42, 0.18);
       min-inline-size: 0;
+    }
+
+    html[data-peek-theme="night"] .peek-live-headline {
+      border-inline-start-color: rgba(255, 255, 255, 0.18);
     }
 
     .peek-live-headline em {
       font-style: italic;
-      font-weight: 500;
-      color: var(--castor-ink);
+      font-weight: 600;
+      color: #0B4688;
       margin-inline-start: 4px;
     }
 
     .peek-pollux .peek-live-headline em {
-      color: var(--pollux-ink);
+      color: #853B04;
+    }
+
+    html[data-peek-theme="night"] .peek-castor .peek-live-headline em {
+      color: #7DD3FC;
+    }
+
+    html[data-peek-theme="night"] .peek-pollux .peek-live-headline em {
+      color: #FDBA74;
     }
 
     .peek-right-group {
@@ -1461,9 +1504,9 @@
     .peek-star-badge {
       padding: 3px 8px;
       border-radius: 999px;
-      background: var(--castor-tint);
-      border: 1px solid rgba(27, 79, 140, 0.25);
-      color: var(--castor-ink);
+      background: rgba(255, 255, 255, 0.66);
+      border: 1px solid rgba(11, 59, 112, 0.28);
+      color: #082F5C;
       font-family: var(--mono);
       font-size: 8px;
       font-weight: 600;
@@ -1473,9 +1516,21 @@
     }
 
     .peek-pollux .peek-star-badge {
-      background: var(--pollux-tint);
-      border-color: rgba(154, 80, 10, 0.28);
-      color: var(--pollux-ink);
+      background: rgba(255, 255, 255, 0.62);
+      border-color: rgba(124, 58, 6, 0.3);
+      color: #5C2803;
+    }
+
+    html[data-peek-theme="night"] .peek-castor .peek-star-badge {
+      background: rgba(56, 189, 248, 0.14);
+      border-color: rgba(56, 189, 248, 0.38);
+      color: #BAE6FD;
+    }
+
+    html[data-peek-theme="night"] .peek-pollux .peek-star-badge {
+      background: rgba(245, 158, 63, 0.14);
+      border-color: rgba(245, 158, 63, 0.38);
+      color: #FED7AA;
     }
 
     /* Responsive guardrails so narrow windows never overlap text in the bottom dock */
@@ -1497,25 +1552,35 @@
       gap: 6px;
       padding: 5px 11px;
       border-radius: 999px;
-      background: var(--ink);
-      color: var(--silk-elevated);
+      background: #071D36;
+      color: #F0F7FF;
       font-family: var(--mono);
       font-size: 8.5px;
       font-weight: 600;
       letter-spacing: 0.09em;
       text-transform: uppercase;
-      box-shadow: 0 4px 14px rgba(15, 20, 29, 0.18);
+      box-shadow: 0 4px 14px rgba(7, 29, 54, 0.2);
       transition: transform 0.2s ease, background 0.2s ease;
       white-space: nowrap;
     }
 
-    .peek-castor:hover .peek-slide-up-btn {
-      background: var(--castor-ink);
-      transform: translateY(-2px);
+    .peek-pollux .peek-slide-up-btn {
+      background: #2C1503;
+      color: #FFF7EB;
     }
 
+    html[data-peek-theme="night"] .peek-castor .peek-slide-up-btn {
+      background: #38BDF8;
+      color: #051020;
+    }
+
+    html[data-peek-theme="night"] .peek-pollux .peek-slide-up-btn {
+      background: #F59E3F;
+      color: #1A0D02;
+    }
+
+    .peek-castor:hover .peek-slide-up-btn,
     .peek-pollux:hover .peek-slide-up-btn {
-      background: var(--pollux-ink);
       transform: translateY(-2px);
     }
 
@@ -1532,7 +1597,7 @@
     }
 
     /* =========================================================================
-       5. SLIDE-UP PORCELAIN SILK 50/50 MAGAZINE DRAWER
+       5. SLIDE-UP 2-ROW CHROMATIC COMPARISON DRAWER (DAYLIGHT TINTS vs. NIGHT TINTS)
        ========================================================================= */
     .slide-up-drawer-backdrop {
       position: fixed;
@@ -1553,17 +1618,17 @@
       inset-inline: 0;
       inset-block-end: 0;
       z-index: 45;
-      background: var(--silk);
+      background: #060913;
       color: var(--ink);
       border-block-start: 2px solid var(--ethereal);
       border-start-start-radius: 20px;
       border-start-end-radius: 20px;
-      box-shadow: 0 -24px 64px rgba(6, 8, 15, 0.65);
+      box-shadow: 0 -24px 64px rgba(4, 6, 12, 0.78);
       transform: translateY(104%);
       transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
       display: flex;
       flex-direction: column;
-      max-block-size: 58svh;
+      max-block-size: 82svh;
     }
 
     html[data-drawer="open"] .slide-up-salon-sheet {
@@ -1574,6 +1639,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
       padding: 8px clamp(18px, 2.4vw, 36px);
       background: var(--obsidian);
       color: var(--starlight);
@@ -1608,12 +1675,32 @@
       color: var(--obsidian);
     }
 
-    .magazine-spread {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+    .drawer-scroll-body {
       flex: 1;
       min-block-size: 0;
       overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .row-comparison-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 5px clamp(20px, 2.4vw, 38px);
+      background: #090E1B;
+      border-block: 1px solid rgba(163, 133, 255, 0.24);
+      font-family: var(--mono);
+      font-size: 8.2px;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      color: var(--ethereal-bright);
+    }
+
+    .magazine-spread {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
     }
 
     @media (max-width: 1023px) {
@@ -1623,24 +1710,43 @@
     }
 
     .spread-salon {
-      padding: 18px clamp(20px, 2.4vw, 38px) 22px;
+      padding: 15px clamp(20px, 2.4vw, 38px) 18px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 14px;
+      gap: 11px;
     }
 
+    /* ROW 1 (OPTION A): SATURATED DAYLIGHT TINTS (GLACIAL SKY-BLUE vs. WARM AMBER-GOLD) */
     .spread-castor {
-      border-inline-end: 1px solid var(--hairline-light);
+      border-inline-end: 1px solid rgba(11, 59, 112, 0.22);
       background:
-        radial-gradient(circle at 0% 0%, rgba(126, 184, 255, 0.08) 0%, transparent 55%),
-        var(--silk);
+        radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.22) 0%, transparent 58%),
+        linear-gradient(145deg, #B8D8FA 0%, #CEE5FC 52%, #DFEFFD 100%);
+      color: #071C35;
     }
 
     .spread-pollux {
       background:
-        radial-gradient(circle at 100% 0%, rgba(245, 158, 63, 0.08) 0%, transparent 55%),
-        linear-gradient(180deg, var(--silk-elevated) 0%, var(--silk-warm) 100%);
+        radial-gradient(circle at 100% 0%, rgba(245, 158, 63, 0.24) 0%, transparent 58%),
+        linear-gradient(215deg, #F2C578 0%, #F8DCA8 52%, #FCE8C3 100%);
+      color: #261202;
+    }
+
+    /* ROW 2 (OPTION B): NOCTURNAL LIGHT-ON-DARK TINTS (DEEP SAPPHIRE NIGHT vs. DEEP AMBER-BRONZE NIGHT) */
+    .spread-castor--night {
+      border-inline-end: 1px solid rgba(56, 189, 248, 0.25);
+      background:
+        radial-gradient(circle at 12% 20%, rgba(56, 189, 248, 0.18) 0%, transparent 60%),
+        linear-gradient(155deg, #07162C 0%, #0C2342 56%, #08182E 100%);
+      color: #F0F7FF;
+    }
+
+    .spread-pollux--night {
+      background:
+        radial-gradient(circle at 88% 20%, rgba(245, 158, 63, 0.18) 0%, transparent 60%),
+        linear-gradient(205deg, #211104 0%, #2E1907 56%, #180D03 100%);
+      color: #FFF7EB;
     }
 
     .salon-header-row {
@@ -1648,46 +1754,74 @@
       align-items: center;
       justify-content: space-between;
       gap: 8px;
-      padding-block-end: 6px;
-      border-block-end: 1px solid var(--hairline-light);
+      padding-block-end: 5px;
+      border-block-end: 1px solid rgba(15, 23, 42, 0.15);
       font-family: var(--mono);
       font-size: 9px;
       letter-spacing: 0.13em;
       text-transform: uppercase;
     }
 
+    .spread-castor--night .salon-header-row {
+      border-block-end-color: rgba(56, 189, 248, 0.24);
+    }
+
+    .spread-pollux--night .salon-header-row {
+      border-block-end-color: rgba(245, 158, 63, 0.24);
+    }
+
     .shr-title {
-      font-weight: 600;
-      color: var(--castor-ink);
+      font-weight: 700;
+      color: #083364;
       display: inline-flex;
       align-items: center;
       gap: 7px;
     }
 
     .spread-pollux .shr-title {
-      color: var(--pollux-ink);
+      color: #6E3204;
+    }
+
+    .spread-castor--night .shr-title {
+      color: #7DD3FC;
+    }
+
+    .spread-pollux--night .shr-title {
+      color: #FDBA74;
     }
 
     .shr-badge {
       padding: 2.5px 9px;
       border-radius: 999px;
-      background: var(--castor-tint);
-      border: 1px solid rgba(27, 79, 140, 0.25);
-      color: var(--castor-ink);
+      background: rgba(255, 255, 255, 0.68);
+      border: 1px solid rgba(11, 59, 112, 0.26);
+      color: #083364;
       font-size: 8.5px;
       font-weight: 600;
     }
 
     .spread-pollux .shr-badge {
-      background: var(--pollux-tint);
-      border-color: rgba(154, 80, 10, 0.28);
-      color: var(--pollux-ink);
+      background: rgba(255, 255, 255, 0.64);
+      border-color: rgba(124, 58, 6, 0.3);
+      color: #6E3204;
+    }
+
+    .spread-castor--night .shr-badge {
+      background: rgba(56, 189, 248, 0.14);
+      border-color: rgba(56, 189, 248, 0.36);
+      color: #BAE6FD;
+    }
+
+    .spread-pollux--night .shr-badge {
+      background: rgba(245, 158, 63, 0.14);
+      border-color: rgba(245, 158, 63, 0.36);
+      color: #FED7AA;
     }
 
     .salon-body-split {
       display: grid;
       grid-template-columns: 1.28fr 1fr;
-      gap: 18px;
+      gap: 16px;
       align-items: center;
     }
 
@@ -1700,46 +1834,71 @@
     .salon-story-col {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 7px;
     }
 
     .couture-headline {
       font-family: var(--serif);
-      font-weight: 500;
-      font-size: clamp(26px, 2.2vw, 36px);
-      line-height: 0.96;
+      font-weight: 600;
+      font-size: clamp(23px, 2vw, 32px);
+      line-height: 0.98;
       letter-spacing: -0.01em;
-      color: var(--ink);
+      color: inherit;
     }
 
     .couture-headline em {
       display: block;
       font-style: italic;
-      font-weight: 400;
-      color: var(--castor-ink);
+      font-weight: 500;
+      color: #0B4688;
       margin-block-start: 2px;
     }
 
     .spread-pollux .couture-headline em {
-      color: var(--pollux-ink);
+      color: #853B04;
+    }
+
+    .spread-castor--night .couture-headline em {
+      color: #7DD3FC;
+    }
+
+    .spread-pollux--night .couture-headline em {
+      color: #FDBA74;
     }
 
     .couture-dek {
-      font-size: 13px;
-      line-height: 1.48;
-      color: var(--ink-soft);
+      font-size: 12.5px;
+      line-height: 1.46;
+      color: #102C4E;
+    }
+
+    .spread-pollux .couture-dek {
+      color: #3D1E04;
+    }
+
+    .spread-castor--night .couture-dek {
+      color: #C8E0F8;
+    }
+
+    .spread-pollux--night .couture-dek {
+      color: #F0D8B8;
     }
 
     /* Active Linear Constellation-Dot Table of Contents inside the Full Article Reader */
     .salon-toc-strip {
-      margin-block-start: 6px;
-      padding: 8px 12px;
+      margin-block-start: 4px;
+      padding: 7px 11px;
       border-radius: 8px;
       background: rgba(255, 255, 255, 0.72);
-      border: 0.75px solid rgba(27, 79, 140, 0.22);
+      border: 0.75px solid rgba(11, 59, 112, 0.25);
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 5px;
+    }
+
+    .spread-castor--night .salon-toc-strip {
+      background: rgba(5, 13, 26, 0.74);
+      border-color: rgba(56, 189, 248, 0.34);
     }
 
     .salon-toc-meta {
@@ -1747,10 +1906,14 @@
       align-items: center;
       justify-content: space-between;
       font-family: var(--mono);
-      font-size: 8px;
+      font-size: 7.8px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--ink-muted);
+      color: #234872;
+    }
+
+    .spread-castor--night .salon-toc-meta {
+      color: #93C5FD;
     }
 
     .salon-toc-rail {
@@ -1767,8 +1930,12 @@
       left: 16.666%;
       right: 16.666%;
       block-size: 0.75px;
-      background: rgba(27, 79, 140, 0.28);
+      background: rgba(11, 59, 112, 0.32);
       pointer-events: none;
+    }
+
+    .spread-castor--night .salon-toc-line {
+      background: rgba(56, 189, 248, 0.42);
     }
 
     .salon-toc-reticle {
@@ -1779,9 +1946,14 @@
       block-size: 14px;
       margin-inline-start: -7px;
       border-radius: 50%;
-      border: 0.85px solid var(--castor-ink);
+      border: 0.85px solid #0B4688;
       pointer-events: none;
       transition: left 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .spread-castor--night .salon-toc-reticle {
+      border-color: #7DD3FC;
+      box-shadow: 0 0 8px rgba(56, 189, 248, 0.55);
     }
 
     .salon-toc-btn {
@@ -1796,36 +1968,57 @@
       padding: 0 2px;
       font-family: var(--mono);
       font-size: 8px;
-      color: var(--ink-muted);
+      color: #2A4F7A;
       cursor: pointer;
+    }
+
+    .spread-castor--night .salon-toc-btn {
+      color: #93C5FD;
     }
 
     .salon-toc-dot {
       inline-size: 5px;
       block-size: 5px;
       border-radius: 50%;
-      background: rgba(27, 79, 140, 0.35);
+      background: rgba(11, 59, 112, 0.42);
       transition: transform 0.25s ease, background 0.25s ease;
     }
 
+    .spread-castor--night .salon-toc-dot {
+      background: rgba(125, 211, 252, 0.5);
+    }
+
     .salon-toc-btn[aria-selected="true"] {
-      color: var(--castor-ink);
-      font-weight: 600;
+      color: #071C35;
+      font-weight: 700;
+    }
+
+    .spread-castor--night .salon-toc-btn[aria-selected="true"] {
+      color: #FFFFFF;
     }
 
     .salon-toc-btn[aria-selected="true"] .salon-toc-dot {
-      background: var(--castor-ink);
+      background: #0B4688;
       transform: scale(1.3);
     }
 
+    .spread-castor--night .salon-toc-btn[aria-selected="true"] .salon-toc-dot {
+      background: #38BDF8;
+    }
+
     .telemetry-card {
-      background: var(--silk-elevated);
-      border: 1px solid rgba(27, 79, 140, 0.22);
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(11, 59, 112, 0.24);
       border-radius: 10px;
-      padding: 11px 14px;
+      padding: 10px 13px;
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 4px;
+    }
+
+    .spread-castor--night .telemetry-card {
+      background: rgba(5, 13, 26, 0.78);
+      border-color: rgba(56, 189, 248, 0.35);
     }
 
     .tc-header {
@@ -1837,11 +2030,16 @@
       font-size: 8.5px;
       letter-spacing: 0.11em;
       text-transform: uppercase;
-      color: var(--castor-ink);
+      color: #083364;
       padding-block-end: 4px;
-      border-block-end: 1px solid var(--hairline-light);
+      border-block-end: 1px solid rgba(11, 59, 112, 0.16);
       font-weight: 600;
       white-space: nowrap;
+    }
+
+    .spread-castor--night .tc-header {
+      color: #7DD3FC;
+      border-block-end-color: rgba(56, 189, 248, 0.22);
     }
 
     .tc-row {
@@ -1850,8 +2048,12 @@
       align-items: baseline;
       gap: 8px;
       padding-block: 3px;
-      border-block-end: 1px dashed var(--hairline-light);
+      border-block-end: 1px dashed rgba(11, 59, 112, 0.16);
       font-size: 11px;
+    }
+
+    .spread-castor--night .tc-row {
+      border-block-end-color: rgba(56, 189, 248, 0.2);
     }
 
     .tc-row:last-of-type {
@@ -1862,27 +2064,40 @@
       font-family: var(--mono);
       font-size: 8.8px;
       text-transform: uppercase;
-      color: var(--ink-muted);
+      color: #2A4F7A;
+    }
+
+    .spread-castor--night .tc-key {
+      color: #93C5FD;
     }
 
     .tc-val {
       font-family: var(--mono);
       font-size: 11px;
       font-weight: 600;
-      color: var(--ink);
+      color: #071C35;
+    }
+
+    .spread-castor--night .tc-val {
+      color: #F0F7FF;
     }
 
     .tc-source-link {
       margin-block-start: 2px;
       padding-block-start: 4px;
-      border-block-start: 1px solid var(--hairline-light);
+      border-block-start: 1px solid rgba(11, 59, 112, 0.16);
       font-family: var(--mono);
       font-size: 8.5px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--castor-ink);
+      color: #083364;
       display: flex;
       justify-content: space-between;
+    }
+
+    .spread-castor--night .tc-source-link {
+      border-block-start-color: rgba(56, 189, 248, 0.22);
+      color: #7DD3FC;
     }
 
     .atelier-console {
@@ -2426,11 +2641,14 @@
        5. SLIDE-UP PORCELAIN SILK 50/50 MAGAZINE SPREAD SHEET
        ======================================================================= -->
   <div class="slide-up-drawer-backdrop" id="drawer-backdrop" aria-hidden="true"></div>
-  <section class="slide-up-salon-sheet" id="salon-sheet" aria-label="Castor and Pollux Paired Magazine Salons">
+  <section class="slide-up-salon-sheet" id="salon-sheet" aria-label="Castor and Pollux Paired Magazine Salons — 2-Row Chromatic Comparison">
     <div class="sheet-handle-bar">
-      <span id="sheet-location-status">♊ PAIRED TWIN SALONS · STAR 02 / 08 (<span class="greek">ε</span> MEBSUTA · 840 LIGHT-YEARS)</span>
-      <div style="display:flex;align-items:center;gap:14px;">
-        <a href="./look-j-v1-archive.html" style="color:var(--ethereal-bright);text-decoration:underline;">Look J (v1 Archive) ↗</a>
+      <span id="sheet-location-status">♊ PAIRED TWIN SALONS · 2-ROW CHROMATIC COMPARISON (ROW A: DAYLIGHT TINTS vs. ROW B: NOCTURNAL TINTS)</span>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+        <button type="button" class="sheet-close-btn" id="toggle-peek-theme-btn" style="background:rgba(56,189,248,0.16);border-color:#38BDF8;">
+          <span>Peek Dock Theme: Daylight Tints ☀️</span>
+        </button>
+        <a href="./look-j-v3-archive.html" style="color:var(--ethereal-bright);text-decoration:underline;">Look J (v3 Archive) ↗</a>
         <a href="./look-i-celestial-couture-atlas.html" style="color:var(--ethereal-bright);text-decoration:underline;">Look I (v2 Split) ↗</a>
         <button type="button" class="sheet-close-btn" id="close-drawer-btn">
           <span>↓ Slide Down to Full 3D Star Chart</span>
@@ -2438,123 +2656,258 @@
       </div>
     </div>
 
-    <div class="magazine-spread">
-      <article class="spread-salon spread-castor">
-        <div class="salon-header-row">
-          <span class="shr-title">
-            <span class="peek-dot" aria-hidden="true"></span>
-            <span><span class="greek">α</span> CASTOR · THE SIGNAL</span>
-          </span>
-          <span class="shr-badge" id="castor-star-badge"><span class="greek">ε</span> GEM · SUPERGIANT · 840 LY</span>
-        </div>
+    <div class="drawer-scroll-body">
+      <!-- ===================================================================
+           ROW 1 (OPTION A): SATURATED DAYLIGHT TINTS (DARK INK ON CHROMATIC PAPER)
+           =================================================================== -->
+      <div class="row-comparison-banner">
+        <span>☀️ ROW A · SATURATED DAYLIGHT TINTS (DARK INK ON GLACIAL SKY-BLUE vs. WARM AMBER-GOLD)</span>
+        <span>WCAG AAA CONTRAST · LEFT 12.4:1 · RIGHT 12.1:1</span>
+      </div>
+      <div class="magazine-spread">
+        <article class="spread-salon spread-castor">
+          <div class="salon-header-row">
+            <span class="shr-title">
+              <span class="peek-dot" aria-hidden="true"></span>
+              <span><span class="greek">α</span> CASTOR · THE SIGNAL (GLACIAL SKY-BLUE TINT)</span>
+            </span>
+            <span class="shr-badge" data-sync="castor-star-badge" id="castor-star-badge"><span class="greek">ε</span> GEM · SUPERGIANT · 840 LY</span>
+          </div>
 
-        <div class="salon-body-split">
-          <div class="salon-story-col">
-            <h2 class="couture-headline" id="castor-salon-heading" tabindex="-1">
-              <span id="castor-title-main">Every Gemini release, decoded.</span>
-              <em id="castor-title-italic">Zero jargon. Zero hype.</em>
-            </h2>
-            <p class="couture-dek" id="castor-dek">
-              <strong>How it applies to you:</strong> Google ships model updates, context-window expansions, and Workspace features every week. We translate every drop into plain English: what changed, who should care, and what you can safely ignore.
-            </p>
+          <div class="salon-body-split">
+            <div class="salon-story-col">
+              <h2 class="couture-headline" id="castor-salon-heading" tabindex="-1">
+                <span data-sync="castor-title-main" id="castor-title-main">Every Gemini release, decoded.</span>
+                <em data-sync="castor-title-italic" id="castor-title-italic">Zero jargon. Zero hype.</em>
+              </h2>
+              <p class="couture-dek" data-sync-html="castor-dek" id="castor-dek">
+                <strong>How it applies to you:</strong> Google ships model updates, context-window expansions, and Workspace features every week. We translate every drop into plain English: what changed, who should care, and what you can safely ignore.
+              </p>
 
-            <!-- Mirrored Active Constellation-Dot Table of Contents inside the Full Article Reader -->
-            <div class="salon-toc-strip" aria-label="Article Table of Contents">
-              <div class="salon-toc-meta">
-                <span>ACTIVE CHAPTER TOC (CONSTELLATION DOT RAIL)</span>
-                <span id="salon-read-time">NOV 3, 2026 · ⏱ 4 MIN READ</span>
+              <!-- Mirrored Active Constellation-Dot Table of Contents inside Row A -->
+              <div class="salon-toc-strip" aria-label="Article Table of Contents (Daylight Row)">
+                <div class="salon-toc-meta">
+                  <span>ACTIVE CHAPTER TOC (CONSTELLATION DOT RAIL)</span>
+                  <span data-sync="salon-read-time" id="salon-read-time">NOV 3, 2026 · ⏱ 4 MIN READ</span>
+                </div>
+                <div class="salon-toc-rail" role="tablist">
+                  <div class="salon-toc-line" aria-hidden="true"></div>
+                  <div class="salon-toc-reticle" data-sync-reticle="true" id="salon-toc-reticle" aria-hidden="true"></div>
+                  <button type="button" class="salon-toc-btn" role="tab" data-toc-idx="0" aria-selected="true">
+                    <span class="salon-toc-dot" aria-hidden="true"></span>
+                    <span data-sync="salon-toc-label-0" id="salon-toc-label-0">01 · What Shipped</span>
+                  </button>
+                  <button type="button" class="salon-toc-btn" role="tab" data-toc-idx="1" aria-selected="false">
+                    <span class="salon-toc-dot" aria-hidden="true"></span>
+                    <span data-sync="salon-toc-label-1" id="salon-toc-label-1">02 · For Your Work</span>
+                  </button>
+                  <button type="button" class="salon-toc-btn" role="tab" data-toc-idx="2" aria-selected="false">
+                    <span class="salon-toc-dot" aria-hidden="true"></span>
+                    <span data-sync="salon-toc-label-2" id="salon-toc-label-2">03 · Safe to Skip</span>
+                  </button>
+                </div>
               </div>
-              <div class="salon-toc-rail" role="tablist">
-                <div class="salon-toc-line" aria-hidden="true"></div>
-                <div class="salon-toc-reticle" id="salon-toc-reticle" aria-hidden="true"></div>
-                <button type="button" class="salon-toc-btn" role="tab" data-toc-idx="0" aria-selected="true">
-                  <span class="salon-toc-dot" aria-hidden="true"></span>
-                  <span id="salon-toc-label-0">01 · What Shipped</span>
-                </button>
-                <button type="button" class="salon-toc-btn" role="tab" data-toc-idx="1" aria-selected="false">
-                  <span class="salon-toc-dot" aria-hidden="true"></span>
-                  <span id="salon-toc-label-1">02 · For Your Work</span>
-                </button>
-                <button type="button" class="salon-toc-btn" role="tab" data-toc-idx="2" aria-selected="false">
-                  <span class="salon-toc-dot" aria-hidden="true"></span>
-                  <span id="salon-toc-label-2">03 · Safe to Skip</span>
-                </button>
+            </div>
+
+            <aside class="telemetry-card" aria-label="Verified Google Telemetry">
+              <div class="tc-header">
+                <span>SIGNAL LEDGER</span>
+                <span data-sync-html="castor-spec-code" id="castor-spec-code">STAR 02 · <span class="greek">ε</span> MEBSUTA</span>
+              </div>
+              <div class="tc-row">
+                <span class="tc-key" data-sync="tc-k1" id="tc-k1">Verification Standard</span>
+                <span class="tc-val" data-sync="tc-v1" id="tc-v1">100% Google Primary Links</span>
+              </div>
+              <div class="tc-row">
+                <span class="tc-key" data-sync="tc-k2" id="tc-k2">Target Reader</span>
+                <span class="tc-val" data-sync="tc-v2" id="tc-v2">Everyday Users &amp; Builders</span>
+              </div>
+              <div class="tc-row">
+                <span class="tc-key" data-sync="tc-k3" id="tc-k3">Astrophysical Depth</span>
+                <span class="tc-val" data-sync="tc-v3" id="tc-v3">840 Light-Years (G8Ib)</span>
+              </div>
+              <a class="tc-source-link" data-sync-href="castor-source-link" id="castor-source-link" href="https://blog.google/technology/ai/" target="_blank" rel="noopener noreferrer">
+                <span>Verified Google Source</span>
+                <span>↗</span>
+              </a>
+            </aside>
+          </div>
+        </article>
+
+        <article class="spread-salon spread-pollux">
+          <div class="salon-header-row">
+            <span class="shr-title">
+              <span class="peek-dot" aria-hidden="true"></span>
+              <span><span class="greek">β</span> POLLUX · THE WORKBENCH (WARM AMBER-GOLD TINT)</span>
+            </span>
+            <span class="shr-badge" data-sync="pollux-star-badge" id="pollux-star-badge"><span class="greek">δ</span> GEM · WORKSPACE GUIDES · 60 LY</span>
+          </div>
+
+          <div class="salon-body-split">
+            <div class="salon-story-col">
+              <h2 class="couture-headline" id="pollux-salon-heading" tabindex="-1">
+                <span data-sync="pollux-title-main" id="pollux-title-main">5-minute guides for Docs &amp; Gmail.</span>
+                <em data-sync="pollux-title-italic" id="pollux-title-italic">No coding required.</em>
+              </h2>
+              <p class="couture-dek" data-sync-html="pollux-dek" id="pollux-dek">
+                <strong>Everyday Workflows:</strong> Step-by-step recipes for Deep Research synthesis, NotebookLM audio briefings, and multi-tab Google Sheets cleanup that save hours every week.
+              </p>
+            </div>
+
+            <div class="atelier-console">
+              <div class="ac-top">
+                <span data-sync="ac-console-kicker" id="ac-console-kicker">STAR 02/06 WORKFLOW LAB</span>
+                <span>[SIMULATED DEMO]</span>
+              </div>
+              <div class="ac-presets" role="group" aria-label="Interactive Workload Presets">
+                <button type="button" class="ac-preset-btn" data-preset="0" aria-pressed="true">DEEP RESEARCH</button>
+                <button type="button" class="ac-preset-btn" data-preset="1" aria-pressed="false">NOTEBOOKLM</button>
+                <button type="button" class="ac-preset-btn" data-preset="2" aria-pressed="false">SHEETS AI</button>
+              </div>
+              <div class="ac-output" aria-live="polite">
+                <div class="ac-line">
+                  <span class="ac-k" data-sync="ac-k1" id="ac-k1">1. Task:</span>
+                  <span class="ac-v" data-sync="ac-v1" id="ac-v1">50-Source Market Brief</span>
+                </div>
+                <div class="ac-line">
+                  <span class="ac-k" data-sync="ac-k2" id="ac-k2">2. Manual Time:</span>
+                  <span class="ac-v accent" data-sync="ac-v2" id="ac-v2">4.5 hours → 6 mins</span>
+                </div>
+                <div class="ac-line">
+                  <span class="ac-k" data-sync="ac-k3" id="ac-k3">3. Output:</span>
+                  <span class="ac-v" data-sync="ac-v3" id="ac-v3">Cited Google Doc</span>
+                </div>
               </div>
             </div>
           </div>
+        </article>
+      </div>
 
-          <aside class="telemetry-card" aria-label="Verified Google Telemetry">
-            <div class="tc-header">
-              <span>SIGNAL LEDGER</span>
-              <span id="castor-spec-code">STAR 02 · <span class="greek">ε</span> MEBSUTA</span>
-            </div>
-            <div class="tc-row">
-              <span class="tc-key" id="tc-k1">Verification Standard</span>
-              <span class="tc-val" id="tc-v1">100% Google Primary Links</span>
-            </div>
-            <div class="tc-row">
-              <span class="tc-key" id="tc-k2">Target Reader</span>
-              <span class="tc-val" id="tc-v2">Everyday Users &amp; Builders</span>
-            </div>
-            <div class="tc-row">
-              <span class="tc-key" id="tc-k3">Astrophysical Depth</span>
-              <span class="tc-val" id="tc-v3">840 Light-Years (G8Ib)</span>
-            </div>
-            <a class="tc-source-link" id="castor-source-link" href="https://blog.google/technology/ai/" target="_blank" rel="noopener noreferrer">
-              <span>Verified Google Source</span>
-              <span>↗</span>
-            </a>
-          </aside>
-        </div>
-      </article>
-
-      <article class="spread-salon spread-pollux">
-        <div class="salon-header-row">
-          <span class="shr-title">
-            <span class="peek-dot" aria-hidden="true"></span>
-            <span><span class="greek">β</span> POLLUX · THE WORKBENCH</span>
-          </span>
-          <span class="shr-badge" id="pollux-star-badge"><span class="greek">δ</span> GEM · WORKSPACE GUIDES · 60 LY</span>
-        </div>
-
-        <div class="salon-body-split">
-          <div class="salon-story-col">
-            <h2 class="couture-headline" id="pollux-salon-heading" tabindex="-1">
-              <span id="pollux-title-main">5-minute guides for Docs &amp; Gmail.</span>
-              <em id="pollux-title-italic">No coding required.</em>
-            </h2>
-            <p class="couture-dek" id="pollux-dek">
-              <strong>Everyday Workflows:</strong> Step-by-step recipes for Deep Research synthesis, NotebookLM audio briefings, and multi-tab Google Sheets cleanup that save hours every week.
-            </p>
+      <!-- ===================================================================
+           ROW 2 (OPTION B): NOCTURNAL LIGHT-ON-DARK TINTS (DEEP SAPPHIRE vs. DEEP AMBER-BRONZE)
+           =================================================================== -->
+      <div class="row-comparison-banner">
+        <span>🌙 ROW B · NOCTURNAL LIGHT-ON-DARK TINTS (DEEP SAPPHIRE NIGHT vs. DEEP AMBER-BRONZE NIGHT)</span>
+        <span>WCAG AAA CONTRAST · LEFT 13.5:1 · RIGHT 13.1:1</span>
+      </div>
+      <div class="magazine-spread">
+        <article class="spread-salon spread-castor spread-castor--night">
+          <div class="salon-header-row">
+            <span class="shr-title">
+              <span class="peek-dot" style="background:#38BDF8;box-shadow:0 0 8px #38BDF8;" aria-hidden="true"></span>
+              <span><span class="greek">α</span> CASTOR · THE SIGNAL (NOCTURNAL SAPPHIRE)</span>
+            </span>
+            <span class="shr-badge" data-sync="castor-star-badge"><span class="greek">ε</span> GEM · SUPERGIANT · 840 LY</span>
           </div>
 
-          <div class="atelier-console">
-            <div class="ac-top">
-              <span id="ac-console-kicker">STAR 02/06 WORKFLOW LAB</span>
-              <span>[SIMULATED DEMO]</span>
-            </div>
-            <div class="ac-presets" role="group" aria-label="Interactive Workload Presets">
-              <button type="button" class="ac-preset-btn" data-preset="0" aria-pressed="true">DEEP RESEARCH</button>
-              <button type="button" class="ac-preset-btn" data-preset="1" aria-pressed="false">NOTEBOOKLM</button>
-              <button type="button" class="ac-preset-btn" data-preset="2" aria-pressed="false">SHEETS AI</button>
-            </div>
-            <div class="ac-output" aria-live="polite">
-              <div class="ac-line">
-                <span class="ac-k" id="ac-k1">1. Task:</span>
-                <span class="ac-v" id="ac-v1">50-Source Market Brief</span>
+          <div class="salon-body-split">
+            <div class="salon-story-col">
+              <h2 class="couture-headline">
+                <span data-sync="castor-title-main">Every Gemini release, decoded.</span>
+                <em data-sync="castor-title-italic">Zero jargon. Zero hype.</em>
+              </h2>
+              <p class="couture-dek" data-sync-html="castor-dek">
+                <strong>How it applies to you:</strong> Google ships model updates, context-window expansions, and Workspace features every week. We translate every drop into plain English: what changed, who should care, and what you can safely ignore.
+              </p>
+
+              <!-- Mirrored Active Constellation-Dot Table of Contents inside Row B (Night) -->
+              <div class="salon-toc-strip" aria-label="Article Table of Contents (Nocturnal Row)">
+                <div class="salon-toc-meta">
+                  <span>ACTIVE CHAPTER TOC (CONSTELLATION DOT RAIL)</span>
+                  <span data-sync="salon-read-time">NOV 3, 2026 · ⏱ 4 MIN READ</span>
+                </div>
+                <div class="salon-toc-rail" role="tablist">
+                  <div class="salon-toc-line" aria-hidden="true"></div>
+                  <div class="salon-toc-reticle" data-sync-reticle="true" aria-hidden="true"></div>
+                  <button type="button" class="salon-toc-btn" role="tab" data-toc-idx="0" aria-selected="true">
+                    <span class="salon-toc-dot" aria-hidden="true"></span>
+                    <span data-sync="salon-toc-label-0">01 · What Shipped</span>
+                  </button>
+                  <button type="button" class="salon-toc-btn" role="tab" data-toc-idx="1" aria-selected="false">
+                    <span class="salon-toc-dot" aria-hidden="true"></span>
+                    <span data-sync="salon-toc-label-1">02 · For Your Work</span>
+                  </button>
+                  <button type="button" class="salon-toc-btn" role="tab" data-toc-idx="2" aria-selected="false">
+                    <span class="salon-toc-dot" aria-hidden="true"></span>
+                    <span data-sync="salon-toc-label-2">03 · Safe to Skip</span>
+                  </button>
+                </div>
               </div>
-              <div class="ac-line">
-                <span class="ac-k" id="ac-k2">2. Manual Time:</span>
-                <span class="ac-v accent" id="ac-v2">4.5 hours → 6 mins</span>
+            </div>
+
+            <aside class="telemetry-card" aria-label="Verified Google Telemetry (Nocturnal Row)">
+              <div class="tc-header">
+                <span>SIGNAL LEDGER</span>
+                <span data-sync-html="castor-spec-code">STAR 02 · <span class="greek">ε</span> MEBSUTA</span>
               </div>
-              <div class="ac-line">
-                <span class="ac-k" id="ac-k3">3. Output:</span>
-                <span class="ac-v" id="ac-v3">Cited Google Doc</span>
+              <div class="tc-row">
+                <span class="tc-key" data-sync="tc-k1">Verification Standard</span>
+                <span class="tc-val" data-sync="tc-v1">100% Google Primary Links</span>
+              </div>
+              <div class="tc-row">
+                <span class="tc-key" data-sync="tc-k2">Target Reader</span>
+                <span class="tc-val" data-sync="tc-v2">Everyday Users &amp; Builders</span>
+              </div>
+              <div class="tc-row">
+                <span class="tc-key" data-sync="tc-k3">Astrophysical Depth</span>
+                <span class="tc-val" data-sync="tc-v3">840 Light-Years (G8Ib)</span>
+              </div>
+              <a class="tc-source-link" data-sync-href="castor-source-link" href="https://blog.google/technology/ai/" target="_blank" rel="noopener noreferrer">
+                <span>Verified Google Source</span>
+                <span>↗</span>
+              </a>
+            </aside>
+          </div>
+        </article>
+
+        <article class="spread-salon spread-pollux spread-pollux--night">
+          <div class="salon-header-row">
+            <span class="shr-title">
+              <span class="peek-dot" style="background:#F59E3F;box-shadow:0 0 8px #F59E3F;" aria-hidden="true"></span>
+              <span><span class="greek">β</span> POLLUX · THE WORKBENCH (NOCTURNAL AMBER-BRONZE)</span>
+            </span>
+            <span class="shr-badge" data-sync="pollux-star-badge"><span class="greek">δ</span> GEM · WORKSPACE GUIDES · 60 LY</span>
+          </div>
+
+          <div class="salon-body-split">
+            <div class="salon-story-col">
+              <h2 class="couture-headline">
+                <span data-sync="pollux-title-main">5-minute guides for Docs &amp; Gmail.</span>
+                <em data-sync="pollux-title-italic">No coding required.</em>
+              </h2>
+              <p class="couture-dek" data-sync-html="pollux-dek">
+                <strong>Everyday Workflows:</strong> Step-by-step recipes for Deep Research synthesis, NotebookLM audio briefings, and multi-tab Google Sheets cleanup that save hours every week.
+              </p>
+            </div>
+
+            <div class="atelier-console" style="background:rgba(9, 5, 2, 0.88);border-color:rgba(245, 158, 63, 0.48);">
+              <div class="ac-top">
+                <span data-sync="ac-console-kicker">STAR 02/06 WORKFLOW LAB</span>
+                <span>[SIMULATED DEMO]</span>
+              </div>
+              <div class="ac-presets" role="group" aria-label="Interactive Workload Presets (Nocturnal Row)">
+                <button type="button" class="ac-preset-btn" data-preset="0" aria-pressed="true">DEEP RESEARCH</button>
+                <button type="button" class="ac-preset-btn" data-preset="1" aria-pressed="false">NOTEBOOKLM</button>
+                <button type="button" class="ac-preset-btn" data-preset="2" aria-pressed="false">SHEETS AI</button>
+              </div>
+              <div class="ac-output" aria-live="polite">
+                <div class="ac-line">
+                  <span class="ac-k" data-sync="ac-k1">1. Task:</span>
+                  <span class="ac-v" data-sync="ac-v1">50-Source Market Brief</span>
+                </div>
+                <div class="ac-line">
+                  <span class="ac-k" data-sync="ac-k2">2. Manual Time:</span>
+                  <span class="ac-v accent" data-sync="ac-v2">4.5 hours → 6 mins</span>
+                </div>
+                <div class="ac-line">
+                  <span class="ac-k" data-sync="ac-k3">3. Output:</span>
+                  <span class="ac-v" data-sync="ac-v3">Cited Google Doc</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </article>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -2945,6 +3298,10 @@
 
       function beginCelestialSlew(nextYaw, nextPitch, nextRoll, nextPanX, nextPanY, nextStarKey, duration = SLEW_DURATION_MS) {
         const now = performance.now();
+        // Shortest-arc 360° normalization so clicking a star after spinning 360° slews smoothly (<= 180°)
+        const shortestDiff = ((((nextYaw - cam.yaw) % 360) + 540) % 360) - 180;
+        cam.yaw = nextYaw - shortestDiff;
+
         slew.active = true;
         slew.startTime = now;
         slew.duration = duration;
@@ -2979,7 +3336,7 @@
 
         const zInput = pt.z + extraZPull;
 
-        // 1. Rotate around Y axis (Yaw)
+        // 1. Rotate around Y axis (Yaw — full 360° continuous rotation)
         let x1 = pt.x * Math.cos(radY) + zInput * Math.sin(radY);
         let z1 = -pt.x * Math.sin(radY) + zInput * Math.cos(radY);
         let y1 = pt.y;
@@ -3016,37 +3373,49 @@
         tetherEls[k] = line;
       });
 
-      /* Pointillist 3D Starfield + M35 Cluster Particles on Canvas */
+      /* Deterministic Pointillist 3D Starfield + M35 Cluster Particles on Canvas
+         Seeded PRNG ("GEMI" = 0x47454D49) so field stars NEVER randomly jump on page refresh! */
       const canvas = document.getElementById("pointillist-3d-canvas");
       const ctx = canvas.getContext("2d");
       const PARTICLES = [];
 
+      function createSeededRandom(seed) {
+        let s = seed >>> 0;
+        return function () {
+          s = (s + 0x6D2B79F5) >>> 0;
+          let t = Math.imul(s ^ (s >>> 15), 1 | s);
+          t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+          return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+        };
+      }
+
       function initParticles() {
         PARTICLES.length = 0;
+        const rand = createSeededRandom(0x47454D49);
         for (let i = 0; i < 185; i++) {
           const palette = i % 5 === 0 ? "#D6EBFF" : i % 5 === 1 ? "#FFD296" : i % 5 === 2 ? "#A385FF" : "#FFFFFF";
           PARTICLES.push({
-            x: (Math.random() - 0.5) * 1150,
-            y: (Math.random() - 0.5) * 560,
-            z: (Math.random() - 0.5) * 520,
-            r: Math.random() * 1.55 + 0.45,
+            x: (rand() - 0.5) * 1150,
+            y: (rand() - 0.5) * 560,
+            z: (rand() - 0.5) * 520,
+            r: rand() * 1.55 + 0.45,
             color: palette,
-            alpha: Math.random() * 0.68 + 0.22,
-            phase: Math.random() * Math.PI * 2
+            alpha: rand() * 0.68 + 0.22,
+            phase: rand() * Math.PI * 2
           });
         }
         // Concentrated M35 Open Cluster pointillist stars around (-335, 155, 145)
         for (let i = 0; i < 75; i++) {
-          const angle = Math.random() * Math.PI * 2;
-          const dist = Math.pow(Math.random(), 1.5) * 42;
+          const angle = rand() * Math.PI * 2;
+          const dist = Math.pow(rand(), 1.5) * 42;
           PARTICLES.push({
             x: -335 + Math.cos(angle) * dist,
             y: 155 + Math.sin(angle) * dist,
-            z: 145 + (Math.random() - 0.5) * 65,
-            r: Math.random() * 1.4 + 0.5,
+            z: 145 + (rand() - 0.5) * 65,
+            r: rand() * 1.4 + 0.5,
             color: i % 3 === 0 ? "#D6EBFF" : "#CEC0FF",
-            alpha: Math.random() * 0.78 + 0.25,
-            phase: Math.random() * Math.PI * 2
+            alpha: rand() * 0.78 + 0.25,
+            phase: rand() * Math.PI * 2
           });
         }
       }
@@ -3138,42 +3507,46 @@
           cam.panY += (cam.targetPanY - cam.panY) * 0.05;
         }
 
-        // Subtle counter-parallax on background Twin engravings
+        // Bounded periodic counter-parallax on background Twin engravings so they stay anchored on their sides during full 360° spins
         if (bgCastor && bgPollux) {
-          bgCastor.style.transform = `translate3d(${(-cam.yaw * 0.36).toFixed(1)}px, ${(-cam.pitch * 0.28).toFixed(1)}px, 0)`;
-          bgPollux.style.transform = `translate3d(${(-cam.yaw * 0.36).toFixed(1)}px, ${(-cam.pitch * 0.28).toFixed(1)}px, 0)`;
+          const radYaw = (cam.yaw * Math.PI) / 180;
+          const radPitch = (cam.pitch * Math.PI) / 180;
+          const shiftX = (-Math.sin(radYaw) * 9).toFixed(1);
+          const shiftY = (-Math.sin(radPitch) * 6).toFixed(1);
+          bgCastor.style.transform = `translate3d(${shiftX}px, ${shiftY}px, 0)`;
+          bgPollux.style.transform = `translate3d(${shiftX}px, ${shiftY}px, 0)`;
         }
 
-        // Rotate 3D Astrolabe Rings in perspective
+        // Rotate 3D Astrolabe Rings in perspective (supports full 360° yaw)
         if (ringOuter && ringInner) {
-          const ryOuter = Math.max(60, 190 - Math.abs(cam.pitch) * 2.4);
-          const ryInner = Math.max(40, 124 - Math.abs(cam.pitch) * 1.6);
+          const ryOuter = Math.max(60, 190 - Math.abs(cam.pitch) * 1.8);
+          const ryInner = Math.max(40, 124 - Math.abs(cam.pitch) * 1.2);
           ringOuter.setAttribute("ry", ryOuter.toFixed(1));
           ringInner.setAttribute("ry", ryInner.toFixed(1));
           ringOuter.setAttribute("transform", `rotate(${(cam.yaw * 0.35).toFixed(1)} 500 258)`);
           ringInner.setAttribute("transform", `rotate(${(-cam.yaw * 0.42).toFixed(1)} 500 258)`);
         }
 
-        // Project all 8 major stars with Smoothly Eased Foreground Z-Pull & Depth Scaling!
+        // Project all 8 major stars with Smoothly Eased Foreground Z-Pull & 360° Depth Scaling!
         const projMajor = {};
         const isTilted3D = Math.hypot(cam.yaw, cam.pitch) > 2.0;
 
         STAR_ORDER.forEach((k) => {
           const p3 = STARS_3D[k];
           const isSelected = k === activeStarKey;
-          const fg = starFg[k]; // Smoothly eased 0..1 foreground factor over 2.6 seconds
+          const fg = starFg[k]; // Smoothly eased 0..1 foreground factor
 
           const proj = project3D(p3, starZPull[k]);
           projMajor[k] = proj;
 
           const node = majorNodeEls[k];
           if (node) {
-            // Smoothly eased depth scale & atmospheric opacity (zero frame-1 snap!):
-            const bgScale = Math.max(0.70, Math.min(1.02, proj.scale * 0.91));
-            const fgScale = Math.max(1.22, Math.min(1.30, proj.scale * 1.03));
+            // Smoothly eased depth scale & atmospheric opacity (scales dynamically as stars spin 360°!):
+            const bgScale = Math.max(0.68, Math.min(1.06, proj.scale * 0.91));
+            const fgScale = Math.max(1.20, Math.min(1.30, proj.scale * 1.03));
             const depthScale = bgScale + (fgScale - bgScale) * fg;
 
-            const bgOpacity = Math.max(0.54, Math.min(0.86, (proj.scale - 0.58) * 1.35));
+            const bgOpacity = Math.max(0.50, Math.min(0.88, (proj.scale - 0.56) * 1.35));
             const depthOpacity = bgOpacity + (1.0 - bgOpacity) * fg;
 
             node.setAttribute("transform", `translate(${proj.sx.toFixed(1)}, ${proj.sy.toFixed(1)}) scale(${depthScale.toFixed(3)})`);
@@ -3201,6 +3574,19 @@
             }
           }
         });
+
+        // Live Z-Depth SVG Layer Sorting during 360° rotation so front-hemisphere stars render over back-hemisphere stars
+        if (majorStarsLayer && (isDragging || cam.autoOrbit)) {
+          const sortedKeys = [...STAR_ORDER].sort((a, b) => {
+            if (a === activeStarKey) return 1;
+            if (b === activeStarKey) return -1;
+            return projMajor[b].z - projMajor[a].z;
+          });
+          sortedKeys.forEach((k) => {
+            const el = majorNodeEls[k];
+            if (el) majorStarsLayer.appendChild(el);
+          });
+        }
 
         const projMinor = {};
         Object.keys(MINOR_STARS_3D).forEach((k) => {
@@ -3342,8 +3728,9 @@
         if (isDragging) {
           const dx = e.clientX - dragStartX;
           const dy = e.clientY - dragStartY;
-          cam.targetYaw = Math.max(-38, Math.min(38, baseYaw + dx * 0.11));
-          cam.targetPitch = Math.max(-24, Math.min(24, basePitch - dy * 0.09));
+          // Full 360° continuous horizontal rotation + wide 3D vertical pitch!
+          cam.targetYaw = baseYaw + dx * 0.45;
+          cam.targetPitch = Math.max(-72, Math.min(72, basePitch - dy * 0.25));
         }
       });
 
@@ -3403,9 +3790,28 @@
 
       /* =====================================================================
          STAR SELECTION: 2.3s QUINTIC S-CURVE RAMP + FUTURISTIC DIGITAL HUD CARD
+         + 2-ROW CHROMATIC SALON SYNC (ROW A DAYLIGHT vs. ROW B NOCTURNAL)
          ===================================================================== */
       let activeTocIdx = 0;
       const TOC_POSITIONS = ["16.666%", "50%", "83.333%"];
+
+      function syncText(key, val) {
+        document.querySelectorAll(`[data-sync="${key}"]`).forEach((el) => {
+          el.textContent = val;
+        });
+      }
+
+      function syncHtml(key, val) {
+        document.querySelectorAll(`[data-sync-html="${key}"]`).forEach((el) => {
+          el.innerHTML = val;
+        });
+      }
+
+      function syncHref(key, val) {
+        document.querySelectorAll(`[data-sync-href="${key}"]`).forEach((el) => {
+          el.setAttribute("href", val);
+        });
+      }
 
       function setTocChapter(starKey, tocIdx) {
         activeTocIdx = tocIdx;
@@ -3413,28 +3819,28 @@
         const chapter = h.toc[tocIdx] || h.toc[0];
         const pos = TOC_POSITIONS[tocIdx] || TOC_POSITIONS[0];
 
-        // Glide the miniature hairline focus circle along the straight line of TOC dots (HUD & Reader)
+        // Glide the miniature hairline focus circle along the straight line of TOC dots (HUD + Both Drawer Rows)
         const hudReticle = document.getElementById("hud-toc-reticle");
-        const salonReticle = document.getElementById("salon-toc-reticle");
         if (hudReticle) hudReticle.style.left = pos;
-        if (salonReticle) salonReticle.style.left = pos;
+        document.querySelectorAll("[data-sync-reticle]").forEach((el) => {
+          el.style.left = pos;
+        });
 
         document.querySelectorAll(".toc-dot-btn").forEach((btn) => {
           btn.setAttribute("aria-selected", String(Number(btn.getAttribute("data-toc-idx")) === tocIdx));
         });
         document.querySelectorAll(".salon-toc-btn").forEach((btn) => {
-          btn.setAttribute("aria-selected", String(Number(btn.getAttribute("data-salon-toc")) === tocIdx));
+          btn.setAttribute("aria-selected", String(Number(btn.getAttribute("data-toc-idx")) === tocIdx));
         });
 
         const previewEl = document.getElementById("hud-toc-preview");
         if (previewEl) previewEl.innerHTML = `<strong>${chapter.label}:</strong> ${chapter.text}`;
 
-        const castorDekEl = document.getElementById("castor-dek");
-        if (castorDekEl && tocIdx > 0) {
-          castorDekEl.innerHTML = `<strong>${chapter.label}:</strong> ${chapter.text}`;
-        } else if (castorDekEl && tocIdx === 0) {
+        if (tocIdx > 0) {
+          syncHtml("castor-dek", `<strong>${chapter.label}:</strong> ${chapter.text}`);
+        } else {
           const d = SALON_DATA[starKey] || SALON_DATA.mebsuta;
-          castorDekEl.innerHTML = d.castorDek;
+          syncHtml("castor-dek", d.castorDek);
         }
       }
 
@@ -3450,8 +3856,7 @@
         const readTimeEl = document.getElementById("hud-read-time");
         if (readTimeEl) readTimeEl.textContent = h.dateRead;
 
-        const salonReadTimeEl = document.getElementById("salon-read-time");
-        if (salonReadTimeEl) salonReadTimeEl.textContent = `EST. READING TIME: ${h.dateRead.split("·").pop().trim()} ·NOV 3, 2026`;
+        syncText("salon-read-time", `EST. READING TIME: ${h.dateRead.split("·").pop().trim()} · NOV 3, 2026`);
 
         const titleEl = document.getElementById("hud-title");
         if (titleEl) titleEl.innerHTML = h.hudTitle;
@@ -3464,9 +3869,8 @@
 
         h.toc.forEach((ch, idx) => {
           const l1 = document.getElementById(`hud-toc-label-${idx}`);
-          const l2 = document.getElementById(`salon-toc-label-${idx}`);
           if (l1) l1.textContent = ch.label;
-          if (l2) l2.textContent = ch.label;
+          syncText(`salon-toc-label-${idx}`, ch.label);
         });
 
         setTocChapter(starKey, 0);
@@ -3481,16 +3885,17 @@
       function renderPreset(starKey, presetIdx) {
         const d = SALON_DATA[starKey] || SALON_DATA.mebsuta;
         const p = d.presets[presetIdx] || d.presets[0];
-        document.querySelectorAll(".ac-preset-btn").forEach((btn, idx) => {
+        document.querySelectorAll(".ac-preset-btn").forEach((btn) => {
+          const idx = Number(btn.getAttribute("data-preset")) || 0;
           btn.textContent = d.presets[idx].label;
           btn.setAttribute("aria-pressed", String(idx === presetIdx));
         });
-        document.getElementById("ac-k1").textContent = p.k1;
-        document.getElementById("ac-v1").textContent = p.v1;
-        document.getElementById("ac-k2").textContent = p.k2;
-        document.getElementById("ac-v2").textContent = p.v2;
-        document.getElementById("ac-k3").textContent = p.k3;
-        document.getElementById("ac-v3").textContent = p.v3;
+        syncText("ac-k1", p.k1);
+        syncText("ac-v1", p.v1);
+        syncText("ac-k2", p.k2);
+        syncText("ac-v2", p.v2);
+        syncText("ac-k3", p.k3);
+        syncText("ac-v3", p.v3);
       }
 
       function selectStar(starKey, syncUrl = true, isInitial = false) {
@@ -3509,7 +3914,7 @@
         const nextPanY = currentPov === "earth" ? 0 : -s3.y * 0.09;
 
         if (isInitial) {
-          // Instant initial positioning on first page load
+          // Instant initial positioning on first page load (skewed in 3D foreground!)
           cam.yaw = cam.targetYaw = nextYaw;
           cam.pitch = cam.targetPitch = nextPitch;
           cam.panX = cam.targetPanX = nextPanX;
@@ -3555,13 +3960,13 @@
           `YOU ARE HERE · STAR ${s3.idx} / 08 (${toUpperPreserveGreek(s3.name)})`
         );
         document.getElementById("active-star-telemetry").innerHTML = formatGreek(
-          `FOREGROUND: STAR ${s3.idx} · ${toUpperPreserveGreek(s3.name.split("·")[0].trim())} · ${s3.ly} LIGHT-YEARS (SCALE 1.28×)`
+          `FOREGROUND: STAR ${s3.idx} · ${toUpperPreserveGreek(s3.name.split("·")[0].trim())} · ${s3.ly} LIGHT-YEARS (SCALE 1.28× · DRAG 360°)`
         );
         document.getElementById("sheet-location-status").innerHTML = formatGreek(
-          `♊ PAIRED TWIN SALONS · STAR ${s3.idx} / 08 (${toUpperPreserveGreek(s3.name)} · ${s3.ly} LY)`
+          `♊ PAIRED TWIN SALONS · STAR ${s3.idx} / 08 (${toUpperPreserveGreek(s3.name)} · ${s3.ly} LY) — 2-ROW COLOR COMPARISON`
         );
 
-        // Update 56px Bottom Porcelain Silk Peek Dock
+        // Update 56px Bottom Chromatic Peek Dock
         document.getElementById("peek-castor-headline").innerHTML =
           `${d.castorMain} <em>${d.castorItalic}</em>`;
         document.getElementById("peek-castor-badge").innerHTML =
@@ -3572,26 +3977,30 @@
         document.getElementById("peek-pollux-badge").innerHTML =
           formatGreek(d.polluxBadge.split("·").slice(0, 2).join(" · "));
 
-        // Update Slide-Up Salon Content
+        // Update Slide-Up Salon Content across BOTH Row A (Daylight Tints) and Row B (Nocturnal Tints)
         const applySalonDOM = () => {
-          document.getElementById("castor-star-badge").innerHTML = formatGreek(d.castorBadge);
-          document.getElementById("castor-title-main").textContent = d.castorMain;
-          document.getElementById("castor-title-italic").textContent = d.castorItalic;
-          document.getElementById("castor-dek").innerHTML = d.castorDek;
-          document.getElementById("castor-spec-code").innerHTML = formatGreek(d.specCode);
-          document.getElementById("tc-k1").textContent = d.k1;
-          document.getElementById("tc-v1").textContent = d.v1;
-          document.getElementById("tc-k2").textContent = d.k2;
-          document.getElementById("tc-v2").textContent = d.v2;
-          document.getElementById("tc-k3").textContent = d.k3;
-          document.getElementById("tc-v3").textContent = d.v3;
-          document.getElementById("castor-source-link").setAttribute("href", d.sourceUrl);
+          document.querySelectorAll('[data-sync="castor-star-badge"]').forEach((el) => {
+            el.innerHTML = formatGreek(d.castorBadge);
+          });
+          syncText("castor-title-main", d.castorMain);
+          syncText("castor-title-italic", d.castorItalic);
+          syncHtml("castor-dek", d.castorDek);
+          syncHtml("castor-spec-code", formatGreek(d.specCode));
+          syncText("tc-k1", d.k1);
+          syncText("tc-v1", d.v1);
+          syncText("tc-k2", d.k2);
+          syncText("tc-v2", d.v2);
+          syncText("tc-k3", d.k3);
+          syncText("tc-v3", d.v3);
+          syncHref("castor-source-link", d.sourceUrl);
 
-          document.getElementById("pollux-star-badge").innerHTML = formatGreek(d.polluxBadge);
-          document.getElementById("pollux-title-main").textContent = d.polluxMain;
-          document.getElementById("pollux-title-italic").textContent = d.polluxItalic;
-          document.getElementById("pollux-dek").innerHTML = d.polluxDek;
-          document.getElementById("ac-console-kicker").textContent = d.consoleKicker;
+          document.querySelectorAll('[data-sync="pollux-star-badge"]').forEach((el) => {
+            el.innerHTML = formatGreek(d.polluxBadge);
+          });
+          syncText("pollux-title-main", d.polluxMain);
+          syncText("pollux-title-italic", d.polluxItalic);
+          syncHtml("pollux-dek", d.polluxDek);
+          syncText("ac-console-kicker", d.consoleKicker);
           renderPreset(starKey, 0);
         };
 
@@ -3606,6 +4015,19 @@
           url.searchParams.set("star", starKey);
           window.history.replaceState({}, "", url.toString());
         }
+      }
+
+      /* Toggle 56px Bottom Peek Dock Theme (Daylight Tints vs. Nocturnal Tints) */
+      const togglePeekBtn = document.getElementById("toggle-peek-theme-btn");
+      if (togglePeekBtn) {
+        togglePeekBtn.addEventListener("click", () => {
+          const current = document.documentElement.getAttribute("data-peek-theme");
+          const next = current === "night" ? "daylight" : "night";
+          document.documentElement.setAttribute("data-peek-theme", next);
+          togglePeekBtn.innerHTML = next === "night"
+            ? `<span>Peek Dock Theme: Nocturnal Tints 🌙</span>`
+            : `<span>Peek Dock Theme: Daylight Tints ☀️</span>`;
+        });
       }
 
       /* Slide-Up Drawer Open / Close Logic */
@@ -3660,7 +4082,7 @@
 
       document.querySelectorAll(".salon-toc-btn").forEach((btn) => {
         btn.addEventListener("mousedown", (e) => e.preventDefault());
-        const idx = Number(btn.getAttribute("data-salon-toc")) || 0;
+        const idx = Number(btn.getAttribute("data-toc-idx")) || 0;
         btn.addEventListener("mouseenter", () => setTocChapter(activeStarKey, idx));
         btn.addEventListener("click", () => setTocChapter(activeStarKey, idx));
       });
@@ -3704,9 +4126,17 @@
       const initStar = params.get("star") && STARS_3D[params.get("star")] ? params.get("star") : "mebsuta";
       const initPov = params.get("pov");
       const initDrawer = params.get("drawer");
+      const initYaw = params.get("yaw");
+      const initPeek = params.get("peek");
 
       const sInit = STARS_3D[initStar];
       selectStar(initStar, false, true);
+
+      if (initYaw !== null && !Number.isNaN(parseFloat(initYaw))) {
+        cam.yaw = cam.targetYaw = cam.fromYaw = parseFloat(initYaw);
+        cam.depthFactor = cam.targetDepth = cam.fromDepth = 1.0;
+        cam.slewProgress = 1;
+      }
 
       // Snap initial beacon position to initial star so first render is centered on it
       const initProj = project3D(sInit, starZPull[initStar]);
@@ -3716,6 +4146,9 @@
       if (initPov) {
         const povBtn = document.querySelector(`[data-pov-mode="${initPov}"]`);
         if (povBtn) povBtn.click();
+      }
+      if (initPeek === "night" && togglePeekThemeBtn) {
+        togglePeekThemeBtn.click();
       }
       if (initDrawer === "open") {
         setDrawerOpen(true);
