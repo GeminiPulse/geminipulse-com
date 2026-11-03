@@ -1,11 +1,11 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-11-02 17:45 EST (Curated Official Google Gemini 2.5 Deprecation & Dec 1 Auto-Routing Notice; Published 3-Part Deep-Dive Series, Migration Readiness Scanner & TEKTHRILL Video of the Day)`
+- **Last Updated:** `2026-11-02 21:50 EST (Built Look G Desktop Above-the-Fold Magnetic Twins Prototype: 2-Second Intro + Paired "What's New & How It Applies to You" vs. "How to Use It Now & Live Proof" Stage)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
 - **Firebase Default Hosting URL:** `https://geminipulse-com.web.app`
-- **Local Dev Preview URL:** `http://localhost:8080` *(Brand Evolution Portfolio Hub: `http://localhost:8080/prototypes/` · Look F Clean Split: `http://localhost:8080/prototypes/look-f-clean-split.html` · Look E: `http://localhost:8080/prototypes/look-e-twin-threshold.html` · Look D v2: `http://localhost:8080/prototypes/look-d-fraternal-twins.html`)*
+- **Local Dev Preview URL:** `http://localhost:8080` *(Look G Desktop Magnetic Twins: `http://localhost:8080/prototypes/look-g-desktop-magnetic-twins.html` · Brand Evolution Portfolio Hub: `http://localhost:8080/prototypes/` · Look F Clean Split: `http://localhost:8080/prototypes/look-f-clean-split.html` · Look E: `http://localhost:8080/prototypes/look-e-twin-threshold.html` · Look D v2: `http://localhost:8080/prototypes/look-d-fraternal-twins.html`)*
 - **Firebase Project ID:** `geminipulse-com` (Project Number `643794480842`, Spark Free Plan — **\$0.00/mo**)
 - **Firebase Web App ID:** `1:643794480842:web:9f973bc1a0d7670c920e33` (`GeminiPulse Web`)
 - **Concept Originator & Creative Catalyst:** Neil S. White (`https://www.linkedin.com/in/neilswhite`, **Agile LLC**)
@@ -13,7 +13,17 @@
 
 ---
 
-## 1. Completed & Live on `v2.0` (2026-11-02 5:45 PM ET Update)
+## 1. Completed & Live on `v2.0` (2026-11-02 9:50 PM ET Update)
+
+- **Built `Look G` — Desktop Above-the-Fold Magnetic Twins (`public/public/prototypes/look-g-desktop-magnetic-twins.html` — Look D `v2`, Look E, Look F & Production `public/src/App.jsx` 100% Untouched):**
+  - **Designed for the 90% Gemini-User Audience:** Replaces abstract department signposts and Greek codename riddles with a **2-second orientation banner** (*"What’s New in Google Gemini—and How It Applies to You"*), followed by two connected Twins on a single zero-scroll desktop stage:
+    1. **Left Twin (`Twin I · The Intelligence Briefing` — Warm Editorial Daylight `#FAF8F3`):** *"What’s New & How It Applies to You"* — Features a 3-story live selector (`Gemini 2.5 Sunset`, `Screen-Click AI (GA)`, `Gemini 4 Carbon`), a cohesive lead card with 3 scannable key metrics, a plain-English *"What Changed & How It Applies to You"* callout box, direct Google primary source links, and 3 reading tracks (`01 · Releases`, `02 · Work ROI`, `03 · Videos`).
+    2. **Right Twin (`Twin II · The Hands-On Workbench` — High-Contrast Studio `#0D1322`):** *"How to Use It Now & Live Proof"* — Synchronizes automatically across the zero-overlap `⇄` gutter seam with the Left Twin so every story on the left pairs with a **10-second live browser check `[SIMULATED DEMO]`** on the right, plus 3 hands-on tracks (`01 · 5-Min Guides`, `02 · Live Labs`, `03 · Built by AI`).
+  - **Verified `0` Vertical & `0` Horizontal Scroll Overflows Across All 4 Desktop & Tablet Landscape Viewports:**
+    - `1920×1080` Full HD Desktop: `1920 === 1920` width, `1080 === 1080` height (`0` scroll)
+    - `1440×900` Standard Desktop: `1440 === 1440` width, `900 === 900` height (`0` scroll)
+    - `1280×800` 13" Laptop: `1280 === 1280` width, `800 === 800` height (`0` scroll)
+    - `1024×768` Tablet Landscape: `1024 === 1024` width, `768 === 768` height (`0` scroll)
 
 - **Curated Official Google Gemini 2.5 Pro & Flash Deprecation & December 1 Auto-Routing Notice (`v2.0.47`):**
   - **Grounded Primary Source:** Google AI for Developers Changelog (`ai.google.dev/gemini-api/docs/changelog#11-02-2026`) & Deprecations Guide (`ai.google.dev/gemini-api/docs/deprecations#gemini-2.5-pro-models`) on November 2, 2026.

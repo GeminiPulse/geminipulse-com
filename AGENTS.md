@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-11-02 17:45 EST — Curated Official Google Gemini 2.5 Pro & Flash Deprecation & Dec 1 Auto-Routing Release; Published 3-Part Deep-Dive Series (/series/gemini-2-5-migration/), Interactive Migration Readiness Scanner (/labs/gemini-migration-readiness-scanner.html), Elevated TEKTHRILL Computer Use GA to Featured Video of the Day, Updated sitemap.xml & feed.xml`
+> **Last touched:** `2026-11-02 21:50 EST — Built Look G Desktop Above-the-Fold Magnetic Twins (/prototypes/look-g-desktop-magnetic-twins.html): 2-Second Intro + Paired "What's New & How It Applies to You" vs. "How to Use It Now & Live Proof" Stage (100svh Zero-Scroll Across 1920x1080, 1440x900, 1280x800 & 1024x768)`
 
 ---
 

@@ -1,0 +1,1847 @@
+<!doctype html>
+<html lang="en" data-view="twins" data-pair="migration">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GeminiPulse — What’s New in Google Gemini &amp; How to Use It Right Now</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,500&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* =====================================================================
+       LOOK G — DESKTOP ABOVE-THE-FOLD MAGNETIC TWINS (100svh Zero-Scroll)
+       Designed & Architected by Google Gemini 4 Argon for GeminiPulse.com
+       - Zone 1: Succinct 2-Second Introduction + "Built by Gemini" Premise
+       - Zone 2: The Two Connected Twins (50/50 High-Contrast Desktop Stage)
+           * LEFT TWIN (The Signal): What’s New in Gemini & How It Applies to You
+           * RIGHT TWIN (The Workbench): How to Use It Now & Live Proof
+       - Zone 3: Zero-Overlap Gutter Seam Bridge (⇄) syncing Left & Right
+       ===================================================================== */
+    :root {
+      /* MANDATORY (animate-to-intrinsic-sizes): Opt-in to keyword interpolation */
+      interpolate-size: allow-keywords;
+
+      --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-serif: 'Newsreader', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+
+      /* Shell & Orientation Palette */
+      --shell-bg: #ECEAE3;
+      --ink-dark: #0F141F;
+      --ink-body: #2C3444;
+      --ink-muted: #525B6C;
+      --hairline: #D5D0C4;
+
+      /* LEFT TWIN: Warm Editorial Daylight ("What's New & How It Applies") */
+      --left-bg: #FAF8F3;
+      --left-card: #FFFFFF;
+      --left-tint: #F2EFE7;
+      --left-border: #D6D1C4;
+      --left-accent: #183EC2;
+      --left-accent-soft: #E8EEFF;
+      --left-vermilion: #B8290E;
+
+      /* RIGHT TWIN: High-Contrast Studio Workbench ("How to Use It & Proof") */
+      --right-bg: #0D1322;
+      --right-card: #151E32;
+      --right-elevated: #1C2842;
+      --right-border: #2C3B5E;
+      --right-ink: #F8FAFC;
+      --right-muted: #CBD5E1;
+      --right-faint: #94A3B8;
+      --right-amber: #F59E0B;
+      --right-amber-bright: #FBBF24;
+      --right-cyan: #38BDF8;
+      --right-emerald: #34D399;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      block-size: 100%;
+      background: var(--shell-bg);
+      color: var(--ink-dark);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    /* MANDATORY (accessibility): Visually hidden utility with :focus-within/:active opt-out */
+    .visually-hidden:where(:not(:focus-within, :active)) {
+      position: absolute !important;
+      clip-path: inset(50%) !important;
+      overflow: hidden !important;
+      width: 1px !important;
+      height: 1px !important;
+      margin: -1px !important;
+      padding: 0 !important;
+      border: 0 !important;
+      white-space: nowrap !important;
+    }
+
+    .skip-link:focus {
+      position: fixed;
+      top: 0.5rem;
+      left: 0.5rem;
+      z-index: 300;
+      background: var(--right-amber);
+      color: var(--ink-dark);
+      padding: 0.5rem 0.9rem;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 700;
+      border-radius: 6px;
+      border: 2px solid var(--ink-dark);
+    }
+
+    :where(a:any-link, button, [tabindex="-1"]):focus-visible {
+      outline: 2.5px solid var(--left-accent);
+      outline-offset: 2px;
+    }
+
+    .twin-right :where(a:any-link, button):focus-visible {
+      outline-color: var(--right-amber-bright);
+    }
+
+    /* =====================================================================
+       DESKTOP ABOVE-THE-FOLD SHELL (Fits 100svh cleanly on 1024px–2560px)
+       ===================================================================== */
+    .desktop-fold-shell {
+      min-block-size: 100svh;
+      max-inline-size: 1520px;
+      margin-inline: auto;
+      padding: clamp(0.4rem, 1vh, 0.9rem) clamp(0.8rem, 1.75vw, 1.6rem);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: clamp(0.35rem, 0.85vh, 0.75rem);
+    }
+
+    .stage-center-wrap {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: clamp(0.45rem, 1.15vh, 0.95rem);
+      min-block-size: 0;
+    }
+
+    /* =====================================================================
+       1. TOP MASTHEAD BAR (Zero Overlap at 1024px–2560px)
+       ===================================================================== */
+    .masthead {
+      background: #FFFFFF;
+      border: 1px solid var(--hairline);
+      border-radius: 12px;
+      padding: 0.32rem 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      min-block-size: 42px;
+      box-shadow: 0 2px 8px rgba(15, 20, 31, 0.03);
+    }
+
+    .mast-left {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-display);
+      font-size: 1.02rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--ink-dark);
+      background: transparent;
+      border: 0;
+      padding: 0.12rem 0.2rem;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+
+    .brand-glyph {
+      inline-size: 22px;
+      block-size: 22px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, #183EC2 0%, #7C3AED 52%, #D9381E 100%);
+      color: #FFFFFF;
+      display: inline-grid;
+      place-items: center;
+      font-size: 0.76rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .brand-mark span {
+      color: var(--left-accent);
+    }
+
+    .autonomy-pill {
+      display: none;
+      align-items: center;
+      gap: 0.36rem;
+      padding: 0.18rem 0.52rem;
+      border-radius: 999px;
+      background: #F3F1EA;
+      border: 1px solid var(--hairline);
+      font-family: var(--font-mono);
+      font-size: 0.64rem;
+      font-weight: 600;
+      color: var(--ink-body);
+      white-space: nowrap;
+    }
+
+    @media (min-width: 1340px) {
+      .autonomy-pill {
+        display: inline-flex;
+      }
+    }
+
+    .live-dot {
+      inline-size: 6px;
+      block-size: 6px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.18);
+    }
+
+    /* Center View Switcher (50/50 Twins | Focus Left | Focus Right) */
+    .mast-center {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+      background: #F3F1EA;
+      border: 1px solid var(--hairline);
+      padding: 0.16rem;
+      border-radius: 999px;
+      flex-shrink: 0;
+    }
+
+    .view-pill {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: var(--ink-body);
+      font-family: var(--font-display);
+      font-size: 0.71rem;
+      font-weight: 700;
+      padding: 0.22rem 0.6rem;
+      border-radius: 999px;
+      white-space: nowrap;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+
+    .view-pill[aria-pressed="true"] {
+      background: var(--ink-dark);
+      color: #FFFFFF;
+    }
+
+    .view-pill-left[aria-pressed="true"] {
+      background: var(--left-accent);
+      color: #FFFFFF;
+    }
+
+    .view-pill-right[aria-pressed="true"] {
+      background: var(--right-amber);
+      color: var(--ink-dark);
+    }
+
+    /* Right Quick Links */
+    .mast-right {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.28rem;
+      flex-shrink: 0;
+    }
+
+    .quick-nav-link {
+      font-size: 0.73rem;
+      font-weight: 600;
+      color: var(--ink-body);
+      padding: 0.22rem 0.45rem;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+
+    .quick-nav-link:hover {
+      background: #F3F1EA;
+      color: var(--ink-dark);
+    }
+
+    @media (max-width: 1160px) {
+      .hide-narrow-desktop {
+        display: none;
+      }
+    }
+
+    .quick-nav-cta {
+      font-family: var(--font-display);
+      font-size: 0.71rem;
+      font-weight: 700;
+      background: var(--ink-dark);
+      color: #FFFFFF;
+      padding: 0.28rem 0.64rem;
+      border-radius: 8px;
+      white-space: nowrap;
+    }
+
+    /* =====================================================================
+       2. SUCCINCT ORIENTATION BANNER (Answers "What Is This Site?" in 2s)
+       ===================================================================== */
+    .intro-banner {
+      text-align: center;
+      padding: 0.08rem 0.75rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.12rem;
+    }
+
+    .intro-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.64rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--left-vermilion);
+    }
+
+    .intro-h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.28rem, 2vw, 1.88rem);
+      font-weight: 800;
+      letter-spacing: -0.032em;
+      line-height: 1.08;
+      margin: 0;
+      color: var(--ink-dark);
+    }
+
+    .intro-h1 em {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 600;
+      color: var(--left-accent);
+    }
+
+    .intro-sub {
+      font-size: clamp(0.78rem, 0.92vw, 0.88rem);
+      line-height: 1.3;
+      color: var(--ink-body);
+      max-inline-size: 86ch;
+      margin: 0;
+    }
+
+    .intro-sub strong {
+      color: var(--ink-dark);
+      font-weight: 700;
+    }
+
+    /* =====================================================================
+       3. THE TWO CONNECTED TWINS (50/50 Desktop Stage + Gutter Seam Badge)
+       ===================================================================== */
+    .twins-stage {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 1.3rem;
+      align-items: stretch;
+      min-block-size: 0;
+    }
+
+    /* Single-Twin Focused Expansion States (?view=whats-new or ?view=how-to) */
+    html[data-view="whats-new"] .twins-stage {
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
+    }
+
+    html[data-view="how-to"] .twins-stage {
+      grid-template-columns: minmax(0, 0.65fr) minmax(0, 1.35fr);
+    }
+
+    /* Shared Twin Card Frame */
+    .twin-panel {
+      border-radius: 16px;
+      padding: clamp(0.7rem, 1.25vh, 1.1rem) clamp(0.85rem, 1.35vw, 1.3rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: clamp(0.42rem, 0.85vh, 0.68rem);
+      position: relative;
+      min-inline-size: 0;
+      overflow: hidden;
+    }
+
+    /* LEFT TWIN: THE SIGNAL ("What's New & How It Applies to You") */
+    .twin-left {
+      background: var(--left-bg);
+      border: 1.5px solid var(--left-border);
+      color: var(--ink-dark);
+      box-shadow: 0 10px 28px -14px rgba(15, 20, 31, 0.08);
+    }
+
+    /* RIGHT TWIN: THE WORKBENCH ("How to Use It & Live Proof") */
+    .twin-right {
+      background: var(--right-bg);
+      border: 1.5px solid var(--right-border);
+      color: var(--right-ink);
+      box-shadow: 0 14px 34px -14px rgba(8, 12, 24, 0.45);
+    }
+
+    /* Twin Top Header Strip */
+    .twin-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.5rem;
+      padding-bottom: 0.42rem;
+      border-bottom: 1px solid var(--left-border);
+    }
+
+    .twin-right .twin-header {
+      border-bottom-color: var(--right-border);
+    }
+
+    .twin-identity {
+      display: flex;
+      flex-direction: column;
+      gap: 0.08rem;
+      min-inline-size: 0;
+    }
+
+    .twin-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.63rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.32rem;
+    }
+
+    .twin-left .twin-kicker {
+      color: var(--left-accent);
+    }
+
+    .twin-right .twin-kicker {
+      color: var(--right-amber-bright);
+    }
+
+    .twin-h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.02rem, 1.32vw, 1.3rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.14;
+      margin: 0;
+    }
+
+    .twin-promise {
+      font-size: 0.74rem;
+      line-height: 1.25;
+      margin: 0.08rem 0 0;
+    }
+
+    .twin-left .twin-promise {
+      color: var(--ink-muted);
+    }
+
+    .twin-right .twin-promise {
+      color: var(--right-muted);
+    }
+
+    .twin-badge {
+      font-family: var(--font-mono);
+      font-size: 0.61rem;
+      font-weight: 700;
+      padding: 0.2rem 0.48rem;
+      border-radius: 6px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .twin-left .twin-badge {
+      background: var(--left-accent-soft);
+      color: var(--left-accent);
+      border: 1px solid #C3D4FF;
+    }
+
+    .twin-right .twin-badge {
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--right-amber-bright);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+    }
+
+    /* =====================================================================
+       PAIRED STORY / DEMO SELECTOR TABS (minmax(0, 1fr) -> Zero Clipping!)
+       ===================================================================== */
+    .selector-bar {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.35rem;
+    }
+
+    .selector-tab {
+      appearance: none;
+      text-align: left;
+      padding: 0.34rem 0.48rem;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.05rem;
+      min-inline-size: 0;
+      transition: transform 0.12s ease, border-color 0.12s ease, background-color 0.12s ease;
+    }
+
+    .twin-left .selector-tab {
+      background: var(--left-tint);
+      border: 1px solid var(--left-border);
+      color: var(--ink-body);
+    }
+
+    .twin-left .selector-tab[aria-selected="true"] {
+      background: #FFFFFF;
+      border: 1.5px solid var(--left-accent);
+      color: var(--ink-dark);
+      box-shadow: 0 2px 8px rgba(24, 62, 194, 0.1);
+    }
+
+    .twin-right .selector-tab {
+      background: var(--right-card);
+      border: 1px solid var(--right-border);
+      color: var(--right-muted);
+    }
+
+    .twin-right .selector-tab[aria-selected="true"] {
+      background: var(--right-elevated);
+      border: 1.5px solid var(--right-amber-bright);
+      color: #FFFFFF;
+      box-shadow: 0 2px 10px rgba(245, 158, 11, 0.16);
+    }
+
+    .tab-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .twin-left .selector-tab[aria-selected="true"] .tab-eyebrow {
+      color: var(--left-vermilion);
+    }
+
+    .twin-right .selector-tab[aria-selected="true"] .tab-eyebrow {
+      color: var(--right-amber-bright);
+    }
+
+    .tab-label {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 700;
+      line-height: 1.16;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* =====================================================================
+       MAGNET FEATURE CARD INSIDE EACH TWIN (Cohesive Top Stack + Bottom CTA)
+       ===================================================================== */
+    .magnet-card {
+      border-radius: 12px;
+      padding: clamp(0.65rem, 1.15vh, 0.95rem) clamp(0.75rem, 1.15vw, 1.05rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: clamp(0.45rem, 0.85vh, 0.65rem);
+      flex: 1;
+      min-block-size: 0;
+      min-inline-size: 0;
+      /* MANDATORY (animate-to-intrinsic-sizes): fallback before calc-size */
+      block-size: auto;
+      block-size: calc-size(auto, size);
+      transition: block-size 0.3s ease;
+    }
+
+    .twin-left .magnet-card {
+      background: var(--left-card);
+      border: 1px solid var(--left-border);
+    }
+
+    .twin-right .magnet-card {
+      background: var(--right-card);
+      border: 1px solid var(--right-border);
+    }
+
+    /* Cohesive top stack so headline never floats in empty space on 1080p */
+    .magnet-top-stack {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(0.45rem, 0.95vh, 0.7rem);
+      min-inline-size: 0;
+    }
+
+    .magnet-top-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      font-weight: 700;
+    }
+
+    .meta-tag-left {
+      color: var(--left-vermilion);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .meta-source-link {
+      color: var(--left-accent);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .magnet-h3 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.04rem, 1.32vw, 1.3rem);
+      font-weight: 600;
+      line-height: 1.16;
+      letter-spacing: -0.015em;
+      margin: 0;
+      color: var(--ink-dark);
+    }
+
+    .twin-right .magnet-h3 {
+      font-family: var(--font-display);
+      font-size: clamp(0.96rem, 1.2vw, 1.18rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #FFFFFF;
+    }
+
+    /* 3-Stat Key Figures Strip (Instant Eye-Tracking Numbers) */
+    .key-stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.4rem;
+    }
+
+    .stat-pill {
+      padding: 0.34rem 0.52rem;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.04rem;
+      min-inline-size: 0;
+    }
+
+    .twin-left .stat-pill {
+      background: #F7F5EE;
+      border: 1px solid #E2DDD0;
+    }
+
+    .twin-right .stat-pill {
+      background: #101829;
+      border: 1px solid #263554;
+    }
+
+    .stat-val {
+      font-family: var(--font-display);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .twin-left .stat-val {
+      color: var(--left-accent);
+    }
+
+    .twin-right .stat-val {
+      color: var(--right-amber-bright);
+    }
+
+    .stat-lbl {
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      color: var(--ink-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .twin-right .stat-lbl {
+      color: var(--right-faint);
+    }
+
+    /* "How Does This Apply to Me?" Plain-English Callout Box */
+    .apply-box {
+      background: #F4F6FB;
+      border-left: 3px solid var(--left-accent);
+      border-radius: 0 9px 9px 0;
+      padding: 0.48rem 0.68rem;
+      display: grid;
+      gap: 0.18rem;
+    }
+
+    .apply-label {
+      font-family: var(--font-mono);
+      font-size: 0.61rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--left-accent);
+    }
+
+    .apply-list {
+      margin: 0;
+      padding-left: 0.95rem;
+      font-size: 0.76rem;
+      line-height: 1.32;
+      color: var(--ink-dark);
+      display: grid;
+      gap: 0.18rem;
+    }
+
+    /* Right Twin Interactive Proof Console */
+    .proof-console {
+      background: #090E1A;
+      border: 1px solid #263554;
+      border-radius: 10px;
+      padding: 0.48rem 0.65rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      min-inline-size: 0;
+    }
+
+    .console-step-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.3rem;
+      flex-wrap: wrap;
+    }
+
+    .console-steps {
+      display: inline-flex;
+      gap: 0.25rem;
+      flex-wrap: wrap;
+    }
+
+    .step-chip {
+      appearance: none;
+      background: #162038;
+      color: var(--right-muted);
+      border: 1px solid #2C3B5E;
+      border-radius: 6px;
+      padding: 0.18rem 0.44rem;
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .step-chip[aria-pressed="true"] {
+      background: var(--right-amber);
+      color: var(--ink-dark);
+      border-color: var(--right-amber);
+      font-weight: 700;
+    }
+
+    .sim-badge {
+      font-family: var(--font-mono);
+      font-size: 0.59rem;
+      font-weight: 700;
+      color: var(--right-cyan);
+      letter-spacing: 0.04em;
+    }
+
+    .console-readout {
+      font-size: 0.75rem;
+      line-height: 1.32;
+      color: #E2E8F0;
+      margin: 0;
+    }
+
+    .console-code {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.64rem;
+      color: var(--right-emerald);
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(52, 211, 153, 0.25);
+      border-radius: 6px;
+      padding: 0.25rem 0.48rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Magnet Primary CTA Row (Single Line Across All Desktop & Tablet Viewports) */
+    .magnet-cta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.45rem;
+      padding-top: 0.4rem;
+      border-top: 1px solid #ECE8DF;
+    }
+
+    .twin-right .magnet-cta-row {
+      border-top-color: #22304F;
+    }
+
+    .btn-primary-left {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: var(--left-accent);
+      color: #FFFFFF;
+      font-family: var(--font-display);
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 0.44rem 0.82rem;
+      border-radius: 8px;
+      white-space: nowrap;
+      transition: transform 0.12s ease, background-color 0.12s ease;
+    }
+
+    .btn-primary-left:hover {
+      background: #12319E;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary-pair {
+      appearance: none;
+      background: var(--left-tint);
+      color: var(--ink-dark);
+      border: 1px solid var(--left-border);
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 0.4rem 0.62rem;
+      border-radius: 8px;
+      white-space: nowrap;
+    }
+
+    .btn-secondary-pair:hover {
+      border-color: var(--left-accent);
+      color: var(--left-accent);
+    }
+
+    .btn-primary-right {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: var(--right-amber);
+      color: var(--ink-dark);
+      font-family: var(--font-display);
+      font-size: 0.76rem;
+      font-weight: 800;
+      padding: 0.44rem 0.82rem;
+      border-radius: 8px;
+      white-space: nowrap;
+      transition: transform 0.12s ease, background-color 0.12s ease;
+    }
+
+    .btn-primary-right:hover {
+      background: var(--right-amber-bright);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary-right {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.28rem;
+      background: var(--right-elevated);
+      color: var(--right-ink);
+      border: 1px solid var(--right-border);
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 0.4rem 0.62rem;
+      border-radius: 8px;
+      white-space: nowrap;
+    }
+
+    .btn-secondary-right:hover {
+      border-color: var(--right-cyan);
+      color: var(--right-cyan);
+    }
+
+    /* =====================================================================
+       3 SUB-PATHS FOOTER INSIDE EACH TWIN (Zero Truncation at 1024px–2560px)
+       ===================================================================== */
+    .subpaths-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.24rem;
+    }
+
+    .subpaths-label {
+      font-family: var(--font-mono);
+      font-size: 0.59rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .twin-left .subpaths-label {
+      color: var(--ink-muted);
+    }
+
+    .twin-right .subpaths-label {
+      color: var(--right-faint);
+    }
+
+    .subpaths-grid {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.38rem;
+    }
+
+    .subpath-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 0.1rem;
+      padding: 0.38rem 0.52rem;
+      border-radius: 9px;
+      min-inline-size: 0;
+      transition: transform 0.12s ease, border-color 0.12s ease;
+    }
+
+    .twin-left .subpath-card {
+      background: #FFFFFF;
+      border: 1px solid var(--left-border);
+      color: var(--ink-dark);
+    }
+
+    .twin-left .subpath-card:hover {
+      border-color: var(--left-accent);
+      transform: translateY(-1px);
+    }
+
+    .twin-right .subpath-card {
+      background: var(--right-card);
+      border: 1px solid var(--right-border);
+      color: var(--right-ink);
+    }
+
+    .twin-right .subpath-card:hover {
+      border-color: var(--right-amber-bright);
+      transform: translateY(-1px);
+    }
+
+    .sp-title {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.18rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .sp-desc {
+      font-size: 0.64rem;
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .twin-left .sp-desc {
+      color: var(--ink-muted);
+    }
+
+    .twin-right .sp-desc {
+      color: var(--right-faint);
+    }
+
+    /* =====================================================================
+       CENTER TWIN GUTTER CONNECTOR (Zero Text Overlap — Sits in Seam Gutter)
+       ===================================================================== */
+    .seam-badge {
+      position: absolute;
+      left: 50%;
+      top: 16px;
+      transform: translateX(-50%);
+      z-index: 30;
+      inline-size: 28px;
+      block-size: 28px;
+      background: var(--ink-dark);
+      color: var(--right-amber-bright);
+      border: 2px solid var(--shell-bg);
+      border-radius: 50%;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 4px 12px rgba(15, 20, 31, 0.22);
+    }
+
+    html[data-view="whats-new"] .seam-badge,
+    html[data-view="how-to"] .seam-badge {
+      display: none;
+    }
+
+    /* =====================================================================
+       4. BOTTOM LIVE PROOF & PROTOTYPE BAR (Compact Single Line)
+       ===================================================================== */
+    .bottom-strip {
+      background: #FFFFFF;
+      border: 1px solid var(--hairline);
+      border-radius: 10px;
+      padding: 0.28rem 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      font-family: var(--font-mono);
+      font-size: 0.63rem;
+      color: var(--ink-muted);
+    }
+
+    .bottom-links {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .bottom-links a {
+      color: var(--left-accent);
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* Responsive fallback below 980px if window is narrowed */
+    @media (max-width: 980px) {
+      .twins-stage,
+      html[data-view="whats-new"] .twins-stage,
+      html[data-view="how-to"] .twins-stage {
+        grid-template-columns: 1fr;
+      }
+      .seam-badge {
+        display: none;
+      }
+      .mast-center {
+        display: none;
+      }
+    }
+
+    /* Commanding Desktop Proportions for 1440x900+ & 1920x1080+ Monitors */
+    @media (min-height: 860px) and (min-width: 1360px) {
+      .masthead {
+        padding: 0.44rem 1rem;
+        min-block-size: 48px;
+      }
+      .intro-banner {
+        gap: 0.22rem;
+      }
+      .intro-h1 {
+        font-size: clamp(1.65rem, 2.2vw, 2.2rem);
+      }
+      .intro-sub {
+        font-size: 0.94rem;
+      }
+      .stage-center-wrap {
+        gap: 0.85rem;
+      }
+      .twin-panel {
+        padding: 1.1rem 1.35rem;
+        gap: 0.72rem;
+      }
+      .twin-h2 {
+        font-size: 1.36rem;
+      }
+      .twin-promise {
+        font-size: 0.8rem;
+      }
+      .selector-tab {
+        padding: 0.42rem 0.6rem;
+      }
+      .tab-label {
+        font-size: 0.78rem;
+      }
+      .magnet-card {
+        padding: 0.95rem 1.15rem;
+        gap: 0.72rem;
+      }
+      .magnet-top-stack {
+        gap: 0.68rem;
+      }
+      .magnet-h3 {
+        font-size: 1.36rem;
+      }
+      .twin-right .magnet-h3 {
+        font-size: 1.24rem;
+      }
+      .stat-pill {
+        padding: 0.44rem 0.62rem;
+      }
+      .stat-val {
+        font-size: 0.9rem;
+      }
+      .stat-lbl {
+        font-size: 0.62rem;
+      }
+      .apply-box,
+      .proof-console {
+        padding: 0.62rem 0.82rem;
+      }
+      .apply-list,
+      .console-readout {
+        font-size: 0.81rem;
+        line-height: 1.4;
+      }
+      .btn-primary-left,
+      .btn-primary-right {
+        font-size: 0.82rem;
+        padding: 0.54rem 0.98rem;
+      }
+      .btn-secondary-pair,
+      .btn-secondary-right {
+        font-size: 0.7rem;
+        padding: 0.48rem 0.74rem;
+      }
+      .subpath-card {
+        padding: 0.48rem 0.64rem;
+      }
+      .sp-title {
+        font-size: 0.76rem;
+      }
+      .sp-desc {
+        font-size: 0.68rem;
+      }
+    }
+
+    @media (min-height: 1000px) and (min-width: 1700px) {
+      .desktop-fold-shell {
+        max-inline-size: 1640px;
+        padding: 0.9rem 2rem;
+      }
+      .stage-center-wrap {
+        gap: 1.15rem;
+      }
+      .intro-h1 {
+        font-size: 2.38rem;
+      }
+      .intro-sub {
+        font-size: 1.02rem;
+      }
+      .twin-panel {
+        padding: 1.35rem 1.65rem;
+        gap: 0.9rem;
+      }
+      .magnet-card {
+        padding: 1.15rem 1.35rem;
+        gap: 0.9rem;
+      }
+      .magnet-top-stack {
+        gap: 0.85rem;
+      }
+      .magnet-h3 {
+        font-size: 1.5rem;
+      }
+      .twin-right .magnet-h3 {
+        font-size: 1.36rem;
+      }
+      .stat-pill {
+        padding: 0.54rem 0.75rem;
+      }
+      .stat-val {
+        font-size: 0.98rem;
+      }
+      .apply-box,
+      .proof-console {
+        padding: 0.78rem 0.95rem;
+      }
+      .apply-list,
+      .console-readout {
+        font-size: 0.86rem;
+        line-height: 1.45;
+      }
+      .subpath-card {
+        padding: 0.58rem 0.75rem;
+      }
+    }
+
+    /* MANDATORY (same-document-transitions & animate-to-intrinsic-sizes):
+       Disable animations for reduced-motion users */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+      }
+      ::view-transition-group(*),
+      ::view-transition-old(*),
+      ::view-transition-new(*) {
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Accessible Skip Link (WCAG 2.4.1) -->
+  <a href="#hero-heading" class="skip-link visually-hidden">Skip to main content</a>
+
+  <div class="desktop-fold-shell">
+    <!-- ===================================================================
+         1. TOP MASTHEAD (Brand Identity + View Focus Switcher + Fast Links)
+         =================================================================== -->
+    <header class="masthead">
+      <div class="mast-left">
+        <button type="button" class="brand-mark" data-set-view="twins" aria-label="GeminiPulse Home — Reset 50/50 Twin View">
+          <span class="brand-glyph" aria-hidden="true">♊</span>
+          Gemini<span>Pulse</span>
+        </button>
+        <span class="autonomy-pill" title="Conceived by Neil S. White; designed, coded, and updated daily by Google Gemini 4 Argon">
+          <span class="live-dot" aria-hidden="true"></span>
+          <span>Run Autonomously by Google Gemini</span>
+        </span>
+      </div>
+
+      <nav class="mast-center" aria-label="Desktop view proportion">
+        <button type="button" class="view-pill" data-set-view="twins" aria-pressed="true">
+          ♊ 50/50 Twin Stage
+        </button>
+        <button type="button" class="view-pill view-pill-left" data-set-view="whats-new" aria-pressed="false">
+          Twin I · What’s New
+        </button>
+        <button type="button" class="view-pill view-pill-right" data-set-view="how-to" aria-pressed="false">
+          Twin II · How to Use It
+        </button>
+      </nav>
+
+      <nav class="mast-right" aria-label="Direct tools and series">
+        <a href="/series/gemini-2-5-migration/part-1-deprecation-and-auto-routing.html" class="quick-nav-link hide-narrow-desktop">3-Part Series</a>
+        <a href="/labs/gemini-computer-use-simulator.html" class="quick-nav-link">Live Simulators</a>
+        <a href="/arena/exp-01-gemini-4-argon.html" class="quick-nav-link">Tri-Model Arena</a>
+        <a href="/#addons" class="quick-nav-cta">Free Starter Kits →</a>
+      </nav>
+    </header>
+
+    <div class="stage-center-wrap">
+      <!-- ===================================================================
+           2. ZONE 1: SUCCINCT 2-SECOND INTRODUCTION
+           =================================================================== -->
+      <div class="intro-banner">
+        <div class="intro-eyebrow">Named for the Astrological Twins · Built &amp; Updated Autonomously by Google Gemini</div>
+        <h1 id="hero-heading" class="intro-h1" tabindex="-1">
+          What’s New in Google Gemini—<em>and How It Applies to You.</em>
+        </h1>
+        <p class="intro-sub">
+          You already know Gemini is Google’s AI. Every day, Gemini updates this site across <strong>two connected paths</strong>: <strong>what just changed</strong> on the left, paired with <strong>how to put it to work right now</strong> on the right.
+        </p>
+      </div>
+
+      <!-- ===================================================================
+           3. ZONE 2: THE TWO CONNECTED TWINS (50/50 Desktop Stage)
+           =================================================================== -->
+      <main class="twins-stage" id="main-stage">
+      <!-- Zero-Overlap Gutter Seam Icon Connecting the Twins -->
+      <div class="seam-badge" title="Left Story and Right Interactive Tool are paired together" aria-hidden="true">
+        ⇄
+      </div>
+
+      <!-- =================================================================
+           LEFT TWIN (TWIN I): WHAT'S NEW & HOW IT APPLIES TO YOU
+           ================================================================= -->
+      <section class="twin-panel twin-left" aria-labelledby="twin-left-title">
+        <div class="twin-header">
+          <div class="twin-identity">
+            <span class="twin-kicker">✦ Twin I · The Intelligence Briefing</span>
+            <h2 id="twin-left-title" class="twin-h2">What’s New &amp; How It Applies to You</h2>
+            <p class="twin-promise">Every major Gemini update decoded in plain English—zero hype, verified against primary Google docs.</p>
+          </div>
+          <span class="twin-badge">3-Min Briefings</span>
+        </div>
+
+        <!-- 3-Story Live Selector (Clicking syncs both Left Story & Right Interactive Proof!) -->
+        <div class="selector-bar" role="tablist" aria-label="Select a recent Google Gemini breakthrough">
+          <button type="button" class="selector-tab" role="tab" aria-selected="true" data-select-pair="migration">
+            <span class="tab-eyebrow">Nov 2 · Price Cut</span>
+            <span class="tab-label">Gemini 2.5 Sunset</span>
+          </button>
+          <button type="button" class="selector-tab" role="tab" aria-selected="false" data-select-pair="computer-use">
+            <span class="tab-eyebrow">Oct 30 · Browser AI</span>
+            <span class="tab-label">Screen-Click AI (GA)</span>
+          </button>
+          <button type="button" class="selector-tab" role="tab" aria-selected="false" data-select-pair="carbon">
+            <span class="tab-eyebrow">Oct 29 · Deep Memory</span>
+            <span class="tab-label">Gemini 4 Carbon</span>
+          </button>
+        </div>
+
+        <!-- Featured Magnet Story Card (Left) -->
+        <article class="magnet-card" aria-live="polite">
+          <div class="magnet-top-stack">
+            <div class="magnet-top-meta">
+              <span class="meta-tag-left" id="left-kicker">🔥 BREAKING NOV 2 · OFFICIAL GOOGLE CHANGELOG</span>
+              <a href="https://ai.google.dev/gemini-api/docs/changelog#11-02-2026" target="_blank" rel="noreferrer" class="meta-source-link" id="left-source">
+                Verified: ai.google.dev/changelog ↗
+              </a>
+            </div>
+
+            <h3 class="magnet-h3" id="left-headline">
+              Google Retires Gemini 2.5 on Dec 1—Auto-Routing You to 3.8 Flash at up to 78% Lower Cost
+            </h3>
+
+            <!-- 3 Scannable Key Numbers -->
+            <div class="key-stats-row" id="left-stats">
+              <div class="stat-pill">
+                <span class="stat-val">Dec 1, 2026</span>
+                <span class="stat-lbl">Auto-Upgrade Date</span>
+              </div>
+              <div class="stat-pill">
+                <span class="stat-val">-60% to -78%</span>
+                <span class="stat-lbl">Lower Token Bill</span>
+              </div>
+              <div class="stat-pill">
+                <span class="stat-val">$0.10–$0.75</span>
+                <span class="stat-lbl">New Rate / 1M Tokens</span>
+              </div>
+            </div>
+
+            <div class="apply-box">
+              <span class="apply-label">What Changed &amp; How It Applies to You:</span>
+              <ul class="apply-list" id="left-bullets">
+                <li><strong>What just happened:</strong> Google removed Gemini 2.5 Pro &amp; Flash from AI Studio; on Dec 1, calls auto-upgrade to faster <code>3.8-flash</code> ($0.75/1M) and <code>3.5-flash-lite</code> ($0.10/1M).</li>
+                <li><strong>How it applies to you:</strong> Your monthly token bill drops 60–78% automatically—just switch legacy <code>thinking_budget</code> numbers to <code>thinking_level</code> (<code>low</code>, <code>medium</code>, <code>high</code>).</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="magnet-cta-row">
+            <a href="/series/gemini-2-5-migration/part-1-deprecation-and-auto-routing.html" class="btn-primary-left" id="left-primary-cta">
+              <span>Read 3-Min Plain-English Guide</span>
+              <span aria-hidden="true">→</span>
+            </a>
+            <button type="button" class="btn-secondary-pair" data-focus-right="true">
+              ⇄ Try Live Check on Right
+            </button>
+          </div>
+        </article>
+
+        <!-- 3 Clear Sub-Paths Underneath Left Twin -->
+        <div class="subpaths-block">
+          <span class="subpaths-label">Or jump straight to a reading track:</span>
+          <ul class="subpaths-grid" role="list">
+            <li>
+              <a href="/series/gemini-2-5-migration/part-1-deprecation-and-auto-routing.html" class="subpath-card">
+                <span class="sp-title">01 · Releases <span aria-hidden="true">→</span></span>
+                <span class="sp-desc">Plain-English 3-part guides</span>
+              </a>
+            </li>
+            <li>
+              <a href="/series/gemini-computer-use/part-3-concrete-business-use-cases.html" class="subpath-card">
+                <span class="sp-title">02 · Work ROI <span aria-hidden="true">→</span></span>
+                <span class="sp-desc">5 ways teams save hours</span>
+              </a>
+            </li>
+            <li>
+              <a href="/#video-showcase" class="subpath-card">
+                <span class="sp-title">03 · Videos <span aria-hidden="true">→</span></span>
+                <span class="sp-desc">Top talks, summarized</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- =================================================================
+           RIGHT TWIN (TWIN II): HOW TO USE IT & LIVE PROOF
+           ================================================================= -->
+      <section class="twin-panel twin-right" aria-labelledby="twin-right-title">
+        <div class="twin-header">
+          <div class="twin-identity">
+            <span class="twin-kicker">✧ Twin II · The Hands-On Workbench</span>
+            <h2 id="twin-right-title" class="twin-h2">How to Use It Now &amp; Live Proof</h2>
+            <p class="twin-promise">Try today’s update right in your browser, grab 5-minute workflows, or see what Gemini built on its own.</p>
+          </div>
+          <span class="twin-badge">Interactive Proof</span>
+        </div>
+
+        <!-- 3-Mode Interactive Selector (Mirrors & Pairs with the Left Twin!) -->
+        <div class="selector-bar" role="tablist" aria-label="Select an interactive workbench proof">
+          <button type="button" class="selector-tab" role="tab" aria-selected="true" data-select-pair="migration">
+            <span class="tab-eyebrow">Paired Tool #1</span>
+            <span class="tab-label">Dec 1 Cost Check</span>
+          </button>
+          <button type="button" class="selector-tab" role="tab" aria-selected="false" data-select-pair="computer-use">
+            <span class="tab-eyebrow">Paired Tool #2</span>
+            <span class="tab-label">Click Simulator</span>
+          </button>
+          <button type="button" class="selector-tab" role="tab" aria-selected="false" data-select-pair="carbon">
+            <span class="tab-eyebrow">Paired Tool #3</span>
+            <span class="tab-label">95% Cache ROI</span>
+          </button>
+        </div>
+
+        <!-- Featured Interactive Magnet Card (Right) -->
+        <article class="magnet-card" aria-live="polite">
+          <div class="magnet-top-stack">
+            <div class="magnet-top-meta">
+              <span style="color:var(--right-amber-bright);" id="right-kicker">⚡ TRY IT IN 10 SECONDS · PAIRED WITH LEFT BRIEFING</span>
+              <span class="sim-badge">[SIMULATED DEMO]</span>
+            </div>
+
+            <h3 class="magnet-h3" id="right-headline">
+              Interactive Check: See How the Dec 1 Upgrade Cuts Your Cost &amp; Fixes Your Config
+            </h3>
+
+            <!-- 3 Scannable Proof Metrics -->
+            <div class="key-stats-row" id="right-stats">
+              <div class="stat-pill">
+                <span class="stat-val">10 Seconds</span>
+                <span class="stat-lbl">Interactive Check</span>
+              </div>
+              <div class="stat-pill">
+                <span class="stat-val">TS &amp; Python</span>
+                <span class="stat-lbl">Copy-Paste Ready</span>
+              </div>
+              <div class="stat-pill">
+                <span class="stat-val">Zero Setup</span>
+                <span class="stat-lbl">Runs in Browser</span>
+              </div>
+            </div>
+
+            <!-- Live 3-Step Micro-Simulator right above the fold -->
+            <div class="proof-console">
+              <div class="console-step-bar">
+                <div class="console-steps" role="group" aria-label="Try interactive preview steps">
+                  <button type="button" class="step-chip" data-step="1" aria-pressed="true" id="chip-1">
+                    1. Team Cost Drop
+                  </button>
+                  <button type="button" class="step-chip" data-step="2" aria-pressed="false" id="chip-2">
+                    2. Fix Thinking Level
+                  </button>
+                  <button type="button" class="step-chip" data-step="3" aria-pressed="false" id="chip-3">
+                    3. Auto-Route Map
+                  </button>
+                </div>
+                <span class="sim-badge" id="console-status">LIVE PREVIEW</span>
+              </div>
+
+              <p class="console-readout" id="console-readout">
+                A daily customer-support or document workflow running 50M tokens/mo drops from ~$62.50/mo on Gemini 2.5 down to $13.75/mo on Gemini 3.8 Flash (-78%).
+              </p>
+              <code class="console-code" id="console-code">
+                model: "gemini-3.8-flash" ($0.75/1M in) · thinking_level: "medium" · savings: "78% ($585/yr)"
+              </code>
+            </div>
+          </div>
+
+          <div class="magnet-cta-row">
+            <a href="/labs/gemini-migration-readiness-scanner.html" class="btn-primary-right" id="right-primary-cta">
+              <span>Launch Full Upgrade Scanner</span>
+              <span aria-hidden="true">→</span>
+            </a>
+            <a href="/series/making-the-switch/part-1-from-wordpress-to-antigravity.html" class="btn-secondary-right" id="right-secondary-cta">
+              <span>How Gemini Built This</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- 3 Clear Action Sub-Paths Underneath Right Twin -->
+        <div class="subpaths-block">
+          <span class="subpaths-label">Or pick a hands-on track to start using Gemini:</span>
+          <ul class="subpaths-grid" role="list">
+            <li>
+              <a href="/#get-started" class="subpath-card">
+                <span class="sp-title">01 · 5-Min Guides <span aria-hidden="true">→</span></span>
+                <span class="sp-desc">Workspace, Docs &amp; Sheets</span>
+              </a>
+            </li>
+            <li>
+              <a href="/labs/gemini-computer-use-simulator.html" class="subpath-card">
+                <span class="sp-title">02 · Live Labs <span aria-hidden="true">→</span></span>
+                <span class="sp-desc">Test simulators &amp; ROI live</span>
+              </a>
+            </li>
+            <li>
+              <a href="/arena/exp-01-gemini-4-argon.html" class="subpath-card">
+                <span class="sp-title">03 · Built by AI <span aria-hidden="true">→</span></span>
+                <span class="sp-desc">Arena apps, games &amp; kits</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+    </div>
+
+    <!-- ===================================================================
+         4. COMPACT FOOTER BAR (Real Proof Links + Prototype Switcher)
+         =================================================================== -->
+    <footer class="bottom-strip">
+      <span>
+        <strong>Look G · Desktop Magnetic Twins</strong> — Every headline &amp; interactive tool above is real, live content on <code>geminipulse.com</code>.
+      </span>
+      <div class="bottom-links">
+        <a href="./index.html">Case Study Portfolio</a>
+        <a href="./look-d-fraternal-twins.html?twin=castor">Look D v2</a>
+        <a href="./look-e-twin-threshold.html?view=split">Look E</a>
+        <a href="./look-f-clean-split.html?view=split">Look F</a>
+        <a href="/">Current Live Site</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    /* =====================================================================
+       PAIRED TWIN DATASET (Connects "What's New" ⇄ "How to Use It Now")
+       ===================================================================== */
+    const TWIN_PAIRS = {
+      migration: {
+        left: {
+          kicker: '🔥 BREAKING NOV 2 · OFFICIAL GOOGLE CHANGELOG',
+          sourceLabel: 'Verified: ai.google.dev/changelog ↗',
+          sourceUrl: 'https://ai.google.dev/gemini-api/docs/changelog#11-02-2026',
+          headline: 'Google Retires Gemini 2.5 on Dec 1—Auto-Routing You to 3.8 Flash at up to 78% Lower Cost',
+          stats: [
+            { val: 'Dec 1, 2026', lbl: 'Auto-Upgrade Date' },
+            { val: '-60% to -78%', lbl: 'Lower Token Bill' },
+            { val: '$0.10–$0.75', lbl: 'New Rate / 1M Tokens' },
+          ],
+          bullets: [
+            '<strong>What just happened:</strong> Google removed Gemini 2.5 Pro &amp; Flash from AI Studio; on Dec 1, calls auto-upgrade to faster <code>3.8-flash</code> ($0.75/1M) and <code>3.5-flash-lite</code> ($0.10/1M).',
+            '<strong>How it applies to you:</strong> Your monthly token bill drops 60–78% automatically—just switch legacy <code>thinking_budget</code> numbers to <code>thinking_level</code> (<code>low</code>, <code>medium</code>, <code>high</code>).',
+          ],
+          ctaText: 'Read 3-Min Plain-English Guide',
+          ctaHref: '/series/gemini-2-5-migration/part-1-deprecation-and-auto-routing.html',
+        },
+        right: {
+          kicker: '⚡ TRY IT IN 10 SECONDS · PAIRED WITH NOV 2 BRIEFING',
+          headline: 'Interactive Check: See How the Dec 1 Upgrade Cuts Your Cost & Fixes Your Config',
+          stats: [
+            { val: '10 Seconds', lbl: 'Interactive Check' },
+            { val: 'TS & Python', lbl: 'Copy-Paste Ready' },
+            { val: 'Zero Setup', lbl: 'Runs in Browser' },
+          ],
+          ctaText: 'Launch Full Upgrade Scanner',
+          ctaHref: '/labs/gemini-migration-readiness-scanner.html',
+          secText: 'Part 2: Payload Fixes',
+          secHref: '/series/gemini-2-5-migration/part-2-breaking-changes-and-payloads.html',
+          chips: ['1. Team Cost Drop', '2. Fix Thinking Level', '3. Auto-Route Map'],
+          steps: {
+            1: {
+              readout: 'A daily customer-support or document workflow running 50M tokens/mo drops from ~$62.50/mo on Gemini 2.5 down to $13.75/mo on Gemini 3.8 Flash (-78%).',
+              code: 'model: "gemini-3.8-flash" ($0.75/1M in) · thinking_level: "medium" · savings: "78% ($585/yr)"',
+            },
+            2: {
+              readout: 'Legacy numerical thinking_budget is deprecated. Switch to clean plain-English thinking_level tiers for predictable speed and reasoning depth:',
+              code: 'client.interactions.create({ model: "gemini-3.8-flash", thinking_level: "high" })',
+            },
+            3: {
+              readout: 'On Dec 1, 2026, gemini-2.5-pro and gemini-2.5-flash calls auto-route to gemini-3.8-flash and gemini-3.5-flash-lite ($0.10/1M) with strict tool validation.',
+              code: 'auto_route: "gemini-2.5-flash → gemini-3.8-flash" · thought_signature: "STRICT_VALIDATED"',
+            },
+          },
+        },
+      },
+
+      'computer-use': {
+        left: {
+          kicker: '🖥️ GENERAL AVAILABILITY · GOOGLE AI DOCS',
+          sourceLabel: 'Verified: ai.google.dev/computer-use ↗',
+          sourceUrl: 'https://ai.google.dev/gemini-api/docs/computer-use',
+          headline: 'Gemini Computer Use Reaches GA: Google’s AI Can Now Read & Click Your Screen',
+          stats: [
+            { val: '3 Surfaces', lbl: 'Browser, Desktop, Mobile' },
+            { val: 'Plain English', lbl: 'Intent Log Per Click' },
+            { val: 'Built-In', lbl: 'Prompt-Trap Shield' },
+          ],
+          bullets: [
+            '<strong>What just launched:</strong> Gemini can inspect live browser tables, PDFs, and desktop apps, state its intent in plain English, and block hidden webpage prompt traps.',
+            '<strong>How it applies to you:</strong> Turn messy vendor portals, invoices, and multi-tab research into clean Google Sheets without manual copy-pasting.',
+          ],
+          ctaText: 'See 5 Real Work & Business Use Cases',
+          ctaHref: '/series/gemini-computer-use/part-3-concrete-business-use-cases.html',
+        },
+        right: {
+          kicker: '⚡ TRY IT IN 10 SECONDS · PAIRED WITH COMPUTER USE GA',
+          headline: 'Step Through a Live Browser Task: Watch Gemini Scan, Block a Trap & Fill a Sheet',
+          stats: [
+            { val: '3-Step Loop', lbl: 'Scan → Guard → Act' },
+            { val: '$0.75 / 1M', lbl: '3.8 Flash UI Speed' },
+            { val: '100% Auditable', lbl: 'Human Approval Gate' },
+          ],
+          ctaText: 'Open Computer Use Simulator',
+          ctaHref: '/labs/gemini-computer-use-simulator.html',
+          secText: 'Watch 5-Min Video',
+          secHref: '/#video-showcase',
+          chips: ['1. Inspect Screen', '2. Block Prompt Trap', '3. Export to Sheets'],
+          steps: {
+            1: {
+              readout: 'Step 1: Gemini captures the open vendor invoice table, identifies the 14 overdue rows, and states its next click in plain English.',
+              code: 'action: "click(x=412, y=288)" · intent: "Sort Q4 vendor invoices by due date"',
+            },
+            2: {
+              readout: 'Step 2: Screenshot safety scanner detects hidden white-on-white prompt injection text inside a third-party webpage and halts execution.',
+              code: 'safety_policy: "ADVERSARIAL_PROMPT_BLOCKED" · human_confirmation: "REQUIRED"',
+            },
+            3: {
+              readout: 'Step 3: Verified line items and totals are written cleanly into your Google Sheet tracker with source URLs attached in 9 seconds.',
+              code: 'status: "TASK_COMPLETE" · rows_synced: 14 · time_saved: "~18 mins per batch"',
+            },
+          },
+        },
+      },
+
+      carbon: {
+        left: {
+          kicker: '⚡ FLAGSHIP ECONOMICS · GOOGLE DEEPMIND BRIEFING',
+          sourceLabel: 'Verified: blog.google/gemini ↗',
+          sourceUrl: 'https://blog.google/technology/google-deepmind/',
+          headline: 'Gemini 4 Carbon vs. Argon: 95% Cheaper Context Caching Changes What You Can Automate',
+          stats: [
+            { val: '-95% Cache', lbl: '$2.00 → $0.10 / 1M' },
+            { val: '1M Context', lbl: 'Full Repo / Vault Memory' },
+            { val: '~$20 / mo', lbl: 'Down from $400 / mo' },
+          ],
+          bullets: [
+            '<strong>What just changed:</strong> Cached-input pricing dropped 95% ($2.00 → $0.10/1M), letting you keep entire codebases, legal vaults, or catalogs in live memory for pennies.',
+            '<strong>How it applies to you:</strong> Document workflows that used to cost $400/mo in repeated reading now cost ~$20/mo when paired with 3.8 Flash.',
+          ],
+          ctaText: 'Read Carbon vs. Argon Guide',
+          ctaHref: '/series/gemini-4-carbon/part-1-carbon-vs-argon.html',
+        },
+        right: {
+          kicker: '⚡ TRY IT IN 10 SECONDS · PAIRED WITH CARBON & AUTONOMOUS BUILD',
+          headline: 'Calculate Your 95% Context Savings—Or See How Gemini Built This Site Without WordPress',
+          stats: [
+            { val: 'Quad-100', lbl: 'Lighthouse Desktop' },
+            { val: '$0.00 / mo', lbl: 'Firebase Spark Stack' },
+            { val: '10% Off', lbl: 'Workspace Year-1 Perk' },
+          ],
+          ctaText: 'Launch Stack ROI Calculator',
+          ctaHref: '/labs/gemini-4-stack-advisor.html',
+          secText: 'mAiking the swAitch',
+          secHref: '/series/making-the-switch/part-1-from-wordpress-to-antigravity.html',
+          chips: ['1. Solo / Small Biz', '2. 15-Person Team', '3. WordPress → $0 Firebase'],
+          steps: {
+            1: {
+              readout: 'Solo founder or small business keeping a 200-page client handbook in cached memory saves 95% on every follow-up question ($0.10/1M cached).',
+              code: 'cached_input: "$0.10 / 1M tokens" (-95%) · recommended: "Google Workspace + 3.8 Flash"',
+            },
+            2: {
+              readout: 'A 15-person team consolidating scattered AI subscriptions into Google Workspace with Gemini + hybrid Flash/Carbon routing saves ~$4,200/yr.',
+              code: 'team_roi: "+$4,200/yr net savings" · promo_perk: "10% First-Year Workspace Referral"',
+            },
+            3: {
+              readout: 'Proof on this very page: Gemini migrated legacy WordPress/MySQL workflows to a $0/mo Firebase + Antigravity stack scoring Quad-100 Lighthouse.',
+              code: 'hosting_cost: "$0.00/mo (Firebase Spark)" · lighthouse_desktop: "100 / 100 / 100 / 100"',
+            },
+          },
+        },
+      },
+    };
+
+    const htmlEl = document.documentElement;
+    let activePairKey = 'migration';
+    let activeStepNum = 1;
+
+    function renderStats(containerId, statsArray) {
+      const el = document.getElementById(containerId);
+      if (!el || !statsArray) return;
+      el.innerHTML = statsArray
+        .map(
+          (s) =>
+            `<div class="stat-pill"><span class="stat-val">${s.val}</span><span class="stat-lbl">${s.lbl}</span></div>`
+        )
+        .join('');
+    }
+
+    function renderStep(stepNum) {
+      activeStepNum = stepNum;
+      const pair = TWIN_PAIRS[activePairKey];
+      const stepData = pair.right.steps[stepNum];
+      if (!stepData) return;
+
+      document.querySelectorAll('[data-step]').forEach((btn) => {
+        const isCurrent = Number(btn.getAttribute('data-step')) === Number(stepNum);
+        btn.setAttribute('aria-pressed', String(isCurrent));
+      });
+
+      document.getElementById('console-readout').textContent = stepData.readout;
+      document.getElementById('console-code').textContent = stepData.code;
+    }
+
+    function applyPairContent(pairKey) {
+      const pair = TWIN_PAIRS[pairKey];
+      if (!pair) return;
+      activePairKey = pairKey;
+      htmlEl.dataset.pair = pairKey;
+
+      document.querySelectorAll('[data-select-pair]').forEach((tab) => {
+        const selected = tab.getAttribute('data-select-pair') === pairKey;
+        tab.setAttribute('aria-selected', String(selected));
+      });
+
+      // Update Left Twin
+      document.getElementById('left-kicker').textContent = pair.left.kicker;
+      const srcEl = document.getElementById('left-source');
+      srcEl.textContent = pair.left.sourceLabel;
+      srcEl.href = pair.left.sourceUrl;
+      document.getElementById('left-headline').textContent = pair.left.headline;
+      renderStats('left-stats', pair.left.stats);
+      document.getElementById('left-bullets').innerHTML = pair.left.bullets
+        .map((b) => `<li>${b}</li>`)
+        .join('');
+      const leftCta = document.getElementById('left-primary-cta');
+      leftCta.querySelector('span').textContent = pair.left.ctaText;
+      leftCta.href = pair.left.ctaHref;
+
+      // Update Right Twin
+      document.getElementById('right-kicker').textContent = pair.right.kicker;
+      document.getElementById('right-headline').textContent = pair.right.headline;
+      renderStats('right-stats', pair.right.stats);
+      const rightCta = document.getElementById('right-primary-cta');
+      rightCta.querySelector('span').textContent = pair.right.ctaText;
+      rightCta.href = pair.right.ctaHref;
+
+      const rightSec = document.getElementById('right-secondary-cta');
+      rightSec.querySelector('span').textContent = pair.right.secText;
+      rightSec.href = pair.right.secHref;
+
+      document.getElementById('chip-1').textContent = pair.right.chips[0];
+      document.getElementById('chip-2').textContent = pair.right.chips[1];
+      document.getElementById('chip-3').textContent = pair.right.chips[2];
+
+      renderStep(1);
+    }
+
+    function setDesktopView(viewMode, focusRightHeading = false) {
+      const updateDOM = () => {
+        htmlEl.dataset.view = viewMode;
+        document.querySelectorAll('[data-set-view]').forEach((btn) => {
+          if (btn.classList.contains('view-pill')) {
+            btn.setAttribute('aria-pressed', String(btn.getAttribute('data-set-view') === viewMode));
+          }
+        });
+        const url = new URL(window.location.href);
+        url.searchParams.set('view', viewMode);
+        window.history.replaceState({}, '', url);
+      };
+
+      const targetHeadingId =
+        focusRightHeading || viewMode === 'how-to'
+          ? 'twin-right-title'
+          : viewMode === 'whats-new'
+          ? 'twin-left-title'
+          : 'hero-heading';
+
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!document.startViewTransition || prefersReduced) {
+        updateDOM();
+        const h = document.getElementById(targetHeadingId);
+        if (h) {
+          h.setAttribute('tabindex', '-1');
+          h.focus({ preventScroll: true });
+        }
+        return;
+      }
+
+      const transition = document.startViewTransition(() => {
+        updateDOM();
+      });
+      // MANDATORY (same-document-transitions): Route programmatic focus after transition resolves
+      transition.finished.finally(() => {
+        const h = document.getElementById(targetHeadingId);
+        if (h) {
+          h.setAttribute('tabindex', '-1');
+          h.focus({ preventScroll: true });
+        }
+      });
+    }
+
+    document.querySelectorAll('[data-select-pair]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const key = btn.getAttribute('data-select-pair');
+        applyPairContent(key);
+      });
+    });
+
+    document.querySelectorAll('[data-step]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        renderStep(Number(btn.getAttribute('data-step')));
+      });
+    });
+
+    document.querySelectorAll('[data-set-view]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        setDesktopView(btn.getAttribute('data-set-view'));
+      });
+    });
+
+    const focusRightBtn = document.querySelector('[data-focus-right]');
+    if (focusRightBtn) {
+      focusRightBtn.addEventListener('click', () => {
+        const chip1 = document.getElementById('chip-1');
+        if (chip1) chip1.focus();
+      });
+    }
+
+    // Initialize from URL query parameters if present
+    const params = new URLSearchParams(window.location.search);
+    const initialPair = params.get('pair');
+    if (initialPair && TWIN_PAIRS[initialPair]) {
+      applyPairContent(initialPair);
+    }
+    const initialView = params.get('view');
+    if (['twins', 'whats-new', 'how-to'].includes(initialView)) {
+      htmlEl.dataset.view = initialView;
+      document.querySelectorAll('.view-pill').forEach((btn) => {
+        btn.setAttribute('aria-pressed', String(btn.getAttribute('data-set-view') === initialView));
+      });
+    }
+  </script>
+</body>
+</html>
