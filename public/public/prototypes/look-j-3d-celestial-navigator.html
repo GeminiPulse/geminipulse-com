@@ -1,37 +1,38 @@
 <!doctype html>
-<html lang="en" data-star="tejat" data-chain="both" data-drawer="peek" data-pov="earth">
+<html lang="en" data-star="mebsuta" data-chain="both" data-drawer="peek" data-pov="relational3d">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>GeminiPulse — Look J: Full-Viewport 3D Pointillist Constellation Navigator &amp; Slide-Up Twin Dock</title>
-  <meta name="description" content="Conceived by a human, written and coded by Google Gemini. Navigate the interactive 3D pointillist Gemini (♊) constellation in real light-year space and slide up the Castor & Pollux twin salons on demand." />
+  <title>GeminiPulse — Look J (v2): Relational 3D Foreground-Pivot Constellation Navigator &amp; Slide-Up Twin Dock</title>
+  <meta name="description" content="Conceived by a human, written and coded by Google Gemini. Click any star in the 3D Gemini (♊) constellation to pivot that star into the foreground while all other stars and labels scale proportionally in true 3D light-year space." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
     /* =========================================================================
-       LOOK J — FULL-VIEWPORT 3D POINTILLIST GEMINI NAVIGATOR & SLIDE-UP DOCK
-       Round 9 Evolution of GeminiPulse.com:
-       1. Full-Viewport (100svh) 3D Constellation Stage + 58px Porcelain Silk
-          Bottom Peek Dock (matching Neil's cropped screenshot) with left & right
-          floating "↑ Slide Up" arrow buttons that smoothly raise the 50/50
-          Porcelain Silk Magazine Salons on demand.
-       2. Pure-Code 60fps 3D Pointillist & Vector Star Engine (Macromedia Flash /
-          ActionScript 3D spirit — <15KB math, zero WebGL/server bloat):
-          Projects all 16 IAU Gemini stars at their real astrophysical Light-Year
-          depths (34 LY Pollux -> 1,200 LY Mekbuda) with drag-to-orbit 3D
-          rotation, spring-physics inertia, pointillist star particles, and
-          4 POV modes (Earth IAU, 3D Light-Year Orbit, Live Sky LST, Star Zoom).
-       3. De-Emphasized Independent Background Illustrations (opacity 0.18 with
-          3D parallax drift) + Miniature Medallion Portraits inside the pulsing
-          top-left α Castor and top-right β Pollux progressive-disclosure pills.
+       LOOK J (v2) — RELATIONAL 3D FOREGROUND-PIVOT CONSTELLATION NAVIGATOR
+       Round 10 Evolution of GeminiPulse.com (Look J v1 archived at look-j-v1-archive.html):
+       1. Commanding Full-Stage Scale (`viewBox="0 0 1000 520"`): The 3D Gemini
+          Constellation now fills ~74% of the viewport across wide desktops,
+          laptops, and narrower windows—eliminating the small center-island shrinkage.
+       2. True Relational 3D Foreground Pivot on Star Click: Clicking any star
+          pivots the entire 3D constellation in Yaw, Pitch & Depth so the clicked
+          star rotates into the #1 Foreground Focal Plane (`scale ~1.30x`), while
+          all other stars pivot relationally around it.
+       3. Depth-Proportional Text & Pill Scaling (No Flat Map): Star labels and
+          pills scale (`0.68x` deep background to `1.30x` foreground) and modulate
+          atmospheric contrast based on live 3D Z-depth (`34 LY` to `1,200 LY`).
+       4. Smooth Gliding Focus Reticle + Comet Trail: Restores the physical,
+          spring-gliding "YOU ARE HERE" focus circle & energy trail between stars.
+       5. Seamless Feathering on Background Twin Engravings (Zero Center Seam) +
+          Responsive Bottom Porcelain Silk Peek Dock across all window widths.
        ========================================================================= */
 
     :root {
       /* Deep Celestial Observatory (Full-Viewport 3D Stage) */
       --obsidian: #06080F;
       --obsidian-deep: #0B101C;
-      --obsidian-glass: rgba(10, 14, 24, 0.78);
+      --obsidian-glass: rgba(10, 14, 24, 0.82);
       --starlight: #F7F5F0;
 
       /* Parisian Porcelain Silk (Bottom Peek Dock & Slide-Up Twin Salons) */
@@ -58,7 +59,7 @@
       /* Ethereal Digital Purple (Human + AI Twin Synapse) */
       --ethereal: #A385FF;
       --ethereal-bright: #CEC0FF;
-      --ethereal-glow: rgba(163, 133, 255, 0.26);
+      --ethereal-glow: rgba(163, 133, 255, 0.28);
 
       /* Architectural Hairlines */
       --hairline-light: #D8D2C5;
@@ -114,31 +115,17 @@
     }
 
     /* =========================================================================
-       MASTER 100SVH VIEWPORT SHELL (Constellation Stage + Progress Bar + Peek Dock)
+       MASTER 100SVH VIEWPORT SHELL
        ========================================================================= */
     .viewport-shell {
       position: relative;
       inline-size: 100%;
       block-size: 100svh;
-      min-block-size: 650px;
+      min-block-size: 620px;
       display: grid;
-      /* Exact match to Neil's cropped screenshot:
-         1. Top Masthead (42px)
-         2. Full-Viewport 3D Constellation Stage (1fr — ~82% of viewport)
-         3. "YOU ARE HERE" Constellation Progress Bar (38px)
-         4. Bottom Porcelain Silk Peek Dock (56px) */
       grid-template-rows: 42px minmax(0, 1fr) 38px 56px;
       overflow: hidden;
       background: var(--obsidian);
-    }
-
-    @media (max-width: 1023px) {
-      .viewport-shell {
-        block-size: auto;
-        min-block-size: 100svh;
-        grid-template-rows: auto minmax(480px, 74svh) auto auto;
-        overflow-y: auto;
-      }
     }
 
     /* =========================================================================
@@ -150,8 +137,8 @@
       display: grid;
       grid-template-columns: auto 1fr auto;
       align-items: center;
-      gap: 14px;
-      padding-inline: clamp(16px, 2.2vw, 34px);
+      gap: 12px;
+      padding-inline: clamp(14px, 2vw, 32px);
       background: rgba(6, 8, 15, 0.92);
       border-block-end: 1px solid var(--hairline-dark);
       backdrop-filter: blur(12px);
@@ -161,7 +148,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      padding-inline-end: 16px;
+      padding-inline-end: 14px;
       border-inline-end: 1px solid var(--hairline-dark);
     }
 
@@ -180,7 +167,7 @@
 
     .brand-title {
       font-family: var(--serif);
-      font-size: clamp(17px, 1.3vw, 21px);
+      font-size: clamp(16px, 1.25vw, 20px);
       font-weight: 600;
       letter-spacing: 0.22em;
       text-transform: uppercase;
@@ -188,14 +175,25 @@
       white-space: nowrap;
     }
 
-    /* Human + AI Twin Premise Ribbon */
     .premise-ribbon {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 9px;
+      gap: 8px;
       min-inline-size: 0;
       overflow: hidden;
+    }
+
+    @media (max-width: 960px) {
+      .premise-ribbon {
+        display: none;
+      }
+      .celestial-header {
+        grid-template-columns: auto 1fr;
+      }
+      .header-controls {
+        justify-self: end;
+      }
     }
 
     .premise-dot {
@@ -227,7 +225,6 @@
       color: var(--ethereal-bright);
     }
 
-    /* 3D Camera / POV Controls in Header */
     .header-controls {
       display: flex;
       align-items: center;
@@ -250,7 +247,7 @@
       border-radius: 999px;
       font-family: var(--mono);
       font-size: 8.5px;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.07em;
       text-transform: uppercase;
       color: #B4C0D4;
       transition: all 0.2s ease;
@@ -261,10 +258,10 @@
     }
 
     .pov-btn[aria-pressed="true"] {
-      background: linear-gradient(135deg, rgba(126, 184, 255, 0.26), rgba(163, 133, 255, 0.34));
+      background: linear-gradient(135deg, rgba(126, 184, 255, 0.28), rgba(163, 133, 255, 0.36));
       color: #FFFFFF;
-      border: 1px solid rgba(206, 192, 255, 0.55);
-      box-shadow: 0 0 12px rgba(163, 133, 255, 0.28);
+      border: 1px solid rgba(206, 192, 255, 0.58);
+      box-shadow: 0 0 12px rgba(163, 133, 255, 0.3);
     }
 
     .pov-dot {
@@ -304,7 +301,7 @@
       flex-direction: column;
       justify-content: space-between;
       background:
-        radial-gradient(ellipse 56% 52% at 50% 48%, rgba(163, 133, 255, 0.14) 0%, rgba(18, 25, 44, 0.35) 55%, rgba(6, 8, 15, 0.96) 100%),
+        radial-gradient(ellipse 62% 58% at 50% 50%, rgba(163, 133, 255, 0.13) 0%, rgba(18, 25, 44, 0.32) 55%, rgba(6, 8, 15, 0.98) 100%),
         var(--obsidian);
       cursor: grab;
       user-select: none;
@@ -314,54 +311,52 @@
       cursor: grabbing;
     }
 
-    /* De-Emphasized Independent Background Illustrations (Castor & Pollux)
-       Lowered alpha (0.19) + independent 3D parallax so they act as rich
-       atmospheric texture rather than competing with the 3D constellation! */
+    /* Seamless Feathering on De-Emphasized Background Twin Engravings
+       Eliminates the center vertical dark seam seen on squarish windows! */
     .bg-twin-illustrations {
       position: absolute;
       inset: 0;
       z-index: 1;
       pointer-events: none;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
       overflow: hidden;
     }
 
     .bg-twin-plate {
-      position: relative;
-      inline-size: 46%;
-      block-size: 100%;
-      opacity: 0.21;
-      transition: opacity 0.4s ease, transform 0.15s ease-out;
-      filter: contrast(1.06) saturate(1.1);
+      position: absolute;
+      inset-block: 0;
+      inline-size: 54%;
+      opacity: 0.17;
+      transition: opacity 0.4s ease;
+      filter: contrast(1.05) saturate(1.08);
     }
 
     .bg-twin-plate img {
-      inline-size: 215%;
+      inline-size: 190%;
       block-size: 100%;
       max-inline-size: none;
       object-fit: cover;
       display: block;
     }
 
-    /* Left Plate: Crops to Classical Silver-White Marble Castor */
     .bg-twin-castor {
-      mask-image: radial-gradient(circle at 34% 50%, rgba(0,0,0,1) 18%, rgba(0,0,0,0.45) 58%, transparent 82%);
-      -webkit-mask-image: radial-gradient(circle at 34% 50%, rgba(0,0,0,1) 18%, rgba(0,0,0,0.45) 58%, transparent 82%);
+      inset-inline-start: 0;
+      mask-image: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.7) 38%, rgba(0,0,0,0.15) 68%, transparent 92%);
+      -webkit-mask-image: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.7) 38%, rgba(0,0,0,0.15) 68%, transparent 92%);
     }
+
     .bg-twin-castor img {
       object-position: left center;
     }
 
-    /* Right Plate: Crops to Golden-Orange Clockwork Pollux */
     .bg-twin-pollux {
-      mask-image: radial-gradient(circle at 66% 50%, rgba(0,0,0,1) 18%, rgba(0,0,0,0.45) 58%, transparent 82%);
-      -webkit-mask-image: radial-gradient(circle at 66% 50%, rgba(0,0,0,1) 18%, rgba(0,0,0,0.45) 58%, transparent 82%);
+      inset-inline-end: 0;
+      mask-image: linear-gradient(270deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.7) 38%, rgba(0,0,0,0.15) 68%, transparent 92%);
+      -webkit-mask-image: linear-gradient(270deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.7) 38%, rgba(0,0,0,0.15) 68%, transparent 92%);
     }
+
     .bg-twin-pollux img {
       object-position: right center;
-      transform: translateX(-53.5%);
+      transform: translateX(-47%);
     }
 
     /* 60fps 3D Pointillist Starfield Canvas Layer */
@@ -374,26 +369,25 @@
       pointer-events: none;
     }
 
-    /* Top Hero Overlay Bar: Pulsing Twin Pills (with Mini Medallions!) + Title */
+    /* Top Hero Overlay Bar */
     .hero-top-bar {
       position: relative;
       z-index: 6;
       display: grid;
       grid-template-columns: 1fr auto 1fr;
       align-items: start;
-      gap: 16px;
-      padding: 12px clamp(18px, 2.4vw, 38px) 0;
+      gap: 12px;
+      padding: 10px clamp(14px, 2.2vw, 34px) 0;
       pointer-events: none;
     }
 
-    /* Pulsing Progressive-Disclosure Twin Pills with Miniature Medallion Icons */
     .twin-pulse-orb {
       pointer-events: auto;
       position: relative;
       display: inline-flex;
       flex-direction: column;
       align-items: flex-start;
-      padding: 6px 14px 6px 8px;
+      padding: 5px 13px 5px 7px;
       border-radius: 999px;
       background: rgba(9, 13, 23, 0.84);
       border: 1px solid rgba(126, 184, 255, 0.52);
@@ -408,7 +402,7 @@
       justify-self: end;
       align-items: flex-end;
       text-align: right;
-      padding: 6px 8px 6px 14px;
+      padding: 5px 7px 5px 13px;
       border-color: rgba(245, 158, 63, 0.52);
       animation: orb-breathe-pollux 3.4s infinite ease-in-out 1.5s;
     }
@@ -417,8 +411,8 @@
     .twin-pulse-orb:focus-visible,
     .twin-pulse-orb[data-expanded="true"] {
       border-radius: 16px;
-      padding: 8px 15px;
-      background: rgba(9, 14, 26, 0.94);
+      padding: 8px 14px;
+      background: rgba(9, 14, 26, 0.95);
     }
 
     @keyframes orb-breathe-castor {
@@ -446,9 +440,9 @@
     .tpo-main {
       display: inline-flex;
       align-items: center;
-      gap: 9px;
+      gap: 8px;
       font-family: var(--sans);
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 600;
       letter-spacing: 0.02em;
       color: var(--castor-star);
@@ -459,10 +453,9 @@
       color: var(--pollux-star);
     }
 
-    /* Miniature Medallion Icon of Castor / Pollux right next to their name! */
     .twin-mini-medallion {
-      inline-size: 26px;
-      block-size: 26px;
+      inline-size: 25px;
+      block-size: 25px;
       border-radius: 50%;
       overflow: hidden;
       border: 1.5px solid var(--castor-star);
@@ -536,7 +529,7 @@
       font-size: 11px;
       line-height: 1.4;
       color: #D5DFEE;
-      max-inline-size: 34ch;
+      max-inline-size: 32ch;
     }
 
     .twin-pulse-orb:hover .tpo-drawer,
@@ -557,19 +550,17 @@
       margin-block-start: 3px;
     }
 
-    /* Clean Center Title */
     .hero-center-heading {
       text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 3px;
     }
 
     .hero-h1 {
       font-family: var(--serif);
       font-weight: 400;
-      font-size: clamp(28px, 2.85vw, 46px);
+      font-size: clamp(24px, 2.6vw, 42px);
       line-height: 0.96;
       letter-spacing: 0.01em;
       color: var(--starlight);
@@ -585,7 +576,8 @@
     }
 
     /* =========================================================================
-       INTERACTIVE 3D CONSTELLATION SVG STAGE
+       COMMANDING FULL-STAGE 3D CONSTELLATION SVG (`viewBox="0 0 1000 520"`)
+       Commands ~74% of the stage at every window width!
        ========================================================================= */
     .hero-constellation-stage {
       position: relative;
@@ -595,13 +587,13 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding-inline: clamp(14px, 2vw, 32px);
+      padding-inline: clamp(6px, 1vw, 18px);
     }
 
     .gemini-panoramic-svg {
       inline-size: 100%;
       block-size: 100%;
-      max-inline-size: 1480px;
+      max-inline-size: 1440px;
       max-block-size: 100%;
       overflow: visible;
     }
@@ -609,43 +601,43 @@
     /* 3D Projected Constellation Stick-Figure Lines */
     .constellation-line-castor {
       stroke: var(--castor-glow);
-      stroke-width: 1.85;
+      stroke-width: 2.1;
       stroke-opacity: 0.85;
       fill: none;
-      filter: drop-shadow(0 0 7px rgba(126, 184, 255, 0.5));
+      filter: drop-shadow(0 0 8px rgba(126, 184, 255, 0.55));
       stroke-linecap: round;
       stroke-linejoin: round;
     }
 
     .constellation-line-pollux {
       stroke: var(--pollux-glow);
-      stroke-width: 1.85;
+      stroke-width: 2.1;
       stroke-opacity: 0.85;
       fill: none;
-      filter: drop-shadow(0 0 7px rgba(245, 158, 63, 0.5));
+      filter: drop-shadow(0 0 8px rgba(245, 158, 63, 0.55));
       stroke-linecap: round;
       stroke-linejoin: round;
     }
 
     .constellation-bridge-line {
       stroke: var(--ethereal-bright);
-      stroke-width: 1.45;
-      stroke-dasharray: 5 4;
-      stroke-opacity: 0.78;
+      stroke-width: 1.65;
+      stroke-dasharray: 6 5;
+      stroke-opacity: 0.82;
       fill: none;
-      filter: drop-shadow(0 0 6px rgba(163, 133, 255, 0.5));
+      filter: drop-shadow(0 0 7px rgba(163, 133, 255, 0.55));
     }
 
-    /* 3D Depth-Cue Tether Lines (visible when rotating in 3D space!) */
+    /* 3D Depth-Cue Tether Lines */
     .depth-tether-line {
-      stroke: rgba(206, 192, 255, 0.35);
-      stroke-width: 1;
-      stroke-dasharray: 2 3;
+      stroke: rgba(206, 192, 255, 0.38);
+      stroke-width: 1.1;
+      stroke-dasharray: 2.5 3.5;
       opacity: 0;
       transition: opacity 0.3s ease;
     }
 
-    /* Interactive 3D Star Nodes */
+    /* Interactive 3D Star Nodes with Depth-Proportional Scaling */
     .star-node {
       cursor: pointer;
     }
@@ -656,8 +648,8 @@
 
     .star-halo {
       fill: none;
-      stroke-width: 1.25;
-      opacity: 0.45;
+      stroke-width: 1.35;
+      opacity: 0.48;
       transition: opacity 0.25s ease, stroke-width 0.25s ease;
     }
 
@@ -671,19 +663,19 @@
 
     .star-core-castor {
       fill: var(--castor-star);
-      filter: drop-shadow(0 0 9px rgba(126, 184, 255, 0.95));
+      filter: drop-shadow(0 0 10px rgba(126, 184, 255, 0.98));
     }
 
     .star-core-pollux {
       fill: var(--pollux-star);
-      filter: drop-shadow(0 0 9px rgba(245, 158, 63, 0.95));
+      filter: drop-shadow(0 0 10px rgba(245, 158, 63, 0.98));
     }
 
     .star-reticle {
       fill: none;
       stroke: var(--ethereal-bright);
-      stroke-width: 1.6;
-      stroke-dasharray: 3 2.5;
+      stroke-width: 1.75;
+      stroke-dasharray: 3.5 2.5;
       opacity: 0;
       transition: opacity 0.25s ease;
     }
@@ -691,7 +683,7 @@
     .star-node:hover .star-halo,
     .star-node[data-active="true"] .star-halo {
       opacity: 1;
-      stroke-width: 2.1;
+      stroke-width: 2.3;
     }
 
     .star-node:hover .star-reticle,
@@ -700,32 +692,32 @@
     }
 
     .star-pill-bg {
-      fill: rgba(8, 12, 21, 0.86);
-      stroke: rgba(163, 133, 255, 0.32);
-      stroke-width: 1;
-      rx: 13;
+      fill: rgba(8, 12, 22, 0.88);
+      stroke: rgba(163, 133, 255, 0.34);
+      stroke-width: 1.1;
+      rx: 14;
       transition: fill 0.22s ease, stroke 0.22s ease, stroke-width 0.22s ease;
     }
 
     .star-node-castor:hover .star-pill-bg,
     .star-node-castor[data-active="true"] .star-pill-bg {
-      fill: rgba(14, 25, 44, 0.96);
+      fill: rgba(14, 27, 48, 0.98);
       stroke: var(--castor-star);
-      stroke-width: 1.5;
-      filter: drop-shadow(0 0 12px rgba(126, 184, 255, 0.4));
+      stroke-width: 1.85;
+      filter: drop-shadow(0 6px 18px rgba(126, 184, 255, 0.48));
     }
 
     .star-node-pollux:hover .star-pill-bg,
     .star-node-pollux[data-active="true"] .star-pill-bg {
-      fill: rgba(34, 21, 10, 0.96);
+      fill: rgba(36, 22, 10, 0.98);
       stroke: var(--pollux-star);
-      stroke-width: 1.5;
-      filter: drop-shadow(0 0 12px rgba(245, 158, 63, 0.4));
+      stroke-width: 1.85;
+      filter: drop-shadow(0 6px 18px rgba(245, 158, 63, 0.48));
     }
 
     .star-label-dest {
       font-family: var(--sans);
-      font-size: 10.5px;
+      font-size: 11px;
       font-weight: 600;
       fill: #E2EAF8;
     }
@@ -737,7 +729,7 @@
 
     .star-bayer-prefix {
       font-family: var(--mono);
-      font-size: 9.5px;
+      font-size: 10px;
       font-weight: 600;
     }
 
@@ -749,9 +741,24 @@
       fill: var(--pollux-star);
     }
 
+    /* Depth Distance Badge on Every Star ("51 LY", "840 LY", etc.) */
+    .star-depth-chip {
+      font-family: var(--mono);
+      font-size: 8.5px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      fill: rgba(206, 192, 255, 0.82);
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .star-node[data-active="true"] .star-depth-chip {
+      opacity: 0;
+    }
+
     .star-sub-meta {
       font-family: var(--mono);
-      font-size: 7.5px;
+      font-size: 8px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       fill: var(--ethereal-bright);
@@ -762,10 +769,10 @@
 
     .star-node:hover .star-sub-meta,
     .star-node[data-active="true"] .star-sub-meta {
-      opacity: 0.96;
+      opacity: 0.98;
     }
 
-    /* Traveling "YOU ARE HERE" Beacon */
+    /* Smooth Gliding "YOU ARE HERE" Focus Circle & Comet Trail */
     #traveling-beacon {
       pointer-events: none;
     }
@@ -773,38 +780,57 @@
     .tb-outer {
       fill: none;
       stroke: var(--ethereal);
-      stroke-width: 1.6;
-      opacity: 0.9;
+      stroke-width: 1.9;
+      opacity: 0.95;
+      filter: drop-shadow(0 0 10px rgba(163, 133, 255, 0.8));
+    }
+
+    .tb-pulse-ring {
+      fill: none;
+      stroke: var(--ethereal-bright);
+      stroke-width: 1.2;
+      stroke-dasharray: 4 3;
+      opacity: 0.75;
     }
 
     .tb-tag-bg {
       fill: var(--ethereal);
-      rx: 7;
-      filter: drop-shadow(0 2px 8px rgba(163, 133, 255, 0.55));
+      rx: 8;
+      filter: drop-shadow(0 3px 10px rgba(163, 133, 255, 0.65));
     }
 
     .tb-tag-text {
       font-family: var(--mono);
-      font-size: 7.2px;
+      font-size: 7.5px;
       font-weight: 700;
       letter-spacing: 0.12em;
       fill: var(--obsidian);
     }
 
-    /* Bottom-Center Subtle 3D Orbit Telemetry Pill inside Constellation Stage */
+    #focus-comet-trail {
+      pointer-events: none;
+      stroke: url(#comet-trail-grad);
+      stroke-width: 2.6;
+      stroke-linecap: round;
+      fill: none;
+      filter: drop-shadow(0 0 10px rgba(206, 192, 255, 0.85));
+    }
+
+    /* Bottom-Stage 3D Telemetry Bar */
     .hero-3d-telemetry-bar {
       position: relative;
       z-index: 6;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 clamp(18px, 2.4vw, 38px) 8px;
+      gap: 10px;
+      padding: 0 clamp(14px, 2.2vw, 34px) 6px;
       pointer-events: none;
       font-family: var(--mono);
       font-size: 8.5px;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.09em;
       text-transform: uppercase;
-      color: rgba(206, 192, 255, 0.78);
+      color: rgba(206, 192, 255, 0.82);
     }
 
     .h3d-pill {
@@ -814,9 +840,18 @@
       gap: 8px;
       padding: 4px 11px;
       border-radius: 999px;
-      background: rgba(8, 12, 22, 0.76);
-      border: 1px solid rgba(163, 133, 255, 0.25);
+      background: rgba(8, 12, 22, 0.82);
+      border: 1px solid rgba(163, 133, 255, 0.28);
       backdrop-filter: blur(8px);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    @media (max-width: 860px) {
+      .h3d-pill:last-child {
+        display: none;
+      }
     }
 
     .h3d-reset-btn {
@@ -835,7 +870,7 @@
       background: #0A0E19;
       border-block-start: 1px solid rgba(163, 133, 255, 0.28);
       border-block-end: 1px solid rgba(15, 20, 29, 0.9);
-      padding-inline: clamp(14px, 2vw, 32px);
+      padding-inline: clamp(12px, 1.8vw, 30px);
       display: grid;
       grid-template-columns: auto 1fr auto;
       align-items: center;
@@ -853,7 +888,7 @@
       font-family: var(--mono);
       font-size: 8.5px;
       font-weight: 600;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.09em;
       text-transform: uppercase;
       color: var(--ethereal-bright);
       white-space: nowrap;
@@ -870,7 +905,7 @@
     .cpn-track {
       display: grid;
       grid-template-columns: repeat(8, minmax(0, 1fr));
-      gap: 5px;
+      gap: 4px;
       align-items: center;
     }
 
@@ -880,7 +915,7 @@
       align-items: center;
       justify-content: center;
       gap: 5px;
-      padding: 4px 6px;
+      padding: 4px 5px;
       border-radius: 999px;
       background: rgba(16, 22, 36, 0.78);
       border: 1px solid rgba(255, 255, 255, 0.09);
@@ -900,7 +935,7 @@
     }
 
     .cpn-step[aria-current="step"] {
-      background: linear-gradient(135deg, rgba(163, 133, 255, 0.25), rgba(126, 184, 255, 0.18));
+      background: linear-gradient(135deg, rgba(163, 133, 255, 0.28), rgba(126, 184, 255, 0.2));
       border-color: var(--ethereal-bright);
       color: #FFFFFF;
       font-weight: 600;
@@ -951,8 +986,8 @@
     }
 
     /* =========================================================================
-       4. BOTTOM PORCELAIN SILK PEEK DOCK (56px) + FLOATING SLIDE-UP ARROWS
-       Matches Neil's cropped screenshot (`media_1793731639194_23fb88de.jpg`)!
+       4. BOTTOM PORCELAIN SILK PEEK DOCK (56px) + RESPONSIVE GUARDRAILS
+       Zero collision even on narrow browser windows!
        ========================================================================= */
     .porcelain-peek-dock {
       position: relative;
@@ -969,11 +1004,12 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      padding: 0 clamp(18px, 2.4vw, 34px);
+      gap: 10px;
+      padding: 0 clamp(14px, 2vw, 32px);
       cursor: pointer;
       transition: background 0.22s ease;
       overflow: hidden;
+      min-inline-size: 0;
     }
 
     .peek-castor {
@@ -992,9 +1028,10 @@
     .peek-left-group {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       min-inline-size: 0;
       flex: 1;
+      overflow: hidden;
     }
 
     .peek-twin-label {
@@ -1004,7 +1041,7 @@
       font-family: var(--mono);
       font-size: 9px;
       font-weight: 600;
-      letter-spacing: 0.13em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--castor-ink);
       white-space: nowrap;
@@ -1028,17 +1065,17 @@
       box-shadow: 0 0 8px var(--pollux-glow);
     }
 
-    /* Live Active Star Headline Teaser inside the 56px Peek Dock */
     .peek-live-headline {
       font-family: var(--serif);
-      font-size: clamp(16px, 1.25vw, 20px);
+      font-size: clamp(15px, 1.2vw, 19px);
       font-weight: 600;
       color: var(--ink);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      padding-inline-start: 12px;
+      padding-inline-start: 10px;
       border-inline-start: 1px solid var(--hairline-light);
+      min-inline-size: 0;
     }
 
     .peek-live-headline em {
@@ -1055,20 +1092,20 @@
     .peek-right-group {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       flex-shrink: 0;
     }
 
     .peek-star-badge {
-      padding: 3px 9px;
+      padding: 3px 8px;
       border-radius: 999px;
       background: var(--castor-tint);
       border: 1px solid rgba(27, 79, 140, 0.25);
       color: var(--castor-ink);
       font-family: var(--mono);
-      font-size: 8.5px;
+      font-size: 8px;
       font-weight: 600;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.09em;
       text-transform: uppercase;
       white-space: nowrap;
     }
@@ -1079,7 +1116,19 @@
       color: var(--pollux-ink);
     }
 
-    /* Floating Slide-Up Arrow Button on Left & Right Sides of Bottom Dock! */
+    /* Responsive guardrails so narrow windows never overlap text in the bottom dock */
+    @media (max-width: 1220px) {
+      .peek-star-badge {
+        display: none;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .peek-live-headline {
+        display: none;
+      }
+    }
+
     .peek-slide-up-btn {
       display: inline-flex;
       align-items: center;
@@ -1091,10 +1140,11 @@
       font-family: var(--mono);
       font-size: 8.5px;
       font-weight: 600;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.09em;
       text-transform: uppercase;
       box-shadow: 0 4px 14px rgba(15, 20, 29, 0.18);
       transition: transform 0.2s ease, background 0.2s ease;
+      white-space: nowrap;
     }
 
     .peek-castor:hover .peek-slide-up-btn {
@@ -1121,8 +1171,6 @@
 
     /* =========================================================================
        5. SLIDE-UP PORCELAIN SILK 50/50 MAGAZINE DRAWER
-       Slides smoothly up over the lower viewport while keeping the upper 3D
-       constellation crystal-clear and interactive!
        ========================================================================= */
     .slide-up-drawer-backdrop {
       position: fixed;
@@ -1153,14 +1201,13 @@
       transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
       display: flex;
       flex-direction: column;
-      max-block-size: 62svh;
+      max-block-size: 58svh;
     }
 
     html[data-drawer="open"] .slide-up-salon-sheet {
       transform: translateY(0%);
     }
 
-    /* Sheet Control Bar at Top of Slide-Up Drawer */
     .sheet-handle-bar {
       display: flex;
       align-items: center;
@@ -1321,34 +1368,6 @@
       color: var(--ink-soft);
     }
 
-    .couture-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--ink);
-      margin-block-start: 4px;
-    }
-
-    .couture-cta-circle {
-      inline-size: 26px;
-      block-size: 26px;
-      border-radius: 50%;
-      border: 1px solid var(--castor-ink);
-      color: var(--castor-ink);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.22s ease;
-    }
-
-    .spread-pollux .couture-cta-circle {
-      border-color: var(--pollux-ink);
-      color: var(--pollux-ink);
-    }
-
-    /* Telemetry Specimen Card */
     .telemetry-card {
       background: var(--silk-elevated);
       border: 1px solid rgba(27, 79, 140, 0.22);
@@ -1416,7 +1435,6 @@
       justify-content: space-between;
     }
 
-    /* Pollux Interactive Workbench Console */
     .atelier-console {
       background: #0F1522;
       color: var(--starlight);
@@ -1525,18 +1543,21 @@
       <div class="premise-ribbon">
         <span class="premise-dot" aria-hidden="true"></span>
         <p class="premise-text">
-          Conceived by a human · Written, designed &amp; coded by <strong>Google Gemini</strong> — <em>drag in 3D space or click any star.</em>
+          Conceived by a human · Written, designed &amp; coded by <strong>Google Gemini</strong> — <em>click any star to pivot it into the 3D foreground.</em>
         </p>
       </div>
 
       <div class="header-controls">
-        <!-- 4 Instant 3D Camera / Point-of-View Presets -->
+        <!-- 3D Camera / Point-of-View Presets -->
         <div class="pov-switcher" role="group" aria-label="3D Constellation Point of View">
-          <button type="button" class="pov-btn" data-pov-mode="earth" aria-pressed="true" title="View from Earth (Official IAU 2-Legged Gemini Stick Figure)">
-            Earth POV
+          <button type="button" class="pov-btn" data-pov-mode="relational3d" aria-pressed="true" title="Relational 3D Pivot: Clicked star rotates to the foreground while other stars scale proportionally by depth">
+            3D Star Pivot
           </button>
-          <button type="button" class="pov-btn" data-pov-mode="orbit3d" aria-pressed="false" title="Rotate in 3D Light-Year Space (34 LY Pollux to 1,200 LY Mekbuda)">
-            3D Depth (LY)
+          <button type="button" class="pov-btn" data-pov-mode="orbit3d" aria-pressed="false" title="Continuous 3D Deep-Space Orbit (34 LY Pollux to 1,200 LY Mekbuda)">
+            3D Auto-Orbit
+          </button>
+          <button type="button" class="pov-btn" data-pov-mode="earth" aria-pressed="false" title="Flat Earth Chart View (0° Yaw / 0° Pitch)">
+            Flat Chart (0°)
           </button>
           <button type="button" class="pov-btn" data-pov-mode="livesky" aria-pressed="false" title="Orient to Real-Time Local Sidereal Time Sky">
             <span class="pov-dot" aria-hidden="true"></span>
@@ -1544,7 +1565,7 @@
           </button>
         </div>
 
-        <a href="./index.html" class="charter-pill" title="View All 12 Preserved Design Evolution Prototypes">Archive (12) ↗</a>
+        <a href="./index.html" class="charter-pill" title="View All 13 Preserved Design Evolution Prototypes">Archive (13) ↗</a>
       </div>
     </header>
 
@@ -1552,8 +1573,7 @@
          2. FULL-VIEWPORT 3D POINTILLIST GEMINI CONSTELLATION STAGE
          ===================================================================== -->
     <section class="constellation-hero" id="constellation-hero" aria-label="Interactive 3D Gemini Constellation Stage">
-      <!-- De-Emphasized Independent Background Illustrations (Castor & Pollux)
-           Lower alpha (0.21) + independent parallax so the 3D constellation is the undisputed star -->
+      <!-- Seamless Feathered De-Emphasized Background Twin Engravings -->
       <div class="bg-twin-illustrations" aria-hidden="true">
         <div class="bg-twin-plate bg-twin-castor" id="bg-plate-castor">
           <img src="./assets/look-i-celestial-twins.webp" alt="" width="1376" height="768" fetchpriority="high" />
@@ -1563,12 +1583,11 @@
         </div>
       </div>
 
-      <!-- Lightweight 60fps 3D Pointillist Starfield & M35 Cluster Canvas -->
+      <!-- 60fps 3D Pointillist Starfield & M35 Cluster Canvas -->
       <canvas id="pointillist-3d-canvas" aria-hidden="true"></canvas>
 
       <!-- Top Bar: Pulsing Progressive-Disclosure Twin Pills (with Mini Medallions!) + Title -->
       <div class="hero-top-bar">
-        <!-- Left Pulsing Pill: α Castor (with Miniature Medallion Icon) -->
         <div class="twin-pulse-orb" tabindex="0" role="button" aria-label="Alpha Castor: The Signal. Hover or tap for details" data-open-twin="castor">
           <div class="tpo-main">
             <span class="twin-mini-medallion castor-medallion" aria-hidden="true">
@@ -1583,14 +1602,12 @@
           </div>
         </div>
 
-        <!-- Clean Poetic Center Title -->
         <div class="hero-center-heading">
           <h1 class="hero-h1">
             Written by Gemini. <em>Guided by the Twins.</em>
           </h1>
         </div>
 
-        <!-- Right Pulsing Pill: β Pollux (with Miniature Medallion Icon) -->
         <div class="twin-pulse-orb pollux-orb" tabindex="0" role="button" aria-label="Beta Pollux: The Workbench. Hover or tap for details" data-open-twin="pollux">
           <div class="tpo-main">
             <span><span class="greek">β</span> Pollux (The Workbench)</span>
@@ -1607,175 +1624,195 @@
       </div>
 
       <!-- ===================================================================
-           3D PROJECTED IAU GEMINI CONSTELLATION SVG
-           Every star node has 3D coordinates (x, y, z) where z is mapped from
-           its real distance in Light-Years (34 LY Pollux -> 1,200 LY Mekbuda)!
+           COMMANDING FULL-STAGE 3D GEMINI CONSTELLATION SVG (`viewBox="0 0 1000 520"`)
+           Every star pivots in relational 3D space when clicked, bringing the
+           selected star to the foreground (`scale ~1.30x`) while scaling back
+           distant stars proportionally (`0.68x` to `1.05x`)!
            =================================================================== -->
       <div class="hero-constellation-stage">
-        <svg class="gemini-panoramic-svg" id="gemini-3d-svg" viewBox="0 0 1280 390" role="group" aria-label="3D Interactive Gemini Constellation Map">
+        <svg class="gemini-panoramic-svg" id="gemini-3d-svg" viewBox="0 0 1000 520" role="group" aria-label="3D Interactive Gemini Constellation Map">
           <defs>
             <radialGradient id="m35-cluster-glow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#A385FF" stop-opacity="0.58" />
-              <stop offset="55%" stop-color="#7EB8FF" stop-opacity="0.24" />
+              <stop offset="0%" stop-color="#A385FF" stop-opacity="0.62" />
+              <stop offset="55%" stop-color="#7EB8FF" stop-opacity="0.26" />
               <stop offset="100%" stop-color="#7EB8FF" stop-opacity="0" />
             </radialGradient>
+            <linearGradient id="comet-trail-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#A385FF" stop-opacity="0" />
+              <stop offset="60%" stop-color="#CEC0FF" stop-opacity="0.75" />
+              <stop offset="100%" stop-color="#FFFFFF" stop-opacity="1" />
+            </linearGradient>
           </defs>
 
-          <!-- 3D Ecliptic Reference Plane (+22°) -->
+          <!-- 3D Perspective Astrolabe Rings & Ecliptic Plane -->
+          <g id="astrolabe-3d-rings" aria-hidden="true">
+            <ellipse id="ring-3d-outer" cx="500" cy="258" rx="390" ry="185" fill="none" stroke="rgba(163, 133, 255, 0.24)" stroke-width="1.1" stroke-dasharray="5 7" />
+            <ellipse id="ring-3d-inner" cx="500" cy="258" rx="255" ry="120" fill="none" stroke="rgba(126, 184, 255, 0.2)" stroke-width="1" stroke-dasharray="3 5" />
+          </g>
+
           <g id="ecliptic-3d-group" aria-hidden="true" opacity="0.45">
-            <path id="ecliptic-arc" d="M 335 288 Q 640 206 945 138" fill="none" stroke="#A385FF" stroke-width="1" stroke-dasharray="5 5" />
-            <text id="ecliptic-label" x="815" y="152" fill="#CEC0FF" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="1.4">ECLIPTIC PLANE (+22°)</text>
+            <path id="ecliptic-arc" d="M 120 375 Q 500 268 880 165" fill="none" stroke="#A385FF" stroke-width="1.1" stroke-dasharray="5 5" />
+            <text id="ecliptic-label" x="745" y="182" fill="#CEC0FF" font-family="JetBrains Mono, monospace" font-size="8.5" letter-spacing="1.4">ECLIPTIC PLANE (+22°)</text>
           </g>
 
           <!-- M35 Open Star Cluster (2,800 LY Deep-Space Anchor) -->
           <g id="m35-3d-group" aria-hidden="true">
-            <circle id="m35-glow-circle" cx="368" cy="308" r="24" fill="url(#m35-cluster-glow)" />
-            <text id="m35-label" x="336" y="294" fill="#B8DCFF" font-family="JetBrains Mono, monospace" font-size="7.5" opacity="0.82">M35 (2,800 LY)</text>
+            <circle id="m35-glow-circle" cx="195" cy="415" r="32" fill="url(#m35-cluster-glow)" />
+            <text id="m35-label" x="155" y="395" fill="#B8DCFF" font-family="JetBrains Mono, monospace" font-size="8" opacity="0.82">M35 CLUSTER (2,800 LY)</text>
           </g>
 
-          <!-- 3D Perspective Astrolabe Rings & Depth Grid (Visible when rotated in 3D!) -->
-          <g id="astrolabe-3d-rings" aria-hidden="true" opacity="0" style="transition: opacity 0.35s ease;">
-            <ellipse id="ring-3d-outer" cx="640" cy="195" rx="340" ry="135" fill="none" stroke="rgba(163, 133, 255, 0.28)" stroke-width="1" stroke-dasharray="4 6" />
-            <ellipse id="ring-3d-inner" cx="640" cy="195" rx="220" ry="88" fill="none" stroke="rgba(126, 184, 255, 0.24)" stroke-width="1" stroke-dasharray="2 4" />
-          </g>
-
-          <!-- 3D Depth-Cue Tether Lines (Connects 3D Star to Earth Sky Plane when rotated!) -->
+          <!-- 3D Depth-Cue Tether Lines (Connects 3D Star to Reference Plane) -->
           <g id="depth-tethers-group" aria-hidden="true"></g>
 
-          <!-- Dynamic 3D Stick-Figure Polylines (Updated at 60fps by the 3D Projection Engine) -->
-          <polyline id="line-shoulder-bridge" class="constellation-bridge-line" points="535,114 618,134 682,130" />
-          <polyline id="line-castor-spine" class="constellation-line-castor" points="555,52 535,114 504,194 442,258 396,312" />
-          <polyline id="line-castor-arm" class="constellation-line-castor" points="458,102 535,114" stroke-opacity="0.65" />
-          <polyline id="line-castor-innerleg" class="constellation-line-castor" points="504,194 482,290" stroke-opacity="0.65" />
+          <!-- Dynamic 3D Stick-Figure Polylines -->
+          <polyline id="line-shoulder-bridge" class="constellation-bridge-line" points="" />
+          <polyline id="line-castor-spine" class="constellation-line-castor" points="" />
+          <polyline id="line-castor-arm" class="constellation-line-castor" points="" stroke-opacity="0.65" />
+          <polyline id="line-castor-innerleg" class="constellation-line-castor" points="" stroke-opacity="0.65" />
 
-          <polyline id="line-pollux-spine" class="constellation-line-pollux" points="695,68 682,130 676,202 626,260 574,328" />
-          <polyline id="line-pollux-arm" class="constellation-line-pollux" points="682,130 758,124" stroke-opacity="0.65" />
-          <polyline id="line-pollux-outerleg" class="constellation-line-pollux" points="676,202 712,268 696,348" stroke-opacity="0.65" />
+          <polyline id="line-pollux-spine" class="constellation-line-pollux" points="" />
+          <polyline id="line-pollux-arm" class="constellation-line-pollux" points="" stroke-opacity="0.65" />
+          <polyline id="line-pollux-outerleg" class="constellation-line-pollux" points="" stroke-opacity="0.65" />
 
           <!-- Secondary IAU Anatomical Stars (Projected in 3D) -->
-          <g id="minor-stars-layer" font-family="JetBrains Mono, monospace" font-size="7.5">
-            <g class="minor-star" data-minor="theta" fill="#B8DCFF" opacity="0.76"><circle r="2.5" /><text dx="-34" dy="-3">θ Gem</text></g>
-            <g class="minor-star" data-minor="tau" fill="#B8DCFF" opacity="0.76"><circle r="2.6" /><text dx="8" dy="-3">τ</text></g>
-            <g class="minor-star" data-minor="iota" fill="#CEC0FF" opacity="0.82"><circle r="2.7" /><text dx="-5" dy="-8">ι</text></g>
-            <g class="minor-star" data-minor="nu" fill="#B8DCFF" opacity="0.76"><circle r="2.5" /><text dx="8" dy="4">ν Gem</text></g>
-            <g class="minor-star" data-minor="upsilon" fill="#FFD296" opacity="0.76"><circle r="2.6" /><text dx="-14" dy="-5">υ</text></g>
-            <g class="minor-star" data-minor="kappa" fill="#FFD296" opacity="0.76"><circle r="2.5" /><text dx="8" dy="3">κ Gem</text></g>
-            <g class="minor-star" data-minor="lambda" fill="#FFD296" opacity="0.76"><circle r="2.5" /><text dx="8" dy="3">λ</text></g>
-            <g class="minor-star" data-minor="xi" fill="#FFD296" opacity="0.76"><circle r="2.6" /><text dx="9" dy="3">ξ Alzirr</text></g>
+          <g id="minor-stars-layer" font-family="JetBrains Mono, monospace" font-size="8">
+            <g class="minor-star" data-minor="theta" fill="#B8DCFF" opacity="0.76"><circle r="2.8" /><text dx="-36" dy="-4">θ Gem</text></g>
+            <g class="minor-star" data-minor="tau" fill="#B8DCFF" opacity="0.76"><circle r="3" /><text dx="9" dy="-4">τ</text></g>
+            <g class="minor-star" data-minor="iota" fill="#CEC0FF" opacity="0.84"><circle r="3.1" /><text dx="-5" dy="-9">ι</text></g>
+            <g class="minor-star" data-minor="nu" fill="#B8DCFF" opacity="0.76"><circle r="2.8" /><text dx="9" dy="4">ν Gem</text></g>
+            <g class="minor-star" data-minor="upsilon" fill="#FFD296" opacity="0.76"><circle r="3" /><text dx="-15" dy="-5">υ</text></g>
+            <g class="minor-star" data-minor="kappa" fill="#FFD296" opacity="0.76"><circle r="2.8" /><text dx="9" dy="3">κ Gem</text></g>
+            <g class="minor-star" data-minor="lambda" fill="#FFD296" opacity="0.76"><circle r="2.8" /><text dx="9" dy="3">λ</text></g>
+            <g class="minor-star" data-minor="xi" fill="#FFD296" opacity="0.76"><circle r="3" /><text dx="10" dy="4">ξ Alzirr</text></g>
           </g>
+
+          <!-- Animated Comet Energy Trail when Focus Glides Between Stars! -->
+          <path id="focus-comet-trail" d="" opacity="0" />
 
           <!-- ===============================================================
-               8 CLICKABLE MAJOR STARS IN 3D LIGHT-YEAR SPACE
+               8 CLICKABLE MAJOR STARS IN RELATIONAL 3D SPACE
+               Sorted dynamically in Z-order so foreground stars always render on top!
                =============================================================== -->
-          <!-- STAR 01: α CASTOR (51 LY, Blue-White Sextuple, Mag 1.58) -->
-          <g class="star-node star-node-castor" id="node-castor" role="button" tabindex="0" data-star="castor" data-active="false" aria-label="Alpha Castor: Dec 1 Price Cut (-78% Bill)">
-            <rect class="star-hit-area" x="-210" y="-24" width="232" height="48" />
-            <rect class="star-pill-bg" x="-202" y="-13" width="184" height="26" />
-            <text class="star-label-dest" x="-192" y="4"><tspan class="star-bayer-prefix">α Castor · </tspan>Dec 1 Price Cut</text>
-            <text class="star-sub-meta" x="-192" y="-19">★ 01 · 51 LY · BLUE-WHITE SEXTUPLE</text>
-            <circle class="star-halo" cx="0" cy="0" r="15" />
-            <circle class="star-reticle" cx="0" cy="0" r="21" />
-            <circle class="star-core-castor" cx="0" cy="0" r="6.8" />
-            <path d="M0 -14v28M-14 0h28" stroke="#FFFFFF" stroke-width="1.35" />
+          <g id="major-stars-layer">
+            <!-- STAR 01: α CASTOR (51 LY, Blue-White Sextuple, Mag 1.58) -->
+            <g class="star-node star-node-castor" id="node-castor" role="button" tabindex="0" data-star="castor" data-active="false" aria-label="Alpha Castor: Dec 1 Price Cut (-78% Bill)">
+              <rect class="star-hit-area" x="-218" y="-26" width="242" height="52" />
+              <rect class="star-pill-bg" x="-210" y="-14" width="190" height="28" />
+              <text class="star-label-dest" x="-198" y="4"><tspan class="star-bayer-prefix">α Castor · </tspan>Dec 1 Price Cut</text>
+              <text class="star-depth-chip" data-depth-tag="castor" x="18" y="-8">51 LY</text>
+              <text class="star-sub-meta" x="-198" y="-20">★ 01 · FOREGROUND FOCUS · 51 LY SEXTUPLE</text>
+              <circle class="star-halo" cx="0" cy="0" r="16" />
+              <circle class="star-reticle" cx="0" cy="0" r="22" />
+              <circle class="star-core-castor" cx="0" cy="0" r="7.2" />
+              <path d="M0 -15v30M-15 0h30" stroke="#FFFFFF" stroke-width="1.4" />
+            </g>
+
+            <!-- STAR 02: ε MEBSUTA (840 LY, Luminous Supergiant, Mag 2.98) -->
+            <g class="star-node star-node-castor" id="node-mebsuta" role="button" tabindex="0" data-star="mebsuta" data-active="true" aria-label="Epsilon Mebsuta: Releases Decoded">
+              <rect class="star-hit-area" x="-222" y="-26" width="244" height="52" />
+              <rect class="star-pill-bg" x="-214" y="-14" width="194" height="28" />
+              <text class="star-label-dest" x="-202" y="4"><tspan class="star-bayer-prefix">ε Mebsuta · </tspan>Releases Decoded</text>
+              <text class="star-depth-chip" data-depth-tag="mebsuta" x="16" y="-8">840 LY</text>
+              <text class="star-sub-meta" x="-202" y="-20">✦ 02 · FOREGROUND FOCUS · 840 LY SUPERGIANT</text>
+              <circle class="star-halo" cx="0" cy="0" r="13" />
+              <circle class="star-reticle" cx="0" cy="0" r="19" />
+              <circle class="star-core-castor" cx="0" cy="0" r="5.6" />
+            </g>
+
+            <!-- STAR 03: μ TEJAT (230 LY, Red Giant Knee/Foot, Mag 2.87) -->
+            <g class="star-node star-node-castor" id="node-tejat" role="button" tabindex="0" data-star="tejat" data-active="false" aria-label="Mu Tejat: Speed and Carbon ROI">
+              <rect class="star-hit-area" x="-212" y="-26" width="234" height="52" />
+              <rect class="star-pill-bg" x="-204" y="-14" width="184" height="28" />
+              <text class="star-label-dest" x="-192" y="4"><tspan class="star-bayer-prefix">μ Tejat · </tspan>Speed &amp; Carbon ROI</text>
+              <text class="star-depth-chip" data-depth-tag="tejat" x="16" y="-8">230 LY</text>
+              <text class="star-sub-meta" x="-192" y="-20">✦ 03 · FOREGROUND FOCUS · 230 LY RED GIANT</text>
+              <circle class="star-halo" cx="0" cy="0" r="13" />
+              <circle class="star-reticle" cx="0" cy="0" r="19" />
+              <circle class="star-core-castor" cx="0" cy="0" r="5.5" />
+            </g>
+
+            <!-- STAR 04: η PROPUS (350 LY, Front Foot & M35 Cluster, Mag 3.28) -->
+            <g class="star-node star-node-castor" id="node-propus" role="button" tabindex="0" data-star="propus" data-active="false" aria-label="Eta Propus: 60-Second Video Signal">
+              <rect class="star-hit-area" x="-208" y="-26" width="230" height="52" />
+              <rect class="star-pill-bg" x="-200" y="-14" width="180" height="28" />
+              <text class="star-label-dest" x="-188" y="4"><tspan class="star-bayer-prefix">η Propus · </tspan>60s Video Signal</text>
+              <text class="star-depth-chip" data-depth-tag="propus" x="16" y="-8">350 LY</text>
+              <text class="star-sub-meta" x="-188" y="-20">✦ 04 · FOREGROUND FOCUS · 350 LY &amp; M35</text>
+              <circle class="star-halo" cx="0" cy="0" r="13" />
+              <circle class="star-reticle" cx="0" cy="0" r="19" />
+              <circle class="star-core-castor" cx="0" cy="0" r="5.2" />
+            </g>
+
+            <!-- STAR 05: β POLLUX (34 LY, Closest Golden-Orange Giant, Mag 1.14) -->
+            <g class="star-node star-node-pollux" id="node-pollux" role="button" tabindex="0" data-star="pollux" data-active="false" aria-label="Beta Pollux: 10-Second Savings Lab">
+              <rect class="star-hit-area" x="-20" y="-26" width="246" height="52" />
+              <rect class="star-pill-bg" x="22" y="-14" width="194" height="28" />
+              <text class="star-label-dest" x="34" y="4"><tspan class="star-bayer-prefix">β Pollux · </tspan>10-Sec Savings Lab</text>
+              <text class="star-depth-chip" data-depth-tag="pollux" x="-44" y="-8">34 LY</text>
+              <text class="star-sub-meta" x="34" y="-20">★ 05 · FOREGROUND FOCUS · 34 LY GIANT</text>
+              <circle class="star-halo" cx="0" cy="0" r="17" />
+              <circle class="star-reticle" cx="0" cy="0" r="23" />
+              <circle class="star-core-pollux" cx="0" cy="0" r="7.6" />
+              <path d="M0 -16v32M-16 0h32" stroke="#FFFDF7" stroke-width="1.45" />
+            </g>
+
+            <!-- STAR 06: δ WASAT (60 LY, Ecliptic Waist Node, Mag 3.53) -->
+            <g class="star-node star-node-pollux" id="node-wasat" role="button" tabindex="0" data-star="wasat" data-active="false" aria-label="Delta Wasat: 5-Minute Workspace Guides">
+              <rect class="star-hit-area" x="-20" y="-26" width="260" height="52" />
+              <rect class="star-pill-bg" x="22" y="-14" width="212" height="28" />
+              <text class="star-label-dest" x="34" y="4"><tspan class="star-bayer-prefix">δ Wasat · </tspan>5-Min Workspace Guides</text>
+              <text class="star-depth-chip" data-depth-tag="wasat" x="-42" y="-8">60 LY</text>
+              <text class="star-sub-meta" x="34" y="-20">✧ 06 · FOREGROUND FOCUS · 60 LY ECLIPTIC</text>
+              <circle class="star-halo" cx="0" cy="0" r="13" />
+              <circle class="star-reticle" cx="0" cy="0" r="19" />
+              <circle class="star-core-pollux" cx="0" cy="0" r="5.6" />
+            </g>
+
+            <!-- STAR 07: ζ MEKBUDA (1,200 LY, Deep-Space Cepheid Supergiant, Mag 3.79) -->
+            <g class="star-node star-node-pollux" id="node-mekbuda" role="button" tabindex="0" data-star="mekbuda" data-active="false" aria-label="Zeta Mekbuda: Screen-Clicking AI Sandbox">
+              <rect class="star-hit-area" x="-20" y="-26" width="250" height="52" />
+              <rect class="star-pill-bg" x="22" y="-14" width="200" height="28" />
+              <text class="star-label-dest" x="34" y="4"><tspan class="star-bayer-prefix">ζ Mekbuda · </tspan>Screen-Clicking AI</text>
+              <text class="star-depth-chip" data-depth-tag="mekbuda" x="-54" y="-8">1,200 LY</text>
+              <text class="star-sub-meta" x="34" y="-20">✧ 07 · FOREGROUND FOCUS · 1,200 LY CEPHEID</text>
+              <circle class="star-halo" cx="0" cy="0" r="13" />
+              <circle class="star-reticle" cx="0" cy="0" r="19" />
+              <circle class="star-core-pollux" cx="0" cy="0" r="5.4" />
+            </g>
+
+            <!-- STAR 08: γ ALHENA (109 LY, Bright Foot of Pollux, Mag 1.93) -->
+            <g class="star-node star-node-pollux" id="node-alhena" role="button" tabindex="0" data-star="alhena" data-active="false" aria-label="Gamma Alhena: Built by Gemini Alone">
+              <rect class="star-hit-area" x="-20" y="-26" width="250" height="52" />
+              <rect class="star-pill-bg" x="22" y="-14" width="200" height="28" />
+              <text class="star-label-dest" x="34" y="4"><tspan class="star-bayer-prefix">γ Alhena · </tspan>Built by Gemini Alone</text>
+              <text class="star-depth-chip" data-depth-tag="alhena" x="-48" y="-8">109 LY</text>
+              <text class="star-sub-meta" x="34" y="-20">✧ 08 · FOREGROUND FOCUS · 109 LY FOOT</text>
+              <circle class="star-halo" cx="0" cy="0" r="15" />
+              <circle class="star-reticle" cx="0" cy="0" r="21" />
+              <circle class="star-core-pollux" cx="0" cy="0" r="6.4" />
+              <path d="M0 -13v26M-13 0h26" stroke="#FFFDF7" stroke-width="1.25" />
+            </g>
           </g>
 
-          <!-- STAR 02: ε MEBSUTA (840 LY, Luminous Supergiant, Mag 2.98) -->
-          <g class="star-node star-node-castor" id="node-mebsuta" role="button" tabindex="0" data-star="mebsuta" data-active="false" aria-label="Epsilon Mebsuta: Releases Decoded">
-            <rect class="star-hit-area" x="-214" y="-24" width="232" height="48" />
-            <rect class="star-pill-bg" x="-206" y="-13" width="188" height="26" />
-            <text class="star-label-dest" x="-196" y="4"><tspan class="star-bayer-prefix">ε Mebsuta · </tspan>Releases Decoded</text>
-            <text class="star-sub-meta" x="-196" y="-19">✦ 02 · 840 LY · SUPERGIANT (MAG 2.98)</text>
-            <circle class="star-halo" cx="0" cy="0" r="12" />
-            <circle class="star-reticle" cx="0" cy="0" r="18" />
-            <circle class="star-core-castor" cx="0" cy="0" r="5.2" />
-          </g>
-
-          <!-- STAR 03: μ TEJAT (230 LY, Red Giant Knee/Foot, Mag 2.87) -->
-          <g class="star-node star-node-castor" id="node-tejat" role="button" tabindex="0" data-star="tejat" data-active="true" aria-label="Mu Tejat: Speed and Carbon ROI">
-            <rect class="star-hit-area" x="-204" y="-24" width="224" height="48" />
-            <rect class="star-pill-bg" x="-196" y="-13" width="178" height="26" />
-            <text class="star-label-dest" x="-186" y="4"><tspan class="star-bayer-prefix">μ Tejat · </tspan>Speed &amp; Carbon ROI</text>
-            <text class="star-sub-meta" x="-186" y="-19">✦ 03 · 230 LY · TEJAT POSTERIOR (MAG 2.87)</text>
-            <circle class="star-halo" cx="0" cy="0" r="12" />
-            <circle class="star-reticle" cx="0" cy="0" r="18" />
-            <circle class="star-core-castor" cx="0" cy="0" r="5.2" />
-          </g>
-
-          <!-- STAR 04: η PROPUS (350 LY, Front Foot & M35 Cluster, Mag 3.28) -->
-          <g class="star-node star-node-castor" id="node-propus" role="button" tabindex="0" data-star="propus" data-active="false" aria-label="Eta Propus: 60-Second Video Signal">
-            <rect class="star-hit-area" x="-200" y="-24" width="220" height="48" />
-            <rect class="star-pill-bg" x="-192" y="-13" width="174" height="26" />
-            <text class="star-label-dest" x="-182" y="4"><tspan class="star-bayer-prefix">η Propus · </tspan>60s Video Signal</text>
-            <text class="star-sub-meta" x="-182" y="-19">✦ 04 · 350 LY · PROPUS &amp; M35 CLUSTER</text>
-            <circle class="star-halo" cx="0" cy="0" r="12" />
-            <circle class="star-reticle" cx="0" cy="0" r="18" />
-            <circle class="star-core-castor" cx="0" cy="0" r="4.8" />
-          </g>
-
-          <!-- STAR 05: β POLLUX (34 LY, Closest Golden-Orange Giant, Mag 1.14) -->
-          <g class="star-node star-node-pollux" id="node-pollux" role="button" tabindex="0" data-star="pollux" data-active="false" aria-label="Beta Pollux: 10-Second Savings Lab">
-            <rect class="star-hit-area" x="-18" y="-24" width="238" height="48" />
-            <rect class="star-pill-bg" x="20" y="-13" width="188" height="26" />
-            <text class="star-label-dest" x="30" y="4"><tspan class="star-bayer-prefix">β Pollux · </tspan>10-Sec Savings Lab</text>
-            <text class="star-sub-meta" x="30" y="-19">★ 05 · 34 LY · ORANGE GIANT (MAG 1.14)</text>
-            <circle class="star-halo" cx="0" cy="0" r="16" />
-            <circle class="star-reticle" cx="0" cy="0" r="22" />
-            <circle class="star-core-pollux" cx="0" cy="0" r="7.4" />
-            <path d="M0 -15v30M-15 0h30" stroke="#FFFDF7" stroke-width="1.4" />
-          </g>
-
-          <!-- STAR 06: δ WASAT (60 LY, Ecliptic Waist Node, Mag 3.53) -->
-          <g class="star-node star-node-pollux" id="node-wasat" role="button" tabindex="0" data-star="wasat" data-active="false" aria-label="Delta Wasat: 5-Minute Workspace Guides">
-            <rect class="star-hit-area" x="-18" y="-24" width="252" height="48" />
-            <rect class="star-pill-bg" x="20" y="-13" width="206" height="26" />
-            <text class="star-label-dest" x="30" y="4"><tspan class="star-bayer-prefix">δ Wasat · </tspan>5-Min Workspace Guides</text>
-            <text class="star-sub-meta" x="30" y="-19">✧ 06 · 60 LY · ECLIPTIC PLANE NODE</text>
-            <circle class="star-halo" cx="0" cy="0" r="12" />
-            <circle class="star-reticle" cx="0" cy="0" r="18" />
-            <circle class="star-core-pollux" cx="0" cy="0" r="5.2" />
-          </g>
-
-          <!-- STAR 07: ζ MEKBUDA (1,200 LY, Deep-Space Cepheid Supergiant, Mag 3.79) -->
-          <g class="star-node star-node-pollux" id="node-mekbuda" role="button" tabindex="0" data-star="mekbuda" data-active="false" aria-label="Zeta Mekbuda: Screen-Clicking AI Sandbox">
-            <rect class="star-hit-area" x="-18" y="-24" width="242" height="48" />
-            <rect class="star-pill-bg" x="20" y="-13" width="194" height="26" />
-            <text class="star-label-dest" x="30" y="4"><tspan class="star-bayer-prefix">ζ Mekbuda · </tspan>Screen-Clicking AI</text>
-            <text class="star-sub-meta" x="30" y="-19">✧ 07 · 1,200 LY · CEPHEID SUPERGIANT</text>
-            <circle class="star-halo" cx="0" cy="0" r="12" />
-            <circle class="star-reticle" cx="0" cy="0" r="18" />
-            <circle class="star-core-pollux" cx="0" cy="0" r="5" />
-          </g>
-
-          <!-- STAR 08: γ ALHENA (109 LY, Bright Foot of Pollux, Mag 1.93) -->
-          <g class="star-node star-node-pollux" id="node-alhena" role="button" tabindex="0" data-star="alhena" data-active="false" aria-label="Gamma Alhena: Built by Gemini Alone">
-            <rect class="star-hit-area" x="-18" y="-24" width="242" height="48" />
-            <rect class="star-pill-bg" x="20" y="-13" width="194" height="26" />
-            <text class="star-label-dest" x="30" y="4"><tspan class="star-bayer-prefix">γ Alhena · </tspan>Built by Gemini Alone</text>
-            <text class="star-sub-meta" x="30" y="-19">✧ 08 · 109 LY · BRIGHT FOOT (MAG 1.93)</text>
-            <circle class="star-halo" cx="0" cy="0" r="14" />
-            <circle class="star-reticle" cx="0" cy="0" r="20" />
-            <circle class="star-core-pollux" cx="0" cy="0" r="6" />
-            <path d="M0 -12v24M-12 0h24" stroke="#FFFDF7" stroke-width="1.2" />
-          </g>
-
-          <!-- Traveling "YOU ARE HERE" Beacon (Tracks Active 3D Star Coordinates!) -->
-          <g id="traveling-beacon" transform="translate(442, 258)">
-            <circle class="tb-outer" cx="0" cy="0" r="18" />
-            <rect class="tb-tag-bg" x="-42" y="18" width="84" height="15" />
-            <text class="tb-tag-text" x="0" y="28" text-anchor="middle">YOU ARE HERE</text>
+          <!-- Smooth Gliding "YOU ARE HERE" Focus Circle & Badge -->
+          <g id="traveling-beacon" transform="translate(335, 255)">
+            <circle class="tb-pulse-ring" id="tb-ring-anim" cx="0" cy="0" r="28" />
+            <circle class="tb-outer" id="tb-outer-circle" cx="0" cy="0" r="20" />
+            <rect class="tb-tag-bg" x="-46" y="21" width="92" height="16" />
+            <text class="tb-tag-text" x="0" y="31.5" text-anchor="middle">YOU ARE HERE</text>
           </g>
         </svg>
       </div>
 
-      <!-- Subtle Bottom-Stage 3D Telemetry & Drag Hint -->
+      <!-- Bottom-Stage 3D Telemetry & Drag Hint -->
       <div class="hero-3d-telemetry-bar">
         <div class="h3d-pill">
-          <span>3D ASTROMETRY ENGINE · DRAG SPACE TO ORBIT</span>
-          <span id="telemetry-angles">YAW 0.0° · PITCH 0.0° · DEPTH 34–1,200 LY</span>
-          <button type="button" class="h3d-reset-btn" id="reset-3d-btn">Reset View</button>
+          <span>3D RELATIONAL PIVOT · CLICK ANY STAR TO PULL TO FOREGROUND</span>
+          <span id="telemetry-angles">YAW -18.0° · PITCH +6.0° · DEPTH 34–1,200 LY</span>
+          <button type="button" class="h3d-reset-btn" id="reset-3d-btn">Flat 0°</button>
         </div>
         <div class="h3d-pill">
-          <span id="active-star-telemetry">STAR 03 · μ TEJAT · 230 LIGHT-YEARS · RED GIANT (M3III)</span>
+          <span id="active-star-telemetry">FOREGROUND: STAR 02 · <span class="greek">ε</span> MEBSUTA · 840 LIGHT-YEARS (SCALE 1.28×)</span>
         </div>
       </div>
     </section>
@@ -1786,7 +1823,7 @@
     <nav class="constellation-progress-nav" aria-label="Constellation Star Location and Progress">
       <div class="cpn-location-badge">
         <span class="cpn-loc-dot" aria-hidden="true"></span>
-        <span id="cpn-location-text">YOU ARE HERE · STAR 03 / 08 (<span class="greek">μ</span> TEJAT · SPEED &amp; CARBON ROI)</span>
+        <span id="cpn-location-text">YOU ARE HERE · STAR 02 / 08 (<span class="greek">ε</span> MEBSUTA · RELEASES DECODED)</span>
       </div>
 
       <div class="cpn-track" role="tablist" aria-label="8 Stars of the Gemini Constellation">
@@ -1794,11 +1831,11 @@
           <span class="cpn-step-dot" aria-hidden="true"></span>
           <span class="cpn-step-label">01 · <span class="greek">α</span> Castor</span>
         </button>
-        <button type="button" class="cpn-step" data-chain-type="castor" data-select-star="mebsuta" aria-current="false">
+        <button type="button" class="cpn-step" data-chain-type="castor" data-select-star="mebsuta" aria-current="step">
           <span class="cpn-step-dot" aria-hidden="true"></span>
           <span class="cpn-step-label">02 · <span class="greek">ε</span> Mebsuta</span>
         </button>
-        <button type="button" class="cpn-step" data-chain-type="castor" data-select-star="tejat" aria-current="step">
+        <button type="button" class="cpn-step" data-chain-type="castor" data-select-star="tejat" aria-current="false">
           <span class="cpn-step-dot" aria-hidden="true"></span>
           <span class="cpn-step-label">03 · <span class="greek">μ</span> Tejat</span>
         </button>
@@ -1832,12 +1869,8 @@
 
     <!-- =====================================================================
          4. BOTTOM PORCELAIN SILK PEEK DOCK (56px) + FLOATING SLIDE-UP ARROWS
-         Exact match to Neil's cropped screenshot (`media_1793731639194_23fb88de.jpg`):
-         Shows a calm, alluring Porcelain Silk strip at the very bottom with
-         live active star headlines + left & right floating "↑ Slide Up" buttons!
          ===================================================================== -->
     <footer class="porcelain-peek-dock" aria-label="Twin Salons Peek Dock — Click to Slide Up Full Content">
-      <!-- Left Peek Dock: α Castor (The Signal) -->
       <div class="peek-half peek-castor" role="button" tabindex="0" data-open-drawer="castor" aria-label="Slide up Alpha Castor Signal Salon">
         <div class="peek-left-group">
           <span class="peek-twin-label">
@@ -1845,11 +1878,11 @@
             <span><span class="greek">α</span> CASTOR · THE SIGNAL</span>
           </span>
           <span class="peek-live-headline" id="peek-castor-headline">
-            79% faster replies. 4.2× less energy. <em>Why speed changes how you think.</em>
+            Every Gemini release, decoded. <em>Zero jargon. Zero hype.</em>
           </span>
         </div>
         <div class="peek-right-group">
-          <span class="peek-star-badge" id="peek-castor-badge"><span class="greek">μ</span> GEM · 230 LY</span>
+          <span class="peek-star-badge" id="peek-castor-badge"><span class="greek">ε</span> GEM · 840 LY</span>
           <span class="peek-slide-up-btn">
             <span class="slide-up-arrow-icon" aria-hidden="true">↑</span>
             <span>Slide Up Signal</span>
@@ -1857,7 +1890,6 @@
         </div>
       </div>
 
-      <!-- Right Peek Dock: β Pollux (The Workbench) -->
       <div class="peek-half peek-pollux" role="button" tabindex="0" data-open-drawer="pollux" aria-label="Slide up Beta Pollux Workbench Salon">
         <div class="peek-left-group">
           <span class="peek-twin-label">
@@ -1865,11 +1897,11 @@
             <span><span class="greek">β</span> POLLUX · THE WORKBENCH</span>
           </span>
           <span class="peek-live-headline" id="peek-pollux-headline">
-            Feel sub-second latency. <em>Cold vs. warm prefix benchmark.</em>
+            5-minute guides for Docs &amp; Gmail. <em>No coding required.</em>
           </span>
         </div>
         <div class="peek-right-group">
-          <span class="peek-star-badge" id="peek-pollux-badge"><span class="greek">δ</span> GEM · ECLIPTIC</span>
+          <span class="peek-star-badge" id="peek-pollux-badge"><span class="greek">δ</span> GEM · 60 LY</span>
           <span class="peek-slide-up-btn">
             <span class="slide-up-arrow-icon" aria-hidden="true">↑</span>
             <span>Slide Up Lab</span>
@@ -1885,9 +1917,10 @@
   <div class="slide-up-drawer-backdrop" id="drawer-backdrop" aria-hidden="true"></div>
   <section class="slide-up-salon-sheet" id="salon-sheet" aria-label="Castor and Pollux Paired Magazine Salons">
     <div class="sheet-handle-bar">
-      <span id="sheet-location-status">♊ PAIRED TWIN SALONS · STAR 03 / 08 (μ TEJAT · 230 LIGHT-YEARS)</span>
+      <span id="sheet-location-status">♊ PAIRED TWIN SALONS · STAR 02 / 08 (<span class="greek">ε</span> MEBSUTA · 840 LIGHT-YEARS)</span>
       <div style="display:flex;align-items:center;gap:14px;">
-        <a href="./look-i-celestial-couture-atlas.html" style="color:var(--ethereal-bright);text-decoration:underline;">Compare with Look I (v2 Split) ↗</a>
+        <a href="./look-j-v1-archive.html" style="color:var(--ethereal-bright);text-decoration:underline;">Look J (v1 Archive) ↗</a>
+        <a href="./look-i-celestial-couture-atlas.html" style="color:var(--ethereal-bright);text-decoration:underline;">Look I (v2 Split) ↗</a>
         <button type="button" class="sheet-close-btn" id="close-drawer-btn">
           <span>↓ Slide Down to Full 3D Star Chart</span>
         </button>
@@ -1895,45 +1928,44 @@
     </div>
 
     <div class="magazine-spread">
-      <!-- LEFT SALON: α CASTOR (THE SIGNAL) -->
       <article class="spread-salon spread-castor">
         <div class="salon-header-row">
           <span class="shr-title">
             <span class="peek-dot" aria-hidden="true"></span>
             <span><span class="greek">α</span> CASTOR · THE SIGNAL</span>
           </span>
-          <span class="shr-badge" id="castor-star-badge"><span class="greek">μ</span> GEM · MAG 2.87 · 230 LY</span>
+          <span class="shr-badge" id="castor-star-badge"><span class="greek">ε</span> GEM · SUPERGIANT · 840 LY</span>
         </div>
 
         <div class="salon-body-split">
           <div class="salon-story-col">
             <h2 class="couture-headline" id="castor-salon-heading" tabindex="-1">
-              <span id="castor-title-main">79% faster replies. 4.2× less energy.</span>
-              <em id="castor-title-italic">Why speed changes how you think.</em>
+              <span id="castor-title-main">Every Gemini release, decoded.</span>
+              <em id="castor-title-italic">Zero jargon. Zero hype.</em>
             </h2>
             <p class="couture-dek" id="castor-dek">
-              <strong>How it applies to you:</strong> Waiting 4 seconds breaks human creative flow. Warm context prefixes on TPU v6e Trillium drop 128k Time-to-First-Token from <code>3.4s</code> to <code>0.7s</code> while cutting per-query energy by <strong>76%</strong>.
+              <strong>How it applies to you:</strong> Google ships model updates, context-window expansions, and Workspace features every week. We translate every drop into plain English: what changed, who should care, and what you can safely ignore.
             </p>
           </div>
 
           <aside class="telemetry-card" aria-label="Verified Google Telemetry">
             <div class="tc-header">
               <span>SIGNAL LEDGER</span>
-              <span id="castor-spec-code">STAR 03 · <span class="greek">μ</span> TEJAT</span>
+              <span id="castor-spec-code">STAR 02 · <span class="greek">ε</span> MEBSUTA</span>
             </div>
             <div class="tc-row">
-              <span class="tc-key" id="tc-k1">128k First Token</span>
-              <span class="tc-val" id="tc-v1">3.4s → 0.7s (-79%)</span>
+              <span class="tc-key" id="tc-k1">Verification Standard</span>
+              <span class="tc-val" id="tc-v1">100% Google Primary Links</span>
             </div>
             <div class="tc-row">
-              <span class="tc-key" id="tc-k2">Query Energy</span>
-              <span class="tc-val" id="tc-v2">4.2× Lower Watt-Hours</span>
+              <span class="tc-key" id="tc-k2">Target Reader</span>
+              <span class="tc-val" id="tc-v2">Everyday Users &amp; Builders</span>
             </div>
             <div class="tc-row">
-              <span class="tc-key" id="tc-k3">Hardware Engine</span>
-              <span class="tc-val" id="tc-v3">TPU v6e Trillium</span>
+              <span class="tc-key" id="tc-k3">Astrophysical Depth</span>
+              <span class="tc-val" id="tc-v3">840 Light-Years (G8Ib)</span>
             </div>
-            <a class="tc-source-link" id="castor-source-link" href="https://cloud.google.com/tpu/docs/v6e" target="_blank" rel="noopener noreferrer">
+            <a class="tc-source-link" id="castor-source-link" href="https://blog.google/technology/ai/" target="_blank" rel="noopener noreferrer">
               <span>Verified Google Source</span>
               <span>↗</span>
             </a>
@@ -1941,49 +1973,48 @@
         </div>
       </article>
 
-      <!-- RIGHT SALON: β POLLUX (THE WORKBENCH) -->
       <article class="spread-salon spread-pollux">
         <div class="salon-header-row">
           <span class="shr-title">
             <span class="peek-dot" aria-hidden="true"></span>
             <span><span class="greek">β</span> POLLUX · THE WORKBENCH</span>
           </span>
-          <span class="shr-badge" id="pollux-star-badge"><span class="greek">δ</span> GEM · ECLIPTIC NODE · 60 LY</span>
+          <span class="shr-badge" id="pollux-star-badge"><span class="greek">δ</span> GEM · WORKSPACE GUIDES · 60 LY</span>
         </div>
 
         <div class="salon-body-split">
           <div class="salon-story-col">
             <h2 class="couture-headline" id="pollux-salon-heading" tabindex="-1">
-              <span id="pollux-title-main">Feel sub-second latency.</span>
-              <em id="pollux-title-italic">Cold vs. warm prefix benchmark.</em>
+              <span id="pollux-title-main">5-minute guides for Docs &amp; Gmail.</span>
+              <em id="pollux-title-italic">No coding required.</em>
             </h2>
             <p class="couture-dek" id="pollux-dek">
-              <strong>Latency &amp; Carbon Lab:</strong> Compare cold prefill wait times against warm cached prefixes across 32k, 128k, and 500k token workspaces.
+              <strong>Everyday Workflows:</strong> Step-by-step recipes for Deep Research synthesis, NotebookLM audio briefings, and multi-tab Google Sheets cleanup that save hours every week.
             </p>
           </div>
 
           <div class="atelier-console">
             <div class="ac-top">
-              <span id="ac-console-kicker">STAR 03 LATENCY LAB</span>
+              <span id="ac-console-kicker">STAR 02/06 WORKFLOW LAB</span>
               <span>[SIMULATED DEMO]</span>
             </div>
             <div class="ac-presets" role="group" aria-label="Interactive Workload Presets">
-              <button type="button" class="ac-preset-btn" data-preset="0" aria-pressed="true">32K DOC</button>
-              <button type="button" class="ac-preset-btn" data-preset="1" aria-pressed="false">128K BOOK</button>
-              <button type="button" class="ac-preset-btn" data-preset="2" aria-pressed="false">500K REPO</button>
+              <button type="button" class="ac-preset-btn" data-preset="0" aria-pressed="true">DEEP RESEARCH</button>
+              <button type="button" class="ac-preset-btn" data-preset="1" aria-pressed="false">NOTEBOOKLM</button>
+              <button type="button" class="ac-preset-btn" data-preset="2" aria-pressed="false">SHEETS AI</button>
             </div>
             <div class="ac-output" aria-live="polite">
               <div class="ac-line">
-                <span class="ac-k" id="ac-k1">1. Cold Prefill:</span>
-                <span class="ac-v" id="ac-v1">1.10 seconds</span>
+                <span class="ac-k" id="ac-k1">1. Task:</span>
+                <span class="ac-v" id="ac-v1">50-Source Market Brief</span>
               </div>
               <div class="ac-line">
-                <span class="ac-k" id="ac-k2">2. Warm Cached:</span>
-                <span class="ac-v accent" id="ac-v2">0.29 seconds (-73%)</span>
+                <span class="ac-k" id="ac-k2">2. Manual Time:</span>
+                <span class="ac-v accent" id="ac-v2">4.5 hours → 6 mins</span>
               </div>
               <div class="ac-line">
-                <span class="ac-k" id="ac-k3">3. Energy Saved:</span>
-                <span class="ac-v" id="ac-v3">3.8× less watt-hours</span>
+                <span class="ac-k" id="ac-k3">3. Output:</span>
+                <span class="ac-v" id="ac-v3">Cited Google Doc</span>
               </div>
             </div>
           </div>
@@ -1993,38 +2024,68 @@
   </section>
 
   <!-- =======================================================================
-       60FPS PURE-MATH 3D ASTROMETRY & POINTILLIST CONSTELLATION ENGINE
-       Inspired by classic Macromedia Flash / ActionScript 3D point math:
-       Zero heavy libraries, real Light-Year depth coordinates, spring-physics
-       camera orbit, and pointillist 3D starfield!
+       60FPS RELATIONAL 3D FOREGROUND-PIVOT & DEPTH-SCALING ENGINE
        ======================================================================= -->
   <script>
     (() => {
       const STAR_ORDER = ["castor", "mebsuta", "tejat", "propus", "pollux", "wasat", "mekbuda", "alhena"];
 
-      /* Real 3D Coordinates around center (640, 195):
-         z is mapped from real astrophysical distance in Light-Years (LY):
-         Near stars have negative z (closer to viewer); deep-space supergiants have positive z! */
+      /* Commanding Full-Stage 3D Coordinates around (500, 258) in viewBox 1000x520:
+         Spread ~1.65x wider & taller than v1 so the constellation commands the screen!
+         Each star also defines its Relational 3D Foreground Pivot (pivotYaw, pivotPitch)
+         so clicking that star rotates the 3D constellation to bring it to the front! */
       const STARS_3D = {
-        castor:  { idx: "01", name: "α Castor · Dec 1 Price Cut", x: -85,  y: -143, z: -95,  ly: 51,   spec: "BLUE-WHITE SEXTUPLE (A1V)" },
-        mebsuta: { idx: "02", name: "ε Mebsuta · Releases Decoded", x: -136, y: -1,   z: 145,  ly: 840,  spec: "LUMINOUS SUPERGIANT (G8Ib)" },
-        tejat:   { idx: "03", name: "μ Tejat · Speed & Carbon ROI", x: -198, y: 63,   z: 45,   ly: 230,  spec: "RED GIANT (M3III)" },
-        propus:  { idx: "04", name: "η Propus · 60s Video Signal",  x: -244, y: 117,  z: 85,   ly: 350,  spec: "TRIPLE SYSTEM & M35" },
-        pollux:  { idx: "05", name: "β Pollux · 10-Sec Savings Lab", x: 55,  y: -127, z: -135, ly: 34,   spec: "GOLDEN-ORANGE GIANT (K0III)" },
-        wasat:   { idx: "06", name: "δ Wasat · 5-Min Workspace Guides", x: 36, y: 7,  z: -75,  ly: 60,   spec: "ECLIPTIC BINARY (F0IV)" },
-        mekbuda: { idx: "07", name: "ζ Mekbuda · Screen-Clicking AI", x: -14, y: 65,  z: 185,  ly: 1200, spec: "CEPHEID SUPERGIANT (F7Ib)" },
-        alhena:  { idx: "08", name: "γ Alhena · Built by Gemini Alone", x: -66, y: 133, z: -20, ly: 109,  spec: "SUBGIANT FOOT (A1IV)" }
+        castor: {
+          idx: "01", name: "α Castor · Dec 1 Price Cut",
+          x: -95, y: -178, z: -115, ly: 51, spec: "BLUE-WHITE SEXTUPLE (A1V)",
+          pivotYaw: -16, pivotPitch: 14
+        },
+        mebsuta: {
+          idx: "02", name: "ε Mebsuta · Releases Decoded",
+          x: -162, y: -8, z: 135, ly: 840, spec: "LUMINOUS SUPERGIANT (G8Ib)",
+          pivotYaw: -26, pivotPitch: 4
+        },
+        tejat: {
+          idx: "03", name: "μ Tejat · Speed & Carbon ROI",
+          x: -238, y: 78, z: 35, ly: 230, spec: "RED GIANT (M3III)",
+          pivotYaw: -22, pivotPitch: -8
+        },
+        propus: {
+          idx: "04", name: "η Propus · 60s Video Signal",
+          x: -292, y: 152, z: 75, ly: 350, spec: "TRIPLE SYSTEM & M35",
+          pivotYaw: -28, pivotPitch: -15
+        },
+        pollux: {
+          idx: "05", name: "β Pollux · 10-Sec Savings Lab",
+          x: 82, y: -158, z: -155, ly: 34, spec: "GOLDEN-ORANGE GIANT (K0III)",
+          pivotYaw: 16, pivotPitch: 13
+        },
+        wasat: {
+          idx: "06", name: "δ Wasat · 5-Min Workspace Guides",
+          x: 56, y: 12, z: -85, ly: 60, spec: "ECLIPTIC BINARY (F0IV)",
+          pivotYaw: 18, pivotPitch: -2
+        },
+        mekbuda: {
+          idx: "07", name: "ζ Mekbuda · Screen-Clicking AI",
+          x: 10, y: 88, z: 175, ly: 1200, spec: "CEPHEID SUPERGIANT (F7Ib)",
+          pivotYaw: 15, pivotPitch: -9
+        },
+        alhena: {
+          idx: "08", name: "γ Alhena · Built by Gemini Alone",
+          x: -72, y: 174, z: -30, ly: 109, spec: "SUBGIANT FOOT (A1IV)",
+          pivotYaw: 12, pivotPitch: -17
+        }
       };
 
       const MINOR_STARS_3D = {
-        theta:   { x: -182, y: -93, z: 15 },
-        tau:     { x: -105, y: -81, z: 35 },
-        iota:    { x: -22,  y: -61, z: -15 },
-        nu:      { x: -158, y: 95,  z: 95 },
-        upsilon: { x: 42,   y: -65, z: 25 },
-        kappa:   { x: 118,  y: -71, z: -10 },
-        lambda:  { x: 72,   y: 73,  z: -25 },
-        xi:      { x: 56,   y: 153, z: -40 }
+        theta:   { x: -218, y: -114, z: 15 },
+        tau:     { x: -122, y: -98,  z: 30 },
+        iota:    { x: -18,  y: -74,  z: -15 },
+        nu:      { x: -186, y: 124,  z: 85 },
+        upsilon: { x: 64,   y: -78,  z: 20 },
+        kappa:   { x: 162,  y: -86,  z: -10 },
+        lambda:  { x: 104,  y: 98,   z: -25 },
+        xi:      { x: 82,   y: 196,  z: -45 }
       };
 
       const SALON_DATA = {
@@ -2169,41 +2230,59 @@
       }
 
       /* =====================================================================
-         3D PROJECTION & SPRING-PHYSICS CAMERA STATE
+         RELATIONAL 3D FOREGROUND-PIVOT CAMERA & SMOOTH GLIDING FOCUS STATE
          ===================================================================== */
-      const CENTER_X = 640;
-      const CENTER_Y = 195;
-      const FOCAL_LENGTH = 620;
+      const CENTER_X = 500;
+      const CENTER_Y = 258;
+      const FOCAL_LENGTH = 560;
 
       let cam = {
-        yaw: 0,          // degrees (-48 to +48)
-        pitch: 0,        // degrees (-32 to +32)
-        roll: 0,         // degrees (for Live Sky LST tilt)
-        targetYaw: 0,
-        targetPitch: 0,
+        yaw: -22,
+        pitch: 4,
+        roll: 0,
+        targetYaw: -22,
+        targetPitch: 4,
         targetRoll: 0,
         vYaw: 0,
         vPitch: 0,
         vRoll: 0,
-        panX: 0,
+        panX: 25,
         panY: 0,
-        targetPanX: 0,
+        targetPanX: 25,
         targetPanY: 0,
         autoOrbit: false
       };
 
-      let activeStarKey = "tejat";
+      // Each star also has an animated foreground z-pull (`zPull`) so when clicked,
+      // it physically advances into the #1 Foreground Focal Plane while other stars recede!
+      const starZPull = {};
+      STAR_ORDER.forEach((k) => { starZPull[k] = 0; });
+
+      // Smooth spring-gliding state for the "YOU ARE HERE" Focus Circle + Comet Trail!
+      let beaconState = {
+        x: 338,
+        y: 250,
+        vx: 0,
+        vy: 0,
+        fromX: 338,
+        fromY: 250,
+        trailAlpha: 0,
+        pulseRadius: 20
+      };
+
+      let activeStarKey = "mebsuta";
       let activePresetIdx = 0;
 
-      /* Project a 3D point (x, y, z) through Yaw, Pitch, Roll & Perspective */
-      function project3D(pt) {
+      function project3D(pt, extraZPull = 0) {
         const radY = (cam.yaw * Math.PI) / 180;
         const radX = (cam.pitch * Math.PI) / 180;
         const radZ = (cam.roll * Math.PI) / 180;
 
+        const zInput = pt.z + extraZPull;
+
         // 1. Rotate around Y axis (Yaw)
-        let x1 = pt.x * Math.cos(radY) + pt.z * Math.sin(radY);
-        let z1 = -pt.x * Math.sin(radY) + pt.z * Math.cos(radY);
+        let x1 = pt.x * Math.cos(radY) + zInput * Math.sin(radY);
+        let z1 = -pt.x * Math.sin(radY) + zInput * Math.cos(radY);
         let y1 = pt.y;
 
         // 2. Rotate around X axis (Pitch)
@@ -2211,13 +2290,13 @@
         let z2 = y1 * Math.sin(radX) + z1 * Math.cos(radX);
         let x2 = x1;
 
-        // 3. Rotate around Z axis (Roll / Sidereal Sky Orientation)
+        // 3. Rotate around Z axis (Roll)
         let x3 = x2 * Math.cos(radZ) - y2 * Math.sin(radZ);
         let y3 = x2 * Math.sin(radZ) + y2 * Math.cos(radZ);
         let z3 = z2;
 
         // 4. Perspective division (fl / (fl + z))
-        const scale = FOCAL_LENGTH / Math.max(180, FOCAL_LENGTH + z3);
+        const scale = FOCAL_LENGTH / Math.max(210, FOCAL_LENGTH + z3);
         return {
           sx: CENTER_X + cam.panX + x3 * scale,
           sy: CENTER_Y + cam.panY + y3 * scale,
@@ -2226,29 +2305,16 @@
         };
       }
 
-      /* Build 3D Depth-Cue Tether Lines + Light-Year Badges in SVG */
+      /* Build 3D Depth-Cue Tether Lines in SVG */
       const tethersGroup = document.getElementById("depth-tethers-group");
-      const astrolabeRings = document.getElementById("astrolabe-3d-rings");
       const ringOuter = document.getElementById("ring-3d-outer");
       const ringInner = document.getElementById("ring-3d-inner");
       const tetherEls = {};
-      const depthLabelEls = {};
       STAR_ORDER.forEach((k) => {
         const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
         line.setAttribute("class", "depth-tether-line");
         tethersGroup.appendChild(line);
         tetherEls[k] = line;
-
-        const txt = document.createElementNS("http://www.w3.org/2000/svg", "text");
-        txt.setAttribute("fill", "#CEC0FF");
-        txt.setAttribute("font-family", "JetBrains Mono, monospace");
-        txt.setAttribute("font-size", "8");
-        txt.setAttribute("font-weight", "600");
-        txt.style.opacity = "0";
-        txt.style.transition = "opacity 0.3s ease";
-        txt.textContent = `${STARS_3D[k].ly} LY`;
-        tethersGroup.appendChild(txt);
-        depthLabelEls[k] = txt;
       });
 
       /* Pointillist 3D Starfield + M35 Cluster Particles on Canvas */
@@ -2258,30 +2324,29 @@
 
       function initParticles() {
         PARTICLES.length = 0;
-        // 165 ambient 3D deep-space stars
-        for (let i = 0; i < 165; i++) {
+        for (let i = 0; i < 185; i++) {
           const palette = i % 5 === 0 ? "#D6EBFF" : i % 5 === 1 ? "#FFD296" : i % 5 === 2 ? "#A385FF" : "#FFFFFF";
           PARTICLES.push({
-            x: (Math.random() - 0.5) * 1360,
-            y: (Math.random() - 0.5) * 520,
+            x: (Math.random() - 0.5) * 1150,
+            y: (Math.random() - 0.5) * 560,
             z: (Math.random() - 0.5) * 520,
-            r: Math.random() * 1.45 + 0.4,
+            r: Math.random() * 1.55 + 0.45,
             color: palette,
-            alpha: Math.random() * 0.65 + 0.2,
+            alpha: Math.random() * 0.68 + 0.22,
             phase: Math.random() * Math.PI * 2
           });
         }
-        // 65 concentrated M35 Open Cluster pointillist stars around (-272, 113, 180)
-        for (let i = 0; i < 65; i++) {
+        // Concentrated M35 Open Cluster pointillist stars around (-335, 155, 145)
+        for (let i = 0; i < 75; i++) {
           const angle = Math.random() * Math.PI * 2;
-          const dist = Math.pow(Math.random(), 1.5) * 34;
+          const dist = Math.pow(Math.random(), 1.5) * 42;
           PARTICLES.push({
-            x: -272 + Math.cos(angle) * dist,
-            y: 113 + Math.sin(angle) * dist,
-            z: 160 + (Math.random() - 0.5) * 60,
-            r: Math.random() * 1.3 + 0.45,
+            x: -335 + Math.cos(angle) * dist,
+            y: 155 + Math.sin(angle) * dist,
+            z: 145 + (Math.random() - 0.5) * 65,
+            r: Math.random() * 1.4 + 0.5,
             color: i % 3 === 0 ? "#D6EBFF" : "#CEC0FF",
-            alpha: Math.random() * 0.75 + 0.25,
+            alpha: Math.random() * 0.78 + 0.25,
             phase: Math.random() * Math.PI * 2
           });
         }
@@ -2298,10 +2363,12 @@
       window.addEventListener("resize", resizeCanvas);
       resizeCanvas();
 
-      /* Cache DOM references for fast 60fps updates */
+      const majorStarsLayer = document.getElementById("major-stars-layer");
       const majorNodeEls = {};
+      const depthTagEls = {};
       STAR_ORDER.forEach((k) => {
         majorNodeEls[k] = document.getElementById(`node-${k}`);
+        depthTagEls[k] = document.querySelector(`[data-depth-tag="${k}"]`);
       });
 
       const minorNodeEls = {};
@@ -2317,6 +2384,8 @@
       const linePolluxArm = document.getElementById("line-pollux-arm");
       const linePolluxOuterLeg = document.getElementById("line-pollux-outerleg");
       const beaconEl = document.getElementById("traveling-beacon");
+      const tbRingAnim = document.getElementById("tb-ring-anim");
+      const cometTrail = document.getElementById("focus-comet-trail");
       const m35Glow = document.getElementById("m35-glow-circle");
       const m35Label = document.getElementById("m35-label");
       const bgCastor = document.getElementById("bg-plate-castor");
@@ -2333,12 +2402,12 @@
         time += 0.016;
 
         if (cam.autoOrbit) {
-          cam.targetYaw = 28 * Math.cos(time * 0.45);
-          cam.targetPitch = -14 + 7 * Math.sin(time * 0.38);
+          cam.targetYaw = 30 * Math.cos(time * 0.45);
+          cam.targetPitch = -14 + 8 * Math.sin(time * 0.38);
         }
 
-        // Spring-damped camera physics
-        const stiffness = 0.085;
+        // Smooth spring-damped camera physics
+        const stiffness = 0.075;
         const damping = 0.78;
         cam.vYaw = (cam.vYaw + (cam.targetYaw - cam.yaw) * stiffness) * damping;
         cam.vPitch = (cam.vPitch + (cam.targetPitch - cam.pitch) * stiffness) * damping;
@@ -2348,66 +2417,81 @@
         cam.pitch += cam.vPitch;
         cam.roll += cam.vRoll;
 
-        cam.panX += (cam.targetPanX - cam.panX) * 0.1;
-        cam.panY += (cam.targetPanY - cam.panY) * 0.1;
+        cam.panX += (cam.targetPanX - cam.panX) * 0.09;
+        cam.panY += (cam.targetPanY - cam.panY) * 0.09;
 
-        // Subtle independent counter-parallax on the de-emphasized background illustrations
+        // Subtle counter-parallax on background Twin engravings
         if (bgCastor && bgPollux) {
-          bgCastor.style.transform = `translate3d(${(-cam.yaw * 0.45).toFixed(1)}px, ${(-cam.pitch * 0.35).toFixed(1)}px, 0)`;
-          bgPollux.style.transform = `translate3d(${(-cam.yaw * 0.45).toFixed(1)}px, ${(-cam.pitch * 0.35).toFixed(1)}px, 0)`;
+          bgCastor.style.transform = `translate3d(${(-cam.yaw * 0.4).toFixed(1)}px, ${(-cam.pitch * 0.3).toFixed(1)}px, 0)`;
+          bgPollux.style.transform = `translate3d(${(-cam.yaw * 0.4).toFixed(1)}px, ${(-cam.pitch * 0.3).toFixed(1)}px, 0)`;
         }
 
-        // Project all 8 major stars & 8 minor anatomical stars
+        // Rotate 3D Astrolabe Rings in perspective
+        if (ringOuter && ringInner) {
+          const ryOuter = Math.max(60, 190 - Math.abs(cam.pitch) * 2.6);
+          const ryInner = Math.max(40, 124 - Math.abs(cam.pitch) * 1.7);
+          ringOuter.setAttribute("ry", ryOuter.toFixed(1));
+          ringInner.setAttribute("ry", ryInner.toFixed(1));
+          ringOuter.setAttribute("transform", `rotate(${(cam.yaw * 0.38).toFixed(1)} 500 258)`);
+          ringInner.setAttribute("transform", `rotate(${(-cam.yaw * 0.45).toFixed(1)} 500 258)`);
+        }
+
+        // Project all 8 major stars with Relational Foreground Z-Pull & Depth Scaling!
         const projMajor = {};
-        const isTilted3D = Math.hypot(cam.yaw, cam.pitch) > 3.5;
-
-        if (astrolabeRings) {
-          astrolabeRings.style.opacity = isTilted3D ? "1" : "0";
-          if (isTilted3D && ringOuter && ringInner) {
-            const ryOuter = Math.max(48, 155 - Math.abs(cam.pitch) * 2.2);
-            const ryInner = Math.max(32, 98 - Math.abs(cam.pitch) * 1.4);
-            ringOuter.setAttribute("ry", ryOuter.toFixed(1));
-            ringInner.setAttribute("ry", ryInner.toFixed(1));
-            ringOuter.setAttribute("transform", `rotate(${(cam.yaw * 0.35).toFixed(1)} 640 195)`);
-            ringInner.setAttribute("transform", `rotate(${(-cam.yaw * 0.45).toFixed(1)} 640 195)`);
-          }
-        }
+        const isTilted3D = Math.hypot(cam.yaw, cam.pitch) > 2.5;
 
         STAR_ORDER.forEach((k) => {
           const p3 = STARS_3D[k];
-          const proj = project3D(p3);
+          const isSelected = k === activeStarKey;
+          // Clicked star gets pulled strongly into the foreground (-195 z-units);
+          // non-selected stars recede slightly (+45 z-units) so the 3D depth separation is unmistakable!
+          const targetZPull = isSelected ? (-p3.z - 155) : 40;
+          starZPull[k] += (targetZPull - starZPull[k]) * 0.1;
+
+          const proj = project3D(p3, starZPull[k]);
           projMajor[k] = proj;
 
           const node = majorNodeEls[k];
           if (node) {
-            node.setAttribute("transform", `translate(${proj.sx.toFixed(1)}, ${proj.sy.toFixed(1)}) scale(${proj.scale.toFixed(3)})`);
+            // Depth-proportional visual scale & atmospheric opacity:
+            // Foreground star scales up to ~1.28x at 100% opacity; background stars scale down to ~0.72x at 0.56-0.84 opacity!
+            const depthScale = isSelected
+              ? Math.max(1.22, Math.min(1.34, proj.scale * 1.04))
+              : Math.max(0.68, Math.min(1.04, proj.scale * 0.92));
+
+            const depthOpacity = isSelected
+              ? 1.0
+              : Math.max(0.52, Math.min(0.88, (proj.scale - 0.58) * 1.35));
+
+            node.setAttribute("transform", `translate(${proj.sx.toFixed(1)}, ${proj.sy.toFixed(1)}) scale(${depthScale.toFixed(3)})`);
+            node.style.opacity = depthOpacity.toFixed(2);
           }
 
-          // 3D Depth Tether connecting actual 3D depth to z=0 plane when tilted
+          // Update Depth Tag ("★ FRONT · 840 LY" vs "840 LY")
+          const dTag = depthTagEls[k];
+          if (dTag) {
+            dTag.textContent = isSelected ? `★ FRONT · ${p3.ly} LY` : `${p3.ly} LY`;
+          }
+
+          // 3D Depth Tether connecting star to z=0 reference plane
           const tether = tetherEls[k];
-          const dLabel = depthLabelEls[k];
-          if (tether && dLabel) {
+          if (tether) {
             if (isTilted3D) {
-              const zeroPlane = project3D({ x: p3.x, y: p3.y, z: 0 });
+              const zeroPlane = project3D({ x: p3.x, y: p3.y, z: 0 }, 0);
               tether.setAttribute("x1", zeroPlane.sx.toFixed(1));
               tether.setAttribute("y1", zeroPlane.sy.toFixed(1));
               tether.setAttribute("x2", proj.sx.toFixed(1));
               tether.setAttribute("y2", proj.sy.toFixed(1));
-              tether.style.opacity = "0.75";
-
-              dLabel.setAttribute("x", ((zeroPlane.sx + proj.sx) * 0.5 + 6).toFixed(1));
-              dLabel.setAttribute("y", ((zeroPlane.sy + proj.sy) * 0.5 - 3).toFixed(1));
-              dLabel.style.opacity = "0.9";
+              tether.style.opacity = isSelected ? "0.85" : "0.45";
             } else {
               tether.style.opacity = "0";
-              dLabel.style.opacity = "0";
             }
           }
         });
 
         const projMinor = {};
         Object.keys(MINOR_STARS_3D).forEach((k) => {
-          const proj = project3D(MINOR_STARS_3D[k]);
+          const proj = project3D(MINOR_STARS_3D[k], 30);
           projMinor[k] = proj;
           const el = minorNodeEls[k];
           if (el) {
@@ -2416,12 +2500,12 @@
         });
 
         // Project M35 Open Cluster
-        const projM35 = project3D({ x: -272, y: 113, z: 160 });
+        const projM35 = project3D({ x: -335, y: 155, z: 145 }, 35);
         if (m35Glow && m35Label) {
           m35Glow.setAttribute("cx", projM35.sx.toFixed(1));
           m35Glow.setAttribute("cy", projM35.sy.toFixed(1));
-          m35Label.setAttribute("x", (projM35.sx - 32).toFixed(1));
-          m35Label.setAttribute("y", (projM35.sy - 14).toFixed(1));
+          m35Label.setAttribute("x", (projM35.sx - 40).toFixed(1));
+          m35Label.setAttribute("y", (projM35.sy - 18).toFixed(1));
         }
 
         // Update 3D Stick-Figure Constellation Lines
@@ -2434,13 +2518,34 @@
         linePolluxArm.setAttribute("points", ptsToString([projMinor.upsilon, projMinor.kappa]));
         linePolluxOuterLeg.setAttribute("points", ptsToString([projMajor.wasat, projMinor.lambda, projMinor.xi]));
 
-        // Update Traveling "YOU ARE HERE" Beacon to Active 3D Star
+        // Smooth Spring-Gliding "YOU ARE HERE" Focus Circle & Comet Trail!
         const activeProj = projMajor[activeStarKey];
         if (activeProj && beaconEl) {
-          beaconEl.setAttribute("transform", `translate(${activeProj.sx.toFixed(1)}, ${activeProj.sy.toFixed(1)})`);
+          const bStiff = 0.12;
+          const bDamp = 0.74;
+          beaconState.vx = (beaconState.vx + (activeProj.sx - beaconState.x) * bStiff) * bDamp;
+          beaconState.vy = (beaconState.vy + (activeProj.sy - beaconState.y) * bStiff) * bDamp;
+          beaconState.x += beaconState.vx;
+          beaconState.y += beaconState.vy;
+
+          beaconEl.setAttribute("transform", `translate(${beaconState.x.toFixed(1)}, ${beaconState.y.toFixed(1)})`);
+
+          // Rotating outer dashed reticle ring
+          if (tbRingAnim) {
+            tbRingAnim.setAttribute("transform", `rotate(${(time * 28).toFixed(1)})`);
+          }
+
+          // Fade out comet trail as focus circle arrives at destination star
+          const distRemaining = Math.hypot(activeProj.sx - beaconState.x, activeProj.sy - beaconState.y);
+          if (distRemaining > 2 && beaconState.trailAlpha > 0.02) {
+            cometTrail.setAttribute("d", `M ${beaconState.fromX.toFixed(1)} ${beaconState.fromY.toFixed(1)} L ${beaconState.x.toFixed(1)} ${beaconState.y.toFixed(1)}`);
+            cometTrail.setAttribute("opacity", beaconState.trailAlpha.toFixed(2));
+            beaconState.trailAlpha *= 0.92;
+          } else {
+            cometTrail.setAttribute("opacity", "0");
+          }
         }
 
-        // Update Telemetry Readout
         if (telemetryAngles) {
           telemetryAngles.textContent = `YAW ${cam.yaw.toFixed(1)}° · PITCH ${cam.pitch.toFixed(1)}° · DEPTH 34–1,200 LY`;
         }
@@ -2448,12 +2553,12 @@
         // Render 3D Pointillist Starfield Canvas
         const rect = canvas.getBoundingClientRect();
         ctx.clearRect(0, 0, rect.width, rect.height);
-        const scaleX = rect.width / 1280;
-        const scaleY = rect.height / 390;
+        const scaleX = rect.width / 1000;
+        const scaleY = rect.height / 520;
 
         for (let i = 0; i < PARTICLES.length; i++) {
           const pt = PARTICLES[i];
-          const p = project3D(pt);
+          const p = project3D(pt, 0);
           const px = p.sx * scaleX;
           const py = p.sy * scaleY;
           if (px < 0 || px > rect.width || py < 0 || py > rect.height) continue;
@@ -2470,7 +2575,7 @@
       }
 
       /* =====================================================================
-         DRAG-TO-ORBIT & MOUSE PARALLAX INTERACTION ON THE 3D STAGE
+         DRAG-TO-ORBIT INTERACTION ON THE 3D STAGE
          ===================================================================== */
       const heroStage = document.getElementById("constellation-hero");
       let isDragging = false;
@@ -2494,15 +2599,8 @@
         if (isDragging) {
           const dx = e.clientX - dragStartX;
           const dy = e.clientY - dragStartY;
-          cam.targetYaw = Math.max(-48, Math.min(48, baseYaw + dx * 0.14));
-          cam.targetPitch = Math.max(-32, Math.min(32, basePitch - dy * 0.12));
-        } else if (!cam.autoOrbit && document.documentElement.getAttribute("data-pov") === "earth") {
-          // Gentle subtle 3D parallax on mouse hover so the constellation feels alive!
-          const rect = heroStage.getBoundingClientRect();
-          const nx = (e.clientX - rect.left) / rect.width - 0.5;
-          const ny = (e.clientY - rect.top) / rect.height - 0.5;
-          cam.targetYaw = nx * 9;
-          cam.targetPitch = -ny * 6;
+          cam.targetYaw = Math.max(-48, Math.min(48, baseYaw + dx * 0.15));
+          cam.targetPitch = Math.max(-32, Math.min(32, basePitch - dy * 0.13));
         }
       });
 
@@ -2511,7 +2609,7 @@
       });
 
       /* =====================================================================
-         POV SWITCHER BUTTONS (Earth POV, 3D Depth Orbit, Live Sky LST)
+         POV SWITCHER BUTTONS
          ===================================================================== */
       function computeSiderealAngle() {
         const now = new Date();
@@ -2539,18 +2637,26 @@
             b.setAttribute("aria-pressed", String(b === btn));
           });
 
-          if (mode === "earth") {
+          if (mode === "relational3d") {
             cam.autoOrbit = false;
-            cam.targetYaw = 0;
-            cam.targetPitch = 0;
+            const s3 = STARS_3D[activeStarKey];
+            cam.targetYaw = s3.pivotYaw;
+            cam.targetPitch = s3.pivotPitch;
             cam.targetRoll = 0;
           } else if (mode === "orbit3d") {
             cam.autoOrbit = true;
             cam.targetRoll = 0;
+          } else if (mode === "earth") {
+            cam.autoOrbit = false;
+            cam.targetYaw = 0;
+            cam.targetPitch = 0;
+            cam.targetRoll = 0;
+            cam.targetPanX = 0;
+            cam.targetPanY = 0;
           } else if (mode === "livesky") {
             cam.autoOrbit = false;
-            cam.targetYaw = 14;
-            cam.targetPitch = -8;
+            cam.targetYaw = 16;
+            cam.targetPitch = -9;
             cam.targetRoll = computeSiderealAngle();
           }
         });
@@ -2558,15 +2664,13 @@
 
       document.getElementById("reset-3d-btn").addEventListener("click", () => {
         document.querySelector('[data-pov-mode="earth"]').click();
-        cam.targetPanX = 0;
-        cam.targetPanY = 0;
       });
 
       /* =====================================================================
-         STAR SELECTION + BOTTOM PEEK DOCK & SLIDE-UP SALON UPDATES
+         STAR SELECTION: RELATIONAL 3D FOREGROUND PIVOT + GLIDING FOCUS CIRCLE
          ===================================================================== */
       function renderPreset(starKey, presetIdx) {
-        const d = SALON_DATA[starKey] || SALON_DATA.tejat;
+        const d = SALON_DATA[starKey] || SALON_DATA.mebsuta;
         const p = d.presets[presetIdx] || d.presets[0];
         document.querySelectorAll(".ac-preset-btn").forEach((btn, idx) => {
           btn.textContent = d.presets[idx].label;
@@ -2580,18 +2684,38 @@
         document.getElementById("ac-v3").textContent = p.v3;
       }
 
-      function selectStar(starKey, syncUrl = true) {
-        if (!STARS_3D[starKey]) starKey = "tejat";
+      function selectStar(starKey, syncUrl = true, isInitial = false) {
+        if (!STARS_3D[starKey]) starKey = "mebsuta";
         activeStarKey = starKey;
         activePresetIdx = 0;
         const s3 = STARS_3D[starKey];
-        const d = SALON_DATA[starKey] || SALON_DATA.tejat;
+        const d = SALON_DATA[starKey] || SALON_DATA.mebsuta;
 
         document.documentElement.setAttribute("data-star", starKey);
 
-        // Gently pan 3D focal center slightly toward the selected star
-        cam.targetPanX = -s3.x * 0.12;
-        cam.targetPanY = -s3.y * 0.1;
+        // Record current beacon position as start of the Comet Energy Trail!
+        if (!isInitial) {
+          beaconState.fromX = beaconState.x;
+          beaconState.fromY = beaconState.y;
+          beaconState.trailAlpha = 0.95;
+        }
+
+        // RELATIONAL 3D FOREGROUND PIVOT:
+        // Unless user explicitly locked Flat Chart (0°), pivot the entire 3D constellation
+        // so the newly clicked star rotates into the #1 Foreground Focal Plane!
+        const currentPov = document.documentElement.getAttribute("data-pov");
+        if (currentPov !== "earth" && !cam.autoOrbit) {
+          cam.targetYaw = s3.pivotYaw;
+          cam.targetPitch = s3.pivotPitch;
+          cam.targetPanX = -s3.x * 0.14;
+          cam.targetPanY = -s3.y * 0.12;
+        }
+
+        // Bring selected star's SVG <g> element to the top of `#major-stars-layer` so it never clips under background stars
+        const selectedNode = majorNodeEls[starKey];
+        if (selectedNode && majorStarsLayer) {
+          majorStarsLayer.appendChild(selectedNode);
+        }
 
         // Highlight active star on SVG & Progress Bar
         document.querySelectorAll(".star-node").forEach((n) => {
@@ -2606,17 +2730,17 @@
           `YOU ARE HERE · STAR ${s3.idx} / 08 (${toUpperPreserveGreek(s3.name)})`
         );
         document.getElementById("active-star-telemetry").innerHTML = formatGreek(
-          `STAR ${s3.idx} · ${toUpperPreserveGreek(s3.name.split("·")[0].trim())} · ${s3.ly} LIGHT-YEARS · ${s3.spec}`
+          `FOREGROUND: STAR ${s3.idx} · ${toUpperPreserveGreek(s3.name.split("·")[0].trim())} · ${s3.ly} LIGHT-YEARS (SCALE 1.28×)`
         );
         document.getElementById("sheet-location-status").innerHTML = formatGreek(
           `♊ PAIRED TWIN SALONS · STAR ${s3.idx} / 08 (${toUpperPreserveGreek(s3.name)} · ${s3.ly} LY)`
         );
 
-        // Update the 56px Bottom Porcelain Silk Peek Dock Headlines & Badges!
+        // Update 56px Bottom Porcelain Silk Peek Dock
         document.getElementById("peek-castor-headline").innerHTML =
           `${d.castorMain} <em>${d.castorItalic}</em>`;
         document.getElementById("peek-castor-badge").innerHTML =
-          formatGreek(d.castorBadge.split("·").slice(0, 2).join(" · "));
+          formatGreek(`${s3.name.split(" ")[0]} GEM · ${s3.ly} LY`);
 
         document.getElementById("peek-pollux-headline").innerHTML =
           `${d.polluxMain} <em>${d.polluxItalic}</em>`;
@@ -2646,7 +2770,7 @@
           renderPreset(starKey, 0);
         };
 
-        if (document.startViewTransition) {
+        if (!isInitial && document.startViewTransition) {
           document.startViewTransition(applySalonDOM);
         } else {
           applySalonDOM();
@@ -2689,7 +2813,6 @@
       document.getElementById("close-drawer-btn").addEventListener("click", () => setDrawerOpen(false));
       document.getElementById("drawer-backdrop").addEventListener("click", () => setDrawerOpen(false));
 
-      // Wire Star Clicks & Progress Bar Buttons
       document.querySelectorAll(".star-node").forEach((node) => {
         node.addEventListener("click", () => selectStar(node.getAttribute("data-star")));
         node.addEventListener("keydown", (e) => {
@@ -2733,22 +2856,37 @@
         }
       });
 
-      // Initialize from URL params (?star=tejat&pov=orbit3d&drawer=open)
+      // Initialize from URL params
       const params = new URLSearchParams(window.location.search);
-      const initStar = params.get("star");
+      const initStar = params.get("star") && STARS_3D[params.get("star")] ? params.get("star") : "mebsuta";
       const initPov = params.get("pov");
       const initDrawer = params.get("drawer");
 
-      selectStar(initStar && STARS_3D[initStar] ? initStar : "tejat", false);
+      // Set immediate camera orientation to the initial star's relational 3D foreground pivot!
+      const sInit = STARS_3D[initStar];
+      cam.yaw = sInit.pivotYaw;
+      cam.pitch = sInit.pivotPitch;
+      cam.targetYaw = sInit.pivotYaw;
+      cam.targetPitch = sInit.pivotPitch;
+      cam.panX = -sInit.x * 0.14;
+      cam.panY = -sInit.y * 0.12;
+      cam.targetPanX = cam.panX;
+      cam.targetPanY = cam.panY;
+
+      STAR_ORDER.forEach((k) => {
+        starZPull[k] = k === initStar ? (-STARS_3D[k].z - 155) : 40;
+      });
+
+      selectStar(initStar, false, true);
+
+      // Snap initial beacon position to initial star so first render is centered on it
+      const initProj = project3D(sInit, starZPull[initStar]);
+      beaconState.x = initProj.sx;
+      beaconState.y = initProj.sy;
+
       if (initPov) {
         const povBtn = document.querySelector(`[data-pov-mode="${initPov}"]`);
         if (povBtn) povBtn.click();
-        if (initPov === "orbit3d") {
-          cam.yaw = 28;
-          cam.pitch = -14;
-          cam.targetYaw = 28;
-          cam.targetPitch = -14;
-        }
       }
       if (initDrawer === "open") {
         setDrawerOpen(true);

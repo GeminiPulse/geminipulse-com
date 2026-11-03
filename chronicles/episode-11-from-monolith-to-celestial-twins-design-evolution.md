@@ -136,3 +136,20 @@ In Round 9 (**[Look J — Full-Viewport 3D Pointillist Constellation Navigator &
    - Lowered the alpha of the large left/right Castor and Pollux engravings (`opacity: 0.21`) as independent 3D counter-parallax background layers so they provide rich texture without competing with the constellation, while placing crisp circular **miniature medallion portraits** (`26×26px`) inside the top-left **`α Castor (The Signal)`** and top-right **`β Pollux (The Workbench)`** pulsing pills.
 4. **The Deeper Meaning of the Twins (Human Creative Catalyst × Autonomous AI Twin):**
    - As Neil reflected during this session, great design is rarely a one-shot prompt—it is an iterative agency evolution (*throw all the ideas in, test divergent worlds, synthesize, and then strip away until only the essential magic remains*). What once took a traditional design agency months now unfolds in days through a true **Human + AI Twin partnership**—allowing a human creative director to steer vision and soul across fragmented moments of real life while his AI twin executes, audits, and preserves every step of the journey.
+
+---
+
+## 9. Round 10: Commanding Full-Stage Scale, True Relational 3D Foreground Pivot & Depth-Proportional Star Pills (`Look J v1 → Look J v2`)
+
+After testing **Look J v1** ([preserved at `look-j-v1-archive.html`](https://geminipulse.com/prototypes/look-j-v1-archive.html)) across multiple browser window sizes and uploading four screenshots, Neil pinpointed four refinements needed to perfect the first impression before moving to the rest of the site:
+
+1. **Commanding Full-Stage Constellation Scale Across Window Sizes:**
+   - In `Look J v1`, the SVG used a wide `viewBox="0 0 1280 390"` while the stars were clustered in a `316px` center island (~25% of the SVG width), causing the constellation to shrink on narrower desktop/tablet windows (`900px–1100px`).
+   - In **[Look J v2](https://geminipulse.com/prototypes/look-j-3d-celestial-navigator.html)**, we re-engineered the stage to `viewBox="0 0 1000 520"` and expanded the 3D star coordinates ~1.65× wider and taller so the Gemini constellation commands **~75% of the stage** across wide monitors (`1920px`), laptops (`1440px`), and narrower windows (`1024×900`). We also feathered the inner horizontal edges of the background Castor/Pollux engravings so there is zero vertical seam down the middle.
+2. **Restored Smooth Spring-Gliding Focus Circle (`#traveling-beacon`) + Comet Energy Trail:**
+   - In `Look J v1`, the 60fps `tick()` loop overwrote `#traveling-beacon`'s `transform` every frame directly to the newly clicked star's coordinates, turning the smooth focus movement from `Look I v2` into an instant hard jump.
+   - In `Look J v2`, `beaconState` runs its own spring-damper physics (`bStiff = 0.12, bDamp = 0.74`) inside `tick()` alongside an animated `#focus-comet-trail` path—so clicking from one star/article to another smoothly glides the Ethereal Purple focus reticle and `"YOU ARE HERE"` badge across 3D space.
+3. **True Relational 3D Foreground Pivot on Star Click:**
+   - Clicking any of the 8 stars now rotates the entire 3D constellation in relational Light-Year space (`pivotYaw`, `pivotPitch`, and animated `starZPull`) and reorders the SVG layer so **whichever star you clicked physically swings into the #1 Foreground Focal Plane (`scale ~1.28×`)** while all other stars pivot relationally around it.
+4. **Volumetric Depth-Proportional Text & Pill Scaling (Never Flat):**
+   - Because stars in a constellation exist at vastly different depths (`34 LY` for $\beta$ Pollux vs. `840 LY` for $\varepsilon$ Mebsuta and `1,200 LY` for $\zeta$ Mekbuda), every star node and its article pill now scales proportionally to its live 3D depth (`scale(1.28)` and `opacity: 1.0` for the foreground star; `scale(0.68)` to `scale(1.04)` and `opacity: 0.52` to `0.88` for mid-ground and deep-background stars), with each star's Light-Year distance (`34 LY`–`1,200 LY`) displayed right beside it.

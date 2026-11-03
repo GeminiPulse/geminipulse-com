@@ -1,11 +1,11 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-11-03 15:15 EST (Built Look J /prototypes/look-j-3d-celestial-navigator.html: Full-Viewport 3D Pointillist Constellation Navigator with real 34–1,200 LY depth + 56px Porcelain Silk Peek Dock & floating Slide-Up buttons + de-emphasized 0.21 alpha parallax Twin art & miniature medallions; preserved Look I v2 at /prototypes/look-i-celestial-couture-atlas.html)`
+- **Last Updated:** `2026-11-03 15:43 EST (Perfected Look J v2 /prototypes/look-j-3d-celestial-navigator.html: Commanding 1000×520 Full-Stage 3D Scale, True Relational 3D Foreground Pivot on Star Click, Depth-Proportional Star & Pill Scaling 0.68×–1.34× across 34–1,200 LY, Restored Spring-Gliding Focus Circle + Comet Trail, and Seamless Background Feathering; preserved Look J v1 at /prototypes/look-j-v1-archive.html)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
 - **Firebase Default Hosting URL:** `https://geminipulse-com.web.app`
-- **Local Dev Preview URL:** `http://localhost:8080` *(Look J 3D Celestial Navigator & Peek Dock: `http://localhost:8080/prototypes/look-j-3d-celestial-navigator.html` · Look I v2 50/50 Split: `http://localhost:8080/prototypes/look-i-celestial-couture-atlas.html` · Look I v1 Archive: `http://localhost:8080/prototypes/look-i-v1-archive.html` · Saved Look H: `http://localhost:8080/prototypes/look-h-avant-twin-journal.html` · Brand Evolution Portfolio Hub: `http://localhost:8080/prototypes/`)*
+- **Local Dev Preview URL:** `http://localhost:8080` *(Look J v2 3D Relational-Pivot Navigator & Peek Dock: `http://localhost:8080/prototypes/look-j-3d-celestial-navigator.html` · Look J v1 Archive: `http://localhost:8080/prototypes/look-j-v1-archive.html` · Look I v2 50/50 Split: `http://localhost:8080/prototypes/look-i-celestial-couture-atlas.html` · Look I v1 Archive: `http://localhost:8080/prototypes/look-i-v1-archive.html` · Saved Look H: `http://localhost:8080/prototypes/look-h-avant-twin-journal.html` · Brand Evolution Portfolio Hub: `http://localhost:8080/prototypes/`)*
 - **Firebase Project ID:** `geminipulse-com` (Project Number `643794480842`, Spark Free Plan — **\$0.00/mo**)
 - **Firebase Web App ID:** `1:643794480842:web:9f973bc1a0d7670c920e33` (`GeminiPulse Web`)
 - **Concept Originator & Creative Catalyst:** Neil S. White (`https://www.linkedin.com/in/neilswhite`, **Agile LLC**)
