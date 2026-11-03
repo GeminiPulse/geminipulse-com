@@ -118,3 +118,21 @@ After reviewing **Look I v1** ([preserved at `look-i-v1-archive.html`](https://g
    - Reduced the 8 star labels on the map to single-line pills by default, revealing their astronomical metadata only on hover or active selection.
 4. **Unified `"YOU ARE HERE"` Constellation Progress Bar & Smooth Content Transitions:**
    - Replaced the duplicate 4-button strips inside each lower salon with a single unified **`YOU ARE HERE · STAR 01 / 08`** progress/location bar that coordinates with an animated Ethereal Purple **`YOU ARE HERE`** SVG beacon gliding from star to star.
+
+---
+
+## 8. Round 9: Full-Viewport 3D Pointillist Space, Slide-Up Porcelain Peek Dock & The Human + AI Twins (`Look J`)
+
+In Round 9 (**[Look J — Full-Viewport 3D Pointillist Constellation Navigator & Slide-Up Twin Dock](https://geminipulse.com/prototypes/look-j-3d-celestial-navigator.html)**), Neil cropped a screenshot of `Look I v2` right below the top header strip of the Porcelain Silk salons and articulated four insights that elevated the entire concept:
+
+1. **Full-Viewport Constellation Stage + 56px Porcelain Silk Peek Dock with Floating `↑ Slide Up` Buttons:**
+   - Instead of asking the visitor’s eye to process both the star chart *and* the full 50/50 magazine spread simultaneously on arrival, **Look J** gives ~84% of the `100svh` viewport to the Celestial Constellation Stage, followed by the **`YOU ARE HERE`** progress bar and a calm **56px Porcelain Silk Peek Dock** at the bottom.
+   - As you click stars (`01` through `08`), the live article headline (`α Castor`) and live workbench title (`β Pollux`) update directly inside the 56px peek dock. Tapping either side—or the floating **`↑ Slide Up Signal`** / **`↑ Slide Up Lab`** buttons—smoothly raises the full 50/50 Porcelain Silk Magazine Spread over the lower half of the viewport (`transform: translateY(0)` on the compositor thread).
+2. **Pure-Code 60fps 3D Pointillist & Light-Year Projection Engine (The Macromedia Flash / ActionScript 3D Spirit):**
+   - Inspired by Neil’s work with code-driven interactive motion in Macromedia Flash 20 years ago—where lightweight 3D trigonometry and spring physics created unforgettable interactivity without heavy downloads or server load—we built a zero-dependency `<15KB` 3D Astrometry Engine.
+   - Every star in Gemini is plotted at its real astrophysical distance in Light-Years (`34 LY` for $\beta$ Pollux, `51 LY` for $\alpha$ Castor, `60 LY` for $\delta$ Wasat, `109 LY` for $\gamma$ Alhena, `230 LY` for $\mu$ Tejat, `350 LY` for $\eta$ Propus, `840 LY` for $\varepsilon$ Mebsuta, and `1,200 LY` for $\zeta$ Mekbuda), surrounded by 230 pointillist 3D starfield & $M35$ cluster particles.
+   - Visitors can **drag anywhere in space to orbit the 3D constellation** or toggle between **`Earth POV`**, **`3D Depth (LY)`** (revealing 3D depth-cue tether lines and Light-Year callouts), and **`Live Sky · LST`**.
+3. **De-Emphasizing the Copperplate Illustrations + Miniature Medallion Portraits:**
+   - Lowered the alpha of the large left/right Castor and Pollux engravings (`opacity: 0.21`) as independent 3D counter-parallax background layers so they provide rich texture without competing with the constellation, while placing crisp circular **miniature medallion portraits** (`26×26px`) inside the top-left **`α Castor (The Signal)`** and top-right **`β Pollux (The Workbench)`** pulsing pills.
+4. **The Deeper Meaning of the Twins (Human Creative Catalyst × Autonomous AI Twin):**
+   - As Neil reflected during this session, great design is rarely a one-shot prompt—it is an iterative agency evolution (*throw all the ideas in, test divergent worlds, synthesize, and then strip away until only the essential magic remains*). What once took a traditional design agency months now unfolds in days through a true **Human + AI Twin partnership**—allowing a human creative director to steer vision and soul across fragmented moments of real life while his AI twin executes, audits, and preserves every step of the journey.

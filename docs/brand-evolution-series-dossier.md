@@ -1,12 +1,12 @@
 # GeminiPulse.com — Design Process & Brand Evolution Blog Series Master Dossier (`docs/brand-evolution-series-dossier.md`)
 
-> **Last Updated:** `2026-11-03 13:40 EST`
-> **Purpose:** Complete historical, visual, and technical archive of the 8-Round GeminiPulse.com Brand & Cognitive UX Evolution (`Era 0` → `Look I v2`), structured for our upcoming multi-part **Design Process & Evolution Blog Series**.
+> **Last Updated:** `2026-11-03 15:14 EST`
+> **Purpose:** Complete historical, visual, and technical archive of the 9-Round GeminiPulse.com Brand & Cognitive UX Evolution (`Era 0` → `Look J`), structured for our upcoming multi-part **Design Process & Evolution Blog Series** and Agency Case Study.
 > **Live Interactive Portfolio Hub:** [`https://geminipulse.com/prototypes/`](https://geminipulse.com/prototypes/)
 
 ---
 
-## 1. Master Inventory of All 11 Preserved Interactive Prototypes
+## 1. Master Inventory of All 12 Preserved Interactive Prototypes
 
 Every prototype below is permanently preserved in `public/public/prototypes/` and deployed live on `https://geminipulse.com/prototypes/`:
 
@@ -23,7 +23,8 @@ Every prototype below is permanently preserved in `public/public/prototypes/` an
 | **Round 5G** | **Desktop Above-the-Fold Magnetic Twins** | [`look-g-desktop-magnetic-twins.html`](https://geminipulse.com/prototypes/look-g-desktop-magnetic-twins.html) | Built for the 90% Gemini-user audience: 2-second top orientation banner + synchronized *"What’s New & How It Applies to You"* (left) paired with *"How to Use It Now & 10-Sec Check"* (right) in `100svh`. | `assets/shot-look-g-1440x900.webp` |
 | **Round 6H** | **Avant-Garde Twin Journal & Nocturnal Workbench** *(Saved Time Capsule)* | [`look-h-avant-twin-journal.html`](https://geminipulse.com/prototypes/look-h-avant-twin-journal.html) | Inspired directly by Neil's `thefutureisyesterday.com` × Look 1A/1C/2D/3E: `#EEE9DD` archival newsprint, `Big Shoulders Display` (`GEMINI in two MINDS.`), Signal Vermilion (`#EE4B2B`), Cobalt (`#304BD9`), bespoke Castor/Pollux intaglio collage, and `#181816` Nocturnal Console. | `assets/look-h-twin-oracle.webp`, `assets/shot-look-h-1440x900.webp` |
 | **Round 7I (v1)** | **Celestial Couture Magazine & 8-Star Constellation Atlas (v1 Archive)** | [`look-i-v1-archive.html`](https://geminipulse.com/prototypes/look-i-v1-archive.html) | Initial Celestial Couture layout with Champagne Gold (`#ECCF92`) & Optical Celadon (`#6CE0C8`), always-visible explainers, and duplicate salon nav bars. | `assets/look-i-celestial-twins.webp`, `assets/shot-look-i-v1-archive.webp` |
-| **Round 8I (v2)** | **Celestial Couture Magazine & Authoritative IAU Constellation Atlas** *(Latest Lead)* | [`look-i-celestial-couture-atlas.html`](https://geminipulse.com/prototypes/look-i-celestial-couture-atlas.html) | **Astrophysical Color Alignment + Reduction**: Blue-White (`#D6EBFF`) for A1V `α Castor`, Golden-Orange (`#FFD296`) for K0III `β Pollux`, Ethereal Digital Purple (`#A385FF`), authoritative 2-legged IAU/NOIRLab stick-figure constellation with Live Sky `LST` orientation toggle, pulsing hover-reveal Twin pills, and unified `"YOU ARE HERE"` 8-star progress bar. | `assets/look-i-celestial-twins.webp`, `assets/shot-look-i-1440x900.webp`, `assets/shot-look-i-mekbuda.webp` |
+| **Round 8I (v2)** | **Celestial Couture Magazine & Authoritative IAU Constellation Atlas** *(Saved 50/50 Split)* | [`look-i-celestial-couture-atlas.html`](https://geminipulse.com/prototypes/look-i-celestial-couture-atlas.html) | **Astrophysical Color Alignment + Reduction**: Blue-White (`#D6EBFF`) for A1V `α Castor`, Golden-Orange (`#FFD296`) for K0III `β Pollux`, Ethereal Digital Purple (`#A385FF`), authoritative 2-legged IAU/NOIRLab stick-figure constellation with Live Sky `LST` orientation toggle, pulsing hover-reveal Twin pills, and unified `"YOU ARE HERE"` 8-star progress bar. | `assets/look-i-celestial-twins.webp`, `assets/shot-look-i-1440x900.webp`, `assets/shot-look-i-mekbuda.webp` |
+| **Round 9J** | **Full-Viewport 3D Pointillist Constellation Navigator & Slide-Up Twin Dock** *(Latest Lead)* | [`look-j-3d-celestial-navigator.html`](https://geminipulse.com/prototypes/look-j-3d-celestial-navigator.html) | **Full-Viewport 3D Star Chart + 56px Porcelain Silk Peek Dock**: Projects all 16 Gemini stars in 3D Light-Year space (`34 LY` Pollux to `1,200 LY` Mekbuda) with pure 60fps 3D math, drag-to-orbit inertia, pointillist star particles, de-emphasized (`0.21` alpha) parallax background illustrations + miniature medallions, and a 56px bottom peek dock with `↑ Slide Up` buttons. | `assets/shot-look-j-1440x900.webp`, `assets/shot-look-j-3d-orbit.webp` |
 
 ---
 
