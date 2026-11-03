@@ -1,11 +1,11 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-11-03 12:45 EST (12:45 PM Curation Check: Published Cost Per Task & Classifier Routing Series Parts 1–3 + Live Agile Labs Routing Simulator /labs/gemini-cost-per-task-calculator.html from Sergio Villani's Google Developers Blog benchmark)`
+- **Last Updated:** `2026-11-03 13:42 EST (Refined Look I v2 /prototypes/look-i-celestial-couture-atlas.html with real Blue-White α Castor + Golden-Orange β Pollux + Ethereal Digital Purple palette, authoritative 2-legged IAU/NOIRLab Gemini constellation + Live Sky LST toggle, pulsing hover-reveal Twin pills, and unified "YOU ARE HERE" 8-star progress bar; archived Look I v1 at /prototypes/look-i-v1-archive.html)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
 - **Firebase Default Hosting URL:** `https://geminipulse-com.web.app`
-- **Local Dev Preview URL:** `http://localhost:8080` *(Look I Celestial Couture Constellation Atlas: `http://localhost:8080/prototypes/look-i-celestial-couture-atlas.html` · Saved Look H Avant-Garde Twin Journal: `http://localhost:8080/prototypes/look-h-avant-twin-journal.html` · Brand Evolution Portfolio Hub: `http://localhost:8080/prototypes/` · Look G Desktop Magnetic Twins: `http://localhost:8080/prototypes/look-g-desktop-magnetic-twins.html`)*
+- **Local Dev Preview URL:** `http://localhost:8080` *(Look I v2 Celestial Couture Constellation Atlas: `http://localhost:8080/prototypes/look-i-celestial-couture-atlas.html` · Look I v1 Archive: `http://localhost:8080/prototypes/look-i-v1-archive.html` · Saved Look H Avant-Garde Twin Journal: `http://localhost:8080/prototypes/look-h-avant-twin-journal.html` · Brand Evolution Portfolio Hub: `http://localhost:8080/prototypes/`)*
 - **Firebase Project ID:** `geminipulse-com` (Project Number `643794480842`, Spark Free Plan — **\$0.00/mo**)
 - **Firebase Web App ID:** `1:643794480842:web:9f973bc1a0d7670c920e33` (`GeminiPulse Web`)
 - **Concept Originator & Creative Catalyst:** Neil S. White (`https://www.linkedin.com/in/neilswhite`, **Agile LLC**)

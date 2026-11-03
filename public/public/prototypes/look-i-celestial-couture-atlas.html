@@ -1,47 +1,68 @@
 <!DOCTYPE html>
-<html lang="en" data-chain="all">
+<html lang="en" data-chain="all" data-sky="atlas">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GeminiPulse — Look I: The Celestial Couture Magazine &amp; Interactive Gemini Constellation Atlas</title>
-  <meta name="description" content="Conceived by a human. Written, designed, and coded autonomously by Google Gemini. Click any star in the real Castor & Pollux (Gemini) constellation to explore what's new and how to use it right now." />
+  <title>GeminiPulse — Look I (v2): The Celestial Couture Magazine &amp; Authoritative IAU Gemini Atlas</title>
+  <meta name="description" content="Conceived by a human. Written, designed, and coded autonomously by Google Gemini. Explore the α Castor (Blue-White Signal) and β Pollux (Golden-Orange Workbench) constellation." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     /* =========================================================================
-       LOOK I: SILICON VALLEY PRECISION × PARISIAN COUTURE CELESTIAL ATLAS
-       - Zero resemblance to thefutureisyesterday.com (no red/vermilion, no cobalt,
-         no beige newsprint, no blocky gothic display type).
-       - Palette:
-         • Velvet Midnight Obsidian (#080C12) & Tourmaline (#101722) Hero Stage
-         • Parisian Porcelain Silk (#F6F4EE) & Warm Alabaster (#FDFCF9) Editorial Spread
-         • Burnished Champagne Gold (#C8A25A / #ECCF92) for α Castor (The Signal)
-         • Optical Celadon Emerald (#2D9C86 / #6CE0C8) for β Pollux (The Workbench)
-       - Hero: Full Panoramic Castor & Pollux Copperplate Engraving + Interactive
-         Astronomically Accurate IAU Gemini (♊) Constellation where clicking any
-         star navigates both Twins below!
+       LOOK I (v2 ENHANCED): SILICON VALLEY × PARISIAN COUTURE CELESTIAL ATLAS
+       Enhancements from Neil's Creative Audit:
+       1. True Astrophysical Star Colors + Ethereal Digital Purple:
+          • α Castor (Left Twin — The Signal): Blue-White A1V Starlight (#B8DCFF / #7EB8FF)
+            matching both the real sextuple star Castor AND the silver-white marble engraving.
+          • β Pollux (Right Twin — The Workbench): Golden-Orange K0III Giant (#FFB866 / #F59E3F)
+            matching both the real orange giant Pollux AND the brass clockwork engraving.
+          • Ethereal Digital Purple (#9D7BFF / #C4B0FF) nebula & "You Are Here" telemetry glow.
+       2. Authoritative IAU / NOIRLab Gemini Constellation Geometry:
+          • Both 2-legged stick-figure twins holding shoulders (τ-ι-υ clasp, θ & κ arms,
+            ε->μ->η + ε->ν legs for Castor; δ->ζ->γ + δ->λ->ξ legs for Pollux) + Live Sky LST toggle.
+       3. Progressive Disclosure & Reduction:
+          • Deleted gimmicky top-center IAU explainer eyebrow.
+          • Top-left "α Castor (The Signal)" & top-right "β Pollux (The Workbench)" pills pulse
+            gently and reveal their full explainer only on hover/focus/tap.
+          • Unified "YOU ARE HERE" Constellation Location & Progress Bar coordinates star-hopping
+            with smooth content transitions & a traveling SVG starlight beacon.
        ========================================================================= */
     :root {
-      --silk: #F6F4EE;
+      --silk: #F6F5F0;
       --silk-elevated: #FDFCF9;
-      --silk-warm: #ECE8DD;
-      --obsidian: #070A10;
-      --obsidian-soft: #0E141F;
-      --obsidian-card: #121A27;
-      --ink: #10141B;
-      --ink-soft: #3A404D;
-      --ink-muted: #646B7A;
-      --hairline: #D6D0C2;
-      --hairline-dark: #222C3C;
-      --champagne: #C8A25A;
-      --champagne-bright: #ECCF92;
-      --champagne-ink: #7A5714;
-      --celadon: #2D9C86;
-      --celadon-bright: #6CE0C8;
-      --celadon-ink: #126655;
-      --starlight: #F8F6F0;
+      --silk-warm: #ECEAE2;
+      --obsidian: #070910;
+      --obsidian-soft: #0D121E;
+      --obsidian-card: #111726;
+      --ink: #0F131A;
+      --ink-soft: #3B4252;
+      --ink-muted: #656D7E;
+      --hairline: #D8D4C8;
+      --hairline-dark: #20293A;
 
+      /* α Castor: Astrophysical Blue-White (A1V Sextuple Star) */
+      --castor-star: #D6EBFF;
+      --castor-glow: #7EB8FF;
+      --castor-ink: #1E5696;
+      --castor-tint: rgba(126, 184, 255, 0.14);
+
+      /* β Pollux: Astrophysical Golden-Orange (K0III Orange Giant) */
+      --pollux-star: #FFD296;
+      --pollux-glow: #F59E3F;
+      --pollux-ink: #9E540C;
+      --pollux-tint: rgba(245, 158, 63, 0.15);
+
+      /* Ethereal Digital Purple / Iris Nebula Accent */
+      --ethereal: #A385FF;
+      --ethereal-bright: #CEC0FF;
+      --ethereal-deep: #6C4CE6;
+      --ethereal-glow: rgba(163, 133, 255, 0.28);
+
+      /* Subtle Celadon for Live Sky / Verified Telemetry */
+      --celadon: #5CE0C6;
+
+      --starlight: #F8F7F4;
       --serif: 'Cormorant Garamond', Georgia, serif;
       --sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       --mono: 'JetBrains Mono', monospace;
@@ -80,7 +101,7 @@
     }
 
     :focus-visible {
-      outline: 2px solid var(--celadon);
+      outline: 2px solid var(--ethereal);
       outline-offset: 2px;
     }
 
@@ -112,7 +133,7 @@
     }
 
     /* =========================================================================
-       1. TOP COUTURE MASTHEAD & AUTONOMOUS PREMISE BAR
+       1. MINIMALIST COUTURE MASTHEAD
        ========================================================================= */
     .couture-header {
       display: grid;
@@ -122,7 +143,7 @@
       padding: 7px clamp(18px, 2.4vw, 38px);
       background: var(--obsidian);
       color: var(--starlight);
-      border-block-end: 1px solid var(--hairline-dark);
+      border-block-end: 1px solid rgba(163, 133, 255, 0.22);
       flex-shrink: 0;
     }
 
@@ -135,16 +156,15 @@
     }
 
     .brand-glyph {
-      inline-size: 28px;
-      block-size: 28px;
+      inline-size: 27px;
+      block-size: 27px;
       border-radius: 50%;
-      background: rgba(236, 207, 146, 0.1);
-      color: var(--champagne-bright);
+      background: radial-gradient(circle at 35% 35%, rgba(163, 133, 255, 0.28), rgba(7, 9, 16, 0.9));
+      color: var(--ethereal-bright);
       display: grid;
       place-items: center;
-      font-family: var(--serif);
-      font-size: 15px;
-      border: 1px solid rgba(236, 207, 146, 0.55);
+      border: 1px solid rgba(163, 133, 255, 0.55);
+      box-shadow: 0 0 12px rgba(163, 133, 255, 0.25);
       flex-shrink: 0;
     }
 
@@ -159,17 +179,7 @@
       white-space: nowrap;
     }
 
-    .brand-coords {
-      display: block;
-      font-family: var(--mono);
-      font-size: 8px;
-      letter-spacing: 0.15em;
-      color: #96A2B5;
-      margin-block-start: 2px;
-      white-space: nowrap;
-    }
-
-    /* Center Premise Statement */
+    /* Center Premise — Clean & Effortless */
     .premise-ribbon {
       display: flex;
       align-items: center;
@@ -179,24 +189,18 @@
       overflow: hidden;
     }
 
-    .premise-tag {
-      font-family: var(--mono);
-      font-size: 8px;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      padding: 3px 8px;
-      background: rgba(236, 207, 146, 0.14);
-      color: var(--champagne-bright);
-      border: 1px solid rgba(236, 207, 146, 0.35);
-      border-radius: 999px;
-      white-space: nowrap;
+    .premise-dot {
+      inline-size: 6px;
+      block-size: 6px;
+      border-radius: 50%;
+      background: var(--ethereal);
+      box-shadow: 0 0 8px var(--ethereal);
       flex-shrink: 0;
     }
 
     .premise-text {
       font-size: clamp(11.5px, 0.85vw, 13px);
-      color: #CBD3E1;
+      color: #C7D0E0;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -210,16 +214,48 @@
     .premise-text em {
       font-family: var(--serif);
       font-style: italic;
-      font-size: 1.18em;
-      color: var(--champagne-bright);
+      font-size: 1.16em;
+      color: var(--ethereal-bright);
     }
 
-    /* Right Chain Filter & Charter Controls */
+    /* Right Controls: Live Sky Toggle + Chain Filter + Charter */
     .header-controls {
       display: flex;
       align-items: center;
       gap: 8px;
       flex-shrink: 0;
+    }
+
+    .live-sky-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(92, 224, 198, 0.08);
+      border: 1px solid rgba(92, 224, 198, 0.35);
+      font-family: var(--mono);
+      font-size: 8.5px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--celadon);
+      transition: all 0.22s ease;
+      white-space: nowrap;
+    }
+
+    .live-sky-btn:hover,
+    .live-sky-btn[aria-pressed="true"] {
+      background: rgba(92, 224, 198, 0.2);
+      border-color: var(--celadon);
+      box-shadow: 0 0 14px rgba(92, 224, 198, 0.25);
+    }
+
+    .live-sky-dot {
+      inline-size: 5px;
+      block-size: 5px;
+      border-radius: 50%;
+      background: var(--celadon);
+      animation: pulse-halo 2.2s infinite ease-in-out;
     }
 
     .chain-switcher {
@@ -241,37 +277,37 @@
     }
 
     .chain-btn[aria-pressed="true"] {
-      background: var(--champagne-bright);
-      color: var(--obsidian);
+      background: linear-gradient(135deg, rgba(163, 133, 255, 0.32), rgba(126, 184, 255, 0.28));
+      color: var(--starlight);
+      border: 1px solid rgba(206, 192, 255, 0.45);
       font-weight: 600;
     }
 
     .charter-pill {
       font-family: var(--mono);
       font-size: 8.5px;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.11em;
       text-transform: uppercase;
       padding: 4.5px 10px;
       border-radius: 999px;
-      border: 1px solid rgba(236, 207, 146, 0.45);
-      color: var(--champagne-bright);
-      transition: background-color 0.2s ease, color 0.2s ease;
+      border: 1px solid rgba(206, 192, 255, 0.38);
+      color: var(--ethereal-bright);
+      transition: all 0.2s ease;
       white-space: nowrap;
     }
 
     .charter-pill:hover {
-      background: var(--champagne-bright);
+      background: var(--ethereal);
+      border-color: var(--ethereal);
       color: var(--obsidian);
     }
 
     /* =========================================================================
-       2. UPPER PANORAMIC HERO: CASTOR & POLLUX ENGRAVING + INTERACTIVE GEMINI CONSTELLATION
-       Both classical Castor (left) and clockwork Pollux (right) are 100% visible,
-       with the interactive 8-star IAU Gemini (♊) constellation bridging them!
+       2. UPPER PANORAMIC HERO: CASTOR & POLLUX ENGRAVING + AUTHORITATIVE IAU GEMINI CONSTELLATION
        ========================================================================= */
     .constellation-hero {
       position: relative;
-      flex: 1.12;
+      flex: 1.18;
       min-block-size: 0;
       background: var(--obsidian);
       color: var(--starlight);
@@ -279,18 +315,14 @@
       flex-direction: column;
       justify-content: space-between;
       overflow: hidden;
-      border-block-end: 1px solid var(--champagne);
     }
 
-    /* Full Panoramic Copperplate Engraving Backdrop (Both Twins Visible!) */
+    /* Full Panoramic Copperplate Engraving Backdrop */
     .hero-engraving-backdrop {
       position: absolute;
       inset: 0;
       z-index: 0;
       pointer-events: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
     .hero-engraving-backdrop img {
@@ -303,25 +335,23 @@
       transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
-    .constellation-hero:hover .hero-engraving-backdrop img {
-      transform: scale(1.015);
-    }
-
-    /* Subtle Couture Gradient Scrim so Center Constellation & Top/Bottom Bars Pop */
+    /* Subtle Ethereal Digital Purple + Star-Color Atmospheric Aura */
     .hero-scrim {
       position: absolute;
       inset: 0;
       z-index: 1;
       pointer-events: none;
       background:
-        radial-gradient(ellipse 46% 68% at 50% 50%, rgba(7, 10, 16, 0.48) 0%, rgba(7, 10, 16, 0.12) 65%, rgba(7, 10, 16, 0.55) 100%),
-        linear-gradient(180deg, rgba(7, 10, 16, 0.78) 0%, rgba(7, 10, 16, 0.08) 24%, rgba(7, 10, 16, 0.08) 74%, rgba(7, 10, 16, 0.88) 100%);
+        radial-gradient(ellipse 34% 55% at 50% 52%, rgba(124, 92, 255, 0.16) 0%, rgba(7, 9, 16, 0.38) 62%, rgba(7, 9, 16, 0.58) 100%),
+        radial-gradient(circle at 22% 48%, rgba(126, 184, 255, 0.11) 0%, transparent 45%),
+        radial-gradient(circle at 78% 48%, rgba(245, 158, 63, 0.11) 0%, transparent 45%),
+        linear-gradient(180deg, rgba(7, 9, 16, 0.72) 0%, rgba(7, 9, 16, 0.05) 22%, rgba(7, 9, 16, 0.05) 78%, rgba(7, 9, 16, 0.86) 100%);
     }
 
-    /* Top Hero Editorial Title & Twin Wing Badges */
+    /* Top Hero Bar: Pulsing Progressive-Disclosure Twin Pills + Clean Editorial Title */
     .hero-top-bar {
       position: relative;
-      z-index: 3;
+      z-index: 4;
       padding: clamp(8px, 1.2vh, 14px) clamp(18px, 2.4vw, 38px) 0;
       display: grid;
       grid-template-columns: 1fr auto 1fr;
@@ -329,74 +359,195 @@
       gap: 16px;
     }
 
-    .wing-fig-tag {
+    /* Pulsing Hover-Explainer Twin Pills ("hmm, looks alive, let me hover on that...") */
+    .twin-pulse-orb {
+      position: relative;
       display: inline-flex;
       flex-direction: column;
-      gap: 2px;
+      background: rgba(9, 13, 22, 0.82);
+      border: 1px solid rgba(126, 184, 255, 0.48);
+      padding: 6px 13px;
+      border-radius: 14px;
+      backdrop-filter: blur(10px);
+      width: fit-content;
+      cursor: pointer;
+      box-shadow: 0 0 18px rgba(126, 184, 255, 0.16), inset 0 0 12px rgba(126, 184, 255, 0.06);
+      animation: orb-breathe-castor 3.4s infinite ease-in-out;
+      transition: all 0.32s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .twin-pulse-orb.pollux-orb {
+      justify-self: end;
+      align-items: flex-end;
+      text-align: right;
+      border-color: rgba(245, 158, 63, 0.52);
+      box-shadow: 0 0 18px rgba(245, 158, 63, 0.16), inset 0 0 12px rgba(245, 158, 63, 0.06);
+      animation: orb-breathe-pollux 3.4s infinite ease-in-out 1.4s;
+    }
+
+    @keyframes orb-breathe-castor {
+      0%, 100% {
+        border-color: rgba(126, 184, 255, 0.42);
+        box-shadow: 0 0 14px rgba(126, 184, 255, 0.14), inset 0 0 10px rgba(126, 184, 255, 0.05);
+      }
+      50% {
+        border-color: rgba(214, 235, 255, 0.82);
+        box-shadow: 0 0 24px rgba(126, 184, 255, 0.32), 0 0 8px rgba(163, 133, 255, 0.24), inset 0 0 14px rgba(126, 184, 255, 0.12);
+      }
+    }
+
+    @keyframes orb-breathe-pollux {
+      0%, 100% {
+        border-color: rgba(245, 158, 63, 0.42);
+        box-shadow: 0 0 14px rgba(245, 158, 63, 0.14), inset 0 0 10px rgba(245, 158, 63, 0.05);
+      }
+      50% {
+        border-color: rgba(255, 210, 150, 0.82);
+        box-shadow: 0 0 24px rgba(245, 158, 63, 0.32), 0 0 8px rgba(163, 133, 255, 0.24), inset 0 0 14px rgba(245, 158, 63, 0.12);
+      }
+    }
+
+    .twin-pulse-orb:hover,
+    .twin-pulse-orb:focus-visible {
+      border-color: var(--castor-star);
+      box-shadow: 0 8px 28px rgba(126, 184, 255, 0.28), 0 0 0 1px rgba(163, 133, 255, 0.35);
+      transform: translateY(-1px);
+    }
+
+    .twin-pulse-orb.pollux-orb:hover,
+    .twin-pulse-orb.pollux-orb:focus-visible {
+      border-color: var(--pollux-star);
+      box-shadow: 0 8px 28px rgba(245, 158, 63, 0.28), 0 0 0 1px rgba(163, 133, 255, 0.35);
+    }
+
+    .tpo-main {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--castor-star);
+      white-space: nowrap;
+    }
+
+    .pollux-orb .tpo-main {
+      color: var(--pollux-star);
+    }
+
+    .tpo-beacon {
+      position: relative;
+      inline-size: 8px;
+      block-size: 8px;
+      border-radius: 50%;
+      background: var(--castor-star);
+      box-shadow: 0 0 10px var(--castor-glow);
+      flex-shrink: 0;
+    }
+
+    .tpo-beacon::after {
+      content: "";
+      position: absolute;
+      inset: -5px;
+      border-radius: 50%;
+      border: 1.5px solid var(--castor-glow);
+      animation: pulse-ring 2.4s infinite cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .pollux-orb .tpo-beacon {
+      background: var(--pollux-star);
+      box-shadow: 0 0 10px var(--pollux-glow);
+    }
+
+    .pollux-orb .tpo-beacon::after {
+      border-color: var(--pollux-glow);
+      animation-delay: 1.1s;
+    }
+
+    @keyframes pulse-ring {
+      0% { transform: scale(0.65); opacity: 0.95; }
+      75% { transform: scale(1.65); opacity: 0; }
+      100% { transform: scale(1.65); opacity: 0; }
+    }
+
+    @keyframes pulse-halo {
+      0%, 100% { opacity: 0.45; transform: scale(0.92); }
+      50% { opacity: 1; transform: scale(1.15); }
+    }
+
+    .tpo-hint-badge {
+      font-family: var(--mono);
+      font-size: 8px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 1px 6px;
+      border-radius: 999px;
+      background: rgba(163, 133, 255, 0.16);
+      color: var(--ethereal-bright);
+      border: 1px solid rgba(163, 133, 255, 0.3);
+      transition: opacity 0.2s ease;
+    }
+
+    /* Hidden Explainer Revealed Smoothly on Hover / Focus / Tap */
+    .tpo-drawer {
+      max-block-size: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-block-size 0.32s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.25s ease, margin-block-start 0.25s ease;
+      font-size: 11px;
+      line-height: 1.38;
+      color: #D5DFEE;
+      max-inline-size: 32ch;
+    }
+
+    .twin-pulse-orb:hover .tpo-drawer,
+    .twin-pulse-orb:focus-visible .tpo-drawer,
+    .twin-pulse-orb[data-expanded="true"] .tpo-drawer {
+      max-block-size: 64px;
+      opacity: 1;
+      margin-block-start: 5px;
+    }
+
+    .tpo-drawer span {
+      display: block;
       font-family: var(--mono);
       font-size: 8.5px;
-      letter-spacing: 0.13em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      background: rgba(7, 10, 16, 0.74);
-      border: 1px solid rgba(236, 207, 146, 0.32);
-      padding: 5px 10px;
-      border-radius: 8px;
-      backdrop-filter: blur(6px);
-      width: fit-content;
+      color: var(--ethereal-bright);
+      margin-block-start: 2px;
     }
 
-    .wing-fig-tag.pollux-tag {
-      justify-self: end;
-      text-align: right;
-      border-color: rgba(108, 224, 200, 0.35);
-    }
-
-    .wing-fig-kicker {
-      color: var(--champagne-bright);
-      font-weight: 600;
-    }
-
-    .wing-fig-tag.pollux-tag .wing-fig-kicker {
-      color: var(--celadon-bright);
-    }
-
-    .wing-fig-sub {
-      color: #B9C4D6;
-      font-size: 8px;
-    }
-
+    /* Clean Center Title (No Gimmicky IAU Eyebrow!) */
     .hero-center-heading {
       text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 2px;
-    }
-
-    .hero-eyebrow {
-      font-family: var(--mono);
-      font-size: 8.5px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--champagne-bright);
     }
 
     .hero-h1 {
       font-family: var(--serif);
       font-weight: 400;
-      font-size: clamp(26px, 2.65vw, 42px);
+      font-size: clamp(28px, 2.75vw, 44px);
       line-height: 0.96;
       letter-spacing: 0.01em;
       color: var(--starlight);
-      text-shadow: 0 4px 24px rgba(0, 0, 0, 0.75);
+      text-shadow: 0 4px 28px rgba(0, 0, 0, 0.85);
     }
 
     .hero-h1 em {
       font-style: italic;
-      color: var(--champagne-bright);
+      background: linear-gradient(90deg, var(--castor-star) 0%, var(--ethereal-bright) 50%, var(--pollux-star) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
-    /* Interactive Panoramic SVG Gemini Constellation Overlay */
+    /* =========================================================================
+       AUTHORITATIVE IAU GEMINI CONSTELLATION SVG STAGE
+       ========================================================================= */
     .hero-constellation-stage {
       position: relative;
       z-index: 3;
@@ -417,39 +568,49 @@
       user-select: none;
     }
 
-    /* Constellation Stick Lines */
+    #constellation-master-group {
+      transform-origin: 625px 185px;
+      transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* Authoritative IAU Stick-Figure Lines */
     .constellation-line-castor {
-      stroke: var(--champagne-bright);
-      stroke-width: 1.65;
-      stroke-opacity: 0.78;
+      stroke: var(--castor-glow);
+      stroke-width: 1.75;
+      stroke-opacity: 0.82;
       fill: none;
+      filter: drop-shadow(0 0 6px rgba(126, 184, 255, 0.45));
       transition: opacity 0.25s ease;
     }
 
     .constellation-line-pollux {
-      stroke: var(--celadon-bright);
-      stroke-width: 1.65;
-      stroke-opacity: 0.78;
+      stroke: var(--pollux-glow);
+      stroke-width: 1.75;
+      stroke-opacity: 0.82;
       fill: none;
+      filter: drop-shadow(0 0 6px rgba(245, 158, 63, 0.45));
       transition: opacity 0.25s ease;
     }
 
     .constellation-bridge-line {
-      stroke: #B4C0D4;
-      stroke-width: 1.25;
+      stroke: var(--ethereal-bright);
+      stroke-width: 1.35;
       stroke-dasharray: 5 4;
-      stroke-opacity: 0.65;
+      stroke-opacity: 0.72;
       fill: none;
+      filter: drop-shadow(0 0 6px rgba(163, 133, 255, 0.45));
     }
 
     html[data-chain="castor"] .constellation-line-pollux,
-    html[data-chain="castor"] .star-node-pollux {
-      opacity: 0.22;
+    html[data-chain="castor"] .star-node-pollux,
+    html[data-chain="castor"] .minor-pollux {
+      opacity: 0.2;
     }
 
     html[data-chain="pollux"] .constellation-line-castor,
-    html[data-chain="pollux"] .star-node-castor {
-      opacity: 0.22;
+    html[data-chain="pollux"] .star-node-castor,
+    html[data-chain="pollux"] .minor-castor {
+      opacity: 0.2;
     }
 
     /* Interactive Star Nodes */
@@ -464,35 +625,44 @@
 
     .star-halo {
       fill: none;
-      stroke-width: 1.3;
-      opacity: 0.45;
-      transition: opacity 0.22s ease, stroke-width 0.22s ease;
+      stroke-width: 1.25;
+      opacity: 0.42;
+      transition: opacity 0.25s ease, stroke-width 0.25s ease, r 0.25s ease;
     }
 
     .star-node-castor .star-halo {
-      stroke: var(--champagne-bright);
+      stroke: var(--castor-star);
     }
 
     .star-node-pollux .star-halo {
-      stroke: var(--celadon-bright);
+      stroke: var(--pollux-star);
     }
 
+    /* Subtle Living Pulse on All Clickable Stars */
     .star-core-castor {
-      fill: var(--champagne-bright);
-      filter: drop-shadow(0 0 8px rgba(236, 207, 146, 0.95));
+      fill: var(--castor-star);
+      filter: drop-shadow(0 0 9px rgba(126, 184, 255, 0.95));
+      animation: star-twinkle 3.2s infinite ease-in-out;
     }
 
     .star-core-pollux {
-      fill: var(--celadon-bright);
-      filter: drop-shadow(0 0 8px rgba(108, 224, 200, 0.95));
+      fill: var(--pollux-star);
+      filter: drop-shadow(0 0 9px rgba(245, 158, 63, 0.95));
+      animation: star-twinkle 3.6s infinite ease-in-out 0.8s;
+    }
+
+    @keyframes star-twinkle {
+      0%, 100% { opacity: 0.88; }
+      50% { opacity: 1; }
     }
 
     .star-reticle {
       fill: none;
+      stroke: var(--ethereal-bright);
       stroke-width: 1.6;
       stroke-dasharray: 3 2.5;
       opacity: 0;
-      transition: opacity 0.22s ease;
+      transition: opacity 0.25s ease;
     }
 
     .star-node:hover .star-halo,
@@ -506,135 +676,243 @@
       opacity: 1;
     }
 
+    /* Sleek Single-Line Star Pill with Hover/Active Detail Reveal */
     .star-pill-bg {
-      fill: rgba(8, 12, 19, 0.88);
-      stroke: rgba(216, 210, 197, 0.36);
+      fill: rgba(9, 13, 22, 0.82);
+      stroke: rgba(163, 133, 255, 0.28);
       stroke-width: 1;
-      rx: 6;
-      transition: fill 0.2s ease, stroke 0.2s ease, stroke-width 0.2s ease;
+      rx: 13;
+      transition: all 0.22s ease;
     }
 
     .star-node-castor:hover .star-pill-bg,
     .star-node-castor[data-active="true"] .star-pill-bg {
-      fill: rgba(26, 21, 11, 0.95);
-      stroke: var(--champagne-bright);
-      stroke-width: 1.6;
+      fill: rgba(14, 25, 44, 0.95);
+      stroke: var(--castor-star);
+      stroke-width: 1.5;
+      filter: drop-shadow(0 0 12px rgba(126, 184, 255, 0.35));
     }
 
     .star-node-pollux:hover .star-pill-bg,
     .star-node-pollux[data-active="true"] .star-pill-bg {
-      fill: rgba(9, 27, 24, 0.95);
-      stroke: var(--celadon-bright);
-      stroke-width: 1.6;
-    }
-
-    .star-label-astro {
-      font-family: var(--mono);
-      font-size: 8.5px;
-      font-weight: 600;
-      letter-spacing: 0.11em;
-      fill: var(--champagne-bright);
-    }
-
-    .star-node-pollux .star-label-astro {
-      fill: var(--celadon-bright);
+      fill: rgba(34, 21, 10, 0.95);
+      stroke: var(--pollux-star);
+      stroke-width: 1.5;
+      filter: drop-shadow(0 0 12px rgba(245, 158, 63, 0.35));
     }
 
     .star-label-dest {
       font-family: var(--sans);
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 600;
-      fill: var(--starlight);
+      fill: #DCE4F2;
+      transition: fill 0.2s ease;
     }
 
-    /* Bottom Active Star HUD Ribbon inside Hero */
-    .hero-bottom-hud {
+    .star-node:hover .star-label-dest,
+    .star-node[data-active="true"] .star-label-dest {
+      fill: #FFFFFF;
+    }
+
+    .star-bayer-prefix {
+      font-family: var(--mono);
+      font-size: 9.5px;
+      font-weight: 600;
+      fill: var(--castor-star);
+    }
+
+    .star-node-pollux .star-bayer-prefix {
+      fill: var(--pollux-star);
+    }
+
+    /* Progressive Disclosure Sub-Tag on Hover or Active Star Only */
+    .star-sub-meta {
+      font-family: var(--mono);
+      font-size: 8px;
+      letter-spacing: 0.1em;
+      fill: var(--ethereal-bright);
+      opacity: 0;
+      transition: opacity 0.22s ease;
+      pointer-events: none;
+    }
+
+    .star-node:hover .star-sub-meta,
+    .star-node[data-active="true"] .star-sub-meta {
+      opacity: 1;
+    }
+
+    /* Animated Traveling "YOU ARE HERE" Beacon on the Constellation */
+    #traveling-beacon {
+      transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+      pointer-events: none;
+    }
+
+    .tb-outer {
+      fill: none;
+      stroke: var(--ethereal-bright);
+      stroke-width: 1.5;
+      opacity: 0.85;
+      animation: pulse-ring 2.2s infinite ease-out;
+    }
+
+    .tb-tag-bg {
+      fill: var(--ethereal-deep);
+      stroke: var(--ethereal-bright);
+      stroke-width: 1;
+      rx: 8;
+    }
+
+    .tb-tag-text {
+      font-family: var(--mono);
+      font-size: 7.5px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      fill: #FFFFFF;
+    }
+
+    /* =========================================================================
+       3. UNIFIED "YOU ARE HERE" CONSTELLATION PROGRESS & LOCATION BAR
+       Bridges the Star Chart above with the 50/50 Magazine Spread below!
+       ========================================================================= */
+    .constellation-progress-nav {
       position: relative;
-      z-index: 3;
+      z-index: 4;
+      background: var(--obsidian-soft);
+      border-block: 1px solid rgba(163, 133, 255, 0.32);
       padding: 6px clamp(18px, 2.4vw, 38px);
-      background: rgba(7, 10, 16, 0.86);
-      border-block-start: 1px solid rgba(236, 207, 146, 0.24);
-      backdrop-filter: blur(8px);
-      display: flex;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
       align-items: center;
-      justify-content: space-between;
-      gap: 12px;
+      gap: 14px;
+      flex-shrink: 0;
+      box-shadow: 0 6px 24px rgba(7, 9, 16, 0.18);
     }
 
-    .hbh-left {
-      display: flex;
+    .cpn-location-badge {
+      display: inline-flex;
       align-items: center;
-      gap: 12px;
-      min-inline-size: 0;
-    }
-
-    .hbh-badge {
+      gap: 8px;
+      padding: 3.5px 10px;
+      border-radius: 999px;
+      background: rgba(163, 133, 255, 0.15);
+      border: 1px solid rgba(163, 133, 255, 0.45);
       font-family: var(--mono);
       font-size: 8.5px;
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      padding: 2.5px 8px;
-      border-radius: 4px;
-      background: rgba(236, 207, 146, 0.16);
-      color: var(--champagne-bright);
-      border: 1px solid rgba(236, 207, 146, 0.4);
+      color: var(--ethereal-bright);
       white-space: nowrap;
+    }
+
+    .cpn-loc-dot {
+      inline-size: 6px;
+      block-size: 6px;
+      border-radius: 50%;
+      background: var(--ethereal-bright);
+      box-shadow: 0 0 8px var(--ethereal);
+    }
+
+    /* 8-Star Interactive Waypoint Track */
+    .cpn-track {
+      display: grid;
+      grid-template-columns: repeat(8, minmax(0, 1fr));
+      gap: 4px;
+      align-items: center;
+      min-inline-size: 0;
+    }
+
+    .cpn-step {
+      position: relative;
+      padding: 4px 7px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(17, 23, 38, 0.65);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      text-align: left;
+      min-inline-size: 0;
+      transition: all 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .cpn-step:hover {
+      border-color: rgba(206, 192, 255, 0.45);
+      background: rgba(28, 36, 58, 0.9);
+      transform: translateY(-1px);
+    }
+
+    .cpn-step[aria-current="step"] {
+      background: linear-gradient(135deg, rgba(108, 76, 230, 0.38), rgba(17, 23, 38, 0.95));
+      border-color: var(--ethereal-bright);
+      box-shadow: 0 0 14px rgba(163, 133, 255, 0.28);
+    }
+
+    .cpn-step-dot {
+      inline-size: 6px;
+      block-size: 6px;
+      border-radius: 50%;
       flex-shrink: 0;
     }
 
-    .hbh-coords {
-      font-family: var(--mono);
-      font-size: 8.8px;
-      letter-spacing: 0.11em;
-      text-transform: uppercase;
-      color: #B4C0D3;
+    .cpn-step[data-chain-type="castor"] .cpn-step-dot {
+      background: var(--castor-star);
+      box-shadow: 0 0 6px var(--castor-glow);
+    }
+
+    .cpn-step[data-chain-type="pollux"] .cpn-step-dot {
+      background: var(--pollux-star);
+      box-shadow: 0 0 6px var(--pollux-glow);
+    }
+
+    .cpn-step-label {
+      font-size: 10px;
+      font-weight: 500;
+      color: #B8C4D8;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
-    .hbh-right {
-      display: flex;
+    .cpn-step[aria-current="step"] .cpn-step-label {
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+
+    .cpn-arrows {
+      display: inline-flex;
       align-items: center;
-      gap: 12px;
+      gap: 5px;
       flex-shrink: 0;
     }
 
-    .hbh-dest {
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 15px;
-      color: var(--champagne-bright);
-      white-space: nowrap;
-    }
-
-    .hbh-enter-btn {
-      padding: 4px 11px;
+    .cpn-arrow-btn {
+      padding: 4px 9px;
       border-radius: 999px;
-      background: var(--champagne-bright);
-      color: var(--obsidian);
+      border: 1px solid var(--hairline-dark);
+      background: var(--obsidian-card);
+      color: #CBD5E6;
       font-family: var(--mono);
       font-size: 8.5px;
-      font-weight: 600;
-      letter-spacing: 0.11em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
+      transition: all 0.18s ease;
       white-space: nowrap;
-      transition: background-color 0.2s ease, transform 0.2s ease;
     }
 
-    .hbh-enter-btn:hover {
-      background: var(--celadon-bright);
-      transform: translateY(-1px);
+    .cpn-arrow-btn:hover {
+      border-color: var(--ethereal-bright);
+      color: var(--starlight);
+      background: rgba(163, 133, 255, 0.2);
     }
 
     /* =========================================================================
-       3. LOWER COUTURE MAGAZINE SPREAD (50/50 PORCELAIN SILK SALONS)
-       Left: 01 / α Castor (What's New & How It Applies to You)
-       Right: 02 / β Pollux (How to Use It Right Now & Live Proof)
+       4. LOWER COUTURE MAGAZINE SPREAD (50/50 PORCELAIN SILK SALONS)
+       Simplified, spacious, and color-tuned to Castor (Blue-White/Sapphire)
+       and Pollux (Golden-Orange/Amber) with smooth transition animations!
        ========================================================================= */
     .magazine-spread {
-      flex: 0.92;
+      flex: 0.82;
       min-block-size: 0;
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -643,22 +921,32 @@
     }
 
     .spread-salon {
-      padding: clamp(10px, 1.4vh, 18px) clamp(18px, 2.4vw, 38px);
+      padding: clamp(12px, 1.8vh, 22px) clamp(20px, 2.6vw, 44px);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 8px;
+      gap: 10px;
       min-inline-size: 0;
       min-block-size: 0;
+      transition: opacity 0.28s ease, transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .spread-salon.is-transitioning {
+      opacity: 0.35;
+      transform: translateY(4px);
     }
 
     .spread-castor {
       border-inline-end: 1px solid var(--hairline);
-      background: linear-gradient(180deg, var(--silk-elevated) 0%, var(--silk) 100%);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(126, 184, 255, 0.08) 0%, transparent 50%),
+        linear-gradient(180deg, var(--silk-elevated) 0%, var(--silk) 100%);
     }
 
     .spread-pollux {
-      background: linear-gradient(180deg, var(--silk) 0%, var(--silk-warm) 100%);
+      background:
+        radial-gradient(circle at 100% 0%, rgba(245, 158, 63, 0.08) 0%, transparent 50%),
+        linear-gradient(180deg, var(--silk-elevated) 0%, var(--silk-warm) 100%);
     }
 
     .salon-header-row {
@@ -666,7 +954,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 8px;
-      padding-block-end: 5px;
+      padding-block-end: 6px;
       border-block-end: 1px solid var(--hairline);
       font-family: var(--mono);
       font-size: 9px;
@@ -676,32 +964,81 @@
 
     .shr-title {
       font-weight: 600;
-      color: var(--champagne-ink);
+      color: var(--castor-ink);
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
       white-space: nowrap;
     }
 
     .spread-pollux .shr-title {
-      color: var(--celadon-ink);
+      color: var(--pollux-ink);
     }
 
+    .shr-star-dot {
+      inline-size: 7px;
+      block-size: 7px;
+      border-radius: 50%;
+      background: var(--castor-glow);
+      box-shadow: 0 0 8px var(--castor-glow);
+    }
+
+    .spread-pollux .shr-star-dot {
+      background: var(--pollux-glow);
+      box-shadow: 0 0 8px var(--pollux-glow);
+    }
+
+    /* Hoverable Star Spec Badge in Salon Header (Progressive Disclosure!) */
     .shr-badge {
-      padding: 2px 7px;
+      position: relative;
+      padding: 2.5px 9px;
       border-radius: 999px;
-      background: var(--silk-warm);
-      border: 1px solid var(--hairline);
-      color: var(--ink);
+      background: var(--castor-tint);
+      border: 1px solid rgba(30, 86, 150, 0.25);
+      color: var(--castor-ink);
       font-size: 8.5px;
+      font-weight: 600;
       white-space: nowrap;
+      cursor: help;
     }
 
-    /* Main Content Grid inside Each Salon */
+    .spread-pollux .shr-badge {
+      background: var(--pollux-tint);
+      border-color: rgba(158, 84, 12, 0.28);
+      color: var(--pollux-ink);
+    }
+
+    .shr-badge-tooltip {
+      position: absolute;
+      inset-block-end: calc(100% + 6px);
+      inset-inline-end: 0;
+      background: var(--obsidian);
+      color: var(--starlight);
+      padding: 6px 10px;
+      border-radius: 8px;
+      border: 1px solid var(--ethereal);
+      font-family: var(--mono);
+      font-size: 8.5px;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(4px);
+      transition: all 0.2s ease;
+      z-index: 10;
+      box-shadow: 0 8px 24px rgba(7, 9, 16, 0.28);
+    }
+
+    .shr-badge:hover .shr-badge-tooltip {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Main Content Split inside Each Salon */
     .salon-body-split {
       display: grid;
-      grid-template-columns: 1.25fr 1fr;
-      gap: 16px;
+      grid-template-columns: 1.28fr 1fr;
+      gap: 18px;
       align-items: center;
       flex: 1;
       min-block-size: 0;
@@ -710,14 +1047,14 @@
     .salon-story-col {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 7px;
       min-inline-size: 0;
     }
 
     .couture-headline {
       font-family: var(--serif);
       font-weight: 500;
-      font-size: clamp(24px, 2.05vw, 34px);
+      font-size: clamp(26px, 2.2vw, 36px);
       line-height: 0.96;
       letter-spacing: -0.01em;
       color: var(--ink);
@@ -727,17 +1064,17 @@
       display: block;
       font-style: italic;
       font-weight: 400;
-      color: var(--champagne-ink);
+      color: var(--castor-ink);
       margin-block-start: 2px;
     }
 
     .spread-pollux .couture-headline em {
-      color: var(--celadon-ink);
+      color: var(--pollux-ink);
     }
 
     .couture-dek {
-      font-size: clamp(11.5px, 0.84vw, 13px);
-      line-height: 1.42;
+      font-size: clamp(12px, 0.88vw, 13.5px);
+      line-height: 1.46;
       color: var(--ink-soft);
     }
 
@@ -750,59 +1087,72 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      margin-block-start: 2px;
+      margin-block-start: 3px;
     }
 
     .couture-cta {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      font-size: 11.5px;
+      gap: 9px;
+      font-size: 12px;
       font-weight: 600;
       color: var(--ink);
     }
 
     .couture-cta-circle {
-      inline-size: 24px;
-      block-size: 24px;
+      inline-size: 26px;
+      block-size: 26px;
       border-radius: 50%;
-      border: 1px solid var(--ink);
+      border: 1px solid var(--castor-ink);
+      color: var(--castor-ink);
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.2s ease;
+      transition: all 0.22s ease;
+    }
+
+    .spread-pollux .couture-cta-circle {
+      border-color: var(--pollux-ink);
+      color: var(--pollux-ink);
     }
 
     .couture-cta:hover .couture-cta-circle {
-      background: var(--obsidian);
-      color: var(--champagne-bright);
-      transform: translateX(2px);
+      background: var(--castor-ink);
+      color: #FFFFFF;
+      transform: translateX(3px);
+    }
+
+    .spread-pollux .couture-cta:hover .couture-cta-circle {
+      background: var(--pollux-ink);
+      color: #FFFFFF;
     }
 
     /* Telemetry Specimen Card (Right side of Castor Salon) */
     .telemetry-card {
       background: var(--silk-elevated);
-      border: 1px solid var(--hairline);
-      border-radius: 8px;
-      padding: 9px 12px;
+      border: 1px solid rgba(30, 86, 150, 0.22);
+      border-radius: 10px;
+      padding: 10px 13px;
       display: flex;
       flex-direction: column;
-      gap: 4px;
-      box-shadow: 0 6px 20px rgba(16, 20, 27, 0.04);
+      gap: 5px;
+      box-shadow: 0 8px 24px rgba(30, 86, 150, 0.05);
     }
 
     .tc-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 8px;
       font-family: var(--mono);
       font-size: 8.5px;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.11em;
       text-transform: uppercase;
-      color: var(--champagne-ink);
+      color: var(--castor-ink);
       padding-block-end: 4px;
       border-block-end: 1px solid var(--hairline);
       font-weight: 600;
+      white-space: nowrap;
     }
 
     .tc-row {
@@ -810,7 +1160,7 @@
       justify-content: space-between;
       align-items: baseline;
       gap: 8px;
-      padding-block: 2.5px;
+      padding-block: 3px;
       border-block-end: 1px dashed var(--hairline);
       font-size: 11px;
     }
@@ -829,7 +1179,7 @@
 
     .tc-val {
       font-family: var(--mono);
-      font-size: 10.8px;
+      font-size: 11px;
       font-weight: 600;
       color: var(--ink);
       text-align: right;
@@ -843,7 +1193,7 @@
       font-size: 8.5px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--champagne-ink);
+      color: var(--castor-ink);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -853,17 +1203,17 @@
       text-decoration: underline;
     }
 
-    /* Velvet Tourmaline Console (Right side of Pollux Salon) */
+    /* Golden-Orange & Obsidian Workbench Console (Right side of Pollux Salon) */
     .atelier-console {
       background: var(--obsidian-card);
       color: var(--starlight);
-      border-radius: 8px;
-      padding: 9px 12px;
-      border: 1px solid var(--hairline-dark);
+      border-radius: 10px;
+      padding: 10px 13px;
+      border: 1px solid rgba(245, 158, 63, 0.35);
       display: flex;
       flex-direction: column;
-      gap: 5px;
-      box-shadow: 0 8px 24px rgba(7, 10, 16, 0.14);
+      gap: 6px;
+      box-shadow: 0 10px 28px rgba(7, 9, 16, 0.16);
     }
 
     .ac-top {
@@ -874,7 +1224,7 @@
       font-size: 8px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--celadon-bright);
+      color: var(--pollux-star);
     }
 
     .ac-presets {
@@ -882,13 +1232,13 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 4px;
       background: var(--obsidian);
-      padding: 2.5px;
-      border-radius: 5px;
+      padding: 3px;
+      border-radius: 6px;
       border: 1px solid var(--hairline-dark);
     }
 
     .ac-preset-btn {
-      padding: 3.5px 4px;
+      padding: 4px 5px;
       border-radius: 4px;
       font-family: var(--mono);
       font-size: 8px;
@@ -901,21 +1251,21 @@
     }
 
     .ac-preset-btn[aria-pressed="true"] {
-      background: var(--celadon-bright);
+      background: var(--pollux-glow);
       color: var(--obsidian);
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .ac-output {
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 2.5px;
       background: var(--obsidian);
       border: 1px solid var(--hairline-dark);
-      border-radius: 5px;
-      padding: 5px 8px;
+      border-radius: 6px;
+      padding: 6px 9px;
       font-family: var(--mono);
-      font-size: 9.5px;
+      font-size: 9.8px;
     }
 
     .ac-line {
@@ -945,78 +1295,11 @@
     }
 
     .ac-v.accent {
-      color: var(--celadon-bright);
-    }
-
-    /* Bottom 4-Star Selector Strip inside Each Salon */
-    .salon-star-strip {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      border: 1px solid var(--hairline);
-      border-radius: 6px;
-      overflow: hidden;
-      background: var(--silk-elevated);
-      flex-shrink: 0;
-    }
-
-    .sss-btn {
-      padding: 5px 8px;
-      text-align: left;
-      border-inline-end: 1px solid var(--hairline);
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-      transition: background-color 0.18s ease;
-      min-inline-size: 0;
-    }
-
-    .sss-btn:last-child {
-      border-inline-end: none;
-    }
-
-    .sss-btn:hover {
-      background: var(--silk-warm);
-    }
-
-    .sss-btn[aria-selected="true"] {
-      background: var(--obsidian);
-      color: var(--starlight);
-    }
-
-    .sss-star {
-      font-family: var(--mono);
-      font-size: 8px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--champagne-ink);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .spread-pollux .sss-star {
-      color: var(--celadon-ink);
-    }
-
-    .sss-btn[aria-selected="true"] .sss-star {
-      color: var(--champagne-bright);
-    }
-
-    .spread-pollux .sss-btn[aria-selected="true"] .sss-star {
-      color: var(--celadon-bright);
-    }
-
-    .sss-label {
-      font-size: 10.5px;
-      font-weight: 600;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      color: var(--pollux-star);
     }
 
     /* =========================================================================
-       4. BOTTOM CELESTIAL FOOTER RIBBON
+       5. BOTTOM CELESTIAL FOOTER RIBBON
        ========================================================================= */
     .celestial-footer {
       background: var(--obsidian);
@@ -1029,7 +1312,7 @@
       gap: 12px;
       font-family: var(--mono);
       font-size: 8.5px;
-      letter-spacing: 0.13em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       flex-shrink: 0;
     }
@@ -1042,27 +1325,27 @@
     }
 
     .cf-right a {
-      color: var(--champagne-bright);
+      color: var(--ethereal-bright);
       text-decoration: underline;
       text-underline-offset: 3px;
     }
 
     /* =========================================================================
-       5. NATIVE <DIALOG> CELESTIAL DESTINATION MODAL
+       6. NATIVE <DIALOG> CELESTIAL DESTINATION MODAL
        ========================================================================= */
     dialog.celestial-modal {
       margin: auto;
       inline-size: min(740px, 92vw);
       background: var(--silk-elevated);
       color: var(--ink);
-      border: 1px solid var(--champagne);
+      border: 1px solid var(--ethereal);
       border-radius: 14px;
       padding: 0;
-      box-shadow: 0 28px 80px rgba(8, 12, 18, 0.55);
+      box-shadow: 0 28px 80px rgba(7, 9, 16, 0.65);
     }
 
     dialog.celestial-modal::backdrop {
-      background: rgba(8, 12, 18, 0.76);
+      background: rgba(7, 9, 16, 0.76);
       backdrop-filter: blur(5px);
     }
 
@@ -1082,8 +1365,8 @@
     .cm-close {
       padding: 4px 10px;
       border-radius: 999px;
-      border: 1px solid rgba(236, 207, 146, 0.4);
-      color: var(--champagne-bright);
+      border: 1px solid rgba(163, 133, 255, 0.45);
+      color: var(--ethereal-bright);
       font-family: var(--mono);
       font-size: 9px;
     }
@@ -1104,7 +1387,7 @@
 
     .cm-title em {
       font-style: italic;
-      color: var(--champagne-ink);
+      color: var(--castor-ink);
     }
 
     .cm-lead {
@@ -1142,9 +1425,8 @@
        COMPACT DESKTOP / LANDSCAPE TABLET ADAPTATION (1280x800 & 1024x768)
        ========================================================================= */
     @media (max-width: 1360px) {
-      .premise-tag,
-      .hbh-dest,
-      .cf-hide-compact {
+      .cf-hide-compact,
+      .tpo-hint-badge {
         display: none;
       }
     }
@@ -1159,27 +1441,24 @@
       .hero-h1 {
         font-size: clamp(22px, 2.2vw, 30px);
       }
+      .constellation-progress-nav {
+        padding-block: 4px;
+      }
       .spread-salon {
-        padding: 8px 16px;
-        gap: 5px;
+        padding: 10px 18px;
+        gap: 6px;
       }
       .couture-headline {
-        font-size: clamp(20px, 1.85vw, 25px);
+        font-size: clamp(21px, 1.95vw, 27px);
       }
       .couture-dek {
-        font-size: 11px;
-        line-height: 1.32;
+        font-size: 11.2px;
+        line-height: 1.36;
       }
       .telemetry-card,
       .atelier-console {
-        padding: 6px 9px;
+        padding: 7px 10px;
         gap: 3px;
-      }
-      .sss-btn {
-        padding: 4px 6px;
-      }
-      .sss-label {
-        font-size: 9.8px;
       }
     }
   </style>
@@ -1187,47 +1466,50 @@
 <body>
   <div class="couture-shell">
     <!-- =====================================================================
-         1. TOP COUTURE MASTHEAD & AUTONOMOUS PREMISE BAR
+         1. MINIMALIST COUTURE MASTHEAD
          ===================================================================== -->
     <header class="couture-header" role="banner">
-      <a href="#constellation-hero" class="brand-lockup" aria-label="GeminiPulse Celestial Atlas Home">
+      <a href="#constellation-hero" class="brand-lockup" aria-label="GeminiPulse Home">
         <span class="brand-glyph" aria-hidden="true">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
             <path d="M5 4c4 2 10 2 14 0M5 20c4-2 10-2 14 0M9 5.2v13.6M15 5.2v13.6" stroke-linecap="round"/>
           </svg>
         </span>
-        <span>
-          <span class="brand-title">GEMINIPULSE</span>
-          <span class="brand-coords">IAU GEMINI · RA 07h 20m · DEC +22°</span>
-        </span>
+        <span class="brand-title">GEMINIPULSE</span>
       </a>
 
       <div class="premise-ribbon">
-        <span class="premise-tag">AUTONOMOUS GEMINI EDITION</span>
+        <span class="premise-dot" aria-hidden="true"></span>
         <p class="premise-text">
-          Conceived by a human · Written &amp; coded by <strong>Google Gemini</strong> — <em>click any star below to take you places.</em>
+          Conceived by a human · Written, designed &amp; coded by <strong>Google Gemini</strong> — <em>click any star to explore.</em>
         </p>
       </div>
 
       <div class="header-controls">
+        <button type="button" class="live-sky-btn" id="live-sky-toggle" aria-pressed="false" title="Toggle real-time sidereal sky orientation for Gemini right now">
+          <span class="live-sky-dot" aria-hidden="true"></span>
+          <span id="live-sky-label">Live Sky · LST</span>
+        </button>
+
         <div class="chain-switcher" role="group" aria-label="Filter Constellation Chains">
-          <button type="button" class="chain-btn" data-filter-chain="all" aria-pressed="true">All 8 Stars</button>
+          <button type="button" class="chain-btn" data-filter-chain="all" aria-pressed="true">Both Twins</button>
           <button type="button" class="chain-btn" data-filter-chain="castor" aria-pressed="false"><span class="greek">α</span> Castor</button>
           <button type="button" class="chain-btn" data-filter-chain="pollux" aria-pressed="false"><span class="greek">β</span> Pollux</button>
         </div>
-        <button type="button" class="charter-pill" id="open-charter-btn">Autonomous Charter ↗</button>
+
+        <button type="button" class="charter-pill" id="open-charter-btn">Charter ↗</button>
       </div>
     </header>
 
     <!-- =====================================================================
-         2. UPPER PANORAMIC HERO: CASTOR & POLLUX ENGRAVING + INTERACTIVE GEMINI CONSTELLATION
+         2. UPPER PANORAMIC HERO: CASTOR & POLLUX ENGRAVING + AUTHORITATIVE IAU GEMINI CONSTELLATION
          ===================================================================== -->
     <section class="constellation-hero" id="constellation-hero" aria-label="Interactive Gemini Constellation Hero">
       <!-- Full 16:9 Copperplate Engraving of Castor (Left) & Pollux (Right) -->
       <div class="hero-engraving-backdrop">
         <img
           src="./assets/look-i-celestial-twins.webp"
-          alt="Copperplate celestial engraving of the Gemini Twins: classical marble Castor on the left facing haute-horlogerie clockwork Pollux on the right"
+          alt="Copperplate celestial engraving of the Gemini Twins: classical silver-white marble Castor on the left facing golden-orange clockwork Pollux on the right"
           width="1376"
           height="768"
           fetchpriority="high"
@@ -1235,209 +1517,282 @@
       </div>
       <div class="hero-scrim" aria-hidden="true"></div>
 
-      <!-- Top Hero Header & Twin Engraving Labels -->
+      <!-- Top Hero Bar: Pulsing Progressive-Disclosure Twin Pills + Clean Poetic Headline -->
       <div class="hero-top-bar">
-        <div class="wing-fig-tag">
-          <span class="wing-fig-kicker">★ LEFT TWIN · <span class="greek">α</span> CASTOR (THE SIGNAL)</span>
-          <span class="wing-fig-sub">WHAT’S NEW IN GEMINI &amp; HOW IT APPLIES TO YOU</span>
+        <!-- Left Pulsing Pill: α Castor (Blue-White Starlight) -->
+        <div class="twin-pulse-orb" tabindex="0" role="button" aria-label="Alpha Castor: The Signal. Hover or tap for details" data-filter-trigger="castor">
+          <div class="tpo-main">
+            <span class="tpo-beacon" aria-hidden="true"></span>
+            <span><span class="greek">α</span> Castor (The Signal)</span>
+          </div>
+          <div class="tpo-drawer">
+            What’s new in Google Gemini &amp; how it applies to you.
+            <span>Blue-White Star Chain (A1V · Mag 1.58)</span>
+          </div>
         </div>
 
+        <!-- Clean Poetic Center Title (No Gimmicky IAU Eyebrow) -->
         <div class="hero-center-heading">
-          <span class="hero-eyebrow">✦ ASTRONOMICAL IAU GEMINI (♊&#xFE0E;) STAR MAP · CLICK ANY STAR TO NAVIGATE ✦</span>
           <h1 class="hero-h1">
             Written by Gemini. <em>Guided by the Twins.</em>
           </h1>
         </div>
 
-        <div class="wing-fig-tag pollux-tag">
-          <span class="wing-fig-kicker">✧ RIGHT TWIN · <span class="greek">β</span> POLLUX (THE WORKBENCH)</span>
-          <span class="wing-fig-sub">HOW TO USE IT RIGHT NOW &amp; LIVE PROOF</span>
+        <!-- Right Pulsing Pill: β Pollux (Golden-Orange Starlight) -->
+        <div class="twin-pulse-orb pollux-orb" tabindex="0" role="button" aria-label="Beta Pollux: The Workbench. Hover or tap for details" data-filter-trigger="pollux">
+          <div class="tpo-main">
+            <span><span class="greek">β</span> Pollux (The Workbench)</span>
+            <span class="tpo-beacon" aria-hidden="true"></span>
+          </div>
+          <div class="tpo-drawer">
+            How to use it right now &amp; live 10-second proof.
+            <span>Golden-Orange Star Chain (K0III · Mag 1.14)</span>
+          </div>
         </div>
       </div>
 
-      <!-- Interactive Panoramic SVG Gemini Constellation
-           Positioned cleanly inside the central celestial corridor (x=370..910)
-           so both Castor's marble profile (left) and Pollux's clockwork profile (right)
-           are 100% unobstructed and gaze directly at the interactive stars! -->
+      <!-- ===================================================================
+           AUTHORITATIVE IAU / NOIRLAB GEMINI CONSTELLATION SVG
+           Matches official IAU stick-figure charts (2-legged Twins holding shoulders):
+           • Castor (Left/North, Blue-White): Head α Castor (555,48) -> Shoulder τ Gem (535,108)
+             [Arm to θ Gem (458,96)] -> Hip ε Mebsuta (504,184) -> Outer Leg μ Tejat (442,246)
+             -> η Propus (396,296) + Inner Leg ν Gem (482,276)
+           • Twin Shoulder Clasp: τ Gem (535,108) — ι Gem (618,126) — υ Gem (682,122)
+           • Pollux (Right/South, Golden-Orange): Head β Pollux (695,64) -> Shoulder υ Gem (682,122)
+             [Arm to κ Gem (758,116)] -> Waist δ Wasat (676,192) -> Inner Leg ζ Mekbuda (626,248)
+             -> γ Alhena (574,312) + Outer Leg λ Gem (712,256) -> ξ Alzirr (678,322)
+           =================================================================== -->
       <div class="hero-constellation-stage">
-        <svg class="gemini-panoramic-svg" viewBox="0 0 1280 340" role="group" aria-label="Clickable Stars of the Castor and Pollux Gemini Constellation">
+        <svg class="gemini-panoramic-svg" viewBox="0 0 1280 350" role="group" aria-label="Interactive Gemini Constellation Star Map">
           <defs>
             <radialGradient id="m35-cluster-glow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#ECCF92" stop-opacity="0.55" />
-              <stop offset="100%" stop-color="#ECCF92" stop-opacity="0" />
+              <stop offset="0%" stop-color="#A385FF" stop-opacity="0.55" />
+              <stop offset="55%" stop-color="#7EB8FF" stop-opacity="0.25" />
+              <stop offset="100%" stop-color="#7EB8FF" stop-opacity="0" />
             </radialGradient>
           </defs>
 
-          <!-- Subtle Celestial Ecliptic Arc & Equatorial Coordinates in the Center Corridor -->
-          <g aria-hidden="true" opacity="0.48">
-            <path d="M 350 268 Q 640 165 930 112" fill="none" stroke="#C8A25A" stroke-width="1" stroke-dasharray="6 5" />
-            <text x="588" y="154" fill="#ECCF92" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="1.5">ECLIPTIC PLANE (+22°)</text>
-          </g>
+          <g id="constellation-master-group">
+            <!-- Subtle Ecliptic Arc passing directly through δ Wasat (676,192) -->
+            <g aria-hidden="true" opacity="0.42">
+              <path d="M 355 274 Q 640 198 920 132" fill="none" stroke="#A385FF" stroke-width="1" stroke-dasharray="5 5" />
+              <text x="802" y="146" fill="#CEC0FF" font-family="JetBrains Mono, monospace" font-size="7.5" letter-spacing="1.4">ECLIPTIC (+22°)</text>
+            </g>
 
-          <!-- M35 Open Star Cluster near η Propus -->
-          <circle cx="384" cy="288" r="22" fill="url(#m35-cluster-glow)" aria-hidden="true" />
-          <g fill="#ECCF92" opacity="0.8" aria-hidden="true">
-            <circle cx="378" cy="284" r="1.2" /><circle cx="388" cy="290" r="1.4" />
-            <circle cx="382" cy="294" r="1" /><circle cx="375" cy="291" r="1.1" />
-          </g>
+            <!-- M35 Open Star Cluster right beside η Propus (396,296) -->
+            <circle cx="372" cy="292" r="22" fill="url(#m35-cluster-glow)" aria-hidden="true" />
+            <g fill="#D6EBFF" opacity="0.82" aria-hidden="true">
+              <circle cx="368" cy="288" r="1.3" /><circle cx="376" cy="294" r="1.4" />
+              <circle cx="371" cy="298" r="1" /><circle cx="364" cy="294" r="1.1" />
+              <text x="342" y="280" fill="#B8DCFF" font-family="JetBrains Mono, monospace" font-size="7.5">M35</text>
+            </g>
 
-          <!-- ===============================================================
-               IAU GEMINI CONSTELLATION LINES IN THE CENTRAL CORRIDOR
-               =============================================================== -->
-          <!-- Twin Shoulder Bridge across the Center -->
-          <polyline class="constellation-bridge-line" points="586,38 564,96 640,112 716,98 694,42" />
+            <!-- =============================================================
+                 AUTHORITATIVE IAU STICK-FIGURE LINES
+                 ============================================================= -->
+            <!-- Shoulder Clasp connecting the Twins (τ Gem — ι Gem — υ Gem) -->
+            <polyline class="constellation-bridge-line" points="535,108 618,126 682,122" />
 
-          <!-- Left Chain: α Castor Stick Figure (α Castor -> τ Gem -> ε Mebsuta -> μ Tejat -> η Propus) -->
-          <polyline class="constellation-line-castor" points="586,38 564,96 552,162 496,226 410,288" />
-          <polyline class="constellation-line-castor" points="488,88 564,96 640,112" stroke-opacity="0.45" />
+            <!-- α Castor Stick Figure (Blue-White Chain: Head -> Shoulder -> Torso -> 2 Legs + Outstretched Arm) -->
+            <polyline class="constellation-line-castor" points="555,48 535,108 504,184 442,246 396,296" />
+            <polyline class="constellation-line-castor" points="458,96 535,108" stroke-opacity="0.62" />
+            <polyline class="constellation-line-castor" points="504,184 482,276" stroke-opacity="0.62" />
 
-          <!-- Right Chain: β Pollux Stick Figure (β Pollux -> υ Gem -> δ Wasat -> ζ Mekbuda -> γ Alhena) -->
-          <polyline class="constellation-line-pollux" points="694,42 716,98 728,162 708,226 870,288" />
-          <polyline class="constellation-line-pollux" points="716,98 792,90" stroke-opacity="0.45" />
-          <polyline class="constellation-line-pollux" points="728,162 712,262" stroke-opacity="0.42" />
+            <!-- β Pollux Stick Figure (Golden-Orange Chain: Head -> Shoulder -> Waist -> 2 Legs + Outstretched Arm) -->
+            <polyline class="constellation-line-pollux" points="695,64 682,122 676,192 626,248 574,312" />
+            <polyline class="constellation-line-pollux" points="682,122 758,116" stroke-opacity="0.62" />
+            <polyline class="constellation-line-pollux" points="676,192 712,256 696,334" stroke-opacity="0.62" />
 
-          <!-- Faint Secondary Anatomical Stars (θ, τ, ι, υ, κ, ξ) -->
-          <g fill="#C6D0E1" opacity="0.72" font-family="JetBrains Mono, monospace" font-size="8">
-            <circle cx="488" cy="88" r="2.2" /><text x="454" y="85">θ Gem</text>
-            <circle cx="564" cy="96" r="2.4" /><text x="572" y="94">τ Gem</text>
-            <circle cx="640" cy="112" r="2.5" /><text x="626" y="103">ι Gem</text>
-            <circle cx="716" cy="98" r="2.4" /><text x="682" y="95">υ Gem</text>
-            <circle cx="792" cy="90" r="2.4" /><text x="800" y="93">κ Gem</text>
-            <circle cx="712" cy="262" r="2.3" /><text x="676" y="274">ξ Alzirr</text>
-          </g>
+            <!-- Secondary IAU Anatomical Stars (θ, τ, ι, ν on Castor; υ, κ, λ, ξ on Pollux) -->
+            <g class="minor-castor" fill="#B8DCFF" opacity="0.72" font-family="JetBrains Mono, monospace" font-size="7.5">
+              <circle cx="458" cy="96" r="2.4" /><text x="424" y="93">θ Gem</text>
+              <circle cx="535" cy="108" r="2.6" /><text x="543" y="105">τ</text>
+              <circle cx="618" cy="126" r="2.6" fill="#CEC0FF" /><text x="612" y="117" fill="#CEC0FF">ι</text>
+              <circle cx="482" cy="276" r="2.5" /><text x="490" y="280">ν Gem</text>
+            </g>
+            <g class="minor-pollux" fill="#FFD296" opacity="0.72" font-family="JetBrains Mono, monospace" font-size="7.5">
+              <circle cx="682" cy="122" r="2.6" /><text x="664" y="117">υ</text>
+              <circle cx="758" cy="116" r="2.5" /><text x="766" y="119">κ Gem</text>
+              <circle cx="712" cy="256" r="2.5" /><text x="720" y="259">λ</text>
+              <circle cx="696" cy="334" r="2.6" /><text x="705" y="337">ξ Alzirr</text>
+            </g>
 
-          <!-- ===============================================================
-               8 CLICKABLE MAJOR STARS OF GEMINI (4 CASTOR, 4 POLLUX)
-               All pills sit inside x=376..904 so Castor (x=60..360) and
-               Pollux (x=920..1220) are 100% clear and unobstructed!
-               =============================================================== -->
+            <!-- =============================================================
+                 8 CLICKABLE MAJOR STARS (4 BLUE-WHITE CASTOR, 4 GOLDEN-ORANGE POLLUX)
+                 Minimal 1-line pills by default; metadata reveals on hover/active!
+                 ============================================================= -->
 
-          <!-- STAR 1: α CASTOR (Head of Castor — Mag 1.58) -->
-          <g class="star-node star-node-castor" role="button" tabindex="0" data-star="castor" data-active="true" aria-label="Alpha Castor: Dec 1 Price Cut (-90% Context Caching)">
-            <rect class="star-hit-area" x="376" y="12" width="232" height="50" />
-            <rect class="star-pill-bg" x="380" y="16" width="186" height="40" />
-            <text class="star-label-astro" x="390" y="31">★ α CASTOR · MAG 1.58</text>
-            <text class="star-label-dest" x="390" y="47">01 · Dec 1 Price Cut (-78%)</text>
-            <circle class="star-halo" cx="586" cy="38" r="15" />
-            <circle class="star-reticle" cx="586" cy="38" r="21" stroke="#ECCF92" />
-            <circle class="star-core-castor" cx="586" cy="38" r="6.5" />
-            <path d="M586 25v26M573 38h26" stroke="#FFFDF7" stroke-width="1.35" />
-          </g>
+            <!-- STAR 01: α CASTOR (Head of Castor — Blue-White Sextuple, Mag 1.58) -->
+            <g class="star-node star-node-castor" role="button" tabindex="0" data-star="castor" data-x="555" data-y="48" data-active="true" aria-label="Alpha Castor: Dec 1 Price Cut (-78% Bill)">
+              <rect class="star-hit-area" x="348" y="24" width="232" height="48" />
+              <rect class="star-pill-bg" x="354" y="34" width="182" height="26" />
+              <text class="star-label-dest" x="364" y="51"><tspan class="star-bayer-prefix">α Castor · </tspan>Dec 1 Price Cut</text>
+              <text class="star-sub-meta" x="364" y="28">★ 01 · BLUE-WHITE SEXTUPLE (MAG 1.58)</text>
+              <circle class="star-halo" cx="555" cy="48" r="15" />
+              <circle class="star-reticle" cx="555" cy="48" r="21" />
+              <circle class="star-core-castor" cx="555" cy="48" r="6.8" />
+              <path d="M555 34v28M541 48h28" stroke="#FFFFFF" stroke-width="1.35" />
+            </g>
 
-          <!-- STAR 2: ε MEBSUTA (Hip of Castor — Mag 2.98) -->
-          <g class="star-node star-node-castor" role="button" tabindex="0" data-star="mebsuta" data-active="false" aria-label="Epsilon Mebsuta: Releases Decoded in Plain English">
-            <rect class="star-hit-area" x="364" y="138" width="208" height="48" />
-            <rect class="star-pill-bg" x="368" y="142" width="166" height="40" />
-            <text class="star-label-astro" x="378" y="157">✦ ε MEBSUTA · MAG 2.98</text>
-            <text class="star-label-dest" x="378" y="173">02 · Releases Decoded</text>
-            <circle class="star-halo" cx="552" cy="162" r="12" />
-            <circle class="star-reticle" cx="552" cy="162" r="18" stroke="#ECCF92" />
-            <circle class="star-core-castor" cx="552" cy="162" r="5" />
-          </g>
+            <!-- STAR 02: ε MEBSUTA (Hip of Castor — Mag 2.98) -->
+            <g class="star-node star-node-castor" role="button" tabindex="0" data-star="mebsuta" data-x="504" data-y="184" data-active="false" aria-label="Epsilon Mebsuta: Releases Decoded">
+              <rect class="star-hit-area" x="294" y="160" width="230" height="48" />
+              <rect class="star-pill-bg" x="298" y="170" width="188" height="26" />
+              <text class="star-label-dest" x="308" y="187"><tspan class="star-bayer-prefix">ε Mebsuta · </tspan>Releases Decoded</text>
+              <text class="star-sub-meta" x="308" y="164">✦ 02 · SUPERGIANT (MAG 2.98 · 840 LY)</text>
+              <circle class="star-halo" cx="504" cy="184" r="12" />
+              <circle class="star-reticle" cx="504" cy="184" r="18" />
+              <circle class="star-core-castor" cx="504" cy="184" r="5" />
+            </g>
 
-          <!-- STAR 3: μ TEJAT (Back Foot of Castor — Mag 2.87) -->
-          <g class="star-node star-node-castor" role="button" tabindex="0" data-star="tejat" data-active="false" aria-label="Mu Tejat: Work, Speed and Carbon ROI">
-            <rect class="star-hit-area" x="476" y="202" width="208" height="48" />
-            <rect class="star-pill-bg" x="514" y="206" width="166" height="40" />
-            <text class="star-label-astro" x="524" y="221">✦ μ TEJAT · MAG 2.87</text>
-            <text class="star-label-dest" x="524" y="237">03 · Work &amp; Speed ROI</text>
-            <circle class="star-halo" cx="496" cy="226" r="12" />
-            <circle class="star-reticle" cx="496" cy="226" r="18" stroke="#ECCF92" />
-            <circle class="star-core-castor" cx="496" cy="226" r="5" />
-          </g>
+            <!-- STAR 03: μ TEJAT (Knee/Foot of Castor — Mag 2.87) -->
+            <g class="star-node star-node-castor" role="button" tabindex="0" data-star="tejat" data-x="442" data-y="246" data-active="false" aria-label="Mu Tejat: 79% Faster and Carbon ROI">
+              <rect class="star-hit-area" x="240" y="222" width="222" height="48" />
+              <rect class="star-pill-bg" x="246" y="232" width="178" height="26" />
+              <text class="star-label-dest" x="256" y="249"><tspan class="star-bayer-prefix">μ Tejat · </tspan>Speed &amp; Carbon ROI</text>
+              <text class="star-sub-meta" x="256" y="226">✦ 03 · TEJAT POSTERIOR (MAG 2.87)</text>
+              <circle class="star-halo" cx="442" cy="246" r="12" />
+              <circle class="star-reticle" cx="442" cy="246" r="18" />
+              <circle class="star-core-castor" cx="442" cy="246" r="5" />
+            </g>
 
-          <!-- STAR 4: η PROPUS & M35 (Front Foot of Castor — Mag 3.28) -->
-          <g class="star-node star-node-castor" role="button" tabindex="0" data-star="propus" data-active="false" aria-label="Eta Propus and M35 Cluster: 60-Second Video Signal">
-            <rect class="star-hit-area" x="392" y="264" width="218" height="50" />
-            <rect class="star-pill-bg" x="428" y="268" width="176" height="40" />
-            <text class="star-label-astro" x="438" y="283">✦ η PROPUS · M35 CLUSTER</text>
-            <text class="star-label-dest" x="438" y="299">04 · 60-Second Video Signal</text>
-            <circle class="star-halo" cx="410" cy="288" r="12" />
-            <circle class="star-reticle" cx="410" cy="288" r="18" stroke="#ECCF92" />
-            <circle class="star-core-castor" cx="410" cy="288" r="4.8" />
-          </g>
+            <!-- STAR 04: η PROPUS (Front Foot of Castor & M35 Cluster — Mag 3.28) -->
+            <g class="star-node star-node-castor" role="button" tabindex="0" data-star="propus" data-x="396" data-y="296" data-active="false" aria-label="Eta Propus: 60-Second Video Signal">
+              <rect class="star-hit-area" x="198" y="274" width="218" height="48" />
+              <rect class="star-pill-bg" x="204" y="284" width="174" height="26" />
+              <text class="star-label-dest" x="214" y="301"><tspan class="star-bayer-prefix">η Propus · </tspan>60s Video Signal</text>
+              <text class="star-sub-meta" x="214" y="278">✦ 04 · PROPUS &amp; M35 CLUSTER (350 LY)</text>
+              <circle class="star-halo" cx="396" cy="296" r="12" />
+              <circle class="star-reticle" cx="396" cy="296" r="18" />
+              <circle class="star-core-castor" cx="396" cy="296" r="4.8" />
+            </g>
 
-          <!-- STAR 5: β POLLUX (Head of Pollux — Mag 1.14 Brightest Star) -->
-          <g class="star-node star-node-pollux" role="button" tabindex="0" data-star="pollux" data-active="false" aria-label="Beta Pollux: 10-Second Interactive Savings Lab">
-            <rect class="star-hit-area" x="674" y="16" width="232" height="50" />
-            <rect class="star-pill-bg" x="714" y="20" width="186" height="40" />
-            <text class="star-label-astro" x="724" y="35">★ β POLLUX · MAG 1.14</text>
-            <text class="star-label-dest" x="724" y="51">05 · 10-Sec Savings Lab</text>
-            <circle class="star-halo" cx="694" cy="42" r="16" />
-            <circle class="star-reticle" cx="694" cy="42" r="22" stroke="#6CE0C8" />
-            <circle class="star-core-pollux" cx="694" cy="42" r="7" />
-            <path d="M694 28v28M680 42h28" stroke="#FFFDF7" stroke-width="1.4" />
-          </g>
+            <!-- STAR 05: β POLLUX (Head of Pollux — Golden-Orange Giant, Mag 1.14) -->
+            <g class="star-node star-node-pollux" role="button" tabindex="0" data-star="pollux" data-x="695" data-y="64" data-active="false" aria-label="Beta Pollux: 10-Second Savings Lab">
+              <rect class="star-hit-area" x="675" y="40" width="238" height="48" />
+              <rect class="star-pill-bg" x="716" y="50" width="188" height="26" />
+              <text class="star-label-dest" x="726" y="67"><tspan class="star-bayer-prefix">β Pollux · </tspan>10-Sec Savings Lab</text>
+              <text class="star-sub-meta" x="726" y="44">★ 05 · ORANGE GIANT · EXOPLANET HOST</text>
+              <circle class="star-halo" cx="695" cy="64" r="16" />
+              <circle class="star-reticle" cx="695" cy="64" r="22" />
+              <circle class="star-core-pollux" cx="695" cy="64" r="7.2" />
+              <path d="M695 49v30M680 64h30" stroke="#FFFDF7" stroke-width="1.4" />
+            </g>
 
-          <!-- STAR 6: δ WASAT (Ecliptic Waist of Pollux — Mag 3.53) -->
-          <g class="star-node star-node-pollux" role="button" tabindex="0" data-star="wasat" data-active="false" aria-label="Delta Wasat: 5-Minute Workspace Guides">
-            <rect class="star-hit-area" x="710" y="138" width="214" height="48" />
-            <rect class="star-pill-bg" x="744" y="142" width="174" height="40" />
-            <text class="star-label-astro" x="754" y="157">✧ δ WASAT · ON ECLIPTIC</text>
-            <text class="star-label-dest" x="754" y="173">06 · 5-Min Workspace Guides</text>
-            <circle class="star-halo" cx="728" cy="162" r="12" />
-            <circle class="star-reticle" cx="728" cy="162" r="18" stroke="#6CE0C8" />
-            <circle class="star-core-pollux" cx="728" cy="162" r="5" />
-          </g>
+            <!-- STAR 06: δ WASAT (Waist of Pollux on the Ecliptic — Mag 3.53) -->
+            <g class="star-node star-node-pollux" role="button" tabindex="0" data-star="wasat" data-x="676" data-y="192" data-active="false" aria-label="Delta Wasat: 5-Minute Workspace Guides">
+              <rect class="star-hit-area" x="658" y="168" width="252" height="48" />
+              <rect class="star-pill-bg" x="696" y="178" width="206" height="26" />
+              <text class="star-label-dest" x="706" y="195"><tspan class="star-bayer-prefix">δ Wasat · </tspan>5-Min Workspace Guides</text>
+              <text class="star-sub-meta" x="706" y="172">✧ 06 · ECLIPTIC PLANE NODE (60 LY)</text>
+              <circle class="star-halo" cx="676" cy="192" r="12" />
+              <circle class="star-reticle" cx="676" cy="192" r="18" />
+              <circle class="star-core-pollux" cx="676" cy="192" r="5" />
+            </g>
 
-          <!-- STAR 7: ζ MEKBUDA (Cepheid Variable Knee of Pollux — Mag 3.79) -->
-          <g class="star-node star-node-pollux" role="button" tabindex="0" data-star="mekbuda" data-active="false" aria-label="Zeta Mekbuda: Screen-Clicking AI Sandbox">
-            <rect class="star-hit-area" x="692" y="202" width="222" height="48" />
-            <rect class="star-pill-bg" x="726" y="206" width="176" height="40" />
-            <text class="star-label-astro" x="736" y="221">✧ ζ MEKBUDA · CEPHEID</text>
-            <text class="star-label-dest" x="736" y="237">07 · Screen-Clicking AI Lab</text>
-            <circle class="star-halo" cx="708" cy="226" r="12" />
-            <circle class="star-reticle" cx="708" cy="226" r="18" stroke="#6CE0C8" />
-            <circle class="star-core-pollux" cx="708" cy="226" r="5" />
-          </g>
+            <!-- STAR 07: ζ MEKBUDA (Knee of Pollux — Pulsating Cepheid, Mag 3.79) -->
+            <g class="star-node star-node-pollux" role="button" tabindex="0" data-star="mekbuda" data-x="626" data-y="248" data-active="false" aria-label="Zeta Mekbuda: Screen-Clicking AI Sandbox">
+              <rect class="star-hit-area" x="608" y="224" width="242" height="48" />
+              <rect class="star-pill-bg" x="646" y="234" width="194" height="26" />
+              <text class="star-label-dest" x="656" y="251"><tspan class="star-bayer-prefix">ζ Mekbuda · </tspan>Screen-Clicking AI</text>
+              <text class="star-sub-meta" x="656" y="228">✧ 07 · CEPHEID SUPERGIANT (1,200 LY)</text>
+              <circle class="star-halo" cx="626" cy="248" r="12" />
+              <circle class="star-reticle" cx="626" cy="248" r="18" />
+              <circle class="star-core-pollux" cx="626" cy="248" r="5" />
+            </g>
 
-          <!-- STAR 8: γ ALHENA (Bright Southern Foot of Pollux — Mag 1.93) -->
-          <g class="star-node star-node-pollux" role="button" tabindex="0" data-star="alhena" data-active="false" aria-label="Gamma Alhena: Built by Gemini Alone Charter">
-            <rect class="star-hit-area" x="668" y="264" width="222" height="50" />
-            <rect class="star-pill-bg" x="672" y="268" width="180" height="40" />
-            <text class="star-label-astro" x="682" y="283">✧ γ ALHENA · MAG 1.93</text>
-            <text class="star-label-dest" x="682" y="299">08 · Built by Gemini Alone</text>
-            <circle class="star-halo" cx="870" cy="288" r="14" />
-            <circle class="star-reticle" cx="870" cy="288" r="20" stroke="#6CE0C8" />
-            <circle class="star-core-pollux" cx="870" cy="288" r="6" />
-            <path d="M870 276v24M858 288h24" stroke="#FFFDF7" stroke-width="1.2" />
+            <!-- STAR 08: γ ALHENA (Bright Foot of Pollux — Mag 1.93) -->
+            <g class="star-node star-node-pollux" role="button" tabindex="0" data-star="alhena" data-x="574" data-y="312" data-active="false" aria-label="Gamma Alhena: Built by Gemini Alone">
+              <rect class="star-hit-area" x="556" y="288" width="242" height="48" />
+              <rect class="star-pill-bg" x="596" y="298" width="194" height="26" />
+              <text class="star-label-dest" x="606" y="315"><tspan class="star-bayer-prefix">γ Alhena · </tspan>Built by Gemini Alone</text>
+              <text class="star-sub-meta" x="606" y="292">✧ 08 · BRIGHT FOOT OF POLLUX (MAG 1.93)</text>
+              <circle class="star-halo" cx="574" cy="312" r="14" />
+              <circle class="star-reticle" cx="574" cy="312" r="20" />
+              <circle class="star-core-pollux" cx="574" cy="312" r="6" />
+              <path d="M574 300v24M562 312h24" stroke="#FFFDF7" stroke-width="1.2" />
+            </g>
+
+            <!-- Animated Traveling "YOU ARE HERE" Beacon (glides smoothly from star to star!) -->
+            <g id="traveling-beacon" transform="translate(555, 48)">
+              <circle class="tb-outer" cx="0" cy="0" r="18" />
+              <rect class="tb-tag-bg" x="-42" y="18" width="84" height="15" />
+              <text class="tb-tag-text" x="0" y="28" text-anchor="middle">YOU ARE HERE</text>
+            </g>
           </g>
         </svg>
-      </div>
-
-      <!-- Bottom Active Star Telemetry & Destination Bar inside Hero -->
-      <div class="hero-bottom-hud" aria-live="polite">
-        <div class="hbh-left">
-          <span class="hbh-badge" id="hud-star-badge">★ STAR 01 SELECTED</span>
-          <span class="hbh-coords" id="hud-star-coords">
-            <span class="greek">α</span> GEMINORUM (CASTOR) · RA 07h 34m 36s · DEC +31°53' · SEXTUPLE SYSTEM (51 LIGHT-YEARS)
-          </span>
-        </div>
-        <div class="hbh-right">
-          <span class="hbh-dest" id="hud-star-dest">
-            Dec 1 Price Cut (-90% Context Caching) ⇄ 10-Second Savings Lab
-          </span>
-          <button type="button" class="hbh-enter-btn" id="hud-enter-btn">
-            Open Full Star Dossier →
-          </button>
-        </div>
       </div>
     </section>
 
     <!-- =====================================================================
-         3. LOWER COUTURE MAGAZINE SPREAD (50/50 PORCELAIN SILK SALONS)
-         Synchronizes immediately when you click any star in the constellation!
+         3. UNIFIED "YOU ARE HERE" CONSTELLATION PROGRESS & LOCATION BAR
+         Coordinates star-hopping across the 8 stars with smooth content transitions
+         ===================================================================== -->
+    <nav class="constellation-progress-nav" aria-label="Constellation Star Location and Progress">
+      <div class="cpn-location-badge">
+        <span class="cpn-loc-dot" aria-hidden="true"></span>
+        <span id="cpn-location-text">YOU ARE HERE · STAR 01 / 08 (<span class="greek">α</span> CASTOR)</span>
+      </div>
+
+      <div class="cpn-track" role="tablist" aria-label="8 Stars of the Gemini Constellation">
+        <button type="button" class="cpn-step" data-chain-type="castor" data-select-star="castor" aria-current="step">
+          <span class="cpn-step-dot" aria-hidden="true"></span>
+          <span class="cpn-step-label">01 · <span class="greek">α</span> Castor</span>
+        </button>
+        <button type="button" class="cpn-step" data-chain-type="castor" data-select-star="mebsuta" aria-current="false">
+          <span class="cpn-step-dot" aria-hidden="true"></span>
+          <span class="cpn-step-label">02 · <span class="greek">ε</span> Mebsuta</span>
+        </button>
+        <button type="button" class="cpn-step" data-chain-type="castor" data-select-star="tejat" aria-current="false">
+          <span class="cpn-step-dot" aria-hidden="true"></span>
+          <span class="cpn-step-label">03 · <span class="greek">μ</span> Tejat</span>
+        </button>
+        <button type="button" class="cpn-step" data-chain-type="castor" data-select-star="propus" aria-current="false">
+          <span class="cpn-step-dot" aria-hidden="true"></span>
+          <span class="cpn-step-label">04 · <span class="greek">η</span> Propus</span>
+        </button>
+        <button type="button" class="cpn-step" data-chain-type="pollux" data-select-star="pollux" aria-current="false">
+          <span class="cpn-step-dot" aria-hidden="true"></span>
+          <span class="cpn-step-label">05 · <span class="greek">β</span> Pollux</span>
+        </button>
+        <button type="button" class="cpn-step" data-chain-type="pollux" data-select-star="wasat" aria-current="false">
+          <span class="cpn-step-dot" aria-hidden="true"></span>
+          <span class="cpn-step-label">06 · <span class="greek">δ</span> Wasat</span>
+        </button>
+        <button type="button" class="cpn-step" data-chain-type="pollux" data-select-star="mekbuda" aria-current="false">
+          <span class="cpn-step-dot" aria-hidden="true"></span>
+          <span class="cpn-step-label">07 · <span class="greek">ζ</span> Mekbuda</span>
+        </button>
+        <button type="button" class="cpn-step" data-chain-type="pollux" data-select-star="alhena" aria-current="false">
+          <span class="cpn-step-dot" aria-hidden="true"></span>
+          <span class="cpn-step-label">08 · <span class="greek">γ</span> Alhena</span>
+        </button>
+      </div>
+
+      <div class="cpn-arrows">
+        <button type="button" class="cpn-arrow-btn" id="prev-star-btn" aria-label="Previous Star">← Prev</button>
+        <button type="button" class="cpn-arrow-btn" id="next-star-btn" aria-label="Next Star">Next Star →</button>
+      </div>
+    </nav>
+
+    <!-- =====================================================================
+         4. LOWER COUTURE MAGAZINE SPREAD (50/50 PORCELAIN SILK SALONS)
+         Clean, uncluttered, and color-harmonized to Blue-White Castor & Golden-Orange Pollux
          ===================================================================== -->
     <main class="magazine-spread" id="magazine-spread">
       <!-- -------------------------------------------------------------------
-           LEFT SALON: 01 / α CASTOR (What's New & How It Applies to You)
+           LEFT SALON: 01 / α CASTOR (Blue-White Starlight — The Signal)
            ------------------------------------------------------------------- -->
-      <section class="spread-salon spread-castor" aria-labelledby="castor-salon-title">
+      <section class="spread-salon spread-castor" id="salon-castor" aria-labelledby="castor-salon-title">
         <div class="salon-header-row">
           <span class="shr-title">
-            <span>★ 01 / <span class="greek">α</span> CASTOR SALON · WHAT’S NEW &amp; HOW IT APPLIES TO YOU</span>
+            <span class="shr-star-dot" aria-hidden="true"></span>
+            <span><span class="greek">α</span> CASTOR · THE SIGNAL</span>
           </span>
-          <span class="shr-badge" id="castor-star-badge"><span class="greek">α</span> GEM · MAG 1.58</span>
+          <span class="shr-badge" tabindex="0">
+            <span id="castor-star-badge"><span class="greek">α</span> GEM · BLUE-WHITE A1V</span>
+            <span class="shr-badge-tooltip" id="castor-star-tooltip">RA 07h 34m · DEC +31°53' · SEXTUPLE SYSTEM · 51 LY</span>
+          </span>
         </div>
 
         <div class="salon-body-split">
@@ -1459,7 +1814,7 @@
 
           <aside class="telemetry-card" aria-label="Verified Google Telemetry">
             <div class="tc-header">
-              <span>SPECIMEN LEDGER</span>
+              <span>SIGNAL LEDGER</span>
               <span id="castor-spec-code">STAR 01 · <span class="greek">α</span> CASTOR</span>
             </div>
             <div class="tc-row">
@@ -1480,37 +1835,21 @@
             </a>
           </aside>
         </div>
-
-        <!-- Bottom 4-Star α Castor Chain Selector -->
-        <div class="salon-star-strip" role="listbox" aria-label="Castor Chain Stars">
-          <button type="button" class="sss-btn" role="option" data-select-star="castor" aria-selected="true">
-            <span class="sss-star">★ <span class="greek">α</span> Castor · 01</span>
-            <span class="sss-label">Dec 1 Price Cut (-78%)</span>
-          </button>
-          <button type="button" class="sss-btn" role="option" data-select-star="mebsuta" aria-selected="false">
-            <span class="sss-star">✦ <span class="greek">ε</span> Mebsuta · 02</span>
-            <span class="sss-label">Releases Decoded</span>
-          </button>
-          <button type="button" class="sss-btn" role="option" data-select-star="tejat" aria-selected="false">
-            <span class="sss-star">✦ <span class="greek">μ</span> Tejat · 03</span>
-            <span class="sss-label">Work &amp; Speed ROI</span>
-          </button>
-          <button type="button" class="sss-btn" role="option" data-select-star="propus" aria-selected="false">
-            <span class="sss-star">✦ <span class="greek">η</span> Propus · 04</span>
-            <span class="sss-label">60-Sec Video Signal</span>
-          </button>
-        </div>
       </section>
 
       <!-- -------------------------------------------------------------------
-           RIGHT ATELIER: 02 / β POLLUX (How to Use It Now & Live Proof)
+           RIGHT ATELIER: 02 / β POLLUX (Golden-Orange Starlight — The Workbench)
            ------------------------------------------------------------------- -->
-      <section class="spread-salon spread-pollux" aria-labelledby="pollux-salon-title">
+      <section class="spread-salon spread-pollux" id="salon-pollux" aria-labelledby="pollux-salon-title">
         <div class="salon-header-row">
           <span class="shr-title">
-            <span>✧ 02 / <span class="greek">β</span> POLLUX ATELIER · HOW TO USE IT RIGHT NOW</span>
+            <span class="shr-star-dot" aria-hidden="true"></span>
+            <span><span class="greek">β</span> POLLUX · THE WORKBENCH</span>
           </span>
-          <span class="shr-badge" id="pollux-star-badge"><span class="greek">β</span> GEM · MAG 1.14</span>
+          <span class="shr-badge" tabindex="0">
+            <span id="pollux-star-badge"><span class="greek">β</span> GEM · GOLDEN-ORANGE K0III</span>
+            <span class="shr-badge-tooltip" id="pollux-star-tooltip">RA 07h 45m · DEC +28°01' · ORANGE GIANT · 34 LY</span>
+          </span>
         </div>
 
         <div class="salon-body-split">
@@ -1530,10 +1869,10 @@
             </div>
           </div>
 
-          <!-- Velvet Tourmaline Interactive Workbench Console -->
+          <!-- Golden-Orange & Obsidian Interactive Workbench Console -->
           <div class="atelier-console">
             <div class="ac-top">
-              <span id="ac-console-kicker">STAR 05 WORKBENCH</span>
+              <span id="ac-console-kicker">STAR 01/05 WORKBENCH</span>
               <span>[SIMULATED DEMO]</span>
             </div>
 
@@ -1559,47 +1898,28 @@
             </div>
           </div>
         </div>
-
-        <!-- Bottom 4-Star β Pollux Chain Selector -->
-        <div class="salon-star-strip" role="listbox" aria-label="Pollux Chain Stars">
-          <button type="button" class="sss-btn" role="option" data-select-star="pollux" aria-selected="false">
-            <span class="sss-star">★ <span class="greek">β</span> Pollux · 05</span>
-            <span class="sss-label">10-Sec Savings Lab</span>
-          </button>
-          <button type="button" class="sss-btn" role="option" data-select-star="wasat" aria-selected="false">
-            <span class="sss-star">✧ <span class="greek">δ</span> Wasat · 06</span>
-            <span class="sss-label">5-Min Workspace Guides</span>
-          </button>
-          <button type="button" class="sss-btn" role="option" data-select-star="mekbuda" aria-selected="false">
-            <span class="sss-star">✧ <span class="greek">ζ</span> Mekbuda · 07</span>
-            <span class="sss-label">Screen-Clicking AI Lab</span>
-          </button>
-          <button type="button" class="sss-btn" role="option" data-select-star="alhena" aria-selected="false">
-            <span class="sss-star">✧ <span class="greek">γ</span> Alhena · 08</span>
-            <span class="sss-label">Built by Gemini Alone</span>
-          </button>
-        </div>
       </section>
     </main>
 
     <!-- =====================================================================
-         4. BOTTOM CELESTIAL FOOTER RIBBON
+         5. BOTTOM CELESTIAL FOOTER RIBBON
          ===================================================================== -->
     <footer class="celestial-footer" role="contentinfo">
       <div class="cf-left">
-        <span>AUTONOMOUS LEAD ARCHITECT: GOOGLE GEMINI 4 ARGON</span>
+        <span>AUTONOMOUS ARCHITECT: GOOGLE GEMINI 4 ARGON</span>
         <span class="cf-hide-compact">·</span>
         <span class="cf-hide-compact">CONCEIVED BY NEIL S. WHITE</span>
       </div>
       <div class="cf-right">
-        <a href="./look-h-avant-twin-journal.html">SAVED LOOK H (AVANT JOURNAL) ↗</a>
+        <a href="./look-i-v1-archive.html">LOOK I (v1 ARCHIVE) ↗</a>
+        <a href="./look-h-avant-twin-journal.html">SAVED LOOK H ↗</a>
         <a href="./index.html">PROTOTYPE ARCHIVE (1A–I) ↗</a>
       </div>
     </footer>
   </div>
 
   <!-- =======================================================================
-       5. NATIVE <DIALOG> CELESTIAL DESTINATION MODAL
+       6. NATIVE <DIALOG> CELESTIAL DESTINATION MODAL
        ======================================================================= -->
   <dialog class="celestial-modal" id="celestial-modal" aria-labelledby="cm-title">
     <div class="cm-header">
@@ -1623,16 +1943,19 @@
 
   <script>
     // =========================================================================
-    // 8 REAL ASTRONOMICAL STARS OF GEMINI (IAU ♊) -> GEMINIPULSE DESTINATIONS
+    // 8 REAL ASTRONOMICAL STARS OF GEMINI -> GEMINIPULSE DESTINATIONS
     // =========================================================================
+    const STAR_ORDER = ["castor", "mebsuta", "tejat", "propus", "pollux", "wasat", "mekbuda", "alhena"];
+
     const STAR_ATLAS = {
       castor: {
         chain: "castor",
-        hudBadge: "★ STAR 01 SELECTED",
-        starBadge: "α GEM · MAG 1.58",
-        pairedBadge: "β GEM · MAG 1.14",
-        hudCoords: "α GEMINORUM (CASTOR) · RA 07h 34m 36s · DEC +31°53' · SEXTUPLE STAR SYSTEM (51 LIGHT-YEARS)",
-        hudDest: "Dec 1 Price Cut (-90% Context Caching) ⇄ 10-Second Savings Lab",
+        x: 555, y: 48,
+        locLabel: "YOU ARE HERE · STAR 01 / 08 (α CASTOR · DEC 1 PRICE CUT)",
+        starBadge: "α GEM · BLUE-WHITE A1V",
+        starTooltip: "RA 07h 34m · DEC +31°53' · SEXTUPLE SYSTEM · 51 LY",
+        pairedBadge: "β GEM · GOLDEN-ORANGE K0III",
+        pairedTooltip: "RA 07h 45m · DEC +28°01' · ORANGE GIANT · 34 LY",
         castorTitleMain: "Google cut memory costs 90%.",
         castorTitleItalic: "What does that unlock for you?",
         castorDek: "<strong>How it applies to you:</strong> Instead of paying full price every time you ask a follow-up question on a 300-page PDF or codebase, Gemini 2.5 Pro Context Caching stores your workspace once and drops repeat reads from <code>$2.50</code> to <code>$0.25 / 1M</code>—cutting typical bills by <strong>78%</strong>.",
@@ -1675,7 +1998,7 @@
           }
         ],
         polluxCta: "Open interactive recipe & copy code",
-        modalKicker: "★ STAR 01 · α CASTOR (RA 07h 34m · DEC +31°53')",
+        modalKicker: "★ STAR 01 · α CASTOR (RA 07h 34m · DEC +31°53' · BLUE-WHITE SEXTUPLE)",
         modalTitle: "Google cut memory costs 90%. <em>Copy the 3-line setup.</em>",
         modalLead: "Pin your recurring documents, brand guidelines, or repository context once with Context Caching so every follow-up query reads at $0.25/1M tokens instead of $2.50/1M.",
         modalCode: `// [SIMULATED DEMO] — Google GenAI SDK Context Caching Recipe
@@ -1698,11 +2021,12 @@ const response = await ai.models.generateContent({
 
       mebsuta: {
         chain: "castor",
-        hudBadge: "✦ STAR 02 SELECTED",
-        starBadge: "ε GEM · MAG 2.98",
-        pairedBadge: "ζ GEM · CEPHEID",
-        hudCoords: "ε GEMINORUM (MEBSUTA) · RA 06h 43m 55s · DEC +25°07' · LUMINOUS SUPERGIANT (840 LIGHT-YEARS)",
-        hudDest: "Releases Decoded in Plain English ⇄ Model Routing Scanner",
+        x: 504, y: 184,
+        locLabel: "YOU ARE HERE · STAR 02 / 08 (ε MEBSUTA · RELEASES DECODED)",
+        starBadge: "ε GEM · SUPERGIANT",
+        starTooltip: "RA 06h 43m · DEC +25°07' · LUMINOUS SUPERGIANT · 840 LY",
+        pairedBadge: "ζ GEM · CEPHEID PAIR",
+        pairedTooltip: "RA 07h 04m · DEC +20°34' · PULSATING SUPERGIANT",
         castorTitleMain: "Every Gemini drop, decoded.",
         castorTitleItalic: "Zero benchmark jargon.",
         castorDek: "<strong>How it applies to you:</strong> When Google ships a new model or deprecates a legacy endpoint, we answer two questions in plain English: <em>what can you do today that you couldn't do yesterday</em>, and <em>which model should you actually pick</em>?",
@@ -1755,11 +2079,12 @@ const response = await ai.models.generateContent({
 
       tejat: {
         chain: "castor",
-        hudBadge: "✦ STAR 03 SELECTED",
+        x: 442, y: 246,
+        locLabel: "YOU ARE HERE · STAR 03 / 08 (μ TEJAT · SPEED & CARBON ROI)",
         starBadge: "μ GEM · MAG 2.87",
-        pairedBadge: "δ GEM · ECLIPTIC",
-        hudCoords: "μ GEMINORUM (TEJAT POSTERIOR) · RA 06h 22m 57s · DEC +22°30' · M3 RED GIANT (230 LIGHT-YEARS)",
-        hudDest: "79% Faster & 4.2× Lower Energy ⇄ Sub-Second Latency Lab",
+        starTooltip: "RA 06h 22m · DEC +22°30' · TEJAT POSTERIOR · 230 LY",
+        pairedBadge: "δ GEM · ECLIPTIC NODE",
+        pairedTooltip: "RA 07h 20m · DEC +21°58' · ON THE ECLIPTIC",
         castorTitleMain: "79% faster replies. 4.2× less energy.",
         castorTitleItalic: "Why speed changes how you think.",
         castorDek: "<strong>How it applies to you:</strong> Waiting 4 seconds breaks human creative flow. Warm context prefixes on TPU v6e Trillium drop 128k Time-to-First-Token from <code>3.4s</code> to <code>0.7s</code> while cutting per-query energy by <strong>76%</strong>.",
@@ -1817,11 +2142,12 @@ const stream = await ai.models.generateContentStream({
 
       propus: {
         chain: "castor",
-        hudBadge: "✦ STAR 04 SELECTED",
+        x: 396, y: 296,
+        locLabel: "YOU ARE HERE · STAR 04 / 08 (η PROPUS & M35 · 60S VIDEO SIGNAL)",
         starBadge: "η GEM · M35 CLUSTER",
+        starTooltip: "RA 06h 14m · DEC +22°30' · BESIDE MESSIER 35 STAR CLUSTER",
         pairedBadge: "γ GEM · MAG 1.93",
-        hudCoords: "η GEMINORUM (PROPUS) & MESSIER 35 CLUSTER · RA 06h 14m 52s · DEC +22°30' (350 LIGHT-YEARS)",
-        hudDest: "60-Second Video Signal ⇄ Autonomous Storyboard Studio",
+        pairedTooltip: "RA 06h 37m · DEC +16°23' · BRIGHT FOOT OF POLLUX",
         castorTitleMain: "See it working in 60 seconds.",
         castorTitleItalic: "Visual proof without YouTube filler.",
         castorDek: "<strong>How it applies to you:</strong> Don't sit through 25-minute hype videos. Watch side-by-side 60-second visual dispatches showing real Gemini screen-clicking, live latency comparisons, and Workspace automations.",
@@ -1875,11 +2201,12 @@ const stream = await ai.models.generateContentStream({
 
       pollux: {
         chain: "pollux",
-        hudBadge: "★ STAR 05 SELECTED",
-        starBadge: "α GEM · MAG 1.58",
-        pairedBadge: "β GEM · MAG 1.14",
-        hudCoords: "β GEMINORUM (POLLUX) · RA 07h 45m 18s · DEC +28°01' · BRIGHTEST STAR IN GEMINI (33.7 LIGHT-YEARS)",
-        hudDest: "10-Second Interactive Savings Lab ⇄ Context Caching Briefing",
+        x: 695, y: 64,
+        locLabel: "YOU ARE HERE · STAR 05 / 08 (β POLLUX · 10-SEC SAVINGS LAB)",
+        starBadge: "α GEM · BLUE-WHITE A1V",
+        starTooltip: "RA 07h 34m · DEC +31°53' · SEXTUPLE SYSTEM · 51 LY",
+        pairedBadge: "β GEM · GOLDEN-ORANGE K0III",
+        pairedTooltip: "RA 07h 45m · DEC +28°01' · BRIGHTEST STAR IN GEMINI · 34 LY",
         castorTitleMain: "Stop paying for repeat tokens.",
         castorTitleItalic: "Pin your workspace memory once.",
         castorDek: "<strong>Why β Pollux is the brightest star here:</strong> Context Caching is the highest-leverage switch you can flip today—turning expensive multi-turn document chat into a flat, predictable 90%-discounted memory layer.",
@@ -1922,7 +2249,7 @@ const stream = await ai.models.generateContentStream({
           }
         ],
         polluxCta: "Open full caching recipe & copy code",
-        modalKicker: "★ STAR 05 · β POLLUX (RA 07h 45m · DEC +28°01')",
+        modalKicker: "★ STAR 05 · β POLLUX (RA 07h 45m · DEC +28°01' · GOLDEN-ORANGE GIANT)",
         modalTitle: "10-Second Savings Lab. <em>Copy the Context Caching setup.</em>",
         modalLead: "Break-even happens on your very second question. Any document, video, or repository over 32,768 tokens can be pinned in a single API call.",
         modalCode: `// [SIMULATED DEMO] — Pinning a Workspace Cache in 1 Call
@@ -1941,11 +2268,12 @@ const cache = await ai.caches.create({
 
       wasat: {
         chain: "pollux",
-        hudBadge: "✧ STAR 06 SELECTED",
+        x: 676, y: 192,
+        locLabel: "YOU ARE HERE · STAR 06 / 08 (δ WASAT · 5-MIN WORKSPACE GUIDES)",
         starBadge: "μ GEM · WORKFLOW ROI",
+        starTooltip: "ZERO-CODE GOOGLE WORKSPACE AUTOMATION",
         pairedBadge: "δ GEM · ON ECLIPTIC",
-        hudCoords: "δ GEMINORUM (WASAT) · RA 07h 20m 07s · DEC +21°58' · SITS DIRECTLY ON THE ECLIPTIC (60 LIGHT-YEARS)",
-        hudDest: "5-Minute Google Workspace Guides (Docs, Gmail, Sheets & Drive)",
+        pairedTooltip: "RA 07h 20m · DEC +21°58' · SITS DIRECTLY ON THE ECLIPTIC",
         castorTitleMain: "No code required.",
         castorTitleItalic: "Use Gemini across Drive, Docs & Sheets.",
         castorDek: "<strong>How it applies to you:</strong> You don't need to write Python to get 80% of Gemini's daily leverage. Linking a single Google Drive folder turns messy PDFs, threads, and notes into structured Sheets tables in one prompt.",
@@ -2000,11 +2328,12 @@ const cache = await ai.caches.create({
 
       mekbuda: {
         chain: "pollux",
-        hudBadge: "✧ STAR 07 SELECTED",
+        x: 626, y: 248,
+        locLabel: "YOU ARE HERE · STAR 07 / 08 (ζ MEKBUDA · SCREEN-CLICKING AI LAB)",
         starBadge: "ε GEM · COMPUTER USE",
-        pairedBadge: "ζ GEM · CEPHEID",
-        hudCoords: "ζ GEMINORUM (MEKBUDA) · RA 07h 04m 06s · DEC +20°34' · PULSATING CEPHEID SUPERGIANT (1,200 LIGHT-YEARS)",
-        hudDest: "Screen-Clicking AI Sandbox (Gemini Computer Use GA)",
+        starTooltip: "GEMINI 2.5 COMPUTER USE (GENERALLY AVAILABLE)",
+        pairedBadge: "ζ GEM · CEPHEID STAR",
+        pairedTooltip: "RA 07h 04m · DEC +20°34' · PULSATING CEPHEID SUPERGIANT",
         castorTitleMain: "Gemini can now click your screen.",
         castorTitleItalic: "When should you let it drive?",
         castorDek: "<strong>How it applies to you:</strong> When a legacy vendor portal, shipping dashboard, or ERP has no API, Gemini 2.5 Computer Use visually reads the browser screen, clicks buttons, and pauses for your human approval before submitting.",
@@ -2067,11 +2396,12 @@ const interaction = await client.interactions.create({
 
       alhena: {
         chain: "pollux",
-        hudBadge: "✧ STAR 08 SELECTED",
+        x: 574, y: 312,
+        locLabel: "YOU ARE HERE · STAR 08 / 08 (γ ALHENA · BUILT BY GEMINI ALONE)",
         starBadge: "η GEM · CHRONICLE",
+        starTooltip: "THE ANTIGRAVITY AUTONOMOUS BUILD CHRONICLE",
         pairedBadge: "γ GEM · MAG 1.93",
-        hudCoords: "γ GEMINORUM (ALHENA) · RA 06h 37m 42s · DEC +16°23' · BRIGHT SOUTHERN FOOT OF POLLUX (109 LIGHT-YEARS)",
-        hudDest: "Built by Gemini Alone — The Antigravity Autonomous Charter",
+        pairedTooltip: "RA 06h 37m · DEC +16°23' · BRIGHT FOOT OF POLLUX · 109 LY",
         castorTitleMain: "Conceived by a human.",
         castorTitleItalic: "Written, designed & run by Gemini.",
         castorDek: "<strong>Why this site exists:</strong> Neil S. White gave Google Gemini the creative premise—an astrological Twin showcase where Gemini proves its own capabilities in public. Every headline, star map, layout audit, and commit is executed by Gemini 4 Argon.",
@@ -2120,21 +2450,18 @@ const interaction = await client.interactions.create({
         modalCode: `AUTONOMOUS REPOSITORY CHARTER (GEMINI.md):
 • Human Concept Originator & Creative Catalyst: Neil S. White
 • Autonomous Lead Architect & Editor-in-Chief: Google Gemini 4 Argon
-• Left Twin (α Castor): What's new in Gemini & how it applies to you
-• Right Twin (β Pollux): How to use it right now & live proof
+• Left Twin (α Castor · Blue-White A1V): What's new in Gemini & how it applies to you
+• Right Twin (β Pollux · Golden-Orange K0III): How to use it right now & live proof
 • Verification Standard: 100% grounded Google primary sources + Chrome CDP layout audits`
       }
     };
 
     let currentStarKey = "castor";
     let currentPresetIdx = 0;
+    let isLiveSkyActive = false;
 
-    function runViewUpdate(fn) {
-      if (document.startViewTransition && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        document.startViewTransition(fn);
-      } else {
-        fn();
-      }
+    function formatGreek(str) {
+      return String(str).replace(/([αβγδεζηθικλμνξοπρστυφχψω])/g, '<span class="greek">$1</span>');
     }
 
     function renderWorkbenchPreset(starKey, presetIdx) {
@@ -2165,35 +2492,41 @@ const interaction = await client.interactions.create({
       v3.className = "ac-v" + (r3[2] ? " accent" : "");
     }
 
-    function formatGreek(str) {
-      return String(str).replace(/([αβγδεζηθικλμνξοπρστυφχψω])/g, '<span class="greek">$1</span>');
-    }
-
     function selectStar(starKey) {
       if (!STAR_ATLAS[starKey]) return;
       currentStarKey = starKey;
       currentPresetIdx = 0;
       const s = STAR_ATLAS[starKey];
 
-      runViewUpdate(() => {
-        // Highlight active SVG star node
-        document.querySelectorAll(".star-node").forEach((node) => {
-          node.setAttribute("data-active", node.dataset.star === starKey ? "true" : "false");
-        });
+      // Move Traveling SVG Beacon smoothly to the selected star's coordinates
+      const beacon = document.getElementById("traveling-beacon");
+      if (beacon) {
+        beacon.setAttribute("transform", `translate(${s.x}, ${s.y})`);
+      }
 
-        // Highlight active selector strip button
-        document.querySelectorAll("[data-select-star]").forEach((el) => {
-          const isMatch = el.dataset.selectStar === starKey;
-          el.setAttribute("aria-selected", isMatch ? "true" : "false");
-        });
+      // Highlight active SVG star node
+      document.querySelectorAll(".star-node").forEach((node) => {
+        node.setAttribute("data-active", node.dataset.star === starKey ? "true" : "false");
+      });
 
-        // Update Hero Bottom HUD
-        document.getElementById("hud-star-badge").textContent = s.hudBadge;
-        document.getElementById("hud-star-coords").innerHTML = formatGreek(s.hudCoords);
-        document.getElementById("hud-star-dest").textContent = s.hudDest;
+      // Highlight active step in "You Are Here" progress bar
+      document.querySelectorAll(".cpn-step").forEach((step) => {
+        step.setAttribute("aria-current", step.dataset.selectStar === starKey ? "step" : "false");
+      });
 
+      // Update "You Are Here" badge text
+      document.getElementById("cpn-location-text").innerHTML = formatGreek(s.locLabel);
+
+      // Smoothly transition the lower 50/50 salons
+      const castorSalon = document.getElementById("salon-castor");
+      const polluxSalon = document.getElementById("salon-pollux");
+      castorSalon.classList.add("is-transitioning");
+      polluxSalon.classList.add("is-transitioning");
+
+      setTimeout(() => {
         // Update Left Salon (α Castor)
         document.getElementById("castor-star-badge").innerHTML = formatGreek(s.starBadge);
+        document.getElementById("castor-star-tooltip").textContent = s.starTooltip;
         document.getElementById("castor-title-main").textContent = s.castorTitleMain;
         document.getElementById("castor-title-italic").textContent = s.castorTitleItalic;
         document.getElementById("castor-dek").innerHTML = s.castorDek;
@@ -2209,6 +2542,7 @@ const interaction = await client.interactions.create({
 
         // Update Right Atelier (β Pollux)
         document.getElementById("pollux-star-badge").innerHTML = formatGreek(s.pairedBadge);
+        document.getElementById("pollux-star-tooltip").textContent = s.pairedTooltip;
         document.getElementById("pollux-title-main").textContent = s.polluxTitleMain;
         document.getElementById("pollux-title-italic").textContent = s.polluxTitleItalic;
         document.getElementById("pollux-dek").innerHTML = s.polluxDek;
@@ -2216,10 +2550,13 @@ const interaction = await client.interactions.create({
         document.getElementById("pollux-cta-text").textContent = s.polluxCta;
 
         renderWorkbenchPreset(starKey, 0);
-      });
+
+        castorSalon.classList.remove("is-transitioning");
+        polluxSalon.classList.remove("is-transitioning");
+      }, 140);
     }
 
-    // Wire SVG Constellation Star Nodes (click + keyboard Enter/Space + double-click opens modal)
+    // Wire SVG Constellation Star Nodes
     document.querySelectorAll(".star-node").forEach((node) => {
       node.addEventListener("click", () => selectStar(node.dataset.star));
       node.addEventListener("dblclick", () => {
@@ -2234,9 +2571,32 @@ const interaction = await client.interactions.create({
       });
     });
 
-    // Wire Salon Star Strip Buttons
+    // Wire "You Are Here" Progress Bar Steps
     document.querySelectorAll("[data-select-star]").forEach((btn) => {
       btn.addEventListener("click", () => selectStar(btn.dataset.selectStar));
+    });
+
+    // Wire Prev / Next Star Hopping Buttons
+    document.getElementById("prev-star-btn").addEventListener("click", () => {
+      const idx = STAR_ORDER.indexOf(currentStarKey);
+      const prevIdx = (idx - 1 + STAR_ORDER.length) % STAR_ORDER.length;
+      selectStar(STAR_ORDER[prevIdx]);
+    });
+    document.getElementById("next-star-btn").addEventListener("click", () => {
+      const idx = STAR_ORDER.indexOf(currentStarKey);
+      const nextIdx = (idx + 1) % STAR_ORDER.length;
+      selectStar(STAR_ORDER[nextIdx]);
+    });
+
+    // Wire Top Pulsing Twin Pills (click focuses that chain; touch toggles drawer)
+    document.querySelectorAll(".twin-pulse-orb").forEach((orb) => {
+      orb.addEventListener("click", () => {
+        const targetChain = orb.dataset.filterTrigger;
+        const isExpanded = orb.getAttribute("data-expanded") === "true";
+        orb.setAttribute("data-expanded", isExpanded ? "false" : "true");
+        if (targetChain === "castor") selectStar("castor");
+        if (targetChain === "pollux") selectStar("pollux");
+      });
     });
 
     // Wire Workbench Presets
@@ -2248,7 +2608,7 @@ const interaction = await client.interactions.create({
       });
     });
 
-    // Wire Chain Filter Buttons (All 8 Stars / α Castor / β Pollux)
+    // Wire Chain Filter Buttons (Both Twins / α Castor / β Pollux)
     document.querySelectorAll("[data-filter-chain]").forEach((btn) => {
       btn.addEventListener("click", () => {
         const chain = btn.dataset.filterChain;
@@ -2264,6 +2624,57 @@ const interaction = await client.interactions.create({
       });
     });
 
+    // =========================================================================
+    // REAL-TIME SIDEREAL SKY CALCULATOR ("LIVE SKY · LST" MODE)
+    // Computes real-time Greenwich/Local Sidereal Time & Gemini Parallactic Angle
+    // =========================================================================
+    function computeLiveGeminiSky() {
+      const now = new Date();
+      const jd = now.getTime() / 86400000 + 2440587.5;
+      const d = jd - 2451545.0;
+      // Greenwich Mean Sidereal Time in hours
+      let gmst = (18.697374558 + 24.06570982441908 * d) % 24;
+      if (gmst < 0) gmst += 24;
+      // Approximate local longitude from browser timezone offset
+      const lonHours = -now.getTimezoneOffset() / 60;
+      let lst = (gmst + lonHours + 24) % 24;
+      const lstH = Math.floor(lst);
+      const lstM = Math.floor((lst - lstH) * 60);
+
+      // Gemini Center RA ~ 7.35h; Hour Angle H = LST - RA
+      let ha = lst - 7.35;
+      if (ha > 12) ha -= 24;
+      if (ha < -12) ha += 24;
+      // Subtle horizon tilt angle (-16deg to +16deg) reflecting real-time sky hour angle
+      const tiltDeg = Math.max(-16, Math.min(16, ha * 2.2)).toFixed(1);
+
+      return {
+        lstFormatted: `LST ${String(lstH).padStart(2, "0")}h ${String(lstM).padStart(2, "0")}m`,
+        tiltDeg
+      };
+    }
+
+    const liveSkyBtn = document.getElementById("live-sky-toggle");
+    const liveSkyLabel = document.getElementById("live-sky-label");
+    const masterGroup = document.getElementById("constellation-master-group");
+
+    // Initialize live LST readout on button
+    const initialSky = computeLiveGeminiSky();
+    liveSkyLabel.textContent = `Live Sky · ${initialSky.lstFormatted}`;
+
+    liveSkyBtn.addEventListener("click", () => {
+      isLiveSkyActive = !isLiveSkyActive;
+      liveSkyBtn.setAttribute("aria-pressed", isLiveSkyActive ? "true" : "false");
+      const sky = computeLiveGeminiSky();
+      if (isLiveSkyActive) {
+        masterGroup.style.transform = `rotate(${sky.tiltDeg}deg) scale(0.97)`;
+        liveSkyLabel.textContent = `Live Sky Active (${sky.lstFormatted} · ${sky.tiltDeg}° Tilt)`;
+      } else {
+        masterGroup.style.transform = "rotate(0deg) scale(1)";
+        liveSkyLabel.textContent = `Live Sky · ${sky.lstFormatted}`;
+      }
+    });
+
     // Modal Dialog Wiring
     const modal = document.getElementById("celestial-modal");
     function openActiveStarModal() {
@@ -2275,7 +2686,6 @@ const interaction = await client.interactions.create({
       modal.showModal();
     }
 
-    document.getElementById("hud-enter-btn").addEventListener("click", openActiveStarModal);
     document.getElementById("castor-open-modal-btn").addEventListener("click", openActiveStarModal);
     document.getElementById("pollux-open-modal-btn").addEventListener("click", openActiveStarModal);
     document.getElementById("open-charter-btn").addEventListener("click", () => {

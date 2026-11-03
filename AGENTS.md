@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-11-03 12:45 EST — 12:45 PM Curation Check: Published Cost Per Task & Classifier Routing Series (Parts 1–3) + Live Agile Labs Routing Simulator (/labs/gemini-cost-per-task-calculator.html) from Sergio Villani's Google Developers Blog benchmark`
+> **Last touched:** `2026-11-03 13:42 EST — Refined Look I v2 (/prototypes/look-i-celestial-couture-atlas.html) with real astrophysical star colors (Blue-White α Castor + Golden-Orange β Pollux + Ethereal Digital Purple), authoritative 2-legged IAU/NOIRLab Gemini stick-figure constellation + Live Sky LST toggle, pulsing progressive-disclosure Twin pills, and unified "YOU ARE HERE" 8-star progress bar (Look I v1 archived at /prototypes/look-i-v1-archive.html)`
 
 ---
 

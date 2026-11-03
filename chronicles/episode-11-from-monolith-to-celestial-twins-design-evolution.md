@@ -98,3 +98,23 @@ We permanently preserved **Look H** in the portfolio archive and architected **[
        - `✧ γ Alhena (Mag 1.93 · Bright Foot)` → **08 · Built by Gemini Alone (Autonomous Charter)**
 4. **100% Above-the-Fold (`100svh`) Fit:**
    - Audited across `1920×1080`, `1440×900`, `1280×800`, and `1024×768` with zero vertical or horizontal scroll overflow.
+
+---
+
+## 7. Round 8: The Art of Reduction & Astrophysical Truth (`Look I v1 → Look I v2`)
+
+After reviewing **Look I v1** ([preserved at `look-i-v1-archive.html`](https://geminipulse.com/prototypes/look-i-v1-archive.html)), Neil confirmed the breakthrough direction (*"NOW WE'RE T-WINNING! This is the direction."*) and guided a classic creative-director reduction and astronomical verification pass:
+
+1. **Matching the Real Astrophysical Star Colors of $\alpha$ Castor & $\beta$ Pollux + Ethereal Digital Purple:**
+   - In real astronomy, **$\alpha$ Castor** is an A1V **blue-white** sextuple star system (`Mag 1.58`, `51 ly`), while **$\beta$ Pollux** is a K0III **golden-orange** giant (`Mag 1.14`, `34 ly`) hosting exoplanet Pollux b.
+   - Aligning **$\alpha$ Castor** to **Blue-White Starlight (`#D6EBFF` / `#7EB8FF`, `#1E5696` ink)** and **$\beta$ Pollux** to **Golden-Orange Giant Glow (`#FFD296` / `#F59E3F`, `#9E540C` ink)** created an immediate visual harmony with our copperplate engraving (`look-i-celestial-twins.webp`), where Castor on the left is silver-white marble and Pollux on the right is golden-amber brass clockwork.
+   - To bridge the two twins with a subtle, sophisticated digital accent, we introduced **Ethereal Digital Purple (`#A385FF` / `#CEC0FF`)** for the nebula aura, the twin shoulder clasp, and the traveling `"YOU ARE HERE"` beacon.
+2. **Authoritative IAU / NOIRLab 2-Legged Stick-Figure Constellation + Live Sky `LST` Calculator:**
+   - We cross-checked our SVG chart against authoritative **IAU / NOIRLab / Sky & Telescope** star charts, updating the constellation lines so both Twins feature their full 2-legged anatomical stick figures holding shoulders ($\tau\text{ Gem} - \iota\text{ Gem} - \upsilon\text{ Gem}$ shoulder clasp, $\theta\text{ Gem}$ and $\kappa\text{ Gem}$ outstretched arms, $\varepsilon\text{ Mebsuta} \to \mu\text{ Tejat} \to \eta\text{ Propus}$ and $\varepsilon \to \nu\text{ Gem}$ legs for Castor; $\delta\text{ Wasat} \to \zeta\text{ Mekbuda} \to \gamma\text{ Alhena}$ and $\delta \to \lambda\text{ Gem} \to \xi\text{ Alzirr}$ legs for Pollux).
+   - We also wired a live **Local Sidereal Time (`LIVE SKY · LST`)** toggle in the header that computes the current sidereal hour angle of Gemini (`RA 07h 10m`) and tilts the constellation to its real-time sky orientation.
+3. **Reduction & Pulsing Progressive Disclosure (Throwing It Out There, Then Reducing):**
+   - Removed the gimmicky `"✦ ASTRONOMICAL IAU GEMINI (♊) STAR MAP · CLICK ANY STAR TO NAVIGATE ✦"` eyebrow above the center headline—letting the constellation and *“Written by Gemini. Guided by the Twins.”* speak for themselves.
+   - Reduced the top-left and top-right explainers to sleek, living **`α Castor (The Signal)`** and **`β Pollux (The Workbench)`** pills with a breathing halo pulse that reveals *"What’s new in Google Gemini & how it applies to you"* and *"How to use it right now & live 10-second proof"* smoothly on hover, focus, or tap.
+   - Reduced the 8 star labels on the map to single-line pills by default, revealing their astronomical metadata only on hover or active selection.
+4. **Unified `"YOU ARE HERE"` Constellation Progress Bar & Smooth Content Transitions:**
+   - Replaced the duplicate 4-button strips inside each lower salon with a single unified **`YOU ARE HERE · STAR 01 / 08`** progress/location bar that coordinates with an animated Ethereal Purple **`YOU ARE HERE`** SVG beacon gliding from star to star.

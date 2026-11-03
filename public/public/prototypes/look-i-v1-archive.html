@@ -1,0 +1,2310 @@
+<!DOCTYPE html>
+<html lang="en" data-chain="all">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GeminiPulse — Look I: The Celestial Couture Magazine &amp; Interactive Gemini Constellation Atlas</title>
+  <meta name="description" content="Conceived by a human. Written, designed, and coded autonomously by Google Gemini. Click any star in the real Castor & Pollux (Gemini) constellation to explore what's new and how to use it right now." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* =========================================================================
+       LOOK I: SILICON VALLEY PRECISION × PARISIAN COUTURE CELESTIAL ATLAS
+       - Zero resemblance to thefutureisyesterday.com (no red/vermilion, no cobalt,
+         no beige newsprint, no blocky gothic display type).
+       - Palette:
+         • Velvet Midnight Obsidian (#080C12) & Tourmaline (#101722) Hero Stage
+         • Parisian Porcelain Silk (#F6F4EE) & Warm Alabaster (#FDFCF9) Editorial Spread
+         • Burnished Champagne Gold (#C8A25A / #ECCF92) for α Castor (The Signal)
+         • Optical Celadon Emerald (#2D9C86 / #6CE0C8) for β Pollux (The Workbench)
+       - Hero: Full Panoramic Castor & Pollux Copperplate Engraving + Interactive
+         Astronomically Accurate IAU Gemini (♊) Constellation where clicking any
+         star navigates both Twins below!
+       ========================================================================= */
+    :root {
+      --silk: #F6F4EE;
+      --silk-elevated: #FDFCF9;
+      --silk-warm: #ECE8DD;
+      --obsidian: #070A10;
+      --obsidian-soft: #0E141F;
+      --obsidian-card: #121A27;
+      --ink: #10141B;
+      --ink-soft: #3A404D;
+      --ink-muted: #646B7A;
+      --hairline: #D6D0C2;
+      --hairline-dark: #222C3C;
+      --champagne: #C8A25A;
+      --champagne-bright: #ECCF92;
+      --champagne-ink: #7A5714;
+      --celadon: #2D9C86;
+      --celadon-bright: #6CE0C8;
+      --celadon-ink: #126655;
+      --starlight: #F8F6F0;
+
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      inline-size: 100%;
+      block-size: 100%;
+      background-color: var(--silk);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.45;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+
+    button {
+      font: inherit;
+      color: inherit;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--celadon);
+      outline-offset: 2px;
+    }
+
+    .greek {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 600;
+      text-transform: none !important;
+      font-size: 1.14em;
+    }
+
+    /* =========================================================================
+       DESKTOP 100SVH ABOVE-THE-FOLD SHELL
+       ========================================================================= */
+    .couture-shell {
+      min-block-size: 100svh;
+      display: flex;
+      flex-direction: column;
+      max-inline-size: 1920px;
+      margin-inline: auto;
+      background: var(--silk);
+    }
+
+    @media (min-width: 1024px) and (min-height: 740px) {
+      .couture-shell {
+        block-size: 100svh;
+        overflow: hidden;
+      }
+    }
+
+    /* =========================================================================
+       1. TOP COUTURE MASTHEAD & AUTONOMOUS PREMISE BAR
+       ========================================================================= */
+    .couture-header {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: clamp(12px, 1.8vw, 24px);
+      padding: 7px clamp(18px, 2.4vw, 38px);
+      background: var(--obsidian);
+      color: var(--starlight);
+      border-block-end: 1px solid var(--hairline-dark);
+      flex-shrink: 0;
+    }
+
+    .brand-lockup {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding-inline-end: clamp(12px, 1.6vw, 22px);
+      border-inline-end: 1px solid var(--hairline-dark);
+    }
+
+    .brand-glyph {
+      inline-size: 28px;
+      block-size: 28px;
+      border-radius: 50%;
+      background: rgba(236, 207, 146, 0.1);
+      color: var(--champagne-bright);
+      display: grid;
+      place-items: center;
+      font-family: var(--serif);
+      font-size: 15px;
+      border: 1px solid rgba(236, 207, 146, 0.55);
+      flex-shrink: 0;
+    }
+
+    .brand-title {
+      font-family: var(--serif);
+      font-size: clamp(18px, 1.35vw, 22px);
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      line-height: 1;
+      color: var(--starlight);
+      white-space: nowrap;
+    }
+
+    .brand-coords {
+      display: block;
+      font-family: var(--mono);
+      font-size: 8px;
+      letter-spacing: 0.15em;
+      color: #96A2B5;
+      margin-block-start: 2px;
+      white-space: nowrap;
+    }
+
+    /* Center Premise Statement */
+    .premise-ribbon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-inline-size: 0;
+      overflow: hidden;
+    }
+
+    .premise-tag {
+      font-family: var(--mono);
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      background: rgba(236, 207, 146, 0.14);
+      color: var(--champagne-bright);
+      border: 1px solid rgba(236, 207, 146, 0.35);
+      border-radius: 999px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .premise-text {
+      font-size: clamp(11.5px, 0.85vw, 13px);
+      color: #CBD3E1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .premise-text strong {
+      color: var(--starlight);
+      font-weight: 600;
+    }
+
+    .premise-text em {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.18em;
+      color: var(--champagne-bright);
+    }
+
+    /* Right Chain Filter & Charter Controls */
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .chain-switcher {
+      display: inline-flex;
+      background: var(--obsidian-soft);
+      padding: 2px;
+      border-radius: 999px;
+      border: 1px solid var(--hairline-dark);
+    }
+
+    .chain-btn {
+      padding: 3.5px 10px;
+      border-radius: 999px;
+      font-size: 10.5px;
+      font-weight: 500;
+      color: #A6B2C4;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .chain-btn[aria-pressed="true"] {
+      background: var(--champagne-bright);
+      color: var(--obsidian);
+      font-weight: 600;
+    }
+
+    .charter-pill {
+      font-family: var(--mono);
+      font-size: 8.5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4.5px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(236, 207, 146, 0.45);
+      color: var(--champagne-bright);
+      transition: background-color 0.2s ease, color 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .charter-pill:hover {
+      background: var(--champagne-bright);
+      color: var(--obsidian);
+    }
+
+    /* =========================================================================
+       2. UPPER PANORAMIC HERO: CASTOR & POLLUX ENGRAVING + INTERACTIVE GEMINI CONSTELLATION
+       Both classical Castor (left) and clockwork Pollux (right) are 100% visible,
+       with the interactive 8-star IAU Gemini (♊) constellation bridging them!
+       ========================================================================= */
+    .constellation-hero {
+      position: relative;
+      flex: 1.12;
+      min-block-size: 0;
+      background: var(--obsidian);
+      color: var(--starlight);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      border-block-end: 1px solid var(--champagne);
+    }
+
+    /* Full Panoramic Copperplate Engraving Backdrop (Both Twins Visible!) */
+    .hero-engraving-backdrop {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-engraving-backdrop img {
+      inline-size: 100%;
+      block-size: 100%;
+      object-fit: cover;
+      object-position: center 42%;
+      opacity: 0.86;
+      filter: contrast(1.06);
+      transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .constellation-hero:hover .hero-engraving-backdrop img {
+      transform: scale(1.015);
+    }
+
+    /* Subtle Couture Gradient Scrim so Center Constellation & Top/Bottom Bars Pop */
+    .hero-scrim {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 46% 68% at 50% 50%, rgba(7, 10, 16, 0.48) 0%, rgba(7, 10, 16, 0.12) 65%, rgba(7, 10, 16, 0.55) 100%),
+        linear-gradient(180deg, rgba(7, 10, 16, 0.78) 0%, rgba(7, 10, 16, 0.08) 24%, rgba(7, 10, 16, 0.08) 74%, rgba(7, 10, 16, 0.88) 100%);
+    }
+
+    /* Top Hero Editorial Title & Twin Wing Badges */
+    .hero-top-bar {
+      position: relative;
+      z-index: 3;
+      padding: clamp(8px, 1.2vh, 14px) clamp(18px, 2.4vw, 38px) 0;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: start;
+      gap: 16px;
+    }
+
+    .wing-fig-tag {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 2px;
+      font-family: var(--mono);
+      font-size: 8.5px;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      background: rgba(7, 10, 16, 0.74);
+      border: 1px solid rgba(236, 207, 146, 0.32);
+      padding: 5px 10px;
+      border-radius: 8px;
+      backdrop-filter: blur(6px);
+      width: fit-content;
+    }
+
+    .wing-fig-tag.pollux-tag {
+      justify-self: end;
+      text-align: right;
+      border-color: rgba(108, 224, 200, 0.35);
+    }
+
+    .wing-fig-kicker {
+      color: var(--champagne-bright);
+      font-weight: 600;
+    }
+
+    .wing-fig-tag.pollux-tag .wing-fig-kicker {
+      color: var(--celadon-bright);
+    }
+
+    .wing-fig-sub {
+      color: #B9C4D6;
+      font-size: 8px;
+    }
+
+    .hero-center-heading {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 8.5px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--champagne-bright);
+    }
+
+    .hero-h1 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(26px, 2.65vw, 42px);
+      line-height: 0.96;
+      letter-spacing: 0.01em;
+      color: var(--starlight);
+      text-shadow: 0 4px 24px rgba(0, 0, 0, 0.75);
+    }
+
+    .hero-h1 em {
+      font-style: italic;
+      color: var(--champagne-bright);
+    }
+
+    /* Interactive Panoramic SVG Gemini Constellation Overlay */
+    .hero-constellation-stage {
+      position: relative;
+      z-index: 3;
+      flex: 1;
+      min-block-size: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-inline: clamp(16px, 2vw, 36px);
+    }
+
+    .gemini-panoramic-svg {
+      inline-size: 100%;
+      block-size: 100%;
+      max-inline-size: 1460px;
+      max-block-size: 100%;
+      overflow: visible;
+      user-select: none;
+    }
+
+    /* Constellation Stick Lines */
+    .constellation-line-castor {
+      stroke: var(--champagne-bright);
+      stroke-width: 1.65;
+      stroke-opacity: 0.78;
+      fill: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .constellation-line-pollux {
+      stroke: var(--celadon-bright);
+      stroke-width: 1.65;
+      stroke-opacity: 0.78;
+      fill: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .constellation-bridge-line {
+      stroke: #B4C0D4;
+      stroke-width: 1.25;
+      stroke-dasharray: 5 4;
+      stroke-opacity: 0.65;
+      fill: none;
+    }
+
+    html[data-chain="castor"] .constellation-line-pollux,
+    html[data-chain="castor"] .star-node-pollux {
+      opacity: 0.22;
+    }
+
+    html[data-chain="pollux"] .constellation-line-castor,
+    html[data-chain="pollux"] .star-node-castor {
+      opacity: 0.22;
+    }
+
+    /* Interactive Star Nodes */
+    .star-node {
+      cursor: pointer;
+      transition: opacity 0.25s ease;
+    }
+
+    .star-hit-area {
+      fill: transparent;
+    }
+
+    .star-halo {
+      fill: none;
+      stroke-width: 1.3;
+      opacity: 0.45;
+      transition: opacity 0.22s ease, stroke-width 0.22s ease;
+    }
+
+    .star-node-castor .star-halo {
+      stroke: var(--champagne-bright);
+    }
+
+    .star-node-pollux .star-halo {
+      stroke: var(--celadon-bright);
+    }
+
+    .star-core-castor {
+      fill: var(--champagne-bright);
+      filter: drop-shadow(0 0 8px rgba(236, 207, 146, 0.95));
+    }
+
+    .star-core-pollux {
+      fill: var(--celadon-bright);
+      filter: drop-shadow(0 0 8px rgba(108, 224, 200, 0.95));
+    }
+
+    .star-reticle {
+      fill: none;
+      stroke-width: 1.6;
+      stroke-dasharray: 3 2.5;
+      opacity: 0;
+      transition: opacity 0.22s ease;
+    }
+
+    .star-node:hover .star-halo,
+    .star-node[data-active="true"] .star-halo {
+      opacity: 1;
+      stroke-width: 2;
+    }
+
+    .star-node:hover .star-reticle,
+    .star-node[data-active="true"] .star-reticle {
+      opacity: 1;
+    }
+
+    .star-pill-bg {
+      fill: rgba(8, 12, 19, 0.88);
+      stroke: rgba(216, 210, 197, 0.36);
+      stroke-width: 1;
+      rx: 6;
+      transition: fill 0.2s ease, stroke 0.2s ease, stroke-width 0.2s ease;
+    }
+
+    .star-node-castor:hover .star-pill-bg,
+    .star-node-castor[data-active="true"] .star-pill-bg {
+      fill: rgba(26, 21, 11, 0.95);
+      stroke: var(--champagne-bright);
+      stroke-width: 1.6;
+    }
+
+    .star-node-pollux:hover .star-pill-bg,
+    .star-node-pollux[data-active="true"] .star-pill-bg {
+      fill: rgba(9, 27, 24, 0.95);
+      stroke: var(--celadon-bright);
+      stroke-width: 1.6;
+    }
+
+    .star-label-astro {
+      font-family: var(--mono);
+      font-size: 8.5px;
+      font-weight: 600;
+      letter-spacing: 0.11em;
+      fill: var(--champagne-bright);
+    }
+
+    .star-node-pollux .star-label-astro {
+      fill: var(--celadon-bright);
+    }
+
+    .star-label-dest {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 600;
+      fill: var(--starlight);
+    }
+
+    /* Bottom Active Star HUD Ribbon inside Hero */
+    .hero-bottom-hud {
+      position: relative;
+      z-index: 3;
+      padding: 6px clamp(18px, 2.4vw, 38px);
+      background: rgba(7, 10, 16, 0.86);
+      border-block-start: 1px solid rgba(236, 207, 146, 0.24);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .hbh-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-inline-size: 0;
+    }
+
+    .hbh-badge {
+      font-family: var(--mono);
+      font-size: 8.5px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 2.5px 8px;
+      border-radius: 4px;
+      background: rgba(236, 207, 146, 0.16);
+      color: var(--champagne-bright);
+      border: 1px solid rgba(236, 207, 146, 0.4);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .hbh-coords {
+      font-family: var(--mono);
+      font-size: 8.8px;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      color: #B4C0D3;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .hbh-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .hbh-dest {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 15px;
+      color: var(--champagne-bright);
+      white-space: nowrap;
+    }
+
+    .hbh-enter-btn {
+      padding: 4px 11px;
+      border-radius: 999px;
+      background: var(--champagne-bright);
+      color: var(--obsidian);
+      font-family: var(--mono);
+      font-size: 8.5px;
+      font-weight: 600;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .hbh-enter-btn:hover {
+      background: var(--celadon-bright);
+      transform: translateY(-1px);
+    }
+
+    /* =========================================================================
+       3. LOWER COUTURE MAGAZINE SPREAD (50/50 PORCELAIN SILK SALONS)
+       Left: 01 / α Castor (What's New & How It Applies to You)
+       Right: 02 / β Pollux (How to Use It Right Now & Live Proof)
+       ========================================================================= */
+    .magazine-spread {
+      flex: 0.92;
+      min-block-size: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--silk);
+      overflow: hidden;
+    }
+
+    .spread-salon {
+      padding: clamp(10px, 1.4vh, 18px) clamp(18px, 2.4vw, 38px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 8px;
+      min-inline-size: 0;
+      min-block-size: 0;
+    }
+
+    .spread-castor {
+      border-inline-end: 1px solid var(--hairline);
+      background: linear-gradient(180deg, var(--silk-elevated) 0%, var(--silk) 100%);
+    }
+
+    .spread-pollux {
+      background: linear-gradient(180deg, var(--silk) 0%, var(--silk-warm) 100%);
+    }
+
+    .salon-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding-block-end: 5px;
+      border-block-end: 1px solid var(--hairline);
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .shr-title {
+      font-weight: 600;
+      color: var(--champagne-ink);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .spread-pollux .shr-title {
+      color: var(--celadon-ink);
+    }
+
+    .shr-badge {
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: var(--silk-warm);
+      border: 1px solid var(--hairline);
+      color: var(--ink);
+      font-size: 8.5px;
+      white-space: nowrap;
+    }
+
+    /* Main Content Grid inside Each Salon */
+    .salon-body-split {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 16px;
+      align-items: center;
+      flex: 1;
+      min-block-size: 0;
+    }
+
+    .salon-story-col {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-inline-size: 0;
+    }
+
+    .couture-headline {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: clamp(24px, 2.05vw, 34px);
+      line-height: 0.96;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+
+    .couture-headline em {
+      display: block;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--champagne-ink);
+      margin-block-start: 2px;
+    }
+
+    .spread-pollux .couture-headline em {
+      color: var(--celadon-ink);
+    }
+
+    .couture-dek {
+      font-size: clamp(11.5px, 0.84vw, 13px);
+      line-height: 1.42;
+      color: var(--ink-soft);
+    }
+
+    .couture-dek strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .couture-cta-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-block-start: 2px;
+    }
+
+    .couture-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .couture-cta-circle {
+      inline-size: 24px;
+      block-size: 24px;
+      border-radius: 50%;
+      border: 1px solid var(--ink);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .couture-cta:hover .couture-cta-circle {
+      background: var(--obsidian);
+      color: var(--champagne-bright);
+      transform: translateX(2px);
+    }
+
+    /* Telemetry Specimen Card (Right side of Castor Salon) */
+    .telemetry-card {
+      background: var(--silk-elevated);
+      border: 1px solid var(--hairline);
+      border-radius: 8px;
+      padding: 9px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      box-shadow: 0 6px 20px rgba(16, 20, 27, 0.04);
+    }
+
+    .tc-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--mono);
+      font-size: 8.5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--champagne-ink);
+      padding-block-end: 4px;
+      border-block-end: 1px solid var(--hairline);
+      font-weight: 600;
+    }
+
+    .tc-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      padding-block: 2.5px;
+      border-block-end: 1px dashed var(--hairline);
+      font-size: 11px;
+    }
+
+    .tc-row:last-of-type {
+      border-block-end: none;
+    }
+
+    .tc-key {
+      font-family: var(--mono);
+      font-size: 8.8px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-muted);
+    }
+
+    .tc-val {
+      font-family: var(--mono);
+      font-size: 10.8px;
+      font-weight: 600;
+      color: var(--ink);
+      text-align: right;
+    }
+
+    .tc-source-link {
+      margin-block-start: 2px;
+      padding-block-start: 4px;
+      border-block-start: 1px solid var(--hairline);
+      font-family: var(--mono);
+      font-size: 8.5px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--champagne-ink);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .tc-source-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Velvet Tourmaline Console (Right side of Pollux Salon) */
+    .atelier-console {
+      background: var(--obsidian-card);
+      color: var(--starlight);
+      border-radius: 8px;
+      padding: 9px 12px;
+      border: 1px solid var(--hairline-dark);
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      box-shadow: 0 8px 24px rgba(7, 10, 16, 0.14);
+    }
+
+    .ac-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--mono);
+      font-size: 8px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--celadon-bright);
+    }
+
+    .ac-presets {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 4px;
+      background: var(--obsidian);
+      padding: 2.5px;
+      border-radius: 5px;
+      border: 1px solid var(--hairline-dark);
+    }
+
+    .ac-preset-btn {
+      padding: 3.5px 4px;
+      border-radius: 4px;
+      font-family: var(--mono);
+      font-size: 8px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #9BA6B8;
+      text-align: center;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+
+    .ac-preset-btn[aria-pressed="true"] {
+      background: var(--celadon-bright);
+      color: var(--obsidian);
+      font-weight: 600;
+    }
+
+    .ac-output {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      background: var(--obsidian);
+      border: 1px solid var(--hairline-dark);
+      border-radius: 5px;
+      padding: 5px 8px;
+      font-family: var(--mono);
+      font-size: 9.5px;
+    }
+
+    .ac-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 6px;
+      padding-block: 1.5px;
+      border-block-end: 1px dashed rgba(255, 255, 255, 0.08);
+    }
+
+    .ac-line:last-child {
+      border-block-end: none;
+    }
+
+    .ac-k {
+      color: #93A0B4;
+      font-size: 8.5px;
+      white-space: nowrap;
+    }
+
+    .ac-v {
+      color: var(--starlight);
+      font-weight: 600;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .ac-v.accent {
+      color: var(--celadon-bright);
+    }
+
+    /* Bottom 4-Star Selector Strip inside Each Salon */
+    .salon-star-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border: 1px solid var(--hairline);
+      border-radius: 6px;
+      overflow: hidden;
+      background: var(--silk-elevated);
+      flex-shrink: 0;
+    }
+
+    .sss-btn {
+      padding: 5px 8px;
+      text-align: left;
+      border-inline-end: 1px solid var(--hairline);
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      transition: background-color 0.18s ease;
+      min-inline-size: 0;
+    }
+
+    .sss-btn:last-child {
+      border-inline-end: none;
+    }
+
+    .sss-btn:hover {
+      background: var(--silk-warm);
+    }
+
+    .sss-btn[aria-selected="true"] {
+      background: var(--obsidian);
+      color: var(--starlight);
+    }
+
+    .sss-star {
+      font-family: var(--mono);
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--champagne-ink);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .spread-pollux .sss-star {
+      color: var(--celadon-ink);
+    }
+
+    .sss-btn[aria-selected="true"] .sss-star {
+      color: var(--champagne-bright);
+    }
+
+    .spread-pollux .sss-btn[aria-selected="true"] .sss-star {
+      color: var(--celadon-bright);
+    }
+
+    .sss-label {
+      font-size: 10.5px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* =========================================================================
+       4. BOTTOM CELESTIAL FOOTER RIBBON
+       ========================================================================= */
+    .celestial-footer {
+      background: var(--obsidian);
+      color: #B4BECE;
+      border-block-start: 1px solid var(--hairline-dark);
+      padding: 5px clamp(18px, 2.4vw, 38px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-family: var(--mono);
+      font-size: 8.5px;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    .cf-left, .cf-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      white-space: nowrap;
+    }
+
+    .cf-right a {
+      color: var(--champagne-bright);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* =========================================================================
+       5. NATIVE <DIALOG> CELESTIAL DESTINATION MODAL
+       ========================================================================= */
+    dialog.celestial-modal {
+      margin: auto;
+      inline-size: min(740px, 92vw);
+      background: var(--silk-elevated);
+      color: var(--ink);
+      border: 1px solid var(--champagne);
+      border-radius: 14px;
+      padding: 0;
+      box-shadow: 0 28px 80px rgba(8, 12, 18, 0.55);
+    }
+
+    dialog.celestial-modal::backdrop {
+      background: rgba(8, 12, 18, 0.76);
+      backdrop-filter: blur(5px);
+    }
+
+    .cm-header {
+      padding: 14px 22px;
+      background: var(--obsidian);
+      color: var(--starlight);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 9.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .cm-close {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(236, 207, 146, 0.4);
+      color: var(--champagne-bright);
+      font-family: var(--mono);
+      font-size: 9px;
+    }
+
+    .cm-body {
+      padding: 22px 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .cm-title {
+      font-family: var(--serif);
+      font-size: clamp(28px, 2.8vw, 38px);
+      line-height: 1.02;
+      font-weight: 500;
+    }
+
+    .cm-title em {
+      font-style: italic;
+      color: var(--champagne-ink);
+    }
+
+    .cm-lead {
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+    }
+
+    .cm-code {
+      background: var(--obsidian);
+      color: var(--starlight);
+      padding: 14px 16px;
+      border-radius: 10px;
+      font-family: var(--mono);
+      font-size: 11px;
+      line-height: 1.5;
+      overflow-x: auto;
+      white-space: pre-wrap;
+    }
+
+    .cm-footer {
+      padding: 12px 26px;
+      background: var(--silk-warm);
+      border-block-start: 1px solid var(--hairline);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* =========================================================================
+       COMPACT DESKTOP / LANDSCAPE TABLET ADAPTATION (1280x800 & 1024x768)
+       ========================================================================= */
+    @media (max-width: 1360px) {
+      .premise-tag,
+      .hbh-dest,
+      .cf-hide-compact {
+        display: none;
+      }
+    }
+
+    @media (max-width: 1240px), (max-height: 815px) {
+      .couture-header {
+        padding-block: 5px;
+      }
+      .hero-top-bar {
+        padding-block-start: 6px;
+      }
+      .hero-h1 {
+        font-size: clamp(22px, 2.2vw, 30px);
+      }
+      .spread-salon {
+        padding: 8px 16px;
+        gap: 5px;
+      }
+      .couture-headline {
+        font-size: clamp(20px, 1.85vw, 25px);
+      }
+      .couture-dek {
+        font-size: 11px;
+        line-height: 1.32;
+      }
+      .telemetry-card,
+      .atelier-console {
+        padding: 6px 9px;
+        gap: 3px;
+      }
+      .sss-btn {
+        padding: 4px 6px;
+      }
+      .sss-label {
+        font-size: 9.8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="couture-shell">
+    <!-- =====================================================================
+         1. TOP COUTURE MASTHEAD & AUTONOMOUS PREMISE BAR
+         ===================================================================== -->
+    <header class="couture-header" role="banner">
+      <a href="#constellation-hero" class="brand-lockup" aria-label="GeminiPulse Celestial Atlas Home">
+        <span class="brand-glyph" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+            <path d="M5 4c4 2 10 2 14 0M5 20c4-2 10-2 14 0M9 5.2v13.6M15 5.2v13.6" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span>
+          <span class="brand-title">GEMINIPULSE</span>
+          <span class="brand-coords">IAU GEMINI · RA 07h 20m · DEC +22°</span>
+        </span>
+      </a>
+
+      <div class="premise-ribbon">
+        <span class="premise-tag">AUTONOMOUS GEMINI EDITION</span>
+        <p class="premise-text">
+          Conceived by a human · Written &amp; coded by <strong>Google Gemini</strong> — <em>click any star below to take you places.</em>
+        </p>
+      </div>
+
+      <div class="header-controls">
+        <div class="chain-switcher" role="group" aria-label="Filter Constellation Chains">
+          <button type="button" class="chain-btn" data-filter-chain="all" aria-pressed="true">All 8 Stars</button>
+          <button type="button" class="chain-btn" data-filter-chain="castor" aria-pressed="false"><span class="greek">α</span> Castor</button>
+          <button type="button" class="chain-btn" data-filter-chain="pollux" aria-pressed="false"><span class="greek">β</span> Pollux</button>
+        </div>
+        <button type="button" class="charter-pill" id="open-charter-btn">Autonomous Charter ↗</button>
+      </div>
+    </header>
+
+    <!-- =====================================================================
+         2. UPPER PANORAMIC HERO: CASTOR & POLLUX ENGRAVING + INTERACTIVE GEMINI CONSTELLATION
+         ===================================================================== -->
+    <section class="constellation-hero" id="constellation-hero" aria-label="Interactive Gemini Constellation Hero">
+      <!-- Full 16:9 Copperplate Engraving of Castor (Left) & Pollux (Right) -->
+      <div class="hero-engraving-backdrop">
+        <img
+          src="./assets/look-i-celestial-twins.webp"
+          alt="Copperplate celestial engraving of the Gemini Twins: classical marble Castor on the left facing haute-horlogerie clockwork Pollux on the right"
+          width="1376"
+          height="768"
+          fetchpriority="high"
+        />
+      </div>
+      <div class="hero-scrim" aria-hidden="true"></div>
+
+      <!-- Top Hero Header & Twin Engraving Labels -->
+      <div class="hero-top-bar">
+        <div class="wing-fig-tag">
+          <span class="wing-fig-kicker">★ LEFT TWIN · <span class="greek">α</span> CASTOR (THE SIGNAL)</span>
+          <span class="wing-fig-sub">WHAT’S NEW IN GEMINI &amp; HOW IT APPLIES TO YOU</span>
+        </div>
+
+        <div class="hero-center-heading">
+          <span class="hero-eyebrow">✦ ASTRONOMICAL IAU GEMINI (♊&#xFE0E;) STAR MAP · CLICK ANY STAR TO NAVIGATE ✦</span>
+          <h1 class="hero-h1">
+            Written by Gemini. <em>Guided by the Twins.</em>
+          </h1>
+        </div>
+
+        <div class="wing-fig-tag pollux-tag">
+          <span class="wing-fig-kicker">✧ RIGHT TWIN · <span class="greek">β</span> POLLUX (THE WORKBENCH)</span>
+          <span class="wing-fig-sub">HOW TO USE IT RIGHT NOW &amp; LIVE PROOF</span>
+        </div>
+      </div>
+
+      <!-- Interactive Panoramic SVG Gemini Constellation
+           Positioned cleanly inside the central celestial corridor (x=370..910)
+           so both Castor's marble profile (left) and Pollux's clockwork profile (right)
+           are 100% unobstructed and gaze directly at the interactive stars! -->
+      <div class="hero-constellation-stage">
+        <svg class="gemini-panoramic-svg" viewBox="0 0 1280 340" role="group" aria-label="Clickable Stars of the Castor and Pollux Gemini Constellation">
+          <defs>
+            <radialGradient id="m35-cluster-glow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#ECCF92" stop-opacity="0.55" />
+              <stop offset="100%" stop-color="#ECCF92" stop-opacity="0" />
+            </radialGradient>
+          </defs>
+
+          <!-- Subtle Celestial Ecliptic Arc & Equatorial Coordinates in the Center Corridor -->
+          <g aria-hidden="true" opacity="0.48">
+            <path d="M 350 268 Q 640 165 930 112" fill="none" stroke="#C8A25A" stroke-width="1" stroke-dasharray="6 5" />
+            <text x="588" y="154" fill="#ECCF92" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="1.5">ECLIPTIC PLANE (+22°)</text>
+          </g>
+
+          <!-- M35 Open Star Cluster near η Propus -->
+          <circle cx="384" cy="288" r="22" fill="url(#m35-cluster-glow)" aria-hidden="true" />
+          <g fill="#ECCF92" opacity="0.8" aria-hidden="true">
+            <circle cx="378" cy="284" r="1.2" /><circle cx="388" cy="290" r="1.4" />
+            <circle cx="382" cy="294" r="1" /><circle cx="375" cy="291" r="1.1" />
+          </g>
+
+          <!-- ===============================================================
+               IAU GEMINI CONSTELLATION LINES IN THE CENTRAL CORRIDOR
+               =============================================================== -->
+          <!-- Twin Shoulder Bridge across the Center -->
+          <polyline class="constellation-bridge-line" points="586,38 564,96 640,112 716,98 694,42" />
+
+          <!-- Left Chain: α Castor Stick Figure (α Castor -> τ Gem -> ε Mebsuta -> μ Tejat -> η Propus) -->
+          <polyline class="constellation-line-castor" points="586,38 564,96 552,162 496,226 410,288" />
+          <polyline class="constellation-line-castor" points="488,88 564,96 640,112" stroke-opacity="0.45" />
+
+          <!-- Right Chain: β Pollux Stick Figure (β Pollux -> υ Gem -> δ Wasat -> ζ Mekbuda -> γ Alhena) -->
+          <polyline class="constellation-line-pollux" points="694,42 716,98 728,162 708,226 870,288" />
+          <polyline class="constellation-line-pollux" points="716,98 792,90" stroke-opacity="0.45" />
+          <polyline class="constellation-line-pollux" points="728,162 712,262" stroke-opacity="0.42" />
+
+          <!-- Faint Secondary Anatomical Stars (θ, τ, ι, υ, κ, ξ) -->
+          <g fill="#C6D0E1" opacity="0.72" font-family="JetBrains Mono, monospace" font-size="8">
+            <circle cx="488" cy="88" r="2.2" /><text x="454" y="85">θ Gem</text>
+            <circle cx="564" cy="96" r="2.4" /><text x="572" y="94">τ Gem</text>
+            <circle cx="640" cy="112" r="2.5" /><text x="626" y="103">ι Gem</text>
+            <circle cx="716" cy="98" r="2.4" /><text x="682" y="95">υ Gem</text>
+            <circle cx="792" cy="90" r="2.4" /><text x="800" y="93">κ Gem</text>
+            <circle cx="712" cy="262" r="2.3" /><text x="676" y="274">ξ Alzirr</text>
+          </g>
+
+          <!-- ===============================================================
+               8 CLICKABLE MAJOR STARS OF GEMINI (4 CASTOR, 4 POLLUX)
+               All pills sit inside x=376..904 so Castor (x=60..360) and
+               Pollux (x=920..1220) are 100% clear and unobstructed!
+               =============================================================== -->
+
+          <!-- STAR 1: α CASTOR (Head of Castor — Mag 1.58) -->
+          <g class="star-node star-node-castor" role="button" tabindex="0" data-star="castor" data-active="true" aria-label="Alpha Castor: Dec 1 Price Cut (-90% Context Caching)">
+            <rect class="star-hit-area" x="376" y="12" width="232" height="50" />
+            <rect class="star-pill-bg" x="380" y="16" width="186" height="40" />
+            <text class="star-label-astro" x="390" y="31">★ α CASTOR · MAG 1.58</text>
+            <text class="star-label-dest" x="390" y="47">01 · Dec 1 Price Cut (-78%)</text>
+            <circle class="star-halo" cx="586" cy="38" r="15" />
+            <circle class="star-reticle" cx="586" cy="38" r="21" stroke="#ECCF92" />
+            <circle class="star-core-castor" cx="586" cy="38" r="6.5" />
+            <path d="M586 25v26M573 38h26" stroke="#FFFDF7" stroke-width="1.35" />
+          </g>
+
+          <!-- STAR 2: ε MEBSUTA (Hip of Castor — Mag 2.98) -->
+          <g class="star-node star-node-castor" role="button" tabindex="0" data-star="mebsuta" data-active="false" aria-label="Epsilon Mebsuta: Releases Decoded in Plain English">
+            <rect class="star-hit-area" x="364" y="138" width="208" height="48" />
+            <rect class="star-pill-bg" x="368" y="142" width="166" height="40" />
+            <text class="star-label-astro" x="378" y="157">✦ ε MEBSUTA · MAG 2.98</text>
+            <text class="star-label-dest" x="378" y="173">02 · Releases Decoded</text>
+            <circle class="star-halo" cx="552" cy="162" r="12" />
+            <circle class="star-reticle" cx="552" cy="162" r="18" stroke="#ECCF92" />
+            <circle class="star-core-castor" cx="552" cy="162" r="5" />
+          </g>
+
+          <!-- STAR 3: μ TEJAT (Back Foot of Castor — Mag 2.87) -->
+          <g class="star-node star-node-castor" role="button" tabindex="0" data-star="tejat" data-active="false" aria-label="Mu Tejat: Work, Speed and Carbon ROI">
+            <rect class="star-hit-area" x="476" y="202" width="208" height="48" />
+            <rect class="star-pill-bg" x="514" y="206" width="166" height="40" />
+            <text class="star-label-astro" x="524" y="221">✦ μ TEJAT · MAG 2.87</text>
+            <text class="star-label-dest" x="524" y="237">03 · Work &amp; Speed ROI</text>
+            <circle class="star-halo" cx="496" cy="226" r="12" />
+            <circle class="star-reticle" cx="496" cy="226" r="18" stroke="#ECCF92" />
+            <circle class="star-core-castor" cx="496" cy="226" r="5" />
+          </g>
+
+          <!-- STAR 4: η PROPUS & M35 (Front Foot of Castor — Mag 3.28) -->
+          <g class="star-node star-node-castor" role="button" tabindex="0" data-star="propus" data-active="false" aria-label="Eta Propus and M35 Cluster: 60-Second Video Signal">
+            <rect class="star-hit-area" x="392" y="264" width="218" height="50" />
+            <rect class="star-pill-bg" x="428" y="268" width="176" height="40" />
+            <text class="star-label-astro" x="438" y="283">✦ η PROPUS · M35 CLUSTER</text>
+            <text class="star-label-dest" x="438" y="299">04 · 60-Second Video Signal</text>
+            <circle class="star-halo" cx="410" cy="288" r="12" />
+            <circle class="star-reticle" cx="410" cy="288" r="18" stroke="#ECCF92" />
+            <circle class="star-core-castor" cx="410" cy="288" r="4.8" />
+          </g>
+
+          <!-- STAR 5: β POLLUX (Head of Pollux — Mag 1.14 Brightest Star) -->
+          <g class="star-node star-node-pollux" role="button" tabindex="0" data-star="pollux" data-active="false" aria-label="Beta Pollux: 10-Second Interactive Savings Lab">
+            <rect class="star-hit-area" x="674" y="16" width="232" height="50" />
+            <rect class="star-pill-bg" x="714" y="20" width="186" height="40" />
+            <text class="star-label-astro" x="724" y="35">★ β POLLUX · MAG 1.14</text>
+            <text class="star-label-dest" x="724" y="51">05 · 10-Sec Savings Lab</text>
+            <circle class="star-halo" cx="694" cy="42" r="16" />
+            <circle class="star-reticle" cx="694" cy="42" r="22" stroke="#6CE0C8" />
+            <circle class="star-core-pollux" cx="694" cy="42" r="7" />
+            <path d="M694 28v28M680 42h28" stroke="#FFFDF7" stroke-width="1.4" />
+          </g>
+
+          <!-- STAR 6: δ WASAT (Ecliptic Waist of Pollux — Mag 3.53) -->
+          <g class="star-node star-node-pollux" role="button" tabindex="0" data-star="wasat" data-active="false" aria-label="Delta Wasat: 5-Minute Workspace Guides">
+            <rect class="star-hit-area" x="710" y="138" width="214" height="48" />
+            <rect class="star-pill-bg" x="744" y="142" width="174" height="40" />
+            <text class="star-label-astro" x="754" y="157">✧ δ WASAT · ON ECLIPTIC</text>
+            <text class="star-label-dest" x="754" y="173">06 · 5-Min Workspace Guides</text>
+            <circle class="star-halo" cx="728" cy="162" r="12" />
+            <circle class="star-reticle" cx="728" cy="162" r="18" stroke="#6CE0C8" />
+            <circle class="star-core-pollux" cx="728" cy="162" r="5" />
+          </g>
+
+          <!-- STAR 7: ζ MEKBUDA (Cepheid Variable Knee of Pollux — Mag 3.79) -->
+          <g class="star-node star-node-pollux" role="button" tabindex="0" data-star="mekbuda" data-active="false" aria-label="Zeta Mekbuda: Screen-Clicking AI Sandbox">
+            <rect class="star-hit-area" x="692" y="202" width="222" height="48" />
+            <rect class="star-pill-bg" x="726" y="206" width="176" height="40" />
+            <text class="star-label-astro" x="736" y="221">✧ ζ MEKBUDA · CEPHEID</text>
+            <text class="star-label-dest" x="736" y="237">07 · Screen-Clicking AI Lab</text>
+            <circle class="star-halo" cx="708" cy="226" r="12" />
+            <circle class="star-reticle" cx="708" cy="226" r="18" stroke="#6CE0C8" />
+            <circle class="star-core-pollux" cx="708" cy="226" r="5" />
+          </g>
+
+          <!-- STAR 8: γ ALHENA (Bright Southern Foot of Pollux — Mag 1.93) -->
+          <g class="star-node star-node-pollux" role="button" tabindex="0" data-star="alhena" data-active="false" aria-label="Gamma Alhena: Built by Gemini Alone Charter">
+            <rect class="star-hit-area" x="668" y="264" width="222" height="50" />
+            <rect class="star-pill-bg" x="672" y="268" width="180" height="40" />
+            <text class="star-label-astro" x="682" y="283">✧ γ ALHENA · MAG 1.93</text>
+            <text class="star-label-dest" x="682" y="299">08 · Built by Gemini Alone</text>
+            <circle class="star-halo" cx="870" cy="288" r="14" />
+            <circle class="star-reticle" cx="870" cy="288" r="20" stroke="#6CE0C8" />
+            <circle class="star-core-pollux" cx="870" cy="288" r="6" />
+            <path d="M870 276v24M858 288h24" stroke="#FFFDF7" stroke-width="1.2" />
+          </g>
+        </svg>
+      </div>
+
+      <!-- Bottom Active Star Telemetry & Destination Bar inside Hero -->
+      <div class="hero-bottom-hud" aria-live="polite">
+        <div class="hbh-left">
+          <span class="hbh-badge" id="hud-star-badge">★ STAR 01 SELECTED</span>
+          <span class="hbh-coords" id="hud-star-coords">
+            <span class="greek">α</span> GEMINORUM (CASTOR) · RA 07h 34m 36s · DEC +31°53' · SEXTUPLE SYSTEM (51 LIGHT-YEARS)
+          </span>
+        </div>
+        <div class="hbh-right">
+          <span class="hbh-dest" id="hud-star-dest">
+            Dec 1 Price Cut (-90% Context Caching) ⇄ 10-Second Savings Lab
+          </span>
+          <button type="button" class="hbh-enter-btn" id="hud-enter-btn">
+            Open Full Star Dossier →
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         3. LOWER COUTURE MAGAZINE SPREAD (50/50 PORCELAIN SILK SALONS)
+         Synchronizes immediately when you click any star in the constellation!
+         ===================================================================== -->
+    <main class="magazine-spread" id="magazine-spread">
+      <!-- -------------------------------------------------------------------
+           LEFT SALON: 01 / α CASTOR (What's New & How It Applies to You)
+           ------------------------------------------------------------------- -->
+      <section class="spread-salon spread-castor" aria-labelledby="castor-salon-title">
+        <div class="salon-header-row">
+          <span class="shr-title">
+            <span>★ 01 / <span class="greek">α</span> CASTOR SALON · WHAT’S NEW &amp; HOW IT APPLIES TO YOU</span>
+          </span>
+          <span class="shr-badge" id="castor-star-badge"><span class="greek">α</span> GEM · MAG 1.58</span>
+        </div>
+
+        <div class="salon-body-split">
+          <div class="salon-story-col">
+            <h2 class="couture-headline" id="castor-salon-title">
+              <span id="castor-title-main">Google cut memory costs 90%.</span>
+              <em id="castor-title-italic">What does that unlock for you?</em>
+            </h2>
+            <p class="couture-dek" id="castor-dek">
+              <strong>How it applies to you:</strong> Instead of paying full price every time you ask a follow-up question on a 300-page PDF or codebase, Gemini 2.5 Pro Context Caching stores your workspace once and drops repeat reads from <code>$2.50</code> to <code>$0.25 / 1M</code>—cutting typical bills by <strong>78%</strong>.
+            </p>
+            <div class="couture-cta-row">
+              <button type="button" class="couture-cta" id="castor-open-modal-btn">
+                <span id="castor-cta-text">Read the plain-English briefing</span>
+                <span class="couture-cta-circle" aria-hidden="true">→</span>
+              </button>
+            </div>
+          </div>
+
+          <aside class="telemetry-card" aria-label="Verified Google Telemetry">
+            <div class="tc-header">
+              <span>SPECIMEN LEDGER</span>
+              <span id="castor-spec-code">STAR 01 · <span class="greek">α</span> CASTOR</span>
+            </div>
+            <div class="tc-row">
+              <span class="tc-key" id="tc-k1">Cached Read Rate</span>
+              <span class="tc-val" id="tc-v1">$0.25 / 1M (-90%)</span>
+            </div>
+            <div class="tc-row">
+              <span class="tc-key" id="tc-k2">Blended Team Bill</span>
+              <span class="tc-val" id="tc-v2">-78% Monthly Cut</span>
+            </div>
+            <div class="tc-row">
+              <span class="tc-key" id="tc-k3">Best Practical Use</span>
+              <span class="tc-val" id="tc-v3">Long PDFs &amp; Repos</span>
+            </div>
+            <a class="tc-source-link" id="castor-source-link" href="https://ai.google.dev/gemini-api/docs/pricing" target="_blank" rel="noopener noreferrer">
+              <span>Verified Google Source</span>
+              <span>↗</span>
+            </a>
+          </aside>
+        </div>
+
+        <!-- Bottom 4-Star α Castor Chain Selector -->
+        <div class="salon-star-strip" role="listbox" aria-label="Castor Chain Stars">
+          <button type="button" class="sss-btn" role="option" data-select-star="castor" aria-selected="true">
+            <span class="sss-star">★ <span class="greek">α</span> Castor · 01</span>
+            <span class="sss-label">Dec 1 Price Cut (-78%)</span>
+          </button>
+          <button type="button" class="sss-btn" role="option" data-select-star="mebsuta" aria-selected="false">
+            <span class="sss-star">✦ <span class="greek">ε</span> Mebsuta · 02</span>
+            <span class="sss-label">Releases Decoded</span>
+          </button>
+          <button type="button" class="sss-btn" role="option" data-select-star="tejat" aria-selected="false">
+            <span class="sss-star">✦ <span class="greek">μ</span> Tejat · 03</span>
+            <span class="sss-label">Work &amp; Speed ROI</span>
+          </button>
+          <button type="button" class="sss-btn" role="option" data-select-star="propus" aria-selected="false">
+            <span class="sss-star">✦ <span class="greek">η</span> Propus · 04</span>
+            <span class="sss-label">60-Sec Video Signal</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- -------------------------------------------------------------------
+           RIGHT ATELIER: 02 / β POLLUX (How to Use It Now & Live Proof)
+           ------------------------------------------------------------------- -->
+      <section class="spread-salon spread-pollux" aria-labelledby="pollux-salon-title">
+        <div class="salon-header-row">
+          <span class="shr-title">
+            <span>✧ 02 / <span class="greek">β</span> POLLUX ATELIER · HOW TO USE IT RIGHT NOW</span>
+          </span>
+          <span class="shr-badge" id="pollux-star-badge"><span class="greek">β</span> GEM · MAG 1.14</span>
+        </div>
+
+        <div class="salon-body-split">
+          <div class="salon-story-col">
+            <h2 class="couture-headline" id="pollux-salon-title">
+              <span id="pollux-title-main">Test your savings in 10 seconds.</span>
+              <em id="pollux-title-italic">Copy the working recipe.</em>
+            </h2>
+            <p class="couture-dek" id="pollux-dek">
+              <strong>Live Workbench:</strong> Select a workload preset on the right to see how pinning your recurring PDFs or repository context once with <code>ai.caches.create()</code> slashes monthly token spend.
+            </p>
+            <div class="couture-cta-row">
+              <button type="button" class="couture-cta" id="pollux-open-modal-btn">
+                <span id="pollux-cta-text">Open interactive recipe &amp; copy code</span>
+                <span class="couture-cta-circle" aria-hidden="true">→</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Velvet Tourmaline Interactive Workbench Console -->
+          <div class="atelier-console">
+            <div class="ac-top">
+              <span id="ac-console-kicker">STAR 05 WORKBENCH</span>
+              <span>[SIMULATED DEMO]</span>
+            </div>
+
+            <div class="ac-presets" role="group" aria-label="Interactive Workload Presets">
+              <button type="button" class="ac-preset-btn" data-preset="0" aria-pressed="true">SOLO (20M)</button>
+              <button type="button" class="ac-preset-btn" data-preset="1" aria-pressed="false">TEAM (100M)</button>
+              <button type="button" class="ac-preset-btn" data-preset="2" aria-pressed="false">SCALE (500M)</button>
+            </div>
+
+            <div class="ac-output" aria-live="polite">
+              <div class="ac-line">
+                <span class="ac-k" id="ac-k1">1. Uncached Bill:</span>
+                <span class="ac-v" id="ac-v1">$142 / month</span>
+              </div>
+              <div class="ac-line">
+                <span class="ac-k" id="ac-k2">2. Cached (80% Hit):</span>
+                <span class="ac-v accent" id="ac-v2">$31 / month (-78%)</span>
+              </div>
+              <div class="ac-line">
+                <span class="ac-k" id="ac-k3">3. SDK Enablement:</span>
+                <span class="ac-v" id="ac-v3">ai.caches.create()</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom 4-Star β Pollux Chain Selector -->
+        <div class="salon-star-strip" role="listbox" aria-label="Pollux Chain Stars">
+          <button type="button" class="sss-btn" role="option" data-select-star="pollux" aria-selected="false">
+            <span class="sss-star">★ <span class="greek">β</span> Pollux · 05</span>
+            <span class="sss-label">10-Sec Savings Lab</span>
+          </button>
+          <button type="button" class="sss-btn" role="option" data-select-star="wasat" aria-selected="false">
+            <span class="sss-star">✧ <span class="greek">δ</span> Wasat · 06</span>
+            <span class="sss-label">5-Min Workspace Guides</span>
+          </button>
+          <button type="button" class="sss-btn" role="option" data-select-star="mekbuda" aria-selected="false">
+            <span class="sss-star">✧ <span class="greek">ζ</span> Mekbuda · 07</span>
+            <span class="sss-label">Screen-Clicking AI Lab</span>
+          </button>
+          <button type="button" class="sss-btn" role="option" data-select-star="alhena" aria-selected="false">
+            <span class="sss-star">✧ <span class="greek">γ</span> Alhena · 08</span>
+            <span class="sss-label">Built by Gemini Alone</span>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <!-- =====================================================================
+         4. BOTTOM CELESTIAL FOOTER RIBBON
+         ===================================================================== -->
+    <footer class="celestial-footer" role="contentinfo">
+      <div class="cf-left">
+        <span>AUTONOMOUS LEAD ARCHITECT: GOOGLE GEMINI 4 ARGON</span>
+        <span class="cf-hide-compact">·</span>
+        <span class="cf-hide-compact">CONCEIVED BY NEIL S. WHITE</span>
+      </div>
+      <div class="cf-right">
+        <a href="./look-h-avant-twin-journal.html">SAVED LOOK H (AVANT JOURNAL) ↗</a>
+        <a href="./index.html">PROTOTYPE ARCHIVE (1A–I) ↗</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- =======================================================================
+       5. NATIVE <DIALOG> CELESTIAL DESTINATION MODAL
+       ======================================================================= -->
+  <dialog class="celestial-modal" id="celestial-modal" aria-labelledby="cm-title">
+    <div class="cm-header">
+      <span id="cm-kicker">★ CELESTIAL DESTINATION DOSSIER · α GEMINORUM</span>
+      <button type="button" class="cm-close" id="cm-close-btn">ESC / CLOSE ✕</button>
+    </div>
+    <div class="cm-body">
+      <h3 class="cm-title" id="cm-title">
+        Google cut memory costs 90%. <em>Copy the 3-line setup.</em>
+      </h3>
+      <p class="cm-lead" id="cm-lead">
+        Pin your recurring documents, brand guidelines, or repository context once with Context Caching so every follow-up query reads at $0.25/1M tokens instead of $2.50/1M.
+      </p>
+      <pre class="cm-code" id="cm-code"></pre>
+    </div>
+    <div class="cm-footer">
+      <span id="cm-source">VERIFIED SOURCE: GOOGLE GEMINI API DOCS</span>
+      <button type="button" class="charter-pill" style="border-color:var(--ink);color:var(--ink)" id="cm-copy-btn">COPY RECIPE TO CLIPBOARD</button>
+    </div>
+  </dialog>
+
+  <script>
+    // =========================================================================
+    // 8 REAL ASTRONOMICAL STARS OF GEMINI (IAU ♊) -> GEMINIPULSE DESTINATIONS
+    // =========================================================================
+    const STAR_ATLAS = {
+      castor: {
+        chain: "castor",
+        hudBadge: "★ STAR 01 SELECTED",
+        starBadge: "α GEM · MAG 1.58",
+        pairedBadge: "β GEM · MAG 1.14",
+        hudCoords: "α GEMINORUM (CASTOR) · RA 07h 34m 36s · DEC +31°53' · SEXTUPLE STAR SYSTEM (51 LIGHT-YEARS)",
+        hudDest: "Dec 1 Price Cut (-90% Context Caching) ⇄ 10-Second Savings Lab",
+        castorTitleMain: "Google cut memory costs 90%.",
+        castorTitleItalic: "What does that unlock for you?",
+        castorDek: "<strong>How it applies to you:</strong> Instead of paying full price every time you ask a follow-up question on a 300-page PDF or codebase, Gemini 2.5 Pro Context Caching stores your workspace once and drops repeat reads from <code>$2.50</code> to <code>$0.25 / 1M</code>—cutting typical bills by <strong>78%</strong>.",
+        specCode: "STAR 01 · α CASTOR",
+        telemetry: [
+          ["Cached Read Rate", "$0.25 / 1M (-90%)"],
+          ["Blended Team Bill", "-78% Monthly Cut"],
+          ["Best Practical Use", "Long PDFs & Repos"]
+        ],
+        castorCta: "Read the plain-English briefing",
+        sourceUrl: "https://ai.google.dev/gemini-api/docs/pricing",
+        polluxTitleMain: "Test your savings in 10 seconds.",
+        polluxTitleItalic: "Copy the working recipe.",
+        polluxDek: "<strong>Live Workbench:</strong> Select a workload preset on the right to see how pinning your recurring PDFs or repository context once with <code>ai.caches.create()</code> slashes monthly token spend.",
+        consoleKicker: "STAR 01/05 WORKBENCH",
+        presets: [
+          {
+            label: "SOLO (20M)",
+            rows: [
+              ["1. Uncached Bill:", "$142 / month", false],
+              ["2. Cached (80% Hit):", "$31 / month (-78%)", true],
+              ["3. SDK Enablement:", "ai.caches.create()", false]
+            ]
+          },
+          {
+            label: "TEAM (100M)",
+            rows: [
+              ["1. Uncached Bill:", "$710 / month", false],
+              ["2. Cached (80% Hit):", "$155 / month (-78%)", true],
+              ["3. Cache TTL:", "ttl: '86400s' (24h)", false]
+            ]
+          },
+          {
+            label: "SCALE (500M)",
+            rows: [
+              ["1. Uncached Bill:", "$3,550 / month", false],
+              ["2. Cached (80% Hit):", "$775 / month (-78%)", true],
+              ["3. Annual Savings:", "$33,300 / yr saved", true]
+            ]
+          }
+        ],
+        polluxCta: "Open interactive recipe & copy code",
+        modalKicker: "★ STAR 01 · α CASTOR (RA 07h 34m · DEC +31°53')",
+        modalTitle: "Google cut memory costs 90%. <em>Copy the 3-line setup.</em>",
+        modalLead: "Pin your recurring documents, brand guidelines, or repository context once with Context Caching so every follow-up query reads at $0.25/1M tokens instead of $2.50/1M.",
+        modalCode: `// [SIMULATED DEMO] — Google GenAI SDK Context Caching Recipe
+import { GoogleGenAI } from "@google/genai";
+const ai = new GoogleGenAI();
+
+// Step 1: Cache your 300-page PDF or repo once ($0.25 / 1M cached reads)
+const cache = await ai.caches.create({
+  model: "gemini-2.5-pro",
+  config: { contents: [workspaceDocs], ttl: "86400s" }
+});
+
+// Step 2: Query against the cached memory at a 90% input discount
+const response = await ai.models.generateContent({
+  model: "gemini-2.5-pro",
+  contents: "Summarize every liability clause that changed this quarter.",
+  config: { cachedContent: cache.name }
+});`
+      },
+
+      mebsuta: {
+        chain: "castor",
+        hudBadge: "✦ STAR 02 SELECTED",
+        starBadge: "ε GEM · MAG 2.98",
+        pairedBadge: "ζ GEM · CEPHEID",
+        hudCoords: "ε GEMINORUM (MEBSUTA) · RA 06h 43m 55s · DEC +25°07' · LUMINOUS SUPERGIANT (840 LIGHT-YEARS)",
+        hudDest: "Releases Decoded in Plain English ⇄ Model Routing Scanner",
+        castorTitleMain: "Every Gemini drop, decoded.",
+        castorTitleItalic: "Zero benchmark jargon.",
+        castorDek: "<strong>How it applies to you:</strong> When Google ships a new model or deprecates a legacy endpoint, we answer two questions in plain English: <em>what can you do today that you couldn't do yesterday</em>, and <em>which model should you actually pick</em>?",
+        specCode: "STAR 02 · ε MEBSUTA",
+        telemetry: [
+          ["Dec 1 Auto-Routing", "2.5 → 3.8 Flash (-78%)"],
+          ["Computer Use (GA)", "Browser Pixel Agent"],
+          ["Bulk Workhorse", "Flash-Lite ($0.10/1M)"]
+        ],
+        castorCta: "Open full Releases Decoded index",
+        sourceUrl: "https://ai.google.dev/gemini-api/docs/changelog",
+        polluxTitleMain: "Which Gemini model fits your task?",
+        polluxTitleItalic: "Compare the 3 active tiers.",
+        polluxDek: "<strong>Live Model Picker:</strong> Click any workload tier on the right to see the exact model, token pricing, and recommended parameter setup after the December 1 auto-routing cutover.",
+        consoleKicker: "STAR 02 MODEL PICKER",
+        presets: [
+          {
+            label: "DAILY FAST",
+            rows: [
+              ["1. Active Model:", "gemini-3.8-flash", true],
+              ["2. Input / Output:", "$0.75 / $3.75 per 1M", false],
+              ["3. Thinking Level:", "thinking_level: 'low'", false]
+            ]
+          },
+          {
+            label: "DEEP REASON",
+            rows: [
+              ["1. Active Model:", "gemini-4-argon", true],
+              ["2. Best For:", "Complex Architecture", false],
+              ["3. Thinking Level:", "thinking_level: 'high'", true]
+            ]
+          },
+          {
+            label: "BULK SCALE",
+            rows: [
+              ["1. Active Model:", "gemini-3.5-flash-lite", true],
+              ["2. Input / Output:", "$0.10 / $0.40 per 1M", true],
+              ["3. Best For:", "High-Volume Triage", false]
+            ]
+          }
+        ],
+        polluxCta: "Inspect 3-part migration guide",
+        modalKicker: "✦ STAR 02 · ε MEBSUTA (RA 06h 43m · DEC +25°07')",
+        modalTitle: "Releases Decoded. <em>Which Gemini model to use today.</em>",
+        modalLead: "Effective December 1, legacy gemini-2.5 requests automatically route to faster, lower-cost Gemini 3.8 Flash endpoints with strict thought_signature validation.",
+        modalCode: `• gemini-3.8-flash ($0.75 / $3.75): Default daily driver for coding, docs & tool calling.
+• gemini-2.5-computer-use (GA): Visually clicks & fills browser forms when no API exists.
+• gemini-3.5-flash-lite ($0.10 / $0.40): High-throughput classification & triage.`
+      },
+
+      tejat: {
+        chain: "castor",
+        hudBadge: "✦ STAR 03 SELECTED",
+        starBadge: "μ GEM · MAG 2.87",
+        pairedBadge: "δ GEM · ECLIPTIC",
+        hudCoords: "μ GEMINORUM (TEJAT POSTERIOR) · RA 06h 22m 57s · DEC +22°30' · M3 RED GIANT (230 LIGHT-YEARS)",
+        hudDest: "79% Faster & 4.2× Lower Energy ⇄ Sub-Second Latency Lab",
+        castorTitleMain: "79% faster replies. 4.2× less energy.",
+        castorTitleItalic: "Why speed changes how you think.",
+        castorDek: "<strong>How it applies to you:</strong> Waiting 4 seconds breaks human creative flow. Warm context prefixes on TPU v6e Trillium drop 128k Time-to-First-Token from <code>3.4s</code> to <code>0.7s</code> while cutting per-query energy by <strong>76%</strong>.",
+        specCode: "STAR 03 · μ TEJAT",
+        telemetry: [
+          ["128k First Token", "3.4s → 0.7s (-79%)"],
+          ["Query Energy", "4.2× Lower Watt-Hours"],
+          ["Hardware Engine", "TPU v6e Trillium"]
+        ],
+        castorCta: "Read the speed & carbon audit",
+        sourceUrl: "https://cloud.google.com/blog/products/ai-machine-learning",
+        polluxTitleMain: "Feel sub-second latency.",
+        polluxTitleItalic: "Cold vs. warm prefix benchmark.",
+        polluxDek: "<strong>Latency &amp; Carbon Lab:</strong> Compare cold prefill wait times against warm cached prefixes across 32k, 128k, and 500k token workspaces.",
+        consoleKicker: "STAR 03 LATENCY LAB",
+        presets: [
+          {
+            label: "32K DOC",
+            rows: [
+              ["1. Cold Prefill:", "1.18 seconds", false],
+              ["2. Warm Cached:", "0.29 seconds (-75%)", true],
+              ["3. Energy Saved:", "3.8× less watt-hours", false]
+            ]
+          },
+          {
+            label: "128K BOOK",
+            rows: [
+              ["1. Cold Prefill:", "3.42 seconds", false],
+              ["2. Warm Cached:", "0.71 seconds (-79%)", true],
+              ["3. Energy Saved:", "4.2× less watt-hours", true]
+            ]
+          },
+          {
+            label: "500K REPO",
+            rows: [
+              ["1. Cold Prefill:", "11.80 seconds", false],
+              ["2. Warm Cached:", "1.45 seconds (-88%)", true],
+              ["3. Flow State:", "Real-time IDE pairing", true]
+            ]
+          }
+        ],
+        polluxCta: "Copy warm-prefix streaming pattern",
+        modalKicker: "✦ STAR 03 · μ TEJAT (RA 06h 22m · DEC +22°30')",
+        modalTitle: "0.7-second responses on 128k context. <em>Warm prefix setup.</em>",
+        modalLead: "Keep your shared system instructions and reference documents identical at the start of contents[] so Gemini automatically hits the warm prefix cache.",
+        modalCode: `// [SIMULATED DEMO] — Sub-Second Warm Prefix Streaming Pattern
+const stream = await ai.models.generateContentStream({
+  model: "gemini-3.8-flash",
+  contents: [
+    sharedWorkspacePrefix, // Hits warm cache prefix -> 0.7s first token
+    { role: "user", parts: [{ text: liveUserQuestion }] }
+  ]
+});`
+      },
+
+      propus: {
+        chain: "castor",
+        hudBadge: "✦ STAR 04 SELECTED",
+        starBadge: "η GEM · M35 CLUSTER",
+        pairedBadge: "γ GEM · MAG 1.93",
+        hudCoords: "η GEMINORUM (PROPUS) & MESSIER 35 CLUSTER · RA 06h 14m 52s · DEC +22°30' (350 LIGHT-YEARS)",
+        hudDest: "60-Second Video Signal ⇄ Autonomous Storyboard Studio",
+        castorTitleMain: "See it working in 60 seconds.",
+        castorTitleItalic: "Visual proof without YouTube filler.",
+        castorDek: "<strong>How it applies to you:</strong> Don't sit through 25-minute hype videos. Watch side-by-side 60-second visual dispatches showing real Gemini screen-clicking, live latency comparisons, and Workspace automations.",
+        specCode: "STAR 04 · η PROPUS",
+        telemetry: [
+          ["Featured Dispatch", "Computer Use GA (0:58)"],
+          ["Latency Split-Screen", "3.4s Cold vs 0.7s Warm"],
+          ["Narration Engine", "gemini-3.8-flash-tts"]
+        ],
+        castorCta: "Open 60-Second Video Signal queue",
+        sourceUrl: "https://www.youtube.com/@googledevelopers",
+        polluxTitleMain: "Autonomous Short Studio.",
+        polluxTitleItalic: "Inspect the 3-track video pipeline.",
+        polluxDek: "<strong>Studio Pipeline:</strong> Click each stage on the right to see how Gemini storyboards, narrates, and verifies 60-second capability dispatches.",
+        consoleKicker: "STAR 04 VIDEO STUDIO",
+        presets: [
+          {
+            label: "1. STORYBOARD",
+            rows: [
+              ["1. Visual Model:", "gemini-nano-banana-2.1", true],
+              ["2. Frame Format:", "9:16 & 16:9 Keyframes", false],
+              ["3. Fact Check:", "Grounded Google Docs", false]
+            ]
+          },
+          {
+            label: "2. VOICEOVER",
+            rows: [
+              ["1. TTS Engine:", "gemini-3.8-flash-tts", true],
+              ["2. Runtime Cap:", "55–58 seconds strict", false],
+              ["3. Captions:", "Frame-synced JSON", true]
+            ]
+          },
+          {
+            label: "3. NOW PLAYING",
+            rows: [
+              ["1. Episode #14:", "Screen-Clicking AI (GA)", true],
+              ["2. Episode #13:", "Dec 1 Price Cut (-78%)", false],
+              ["3. Episode #12:", "4.2× Cleaner Compute", false]
+            ]
+          }
+        ],
+        polluxCta: "Watch & inspect episode scripts",
+        modalKicker: "✦ STAR 04 · η PROPUS & M35 CLUSTER (RA 06h 14m · DEC +22°30')",
+        modalTitle: "60-Second Video Signal. <em>Zero hype, pure capability proof.</em>",
+        modalLead: "Every visual briefing is grounded in official Google documentation and timed to under 60 seconds so you can see the workflow before you build.",
+        modalCode: `NOW IN THE 60-SECOND STUDIO QUEUE:
+1. [00:58] Gemini Computer Use GA: Watching AI navigate a legacy shipping portal
+2. [00:49] Cold (3.4s) vs. Cached (0.7s): Side-by-side 128k contract analysis
+3. [00:55] Inside Antigravity: How Gemini 4 Argon designs & audits GeminiPulse.com`
+      },
+
+      pollux: {
+        chain: "pollux",
+        hudBadge: "★ STAR 05 SELECTED",
+        starBadge: "α GEM · MAG 1.58",
+        pairedBadge: "β GEM · MAG 1.14",
+        hudCoords: "β GEMINORUM (POLLUX) · RA 07h 45m 18s · DEC +28°01' · BRIGHTEST STAR IN GEMINI (33.7 LIGHT-YEARS)",
+        hudDest: "10-Second Interactive Savings Lab ⇄ Context Caching Briefing",
+        castorTitleMain: "Stop paying for repeat tokens.",
+        castorTitleItalic: "Pin your workspace memory once.",
+        castorDek: "<strong>Why β Pollux is the brightest star here:</strong> Context Caching is the highest-leverage switch you can flip today—turning expensive multi-turn document chat into a flat, predictable 90%-discounted memory layer.",
+        specCode: "STAR 05 · β POLLUX",
+        telemetry: [
+          ["Standard Input", "$2.50 / 1M Tokens"],
+          ["Cached Read Input", "$0.25 / 1M (-90%)"],
+          ["Break-Even Point", "Just 2 Follow-Up Turns"]
+        ],
+        castorCta: "Read the break-even math",
+        sourceUrl: "https://ai.google.dev/gemini-api/docs/caching",
+        polluxTitleMain: "10-Second Savings Calculator.",
+        polluxTitleItalic: "Stress-test your monthly volume.",
+        polluxDek: "<strong>Interactive Lab (Star 05):</strong> Toggle between Solo, Team, and Scale token volumes on the right, then click to copy the working TypeScript or Python snippet.",
+        consoleKicker: "STAR 05 SAVINGS LAB",
+        presets: [
+          {
+            label: "SOLO (20M)",
+            rows: [
+              ["1. Uncached Bill:", "$142 / month", false],
+              ["2. Cached (80% Hit):", "$31 / month (-78%)", true],
+              ["3. SDK Enablement:", "ai.caches.create()", false]
+            ]
+          },
+          {
+            label: "TEAM (100M)",
+            rows: [
+              ["1. Uncached Bill:", "$710 / month", false],
+              ["2. Cached (80% Hit):", "$155 / month (-78%)", true],
+              ["3. Cache TTL:", "ttl: '86400s' (24h)", false]
+            ]
+          },
+          {
+            label: "SCALE (500M)",
+            rows: [
+              ["1. Uncached Bill:", "$3,550 / month", false],
+              ["2. Cached (80% Hit):", "$775 / month (-78%)", true],
+              ["3. Annual Savings:", "$33,300 / yr saved", true]
+            ]
+          }
+        ],
+        polluxCta: "Open full caching recipe & copy code",
+        modalKicker: "★ STAR 05 · β POLLUX (RA 07h 45m · DEC +28°01')",
+        modalTitle: "10-Second Savings Lab. <em>Copy the Context Caching setup.</em>",
+        modalLead: "Break-even happens on your very second question. Any document, video, or repository over 32,768 tokens can be pinned in a single API call.",
+        modalCode: `// [SIMULATED DEMO] — Pinning a Workspace Cache in 1 Call
+import { GoogleGenAI } from "@google/genai";
+const ai = new GoogleGenAI();
+
+const cache = await ai.caches.create({
+  model: "gemini-2.5-pro",
+  config: {
+    displayName: "q4-contracts-vault",
+    contents: [uploadedPdfPart],
+    ttl: "86400s"
+  }
+});`
+      },
+
+      wasat: {
+        chain: "pollux",
+        hudBadge: "✧ STAR 06 SELECTED",
+        starBadge: "μ GEM · WORKFLOW ROI",
+        pairedBadge: "δ GEM · ON ECLIPTIC",
+        hudCoords: "δ GEMINORUM (WASAT) · RA 07h 20m 07s · DEC +21°58' · SITS DIRECTLY ON THE ECLIPTIC (60 LIGHT-YEARS)",
+        hudDest: "5-Minute Google Workspace Guides (Docs, Gmail, Sheets & Drive)",
+        castorTitleMain: "No code required.",
+        castorTitleItalic: "Use Gemini across Drive, Docs & Sheets.",
+        castorDek: "<strong>How it applies to you:</strong> You don't need to write Python to get 80% of Gemini's daily leverage. Linking a single Google Drive folder turns messy PDFs, threads, and notes into structured Sheets tables in one prompt.",
+        specCode: "STAR 06 · δ WASAT",
+        telemetry: [
+          ["Setup Time", "Under 5 Minutes"],
+          ["Apps Covered", "Drive, Docs, Gmail, Sheets"],
+          ["Coding Required", "Zero (Copy-Paste)"]
+        ],
+        castorCta: "Read the 5-minute Workspace guide",
+        sourceUrl: "https://workspace.google.com/solutions/ai/",
+        polluxTitleMain: "5-Minute Workspace Playbooks.",
+        polluxTitleItalic: "Pick your daily app on the right.",
+        polluxDek: "<strong>Copy-Paste Recipes:</strong> Select Drive/Docs, Gmail Triage, or Sheets Cleanup to preview the exact prompt structure.",
+        consoleKicker: "STAR 06 WORKSPACE GUIDES",
+        presets: [
+          {
+            label: "DRIVE → SHEETS",
+            rows: [
+              ["1. Trigger:", "@Drive /Active-Project", true],
+              ["2. Prompt:", "'Extract owners & dates'", false],
+              ["3. Output:", "1-Click Export to Sheets", true]
+            ]
+          },
+          {
+            label: "GMAIL TRIAGE",
+            rows: [
+              ["1. Trigger:", "@Gmail unread last 48h", true],
+              ["2. Prompt:", "'Decisions due by Friday'", false],
+              ["3. Time Saved:", "~35 mins every morning", true]
+            ]
+          },
+          {
+            label: "DOCS REDLINE",
+            rows: [
+              ["1. Trigger:", "Compare @DocA vs @DocB", true],
+              ["2. Prompt:", "'Flag liability shifts'", false],
+              ["3. Output:", "Inline summary table", false]
+            ]
+          }
+        ],
+        polluxCta: "Copy all 3 Workspace playbooks",
+        modalKicker: "✧ STAR 06 · δ WASAT (RA 07h 20m · DEC +21°58' · ECLIPTIC)",
+        modalTitle: "5-Minute Google Workspace Playbooks. <em>Copy &amp; run today.</em>",
+        modalLead: "Put your active project PDFs, proposals, and meeting notes into one Drive folder, then reference that folder directly from the Gemini side panel.",
+        modalCode: `PLAYBOOK 01 — THE DRIVE-TO-SHEETS ACTION TRACKER:
+1. Drop your project PDFs + meeting notes into one Google Drive folder.
+2. Open the Gemini side panel in Docs or Sheets and type:
+   "@Drive [Folder Name] List every open commitment, its owner, and any date conflict in a 4-column table."
+3. Click 'Insert to Sheets'—done in 45 seconds.`
+      },
+
+      mekbuda: {
+        chain: "pollux",
+        hudBadge: "✧ STAR 07 SELECTED",
+        starBadge: "ε GEM · COMPUTER USE",
+        pairedBadge: "ζ GEM · CEPHEID",
+        hudCoords: "ζ GEMINORUM (MEKBUDA) · RA 07h 04m 06s · DEC +20°34' · PULSATING CEPHEID SUPERGIANT (1,200 LIGHT-YEARS)",
+        hudDest: "Screen-Clicking AI Sandbox (Gemini Computer Use GA)",
+        castorTitleMain: "Gemini can now click your screen.",
+        castorTitleItalic: "When should you let it drive?",
+        castorDek: "<strong>How it applies to you:</strong> When a legacy vendor portal, shipping dashboard, or ERP has no API, Gemini 2.5 Computer Use visually reads the browser screen, clicks buttons, and pauses for your human approval before submitting.",
+        specCode: "STAR 07 · ζ MEKBUDA",
+        telemetry: [
+          ["Agent Loop", "See → Coordinate → Click"],
+          ["Safety Gate", "Mandatory Human Confirm"],
+          ["Best Practical Use", "No-API Legacy Portals"]
+        ],
+        castorCta: "Read the Computer Use safety brief",
+        sourceUrl: "https://deepmind.google/technologies/gemini/",
+        polluxTitleMain: "Inspect the Browser Agent Loop.",
+        polluxTitleItalic: "Step through See → Click → Confirm.",
+        polluxDek: "<strong>Interactive Agent Trace:</strong> Click steps 1, 2, and 3 on the right to see how Gemini locates UI coordinates and enforces a human confirmation gate.",
+        consoleKicker: "STAR 07 COMPUTER USE",
+        presets: [
+          {
+            label: "1. SEE PIXELS",
+            rows: [
+              ["1. Viewport:", "1440×900 PNG frame", false],
+              ["2. Target:", "'Export CSV' (x:884, y:242)", true],
+              ["3. Match:", "99.2% Visual Confidence", false]
+            ]
+          },
+          {
+            label: "2. CLICK UI",
+            rows: [
+              ["1. Tool Call:", "click_at(884, 242)", true],
+              ["2. Form Text:", "type_text('Q4_Audit')", false],
+              ["3. Latency:", "410ms per browser action", false]
+            ]
+          },
+          {
+            label: "3. HUMAN GATE",
+            rows: [
+              ["1. Safety Rule:", "require_confirm: true", true],
+              ["2. Agent State:", "Paused for Human OK", true],
+              ["3. Audit Log:", "Signed Coordinate Trace", false]
+            ]
+          }
+        ],
+        polluxCta: "Copy Computer Use safety gate code",
+        modalKicker: "✧ STAR 07 · ζ MEKBUDA (RA 07h 04m · DEC +20°34')",
+        modalTitle: "Screen-Clicking AI (Computer Use GA). <em>With a human safety gate.</em>",
+        modalLead: "Automate repetitive browser portals while enforcing mandatory human confirmation before any purchase, deletion, or final form submission.",
+        modalCode: `// [SIMULATED DEMO] — Gemini Computer Use with Human Confirmation Gate
+import { GoogleGenAI } from "@google/genai";
+const client = new GoogleGenAI();
+
+const interaction = await client.interactions.create({
+  model: "gemini-2.5-computer-use-preview",
+  input: "Download last month's invoices from the vendor portal into /exports.",
+  tools: [{
+    type: "computer_use",
+    environment: "ENVIRONMENT_BROWSER",
+    require_confirmation_for: ["submit_order", "delete_record", "wire_funds"]
+  }]
+});`
+      },
+
+      alhena: {
+        chain: "pollux",
+        hudBadge: "✧ STAR 08 SELECTED",
+        starBadge: "η GEM · CHRONICLE",
+        pairedBadge: "γ GEM · MAG 1.93",
+        hudCoords: "γ GEMINORUM (ALHENA) · RA 06h 37m 42s · DEC +16°23' · BRIGHT SOUTHERN FOOT OF POLLUX (109 LIGHT-YEARS)",
+        hudDest: "Built by Gemini Alone — The Antigravity Autonomous Charter",
+        castorTitleMain: "Conceived by a human.",
+        castorTitleItalic: "Written, designed & run by Gemini.",
+        castorDek: "<strong>Why this site exists:</strong> Neil S. White gave Google Gemini the creative premise—an astrological Twin showcase where Gemini proves its own capabilities in public. Every headline, star map, layout audit, and commit is executed by Gemini 4 Argon.",
+        specCode: "STAR 08 · γ ALHENA",
+        telemetry: [
+          ["Human Catalyst", "Neil S. White (Concept)"],
+          ["Lead Architect", "Google Gemini 4 Argon"],
+          ["Self-Audit Gate", "7-Point Chrome CDP Check"]
+        ],
+        castorCta: "Read the Autonomous Repository Charter",
+        sourceUrl: "https://github.com/GeminiPulse/geminipulse-com",
+        polluxTitleMain: "Inspect the Autonomous Engine.",
+        polluxTitleItalic: "How Gemini runs GeminiPulse.com.",
+        polluxDek: "<strong>Glass-Box Architecture:</strong> Click any layer on the right to inspect how Gemini researches, designs, and self-audits every page before deployment.",
+        consoleKicker: "STAR 08 AUTONOMOUS ENGINE",
+        presets: [
+          {
+            label: "1. RESEARCH",
+            rows: [
+              ["1. Grounding:", "Google Search + Docs", true],
+              ["2. Truth Gate:", "100% Source Links", true],
+              ["3. Models:", "gemini-4-argon + 3.8", false]
+            ]
+          },
+          {
+            label: "2. DESIGN",
+            rows: [
+              ["1. Agentic IDE:", "Google Antigravity", true],
+              ["2. Custom Art:", "gemini-nano-banana-2.1", false],
+              ["3. Stage Rule:", "100svh Zero-Scroll", true]
+            ]
+          },
+          {
+            label: "3. SELF-AUDIT",
+            rows: [
+              ["1. DOM Audit:", "4 Viewports via CDP", true],
+              ["2. Demo Tag:", "Strict [SIMULATED DEMO]", false],
+              ["3. Hosting:", "Firebase Spark ($0/mo)", true]
+            ]
+          }
+        ],
+        polluxCta: "Open full Autonomous Charter dossier",
+        modalKicker: "✧ STAR 08 · γ ALHENA (RA 06h 37m · DEC +16°23')",
+        modalTitle: "Conceived by a human. <em>Built &amp; run autonomously by Google Gemini.</em>",
+        modalLead: "GeminiPulse.com is a living experiment in autonomous publishing and engineering: conceived by Neil S. White and architected, written, illustrated, and audited by Google Gemini 4 Argon inside Google Antigravity.",
+        modalCode: `AUTONOMOUS REPOSITORY CHARTER (GEMINI.md):
+• Human Concept Originator & Creative Catalyst: Neil S. White
+• Autonomous Lead Architect & Editor-in-Chief: Google Gemini 4 Argon
+• Left Twin (α Castor): What's new in Gemini & how it applies to you
+• Right Twin (β Pollux): How to use it right now & live proof
+• Verification Standard: 100% grounded Google primary sources + Chrome CDP layout audits`
+      }
+    };
+
+    let currentStarKey = "castor";
+    let currentPresetIdx = 0;
+
+    function runViewUpdate(fn) {
+      if (document.startViewTransition && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        document.startViewTransition(fn);
+      } else {
+        fn();
+      }
+    }
+
+    function renderWorkbenchPreset(starKey, presetIdx) {
+      const star = STAR_ATLAS[starKey];
+      const preset = star.presets[presetIdx] || star.presets[0];
+
+      document.querySelectorAll(".ac-preset-btn").forEach((btn, idx) => {
+        btn.setAttribute("aria-pressed", idx === presetIdx ? "true" : "false");
+        if (star.presets[idx]) {
+          btn.textContent = star.presets[idx].label;
+        }
+      });
+
+      const [r1, r2, r3] = preset.rows;
+      document.getElementById("ac-k1").textContent = r1[0];
+      const v1 = document.getElementById("ac-v1");
+      v1.textContent = r1[1];
+      v1.className = "ac-v" + (r1[2] ? " accent" : "");
+
+      document.getElementById("ac-k2").textContent = r2[0];
+      const v2 = document.getElementById("ac-v2");
+      v2.textContent = r2[1];
+      v2.className = "ac-v" + (r2[2] ? " accent" : "");
+
+      document.getElementById("ac-k3").textContent = r3[0];
+      const v3 = document.getElementById("ac-v3");
+      v3.textContent = r3[1];
+      v3.className = "ac-v" + (r3[2] ? " accent" : "");
+    }
+
+    function formatGreek(str) {
+      return String(str).replace(/([αβγδεζηθικλμνξοπρστυφχψω])/g, '<span class="greek">$1</span>');
+    }
+
+    function selectStar(starKey) {
+      if (!STAR_ATLAS[starKey]) return;
+      currentStarKey = starKey;
+      currentPresetIdx = 0;
+      const s = STAR_ATLAS[starKey];
+
+      runViewUpdate(() => {
+        // Highlight active SVG star node
+        document.querySelectorAll(".star-node").forEach((node) => {
+          node.setAttribute("data-active", node.dataset.star === starKey ? "true" : "false");
+        });
+
+        // Highlight active selector strip button
+        document.querySelectorAll("[data-select-star]").forEach((el) => {
+          const isMatch = el.dataset.selectStar === starKey;
+          el.setAttribute("aria-selected", isMatch ? "true" : "false");
+        });
+
+        // Update Hero Bottom HUD
+        document.getElementById("hud-star-badge").textContent = s.hudBadge;
+        document.getElementById("hud-star-coords").innerHTML = formatGreek(s.hudCoords);
+        document.getElementById("hud-star-dest").textContent = s.hudDest;
+
+        // Update Left Salon (α Castor)
+        document.getElementById("castor-star-badge").innerHTML = formatGreek(s.starBadge);
+        document.getElementById("castor-title-main").textContent = s.castorTitleMain;
+        document.getElementById("castor-title-italic").textContent = s.castorTitleItalic;
+        document.getElementById("castor-dek").innerHTML = s.castorDek;
+        document.getElementById("castor-spec-code").innerHTML = formatGreek(s.specCode);
+        document.getElementById("tc-k1").textContent = s.telemetry[0][0];
+        document.getElementById("tc-v1").textContent = s.telemetry[0][1];
+        document.getElementById("tc-k2").textContent = s.telemetry[1][0];
+        document.getElementById("tc-v2").textContent = s.telemetry[1][1];
+        document.getElementById("tc-k3").textContent = s.telemetry[2][0];
+        document.getElementById("tc-v3").textContent = s.telemetry[2][1];
+        document.getElementById("castor-cta-text").textContent = s.castorCta;
+        document.getElementById("castor-source-link").href = s.sourceUrl;
+
+        // Update Right Atelier (β Pollux)
+        document.getElementById("pollux-star-badge").innerHTML = formatGreek(s.pairedBadge);
+        document.getElementById("pollux-title-main").textContent = s.polluxTitleMain;
+        document.getElementById("pollux-title-italic").textContent = s.polluxTitleItalic;
+        document.getElementById("pollux-dek").innerHTML = s.polluxDek;
+        document.getElementById("ac-console-kicker").textContent = s.consoleKicker;
+        document.getElementById("pollux-cta-text").textContent = s.polluxCta;
+
+        renderWorkbenchPreset(starKey, 0);
+      });
+    }
+
+    // Wire SVG Constellation Star Nodes (click + keyboard Enter/Space + double-click opens modal)
+    document.querySelectorAll(".star-node").forEach((node) => {
+      node.addEventListener("click", () => selectStar(node.dataset.star));
+      node.addEventListener("dblclick", () => {
+        selectStar(node.dataset.star);
+        openActiveStarModal();
+      });
+      node.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          selectStar(node.dataset.star);
+        }
+      });
+    });
+
+    // Wire Salon Star Strip Buttons
+    document.querySelectorAll("[data-select-star]").forEach((btn) => {
+      btn.addEventListener("click", () => selectStar(btn.dataset.selectStar));
+    });
+
+    // Wire Workbench Presets
+    document.querySelectorAll(".ac-preset-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const idx = Number(btn.dataset.preset || 0);
+        currentPresetIdx = idx;
+        renderWorkbenchPreset(currentStarKey, idx);
+      });
+    });
+
+    // Wire Chain Filter Buttons (All 8 Stars / α Castor / β Pollux)
+    document.querySelectorAll("[data-filter-chain]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const chain = btn.dataset.filterChain;
+        document.documentElement.setAttribute("data-chain", chain);
+        document.querySelectorAll("[data-filter-chain]").forEach((b) => {
+          b.setAttribute("aria-pressed", b.dataset.filterChain === chain ? "true" : "false");
+        });
+        if (chain === "castor" && STAR_ATLAS[currentStarKey].chain !== "castor") {
+          selectStar("castor");
+        } else if (chain === "pollux" && STAR_ATLAS[currentStarKey].chain !== "pollux") {
+          selectStar("pollux");
+        }
+      });
+    });
+
+    // Modal Dialog Wiring
+    const modal = document.getElementById("celestial-modal");
+    function openActiveStarModal() {
+      const s = STAR_ATLAS[currentStarKey];
+      document.getElementById("cm-kicker").textContent = s.modalKicker;
+      document.getElementById("cm-title").innerHTML = s.modalTitle;
+      document.getElementById("cm-lead").textContent = s.modalLead;
+      document.getElementById("cm-code").textContent = s.modalCode;
+      modal.showModal();
+    }
+
+    document.getElementById("hud-enter-btn").addEventListener("click", openActiveStarModal);
+    document.getElementById("castor-open-modal-btn").addEventListener("click", openActiveStarModal);
+    document.getElementById("pollux-open-modal-btn").addEventListener("click", openActiveStarModal);
+    document.getElementById("open-charter-btn").addEventListener("click", () => {
+      selectStar("alhena");
+      openActiveStarModal();
+    });
+
+    document.getElementById("cm-close-btn").addEventListener("click", () => modal.close());
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) modal.close();
+    });
+
+    document.getElementById("cm-copy-btn").addEventListener("click", async (e) => {
+      const code = document.getElementById("cm-code").textContent;
+      try {
+        await navigator.clipboard.writeText(code);
+        e.currentTarget.textContent = "COPIED TO CLIPBOARD ✓";
+        setTimeout(() => {
+          e.currentTarget.textContent = "COPY RECIPE TO CLIPBOARD";
+        }, 1800);
+      } catch (_) {}
+    });
+
+    // Support URL query ?star=pollux or ?star=mekbuda
+    const params = new URLSearchParams(window.location.search);
+    const initialStar = params.get("star");
+    if (initialStar && STAR_ATLAS[initialStar]) {
+      selectStar(initialStar);
+    }
+  </script>
+</body>
+</html>

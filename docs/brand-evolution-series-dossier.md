@@ -1,12 +1,12 @@
 # GeminiPulse.com — Design Process & Brand Evolution Blog Series Master Dossier (`docs/brand-evolution-series-dossier.md`)
 
-> **Last Updated:** `2026-11-03 03:28 EST`
-> **Purpose:** Complete historical, visual, and technical archive of the 7-Round GeminiPulse.com Brand & Cognitive UX Evolution (`Era 0` → `Look I`), structured for our upcoming multi-part **Design Process & Evolution Blog Series**.
+> **Last Updated:** `2026-11-03 13:40 EST`
+> **Purpose:** Complete historical, visual, and technical archive of the 8-Round GeminiPulse.com Brand & Cognitive UX Evolution (`Era 0` → `Look I v2`), structured for our upcoming multi-part **Design Process & Evolution Blog Series**.
 > **Live Interactive Portfolio Hub:** [`https://geminipulse.com/prototypes/`](https://geminipulse.com/prototypes/)
 
 ---
 
-## 1. Master Inventory of All 10 Preserved Interactive Prototypes
+## 1. Master Inventory of All 11 Preserved Interactive Prototypes
 
 Every prototype below is permanently preserved in `public/public/prototypes/` and deployed live on `https://geminipulse.com/prototypes/`:
 
@@ -22,7 +22,8 @@ Every prototype below is permanently preserved in `public/public/prototypes/` an
 | **Round 5F** | **Clean Self-Explanatory Doors** | [`look-f-clean-split.html`](https://geminipulse.com/prototypes/look-f-clean-split.html) | Detached rigid whitespace dogma (`justify-content: space-between` voids on `1920px` screens) and replaced Greek codenames with self-explanatory `READ` vs. `BUILD` doors. | — |
 | **Round 5G** | **Desktop Above-the-Fold Magnetic Twins** | [`look-g-desktop-magnetic-twins.html`](https://geminipulse.com/prototypes/look-g-desktop-magnetic-twins.html) | Built for the 90% Gemini-user audience: 2-second top orientation banner + synchronized *"What’s New & How It Applies to You"* (left) paired with *"How to Use It Now & 10-Sec Check"* (right) in `100svh`. | `assets/shot-look-g-1440x900.webp` |
 | **Round 6H** | **Avant-Garde Twin Journal & Nocturnal Workbench** *(Saved Time Capsule)* | [`look-h-avant-twin-journal.html`](https://geminipulse.com/prototypes/look-h-avant-twin-journal.html) | Inspired directly by Neil's `thefutureisyesterday.com` × Look 1A/1C/2D/3E: `#EEE9DD` archival newsprint, `Big Shoulders Display` (`GEMINI in two MINDS.`), Signal Vermilion (`#EE4B2B`), Cobalt (`#304BD9`), bespoke Castor/Pollux intaglio collage, and `#181816` Nocturnal Console. | `assets/look-h-twin-oracle.webp`, `assets/shot-look-h-1440x900.webp` |
-| **Round 7I** | **The Celestial Couture Magazine & Interactive 8-Star Gemini Constellation Atlas** *(Latest Lead)* | [`look-i-celestial-couture-atlas.html`](https://geminipulse.com/prototypes/look-i-celestial-couture-atlas.html) | **Silicon Valley Precision × French High-Fashion Editorial**: Velvet Midnight Obsidian (`#070A10`), Porcelain Silk (`#F6F4EE`), Champagne Gold (`#ECCF92`), Optical Celadon (`#6CE0C8`), `Cormorant Garamond`, panoramic Castor & Pollux copperplate engraving, and an **interactive 8-star IAU Gemini (`♊`) Constellation Hero** where clicking any star navigates both Twins below. | `assets/look-i-celestial-twins.webp`, `assets/shot-look-i-1440x900.webp`, `assets/shot-look-i-mekbuda.webp` |
+| **Round 7I (v1)** | **Celestial Couture Magazine & 8-Star Constellation Atlas (v1 Archive)** | [`look-i-v1-archive.html`](https://geminipulse.com/prototypes/look-i-v1-archive.html) | Initial Celestial Couture layout with Champagne Gold (`#ECCF92`) & Optical Celadon (`#6CE0C8`), always-visible explainers, and duplicate salon nav bars. | `assets/look-i-celestial-twins.webp`, `assets/shot-look-i-v1-archive.webp` |
+| **Round 8I (v2)** | **Celestial Couture Magazine & Authoritative IAU Constellation Atlas** *(Latest Lead)* | [`look-i-celestial-couture-atlas.html`](https://geminipulse.com/prototypes/look-i-celestial-couture-atlas.html) | **Astrophysical Color Alignment + Reduction**: Blue-White (`#D6EBFF`) for A1V `α Castor`, Golden-Orange (`#FFD296`) for K0III `β Pollux`, Ethereal Digital Purple (`#A385FF`), authoritative 2-legged IAU/NOIRLab stick-figure constellation with Live Sky `LST` orientation toggle, pulsing hover-reveal Twin pills, and unified `"YOU ARE HERE"` 8-star progress bar. | `assets/look-i-celestial-twins.webp`, `assets/shot-look-i-1440x900.webp`, `assets/shot-look-i-mekbuda.webp` |
 
 ---
 
