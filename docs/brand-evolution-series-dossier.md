@@ -1,12 +1,12 @@
 # GeminiPulse.com — Design Process & Brand Evolution Blog Series Master Dossier (`docs/brand-evolution-series-dossier.md`)
 
-> **Last Updated:** `2026-11-03 15:42 EST`
-> **Purpose:** Complete historical, visual, and technical archive of the 10-Round GeminiPulse.com Brand & Cognitive UX Evolution (`Era 0` → `Look J v2`), structured for our upcoming multi-part **Design Process & Evolution Blog Series** and Agency Case Study.
+> **Last Updated:** `2026-11-03 17:12 EST`
+> **Purpose:** Complete historical, visual, and technical archive of the 11-Round GeminiPulse.com Brand & Cognitive UX Evolution (`Era 0` → `Look J v3`), structured for our upcoming multi-part **Design Process & Evolution Blog Series** and Agency Case Study.
 > **Live Interactive Portfolio Hub:** [`https://geminipulse.com/prototypes/`](https://geminipulse.com/prototypes/)
 
 ---
 
-## 1. Master Inventory of All 13 Preserved Interactive Prototypes
+## 1. Master Inventory of All 14 Preserved Interactive Prototypes
 
 Every prototype below is permanently preserved in `public/public/prototypes/` and deployed live on `https://geminipulse.com/prototypes/`:
 
@@ -25,7 +25,8 @@ Every prototype below is permanently preserved in `public/public/prototypes/` an
 | **Round 7I (v1)** | **Celestial Couture Magazine & 8-Star Constellation Atlas (v1 Archive)** | [`look-i-v1-archive.html`](https://geminipulse.com/prototypes/look-i-v1-archive.html) | Initial Celestial Couture layout with Champagne Gold (`#ECCF92`) & Optical Celadon (`#6CE0C8`), always-visible explainers, and duplicate salon nav bars. | `assets/look-i-celestial-twins.webp`, `assets/shot-look-i-v1-archive.webp` |
 | **Round 8I (v2)** | **Celestial Couture Magazine & Authoritative IAU Constellation Atlas** *(Saved 50/50 Split)* | [`look-i-celestial-couture-atlas.html`](https://geminipulse.com/prototypes/look-i-celestial-couture-atlas.html) | **Astrophysical Color Alignment + Reduction**: Blue-White (`#D6EBFF`) for A1V `α Castor`, Golden-Orange (`#FFD296`) for K0III `β Pollux`, Ethereal Digital Purple (`#A385FF`), authoritative 2-legged IAU/NOIRLab stick-figure constellation with Live Sky `LST` orientation toggle, pulsing hover-reveal Twin pills, and unified `"YOU ARE HERE"` 8-star progress bar. | `assets/look-i-celestial-twins.webp`, `assets/shot-look-i-1440x900.webp`, `assets/shot-look-i-mekbuda.webp` |
 | **Round 9J (v1)** | **Full-Viewport 3D Pointillist Constellation Navigator (v1 Archive)** | [`look-j-v1-archive.html`](https://geminipulse.com/prototypes/look-j-v1-archive.html) | Initial full-viewport 3D stage with `1280×390` SVG coordinate box, instant focus-beacon snap, and unfeathered center illustration seam on narrow windows. | `assets/shot-look-j-v1-archive.webp` |
-| **Round 10J (v2)** | **Full-Viewport 3D Relational-Pivot Constellation Navigator & Depth-Scaled Star Stage** *(Latest Lead)* | [`look-j-3d-celestial-navigator.html`](https://geminipulse.com/prototypes/look-j-3d-celestial-navigator.html) | **Commanding Full-Stage Scale (`1000×520`) + True Relational 3D Foreground Pivot + Depth-Proportional Star Pills (`0.68×`–`1.34×`) + Restored Spring-Gliding Focus Circle & Comet Trail + Seamless Feathered Background Plates.** | `assets/shot-look-j-1440x900.webp`, `assets/shot-look-j-3d-orbit.webp` |
+| **Round 10J (v2)** | **Full-Viewport 3D Relational-Pivot Constellation Navigator (v2 Archive)** | [`look-j-v2-archive.html`](https://geminipulse.com/prototypes/look-j-v2-archive.html) | Commanding `1000×520` 3D stage, True Relational 3D Foreground Pivot, Depth-Proportional Star Pills (`0.68×`–`1.28×`), and 2.6s sinusoidal easing before HUD card & watchmaker hairline pass. | `assets/shot-look-j-v2-archive.webp` |
+| **Round 11J (v3)** | **Full-Viewport 3D Navigator + Watchmaker Hairlines, Quintic Ramp & Futuristic Digital HUD Card** *(Latest Lead)* | [`look-j-3d-celestial-navigator.html`](https://geminipulse.com/prototypes/look-j-3d-celestial-navigator.html) | **Zero Rectangular Click Focus Box + 2.25s Quintic S-Curve Mid-Flight Speed Ramp + `0.55px–0.85px` Watchmaker Hairline Circles/Orbits + Subordinate `7.6px` Cyan/Gold Star Prefixes vs. `12.2px` Bold White Article Titles + Futuristic Digital HUD Brief Card with Active 3-Dot Linear Constellation Table of Contents.** | `assets/shot-look-j-1440x900.webp`, `assets/shot-look-j-3d-orbit.webp`, `assets/shot-look-j-drawer-open.webp` |
 
 ---
 

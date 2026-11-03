@@ -598,63 +598,76 @@
       overflow: visible;
     }
 
-    /* 3D Projected Constellation Stick-Figure Lines */
+    /* 3D Projected Constellation Stick-Figure Lines — Refined 1.1px Hairlines */
     .constellation-line-castor {
       stroke: var(--castor-glow);
-      stroke-width: 2.1;
-      stroke-opacity: 0.85;
+      stroke-width: 1.15;
+      stroke-opacity: 0.72;
       fill: none;
-      filter: drop-shadow(0 0 8px rgba(126, 184, 255, 0.55));
+      filter: drop-shadow(0 0 5px rgba(126, 184, 255, 0.35));
       stroke-linecap: round;
       stroke-linejoin: round;
     }
 
     .constellation-line-pollux {
       stroke: var(--pollux-glow);
-      stroke-width: 2.1;
-      stroke-opacity: 0.85;
+      stroke-width: 1.15;
+      stroke-opacity: 0.72;
       fill: none;
-      filter: drop-shadow(0 0 8px rgba(245, 158, 63, 0.55));
+      filter: drop-shadow(0 0 5px rgba(245, 158, 63, 0.35));
       stroke-linecap: round;
       stroke-linejoin: round;
     }
 
     .constellation-bridge-line {
       stroke: var(--ethereal-bright);
-      stroke-width: 1.65;
-      stroke-dasharray: 6 5;
-      stroke-opacity: 0.82;
+      stroke-width: 0.85;
+      stroke-dasharray: 3 4.5;
+      stroke-opacity: 0.65;
       fill: none;
-      filter: drop-shadow(0 0 7px rgba(163, 133, 255, 0.55));
     }
 
-    /* 3D Depth-Cue Tether Lines */
+    /* 3D Depth-Cue Tether Lines — Whisper 0.6px Hairlines */
     .depth-tether-line {
-      stroke: rgba(206, 192, 255, 0.38);
-      stroke-width: 1.1;
-      stroke-dasharray: 2.5 3.5;
+      stroke: rgba(206, 192, 255, 0.28);
+      stroke-width: 0.65;
+      stroke-dasharray: 1.5 3.5;
       opacity: 0;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.4s ease;
     }
 
-    /* Interactive 3D Star Nodes with Depth-Proportional Scaling */
+    /* Interactive 3D Star Nodes — Zero Rectangular Browser Outline on Click/Press */
+    .star-node,
+    .star-node *,
+    .gemini-panoramic-svg,
+    .twin-pulse-orb,
+    .peek-half,
+    button {
+      outline: none !important;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
     .star-node {
       cursor: pointer;
     }
 
     .star-hit-area {
       fill: transparent;
+      outline: none !important;
     }
 
+    /* Delicate 0.65px Watchmaker Hairline Circles Around Stars */
     .star-halo {
       fill: none;
-      stroke-width: 1.35;
-      opacity: 0.48;
-      transition: opacity 0.25s ease, stroke-width 0.25s ease;
+      stroke-width: 0.65;
+      opacity: 0.34;
+      transition: opacity 0.45s ease, stroke-width 0.45s ease;
     }
 
     .star-node-castor .star-halo {
-      stroke: var(--castor-star);
+      stroke: #56B4FF;
     }
 
     .star-node-pollux .star-halo {
@@ -663,63 +676,67 @@
 
     .star-core-castor {
       fill: var(--castor-star);
-      filter: drop-shadow(0 0 10px rgba(126, 184, 255, 0.98));
+      filter: drop-shadow(0 0 7px rgba(126, 184, 255, 0.85));
     }
 
     .star-core-pollux {
       fill: var(--pollux-star);
-      filter: drop-shadow(0 0 10px rgba(245, 158, 63, 0.98));
+      filter: drop-shadow(0 0 7px rgba(245, 158, 63, 0.85));
     }
 
     .star-reticle {
       fill: none;
       stroke: var(--ethereal-bright);
-      stroke-width: 1.75;
-      stroke-dasharray: 3.5 2.5;
-      opacity: 0;
-      transition: opacity 0.25s ease;
+      stroke-width: 0.55;
+      stroke-dasharray: 1.5 3.5;
+      opacity: 0.16;
+      transition: opacity 0.45s ease;
     }
 
     .star-node:hover .star-halo,
     .star-node[data-active="true"] .star-halo {
-      opacity: 1;
-      stroke-width: 2.3;
+      opacity: 0.88;
+      stroke-width: 0.95;
     }
 
     .star-node:hover .star-reticle,
     .star-node[data-active="true"] .star-reticle {
-      opacity: 1;
+      opacity: 0.58;
     }
 
     .star-pill-bg {
-      fill: rgba(8, 12, 22, 0.88);
-      stroke: rgba(163, 133, 255, 0.34);
-      stroke-width: 1.1;
+      fill: rgba(7, 10, 19, 0.88);
+      stroke: rgba(163, 133, 255, 0.26);
+      stroke-width: 0.75;
       rx: 14;
-      transition: fill 1.1s cubic-bezier(0.22, 1, 0.36, 1), stroke 1.1s cubic-bezier(0.22, 1, 0.36, 1), stroke-width 1.1s cubic-bezier(0.22, 1, 0.36, 1), filter 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: fill 0.9s cubic-bezier(0.22, 1, 0.36, 1), stroke 0.9s cubic-bezier(0.22, 1, 0.36, 1), stroke-width 0.9s cubic-bezier(0.22, 1, 0.36, 1), filter 0.9s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .star-node-castor:hover .star-pill-bg,
+    .star-node-castor:focus-visible .star-pill-bg,
     .star-node-castor[data-active="true"] .star-pill-bg {
-      fill: rgba(14, 27, 48, 0.98);
-      stroke: var(--castor-star);
-      stroke-width: 1.85;
-      filter: drop-shadow(0 6px 18px rgba(126, 184, 255, 0.48));
+      fill: rgba(11, 22, 40, 0.96);
+      stroke: #56B4FF;
+      stroke-width: 1.15;
+      filter: drop-shadow(0 4px 14px rgba(86, 180, 255, 0.36));
     }
 
     .star-node-pollux:hover .star-pill-bg,
+    .star-node-pollux:focus-visible .star-pill-bg,
     .star-node-pollux[data-active="true"] .star-pill-bg {
-      fill: rgba(36, 22, 10, 0.98);
+      fill: rgba(30, 18, 8, 0.96);
       stroke: var(--pollux-star);
-      stroke-width: 1.85;
-      filter: drop-shadow(0 6px 18px rgba(245, 158, 63, 0.48));
+      stroke-width: 1.15;
+      filter: drop-shadow(0 4px 14px rgba(245, 158, 63, 0.36));
     }
 
+    /* Prominent Article / Tool Destination Title (Primary Visual Hierarchy) */
     .star-label-dest {
       font-family: var(--sans);
-      font-size: 11px;
+      font-size: 12.2px;
       font-weight: 600;
-      fill: #E2EAF8;
+      letter-spacing: -0.01em;
+      fill: #F8FAFC;
     }
 
     .star-node:hover .star-label-dest,
@@ -727,27 +744,35 @@
       fill: #FFFFFF;
     }
 
+    /* Subordinate Tech-Code Star Name (38% Smaller, Thin 300 Weight, Subdued Alpha & Distinct Hue) */
     .star-bayer-prefix {
       font-family: var(--mono);
-      font-size: 10px;
-      font-weight: 600;
+      font-size: 7.6px;
+      font-weight: 300;
+      letter-spacing: 0.06em;
     }
 
     .star-node-castor .star-bayer-prefix {
-      fill: var(--castor-star);
+      fill: #38BDF8;
+      fill-opacity: 0.64;
     }
 
     .star-node-pollux .star-bayer-prefix {
-      fill: var(--pollux-star);
+      fill: #F59E3F;
+      fill-opacity: 0.66;
+    }
+
+    .star-node[data-active="true"] .star-bayer-prefix {
+      fill-opacity: 0.82;
     }
 
     /* Depth Distance Badge on Every Star ("51 LY", "840 LY", etc.) */
     .star-depth-chip {
       font-family: var(--mono);
-      font-size: 8.5px;
-      font-weight: 600;
+      font-size: 7.5px;
+      font-weight: 400;
       letter-spacing: 0.08em;
-      fill: rgba(206, 192, 255, 0.82);
+      fill: rgba(206, 192, 255, 0.56);
       pointer-events: none;
       transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1);
     }
@@ -758,62 +783,399 @@
 
     .star-sub-meta {
       font-family: var(--mono);
-      font-size: 8px;
-      letter-spacing: 0.08em;
+      font-size: 7.4px;
+      font-weight: 400;
+      letter-spacing: 0.09em;
       text-transform: uppercase;
       fill: var(--ethereal-bright);
       opacity: 0;
-      transition: opacity 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1);
       pointer-events: none;
     }
 
     .star-node:hover .star-sub-meta,
     .star-node[data-active="true"] .star-sub-meta {
-      opacity: 0.98;
+      opacity: 0.86;
     }
 
-    /* Smooth Gliding "YOU ARE HERE" Focus Circle & Comet Trail */
+    /* Delicate Hairline "YOU ARE HERE" Focus Circle & Comet Trail */
     #traveling-beacon {
       pointer-events: none;
     }
 
     .tb-outer {
       fill: none;
-      stroke: var(--ethereal);
-      stroke-width: 1.9;
-      opacity: 0.95;
-      filter: drop-shadow(0 0 10px rgba(163, 133, 255, 0.8));
+      stroke: var(--ethereal-bright);
+      stroke-width: 0.85;
+      opacity: 0.92;
+      filter: drop-shadow(0 0 6px rgba(163, 133, 255, 0.65));
     }
 
     .tb-pulse-ring {
       fill: none;
       stroke: var(--ethereal-bright);
-      stroke-width: 1.2;
-      stroke-dasharray: 4 3;
-      opacity: 0.75;
+      stroke-width: 0.55;
+      stroke-dasharray: 1.5 4.5;
+      opacity: 0.62;
     }
 
     .tb-tag-bg {
-      fill: var(--ethereal);
+      fill: rgba(16, 13, 32, 0.92);
+      stroke: var(--ethereal-bright);
+      stroke-width: 0.75;
       rx: 8;
-      filter: drop-shadow(0 3px 10px rgba(163, 133, 255, 0.65));
     }
 
     .tb-tag-text {
       font-family: var(--mono);
-      font-size: 7.5px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      fill: var(--obsidian);
+      font-size: 6.8px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      fill: var(--ethereal-bright);
     }
 
     #focus-comet-trail {
       pointer-events: none;
       stroke: url(#comet-trail-grad);
-      stroke-width: 2.6;
+      stroke-width: 1.1;
       stroke-linecap: round;
       fill: none;
-      filter: drop-shadow(0 0 10px rgba(206, 192, 255, 0.85));
+      filter: drop-shadow(0 0 6px rgba(206, 192, 255, 0.65));
+    }
+
+    /* SVG Leader Hairline from Focused Star to Futuristic Digital HUD Brief Card */
+    #hud-leader-line {
+      pointer-events: none;
+      stroke: rgba(163, 133, 255, 0.42);
+      stroke-width: 0.65;
+      stroke-dasharray: 2 3.5;
+      fill: none;
+    }
+
+    #hud-leader-dot {
+      pointer-events: none;
+      fill: var(--ethereal-bright);
+      opacity: 0.85;
+    }
+
+    /* =====================================================================
+       FUTURISTIC DIGITAL HUD ARTICLE BRIEF CARD + CONSTELLATION-DOT TOC
+       Materializes when any star comes into focus so visitors immediately see
+       what the article is about, tags, date, reading time & active dot TOC!
+       ===================================================================== */
+    .star-hud-card {
+      position: absolute;
+      right: clamp(16px, 2.2vw, 32px);
+      bottom: 36px;
+      z-index: 8;
+      inline-size: clamp(320px, 27vw, 386px);
+      background: linear-gradient(165deg, rgba(9, 14, 26, 0.92) 0%, rgba(6, 9, 18, 0.96) 100%);
+      border: 1px solid rgba(163, 133, 255, 0.32);
+      border-radius: 10px;
+      padding: 12px 14px 11px;
+      backdrop-filter: blur(14px);
+      box-shadow:
+        0 14px 36px rgba(0, 0, 0, 0.65),
+        inset 0 0 22px rgba(126, 184, 255, 0.05);
+      color: var(--starlight);
+      overflow: hidden;
+      transition: border-color 0.5s ease, box-shadow 0.5s ease, opacity 0.35s ease, transform 0.35s ease;
+    }
+
+    .star-hud-card[data-twin="castor"] {
+      border-color: rgba(86, 180, 255, 0.38);
+    }
+
+    .star-hud-card[data-twin="pollux"] {
+      border-color: rgba(245, 158, 63, 0.38);
+    }
+
+    /* Futuristic Corner Reticle Brackets on the HUD Card */
+    .star-hud-card::before,
+    .star-hud-card::after {
+      content: "";
+      position: absolute;
+      inline-size: 8px;
+      block-size: 8px;
+      pointer-events: none;
+      border-color: var(--ethereal-bright);
+      opacity: 0.75;
+    }
+
+    .star-hud-card::before {
+      top: 4px;
+      left: 4px;
+      border-top: 1px solid var(--ethereal-bright);
+      border-left: 1px solid var(--ethereal-bright);
+    }
+
+    .star-hud-card::after {
+      bottom: 4px;
+      right: 4px;
+      border-bottom: 1px solid var(--ethereal-bright);
+      border-right: 1px solid var(--ethereal-bright);
+    }
+
+    /* Computer-Render Scanline Sweep When a New Star Pivots Into Focus */
+    .hud-scanline {
+      position: absolute;
+      inset-inline: 0;
+      top: -100%;
+      block-size: 45%;
+      background: linear-gradient(180deg, transparent 0%, rgba(163, 133, 255, 0.14) 85%, rgba(206, 192, 255, 0.38) 100%);
+      pointer-events: none;
+      opacity: 0;
+    }
+
+    .star-hud-card.is-rendering .hud-scanline {
+      animation: hud-scan-sweep 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    @keyframes hud-scan-sweep {
+      0% { top: -45%; opacity: 0.95; }
+      100% { top: 110%; opacity: 0; }
+    }
+
+    .hud-top-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      margin-block-end: 6px;
+      font-family: var(--mono);
+      font-size: 8px;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .hud-tags {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+
+    .hud-tag-pill {
+      padding: 1.5px 6px;
+      border-radius: 4px;
+      background: rgba(86, 180, 255, 0.12);
+      border: 0.75px solid rgba(86, 180, 255, 0.35);
+      color: #7CC8FF;
+      font-weight: 500;
+    }
+
+    .star-hud-card[data-twin="pollux"] .hud-tag-pill {
+      background: rgba(245, 158, 63, 0.12);
+      border-color: rgba(245, 158, 63, 0.38);
+      color: #FFB963;
+    }
+
+    .hud-read-time {
+      color: var(--ethereal-bright);
+      white-space: nowrap;
+      font-weight: 500;
+    }
+
+    .hud-title {
+      font-family: var(--sans);
+      font-size: 13.5px;
+      font-weight: 600;
+      line-height: 1.28;
+      color: #FFFFFF;
+      margin-block-end: 5px;
+      letter-spacing: -0.01em;
+    }
+
+    .hud-summary {
+      font-size: 11.2px;
+      line-height: 1.42;
+      color: #C7D3E6;
+      margin-block-end: 9px;
+    }
+
+    /* Linear Constellation-Dot Active Table of Contents (TOC) inside HUD Card & Salon */
+    .hud-toc-box {
+      background: rgba(4, 7, 14, 0.68);
+      border: 0.75px solid rgba(163, 133, 255, 0.24);
+      border-radius: 7px;
+      padding: 7px 10px 8px;
+      margin-block-end: 9px;
+    }
+
+    .hud-toc-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 7.5px;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      color: var(--starlight-muted);
+      margin-block-end: 6px;
+    }
+
+    /* Straight Constellation-Line Track with 3 Interactive Dots & Gliding Focus Circle */
+    .toc-constellation-rail {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      align-items: center;
+      padding-block: 8px 3px;
+      margin-block-end: 5px;
+    }
+
+    .toc-rail-line {
+      position: absolute;
+      top: 10.5px;
+      left: 16.666%;
+      right: 16.666%;
+      block-size: 0.75px;
+      background: linear-gradient(90deg, rgba(86, 180, 255, 0.45), rgba(163, 133, 255, 0.65), rgba(245, 158, 63, 0.45));
+      pointer-events: none;
+    }
+
+    /* Gliding Hairline Focus Circle on the TOC Line (Mirrors the Star Map Reticle!) */
+    .toc-gliding-reticle {
+      position: absolute;
+      top: 3.5px;
+      left: 16.666%;
+      inline-size: 14px;
+      block-size: 14px;
+      margin-inline-start: -7px;
+      border-radius: 50%;
+      border: 0.85px solid var(--ethereal-bright);
+      box-shadow: 0 0 8px rgba(163, 133, 255, 0.65);
+      pointer-events: none;
+      transition: left 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .toc-gliding-reticle::after {
+      content: "";
+      position: absolute;
+      inset: -2.5px;
+      border-radius: 50%;
+      border: 0.55px dashed rgba(206, 192, 255, 0.65);
+      animation: toc-spin 12s linear infinite;
+    }
+
+    @keyframes toc-spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .toc-dot-btn {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 9px;
+      background: none;
+      border: none;
+      padding: 0 2px;
+      color: var(--starlight-muted);
+      font-family: var(--mono);
+      font-size: 7.5px;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: color 0.25s ease;
+    }
+
+    .toc-dot-core {
+      inline-size: 5px;
+      block-size: 5px;
+      border-radius: 50%;
+      background: rgba(206, 192, 255, 0.5);
+      border: 0.65px solid rgba(255, 255, 255, 0.45);
+      transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .toc-dot-btn[aria-selected="true"],
+    .toc-dot-btn:hover {
+      color: #FFFFFF;
+    }
+
+    .toc-dot-btn[aria-selected="true"] .toc-dot-core {
+      background: #FFFFFF;
+      transform: scale(1.25);
+      box-shadow: 0 0 7px var(--ethereal-bright);
+    }
+
+    .toc-dot-label {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-inline-size: 108px;
+    }
+
+    .hud-toc-preview {
+      font-size: 10.4px;
+      line-height: 1.38;
+      color: #DCE6F7;
+      padding-block-start: 4px;
+      border-block-start: 0.5px solid rgba(163, 133, 255, 0.18);
+    }
+
+    .hud-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .hud-cta-primary {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 5.5px 10px;
+      border-radius: 6px;
+      background: rgba(163, 133, 255, 0.18);
+      border: 0.85px solid var(--ethereal-bright);
+      color: #FFFFFF;
+      font-family: var(--mono);
+      font-size: 8.2px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .hud-cta-primary:hover {
+      background: var(--ethereal-bright);
+      color: var(--obsidian);
+    }
+
+    .hud-cta-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 5.5px 9px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 0.75px solid rgba(255, 255, 255, 0.18);
+      color: var(--starlight-dim);
+      font-family: var(--mono);
+      font-size: 8px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      transition: border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .hud-cta-secondary:hover {
+      border-color: var(--pollux-star);
+      color: var(--pollux-star);
+    }
+
+    @media (max-width: 960px) {
+      .star-hud-card {
+        inline-size: 295px;
+        padding: 9px 11px;
+        bottom: 34px;
+      }
+      .hud-summary {
+        display: none;
+      }
     }
 
     /* Bottom-Stage 3D Telemetry Bar */
@@ -1368,6 +1730,94 @@
       color: var(--ink-soft);
     }
 
+    /* Active Linear Constellation-Dot Table of Contents inside the Full Article Reader */
+    .salon-toc-strip {
+      margin-block-start: 6px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 0.75px solid rgba(27, 79, 140, 0.22);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .salon-toc-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 8px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .salon-toc-rail {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      align-items: center;
+      padding-block: 7px 2px;
+    }
+
+    .salon-toc-line {
+      position: absolute;
+      top: 9.5px;
+      left: 16.666%;
+      right: 16.666%;
+      block-size: 0.75px;
+      background: rgba(27, 79, 140, 0.28);
+      pointer-events: none;
+    }
+
+    .salon-toc-reticle {
+      position: absolute;
+      top: 2.5px;
+      left: 16.666%;
+      inline-size: 14px;
+      block-size: 14px;
+      margin-inline-start: -7px;
+      border-radius: 50%;
+      border: 0.85px solid var(--castor-ink);
+      pointer-events: none;
+      transition: left 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .salon-toc-btn {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      background: none;
+      border: none;
+      padding: 0 2px;
+      font-family: var(--mono);
+      font-size: 8px;
+      color: var(--ink-muted);
+      cursor: pointer;
+    }
+
+    .salon-toc-dot {
+      inline-size: 5px;
+      block-size: 5px;
+      border-radius: 50%;
+      background: rgba(27, 79, 140, 0.35);
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+
+    .salon-toc-btn[aria-selected="true"] {
+      color: var(--castor-ink);
+      font-weight: 600;
+    }
+
+    .salon-toc-btn[aria-selected="true"] .salon-toc-dot {
+      background: var(--castor-ink);
+      transform: scale(1.3);
+    }
+
     .telemetry-card {
       background: var(--silk-elevated);
       border: 1px solid rgba(27, 79, 140, 0.22);
@@ -1644,21 +2094,21 @@
             </linearGradient>
           </defs>
 
-          <!-- 3D Perspective Astrolabe Rings & Ecliptic Plane -->
+          <!-- 3D Perspective Astrolabe Rings & Ecliptic Plane — Delicate 0.55px Hairlines -->
           <g id="astrolabe-3d-rings" aria-hidden="true">
-            <ellipse id="ring-3d-outer" cx="500" cy="258" rx="390" ry="185" fill="none" stroke="rgba(163, 133, 255, 0.24)" stroke-width="1.1" stroke-dasharray="5 7" />
-            <ellipse id="ring-3d-inner" cx="500" cy="258" rx="255" ry="120" fill="none" stroke="rgba(126, 184, 255, 0.2)" stroke-width="1" stroke-dasharray="3 5" />
+            <ellipse id="ring-3d-outer" cx="500" cy="258" rx="390" ry="185" fill="none" stroke="rgba(163, 133, 255, 0.22)" stroke-width="0.55" stroke-dasharray="1.5 5.5" />
+            <ellipse id="ring-3d-inner" cx="500" cy="258" rx="255" ry="120" fill="none" stroke="rgba(126, 184, 255, 0.18)" stroke-width="0.5" stroke-dasharray="1.5 4.5" />
           </g>
 
-          <g id="ecliptic-3d-group" aria-hidden="true" opacity="0.45">
-            <path id="ecliptic-arc" d="M 120 375 Q 500 268 880 165" fill="none" stroke="#A385FF" stroke-width="1.1" stroke-dasharray="5 5" />
-            <text id="ecliptic-label" x="745" y="182" fill="#CEC0FF" font-family="JetBrains Mono, monospace" font-size="8.5" letter-spacing="1.4">ECLIPTIC PLANE (+22°)</text>
+          <g id="ecliptic-3d-group" aria-hidden="true" opacity="0.38">
+            <path id="ecliptic-arc" d="M 120 375 Q 500 268 880 165" fill="none" stroke="#A385FF" stroke-width="0.55" stroke-dasharray="2 5" />
+            <text id="ecliptic-label" x="745" y="182" fill="#CEC0FF" font-family="JetBrains Mono, monospace" font-size="7.5" font-weight="300" letter-spacing="1.4">ECLIPTIC PLANE (+22°)</text>
           </g>
 
           <!-- M35 Open Star Cluster (2,800 LY Deep-Space Anchor) -->
           <g id="m35-3d-group" aria-hidden="true">
-            <circle id="m35-glow-circle" cx="195" cy="415" r="32" fill="url(#m35-cluster-glow)" />
-            <text id="m35-label" x="155" y="395" fill="#B8DCFF" font-family="JetBrains Mono, monospace" font-size="8" opacity="0.82">M35 CLUSTER (2,800 LY)</text>
+            <circle id="m35-glow-circle" cx="195" cy="415" r="28" fill="url(#m35-cluster-glow)" />
+            <text id="m35-label" x="155" y="395" fill="#B8DCFF" font-family="JetBrains Mono, monospace" font-size="7.2" font-weight="300" opacity="0.72">M35 CLUSTER (2,800 LY)</text>
           </g>
 
           <!-- 3D Depth-Cue Tether Lines (Connects 3D Star to Reference Plane) -->
@@ -1667,142 +2117,203 @@
           <!-- Dynamic 3D Stick-Figure Polylines -->
           <polyline id="line-shoulder-bridge" class="constellation-bridge-line" points="" />
           <polyline id="line-castor-spine" class="constellation-line-castor" points="" />
-          <polyline id="line-castor-arm" class="constellation-line-castor" points="" stroke-opacity="0.65" />
-          <polyline id="line-castor-innerleg" class="constellation-line-castor" points="" stroke-opacity="0.65" />
+          <polyline id="line-castor-arm" class="constellation-line-castor" points="" stroke-opacity="0.55" />
+          <polyline id="line-castor-innerleg" class="constellation-line-castor" points="" stroke-opacity="0.55" />
 
           <polyline id="line-pollux-spine" class="constellation-line-pollux" points="" />
-          <polyline id="line-pollux-arm" class="constellation-line-pollux" points="" stroke-opacity="0.65" />
-          <polyline id="line-pollux-outerleg" class="constellation-line-pollux" points="" stroke-opacity="0.65" />
+          <polyline id="line-pollux-arm" class="constellation-line-pollux" points="" stroke-opacity="0.55" />
+          <polyline id="line-pollux-outerleg" class="constellation-line-pollux" points="" stroke-opacity="0.55" />
 
           <!-- Secondary IAU Anatomical Stars (Projected in 3D) -->
-          <g id="minor-stars-layer" font-family="JetBrains Mono, monospace" font-size="8">
-            <g class="minor-star" data-minor="theta" fill="#B8DCFF" opacity="0.76"><circle r="2.8" /><text dx="-36" dy="-4">θ Gem</text></g>
-            <g class="minor-star" data-minor="tau" fill="#B8DCFF" opacity="0.76"><circle r="3" /><text dx="9" dy="-4">τ</text></g>
-            <g class="minor-star" data-minor="iota" fill="#CEC0FF" opacity="0.84"><circle r="3.1" /><text dx="-5" dy="-9">ι</text></g>
-            <g class="minor-star" data-minor="nu" fill="#B8DCFF" opacity="0.76"><circle r="2.8" /><text dx="9" dy="4">ν Gem</text></g>
-            <g class="minor-star" data-minor="upsilon" fill="#FFD296" opacity="0.76"><circle r="3" /><text dx="-15" dy="-5">υ</text></g>
-            <g class="minor-star" data-minor="kappa" fill="#FFD296" opacity="0.76"><circle r="2.8" /><text dx="9" dy="3">κ Gem</text></g>
-            <g class="minor-star" data-minor="lambda" fill="#FFD296" opacity="0.76"><circle r="2.8" /><text dx="9" dy="3">λ</text></g>
-            <g class="minor-star" data-minor="xi" fill="#FFD296" opacity="0.76"><circle r="3" /><text dx="10" dy="4">ξ Alzirr</text></g>
+          <g id="minor-stars-layer" font-family="JetBrains Mono, monospace" font-size="7.2" font-weight="300">
+            <g class="minor-star" data-minor="theta" fill="#B8DCFF" opacity="0.65"><circle r="2.1" /><text dx="-32" dy="-4">θ Gem</text></g>
+            <g class="minor-star" data-minor="tau" fill="#B8DCFF" opacity="0.65"><circle r="2.2" /><text dx="8" dy="-4">τ</text></g>
+            <g class="minor-star" data-minor="iota" fill="#CEC0FF" opacity="0.72"><circle r="2.3" /><text dx="-5" dy="-8">ι</text></g>
+            <g class="minor-star" data-minor="nu" fill="#B8DCFF" opacity="0.65"><circle r="2.1" /><text dx="8" dy="4">ν Gem</text></g>
+            <g class="minor-star" data-minor="upsilon" fill="#FFD296" opacity="0.65"><circle r="2.2" /><text dx="-13" dy="-5">υ</text></g>
+            <g class="minor-star" data-minor="kappa" fill="#FFD296" opacity="0.65"><circle r="2.1" /><text dx="8" dy="3">κ Gem</text></g>
+            <g class="minor-star" data-minor="lambda" fill="#FFD296" opacity="0.65"><circle r="2.1" /><text dx="8" dy="3">λ</text></g>
+            <g class="minor-star" data-minor="xi" fill="#FFD296" opacity="0.65"><circle r="2.2" /><text dx="9" dy="4">ξ Alzirr</text></g>
           </g>
 
-          <!-- Animated Comet Energy Trail when Focus Glides Between Stars! -->
+          <!-- Animated Comet Energy Trail & Telemetry Leader Line to Digital HUD Brief Card -->
           <path id="focus-comet-trail" d="" opacity="0" />
+          <polyline id="hud-leader-line" points="" opacity="0.75" />
+          <circle id="hud-leader-dot" cx="0" cy="0" r="2.2" opacity="0.85" />
 
           <!-- ===============================================================
                8 CLICKABLE MAJOR STARS IN RELATIONAL 3D SPACE
-               Sorted dynamically in Z-order so foreground stars always render on top!
+               Subordinate Tech-Code Star Name (7.6px thin Cyan/Amber) +
+               Prominent Bold Article Title (12.2px crisp White) +
+               Delicate 0.65px Hairline Circles
                =============================================================== -->
           <g id="major-stars-layer">
             <!-- STAR 01: α CASTOR (51 LY, Blue-White Sextuple, Mag 1.58) -->
             <g class="star-node star-node-castor" id="node-castor" role="button" tabindex="0" data-star="castor" data-active="false" aria-label="Alpha Castor: Dec 1 Price Cut (-78% Bill)">
-              <rect class="star-hit-area" x="-218" y="-26" width="242" height="52" />
-              <rect class="star-pill-bg" x="-210" y="-14" width="190" height="28" />
-              <text class="star-label-dest" x="-198" y="4"><tspan class="star-bayer-prefix">α Castor · </tspan>Dec 1 Price Cut</text>
-              <text class="star-depth-chip" data-depth-tag="castor" x="18" y="-8">51 LY</text>
-              <text class="star-sub-meta" x="-198" y="-20">★ 01 · FOREGROUND FOCUS · 51 LY SEXTUPLE</text>
-              <circle class="star-halo" cx="0" cy="0" r="16" />
-              <circle class="star-reticle" cx="0" cy="0" r="22" />
-              <circle class="star-core-castor" cx="0" cy="0" r="7.2" />
-              <path d="M0 -15v30M-15 0h30" stroke="#FFFFFF" stroke-width="1.4" />
+              <rect class="star-hit-area" x="-218" y="-24" width="240" height="48" />
+              <rect class="star-pill-bg" x="-210" y="-14" width="192" height="28" />
+              <text class="star-label-dest" x="-198" y="4"><tspan class="star-bayer-prefix">α CASTOR  </tspan>Dec 1 Price Cut</text>
+              <text class="star-depth-chip" data-depth-tag="castor" x="15" y="-6">51 LY</text>
+              <text class="star-sub-meta" x="-198" y="-19">01 · FOREGROUND · 51 LY</text>
+              <circle class="star-halo" cx="0" cy="0" r="11" />
+              <circle class="star-reticle" cx="0" cy="0" r="15.5" />
+              <circle class="star-core-castor" cx="0" cy="0" r="4.6" />
             </g>
 
             <!-- STAR 02: ε MEBSUTA (840 LY, Luminous Supergiant, Mag 2.98) -->
             <g class="star-node star-node-castor" id="node-mebsuta" role="button" tabindex="0" data-star="mebsuta" data-active="true" aria-label="Epsilon Mebsuta: Releases Decoded">
-              <rect class="star-hit-area" x="-222" y="-26" width="244" height="52" />
-              <rect class="star-pill-bg" x="-214" y="-14" width="194" height="28" />
-              <text class="star-label-dest" x="-202" y="4"><tspan class="star-bayer-prefix">ε Mebsuta · </tspan>Releases Decoded</text>
-              <text class="star-depth-chip" data-depth-tag="mebsuta" x="16" y="-8">840 LY</text>
-              <text class="star-sub-meta" x="-202" y="-20">✦ 02 · FOREGROUND FOCUS · 840 LY SUPERGIANT</text>
-              <circle class="star-halo" cx="0" cy="0" r="13" />
-              <circle class="star-reticle" cx="0" cy="0" r="19" />
-              <circle class="star-core-castor" cx="0" cy="0" r="5.6" />
+              <rect class="star-hit-area" x="-222" y="-24" width="244" height="48" />
+              <rect class="star-pill-bg" x="-214" y="-14" width="196" height="28" />
+              <text class="star-label-dest" x="-202" y="4"><tspan class="star-bayer-prefix">ε MEBSUTA  </tspan>Releases Decoded</text>
+              <text class="star-depth-chip" data-depth-tag="mebsuta" x="15" y="-6">840 LY</text>
+              <text class="star-sub-meta" x="-202" y="-19">02 · FOREGROUND · 840 LY</text>
+              <circle class="star-halo" cx="0" cy="0" r="10.5" />
+              <circle class="star-reticle" cx="0" cy="0" r="15" />
+              <circle class="star-core-castor" cx="0" cy="0" r="4.2" />
             </g>
 
             <!-- STAR 03: μ TEJAT (230 LY, Red Giant Knee/Foot, Mag 2.87) -->
             <g class="star-node star-node-castor" id="node-tejat" role="button" tabindex="0" data-star="tejat" data-active="false" aria-label="Mu Tejat: Speed and Carbon ROI">
-              <rect class="star-hit-area" x="-212" y="-26" width="234" height="52" />
-              <rect class="star-pill-bg" x="-204" y="-14" width="184" height="28" />
-              <text class="star-label-dest" x="-192" y="4"><tspan class="star-bayer-prefix">μ Tejat · </tspan>Speed &amp; Carbon ROI</text>
-              <text class="star-depth-chip" data-depth-tag="tejat" x="16" y="-8">230 LY</text>
-              <text class="star-sub-meta" x="-192" y="-20">✦ 03 · FOREGROUND FOCUS · 230 LY RED GIANT</text>
-              <circle class="star-halo" cx="0" cy="0" r="13" />
-              <circle class="star-reticle" cx="0" cy="0" r="19" />
-              <circle class="star-core-castor" cx="0" cy="0" r="5.5" />
+              <rect class="star-hit-area" x="-214" y="-24" width="236" height="48" />
+              <rect class="star-pill-bg" x="-206" y="-14" width="188" height="28" />
+              <text class="star-label-dest" x="-194" y="4"><tspan class="star-bayer-prefix">μ TEJAT  </tspan>Speed &amp; Carbon ROI</text>
+              <text class="star-depth-chip" data-depth-tag="tejat" x="15" y="-6">230 LY</text>
+              <text class="star-sub-meta" x="-194" y="-19">03 · FOREGROUND · 230 LY</text>
+              <circle class="star-halo" cx="0" cy="0" r="10.5" />
+              <circle class="star-reticle" cx="0" cy="0" r="15" />
+              <circle class="star-core-castor" cx="0" cy="0" r="4.1" />
             </g>
 
             <!-- STAR 04: η PROPUS (350 LY, Front Foot & M35 Cluster, Mag 3.28) -->
             <g class="star-node star-node-castor" id="node-propus" role="button" tabindex="0" data-star="propus" data-active="false" aria-label="Eta Propus: 60-Second Video Signal">
-              <rect class="star-hit-area" x="-208" y="-26" width="230" height="52" />
-              <rect class="star-pill-bg" x="-200" y="-14" width="180" height="28" />
-              <text class="star-label-dest" x="-188" y="4"><tspan class="star-bayer-prefix">η Propus · </tspan>60s Video Signal</text>
-              <text class="star-depth-chip" data-depth-tag="propus" x="16" y="-8">350 LY</text>
-              <text class="star-sub-meta" x="-188" y="-20">✦ 04 · FOREGROUND FOCUS · 350 LY &amp; M35</text>
-              <circle class="star-halo" cx="0" cy="0" r="13" />
-              <circle class="star-reticle" cx="0" cy="0" r="19" />
-              <circle class="star-core-castor" cx="0" cy="0" r="5.2" />
+              <rect class="star-hit-area" x="-208" y="-24" width="230" height="48" />
+              <rect class="star-pill-bg" x="-200" y="-14" width="182" height="28" />
+              <text class="star-label-dest" x="-188" y="4"><tspan class="star-bayer-prefix">η PROPUS  </tspan>60s Video Signal</text>
+              <text class="star-depth-chip" data-depth-tag="propus" x="15" y="-6">350 LY</text>
+              <text class="star-sub-meta" x="-188" y="-19">04 · FOREGROUND · 350 LY</text>
+              <circle class="star-halo" cx="0" cy="0" r="10.5" />
+              <circle class="star-reticle" cx="0" cy="0" r="15" />
+              <circle class="star-core-castor" cx="0" cy="0" r="4.0" />
             </g>
 
             <!-- STAR 05: β POLLUX (34 LY, Closest Golden-Orange Giant, Mag 1.14) -->
             <g class="star-node star-node-pollux" id="node-pollux" role="button" tabindex="0" data-star="pollux" data-active="false" aria-label="Beta Pollux: 10-Second Savings Lab">
-              <rect class="star-hit-area" x="-20" y="-26" width="246" height="52" />
-              <rect class="star-pill-bg" x="22" y="-14" width="194" height="28" />
-              <text class="star-label-dest" x="34" y="4"><tspan class="star-bayer-prefix">β Pollux · </tspan>10-Sec Savings Lab</text>
-              <text class="star-depth-chip" data-depth-tag="pollux" x="-44" y="-8">34 LY</text>
-              <text class="star-sub-meta" x="34" y="-20">★ 05 · FOREGROUND FOCUS · 34 LY GIANT</text>
-              <circle class="star-halo" cx="0" cy="0" r="17" />
-              <circle class="star-reticle" cx="0" cy="0" r="23" />
-              <circle class="star-core-pollux" cx="0" cy="0" r="7.6" />
-              <path d="M0 -16v32M-16 0h32" stroke="#FFFDF7" stroke-width="1.45" />
+              <rect class="star-hit-area" x="-18" y="-24" width="244" height="48" />
+              <rect class="star-pill-bg" x="18" y="-14" width="196" height="28" />
+              <text class="star-label-dest" x="30" y="4"><tspan class="star-bayer-prefix">β POLLUX  </tspan>10-Sec Savings Lab</text>
+              <text class="star-depth-chip" data-depth-tag="pollux" x="-38" y="-6">34 LY</text>
+              <text class="star-sub-meta" x="30" y="-19">05 · FOREGROUND · 34 LY</text>
+              <circle class="star-halo" cx="0" cy="0" r="11.5" />
+              <circle class="star-reticle" cx="0" cy="0" r="16" />
+              <circle class="star-core-pollux" cx="0" cy="0" r="4.8" />
             </g>
 
             <!-- STAR 06: δ WASAT (60 LY, Ecliptic Waist Node, Mag 3.53) -->
             <g class="star-node star-node-pollux" id="node-wasat" role="button" tabindex="0" data-star="wasat" data-active="false" aria-label="Delta Wasat: 5-Minute Workspace Guides">
-              <rect class="star-hit-area" x="-20" y="-26" width="260" height="52" />
-              <rect class="star-pill-bg" x="22" y="-14" width="212" height="28" />
-              <text class="star-label-dest" x="34" y="4"><tspan class="star-bayer-prefix">δ Wasat · </tspan>5-Min Workspace Guides</text>
-              <text class="star-depth-chip" data-depth-tag="wasat" x="-42" y="-8">60 LY</text>
-              <text class="star-sub-meta" x="34" y="-20">✧ 06 · FOREGROUND FOCUS · 60 LY ECLIPTIC</text>
-              <circle class="star-halo" cx="0" cy="0" r="13" />
-              <circle class="star-reticle" cx="0" cy="0" r="19" />
-              <circle class="star-core-pollux" cx="0" cy="0" r="5.6" />
+              <rect class="star-hit-area" x="-18" y="-24" width="258" height="48" />
+              <rect class="star-pill-bg" x="18" y="-14" width="214" height="28" />
+              <text class="star-label-dest" x="30" y="4"><tspan class="star-bayer-prefix">δ WASAT  </tspan>5-Min Workspace Guides</text>
+              <text class="star-depth-chip" data-depth-tag="wasat" x="-38" y="-6">60 LY</text>
+              <text class="star-sub-meta" x="30" y="-19">06 · FOREGROUND · 60 LY</text>
+              <circle class="star-halo" cx="0" cy="0" r="10.5" />
+              <circle class="star-reticle" cx="0" cy="0" r="15" />
+              <circle class="star-core-pollux" cx="0" cy="0" r="4.2" />
             </g>
 
             <!-- STAR 07: ζ MEKBUDA (1,200 LY, Deep-Space Cepheid Supergiant, Mag 3.79) -->
             <g class="star-node star-node-pollux" id="node-mekbuda" role="button" tabindex="0" data-star="mekbuda" data-active="false" aria-label="Zeta Mekbuda: Screen-Clicking AI Sandbox">
-              <rect class="star-hit-area" x="-20" y="-26" width="250" height="52" />
-              <rect class="star-pill-bg" x="22" y="-14" width="200" height="28" />
-              <text class="star-label-dest" x="34" y="4"><tspan class="star-bayer-prefix">ζ Mekbuda · </tspan>Screen-Clicking AI</text>
-              <text class="star-depth-chip" data-depth-tag="mekbuda" x="-54" y="-8">1,200 LY</text>
-              <text class="star-sub-meta" x="34" y="-20">✧ 07 · FOREGROUND FOCUS · 1,200 LY CEPHEID</text>
-              <circle class="star-halo" cx="0" cy="0" r="13" />
-              <circle class="star-reticle" cx="0" cy="0" r="19" />
-              <circle class="star-core-pollux" cx="0" cy="0" r="5.4" />
+              <rect class="star-hit-area" x="-18" y="-24" width="248" height="48" />
+              <rect class="star-pill-bg" x="18" y="-14" width="202" height="28" />
+              <text class="star-label-dest" x="30" y="4"><tspan class="star-bayer-prefix">ζ MEKBUDA  </tspan>Screen-Clicking AI</text>
+              <text class="star-depth-chip" data-depth-tag="mekbuda" x="-48" y="-6">1,200 LY</text>
+              <text class="star-sub-meta" x="30" y="-19">07 · FOREGROUND · 1,200 LY</text>
+              <circle class="star-halo" cx="0" cy="0" r="10.5" />
+              <circle class="star-reticle" cx="0" cy="0" r="15" />
+              <circle class="star-core-pollux" cx="0" cy="0" r="4.1" />
             </g>
 
             <!-- STAR 08: γ ALHENA (109 LY, Bright Foot of Pollux, Mag 1.93) -->
             <g class="star-node star-node-pollux" id="node-alhena" role="button" tabindex="0" data-star="alhena" data-active="false" aria-label="Gamma Alhena: Built by Gemini Alone">
-              <rect class="star-hit-area" x="-20" y="-26" width="250" height="52" />
-              <rect class="star-pill-bg" x="22" y="-14" width="200" height="28" />
-              <text class="star-label-dest" x="34" y="4"><tspan class="star-bayer-prefix">γ Alhena · </tspan>Built by Gemini Alone</text>
-              <text class="star-depth-chip" data-depth-tag="alhena" x="-48" y="-8">109 LY</text>
-              <text class="star-sub-meta" x="34" y="-20">✧ 08 · FOREGROUND FOCUS · 109 LY FOOT</text>
-              <circle class="star-halo" cx="0" cy="0" r="15" />
-              <circle class="star-reticle" cx="0" cy="0" r="21" />
-              <circle class="star-core-pollux" cx="0" cy="0" r="6.4" />
-              <path d="M0 -13v26M-13 0h26" stroke="#FFFDF7" stroke-width="1.25" />
+              <rect class="star-hit-area" x="-18" y="-24" width="248" height="48" />
+              <rect class="star-pill-bg" x="18" y="-14" width="202" height="28" />
+              <text class="star-label-dest" x="30" y="4"><tspan class="star-bayer-prefix">γ ALHENA  </tspan>Built by Gemini Alone</text>
+              <text class="star-depth-chip" data-depth-tag="alhena" x="-44" y="-6">109 LY</text>
+              <text class="star-sub-meta" x="30" y="-19">08 · FOREGROUND · 109 LY</text>
+              <circle class="star-halo" cx="0" cy="0" r="11" />
+              <circle class="star-reticle" cx="0" cy="0" r="15.5" />
+              <circle class="star-core-pollux" cx="0" cy="0" r="4.5" />
             </g>
           </g>
 
-          <!-- Smooth Gliding "YOU ARE HERE" Focus Circle & Badge -->
+          <!-- Delicate Hairline Gliding "YOU ARE HERE" Focus Circle & Badge -->
           <g id="traveling-beacon" transform="translate(335, 255)">
-            <circle class="tb-pulse-ring" id="tb-ring-anim" cx="0" cy="0" r="28" />
-            <circle class="tb-outer" id="tb-outer-circle" cx="0" cy="0" r="20" />
-            <rect class="tb-tag-bg" x="-46" y="21" width="92" height="16" />
-            <text class="tb-tag-text" x="0" y="31.5" text-anchor="middle">YOU ARE HERE</text>
+            <circle class="tb-pulse-ring" id="tb-ring-anim" cx="0" cy="0" r="22" />
+            <circle class="tb-outer" id="tb-outer-circle" cx="0" cy="0" r="16" />
+            <rect class="tb-tag-bg" x="-42" y="18" width="84" height="14" />
+            <text class="tb-tag-text" x="0" y="27.5" text-anchor="middle">YOU ARE HERE</text>
           </g>
         </svg>
       </div>
+
+      <!-- ===================================================================
+           FUTURISTIC DIGITAL HUD ARTICLE BRIEF CARD + CONSTELLATION-DOT TOC
+           Materializes when a star is clicked so visitors immediately see the
+           full title, tags, reading time, summary, and interactive dot TOC!
+           =================================================================== -->
+      <aside class="star-hud-card" id="star-hud-card" data-twin="castor" aria-live="polite" aria-label="Focused Star Article Brief and Active Table of Contents">
+        <div class="hud-scanline" aria-hidden="true"></div>
+        <div class="hud-top-meta">
+          <div class="hud-tags" id="hud-tags">
+            <span class="hud-tag-pill">RELEASES</span>
+            <span class="hud-tag-pill">PLAIN ENGLISH</span>
+          </div>
+          <span class="hud-read-time" id="hud-read-time">NOV 3, 2026 · ⏱ 4 MIN READ</span>
+        </div>
+
+        <h2 class="hud-title" id="hud-title">
+          Every Nov 2026 Gemini Release, Decoded in Plain English
+        </h2>
+        <p class="hud-summary" id="hud-summary">
+          What changed across Gemini 2.5 Pro/Flash, Context Caching, and Workspace—and which updates actually move the needle for your daily work.
+        </p>
+
+        <!-- Linear Constellation-Dot Active Table of Contents (TOC) -->
+        <div class="hud-toc-box">
+          <div class="hud-toc-header">
+            <span>ACTIVE TABLE OF CONTENTS (CLICK OR HOVER DOTS)</span>
+            <span id="hud-toc-step-indicator">CHAPTER 01 / 03</span>
+          </div>
+          <div class="toc-constellation-rail" role="tablist" aria-label="Article Table of Contents">
+            <div class="toc-rail-line" aria-hidden="true"></div>
+            <div class="toc-gliding-reticle" id="hud-toc-reticle" aria-hidden="true"></div>
+
+            <button type="button" class="toc-dot-btn" role="tab" data-toc-idx="0" aria-selected="true">
+              <span class="toc-dot-core" aria-hidden="true"></span>
+              <span class="toc-dot-label" id="hud-toc-label-0">01 · What Shipped</span>
+            </button>
+            <button type="button" class="toc-dot-btn" role="tab" data-toc-idx="1" aria-selected="false">
+              <span class="toc-dot-core" aria-hidden="true"></span>
+              <span class="toc-dot-label" id="hud-toc-label-1">02 · For Your Work</span>
+            </button>
+            <button type="button" class="toc-dot-btn" role="tab" data-toc-idx="2" aria-selected="false">
+              <span class="toc-dot-core" aria-hidden="true"></span>
+              <span class="toc-dot-label" id="hud-toc-label-2">03 · Safe to Skip</span>
+            </button>
+          </div>
+          <p class="hud-toc-preview" id="hud-toc-preview">
+            <strong>01 · What Shipped:</strong> Google shipped Gemini 2.5 Pro/Flash updates, implicit Context Caching, and Computer Use browser automation.
+          </p>
+        </div>
+
+        <div class="hud-actions">
+          <button type="button" class="hud-cta-primary" id="hud-read-btn" data-open-drawer="castor">
+            <span id="hud-read-btn-label">↑ Read Full Brief (4 Min)</span>
+          </button>
+          <button type="button" class="hud-cta-secondary" data-open-drawer="pollux">
+            <span>Open Lab →</span>
+          </button>
+        </div>
+      </aside>
 
       <!-- Bottom-Stage 3D Telemetry & Drag Hint -->
       <div class="hero-3d-telemetry-bar">
@@ -1946,6 +2457,30 @@
             <p class="couture-dek" id="castor-dek">
               <strong>How it applies to you:</strong> Google ships model updates, context-window expansions, and Workspace features every week. We translate every drop into plain English: what changed, who should care, and what you can safely ignore.
             </p>
+
+            <!-- Mirrored Active Constellation-Dot Table of Contents inside the Full Article Reader -->
+            <div class="salon-toc-strip" aria-label="Article Table of Contents">
+              <div class="salon-toc-meta">
+                <span>ACTIVE CHAPTER TOC (CONSTELLATION DOT RAIL)</span>
+                <span id="salon-read-time">NOV 3, 2026 · ⏱ 4 MIN READ</span>
+              </div>
+              <div class="salon-toc-rail" role="tablist">
+                <div class="salon-toc-line" aria-hidden="true"></div>
+                <div class="salon-toc-reticle" id="salon-toc-reticle" aria-hidden="true"></div>
+                <button type="button" class="salon-toc-btn" role="tab" data-toc-idx="0" aria-selected="true">
+                  <span class="salon-toc-dot" aria-hidden="true"></span>
+                  <span id="salon-toc-label-0">01 · What Shipped</span>
+                </button>
+                <button type="button" class="salon-toc-btn" role="tab" data-toc-idx="1" aria-selected="false">
+                  <span class="salon-toc-dot" aria-hidden="true"></span>
+                  <span id="salon-toc-label-1">02 · For Your Work</span>
+                </button>
+                <button type="button" class="salon-toc-btn" role="tab" data-toc-idx="2" aria-selected="false">
+                  <span class="salon-toc-dot" aria-hidden="true"></span>
+                  <span id="salon-toc-label-2">03 · Safe to Skip</span>
+                </button>
+              </div>
+            </div>
           </div>
 
           <aside class="telemetry-card" aria-label="Verified Google Telemetry">
@@ -2221,6 +2756,118 @@
       SALON_DATA.pollux = SALON_DATA.castor;
       SALON_DATA.wasat = SALON_DATA.mebsuta;
 
+      /* =====================================================================
+         FUTURISTIC DIGITAL HUD BRIEF DATA + 3-DOT CONSTELLATION TOC CHAPTERS
+         Every star has its own tags, date, estimated reading time, full title,
+         plain-English summary, and 3 interactive TOC chapters!
+         ===================================================================== */
+      const HUD_DATA = {
+        castor: {
+          twin: "castor",
+          tags: ["PRICING", "CONTEXT CACHING"],
+          dateRead: "NOV 3, 2026 · ⏱ 3 MIN READ",
+          ctaLabel: "↑ Read Full Brief (3 Min)",
+          hudTitle: "Google Cut Gemini Memory Costs 90%: The Plain-English Breakdown",
+          hudSummary: "Pin your 300-page PDFs or codebases once with Context Caching and drop repeat reads from $2.50 to $0.25/1M—cutting typical bills by 78%.",
+          toc: [
+            { label: "01 · -90% Rate", text: "Repeat reads on cached PDFs & repos drop from $2.50 to $0.25 per 1M tokens—slashing typical monthly bills by 78%." },
+            { label: "02 · Team ROI", text: "Teams querying recurring 300-page contracts, docs, or codebases save $6,660 to $33,300/yr with zero quality loss." },
+            { label: "03 · 3-Line Code", text: "Pin your workspace context once with ai.caches.create() and query it all day at 1/10th the token rate." }
+          ]
+        },
+        mebsuta: {
+          twin: "castor",
+          tags: ["RELEASES", "PLAIN ENGLISH"],
+          dateRead: "NOV 3, 2026 · ⏱ 4 MIN READ",
+          ctaLabel: "↑ Read Full Brief (4 Min)",
+          hudTitle: "Every Nov 2026 Gemini Release, Decoded in Plain English",
+          hudSummary: "What changed across Gemini 2.5 Pro/Flash, Context Caching, and Workspace—and which updates actually move the needle for your daily work.",
+          toc: [
+            { label: "01 · What Shipped", text: "Google shipped Gemini 2.5 Pro/Flash updates, implicit Context Caching, and Computer Use browser automation." },
+            { label: "02 · For Your Work", text: "We filter out developer jargon and tell you in 60 seconds which updates actually improve your daily workflow." },
+            { label: "03 · Safe to Skip", text: "Skip manual token-capping hacks—native thinking-level routing solves 100% of tasks at lower cost." }
+          ]
+        },
+        tejat: {
+          twin: "castor",
+          tags: ["LATENCY", "CARBON ROI"],
+          dateRead: "NOV 3, 2026 · ⏱ 4 MIN READ",
+          ctaLabel: "↑ Read Full Brief (4 Min)",
+          hudTitle: "79% Faster Replies & 4.2× Less Energy on TPU v6e Trillium",
+          hudSummary: "Waiting 4 seconds breaks human creative flow. Warm context prefixes drop 128k first-token wait from 3.4s to 0.7s while cutting query energy 76%.",
+          toc: [
+            { label: "01 · 0.7s Flow", text: "Warm prefixes on TPU v6e Trillium drop 128k Time-to-First-Token from 3.4s to 0.7s (-79% wait time)." },
+            { label: "02 · 4.2× Green", text: "Bypassing redundant prefill compute cuts per-query watt-hours by 76% across enterprise workloads." },
+            { label: "03 · Benchmark", text: "Compare 32k doc, 128k book, and 500k repo cold vs. warm response speeds in the Pollux Lab." }
+          ]
+        },
+        propus: {
+          twin: "castor",
+          tags: ["VIDEO BRIEF", "MULTIMODAL"],
+          dateRead: "NOV 3, 2026 · ⏱ 1 MIN WATCH",
+          ctaLabel: "↑ Watch 60s Briefing",
+          hudTitle: "The 60-Second Visual Briefing: Storyboarded & Voiced by Gemini",
+          hudSummary: "Short on reading time? Our autonomous YouTube Shorts studio condenses the week’s biggest Gemini breakthrough into a 60-second visual briefing.",
+          toc: [
+            { label: "01 · Script", text: "Gemini 4 Argon distills verified Google announcements into a tight 145-word 60-second script." },
+            { label: "02 · Storyboard", text: "Custom 9:16 editorial storyboards generated automatically with gemini-nano-banana-2.1." },
+            { label: "03 · Voice TTS", text: "Frame-accurate voiceover synthesis via gemini-3.8-flash-tts at 155 WPM editorial pacing." }
+          ]
+        },
+        pollux: {
+          twin: "pollux",
+          tags: ["LIVE WORKBENCH", "SAVINGS LAB"],
+          dateRead: "NOV 3, 2026 · ⏱ 2 MIN LAB",
+          ctaLabel: "↑ Launch 10-Sec Lab",
+          hudTitle: "Interactive 10-Second Cost & Routing Calculator for Your Workload",
+          hudSummary: "Test Solo (20M), Team (100M), and Scale (500M) monthly token workloads and copy the 3-line @google/genai Context Caching recipe.",
+          toc: [
+            { label: "01 · Solo (20M)", text: "Drops monthly token spend from $142/mo to $31/mo (-78%) when querying cached project context." },
+            { label: "02 · Team (100M)", text: "Saves $555/mo ($6,660/yr) across shared engineering and research repositories." },
+            { label: "03 · Scale (500M)", text: "Saves $33,300/yr while combining classifier routing with warm prefix caching." }
+          ]
+        },
+        wasat: {
+          twin: "pollux",
+          tags: ["WORKSPACE", "NO-CODE GUIDES"],
+          dateRead: "NOV 3, 2026 · ⏱ 5 MIN GUIDE",
+          ctaLabel: "↑ Open 5-Min Guides",
+          hudTitle: "5-Minute Google Docs, Gmail & NotebookLM Workflows (Zero Code)",
+          hudSummary: "Step-by-step recipes for Deep Research synthesis, NotebookLM audio briefings, and multi-tab Google Sheets cleanup that save hours every week.",
+          toc: [
+            { label: "01 · Deep Research", text: "Turn 50 web and Drive sources into a cited executive Google Doc in 6 minutes instead of 4.5 hours." },
+            { label: "02 · NotebookLM", text: "Upload client PDFs to generate a zero-hallucination 2-host audio briefing for your commute." },
+            { label: "03 · Sheets Audit", text: "Clean and categorize 1,200 messy spreadsheet rows in 90 seconds using plain-English prompts." }
+          ]
+        },
+        mekbuda: {
+          twin: "pollux",
+          tags: ["COMPUTER USE", "BROWSER AGENT"],
+          dateRead: "NOV 3, 2026 · ⏱ 4 MIN READ",
+          ctaLabel: "↑ Inspect Agent Loop",
+          hudTitle: "Gemini 2.5 Computer Use: When to Let AI Click Your Screen",
+          hudSummary: "When legacy vendor portals or ERPs lack APIs, Gemini visually reads the screen, clicks UI coordinates, and pauses for human confirmation.",
+          toc: [
+            { label: "01 · See Pixels", text: "Visually inspects 1440×900 browser frames to locate buttons, tables, and form fields with 99.2% confidence." },
+            { label: "02 · Click UI", text: "Executes precise click(x,y) and form-fill actions across legacy multi-step web workflows." },
+            { label: "03 · Human Gate", text: "Enforces require_confirmation=true before any purchase, export, or irreversible submission." }
+          ]
+        },
+        alhena: {
+          twin: "pollux",
+          tags: ["CASE STUDY", "TWIN CHARTER"],
+          dateRead: "NOV 3, 2026 · ⏱ 5 MIN READ",
+          ctaLabel: "↑ Read Twin Charter",
+          hudTitle: "Conceived by a Human, Written & Coded by Gemini: The Twin Charter",
+          hudSummary: "Inside the Human + AI Twin partnership between Creative Catalyst Neil S. White (Agile LLC) and Lead AI Architect Google Gemini 4 Argon.",
+          toc: [
+            { label: "01 · Twin Minds", text: "Creative direction and soul by Neil S. White paired with autonomous engineering by Gemini 4 Argon." },
+            { label: "02 · 11 Iterations", text: "How we evolved from a 24,043px monolith to a 3D celestial navigator in days instead of months." },
+            { label: "03 · 7-Pt Audit", text: "Every commit passes automated Google source verification, CDP layout checks, and zero-PII gates." }
+          ]
+        }
+      };
+
       function formatGreek(str) {
         return str.replace(/([αβεμηδζγθτιυκλξν])/g, '<span class="greek">$1</span>');
       }
@@ -2230,12 +2877,14 @@
       }
 
       /* =====================================================================
-         SERENE CELESTIAL SLEW ENGINE (SOFT 2.6s EASE-IN-OUT — ZERO BOUNCE)
+         EXPRESSIVE RAMP CELESTIAL SLEW ENGINE (QUINTIC S-CURVE WITH MID-RAMP)
+         Starts slow (gathering inertia), ramps up to a distinct mid-flight
+         cruise speed, and cushions into a long feather-soft landing!
          ===================================================================== */
       const CENTER_X = 500;
       const CENTER_Y = 258;
       const FOCAL_LENGTH = 560;
-      const SLEW_DURATION_MS = 2600; // 2.6 seconds of soft, unhurried deep-space easing
+      const SLEW_DURATION_MS = 2350;
 
       let cam = {
         yaw: -15,
@@ -2251,8 +2900,6 @@
         autoOrbit: false
       };
 
-      // Each star has a continuous foreground z-pull (`starZPull`) and foreground blend (`starFg` 0..1)
-      // that ease smoothly over 2.6 seconds so stars never jump or snap on click!
       const starZPull = {};
       const starFg = {};
       STAR_ORDER.forEach((k) => {
@@ -2275,13 +2922,14 @@
         toFg: { ...starFg }
       };
 
-      // Soft sinusoidal + cubic ease-in-out: 0 velocity at start, serene mid-flight, whisper-soft landing
+      // Quintic S-Curve Ramp Easing: slow inertia gather -> noticeable mid-flight speed ramp -> long soft landing
       function easeInOutCelestial(t) {
         if (t <= 0) return 0;
         if (t >= 1) return 1;
-        const sine = 0.5 * (1 - Math.cos(Math.PI * t));
-        const cubic = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-        return 0.55 * sine + 0.45 * cubic;
+        const w = Math.pow(t, 0.92);
+        return w < 0.5
+          ? 16 * w * w * w * w * w
+          : 1 - Math.pow(-2 * w + 2, 5) / 2;
       }
 
       // Smooth eased gliding state for the "YOU ARE HERE" Focus Circle + Comet Trail
@@ -2291,7 +2939,7 @@
         fromX: 338,
         fromY: 250,
         slewStart: 0,
-        slewDuration: 2400,
+        slewDuration: 2050,
         isGliding: false
       };
 
@@ -2442,6 +3090,8 @@
       const bgCastor = document.getElementById("bg-plate-castor");
       const bgPollux = document.getElementById("bg-plate-pollux");
       const telemetryAngles = document.getElementById("telemetry-angles");
+      const hudLeaderLine = document.getElementById("hud-leader-line");
+      const hudLeaderDot = document.getElementById("hud-leader-dot");
 
       function ptsToString(arr) {
         return arr.map((p) => `${p.sx.toFixed(1)},${p.sy.toFixed(1)}`).join(" ");
@@ -2581,17 +3231,22 @@
         linePolluxArm.setAttribute("points", ptsToString([projMinor.upsilon, projMinor.kappa]));
         linePolluxOuterLeg.setAttribute("points", ptsToString([projMajor.wasat, projMinor.lambda, projMinor.xi]));
 
-        // Soft, Eased Gliding "YOU ARE HERE" Focus Circle & Whisper Comet Trail (2.4s ease-in-out)
+        // Soft, Eased Gliding "YOU ARE HERE" Focus Circle & Whisper Comet Trail (2.3s Quintic S-Curve Ramp)
         const activeProj = projMajor[activeStarKey];
         if (activeProj && beaconEl) {
+          let pulseScale = 1;
           if (beaconState.isGliding) {
             const rawB = (now - beaconState.slewStart) / beaconState.slewDuration;
             const eB = easeInOutCelestial(rawB);
             beaconState.x = beaconState.fromX + (activeProj.sx - beaconState.fromX) * eB;
             beaconState.y = beaconState.fromY + (activeProj.sy - beaconState.fromY) * eB;
 
+            // Subtle mid-flight speed-ramp scale swell (1.0 -> 1.18 -> 1.0)
+            const clampedB = Math.min(1, Math.max(0, rawB));
+            pulseScale = 1 + Math.sin(clampedB * Math.PI) * 0.18;
+
             // Gentle bell-curve comet mist that swells softly mid-glide and vanishes upon arrival
-            const trailBell = Math.sin(Math.min(1, Math.max(0, rawB)) * Math.PI) * 0.55;
+            const trailBell = Math.sin(clampedB * Math.PI) * 0.55;
             if (rawB < 0.98 && trailBell > 0.02) {
               cometTrail.setAttribute("d", `M ${beaconState.fromX.toFixed(1)} ${beaconState.fromY.toFixed(1)} L ${beaconState.x.toFixed(1)} ${beaconState.y.toFixed(1)}`);
               cometTrail.setAttribute("opacity", trailBell.toFixed(2));
@@ -2609,7 +3264,21 @@
             cometTrail.setAttribute("opacity", "0");
           }
 
-          beaconEl.setAttribute("transform", `translate(${beaconState.x.toFixed(1)}, ${beaconState.y.toFixed(1)})`);
+          beaconEl.setAttribute("transform", `translate(${beaconState.x.toFixed(1)}, ${beaconState.y.toFixed(1)}) scale(${pulseScale.toFixed(3)})`);
+
+          // Update Hairline Telemetry Leader Line connecting focused star to Futuristic Digital HUD Card
+          if (hudLeaderLine && hudLeaderDot) {
+            const hudTargetX = 682;
+            const hudTargetY = 360;
+            const elbowX = beaconState.x + (hudTargetX - beaconState.x) * 0.62;
+            const elbowY = beaconState.y + (hudTargetY - beaconState.y) * 0.25;
+            hudLeaderLine.setAttribute(
+              "points",
+              `${beaconState.x.toFixed(1)},${beaconState.y.toFixed(1)} ${elbowX.toFixed(1)},${elbowY.toFixed(1)} ${hudTargetX},${hudTargetY}`
+            );
+            hudLeaderDot.setAttribute("cx", String(hudTargetX));
+            hudLeaderDot.setAttribute("cy", String(hudTargetY));
+          }
 
           // Meditative, watchmaker-slow rotation on outer dashed reticle ring
           if (tbRingAnim) {
@@ -2656,7 +3325,7 @@
       let basePitch = 0;
 
       heroStage.addEventListener("pointerdown", (e) => {
-        if (e.target.closest(".star-node, button, a, .twin-pulse-orb")) return;
+        if (e.target.closest(".star-node, button, a, .twin-pulse-orb, .star-hud-card")) return;
         isDragging = true;
         cam.autoOrbit = false;
         slew.active = false;
@@ -2733,8 +3402,82 @@
       });
 
       /* =====================================================================
-         STAR SELECTION: SERENE 2.6s EASED 3D FOREGROUND PIVOT + GLIDING FOCUS
+         STAR SELECTION: 2.3s QUINTIC S-CURVE RAMP + FUTURISTIC DIGITAL HUD CARD
          ===================================================================== */
+      let activeTocIdx = 0;
+      const TOC_POSITIONS = ["16.666%", "50%", "83.333%"];
+
+      function setTocChapter(starKey, tocIdx) {
+        activeTocIdx = tocIdx;
+        const h = HUD_DATA[starKey] || HUD_DATA.mebsuta;
+        const chapter = h.toc[tocIdx] || h.toc[0];
+        const pos = TOC_POSITIONS[tocIdx] || TOC_POSITIONS[0];
+
+        // Glide the miniature hairline focus circle along the straight line of TOC dots (HUD & Reader)
+        const hudReticle = document.getElementById("hud-toc-reticle");
+        const salonReticle = document.getElementById("salon-toc-reticle");
+        if (hudReticle) hudReticle.style.left = pos;
+        if (salonReticle) salonReticle.style.left = pos;
+
+        document.querySelectorAll(".toc-dot-btn").forEach((btn) => {
+          btn.setAttribute("aria-selected", String(Number(btn.getAttribute("data-toc-idx")) === tocIdx));
+        });
+        document.querySelectorAll(".salon-toc-btn").forEach((btn) => {
+          btn.setAttribute("aria-selected", String(Number(btn.getAttribute("data-salon-toc")) === tocIdx));
+        });
+
+        const previewEl = document.getElementById("hud-toc-preview");
+        if (previewEl) previewEl.innerHTML = `<strong>${chapter.label}:</strong> ${chapter.text}`;
+
+        const castorDekEl = document.getElementById("castor-dek");
+        if (castorDekEl && tocIdx > 0) {
+          castorDekEl.innerHTML = `<strong>${chapter.label}:</strong> ${chapter.text}`;
+        } else if (castorDekEl && tocIdx === 0) {
+          const d = SALON_DATA[starKey] || SALON_DATA.mebsuta;
+          castorDekEl.innerHTML = d.castorDek;
+        }
+      }
+
+      function renderHudCard(starKey, animateRender = true) {
+        const h = HUD_DATA[starKey] || HUD_DATA.mebsuta;
+        const hudCard = document.getElementById("star-hud-card");
+        const tagsEl = document.getElementById("hud-tags");
+        if (tagsEl) {
+          tagsEl.innerHTML = h.tags
+            .map((t, i) => `<span class="hud-tag ${i === 0 ? "hud-tag--accent" : ""}">${formatGreek(t)}</span>`)
+            .join("");
+        }
+        const readTimeEl = document.getElementById("hud-read-time");
+        if (readTimeEl) readTimeEl.textContent = h.dateRead;
+
+        const salonReadTimeEl = document.getElementById("salon-read-time");
+        if (salonReadTimeEl) salonReadTimeEl.textContent = `EST. READING TIME: ${h.dateRead.split("·").pop().trim()} ·NOV 3, 2026`;
+
+        const titleEl = document.getElementById("hud-title");
+        if (titleEl) titleEl.innerHTML = h.hudTitle;
+
+        const summaryEl = document.getElementById("hud-summary");
+        if (summaryEl) summaryEl.innerHTML = h.hudSummary;
+
+        const ctaEl = document.getElementById("hud-read-btn-label");
+        if (ctaEl) ctaEl.textContent = h.ctaLabel;
+
+        h.toc.forEach((ch, idx) => {
+          const l1 = document.getElementById(`hud-toc-label-${idx}`);
+          const l2 = document.getElementById(`salon-toc-label-${idx}`);
+          if (l1) l1.textContent = ch.label;
+          if (l2) l2.textContent = ch.label;
+        });
+
+        setTocChapter(starKey, 0);
+
+        if (hudCard && animateRender) {
+          hudCard.classList.remove("is-rendering");
+          void hudCard.offsetWidth;
+          hudCard.classList.add("is-rendering");
+        }
+      }
+
       function renderPreset(starKey, presetIdx) {
         const d = SALON_DATA[starKey] || SALON_DATA.mebsuta;
         const p = d.presets[presetIdx] || d.presets[0];
@@ -2778,17 +3521,20 @@
           slew.active = false;
           beaconState.isGliding = false;
         } else {
-          // Begin a soft, relaxing 2.6-second ease-in-out Celestial Slew across millions of miles!
+          // Begin a 2.3-second Quintic S-Curve Ramp Celestial Slew across millions of miles!
           beaconState.fromX = beaconState.x;
           beaconState.fromY = beaconState.y;
           beaconState.slewStart = performance.now();
-          beaconState.slewDuration = 2400;
+          beaconState.slewDuration = 2250;
           beaconState.isGliding = true;
 
           if (!cam.autoOrbit) {
             beginCelestialSlew(nextYaw, nextPitch, cam.targetRoll, nextPanX, nextPanY, starKey, SLEW_DURATION_MS);
           }
         }
+
+        // Render Futuristic Digital HUD Brief Card + 3-Dot Linear Constellation TOC
+        renderHudCard(starKey, !isInitial);
 
         // Bring selected star's SVG <g> element to the top of `#major-stars-layer` so it never clips under background stars
         const selectedNode = majorNodeEls[starKey];
@@ -2893,6 +3639,8 @@
       document.getElementById("drawer-backdrop").addEventListener("click", () => setDrawerOpen(false));
 
       document.querySelectorAll(".star-node").forEach((node) => {
+        // Prevent browser rectangular SVG focus bounding-box highlight on mouse press
+        node.addEventListener("mousedown", (e) => e.preventDefault());
         node.addEventListener("click", () => selectStar(node.getAttribute("data-star")));
         node.addEventListener("keydown", (e) => {
           if (e.key === "Enter" || e.key === " ") {
@@ -2902,7 +3650,23 @@
         });
       });
 
+      // Active 3-Dot Linear Constellation Table of Contents (Hover or Click to glide the focus circle)
+      document.querySelectorAll(".toc-dot-btn").forEach((btn) => {
+        btn.addEventListener("mousedown", (e) => e.preventDefault());
+        const idx = Number(btn.getAttribute("data-toc-idx")) || 0;
+        btn.addEventListener("mouseenter", () => setTocChapter(activeStarKey, idx));
+        btn.addEventListener("click", () => setTocChapter(activeStarKey, idx));
+      });
+
+      document.querySelectorAll(".salon-toc-btn").forEach((btn) => {
+        btn.addEventListener("mousedown", (e) => e.preventDefault());
+        const idx = Number(btn.getAttribute("data-salon-toc")) || 0;
+        btn.addEventListener("mouseenter", () => setTocChapter(activeStarKey, idx));
+        btn.addEventListener("click", () => setTocChapter(activeStarKey, idx));
+      });
+
       document.querySelectorAll("[data-select-star]").forEach((btn) => {
+        btn.addEventListener("mousedown", (e) => e.preventDefault());
         btn.addEventListener("click", () => selectStar(btn.getAttribute("data-select-star")));
       });
 
