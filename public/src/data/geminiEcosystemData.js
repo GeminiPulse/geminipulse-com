@@ -5,6 +5,21 @@
 
 export const PULSE_INTELLIGENCE_FEED = [
   {
+    id: 'pulse-deepmind-agentic-cheminformatics-antigravity',
+    title: 'Google DeepMind Unveils Agentic Cheminformatics in Google Antigravity & 10,000-Scientist Tier Grant',
+    tldr: 'Released November 3, 2026: Google DeepMind launches Cheminformatics Skills for Google Antigravity—unifying Gemini reasoning with RDKit, ChEMBL, and PubChem to compress multi-day drug discovery into 1-hour loops, alongside a 6-month free top-tier grant for 10,000 scientists.',
+    summary:
+      'Authored by DeepMind researchers (Zoi Tsangalidou, Ruijie Zhang, Sukhdeep Singh, Michael V. LeVine): Demonstrates agentic molecular engineering inside Google Antigravity by establishing a strict division of labor—the underlying Gemini language model orchestrates workflows and scientific reasoning while deterministic chemistry tools (RDKit, ChEMBL, PubChem) execute calculations without margin for error. In a live non-small cell lung cancer case study, the agent mines thousands of compounds, performs Matched Molecular Pair Analysis (MMPA) to eliminate entropic penalties (crizotinib 5 rotatable bonds vs. lorlatinib 0 rotatable bonds), trains scaffold-split ML models, and generative-designs novel rigidified macrocycles with verified reaction routes and electron-pushing diagrams. Applications are now open for 10,000 scientists to receive 6 months of Antigravity highest-tier usage free.',
+    category: 'Agents & Antigravity',
+    tag: 'Platform Milestone',
+    modelBadge: 'Antigravity • Science Plugin',
+    impactScore: '10.0 / 10',
+    date: '2026-11-03T17:01:49Z',
+    sourceLabel: 'Google DeepMind: Agentic Cheminformatics with Google Antigravity',
+    sourceUrl: 'https://deepmind.google/blog/agentic-cheminformatics-with-google-antigravity/',
+    groundedBy: 'Google DeepMind Science & Antigravity (Verified Nov 3, 2026)',
+  },
+  {
     id: 'pulse-cost-per-task-classifier-routing',
     title: 'Cost Per Task: Google Releases Blueprint for Cheap Classifiers to Route Across Gemini Models & Thinking Levels',
     tldr: 'Released November 3, 2026: Google Cloud AI publishes benchmark results proving that routing agent tasks via lightweight classifiers (Jev or open-weights DiffusionGemma) paired with `thinkingLevel: "LOW"` on `gemini-3.8-flash` beats plain Flash, keyword heuristics, and token capping—achieving 100% accuracy while dramatically cutting cost-per-successful-task.',
@@ -582,6 +597,25 @@ video_turn = client.interactions.create(
 ];
 
 export const INITIAL_SHOWCASE_PROJECTS = [
+  {
+    id: 'showcase-antigravity-cheminformatics-explorer',
+    name: 'Antigravity Cheminformatics & Macrocycle Discovery Workbench [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive molecular engineering lab inspired by DeepMind’s November 3, 2026 Antigravity release: rigidify floppy kinase inhibitors, run Matched Molecular Pair Analysis (MMPA), train scaffold-split ML models, and generate de novo macrocycles.',
+    models: ['gemini-4-argon', 'antigravity-science-plugin', 'rdkit-cheminformatics'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/antigravity-cheminformatics-explorer.html): [SIMULATED DEMO] Models 1-hour agentic chemistry workflows—comparing floppy Crizotinib vs rigid Lorlatinib entropic penalties, testing scaffold-split ML generalization, and generating RDKit / Antigravity Science skills.',
+    url: '/labs/antigravity-cheminformatics-explorer.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-03T17:30:00Z',
+  },
   {
     id: 'showcase-twin-stars-game',
     name: 'Castor & Pollux: Twin Stars of Gemini (Astrological Arcade Game)',

@@ -1,6 +1,6 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-11-03 17:14 EST (Built & Deployed Look J v3 /prototypes/look-j-3d-celestial-navigator.html: Watchmaker 0.55px–0.85px Hairlines, 2.25s Quintic S-Curve Mid-Flight Speed Ramp, Subordinate 7.6px Cyan/Gold Star Prefixes vs 12.2px White Article Titles, Zero Rectangular Browser Click Focus Box, and Futuristic Digital HUD Article Brief Card + Active 3-Dot Linear Constellation Table of Contents; Look J v2 preserved at /prototypes/look-j-v2-archive.html)`
+- **Last Updated:** `2026-11-03 17:45 EST (5:45 PM Curation Check: Curated Google DeepMind's Nov 3 Agentic Cheminformatics Release in Google Antigravity & 10,000-Scientist Tier Grant, Published 3-Part Deep-Dive Series /series/antigravity-cheminformatics/*, Launched Agile Labs Interactive Companion /labs/antigravity-cheminformatics-explorer.html, Updated sitemap.xml & feed.xml, Verified YouTube Video Showcase 200 OK)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
@@ -13,7 +13,30 @@
 
 ---
 
-## 1. Completed & Live on `v2.0` (2026-11-03 12:45 PM ET Update)
+## 1. Completed & Live on `v2.0` (2026-11-03 5:45 PM ET Update)
+
+- **Curated & Published Google DeepMind Landmark Platform Release: "Agentic Cheminformatics with Google Antigravity & 10,000-Scientist Tier Grant":**
+  - **Direct Primary Google Source:** Zoi Tsangalidou, Ruijie (Kelly) Zhang, Sukhdeep Singh, and Michael V. LeVine on Google DeepMind Blog (Nov 3, 2026 17:01 UTC / 12:01 PM ET; modified 17:16 UTC).
+  - **Added to `PULSE_INTELLIGENCE_FEED`:** Added `pulse-deepmind-agentic-cheminformatics-antigravity` citing `https://deepmind.google/blog/agentic-cheminformatics-with-google-antigravity/`.
+  - **Published 3-Part Deep-Dive Series (`public/public/series/antigravity-cheminformatics/`):**
+    - **Part 1 (`part-1-agentic-cheminformatics-breakdown.html`):** Inside DeepMind's Agentic Cheminformatics — Decoupling language model hypothesis generation from deterministic RDKit/ChEMBL/PubChem computation. Compressing multi-day drug discovery loops into 1 hour.
+    - **Part 2 (`part-2-rigidification-and-mmpa-architecture.html`):** Paying the Entropic Cost in Advance — Matched Molecular Pair Analysis (MMPA), Crizotinib (5 rotatable bonds) to Lorlatinib (0 rotatable bonds) oncology case study, why random train/test splits lie to chemists, and scaffold-split ML models.
+    - **Part 3 (`part-3-enterprise-biopharma-and-10k-grant-use-cases.html`):** From Lab Hypothesis to Verified Synthesis — Details on DeepMind offering 10,000 scientists 6 months of free Antigravity highest-tier usage, Antigravity Science Plugin setup, enterprise biopharma blueprints, and computational boundaries.
+  - **Published Companion Agile Labs Mini-Project (`public/public/labs/antigravity-cheminformatics-explorer.html` [SIMULATED DEMO]):**
+    - Interactive molecular engineering lab modeling 1-hour agentic chemistry workflows.
+    - Compares rotatable bonds and entropic binding penalties across ALK/ROS1, EGFR, and MET kinase inhibitors.
+    - Interactive MMPA causal transform table and Bemis-Murcko scaffold-split vs. random split ML evaluator.
+    - 1-click copy verified Python RDKit macrocyclization verification script.
+  - **Updated Showcase, Sitemaps & Feeds:**
+    - Added `showcase-antigravity-cheminformatics-explorer` to `INITIAL_SHOWCASE_PROJECTS` in `geminiEcosystemData.js`.
+    - `sitemap.xml` updated with 4 new standalone URLs (now 33 indexed URLs).
+    - `feed.xml` updated with the DeepMind Agentic Cheminformatics release entry.
+    - Verified `GEMINI_VIDEO_SHOWCASE` featured video (`cON4RnddXCY`) returning HTTP 200 OK via YouTube oEmbed.
+
+- **Completed Earlier on 2026-11-03 (12:45 PM ET Window):**
+  - Published 3-Part Architecture Series: "Cost Per Task: Using Cheap Classifiers to Route Across Gemini Models and Thinking Levels" (`public/public/series/gemini-cost-per-task/`).
+  - Published Companion Agile Labs Mini-Project: Gemini Cost-Per-Task & Routing Simulator (`public/public/labs/gemini-cost-per-task-calculator.html`).
+  - Built & Deployed Look J v3 (`/prototypes/look-j-3d-celestial-navigator.html`) with Watchmaker hairlines, quintic easing, subordinate star codes, and digital HUD card.
 
 - **Published 3-Part Architecture Series: "Cost Per Task: Using Cheap Classifiers to Route Across Gemini Models and Thinking Levels" (`public/public/series/gemini-cost-per-task/`):**
   - **Direct Primary Google Source:** Sergio Villani, Google Cloud AI on Google Developers Blog (Nov 3, 2026).

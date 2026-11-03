@@ -7,6 +7,30 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://geminipulse.com/series/antigravity-cheminformatics/part-1-agentic-cheminformatics-breakdown.html</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/antigravity-cheminformatics/part-2-rigidification-and-mmpa-architecture.html</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/antigravity-cheminformatics/part-3-enterprise-biopharma-and-10k-grant-use-cases.html</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/labs/antigravity-cheminformatics-explorer.html</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
     <loc>https://geminipulse.com/series/gemini-cost-per-task/part-1-the-death-of-token-pricing.html</loc>
     <lastmod>2026-11-03</lastmod>
     <changefreq>weekly</changefreq>
