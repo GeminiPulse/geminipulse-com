@@ -1,6 +1,6 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-11-03 15:43 EST (Perfected Look J v2 /prototypes/look-j-3d-celestial-navigator.html: Commanding 1000×520 Full-Stage 3D Scale, True Relational 3D Foreground Pivot on Star Click, Depth-Proportional Star & Pill Scaling 0.68×–1.34× across 34–1,200 LY, Restored Spring-Gliding Focus Circle + Comet Trail, and Seamless Background Feathering; preserved Look J v1 at /prototypes/look-j-v1-archive.html)`
+- **Last Updated:** `2026-11-03 16:05 EST (Tuned Look J v2 /prototypes/look-j-3d-celestial-navigator.html with Serene 2.6s Ease-In-Out Celestial Slew Engine: soft sinusoidal+cubic easing across 3D camera yaw/pitch/pan, foreground Z-pull, per-star scale/opacity 0.70×–1.30×, and 2.4s gliding focus circle — zero frame-1 snap or spring bounce)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)

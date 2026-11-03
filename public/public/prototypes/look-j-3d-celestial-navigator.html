@@ -696,7 +696,7 @@
       stroke: rgba(163, 133, 255, 0.34);
       stroke-width: 1.1;
       rx: 14;
-      transition: fill 0.22s ease, stroke 0.22s ease, stroke-width 0.22s ease;
+      transition: fill 1.1s cubic-bezier(0.22, 1, 0.36, 1), stroke 1.1s cubic-bezier(0.22, 1, 0.36, 1), stroke-width 1.1s cubic-bezier(0.22, 1, 0.36, 1), filter 1.1s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .star-node-castor:hover .star-pill-bg,
@@ -749,7 +749,7 @@
       letter-spacing: 0.08em;
       fill: rgba(206, 192, 255, 0.82);
       pointer-events: none;
-      transition: opacity 0.25s ease;
+      transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .star-node[data-active="true"] .star-depth-chip {
@@ -763,7 +763,7 @@
       text-transform: uppercase;
       fill: var(--ethereal-bright);
       opacity: 0;
-      transition: opacity 0.22s ease;
+      transition: opacity 1.1s cubic-bezier(0.22, 1, 0.36, 1);
       pointer-events: none;
     }
 
@@ -2038,42 +2038,42 @@
         castor: {
           idx: "01", name: "α Castor · Dec 1 Price Cut",
           x: -95, y: -178, z: -115, ly: 51, spec: "BLUE-WHITE SEXTUPLE (A1V)",
-          pivotYaw: -16, pivotPitch: 14
+          pivotYaw: -11, pivotPitch: 9
         },
         mebsuta: {
           idx: "02", name: "ε Mebsuta · Releases Decoded",
           x: -162, y: -8, z: 135, ly: 840, spec: "LUMINOUS SUPERGIANT (G8Ib)",
-          pivotYaw: -26, pivotPitch: 4
+          pivotYaw: -15, pivotPitch: 3
         },
         tejat: {
           idx: "03", name: "μ Tejat · Speed & Carbon ROI",
           x: -238, y: 78, z: 35, ly: 230, spec: "RED GIANT (M3III)",
-          pivotYaw: -22, pivotPitch: -8
+          pivotYaw: -13, pivotPitch: -5
         },
         propus: {
           idx: "04", name: "η Propus · 60s Video Signal",
           x: -292, y: 152, z: 75, ly: 350, spec: "TRIPLE SYSTEM & M35",
-          pivotYaw: -28, pivotPitch: -15
+          pivotYaw: -16, pivotPitch: -9
         },
         pollux: {
           idx: "05", name: "β Pollux · 10-Sec Savings Lab",
           x: 82, y: -158, z: -155, ly: 34, spec: "GOLDEN-ORANGE GIANT (K0III)",
-          pivotYaw: 16, pivotPitch: 13
+          pivotYaw: 11, pivotPitch: 8
         },
         wasat: {
           idx: "06", name: "δ Wasat · 5-Min Workspace Guides",
           x: 56, y: 12, z: -85, ly: 60, spec: "ECLIPTIC BINARY (F0IV)",
-          pivotYaw: 18, pivotPitch: -2
+          pivotYaw: 12, pivotPitch: -2
         },
         mekbuda: {
           idx: "07", name: "ζ Mekbuda · Screen-Clicking AI",
           x: 10, y: 88, z: 175, ly: 1200, spec: "CEPHEID SUPERGIANT (F7Ib)",
-          pivotYaw: 15, pivotPitch: -9
+          pivotYaw: 12, pivotPitch: -6
         },
         alhena: {
           idx: "08", name: "γ Alhena · Built by Gemini Alone",
           x: -72, y: 174, z: -30, ly: 109, spec: "SUBGIANT FOOT (A1IV)",
-          pivotYaw: 12, pivotPitch: -17
+          pivotYaw: 9, pivotPitch: -10
         }
       };
 
@@ -2230,45 +2230,96 @@
       }
 
       /* =====================================================================
-         RELATIONAL 3D FOREGROUND-PIVOT CAMERA & SMOOTH GLIDING FOCUS STATE
+         SERENE CELESTIAL SLEW ENGINE (SOFT 2.6s EASE-IN-OUT — ZERO BOUNCE)
          ===================================================================== */
       const CENTER_X = 500;
       const CENTER_Y = 258;
       const FOCAL_LENGTH = 560;
+      const SLEW_DURATION_MS = 2600; // 2.6 seconds of soft, unhurried deep-space easing
 
       let cam = {
-        yaw: -22,
-        pitch: 4,
+        yaw: -15,
+        pitch: 3,
         roll: 0,
-        targetYaw: -22,
-        targetPitch: 4,
+        targetYaw: -15,
+        targetPitch: 3,
         targetRoll: 0,
-        vYaw: 0,
-        vPitch: 0,
-        vRoll: 0,
-        panX: 25,
+        panX: 18,
         panY: 0,
-        targetPanX: 25,
+        targetPanX: 18,
         targetPanY: 0,
         autoOrbit: false
       };
 
-      // Each star also has an animated foreground z-pull (`zPull`) so when clicked,
-      // it physically advances into the #1 Foreground Focal Plane while other stars recede!
+      // Each star has a continuous foreground z-pull (`starZPull`) and foreground blend (`starFg` 0..1)
+      // that ease smoothly over 2.6 seconds so stars never jump or snap on click!
       const starZPull = {};
-      STAR_ORDER.forEach((k) => { starZPull[k] = 0; });
+      const starFg = {};
+      STAR_ORDER.forEach((k) => {
+        starZPull[k] = k === "mebsuta" ? (-STARS_3D[k].z - 125) : 30;
+        starFg[k] = k === "mebsuta" ? 1.0 : 0.0;
+      });
 
-      // Smooth spring-gliding state for the "YOU ARE HERE" Focus Circle + Comet Trail!
+      const slew = {
+        active: false,
+        startTime: 0,
+        duration: SLEW_DURATION_MS,
+        fromYaw: -15,
+        fromPitch: 3,
+        fromRoll: 0,
+        fromPanX: 18,
+        fromPanY: 0,
+        fromZPull: { ...starZPull },
+        toZPull: { ...starZPull },
+        fromFg: { ...starFg },
+        toFg: { ...starFg }
+      };
+
+      // Soft sinusoidal + cubic ease-in-out: 0 velocity at start, serene mid-flight, whisper-soft landing
+      function easeInOutCelestial(t) {
+        if (t <= 0) return 0;
+        if (t >= 1) return 1;
+        const sine = 0.5 * (1 - Math.cos(Math.PI * t));
+        const cubic = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+        return 0.55 * sine + 0.45 * cubic;
+      }
+
+      // Smooth eased gliding state for the "YOU ARE HERE" Focus Circle + Comet Trail
       let beaconState = {
         x: 338,
         y: 250,
-        vx: 0,
-        vy: 0,
         fromX: 338,
         fromY: 250,
-        trailAlpha: 0,
-        pulseRadius: 20
+        slewStart: 0,
+        slewDuration: 2400,
+        isGliding: false
       };
+
+      function beginCelestialSlew(nextYaw, nextPitch, nextRoll, nextPanX, nextPanY, nextStarKey, duration = SLEW_DURATION_MS) {
+        const now = performance.now();
+        slew.active = true;
+        slew.startTime = now;
+        slew.duration = duration;
+        slew.fromYaw = cam.yaw;
+        slew.fromPitch = cam.pitch;
+        slew.fromRoll = cam.roll;
+        slew.fromPanX = cam.panX;
+        slew.fromPanY = cam.panY;
+
+        cam.targetYaw = nextYaw;
+        cam.targetPitch = nextPitch;
+        cam.targetRoll = nextRoll;
+        cam.targetPanX = nextPanX;
+        cam.targetPanY = nextPanY;
+
+        const isFlat = Math.hypot(nextYaw, nextPitch) < 0.5;
+        STAR_ORDER.forEach((k) => {
+          slew.fromZPull[k] = starZPull[k];
+          slew.toZPull[k] = isFlat ? 0 : (k === nextStarKey ? (-STARS_3D[k].z - 125) : 30);
+          slew.fromFg[k] = starFg[k];
+          slew.toFg[k] = k === nextStarKey ? 1.0 : 0.0;
+        });
+      }
 
       let activeStarKey = "mebsuta";
       let activePresetIdx = 0;
@@ -2396,78 +2447,90 @@
         return arr.map((p) => `${p.sx.toFixed(1)},${p.sy.toFixed(1)}`).join(" ");
       }
 
-      /* 60fps Render Loop */
+      /* 60fps Render Loop — Soft, Relaxing Celestial Slew Easing */
       let time = 0;
       function tick() {
         time += 0.016;
+        const now = performance.now();
 
         if (cam.autoOrbit) {
-          cam.targetYaw = 30 * Math.cos(time * 0.45);
-          cam.targetPitch = -14 + 8 * Math.sin(time * 0.38);
+          slew.active = false;
+          cam.targetYaw = 20 * Math.cos(time * 0.14);
+          cam.targetPitch = -8 + 6 * Math.sin(time * 0.11);
+          cam.yaw += (cam.targetYaw - cam.yaw) * 0.035;
+          cam.pitch += (cam.targetPitch - cam.pitch) * 0.035;
+          cam.roll += (cam.targetRoll - cam.roll) * 0.035;
+          cam.panX += (0 - cam.panX) * 0.035;
+          cam.panY += (0 - cam.panY) * 0.035;
+        } else if (slew.active) {
+          const rawT = (now - slew.startTime) / slew.duration;
+          const e = easeInOutCelestial(rawT);
+          cam.yaw = slew.fromYaw + (cam.targetYaw - slew.fromYaw) * e;
+          cam.pitch = slew.fromPitch + (cam.targetPitch - slew.fromPitch) * e;
+          cam.roll = slew.fromRoll + (cam.targetRoll - slew.fromRoll) * e;
+          cam.panX = slew.fromPanX + (cam.targetPanX - slew.fromPanX) * e;
+          cam.panY = slew.fromPanY + (cam.targetPanY - slew.fromPanY) * e;
+
+          STAR_ORDER.forEach((k) => {
+            starZPull[k] = slew.fromZPull[k] + (slew.toZPull[k] - slew.fromZPull[k]) * e;
+            starFg[k] = slew.fromFg[k] + (slew.toFg[k] - slew.fromFg[k]) * e;
+          });
+
+          if (rawT >= 1) {
+            slew.active = false;
+          }
+        } else {
+          // Gentle viscous damping when manually dragging in 3D space (zero bounce)
+          cam.yaw += (cam.targetYaw - cam.yaw) * 0.06;
+          cam.pitch += (cam.targetPitch - cam.pitch) * 0.06;
+          cam.roll += (cam.targetRoll - cam.roll) * 0.06;
+          cam.panX += (cam.targetPanX - cam.panX) * 0.05;
+          cam.panY += (cam.targetPanY - cam.panY) * 0.05;
         }
-
-        // Smooth spring-damped camera physics
-        const stiffness = 0.075;
-        const damping = 0.78;
-        cam.vYaw = (cam.vYaw + (cam.targetYaw - cam.yaw) * stiffness) * damping;
-        cam.vPitch = (cam.vPitch + (cam.targetPitch - cam.pitch) * stiffness) * damping;
-        cam.vRoll = (cam.vRoll + (cam.targetRoll - cam.roll) * stiffness) * damping;
-
-        cam.yaw += cam.vYaw;
-        cam.pitch += cam.vPitch;
-        cam.roll += cam.vRoll;
-
-        cam.panX += (cam.targetPanX - cam.panX) * 0.09;
-        cam.panY += (cam.targetPanY - cam.panY) * 0.09;
 
         // Subtle counter-parallax on background Twin engravings
         if (bgCastor && bgPollux) {
-          bgCastor.style.transform = `translate3d(${(-cam.yaw * 0.4).toFixed(1)}px, ${(-cam.pitch * 0.3).toFixed(1)}px, 0)`;
-          bgPollux.style.transform = `translate3d(${(-cam.yaw * 0.4).toFixed(1)}px, ${(-cam.pitch * 0.3).toFixed(1)}px, 0)`;
+          bgCastor.style.transform = `translate3d(${(-cam.yaw * 0.36).toFixed(1)}px, ${(-cam.pitch * 0.28).toFixed(1)}px, 0)`;
+          bgPollux.style.transform = `translate3d(${(-cam.yaw * 0.36).toFixed(1)}px, ${(-cam.pitch * 0.28).toFixed(1)}px, 0)`;
         }
 
         // Rotate 3D Astrolabe Rings in perspective
         if (ringOuter && ringInner) {
-          const ryOuter = Math.max(60, 190 - Math.abs(cam.pitch) * 2.6);
-          const ryInner = Math.max(40, 124 - Math.abs(cam.pitch) * 1.7);
+          const ryOuter = Math.max(60, 190 - Math.abs(cam.pitch) * 2.4);
+          const ryInner = Math.max(40, 124 - Math.abs(cam.pitch) * 1.6);
           ringOuter.setAttribute("ry", ryOuter.toFixed(1));
           ringInner.setAttribute("ry", ryInner.toFixed(1));
-          ringOuter.setAttribute("transform", `rotate(${(cam.yaw * 0.38).toFixed(1)} 500 258)`);
-          ringInner.setAttribute("transform", `rotate(${(-cam.yaw * 0.45).toFixed(1)} 500 258)`);
+          ringOuter.setAttribute("transform", `rotate(${(cam.yaw * 0.35).toFixed(1)} 500 258)`);
+          ringInner.setAttribute("transform", `rotate(${(-cam.yaw * 0.42).toFixed(1)} 500 258)`);
         }
 
-        // Project all 8 major stars with Relational Foreground Z-Pull & Depth Scaling!
+        // Project all 8 major stars with Smoothly Eased Foreground Z-Pull & Depth Scaling!
         const projMajor = {};
-        const isTilted3D = Math.hypot(cam.yaw, cam.pitch) > 2.5;
+        const isTilted3D = Math.hypot(cam.yaw, cam.pitch) > 2.0;
 
         STAR_ORDER.forEach((k) => {
           const p3 = STARS_3D[k];
           const isSelected = k === activeStarKey;
-          // Clicked star gets pulled strongly into the foreground (-195 z-units);
-          // non-selected stars recede slightly (+45 z-units) so the 3D depth separation is unmistakable!
-          const targetZPull = isSelected ? (-p3.z - 155) : 40;
-          starZPull[k] += (targetZPull - starZPull[k]) * 0.1;
+          const fg = starFg[k]; // Smoothly eased 0..1 foreground factor over 2.6 seconds
 
           const proj = project3D(p3, starZPull[k]);
           projMajor[k] = proj;
 
           const node = majorNodeEls[k];
           if (node) {
-            // Depth-proportional visual scale & atmospheric opacity:
-            // Foreground star scales up to ~1.28x at 100% opacity; background stars scale down to ~0.72x at 0.56-0.84 opacity!
-            const depthScale = isSelected
-              ? Math.max(1.22, Math.min(1.34, proj.scale * 1.04))
-              : Math.max(0.68, Math.min(1.04, proj.scale * 0.92));
+            // Smoothly eased depth scale & atmospheric opacity (zero frame-1 snap!):
+            const bgScale = Math.max(0.70, Math.min(1.02, proj.scale * 0.91));
+            const fgScale = Math.max(1.22, Math.min(1.30, proj.scale * 1.03));
+            const depthScale = bgScale + (fgScale - bgScale) * fg;
 
-            const depthOpacity = isSelected
-              ? 1.0
-              : Math.max(0.52, Math.min(0.88, (proj.scale - 0.58) * 1.35));
+            const bgOpacity = Math.max(0.54, Math.min(0.86, (proj.scale - 0.58) * 1.35));
+            const depthOpacity = bgOpacity + (1.0 - bgOpacity) * fg;
 
             node.setAttribute("transform", `translate(${proj.sx.toFixed(1)}, ${proj.sy.toFixed(1)}) scale(${depthScale.toFixed(3)})`);
             node.style.opacity = depthOpacity.toFixed(2);
           }
 
-          // Update Depth Tag ("★ FRONT · 840 LY" vs "840 LY")
+          // Update Depth Tag
           const dTag = depthTagEls[k];
           if (dTag) {
             dTag.textContent = isSelected ? `★ FRONT · ${p3.ly} LY` : `${p3.ly} LY`;
@@ -2482,7 +2545,7 @@
               tether.setAttribute("y1", zeroPlane.sy.toFixed(1));
               tether.setAttribute("x2", proj.sx.toFixed(1));
               tether.setAttribute("y2", proj.sy.toFixed(1));
-              tether.style.opacity = isSelected ? "0.85" : "0.45";
+              tether.style.opacity = (0.42 + 0.43 * fg).toFixed(2);
             } else {
               tether.style.opacity = "0";
             }
@@ -2491,7 +2554,7 @@
 
         const projMinor = {};
         Object.keys(MINOR_STARS_3D).forEach((k) => {
-          const proj = project3D(MINOR_STARS_3D[k], 30);
+          const proj = project3D(MINOR_STARS_3D[k], 24);
           projMinor[k] = proj;
           const el = minorNodeEls[k];
           if (el) {
@@ -2500,7 +2563,7 @@
         });
 
         // Project M35 Open Cluster
-        const projM35 = project3D({ x: -335, y: 155, z: 145 }, 35);
+        const projM35 = project3D({ x: -335, y: 155, z: 145 }, 28);
         if (m35Glow && m35Label) {
           m35Glow.setAttribute("cx", projM35.sx.toFixed(1));
           m35Glow.setAttribute("cy", projM35.sy.toFixed(1));
@@ -2518,31 +2581,39 @@
         linePolluxArm.setAttribute("points", ptsToString([projMinor.upsilon, projMinor.kappa]));
         linePolluxOuterLeg.setAttribute("points", ptsToString([projMajor.wasat, projMinor.lambda, projMinor.xi]));
 
-        // Smooth Spring-Gliding "YOU ARE HERE" Focus Circle & Comet Trail!
+        // Soft, Eased Gliding "YOU ARE HERE" Focus Circle & Whisper Comet Trail (2.4s ease-in-out)
         const activeProj = projMajor[activeStarKey];
         if (activeProj && beaconEl) {
-          const bStiff = 0.12;
-          const bDamp = 0.74;
-          beaconState.vx = (beaconState.vx + (activeProj.sx - beaconState.x) * bStiff) * bDamp;
-          beaconState.vy = (beaconState.vy + (activeProj.sy - beaconState.y) * bStiff) * bDamp;
-          beaconState.x += beaconState.vx;
-          beaconState.y += beaconState.vy;
+          if (beaconState.isGliding) {
+            const rawB = (now - beaconState.slewStart) / beaconState.slewDuration;
+            const eB = easeInOutCelestial(rawB);
+            beaconState.x = beaconState.fromX + (activeProj.sx - beaconState.fromX) * eB;
+            beaconState.y = beaconState.fromY + (activeProj.sy - beaconState.fromY) * eB;
+
+            // Gentle bell-curve comet mist that swells softly mid-glide and vanishes upon arrival
+            const trailBell = Math.sin(Math.min(1, Math.max(0, rawB)) * Math.PI) * 0.55;
+            if (rawB < 0.98 && trailBell > 0.02) {
+              cometTrail.setAttribute("d", `M ${beaconState.fromX.toFixed(1)} ${beaconState.fromY.toFixed(1)} L ${beaconState.x.toFixed(1)} ${beaconState.y.toFixed(1)}`);
+              cometTrail.setAttribute("opacity", trailBell.toFixed(2));
+            } else {
+              cometTrail.setAttribute("opacity", "0");
+            }
+
+            if (rawB >= 1) {
+              beaconState.isGliding = false;
+              cometTrail.setAttribute("opacity", "0");
+            }
+          } else {
+            beaconState.x = activeProj.sx;
+            beaconState.y = activeProj.sy;
+            cometTrail.setAttribute("opacity", "0");
+          }
 
           beaconEl.setAttribute("transform", `translate(${beaconState.x.toFixed(1)}, ${beaconState.y.toFixed(1)})`);
 
-          // Rotating outer dashed reticle ring
+          // Meditative, watchmaker-slow rotation on outer dashed reticle ring
           if (tbRingAnim) {
-            tbRingAnim.setAttribute("transform", `rotate(${(time * 28).toFixed(1)})`);
-          }
-
-          // Fade out comet trail as focus circle arrives at destination star
-          const distRemaining = Math.hypot(activeProj.sx - beaconState.x, activeProj.sy - beaconState.y);
-          if (distRemaining > 2 && beaconState.trailAlpha > 0.02) {
-            cometTrail.setAttribute("d", `M ${beaconState.fromX.toFixed(1)} ${beaconState.fromY.toFixed(1)} L ${beaconState.x.toFixed(1)} ${beaconState.y.toFixed(1)}`);
-            cometTrail.setAttribute("opacity", beaconState.trailAlpha.toFixed(2));
-            beaconState.trailAlpha *= 0.92;
-          } else {
-            cometTrail.setAttribute("opacity", "0");
+            tbRingAnim.setAttribute("transform", `rotate(${(time * 7).toFixed(1)})`);
           }
         }
 
@@ -2550,7 +2621,7 @@
           telemetryAngles.textContent = `YAW ${cam.yaw.toFixed(1)}° · PITCH ${cam.pitch.toFixed(1)}° · DEPTH 34–1,200 LY`;
         }
 
-        // Render 3D Pointillist Starfield Canvas
+        // Render 3D Pointillist Starfield Canvas (Calm astronomical shimmer)
         const rect = canvas.getBoundingClientRect();
         ctx.clearRect(0, 0, rect.width, rect.height);
         const scaleX = rect.width / 1000;
@@ -2563,7 +2634,7 @@
           const py = p.sy * scaleY;
           if (px < 0 || px > rect.width || py < 0 || py > rect.height) continue;
 
-          const twinkle = 0.72 + 0.28 * Math.sin(time * 2.1 + pt.phase);
+          const twinkle = 0.78 + 0.22 * Math.sin(time * 0.9 + pt.phase);
           ctx.globalAlpha = Math.min(1, pt.alpha * twinkle * p.scale);
           ctx.fillStyle = pt.color;
           ctx.beginPath();
@@ -2588,10 +2659,13 @@
         if (e.target.closest(".star-node, button, a, .twin-pulse-orb")) return;
         isDragging = true;
         cam.autoOrbit = false;
+        slew.active = false;
         dragStartX = e.clientX;
         dragStartY = e.clientY;
-        baseYaw = cam.targetYaw;
-        basePitch = cam.targetPitch;
+        baseYaw = cam.yaw;
+        basePitch = cam.pitch;
+        cam.targetYaw = cam.yaw;
+        cam.targetPitch = cam.pitch;
         heroStage.setPointerCapture(e.pointerId);
       });
 
@@ -2599,8 +2673,8 @@
         if (isDragging) {
           const dx = e.clientX - dragStartX;
           const dy = e.clientY - dragStartY;
-          cam.targetYaw = Math.max(-48, Math.min(48, baseYaw + dx * 0.15));
-          cam.targetPitch = Math.max(-32, Math.min(32, basePitch - dy * 0.13));
+          cam.targetYaw = Math.max(-38, Math.min(38, baseYaw + dx * 0.11));
+          cam.targetPitch = Math.max(-24, Math.min(24, basePitch - dy * 0.09));
         }
       });
 
@@ -2637,27 +2711,19 @@
             b.setAttribute("aria-pressed", String(b === btn));
           });
 
+          const s3 = STARS_3D[activeStarKey];
           if (mode === "relational3d") {
             cam.autoOrbit = false;
-            const s3 = STARS_3D[activeStarKey];
-            cam.targetYaw = s3.pivotYaw;
-            cam.targetPitch = s3.pivotPitch;
-            cam.targetRoll = 0;
+            beginCelestialSlew(s3.pivotYaw, s3.pivotPitch, 0, -s3.x * 0.11, -s3.y * 0.09, activeStarKey, 2600);
           } else if (mode === "orbit3d") {
             cam.autoOrbit = true;
             cam.targetRoll = 0;
           } else if (mode === "earth") {
             cam.autoOrbit = false;
-            cam.targetYaw = 0;
-            cam.targetPitch = 0;
-            cam.targetRoll = 0;
-            cam.targetPanX = 0;
-            cam.targetPanY = 0;
+            beginCelestialSlew(0, 0, 0, 0, 0, activeStarKey, 2400);
           } else if (mode === "livesky") {
             cam.autoOrbit = false;
-            cam.targetYaw = 16;
-            cam.targetPitch = -9;
-            cam.targetRoll = computeSiderealAngle();
+            beginCelestialSlew(12, -6, computeSiderealAngle(), 0, 0, activeStarKey, 2600);
           }
         });
       });
@@ -2667,7 +2733,7 @@
       });
 
       /* =====================================================================
-         STAR SELECTION: RELATIONAL 3D FOREGROUND PIVOT + GLIDING FOCUS CIRCLE
+         STAR SELECTION: SERENE 2.6s EASED 3D FOREGROUND PIVOT + GLIDING FOCUS
          ===================================================================== */
       function renderPreset(starKey, presetIdx) {
         const d = SALON_DATA[starKey] || SALON_DATA.mebsuta;
@@ -2693,22 +2759,35 @@
 
         document.documentElement.setAttribute("data-star", starKey);
 
-        // Record current beacon position as start of the Comet Energy Trail!
-        if (!isInitial) {
+        const currentPov = document.documentElement.getAttribute("data-pov");
+        const nextYaw = currentPov === "earth" ? 0 : s3.pivotYaw;
+        const nextPitch = currentPov === "earth" ? 0 : s3.pivotPitch;
+        const nextPanX = currentPov === "earth" ? 0 : -s3.x * 0.11;
+        const nextPanY = currentPov === "earth" ? 0 : -s3.y * 0.09;
+
+        if (isInitial) {
+          // Instant initial positioning on first page load
+          cam.yaw = cam.targetYaw = nextYaw;
+          cam.pitch = cam.targetPitch = nextPitch;
+          cam.panX = cam.targetPanX = nextPanX;
+          cam.panY = cam.targetPanY = nextPanY;
+          STAR_ORDER.forEach((k) => {
+            starZPull[k] = currentPov === "earth" ? 0 : (k === starKey ? (-STARS_3D[k].z - 125) : 30);
+            starFg[k] = k === starKey ? 1.0 : 0.0;
+          });
+          slew.active = false;
+          beaconState.isGliding = false;
+        } else {
+          // Begin a soft, relaxing 2.6-second ease-in-out Celestial Slew across millions of miles!
           beaconState.fromX = beaconState.x;
           beaconState.fromY = beaconState.y;
-          beaconState.trailAlpha = 0.95;
-        }
+          beaconState.slewStart = performance.now();
+          beaconState.slewDuration = 2400;
+          beaconState.isGliding = true;
 
-        // RELATIONAL 3D FOREGROUND PIVOT:
-        // Unless user explicitly locked Flat Chart (0°), pivot the entire 3D constellation
-        // so the newly clicked star rotates into the #1 Foreground Focal Plane!
-        const currentPov = document.documentElement.getAttribute("data-pov");
-        if (currentPov !== "earth" && !cam.autoOrbit) {
-          cam.targetYaw = s3.pivotYaw;
-          cam.targetPitch = s3.pivotPitch;
-          cam.targetPanX = -s3.x * 0.14;
-          cam.targetPanY = -s3.y * 0.12;
+          if (!cam.autoOrbit) {
+            beginCelestialSlew(nextYaw, nextPitch, cam.targetRoll, nextPanX, nextPanY, starKey, SLEW_DURATION_MS);
+          }
         }
 
         // Bring selected star's SVG <g> element to the top of `#major-stars-layer` so it never clips under background stars
@@ -2862,27 +2941,13 @@
       const initPov = params.get("pov");
       const initDrawer = params.get("drawer");
 
-      // Set immediate camera orientation to the initial star's relational 3D foreground pivot!
       const sInit = STARS_3D[initStar];
-      cam.yaw = sInit.pivotYaw;
-      cam.pitch = sInit.pivotPitch;
-      cam.targetYaw = sInit.pivotYaw;
-      cam.targetPitch = sInit.pivotPitch;
-      cam.panX = -sInit.x * 0.14;
-      cam.panY = -sInit.y * 0.12;
-      cam.targetPanX = cam.panX;
-      cam.targetPanY = cam.panY;
-
-      STAR_ORDER.forEach((k) => {
-        starZPull[k] = k === initStar ? (-STARS_3D[k].z - 155) : 40;
-      });
-
       selectStar(initStar, false, true);
 
       // Snap initial beacon position to initial star so first render is centered on it
       const initProj = project3D(sInit, starZPull[initStar]);
-      beaconState.x = initProj.sx;
-      beaconState.y = initProj.sy;
+      beaconState.x = beaconState.fromX = initProj.sx;
+      beaconState.y = beaconState.fromY = initProj.sy;
 
       if (initPov) {
         const povBtn = document.querySelector(`[data-pov-mode="${initPov}"]`);

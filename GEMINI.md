@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-11-03 15:43 EST — Perfected Look J v2 (/prototypes/look-j-3d-celestial-navigator.html): Commanding Full-Stage 3D Scale (1000×520 viewBox), True Relational 3D Foreground Pivot on Star Click, Depth-Proportional Star & Pill Scaling (0.68×–1.34× across 34–1,200 LY), Restored Spring-Gliding Focus Circle + Comet Trail, and Seamless Background Engraving Feathering (Look J v1 preserved at /prototypes/look-j-v1-archive.html)`
+> **Last touched:** `2026-11-03 16:05 EST — Tuned Look J v2 (/prototypes/look-j-3d-celestial-navigator.html) with Serene 2.6s Ease-In-Out Celestial Slew Engine (easeInOutCelestial across 3D camera, foreground Z-pull, per-star scale/opacity & gliding focus circle — zero snap or bounce across light-years)`
 
 ---
 
