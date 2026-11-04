@@ -178,13 +178,13 @@ After testing **Look J v2** ([preserved at `look-j-v2-archive.html`](https://gem
 
 ## 11. Round 12: Chromatic Twin Separation (2-Row Slide-Up Comparison), Outer Sky Horizon Glows, Full 360° 3D Orbit & Deterministic Seeded Starfield (`Look J v3 → Look J v4`)
 
-After reviewing **Look J v3** ([preserved at `look-j-v3-archive.html`](https://geminipulse.com/prototypes/look-j-v3-archive.html)), Neil highlighted four final refinements for the homepage hero and slide-up salons in **[Look J v4](https://geminipulse.com/prototypes/look-j-3d-celestial-navigator.html)**, plus a future brand-mark exploration note:
+After reviewing **Look J v3** ([preserved at `look-j-v3-archive.html`](https://geminipulse.com/prototypes/look-j-v3-archive.html)), Neil highlighted four refinements for the homepage hero and slide-up salons in **[Look J v4](https://geminipulse.com/prototypes/look-j-v4-archive.html)**, plus a future brand-mark exploration note:
 
 1. **Clear Chromatic Separation Between Left (`α Castor`) and Right (`β Pollux`) in the Bottom Peek Dock + 2-Row Live Comparison Inside the Slide-Up Drawer:**
-   - Rather than relying on a thick dividing line or nearly identical off-white backgrounds (`#EEF5FC` vs. `#FAF3E6`), the 56px bottom peek dock now uses saturated **Glacial Sky-Blue (`#BAD9FA → #DCEBFE`, `12.4:1` WCAG AAA contrast)** on the left (`α Castor`) and **Warm Amber-Gold (`#F3C87E → #FBE6C2`, `12.1:1` WCAG AAA contrast)** on the right (`β Pollux`).
-   - Inside the slide-up drawer (`#salon-sheet`), we rendered a **2-Row Live Chromatic Comparison** so both color directions can be evaluated side by side:
+   - Rather than relying on a thick dividing line or nearly identical off-white backgrounds (`#EEF5FC` vs. `#FAF3E6`), the 56px bottom peek dock tested saturated **Glacial Sky-Blue (`#BAD9FA → #DCEBFE`, `12.4:1` WCAG AAA contrast)** on the left (`α Castor`) and **Warm Amber-Gold (`#F3C87E → #FBE6C2`, `12.1:1` WCAG AAA contrast)** on the right (`β Pollux`).
+   - Inside the slide-up drawer (`#salon-sheet`), we rendered a **2-Row Live Chromatic Comparison** so both color directions could be evaluated side by side:
      - **Row A (Top Row): Saturated Daylight Tints** (Dark ink on `#B8D8FA → #DFEFFD` Glacial Sky-Blue for Castor vs. `#F2C578 → #FCE8C3` Warm Amber-Gold for Pollux — `12.4:1` / `12.1:1` WCAG AAA).
-     - **Row B (Bottom Row): Nocturnal Light-on-Dark Tints** (Starlight ink on `#07162C → #0C2342` Deep Sapphire Night for Castor vs. `#211104 → #2E1907` Deep Amber-Bronze Night for Pollux — `13.5:1` / `13.1:1` WCAG AAA), plus a 1-click toggle button in the drawer header to preview the 56px bottom peek dock in Nocturnal mode.
+     - **Row B (Bottom Row): Nocturnal Light-on-Dark Tints** (Starlight ink on `#07162C → #0C2342` Deep Sapphire Night for Castor vs. `#211104 → #2E1907` Deep Amber-Bronze Night for Pollux — `13.5:1` / `13.1:1` WCAG AAA).
 2. **Subtle Outer-Left (Sapphire) & Outer-Right (Golden-Amber) Sky Horizon Glows:**
    - Kept the central sky deep midnight blue (`#050811`) while adding subtle outer-left Sapphire (`rgba(46, 152, 255, 0.165)`) and outer-right Golden-Amber (`rgba(245, 156, 48, 0.16)`) radial horizon glows at `-6%` and `106%` that frame the two Twins without meeting in the middle.
 3. **Full 360° 3D Rotational Freedom When Dragging the Constellation:**
@@ -193,3 +193,19 @@ After reviewing **Look J v3** ([preserved at `look-j-v3-archive.html`](https://g
    - Replaced `Math.random()` in `initParticles()` with a deterministic 32-bit `mulberry32` PRNG seeded with `0x47454D49` (`"GEMI"`) so all 260 background field stars and $M35$ cluster stars remain at the exact same coordinates across every browser refresh.
 5. **Logged Follow-Up Note on the `GEMINIPULSE` Wordmark (`GEMIN♊PULSE` / `GEM♊N♊PULSE`):**
    - Logged for a dedicated follow-up session after locking the homepage: explore incorporating the `♊` pillar symbol directly in place of one or both `I`s in `GEMINIPULSE` rather than inside a separate left circle.
+
+---
+
+## 12. Round 13: Locking Nocturnal Twin Salons, Floating Star-Tethered Brief Popover & Full-Viewport Article with Docked Bottom "Constellation Bar" Active Table of Contents (`Look J v4 → Look J v5`)
+
+After evaluating the 2-row comparison in **Look J v4** ([preserved at `look-j-v4-archive.html`](https://geminipulse.com/prototypes/look-j-v4-archive.html)) with his wife, Neil made three decisive calls that shaped **[Look J v5](https://geminipulse.com/prototypes/look-j-3d-celestial-navigator.html)**:
+
+1. **Locking Row B (`Nocturnal Light-on-Dark Tints`) as the Single Winner Across Both the 56px Bottom Peek Dock and Slide-Up Salons:**
+   - The bottom row (`Row B`: Deep Sapphire Night `#07162C → #0C2342` for $\alpha$ Castor on the left vs. Deep Amber-Bronze Night `#211104 → #2E1907` for $\beta$ Pollux on the right, `13.5:1` / `13.1:1` WCAG AAA contrast) was the unanimous favorite—fitting the observatory HUD, easy on the eyes, and rich in atmosphere. Both the 56px bottom peek dock and the slide-up Twin Salons now use this unified Nocturnal palette.
+2. **Floating Star-Tethered Article Brief Popover (`#star-hud-card`) Directly Underneath Each Clicked Star — Without Active TOC Clutter:**
+   - When the brief card sat in a fixed box in the bottom-right corner (`Look J v3–v4`), visitors clicking stars across the constellation did not naturally notice the description changing over in the corner, and the embedded 3-dot Table of Contents inside the small brief card felt busy.
+   - In **Look J v5**, `#star-hud-card` dynamically computes the active star's 2D screen projection every frame and positions itself **directly underneath whichever star you click** (with an upward pointer notch and short vertical hairline tether), displaying only **Category Tags + Date & Reading Time + Full Article Title + Plain-English Summary + `↑ Read Full Brief` & `Open Lab →` buttons**.
+3. **Two-Stage Slide-Up → Full-Viewport (`100svh`) Scrollable Article Continuation + Artistic Bottom "Constellation Bar" Active Table of Contents (SEO & GEO Structured):**
+   - On arrival, the homepage remains locked to `100svh` (zero scroll) so visitors make an intentional choice.
+   - Sliding up the bottom dock (`76svh`) reveals the paired Nocturnal Twin Salons plus a **Full-Screen Continuation Bar (`↑ Continue Reading Full Article · 4 Chapters`)**. Clicking the continuation bar, scrolling down inside the drawer, or clicking a chapter expands `#salon-sheet` to **100% Full Viewport (`100svh`)** to reveal the scrollable 4-Chapter `TechArticle` (`#chapter-01`..`#chapter-04`) and copyable SDK recipe.
+   - Pinned at the bottom of the full-screen article (`<nav class="article-constellation-toc-bar" aria-label="Article Table of Contents">`) is an **Artistic Bottom "Constellation Bar" Active Table of Contents** modeled on the homepage's 8-star bottom progress bar—complete with a continuous `0.85px` constellation line, 4 chapter star pills, `← Prev Section` / `Next Section →` buttons, and a **Floating Highlighted Star + Rotating Dashed Watchmaker Ring (`#atoc-gliding-star`)** that locks bull's-eye onto the active chapter's star dot, backed by live Schema.org `TechArticle` (`hasPart` anchor deep-links) and `FAQPage` JSON-LD for Google Search and LLM/GEO citation engines.

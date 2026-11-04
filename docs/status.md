@@ -1,11 +1,11 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-11-03 18:22 EST (Built & Deployed Look J v4 /prototypes/look-j-3d-celestial-navigator.html with Glacial Sky-Blue vs. Warm Amber-Gold 56px Peek Dock, 2-Row Slide-Up Drawer Chromatic Comparison [Row A: Daylight Tints vs. Row B: Nocturnal Tints], Outer Sky Horizon Glows, Full 360° 3D Rotational Drag, Deterministic Seeded Starfield, Preserved Look J v3 at /prototypes/look-j-v3-archive.html, and Logged Future GEMINIPULSE Logo Exploration Note)`
+- **Last Updated:** `2026-11-03 19:30 EST (Built & Deployed Look J v5 /prototypes/look-j-3d-celestial-navigator.html with Locked Nocturnal Twin Salons & 56px Bottom Dock [Deep Sapphire Night vs. Deep Amber-Bronze Night], Floating Star-Tethered Article Brief Popover Appearing Directly Underneath Each Clicked Star, Two-Stage Slide-Up to 100svh Full-Viewport Scrollable Article + Docked Bottom "Constellation Bar" Active Table of Contents, Dynamic SEO/GEO TechArticle & FAQPage JSON-LD, and Preserved Look J v4 at /prototypes/look-j-v4-archive.html)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
 - **Firebase Default Hosting URL:** `https://geminipulse-com.web.app`
-- **Local Dev Preview URL:** `http://localhost:8080` *(Look J v4 3D Navigator + 2-Row Chromatic Comparison + 360° Orbit: `http://localhost:8080/prototypes/look-j-3d-celestial-navigator.html` · Look J v3 Archive: `http://localhost:8080/prototypes/look-j-v3-archive.html` · Look J v2 Archive: `http://localhost:8080/prototypes/look-j-v2-archive.html` · Look J v1 Archive: `http://localhost:8080/prototypes/look-j-v1-archive.html` · Look I v2 50/50 Split: `http://localhost:8080/prototypes/look-i-celestial-couture-atlas.html` · Look I v1 Archive: `http://localhost:8080/prototypes/look-i-v1-archive.html` · Saved Look H: `http://localhost:8080/prototypes/look-h-avant-twin-journal.html` · Brand Evolution Portfolio Hub: `http://localhost:8080/prototypes/`)*
+- **Local Dev Preview URL:** `http://localhost:8080` *(Look J v5 3D Navigator + Floating Star Popover + Nocturnal Salons + Full-Screen Article & Bottom Constellation TOC Bar: `http://localhost:8080/prototypes/look-j-3d-celestial-navigator.html` · Look J v4 Archive: `http://localhost:8080/prototypes/look-j-v4-archive.html` · Look J v3 Archive: `http://localhost:8080/prototypes/look-j-v3-archive.html` · Look J v2 Archive: `http://localhost:8080/prototypes/look-j-v2-archive.html` · Look J v1 Archive: `http://localhost:8080/prototypes/look-j-v1-archive.html` · Look I v2 50/50 Split: `http://localhost:8080/prototypes/look-i-celestial-couture-atlas.html` · Look I v1 Archive: `http://localhost:8080/prototypes/look-i-v1-archive.html` · Saved Look H: `http://localhost:8080/prototypes/look-h-avant-twin-journal.html` · Brand Evolution Portfolio Hub: `http://localhost:8080/prototypes/`)*
 - **Firebase Project ID:** `geminipulse-com` (Project Number `643794480842`, Spark Free Plan — **\$0.00/mo**)
 - **Firebase Web App ID:** `1:643794480842:web:9f973bc1a0d7670c920e33` (`GeminiPulse Web`)
 - **Concept Originator & Creative Catalyst:** Neil S. White (`https://www.linkedin.com/in/neilswhite`, **Agile LLC**)
@@ -13,22 +13,17 @@
 
 ---
 
-## 1. Completed & Live on `v2.0` (2026-11-03 6:22 PM ET Update)
+## 1. Completed & Live on `v2.0` (2026-11-03 7:30 PM ET Update)
 
-- **Built & Deployed `Look J v4` (`/prototypes/look-j-3d-celestial-navigator.html`) + Preserved `Look J v3` (`/prototypes/look-j-v3-archive.html`):**
-  1. **Chromatic Separation in 56px Bottom Peek Dock + 2-Row Live Comparison in Slide-Up Drawer (`#salon-sheet`):**
-     - Replaced the nearly identical off-white bottom dock backgrounds with saturated **Glacial Sky-Blue (`#BAD9FA → #DCEBFE`, `12.4:1` WCAG AAA contrast)** on the left (`α Castor`) and **Warm Amber-Gold (`#F3C87E → #FBE6C2`, `12.1:1` WCAG AAA contrast)** on the right (`β Pollux`).
-     - Rendered two stacked 50/50 rows inside `#salon-sheet` for live comparison:
-       - **Row A (Top Row): Saturated Daylight Tints** (Dark ink on `#B8D8FA → #DFEFFD` Glacial Sky-Blue for Castor vs. `#F2C578 → #FCE8C3` Warm Amber-Gold for Pollux — `12.4:1` / `12.1:1` WCAG AAA).
-       - **Row B (Bottom Row): Nocturnal Light-on-Dark Tints** (Starlight ink on `#07162C → #0C2342` Deep Sapphire Night for Castor vs. `#211104 → #2E1907` Deep Amber-Bronze Night for Pollux — `13.5:1` / `13.1:1` WCAG AAA), plus a 1-click toggle button in the drawer header to preview the 56px bottom peek dock in Nocturnal mode.
-  2. **Subtle Outer-Left Sapphire & Outer-Right Golden-Amber Sky Horizon Glows:**
-     - Added radial horizon glows at `-6% 52%` (`rgba(46, 152, 255, 0.165)`) and `106% 52%` (`rgba(245, 156, 48, 0.16)`) while keeping the central sky deep midnight blue (`#050811`).
-  3. **Full 360° 3D Rotational Freedom When Dragging the Constellation:**
-     - Removed the `±38°` horizontal yaw clamp on pointer drag (`cam.targetYaw = baseYaw + dx * 0.45`) with live Z-depth SVG layer sorting (`projMajor[b].z - projMajor[a].z`), shortest-arc angle normalization (`shortestDiff`) on star click, and bounded periodic sine parallax on the background Twin engravings.
-  4. **Deterministic Seeded Starfield Particles (`0x47454D49`):**
-     - Replaced `Math.random()` in `initParticles()` with `createSeededRandom(0x47454D49)` so all 260 background field stars and $M35$ cluster stars remain at identical coordinates across browser refreshes.
-  5. **Logged Follow-Up Note on the `GEMINIPULSE` Wordmark (`GEMIN♊PULSE` / `GEM♊N♊PULSE`):**
-     - Logged in `docs/brand-evolution-series-dossier.md` and `chronicles/episode-11-from-monolith-to-celestial-twins-design-evolution.md` to explore incorporating the `♊` pillar symbol directly in place of one or both `I`s in `GEMINIPULSE` once the homepage is locked.
+- **Built & Deployed `Look J v5` (`/prototypes/look-j-3d-celestial-navigator.html`) + Preserved `Look J v4` (`/prototypes/look-j-v4-archive.html`):**
+  1. **Locked Nocturnal Light-on-Dark Tints (`Row B` Winner) Across Both the 56px Bottom Peek Dock and Slide-Up Salons:**
+     - Applied **Deep Sapphire Night (`#07162C → #0C2342`, `13.5:1` WCAG AAA contrast)** on the left (`α Castor — The Signal`) and **Deep Amber-Bronze Night (`#211104 → #2E1907`, `13.1:1` WCAG AAA contrast)** on the right (`β Pollux — The Workbench`) across both `.porcelain-peek-dock` and `#salon-sheet`.
+  2. **Floating Star-Tethered Article Brief Popover (`#star-hud-card`) Appearing Directly Underneath Whichever Star Is Clicked (Zero TOC Clutter Inside):**
+     - Replaced the fixed bottom-right HUD box with a floating star-tethered brief card that computes the active star's 2D screen coordinates in `tick()` and positions itself directly underneath the clicked star (`--hud-x`, `--hud-y`, `--hud-notch-x`) with a short hairline SVG tether (`#hud-leader-line`).
+     - Removed the embedded 3-dot Table of Contents from `#star-hud-card` so it displays only **Category Tags + Date & Reading Time + Full Article Title + Plain-English Summary + `↑ Read Full Brief` & `Open Lab →` buttons**.
+  3. **Two-Stage Slide-Up (`76svh`) → Full-Viewport (`100svh`) Scrollable Article Continuation + Docked Bottom "Constellation Bar" Active Table of Contents (SEO & GEO Structured):**
+     - Clicking the continuation strip (`#fullscreen-continue-strip`), scrolling down inside the drawer, or clicking a chapter star expands `#salon-sheet` to **100% Full Viewport (`100svh`)** with the scrollable 4-Chapter `TechArticle` (`#chapter-01`..`#chapter-04`) and copyable SDK recipe.
+     - Pinned at the bottom of the full-screen article (`<nav class="article-constellation-toc-bar" aria-label="Article Table of Contents">`) is an **Artistic Bottom "Constellation Bar" Active Table of Contents** featuring a continuous `0.85px` constellation line, 4 chapter star pills, `← Prev Section` / `Next Section →` buttons, and a **Floating Highlighted Star + Rotating Dashed Watchmaker Ring (`#atoc-gliding-star`)** that locks bull's-eye onto the active chapter's star dot, backed by live Schema.org `TechArticle` (`hasPart`) and `FAQPage` JSON-LD (`#dynamic-seo-geo-schema`) + GA4/Clarity event telemetry hooks (`trackPulseInteraction()`).
 
 - **Curated & Published Google DeepMind Landmark Platform Release: "Agentic Cheminformatics with Google Antigravity & 10,000-Scientist Tier Grant":**
   - **Direct Primary Google Source:** Zoi Tsangalidou, Ruijie (Kelly) Zhang, Sukhdeep Singh, and Michael V. LeVine on Google DeepMind Blog (Nov 3, 2026 17:01 UTC / 12:01 PM ET; modified 17:16 UTC).

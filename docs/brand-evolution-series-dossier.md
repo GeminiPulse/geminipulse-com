@@ -1,12 +1,12 @@
 # GeminiPulse.com — Design Process & Brand Evolution Blog Series Master Dossier (`docs/brand-evolution-series-dossier.md`)
 
-> **Last Updated:** `2026-11-03 18:18 EST`
-> **Purpose:** Complete historical, visual, and technical archive of the 12-Round GeminiPulse.com Brand & Cognitive UX Evolution (`Era 0` → `Look J v4`), structured for our upcoming multi-part **Design Process & Evolution Blog Series** and Agency Case Study.
+> **Last Updated:** `2026-11-03 19:29 EST`
+> **Purpose:** Complete historical, visual, and technical archive of the 13-Round GeminiPulse.com Brand & Cognitive UX Evolution (`Era 0` → `Look J v5`), structured for our upcoming multi-part **Design Process & Evolution Blog Series** and Agency Case Study.
 > **Live Interactive Portfolio Hub:** [`https://geminipulse.com/prototypes/`](https://geminipulse.com/prototypes/)
 
 ---
 
-## 1. Master Inventory of All 15 Preserved Interactive Prototypes
+## 1. Master Inventory of All 16 Preserved Interactive Prototypes
 
 Every prototype below is permanently preserved in `public/public/prototypes/` and deployed live on `https://geminipulse.com/prototypes/`:
 
@@ -27,7 +27,8 @@ Every prototype below is permanently preserved in `public/public/prototypes/` an
 | **Round 9J (v1)** | **Full-Viewport 3D Pointillist Constellation Navigator (v1 Archive)** | [`look-j-v1-archive.html`](https://geminipulse.com/prototypes/look-j-v1-archive.html) | Initial full-viewport 3D stage with `1280×390` SVG coordinate box, instant focus-beacon snap, and unfeathered center illustration seam on narrow windows. | `assets/shot-look-j-v1-archive.webp` |
 | **Round 10J (v2)** | **Full-Viewport 3D Relational-Pivot Constellation Navigator (v2 Archive)** | [`look-j-v2-archive.html`](https://geminipulse.com/prototypes/look-j-v2-archive.html) | Commanding `1000×520` 3D stage, True Relational 3D Foreground Pivot, Depth-Proportional Star Pills (`0.68×`–`1.28×`), and 2.6s sinusoidal easing before HUD card & watchmaker hairline pass. | `assets/shot-look-j-v2-archive.webp` |
 | **Round 11J (v3)** | **Full-Viewport 3D Navigator + Watchmaker Hairlines & HUD Card (v3 Archive)** | [`look-j-v3-archive.html`](https://geminipulse.com/prototypes/look-j-v3-archive.html) | Watchmaker `0.55px–0.85px` hairlines, Quintic S-Curve Ramp, subordinate `7.6px` Cyan/Gold star codes, Futuristic Digital HUD Brief Card + 3-Dot Linear Constellation TOC, prior to 2-row chromatic separation and 360° orbit unlock. | `assets/shot-look-j-v3-archive.webp` |
-| **Round 12J (v4)** | **Full-Viewport 3D Navigator + 2-Row Chromatic Comparison, Outer Sky Glows, 360° Orbit & Seeded Starfield** *(Latest Lead)* | [`look-j-3d-celestial-navigator.html`](https://geminipulse.com/prototypes/look-j-3d-celestial-navigator.html) | **Glacial Sky-Blue (`#BAD9FA → #DCEBFE`, 12.4:1 AAA) vs. Warm Amber-Gold (`#F3C87E → #FBE6C2`, 12.1:1 AAA) Bottom Dock + 2-Row Slide-Up Drawer Comparison (Row A: Saturated Daylight Tints vs. Row B: Nocturnal Light-on-Dark Tints) + Outer-Left Sapphire & Outer-Right Golden-Amber Sky Glows + Full 360° 3D Rotational Drag with Live Z-Depth SVG Sorting + Deterministic Seeded PRNG Starfield (`0x47454D49`).** | `assets/shot-look-j-1440x900.webp`, `assets/shot-look-j-drawer-open.webp`, `assets/shot-look-j-3d-orbit.webp` |
+| **Round 12J (v4)** | **Full-Viewport 3D Navigator + 2-Row Chromatic Comparison (v4 Archive)** | [`look-j-v4-archive.html`](https://geminipulse.com/prototypes/look-j-v4-archive.html) | Glacial Sky-Blue vs. Warm Amber-Gold 56px Bottom Dock + 2-Row Slide-Up Drawer Comparison (Row A: Daylight Tints vs. Row B: Nocturnal Tints) + Outer Sky Glows + Full 360° 3D Orbit + Seeded Starfield, prior to locking Nocturnal Row B and floating star-tethered brief popover. | `assets/shot-look-j-v4-archive.webp` |
+| **Round 13J (v5)** | **Full-Viewport 3D Navigator + Locked Nocturnal Twin Salons, Floating Star-Tethered Brief Popover & Full-Viewport Article with Constellation TOC Bar** *(Latest Lead)* | [`look-j-3d-celestial-navigator.html`](https://geminipulse.com/prototypes/look-j-3d-celestial-navigator.html) | **Locked Nocturnal Light-on-Dark Tints (`Row B` Winner: Deep Sapphire Night `#07162C → #0C2342`, 13.5:1 AAA vs. Deep Amber-Bronze Night `#211104 → #2E1907`, 13.1:1 AAA) across 56px Bottom Dock & Slide-Up Salons + Floating Star-Tethered Article Brief Popover (`#star-hud-card`) Appearing Directly Underneath Each Clicked Star (No TOC Clutter Inside) + Two-Stage Slide-Up to `100svh` Full-Viewport Scrollable Article + Docked Bottom "Constellation Bar" Active Table of Contents (`#atoc-gliding-star`) + Dynamic SEO/GEO `TechArticle` & `FAQPage` JSON-LD.** | `assets/shot-look-j-1440x900.webp`, `assets/shot-look-j-drawer-open.webp`, `assets/shot-look-j-3d-orbit.webp` |
 
 ---
 
