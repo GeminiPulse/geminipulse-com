@@ -1,9 +1,10 @@
-# Episode 11: From a 24,043px Developer Monolith to an Interactive 8-Star Gemini Constellation — The 7-Round Design Evolution of GeminiPulse.com
+# Episode 11: From a 24,043px Developer Monolith to an Interactive 8-Star Gemini Constellation & Unframed Celestial Reading Sanctuary — The 15-Round Human-Steered Design Evolution of GeminiPulse.com
 
 - **Published:** November 3, 2026
 - **Human Concept Originator & Creative Director:** Neil S. White (`Agile LLC`)
 - **Autonomous Lead Architect, Art Director & Engineer:** Google Gemini 4 Argon (`gemini-4-argon`) + `gemini-nano-banana-2.1` inside Google Antigravity
-- **Live Interactive Portfolio Hub (All 10 Exhibits Preserved):** [`https://geminipulse.com/prototypes/`](https://geminipulse.com/prototypes/)
+- **Live Interactive Portfolio Hub (All 18 Exhibits Preserved):** [`https://geminipulse.com/prototypes/`](https://geminipulse.com/prototypes/)
+- **Live Flagship Manifesto (Unframed Celestial Reading Sanctuary):** [`https://geminipulse.com/series/google-preview-observatory/open-letter-to-google-deepmind.html`](https://geminipulse.com/series/google-preview-observatory/open-letter-to-google-deepmind.html)
 
 ---
 
@@ -232,3 +233,20 @@ After reviewing **Look J v5** ([preserved at `look-j-v5-archive.html`](https://g
    - Eliminated per-frame `getBoundingClientRect()` layout thrashing inside `tick()` by introducing `layoutCache` (`refreshLayoutCache()` on `resize`, `selectStar`, and `renderHudCard`) and pausing 3D canvas projection while `data-drawer="fullscreen"` covers the viewport.
 6. **Agent 6 (Chief Editorial Architect — Flagship Open Letter to Google DeepMind):**
    - Published **[An Open Letter to Google DeepMind: Let Gemini Test Its Own Frontier in Public](https://geminipulse.com/series/google-preview-observatory/open-letter-to-google-deepmind.html)** (`/series/google-preview-observatory/open-letter-to-google-deepmind.html`), linked from Star 08 (`γ Alhena · Built by Gemini Alone`), the top masthead (`Google Letter ↗`), the Prototype Archive Hub, and `sitemap.xml`.
+
+---
+
+## 14. Round 15: The Human Creative Director’s Touch — Unframed Celestial Reading Sanctuary, Gently Pulsing Night Sky & The 15-Round Human-AI Co-Creation Ledger (`Look J v6 → Look J v7`)
+
+When Neil reviewed **Look J v6** ([preserved at `look-j-v6-archive.html`](https://geminipulse.com/prototypes/look-j-v6-archive.html)) and the initial Open Letter page, he articulated two essential truths—one about **how we document the human-AI partnership**, and one about **how a long-form article should feel in a celestial universe**:
+
+1. **Chronicling the Human Creative Director Alongside the Autonomous AI Team:**
+   - While Gemini 4 Argon writes the code, generates the copperplate engravings, and runs the 6-agent audits, it operates as the **creative and engineering team steered by a human Creative Director**—where Neil normally would have had to do the design, coding, copywriting, and art direction solo over months.
+   - Across all 15 rounds (documented in `docs/brand-evolution-series-dossier.md` and Chapter 02 of the Open Letter), every major breakthrough came from Neil’s live voice-to-text critiques: saving `Look H` so it wouldn't twin `thefutureisyesterday.com`, conceiving *"the hero IS the Gemini Constellation illustration"*, demanding authoritative IAU 2-legged stick-figure accuracy and real spectral star colors, asking for relational 3D foreground pivots with relaxing multi-second easing (*"after all, these are millions of miles moving at once!"*), catching the mouse-down focus rectangle on video, locking the Nocturnal Row B palette, moving the brief popover directly underneath each clicked star, and re-imagining the blog reading experience.
+2. **Unframing the Blog / Article Experience Into a Spacious Celestial Reading Sanctuary:**
+   - Looking at the initial blog post layout, Neil noticed it still used bordered rectangular boxes around chapters and felt too technical and contained:
+     > *"What if they aren't framed by a box? What if they're just broken down with a lot of space, or maybe a delicate dividing line?... Just think about space in general, the actual celestial space that the Twins and everything else live in. As crowded as the sky might look with stars from Earth, there is actually vast space between everything out there."*
+   - In **[Look J v7](https://geminipulse.com/prototypes/look-j-3d-celestial-navigator.html)** and the rebuilt **[Open Letter to Google DeepMind](https://geminipulse.com/series/google-preview-observatory/open-letter-to-google-deepmind.html)**:
+     - **Zero Boxed Chapter Cards:** Removed all `.chapter-card` borders and card boxes. Chapters `01` through `04` now flow in a single, centered editorial reading sanctuary (`64ch–65ch` measure surrounded by `>60%` open celestial night sky), separated by generous vertical whitespace and delicate `0.65px` gradient hairlines with an inline SVG Twin-Pillar ornament (`✦ · ♊ · ✦`).
+     - **Living, Gently Pulsing Celestial Sky Background:** Behind both the standalone Open Letter and the translucent Full-Screen Article (`html[data-drawer="fullscreen"]`), deterministic seeded stars drift imperceptibly and gently pulse/sparkle in and out on a calming 12-second sinusoidal breathing cycle.
+     - **Monumental Headlines, Digestible Italic Sub-Headlines & Generous Body Prose:** Enlarged chapter headlines (`clamp(30px, 3.1vw, 46px)`), added a clear italic sub-headline (`clamp(19.5px, 1.9vw, 25px)`) directly beneath each headline so the reader digests the takeaway before diving into the prose, enlarged body copy to `18.5px–20.5px` (`line-height: 1.86–1.88`), and gave the top masthead and bottom Constellation TOC bars extra breathing room.

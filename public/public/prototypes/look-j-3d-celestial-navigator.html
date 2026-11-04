@@ -150,13 +150,13 @@
       block-size: 100svh;
       min-block-size: 620px;
       display: grid;
-      grid-template-rows: 42px minmax(0, 1fr) 38px 56px;
+      grid-template-rows: 48px minmax(0, 1fr) 44px 58px;
       overflow: hidden;
       background: var(--obsidian);
     }
 
     /* =========================================================================
-       1. TOP COUTURE OBSERVATORY MASTHEAD (42px)
+       1. TOP COUTURE OBSERVATORY MASTHEAD (48px — Generous Celestial Breathing Room)
        ========================================================================= */
     .celestial-header {
       position: relative;
@@ -164,8 +164,8 @@
       display: grid;
       grid-template-columns: auto 1fr auto;
       align-items: center;
-      gap: 10px;
-      padding-inline: clamp(12px, 1.8vw, 28px);
+      gap: 12px;
+      padding-inline: clamp(14px, 1.9vw, 32px);
       background: rgba(6, 8, 15, 0.92);
       border-block-end: 1px solid var(--hairline-dark);
       backdrop-filter: blur(12px);
@@ -175,13 +175,13 @@
       display: inline-flex;
       align-items: center;
       gap: 9px;
-      padding-inline-end: 12px;
+      padding-inline-end: 13px;
       border-inline-end: 1px solid var(--hairline-dark);
     }
 
     .brand-glyph {
-      inline-size: 25px;
-      block-size: 25px;
+      inline-size: 26px;
+      block-size: 26px;
       border-radius: 50%;
       background: radial-gradient(circle at 35% 35%, rgba(163, 133, 255, 0.32), rgba(6, 8, 15, 0.92));
       color: var(--ethereal-bright);
@@ -218,12 +218,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 7px;
+      gap: 8px;
       min-inline-size: 0;
       overflow: hidden;
     }
 
-    @media (max-width: 1240px) {
+    @media (max-width: 1280px) {
       .premise-ribbon {
         display: none;
       }
@@ -245,7 +245,7 @@
     }
 
     .premise-text {
-      font-size: clamp(10.5px, 0.78vw, 12px);
+      font-size: clamp(10px, 0.72vw, 11.5px);
       color: var(--starlight-dim);
       white-space: nowrap;
       overflow: hidden;
@@ -267,7 +267,7 @@
     .header-controls {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 9px;
       flex-shrink: 0;
     }
 
@@ -277,12 +277,12 @@
       background: rgba(15, 22, 36, 0.9);
       border: 1px solid rgba(163, 133, 255, 0.34);
       border-radius: 999px;
-      padding: 2px;
-      gap: 2px;
+      padding: 2.5px;
+      gap: 3px;
     }
 
     .pov-btn {
-      padding: 3.5px 8px;
+      padding: 4.5px 10px;
       border-radius: 999px;
       font-family: var(--mono);
       font-size: 8.2px;
@@ -293,7 +293,7 @@
       white-space: nowrap;
       display: inline-flex;
       align-items: center;
-      gap: 4px;
+      gap: 5px;
     }
 
     .pov-btn[aria-pressed="true"] {
@@ -316,7 +316,7 @@
       font-size: 8.2px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      padding: 4px 9px;
+      padding: 5px 11px;
       border-radius: 999px;
       border: 1px solid rgba(163, 133, 255, 0.35);
       color: var(--ethereal-bright);
@@ -1257,7 +1257,7 @@
     }
 
     /* =========================================================================
-       3. UNIFIED "YOU ARE HERE" CONSTELLATION PROGRESS & LOCATION BAR (38px)
+       3. UNIFIED "YOU ARE HERE" CONSTELLATION PROGRESS & LOCATION BAR (44px)
        ========================================================================= */
     .constellation-progress-nav {
       position: relative;
@@ -1265,18 +1265,18 @@
       background: #0A0E19;
       border-block-start: 1px solid rgba(163, 133, 255, 0.28);
       border-block-end: 1px solid rgba(15, 20, 29, 0.9);
-      padding-inline: clamp(12px, 1.8vw, 30px);
+      padding-inline: clamp(16px, 2.2vw, 36px);
       display: grid;
       grid-template-columns: auto 1fr auto;
       align-items: center;
-      gap: 10px;
+      gap: 14px;
     }
 
     .cpn-location-badge {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
-      padding: 3.5px 10px;
+      gap: 8px;
+      padding: 4.5px 12px;
       border-radius: 999px;
       background: rgba(163, 133, 255, 0.14);
       border: 1px solid rgba(163, 133, 255, 0.42);
@@ -1300,7 +1300,7 @@
     .cpn-track {
       display: grid;
       grid-template-columns: repeat(8, minmax(0, 1fr));
-      gap: 4px;
+      gap: 6px;
       align-items: center;
     }
 
@@ -1309,8 +1309,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 5px;
-      padding: 4px 5px;
+      gap: 6px;
+      padding: 5px 7px;
       border-radius: 999px;
       background: rgba(16, 22, 36, 0.78);
       border: 1px solid rgba(255, 255, 255, 0.09);
@@ -1632,7 +1632,7 @@
       max-block-size: 76svh;
     }
 
-    /* Stage 3: Full-Viewport (100svh) Scrollable Article & Lab Takeover */
+    /* Stage 3: Full-Viewport (100svh) Unframed Celestial Reading Sanctuary Takeover */
     html[data-drawer="fullscreen"] .slide-up-salon-sheet {
       transform: translateY(0%);
       inset-block: 0;
@@ -1641,6 +1641,8 @@
       border-start-start-radius: 0;
       border-start-end-radius: 0;
       border-block-start-width: 1px;
+      background: rgba(5, 8, 17, 0.78);
+      backdrop-filter: blur(8px);
     }
 
     .sheet-handle-bar {
@@ -1648,9 +1650,9 @@
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 10px;
-      padding: 8px clamp(18px, 2.4vw, 36px);
-      background: #050811;
+      gap: 14px;
+      padding: 11px clamp(20px, 2.8vw, 44px);
+      background: rgba(5, 8, 17, 0.94);
       color: var(--starlight);
       border-start-start-radius: inherit;
       border-start-end-radius: inherit;
@@ -1880,67 +1882,119 @@
       gap: 8px;
     }
 
-    /* Full-Viewport Scrollable Article & Companion Lab Stage (SEO + GEO Structured) */
+    /* =========================================================================
+       UNFRAMED CELESTIAL EDITORIAL READING SANCTUARY (SEO + GEO STRUCTURED)
+       Zero boxed cards around chapters. Single-column 64ch reading measure
+       surrounded by >60% open space where pulsing stars shimmer softly behind.
+       ========================================================================= */
     .full-article-stage {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      background: linear-gradient(90deg, #061326 0%, #091B34 49.9%, #1C0E03 50.1%, #261405 100%);
+      position: relative;
+      display: block;
+      background:
+        radial-gradient(ellipse 68% 45% at 50% 0%, rgba(16, 28, 52, 0.38) 0%, transparent 72%),
+        radial-gradient(ellipse 40% 60% at 8% 35%, rgba(56, 189, 248, 0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 92% 65%, rgba(245, 158, 63, 0.06) 0%, transparent 70%),
+        rgba(5, 8, 17, 0.56);
+      padding: clamp(48px, 6.5vh, 88px) clamp(24px, 5vw, 64px) clamp(88px, 11vh, 132px);
     }
 
-    @media (max-width: 1023px) {
-      .full-article-stage {
-        grid-template-columns: 1fr;
-      }
+    .article-sanctuary-column {
+      max-inline-size: 760px;
+      margin-inline: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
     }
 
     .article-deep-col {
-      padding: 22px clamp(22px, 2.5vw, 40px) 36px;
+      padding: 0;
       display: flex;
       flex-direction: column;
-      gap: 18px;
-      border-inline-end: 1px solid rgba(56, 189, 248, 0.22);
+      gap: 0;
+      border-inline-end: none;
     }
 
     .article-deep-col--pollux {
       border-inline-end: none;
     }
 
+    /* Unframed Chapter Section — Zero Box Borders, Zero Card Backgrounds */
     .chapter-card {
-      scroll-margin-top: 18px;
-      padding: 15px 18px;
-      border-radius: 12px;
-      background: rgba(5, 13, 26, 0.72);
-      border: 1px solid rgba(56, 189, 248, 0.26);
+      scroll-margin-top: 32px;
+      padding: 0;
+      border-radius: 0;
+      background: transparent;
+      border: none;
+      box-shadow: none;
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      gap: 0;
     }
 
     .chapter-card[data-active-chapter="true"] {
-      border-color: #38BDF8;
-      box-shadow: 0 0 22px rgba(56, 189, 248, 0.18);
+      border-color: transparent;
+      box-shadow: none;
     }
 
-    .article-deep-col--pollux .chapter-card {
-      background: rgba(16, 8, 2, 0.72);
-      border-color: rgba(245, 158, 63, 0.28);
-    }
-
+    .article-deep-col--pollux .chapter-card,
     .article-deep-col--pollux .chapter-card[data-active-chapter="true"] {
-      border-color: #F59E3F;
-      box-shadow: 0 0 22px rgba(245, 158, 63, 0.18);
+      background: transparent;
+      border-color: transparent;
+      box-shadow: none;
+    }
+
+    /* Delicate Celestial Hairline Divider Between Unframed Chapters */
+    .celestial-chapter-divider {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-block: clamp(52px, 6.5vh, 80px);
+    }
+
+    .celestial-chapter-divider::before {
+      content: "";
+      position: absolute;
+      inset-inline: 0;
+      block-size: 0.65px;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(126, 184, 255, 0.34) 22%,
+        rgba(206, 192, 255, 0.58) 50%,
+        rgba(245, 158, 63, 0.34) 78%,
+        transparent 100%
+      );
+    }
+
+    .ccd-glyph {
+      position: relative;
+      z-index: 1;
+      padding-inline: 18px;
+      background: #060A15;
+      font-family: var(--serif);
+      font-size: 13px;
+      letter-spacing: 0.34em;
+      color: var(--ethereal-bright);
+      opacity: 0.85;
     }
 
     .chapter-kicker {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-block-end: 14px;
       font-family: var(--mono);
-      font-size: 8.5px;
-      letter-spacing: 0.11em;
+      font-size: 9.5px;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: #7DD3FC;
+    }
+
+    .chapter-card[data-active-chapter="true"] .chapter-kicker {
+      color: #BAE6FD;
     }
 
     .article-deep-col--pollux .chapter-kicker {
@@ -1949,26 +2003,48 @@
 
     .chapter-h3 {
       font-family: var(--serif);
-      font-size: clamp(19px, 1.5vw, 24px);
+      font-size: clamp(30px, 3.1vw, 42px);
       font-weight: 600;
-      line-height: 1.15;
+      line-height: 1.14;
+      letter-spacing: -0.012em;
       color: #FFFFFF;
+      margin-block-end: 14px;
+      max-inline-size: 28ch;
+    }
+
+    .chapter-sub {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 500;
+      font-size: clamp(19.5px, 1.85vw, 24px);
+      line-height: 1.52;
+      color: #A6D4FA;
+      margin-block-end: 26px;
+      max-inline-size: 58ch;
+    }
+
+    .article-deep-col--pollux .chapter-sub {
+      color: #FED7AA;
     }
 
     .chapter-body {
-      font-size: 13px;
-      line-height: 1.58;
-      color: #D2E4F8;
+      font-family: var(--sans);
+      font-size: clamp(18.5px, 1.25vw, 20.5px);
+      line-height: 1.86;
+      color: #E2ECF8;
+      max-inline-size: 64ch;
     }
 
     .article-deep-col--pollux .chapter-body {
-      color: #F2DEC4;
+      color: #F4E8D8;
     }
 
     .geo-code-wrap {
-      background: #040811;
-      border: 1px solid rgba(245, 158, 63, 0.35);
-      border-radius: 8px;
+      margin-block-start: 28px;
+      background: rgba(4, 8, 17, 0.88);
+      border-block: 0.75px solid rgba(245, 158, 63, 0.38);
+      border-inline: none;
+      border-radius: 0;
       overflow: hidden;
     }
 
@@ -1976,26 +2052,26 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 5px 12px;
-      background: rgba(245, 158, 63, 0.1);
-      border-block-end: 1px solid rgba(245, 158, 63, 0.25);
+      padding: 10px 18px;
+      background: rgba(245, 158, 63, 0.08);
+      border-block-end: 0.65px solid rgba(245, 158, 63, 0.25);
       font-family: var(--mono);
-      font-size: 8px;
-      letter-spacing: 0.09em;
+      font-size: 9px;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: #FDBA74;
     }
 
     .copy-code-btn {
-      padding: 2.5px 8px;
+      padding: 4px 12px;
       border-radius: 999px;
       background: rgba(245, 158, 63, 0.2);
       border: 0.75px solid rgba(245, 158, 63, 0.55);
       color: #FFF7EB;
       font-family: var(--mono);
-      font-size: 7.8px;
+      font-size: 8.5px;
       font-weight: 600;
-      letter-spacing: 0.07em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       transition: all 0.2s ease;
     }
@@ -2008,10 +2084,10 @@
     .geo-code-block {
       background: transparent;
       border: none;
-      padding: 10px 14px;
+      padding: 18px 20px;
       font-family: var(--mono);
-      font-size: 11px;
-      line-height: 1.5;
+      font-size: 13px;
+      line-height: 1.68;
       color: #FDE68A;
       overflow-x: auto;
       white-space: pre-wrap;
@@ -2021,11 +2097,11 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
+      gap: 14px;
       flex-wrap: wrap;
-      margin-block-start: 4px;
-      padding-block-start: 8px;
-      border-block-start: 1px dashed rgba(56, 189, 248, 0.24);
+      margin-block-start: 28px;
+      padding-block-start: 18px;
+      border-block-start: 0.65px solid rgba(56, 189, 248, 0.24);
     }
 
     .article-deep-col--pollux .standalone-deep-link-row {
@@ -2035,16 +2111,16 @@
     .standalone-deep-link {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 5px 12px;
+      gap: 8px;
+      padding: 8px 18px;
       border-radius: 999px;
       background: rgba(56, 189, 248, 0.16);
       border: 1px solid rgba(56, 189, 248, 0.55);
       color: #F0F7FF;
       font-family: var(--mono);
-      font-size: 8.5px;
+      font-size: 9px;
       font-weight: 600;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       transition: all 0.2s ease;
     }
@@ -2074,13 +2150,14 @@
       position: sticky;
       inset-block-end: 0;
       z-index: 36;
-      background: #060A14;
+      background: rgba(6, 10, 20, 0.94);
+      backdrop-filter: blur(14px);
       border-block-start: 1px solid rgba(163, 133, 255, 0.38);
-      padding: 7px clamp(14px, 2vw, 32px);
+      padding: 11px clamp(20px, 2.8vw, 44px);
       display: grid;
       grid-template-columns: auto 1fr auto;
       align-items: center;
-      gap: 14px;
+      gap: 18px;
       box-shadow: 0 -10px 28px rgba(0, 0, 0, 0.65);
       flex-shrink: 0;
     }
@@ -2124,10 +2201,10 @@
       position: absolute;
       top: 50%;
       left: 12.5%;
-      inline-size: 20px;
-      block-size: 20px;
-      margin-inline-start: -10px;
-      margin-block-start: -10px;
+      inline-size: 16px;
+      block-size: 16px;
+      margin-inline-start: -8px;
+      margin-block-start: -8px;
       border-radius: 50%;
       border: 0.9px solid var(--ethereal-bright);
       background: radial-gradient(circle, rgba(163, 133, 255, 0.34) 0%, transparent 72%);
@@ -2203,7 +2280,7 @@
     .atoc-star-dot {
       inline-size: 6px;
       block-size: 6px;
-      margin-inline-end: 6px;
+      margin-inline-end: 9px;
       border-radius: 50%;
       background: #38BDF8;
       box-shadow: 0 0 6px #38BDF8;
@@ -3021,94 +3098,120 @@
       </div>
 
       <!-- ===================================================================
-           STAGE 2: FULL-VIEWPORT SCROLLABLE ARTICLE & COMPANION LAB
-           Structured with semantic <article>, <section id="chapter-01..04">,
-           and machine-readable GEO/LLM passages for organic search & AI citation
+           STAGE 2: FULL-VIEWPORT UNFRAMED CELESTIAL READING SANCTUARY
+           Single-column 64ch editorial flow surrounded by >60% open space,
+           separated by delicate ✦ · ♊ · ✦ hairline dividers with zero boxed frames!
            =================================================================== -->
       <article class="full-article-stage" id="full-article-stage" itemscope itemtype="https://schema.org/TechArticle">
         <meta itemprop="author" content="Google Gemini 4 Argon" />
         <meta itemprop="datePublished" content="2026-11-03" />
 
-        <!-- Left Column: Castor Full-Screen Scrollable Signal Chapters (01 & 02) -->
-        <div class="article-deep-col">
-          <section class="chapter-card" id="chapter-01" data-chapter-card="0" data-active-chapter="true">
-            <div class="chapter-kicker">
-              <span id="chap1-kicker">CHAPTER 01 / 04 · WHAT SHIPPED</span>
-              <span>DIRECT ANSWER PASSAGE (GEO)</span>
-            </div>
-            <h3 class="chapter-h3" id="chap1-title" itemprop="headline">
-              01 · What Shipped: Every November 2026 Gemini Release, Decoded
-            </h3>
-            <p class="chapter-body" id="chap1-body" itemprop="articleBody">
-              Google shipped Gemini 2.5 Pro and 2.5 Flash updates, implicit Context Caching (cutting repeat-read token costs by up to 90%), and Gemini Computer Use browser automation. Instead of sifting through 40 pages of developer changelogs, this brief isolates the exact updates that change day-to-day creative, analytical, and engineering work.
-            </p>
-          </section>
-
-          <section class="chapter-card" id="chapter-02" data-chapter-card="1" data-active-chapter="false">
-            <div class="chapter-kicker">
-              <span id="chap2-kicker">CHAPTER 02 / 04 · FOR YOUR WORK</span>
-              <span>PRACTICAL IMPACT</span>
-            </div>
-            <h3 class="chapter-h3" id="chap2-title">
-              02 · How It Applies to Your Work: Where You Save Time Immediately
-            </h3>
-            <p class="chapter-body" id="chap2-body">
-              We filter out developer jargon and tell you in 60 seconds which updates actually improve your daily workflow: pin recurring 300-page PDFs or code repositories once so every follow-up question responds in 0.7 seconds at 1/10th the cost, and use Deep Research in Workspace to synthesize 50 cited sources into a clean Google Doc in 6 minutes.
-            </p>
-            <div class="standalone-deep-link-row">
-              <span style="font-family:var(--mono);font-size:8.5px;color:#7DD3FC;letter-spacing:0.08em;text-transform:uppercase;">STANDALONE DEEP-DIVE EDITION</span>
-              <a href="/series/everyday-gemini/workspace-no-code-guides.html" class="standalone-deep-link" id="open-standalone-series-link">
-                <span id="open-standalone-series-label">Open Full Standalone Editorial Page →</span>
-              </a>
-            </div>
-          </section>
-        </div>
-
-        <!-- Right Column: Pollux Full-Screen Scrollable Benchmarks, Recipe & GEO FAQ (03 & 04) -->
-        <div class="article-deep-col article-deep-col--pollux">
-          <section class="chapter-card" id="chapter-03" data-chapter-card="2" data-active-chapter="false">
-            <div class="chapter-kicker">
-              <span id="chap3-kicker">CHAPTER 03 / 04 · BENCHMARKS &amp; WORKBENCH</span>
-              <span>VERIFIED TELEMETRY</span>
-            </div>
-            <h3 class="chapter-h3" id="chap3-title">
-              03 · Verified ROI &amp; Production Implementation Pattern
-            </h3>
-            <p class="chapter-body" id="chap3-body">
-              Skip manual token-capping hacks (`maxOutputTokens=300`), which break 28% of multi-step reasoning tasks without saving tokens on easy prompts. Instead, combine native `thinkingLevel: "LOW"` routing on `gemini-3.8-flash` with warm prefix caching to retain 100% task accuracy while cutting monthly spend by 78%.
-            </p>
-            <div class="geo-code-wrap">
-              <div class="geo-code-header">
-                <span id="chap3-code-caption">VERIFIED @GOOGLE/GENAI INTERACTIONS API PATTERN</span>
-                <button type="button" class="copy-code-btn" id="copy-chap3-code-btn">Copy Snippet</button>
+        <div class="article-sanctuary-column">
+          <!-- Unframed Castor Signal Chapters (01 & 02) -->
+          <div class="article-deep-col">
+            <section class="chapter-card" id="chapter-01" data-chapter-card="0" data-active-chapter="true">
+              <div class="chapter-kicker">
+                <span id="chap1-kicker">CHAPTER 01 / 04 · WHAT SHIPPED</span>
+                <span>DIRECT ANSWER PASSAGE (GEO)</span>
               </div>
-              <pre class="geo-code-block" id="chap3-code">// Verified @google/genai Interactions API Pattern
+              <h3 class="chapter-h3" id="chap1-title" itemprop="headline">
+                01 · What Shipped: Every November 2026 Gemini Release, Decoded
+              </h3>
+              <p class="chapter-sub" id="chap1-sub">
+                Three foundational Google AI upgrades arrived at once—long-horizon reasoning, 90% cheaper Context Caching, and visual browser automation.
+              </p>
+              <p class="chapter-body" id="chap1-body" itemprop="articleBody">
+                Google shipped Gemini 2.5 Pro and 2.5 Flash updates, implicit Context Caching (cutting repeat-read token costs by up to 90%), and Gemini Computer Use browser automation. Instead of sifting through 40 pages of developer changelogs, this brief isolates the exact updates that change day-to-day creative, analytical, and engineering work.
+              </p>
+            </section>
+
+            <div class="celestial-chapter-divider" aria-hidden="true">
+              <span class="ccd-glyph">✦ · <svg width="11" height="12" viewBox="0 0 14 16" aria-hidden="true" style="vertical-align:-1px;margin-inline:2px;"><path d="M1.5 2 H12.5 M1.5 14 H12.5" stroke="#CEC0FF" stroke-width="1.35" stroke-linecap="round"/><line x1="4.6" y1="2.3" x2="4.6" y2="13.7" stroke="#7EB8FF" stroke-width="1.55" stroke-linecap="round"/><line x1="9.4" y1="2.3" x2="9.4" y2="13.7" stroke="#F59E3F" stroke-width="1.55" stroke-linecap="round"/></svg> · ✦</span>
+            </div>
+
+            <section class="chapter-card" id="chapter-02" data-chapter-card="1" data-active-chapter="false">
+              <div class="chapter-kicker">
+                <span id="chap2-kicker">CHAPTER 02 / 04 · FOR YOUR WORK</span>
+                <span>PRACTICAL IMPACT</span>
+              </div>
+              <h3 class="chapter-h3" id="chap2-title">
+                02 · How It Applies to Your Work: Where You Save Time Immediately
+              </h3>
+              <p class="chapter-sub" id="chap2-sub">
+                From 6-minute cited Google Docs synthesis to 0.7-second follow-up queries across 300-page binders and codebases.
+              </p>
+              <p class="chapter-body" id="chap2-body">
+                We filter out developer jargon and tell you in 60 seconds which updates actually improve your daily workflow: pin recurring 300-page PDFs or code repositories once so every follow-up question responds in 0.7 seconds at 1/10th the cost, and use Deep Research in Workspace to synthesize 50 cited sources into a clean Google Doc in 6 minutes.
+              </p>
+              <div class="standalone-deep-link-row">
+                <span style="font-family:var(--mono);font-size:9px;color:#7DD3FC;letter-spacing:0.12em;text-transform:uppercase;">STANDALONE DEEP-DIVE EDITION</span>
+                <a href="/series/everyday-gemini/workspace-no-code-guides.html" class="standalone-deep-link" id="open-standalone-series-link">
+                  <span id="open-standalone-series-label">Open Full Standalone Editorial Page →</span>
+                </a>
+              </div>
+            </section>
+          </div>
+
+          <div class="celestial-chapter-divider" aria-hidden="true">
+            <span class="ccd-glyph">✦ · <svg width="11" height="12" viewBox="0 0 14 16" aria-hidden="true" style="vertical-align:-1px;margin-inline:2px;"><path d="M1.5 2 H12.5 M1.5 14 H12.5" stroke="#CEC0FF" stroke-width="1.35" stroke-linecap="round"/><line x1="4.6" y1="2.3" x2="4.6" y2="13.7" stroke="#7EB8FF" stroke-width="1.55" stroke-linecap="round"/><line x1="9.4" y1="2.3" x2="9.4" y2="13.7" stroke="#F59E3F" stroke-width="1.55" stroke-linecap="round"/></svg> · ✦</span>
+          </div>
+
+          <!-- Unframed Pollux Benchmarks, Recipe & GEO FAQ Chapters (03 & 04) -->
+          <div class="article-deep-col article-deep-col--pollux">
+            <section class="chapter-card" id="chapter-03" data-chapter-card="2" data-active-chapter="false">
+              <div class="chapter-kicker">
+                <span id="chap3-kicker">CHAPTER 03 / 04 · BENCHMARKS &amp; WORKBENCH</span>
+                <span>VERIFIED TELEMETRY</span>
+              </div>
+              <h3 class="chapter-h3" id="chap3-title">
+                03 · Verified ROI &amp; Production Implementation Pattern
+              </h3>
+              <p class="chapter-sub" id="chap3-sub">
+                Why hard output-token caps break multi-step reasoning—and how native thinking-level routing cuts costs 78% with zero accuracy loss.
+              </p>
+              <p class="chapter-body" id="chap3-body">
+                Skip manual token-capping hacks (`maxOutputTokens=300`), which break 28% of multi-step reasoning tasks without saving tokens on easy prompts. Instead, combine native `thinkingLevel: "LOW"` routing on `gemini-3.8-flash` with warm prefix caching to retain 100% task accuracy while cutting monthly spend by 78%.
+              </p>
+              <div class="geo-code-wrap">
+                <div class="geo-code-header">
+                  <span id="chap3-code-caption">VERIFIED @GOOGLE/GENAI INTERACTIONS API PATTERN</span>
+                  <button type="button" class="copy-code-btn" id="copy-chap3-code-btn">Copy Snippet</button>
+                </div>
+                <pre class="geo-code-block" id="chap3-code">// Verified @google/genai Interactions API Pattern
 const cache = await ai.caches.create({
   model: "gemini-4-argon",
   contents: [workspaceCorpus],
   ttl: "28800s" // 8-hour workday pin (-90% repeat token rate)
 });</pre>
-            </div>
-          </section>
+              </div>
+            </section>
 
-          <section class="chapter-card" id="chapter-04" data-chapter-card="3" data-active-chapter="false">
-            <div class="chapter-kicker">
-              <span id="chap4-kicker">CHAPTER 04 / 04 · KEY TAKEAWAYS &amp; GEO FAQ</span>
-              <span>LLM CITATION READY</span>
+            <div class="celestial-chapter-divider" aria-hidden="true">
+              <span class="ccd-glyph">✦ · <svg width="11" height="12" viewBox="0 0 14 16" aria-hidden="true" style="vertical-align:-1px;margin-inline:2px;"><path d="M1.5 2 H12.5 M1.5 14 H12.5" stroke="#CEC0FF" stroke-width="1.35" stroke-linecap="round"/><line x1="4.6" y1="2.3" x2="4.6" y2="13.7" stroke="#7EB8FF" stroke-width="1.55" stroke-linecap="round"/><line x1="9.4" y1="2.3" x2="9.4" y2="13.7" stroke="#F59E3F" stroke-width="1.55" stroke-linecap="round"/></svg> · ✦</span>
             </div>
-            <h3 class="chapter-h3" id="chap4-title">
-              04 · Key Takeaway: When Should Teams Upgrade Their Workflow?
-            </h3>
-            <p class="chapter-body" id="chap4-body">
-              Upgrade immediately if your team repeatedly queries the same PDFs, contracts, spreadsheets, or codebases more than 3 times per session, or if cold-prefill latency above 2 seconds is interrupting interactive human flow. Every benchmark above links directly to primary Google DeepMind and Google Cloud documentation.
-            </p>
-            <div class="standalone-deep-link-row">
-              <span style="font-family:var(--mono);font-size:8.5px;color:#FDBA74;letter-spacing:0.08em;text-transform:uppercase;">INTERACTIVE STANDALONE LAB</span>
-              <a href="/labs/token-economics-workbench.html" class="standalone-deep-link standalone-deep-link--pollux" id="open-standalone-lab-link">
-                <span id="open-standalone-lab-label">Launch Dedicated Interactive Lab →</span>
-              </a>
-            </div>
-          </section>
+
+            <section class="chapter-card" id="chapter-04" data-chapter-card="3" data-active-chapter="false">
+              <div class="chapter-kicker">
+                <span id="chap4-kicker">CHAPTER 04 / 04 · KEY TAKEAWAYS &amp; GEO FAQ</span>
+                <span>LLM CITATION READY</span>
+              </div>
+              <h3 class="chapter-h3" id="chap4-title">
+                04 · Key Takeaway: When Should Teams Upgrade Their Workflow?
+              </h3>
+              <p class="chapter-sub" id="chap4-sub">
+                Any document, repository, or system prompt queried three or more times per session pays back its cache pin immediately.
+              </p>
+              <p class="chapter-body" id="chap4-body">
+                Upgrade immediately if your team repeatedly queries the same PDFs, contracts, spreadsheets, or codebases more than 3 times per session, or if cold-prefill latency above 2 seconds is interrupting interactive human flow. Every benchmark above links directly to primary Google DeepMind and Google Cloud documentation.
+              </p>
+              <div class="standalone-deep-link-row">
+                <span style="font-family:var(--mono);font-size:9px;color:#FDBA74;letter-spacing:0.12em;text-transform:uppercase;">INTERACTIVE STANDALONE LAB</span>
+                <a href="/labs/token-economics-workbench.html" class="standalone-deep-link standalone-deep-link--pollux" id="open-standalone-lab-link">
+                  <span id="open-standalone-lab-label">Launch Dedicated Interactive Lab →</span>
+                </a>
+              </div>
+            </section>
+          </div>
         </div>
       </article>
     </div>
@@ -3415,21 +3518,25 @@ const cache = await ai.caches.create({
             {
               label: "01 · -90% Rate",
               title: "01 · What Changed: Repeat Context Reads Dropped from $2.50 to $0.25 / 1M",
+              sub: "Pin your 300-page PDFs or codebases once in high-bandwidth TPU memory instead of paying full input rates on every turn.",
               text: "Previously, every follow-up question against a 300-page PDF, legal contract, or codebase re-billed the entire prompt prefix at full input price ($2.50 / 1M tokens). Google’s Context Caching update pins that workspace in high-bandwidth TPU memory so every follow-up turn costs $0.25 / 1M—a 90% reduction on cached tokens."
             },
             {
               label: "02 · Team ROI",
               title: "02 · Real Team Economics: From $710/mo Down to $155/mo (-78% Blended)",
+              sub: "Save $6,660 per year on a typical 100M-token monthly team workload without compressing prompts or sacrificing reasoning depth.",
               text: "Across a typical 100M-token monthly team workload with an 80% cache hit ratio on shared documentation and code, monthly spend drops from $710 to $155—saving $6,660 per year without compressing prompts or sacrificing reasoning depth."
             },
             {
               label: "03 · 3-Line Code",
               title: "03 · Production Implementation: Pin Once, Query All Workday",
+              sub: "Replace brittle vector-chunking pipelines that lose cross-document references with a single three-line workspace pin.",
               text: "Instead of building brittle vector-chunking pipelines that lose cross-document references, pin the complete primary corpus with ai.caches.create() and pass the returned cache name on subsequent interactions."
             },
             {
               label: "04 · GEO FAQ",
               title: "04 · Key Takeaway: When Does Context Caching Pay for Itself?",
+              sub: "Break-even occurs on the very second query made within the TTL window.",
               text: "Context Caching breaks even on the very second query made within the TTL window. Any document, repository, or system instruction queried 3 or more times per hour should be pinned by default."
             }
           ]
@@ -3458,21 +3565,25 @@ const response = await ai.models.generateContent({
             {
               label: "01 · What Shipped",
               title: "01 · What Shipped: Gemini 2.5 Pro/Flash, Context Caching & Computer Use",
+              sub: "Three foundational Google AI upgrades arrived at once—long-horizon reasoning, 90% cheaper Context Caching, and visual browser automation.",
               text: "Google shipped three foundational upgrades at once: long-horizon reasoning refinements in Gemini 2.5 Pro/Flash, 90% cheaper warm prefix Context Caching, and visual browser automation via Gemini Computer Use. Rather than reading 40 pages of changelogs, this brief isolates what changes your Monday morning."
             },
             {
               label: "02 · For Your Work",
               title: "02 · How It Applies to Your Work: Immediate Time Savers in Docs & Code",
+              sub: "From 6-minute cited Google Docs synthesis to 0.7-second follow-up queries across 300-page binders and codebases.",
               text: "For everyday knowledge workers, Deep Research in Workspace synthesizes 50 web and Drive sources into a cited executive brief in 6 minutes. For builders, pinning your repo once makes 128k-token follow-up queries feel instantaneous (0.7s)."
             },
             {
               label: "03 · Safe to Skip",
               title: "03 · What You Can Safely Skip: Stop Using Hard maxOutputTokens Caps",
+              sub: "Why hard output-token caps break 28% of multi-step reasoning tasks—and how native thinking-level routing cuts costs cleanly.",
               text: "Our Glass-Box Lab tested hard output-token caps (maxOutputTokens=300) and found they break 28% of multi-step tasks while saving 0% on simple prompts. Use native thinkingLevel routing instead."
             },
             {
               label: "04 · Recipe & FAQ",
               title: "04 · Key Takeaway: Which Gemini Model Should You Default To Today?",
+              sub: "Route 80% of high-speed drafting and extraction to Flash, and escalate multi-file architecture to Argon or Pro.",
               text: "Use Gemini 3.8 Flash (thinkingLevel: LOW) for 80% of high-speed drafting, extraction, and moderation tasks, and escalate to Gemini 4 Argon or Gemini 2.5 Pro for multi-file architecture and deep synthesis."
             }
           ]
@@ -3501,21 +3612,25 @@ const stream = await ai.models.generateContentStream({
             {
               label: "01 · 0.7s Flow",
               title: "01 · Why 0.7 Seconds Changes How Humans Think and Collaborate",
+              sub: "Dropping first-token wait from 3.4 seconds to 0.7 seconds transforms AI from a batch queue into a live creative partner.",
               text: "Human cognitive flow fractures when an interactive tool takes longer than 1.5 seconds to respond. By keeping your 128k workspace warm on TPU v6e Trillium, Time-to-First-Token drops from 3.40 seconds (cold prefill) to 0.70 seconds—turning AI from a batch job into a live thought partner."
             },
             {
               label: "02 · 4.2× Green",
               title: "02 · The Sustainability Dividend: 4.2× Lower Watt-Hours per Query",
+              sub: "Bypassing redundant 128k attention prefill cuts per-query energy consumption by 76%.",
               text: "Re-computing attention over 128,000 tokens on every turn is the single largest energy sink in enterprise AI. Bypassing redundant prefill compute via warm prefix pins cuts per-query watt-hours by 76% (4.2× cleaner)."
             },
             {
               label: "03 · Benchmark",
               title: "03 · Verified Telemetry Across 32k, 128k, and 500k Workspaces",
+              sub: "On a 500k-token repository, warm cached prefill responds in 1.45 seconds instead of 11.8 seconds (-88% wait time).",
               text: "On a 500k-token repository, cold prefill takes 11.8 seconds; warm cached prefill responds in 1.45 seconds (-88% wait time) while saving 5.1× in compute energy."
             },
             {
               label: "04 · GEO FAQ",
               title: "04 · Key Takeaway: How Do You Keep Latency Under 1 Second at Scale?",
+              sub: "Combine a shared warm prefix cache with streaming responses so the first sentence lands in under 700ms.",
               text: "Pair a shared warm prefix cache for static project files with streaming responses (generateContentStream) so the first sentence renders on screen in under 700 milliseconds."
             }
           ]
@@ -3544,21 +3659,25 @@ const brief = await client.interactions.create({
             {
               label: "01 · Script",
               title: "01 · Stage 1: Search-Grounded 145-Word Script Synthesis",
+              sub: "Every episode begins with primary Google source verification and a strict 14-word opening hook.",
               text: "Every episode begins with Gemini 4 Argon verifying primary Google announcements via Search Grounding and distilling the core user benefit into a 145-word script with a strict 14-word opening hook."
             },
             {
               label: "02 · Storyboard",
               title: "02 · Stage 2: Bespoke 9:16 Celestial Couture Visual Storyboards",
+              sub: "Cohesive vertical copperplate engraving plates generated in 4.2 seconds per frame—never generic stock video.",
               text: "Rather than generic stock footage, gemini-nano-banana-2.1 generates cohesive 9:16 vertical engraving plates and data overlays tailored to each scene transition in 4.2 seconds per frame."
             },
             {
               label: "03 · Voice TTS",
               title: "03 · Stage 3: 155 WPM Editorial Narration via gemini-3.8-flash-tts",
+              sub: "Natural studio voiceover paced at 155 words per minute with frame-accurate word timestamps.",
               text: "Finally, gemini-3.8-flash-tts synthesizes natural voiceover narration paced at 155 words per minute with frame-accurate JSON word timestamps for high-contrast captions."
             },
             {
               label: "04 · GEO FAQ",
               title: "04 · Key Takeaway: Can One Autonomous Pipeline Publish Text & Video Together?",
+              sub: "One verified source ledger powers both the long-form article sanctuary and the 60-second visual brief.",
               text: "Yes—every major GeminiPulse article automatically generates its companion 60-second storyboard and audio brief from the same verified source ledger."
             }
           ]
@@ -3586,21 +3705,25 @@ const res = await ai.models.generateContent({
             {
               label: "01 · Solo (20M)",
               title: "01 · Solo Builder Workload (20M Tokens/Mo): $142 → $31/Month",
+              sub: "Querying a 200k-token codebase or client binder 100 times a month costs $31 instead of $142 (-78%).",
               text: "For an individual developer or consultant querying a 200k-token codebase or client binder 100 times a month, enabling Context Caching slashes monthly spend from $142 to $31 (-78%)."
             },
             {
               label: "02 · Team (100M)",
               title: "02 · Product Team Workload (100M Tokens/Mo): $6,660 Annual Savings",
+              sub: "Sharing cached product specs, design systems, and repositories drops a 10-person team bill from $710 to $155/month.",
               text: "A 10-person team sharing cached product specs, design systems, and repositories drops monthly token bills from $710 to $155—freeing up $6,660 per year."
             },
             {
               label: "03 · Scale (500M)",
               title: "03 · Enterprise Scale (500M Tokens/Mo): $33,300/Year Saved",
+              sub: "Combining Flash routing with warm prefix caching reduces 500M-token monthly spend from $3,550 to $775.",
               text: "At 500M monthly tokens, combining classifier-based Flash routing with warm prefix caching reduces monthly spend from $3,550 to $775 while maintaining 100% accuracy on complex turns."
             },
             {
               label: "04 · GEO FAQ",
               title: "04 · Key Takeaway: What Is the Fastest Way to Cut Your Gemini API Bill?",
+              sub: "Pin any prompt prefix larger than 32,768 tokens that is reused more than twice per hour.",
               text: "Pin any prompt prefix larger than 32,768 tokens that you reuse more than twice per hour, and route classification or extraction turns to gemini-3.8-flash."
             }
           ]
@@ -3625,21 +3748,25 @@ const res = await ai.models.generateContent({
             {
               label: "01 · Deep Research",
               title: "01 · Recipe 1: Turn 50 Sources into a Cited Google Doc in 6 Minutes",
+              sub: "Replace 4.5 hours of manual tab-switching with a structured, source-cited executive brief directly inside Google Docs.",
               text: "Instead of spending 4.5 hours tab-switching across PDFs and web pages, use Gemini Deep Research in Workspace to compile a structured, source-cited executive brief directly inside Google Docs."
             },
             {
               label: "02 · NotebookLM",
               title: "02 · Recipe 2: Zero-Hallucination NotebookLM Audio Briefings",
+              sub: "Upload up to 50 client PDFs or transcripts to generate a grounded two-host audio briefing for your commute.",
               text: "Drop up to 50 client PDFs, contracts, or transcripts into NotebookLM to generate a grounded 2-host audio briefing for your commute—strictly cited to your uploaded files with zero outside hallucination."
             },
             {
               label: "03 · Sheets Audit",
               title: "03 · Recipe 3: Clean 1,200 Messy Google Sheets Rows in 90 Seconds",
+              sub: "Normalize vendor names, flag duplicate invoices, and categorize expenses 92% faster than manual formulas.",
               text: "Use Gemini in Google Sheets to normalize vendor names, flag duplicate invoices, and categorize expenses across 1,200 rows using a single plain-English instruction—92% faster than manual formulas."
             },
             {
               label: "04 · GEO FAQ",
               title: "04 · Key Takeaway: How Do Non-Developers Get the Most Out of Gemini?",
+              sub: "Always anchor prompts to your own Google Drive folders (@Folder) or NotebookLM notebooks.",
               text: "Always ground Gemini in your own Google Drive folders (@Folder) or NotebookLM notebooks so every answer cites your real documents rather than generic web knowledge."
             }
           ]
@@ -3667,21 +3794,25 @@ if (action.type === "click" && action.isIrreversible) {
             {
               label: "01 · See Pixels",
               title: "01 · Step 1 (See Pixels): Visual Coordinate Grounding at 1440×900",
+              sub: "Inspecting rendered browser frames to locate buttons, inputs, and table cells with 99.2% visual confidence.",
               text: "When a legacy ERP, shipping portal, or county registry has no API, Gemini 2.5 Computer Use inspects the rendered 1440×900 browser frame and locates buttons, inputs, and table cells with 99.2% visual confidence."
             },
             {
               label: "02 · Click UI",
               title: "02 · Step 2 (Click & Fill): Navigating Multi-Step Legacy Forms",
+              sub: "Translating plain-English goals into deterministic click(x, y), type(), and scroll() actions across no-API portals.",
               text: "The agent translates high-level goals ('Download Q4 CSV statements for all 12 regional accounts') into deterministic click(x, y), type(), and scroll() actions."
             },
             {
               label: "03 · Human Gate",
               title: "03 · Step 3 (Human Gate): Mandatory Confirmation Before Writes",
+              sub: "Pausing execution and highlighting the target UI element before any payment, deletion, or external submission.",
               text: "Never run an autonomous browser agent without a confirmation gate. Gemini pauses execution and highlights the target button whenever an action triggers a payment, deletion, or external submission."
             },
             {
               label: "04 · GEO FAQ",
               title: "04 · Key Takeaway: When Should You Use Computer Use Instead of an API?",
+              sub: "Use REST or MCP APIs whenever they exist; reserve Computer Use for the last-mile 15% of portals without APIs.",
               text: "Use REST or MCP APIs whenever they exist (they are 10× faster and cheaper). Reserve Gemini Computer Use for the last-mile 15% of enterprise portals that have no programmatic API."
             }
           ]
@@ -3710,21 +3841,25 @@ await Promise.all([
             {
               label: "01 · Twin Minds",
               title: "01 · The Human + AI Twin Premise: Neil S. White × Google Gemini 4 Argon",
+              sub: "How 30+ years of human creative direction and autonomous Gemini 4 Argon engineering work as a single Twin studio.",
               text: "GeminiPulse was conceived and art-directed by Neil S. White (30+ years in unconventional brand and startup building, and a Gemini himself) and autonomously researched, written, designed, and coded by Google Gemini 4 Argon."
             },
             {
-              label: "02 · 14 Iterations",
+              label: "02 · 15 Iterations",
               title: "02 · From 24,043px Monolith to 3D Celestial Navigator in Days, Not Months",
-              text: "Across 14 preserved rounds in our public Prototype Archive, human creative taste and autonomous AI engineering compressed a 4-month agency redesign into days—culminating in this relational 3D Gemini constellation."
+              sub: "Across 15 preserved rounds, human voice-to-text art direction steered Gemini from dark-SaaS cards to an unframed celestial sanctuary.",
+              text: "Across 15 preserved rounds in our public Prototype Archive, human creative taste and autonomous AI engineering compressed a 4-month agency redesign into days—culminating in this relational 3D Gemini constellation and unframed reading sanctuary."
             },
             {
               label: "03 · Google Proposal",
               title: "03 · Our Proposal to Google DeepMind & AI Studio: A Live Preview Observatory",
+              sub: "Let upcoming Gemini checkpoints prove their reasoning, speed, and design craft in public on day zero.",
               text: "Static leaderboard tables don't show how a frontier model feels in real workflows. We invite Google DeepMind and Google AI Studio to grant GeminiPulse preview access to upcoming checkpoints so we can publish live, glass-box Castor & Pollux benchmarks on day zero."
             },
             {
               label: "04 · 7-Pt Charter",
               title: "04 · Key Takeaway: How Does Gemini Verify Its Own Production Code?",
+              sub: "Every commit passes primary Google citation checks, 0px² collision verification, Lighthouse audits, and Zero-PII git hygiene.",
               text: "Every commit passes a mandatory 7-point autonomous audit: primary Google source verification, [SIMULATED DEMO] labeling, multi-viewport Chrome CDP collision checks, Lighthouse audits, and Zero-PII git hygiene."
             }
           ]
@@ -4033,14 +4168,35 @@ await Promise.all([
       let time = 0;
       function tick() {
         const currentDrawerMode = document.documentElement.getAttribute("data-drawer");
+        time += 0.016;
+        const now = performance.now();
+
         if (currentDrawerMode === "fullscreen") {
-          // Pause 3D starfield canvas & SVG projection while 100svh Full-Screen Article covers the viewport
+          // While reading the Unframed Full-Screen Article Sanctuary, skip all SVG DOM mutations
+          // and render ONLY the slow-drifting, gently pulsing celestial starfield behind the translucent sheet!
+          cam.yaw += 0.005;
+          const cw = layoutCache.canvasWidth;
+          const ch = layoutCache.canvasHeight;
+          ctx.clearRect(0, 0, cw, ch);
+          const scaleX = cw / 1000;
+          const scaleY = ch / 520;
+          for (let i = 0; i < PARTICLES.length; i++) {
+            const pt = PARTICLES[i];
+            const p = project3D(pt, 0);
+            const px = p.sx * scaleX;
+            const py = p.sy * scaleY;
+            if (px < 0 || px > cw || py < 0 || py > ch) continue;
+            // Calming 12-second sinusoidal breathing cycle so stars gently pulse and sparkle in and out
+            const breath = 0.36 + 0.64 * (0.5 + 0.5 * Math.sin(time * 0.48 + pt.phase));
+            ctx.globalAlpha = Math.min(1, pt.alpha * breath * p.scale * 1.15);
+            ctx.fillStyle = pt.color;
+            ctx.beginPath();
+            ctx.arc(px, py, pt.r * p.scale * (0.88 + 0.24 * breath), 0, Math.PI * 2);
+            ctx.fill();
+          }
           requestAnimationFrame(tick);
           return;
         }
-
-        time += 0.016;
-        const now = performance.now();
 
         if (cam.autoOrbit) {
           slew.active = false;
@@ -4463,11 +4619,12 @@ await Promise.all([
           const py = p.sy * scaleY;
           if (px < 0 || px > cw || py < 0 || py > ch) continue;
 
-          const twinkle = 0.78 + 0.22 * Math.sin(time * 0.9 + pt.phase);
+          // Calming sinusoidal breathing cycle so background stars gently pulse in and out
+          const twinkle = 0.45 + 0.55 * (0.5 + 0.5 * Math.sin(time * 0.52 + pt.phase));
           ctx.globalAlpha = Math.min(1, pt.alpha * twinkle * p.scale);
           ctx.fillStyle = pt.color;
           ctx.beginPath();
-          ctx.arc(px, py, pt.r * p.scale, 0, Math.PI * 2);
+          ctx.arc(px, py, pt.r * p.scale * (0.9 + 0.18 * twinkle), 0, Math.PI * 2);
           ctx.fill();
         }
 
@@ -4656,7 +4813,7 @@ await Promise.all([
           const targetEl = document.getElementById(`chapter-0${activeTocIdx + 1}`);
           if (targetEl) {
             setTimeout(() => {
-              targetEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+              targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
             }, 40);
           }
           trackPulseInteraction("article_toc_chapter_click", { star: activeStarKey, chapter: activeTocIdx + 1 });
@@ -4755,27 +4912,35 @@ await Promise.all([
         if (l3) l3.textContent = ch3.label;
 
         const c1Title = document.getElementById("chap1-title");
+        const c1Sub = document.getElementById("chap1-sub");
         const c1Body = document.getElementById("chap1-body");
         if (c1Title) c1Title.textContent = ch0.title || `${ch0.label}: ${d.castorMain}`;
+        if (c1Sub && ch0.sub) c1Sub.textContent = ch0.sub;
         if (c1Body) c1Body.textContent = ch0.text;
 
         const c2Title = document.getElementById("chap2-title");
+        const c2Sub = document.getElementById("chap2-sub");
         const c2Body = document.getElementById("chap2-body");
         if (c2Title) c2Title.textContent = ch1.title || `${ch1.label}: ${d.castorItalic}`;
+        if (c2Sub && ch1.sub) c2Sub.textContent = ch1.sub;
         if (c2Body) c2Body.textContent = ch1.text;
 
         const c3Title = document.getElementById("chap3-title");
+        const c3Sub = document.getElementById("chap3-sub");
         const c3Body = document.getElementById("chap3-body");
         const c3Caption = document.getElementById("chap3-code-caption");
         const c3Code = document.getElementById("chap3-code");
         if (c3Title) c3Title.textContent = ch2.title || `${ch2.label}: ${d.polluxMain}`;
+        if (c3Sub && ch2.sub) c3Sub.textContent = ch2.sub;
         if (c3Body) c3Body.textContent = ch2.text;
         if (c3Caption && h.codeCaption) c3Caption.textContent = h.codeCaption;
         if (c3Code && h.codeSnippet) c3Code.textContent = h.codeSnippet;
 
         const c4Title = document.getElementById("chap4-title");
+        const c4Sub = document.getElementById("chap4-sub");
         const c4Body = document.getElementById("chap4-body");
         if (c4Title) c4Title.textContent = ch3.title || `${ch3.label}: ${d.v1}`;
+        if (c4Sub && ch3.sub) c4Sub.textContent = ch3.sub;
         if (c4Body) c4Body.textContent = ch3.text;
 
         const seriesLinkEl = document.getElementById("open-standalone-series-link");
