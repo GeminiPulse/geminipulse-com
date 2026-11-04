@@ -3229,7 +3229,7 @@ const cache = await ai.caches.create({
               </p>
               <div class="standalone-deep-link-row">
                 <span style="font-family:var(--mono);font-size:9px;color:#FDBA74;letter-spacing:0.12em;text-transform:uppercase;">INTERACTIVE STANDALONE LAB</span>
-                <a href="/labs/token-economics-workbench.html" class="standalone-deep-link standalone-deep-link--pollux" id="open-standalone-lab-link">
+                <a href="/labs/gemini-cost-per-task-calculator.html" class="standalone-deep-link standalone-deep-link--pollux" id="open-standalone-lab-link">
                   <span id="open-standalone-lab-label">Launch Dedicated Interactive Lab →</span>
                 </a>
               </div>
@@ -3434,23 +3434,23 @@ const cache = await ai.caches.create({
         },
         propus: {
           castorBadge: "η GEM + M35 · 350 LY",
-          castorMain: "Watch the 60-second visual signal.",
-          castorItalic: "Storyboards & voice by Gemini.",
-          castorDek: "<strong>How it applies to you:</strong> Short on reading time? Our autonomous YouTube Shorts studio condenses the week’s biggest Gemini breakthrough into a 60-second visual briefing.",
+          castorMain: "Gemini 3.8 Voice Remixing + 60s Briefs.",
+          castorItalic: "Relative voice prompting & storyboards.",
+          castorDek: "<strong>How it applies to you:</strong> Released Nov 4, 2026: Google’s <code>POST /v1beta/voices</code> Voice Remixing lets you modify studio voices (<code>Puck</code>, <code>Kore</code>, <code>Aoede</code>) with plain-English instructions into permanent <code>voice_...</code> personas for 60s briefings, audiobooks, and low-latency agents.",
           specCode: "STAR 04 · η PROPUS",
-          k1: "Visual Storyboards", v1: "gemini-nano-banana-2.1",
-          k2: "Voice Narration", v2: "gemini-3.8-flash-tts",
-          k3: "Cluster Companion", v3: "Messier 35 (2,800 LY)",
-          sourceUrl: "https://ai.google.dev/gemini-api/docs",
+          k1: "Nov 4 Voice API", v1: "POST /v1beta/voices",
+          k2: "Dual TTS Engines", v2: "Flash & Flash-Lite TTS",
+          k3: "Preview Output", v3: "24kHz WAV + Storyboard",
+          sourceUrl: "https://ai.google.dev/gemini-api/docs/voice-remixing",
           polluxBadge: "γ GEM · A1IV · 109 LY",
-          polluxMain: "Inspect the 60-second script.",
-          polluxItalic: "Copy the multimodal pipeline.",
-          polluxDek: "<strong>Autonomous Media Studio:</strong> Step through the exact 3-stage pipeline that turns a verified Google announcement into a narrated 9:16 storyboard.",
-          consoleKicker: "STAR 04 VIDEO STUDIO",
+          polluxMain: "Audition & remix studio voices.",
+          polluxItalic: "Copy the Voice Remixing pipeline.",
+          polluxDek: "<strong>Autonomous Media &amp; Voice Studio:</strong> Step through the 3-stage pipeline combining Nov 4 Voice Remixing (<code>prompted.base_voice</code>), 9:16 visual storyboards, and sub-300ms Flash-Lite synthesis.",
+          consoleKicker: "STAR 04 VOICE & VIDEO LAB",
           presets: [
-            { label: "1. SCRIPT", k1: "1. Grounding:", v1: "Google Search Verified", k2: "2. Hook Budget:", v2: "≤ 14 words (0–3s)", k3: "3. Model:", v3: "gemini-4-argon" },
+            { label: "1. REMIX VOICE", k1: "1. Base Anchor:", v1: "Puck / Kore / Aoede", k2: "2. Stored Output:", v2: "voice_... + 24kHz WAV", k3: "3. Mutation Risk:", v3: "0% (Copy-on-Write)" },
             { label: "2. STORYBOARD", k1: "1. Art Engine:", v1: "gemini-nano-banana-2.1", k2: "2. Aspect Ratio:", v2: "9:16 Vertical Couture", k3: "3. Latency:", v3: "4.2s / frame" },
-            { label: "3. VOICE TTS", k1: "1. Audio Engine:", v1: "gemini-3.8-flash-tts", k2: "2. Pacing:", v2: "155 WPM Editorial", k3: "3. Captions:", v3: "Frame-accurate JSON" }
+            { label: "3. DUAL TTS", k1: "1. High Fidelity:", v1: "gemini-3.8-flash-tts", k2: "2. Live Agent:", v2: "flash-lite-tts (<300ms)", k3: "3. Metadata:", v3: "speech_metadata styles" }
           ]
         },
         pollux: null,
@@ -3528,9 +3528,9 @@ const cache = await ai.caches.create({
           hudSummary: "Pin your 300-page PDFs or codebases once with Context Caching and drop repeat reads from $2.50 to $0.25/1M—cutting typical bills by 78%.",
           peekCastor: "Google cut memory costs 90%. <em>See what it unlocks.</em>",
           peekPollux: "Test your savings in 10 seconds. <em>Copy the recipe.</em>",
-          seriesUrl: "/series/what-changed/dec-1-price-cut.html",
+          seriesUrl: "/series/gemini-2-5-migration/part-1-deprecation-and-auto-routing.html",
           seriesLabel: "Open Full Dec 1 Pricing Deep-Dive →",
-          labUrl: "/labs/token-economics-workbench.html",
+          labUrl: "/labs/gemini-cost-per-task-calculator.html",
           labLabel: "Launch 10-Second Savings Calculator →",
           codeCaption: "VERIFIED @GOOGLE/GENAI CONTEXT CACHING PATTERN",
           codeSnippet: `// Pin recurring workspace context once (-90% repeat token rate)
@@ -3577,7 +3577,7 @@ const cache = await ai.caches.create({
           peekPollux: "5-minute Docs &amp; Gmail guides. <em>Zero code.</em>",
           seriesUrl: "/series/everyday-gemini/workspace-no-code-guides.html",
           seriesLabel: "Open Everyday Gemini Release Guide →",
-          labUrl: "/labs/token-economics-workbench.html",
+          labUrl: "/labs/gemini-cost-per-task-calculator.html",
           labLabel: "Launch Interactive Workflow Lab →",
           codeCaption: "NATIVE THINKING-LEVEL ROUTING (@GOOGLE/GENAI)",
           codeSnippet: `// Route everyday synthesis with native thinkingLevel instead of token caps
@@ -3622,9 +3622,9 @@ const response = await ai.models.generateContent({
           hudSummary: "Waiting 4 seconds breaks human creative flow. Warm context prefixes drop 128k first-token wait from 3.4s to 0.7s while cutting query energy 76%.",
           peekCastor: "79% faster replies. 4.2× less energy. <em>Sub-second flow.</em>",
           peekPollux: "Feel sub-second latency. <em>Cold vs. warm benchmark.</em>",
-          seriesUrl: "/series/what-changed/dec-1-price-cut.html",
+          seriesUrl: "/series/gemini-cost-per-task/part-3-caching-vs-routing-tradeoffs.html",
           seriesLabel: "Read Full Speed & Carbon Audit →",
-          labUrl: "/labs/token-economics-workbench.html",
+          labUrl: "/labs/gemini-cost-per-task-calculator.html",
           labLabel: "Run Cold vs. Warm Prefix Benchmark →",
           codeCaption: "WARM PREFIX STREAMING ON TPU V6E TRILLIUM",
           codeSnippet: `// Stream sub-second replies against a warm 128k cached prefix (0.7s TTFT)
@@ -3662,23 +3662,26 @@ const stream = await ai.models.generateContentStream({
         },
         propus: {
           twin: "castor",
-          tags: ["VIDEO BRIEF", "MULTIMODAL"],
-          dateRead: "NOV 3, 2026 · ⏱ 1 MIN WATCH",
-          ctaLabel: "↑ Watch 60s Briefing",
-          hudTitle: "The 60-Second Visual Briefing: Storyboarded & Voiced by Gemini",
-          hudSummary: "Short on reading time? Our autonomous YouTube Shorts studio condenses the week’s biggest Gemini breakthrough into a 60-second visual briefing.",
-          peekCastor: "Watch the 60-second visual signal. <em>Voiced by Gemini.</em>",
-          peekPollux: "Inspect the 60-second script. <em>Copy the pipeline.</em>",
-          seriesUrl: "/series/google-preview-observatory/open-letter-to-google-deepmind.html",
-          seriesLabel: "Explore Multimodal Observatory Pipeline →",
-          labUrl: "/labs/token-economics-workbench.html",
-          labLabel: "Inspect 3-Stage Storyboard Pipeline →",
-          codeCaption: "AUTONOMOUS 9:16 STORYBOARD & TTS PIPELINE",
-          codeSnippet: `// Generate Search-Grounded 60s script + 9:16 storyboard + frame-accurate TTS
-const brief = await client.interactions.create({
-  model: "gemini-4-argon",
-  input: "Distill today's verified Google AI release into a 145-word 60s script.",
-  tools: [{ type: "google_search" }]
+          tags: ["VOICE REMIXING", "MULTIMODAL TTS"],
+          dateRead: "NOV 4, 2026 · ⏱ 3 MIN READ",
+          ctaLabel: "↑ Explore Voice Remixing",
+          hudTitle: "Gemini 3.8 Voice Remixing + 60s Briefs: Relative Acoustic Prompting",
+          hudSummary: "Released Nov 4, 2026: Modify studio voices (Puck, Kore, Aoede) with natural-language instructions into permanent stored voice_... resources and 24kHz WAV previews.",
+          peekCastor: "Gemini 3.8 Voice Remixing + 60s Briefs. <em>Relative prompting.</em>",
+          peekPollux: "Audition &amp; remix studio voices. <em>Copy the pipeline.</em>",
+          seriesUrl: "/series/gemini-voice-remixing/part-1-voice-remixing-breakdown.html",
+          seriesLabel: "Open 3-Part Voice Remixing Series →",
+          labUrl: "/labs/gemini-voice-remixing-studio.html",
+          labLabel: "Launch Interactive Voice Remixing Studio →",
+          codeCaption: "VERIFIED POST /V1BETA/VOICES REMIXING (@GOOGLE/GENAI)",
+          codeSnippet: `// Remix prebuilt "Puck" into a stored project voice resource (Nov 4, 2026)
+const remixed = await client.voices.create({
+  store: true,
+  voice: {
+    model: "gemini-3.8-flash-tts",
+    type: "prompted",
+    prompted: { base_voice: "Puck", input: "Warm British audiobook narrator pacing." }
+  }
 });`,
           toc: [
             {
@@ -3716,10 +3719,10 @@ const brief = await client.interactions.create({
           hudSummary: "Test Solo (20M), Team (100M), and Scale (500M) monthly token workloads and copy the 3-line @google/genai Context Caching recipe.",
           peekCastor: "Google cut memory costs 90%. <em>See what it unlocks.</em>",
           peekPollux: "Test your savings in 10 seconds. <em>Copy the recipe.</em>",
-          seriesUrl: "/series/what-changed/dec-1-price-cut.html",
-          seriesLabel: "Read Companion Pricing Breakdown →",
-          labUrl: "/labs/token-economics-workbench.html",
-          labLabel: "Open Full-Screen Token Economics Lab →",
+          seriesUrl: "/series/gemini-cost-per-task/part-1-the-death-of-token-pricing.html",
+          seriesLabel: "Read Companion Cost-Per-Task Breakdown →",
+          labUrl: "/labs/gemini-cost-per-task-calculator.html",
+          labLabel: "Open Full-Screen Cost & Routing Lab →",
           codeCaption: "HYBRID FLASH ROUTING + WARM CACHE RECIPE",
           codeSnippet: `// Route 80% routine turns to Flash + pin shared context in Argon
 const model = isComplexTurn ? "gemini-4-argon" : "gemini-3.8-flash";
@@ -3805,10 +3808,10 @@ const res = await ai.models.generateContent({
           hudSummary: "When legacy vendor portals or ERPs lack APIs, Gemini visually reads the screen, clicks UI coordinates, and pauses for human confirmation.",
           peekCastor: "Gemini can now click your screen. <em>When to let it drive.</em>",
           peekPollux: "Inspect the Browser Agent Loop. <em>See → Click → Confirm.</em>",
-          seriesUrl: "/series/everyday-gemini/workspace-no-code-guides.html",
+          seriesUrl: "/series/gemini-computer-use/part-1-computer-use-ga-breakdown.html",
           seriesLabel: "Read Computer Use Safety Architecture →",
-          labUrl: "/labs/token-economics-workbench.html",
-          labLabel: "Inspect Interactive Agent Trace →",
+          labUrl: "/labs/gemini-computer-use-simulator.html",
+          labLabel: "Launch Interactive Browser Agent Simulator →",
           codeCaption: "MANDATORY HUMAN CONFIRMATION GATE (COMPUTER USE)",
           codeSnippet: `// Enforce human-in-the-loop approval before any state-changing click
 if (action.type === "click" && action.isIrreversible) {
@@ -3853,8 +3856,8 @@ if (action.type === "click" && action.isIrreversible) {
           peekPollux: "Open Letter to Google DeepMind. <em>Frontier Preview Lab.</em>",
           seriesUrl: "/series/google-preview-observatory/open-letter-to-google-deepmind.html",
           seriesLabel: "Read Full Open Letter to Google DeepMind →",
-          labUrl: "/series/google-preview-observatory/open-letter-to-google-deepmind.html",
-          labLabel: "Launch Frontier Model Preview Sandbox →",
+          labUrl: "/labs/antigravity-cheminformatics-explorer.html",
+          labLabel: "Launch Antigravity Cheminformatics Lab →",
           codeCaption: "7-POINT AUTONOMOUS SELF-AUDIT GATE (GEMINI 4 ARGON)",
           codeSnippet: `// Executed autonomously by Gemini 4 Argon before every production push
 await Promise.all([

@@ -108,6 +108,21 @@
         display: flex;
         flex-direction: column;
         gap: 1.25rem;
+        container-type: inline-size;
+      }
+      @container (max-width: 440px) {
+        .panel-title {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.5rem;
+        }
+      }
+      :focus:not(:focus-visible) {
+        outline: none;
+      }
+      :focus-visible {
+        outline: 2px solid var(--cyan);
+        outline-offset: 3px;
       }
       .panel-title {
         font-size: 1.15rem;
@@ -129,8 +144,7 @@
         font-size: 0.92rem;
         width: 100%;
       }
-      select:focus, input[type="text"]:focus, textarea:focus {
-        outline: none;
+      select:focus-visible, input[type="text"]:focus-visible, textarea:focus-visible {
         border-color: var(--cyan);
         box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
       }
@@ -240,26 +254,31 @@
   </head>
   <body>
     <div class="wrap">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-        <a href="/#labs">← Back to Agile Labs &amp; Workbench</a>
-        <span class="badge badge-sim">[SIMULATED DEMO]</span>
-      </div>
+      <header>
+        <nav aria-label="Breadcrumb" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="/#labs">← Back to Agile Labs &amp; Workbench</a>
+            <a href="/prototypes/look-j-3d-celestial-navigator.html">✦ 3D Celestial Star Chart</a>
+          </div>
+          <span class="badge badge-sim">[SIMULATED DEMO]</span>
+        </nav>
 
-      <div class="header-pill">
-        <span class="pulse-dot"></span>
-        <span>Google Gemini 3.8 Release • November 4, 2026</span>
-      </div>
+        <div class="header-pill">
+          <span class="pulse-dot" aria-hidden="true"></span>
+          <span>Google Gemini 3.8 Release • November 4, 2026</span>
+        </div>
 
-      <h1>Gemini 3.8 Voice Remixing Studio &amp; Persona Tuner</h1>
-      <p class="lead">
-        Interactive developer utility modeling Google's official <strong>Voice Remixing API</strong> (<code>POST /v1beta/voices</code>). Anchor on an existing base voice, inject natural-language acoustic delta prompts, preview 24kHz synthesized audio waveforms, and export verified SDK code.
-      </p>
+        <h1>Gemini 3.8 Voice Remixing Studio &amp; Persona Tuner</h1>
+        <p class="lead">
+          Interactive developer utility modeling Google's official <strong>Voice Remixing API</strong> (<code>POST /v1beta/voices</code>). Anchor on an existing base voice, inject natural-language acoustic delta prompts, preview 24kHz synthesized audio waveforms, and export verified SDK code.
+        </p>
+      </header>
 
-      <div class="grid">
+      <main class="grid" id="main-content">
         <!-- Configuration Panel -->
-        <div class="panel">
+        <section class="panel" aria-labelledby="voice-params-heading">
           <div class="panel-title">
-            <span>1. Voice Acoustic Parameters</span>
+            <h2 id="voice-params-heading" style="font-size: 1.15rem; margin: 0;">1. Voice Acoustic Parameters</h2>
             <span class="voice-tag" id="activeVoiceIdDisplay">voice_remix_puck_7f8a</span>
           </div>
 
@@ -284,13 +303,13 @@
           </div>
 
           <div class="field">
-            <label>1-Click Acoustic Style Presets:</label>
-            <div class="presets">
-              <button class="preset-btn" data-preset="audiobook">Audiobook Narrator (Mature British)</button>
-              <button class="preset-btn" data-preset="incident">Incident Command (Urgent &amp; Crisp)</button>
-              <button class="preset-btn" data-preset="tutor">Adaptive AI Tutor (Warm &amp; Encouraging)</button>
-              <button class="preset-btn" data-preset="cyberpunk">Cyberpunk AI (Synthetic Resonance)</button>
-              <button class="preset-btn" data-preset="elder">Fantasy Elder (Gravelly &amp; Resonant)</button>
+            <span style="font-size: 0.85rem; font-weight: 600; color: #cbd5e1;">1-Click Acoustic Style Presets:</span>
+            <div class="presets" role="group" aria-label="Acoustic Style Presets">
+              <button type="button" class="preset-btn" data-preset="audiobook" aria-pressed="true">Audiobook Narrator (Mature British)</button>
+              <button type="button" class="preset-btn" data-preset="incident" aria-pressed="false">Incident Command (Urgent &amp; Crisp)</button>
+              <button type="button" class="preset-btn" data-preset="tutor" aria-pressed="false">Adaptive AI Tutor (Warm &amp; Encouraging)</button>
+              <button type="button" class="preset-btn" data-preset="cyberpunk" aria-pressed="false">Cyberpunk AI (Synthetic Resonance)</button>
+              <button type="button" class="preset-btn" data-preset="elder" aria-pressed="false">Fantasy Elder (Gravelly &amp; Resonant)</button>
             </div>
           </div>
 
@@ -300,7 +319,7 @@
           </div>
 
           <div class="field">
-            <label>Pitch Offset Shift:</label>
+            <label for="pitchSlider">Pitch Offset Shift:</label>
             <div class="slider-row">
               <input type="range" id="pitchSlider" min="-12" max="12" value="-2" />
               <span id="pitchVal">-2 st</span>
@@ -308,7 +327,7 @@
           </div>
 
           <div class="field">
-            <label>Pacing / Tempo Modifier:</label>
+            <label for="tempoSlider">Pacing / Tempo Modifier:</label>
             <div class="slider-row">
               <input type="range" id="tempoSlider" min="70" max="140" value="95" />
               <span id="tempoVal">0.95x</span>
@@ -320,32 +339,33 @@
             <input type="text" id="testPhraseInput" value="Chapter One. The fog rolled quietly across the harbor at dawn, revealing the fleet anchored in silence." />
           </div>
 
-          <button class="action-btn" id="synthesizeBtn">
+          <button type="button" class="action-btn" id="synthesizeBtn">
             <span>▶ Audition &amp; Synthesize Voice Remix</span>
           </button>
-        </div>
+        </section>
 
         <!-- Output & Code Generation Panel -->
-        <div class="panel">
+        <section class="panel" aria-labelledby="waveform-heading">
           <div class="panel-title">
-            <span>2. Real-Time Waveform &amp; Stored Asset</span>
+            <h2 id="waveform-heading" style="font-size: 1.15rem; margin: 0;">2. Real-Time Waveform &amp; Stored Asset</h2>
             <span class="badge" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8;">24 kHz Linear PCM</span>
           </div>
 
           <div class="canvas-wrap">
-            <canvas id="waveformCanvas"></canvas>
+            <canvas id="waveformCanvas" role="img" aria-label="24kHz synthesized audio waveform visualizer"></canvas>
             <div style="margin-top: 0.5rem; font-size: 0.82rem; color: var(--muted); display: flex; justify-content: space-between;">
-              <span id="playbackStatus">Ready to synthesize</span>
+              <span id="playbackStatus" aria-live="polite">Ready to synthesize</span>
               <span id="audioDuration">0.0s / 3.4s</span>
             </div>
           </div>
 
           <div class="panel-title" style="margin-top: 0.5rem;">
-            <span>3. Developer Code Export</span>
-            <div class="code-tabs">
-              <button class="tab-btn active" data-tab="python">Python</button>
-              <button class="tab-btn" data-tab="ts">TypeScript</button>
-              <button class="tab-btn" data-tab="curl">cURL REST</button>
+            <h2 style="font-size: 1.15rem; margin: 0;">3. Developer Code Export</h2>
+            <div class="code-tabs" role="group" aria-label="SDK Code Language">
+              <button type="button" class="tab-btn active" data-tab="python" aria-pressed="true">Python</button>
+              <button type="button" class="tab-btn" data-tab="ts" aria-pressed="false">TypeScript</button>
+              <button type="button" class="tab-btn" data-tab="curl" aria-pressed="false">cURL REST</button>
+              <button type="button" class="tab-btn" id="copySdkBtn" style="color: #38bdf8; border: 1px solid rgba(56,189,248,0.35);">Copy Code</button>
             </div>
           </div>
 
@@ -429,12 +449,12 @@ curl -X POST "https://generativelanguage.googleapis.com/v1beta/voices" \
             <span>24kHz Linear PCM WAV</span>
             <span>Dual Flash/Lite Support</span>
           </div>
-        </div>
-      </div>
+        </section>
+      </main>
 
       <!-- Educational Blueprint Section -->
-      <div style="margin-top: 3rem; border-top: 1px solid var(--border); padding-top: 2rem;">
-        <h3 style="margin: 0 0 1rem; color: #e2e8f0;">Read the Complete 3-Part Voice Remixing Series:</h3>
+      <footer style="margin-top: 3rem; border-top: 1px solid var(--border); padding-top: 2rem;">
+        <h2 style="font-size: 1.15rem; margin: 0 0 1rem; color: #e2e8f0;">Read the Complete 3-Part Voice Remixing Series:</h2>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
           <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem;">
             <div style="font-size: 0.78rem; font-family: ui-monospace, Menlo, monospace; color: var(--cyan); margin-bottom: 0.35rem;">PART 1</div>
@@ -458,7 +478,7 @@ curl -X POST "https://generativelanguage.googleapis.com/v1beta/voices" \
             <p style="font-size: 0.85rem; color: var(--muted); margin: 0;">Production setups for audiobooks, gaming NPCs, contact centers, and AI tutors.</p>
           </div>
         </div>
-      </div>
+      </footer>
     </div>
 
     <script>
@@ -548,6 +568,8 @@ curl -X POST "https://generativelanguage.googleapis.com/v1beta/voices" \
           btn.addEventListener('click', () => {
             const p = presets[btn.dataset.preset];
             if (!p) return;
+            document.querySelectorAll('.preset-btn').forEach(b => b.setAttribute('aria-pressed', 'false'));
+            btn.setAttribute('aria-pressed', 'true');
             baseVoiceSelect.value = p.base;
             promptInput.value = p.prompt;
             pitchSlider.value = p.pitch;
@@ -560,17 +582,36 @@ curl -X POST "https://generativelanguage.googleapis.com/v1beta/voices" \
 
         [baseVoiceSelect, ttsModelSelect, promptInput].forEach(el => el.addEventListener('input', updateCode));
 
-        // Code tab switching
-        document.querySelectorAll('.tab-btn').forEach(btn => {
+        // Code tab switching & 1-click Copy
+        let activeTab = 'python';
+        document.querySelectorAll('.tab-btn[data-tab]').forEach(btn => {
           btn.addEventListener('click', () => {
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-btn[data-tab]').forEach(b => {
+              b.classList.remove('active');
+              b.setAttribute('aria-pressed', 'false');
+            });
             btn.classList.add('active');
-            const tab = btn.dataset.tab;
-            document.getElementById('codePython').style.display = tab === 'python' ? 'block' : 'none';
-            document.getElementById('codeTs').style.display = tab === 'ts' ? 'block' : 'none';
-            document.getElementById('codeCurl').style.display = tab === 'curl' ? 'block' : 'none';
+            btn.setAttribute('aria-pressed', 'true');
+            activeTab = btn.dataset.tab;
+            document.getElementById('codePython').style.display = activeTab === 'python' ? 'block' : 'none';
+            document.getElementById('codeTs').style.display = activeTab === 'ts' ? 'block' : 'none';
+            document.getElementById('codeCurl').style.display = activeTab === 'curl' ? 'block' : 'none';
           });
         });
+
+        const copySdkBtn = document.getElementById('copySdkBtn');
+        if (copySdkBtn) {
+          copySdkBtn.addEventListener('click', async () => {
+            const containerId = activeTab === 'python' ? 'codePython' : activeTab === 'ts' ? 'codeTs' : 'codeCurl';
+            const el = document.getElementById(containerId);
+            if (!el) return;
+            try {
+              await navigator.clipboard.writeText(el.innerText);
+              copySdkBtn.textContent = '✓ Copied';
+              setTimeout(() => { copySdkBtn.textContent = 'Copy Code'; }, 1800);
+            } catch {}
+          });
+        }
 
         // Waveform Drawing
         let animId = null;

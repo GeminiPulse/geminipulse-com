@@ -1471,40 +1471,22 @@ export default function App() {
                     <span className="truncate">{item.groundedBy}</span>
                   </span>
                   <div className="flex flex-wrap items-center gap-2">
-                    {item.id === 'pulse-cost-per-task-classifier-routing' && (
+                    {item.seriesUrl && (
                       <a
-                        href="/series/gemini-cost-per-task/part-1-the-death-of-token-pricing.html"
-                        onClick={() => trackPulseEvent('release_series_jump', { from: 'cost_per_task_card' })}
-                        className="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/35 font-semibold whitespace-nowrap hover:bg-emerald-500/30 transition-colors"
-                      >
-                        3-Part Series &amp; Simulator →
-                      </a>
-                    )}
-                    {item.id === 'pulse-gemini-2-5-deprecation-routing' && (
-                      <a
-                        href="/series/gemini-2-5-migration/part-1-deprecation-and-auto-routing.html"
-                        onClick={() => trackPulseEvent('release_series_jump', { from: 'gemini_2_5_card' })}
-                        className="px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/35 font-semibold whitespace-nowrap hover:bg-amber-500/30 transition-colors"
-                      >
-                        3-Part Series →
-                      </a>
-                    )}
-                    {item.id === 'pulse-gemini-computer-use-ga' && (
-                      <a
-                        href="/series/gemini-computer-use/part-1-computer-use-ga-breakdown.html"
-                        onClick={() => trackPulseEvent('release_series_jump', { from: 'computer_use_card' })}
+                        href={item.seriesUrl}
+                        onClick={() => trackPulseEvent('release_series_jump', { from: item.id })}
                         className="px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-400/35 font-semibold whitespace-nowrap hover:bg-cyan-500/30 transition-colors"
                       >
-                        3-Part Series →
+                        {item.seriesLabel || '3-Part Series →'}
                       </a>
                     )}
-                    {item.id === 'pulse-gemini-4-carbon' && (
+                    {item.labUrl && (
                       <a
-                        href="#release-series"
-                        onClick={() => trackPulseEvent('release_series_jump', { from: 'pulse_card' })}
+                        href={item.labUrl}
+                        onClick={() => trackPulseEvent('release_lab_jump', { from: item.id })}
                         className="px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-400/35 font-semibold whitespace-nowrap hover:bg-purple-500/30 transition-colors"
                       >
-                        3-Part Series →
+                        {item.labLabel || 'Interactive Lab →'}
                       </a>
                     )}
                     <a
@@ -2189,8 +2171,8 @@ export default function App() {
                 <pre>{codeLang === 'ts' ? activeBlueprint.tsCode : activeBlueprint.pyCode}</pre>
               </div>
 
-              <div className="px-5 py-3.5 border-t border-[var(--md-sys-color-outline)] bg-[var(--md-sys-color-surface)] flex items-center justify-between gap-4">
-                <div className="text-xs m3-text-muted">
+              <div className="px-5 py-3.5 border-t border-[var(--md-sys-color-outline)] bg-[var(--md-sys-color-surface)] flex flex-wrap sm:flex-nowrap items-center justify-between gap-3">
+                <div className="text-xs m3-text-muted min-w-0 break-words">
                   <InlineCodeText text={activeBlueprint.description} />
                 </div>
                 <button

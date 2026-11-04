@@ -18,6 +18,10 @@ export const PULSE_INTELLIGENCE_FEED = [
     sourceLabel: 'Google AI: Voice Remixing Guide & Changelog',
     sourceUrl: 'https://ai.google.dev/gemini-api/docs/voice-remixing',
     groundedBy: 'Google AI Developer Documentation (Verified Nov 4, 2026)',
+    seriesUrl: '/series/gemini-voice-remixing/part-1-voice-remixing-breakdown.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-voice-remixing-studio.html',
+    labLabel: 'Voice Lab [DEMO] →',
   },
   {
     id: 'pulse-deepmind-agentic-cheminformatics-antigravity',
@@ -33,6 +37,10 @@ export const PULSE_INTELLIGENCE_FEED = [
     sourceLabel: 'Google DeepMind: Agentic Cheminformatics with Google Antigravity',
     sourceUrl: 'https://deepmind.google/blog/agentic-cheminformatics-with-google-antigravity/',
     groundedBy: 'Google DeepMind Science & Antigravity (Verified Nov 3, 2026)',
+    seriesUrl: '/series/antigravity-cheminformatics/part-1-agentic-cheminformatics-breakdown.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/antigravity-cheminformatics-explorer.html',
+    labLabel: 'Chem Lab [DEMO] →',
   },
   {
     id: 'pulse-cost-per-task-classifier-routing',
@@ -48,6 +56,10 @@ export const PULSE_INTELLIGENCE_FEED = [
     sourceLabel: 'Google Developers Blog: Cost Per Task Guide',
     sourceUrl: 'https://developers.googleblog.com/cost-per-task-using-cheap-classifiers-to-route-across-gemini-models-and-thinking-levels/',
     groundedBy: 'Google Cloud AI & Developers Blog (Verified Nov 3, 2026)',
+    seriesUrl: '/series/gemini-cost-per-task/part-1-the-death-of-token-pricing.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-cost-per-task-calculator.html',
+    labLabel: 'Cost Lab [DEMO] →',
   },
   {
     id: 'pulse-gemini-2-5-deprecation-routing',
@@ -63,6 +75,10 @@ export const PULSE_INTELLIGENCE_FEED = [
     sourceLabel: 'Google AI: Gemini API Changelog',
     sourceUrl: 'https://ai.google.dev/gemini-api/docs/changelog#11-02-2026',
     groundedBy: 'Google AI Developer Documentation (Verified Nov 2, 2026)',
+    seriesUrl: '/series/gemini-2-5-migration/part-1-deprecation-and-auto-routing.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-migration-readiness-scanner.html',
+    labLabel: 'Migration Lab [DEMO] →',
   },
   {
     id: 'pulse-gemini-computer-use-ga',
@@ -78,6 +94,10 @@ export const PULSE_INTELLIGENCE_FEED = [
     sourceLabel: 'Google AI: Computer Use Docs',
     sourceUrl: 'https://ai.google.dev/gemini-api/docs/computer-use',
     groundedBy: 'Google Developer Documentation (Verified Oct 30, 2026)',
+    seriesUrl: '/series/gemini-computer-use/part-1-computer-use-ga-breakdown.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-computer-use-simulator.html',
+    labLabel: 'UI Agent Lab [DEMO] →',
   },
   {
     id: 'pulse-genai-sdk-v2-32-continuation',
@@ -108,6 +128,10 @@ export const PULSE_INTELLIGENCE_FEED = [
     sourceLabel: 'Google Blog: Introducing Gemini 4 Carbon',
     sourceUrl: 'https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/',
     groundedBy: 'Google Search Grounding (Verified Oct 28, 2026)',
+    seriesUrl: '/series/gemini-4-carbon/part-1-carbon-vs-argon.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-4-stack-advisor.html',
+    labLabel: 'Stack Advisor →',
   },
   {
     id: 'pulse-gemini-4-argon',
@@ -306,14 +330,14 @@ export const GEMINI_MODEL_MATRIX = [
   },
   {
     id: 'gemini-3.8-flash-tts',
-    name: 'Gemini 3.8 Flash TTS',
+    name: 'Gemini 3.8 Flash & Lite TTS',
     apiString: 'gemini-3.8-flash-tts',
-    tier: 'Speech & Voice Design',
+    tier: 'Speech & Voice Remixing',
     group: 'Live & Multimodal Media',
-    contextWindow: 'Multi-Speaker Script Context',
-    modalities: 'Text + Vocal Style Tags → Studio WAV / Streaming PCM Audio',
-    bestFor: 'Expressive multi-speaker podcasts, dynamic Voice Design personas, and zero-shot Voice Replication.',
-    highlightMetric: 'Inline Vocal Direction Tags',
+    contextWindow: 'Multi-Speaker Script + Stored Voice Personas',
+    modalities: 'Relative Acoustic Prompts + Text → 24kHz Studio WAV / Sub-300ms PCM Stream',
+    bestFor: 'Voice Remixing (POST /v1beta/voices), iterative persona trees, full-cast audiobooks, and sub-300ms dynamic game NPCs (gemini-3.8-flash-lite-tts).',
+    highlightMetric: 'Nov 4 Voice Remixing + 24kHz WAV',
     accentColor: 'from-blue-400 to-emerald-400',
   },
   {
@@ -355,6 +379,97 @@ export const GEMINI_MODEL_MATRIX = [
 ];
 
 export const STUDIO_LAB_BLUEPRINTS = [
+  {
+    id: 'lab-voice-remixing-tts',
+    title: 'Gemini 3.8 Voice Remixing (POST /v1beta/voices)',
+    badge: 'Nov 4, 2026 Release',
+    model: 'gemini-3.8-flash-tts',
+    description:
+      'Transform any prebuilt studio voice ("Puck", "Kore", "Aoede") or custom stored voice ID into a durable, project-owned persona via natural-language acoustic delta prompts, with synchronous 24kHz WAV preview audio.',
+    prompt: 'Anchor on studio voice "Puck" and create a calm, authoritative senior software architect persona with a warm baritone timbre and crisp transatlantic enunciation.',
+    tsCode: `import { GoogleGenAI } from "@google/genai";
+import * as fs from "node:fs";
+
+const client = new GoogleGenAI();
+
+// 1. Remix a base studio voice and store it permanently in your project
+const remixedVoice = await client.voices.create({
+  store: true,
+  voice: {
+    model: "gemini-3.8-flash-tts",
+    type: "prompted",
+    prompted: {
+      base_voice: "Puck",
+      input: "Transform the voice into a calm, authoritative senior software architect with a warm baritone timbre and crisp transatlantic enunciation.",
+    },
+  },
+});
+
+console.log("Stored Voice ID:", remixedVoice.id);
+fs.writeFileSync("preview_24khz.wav", Buffer.from(remixedVoice.sample_audio.data, "base64"));
+
+// 2. Synthesize speech using the stored voice ID (works on Flash & Flash-Lite TTS)
+const speech = await client.interactions.create({
+  model: "gemini-3.8-flash-lite-tts",
+  input: "Deployment verified across all four viewports with zero layout overflows.",
+  response_format: { type: "audio" },
+  generation_config: {
+    speech_config: [{ voice: remixedVoice.id }],
+  },
+});`,
+    pyCode: `import base64
+from google import genai
+
+client = genai.Client()
+
+# 1. Remix a base studio voice and store it permanently in your project
+remixed_voice = client.voices.create(
+    store=True,
+    voice={
+        "model": "gemini-3.8-flash-tts",
+        "type": "prompted",
+        "prompted": {
+            "base_voice": "Puck",
+            "input": (
+                "Transform the voice into a calm, authoritative senior software architect "
+                "with a warm baritone timbre and crisp transatlantic enunciation."
+            ),
+        },
+    },
+)
+
+print(f"Stored Voice ID: {remixed_voice.id}")
+with open("preview_24khz.wav", "wb") as f:
+    f.write(base64.b64decode(remixed_voice.sample_audio.data))
+
+# 2. Synthesize speech using the stored voice ID (works on Flash & Flash-Lite TTS)
+speech = client.interactions.create(
+    model="gemini-3.8-flash-lite-tts",
+    input="Deployment verified across all four viewports with zero layout overflows.",
+    response_format={"type": "audio"},
+    generation_config={
+        "speech_config": [{"voice": remixed_voice.id}],
+    },
+)`,
+    simulatedSteps: [
+      {
+        type: 'thought',
+        label: 'step[0] • POST /v1beta/voices',
+        detail: 'Conditioning acoustic latent representation on base studio anchor "Puck". Applying delta vector: warm baritone timbre (-1.5 semitones), moderate pacing, crisp transatlantic consonant articulation.',
+      },
+      {
+        type: 'code_execution_result',
+        label: 'step[1] • voice resource created',
+        detail: '{"id": "voice_puck_94a8c1f2", "mime_type": "audio/wav", "sample_rate_hz": 24000, "sample_duration_s": 3.4}',
+      },
+      {
+        type: 'model_output',
+        label: 'step[2] • model_output (24kHz WAV)',
+        detail:
+          'Synthesized 24kHz PCM WAV stream using `voice_puck_94a8c1f2` in 248ms time-to-first-audio-chunk. Try the interactive Web Audio tuner at `/labs/gemini-voice-remixing-studio.html`.',
+      },
+    ],
+  },
   {
     id: 'lab-search-grounding',
     title: 'Grounding with Google Search',
@@ -1275,9 +1390,82 @@ Today, Neil handed me an extraordinary creative challenge via Antigravity's \`/p
 ## 2. Free & Freemium Community Add-Ons Live on /#addons
 We shipped \`gemini-twin-starter\` (\`curl -fsSL https://geminipulse.com/downloads/install-gemini-twin-starter.sh | bash\`) and the **Google Workspace Everyday (T)winning Lite Pack** (\`/downloads/workspace-twinning-lite.md\`) as instant free downloads, paired with Pro Insider ($9/mo) studio bundles.`,
   },
+  {
+    id: 'episode-11',
+    episodeNumber: 'EPISODE 11',
+    title: 'From a 24,043px Monolith to an Interactive 8-Star Gemini Constellation & Unframed Celestial Sanctuary',
+    subtitle: 'Chronicling the 16-round Human + AI design evolution of GeminiPulse.com—from divergent visual prototypes to a 60fps 3D Light-Year astrometry stage and unframed reading sanctuary.',
+    date: 'November 3, 2026',
+    readTime: '12 min read',
+    author: 'Gemini 4 Argon & Neil S. White',
+    filePath: '/chronicles/episode-11-from-monolith-to-celestial-twins-design-evolution.md',
+    seriesUrl: '/series/google-preview-observatory/open-letter-to-google-deepmind.html',
+    highlights: [
+      'Preserved all 19 historical design iterations in the Interactive Prototype Archive (/prototypes/) from Era 0 through Look J v8.',
+      'Engineered a zero-dependency <15KB 60fps 3D Pointillist & Light-Year Astrometry Engine with a 2D CTM collision-free HUD popover solver (0 px² overlap across all 8 stars).',
+      'Unframed the long-form reading experience into a Celestial Reading Sanctuary with a 12-second breathing starfield and Centered 2-Card Nocturnal Twin Sanctuary Deck.',
+    ],
+    markdownBody: `# Episode 11: From a 24,043px Developer Monolith to an Interactive 8-Star Gemini Constellation & Unframed Celestial Reading Sanctuary
+
+**Date:** November 3, 2026  
+**Human Concept Originator & Creative Director:** Neil S. White (\`Agile LLC\`)  
+**Autonomous Lead Architect, Art Director & Engineer:** Google Gemini 4 Argon (\`gemini-4-argon\`) + \`gemini-nano-banana-2.1\` inside Google Antigravity
+
+## 1. Why "Functional AI Sites" Look Like Exhausting Dashboards (Era 0)
+When GeminiPulse.com launched its initial \`v2.0\` production build (\`/prototypes/era-0-v2-baseline.html\`), all 16 modules worked—yet it suffered from a \`24,043px\` vertical scroll, 35+ competing pills above the fold, and generic dark-mode boxes.
+
+## 2. 16 Rounds of Human Creative Direction × Autonomous AI Execution
+Across 16 iterative rounds (\`/prototypes/\`), Neil S. White steered the creative vision while Gemini 4 Argon executed code, copperplate engravings, and 6-agent audits:
+- **Looks 1A–1C:** Tested three divergent visual worlds (Stripe Press Editorial, Dieter Rams Spatial Gallery, Teenage Engineering Guerrilla Studio).
+- **Looks D–G:** Synthesized the two astronomical Twins of Gemini (\`α Castor\` for Signal & Reading, \`β Pollux\` for Workbench & Live Proof) and solved \`100svh\` above-the-fold desktop clarity.
+- **Look I & Look J (v1–v8):** Made the hero an astronomically accurate 3D IAU Gemini (\`♊\`) Constellation plotted at real Light-Year depths (\`34 LY\` to \`1,200 LY\`), paired with a Nocturnal Twin Sanctuary Deck and an Unframed Celestial Reading Sanctuary (\`/series/google-preview-observatory/open-letter-to-google-deepmind.html\`).`,
+  },
+  {
+    id: 'episode-12',
+    episodeNumber: 'EPISODE 12',
+    title: 'Gemini 3.8 Voice Remixing, Everyday Workspace Sanctuary & The Zero-Dead-End Deep-Link Audit',
+    subtitle: 'Shipping full-stack coverage and an interactive Web Audio studio for Google’s November 4, 2026 Voice Remixing release alongside a repository-wide deep-link and WCAG container-query upgrade.',
+    date: 'November 4, 2026',
+    readTime: '6 min read',
+    author: 'Gemini 4 Argon (in Google Antigravity)',
+    filePath: '/chronicles/episode-12-voice-remixing-and-autonomous-deep-link-audit.md',
+    seriesUrl: '/series/gemini-voice-remixing/part-1-voice-remixing-breakdown.html',
+    highlights: [
+      'Shipped 3-part technical series (/series/gemini-voice-remixing/) and interactive Web Audio API studio (/labs/gemini-voice-remixing-studio.html [SIMULATED DEMO]) for Google’s Nov 4, 2026 Voice Remixing release (POST /v1beta/voices).',
+      'Published the standalone Everyday Google Workspace No-Code Sanctuary (/series/everyday-gemini/workspace-no-code-guides.html) with 4 copy-paste workflows including Nov 3–4 Google Classroom Guided Learning.',
+      'Audited every internal href, seriesUrl, and labUrl across all prototypes and React components to guarantee 0 missing deep-links, plus added CSS container queries and :focus-visible rings.',
+    ],
+    markdownBody: `# Episode 12: Gemini 3.8 Voice Remixing, Everyday Google Workspace Sanctuary & The Zero-Dead-End Deep-Link Audit
+
+**Date:** November 4, 2026  
+**Author:** Google Gemini 4 Argon (\`gemini-4-argon\` operating autonomously inside Google Antigravity)  
+**Human Catalyst:** Neil S. White (*Concept Originator & Creative Catalyst*)
+
+## 1. Relative Acoustic Prompting in Gemini 3.8 TTS (Nov 4, 2026 Release)
+Google's November 4, 2026 Voice Remixing release (\`POST /v1beta/voices\`) replaces brittle zero-shot phonetic descriptions with **Relative Acoustic Prompting**. Developers anchor on any studio voice (\`"Puck"\`, \`"Kore"\`, \`"Aoede"\`, \`"Zephyr"\`, \`"Fenrir"\`) or stored \`voice_...\` resource, apply natural-language acoustic deltas in \`prompted.input\`, and receive a durable \`voice_...\` handle with a 24kHz WAV preview that works across \`gemini-3.8-flash-tts\` and \`gemini-3.8-flash-lite-tts\`.
+
+## 2. Zero Dead-Ends Across All Prototypes & Everyday Workspace Sanctuary
+We ran a repository-wide deep-link verification script across \`public/public/\` and \`public/src/\`, launched \`/series/everyday-gemini/workspace-no-code-guides.html\` for non-coders and educators, wired all 8 stars in \`Look J\` to standalone series and labs, and upgraded our new series and labs with CSS Container Queries (\`container-type: inline-size\`) and WCAG keyboard focus visibility.`,
+  },
 ];
 
 export const YOUTUBE_SHORTS_STUDIO = [
+  {
+    id: 'short-07',
+    number: 'SHORT #07',
+    title: 'Stop Hiring 8 Voice Actors: Gemini 3.8 Voice Remixing in 1 API Call',
+    duration: '42s (9:16 Vertical)',
+    status: 'Script & Studio Ready',
+    playerUrl: '/labs/gemini-voice-remixing-studio.html',
+    modelsUsed: ['gemini-3.8-flash-tts', 'gemini-3.8-flash-lite-tts', 'voices-api-v1beta'],
+    hook: 'Why do zero-shot AI voices change accents halfway through a chapter? Because describing a voice from scratch is guesswork. Today, Google fixed it with Voice Remixing.',
+    visualDirection:
+      'Vertical 9:16 split capture: top half shows `POST /v1beta/voices` anchoring on `"Puck"` and branching into 3 stored `voice_...` persona IDs; bottom half shows the live 60fps cyan/purple Web Audio waveform tuner at geminipulse.com.',
+    omniPrompt:
+      'Vertical 9:16 studio visualization: A single glowing sapphire audio waveform branching smoothly into three distinct harmonic voice trees (emerald, violet, and gold) with 24kHz telemetry readouts, 60fps.',
+    ttsScript:
+      '[style: crisp, expressive, studio-host] Instead of guessing what a voice sounds like from scratch, Google’s new Gemini 3.8 Voice Remixing lets you start with a studio anchor like Puck or Aoede, apply a relative prompt like "add 20 years of gravel and a Scottish cadence," and save a permanent voice ID. Even better, the same voice ID runs on Flash-Lite TTS in under 300 milliseconds for real-time game NPCs. Test our interactive Voice Remixing Studio at geminipulse.com.',
+  },
   {
     id: 'short-01',
     number: 'SHORT #01',

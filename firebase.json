@@ -39,6 +39,18 @@
         ]
       }
     ],
+    "redirects": [
+      {
+        "source": "/series/what-changed/dec-1-price-cut.html",
+        "destination": "/series/gemini-2-5-migration/part-1-deprecation-and-auto-routing.html",
+        "type": 301
+      },
+      {
+        "source": "/labs/token-economics-workbench.html",
+        "destination": "/labs/gemini-cost-per-task-calculator.html",
+        "type": 301
+      }
+    ],
     "rewrites": [
       {
         "source": "/status",

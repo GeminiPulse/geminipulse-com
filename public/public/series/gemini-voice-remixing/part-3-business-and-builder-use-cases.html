@@ -41,6 +41,7 @@
       .wrap { max-width: 840px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
       a { color: #7dd3fc; text-decoration: none; }
       a:hover { text-decoration: underline; }
+      a:focus-visible { outline: 2px solid #38bdf8; outline-offset: 3px; border-radius: 0.25rem; }
       .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
       h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
       h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
@@ -60,7 +61,8 @@
     </style>
   </head>
   <body>
-    <article class="wrap">
+    <main class="wrap">
+      <article>
       <p><a href="/#pulse-feed">← Back to GeminiPulse Home</a></p>
       <div class="eyebrow">Gemini 3.8 Voice Remixing Series • Part 3 of 3</div>
       <h1>From Audiobook Casting to Dynamic Game NPCs: 4 Production Use Cases for Gemini 3.8 Voice Remixing</h1>
@@ -150,12 +152,15 @@
 
       <h2>Summary: Production Recommendations</h2>
       <table>
+        <caption style="text-align: left; font-size: 0.82rem; color: var(--muted); padding-bottom: 0.5rem;">
+          Recommended base voices, TTS model tiers, and latency budgets by application category
+        </caption>
         <thead>
           <tr>
-            <th>Application Category</th>
-            <th>Recommended Base Voice</th>
-            <th>Primary TTS Model</th>
-            <th>Latency Target</th>
+            <th scope="col">Application Category</th>
+            <th scope="col">Recommended Base Voice</th>
+            <th scope="col">Primary TTS Model</th>
+            <th scope="col">Latency Target</th>
           </tr>
         </thead>
         <tbody>
@@ -186,10 +191,11 @@
         </tbody>
       </table>
 
-      <div class="nav-next">
+      <nav class="nav-next" aria-label="Series pagination">
         <a href="/series/gemini-voice-remixing/part-1-voice-remixing-breakdown.html">← Back to Part 1: Voice Remixing Breakdown</a>
         <a href="/labs/gemini-voice-remixing-studio.html">Open Interactive Agile Labs Studio [SIMULATED DEMO] →</a>
-      </div>
-    </article>
+      </nav>
+      </article>
+    </main>
   </body>
 </html>
