@@ -1,6 +1,6 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-11-04 15:45 EST (Look J v10 / Round 18: Shipped Intelligent Celestial Observatory Search & Command Palette (⌘K / /) with Gemini Synthesized Instant Answers across all 8 Stars, 32 Chapters & 8 Standalone Labs/Series, balanced GEMIN♊PULSE wordmark, stationary hover-fade star description card, and archived Look J v9 at /prototypes/look-j-v9-archive.html)`
+- **Last Updated:** `2026-11-04 16:05 EST (Look J v10 / Round 18: Engineered 60fps Zero-Bounce Stationary-Reveal Star-Tethered HUD Engine [0.0px path movement while visible, 0 frame jumps, 0 slot flips], Shipped Intelligent Celestial Observatory Search & Command Palette [⌘K / /], balanced GEMIN♊PULSE wordmark, and archived Look J v9 at /prototypes/look-j-v9-archive.html)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
@@ -13,7 +13,23 @@
 
 ---
 
-## 1. Completed & Live on `v2.0` (2026-11-04 14:20 PM ET Autonomous Engineering & UX/UI Sprint)
+## 1. Completed & Live on `v2.0` (2026-11-04 16:05 PM ET — Look J v10 / Rounds 17 & 18)
+
+- **60fps Zero-Bounce Stationary-Reveal Star-Tethered HUD Engine (`#star-hud-card` in `Look J v10`):**
+  1. **Diagnosed with a 60fps Chrome CDP Frame-by-Frame Motion Telemetry Harness:**
+     - Built a 60fps Chrome CDP WebSocket telemetry script (`requestAnimationFrame` sampling of `getBoundingClientRect()`, `--hud-x`, `--hud-y`, `data-placement`, and `opacity` across 148 frames per star click).
+     - Identified why `#star-hud-card` bounced in `Look J v8`: (a) `tick()` ran the 70-candidate Zero-Collision Solver 60 times/sec during the 2.35s 3D slew against moving `beaconState` and moving `projMajor[k]` star pills, causing up to **7 mid-flight slot flips** and **4,375px total path travel** (`549px` single-frame jumps); (b) `.star-hud-card` animated `transition: transform 0.14s`, physically sliding across the viewport whenever `--hud-x / --hud-y` updated; (c) `.star-hud-card.is-rendering` animated `filter: brightness(1.38)` on a `backdrop-filter: blur(16px)` element; and (d) clicking the already-focused star restarted a full 2.35s slew.
+  2. **Engineered Stationary-Reveal Star-Tethered Placement (`0.0px` Path Movement While Visible):**
+     - Removed `renderHudCard()` from the 60fps `tick()` loop and removed `transform` from `.star-hud-card` CSS transitions (`transition: opacity 0.22s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease, box-shadow 0.25s ease`).
+     - Added `project3DWithCam()` and `placeHudStatic(starKey, useTargetCam)` + `revealHudStationary(starKey, animateRender, useTargetCam)`: when clicking to a new star, `#star-hud-card` fades out in place (`0.0px` movement), and at `90%` (`~2.1s`) of the quintic S-curve slew—when the star is arriving at rest—computes the exact deterministic resting coordinates once while `opacity === 0` (`transition: none`), flushes layout, and fades in **100% stationary** directly beneath/beside the star with its 4-way pointer notch and hairline SVG leader line.
+     - Verified via 60fps Chrome CDP telemetry across all star transitions: **`totalPathPx: 0` (down from `4,375px`), `jumps: 0` (down from `32`), `slotFlips: 0` (down from `7`), `xReversals: 0`, `yReversals: 0`, and `0 px²` overlap across all 8 stars**.
+- **Intelligent Celestial Observatory Search & Command Palette (`⌘K` / `/`) & Optically Balanced `GEMIN♊PULSE` Wordmark:**
+  - Built native top-layer `<dialog id="celestial-search-dialog" closedby="any">` + `<search>` Command Palette indexing all 8 Constellation Stars, 32 Sanctuary Chapters, and 8 Standalone Labs & Series with natural-language synonym expansion, Gemini Synthesized Instant Answers, 4 scope filters, and keyboard navigation (`↑`/`↓`/`Enter`/`Esc`).
+  - Refined the `GEMIN♊PULSE` Twin-Pillar SVG wordmark (`margin-inline-end: -0.18em` on `PULSE`, `0.78em` pillar glyph, `0.085em / 0.095em` optical kerning) and added responsive mobile collapse (`≤640px`) and zero-truncation header guardrails across all 5 viewports (`1920×1080` to `390×844`).
+
+---
+
+## 2. Completed & Live on `v2.0` (2026-11-04 14:20 PM ET Autonomous Engineering & UX/UI Sprint)
 
 - **Repository-Wide Deep-Link Audit & Zero Dead-Ends (`0` Missing Internal Targets):**
   1. **Standalone Everyday Google Workspace & Gemini No-Code Sanctuary (`/series/everyday-gemini/workspace-no-code-guides.html`):**

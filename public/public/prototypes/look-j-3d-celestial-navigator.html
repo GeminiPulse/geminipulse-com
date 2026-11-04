@@ -230,6 +230,12 @@
       overflow: hidden;
     }
 
+    @media (max-width: 1620px) {
+      .premise-sub-cta {
+        display: none;
+      }
+    }
+
     @media (max-width: 1280px) {
       .premise-ribbon {
         display: none;
@@ -3113,7 +3119,7 @@
       <div class="premise-ribbon">
         <span class="premise-dot" aria-hidden="true"></span>
         <p class="premise-text">
-          Conceived by a human · Written &amp; coded by <strong>Google Gemini 4 Argon</strong> — <em>click any star to explore.</em>
+          Conceived by a human · Written &amp; coded by <strong>Google Gemini 4 Argon</strong><span class="premise-sub-cta"> — <em>click any star to explore.</em></span>
         </p>
       </div>
 
@@ -3931,12 +3937,12 @@ const cache = await ai.caches.create({
         tejat: {
           idx: "03", name: "μ Tejat · Speed & Carbon ROI",
           x: -238, y: 78, z: 35, ly: 230, spec: "RED GIANT (M3III)",
-          pivotYaw: -13, pivotPitch: -5
+          pivotYaw: -11, pivotPitch: -5, panX: 62, panY: -10
         },
         propus: {
           idx: "04", name: "η Propus · 60s Video Signal",
           x: -292, y: 152, z: 75, ly: 350, spec: "TRIPLE SYSTEM & M35",
-          pivotYaw: -16, pivotPitch: -9
+          pivotYaw: -10, pivotPitch: -8, panX: 132, panY: -24
         },
         pollux: {
           idx: "05", name: "β Pollux · 10-Sec Savings Lab",
@@ -4538,6 +4544,7 @@ await Promise.all([
 
       const slew = {
         active: false,
+        hudRevealed: true,
         startTime: 0,
         duration: SLEW_DURATION_MS,
         fromYaw: -15,
@@ -4579,6 +4586,7 @@ await Promise.all([
         cam.yaw = nextYaw - shortestDiff;
 
         slew.active = true;
+        slew.hudRevealed = false;
         slew.startTime = now;
         slew.duration = duration;
         slew.fromYaw = cam.yaw;
@@ -4605,10 +4613,10 @@ await Promise.all([
       let activeStarKey = "mebsuta";
       let activePresetIdx = 0;
 
-      function project3D(pt, extraZPull = 0) {
-        const radY = (cam.yaw * Math.PI) / 180;
-        const radX = (cam.pitch * Math.PI) / 180;
-        const radZ = (cam.roll * Math.PI) / 180;
+      function project3DWithCam(pt, extraZPull = 0, camState = cam) {
+        const radY = (camState.yaw * Math.PI) / 180;
+        const radX = (camState.pitch * Math.PI) / 180;
+        const radZ = (camState.roll * Math.PI) / 180;
 
         const zInput = pt.z + extraZPull;
 
@@ -4630,11 +4638,15 @@ await Promise.all([
         // 4. Perspective division (fl / (fl + z))
         const scale = FOCAL_LENGTH / Math.max(210, FOCAL_LENGTH + z3);
         return {
-          sx: CENTER_X + cam.panX + x3 * scale,
-          sy: CENTER_Y + cam.panY + y3 * scale,
+          sx: CENTER_X + camState.panX + x3 * scale,
+          sy: CENTER_Y + camState.panY + y3 * scale,
           scale,
           z: z3
         };
+      }
+
+      function project3D(pt, extraZPull = 0) {
+        return project3DWithCam(pt, extraZPull, cam);
       }
 
       /* Build 3D Depth-Cue Tether Lines in SVG */
@@ -4750,6 +4762,12 @@ await Promise.all([
         canvas.height = layoutCache.canvasHeight * dpr;
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
         refreshLayoutCache();
+        if (typeof hudCardEl !== "undefined" && hudCardEl && hudCardEl.getAttribute("data-hidden") !== "true" && !slew.active) {
+          hudCardEl.style.transition = "none";
+          placeHudStatic(activeStarKey, false);
+          void hudCardEl.offsetWidth;
+          hudCardEl.style.transition = "";
+        }
       }
       window.addEventListener("resize", resizeCanvas);
       resizeCanvas();
@@ -4853,6 +4871,11 @@ await Promise.all([
             starZPull[k] = slew.fromZPull[k] + (slew.toZPull[k] - slew.fromZPull[k]) * e;
             starFg[k] = slew.fromFg[k] + (slew.toFg[k] - slew.fromFg[k]) * e;
           });
+
+          if (!slew.hudRevealed && rawT >= 0.90) {
+            slew.hudRevealed = true;
+            revealHudStationary(activeStarKey, true, true);
+          }
 
           if (rawT >= 1) {
             slew.active = false;
@@ -5080,13 +5103,6 @@ await Promise.all([
       let baseYaw = 0;
       let basePitch = 0;
 
-      // Clicking anywhere outside #star-hud-card immediately fades out the hover description card
-      document.addEventListener("pointerdown", (e) => {
-        if (!e.target.closest("#star-hud-card")) {
-          hideHudCard();
-        }
-      });
-
       heroStage.addEventListener("pointerdown", (e) => {
         if (e.target.closest(".star-node, button, a, .twin-pulse-orb, .star-hud-card")) return;
         isPointerDownStage = true;
@@ -5128,6 +5144,10 @@ await Promise.all([
         if (isDragging) {
           isDragging = false;
           trackPulseInteraction("constellation_3d_drag", { yaw: Math.round(cam.yaw), pitch: Math.round(cam.pitch) });
+          // Snap camera to settled drag target and re-reveal HUD card stationary at new angle
+          cam.yaw = cam.targetYaw;
+          cam.pitch = cam.targetPitch;
+          revealHudStationary(activeStarKey, false, false);
         }
       };
       heroStage.addEventListener("pointerup", endStageDrag);
@@ -5162,10 +5182,13 @@ await Promise.all([
             b.setAttribute("aria-pressed", String(b === btn));
           });
 
+          hideHudCard();
           const s3 = STARS_3D[activeStarKey];
           if (mode === "relational3d") {
             cam.autoOrbit = false;
-            beginCelestialSlew(s3.pivotYaw, s3.pivotPitch, 0, -s3.x * 0.11, -s3.y * 0.09, activeStarKey, 2600);
+            const px = typeof s3.panX === "number" ? s3.panX : -s3.x * 0.11;
+            const py = typeof s3.panY === "number" ? s3.panY : -s3.y * 0.09;
+            beginCelestialSlew(s3.pivotYaw, s3.pivotPitch, 0, px, py, activeStarKey, 2600);
           } else if (mode === "orbit3d") {
             cam.autoOrbit = true;
             cam.targetRoll = 0;
@@ -5312,16 +5335,17 @@ await Promise.all([
       }
 
       /* =====================================================================
-         STATIONARY HOVER ARTICLE BRIEF POPOVER (#star-hud-card)
-         Fades in stationary on star hover; fades out on mouse exit or click
-         elsewhere (zero movement across the screen).
+         ZERO-JANK STATIONARY STAR-TETHERED ARTICLE BRIEF POPOVER (#star-hud-card)
+         1. Computes deterministic zero-collision slot using target camera state.
+         2. Writes --hud-x / --hud-y ONLY while opacity === 0 (transition: none).
+         3. Fades out in place before slews and fades in 100% stationary at rest.
          ===================================================================== */
-      let hudHideTimer = null;
+      let hudRevealTimer = null;
 
       function hideHudCard() {
-        if (hudHideTimer) {
-          clearTimeout(hudHideTimer);
-          hudHideTimer = null;
+        if (hudRevealTimer) {
+          clearTimeout(hudRevealTimer);
+          hudRevealTimer = null;
         }
         if (hudCardEl) {
           hudCardEl.setAttribute("data-hidden", "true");
@@ -5332,24 +5356,7 @@ await Promise.all([
         }
       }
 
-      function scheduleHideHud(delayMs = 150) {
-        if (hudHideTimer) clearTimeout(hudHideTimer);
-        hudHideTimer = setTimeout(() => {
-          hudHideTimer = null;
-          hideHudCard();
-        }, delayMs);
-      }
-
-      function showHudOnHover(starKey) {
-        if (!STARS_3D[starKey] || isDragging) return;
-        const curDrawer = document.documentElement.getAttribute("data-drawer");
-        if (curDrawer === "open" || curDrawer === "fullscreen") return;
-
-        if (hudHideTimer) {
-          clearTimeout(hudHideTimer);
-          hudHideTimer = null;
-        }
-
+      function populateHudContent(starKey) {
         const h = HUD_DATA[starKey] || HUD_DATA.mebsuta;
         if (hudCardEl) {
           hudCardEl.setAttribute("data-twin", h.twin);
@@ -5373,9 +5380,294 @@ await Promise.all([
 
         const ctaEl = document.getElementById("hud-read-btn-label");
         if (ctaEl) ctaEl.textContent = h.ctaLabel;
+      }
 
-        if (hudCardEl) {
+      function placeHudStatic(starKey, useTargetCam = true) {
+        if (!hudCardEl || !svgEl || !heroStage || !STARS_3D[starKey]) return;
+        refreshLayoutCache();
+
+        const evalCam = (useTargetCam && slew.active)
+          ? {
+              yaw: cam.targetYaw,
+              pitch: cam.targetPitch,
+              roll: cam.targetRoll,
+              panX: cam.targetPanX,
+              panY: cam.targetPanY
+            }
+          : cam;
+
+        const projMap = {};
+        STAR_ORDER.forEach((k) => {
+          const p3 = STARS_3D[k];
+          const zP = (useTargetCam && slew.active) ? slew.toZPull[k] : starZPull[k];
+          const fg = (useTargetCam && slew.active) ? slew.toFg[k] : starFg[k];
+          const pr = project3DWithCam(p3, zP, evalCam);
+          const bgScale = Math.max(0.68, Math.min(1.06, pr.scale * 0.91));
+          const fgScale = Math.max(1.20, Math.min(1.30, pr.scale * 1.03));
+          pr.depthScale = bgScale + (fgScale - bgScale) * fg;
+          projMap[k] = pr;
+        });
+
+        const targetStarProj = projMap[starKey];
+        if (!targetStarProj) return;
+
+        const heroW = layoutCache.heroWidth;
+        const heroH = layoutCache.heroHeight;
+        const ctmA = layoutCache.ctmA || 1.35;
+        const ctmD = layoutCache.ctmD || 1.35;
+        const offX = (layoutCache.ctmE || 0) - layoutCache.heroLeft;
+        const offY = (layoutCache.ctmF || 42) - layoutCache.heroTop;
+
+        const starPxX = offX + targetStarProj.sx * ctmA;
+        const starPxY = offY + targetStarProj.sy * ctmD;
+
+        const cardW = hudCardEl.offsetWidth || layoutCache.cardW || 334;
+        const cardH = hudCardEl.offsetHeight || layoutCache.cardH || 168;
+        const hData = HUD_DATA[starKey] || HUD_DATA.mebsuta;
+        const isCastorSide = hData.twin === "castor";
+
+        const starPillRects = {};
+        const obstacleRects = [];
+        const pad = 6;
+
+        STAR_ORDER.forEach((k) => {
+          const pr = projMap[k];
+          const gm = STAR_PILL_GEOM[k];
+          if (!pr || !gm) return;
+          const ds = pr.depthScale || 1;
+          const pLeft = offX + (pr.sx + gm.x1 * ds) * ctmA;
+          const pRight = offX + (pr.sx + gm.x2 * ds) * ctmA;
+          const pTop = offY + (pr.sy + gm.y1 * ds) * ctmD;
+          const pBottom = offY + (pr.sy + gm.y2 * ds) * ctmD;
+
+          const isAct = k === starKey;
+          const yTopExtra = isAct ? -10 * ds * ctmD : 0;
+          const box = {
+            left: pLeft - pad,
+            top: pTop + yTopExtra - pad,
+            right: pRight + pad,
+            bottom: pBottom + pad,
+            cx: (pLeft + pRight) * 0.5,
+            cy: (pTop + pBottom) * 0.5
+          };
+          starPillRects[k] = box;
+          obstacleRects.push(box);
+        });
+
+        obstacleRects.push({
+          left: starPxX - 50 * ctmA - 4,
+          top: starPxY - 24 * ctmD - 4,
+          right: starPxX + 50 * ctmA + 4,
+          bottom: starPxY + 30 * ctmD + 4
+        });
+
+        const activePill = starPillRects[starKey] || {
+          left: starPxX - 100,
+          top: starPxY - 20,
+          right: starPxX + 100,
+          bottom: starPxY + 20,
+          cx: starPxX,
+          cy: starPxY
+        };
+
+        const minX = 14;
+        const maxX = Math.max(14, heroW - cardW - 14);
+        const minY = 54;
+        const maxY = Math.max(54, heroH - cardH - 36);
+
+        const belowY = Math.max(starPxY + 30 * ctmD + 6, activePill.bottom + 6);
+        const aboveY = Math.min(starPxY - 24 * ctmD - cardH - 8, activePill.top - cardH - 6);
+        const leftX = Math.min(activePill.left - cardW - 10, starPxX - 50 * ctmA - cardW - 8);
+        const rightX = Math.max(activePill.right + 10, starPxX + 50 * ctmA + 8);
+
+        const rawCandidates = [
+          { x: isCastorSide ? starPxX - cardW * 0.62 : starPxX - cardW * 0.38, y: belowY, pref: -18 },
+          { x: activePill.cx - cardW * 0.5, y: belowY, pref: -16 },
+          { x: starPxX - cardW * 0.5, y: belowY, pref: -15 },
+          { x: activePill.cx - cardW * 0.5, y: aboveY, pref: -8 },
+          { x: starPxX - cardW * 0.5, y: aboveY, pref: -8 },
+          { x: leftX, y: starPxY - cardH * 0.5, pref: -12 },
+          { x: rightX, y: starPxY - cardH * 0.5, pref: -12 },
+          { x: rightX, y: starPxY - cardH * 0.85, pref: -10 },
+          { x: leftX, y: starPxY - cardH * 0.85, pref: -10 }
+        ];
+
+        const xSteps = [leftX - starPxX, -cardW - 36, -cardW * 0.85, -cardW * 0.5, -cardW * 0.15, 28, rightX - starPxX];
+        const ySteps = [belowY - starPxY, aboveY - starPxY, -cardH * 0.85, -cardH * 0.5, -cardH * 0.15, 24, 56];
+        for (let xi = 0; xi < xSteps.length; xi++) {
+          for (let yi = 0; yi < ySteps.length; yi++) {
+            rawCandidates.push({
+              x: starPxX + xSteps[xi],
+              y: starPxY + ySteps[yi],
+              pref: 0
+            });
+          }
+        }
+
+        const wingYOffsets = [0, -cardH * 0.45, -cardH * 0.8, cardH * 0.25];
+        for (let wi = 0; wi < wingYOffsets.length; wi++) {
+          rawCandidates.push({ x: minX, y: starPxY + wingYOffsets[wi], pref: 15 });
+          rawCandidates.push({ x: maxX, y: starPxY + wingYOffsets[wi], pref: 15 });
+        }
+        const midSkyYs = [148, 168, 188, 208];
+        const castorSkyXs = [minX, 90, 165, 235];
+        for (let mxi = 0; mxi < castorSkyXs.length; mxi++) {
+          for (let myi = 0; myi < midSkyYs.length; myi++) {
+            rawCandidates.push({ x: castorSkyXs[mxi], y: midSkyYs[myi], pref: 8 });
+          }
+        }
+
+        let bestCand = null;
+        let bestScore = Infinity;
+
+        for (let i = 0; i < rawCandidates.length; i++) {
+          const rc = rawCandidates[i];
+          const cx = Math.max(minX, Math.min(maxX, rc.x));
+          const cy = Math.max(minY, Math.min(maxY, rc.y));
+          const candRect = {
+            left: cx,
+            top: cy,
+            right: cx + cardW,
+            bottom: cy + cardH
+          };
+
+          let overlap = 0;
+          for (let j = 0; j < obstacleRects.length; j++) {
+            overlap += rectOverlapArea(candRect, obstacleRects[j]);
+          }
+
+          const nearStarX = Math.max(candRect.left, Math.min(candRect.right, starPxX));
+          const nearStarY = Math.max(candRect.top, Math.min(candRect.bottom, starPxY));
+          const distStar = Math.hypot(nearStarX - starPxX, nearStarY - starPxY);
+
+          const nearPillX = Math.max(candRect.left, Math.min(candRect.right, activePill.cx));
+          const nearPillY = Math.max(candRect.top, Math.min(candRect.bottom, activePill.cy));
+          const distPill = Math.hypot(nearPillX - activePill.cx, nearPillY - activePill.cy);
+
+          const dist = Math.min(distStar, distPill * 0.95);
+          const cardCenterX = cx + cardW * 0.5;
+          const sameHemisphere = isCastorSide ? (cardCenterX <= heroW * 0.54) : (cardCenterX >= heroW * 0.46);
+          const hemiBonus = sameHemisphere ? -65 : 65;
+
+          const score = overlap * 100000 + dist + hemiBonus + (rc.pref || 0);
+          if (score < bestScore) {
+            bestScore = score;
+            bestCand = { x: cx, y: cy };
+          }
+        }
+
+        const hudX = bestCand ? bestCand.x : minX;
+        const hudY = bestCand ? bestCand.y : minY;
+
+        let placement = "below";
+        if (hudY >= starPxY + 12) {
+          placement = "below";
+        } else if (hudY + cardH <= starPxY - 12) {
+          placement = "above";
+        } else if (hudX + cardW <= starPxX) {
+          placement = "left";
+        } else if (hudX >= starPxX) {
+          placement = "right";
+        }
+
+        const notchX = Math.max(22, Math.min(cardW - 22, starPxX - hudX));
+        const notchY = Math.max(22, Math.min(cardH - 22, starPxY - hudY));
+        hudCardEl.style.setProperty("--hud-x", `${hudX.toFixed(1)}px`);
+        hudCardEl.style.setProperty("--hud-y", `${hudY.toFixed(1)}px`);
+        hudCardEl.style.setProperty("--hud-notch-x", `${notchX.toFixed(1)}px`);
+        hudCardEl.style.setProperty("--hud-notch-y", `${notchY.toFixed(1)}px`);
+        hudCardEl.setAttribute("data-placement", placement);
+
+        if (hudLeaderLine && hudLeaderDot) {
+          let anchorPxX = hudX + notchX;
+          let anchorPxY = hudY;
+          let startX = targetStarProj.sx;
+          let startY = targetStarProj.sy + 28;
+
+          if (placement === "above") {
+            anchorPxX = hudX + notchX;
+            anchorPxY = hudY + cardH;
+            startX = targetStarProj.sx;
+            startY = targetStarProj.sy - 16;
+          } else if (placement === "left") {
+            anchorPxX = hudX + cardW;
+            anchorPxY = hudY + notchY;
+            startX = targetStarProj.sx - 16;
+            startY = targetStarProj.sy;
+          } else if (placement === "right") {
+            anchorPxX = hudX;
+            anchorPxY = hudY + notchY;
+            startX = targetStarProj.sx + 16;
+            startY = targetStarProj.sy;
+          }
+
+          const hudTargetX = (anchorPxX - offX) / ctmA;
+          const hudTargetY = (anchorPxY - offY) / ctmD;
+
+          hudLeaderLine.setAttribute(
+            "points",
+            `${startX.toFixed(1)},${startY.toFixed(1)} ${hudTargetX.toFixed(1)},${hudTargetY.toFixed(1)}`
+          );
+          hudLeaderDot.setAttribute("cx", hudTargetX.toFixed(1));
+          hudLeaderDot.setAttribute("cy", hudTargetY.toFixed(1));
+        }
+      }
+
+      function revealHudStationary(starKey, animateRender = false, useTargetCam = true) {
+        if (!hudCardEl || !STARS_3D[starKey] || isDragging || cam.autoOrbit) return;
+        const curDrawer = document.documentElement.getAttribute("data-drawer");
+        if (curDrawer === "open" || curDrawer === "fullscreen") return;
+
+        if (hudRevealTimer) {
+          clearTimeout(hudRevealTimer);
+          hudRevealTimer = null;
+        }
+
+        const isVisible = hudCardEl.getAttribute("data-hidden") !== "true";
+        const currentHudStar = hudCardEl.getAttribute("data-hud-star");
+
+        // If already visible for the exact same star and stationary, keep 100% still (0.0px movement)
+        if (isVisible && currentHudStar === starKey && !slew.active) {
+          if (animateRender) {
+            hudCardEl.classList.remove("is-rendering");
+            void hudCardEl.offsetWidth;
+            hudCardEl.classList.add("is-rendering");
+          }
+          return;
+        }
+
+        const commitInvisibleSnapAndFadeIn = () => {
+          hudCardEl.style.transition = "none";
+          hudCardEl.setAttribute("data-hidden", "true");
+          populateHudContent(starKey);
+          placeHudStatic(starKey, useTargetCam);
+          // Flush layout while opacity === 0 and transition === none so transform snaps invisibly
+          void hudCardEl.offsetWidth;
+          hudCardEl.style.transition = "";
           hudCardEl.removeAttribute("data-hidden");
+
+          if (hudLeaderLine && hudLeaderDot) {
+            hudLeaderLine.style.opacity = "0.85";
+            hudLeaderDot.style.opacity = "0.9";
+          }
+
+          if (animateRender) {
+            hudCardEl.classList.remove("is-rendering");
+            void hudCardEl.offsetWidth;
+            hudCardEl.classList.add("is-rendering");
+          }
+        };
+
+        const computedOpacity = parseFloat(window.getComputedStyle(hudCardEl).opacity || "0");
+        if (computedOpacity > 0.02) {
+          // Fade out in place first (0.0px movement while visible), then snap while opacity === 0
+          hideHudCard();
+          hudRevealTimer = setTimeout(() => {
+            hudRevealTimer = null;
+            commitInvisibleSnapAndFadeIn();
+          }, 230);
+        } else {
+          commitInvisibleSnapAndFadeIn();
         }
       }
 
@@ -5478,8 +5770,13 @@ await Promise.all([
         const currentPov = document.documentElement.getAttribute("data-pov");
         const nextYaw = currentPov === "earth" ? 0 : s3.pivotYaw;
         const nextPitch = currentPov === "earth" ? 0 : s3.pivotPitch;
-        const nextPanX = currentPov === "earth" ? 0 : -s3.x * 0.11;
-        const nextPanY = currentPov === "earth" ? 0 : -s3.y * 0.09;
+        const nextPanX = currentPov === "earth" ? 0 : (typeof s3.panX === "number" ? s3.panX : -s3.x * 0.11);
+        const nextPanY = currentPov === "earth" ? 0 : (typeof s3.panY === "number" ? s3.panY : -s3.y * 0.09);
+
+        const shortestDiff = ((((nextYaw - cam.yaw) % 360) + 540) % 360) - 180;
+        const camDelta = Math.hypot(shortestDiff, nextPitch - cam.pitch, nextPanX - cam.panX, nextPanY - cam.panY);
+        const isAlreadyFg = (starFg[starKey] || 0) > 0.96;
+        const needsSlew = !isInitial && !cam.autoOrbit && (camDelta > 0.35 || !isAlreadyFg);
 
         if (isInitial) {
           // Instant initial positioning on first page load (skewed in 3D foreground!)
@@ -5492,8 +5789,9 @@ await Promise.all([
             starFg[k] = k === starKey ? 1.0 : 0.0;
           });
           slew.active = false;
+          slew.hudRevealed = true;
           beaconState.isGliding = false;
-        } else {
+        } else if (needsSlew) {
           // Begin a 2.3-second Quintic S-Curve Ramp Celestial Slew across millions of miles!
           beaconState.fromX = beaconState.x;
           beaconState.fromY = beaconState.y;
@@ -5501,14 +5799,23 @@ await Promise.all([
           beaconState.slewDuration = 2250;
           beaconState.isGliding = true;
 
+          // Fade out description card in place during 3D star slews so it never moves across the screen
+          hideHudCard();
+          beginCelestialSlew(nextYaw, nextPitch, cam.targetRoll, nextPanX, nextPanY, starKey, SLEW_DURATION_MS);
+          trackPulseInteraction("star_3d_select", { star: starKey, ly: s3.ly });
+        } else {
+          // Already focused on this star or in Flat Chart (0°) / Auto-Orbit mode: snap beacon & reveal stationary
+          const curProj = project3D(s3, starZPull[starKey] || 0);
+          beaconState.x = beaconState.fromX = curProj.sx;
+          beaconState.y = beaconState.fromY = curProj.sy;
+          beaconState.isGliding = false;
+          slew.active = false;
+          slew.hudRevealed = true;
           if (!cam.autoOrbit) {
-            beginCelestialSlew(nextYaw, nextPitch, cam.targetRoll, nextPanX, nextPanY, starKey, SLEW_DURATION_MS);
+            revealHudStationary(starKey, true, false);
           }
           trackPulseInteraction("star_3d_select", { star: starKey, ly: s3.ly });
         }
-
-        // Fade out description card during 3D star slews so it never moves across the screen
-        hideHudCard();
 
         // Populate Full-Stage Article Sanctuary & Bottom Constellation TOC
         renderArticleContent(starKey);
@@ -5596,24 +5903,12 @@ await Promise.all([
         }
       }
 
-      /* Dismiss Stationary Star HUD Card & Hover Bridge Listeners */
+      /* Dismiss Stationary Star HUD Card */
       const hudDismissBtn = document.getElementById("hud-dismiss-btn");
       if (hudDismissBtn) {
         hudDismissBtn.addEventListener("click", (e) => {
           e.stopPropagation();
           hideHudCard();
-        });
-      }
-
-      if (hudCardEl) {
-        hudCardEl.addEventListener("pointerenter", () => {
-          if (hudHideTimer) {
-            clearTimeout(hudHideTimer);
-            hudHideTimer = null;
-          }
-        });
-        hudCardEl.addEventListener("pointerleave", () => {
-          scheduleHideHud(90);
         });
       }
 
@@ -5669,6 +5964,9 @@ await Promise.all([
           setTimeout(() => setArticleTocChapter(activeTocIdx, false), 60);
         } else {
           refreshLayoutCache();
+          if (!cam.autoOrbit && !slew.active) {
+            revealHudStationary(activeStarKey, false, false);
+          }
         }
         trackPulseInteraction("drawer_state_change", { drawer: mode, star: activeStarKey, twin: focusTwin });
       }
@@ -5756,22 +6054,6 @@ await Promise.all([
         const starKey = node.getAttribute("data-star");
         // Prevent browser rectangular SVG focus bounding-box highlight on mouse press
         node.addEventListener("mousedown", (e) => e.preventDefault());
-        node.addEventListener("pointerenter", (e) => {
-          if (e.pointerType !== "touch") {
-            showHudOnHover(starKey);
-          }
-        });
-        node.addEventListener("pointerleave", (e) => {
-          if (e.pointerType !== "touch") {
-            scheduleHideHud(130);
-          }
-        });
-        node.addEventListener("focusin", () => {
-          showHudOnHover(starKey);
-        });
-        node.addEventListener("focusout", () => {
-          scheduleHideHud(130);
-        });
         node.addEventListener("click", () => selectStar(starKey));
         node.addEventListener("keydown", (e) => {
           if (e.key === "Enter" || e.key === " ") {
@@ -6524,6 +6806,15 @@ await Promise.all([
       if (initPov) {
         const povBtn = document.querySelector(`[data-pov-mode="${initPov}"]`);
         if (povBtn) povBtn.click();
+        if (initPov === "earth") {
+          cam.yaw = cam.targetYaw = 0;
+          cam.pitch = cam.targetPitch = 0;
+          cam.panX = cam.targetPanX = 0;
+          cam.panY = cam.targetPanY = 0;
+          STAR_ORDER.forEach((k) => { starZPull[k] = 0; });
+          slew.active = false;
+          slew.hudRevealed = true;
+        }
       }
       if (initDrawer === "open" || initDrawer === "fullscreen") {
         setDrawerMode(initDrawer);
@@ -6537,6 +6828,9 @@ await Promise.all([
       }
 
       refreshLayoutCache();
+      if (document.documentElement.getAttribute("data-drawer") === "peek" && !cam.autoOrbit) {
+        revealHudStationary(activeStarKey, false, false);
+      }
       requestAnimationFrame(tick);
     })();
   </script>
