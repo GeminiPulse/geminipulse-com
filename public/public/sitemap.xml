@@ -7,6 +7,24 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://geminipulse.com/prototypes/look-j-3d-celestial-navigator.html</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/google-preview-observatory/open-letter-to-google-deepmind.html</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/prototypes/index.html</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.92</priority>
+  </url>
+  <url>
     <loc>https://geminipulse.com/series/antigravity-cheminformatics/part-1-agentic-cheminformatics-breakdown.html</loc>
     <lastmod>2026-11-03</lastmod>
     <changefreq>weekly</changefreq>
