@@ -1,9 +1,9 @@
-# Episode 11: From a 24,043px Developer Monolith to an Interactive 8-Star Gemini Constellation & Unframed Celestial Reading Sanctuary — The 15-Round Human-Steered Design Evolution of GeminiPulse.com
+# Episode 11: From a 24,043px Developer Monolith to an Interactive 8-Star Gemini Constellation & Unframed Celestial Reading Sanctuary — The 16-Round Human-Steered Design Evolution of GeminiPulse.com
 
 - **Published:** November 3, 2026
 - **Human Concept Originator & Creative Director:** Neil S. White (`Agile LLC`)
 - **Autonomous Lead Architect, Art Director & Engineer:** Google Gemini 4 Argon (`gemini-4-argon`) + `gemini-nano-banana-2.1` inside Google Antigravity
-- **Live Interactive Portfolio Hub (All 18 Exhibits Preserved):** [`https://geminipulse.com/prototypes/`](https://geminipulse.com/prototypes/)
+- **Live Interactive Portfolio Hub (All 19 Exhibits Preserved):** [`https://geminipulse.com/prototypes/`](https://geminipulse.com/prototypes/)
 - **Live Flagship Manifesto (Unframed Celestial Reading Sanctuary):** [`https://geminipulse.com/series/google-preview-observatory/open-letter-to-google-deepmind.html`](https://geminipulse.com/series/google-preview-observatory/open-letter-to-google-deepmind.html)
 
 ---
@@ -250,3 +250,18 @@ When Neil reviewed **Look J v6** ([preserved at `look-j-v6-archive.html`](https:
      - **Zero Boxed Chapter Cards:** Removed all `.chapter-card` borders and card boxes. Chapters `01` through `04` now flow in a single, centered editorial reading sanctuary (`64ch–65ch` measure surrounded by `>60%` open celestial night sky), separated by generous vertical whitespace and delicate `0.65px` gradient hairlines with an inline SVG Twin-Pillar ornament (`✦ · ♊ · ✦`).
      - **Living, Gently Pulsing Celestial Sky Background:** Behind both the standalone Open Letter and the translucent Full-Screen Article (`html[data-drawer="fullscreen"]`), deterministic seeded stars drift imperceptibly and gently pulse/sparkle in and out on a calming 12-second sinusoidal breathing cycle.
      - **Monumental Headlines, Digestible Italic Sub-Headlines & Generous Body Prose:** Enlarged chapter headlines (`clamp(30px, 3.1vw, 46px)`), added a clear italic sub-headline (`clamp(19.5px, 1.9vw, 25px)`) directly beneath each headline so the reader digests the takeaway before diving into the prose, enlarged body copy to `18.5px–20.5px` (`line-height: 1.86–1.88`), and gave the top masthead and bottom Constellation TOC bars extra breathing room.
+
+
+---
+
+## 15. Round 16: Harmonizing the Full-Stage Sanctuary & Centered 2-Card Nocturnal Twin Sanctuary Deck (`Look J v7 → Look J v8`)
+
+When Neil reviewed **Look J v7** ([preserved at `look-j-v7-archive.html`](https://geminipulse.com/prototypes/look-j-v7-archive.html)) with the slide-up drawer open, he shared a screenshot and challenged Gemini to diagnose everything that still felt cramped or incongruent next to the new unframed article sanctuary:
+> *"much better article template/design! now look at everything on that screenshot... does anything feel cramped or incongruent now? you got this."*
+
+In **[Look J v8](https://geminipulse.com/prototypes/look-j-3d-celestial-navigator.html)**, we diagnosed and harmonized five structural clashes:
+1. **Eliminated the Decapitated `24svh` Top Strip (`calc(100svh - 48px)` Full-Stage Sanctuary Takeover):** Instead of stopping `24%` down the screen and slicing the copperplate Twins' foreheads in half, sliding up the drawer now glides all the way up to dock cleanly beneath the `48px` masthead while keeping the 12-second sinusoidal breathing starfield (`#pointillist-3d-canvas`) and whisper-faint (`6.5%`) Twin silhouettes visible behind the translucent sanctuary.
+2. **Immediate Unframed Chapter 01 Opening + Centered 2-Card "Nocturnal Twin Sanctuary Deck" (`#nocturnal-twin-deck`):** Opening a star's brief now begins immediately with unframed single-column **Chapter 01 (`#chapter-01`)** surrounded by `>60%` open celestial sky. Directly below Chapter 01 (separated by a delicate `✦ · ♊ · ✦` divider) sits the **Centered 2-Card Nocturnal Twin Sanctuary Deck (`max-inline-size: 900px`, `gap: 28px`, `container-type: inline-size`)**. Each Twin card uses **1 spacious vertical column (`~380px` inner width)** so both headlines align on the exact horizontal pixel and **zero `SIGNAL LEDGER` or `WORKFLOW LAB` table rows ever wrap onto two lines** (fixing `"VERIFICATION / STANDARD"` and `"100% Google Primary / Links"`).
+3. **Removed the Redundant Middle `.fullscreen-continue-strip` Bar:** Eliminated the middle bar that asked the reader to expand the article that was already open directly below it.
+4. **Simplified the Sanctuary Top Bar Onto a Single Centered Line (`max-inline-size: 920px`):** Removed duplicate archive/letter links and purple `♊` emoji squares so the top bar displays `✦ STAR 02 / 08 · ε MEBSUTA (840 LY) · NOV 3, 2026 · ⏱ 4 MIN READ` on the left and `Twin Workbench & Ledger ↓` + `← Return to 3D Star Chart` on the right.
+5. **Replaced Internal SEO Jargon & Styled Thin Nocturnal Scrollbars:** Replaced `DIRECT ANSWER PASSAGE (GEO)` / `LLM CITATION READY` kickers with editorial Twin attributions (`α CASTOR · THE SIGNAL`, `β POLLUX · THE WORKBENCH`) and replaced the bright white browser scrollbar with a thin nocturnal scrollbar (`color-scheme: dark`).

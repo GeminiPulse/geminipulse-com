@@ -80,6 +80,7 @@
       --serif: "Cormorant Garamond", Georgia, serif;
       --sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
       --mono: "JetBrains Mono", monospace;
+      color-scheme: dark;
     }
 
     *, *::before, *::after {
@@ -96,6 +97,8 @@
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
       overflow-x: hidden;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(163, 133, 255, 0.35) rgba(5, 8, 17, 0.85);
     }
 
     .sr-only {
@@ -1583,14 +1586,15 @@
     }
 
     /* =========================================================================
-       5. TWO-STAGE SLIDE-UP NOCTURNAL SALON -> FULL-VIEWPORT (100svh) ARTICLE
-          + DOCKED BOTTOM "CONSTELLATION BAR" ACTIVE TABLE OF CONTENTS (SEO/GEO)
+       5. FULL-STAGE SLIDE-UP CELESTIAL READING SANCTUARY & NOCTURNAL TWIN DECK
+          Docks cleanly below the top masthead (`calc(100svh - 48px)`) with zero
+          decapitated chart strip, zero stacked trigger bars, and >60% open sky!
        ========================================================================= */
     .slide-up-drawer-backdrop {
       position: fixed;
       inset: 0;
       z-index: 40;
-      background: rgba(3, 5, 11, 0.55);
+      background: rgba(3, 5, 11, 0.32);
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.35s ease;
@@ -1602,81 +1606,112 @@
       pointer-events: auto;
     }
 
+    /* Smoothly fade out foreground 3D star chart UI when Reading Sanctuary is open
+       so the living, gently pulsing 3D night sky (#pointillist-3d-canvas) and
+       whisper-faint copperplate Twin silhouettes breathe cleanly behind the prose! */
+    html[data-drawer="open"] .hero-top-bar,
+    html[data-drawer="fullscreen"] .hero-top-bar,
+    html[data-drawer="open"] .hero-constellation-stage,
+    html[data-drawer="fullscreen"] .hero-constellation-stage,
+    html[data-drawer="open"] .star-hud-card,
+    html[data-drawer="fullscreen"] .star-hud-card,
+    html[data-drawer="open"] .hero-3d-telemetry-bar,
+    html[data-drawer="fullscreen"] .hero-3d-telemetry-bar,
+    html[data-drawer="open"] .constellation-progress-nav,
+    html[data-drawer="fullscreen"] .constellation-progress-nav,
+    html[data-drawer="open"] .porcelain-peek-dock,
+    html[data-drawer="fullscreen"] .porcelain-peek-dock {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.32s ease;
+    }
+
+    html[data-drawer="open"] .bg-twin-plate,
+    html[data-drawer="fullscreen"] .bg-twin-plate {
+      opacity: 0.065;
+    }
+
+    html[data-drawer="open"] .pov-switcher,
+    html[data-drawer="fullscreen"] .pov-switcher {
+      display: none;
+    }
+
     #castor-salon-heading:focus,
-    #pollux-salon-heading:focus {
+    #pollux-salon-heading:focus,
+    #chap1-title:focus {
       outline: none;
     }
 
     .slide-up-salon-sheet {
       position: fixed;
       inset-inline: 0;
+      inset-block-start: 48px;
       inset-block-end: 0;
       z-index: 45;
-      background: #060B16;
+      background: rgba(5, 8, 17, 0.76);
+      backdrop-filter: blur(8px);
       color: var(--starlight);
-      border-block-start: 2px solid var(--ethereal);
-      border-start-start-radius: 20px;
-      border-start-end-radius: 20px;
-      box-shadow: 0 -24px 64px rgba(0, 0, 0, 0.85);
+      border-block-start: 0.75px solid rgba(163, 133, 255, 0.32);
+      border-radius: 0;
+      box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.75);
       transform: translateY(104%);
-      transition:
-        transform 0.44s cubic-bezier(0.22, 1, 0.36, 1),
-        border-radius 0.35s ease;
+      transition: transform 0.52s cubic-bezier(0.22, 1, 0.36, 1);
       display: flex;
       flex-direction: column;
-      max-block-size: 76svh;
+      max-block-size: calc(100svh - 48px);
+      block-size: calc(100svh - 48px);
     }
 
-    html[data-drawer="open"] .slide-up-salon-sheet {
-      transform: translateY(0%);
-      max-block-size: 76svh;
-    }
-
-    /* Stage 3: Full-Viewport (100svh) Unframed Celestial Reading Sanctuary Takeover */
+    html[data-drawer="open"] .slide-up-salon-sheet,
     html[data-drawer="fullscreen"] .slide-up-salon-sheet {
       transform: translateY(0%);
-      inset-block: 0;
-      max-block-size: 100svh;
-      block-size: 100svh;
-      border-start-start-radius: 0;
-      border-start-end-radius: 0;
-      border-block-start-width: 1px;
-      background: rgba(5, 8, 17, 0.78);
-      backdrop-filter: blur(8px);
     }
 
     .sheet-handle-bar {
+      background: rgba(5, 8, 17, 0.88);
+      backdrop-filter: blur(14px);
+      color: var(--starlight);
+      border-block-end: 0.65px solid rgba(163, 133, 255, 0.22);
+      padding: 10px clamp(24px, 4vw, 56px);
+      flex-shrink: 0;
+    }
+
+    .sheet-handle-inner {
+      max-inline-size: 920px;
+      margin-inline: auto;
+      inline-size: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 14px;
-      padding: 11px clamp(20px, 2.8vw, 44px);
-      background: rgba(5, 8, 17, 0.94);
-      color: var(--starlight);
-      border-start-start-radius: inherit;
-      border-start-end-radius: inherit;
-      border-block-end: 1px solid rgba(163, 133, 255, 0.26);
       font-family: var(--mono);
       font-size: 9px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      flex-shrink: 0;
+      color: var(--starlight-dim);
+    }
+
+    .sheet-handle-actions {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
     }
 
     .sheet-close-btn {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 4px 12px;
+      gap: 7px;
+      padding: 6px 15px;
       border-radius: 999px;
-      background: rgba(163, 133, 255, 0.18);
-      border: 1px solid var(--ethereal-bright);
+      background: rgba(163, 133, 255, 0.14);
+      border: 0.85px solid rgba(206, 192, 255, 0.48);
       color: #FFFFFF;
       font-family: var(--mono);
-      font-size: 8.5px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
+      font-size: 8.8px;
+      font-weight: 500;
+      letter-spacing: 0.11em;
       text-transform: uppercase;
       transition: all 0.2s ease;
     }
@@ -1684,6 +1719,19 @@
     .sheet-close-btn:hover {
       background: var(--ethereal);
       color: var(--obsidian);
+      border-color: var(--ethereal-bright);
+    }
+
+    .sheet-close-btn--workbench {
+      background: rgba(245, 158, 63, 0.12);
+      border-color: rgba(245, 158, 63, 0.48);
+      color: #FED7AA;
+    }
+
+    .sheet-close-btn--workbench:hover {
+      background: var(--pollux-star);
+      color: #1A0D02;
+      border-color: var(--pollux-star);
     }
 
     .drawer-scroll-body {
@@ -1693,40 +1741,57 @@
       scroll-behavior: smooth;
       display: flex;
       flex-direction: column;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(163, 133, 255, 0.35) rgba(5, 8, 17, 0.85);
     }
 
+    /* =========================================================================
+       CENTERED, UNCRAMPED 2-CARD NOCTURNAL TWIN SANCTUARY DECK (#nocturnal-twin-deck)
+       Harmoniously integrated inside the Sanctuary flow (max-inline-size: 900px)
+       with 1 spacious vertical column per Twin card so zero table labels ever wrap!
+       ========================================================================= */
     .magazine-spread {
+      max-inline-size: 900px;
+      inline-size: 100%;
+      margin-inline: auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      scroll-margin-top: 28px;
     }
 
-    @media (max-width: 1023px) {
+    @media (max-width: 920px) {
       .magazine-spread {
         grid-template-columns: 1fr;
+        gap: 22px;
       }
     }
 
     .spread-salon {
-      padding: 18px clamp(22px, 2.5vw, 40px) 20px;
+      container-type: inline-size;
+      padding: 28px 30px 30px;
+      border-radius: 14px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 12px;
+      gap: 20px;
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.55);
     }
 
     /* NOCTURNAL LIGHT-ON-DARK TINTS (LOCKED WINNER: DEEP SAPPHIRE vs. DEEP AMBER-BRONZE) */
     .spread-castor {
-      border-inline-end: 1px solid rgba(56, 189, 248, 0.25);
+      border: 0.85px solid rgba(56, 189, 248, 0.34);
       background:
-        radial-gradient(circle at 12% 20%, rgba(56, 189, 248, 0.18) 0%, transparent 60%),
-        linear-gradient(155deg, #07162C 0%, #0C2342 56%, #08182E 100%);
+        radial-gradient(circle at 14% 16%, rgba(56, 189, 248, 0.18) 0%, transparent 62%),
+        linear-gradient(155deg, rgba(7, 22, 44, 0.94) 0%, rgba(12, 35, 66, 0.94) 56%, rgba(8, 24, 46, 0.96) 100%);
       color: #F0F7FF;
     }
 
     .spread-pollux {
+      border: 0.85px solid rgba(245, 158, 63, 0.34);
       background:
-        radial-gradient(circle at 88% 20%, rgba(245, 158, 63, 0.18) 0%, transparent 60%),
-        linear-gradient(205deg, #211104 0%, #2E1907 56%, #180D03 100%);
+        radial-gradient(circle at 86% 16%, rgba(245, 158, 63, 0.18) 0%, transparent 62%),
+        linear-gradient(205deg, rgba(33, 17, 4, 0.94) 0%, rgba(46, 25, 7, 0.94) 56%, rgba(24, 13, 3, 0.96) 100%);
       color: #FFF7EB;
     }
 
@@ -1734,13 +1799,15 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-wrap: nowrap;
       gap: 8px;
-      padding-block-end: 6px;
-      border-block-end: 1px solid rgba(56, 189, 248, 0.24);
+      padding-block-end: 12px;
+      border-block-end: 0.75px solid rgba(56, 189, 248, 0.24);
       font-family: var(--mono);
-      font-size: 9px;
-      letter-spacing: 0.13em;
+      font-size: 8.6px;
+      letter-spacing: 0.11em;
       text-transform: uppercase;
+      white-space: nowrap;
     }
 
     .spread-pollux .salon-header-row {
@@ -1752,7 +1819,8 @@
       color: #7DD3FC;
       display: inline-flex;
       align-items: center;
-      gap: 7px;
+      gap: 6px;
+      white-space: nowrap;
     }
 
     .spread-pollux .shr-title {
@@ -1763,10 +1831,11 @@
       padding: 2.5px 9px;
       border-radius: 999px;
       background: rgba(56, 189, 248, 0.14);
-      border: 1px solid rgba(56, 189, 248, 0.36);
+      border: 0.75px solid rgba(56, 189, 248, 0.36);
       color: #BAE6FD;
-      font-size: 8.5px;
+      font-size: 8.2px;
       font-weight: 600;
+      white-space: nowrap;
     }
 
     .spread-pollux .shr-badge {
@@ -1775,32 +1844,34 @@
       color: #FED7AA;
     }
 
+    /* Single spacious vertical column inside each Nocturnal Twin Card (Zero 4-column cramping!) */
     .salon-body-split {
-      display: grid;
-      grid-template-columns: 1.28fr 1fr;
-      gap: 18px;
-      align-items: center;
-    }
-
-    @media (max-width: 720px) {
-      .salon-body-split {
-        grid-template-columns: 1fr;
-      }
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      flex: 1;
+      justify-content: space-between;
     }
 
     .salon-story-col {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 10px;
     }
 
     .couture-headline {
       font-family: var(--serif);
       font-weight: 600;
-      font-size: clamp(24px, 2.1vw, 34px);
-      line-height: 0.98;
+      font-size: clamp(24px, 2.2vw, 31px);
+      line-height: 1.08;
       letter-spacing: -0.01em;
       color: inherit;
+    }
+
+    @supports (font-size: 1cqi) {
+      .couture-headline {
+        font-size: clamp(24px, 6.8cqi, 31px);
+      }
     }
 
     .couture-headline em {
@@ -1808,7 +1879,7 @@
       font-style: italic;
       font-weight: 500;
       color: #7DD3FC;
-      margin-block-start: 2px;
+      margin-block-start: 4px;
     }
 
     .spread-pollux .couture-headline em {
@@ -1816,70 +1887,13 @@
     }
 
     .couture-dek {
-      font-size: 13px;
-      line-height: 1.5;
-      color: #C8E0F8;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #D2E6FA;
     }
 
     .spread-pollux .couture-dek {
-      color: #F0D8B8;
-    }
-
-    /* Full-Screen Continuation Strip Between First Salon View & Full-Viewport Scrollable Article */
-    .fullscreen-continue-strip {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
-      padding: 10px clamp(20px, 2.5vw, 40px);
-      background: linear-gradient(90deg, #051122 0%, #100E24 50%, #1C0E03 100%);
-      border-block: 1px solid rgba(163, 133, 255, 0.35);
-    }
-
-    .fcs-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 14px;
-      border-radius: 999px;
-      background: rgba(56, 189, 248, 0.16);
-      border: 1px solid rgba(56, 189, 248, 0.55);
-      color: #F0F7FF;
-      font-family: var(--mono);
-      font-size: 8.8px;
-      font-weight: 600;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-      transition: all 0.2s ease;
-    }
-
-    .fcs-btn:hover {
-      background: #38BDF8;
-      color: #051020;
-      transform: translateY(-1px);
-    }
-
-    .fcs-btn--pollux {
-      background: rgba(245, 158, 63, 0.16);
-      border-color: rgba(245, 158, 63, 0.55);
-      color: #FFF7EB;
-    }
-
-    .fcs-btn--pollux:hover {
-      background: #F59E3F;
-      color: #1A0D02;
-    }
-
-    .fcs-center-hint {
-      font-family: var(--mono);
-      font-size: 8.5px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--ethereal-bright);
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
+      color: #F4DFC4;
     }
 
     /* =========================================================================
@@ -1891,15 +1905,15 @@
       position: relative;
       display: block;
       background:
-        radial-gradient(ellipse 68% 45% at 50% 0%, rgba(16, 28, 52, 0.38) 0%, transparent 72%),
-        radial-gradient(ellipse 40% 60% at 8% 35%, rgba(56, 189, 248, 0.06) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 60% at 92% 65%, rgba(245, 158, 63, 0.06) 0%, transparent 70%),
-        rgba(5, 8, 17, 0.56);
-      padding: clamp(48px, 6.5vh, 88px) clamp(24px, 5vw, 64px) clamp(88px, 11vh, 132px);
+        radial-gradient(ellipse 68% 45% at 50% 0%, rgba(16, 28, 52, 0.32) 0%, transparent 72%),
+        radial-gradient(ellipse 40% 60% at 8% 35%, rgba(56, 189, 248, 0.05) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 92% 65%, rgba(245, 158, 63, 0.05) 0%, transparent 70%),
+        transparent;
+      padding: clamp(52px, 7vh, 92px) clamp(24px, 5vw, 64px) clamp(92px, 12vh, 136px);
     }
 
     .article-sanctuary-column {
-      max-inline-size: 760px;
+      max-inline-size: 900px;
       margin-inline: auto;
       display: flex;
       flex-direction: column;
@@ -1907,6 +1921,9 @@
     }
 
     .article-deep-col {
+      inline-size: 100%;
+      max-inline-size: 740px;
+      margin-inline: auto;
       padding: 0;
       display: flex;
       flex-direction: column;
@@ -2150,30 +2167,32 @@
       position: sticky;
       inset-block-end: 0;
       z-index: 36;
-      background: rgba(6, 10, 20, 0.94);
-      backdrop-filter: blur(14px);
-      border-block-start: 1px solid rgba(163, 133, 255, 0.38);
-      padding: 11px clamp(20px, 2.8vw, 44px);
+      background: rgba(5, 8, 17, 0.88);
+      backdrop-filter: blur(16px);
+      border-block-start: 0.65px solid rgba(163, 133, 255, 0.32);
+      padding: 13px clamp(24px, 4vw, 56px);
+      box-shadow: 0 -12px 32px rgba(0, 0, 0, 0.6);
+      flex-shrink: 0;
+    }
+
+    .atoc-inner {
+      max-inline-size: 920px;
+      margin-inline: auto;
+      inline-size: 100%;
       display: grid;
       grid-template-columns: auto 1fr auto;
       align-items: center;
-      gap: 18px;
-      box-shadow: 0 -10px 28px rgba(0, 0, 0, 0.65);
-      flex-shrink: 0;
+      gap: 22px;
     }
 
     .atoc-badge {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(56, 189, 248, 0.14);
-      border: 1px solid rgba(56, 189, 248, 0.42);
+      gap: 8px;
       font-family: var(--mono);
-      font-size: 8.5px;
-      font-weight: 600;
-      letter-spacing: 0.09em;
+      font-size: 8.8px;
+      font-weight: 500;
+      letter-spacing: 0.13em;
       text-transform: uppercase;
       color: #7DD3FC;
       white-space: nowrap;
@@ -2184,15 +2203,15 @@
       padding-block: 4px;
     }
 
-    /* Continuous 0.75px Constellation Line Connecting the 4 Chapter Stars */
+    /* Continuous 0.65px Constellation Line Connecting the 4 Chapter Stars */
     .atoc-constellation-line {
       position: absolute;
       top: 50%;
       left: 12.5%;
       right: 12.5%;
-      block-size: 0.85px;
-      margin-block-start: -0.4px;
-      background: linear-gradient(90deg, rgba(56, 189, 248, 0.65) 0%, rgba(163, 133, 255, 0.85) 50%, rgba(245, 158, 63, 0.65) 100%);
+      block-size: 0.65px;
+      margin-block-start: -0.32px;
+      background: linear-gradient(90deg, rgba(56, 189, 248, 0.55) 0%, rgba(163, 133, 255, 0.78) 50%, rgba(245, 158, 63, 0.55) 100%);
       pointer-events: none;
     }
 
@@ -2235,7 +2254,7 @@
       padding: 0;
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 6px;
+      gap: 10px;
       align-items: center;
     }
 
@@ -2249,15 +2268,15 @@
       align-items: center;
       justify-content: center;
       gap: 4px;
-      padding: 4.5px 12px 4.5px 13px;
+      padding: 5px 13px 5px 14px;
       border-radius: 999px;
-      background: rgba(11, 17, 30, 0.88);
-      border: 0.85px solid rgba(255, 255, 255, 0.14);
+      background: rgba(6, 10, 20, 0.82);
+      border: 0.65px solid rgba(255, 255, 255, 0.09);
       font-family: var(--mono);
       font-size: 9px;
       font-weight: 500;
-      letter-spacing: 0.05em;
-      color: #B4C4DA;
+      letter-spacing: 0.06em;
+      color: #A8BCD6;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -2270,11 +2289,11 @@
     }
 
     .atoc-link[aria-current="location"] {
-      background: linear-gradient(135deg, rgba(56, 189, 248, 0.26), rgba(163, 133, 255, 0.28));
+      background: rgba(14, 21, 38, 0.96);
       border-color: var(--ethereal-bright);
       color: #FFFFFF;
       font-weight: 600;
-      box-shadow: 0 0 14px rgba(163, 133, 255, 0.35);
+      box-shadow: 0 0 14px rgba(163, 133, 255, 0.3);
     }
 
     .atoc-star-dot {
@@ -2294,27 +2313,27 @@
     }
 
     .telemetry-card {
-      background: rgba(5, 13, 26, 0.78);
-      border: 1px solid rgba(56, 189, 248, 0.35);
+      background: rgba(4, 11, 24, 0.78);
+      border: 0.85px solid rgba(56, 189, 248, 0.32);
       border-radius: 10px;
-      padding: 10px 13px;
+      padding: 16px 20px;
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 8px;
     }
 
     .tc-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 8px;
+      gap: 12px;
       font-family: var(--mono);
-      font-size: 8.5px;
-      letter-spacing: 0.11em;
+      font-size: 9px;
+      letter-spacing: 0.13em;
       text-transform: uppercase;
       color: #7DD3FC;
-      padding-block-end: 4px;
-      border-block-end: 1px solid rgba(56, 189, 248, 0.22);
+      padding-block-end: 8px;
+      border-block-end: 0.75px solid rgba(56, 189, 248, 0.22);
       font-weight: 600;
       white-space: nowrap;
     }
@@ -2323,10 +2342,10 @@
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      gap: 8px;
-      padding-block: 3px;
-      border-block-end: 1px dashed rgba(56, 189, 248, 0.2);
-      font-size: 11px;
+      gap: 14px;
+      padding-block: 5px;
+      border-block-end: 0.75px dashed rgba(56, 189, 248, 0.18);
+      font-size: 12px;
     }
 
     .tc-row:last-of-type {
@@ -2335,48 +2354,54 @@
 
     .tc-key {
       font-family: var(--mono);
-      font-size: 8.8px;
+      font-size: 9.5px;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       color: #93C5FD;
+      white-space: nowrap;
     }
 
     .tc-val {
       font-family: var(--mono);
-      font-size: 11px;
+      font-size: 11.8px;
       font-weight: 600;
       color: #F0F7FF;
+      text-align: right;
+      white-space: nowrap;
     }
 
     .tc-source-link {
-      margin-block-start: 2px;
-      padding-block-start: 4px;
-      border-block-start: 1px solid rgba(56, 189, 248, 0.22);
+      margin-block-start: 4px;
+      padding-block-start: 8px;
+      border-block-start: 0.75px solid rgba(56, 189, 248, 0.22);
       font-family: var(--mono);
-      font-size: 8.5px;
-      letter-spacing: 0.08em;
+      font-size: 9px;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: #7DD3FC;
       display: flex;
       justify-content: space-between;
+      align-items: center;
     }
 
     .atelier-console {
       background: rgba(9, 5, 2, 0.88);
       color: var(--starlight);
       border-radius: 10px;
-      padding: 11px 14px;
-      border: 1px solid rgba(245, 158, 63, 0.48);
+      padding: 16px 20px;
+      border: 0.85px solid rgba(245, 158, 63, 0.42);
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 10px;
     }
 
     .ac-top {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       font-family: var(--mono);
-      font-size: 8px;
-      letter-spacing: 0.12em;
+      font-size: 9px;
+      letter-spacing: 0.13em;
       text-transform: uppercase;
       color: var(--pollux-star);
     }
@@ -2384,20 +2409,22 @@
     .ac-presets {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 4px;
+      gap: 6px;
       background: var(--obsidian);
-      padding: 3px;
-      border-radius: 6px;
+      padding: 4px;
+      border-radius: 8px;
     }
 
     .ac-preset-btn {
-      padding: 4px 5px;
-      border-radius: 4px;
+      padding: 6.5px 8px;
+      border-radius: 6px;
       font-family: var(--mono);
-      font-size: 8px;
+      font-size: 9px;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
       color: #9BA6B8;
       text-align: center;
+      transition: all 0.2s ease;
     }
 
     .ac-preset-btn[aria-pressed="true"] {
@@ -2409,19 +2436,21 @@
     .ac-output {
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 6px;
       background: var(--obsidian);
-      border-radius: 6px;
-      padding: 7px 10px;
+      border-radius: 8px;
+      padding: 11px 14px;
       font-family: var(--mono);
-      font-size: 9.8px;
+      font-size: 11px;
     }
 
     .ac-line {
       display: flex;
       justify-content: space-between;
-      padding-block: 1.5px;
-      border-block-end: 1px dashed rgba(255, 255, 255, 0.08);
+      align-items: baseline;
+      gap: 12px;
+      padding-block: 3px;
+      border-block-end: 0.75px dashed rgba(255, 255, 255, 0.08);
     }
 
     .ac-line:last-child {
@@ -2430,12 +2459,15 @@
 
     .ac-k {
       color: #93A0B4;
-      font-size: 8.5px;
+      font-size: 9.5px;
+      white-space: nowrap;
     }
 
     .ac-v {
       color: var(--starlight);
       font-weight: 600;
+      text-align: right;
+      white-space: nowrap;
     }
 
     .ac-v.accent {
@@ -2576,7 +2608,7 @@
         </div>
 
         <a href="/series/google-preview-observatory/open-letter-to-google-deepmind.html" class="charter-pill" title="Read Our Open Letter to Google DeepMind: Proposing GeminiPulse as a Public Frontier Model Observatory">Google Letter ↗</a>
-        <a href="./index.html" class="charter-pill" title="View All 14 Preserved Design Evolution Prototypes">Archive (14) ↗</a>
+        <a href="./index.html" class="charter-pill" title="View All 16 Preserved Design Evolution Prototypes">Archive (16) ↗</a>
       </div>
     </header>
 
@@ -2961,144 +2993,28 @@
   </div>
 
   <!-- =======================================================================
-       5. TWO-STAGE SLIDE-UP NOCTURNAL SALON -> FULL-VIEWPORT (100svh) ARTICLE
+       5. FULL-STAGE CELESTIAL READING SANCTUARY & NOCTURNAL TWIN DECK
           + DOCKED BOTTOM "CONSTELLATION BAR" ACTIVE TABLE OF CONTENTS (SEO/GEO)
        ======================================================================= -->
   <div class="slide-up-drawer-backdrop" id="drawer-backdrop" aria-hidden="true"></div>
-  <section class="slide-up-salon-sheet" id="salon-sheet" aria-label="Castor and Pollux Paired Nocturnal Salons and Full-Viewport Article Reader">
+  <section class="slide-up-salon-sheet" id="salon-sheet" aria-label="Celestial Reading Sanctuary and Paired Nocturnal Twin Workbench">
     <div class="sheet-handle-bar">
-      <span id="sheet-location-status">♊ PAIRED NOCTURNAL TWIN SALONS · STAR 02 / 08 (<span class="greek">ε</span> MEBSUTA · RELEASES DECODED · 840 LY)</span>
-      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-        <button type="button" class="sheet-close-btn" id="toggle-fullscreen-btn" style="background:rgba(56,189,248,0.18);border-color:#38BDF8;">
-          <span id="toggle-fullscreen-label">↑ Expand Full-Screen Article &amp; Lab (100%)</span>
-        </button>
-        <a href="./look-j-v5-archive.html" style="color:var(--ethereal-bright);text-decoration:underline;">Look J (v5 Archive) ↗</a>
-        <a href="/series/google-preview-observatory/open-letter-to-google-deepmind.html" style="color:var(--ethereal-bright);text-decoration:underline;">Open Letter to Google ↗</a>
-        <button type="button" class="sheet-close-btn" id="close-drawer-btn">
-          <span>↓ Return to 3D Star Chart</span>
-        </button>
+      <div class="sheet-handle-inner">
+        <span id="sheet-location-status">✦ STAR 02 / 08 · <span class="greek">ε</span> MEBSUTA (840 LY) · NOV 3, 2026 · 4 MIN READ</span>
+        <div class="sheet-handle-actions">
+          <button type="button" class="sheet-close-btn sheet-close-btn--workbench" id="jump-workbench-btn">
+            <span>Twin Workbench &amp; Ledger ↓</span>
+          </button>
+          <button type="button" class="sheet-close-btn" id="close-drawer-btn">
+            <span>← Return to 3D Star Chart</span>
+          </button>
+        </div>
       </div>
     </div>
 
     <div class="drawer-scroll-body" id="drawer-scroll-body">
       <!-- ===================================================================
-           STAGE 1: PAIRED NOCTURNAL LIGHT-ON-DARK TWIN SALON (ROW B WINNER)
-           =================================================================== -->
-      <div class="magazine-spread">
-        <article class="spread-salon spread-castor">
-          <div class="salon-header-row">
-            <span class="shr-title">
-              <span class="peek-dot" aria-hidden="true"></span>
-              <span><span class="greek">α</span> CASTOR · THE SIGNAL (NOCTURNAL SAPPHIRE)</span>
-            </span>
-            <span class="shr-badge" data-sync="castor-star-badge" id="castor-star-badge"><span class="greek">ε</span> GEM · SUPERGIANT · 840 LY</span>
-          </div>
-
-          <div class="salon-body-split">
-            <div class="salon-story-col">
-              <h2 class="couture-headline" id="castor-salon-heading" tabindex="-1">
-                <span data-sync="castor-title-main" id="castor-title-main">Every Gemini release, decoded.</span>
-                <em data-sync="castor-title-italic" id="castor-title-italic">Zero jargon. Zero hype.</em>
-              </h2>
-              <p class="couture-dek" data-sync-html="castor-dek" id="castor-dek">
-                <strong>How it applies to you:</strong> Google ships model updates, context-window expansions, and Workspace features every week. We translate every drop into plain English: what changed, who should care, and what you can safely ignore.
-              </p>
-            </div>
-
-            <aside class="telemetry-card" aria-label="Verified Google Telemetry">
-              <div class="tc-header">
-                <span>SIGNAL LEDGER</span>
-                <span data-sync-html="castor-spec-code" id="castor-spec-code">STAR 02 · <span class="greek">ε</span> MEBSUTA</span>
-              </div>
-              <div class="tc-row">
-                <span class="tc-key" data-sync="tc-k1" id="tc-k1">Verification Standard</span>
-                <span class="tc-val" data-sync="tc-v1" id="tc-v1">100% Google Primary Links</span>
-              </div>
-              <div class="tc-row">
-                <span class="tc-key" data-sync="tc-k2" id="tc-k2">Target Reader</span>
-                <span class="tc-val" data-sync="tc-v2" id="tc-v2">Everyday Users &amp; Builders</span>
-              </div>
-              <div class="tc-row">
-                <span class="tc-key" data-sync="tc-k3" id="tc-k3">Astrophysical Depth</span>
-                <span class="tc-val" data-sync="tc-v3" id="tc-v3">840 Light-Years (G8Ib)</span>
-              </div>
-              <a class="tc-source-link" data-sync-href="castor-source-link" id="castor-source-link" href="https://blog.google/technology/ai/" target="_blank" rel="noopener noreferrer">
-                <span>Verified Google Source</span>
-                <span>↗</span>
-              </a>
-            </aside>
-          </div>
-        </article>
-
-        <article class="spread-salon spread-pollux">
-          <div class="salon-header-row">
-            <span class="shr-title">
-              <span class="peek-dot" aria-hidden="true"></span>
-              <span><span class="greek">β</span> POLLUX · THE WORKBENCH (NOCTURNAL AMBER-BRONZE)</span>
-            </span>
-            <span class="shr-badge" data-sync="pollux-star-badge" id="pollux-star-badge"><span class="greek">δ</span> GEM · WORKSPACE GUIDES · 60 LY</span>
-          </div>
-
-          <div class="salon-body-split">
-            <div class="salon-story-col">
-              <h2 class="couture-headline" id="pollux-salon-heading" tabindex="-1">
-                <span data-sync="pollux-title-main" id="pollux-title-main">5-minute guides for Docs &amp; Gmail.</span>
-                <em data-sync="pollux-title-italic" id="pollux-title-italic">No coding required.</em>
-              </h2>
-              <p class="couture-dek" data-sync-html="pollux-dek" id="pollux-dek">
-                <strong>Everyday Workflows:</strong> Step-by-step recipes for Deep Research synthesis, NotebookLM audio briefings, and multi-tab Google Sheets cleanup that save hours every week.
-              </p>
-            </div>
-
-            <div class="atelier-console">
-              <div class="ac-top">
-                <span data-sync="ac-console-kicker" id="ac-console-kicker">STAR 02/06 WORKFLOW LAB</span>
-                <span>[SIMULATED DEMO]</span>
-              </div>
-              <div class="ac-presets" role="group" aria-label="Interactive Workload Presets">
-                <button type="button" class="ac-preset-btn" data-preset="0" aria-pressed="true">DEEP RESEARCH</button>
-                <button type="button" class="ac-preset-btn" data-preset="1" aria-pressed="false">NOTEBOOKLM</button>
-                <button type="button" class="ac-preset-btn" data-preset="2" aria-pressed="false">SHEETS AI</button>
-              </div>
-              <div class="ac-output" aria-live="polite">
-                <div class="ac-line">
-                  <span class="ac-k" data-sync="ac-k1" id="ac-k1">1. Task:</span>
-                  <span class="ac-v" data-sync="ac-v1" id="ac-v1">50-Source Market Brief</span>
-                </div>
-                <div class="ac-line">
-                  <span class="ac-k" data-sync="ac-k2" id="ac-k2">2. Manual Time:</span>
-                  <span class="ac-v accent" data-sync="ac-v2" id="ac-v2">4.5 hours → 6 mins</span>
-                </div>
-                <div class="ac-line">
-                  <span class="ac-k" data-sync="ac-k3" id="ac-k3">3. Output:</span>
-                  <span class="ac-v" data-sync="ac-v3" id="ac-v3">Cited Google Doc</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
-      </div>
-
-      <!-- ===================================================================
-           CONTINUATION BAR: SLIDE UP TO TAKE OVER FULL SCREEN & SCROLL ARTICLE
-           =================================================================== -->
-      <div class="fullscreen-continue-strip" id="fullscreen-continue-strip">
-        <button type="button" class="fcs-btn" id="fcs-primary-toggle-btn">
-          <span id="fcs-expand-btn-label">↑ Continue Reading Full Article (Take Over Full Screen · 4 Chapters)</span>
-        </button>
-        <span class="fcs-center-hint">
-          <span>✦</span>
-          <span id="fcs-read-meta">NOV 3, 2026 · ⏱ 4 MIN READ · SEO &amp; GEO STRUCTURED</span>
-          <span>✦</span>
-        </span>
-        <button type="button" class="fcs-btn fcs-btn--pollux" data-expand-chapter="2">
-          <span class="slide-up-arrow-icon" aria-hidden="true">↑</span>
-          <span>Jump to Chapter 03 Benchmarks &amp; Recipe</span>
-        </button>
-      </div>
-
-      <!-- ===================================================================
-           STAGE 2: FULL-VIEWPORT UNFRAMED CELESTIAL READING SANCTUARY
+           UNFRAMED CELESTIAL READING SANCTUARY + CENTERED NOCTURNAL TWIN DECK
            Single-column 64ch editorial flow surrounded by >60% open space,
            separated by delicate ✦ · ♊ · ✦ hairline dividers with zero boxed frames!
            =================================================================== -->
@@ -3107,14 +3023,14 @@
         <meta itemprop="datePublished" content="2026-11-03" />
 
         <div class="article-sanctuary-column">
-          <!-- Unframed Castor Signal Chapters (01 & 02) -->
+          <!-- Unframed Opening Lead: Chapter 01 -->
           <div class="article-deep-col">
             <section class="chapter-card" id="chapter-01" data-chapter-card="0" data-active-chapter="true">
               <div class="chapter-kicker">
                 <span id="chap1-kicker">CHAPTER 01 / 04 · WHAT SHIPPED</span>
-                <span>DIRECT ANSWER PASSAGE (GEO)</span>
+                <span><span class="greek">α</span> CASTOR · THE SIGNAL</span>
               </div>
-              <h3 class="chapter-h3" id="chap1-title" itemprop="headline">
+              <h3 class="chapter-h3" id="chap1-title" tabindex="-1" itemprop="headline">
                 01 · What Shipped: Every November 2026 Gemini Release, Decoded
               </h3>
               <p class="chapter-sub" id="chap1-sub">
@@ -3124,15 +3040,122 @@
                 Google shipped Gemini 2.5 Pro and 2.5 Flash updates, implicit Context Caching (cutting repeat-read token costs by up to 90%), and Gemini Computer Use browser automation. Instead of sifting through 40 pages of developer changelogs, this brief isolates the exact updates that change day-to-day creative, analytical, and engineering work.
               </p>
             </section>
+          </div>
 
-            <div class="celestial-chapter-divider" aria-hidden="true">
-              <span class="ccd-glyph">✦ · <svg width="11" height="12" viewBox="0 0 14 16" aria-hidden="true" style="vertical-align:-1px;margin-inline:2px;"><path d="M1.5 2 H12.5 M1.5 14 H12.5" stroke="#CEC0FF" stroke-width="1.35" stroke-linecap="round"/><line x1="4.6" y1="2.3" x2="4.6" y2="13.7" stroke="#7EB8FF" stroke-width="1.55" stroke-linecap="round"/><line x1="9.4" y1="2.3" x2="9.4" y2="13.7" stroke="#F59E3F" stroke-width="1.55" stroke-linecap="round"/></svg> · ✦</span>
-            </div>
+          <div class="celestial-chapter-divider" aria-hidden="true">
+            <span class="ccd-glyph">✦ · <svg width="11" height="12" viewBox="0 0 14 16" aria-hidden="true" style="vertical-align:-1px;margin-inline:2px;"><path d="M1.5 2 H12.5 M1.5 14 H12.5" stroke="#CEC0FF" stroke-width="1.35" stroke-linecap="round"/><line x1="4.6" y1="2.3" x2="4.6" y2="13.7" stroke="#7EB8FF" stroke-width="1.55" stroke-linecap="round"/><line x1="9.4" y1="2.3" x2="9.4" y2="13.7" stroke="#F59E3F" stroke-width="1.55" stroke-linecap="round"/></svg> · ✦</span>
+          </div>
 
+          <!-- ===============================================================
+               CENTERED, UNCRAMPED 2-CARD NOCTURNAL TWIN SANCTUARY DECK
+               Deep Sapphire Night (Castor Signal Ledger) vs. Deep Amber-Bronze
+               Night (Pollux Interactive Workbench) — 1 spacious column per card!
+               =============================================================== -->
+          <div class="magazine-spread" id="nocturnal-twin-deck">
+            <aside class="spread-salon spread-castor" aria-label="Alpha Castor Nocturnal Sapphire Signal Ledger">
+              <div class="salon-header-row">
+                <span class="shr-title">
+                  <span class="peek-dot" aria-hidden="true"></span>
+                  <span><span class="greek">α</span> CASTOR · THE SIGNAL</span>
+                </span>
+                <span class="shr-badge" data-sync="castor-star-badge" id="castor-star-badge"><span class="greek">ε</span> GEM · SUPERGIANT · 840 LY</span>
+              </div>
+
+              <div class="salon-body-split">
+                <div class="salon-story-col">
+                  <h2 class="couture-headline" id="castor-salon-heading" tabindex="-1">
+                    <span data-sync="castor-title-main" id="castor-title-main">Every Gemini release, decoded.</span>
+                    <em data-sync="castor-title-italic" id="castor-title-italic">Zero jargon. Zero hype.</em>
+                  </h2>
+                  <p class="couture-dek" data-sync-html="castor-dek" id="castor-dek">
+                    <strong>How it applies to you:</strong> Google ships model updates, context-window expansions, and Workspace features every week. We translate every drop into plain English: what changed, who should care, and what you can safely ignore.
+                  </p>
+                </div>
+
+                <div class="telemetry-card" aria-label="Verified Google Telemetry">
+                  <div class="tc-header">
+                    <span>SIGNAL LEDGER</span>
+                    <span data-sync-html="castor-spec-code" id="castor-spec-code">STAR 02 · <span class="greek">ε</span> MEBSUTA</span>
+                  </div>
+                  <div class="tc-row">
+                    <span class="tc-key" data-sync="tc-k1" id="tc-k1">Verification Standard</span>
+                    <span class="tc-val" data-sync="tc-v1" id="tc-v1">100% Google Primary Links</span>
+                  </div>
+                  <div class="tc-row">
+                    <span class="tc-key" data-sync="tc-k2" id="tc-k2">Target Reader</span>
+                    <span class="tc-val" data-sync="tc-v2" id="tc-v2">Everyday Users &amp; Builders</span>
+                  </div>
+                  <div class="tc-row">
+                    <span class="tc-key" data-sync="tc-k3" id="tc-k3">Astrophysical Depth</span>
+                    <span class="tc-val" data-sync="tc-v3" id="tc-v3">840 Light-Years (G8Ib)</span>
+                  </div>
+                  <a class="tc-source-link" data-sync-href="castor-source-link" id="castor-source-link" href="https://blog.google/technology/ai/" target="_blank" rel="noopener noreferrer">
+                    <span>Verified Google Source</span>
+                    <span>↗</span>
+                  </a>
+                </div>
+              </div>
+            </aside>
+
+            <aside class="spread-salon spread-pollux" aria-label="Beta Pollux Nocturnal Amber-Bronze Interactive Workbench">
+              <div class="salon-header-row">
+                <span class="shr-title">
+                  <span class="peek-dot" aria-hidden="true"></span>
+                  <span><span class="greek">β</span> POLLUX · THE WORKBENCH</span>
+                </span>
+                <span class="shr-badge" data-sync="pollux-star-badge" id="pollux-star-badge"><span class="greek">δ</span> GEM · WORKSPACE GUIDES · 60 LY</span>
+              </div>
+
+              <div class="salon-body-split">
+                <div class="salon-story-col">
+                  <h2 class="couture-headline" id="pollux-salon-heading" tabindex="-1">
+                    <span data-sync="pollux-title-main" id="pollux-title-main">5-minute guides for Docs &amp; Gmail.</span>
+                    <em data-sync="pollux-title-italic" id="pollux-title-italic">No coding required.</em>
+                  </h2>
+                  <p class="couture-dek" data-sync-html="pollux-dek" id="pollux-dek">
+                    <strong>Everyday Workflows:</strong> Step-by-step recipes for Deep Research synthesis, NotebookLM audio briefings, and multi-tab Google Sheets cleanup that save hours every week.
+                  </p>
+                </div>
+
+                <div class="atelier-console">
+                  <div class="ac-top">
+                    <span data-sync="ac-console-kicker" id="ac-console-kicker">STAR 02/06 WORKFLOW LAB</span>
+                    <span>[SIMULATED DEMO]</span>
+                  </div>
+                  <div class="ac-presets" role="group" aria-label="Interactive Workload Presets">
+                    <button type="button" class="ac-preset-btn" data-preset="0" aria-pressed="true">DEEP RESEARCH</button>
+                    <button type="button" class="ac-preset-btn" data-preset="1" aria-pressed="false">NOTEBOOKLM</button>
+                    <button type="button" class="ac-preset-btn" data-preset="2" aria-pressed="false">SHEETS AI</button>
+                  </div>
+                  <div class="ac-output" aria-live="polite">
+                    <div class="ac-line">
+                      <span class="ac-k" data-sync="ac-k1" id="ac-k1">1. Task:</span>
+                      <span class="ac-v" data-sync="ac-v1" id="ac-v1">50-Source Market Brief</span>
+                    </div>
+                    <div class="ac-line">
+                      <span class="ac-k" data-sync="ac-k2" id="ac-k2">2. Manual Time:</span>
+                      <span class="ac-v accent" data-sync="ac-v2" id="ac-v2">4.5 hours → 6 mins</span>
+                    </div>
+                    <div class="ac-line">
+                      <span class="ac-k" data-sync="ac-k3" id="ac-k3">3. Output:</span>
+                      <span class="ac-v" data-sync="ac-v3" id="ac-v3">Cited Google Doc</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </div>
+
+          <div class="celestial-chapter-divider" aria-hidden="true">
+            <span class="ccd-glyph">✦ · <svg width="11" height="12" viewBox="0 0 14 16" aria-hidden="true" style="vertical-align:-1px;margin-inline:2px;"><path d="M1.5 2 H12.5 M1.5 14 H12.5" stroke="#CEC0FF" stroke-width="1.35" stroke-linecap="round"/><line x1="4.6" y1="2.3" x2="4.6" y2="13.7" stroke="#7EB8FF" stroke-width="1.55" stroke-linecap="round"/><line x1="9.4" y1="2.3" x2="9.4" y2="13.7" stroke="#F59E3F" stroke-width="1.55" stroke-linecap="round"/></svg> · ✦</span>
+          </div>
+
+          <!-- Unframed Chapter 02 -->
+          <div class="article-deep-col">
             <section class="chapter-card" id="chapter-02" data-chapter-card="1" data-active-chapter="false">
               <div class="chapter-kicker">
                 <span id="chap2-kicker">CHAPTER 02 / 04 · FOR YOUR WORK</span>
-                <span>PRACTICAL IMPACT</span>
+                <span>PRACTICAL WORKFLOW IMPACT</span>
               </div>
               <h3 class="chapter-h3" id="chap2-title">
                 02 · How It Applies to Your Work: Where You Save Time Immediately
@@ -3156,12 +3179,12 @@
             <span class="ccd-glyph">✦ · <svg width="11" height="12" viewBox="0 0 14 16" aria-hidden="true" style="vertical-align:-1px;margin-inline:2px;"><path d="M1.5 2 H12.5 M1.5 14 H12.5" stroke="#CEC0FF" stroke-width="1.35" stroke-linecap="round"/><line x1="4.6" y1="2.3" x2="4.6" y2="13.7" stroke="#7EB8FF" stroke-width="1.55" stroke-linecap="round"/><line x1="9.4" y1="2.3" x2="9.4" y2="13.7" stroke="#F59E3F" stroke-width="1.55" stroke-linecap="round"/></svg> · ✦</span>
           </div>
 
-          <!-- Unframed Pollux Benchmarks, Recipe & GEO FAQ Chapters (03 & 04) -->
+          <!-- Unframed Pollux Benchmarks, Recipe & Key Takeaway Chapters (03 & 04) -->
           <div class="article-deep-col article-deep-col--pollux">
             <section class="chapter-card" id="chapter-03" data-chapter-card="2" data-active-chapter="false">
               <div class="chapter-kicker">
                 <span id="chap3-kicker">CHAPTER 03 / 04 · BENCHMARKS &amp; WORKBENCH</span>
-                <span>VERIFIED TELEMETRY</span>
+                <span><span class="greek">β</span> POLLUX · VERIFIED TELEMETRY</span>
               </div>
               <h3 class="chapter-h3" id="chap3-title">
                 03 · Verified ROI &amp; Production Implementation Pattern
@@ -3192,8 +3215,8 @@ const cache = await ai.caches.create({
 
             <section class="chapter-card" id="chapter-04" data-chapter-card="3" data-active-chapter="false">
               <div class="chapter-kicker">
-                <span id="chap4-kicker">CHAPTER 04 / 04 · KEY TAKEAWAYS &amp; GEO FAQ</span>
-                <span>LLM CITATION READY</span>
+                <span id="chap4-kicker">CHAPTER 04 / 04 · KEY TAKEAWAYS &amp; DECISION RUBRIC</span>
+                <span>PRIMARY GOOGLE SOURCES</span>
               </div>
               <h3 class="chapter-h3" id="chap4-title">
                 04 · Key Takeaway: When Should Teams Upgrade Their Workflow?
@@ -3222,46 +3245,48 @@ const cache = await ai.caches.create({
             highlighted star that glides across the 4 article chapters!
          ===================================================================== -->
     <nav class="article-constellation-toc-bar" aria-label="Article Table of Contents">
-      <div class="atoc-badge">
-        <span class="cpn-loc-dot" style="background:#38BDF8;box-shadow:0 0 8px #38BDF8;" aria-hidden="true"></span>
-        <span id="atoc-status-label">ARTICLE TOC · CHAPTER 01 / 04</span>
-      </div>
+      <div class="atoc-inner">
+        <div class="atoc-badge">
+          <span class="cpn-loc-dot" style="background:#38BDF8;box-shadow:0 0 8px #38BDF8;" aria-hidden="true"></span>
+          <span id="atoc-status-label">CHAPTER 01 / 04</span>
+        </div>
 
-      <div class="atoc-rail-wrap">
-        <div class="atoc-constellation-line" aria-hidden="true"></div>
-        <div class="atoc-gliding-star" id="atoc-gliding-star" aria-hidden="true"></div>
+        <div class="atoc-rail-wrap">
+          <div class="atoc-constellation-line" aria-hidden="true"></div>
+          <div class="atoc-gliding-star" id="atoc-gliding-star" aria-hidden="true"></div>
 
-        <ol class="atoc-list">
-          <li class="atoc-item">
-            <a href="#chapter-01" class="atoc-link" data-toc-chapter="0" aria-current="location">
-              <span class="atoc-star-dot" aria-hidden="true"></span>
-              <span id="atoc-label-0">01 · What Shipped</span>
-            </a>
-          </li>
-          <li class="atoc-item">
-            <a href="#chapter-02" class="atoc-link" data-toc-chapter="1">
-              <span class="atoc-star-dot" aria-hidden="true"></span>
-              <span id="atoc-label-1">02 · For Your Work</span>
-            </a>
-          </li>
-          <li class="atoc-item">
-            <a href="#chapter-03" class="atoc-link" data-toc-chapter="2">
-              <span class="atoc-star-dot" aria-hidden="true"></span>
-              <span id="atoc-label-2">03 · Safe to Skip</span>
-            </a>
-          </li>
-          <li class="atoc-item">
-            <a href="#chapter-04" class="atoc-link" data-toc-chapter="3">
-              <span class="atoc-star-dot" aria-hidden="true"></span>
-              <span id="atoc-label-3">04 · Recipe &amp; GEO FAQ</span>
-            </a>
-          </li>
-        </ol>
-      </div>
+          <ol class="atoc-list">
+            <li class="atoc-item">
+              <a href="#chapter-01" class="atoc-link" data-toc-chapter="0" aria-current="location">
+                <span class="atoc-star-dot" aria-hidden="true"></span>
+                <span id="atoc-label-0">01 · What Shipped</span>
+              </a>
+            </li>
+            <li class="atoc-item">
+              <a href="#chapter-02" class="atoc-link" data-toc-chapter="1">
+                <span class="atoc-star-dot" aria-hidden="true"></span>
+                <span id="atoc-label-1">02 · For Your Work</span>
+              </a>
+            </li>
+            <li class="atoc-item">
+              <a href="#chapter-03" class="atoc-link" data-toc-chapter="2">
+                <span class="atoc-star-dot" aria-hidden="true"></span>
+                <span id="atoc-label-2">03 · Safe to Skip</span>
+              </a>
+            </li>
+            <li class="atoc-item">
+              <a href="#chapter-04" class="atoc-link" data-toc-chapter="3">
+                <span class="atoc-star-dot" aria-hidden="true"></span>
+                <span id="atoc-label-3">04 · Recipe &amp; FAQ</span>
+              </a>
+            </li>
+          </ol>
+        </div>
 
-      <div class="cpn-arrows">
-        <button type="button" class="cpn-arrow-btn" id="prev-chapter-btn" aria-label="Previous Article Chapter">← Prev Section</button>
-        <button type="button" class="cpn-arrow-btn" id="next-chapter-btn" aria-label="Next Article Chapter">Next Section →</button>
+        <div class="cpn-arrows">
+          <button type="button" class="cpn-arrow-btn" id="prev-chapter-btn" aria-label="Previous Article Chapter">← Prev</button>
+          <button type="button" class="cpn-arrow-btn" id="next-chapter-btn" aria-label="Next Article Chapter">Next →</button>
+        </div>
       </div>
     </nav>
   </section>
@@ -3345,7 +3370,7 @@ const cache = await ai.caches.create({
 
       const SALON_DATA = {
         castor: {
-          castorBadge: "α GEM · BLUE-WHITE A1V · 51 LY",
+          castorBadge: "α GEM · A1V · 51 LY",
           castorMain: "Google cut memory costs 90%.",
           castorItalic: "What does that unlock for you?",
           castorDek: "<strong>How it applies to you:</strong> Instead of paying full price every time you ask a follow-up question on a 300-page PDF or codebase, Gemini 2.5 Pro Context Caching stores your workspace once and drops repeat reads from <code>$2.50</code> to <code>$0.25 / 1M</code>—cutting typical bills by <strong>78%</strong>.",
@@ -3354,7 +3379,7 @@ const cache = await ai.caches.create({
           k2: "Blended Team Bill", v2: "-78% Monthly Cut",
           k3: "Astrophysical Depth", v3: "51 Light-Years (6 Stars)",
           sourceUrl: "https://ai.google.dev/gemini-api/docs/pricing",
-          polluxBadge: "β GEM · GOLDEN-ORANGE K0III · 34 LY",
+          polluxBadge: "β GEM · K0III · 34 LY",
           polluxMain: "Test your savings in 10 seconds.",
           polluxItalic: "Copy the working recipe.",
           polluxDek: "<strong>Live Workbench:</strong> Select a workload preset on the right to see how pinning your recurring PDFs or repository context once with <code>ai.caches.create()</code> slashes monthly token spend.",
@@ -3366,7 +3391,7 @@ const cache = await ai.caches.create({
           ]
         },
         mebsuta: {
-          castorBadge: "ε GEM · SUPERGIANT · 840 LY",
+          castorBadge: "ε GEM · G8IB · 840 LY",
           castorMain: "Every Gemini release, decoded.",
           castorItalic: "Zero jargon. Zero hype.",
           castorDek: "<strong>How it applies to you:</strong> Google ships model updates, context-window expansions, and Workspace features every week. We translate every drop into plain English: what changed, who should care, and what you can safely ignore.",
@@ -3375,7 +3400,7 @@ const cache = await ai.caches.create({
           k2: "Target Reader", v2: "Everyday Users & Builders",
           k3: "Astrophysical Depth", v3: "840 Light-Years (G8Ib)",
           sourceUrl: "https://blog.google/technology/ai/",
-          polluxBadge: "δ GEM · WORKSPACE GUIDES · 60 LY",
+          polluxBadge: "δ GEM · F0IV · 60 LY",
           polluxMain: "5-minute guides for Docs & Gmail.",
           polluxItalic: "No coding required.",
           polluxDek: "<strong>Everyday Workflows:</strong> Step-by-step recipes for Deep Research synthesis, NotebookLM audio briefings, and multi-tab Google Sheets cleanup that save hours every week.",
@@ -3387,7 +3412,7 @@ const cache = await ai.caches.create({
           ]
         },
         tejat: {
-          castorBadge: "μ GEM · MAG 2.87 · 230 LY",
+          castorBadge: "μ GEM · M3III · 230 LY",
           castorMain: "79% faster replies. 4.2× less energy.",
           castorItalic: "Why speed changes how you think.",
           castorDek: "<strong>How it applies to you:</strong> Waiting 4 seconds breaks human creative flow. Warm context prefixes on TPU v6e Trillium drop 128k Time-to-First-Token from <code>3.4s</code> to <code>0.7s</code> while cutting per-query energy by <strong>76%</strong>.",
@@ -3396,7 +3421,7 @@ const cache = await ai.caches.create({
           k2: "Query Energy", v2: "4.2× Lower Watt-Hours",
           k3: "Hardware Engine", v3: "TPU v6e Trillium",
           sourceUrl: "https://cloud.google.com/tpu/docs/v6e",
-          polluxBadge: "δ GEM · ECLIPTIC NODE · 60 LY",
+          polluxBadge: "δ GEM · F0IV · 60 LY",
           polluxMain: "Feel sub-second latency.",
           polluxItalic: "Cold vs. warm prefix benchmark.",
           polluxDek: "<strong>Latency &amp; Carbon Lab:</strong> Compare cold prefill wait times against warm cached prefixes across 32k, 128k, and 500k token workspaces.",
@@ -3417,7 +3442,7 @@ const cache = await ai.caches.create({
           k2: "Voice Narration", v2: "gemini-3.8-flash-tts",
           k3: "Cluster Companion", v3: "Messier 35 (2,800 LY)",
           sourceUrl: "https://ai.google.dev/gemini-api/docs",
-          polluxBadge: "γ GEM · MULTIMODAL PIPELINE",
+          polluxBadge: "γ GEM · A1IV · 109 LY",
           polluxMain: "Inspect the 60-second script.",
           polluxItalic: "Copy the multimodal pipeline.",
           polluxDek: "<strong>Autonomous Media Studio:</strong> Step through the exact 3-stage pipeline that turns a verified Google announcement into a narrated 9:16 storyboard.",
@@ -3431,7 +3456,7 @@ const cache = await ai.caches.create({
         pollux: null,
         wasat: null,
         mekbuda: {
-          castorBadge: "ε GEM · COMPUTER USE BRIEF",
+          castorBadge: "ε GEM · G8IB · 840 LY",
           castorMain: "Gemini can now click your screen.",
           castorItalic: "When should you let it drive?",
           castorDek: "<strong>How it applies to you:</strong> When a legacy vendor portal, shipping dashboard, or ERP has no API, Gemini 2.5 Computer Use visually reads the browser screen, clicks buttons, and pauses for your human approval before submitting.",
@@ -3440,7 +3465,7 @@ const cache = await ai.caches.create({
           k2: "Safety Gate", v2: "Mandatory Human Confirm",
           k3: "Astrophysical Depth", v3: "1,200 Light-Years (Cepheid)",
           sourceUrl: "https://ai.google.dev/gemini-api/docs/computer-use",
-          polluxBadge: "ζ GEM · 1,200 LY CEPHEID",
+          polluxBadge: "ζ GEM · F7IB · 1,200 LY",
           polluxMain: "Inspect the Browser Agent Loop.",
           polluxItalic: "Step through See → Click → Confirm.",
           polluxDek: "<strong>Interactive Agent Trace:</strong> Click steps 1, 2, and 3 on the right to see how Gemini locates UI coordinates and enforces a human confirmation gate.",
@@ -3452,7 +3477,7 @@ const cache = await ai.caches.create({
           ]
         },
         alhena: {
-          castorBadge: "α GEM · AUTONOMOUS CHARTER",
+          castorBadge: "α GEM · A1V · 51 LY",
           castorMain: "Conceived by a human. Run by Gemini.",
           castorItalic: "Inside the Twin partnership.",
           castorDek: "<strong>How it applies to you:</strong> GeminiPulse is a live case study in human-AI creative partnership: conceived and art-directed by Neil S. White (a Gemini himself) and autonomously researched, written, and coded by Google Gemini.",
@@ -3461,7 +3486,7 @@ const cache = await ai.caches.create({
           k2: "Lead AI Architect", v2: "Google Gemini 4 Argon",
           k3: "Astrophysical Depth", v3: "109 Light-Years (A1IV)",
           sourceUrl: "https://github.com/GeminiPulse/geminipulse-com",
-          polluxBadge: "γ GEM · 109 LY · BRIGHT FOOT",
+          polluxBadge: "γ GEM · A1IV · 109 LY",
           polluxMain: "Inspect the 7-Point Self-Audit.",
           polluxItalic: "How Gemini verifies its own code.",
           polluxDek: "<strong>Autonomous Quality Gate:</strong> Before every commit to GitHub and Firebase Hosting, Gemini runs a 7-point verification loop across citations, layout, and security.",
@@ -4171,8 +4196,8 @@ await Promise.all([
         time += 0.016;
         const now = performance.now();
 
-        if (currentDrawerMode === "fullscreen") {
-          // While reading the Unframed Full-Screen Article Sanctuary, skip all SVG DOM mutations
+        if (currentDrawerMode === "open" || currentDrawerMode === "fullscreen") {
+          // While reading the Unframed Full-Stage Article Sanctuary, skip all SVG DOM mutations
           // and render ONLY the slow-drifting, gently pulsing celestial starfield behind the translucent sheet!
           cam.yaw += 0.005;
           const cw = layoutCache.canvasWidth;
@@ -4771,7 +4796,7 @@ await Promise.all([
 
         const statusLabel = document.getElementById("atoc-status-label");
         if (statusLabel) {
-          statusLabel.textContent = `ARTICLE TOC · CHAPTER 0${activeTocIdx + 1} / 04`;
+          statusLabel.textContent = `CHAPTER 0${activeTocIdx + 1} / 04`;
         }
 
         let activeLinkEl = null;
@@ -5054,7 +5079,7 @@ await Promise.all([
           `FOREGROUND: STAR ${s3.idx} · ${toUpperPreserveGreek(s3.name.split("·")[0].trim())} · ${s3.ly} LIGHT-YEARS (SCALE 1.28× · DRAG 360°)`
         );
         document.getElementById("sheet-location-status").innerHTML = formatGreek(
-          `♊ PAIRED NOCTURNAL TWIN SALONS · STAR ${s3.idx} / 08 (${toUpperPreserveGreek(s3.name)} · ${s3.ly} LY)`
+          `✦ STAR ${s3.idx} / 08 · ${toUpperPreserveGreek(s3.name.split("·")[0].trim())} (${s3.ly} LY) · ${h.dateRead || "NOV 3, 2026 · 4 MIN READ"}`
         );
 
         // Update 56px Bottom Nocturnal Peek Dock (Concise, Zero-Truncation Headlines)
@@ -5138,12 +5163,9 @@ await Promise.all([
         });
       }
 
-      /* Two-Stage Slide-Up Drawer -> Full-Viewport (100svh) Article Mode Logic + Modal Inert Trap */
-      const toggleFullscreenBtn = document.getElementById("toggle-fullscreen-btn");
-      const toggleFullscreenLabel = document.getElementById("toggle-fullscreen-label");
-      const fcsPrimaryToggleBtn = document.getElementById("fcs-primary-toggle-btn");
-      const fcsExpandBtnLabel = document.getElementById("fcs-expand-btn-label");
+      /* Full-Stage Celestial Reading Sanctuary & Nocturnal Twin Deck Mode Logic + Modal Inert Trap */
       const drawerScrollBody = document.getElementById("drawer-scroll-body");
+      const jumpWorkbenchBtn = document.getElementById("jump-workbench-btn");
 
       function setDrawerMode(mode, focusTwin = "castor", skipFocus = false) {
         // mode: "peek" | "open" | "fullscreen"
@@ -5155,20 +5177,18 @@ await Promise.all([
             viewportShellEl.removeAttribute("inert");
           }
         }
-        if (toggleFullscreenLabel) {
-          toggleFullscreenLabel.textContent = mode === "fullscreen"
-            ? "↓ Restore Split Salon View (76%)"
-            : "↑ Expand Full-Screen Article & Lab (100%)";
-        }
-        if (fcsExpandBtnLabel) {
-          fcsExpandBtnLabel.textContent = mode === "fullscreen"
-            ? "↓ Collapse to Split Salon Preview (76% View)"
-            : "↑ Continue Reading Full Article (Take Over Full Screen · 4 Chapters)";
-        }
         if (mode === "open" || mode === "fullscreen") {
           if (!skipFocus) {
-            const headingId = focusTwin === "pollux" ? "pollux-salon-heading" : "castor-salon-heading";
-            setTimeout(() => document.getElementById(headingId)?.focus({ preventScroll: true }), 80);
+            if (focusTwin === "pollux") {
+              setTimeout(() => {
+                const deckEl = document.getElementById("nocturnal-twin-deck");
+                if (deckEl) deckEl.scrollIntoView({ behavior: "smooth", block: "center" });
+                document.getElementById("pollux-salon-heading")?.focus({ preventScroll: true });
+              }, 80);
+            } else {
+              if (drawerScrollBody) drawerScrollBody.scrollTop = 0;
+              setTimeout(() => document.getElementById("chap1-title")?.focus({ preventScroll: true }), 80);
+            }
           }
           requestAnimationFrame(() => setArticleTocChapter(activeTocIdx, false));
           setTimeout(() => setArticleTocChapter(activeTocIdx, false), 60);
@@ -5178,33 +5198,13 @@ await Promise.all([
         trackPulseInteraction("drawer_state_change", { drawer: mode, star: activeStarKey, twin: focusTwin });
       }
 
-      if (toggleFullscreenBtn) {
-        toggleFullscreenBtn.addEventListener("click", () => {
-          const cur = document.documentElement.getAttribute("data-drawer");
-          setDrawerMode(cur === "fullscreen" ? "open" : "fullscreen");
+      if (jumpWorkbenchBtn) {
+        jumpWorkbenchBtn.addEventListener("click", () => {
+          const deckEl = document.getElementById("nocturnal-twin-deck");
+          if (deckEl) deckEl.scrollIntoView({ behavior: "smooth", block: "center" });
+          document.getElementById("pollux-salon-heading")?.focus({ preventScroll: true });
         });
       }
-
-      if (fcsPrimaryToggleBtn) {
-        fcsPrimaryToggleBtn.addEventListener("click", () => {
-          const cur = document.documentElement.getAttribute("data-drawer");
-          if (cur === "fullscreen") {
-            setDrawerMode("open", "castor", true);
-            if (drawerScrollBody) drawerScrollBody.scrollTo({ top: 0, behavior: "smooth" });
-          } else {
-            setDrawerMode("fullscreen", "castor", true);
-            setArticleTocChapter(0, true);
-          }
-        });
-      }
-
-      document.querySelectorAll("[data-expand-chapter]").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const chIdx = Number(btn.getAttribute("data-expand-chapter")) || 0;
-          setDrawerMode("fullscreen");
-          setArticleTocChapter(chIdx, true);
-        });
-      });
 
       document.querySelectorAll("[data-open-drawer]").forEach((el) => {
         el.addEventListener("click", () => {
