@@ -148,13 +148,45 @@
       color: var(--starlight);
       text-decoration: none;
       font-family: var(--serif);
-      font-size: 19px;
+      font-size: 17px;
       font-weight: 600;
-      letter-spacing: 0.16em;
+      line-height: 1;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 0;
+    }
+
+    .brand-word-part {
+      display: inline-block;
+      line-height: 1;
+    }
+
+    .brand-word-part--right {
+      margin-inline-end: -0.18em;
+    }
+
+    .brand-gemini-pillar-svg {
+      inline-size: 0.78em;
+      block-size: 0.78em;
+      margin-inline: 0.085em 0.095em;
+      flex-shrink: 0;
+      display: inline-block;
+      transform: translateY(0.012em);
+      filter: drop-shadow(0 0 6px rgba(163, 133, 255, 0.52));
+    }
+
+    @media (max-width: 640px) {
+      .brand-word-part {
+        display: none;
+      }
+      .brand-gemini-pillar-svg {
+        inline-size: 22px;
+        block-size: 22px;
+        margin-inline: 0;
+        transform: none;
+      }
     }
 
     .header-nav {
@@ -466,7 +498,7 @@
 <body>
   <header class="celestial-header">
     <a href="/prototypes/look-j-3d-celestial-navigator.html" class="brand-link" aria-label="Return to GeminiPulse 3D Celestial Navigator">
-      <span>GEMIN♊PULSE</span>
+      <span class="brand-word-part">GEMIN</span><svg class="brand-gemini-pillar-svg" viewBox="0 0 14 14" aria-hidden="true"><path d="M1.4 1.35 C4.5 2.25 9.5 2.25 12.6 1.35 M1.4 12.65 C4.5 11.75 9.5 11.75 12.6 12.65" fill="none" stroke="#CEC0FF" stroke-width="1.45" stroke-linecap="round"/><line x1="4.75" y1="2.0" x2="4.75" y2="12.0" stroke="#7EB8FF" stroke-width="1.55" stroke-linecap="round"/><line x1="9.25" y1="2.0" x2="9.25" y2="12.0" stroke="#F59E3F" stroke-width="1.55" stroke-linecap="round"/></svg><span class="brand-word-part brand-word-part--right">PULSE</span>
     </a>
     <nav class="header-nav" aria-label="Primary">
       <a href="/prototypes/look-j-3d-celestial-navigator.html" class="nav-pill">← 3D Star Chart</a>

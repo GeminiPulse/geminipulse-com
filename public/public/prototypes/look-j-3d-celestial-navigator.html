@@ -171,50 +171,54 @@
       padding-inline: clamp(14px, 1.9vw, 32px);
       background: rgba(6, 8, 15, 0.92);
       border-block-end: 1px solid var(--hairline-dark);
+      -webkit-backdrop-filter: blur(12px);
       backdrop-filter: blur(12px);
     }
 
     .brand-lockup {
       display: inline-flex;
       align-items: center;
-      gap: 9px;
-      padding-inline-end: 13px;
+      padding-inline-end: 14px;
       border-inline-end: 1px solid var(--hairline-dark);
-    }
-
-    .brand-glyph {
-      inline-size: 26px;
-      block-size: 26px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 35% 35%, rgba(163, 133, 255, 0.32), rgba(6, 8, 15, 0.92));
-      color: var(--ethereal-bright);
-      display: grid;
-      place-items: center;
-      border: 1px solid rgba(163, 133, 255, 0.58);
-      box-shadow: 0 0 12px rgba(163, 133, 255, 0.25);
-      flex-shrink: 0;
     }
 
     .brand-title {
       display: inline-flex;
       align-items: center;
-      gap: 1px;
+      gap: 0;
       font-family: var(--serif);
-      font-size: clamp(15px, 1.18vw, 19px);
+      font-size: clamp(16px, 1.22vw, 19.5px);
       font-weight: 600;
-      letter-spacing: 0.2em;
+      line-height: 1;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--starlight);
       white-space: nowrap;
     }
 
+    .brand-word-part--right {
+      margin-inline-end: -0.18em;
+    }
+
     .brand-gemini-pillar-svg {
-      inline-size: 13px;
-      block-size: 15px;
-      margin-inline: 1px 3px;
-      vertical-align: middle;
-      transform: translateY(-1px);
-      filter: drop-shadow(0 0 6px rgba(163, 133, 255, 0.45));
+      inline-size: 0.78em;
+      block-size: 0.78em;
+      margin-inline: 0.085em 0.095em;
+      transform: translateY(0.012em);
+      flex-shrink: 0;
+      filter: drop-shadow(0 0 6px rgba(163, 133, 255, 0.42));
+    }
+
+    @media (max-width: 640px) {
+      .brand-word-part {
+        display: none;
+      }
+      .brand-gemini-pillar-svg {
+        inline-size: 22px;
+        block-size: 22px;
+        margin-inline: 0;
+        transform: none;
+      }
     }
 
     .premise-ribbon {
@@ -910,33 +914,33 @@
     }
 
     /* =====================================================================
-       FLOATING STAR-TETHERED ARTICLE BRIEF POPOVER (#star-hud-card)
-       Appears directly underneath (or beside) whichever star you click!
-       Clean & focused: Category Tags + Date/Reading Time + Full Title +
-       Summary + Read Full Article & Open Lab CTAs (No busy TOC inside!)
+       STATIONARY HOVER-TO-FADE-IN ARTICLE BRIEF CARD (#star-hud-card)
+       Fixed in one calm observatory HUD slot (never moves around the screen).
+       Fades in on hover over any star; fades out on exit or click elsewhere.
        ===================================================================== */
     .star-hud-card {
       position: absolute;
-      left: 0;
-      top: 0;
+      left: clamp(14px, 1.6vw, 24px);
+      top: 146px;
       z-index: 12;
-      inline-size: clamp(292px, 24vw, 338px);
-      transform: translate3d(var(--hud-x, 220px), var(--hud-y, 280px), 0);
-      background: linear-gradient(165deg, rgba(8, 15, 29, 0.95) 0%, rgba(5, 9, 19, 0.98) 100%);
+      inline-size: clamp(288px, 23vw, 328px);
+      transform: none;
+      background: linear-gradient(165deg, rgba(8, 15, 29, 0.96) 0%, rgba(5, 9, 19, 0.98) 100%);
       border: 1px solid rgba(56, 189, 248, 0.48);
       border-radius: 10px;
       padding: 11px 13px 10px;
+      -webkit-backdrop-filter: blur(16px);
       backdrop-filter: blur(16px);
       box-shadow:
         0 18px 42px rgba(0, 0, 0, 0.78),
         0 0 24px rgba(56, 189, 248, 0.16),
         inset 0 0 18px rgba(126, 184, 255, 0.06);
       color: var(--starlight);
+      opacity: 1;
       transition:
-        transform 0.14s cubic-bezier(0.22, 1, 0.36, 1),
-        border-color 0.35s ease,
-        box-shadow 0.35s ease,
-        opacity 0.25s ease;
+        opacity 0.22s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
     }
 
     .star-hud-card[data-hidden="true"] {
@@ -961,47 +965,8 @@
         inset 0 0 18px rgba(245, 158, 63, 0.07);
     }
 
-    /* 4-Way Pointer Notch Tethered Toward the Clicked Star (below | above | left | right) */
     .hud-pointer-notch {
-      position: absolute;
-      top: -5.5px;
-      left: var(--hud-notch-x, 50%);
-      inline-size: 9px;
-      block-size: 9px;
-      margin-inline-start: -4.5px;
-      background: #081020;
-      border-top: 1px solid rgba(56, 189, 248, 0.65);
-      border-left: 1px solid rgba(56, 189, 248, 0.65);
-      transform: rotate(45deg);
-      pointer-events: none;
-    }
-
-    .star-hud-card[data-twin="pollux"] .hud-pointer-notch {
-      background: #170C04;
-      border-color: rgba(245, 158, 63, 0.65);
-    }
-
-    .star-hud-card[data-placement="above"] .hud-pointer-notch {
-      top: auto;
-      bottom: -5.5px;
-      transform: rotate(225deg);
-    }
-
-    .star-hud-card[data-placement="right"] .hud-pointer-notch {
-      top: var(--hud-notch-y, 50%);
-      left: -5.5px;
-      margin-inline-start: 0;
-      margin-block-start: -4.5px;
-      transform: rotate(-45deg);
-    }
-
-    .star-hud-card[data-placement="left"] .hud-pointer-notch {
-      top: var(--hud-notch-y, 50%);
-      left: auto;
-      right: -5.5px;
-      margin-inline-start: 0;
-      margin-block-start: -4.5px;
-      transform: rotate(135deg);
+      display: none;
     }
 
     /* Futuristic Corner Reticle Brackets on the HUD Card */
@@ -2565,20 +2530,15 @@
          ===================================================================== -->
     <header class="celestial-header">
       <a href="./look-j-3d-celestial-navigator.html" class="brand-lockup" aria-label="GeminiPulse 3D Celestial Navigator Home">
-        <span class="brand-glyph" aria-hidden="true">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M5 4c4 2.2 10 2.2 14 0M5 20c4-2.2 10-2.2 14 0M9 5v14M15 5v14" />
-          </svg>
-        </span>
         <span class="brand-title">
-          <span>GEMIN</span>
-          <svg class="brand-gemini-pillar-svg" viewBox="0 0 18 20" fill="none" aria-hidden="true">
-            <path d="M2 2.5C6.5 4.6 11.5 4.6 16 2.5" stroke="#CEC0FF" stroke-width="1.7" stroke-linecap="round"/>
-            <path d="M2 17.5C6.5 15.4 11.5 15.4 16 17.5" stroke="#CEC0FF" stroke-width="1.7" stroke-linecap="round"/>
-            <line x1="6.3" y1="3.6" x2="6.3" y2="16.4" stroke="#7EB8FF" stroke-width="2" stroke-linecap="round"/>
-            <line x1="11.7" y1="3.6" x2="11.7" y2="16.4" stroke="#F59E3F" stroke-width="2" stroke-linecap="round"/>
+          <span class="brand-word-part">GEMIN</span>
+          <svg class="brand-gemini-pillar-svg" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <path d="M1.8 1.5C6.4 3.45 11.6 3.45 16.2 1.5" stroke="#CEC0FF" stroke-width="1.65" stroke-linecap="round"/>
+            <path d="M1.8 16.5C6.4 14.55 11.6 14.55 16.2 16.5" stroke="#CEC0FF" stroke-width="1.65" stroke-linecap="round"/>
+            <line x1="6.35" y1="2.45" x2="6.35" y2="15.55" stroke="#7EB8FF" stroke-width="1.95" stroke-linecap="round"/>
+            <line x1="11.65" y1="2.45" x2="11.65" y2="15.55" stroke="#F59E3F" stroke-width="1.95" stroke-linecap="round"/>
           </svg>
-          <span>PULSE</span>
+          <span class="brand-word-part brand-word-part--right">PULSE</span>
         </span>
       </a>
 
@@ -2731,8 +2691,8 @@
 
           <!-- Animated Comet Energy Trail & Telemetry Leader Line to Digital HUD Brief Card -->
           <path id="focus-comet-trail" d="" opacity="0" />
-          <polyline id="hud-leader-line" points="" opacity="0.75" />
-          <circle id="hud-leader-dot" cx="0" cy="0" r="2.2" opacity="0.85" />
+          <polyline id="hud-leader-line" points="" opacity="0" style="opacity: 0; transition: opacity 0.2s ease;" />
+          <circle id="hud-leader-dot" cx="0" cy="0" r="2.2" opacity="0" style="opacity: 0; transition: opacity 0.2s ease;" />
 
           <!-- ===============================================================
                8 CLICKABLE MAJOR STARS IN RELATIONAL 3D SPACE
@@ -2849,12 +2809,11 @@
       </div>
 
       <!-- ===================================================================
-           FLOATING STAR-TETHERED ARTICLE BRIEF POPOVER (#star-hud-card)
-           Floats directly underneath (or beside) whichever star you click!
-           Clean & focused: Category Tags + Date/Reading Time + Full Title +
-           Summary + Read Full Article & Open Lab CTAs (No busy TOC inside!)
+           STATIONARY HOVER ARTICLE BRIEF POPOVER (#star-hud-card)
+           Fades in stationary when hovering over any star; fades out on mouse
+           exit or clicking elsewhere (zero movement during 3D camera slews).
            =================================================================== -->
-      <aside class="star-hud-card" id="star-hud-card" data-twin="castor" data-placement="below" aria-live="polite" aria-label="Focused Star Article Brief">
+      <aside class="star-hud-card" id="star-hud-card" data-twin="castor" data-placement="below" data-hidden="true" data-hud-star="mebsuta" aria-live="polite" aria-label="Focused Star Article Brief">
         <div class="hud-pointer-notch" aria-hidden="true"></div>
         <div class="hud-scanline" aria-hidden="true"></div>
         <div class="hud-top-meta">
@@ -3666,7 +3625,7 @@ const stream = await ai.models.generateContentStream({
           dateRead: "NOV 4, 2026 · ⏱ 3 MIN READ",
           ctaLabel: "↑ Explore Voice Remixing",
           hudTitle: "Gemini 3.8 Voice Remixing + 60s Briefs: Relative Acoustic Prompting",
-          hudSummary: "Released Nov 4, 2026: Modify studio voices (Puck, Kore, Aoede) with natural-language instructions into permanent stored voice_... resources and 24kHz WAV previews.",
+          hudSummary: "Released Nov 4, 2026: Modify studio voices (Puck, Kore, Aoede) with natural-language instructions into reusable project voice IDs and 24kHz WAV previews.",
           peekCastor: "Gemini 3.8 Voice Remixing + 60s Briefs. <em>Relative prompting.</em>",
           peekPollux: "Audition &amp; remix studio voices. <em>Copy the pipeline.</em>",
           seriesUrl: "/series/gemini-voice-remixing/part-1-voice-remixing-breakdown.html",
@@ -4192,8 +4151,10 @@ await Promise.all([
         return xOverlap * yOverlap;
       }
 
-      /* 60fps Render Loop — Soft, Relaxing Celestial Slew Easing & Zero-Collision HUD Solver */
+      /* 60fps Render Loop — Soft, Relaxing Celestial Slew Easing (Zero Per-Frame HUD Movement) */
       let time = 0;
+      let lastProjMajor = {};
+      let lastSortedKeysStr = "";
       function tick() {
         const currentDrawerMode = document.documentElement.getAttribute("data-drawer");
         time += 0.016;
@@ -4329,16 +4290,21 @@ await Promise.all([
         });
 
         // Live Z-Depth SVG Layer Sorting during 360° rotation so front-hemisphere stars render over back-hemisphere stars
+        lastProjMajor = projMajor;
         if (majorStarsLayer && (isDragging || cam.autoOrbit)) {
           const sortedKeys = [...STAR_ORDER].sort((a, b) => {
             if (a === activeStarKey) return 1;
             if (b === activeStarKey) return -1;
             return projMajor[b].z - projMajor[a].z;
           });
-          sortedKeys.forEach((k) => {
-            const el = majorNodeEls[k];
-            if (el) majorStarsLayer.appendChild(el);
-          });
+          const keySig = sortedKeys.join(",");
+          if (keySig !== lastSortedKeysStr) {
+            lastSortedKeysStr = keySig;
+            sortedKeys.forEach((k) => {
+              const el = majorNodeEls[k];
+              if (el) majorStarsLayer.appendChild(el);
+            });
+          }
         }
 
         const projMinor = {};
@@ -4405,224 +4371,6 @@ await Promise.all([
 
           beaconEl.setAttribute("transform", `translate(${beaconState.x.toFixed(1)}, ${beaconState.y.toFixed(1)}) scale(${pulseScale.toFixed(3)})`);
 
-          // Zero-Collision 2D Candidate Slot Solver for Floating Star-Tethered Article Brief Popover (#star-hud-card)
-          if (hudCardEl && svgEl && heroStage) {
-            const heroW = layoutCache.heroWidth;
-            const heroH = layoutCache.heroHeight;
-            const ctmA = layoutCache.ctmA || 1.35;
-            const ctmD = layoutCache.ctmD || 1.35;
-            const offX = (layoutCache.ctmE || 0) - layoutCache.heroLeft;
-            const offY = (layoutCache.ctmF || 42) - layoutCache.heroTop;
-
-            const starPxX = offX + beaconState.x * ctmA;
-            const starPxY = offY + beaconState.y * ctmD;
-
-            const cardW = layoutCache.cardW || 334;
-            const cardH = layoutCache.cardH || 168;
-            const hData = HUD_DATA[activeStarKey] || HUD_DATA.mebsuta;
-            const isCastorSide = hData.twin === "castor";
-
-            // Build screen-space obstacle rects for all 8 star pills (+ 6px safety margin)
-            const starPillRects = {};
-            const obstacleRects = [];
-            const pad = 6;
-
-            STAR_ORDER.forEach((k) => {
-              const pr = projMajor[k];
-              const gm = STAR_PILL_GEOM[k];
-              if (!pr || !gm) return;
-              const ds = pr.depthScale || 1;
-              const pLeft = offX + (pr.sx + gm.x1 * ds) * ctmA;
-              const pRight = offX + (pr.sx + gm.x2 * ds) * ctmA;
-              const pTop = offY + (pr.sy + gm.y1 * ds) * ctmD;
-              const pBottom = offY + (pr.sy + gm.y2 * ds) * ctmD;
-
-              const isAct = k === activeStarKey;
-              const yTopExtra = isAct ? -10 * ds * ctmD : 0;
-              const box = {
-                left: pLeft - pad,
-                top: pTop + yTopExtra - pad,
-                right: pRight + pad,
-                bottom: pBottom + pad,
-                cx: (pLeft + pRight) * 0.5,
-                cy: (pTop + pBottom) * 0.5
-              };
-              starPillRects[k] = box;
-              obstacleRects.push(box);
-            });
-
-            // Also treat the active star's reticle + "YOU ARE HERE" badge as a non-overlap obstacle
-            obstacleRects.push({
-              left: starPxX - 50 * ctmA - 4,
-              top: starPxY - 24 * ctmD - 4,
-              right: starPxX + 50 * ctmA + 4,
-              bottom: starPxY + 30 * ctmD + 4
-            });
-
-            const activePill = starPillRects[activeStarKey] || {
-              left: starPxX - 100,
-              top: starPxY - 20,
-              right: starPxX + 100,
-              bottom: starPxY + 20,
-              cx: starPxX,
-              cy: starPxY
-            };
-
-            const minX = 14;
-            const maxX = Math.max(14, heroW - cardW - 14);
-            const minY = 54;
-            const maxY = Math.max(54, heroH - cardH - 36);
-
-            const belowY = Math.max(starPxY + 30 * ctmD + 6, activePill.bottom + 6);
-            const aboveY = Math.min(starPxY - 24 * ctmD - cardH - 8, activePill.top - cardH - 6);
-            const leftX = activePill.left - cardW - 10;
-            const rightX = activePill.right + 10;
-
-            const rawCandidates = [
-              // Priority 1: Directly below or above active star / pill
-              { x: isCastorSide ? starPxX - cardW * 0.62 : starPxX - cardW * 0.38, y: belowY, pref: -18 },
-              { x: activePill.cx - cardW * 0.5, y: belowY, pref: -16 },
-              { x: starPxX - cardW * 0.5, y: belowY, pref: -15 },
-              { x: activePill.cx - cardW * 0.5, y: aboveY, pref: -8 },
-              { x: starPxX - cardW * 0.5, y: aboveY, pref: -8 },
-              // Priority 2: Directly beside active star pill
-              { x: leftX, y: starPxY - cardH * 0.5, pref: -10 },
-              { x: rightX, y: starPxY - cardH * 0.5, pref: -10 }
-            ];
-
-            // Add dense 2D local neighborhood search around the active star so the HUD card always docks right next to the clicked star with 0 overlap
-            const xSteps = [-cardW - 36, -cardW * 0.85, -cardW * 0.5, -cardW * 0.15, 28, activePill.right - starPxX + 12];
-            const ySteps = [belowY - starPxY, aboveY - starPxY, -cardH * 0.85, -cardH * 0.5, -cardH * 0.15, 24, 56];
-            for (let xi = 0; xi < xSteps.length; xi++) {
-              for (let yi = 0; yi < ySteps.length; yi++) {
-                rawCandidates.push({
-                  x: starPxX + xSteps[xi],
-                  y: starPxY + ySteps[yi],
-                  pref: 0
-                });
-              }
-            }
-
-            // Outer left & right observatory wing fallbacks + Castor/Pollux mid-sky corridors
-            const wingYOffsets = [0, -cardH * 0.45, -cardH * 0.8, cardH * 0.25];
-            for (let wi = 0; wi < wingYOffsets.length; wi++) {
-              rawCandidates.push({ x: minX, y: starPxY + wingYOffsets[wi], pref: 15 });
-              rawCandidates.push({ x: maxX, y: starPxY + wingYOffsets[wi], pref: 15 });
-            }
-            const midSkyYs = [148, 168, 188, 208];
-            const castorSkyXs = [minX, 90, 165, 235];
-            for (let mxi = 0; mxi < castorSkyXs.length; mxi++) {
-              for (let myi = 0; myi < midSkyYs.length; myi++) {
-                rawCandidates.push({ x: castorSkyXs[mxi], y: midSkyYs[myi], pref: 8 });
-              }
-            }
-
-            let bestCand = null;
-            let bestScore = Infinity;
-
-            for (let i = 0; i < rawCandidates.length; i++) {
-              const rc = rawCandidates[i];
-              const cx = Math.max(minX, Math.min(maxX, rc.x));
-              const cy = Math.max(minY, Math.min(maxY, rc.y));
-              const candRect = {
-                left: cx,
-                top: cy,
-                right: cx + cardW,
-                bottom: cy + cardH
-              };
-
-              let overlap = 0;
-              for (let j = 0; j < obstacleRects.length; j++) {
-                overlap += rectOverlapArea(candRect, obstacleRects[j]);
-              }
-
-              // Distance from candidate card's closest edge/point to active star OR its pill
-              const nearStarX = Math.max(candRect.left, Math.min(candRect.right, starPxX));
-              const nearStarY = Math.max(candRect.top, Math.min(candRect.bottom, starPxY));
-              const distStar = Math.hypot(nearStarX - starPxX, nearStarY - starPxY);
-
-              const nearPillX = Math.max(candRect.left, Math.min(candRect.right, activePill.cx));
-              const nearPillY = Math.max(candRect.top, Math.min(candRect.bottom, activePill.cy));
-              const distPill = Math.hypot(nearPillX - activePill.cx, nearPillY - activePill.cy);
-
-              const dist = Math.min(distStar, distPill * 0.95);
-
-              // Hemisphere harmony bonus (keep Castor stars on left/center-left, Pollux stars on right/center-right)
-              const cardCenterX = cx + cardW * 0.5;
-              const sameHemisphere = isCastorSide ? (cardCenterX <= heroW * 0.54) : (cardCenterX >= heroW * 0.46);
-              const hemiBonus = sameHemisphere ? -65 : 65;
-
-              const score = overlap * 100000 + dist + hemiBonus + (rc.pref || 0);
-              if (score < bestScore) {
-                bestScore = score;
-                bestCand = { x: cx, y: cy };
-              }
-            }
-
-            const hudX = bestCand ? bestCand.x : minX;
-            const hudY = bestCand ? bestCand.y : minY;
-
-            // Determine 4-way pointer notch placement ("below" | "above" | "left" | "right") relative to star
-            let placement = "below";
-            if (hudY >= starPxY + 12) {
-              placement = "below";
-            } else if (hudY + cardH <= starPxY - 12) {
-              placement = "above";
-            } else if (hudX + cardW <= starPxX) {
-              placement = "left";
-            } else if (hudX >= starPxX) {
-              placement = "right";
-            }
-
-            const notchX = Math.max(22, Math.min(cardW - 22, starPxX - hudX));
-            const notchY = Math.max(22, Math.min(cardH - 22, starPxY - hudY));
-            hudCardEl.style.setProperty("--hud-x", `${hudX.toFixed(1)}px`);
-            hudCardEl.style.setProperty("--hud-y", `${hudY.toFixed(1)}px`);
-            hudCardEl.style.setProperty("--hud-notch-x", `${notchX.toFixed(1)}px`);
-            hudCardEl.style.setProperty("--hud-notch-y", `${notchY.toFixed(1)}px`);
-            hudCardEl.setAttribute("data-placement", placement);
-
-            // Update short hairline SVG tether connecting the star reticle straight to the floating HUD card notch
-            if (hudLeaderLine && hudLeaderDot && hudCardEl.getAttribute("data-hidden") !== "true") {
-              let anchorPxX = hudX + notchX;
-              let anchorPxY = hudY;
-              let startX = beaconState.x;
-              let startY = beaconState.y + 28;
-
-              if (placement === "above") {
-                anchorPxX = hudX + notchX;
-                anchorPxY = hudY + cardH;
-                startX = beaconState.x;
-                startY = beaconState.y - 16;
-              } else if (placement === "left") {
-                anchorPxX = hudX + cardW;
-                anchorPxY = hudY + notchY;
-                startX = beaconState.x - 16;
-                startY = beaconState.y;
-              } else if (placement === "right") {
-                anchorPxX = hudX;
-                anchorPxY = hudY + notchY;
-                startX = beaconState.x + 16;
-                startY = beaconState.y;
-              }
-
-              const hudTargetX = (anchorPxX - offX) / ctmA;
-              const hudTargetY = (anchorPxY - offY) / ctmD;
-
-              hudLeaderLine.setAttribute(
-                "points",
-                `${startX.toFixed(1)},${startY.toFixed(1)} ${hudTargetX.toFixed(1)},${hudTargetY.toFixed(1)}`
-              );
-              hudLeaderDot.setAttribute("cx", hudTargetX.toFixed(1));
-              hudLeaderDot.setAttribute("cy", hudTargetY.toFixed(1));
-              hudLeaderLine.style.opacity = "0.85";
-              hudLeaderDot.style.opacity = "0.9";
-            } else if (hudLeaderLine && hudLeaderDot) {
-              hudLeaderLine.style.opacity = "0";
-              hudLeaderDot.style.opacity = "0";
-            }
-          }
-
           // Meditative, watchmaker-slow rotation on outer dashed reticle ring
           if (tbRingAnim) {
             tbRingAnim.setAttribute("transform", `rotate(${(time * 7).toFixed(1)})`);
@@ -4678,44 +4426,68 @@ await Promise.all([
       }
 
       /* =====================================================================
-         DRAG-TO-ORBIT INTERACTION ON THE 3D STAGE
+         DRAG-TO-ORBIT INTERACTION ON THE 3D STAGE (WITH 4PX DRAG THRESHOLD)
          ===================================================================== */
       let isDragging = false;
+      let isPointerDownStage = false;
+      let stagePointerId = null;
       let dragStartX = 0;
       let dragStartY = 0;
       let baseYaw = 0;
       let basePitch = 0;
 
+      // Clicking anywhere outside #star-hud-card immediately fades out the hover description card
+      document.addEventListener("pointerdown", (e) => {
+        if (!e.target.closest("#star-hud-card")) {
+          hideHudCard();
+        }
+      });
+
       heroStage.addEventListener("pointerdown", (e) => {
         if (e.target.closest(".star-node, button, a, .twin-pulse-orb, .star-hud-card")) return;
-        isDragging = true;
-        cam.autoOrbit = false;
-        slew.active = false;
+        isPointerDownStage = true;
+        isDragging = false;
+        stagePointerId = e.pointerId;
         dragStartX = e.clientX;
         dragStartY = e.clientY;
         baseYaw = cam.yaw;
         basePitch = cam.pitch;
-        cam.targetYaw = cam.yaw;
-        cam.targetPitch = cam.pitch;
-        heroStage.setPointerCapture(e.pointerId);
       });
 
       heroStage.addEventListener("pointermove", (e) => {
+        if (!isPointerDownStage) return;
+        const dx = e.clientX - dragStartX;
+        const dy = e.clientY - dragStartY;
+        if (!isDragging && Math.hypot(dx, dy) > 4) {
+          isDragging = true;
+          hideHudCard();
+          cam.autoOrbit = false;
+          slew.active = false;
+          cam.targetYaw = cam.yaw;
+          cam.targetPitch = cam.pitch;
+          try {
+            if (stagePointerId !== null) heroStage.setPointerCapture(stagePointerId);
+          } catch (_) {
+            // Ignore if pointer capture is unavailable
+          }
+        }
         if (isDragging) {
-          const dx = e.clientX - dragStartX;
-          const dy = e.clientY - dragStartY;
           // Full 360° continuous horizontal rotation + wide 3D vertical pitch!
           cam.targetYaw = baseYaw + dx * 0.45;
           cam.targetPitch = Math.max(-72, Math.min(72, basePitch - dy * 0.25));
         }
       });
 
-      heroStage.addEventListener("pointerup", () => {
+      const endStageDrag = () => {
+        isPointerDownStage = false;
+        stagePointerId = null;
         if (isDragging) {
           isDragging = false;
           trackPulseInteraction("constellation_3d_drag", { yaw: Math.round(cam.yaw), pitch: Math.round(cam.pitch) });
         }
-      });
+      };
+      heroStage.addEventListener("pointerup", endStageDrag);
+      heroStage.addEventListener("pointercancel", endStageDrag);
 
       /* =====================================================================
          POV SWITCHER BUTTONS
@@ -4895,12 +4667,49 @@ await Promise.all([
         schemaEl.textContent = JSON.stringify(jsonLd, null, 2);
       }
 
-      function renderHudCard(starKey, animateRender = true) {
+      /* =====================================================================
+         STATIONARY HOVER ARTICLE BRIEF POPOVER (#star-hud-card)
+         Fades in stationary on star hover; fades out on mouse exit or click
+         elsewhere (zero movement across the screen).
+         ===================================================================== */
+      let hudHideTimer = null;
+
+      function hideHudCard() {
+        if (hudHideTimer) {
+          clearTimeout(hudHideTimer);
+          hudHideTimer = null;
+        }
+        if (hudCardEl) {
+          hudCardEl.setAttribute("data-hidden", "true");
+        }
+        if (hudLeaderLine && hudLeaderDot) {
+          hudLeaderLine.style.opacity = "0";
+          hudLeaderDot.style.opacity = "0";
+        }
+      }
+
+      function scheduleHideHud(delayMs = 150) {
+        if (hudHideTimer) clearTimeout(hudHideTimer);
+        hudHideTimer = setTimeout(() => {
+          hudHideTimer = null;
+          hideHudCard();
+        }, delayMs);
+      }
+
+      function showHudOnHover(starKey) {
+        if (!STARS_3D[starKey] || isDragging) return;
+        const curDrawer = document.documentElement.getAttribute("data-drawer");
+        if (curDrawer === "open" || curDrawer === "fullscreen") return;
+
+        if (hudHideTimer) {
+          clearTimeout(hudHideTimer);
+          hudHideTimer = null;
+        }
+
         const h = HUD_DATA[starKey] || HUD_DATA.mebsuta;
-        const d = SALON_DATA[starKey] || SALON_DATA.mebsuta;
         if (hudCardEl) {
           hudCardEl.setAttribute("data-twin", h.twin);
-          hudCardEl.removeAttribute("data-hidden");
+          hudCardEl.setAttribute("data-hud-star", starKey);
         }
 
         const tagsEl = document.getElementById("hud-tags");
@@ -4912,9 +4721,6 @@ await Promise.all([
         const readTimeEl = document.getElementById("hud-read-time");
         if (readTimeEl) readTimeEl.textContent = h.dateRead;
 
-        const fcsMeta = document.getElementById("fcs-read-meta");
-        if (fcsMeta) fcsMeta.textContent = `${h.dateRead} · SEO & GEO STRUCTURED`;
-
         const titleEl = document.getElementById("hud-title");
         if (titleEl) titleEl.innerHTML = h.hudTitle;
 
@@ -4923,6 +4729,18 @@ await Promise.all([
 
         const ctaEl = document.getElementById("hud-read-btn-label");
         if (ctaEl) ctaEl.textContent = h.ctaLabel;
+
+        if (hudCardEl) {
+          hudCardEl.removeAttribute("data-hidden");
+        }
+      }
+
+      function renderArticleContent(starKey) {
+        const h = HUD_DATA[starKey] || HUD_DATA.mebsuta;
+        const d = SALON_DATA[starKey] || SALON_DATA.mebsuta;
+
+        const fcsMeta = document.getElementById("fcs-read-meta");
+        if (fcsMeta) fcsMeta.textContent = `${h.dateRead} · SEO & GEO STRUCTURED`;
 
         // Populate the 4-Chapter Full-Viewport Scrollable Article & Bottom Constellation TOC Bar (100% bespoke per chapter)
         const ch0 = h.toc[0] || { label: "01 · Overview", title: d.castorMain, text: h.hudSummary };
@@ -4984,12 +4802,6 @@ await Promise.all([
 
         setArticleTocChapter(0, false);
         updateSeoGeoSchema(starKey);
-
-        if (hudCardEl && animateRender) {
-          hudCardEl.classList.remove("is-rendering");
-          void hudCardEl.offsetWidth;
-          hudCardEl.classList.add("is-rendering");
-        }
         refreshLayoutCache();
       }
 
@@ -5051,8 +4863,11 @@ await Promise.all([
           trackPulseInteraction("star_3d_select", { star: starKey, ly: s3.ly });
         }
 
-        // Render Floating Star-Tethered HUD Brief Popover + Full Article & Bottom Constellation TOC
-        renderHudCard(starKey, !isInitial);
+        // Fade out description card during 3D star slews so it never moves across the screen
+        hideHudCard();
+
+        // Populate Full-Stage Article Sanctuary & Bottom Constellation TOC
+        renderArticleContent(starKey);
 
         // Announce selected star to assistive technology via ARIA live region
         const announcer = document.getElementById("sr-star-announcer");
@@ -5060,9 +4875,9 @@ await Promise.all([
           announcer.textContent = `Selected Star ${s3.idx} of 8: ${s3.name} (${s3.ly} light-years). ${h.hudTitle}`;
         }
 
-        // Bring selected star's SVG <g> element to the top of `#major-stars-layer` so it never clips under background stars
+        // Bring selected star's SVG <g> element to the top of `#major-stars-layer` only if not already last child
         const selectedNode = majorNodeEls[starKey];
-        if (selectedNode && majorStarsLayer) {
+        if (selectedNode && majorStarsLayer && majorStarsLayer.lastElementChild !== selectedNode) {
           majorStarsLayer.appendChild(selectedNode);
         }
 
@@ -5123,7 +4938,8 @@ await Promise.all([
           renderPreset(starKey, 0);
         };
 
-        if (!isInitial && document.startViewTransition) {
+        const currentDrawer = document.documentElement.getAttribute("data-drawer");
+        if (!isInitial && currentDrawer !== "peek" && document.startViewTransition) {
           document.startViewTransition(applySalonDOM);
         } else {
           applySalonDOM();
@@ -5136,12 +4952,24 @@ await Promise.all([
         }
       }
 
-      /* Dismiss Floating Star HUD Card (Re-appears whenever any star is clicked) */
+      /* Dismiss Stationary Star HUD Card & Hover Bridge Listeners */
       const hudDismissBtn = document.getElementById("hud-dismiss-btn");
       if (hudDismissBtn) {
         hudDismissBtn.addEventListener("click", (e) => {
           e.stopPropagation();
-          if (hudCardEl) hudCardEl.setAttribute("data-hidden", "true");
+          hideHudCard();
+        });
+      }
+
+      if (hudCardEl) {
+        hudCardEl.addEventListener("pointerenter", () => {
+          if (hudHideTimer) {
+            clearTimeout(hudHideTimer);
+            hudHideTimer = null;
+          }
+        });
+        hudCardEl.addEventListener("pointerleave", () => {
+          scheduleHideHud(90);
         });
       }
 
@@ -5210,15 +5038,22 @@ await Promise.all([
       }
 
       document.querySelectorAll("[data-open-drawer]").forEach((el) => {
-        el.addEventListener("click", () => {
-          // Clicking "Read Full Article" inside the floating HUD card opens straight to the Salon / Article
+        const handleOpenDrawer = () => {
           const twin = el.getAttribute("data-open-drawer");
+          if (el.closest("#star-hud-card") && hudCardEl) {
+            const hoveredStar = hudCardEl.getAttribute("data-hud-star");
+            if (hoveredStar && hoveredStar !== activeStarKey) {
+              selectStar(hoveredStar, true, false);
+            }
+          }
+          hideHudCard();
           setDrawerMode("open", twin);
-        });
+        };
+        el.addEventListener("click", handleOpenDrawer);
         el.addEventListener("keydown", (e) => {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
-            setDrawerMode("open", el.getAttribute("data-open-drawer"));
+            handleOpenDrawer();
           }
         });
       });
@@ -5274,13 +5109,30 @@ await Promise.all([
       });
 
       document.querySelectorAll(".star-node").forEach((node) => {
+        const starKey = node.getAttribute("data-star");
         // Prevent browser rectangular SVG focus bounding-box highlight on mouse press
         node.addEventListener("mousedown", (e) => e.preventDefault());
-        node.addEventListener("click", () => selectStar(node.getAttribute("data-star")));
+        node.addEventListener("pointerenter", (e) => {
+          if (e.pointerType !== "touch") {
+            showHudOnHover(starKey);
+          }
+        });
+        node.addEventListener("pointerleave", (e) => {
+          if (e.pointerType !== "touch") {
+            scheduleHideHud(130);
+          }
+        });
+        node.addEventListener("focusin", () => {
+          showHudOnHover(starKey);
+        });
+        node.addEventListener("focusout", () => {
+          scheduleHideHud(130);
+        });
+        node.addEventListener("click", () => selectStar(starKey));
         node.addEventListener("keydown", (e) => {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
-            selectStar(node.getAttribute("data-star"));
+            selectStar(starKey);
           }
         });
       });
