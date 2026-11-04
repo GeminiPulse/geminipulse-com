@@ -1,5 +1,5 @@
 import { execSync } from 'node:child_process';
-import { writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -208,4 +208,18 @@ const statusHtml = `<!doctype html>
 `;
 
 writeFileSync(resolve(__dirname, '../public/status.html'), statusHtml);
-console.log(`[stamp-build] Stamped ${buildId} (${edtFormatted}) -> src/buildMeta.json & public/status.html`);
+
+// Sync flagship Look J v10 3D Celestial Navigator to root index.html
+const lookJSourcePath = resolve(__dirname, '../public/prototypes/look-j-3d-celestial-navigator.html');
+const rootIndexHtml = readFileSync(lookJSourcePath, 'utf8')
+  .replace(
+    '<link rel="canonical" href="https://geminipulse.com/prototypes/look-j-3d-celestial-navigator.html" />',
+    '<link rel="canonical" href="https://geminipulse.com/" />'
+  )
+  .replace(
+    '<meta property="og:url" content="https://geminipulse.com/prototypes/look-j-3d-celestial-navigator.html" />',
+    '<meta property="og:url" content="https://geminipulse.com/" />'
+  );
+writeFileSync(resolve(__dirname, '../index.html'), rootIndexHtml);
+
+console.log(`[stamp-build] Stamped ${buildId} (${edtFormatted}) -> src/buildMeta.json, public/status.html & root index.html`);

@@ -166,8 +166,8 @@ const IN_PAGE_AUDIT_FN = `
     });
   }
 
-  // 3. Check every .m3-card and .m3-hero-console for child text/box overflow
-  const cards = [...document.querySelectorAll('.m3-card, .m3-hero-console')];
+  // 3. Check every .m3-card, .m3-hero-console, .star-hud-card, and .nocturnal-twin-card for child text/box overflow
+  const cards = [...document.querySelectorAll('.m3-card, .m3-hero-console, .star-hud-card:not([data-hidden="true"]), .nocturnal-twin-card, .celestial-header, .bottom-peek-dock')];
   cards.forEach((card, idx) => {
     const cRect = card.getBoundingClientRect();
     if (cRect.width === 0 || cRect.height === 0) return; // hidden dropdown
@@ -183,8 +183,8 @@ const IN_PAGE_AUDIT_FN = `
     }
 
     card.querySelectorAll('h1, h2, h3, h4, p, span, a, button, div, code').forEach(child => {
-      // Skip intentionally scrollable code pre blocks
-      if (child.closest('pre') || child.classList.contains('overflow-x-auto')) return;
+      // Skip intentionally scrollable code pre blocks or hidden tooltips
+      if (child.closest('pre') || child.classList.contains('overflow-x-auto') || child.classList.contains('tpo-drawer')) return;
       const r = child.getBoundingClientRect();
       if (r.width === 0 || r.height === 0) return;
 
@@ -200,6 +200,22 @@ const IN_PAGE_AUDIT_FN = `
         });
       }
     });
+  });
+
+  // 4. Check celestial premise-text and peek-live-headline for ellipsis truncation
+  document.querySelectorAll('.premise-text, .peek-live-headline').forEach(el => {
+    const style = getComputedStyle(el);
+    if (style.display === 'none' || style.visibility === 'hidden') return;
+    const r = el.getBoundingClientRect();
+    if (r.width === 0 || r.height === 0) return;
+    if (el.scrollWidth > el.clientWidth + 2) {
+      issues.push({
+        type: 'TEXT_ELLIPSIS_TRUNCATION',
+        text: (el.innerText || '').slice(0, 60).replace(/\\s+/g, ' '),
+        scrollWidth: el.scrollWidth,
+        clientWidth: el.clientWidth
+      });
+    }
   });
 
   return {

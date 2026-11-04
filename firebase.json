@@ -61,6 +61,10 @@
         "destination": "/partners.html"
       },
       {
+        "source": "/workbench",
+        "destination": "/workbench.html"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }

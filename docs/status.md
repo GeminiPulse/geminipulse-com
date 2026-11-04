@@ -1,6 +1,6 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-11-04 16:05 EST (Look J v10 / Round 18: Engineered 60fps Zero-Bounce Stationary-Reveal Star-Tethered HUD Engine [0.0px path movement while visible, 0 frame jumps, 0 slot flips], Shipped Intelligent Celestial Observatory Search & Command Palette [⌘K / /], balanced GEMIN♊PULSE wordmark, and archived Look J v9 at /prototypes/look-j-v9-archive.html)`
+- **Last Updated:** `2026-11-04 16:44 EST (LAUNCHED REDESIGN ON ROOT HOMEPAGE https://geminipulse.com/: Promoted Look J v10 3D Celestial Navigator, 60fps Zero-Bounce Star-Tethered HUD, ⌘K Celestial Search & Balanced GEMIN♊PULSE Wordmark to Root index.html; preserved Full Developer Workbench & Community Suite at /workbench.html and /workbench)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)

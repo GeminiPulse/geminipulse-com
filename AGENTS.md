@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-11-04 16:05 EST — Look J v10 (Round 18): Engineered 60fps Zero-Bounce Stationary-Reveal Star-Tethered HUD Engine (0.0px path movement while visible, 0 frame jumps, 0 slot flips across all 8 stars — down from 4,375px travel & 7 slot flips in v8), Shipped Intelligent Celestial Observatory Search & Command Palette (⌘K / /), Balanced GEMIN♊PULSE Wordmark, and Archived Look J v9 (/prototypes/look-j-v9-archive.html)`
+> **Last touched:** `2026-11-04 16:44 EST — LAUNCHED REDESIGN ON ROOT HOMEPAGE (https://geminipulse.com/): Promoted Look J v10 (3D Celestial Navigator, 60fps Zero-Bounce Stationary-Reveal Star-Tethered HUD, Intelligent ⌘K Celestial Search & Command Palette, Balanced GEMIN♊PULSE Wordmark & Unframed Celestial Reading Sanctuary) to Root index.html, with Full Developer Workbench & Community Suite preserved at /workbench.html (/workbench)`
 
 ---
 
