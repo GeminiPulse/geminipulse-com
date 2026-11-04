@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" fill="none" role="img" aria-label="GeminiPulse Transparent Emblem">
+  <g class="brand-wordmark-gemini">
+    <line x1="393.3" y1="196.7" x2="393.3" y2="827.3" stroke="#7EB8FF" stroke-width="94.1" stroke-linecap="butt"/>
+    <line x1="630.7" y1="196.7" x2="630.7" y2="827.3" stroke="#F59E3F" stroke-width="94.1" stroke-linecap="butt"/>
+    <path d="M251 181 C383.2 237 640.8 237 773 181" stroke="#CEC0FF" stroke-width="56" stroke-linecap="round"/>
+    <path d="M251 843 C383.2 787 640.8 787 773 843" stroke="#CEC0FF" stroke-width="56" stroke-linecap="round"/>
+  </g>
+</svg>

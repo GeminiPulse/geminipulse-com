@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" fill="none" role="img" aria-label="GeminiPulse Minimal Emblem">
+  <rect width="1024" height="1024" rx="224" fill="#060A14"/>
+  <rect x="24" y="24" width="976" height="976" rx="204" stroke="#A385FF" stroke-width="6" stroke-opacity="0.28"/>
+  <g class="brand-wordmark-gemini">
+    <line x1="403.5" y1="223.7" x2="403.5" y2="800.3" stroke="#7EB8FF" stroke-width="86" stroke-linecap="butt"/>
+    <line x1="620.5" y1="223.7" x2="620.5" y2="800.3" stroke="#F59E3F" stroke-width="86" stroke-linecap="butt"/>
+    <path d="M273.4 209.4 C394.2 260.6 629.8 260.6 750.6 209.4" stroke="#CEC0FF" stroke-width="51.2" stroke-linecap="round"/>
+    <path d="M273.4 814.6 C394.2 763.4 629.8 763.4 750.6 814.6" stroke="#CEC0FF" stroke-width="51.2" stroke-linecap="round"/>
+  </g>
+</svg>

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" fill="none" role="img" aria-label="GeminiPulse Social Avatar">
+  <defs>
+    <radialGradient id="bg-obsidian" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#0D1528"/>
+      <stop offset="65%" stop-color="#070B16"/>
+      <stop offset="100%" stop-color="#04060D"/>
+    </radialGradient>
+    <radialGradient id="castor-aura" cx="32%" cy="48%" r="42%">
+      <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#38BDF8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="pollux-aura" cx="68%" cy="48%" r="42%">
+      <stop offset="0%" stop-color="#F59E3F" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#F59E3F" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1024" height="1024" fill="url(#bg-obsidian)"/>
+  <rect width="1024" height="1024" fill="url(#castor-aura)"/>
+  <rect width="1024" height="1024" fill="url(#pollux-aura)"/>
+  <circle cx="512" cy="512" r="424" stroke="#A385FF" stroke-width="2.5" stroke-dasharray="8 12" opacity="0.45"/>
+  <circle cx="512" cy="512" r="376" stroke="#CEC0FF" stroke-width="1.75" opacity="0.28"/>
+  <line x1="512" y1="64" x2="512" y2="104" stroke="#CEC0FF" stroke-width="3" stroke-linecap="round" opacity="0.65"/>
+  <line x1="512" y1="920" x2="512" y2="960" stroke="#CEC0FF" stroke-width="3" stroke-linecap="round" opacity="0.65"/>
+  <line x1="64" y1="512" x2="104" y2="512" stroke="#7EB8FF" stroke-width="3" stroke-linecap="round" opacity="0.65"/>
+  <line x1="920" y1="512" x2="960" y2="512" stroke="#F59E3F" stroke-width="3" stroke-linecap="round" opacity="0.65"/>
+  <circle cx="248" cy="284" r="9" fill="#D6EBFF"/>
+  <circle cx="248" cy="284" r="20" stroke="#7EB8FF" stroke-width="1.5" opacity="0.45"/>
+  <circle cx="776" cy="284" r="9" fill="#FFD296"/>
+  <circle cx="776" cy="284" r="20" stroke="#F59E3F" stroke-width="1.5" opacity="0.45"/>
+  <g class="brand-wordmark-gemini">
+    <line x1="427.2" y1="286.8" x2="427.2" y2="737.2" stroke="#7EB8FF" stroke-width="67.2" stroke-linecap="butt"/>
+    <line x1="596.8" y1="286.8" x2="596.8" y2="737.2" stroke="#F59E3F" stroke-width="67.2" stroke-linecap="butt"/>
+    <path d="M325.6 275.6 C420 315.6 604 315.6 698.4 275.6" stroke="#CEC0FF" stroke-width="40" stroke-linecap="round"/>
+    <path d="M325.6 748.4 C420 708.4 604 708.4 698.4 748.4" stroke="#CEC0FF" stroke-width="40" stroke-linecap="round"/>
+  </g>
+</svg>
