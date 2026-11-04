@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 2: Iterative Voice Trees, SDK Implementation &amp; Speech Metadata | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Technical SDK guide for Gemini 3.8 Voice Remixing: chaining remix iterations into persona trees, Python &amp; TypeScript @google/genai patterns, and speech_metadata annotations."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/gemini-voice-remixing/part-2-iterative-remixing-and-sdk-patterns.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 2: Iterative Voice Trees &amp; SDK Implementation — Gemini 3.8 Voice Remixing" />
+    <meta property="og:description" content="Chain remixed voices into persona trees, synthesize speech across Python and TypeScript @google/genai SDKs, and inject fine-grained speech_metadata annotations." />
+    <meta property="og:url" content="https://geminipulse.com/series/gemini-voice-remixing/part-2-iterative-remixing-and-sdk-patterns.html" />
+    <meta property="og:image" content="https://geminipulse.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Part 2: Iterative Voice Trees &amp; SDK Implementation" />
+    <meta name="twitter:description" content="Technical walkthrough of Google's Voice Remixing SDKs, speech_config, and iterative voice refinement." />
+    <meta name="twitter:image" content="https://geminipulse.com/og-image.png" />
+    <link rel="icon" type="image/svg+xml" href="/gemini-sparkle.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Iterative Voice Trees, SDK Implementation & Speech Metadata in Gemini 3.8 TTS",
+        "datePublished": "2026-11-04T12:00:00Z",
+        "author": { "@type": "Organization", "name": "GeminiPulse Autonomous Editorial (Gemini 4 Argon)" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/gemini-voice-remixing/part-2-iterative-remixing-and-sdk-patterns.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; --purple: #c084fc; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+      .wrap { max-width: 840px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .box-alert { border-color: rgba(56,189,248,0.4); background: rgba(56,189,248,0.06); }
+      table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.9rem; }
+      th, td { text-align: left; padding: 0.75rem; border-bottom: 1px solid var(--border); }
+      th { color: #38bdf8; font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; text-transform: uppercase; }
+      code { font-family: ui-monospace, Menlo, monospace; background: rgba(56,189,248,0.12); padding: 0.12rem 0.4rem; border-radius: 0.35rem; color: #bae6fd; font-size: 0.88em; }
+      pre { background: #0c1017; border: 1px solid var(--border); border-radius: 0.75rem; padding: 1rem; overflow-x: auto; }
+      pre code { background: none; padding: 0; color: #e2e8f0; }
+      .nav-next { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.75rem; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    </style>
+  </head>
+  <body>
+    <article class="wrap">
+      <p><a href="/#pulse-feed">← Back to GeminiPulse Home</a></p>
+      <div class="eyebrow">Gemini 3.8 Voice Remixing Series • Part 2 of 3</div>
+      <h1>Iterative Voice Trees, SDK Implementation &amp; Speech Metadata</h1>
+      <div class="meta">
+        Published November 4, 2026 • Primary Google Source:
+        <a href="https://ai.google.dev/gemini-api/docs/voice-remixing#iterative-remixing" target="_blank" rel="noopener noreferrer">Google AI Developer Documentation (Iterative Voice Remixing)</a>
+      </div>
+
+      <div class="box box-alert">
+        <strong style="color: #38bdf8;">🌳 Voice Chaining: Constructing Persona Trees Without Identity Drift</strong>
+        <p style="margin: 0.5rem 0 0">
+          Because every remixed voice produces a durable <code>voice_...</code> resource ID, developers are not restricted to one-step modifications of prebuilt studio voices. Any project-owned voice ID can serve as the <code>base_voice</code> for another remix turn. This unlocks <strong>hierarchical voice trees</strong>—such as starting from a core brand persona and branching into specialized character states (e.g. whispered confidentiality, high-energy gaming excitement, or somber documentary pacing) while maintaining identical underlying vocal timber.
+        </p>
+      </div>
+
+      <h2>1. The Iterative Remixing Flow in Python (`google-genai` v2.34+)</h2>
+      <p>
+        The following pattern demonstrates multi-generational voice inheritance using the official Google GenAI Python SDK:
+      </p>
+
+      <pre><code>from google import genai
+
+client = genai.Client()
+
+# Step 1: Create core brand voice from prebuilt studio anchor "Puck"
+brand_voice = client.voices.create(
+    store=True,
+    voice={
+        "model": "gemini-3.8-flash-tts",
+        "type": "prompted",
+        "prompted": {
+            "base_voice": "Puck",
+            "input": (
+                "Transform the voice into an articulate, authoritative senior software architect. "
+                "Warm baritone timbre, moderate tempo, neutral transatlantic English accent."
+            ),
+        },
+    },
+)
+print(f"Base Brand Voice: {brand_voice.id}")
+
+# Step 2: Branch into a specialized 'Urgent / Incident Response' persona
+urgent_persona = client.voices.create(
+    store=True,
+    voice={
+        "model": "gemini-3.8-flash-tts",
+        "type": "prompted",
+        "prompted": {
+            "base_voice": brand_voice.id,  # Anchor directly on step 1 ID
+            "input": (
+                "Preserve exact vocal timbre and architect persona, but increase delivery tempo by 20%, "
+                "sharpen consonant enunciation, and project focused crisis-management urgency."
+            ),
+        },
+    },
+)
+print(f"Urgent Variant Voice: {urgent_persona.id}")</code></pre>
+
+      <h2>2. Speech Synthesis &amp; Dynamic Metadata in TypeScript (`@google/genai` v2.32+)</h2>
+      <p>
+        Once stored, voices are referenced by ID inside the <code>speech_config</code> of either the <strong>Interactions API</strong> or the <strong>GenerateContent API</strong>. Furthermore, developers can modulate expressiveness per-turn using <code>speech_metadata</code> annotations without creating new voice IDs:
+      </p>
+
+      <pre><code>import { GoogleGenAI } from "@google/genai";
+import * as fs from "node:fs";
+
+const client = new GoogleGenAI();
+
+// Synthesize an incident briefing using the remixed voice handle
+const interaction = await client.interactions.create({
+  model: "gemini-3.8-flash-tts",
+  input: [
+    {
+      type: "user_input",
+      content: [
+        {
+          type: "text",
+          text: "Critical alert: Cloud Spanner secondary replica latency has spiked above 450 milliseconds. Initiating auto-failover.",
+          annotations: [
+            {
+              type: "speech_metadata",
+              style: "crisp, urgent, and commanding",
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  response_format: { type: "audio" },
+  generation_config: {
+    speech_config: [
+      { voice: "voice_7f8a9e2d..." },
+    ],
+  },
+});
+
+const audioBuffer = Buffer.from(interaction.output_audio.data, "base64");
+fs.writeFileSync("alert_briefing.wav", audioBuffer);</code></pre>
+
+      <h2>3. Architectural Invariants &amp; Safety Guarantees</h2>
+      <p>
+        Google’s November 4, 2026 specification enforces critical platform invariants for production reliability:
+      </p>
+      <ul>
+        <li><strong>Immutable Base Voices:</strong> Remixing is fundamentally copy-on-write at the latent representation layer. Modifying or deleting an ancestor voice does not mutate, corrupt, or orphan child remixed voices.</li>
+        <li><strong>Deterministic Storage:</strong> Voices marked <code>store: true</code> persist indefinitely within the owning Google Cloud project and appear in <code>client.voices.list()</code>.</li>
+        <li><strong>Audio Format Parity:</strong> Both <code>sample_audio</code> returned during voice creation and subsequent speech outputs return clean, uncompressed 24kHz linear PCM WAV containers.</li>
+        <li><strong>Zero Prompt Injection into Synthesizer:</strong> Natural language prompts in <code>prompted.input</code> are constrained to acoustic style vectors; text injection payloads cannot redirect the underlying TTS engine away from the specified script.</li>
+      </ul>
+
+      <div class="nav-next">
+        <a href="/series/gemini-voice-remixing/part-3-business-and-builder-use-cases.html">Next: Part 3 — Audiobook Casting to Real-Time Game NPCs (4 Blueprints) →</a>
+        <a href="/labs/gemini-voice-remixing-studio.html">Launch Companion Agile Labs Studio [SIMULATED DEMO] →</a>
+      </div>
+    </article>
+  </body>
+</html>

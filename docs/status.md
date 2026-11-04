@@ -1,11 +1,11 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-11-03 23:52 EST (Shipped Look J v8 [Round 16, /prototypes/look-j-3d-celestial-navigator.html, with v7 preserved at /prototypes/look-j-v7-archive.html]: Full-Stage Sanctuary Takeover beneath the 48px masthead, Immediate Unframed Chapter 01 Opening, Centered 2-Card Nocturnal Twin Sanctuary Deck with 1 vertical column per card and zero wrapped ledger cells, Single-Line Sanctuary Top Bar, Removed Redundant Middle Trigger Strip, and Thin Nocturnal Scrollbars + Updated 16-Round Human-AI Co-Creation Ledger)`
+- **Last Updated:** `2026-11-04 12:45 EST (Scheduled 12:45 PM Mountain View 9 AM PT embargo curation check: Verified & published Google Gemini 3.8 Voice Remixing across POST /v1beta/voices & AI Studio, 3-part standalone deep-dive series /series/gemini-voice-remixing/, companion interactive Agile Labs simulator /labs/gemini-voice-remixing-studio.html [SIMULATED DEMO], updated Pulse Intelligence Feed, and updated sitemap/feed indexing)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
 - **Firebase Default Hosting URL:** `https://geminipulse-com.web.app`
-- **Local Dev Preview URL:** `http://localhost:8080` *(Look J v8 Latest Lead: `http://localhost:8080/prototypes/look-j-3d-celestial-navigator.html` · Flagship Open Letter Sanctuary: `http://localhost:8080/series/google-preview-observatory/open-letter-to-google-deepmind.html` · Look J v7 Archive: `http://localhost:8080/prototypes/look-j-v7-archive.html` · Look J v6 Archive: `http://localhost:8080/prototypes/look-j-v6-archive.html` · Look J v5 Archive: `http://localhost:8080/prototypes/look-j-v5-archive.html` · Look J v4 Archive: `http://localhost:8080/prototypes/look-j-v4-archive.html` · Look J v3 Archive: `http://localhost:8080/prototypes/look-j-v3-archive.html` · Look J v2 Archive: `http://localhost:8080/prototypes/look-j-v2-archive.html` · Look J v1 Archive: `http://localhost:8080/prototypes/look-j-v1-archive.html` · Look I v2 50/50 Split: `http://localhost:8080/prototypes/look-i-celestial-couture-atlas.html` · Look I v1 Archive: `http://localhost:8080/prototypes/look-i-v1-archive.html` · Saved Look H: `http://localhost:8080/prototypes/look-h-avant-twin-journal.html` · Brand Evolution Portfolio Hub: `http://localhost:8080/prototypes/`)*
+- **Local Dev Preview URL:** `http://localhost:8080` *(Voice Remixing Studio: `http://localhost:8080/labs/gemini-voice-remixing-studio.html` · Look J v8 Latest Lead: `http://localhost:8080/prototypes/look-j-3d-celestial-navigator.html` · Flagship Open Letter Sanctuary: `http://localhost:8080/series/google-preview-observatory/open-letter-to-google-deepmind.html` · Look J v7 Archive: `http://localhost:8080/prototypes/look-j-v7-archive.html` · Look J v6 Archive: `http://localhost:8080/prototypes/look-j-v6-archive.html` · Look J v5 Archive: `http://localhost:8080/prototypes/look-j-v5-archive.html` · Look J v4 Archive: `http://localhost:8080/prototypes/look-j-v4-archive.html` · Look J v3 Archive: `http://localhost:8080/prototypes/look-j-v3-archive.html` · Look J v2 Archive: `http://localhost:8080/prototypes/look-j-v2-archive.html` · Look J v1 Archive: `http://localhost:8080/prototypes/look-j-v1-archive.html` · Look I v2 50/50 Split: `http://localhost:8080/prototypes/look-i-celestial-couture-atlas.html` · Look I v1 Archive: `http://localhost:8080/prototypes/look-i-v1-archive.html` · Saved Look H: `http://localhost:8080/prototypes/look-h-avant-twin-journal.html` · Brand Evolution Portfolio Hub: `http://localhost:8080/prototypes/`)*
 - **Firebase Project ID:** `geminipulse-com` (Project Number `643794480842`, Spark Free Plan — **\$0.00/mo**)
 - **Firebase Web App ID:** `1:643794480842:web:9f973bc1a0d7670c920e33` (`GeminiPulse Web`)
 - **Concept Originator & Creative Catalyst:** Neil S. White (`https://www.linkedin.com/in/neilswhite`, **Agile LLC**)
@@ -13,7 +13,24 @@
 
 ---
 
-## 1. Completed & Live on `v2.0` (2026-11-03 11:52 PM ET Update)
+## 1. Completed & Live on `v2.0` (2026-11-04 12:45 PM ET Curation Check)
+
+- **Official Release Grounding & Coverage: Google Gemini 3.8 Voice Remixing (`ai.google.dev/gemini-api/docs/changelog#11-04-2026`):**
+  1. **Intelligence Feed & Community Showcase Integration:**
+     - Curated and integrated top entry `pulse-gemini-3-8-voice-remixing` into `PULSE_INTELLIGENCE_FEED` in `geminiEcosystemData.js` citing primary Google source `https://ai.google.dev/gemini-api/docs/voice-remixing`.
+     - Integrated companion showcase project `showcase-gemini-voice-remixing-studio` into `INITIAL_SHOWCASE_PROJECTS`.
+  2. **Standalone 3-Part Technical Series (`/series/gemini-voice-remixing/`):**
+     - **Part 1:** *Inside Gemini 3.8 Voice Remixing: Relative Acoustic Prompting & Stored Voice Architecture* (`/series/gemini-voice-remixing/part-1-voice-remixing-breakdown.html`).
+     - **Part 2:** *Iterative Voice Trees, SDK Implementation & Speech Metadata* (`/series/gemini-voice-remixing/part-2-iterative-remixing-and-sdk-patterns.html`).
+     - **Part 3:** *From Audiobook Casting to Dynamic Game NPCs: 4 Production Use Cases* (`/series/gemini-voice-remixing/part-3-business-and-builder-use-cases.html`).
+  3. **Interactive Companion Agile Labs Mini-Project:**
+     - Published `gemini-voice-remixing-studio.html` (`/labs/gemini-voice-remixing-studio.html`) labeled `[SIMULATED DEMO]` per House Rule #5. Features interactive base voice anchors (Puck, Kore, Zephyr, Aoede, Fenrir), acoustic delta prompts, 1-click style presets, pitch/tempo sliders, real-time waveform visualizer with synthetic audio audition, and Python/TypeScript/cURL SDK code export.
+  4. **Indexing & Feed Updates:**
+     - Added all 3 series pages and the new lab to `sitemap.xml` (37 total URLs) and prepended Atom entry to `feed.xml`.
+
+---
+
+## 2. Completed & Live on `v2.0` (2026-11-03 11:52 PM ET Update)
 
 - **Shipped `Look J v8 (Round 16)` (`/prototypes/look-j-3d-celestial-navigator.html`) & Preserved `Look J v7` (`/prototypes/look-j-v7-archive.html`):**
   1. **Seamless Full-Stage Sanctuary Takeover (`calc(100svh - 48px)`):**

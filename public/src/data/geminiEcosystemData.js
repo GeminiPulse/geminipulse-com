@@ -5,6 +5,21 @@
 
 export const PULSE_INTELLIGENCE_FEED = [
   {
+    id: 'pulse-gemini-3-8-voice-remixing',
+    title: 'Google Unveils Voice Remixing for Gemini 3.8 TTS & AI Studio: Relative Acoustic Prompting & Stored Personas',
+    tldr: 'Released November 4, 2026: Google rolls out Voice Remixing across the Gemini API (POST /v1beta/voices) and Google AI Studio—enabling developers to transform base studio voices into independent, permanently stored voice resources with 24kHz preview audio via natural-language acoustic delta prompts.',
+    summary:
+      'Google releases official Voice Remixing for Gemini 3.8 TTS, replacing brittle zero-shot phonetic descriptions with relative acoustic prompting. Developers anchor generation on any prebuilt voice ("Puck", "Kore", "Zephyr", "Aoede", "Fenrir") or custom stored voice ID, then pass natural-language instructions in `prompted.input` (e.g. altering age, pitch, timbre, accent, pacing, or emotional warmth). The model synchronously returns a durable `voice_...` ID and a 24kHz WAV sample preview (`sample_audio`). The remixed voice operates non-destructively without modifying the source asset, supports iterative persona tree chaining, and synthesizes seamlessly across both high-fidelity `gemini-3.8-flash-tts` and low-latency `gemini-3.8-flash-lite-tts` (<300ms stream).',
+    category: 'SDK & API',
+    tag: 'Official Release',
+    modelBadge: 'gemini-3.8-flash-tts / flash-lite-tts',
+    impactScore: '9.9 / 10',
+    date: '2026-11-04T12:00:00Z',
+    sourceLabel: 'Google AI: Voice Remixing Guide & Changelog',
+    sourceUrl: 'https://ai.google.dev/gemini-api/docs/voice-remixing',
+    groundedBy: 'Google AI Developer Documentation (Verified Nov 4, 2026)',
+  },
+  {
     id: 'pulse-deepmind-agentic-cheminformatics-antigravity',
     title: 'Google DeepMind Unveils Agentic Cheminformatics in Google Antigravity & 10,000-Scientist Tier Grant',
     tldr: 'Released November 3, 2026: Google DeepMind launches Cheminformatics Skills for Google Antigravity—unifying Gemini reasoning with RDKit, ChEMBL, and PubChem to compress multi-day drug discovery into 1-hour loops, alongside a 6-month free top-tier grant for 10,000 scientists.',
@@ -597,6 +612,25 @@ video_turn = client.interactions.create(
 ];
 
 export const INITIAL_SHOWCASE_PROJECTS = [
+  {
+    id: 'showcase-gemini-voice-remixing-studio',
+    name: 'Gemini 3.8 Voice Remixing Studio & Persona Tuner [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive voice engineering lab for Google’s November 4, 2026 release: remix studio voices with natural language prompts, generate voice_... IDs, preview 24kHz waveforms, and export Python/TS SDK code.',
+    models: ['gemini-3.8-flash-tts', 'gemini-3.8-flash-lite-tts', 'voices-api-v1beta'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-voice-remixing-studio.html): [SIMULATED DEMO] Models POST /v1beta/voices relative prompt transformations, synthetic audio audition via Web Audio API, parameter validation, and multi-speaker speech_config export.',
+    url: '/labs/gemini-voice-remixing-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-04T12:30:00Z',
+  },
   {
     id: 'showcase-antigravity-cheminformatics-explorer',
     name: 'Antigravity Cheminformatics & Macrocycle Discovery Workbench [SIMULATED DEMO]',
