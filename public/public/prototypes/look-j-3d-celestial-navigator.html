@@ -338,6 +338,542 @@
     }
 
     /* =========================================================================
+       CELESTIAL OBSERVATORY SEARCH & COMMAND PALETTE TRIGGER + NATIVE <DIALOG>
+       ========================================================================= */
+    .celestial-search-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4.5px 10px 4.5px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(126, 184, 255, 0.42);
+      background: linear-gradient(135deg, rgba(14, 25, 45, 0.92), rgba(20, 16, 40, 0.92));
+      color: var(--starlight);
+      font-family: var(--mono);
+      font-size: 8.2px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      box-shadow: 0 0 14px rgba(126, 184, 255, 0.12);
+    }
+
+    .celestial-search-trigger:hover {
+      border-color: var(--ethereal-bright);
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(163, 133, 255, 0.28));
+      box-shadow: 0 0 18px rgba(163, 133, 255, 0.32);
+      color: #FFFFFF;
+    }
+
+    .search-trigger-icon {
+      inline-size: 11.5px;
+      block-size: 11.5px;
+      color: var(--castor-glow);
+      flex-shrink: 0;
+    }
+
+    .search-trigger-kbd {
+      display: inline-block;
+      padding: 1px 4.5px;
+      border-radius: 4px;
+      background: rgba(163, 133, 255, 0.16);
+      border: 0.75px solid rgba(206, 192, 255, 0.36);
+      color: var(--ethereal-bright);
+      font-family: var(--mono);
+      font-size: 7.5px;
+      line-height: 1.2;
+      letter-spacing: 0.03em;
+    }
+
+    @media (max-width: 640px) {
+      .search-trigger-label,
+      .search-trigger-kbd {
+        display: none;
+      }
+      .celestial-search-trigger {
+        padding: 6px 8px;
+      }
+    }
+
+    dialog.celestial-search-dialog {
+      margin: clamp(32px, 6.5vh, 68px) auto auto;
+      inline-size: min(740px, calc(100vw - 24px));
+      max-block-size: min(680px, calc(100svh - 56px));
+      padding: 0;
+      border: 1px solid rgba(206, 192, 255, 0.42);
+      border-radius: 16px;
+      background: linear-gradient(168deg, rgba(8, 13, 26, 0.98) 0%, rgba(4, 7, 15, 0.99) 100%);
+      color: var(--starlight);
+      box-shadow:
+        0 28px 80px rgba(0, 0, 0, 0.88),
+        0 0 42px rgba(126, 184, 255, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(-8px) scale(0.97);
+      transition-property: opacity, transform, display, overlay;
+      transition-duration: 0.22s;
+      transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+      transition-behavior: allow-discrete;
+    }
+
+    dialog.celestial-search-dialog::backdrop {
+      background-color: rgba(3, 5, 12, 0);
+      -webkit-backdrop-filter: blur(0px);
+      backdrop-filter: blur(0px);
+      transition-property: background-color, backdrop-filter, -webkit-backdrop-filter, display, overlay;
+      transition-duration: 0.22s;
+      transition-timing-function: ease-out;
+      transition-behavior: allow-discrete;
+    }
+
+    :is(dialog.celestial-search-dialog[open]):where(:not([data-closing])) {
+      display: flex;
+      flex-direction: column;
+      opacity: 1;
+      transform: translateY(0) scale(1);
+
+      @starting-style {
+        opacity: 0;
+        transform: translateY(-8px) scale(0.97);
+      }
+
+      &::backdrop {
+        background-color: rgba(3, 5, 12, 0.76);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+
+        @starting-style {
+          background-color: rgba(3, 5, 12, 0);
+          -webkit-backdrop-filter: blur(0px);
+          backdrop-filter: blur(0px);
+        }
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      dialog.celestial-search-dialog {
+        transform: none;
+        transition-duration: 0.08s;
+      }
+      @starting-style {
+        dialog.celestial-search-dialog[open] {
+          transform: none;
+        }
+      }
+    }
+
+    .cs-top-header {
+      padding: 14px 18px 10px;
+      border-block-end: 1px solid rgba(163, 133, 255, 0.18);
+      background:
+        radial-gradient(ellipse 65% 90% at 15% 0%, rgba(56, 189, 248, 0.11), transparent 70%),
+        radial-gradient(ellipse 65% 90% at 85% 0%, rgba(245, 158, 63, 0.1), transparent 70%);
+    }
+
+    .cs-eyebrow-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-block-end: 8px;
+      font-family: var(--mono);
+      font-size: 8.5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ethereal-bright);
+    }
+
+    .cs-close-pill {
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 0.75px solid rgba(255, 255, 255, 0.22);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--starlight-dim);
+      font-family: var(--mono);
+      font-size: 8px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: all 0.18s ease;
+    }
+
+    .cs-close-pill:hover {
+      border-color: var(--ethereal-bright);
+      color: #FFFFFF;
+      background: rgba(163, 133, 255, 0.22);
+    }
+
+    .cs-search-form {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      border-radius: 11px;
+      background: rgba(4, 8, 18, 0.92);
+      border: 1px solid rgba(126, 184, 255, 0.42);
+      box-shadow: inset 0 0 18px rgba(56, 189, 248, 0.06);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .cs-search-form:focus-within {
+      border-color: var(--ethereal-bright);
+      box-shadow:
+        0 0 22px rgba(163, 133, 255, 0.25),
+        inset 0 0 18px rgba(126, 184, 255, 0.09);
+    }
+
+    .cs-input-icon {
+      inline-size: 16px;
+      block-size: 16px;
+      color: var(--castor-glow);
+      flex-shrink: 0;
+    }
+
+    .cs-search-input {
+      flex: 1;
+      min-inline-size: 0;
+      border: none;
+      background: transparent;
+      color: #FFFFFF;
+      font-family: var(--sans);
+      font-size: 14.5px;
+      font-weight: 500;
+      outline: none;
+    }
+
+    .cs-search-input::placeholder {
+      color: #8294AD;
+      font-weight: 400;
+    }
+
+    .cs-search-input::-webkit-search-cancel-button {
+      display: none;
+    }
+
+    .cs-clear-btn {
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 0.75px solid rgba(255, 255, 255, 0.18);
+      color: var(--starlight-dim);
+      font-family: var(--mono);
+      font-size: 8.5px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .cs-clear-btn[hidden] {
+      display: none;
+    }
+
+    .cs-submit-btn {
+      padding: 5px 11px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.24), rgba(163, 133, 255, 0.3));
+      border: 0.85px solid rgba(206, 192, 255, 0.52);
+      color: #FFFFFF;
+      font-family: var(--mono);
+      font-size: 8.5px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      transition: all 0.18s ease;
+    }
+
+    .cs-submit-btn:hover {
+      background: var(--ethereal-bright);
+      color: var(--obsidian);
+    }
+
+    .cs-prompts-row {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-wrap: wrap;
+      margin-block-start: 9px;
+    }
+
+    .cs-prompt-label {
+      font-family: var(--mono);
+      font-size: 8px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--starlight-muted);
+      margin-inline-end: 2px;
+    }
+
+    .cs-prompt-chip {
+      padding: 3px 8.5px;
+      border-radius: 999px;
+      border: 0.75px solid rgba(163, 133, 255, 0.28);
+      background: rgba(15, 22, 38, 0.85);
+      color: #CBD8EC;
+      font-family: var(--mono);
+      font-size: 8px;
+      letter-spacing: 0.04em;
+      transition: all 0.16s ease;
+    }
+
+    .cs-prompt-chip:hover {
+      border-color: var(--castor-code);
+      color: #FFFFFF;
+      background: rgba(56, 189, 248, 0.16);
+    }
+
+    .cs-scope-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 8px 18px;
+      background: rgba(4, 7, 15, 0.94);
+      border-block-end: 1px solid rgba(163, 133, 255, 0.15);
+      flex-wrap: wrap;
+    }
+
+    .cs-scope-tabs {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+
+    .cs-scope-tab {
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-family: var(--mono);
+      font-size: 8.2px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--starlight-dim);
+      border: 0.75px solid transparent;
+      transition: all 0.16s ease;
+    }
+
+    .cs-scope-tab[aria-pressed="true"] {
+      background: rgba(163, 133, 255, 0.22);
+      border-color: rgba(206, 192, 255, 0.55);
+      color: #FFFFFF;
+    }
+
+    .cs-count-meta {
+      font-family: var(--mono);
+      font-size: 8px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--starlight-muted);
+    }
+
+    .cs-results-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px 18px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-block-size: min(440px, calc(100svh - 230px));
+    }
+
+    .cs-instant-answer {
+      padding: 11px 14px;
+      border-radius: 11px;
+      background: linear-gradient(135deg, rgba(16, 32, 60, 0.88), rgba(28, 19, 52, 0.88));
+      border: 1px solid rgba(126, 184, 255, 0.52);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+      margin-block-end: 4px;
+    }
+
+    .cs-ia-kicker {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #7DD3FC;
+      margin-block-end: 4px;
+    }
+
+    .cs-ia-body {
+      font-size: 12.2px;
+      line-height: 1.48;
+      color: #ECF3FC;
+      margin-block-end: 8px;
+    }
+
+    .cs-ia-actions {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+
+    .cs-ia-btn {
+      padding: 4.5px 10px;
+      border-radius: 999px;
+      font-family: var(--mono);
+      font-size: 8.2px;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      background: rgba(56, 189, 248, 0.2);
+      border: 0.75px solid rgba(56, 189, 248, 0.58);
+      color: #F0F9FF;
+      text-decoration: none;
+      transition: all 0.16s ease;
+    }
+
+    .cs-ia-btn:hover {
+      background: #38BDF8;
+      color: #04101E;
+    }
+
+    .cs-ia-btn--amber {
+      background: rgba(245, 158, 63, 0.2);
+      border-color: rgba(245, 158, 63, 0.58);
+      color: #FFF7EB;
+    }
+
+    .cs-ia-btn--amber:hover {
+      background: #F59E3F;
+      color: #1A0D02;
+    }
+
+    .cs-result-item {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 13px;
+      border-radius: 10px;
+      background: rgba(11, 17, 31, 0.78);
+      border: 0.85px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.16s ease;
+      cursor: pointer;
+    }
+
+    .cs-result-item:hover,
+    .cs-result-item[data-selected="true"] {
+      background: rgba(20, 31, 56, 0.94);
+      border-color: rgba(126, 184, 255, 0.56);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+    }
+
+    .cs-result-item[data-twin="pollux"]:hover,
+    .cs-result-item[data-twin="pollux"][data-selected="true"] {
+      background: rgba(34, 20, 9, 0.92);
+      border-color: rgba(245, 158, 63, 0.58);
+    }
+
+    .cs-res-main {
+      flex: 1;
+      min-inline-size: 0;
+    }
+
+    .cs-res-badges {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-block-end: 3.5px;
+      font-family: var(--mono);
+      font-size: 7.8px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .cs-badge-kind {
+      padding: 1.5px 6px;
+      border-radius: 4px;
+      background: rgba(56, 189, 248, 0.15);
+      border: 0.75px solid rgba(56, 189, 248, 0.42);
+      color: #7DD3FC;
+      font-weight: 600;
+    }
+
+    .cs-result-item[data-twin="pollux"] .cs-badge-kind {
+      background: rgba(245, 158, 63, 0.16);
+      border-color: rgba(245, 158, 63, 0.45);
+      color: #FDBA74;
+    }
+
+    .cs-badge-sub {
+      color: var(--starlight-muted);
+    }
+
+    .cs-res-title {
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.3;
+      color: #FFFFFF;
+      margin-block-end: 3px;
+    }
+
+    .cs-res-desc {
+      font-size: 11.2px;
+      line-height: 1.42;
+      color: #C2D0E4;
+    }
+
+    mark.cs-hl {
+      background: rgba(163, 133, 255, 0.32);
+      color: #FFFFFF;
+      padding: 0 2px;
+      border-radius: 3px;
+    }
+
+    .cs-res-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 5px;
+      flex-shrink: 0;
+    }
+
+    .cs-act-pill {
+      padding: 4px 9px;
+      border-radius: 999px;
+      font-family: var(--mono);
+      font-size: 7.8px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: rgba(255, 255, 255, 0.07);
+      border: 0.75px solid rgba(255, 255, 255, 0.2);
+      color: var(--starlight);
+      white-space: nowrap;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+
+    .cs-act-pill:hover {
+      background: var(--ethereal-bright);
+      border-color: var(--ethereal-bright);
+      color: var(--obsidian);
+    }
+
+    .cs-footer-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 8px 18px;
+      background: rgba(3, 6, 13, 0.96);
+      border-block-start: 1px solid rgba(163, 133, 255, 0.16);
+      font-family: var(--mono);
+      font-size: 8px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--starlight-muted);
+      flex-wrap: wrap;
+    }
+
+    /* =========================================================================
        2. FULL-VIEWPORT 3D CONSTELLATION OBSERVATORY STAGE
        ========================================================================= */
     .constellation-hero {
@@ -914,17 +1450,18 @@
     }
 
     /* =====================================================================
-       STATIONARY HOVER-TO-FADE-IN ARTICLE BRIEF CARD (#star-hud-card)
-       Fixed in one calm observatory HUD slot (never moves around the screen).
-       Fades in on hover over any star; fades out on exit or click elsewhere.
+       ZERO-JANK STATIONARY STAR-TETHERED ARTICLE BRIEF POPOVER (#star-hud-card)
+       Docks directly beneath/beside the active star with a 4-way pointer notch
+       and hairline SVG tether, but NEVER recomputes coordinates during 3D slews
+       and NEVER transitions transform (0.0px movement while visible).
        ===================================================================== */
     .star-hud-card {
       position: absolute;
-      left: clamp(14px, 1.6vw, 24px);
-      top: 146px;
+      left: 0;
+      top: 0;
       z-index: 12;
-      inline-size: clamp(288px, 23vw, 328px);
-      transform: none;
+      inline-size: clamp(292px, 24vw, 338px);
+      transform: translate3d(var(--hud-x, 220px), var(--hud-y, 280px), 0);
       background: linear-gradient(165deg, rgba(8, 15, 29, 0.96) 0%, rgba(5, 9, 19, 0.98) 100%);
       border: 1px solid rgba(56, 189, 248, 0.48);
       border-radius: 10px;
@@ -938,7 +1475,7 @@
       color: var(--starlight);
       opacity: 1;
       transition:
-        opacity 0.22s ease,
+        opacity 0.22s cubic-bezier(0.22, 1, 0.36, 1),
         border-color 0.25s ease,
         box-shadow 0.25s ease;
     }
@@ -965,8 +1502,47 @@
         inset 0 0 18px rgba(245, 158, 63, 0.07);
     }
 
+    /* 4-Way Pointer Notch Tethered Toward the Clicked Star (below | above | left | right) */
     .hud-pointer-notch {
-      display: none;
+      position: absolute;
+      top: -5.5px;
+      left: var(--hud-notch-x, 50%);
+      inline-size: 9px;
+      block-size: 9px;
+      margin-inline-start: -4.5px;
+      background: #081020;
+      border-top: 1px solid rgba(56, 189, 248, 0.65);
+      border-left: 1px solid rgba(56, 189, 248, 0.65);
+      transform: rotate(45deg);
+      pointer-events: none;
+    }
+
+    .star-hud-card[data-twin="pollux"] .hud-pointer-notch {
+      background: #170C04;
+      border-color: rgba(245, 158, 63, 0.65);
+    }
+
+    .star-hud-card[data-placement="above"] .hud-pointer-notch {
+      top: auto;
+      bottom: -5.5px;
+      transform: rotate(225deg);
+    }
+
+    .star-hud-card[data-placement="right"] .hud-pointer-notch {
+      top: var(--hud-notch-y, 50%);
+      left: -5.5px;
+      margin-inline-start: 0;
+      margin-block-start: -4.5px;
+      transform: rotate(-45deg);
+    }
+
+    .star-hud-card[data-placement="left"] .hud-pointer-notch {
+      top: var(--hud-notch-y, 50%);
+      left: auto;
+      right: -5.5px;
+      margin-inline-start: 0;
+      margin-block-start: -4.5px;
+      transform: rotate(135deg);
     }
 
     /* Futuristic Corner Reticle Brackets on the HUD Card */
@@ -995,34 +1571,26 @@
       border-right: 1px solid var(--ethereal-bright);
     }
 
-    /* Computer-Render Scanline Sweep + Attention Pulse When a Star Is Clicked */
+    /* Compositor-Only Scanline Sweep When a Star Brief Renders (Zero Filter Repaint on Backdrop-Blur) */
     .hud-scanline {
       position: absolute;
       inset-inline: 0;
-      top: -100%;
-      block-size: 45%;
-      background: linear-gradient(180deg, transparent 0%, rgba(163, 133, 255, 0.16) 85%, rgba(206, 192, 255, 0.42) 100%);
+      top: 0;
+      block-size: 42%;
+      background: linear-gradient(180deg, transparent 0%, rgba(163, 133, 255, 0.14) 85%, rgba(206, 192, 255, 0.36) 100%);
       pointer-events: none;
       opacity: 0;
+      transform: translateY(-100%);
       border-radius: inherit;
     }
 
-    .star-hud-card.is-rendering {
-      animation: hud-card-attention 0.52s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
     .star-hud-card.is-rendering .hud-scanline {
-      animation: hud-scan-sweep 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    }
-
-    @keyframes hud-card-attention {
-      0% { filter: brightness(1.38); }
-      100% { filter: brightness(1); }
+      animation: hud-scan-sweep 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 
     @keyframes hud-scan-sweep {
-      0% { top: -45%; opacity: 0.95; }
-      100% { top: 105%; opacity: 0; }
+      0% { transform: translateY(-100%); opacity: 0.9; }
+      100% { transform: translateY(230%); opacity: 0; }
     }
 
     .hud-top-meta {
@@ -2550,6 +3118,15 @@
       </div>
 
       <div class="header-controls">
+        <button type="button" class="celestial-search-trigger" id="open-search-btn" data-open-search aria-label="Open Celestial Search and Command Palette (Shortcut: Command K or Slash)">
+          <svg class="search-trigger-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <circle cx="6.8" cy="6.8" r="4.8" stroke="currentColor" stroke-width="1.45"/>
+            <line x1="10.4" y1="10.4" x2="14.2" y2="14.2" stroke="currentColor" stroke-width="1.45" stroke-linecap="round"/>
+          </svg>
+          <span class="search-trigger-label">Search</span>
+          <kbd class="search-trigger-kbd" aria-hidden="true">⌘K</kbd>
+        </button>
+
         <!-- 3D Camera / Point-of-View Presets -->
         <div class="pov-switcher" role="group" aria-label="3D Constellation Point of View">
           <button type="button" class="pov-btn" data-pov-mode="relational3d" aria-pressed="true" title="Relational 3D Pivot: Clicked star rotates to the foreground while other stars scale proportionally by depth">
@@ -2961,6 +3538,14 @@
       <div class="sheet-handle-inner">
         <span id="sheet-location-status">✦ STAR 02 / 08 · <span class="greek">ε</span> MEBSUTA (840 LY) · NOV 3, 2026 · 4 MIN READ</span>
         <div class="sheet-handle-actions">
+          <button type="button" class="celestial-search-trigger" data-open-search aria-label="Search Stars, Chapters, and Labs">
+            <svg class="search-trigger-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <circle cx="6.8" cy="6.8" r="4.8" stroke="currentColor" stroke-width="1.45"/>
+              <line x1="10.4" y1="10.4" x2="14.2" y2="14.2" stroke="currentColor" stroke-width="1.45" stroke-linecap="round"/>
+            </svg>
+            <span class="search-trigger-label">Search</span>
+            <kbd class="search-trigger-kbd" aria-hidden="true">⌘K</kbd>
+          </button>
           <button type="button" class="sheet-close-btn sheet-close-btn--workbench" id="jump-workbench-btn">
             <span>Twin Workbench &amp; Ledger ↓</span>
           </button>
@@ -3249,6 +3834,65 @@ const cache = await ai.caches.create({
       </div>
     </nav>
   </section>
+
+  <!-- =======================================================================
+       7. CELESTIAL OBSERVATORY SEARCH & COMMAND PALETTE (<dialog closedby="any">)
+       ======================================================================= -->
+  <dialog id="celestial-search-dialog" class="celestial-search-dialog" closedby="any" aria-labelledby="celestial-search-title">
+    <div class="cs-top-header">
+      <div class="cs-eyebrow-row">
+        <span id="celestial-search-title">✦ CELESTIAL OBSERVATORY SEARCH &amp; COMMAND PALETTE · 8 STARS · 32 CHAPTERS · 12 LABS &amp; SERIES</span>
+        <button type="button" class="cs-close-pill" id="close-search-btn" aria-label="Close Search Dialog">ESC · CLOSE ×</button>
+      </div>
+
+      <search aria-label="Search the Gemini Constellation, Sanctuary Chapters, and Interactive Labs">
+        <form id="celestial-search-form" class="cs-search-form" role="search">
+          <label for="celestial-search-input" class="sr-only">Search Gemini releases, stars, chapters, no-code guides, or interactive labs</label>
+          <svg class="cs-input-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <circle cx="6.8" cy="6.8" r="4.8" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="10.4" y1="10.4" x2="14.2" y2="14.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <input
+            type="search"
+            id="celestial-search-input"
+            class="cs-search-input"
+            placeholder="Ask anything or search stars, chapters &amp; labs (e.g., 'cut API bill', 'voice remixing', 'Docs guides')…"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <button type="button" class="cs-clear-btn" id="cs-clear-btn" hidden aria-label="Clear search query">Clear</button>
+          <button type="submit" class="cs-submit-btn">Open Top Match ↵</button>
+        </form>
+      </search>
+
+      <div class="cs-prompts-row" aria-label="Suggested Search Intents">
+        <span class="cs-prompt-label">Try:</span>
+        <button type="button" class="cs-prompt-chip" data-search-prompt="cut API bill -78%">Cut API Bill (-78%)</button>
+        <button type="button" class="cs-prompt-chip" data-search-prompt="voice remixing tts">Voice Remixing TTS</button>
+        <button type="button" class="cs-prompt-chip" data-search-prompt="5-min Docs &amp; Sheets">5-Min Docs &amp; Sheets</button>
+        <button type="button" class="cs-prompt-chip" data-search-prompt="speed &amp; carbon">Speed &amp; Carbon ROI</button>
+        <button type="button" class="cs-prompt-chip" data-search-prompt="computer use AI">Computer Use AI</button>
+        <button type="button" class="cs-prompt-chip" data-search-prompt="DeepMind open letter">DeepMind Letter</button>
+      </div>
+    </div>
+
+    <div class="cs-scope-bar">
+      <div class="cs-scope-tabs" role="group" aria-label="Filter Search Results by Category">
+        <button type="button" class="cs-scope-tab" data-search-scope="all" aria-pressed="true">All (<span data-scope-count="all">48</span>)</button>
+        <button type="button" class="cs-scope-tab" data-search-scope="star" aria-pressed="false">✦ 8 Stars (<span data-scope-count="star">8</span>)</button>
+        <button type="button" class="cs-scope-tab" data-search-scope="chapter" aria-pressed="false">📖 32 Chapters (<span data-scope-count="chapter">32</span>)</button>
+        <button type="button" class="cs-scope-tab" data-search-scope="lab" aria-pressed="false">⚡ Labs &amp; Series (<span data-scope-count="lab">8</span>)</button>
+      </div>
+      <span class="cs-count-meta" id="cs-count-meta" aria-live="polite">SHOWING TOP MATCHES ACROSS CASTOR &amp; POLLUX</span>
+    </div>
+
+    <div class="cs-results-scroll" id="cs-results-scroll" role="region" aria-label="Search Results"></div>
+
+    <div class="cs-footer-bar">
+      <span>↑↓ NAVIGATE RESULTS · ↵ SLEW TO STAR OR OPEN SANCTUARY · ESC DISMISS</span>
+      <span><span class="greek">α</span> CASTOR (THE SIGNAL) × <span class="greek">β</span> POLLUX (THE WORKBENCH)</span>
+    </div>
+  </dialog>
 
   <!-- Dynamic SEO & GEO (Generative Engine Optimization) Structured Data for Search & LLMs -->
   <script type="application/ld+json" id="dynamic-seo-geo-schema">
@@ -5159,7 +5803,691 @@ await Promise.all([
         });
       });
 
+      /* =====================================================================
+         CELESTIAL OBSERVATORY SEARCH & COMMAND PALETTE ENGINE (⌘K / /)
+         ===================================================================== */
+      const searchDialog = document.getElementById("celestial-search-dialog");
+      const searchForm = document.getElementById("celestial-search-form");
+      const searchInput = document.getElementById("celestial-search-input");
+      const searchClearBtn = document.getElementById("cs-clear-btn");
+      const searchCloseBtn = document.getElementById("close-search-btn");
+      const searchResultsEl = document.getElementById("cs-results-scroll");
+      const searchCountMeta = document.getElementById("cs-count-meta");
+
+      let supportsDisplayTransition;
+      function canTransitionDisplay() {
+        if (supportsDisplayTransition !== undefined) return supportsDisplayTransition;
+        if (!window.CSS?.supports?.("transition-behavior", "allow-discrete") || !document.body) {
+          return false;
+        }
+        const probe = document.createElement("div");
+        probe.style.cssText = "transition: display 1s allow-discrete !important; display: block;";
+        document.body.appendChild(probe);
+        getComputedStyle(probe).display;
+        probe.style.display = "none";
+        supportsDisplayTransition = getComputedStyle(probe).display === "block";
+        probe.remove();
+        return supportsDisplayTransition;
+      }
+
+      function supportsTopLayerExit() {
+        return window.CSS?.supports?.("overlay", "auto") && canTransitionDisplay();
+      }
+
+      async function closeTopLayer(element) {
+        if (!element || !element.open) return;
+        if (!supportsTopLayerExit()) {
+          element.setAttribute("data-closing", "");
+          const animations = element.getAnimations({ subtree: true });
+          if (animations.length > 0) {
+            await Promise.race([
+              Promise.allSettled(animations.map((a) => a.finished)),
+              new Promise((r) => setTimeout(r, 2000))
+            ]);
+          }
+          if (!element.hasAttribute("data-closing")) return;
+          element.removeAttribute("data-closing");
+        }
+        element.close();
+      }
+
+      // Fallback for browsers without declarative <dialog closedby="any"> support (e.g., Safari)
+      if (searchDialog && !("closedBy" in HTMLDialogElement.prototype)) {
+        searchDialog.addEventListener("click", (event) => {
+          if (event.target !== searchDialog) return;
+          const rect = searchDialog.getBoundingClientRect();
+          const isDialogContent =
+            rect.top <= event.clientY &&
+            event.clientY <= rect.top + rect.height &&
+            rect.left <= event.clientX &&
+            event.clientX <= rect.left + rect.width;
+          if (isDialogContent) return;
+          closeTopLayer(searchDialog);
+        });
+      }
+
+      if (searchDialog) {
+        searchDialog.addEventListener("cancel", (event) => {
+          event.preventDefault();
+          closeTopLayer(searchDialog);
+        });
+      }
+
+      const SYNONYM_GROUPS = [
+        ["bill", "cost", "price", "pricing", "cheap", "cheaper", "save", "savings", "discount", "token", "tokens", "cache", "caching", "memory", "78%", "90%", "castor", "pollux", "roi", "calculator"],
+        ["voice", "voices", "tts", "audio", "speech", "remix", "remixing", "puck", "kore", "aoede", "zephyr", "fenrir", "podcast", "narrator", "narration", "wav", "propus", "shorts", "video"],
+        ["docs", "sheets", "gmail", "slides", "drive", "workspace", "nocode", "no-code", "everyday", "notebooklm", "classroom", "guided", "socratic", "student", "teacher", "wasat", "workflow"],
+        ["speed", "fast", "faster", "latency", "ttfb", "sub-second", "380ms", "carbon", "green", "climate", "water", "energy", "emissions", "tejat", "flash"],
+        ["browser", "click", "clicking", "screen", "playwright", "selenium", "computer", "agent", "agents", "ui", "automation", "mekbuda", "dom"],
+        ["charter", "autonomous", "alone", "neil", "argon", "deepmind", "letter", "observatory", "who", "built", "author", "alhena", "chronicle"],
+        ["chemistry", "cheminformatics", "smiles", "molecule", "molecular", "rdkit", "science", "lipinski", "admet", "drug", "protein"],
+        ["release", "releases", "november", "decoded", "plain", "english", "summary", "mebsuta", "new", "changelog"]
+      ];
+
+      function expandQueryTokens(rawQuery) {
+        const baseTokens = rawQuery
+          .toLowerCase()
+          .replace(/[^a-z0-9%.\-_]+/g, " ")
+          .split(/\s+/)
+          .filter((t) => t.length >= 2);
+        const expanded = new Set(baseTokens);
+        baseTokens.forEach((tok) => {
+          SYNONYM_GROUPS.forEach((grp) => {
+            if (grp.some((w) => w.includes(tok) || tok.includes(w))) {
+              grp.forEach((w) => expanded.add(w));
+            }
+          });
+        });
+        return { baseTokens, expandedTokens: Array.from(expanded) };
+      }
+
+      function buildSearchCorpus() {
+        const items = [];
+
+        // 1. All 8 Constellation Stars
+        STAR_ORDER.forEach((starKey) => {
+          const s3 = STARS_3D[starKey];
+          const h = HUD_DATA[starKey];
+          const d = SALON_DATA[starKey];
+          if (!s3 || !h || !d) return;
+          items.push({
+            id: `star-${starKey}`,
+            scope: "star",
+            starKey,
+            twin: h.twin,
+            badgeKind: `✦ STAR ${s3.idx} · ${s3.name.split("·")[0].trim().toUpperCase()}`,
+            badgeSub: `${s3.ly} LIGHT-YEARS · ${h.dateRead}`,
+            title: h.hudTitle,
+            desc: h.hudSummary,
+            keywords: `${starKey} ${s3.name} ${h.tags.join(" ")} ${d.castorMain} ${d.castorItalic} ${d.polluxMain} ${d.v1} ${d.v2} ${d.v3}`,
+            primaryActionLabel: "✦ Slew 3D Star",
+            secondaryActionLabel: "Read Sanctuary →"
+          });
+
+          // 2. All 32 Sanctuary Chapters (4 per star)
+          (h.toc || []).forEach((ch, cIdx) => {
+            items.push({
+              id: `chap-${starKey}-${cIdx}`,
+              scope: "chapter",
+              starKey,
+              chapterIdx: cIdx,
+              twin: h.twin,
+              badgeKind: `📖 STAR ${s3.idx} · ${ch.label.toUpperCase()}`,
+              badgeSub: `${s3.name.split("·")[0].trim()} · Chapter 0${cIdx + 1} of 04`,
+              title: ch.title || `${ch.label} — ${h.hudTitle}`,
+              desc: ch.text || ch.sub || h.hudSummary,
+              keywords: `${starKey} ${s3.name} ${ch.label} ${ch.sub || ""} ${cIdx === 2 ? h.codeSnippet || "" : ""}`,
+              primaryActionLabel: `Open Chapter 0${cIdx + 1} →`
+            });
+          });
+        });
+
+        // 3. Standalone Deep-Dive Series & Interactive Agile Labs
+        const standaloneResources = [
+          {
+            id: "lab-voice-remixing",
+            scope: "lab",
+            twin: "pollux",
+            badgeKind: "⚡ INTERACTIVE AGILE LAB",
+            badgeSub: "NOV 4, 2026 · GEMINI 3.8 FLASH TTS",
+            title: "Gemini 3.8 Voice Remixing & Relative Acoustic Prompting Studio",
+            desc: "Audition Puck, Kore, Aoede, Zephyr & Fenrir with natural-language acoustic modifiers, real-time waveform synthesis, and Python/TS SDK export.",
+            keywords: "voice remixing tts studio audio speech puck kore aoede wav 24khz prompted base_voice",
+            url: "/labs/gemini-voice-remixing-studio.html",
+            primaryActionLabel: "Launch Studio Lab ↗"
+          },
+          {
+            id: "series-voice-remixing",
+            scope: "lab",
+            twin: "castor",
+            badgeKind: "📜 3-PART RELEASE SERIES",
+            badgeSub: "NOV 4, 2026 · MULTIMODAL AUDIO",
+            title: "Inside Gemini 3.8 Voice Remixing: Stored Voice IDs, Iterative Trees & 4 Builder Use Cases",
+            desc: "Complete 3-part breakdown of POST /v1beta/voices, relative acoustic prompting, and audiobook/game NPC production architectures.",
+            keywords: "voice remixing series part 1 2 3 tts audio audiobook npc stored voice",
+            url: "/series/gemini-voice-remixing/part-1-voice-remixing-breakdown.html",
+            primaryActionLabel: "Read 3-Part Series ↗"
+          },
+          {
+            id: "series-everyday-workspace",
+            scope: "lab",
+            twin: "castor",
+            badgeKind: "📜 EVERYDAY NO-CODE SANCTUARY",
+            badgeSub: "STAR 06 · ZERO CODE REQUIRED",
+            title: "5-Minute Google Docs, NotebookLM, Sheets & Classroom Guided Learning Workflows",
+            desc: "Copy-paste no-code prompts for Google Docs @Folder synthesis, NotebookLM Audio Overview steering, 1,200-row Sheets cleanup, and Socratic study mode.",
+            keywords: "everyday workspace docs sheets gmail notebooklm classroom guided learning socratic no code prompts",
+            url: "/series/everyday-gemini/workspace-no-code-guides.html",
+            primaryActionLabel: "Open No-Code Sanctuary ↗"
+          },
+          {
+            id: "series-open-letter-deepmind",
+            scope: "lab",
+            twin: "castor",
+            badgeKind: "📜 FLAGSHIP OPEN LETTER",
+            badgeSub: "STAR 08 · PUBLIC PREVIEW OBSERVATORY",
+            title: "An Open Letter to Google DeepMind & Google AI Studio: The Public Preview Observatory",
+            desc: "Why Neil S. White and Google Gemini 4 Argon built GeminiPulse—and our proposal to evaluate experimental Gemini checkpoints in public.",
+            keywords: "open letter google deepmind ai studio neil white gemini 4 argon charter public preview observatory",
+            url: "/series/google-preview-observatory/open-letter-to-google-deepmind.html",
+            primaryActionLabel: "Read Open Letter ↗"
+          },
+          {
+            id: "lab-cost-calculator",
+            scope: "lab",
+            twin: "pollux",
+            badgeKind: "⚡ INTERACTIVE AGILE LAB",
+            badgeSub: "STAR 01 & 05 · TOKEN ECONOMICS",
+            title: "Gemini Context Caching & Cost-Per-Task Calculator Lab (-78% Bill)",
+            desc: "Model Solo (20M), Team (100M), and Scale (500M) monthly token workloads with 90% warm Context Caching and Flash/Argon hybrid routing.",
+            keywords: "cost calculator price cut 78% 90% context caching token economics bill savings",
+            url: "/labs/gemini-cost-per-task-calculator.html",
+            primaryActionLabel: "Launch Calculator Lab ↗"
+          },
+          {
+            id: "lab-latency-carbon",
+            scope: "lab",
+            twin: "pollux",
+            badgeKind: "⚡ INTERACTIVE AGILE LAB",
+            badgeSub: "STAR 03 · SPEED & CARBON ROI",
+            title: "Sub-Second Latency (380ms) & Ecological Carbon/Water ROI Simulator",
+            desc: "Compare cold prefill vs. warm Context Caching latency, energy (Wh), carbon (gCO2e), and water (mL) across 10k–1M daily requests.",
+            keywords: "speed latency 380ms carbon water energy ecological green roi simulator tejat",
+            url: "/labs/gemini-latency-and-carbon-roi-simulator.html",
+            primaryActionLabel: "Launch Carbon & Speed Lab ↗"
+          },
+          {
+            id: "lab-computer-use",
+            scope: "lab",
+            twin: "pollux",
+            badgeKind: "⚡ INTERACTIVE AGILE LAB",
+            badgeSub: "STAR 07 · BROWSER AUTOMATION",
+            title: "Gemini Computer Use & Visual Browser Agent Safety Gate Simulator",
+            desc: "Inspect how Gemini Computer Use reads live viewport screenshots, heals broken CSS selectors, and enforces human confirmation gates.",
+            keywords: "computer use browser agent screen clicking playwright selector healing safety gate mekbuda",
+            url: "/labs/gemini-computer-use-safety-sandbox.html",
+            primaryActionLabel: "Launch Browser Lab ↗"
+          },
+          {
+            id: "lab-cheminformatics",
+            scope: "lab",
+            twin: "pollux",
+            badgeKind: "⚡ INTERACTIVE AGILE LAB",
+            badgeSub: "NOV 3, 2026 · DEEPMIND SCIENCE",
+            title: "Gemini Cheminformatics & SMILES Molecular Property Studio",
+            desc: "Interactive RDKit + Gemini 3.8 Flash molecular workbench for SMILES validation, Lipinski Rule-of-Five checks, and lead optimization.",
+            keywords: "cheminformatics chemistry smiles molecule rdkit lipinski admet science deepmind",
+            url: "/labs/gemini-cheminformatics-molecular-studio.html",
+            primaryActionLabel: "Launch Molecular Lab ↗"
+          }
+        ];
+
+        return [...items, ...standaloneResources];
+      }
+
+      const SEARCH_CORPUS = buildSearchCorpus();
+      let currentSearchScope = "all";
+      let currentFilteredResults = [];
+      let selectedResultIdx = 0;
+
+      function synthesizeInstantAnswer(rawQuery) {
+        const q = rawQuery.trim().toLowerCase();
+        if (q.length < 2) return null;
+
+        if (/(bill|cost|pric|cheap|save|saving|discount|token|cach|78|90)/.test(q)) {
+          return {
+            kicker: "✦ GEMINI INSTANT ANSWER · TOKEN ECONOMICS & CONTEXT CACHING",
+            body: "Google’s implicit & explicit Context Caching slashes repeated 1M-token memory reads by 90% ($2.00 → $0.20/1M). Pairing warm cache pins with 80/20 Flash-to-Argon routing drops a typical 20M-token monthly workload from $142 to $31 (-78%).",
+            starKey: "castor",
+            starLabel: "✦ Slew to Star 01 (α Castor)",
+            sanctuaryLabel: "📖 Read Full Price-Cut Brief",
+            labUrl: "/labs/gemini-cost-per-task-calculator.html",
+            labLabel: "⚡ Open 10-Sec Cost Lab ↗"
+          };
+        }
+        if (/(voice|tts|audio|speech|remix|puck|kore|aoede|podcast|narrat|video|short)/.test(q)) {
+          return {
+            kicker: "✦ GEMINI INSTANT ANSWER · NOV 4, 2026 GEMINI 3.8 VOICE REMIXING",
+            body: "Gemini 3.8 Flash TTS now supports Relative Acoustic Prompting (POST /v1beta/voices): transform prebuilt studio voices (Puck, Kore, Aoede) via natural-language instructions into reusable stored voice IDs with 24kHz WAV previewing.",
+            starKey: "propus",
+            starLabel: "✦ Slew to Star 04 (η Propus)",
+            sanctuaryLabel: "📖 Read Voice Remixing Sanctuary",
+            labUrl: "/labs/gemini-voice-remixing-studio.html",
+            labLabel: "⚡ Launch Voice Remixing Studio ↗"
+          };
+        }
+        if (/(doc|sheet|gmail|slide|drive|workspace|no-code|nocode|notebook|classroom|student|teacher|everyday)/.test(q)) {
+          return {
+            kicker: "✦ GEMINI INSTANT ANSWER · EVERYDAY GOOGLE WORKSPACE (ZERO CODE)",
+            body: "Anchor Google Docs prompts to your own Drive folders with @Folder (requiring filename + page citations for 0 hallucinations), steer NotebookLM Audio Overviews, normalize 1,200-row Sheets tables, or enable Socratic Guided Learning in Classroom.",
+            starKey: "wasat",
+            starLabel: "✦ Slew to Star 06 (δ Wasat)",
+            sanctuaryLabel: "📖 Read 4-Chapter Workspace Guide",
+            labUrl: "/series/everyday-gemini/workspace-no-code-guides.html",
+            labLabel: "📜 Open Standalone No-Code Sanctuary ↗"
+          };
+        }
+        if (/(speed|fast|latenc|ttfb|380|carbon|green|water|energy|climat)/.test(q)) {
+          return {
+            kicker: "✦ GEMINI INSTANT ANSWER · SUB-SECOND LATENCY & ECOLOGICAL ROI",
+            body: "Skipping redundant cold prefill via Context Caching cuts Time-to-First-Byte by 82% (2.1s → 380ms) while reducing per-query compute energy, datacenter cooling water, and carbon emissions by up to 64%.",
+            starKey: "tejat",
+            starLabel: "✦ Slew to Star 03 (μ Tejat)",
+            sanctuaryLabel: "📖 Read Speed & Carbon Sanctuary",
+            labUrl: "/labs/gemini-latency-and-carbon-roi-simulator.html",
+            labLabel: "⚡ Launch Speed & Carbon Lab ↗"
+          };
+        }
+        if (/(browser|click|screen|playwright|selenium|computer|agent|ui|automat)/.test(q)) {
+          return {
+            kicker: "✦ GEMINI INSTANT ANSWER · GEMINI COMPUTER USE (SCREEN-CLICKING AI)",
+            body: "Gemini Computer Use visually inspects live browser screenshots to click, type, and self-heal when CSS selectors change—completing multi-step web QA and form workflows in 14 seconds with mandatory human confirmation gates.",
+            starKey: "mekbuda",
+            starLabel: "✦ Slew to Star 07 (ζ Mekbuda)",
+            sanctuaryLabel: "📖 Read Computer-Use Sanctuary",
+            labUrl: "/labs/gemini-computer-use-safety-sandbox.html",
+            labLabel: "⚡ Launch Browser Safety Lab ↗"
+          };
+        }
+        if (/(charter|neil|argon|deepmind|letter|observatory|who|built|autonomous|alone)/.test(q)) {
+          return {
+            kicker: "✦ GEMINI INSTANT ANSWER · AUTONOMOUS CHARTER & DEEPMIND OPEN LETTER",
+            body: "GeminiPulse is conceived by human creative director Neil S. White and autonomously researched, written, coded, and audited by Google Gemini 4 Argon under a strict 8-rule Zero-Hallucination Charter.",
+            starKey: "alhena",
+            starLabel: "✦ Slew to Star 08 (γ Alhena)",
+            sanctuaryLabel: "📖 Read Autonomous Charter Brief",
+            labUrl: "/series/google-preview-observatory/open-letter-to-google-deepmind.html",
+            labLabel: "📜 Read Open Letter to DeepMind ↗"
+          };
+        }
+        if (/(chem|smiles|molecul|rdkit|lipinski|science|drug)/.test(q)) {
+          return {
+            kicker: "✦ GEMINI INSTANT ANSWER · DEEPMIND CHEMINFORMATICS & SCIENCE PLUGIN",
+            body: "Released Nov 3, 2026: Pair Gemini 3.8 Flash with deterministic RDKit tool-calling to validate SMILES strings, compute Lipinski Rule-of-Five descriptors, and eliminate structural hallucinations.",
+            starKey: "mebsuta",
+            starLabel: "✦ Slew to Star 02 (ε Mebsuta)",
+            sanctuaryLabel: "📖 Read November Releases Brief",
+            labUrl: "/labs/gemini-cheminformatics-molecular-studio.html",
+            labLabel: "⚡ Launch Molecular SMILES Lab ↗"
+          };
+        }
+        return null;
+      }
+
+      function escapeHtml(str) {
+        return String(str)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;");
+      }
+
+      function highlightText(text, baseTokens) {
+        const safe = escapeHtml(text);
+        if (!baseTokens || baseTokens.length === 0) return safe;
+        const valid = baseTokens
+          .filter((t) => t.length >= 2)
+          .map((t) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+        if (valid.length === 0) return safe;
+        const regex = new RegExp(`(${valid.join("|")})`, "gi");
+        return safe.replace(regex, '<mark class="cs-hl">$1</mark>');
+      }
+
+      function scoreSearchItem(item, rawQuery, baseTokens, expandedTokens) {
+        if (!rawQuery.trim()) {
+          // Default curated order: Stars 01..08 first, then Labs & Series, then Chapters
+          if (item.scope === "star") return 100 - STAR_ORDER.indexOf(item.starKey);
+          if (item.scope === "lab") return 80;
+          return 50 - (item.chapterIdx || 0);
+        }
+
+        const qLower = rawQuery.trim().toLowerCase();
+        const titleLower = item.title.toLowerCase();
+        const descLower = item.desc.toLowerCase();
+        const badgeLower = `${item.badgeKind} ${item.badgeSub}`.toLowerCase();
+        const kwLower = (item.keywords || "").toLowerCase();
+        const fullHaystack = `${titleLower} ${descLower} ${badgeLower} ${kwLower}`;
+
+        let score = 0;
+
+        if (titleLower.includes(qLower)) score += 120;
+        if (descLower.includes(qLower)) score += 70;
+        if (kwLower.includes(qLower)) score += 60;
+
+        baseTokens.forEach((tok) => {
+          if (titleLower.includes(tok)) score += 45;
+          if (badgeLower.includes(tok)) score += 35;
+          if (descLower.includes(tok)) score += 25;
+          if (kwLower.includes(tok)) score += 22;
+        });
+
+        expandedTokens.forEach((tok) => {
+          if (baseTokens.includes(tok)) return;
+          if (titleLower.includes(tok)) score += 14;
+          else if (fullHaystack.includes(tok)) score += 8;
+        });
+
+        // Slight priority boost for top-level Stars & Standalone Labs over sub-chapters when tied
+        if (score > 0) {
+          if (item.scope === "star") score += 12;
+          if (item.scope === "lab") score += 10;
+        }
+
+        return score;
+      }
+
+      function executeSearchResult(item, forceSanctuary = false) {
+        if (!item) return;
+        closeTopLayer(searchDialog);
+        if (item.url && !item.starKey) {
+          window.location.href = item.url;
+          return;
+        }
+        if (item.scope === "star") {
+          selectStar(item.starKey, true, false);
+          if (forceSanctuary) {
+            setDrawerMode("open", item.twin || "castor");
+          } else {
+            setDrawerMode("peek");
+          }
+          trackPulseInteraction("celestial_search_select", { id: item.id, mode: forceSanctuary ? "sanctuary" : "slew" });
+          return;
+        }
+        if (item.scope === "chapter") {
+          selectStar(item.starKey, true, false);
+          setDrawerMode("fullscreen", item.twin || "castor", true);
+          setTimeout(() => {
+            setArticleTocChapter(item.chapterIdx || 0, true);
+          }, 60);
+          trackPulseInteraction("celestial_search_select", { id: item.id, chapter: (item.chapterIdx || 0) + 1 });
+        }
+      }
+
+      function renderSearchResults() {
+        if (!searchResultsEl || !searchInput) return;
+        const rawQuery = searchInput.value || "";
+        if (searchClearBtn) {
+          searchClearBtn.hidden = rawQuery.length === 0;
+        }
+
+        const { baseTokens, expandedTokens } = expandQueryTokens(rawQuery);
+
+        const scoredAll = SEARCH_CORPUS.map((item) => ({
+          item,
+          score: scoreSearchItem(item, rawQuery, baseTokens, expandedTokens)
+        })).filter((entry) => entry.score > 0);
+
+        scoredAll.sort((a, b) => b.score - a.score);
+
+        // Update scope badge counts
+        const counts = {
+          all: scoredAll.length,
+          star: scoredAll.filter((e) => e.item.scope === "star").length,
+          chapter: scoredAll.filter((e) => e.item.scope === "chapter").length,
+          lab: scoredAll.filter((e) => e.item.scope === "lab").length
+        };
+        document.querySelectorAll("[data-scope-count]").forEach((el) => {
+          const sc = el.getAttribute("data-scope-count");
+          if (sc && counts[sc] !== undefined) el.textContent = String(counts[sc]);
+        });
+
+        const filtered =
+          currentSearchScope === "all"
+            ? scoredAll
+            : scoredAll.filter((e) => e.item.scope === currentSearchScope);
+
+        currentFilteredResults = filtered.slice(0, 24).map((e) => e.item);
+        selectedResultIdx = 0;
+
+        if (searchCountMeta) {
+          searchCountMeta.textContent = rawQuery.trim()
+            ? `${filtered.length} INTELLIGENT MATCH${filtered.length === 1 ? "" : "ES"} FOR “${rawQuery.trim().toUpperCase()}”`
+            : `CURATED TELESCOPE INDEX · ${filtered.length} ITEMS READY`;
+        }
+
+        const instantAnswer = synthesizeInstantAnswer(rawQuery);
+        let html = "";
+
+        if (instantAnswer) {
+          html += `
+            <div class="cs-instant-answer" role="status">
+              <div class="cs-ia-kicker">
+                <span>${instantAnswer.kicker}</span>
+                <span>VERIFIED GOOGLE SOURCE</span>
+              </div>
+              <p class="cs-ia-body">${highlightText(instantAnswer.body, baseTokens)}</p>
+              <div class="cs-ia-actions">
+                <button type="button" class="cs-ia-btn" data-ia-slew="${instantAnswer.starKey}">${formatGreek(toUpperPreserveGreek(instantAnswer.starLabel))}</button>
+                <button type="button" class="cs-ia-btn" data-ia-sanctuary="${instantAnswer.starKey}">${instantAnswer.sanctuaryLabel}</button>
+                <a href="${instantAnswer.labUrl}" class="cs-ia-btn cs-ia-btn--amber">${instantAnswer.labLabel}</a>
+              </div>
+            </div>
+          `;
+        }
+
+        if (currentFilteredResults.length === 0) {
+          html += `
+            <div class="cs-result-item" style="justify-content:center;text-align:center;padding:24px;">
+              <div class="cs-res-main">
+                <div class="cs-res-title">No exact match for “${escapeHtml(rawQuery)}” in this tab</div>
+                <p class="cs-res-desc">Try switching to “All” or click a suggested topic chip above (e.g., Cut API Bill, Voice Remixing TTS, or 5-Min Docs &amp; Sheets).</p>
+              </div>
+            </div>
+          `;
+        } else {
+          currentFilteredResults.forEach((item, idx) => {
+            const isSel = idx === selectedResultIdx;
+            const titleHl = highlightText(item.title, baseTokens);
+            const descHl = highlightText(item.desc, baseTokens);
+            const secBtn =
+              item.scope === "star"
+                ? `<button type="button" class="cs-act-pill" data-res-sanctuary="${idx}">${item.secondaryActionLabel}</button>`
+                : "";
+
+            html += `
+              <div class="cs-result-item" data-res-idx="${idx}" data-twin="${item.twin}" data-selected="${isSel}">
+                <div class="cs-res-main">
+                  <div class="cs-res-badges">
+                    <span class="cs-badge-kind">${formatGreek(item.badgeKind)}</span>
+                    <span class="cs-badge-sub">${formatGreek(item.badgeSub)}</span>
+                  </div>
+                  <div class="cs-res-title">${titleHl}</div>
+                  <p class="cs-res-desc">${descHl}</p>
+                </div>
+                <div class="cs-res-actions">
+                  <button type="button" class="cs-act-pill" data-res-primary="${idx}">${item.primaryActionLabel}</button>
+                  ${secBtn}
+                </div>
+              </div>
+            `;
+          });
+        }
+
+        searchResultsEl.innerHTML = html;
+
+        // Wire Instant Answer action buttons
+        searchResultsEl.querySelectorAll("[data-ia-slew]").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const sk = btn.getAttribute("data-ia-slew");
+            closeTopLayer(searchDialog);
+            setDrawerMode("peek");
+            selectStar(sk, true, false);
+          });
+        });
+        searchResultsEl.querySelectorAll("[data-ia-sanctuary]").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const sk = btn.getAttribute("data-ia-sanctuary");
+            closeTopLayer(searchDialog);
+            selectStar(sk, true, false);
+            setDrawerMode("open", "castor");
+          });
+        });
+
+        // Wire Result row & pill clicks
+        searchResultsEl.querySelectorAll("[data-res-idx]").forEach((row) => {
+          const idx = Number(row.getAttribute("data-res-idx")) || 0;
+          row.addEventListener("click", (e) => {
+            if (e.target.closest("[data-res-sanctuary]")) {
+              executeSearchResult(currentFilteredResults[idx], true);
+            } else {
+              executeSearchResult(currentFilteredResults[idx], false);
+            }
+          });
+        });
+      }
+
+      function updateSearchKeyboardSelection(nextIdx) {
+        if (!currentFilteredResults.length || !searchResultsEl) return;
+        selectedResultIdx = (nextIdx + currentFilteredResults.length) % currentFilteredResults.length;
+        const rows = searchResultsEl.querySelectorAll("[data-res-idx]");
+        rows.forEach((r, i) => {
+          const active = i === selectedResultIdx;
+          r.setAttribute("data-selected", String(active));
+          if (active) {
+            r.scrollIntoView({ block: "nearest" });
+          }
+        });
+      }
+
+      function openCelestialSearch(initialQuery = "") {
+        if (!searchDialog) return;
+        hideHudCard();
+        if (!searchDialog.open) {
+          searchDialog.removeAttribute("data-closing");
+          searchDialog.showModal();
+        }
+        if (typeof initialQuery === "string" && initialQuery.length > 0 && searchInput) {
+          searchInput.value = initialQuery;
+        }
+        renderSearchResults();
+        if (searchInput) {
+          searchInput.focus();
+          searchInput.select();
+        }
+        trackPulseInteraction("celestial_search_open");
+      }
+
+      document.querySelectorAll("[data-open-search]").forEach((btn) => {
+        btn.addEventListener("click", () => openCelestialSearch());
+      });
+
+      if (searchCloseBtn) {
+        searchCloseBtn.addEventListener("click", () => closeTopLayer(searchDialog));
+      }
+
+      if (searchClearBtn && searchInput) {
+        searchClearBtn.addEventListener("click", () => {
+          searchInput.value = "";
+          renderSearchResults();
+          searchInput.focus();
+        });
+      }
+
+      if (searchInput) {
+        searchInput.addEventListener("input", () => {
+          renderSearchResults();
+        });
+
+        // IME-safe Enter & Arrow Up/Down navigation inside the search input
+        let lastCompositionEndAt = null;
+        searchInput.addEventListener("compositionend", (event) => {
+          lastCompositionEndAt = event.timeStamp;
+        });
+
+        searchInput.addEventListener("keydown", (event) => {
+          if (event.key === "ArrowDown") {
+            event.preventDefault();
+            updateSearchKeyboardSelection(selectedResultIdx + 1);
+          } else if (event.key === "ArrowUp") {
+            event.preventDefault();
+            updateSearchKeyboardSelection(selectedResultIdx - 1);
+          } else if (event.key === "Enter") {
+            event.preventDefault();
+            if (event.isComposing || event.keyCode === 229) return;
+            if (lastCompositionEndAt !== null && Math.abs(event.timeStamp - lastCompositionEndAt) < 50) {
+              return;
+            }
+            if (currentFilteredResults[selectedResultIdx]) {
+              executeSearchResult(currentFilteredResults[selectedResultIdx], false);
+            }
+          }
+        });
+      }
+
+      if (searchForm) {
+        searchForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+          if (currentFilteredResults[selectedResultIdx]) {
+            executeSearchResult(currentFilteredResults[selectedResultIdx], false);
+          }
+        });
+      }
+
+      document.querySelectorAll("[data-search-prompt]").forEach((chip) => {
+        chip.addEventListener("click", () => {
+          const q = chip.getAttribute("data-search-prompt") || "";
+          if (searchInput) searchInput.value = q;
+          currentSearchScope = "all";
+          document.querySelectorAll("[data-search-scope]").forEach((t) => {
+            t.setAttribute("aria-pressed", String(t.getAttribute("data-search-scope") === "all"));
+          });
+          renderSearchResults();
+          searchInput?.focus();
+        });
+      });
+
+      document.querySelectorAll("[data-search-scope]").forEach((tab) => {
+        tab.addEventListener("click", () => {
+          currentSearchScope = tab.getAttribute("data-search-scope") || "all";
+          document.querySelectorAll("[data-search-scope]").forEach((t) => {
+            t.setAttribute("aria-pressed", String(t === tab));
+          });
+          renderSearchResults();
+          searchInput?.focus();
+        });
+      });
+
       window.addEventListener("keydown", (e) => {
+        // Global Command+K / Ctrl+K or '/' shortcut to open Celestial Search
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+          e.preventDefault();
+          if (searchDialog?.open) {
+            closeTopLayer(searchDialog);
+          } else {
+            openCelestialSearch();
+          }
+          return;
+        }
+        const tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : "";
+        const isTyping = tag === "input" || tag === "textarea" || e.target?.isContentEditable;
+        if (!isTyping && e.key === "/" && !e.metaKey && !e.ctrlKey && !e.altKey) {
+          e.preventDefault();
+          openCelestialSearch();
+          return;
+        }
+        if (searchDialog?.open) return;
+
         const curDrawer = document.documentElement.getAttribute("data-drawer");
         if (e.key === "Escape" && (curDrawer === "open" || curDrawer === "fullscreen")) {
           setDrawerMode("peek");
@@ -5202,6 +6530,10 @@ await Promise.all([
       }
       if (initChapter !== null && !Number.isNaN(parseInt(initChapter, 10))) {
         setArticleTocChapter(parseInt(initChapter, 10) - 1, true);
+      }
+      const initSearch = params.get("search");
+      if (initSearch !== null) {
+        setTimeout(() => openCelestialSearch(initSearch), 60);
       }
 
       refreshLayoutCache();
