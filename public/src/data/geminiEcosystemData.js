@@ -5,6 +5,25 @@
 
 export const PULSE_INTELLIGENCE_FEED = [
   {
+    id: 'pulse-gemini-live-realtime-vision-adk',
+    title: 'Google Cloud Releases Real-Time Vision Pipeline & Watcher Architecture for Gemini Live API & ADK',
+    tldr: 'Released November 4, 2026: Google Cloud publishes production architecture for real-time multimodal vision agents—standardizing Camera → Canvas → JPEG → Blob ingestion, snapshot polling over streaming traps, and dual-model vision watcher orchestration for sub-300ms bidirectional voice.',
+    summary:
+      'Authored by Annie Wang (Google Cloud Tech): Establishes the authoritative production blueprint for integrating real-time visual perception with bidirectional Gemini Live API and Agent Development Kit (ADK) sessions. Demystifies frame ingestion by proving live vision operates on sequential image Blobs rather than encoded video files. Experiments reveal why streaming browser video continuously degrades live voice sessions and inflates token burn (7,740+ tokens/sec), establishing single-snapshot polling as the high-signal default. For high-frequency visual monitoring, the blueprint introduces the "Watcher Pattern"—decoupling a dedicated vision model for ambient analysis while keeping the primary conversational agent free of token bloat and latency spikes.',
+    category: 'SDK & API',
+    tag: 'Official Architecture',
+    modelBadge: 'gemini-3.8-live / Gemini Live API',
+    impactScore: '9.8 / 10',
+    date: '2026-11-04T16:00:00Z',
+    sourceLabel: 'Google Cloud: Multimodal Live API & Agent Development Kit',
+    sourceUrl: 'https://cloud.google.com/vertex-ai/generative-ai/docs/multimodal-live-api',
+    groundedBy: 'Google Cloud Tech & Gemini Live Architecture (Verified Nov 4, 2026)',
+    seriesUrl: '/series/gemini-live-vision/part-1-real-time-vision-pipeline-and-snapshots.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-live-vision-studio.html',
+    labLabel: 'Vision Lab [DEMO] →',
+  },
+  {
     id: 'pulse-gemini-3-8-voice-remixing',
     title: 'Google Unveils Voice Remixing for Gemini 3.8 TTS & AI Studio: Relative Acoustic Prompting & Stored Personas',
     tldr: 'Released November 4, 2026: Google rolls out Voice Remixing across the Gemini API (POST /v1beta/voices) and Google AI Studio—enabling developers to transform base studio voices into independent, permanently stored voice resources with 24kHz preview audio via natural-language acoustic delta prompts.',
@@ -2290,11 +2309,27 @@ export const GET_STARTED_WITH_GEMINI_TRACKS = [
 
 export const GEMINI_VIDEO_SHOWCASE = [
   {
+    id: 'vid-real-time-vision-gemini-live',
+    videoId: 'dNGchf4InU0',
+    featuredOfTheDay: true,
+    category: 'Gemini Live & Multimodal Agents',
+    badge: 'FEATURED VIDEO OF THE DAY • OFFICIAL GOOGLE CLOUD TECH',
+    title: 'Real time vision for AI agents: Snapshots, streams & Gemini Live API',
+    creatorName: 'Google Cloud Tech',
+    creatorHandle: '@googlecloudtech',
+    creatorUrl: 'https://www.youtube.com/@googlecloudtech',
+    watchUrl: 'https://www.youtube.com/watch?v=dNGchf4InU0',
+    thumbnailUrl: 'https://i.ytimg.com/vi/dNGchf4InU0/hqdefault.jpg',
+    geminiSummary:
+      'Official Google Cloud engineering deep-dive by Annie Wang on architecting real-time multimodal vision agents with the Gemini Live API and Agent Development Kit (ADK)—breaking down the Camera → Canvas → JPEG → Blob pipeline, explaining why snapshots beat continuous streaming for sub-300ms latency, and demonstrating the separate vision watcher pattern.',
+    whyFeatured: 'Verified HTTP 200 official Google technical breakdown on connecting live vision frames to bidirectional Gemini Live voice sessions.',
+  },
+  {
     id: 'vid-computer-use-ga-tekthrill',
     videoId: 'cON4RnddXCY',
-    featuredOfTheDay: true,
+    featuredOfTheDay: false,
     category: 'Computer Use & Agents',
-    badge: 'FEATURED VIDEO OF THE DAY • CREATOR SPOTLIGHT',
+    badge: 'CREATOR SPOTLIGHT',
     title: 'Gemini Computer Use Is Now Generally Available: How Google’s Screen-Clicking AI Works',
     creatorName: 'TEKTHRILL',
     creatorHandle: '@TEKTHRILL',

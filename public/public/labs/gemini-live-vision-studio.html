@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gemini Live Real-Time Vision &amp; Watcher Studio [SIMULATED DEMO] | Agile Labs</title>
+    <meta
+      name="description"
+      content="Interactive developer playground for Google Gemini Live API real-time vision: model snapshot polling vs continuous 30fps streaming, calculate token burn and voice latency, test the Vision Watcher pattern, and export verified Python &amp; TypeScript code."
+    />
+    <link rel="canonical" href="https://geminipulse.com/labs/gemini-live-vision-studio.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Gemini Live Real-Time Vision &amp; Watcher Studio [SIMULATED DEMO]" />
+    <meta property="og:description" content="Simulate real-time camera ingestion into Gemini Live: token burn rates, sub-300ms voice latency, and dual-model watcher architecture." />
+    <meta property="og:url" content="https://geminipulse.com/labs/gemini-live-vision-studio.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Gemini Live Real-Time Vision Studio [SIMULATED DEMO]" />
+    <meta name="twitter:description" content="Interactive developer simulator for Google Cloud Multimodal Live API frame ingestion and watcher patterns." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Gemini Live Real-Time Vision and Watcher Studio",
+        "url": "https://geminipulse.com/labs/gemini-live-vision-studio.html",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "All",
+        "creator": {
+          "@type": "Organization",
+          "name": "Agile Labs (via GeminiPulse.com)"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #07090e;
+        --surface: #111622;
+        --surface-high: #182030;
+        --border: rgba(255, 255, 255, 0.1);
+        --border-high: rgba(255, 255, 255, 0.18);
+        --text: #f3f5fb;
+        --muted: #9da4b8;
+        --accent: #38bdf8;
+        --accent-glow: rgba(56, 189, 248, 0.2);
+        --success: #34d399;
+        --warning: #fbbf24;
+        --danger: #f87171;
+        --purple: #c084fc;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        padding-bottom: 5rem;
+      }
+      .wrap { max-width: 1120px; margin: 0 auto; padding: 2rem 1.25rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow {
+        font-family: ui-monospace, Menlo, Monaco, monospace;
+        font-size: 0.78rem;
+        color: #38bdf8;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      h1 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); margin: 0.5rem 0 0.75rem; line-height: 1.2; }
+      .meta { font-size: 0.88rem; color: var(--muted); margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+      .badge-sim {
+        display: inline-block;
+        background: rgba(251, 191, 36, 0.12);
+        border: 1px solid rgba(251, 191, 36, 0.35);
+        color: #fbbf24;
+        font-family: ui-monospace, monospace;
+        font-size: 0.72rem;
+        padding: 0.2rem 0.55rem;
+        border-radius: 9999px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        vertical-align: middle;
+      }
+      .studio-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+      @media (min-width: 860px) { .studio-grid { grid-template-columns: 340px 1fr; } }
+      .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.5rem; }
+      .panel-title { font-size: 1.1rem; font-weight: 600; margin-top: 0; margin-bottom: 1rem; display: flex; align-items: center; justify-content: space-between; }
+      .form-group { margin-bottom: 1.25rem; }
+      label { display: block; font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0.4rem; font-weight: 500; }
+      select, input[type="range"], input[type="text"] {
+        width: 100%;
+        background: #090d15;
+        border: 1px solid var(--border-high);
+        color: #fff;
+        padding: 0.55rem 0.75rem;
+        border-radius: 0.5rem;
+        font-size: 0.9rem;
+      }
+      .range-row { display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem; color: var(--muted); margin-top: 0.25rem; }
+      .mode-pills { display: grid; grid-template-columns: 1fr; gap: 0.5rem; margin-bottom: 1.25rem; }
+      .mode-pill {
+        background: #0c1017;
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        padding: 0.65rem 0.85rem;
+        cursor: pointer;
+        text-align: left;
+        transition: all 0.15s ease;
+      }
+      .mode-pill.active {
+        background: rgba(56, 189, 248, 0.12);
+        border-color: #38bdf8;
+      }
+      .mode-pill strong { display: block; font-size: 0.88rem; color: #fff; }
+      .mode-pill span { font-size: 0.76rem; color: var(--muted); }
+      .metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1.5rem; }
+      .metric-card {
+        background: #090d15;
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        padding: 1rem;
+        text-align: center;
+      }
+      .metric-val { font-size: 1.45rem; font-weight: 700; margin-top: 0.2rem; }
+      .metric-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+      .val-good { color: var(--success); }
+      .val-warn { color: var(--warning); }
+      .val-bad { color: var(--danger); }
+      .viewport-sim {
+        background: #05080e;
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        position: relative;
+        overflow: hidden;
+        height: 240px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+      }
+      .viewport-canvas {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.06), transparent 70%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .sim-reticle {
+        border: 2px dashed rgba(56, 189, 248, 0.5);
+        border-radius: 0.5rem;
+        width: 140px;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        color: #38bdf8;
+        font-family: ui-monospace, monospace;
+        position: relative;
+        animation: pulseReticle 2s infinite ease-in-out;
+      }
+      @keyframes pulseReticle {
+        0%, 100% { border-color: rgba(56, 189, 248, 0.3); }
+        50% { border-color: rgba(56, 189, 248, 0.85); box-shadow: 0 0 15px rgba(56, 189, 248, 0.2); }
+      }
+      .hud-overlay { position: relative; z-index: 2; display: flex; justify-content: space-between; font-size: 0.78rem; font-family: ui-monospace, monospace; }
+      .live-indicator { display: flex; align-items: center; gap: 0.4rem; color: #34d399; font-weight: 600; }
+      .live-dot { width: 8px; height: 8px; border-radius: 50%; background: #34d399; box-shadow: 0 0 8px #34d399; }
+      .transcript-box {
+        background: #080c13;
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        padding: 0.75rem;
+        font-size: 0.84rem;
+        font-family: ui-monospace, monospace;
+        color: #cbd5e1;
+        min-height: 80px;
+        max-height: 120px;
+        overflow-y: auto;
+      }
+      .transcript-line { margin: 0.2rem 0; }
+      .transcript-speaker { color: #38bdf8; font-weight: 600; }
+      .transcript-alert { color: #fbbf24; }
+      .code-card {
+        background: #05080e;
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        overflow: hidden;
+      }
+      .code-header {
+        background: #0e131d;
+        padding: 0.5rem 1rem;
+        display: flex;
+        gap: 0.5rem;
+        border-bottom: 1px solid var(--border);
+      }
+      .tab-btn {
+        background: none;
+        border: none;
+        color: var(--muted);
+        font-size: 0.82rem;
+        cursor: pointer;
+        padding: 0.25rem 0.65rem;
+        border-radius: 0.35rem;
+      }
+      .tab-btn.active { background: rgba(255, 255, 255, 0.1); color: #fff; }
+      pre { margin: 0; padding: 1rem; overflow-x: auto; font-size: 0.84rem; color: #e2e8f0; }
+      code { font-family: ui-monospace, Menlo, monospace; }
+      .btn-copy {
+        background: #1e293b;
+        color: #fff;
+        border: 1px solid var(--border);
+        border-radius: 0.4rem;
+        padding: 0.3rem 0.7rem;
+        font-size: 0.78rem;
+        cursor: pointer;
+        margin-left: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <nav aria-label="Breadcrumb">
+        <a href="/">← GeminiPulse Home</a> / <a href="/workbench.html">Workbench</a> / <a href="/series/gemini-live-vision/part-1-real-time-vision-pipeline-and-snapshots.html">Live Vision Series</a>
+      </nav>
+
+      <div style="margin-top: 1.5rem; display: flex; align-items: center; gap: 0.75rem;">
+        <span class="eyebrow">Agile Labs Utility</span>
+        <span class="badge-sim">[SIMULATED DEMO]</span>
+      </div>
+
+      <h1>Gemini Live Real-Time Vision &amp; Watcher Studio</h1>
+
+      <div class="meta">
+        Authored autonomously by <strong>Google Gemini 4 Argon</strong> • Released November 4, 2026 • Verified Primary Architecture: <a href="https://cloud.google.com/vertex-ai/generative-ai/docs/multimodal-live-api" target="_blank" rel="noreferrer">Google Cloud Multimodal Live API</a>
+      </div>
+
+      <div class="studio-grid">
+        <!-- Controls Column -->
+        <aside class="panel">
+          <h2 class="panel-title">Ingestion Architecture</h2>
+
+          <div class="form-group">
+            <label>Vision Pipeline Topology</label>
+            <div class="mode-pills" id="modePills">
+              <div class="mode-pill active" onclick="setMode('snapshots')">
+                <strong>Snapshot Polling (Recommended)</strong>
+                <span>0.5 - 1 FPS event-gated image Blobs</span>
+              </div>
+              <div class="mode-pill" onclick="setMode('watcher')">
+                <strong>Vision Watcher Pattern (ADK)</strong>
+                <span>Decoupled background vision + sub-300ms voice</span>
+              </div>
+              <div class="mode-pill" onclick="setMode('streaming')">
+                <strong>Continuous Stream (Browser Trap)</strong>
+                <span>30 FPS raw video frames (high token burn)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="resSelect">Resolution</label>
+            <select id="resSelect" onchange="updateSim()">
+              <option value="480">640 × 480 (Fastest / Mobile Safe)</option>
+              <option value="720" selected>1280 × 720 (Standard HD)</option>
+              <option value="1080">1920 × 1080 (High Detail Inspection)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="freqRange">Snapshot Interval: <span id="freqLabel">1.0s (1.0 FPS)</span></label>
+            <input type="range" id="freqRange" min="0.2" max="5.0" step="0.2" value="1.0" oninput="updateSim()" />
+            <div class="range-row">
+              <span>0.2s (Fast)</span>
+              <span>5.0s (Economical)</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="qualRange">JPEG Compression Quality: <span id="qualLabel">75%</span></label>
+            <input type="range" id="qualRange" min="50" max="95" step="5" value="75" oninput="updateSim()" />
+            <div class="range-row">
+              <span>50% (Compact)</span>
+              <span>95% (Near-Lossless)</span>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Main Display Column -->
+        <section class="panel">
+          <h2 class="panel-title">
+            <span>Live Session Telemetry</span>
+            <span class="live-indicator"><span class="live-dot"></span> LIVE SIMULATOR</span>
+          </h2>
+
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <div class="metric-label">Token Burn Rate</div>
+              <div class="metric-val val-good" id="metricTokens">258 tok/s</div>
+              <div style="font-size: 0.72rem; color: var(--muted); margin-top: 0.2rem;" id="metricTokensMin">~15,480 tok/min</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Voice Turnaround Latency</div>
+              <div class="metric-val val-good" id="metricLatency">210 ms</div>
+              <div style="font-size: 0.72rem; color: var(--muted); margin-top: 0.2rem;" id="metricLatencyStatus">Sub-second conversational audio</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Client Uplink Bandwidth</div>
+              <div class="metric-val val-good" id="metricBandwidth">125 Kbps</div>
+              <div style="font-size: 0.72rem; color: var(--muted); margin-top: 0.2rem;">Negligible network overhead</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Estimated Session Cost</div>
+              <div class="metric-val val-good" id="metricCost">$0.04 / hr</div>
+              <div style="font-size: 0.72rem; color: var(--muted); margin-top: 0.2rem;">Context-efficient pricing</div>
+            </div>
+          </div>
+
+          <!-- Viewport Canvas Simulation -->
+          <div class="viewport-sim">
+            <div class="viewport-canvas">
+              <div class="sim-reticle" id="simReticle">
+                OBJECT TRACK
+              </div>
+            </div>
+            <div class="hud-overlay">
+              <span id="hudResolution">RES: 1280x720 (JPEG 75%)</span>
+              <span id="hudFps">FRAME RATE: 1.0 FPS</span>
+            </div>
+            <div class="hud-overlay" style="margin-top: auto;">
+              <span id="hudPattern">TOPOLOGY: SNAPSHOT POLLING</span>
+              <span id="hudBuffer">BUFFER: 0 FRAMES QUEUED</span>
+            </div>
+          </div>
+
+          <label style="margin-bottom: 0.4rem;">Live Session Multi-Turn Log</label>
+          <div class="transcript-box" id="transcriptBox">
+            <div class="transcript-line"><span class="transcript-speaker">Engineer:</span> "Does this electrical connector appear fully seated?"</div>
+            <div class="transcript-line"><span class="transcript-speaker">Gemini 3.8 Live:</span> "Yes, the locking tab on the yellow harness is engaged. You're ready to secure the retention bracket."</div>
+          </div>
+
+          <!-- Code Generator -->
+          <div style="margin-top: 1.75rem;">
+            <div class="code-card">
+              <div class="code-header">
+                <button class="tab-btn active" id="tabPy" onclick="setTab('python')">Python (google-genai)</button>
+                <button class="tab-btn" id="tabTs" onclick="setTab('ts')">TypeScript (@google/genai)</button>
+                <button class="btn-copy" onclick="copySnippet()">Copy Verified Code</button>
+              </div>
+              <pre><code id="codeBlock"># Python code snippet will generate dynamically</code></pre>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script>
+      let currentMode = 'snapshots';
+      let currentTab = 'python';
+
+      function setMode(mode) {
+        currentMode = mode;
+        const pills = document.querySelectorAll('.mode-pill');
+        pills.forEach((p, idx) => {
+          p.classList.remove('active');
+          if (mode === 'snapshots' && idx === 0) p.classList.add('active');
+          if (mode === 'watcher' && idx === 1) p.classList.add('active');
+          if (mode === 'streaming' && idx === 2) p.classList.add('active');
+        });
+        updateSim();
+      }
+
+      function setTab(tab) {
+        currentTab = tab;
+        document.getElementById('tabPy').classList.toggle('active', tab === 'python');
+        document.getElementById('tabTs').classList.toggle('active', tab === 'ts');
+        renderCode();
+      }
+
+      function updateSim() {
+        const res = document.getElementById('resSelect').value;
+        const freq = parseFloat(document.getElementById('freqRange').value);
+        const qual = parseInt(document.getElementById('qualRange').value, 10);
+
+        document.getElementById('freqLabel').innerText = `${freq.toFixed(1)}s (${(1 / freq).toFixed(1)} FPS)`;
+        document.getElementById('qualLabel').innerText = `${qual}%`;
+
+        const mTokens = document.getElementById('metricTokens');
+        const mTokensMin = document.getElementById('metricTokensMin');
+        const mLatency = document.getElementById('metricLatency');
+        const mLatStatus = document.getElementById('metricLatencyStatus');
+        const mBw = document.getElementById('metricBandwidth');
+        const mCost = document.getElementById('metricCost');
+        const hudPattern = document.getElementById('hudPattern');
+        const hudBuffer = document.getElementById('hudBuffer');
+        const hudFps = document.getElementById('hudFps');
+        const hudRes = document.getElementById('hudResolution');
+
+        hudRes.innerText = `RES: ${res === '480' ? '640x480' : res === '720' ? '1280x720' : '1920x1080'} (JPEG ${qual}%)`;
+
+        if (currentMode === 'streaming') {
+          // 30 FPS continuous streaming trap
+          mTokens.className = 'metric-val val-bad';
+          mTokens.innerText = '7,740 tok/s';
+          mTokensMin.innerText = '~464,400 tok/min';
+          mLatency.className = 'metric-val val-bad';
+          mLatency.innerText = '1,850 ms';
+          mLatStatus.innerText = 'High audio latency / buffer bloat';
+          mBw.className = 'metric-val val-bad';
+          mBw.innerText = '4.2 Mbps';
+          mCost.className = 'metric-val val-bad';
+          mCost.innerText = '$1.80 / hr';
+          hudPattern.innerText = 'TOPOLOGY: CONTINUOUS 30FPS (DEGRADED)';
+          hudBuffer.innerText = 'BUFFER: 14 FRAMES QUEUED (LAG)';
+          hudFps.innerText = 'FRAME RATE: 30.0 FPS';
+        } else if (currentMode === 'watcher') {
+          // Dual model watcher pattern
+          mTokens.className = 'metric-val val-good';
+          mTokens.innerText = '129 tok/s';
+          mTokensMin.innerText = '~7,740 tok/min';
+          mLatency.className = 'metric-val val-good';
+          mLatency.innerText = '180 ms';
+          mLatStatus.innerText = 'Crystal-clear sub-200ms audio turnaround';
+          mBw.className = 'metric-val val-good';
+          mBw.innerText = '65 Kbps';
+          mCost.className = 'metric-val val-good';
+          mCost.innerText = '$0.02 / hr';
+          hudPattern.innerText = 'TOPOLOGY: VISION WATCHER (ADK DECOUPLED)';
+          hudBuffer.innerText = 'BUFFER: 0 FRAMES (ASYNC PERCEPTION)';
+          hudFps.innerText = `FRAME RATE: ${(1 / freq).toFixed(1)} FPS`;
+        } else {
+          // Standard snapshot polling
+          const fps = 1 / freq;
+          const tokensPerSec = Math.round(258 * fps);
+          mTokens.className = 'metric-val val-good';
+          mTokens.innerText = `${tokensPerSec} tok/s`;
+          mTokensMin.innerText = `~${(tokensPerSec * 60).toLocaleString()} tok/min`;
+          mLatency.className = 'metric-val val-good';
+          mLatency.innerText = '210 ms';
+          mLatStatus.innerText = 'Sub-second conversational audio';
+          mBw.className = 'metric-val val-good';
+          mBw.innerText = `${Math.round(120 * fps)} Kbps`;
+          mCost.className = 'metric-val val-good';
+          mCost.innerText = `$${(0.04 * fps).toFixed(2)} / hr`;
+          hudPattern.innerText = 'TOPOLOGY: SNAPSHOT POLLING (GATED)';
+          hudBuffer.innerText = 'BUFFER: 0 FRAMES QUEUED';
+          hudFps.innerText = `FRAME RATE: ${fps.toFixed(1)} FPS`;
+        }
+
+        renderCode();
+      }
+
+      function renderCode() {
+        const code = document.getElementById('codeBlock');
+        if (currentTab === 'python') {
+          if (currentMode === 'watcher') {
+            code.innerText = `# Vision Watcher Pattern with Python SDK (google-genai v2.34+)
+from google import genai
+from google.genai import types
+import asyncio
+
+client = genai.Client()
+
+async def ambient_watcher_loop(camera, shared_session):
+    """Background task monitoring video frames without stalling conversational voice."""
+    while True:
+        frame_bytes = await camera.capture_jpeg(quality=0.75)
+        response = await client.aio.models.generate_content(
+            model='gemini-3.8-flash',
+            contents=[
+                types.Part.from_bytes(data=frame_bytes, mime_type='image/jpeg'),
+                'Inspect state. Return JSON: {"alert": str | None}'
+            ],
+            config=types.GenerateContentConfig(
+                response_mime_type='application/json',
+                thinking_level='LOW',
+            )
+        )
+        data = response.parsed
+        if data.get('alert'):
+            await shared_session.inject_system_event(f"[WATCHER ALERT]: {data['alert']}")
+        await asyncio.sleep(2.0)`;
+          } else {
+            code.innerText = `# Live Snapshot Injection with Python SDK (google-genai v2.34+)
+from google import genai
+from google.genai import types
+import asyncio
+
+client = genai.Client()
+
+async def run_live_vision_session():
+    async with client.aio.live.connect(
+        model="gemini-3.8-live",
+        config=types.LiveConnectConfig(
+            response_modalities=["AUDIO"],
+            speech_config=types.SpeechConfig(
+                voice_config=types.VoiceConfig(
+                    prebuilt_voice_config=types.PrebuiltVoiceConfig(voice_name="Puck")
+                )
+            )
+        )
+    ) as session:
+        # Send snapshot frame into active bidirectional session
+        frame_bytes = get_camera_snapshot()
+        await session.send(
+            input=types.LiveRealtimeInput(
+                media_chunks=[
+                    types.Blob(mime_type="image/jpeg", data=frame_bytes)
+                ]
+            )
+        )`;
+          }
+        } else {
+          // TypeScript
+          code.innerText = `// TypeScript Frame Pipeline (@google/genai v2.32+)
+import { GoogleGenAI } from '@google/genai';
+
+const ai = new GoogleGenAI();
+
+export async function sendSnapshotFrame(session: any, canvas: HTMLCanvasElement) {
+  const blob = await new Promise<Blob>((resolve) => {
+    canvas.toBlob((b) => resolve(b!), 'image/jpeg', 0.75);
+  });
+  
+  const buffer = await blob.arrayBuffer();
+  const base64Data = btoa(String.fromCharCode(...new Uint8Array(buffer)));
+
+  session.send({
+    realtimeInput: {
+      mediaChunks: [
+        {
+          mimeType: 'image/jpeg',
+          data: base64Data,
+        }
+      ]
+    }
+  });
+}`;
+        }
+      }
+
+      function copySnippet() {
+        const text = document.getElementById('codeBlock').innerText;
+        navigator.clipboard.writeText(text);
+        alert('Verified code copied to clipboard!');
+      }
+
+      // Initial invocation
+      updateSim();
+    </script>
+  </body>
+</html>

@@ -1,11 +1,31 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-11-04 17:33 EST (ROUND 20 COMPLETE PURE-VECTOR GEMIN♊PULSE BRAND IDENTITY & SOCIAL AVATAR KIT: Following Neil's approval of the Option A Masthead Wordmark, engineered 3 Stacked Vector Lockups, 3 1024×1024 Social Avatars, Favicons, 1200×630 Open Graph Card, and live Brand Download Hub at https://geminipulse.com/brand/)`
+- **Last Updated:** `2026-11-04 17:55 EST (ROUND 21 5:45 PM ET CURATION COMPLETE: Curated Google Cloud Tech Real-Time Vision & ADK Release, Set dNGchf4InU0 as Featured Video of the Day, Published 3-Part Series (/series/gemini-live-vision/) & Agile Labs Vision Studio (/labs/gemini-live-vision-studio.html))`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
 - **Firebase Default Hosting URL:** `https://geminipulse-com.web.app`
-- **Local Dev Preview URL:** `http://localhost:8080` *(Look J v10 Latest Lead + ⌘K Search: `http://localhost:8080/prototypes/look-j-3d-celestial-navigator.html` · Look J v9 Archive: `http://localhost:8080/prototypes/look-j-v9-archive.html` · Look J v8 Archive: `http://localhost:8080/prototypes/look-j-v8-archive.html` · Everyday Workspace Sanctuary: `http://localhost:8080/series/everyday-gemini/workspace-no-code-guides.html` · Voice Remixing Studio: `http://localhost:8080/labs/gemini-voice-remixing-studio.html` · Flagship Open Letter Sanctuary: `http://localhost:8080/series/google-preview-observatory/open-letter-to-google-deepmind.html` · Look J v7 Archive: `http://localhost:8080/prototypes/look-j-v7-archive.html` · Look J v6 Archive: `http://localhost:8080/prototypes/look-j-v6-archive.html` · Look J v5 Archive: `http://localhost:8080/prototypes/look-j-v5-archive.html` · Look J v4 Archive: `http://localhost:8080/prototypes/look-j-v4-archive.html` · Look J v3 Archive: `http://localhost:8080/prototypes/look-j-v3-archive.html` · Look J v2 Archive: `http://localhost:8080/prototypes/look-j-v2-archive.html` · Look J v1 Archive: `http://localhost:8080/prototypes/look-j-v1-archive.html` · Look I v2 50/50 Split: `http://localhost:8080/prototypes/look-i-celestial-couture-atlas.html` · Look I v1 Archive: `http://localhost:8080/prototypes/look-i-v1-archive.html` · Saved Look H: `http://localhost:8080/prototypes/look-h-avant-twin-journal.html` · Brand Evolution Portfolio Hub: `http://localhost:8080/prototypes/`)*
+- **Local Dev Preview URL:** `http://localhost:8080` *(Look J v10 Latest Lead + ⌘K Search: `http://localhost:8080/prototypes/look-j-3d-celestial-navigator.html` · Look J v9 Archive: `http://localhost:8080/prototypes/look-j-v9-archive.html` · Look J v8 Archive: `http://localhost:8080/prototypes/look-j-v8-archive.html` · Live Vision Studio: `http://localhost:8080/labs/gemini-live-vision-studio.html` · Voice Remixing Studio: `http://localhost:8080/labs/gemini-voice-remixing-studio.html` · Everyday Workspace Sanctuary: `http://localhost:8080/series/everyday-gemini/workspace-no-code-guides.html` · Flagship Open Letter Sanctuary: `http://localhost:8080/series/google-preview-observatory/open-letter-to-google-deepmind.html` · Brand Kit: `http://localhost:8080/brand/`)*
+- **Firebase Project ID:** `geminipulse-com` (Project Number `643794480842`, Spark Free Plan — **\$0.00/mo**)
+- **Firebase Web App ID:** `1:643794480842:web:9f973bc1a0d7670c920e33` (`GeminiPulse Web`)
+- **Concept Originator & Creative Catalyst:** Neil S. White (`https://www.linkedin.com/in/neilswhite`, **Agile LLC**)
+- **Autonomous Lead Architect & Editor-in-Chief:** Google Gemini 4 Argon (`gemini-4-argon`) inside Google Antigravity
+
+---
+
+## 0. Completed & Live on `v2.0` (2026-11-04 17:55 PM ET — Round 21 5:45 PM Curation Check)
+
+- **Curated Google Cloud Tech Real-Time Vision & Agent Development Kit Release:**
+  - **YouTube Video Showcase Promotion (`GEMINI_VIDEO_SHOWCASE`):** Curated official Google Cloud Tech technical release `dNGchf4InU0` (*"Real time vision for AI agents: Snapshots, streams & Gemini Live API"* by Annie Wang). Verified returning HTTP `200 OK` via YouTube oEmbed. Promoted to **Featured Video of the Day** with zero-latency visual breakdown.
+  - **Ecosystem Intelligence Entry (`PULSE_INTELLIGENCE_FEED`):** Added `pulse-gemini-live-realtime-vision-adk` citing `https://cloud.google.com/vertex-ai/generative-ai/docs/multimodal-live-api` and detailing the Camera → Canvas → JPEG → Blob pipeline and the dual-model Vision Watcher pattern.
+  - **3-Part Standalone Deep Dive Series (`/series/gemini-live-vision/`):**
+    1. `part-1-real-time-vision-pipeline-and-snapshots.html`: Camera frame extraction, WebSockets vs file uploads, and why continuous 30fps streaming degrades live audio buffers.
+    2. `part-2-the-vision-watcher-pattern-and-adk.html`: Decoupled topology (background `gemini-3.8-flash` ambient scene checks + foreground `gemini-3.8-live` sub-300ms voice).
+    3. `part-3-production-use-cases-field-service-and-robotics.html`: 4 enterprise blueprints across field service, robotics, tele-rehab, and smart retail.
+  - **Agile Labs Interactive Simulator (`/labs/gemini-live-vision-studio.html` [SIMULATED DEMO]):** Interactive simulator modeling snapshot intervals vs continuous streaming, token burn rates, voice latency gauges, and Python (`google-genai`) / TypeScript (`@google/genai`) code export.
+  - **Search & RSS Grounding:** Added 4 new URLs to `sitemap.xml` (now 41 clean URLs) and published new `<entry>` to `feed.xml`.
+
+---
 - **Firebase Project ID:** `geminipulse-com` (Project Number `643794480842`, Spark Free Plan — **\$0.00/mo**)
 - **Firebase Web App ID:** `1:643794480842:web:9f973bc1a0d7670c920e33` (`GeminiPulse Web`)
 - **Concept Originator & Creative Catalyst:** Neil S. White (`https://www.linkedin.com/in/neilswhite`, **Agile LLC**)

@@ -13,6 +13,30 @@
     <priority>0.98</priority>
   </url>
   <url>
+    <loc>https://geminipulse.com/series/gemini-live-vision/part-1-real-time-vision-pipeline-and-snapshots.html</loc>
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/gemini-live-vision/part-2-the-vision-watcher-pattern-and-adk.html</loc>
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/gemini-live-vision/part-3-production-use-cases-field-service-and-robotics.html</loc>
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/labs/gemini-live-vision-studio.html</loc>
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
     <loc>https://geminipulse.com/series/gemini-voice-remixing/part-1-voice-remixing-breakdown.html</loc>
     <lastmod>2026-11-04</lastmod>
     <changefreq>weekly</changefreq>
