@@ -6224,6 +6224,54 @@ await Promise.all([
         // 3. Standalone Deep-Dive Series & Interactive Agile Labs
         const standaloneResources = [
           {
+            id: "lab-multimodal-tools",
+            scope: "lab",
+            twin: "pollux",
+            badgeKind: "⚡ INTERACTIVE AGILE LAB",
+            badgeSub: "NOV 5, 2026 · GEMINI 4 & 3.8 FLASH",
+            title: "Gemini Multimodal Function Returns & Office Ingestion Studio",
+            desc: "Simulate custom tools returning Office/ODF files, audio waveforms, video clips, and Files API URIs directly to Gemini with live payload & latency comparisons.",
+            keywords: "multimodal function calling tools files api uri ods office ppt doc word presentation excel audio video agentic",
+            url: "/labs/gemini-multimodal-tools-studio.html",
+            primaryActionLabel: "Launch Tools Studio ↗"
+          },
+          {
+            id: "series-multimodal-tools",
+            scope: "lab",
+            twin: "castor",
+            badgeKind: "📜 3-PART RELEASE SERIES",
+            badgeSub: "NOV 5, 2026 · GEMINI API UPDATE",
+            title: "Inside Multimodal Function Responses: Files API URIs, Legacy PPT/DOC Rasterization & ODS Formulas",
+            desc: "Complete 3-part breakdown of Google's Nov 5, 2026 release: multimodal tool blocks, Files API delegation, dual-ingestion pipelines, and 4 enterprise use cases.",
+            keywords: "multimodal function calling series part 1 2 3 files api uri office opendocument ods formulas ppt doc",
+            url: "/series/gemini-multimodal-tools/part-1-multimodal-function-responses-and-file-uris.html",
+            primaryActionLabel: "Read 3-Part Series ↗"
+          },
+          {
+            id: "lab-live-vision",
+            scope: "lab",
+            twin: "pollux",
+            badgeKind: "⚡ INTERACTIVE AGILE LAB",
+            badgeSub: "NOV 4, 2026 · GEMINI LIVE API",
+            title: "Gemini Live Real-Time Vision & Watcher Studio",
+            desc: "Simulate Camera → Canvas → Blob frame ingestion, calculate token burn and voice turnaround latency, and test decoupled ADK Vision Watcher orchestration.",
+            keywords: "live vision camera canvas blob snapshot streaming watcher adk real-time tokens latency sub-300ms",
+            url: "/labs/gemini-live-vision-studio.html",
+            primaryActionLabel: "Launch Vision Studio ↗"
+          },
+          {
+            id: "series-live-vision",
+            scope: "lab",
+            twin: "castor",
+            badgeKind: "📜 3-PART RELEASE SERIES",
+            badgeSub: "NOV 4, 2026 · LIVE MULTIMODAL",
+            title: "Inside the Real-Time Vision Pipeline: Snapshots vs Streams & the ADK Vision Watcher Pattern",
+            desc: "Complete 3-part guide to Google Cloud's Nov 4 architecture blueprint: frame ingestion, avoiding the 30fps streaming trap, and production field service use cases.",
+            keywords: "live vision series part 1 2 3 snapshots streams adk watcher robotics field service",
+            url: "/series/gemini-live-vision/part-1-real-time-vision-pipeline-and-snapshots.html",
+            primaryActionLabel: "Read 3-Part Series ↗"
+          },
+          {
             id: "lab-voice-remixing",
             scope: "lab",
             twin: "pollux",
@@ -6357,6 +6405,28 @@ await Promise.all([
         const q = rawQuery.trim().toLowerCase();
         if (q.length < 2) return null;
 
+        if (/(tool|function|multimodal|file.*uri|ods|opendocument|ppt|office)/.test(q)) {
+          return {
+            kicker: "✦ GEMINI INSTANT ANSWER · NOV 5, 2026 MULTIMODAL FUNCTION RETURNS & OFFICE INGESTION",
+            body: "Google Gemini API now supports rich multimodal function responses (audio, video, Office/ODF, PDFs, images) and Files API URIs in Interactions and GenerateContent APIs—alongside native page-image rasterization for legacy PPT/DOC and formula-preserving ODS spreadsheet ingestion.",
+            starKey: "mebsuta",
+            starLabel: "✦ Slew to Star 02 (ε Mebsuta)",
+            sanctuaryLabel: "📖 Read 3-Part Multimodal Tools Series",
+            labUrl: "/labs/gemini-multimodal-tools-studio.html",
+            labLabel: "⚡ Launch Multimodal Tools Studio ↗"
+          };
+        }
+        if (/(live.*vision|camera|canvas|snapshot|watcher|adk)/.test(q)) {
+          return {
+            kicker: "✦ GEMINI INSTANT ANSWER · NOV 4, 2026 GEMINI LIVE REAL-TIME VISION & ADK",
+            body: "Google Cloud Multimodal Live API architecture standardizes real-time vision on Camera → Canvas → JPEG Blobs. Snapshot polling (0.5–1 FPS) eliminates the 30fps continuous video trap (7,740+ tok/s) and maintains sub-300ms voice turnaround with decoupled ADK Vision Watchers.",
+            starKey: "propus",
+            starLabel: "✦ Slew to Star 04 (η Propus)",
+            sanctuaryLabel: "📖 Read Real-Time Vision Series",
+            labUrl: "/labs/gemini-live-vision-studio.html",
+            labLabel: "⚡ Launch Live Vision Studio ↗"
+          };
+        }
         if (/(bill|cost|pric|cheap|save|saving|discount|token|cach|78|90)/.test(q)) {
           return {
             kicker: "✦ GEMINI INSTANT ANSWER · TOKEN ECONOMICS & CONTEXT CACHING",

@@ -2,15 +2,39 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://geminipulse.com/</loc>
-    <lastmod>2026-11-04</lastmod>
+    <lastmod>2026-11-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://geminipulse.com/prototypes/look-j-3d-celestial-navigator.html</loc>
-    <lastmod>2026-11-04</lastmod>
+    <lastmod>2026-11-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/gemini-multimodal-tools/part-1-multimodal-function-responses-and-file-uris.html</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/gemini-multimodal-tools/part-2-office-and-opendocument-visual-pipeline.html</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/gemini-multimodal-tools/part-3-enterprise-agentic-use-cases.html</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/labs/gemini-multimodal-tools-studio.html</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
   </url>
   <url>
     <loc>https://geminipulse.com/series/gemini-live-vision/part-1-real-time-vision-pipeline-and-snapshots.html</loc>

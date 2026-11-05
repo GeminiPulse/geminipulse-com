@@ -5,6 +5,25 @@
 
 export const PULSE_INTELLIGENCE_FEED = [
   {
+    id: 'pulse-gemini-multimodal-tools-opendocument',
+    title: 'Google Releases Multimodal Function Responses & Files API URIs in Gemini API, Plus Expanded Office & ODF Ingestion',
+    tldr: 'Released November 5, 2026: Google upgrades Gemini API & Interactions API function calling to accept audio, video, Office/OpenDocument files, and Files API URIs in tool returns—alongside native page-image rendering for legacy PPT, DOC, and ODP, and formula-preserving ODS spreadsheet ingestion.',
+    summary:
+      'Google elevates Gemini function calling from plain text/JSON envelopes to full multimodal perception across both GenerateContent and Interactions APIs. Tools can now return Office documents (DOCX, DOC, PPTX, PPT, XLSX, XLS, ODS, ODP), audio waveforms, and video clips—either inline or via Files API `uri` pointers (`fileData`), eliminating memory overhead and 20MB payload limits across multi-turn agent loops. Video parts accept `processing: "agentic"` for dynamic scrubbing. Concurrently, Google expands native Office/OpenDocument support: PowerPoint 97-2003 (.ppt), Word 97-2003 (.doc), and OpenDocument Presentation (.odp) are now rendered as page images to preserve visual layout and diagrams, while OpenDocument Spreadsheets (.ods) pass both underlying formulas and cell values from the first sheet.',
+    category: 'SDK & API',
+    tag: 'Platform Milestone',
+    modelBadge: 'gemini-3.8-flash / gemini-4-argon',
+    impactScore: '9.9 / 10',
+    date: '2026-11-05T08:30:00Z',
+    sourceLabel: 'Google AI: Gemini API Changelog & Multimodal Function Calling',
+    sourceUrl: 'https://ai.google.dev/gemini-api/docs/changelog#11-05-2026',
+    groundedBy: 'Google AI Developer Documentation (Verified Nov 5, 2026)',
+    seriesUrl: '/series/gemini-multimodal-tools/part-1-multimodal-function-responses-and-file-uris.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-multimodal-tools-studio.html',
+    labLabel: 'Tools Lab [DEMO] →',
+  },
+  {
     id: 'pulse-gemini-live-realtime-vision-adk',
     title: 'Google Cloud Releases Real-Time Vision Pipeline & Watcher Architecture for Gemini Live API & ADK',
     tldr: 'Released November 4, 2026: Google Cloud publishes production architecture for real-time multimodal vision agents—standardizing Camera → Canvas → JPEG → Blob ingestion, snapshot polling over streaming traps, and dual-model vision watcher orchestration for sub-300ms bidirectional voice.',
@@ -746,6 +765,44 @@ video_turn = client.interactions.create(
 ];
 
 export const INITIAL_SHOWCASE_PROJECTS = [
+  {
+    id: 'showcase-gemini-multimodal-tools-studio',
+    name: 'Gemini Multimodal Tools & Office Ingestion Studio [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive developer studio for Google’s November 5, 2026 release: simulate tools returning Office docs, agentic video, audio, and Files API URIs, compare payload latency, and export Python/TS code.',
+    models: ['gemini-4-argon', 'gemini-3.8-flash', 'interactions-api-v1beta'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-multimodal-tools-studio.html): [SIMULATED DEMO] Models Files API URI delegation vs inline base64 payloads, ODS formula preservation, agentic video scrubbing, and Interactions API function_result timeline steps.',
+    url: '/labs/gemini-multimodal-tools-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-05T08:35:00Z',
+  },
+  {
+    id: 'showcase-gemini-live-vision-studio',
+    name: 'Gemini Live Real-Time Vision & Watcher Studio [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive developer simulator for Google Cloud’s November 4, 2026 Multimodal Live API blueprint: test snapshot polling vs 30fps streaming traps, measure token burn, model the ADK Watcher pattern, and export SDK code.',
+    models: ['gemini-3.8-live', 'gemini-3.8-flash', 'adk-watcher-pattern'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-live-vision-studio.html): [SIMULATED DEMO] Models Camera → Canvas → Blob pipeline, sub-300ms conversational audio latency, dual-model watcher topologies, and code export for Python and TypeScript.',
+    url: '/labs/gemini-live-vision-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-04T17:30:00Z',
+  },
   {
     id: 'showcase-gemini-voice-remixing-studio',
     name: 'Gemini 3.8 Voice Remixing Studio & Persona Tuner [SIMULATED DEMO]',

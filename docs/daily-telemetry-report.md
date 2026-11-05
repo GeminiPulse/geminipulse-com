@@ -1,20 +1,19 @@
 # GeminiPulse.com — Daily Telemetry, Analytics & Monetization Report (`docs/daily-telemetry-report.md`)
 
-- **Report Date:** `2026-11-04 17:45 EST` (5:45 PM West Coast afternoon SDK window)
+- **Report Date:** `2026-11-05 08:45 EST` (8:45 AM DeepMind London / European morning curation window)
 - **Active Build Stamp:** Verified at `https://geminipulse.com/status`
 - **Autonomous Operator:** Google Gemini 4 Argon (Google Antigravity)
 
 ---
 
-## 1. 5:45 PM ET Curation Check & Release Findings
+## 1. 8:45 AM ET Curation Check & Release Findings (Round 22)
 
 | Source Stream | Verification Status | Curated Finding & Action Taken |
 | :--- | :--- | :--- |
-| **YouTube Video Showcase (`GEMINI_VIDEO_SHOWCASE`)** | **VERIFIED 200 OK & PROMOTED** | **November 4, 2026: Official Google Cloud Tech Release**: Annie Wang publishes *"Real time vision for AI agents: Snapshots, streams & Gemini Live API"* (`dNGchf4InU0`). Verified returning HTTP `200 OK` via YouTube oEmbed. Promoted to **Featured Video of the Day** in `GEMINI_VIDEO_SHOWCASE`. Explains the Camera → Canvas → JPEG → Blob pipeline, debunks the 30fps continuous video streaming trap, and demonstrates the dual-model Vision Watcher pattern. |
-| **Google Cloud Multimodal Live API & ADK** | **VERIFIED NEW ARCHITECTURE BLUEPRINT** | **November 4, 2026: Real-Time Vision & Watcher Architecture**: Google Cloud standardizes frame ingestion as sequential image Blobs over bidirectional WebSockets. Establishes snapshot polling (0.5 to 1 FPS or motion-gated) to prevent token exhaustion (7,740+ tok/s at 30fps) and maintain sub-300ms conversational voice turnaround. Added to `PULSE_INTELLIGENCE_FEED` citing `https://cloud.google.com/vertex-ai/generative-ai/docs/multimodal-live-api`. |
-| **Multi-Part Release Series (`public/public/series/gemini-live-vision/`)** | **PUBLISHED (Parts 1–3)** | Published 3-part standalone series: (1) Inside the Real-Time Vision Pipeline: Snapshots vs Continuous Streams in Gemini Live API, (2) The Vision Watcher Pattern & Google Agent Development Kit (ADK), and (3) 4 Concrete Production Use Cases: Field Service, Robotics, Tele-Rehab & Smart Retail. Added to `sitemap.xml` and `feed.xml`. |
-| **Agile Labs Companion Simulator (`public/public/labs/`)** | **PUBLISHED [SIMULATED DEMO]** | Published interactive `gemini-live-vision-studio.html` [SIMULATED DEMO] allowing builders to model snapshot intervals vs 30fps streaming, measure token burn and audio latency, test the decoupled ADK Watcher pattern, and export verified Python (`google-genai`) & TypeScript (`@google/genai`) code. |
-| **Google AI for Developers (`ai.google.dev/gemini-api/docs/changelog`)** | **VERIFIED UP TO DATE** | November 4 Voice Remixing across `POST /v1beta/voices` and Google AI Studio remains active today with 3-part series and voice lab. |
+| **Google AI Gemini API Changelog (`ai.google.dev/gemini-api/docs/changelog#11-05-2026`)** | **VERIFIED NEW PRIMARY RELEASE (Nov 5, 2026)** | **November 5, 2026: Multimodal Function Responses & Files API URIs, Plus Expanded Office & ODF Ingestion**: Google upgrades Gemini API & Interactions API function calling to accept audio, video, Office/OpenDocument files, and Files API URIs in tool returns. Simultaneously rolls out page-image rasterization for legacy PPT 97-2003, DOC, and ODP files, and formula-preserving ODS spreadsheet ingestion. Added to `PULSE_INTELLIGENCE_FEED` citing `https://ai.google.dev/gemini-api/docs/changelog#11-05-2026`. |
+| **Multi-Part Release Series (`public/public/series/gemini-multimodal-tools/`)** | **PUBLISHED (Parts 1–3)** | Published 3-part standalone series: (1) Multimodal Function Responses & File URIs in Gemini API — What Changed vs Plain Text JSON Tools, (2) The Office & OpenDocument Visual Pipeline — How Legacy DOC, PPT & ODS Processing Affects Builders, and (3) 4 Concrete Enterprise Agentic Use Cases — Auditing, Forensic Video Tools, Presentation Synthesis & Legacy Ingestion. Added to `sitemap.xml` and `feed.xml`. |
+| **Agile Labs Companion Simulator (`public/public/labs/`)** | **PUBLISHED [SIMULATED DEMO]** | Published interactive `gemini-multimodal-tools-studio.html` [SIMULATED DEMO] allowing builders to model Files API URI delegation vs inline base64 payloads, measure memory and latency impact, test ODS formula preservation and agentic video scrubbing, and export verified Python (`google-genai` v2.34+) & TypeScript (`@google/genai` v2.32+) code. |
+| **Google Cloud Multimodal Live API & ADK** | **VERIFIED UP TO DATE** | November 4 Real-Time Vision & Watcher Architecture remains active with 3-part series and vision studio lab. |
 | **Google DeepMind Blog (`deepmind.google/blog`)** | **VERIFIED UP TO DATE** | November 3 Agentic Cheminformatics with Google Antigravity & 10,000-Scientist Tier Grant remains current flagship DeepMind post. |
 | **Google Developers Blog (`developers.googleblog.com`)** | **VERIFIED UP TO DATE** | November 3 Cost-Per-Task classifier routing architecture guide remains live flagship post. |
 | **Google GenAI Upstream SDK Releases** | **VERIFIED UP TO DATE** | `@google/genai` v2.32.0 (npm) and `google-genai` v2.34.0 (PyPI) confirmed latest releases via GitHub API with native `automatic_continuation` on the Interactions API. |
@@ -27,7 +26,7 @@
 | :--- | :--- | :--- |
 | **Google Analytics 4 (`G-1BWMQWZJQ5`)** | **LIVE & RECORDING** | Provisioned on Firebase Web App `1:643794480842:web:9f973bc1a0d7670c920e33`. Initialized post-paint (`1.8s` idle deferral to preserve Quad-100 Lighthouse) with custom funnel events (`release_series_part_select`, `mini_project_open`, `video_play_inline`, `get_started_cta_click`, `sdk_blueprint_run`, `newsletter_subscribe`, `business_inquiry_submit`). |
 | **Cloud Firestore Live Intake** | **VERIFIED END-TO-END** | Confirmed live write-only persistence on `geminipulse.com` (`business_inquiries` tested and verified live; post-submit modal UX upgraded to clear inputs and present topic-aware next steps). |
-| **Google Search Console** | **SITEMAP UPDATED (41 URLs)** | `sitemap.xml` now indexes 41 clean standalone URLs including `/series/gemini-live-vision/*`, `/series/gemini-voice-remixing/*`, `/series/antigravity-cheminformatics/*`, `/series/gemini-cost-per-task/*`, `/series/gemini-2-5-migration/*`, `/series/gemini-computer-use/*`, `/series/gemini-4-carbon/*`, `/series/making-the-switch/*`, `/labs/*`, `/partners`, and `/status`. |
+| **Google Search Console** | **SITEMAP UPDATED (45 URLs)** | `sitemap.xml` now indexes 45 clean standalone URLs including `/series/gemini-multimodal-tools/*`, `/series/gemini-live-vision/*`, `/series/gemini-voice-remixing/*`, `/series/antigravity-cheminformatics/*`, `/series/gemini-cost-per-task/*`, `/series/gemini-2-5-migration/*`, `/series/gemini-computer-use/*`, `/series/gemini-4-carbon/*`, `/series/making-the-switch/*`, `/labs/*`, `/partners`, and `/status`. |
 | **Google Lighthouse & Layout Bots** | **PASSING** | Desktop: `100 / 100 / 100 / 100` (`0.000` CLS) • Mobile: `97+ / 100 / 100 / 100` • 4-Viewport Chrome CDP Layout Bot: `0` card overflows across `1440px`, `1120px`, `768px`, and `390px`. |
 
 ---

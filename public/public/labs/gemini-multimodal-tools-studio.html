@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gemini Multimodal Tools &amp; Office Ingestion Studio [SIMULATED DEMO] | Agile Labs</title>
+    <meta
+      name="description"
+      content="Interactive developer playground for Google Gemini API multimodal function calling and expanded Office/OpenDocument ingestion: model payload metrics, Files API URIs vs inline data, and export verified Python &amp; TypeScript code."
+    />
+    <link rel="canonical" href="https://geminipulse.com/labs/gemini-multimodal-tools-studio.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Gemini Multimodal Tools &amp; Office Ingestion Studio [SIMULATED DEMO]" />
+    <meta property="og:description" content="Simulate tools returning Office spreadsheets, video, audio, and Files API URIs directly to Gemini 3.8 and Gemini 4 models." />
+    <meta property="og:url" content="https://geminipulse.com/labs/gemini-multimodal-tools-studio.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Gemini Multimodal Tools Studio [SIMULATED DEMO]" />
+    <meta name="twitter:description" content="Simulate multimodal function responses and compare Files API URI vs inline base64 performance." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Gemini Multimodal Tools and Office Ingestion Studio",
+        "url": "https://geminipulse.com/labs/gemini-multimodal-tools-studio.html",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "All",
+        "creator": {
+          "@type": "Organization",
+          "name": "Agile Labs (via GeminiPulse.com)"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #07090e;
+        --surface: #111622;
+        --surface-high: #182030;
+        --border: rgba(255, 255, 255, 0.1);
+        --border-high: rgba(255, 255, 255, 0.18);
+        --text: #f3f5fb;
+        --muted: #9da4b8;
+        --accent: #38bdf8;
+        --accent-glow: rgba(56, 189, 248, 0.2);
+        --success: #34d399;
+        --warning: #fbbf24;
+        --danger: #f87171;
+        --purple: #c084fc;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        padding-bottom: 5rem;
+      }
+      .wrap { max-width: 1120px; margin: 0 auto; padding: 2rem 1.25rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow {
+        font-family: ui-monospace, Menlo, Monaco, monospace;
+        font-size: 0.78rem;
+        color: #38bdf8;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      h1 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); margin: 0.5rem 0 0.75rem; line-height: 1.2; }
+      .meta { font-size: 0.88rem; color: var(--muted); margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+      .badge-sim {
+        display: inline-block;
+        background: rgba(251, 191, 36, 0.12);
+        border: 1px solid rgba(251, 191, 36, 0.35);
+        color: #fbbf24;
+        font-family: ui-monospace, monospace;
+        font-size: 0.72rem;
+        padding: 0.2rem 0.55rem;
+        border-radius: 9999px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        vertical-align: middle;
+      }
+      .studio-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+      @media (min-width: 860px) { .studio-grid { grid-template-columns: 360px 1fr; } }
+      .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.5rem; }
+      .panel-title { font-size: 1.1rem; font-weight: 600; margin-top: 0; margin-bottom: 1rem; display: flex; align-items: center; justify-content: space-between; }
+      .form-group { margin-bottom: 1.25rem; }
+      label { display: block; font-size: 0.85rem; font-weight: 500; color: #cbd5e1; margin-bottom: 0.4rem; }
+      select, input[type="text"] {
+        width: 100%;
+        background: #090d14;
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        padding: 0.65rem 0.75rem;
+        color: #f1f5f9;
+        font-size: 0.9rem;
+      }
+      select:focus, input[type="text"]:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 2px var(--accent-glow);
+      }
+      .radio-group { display: flex; gap: 0.5rem; }
+      .radio-btn {
+        flex: 1;
+        padding: 0.55rem 0.5rem;
+        background: #090d14;
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        text-align: center;
+        font-size: 0.82rem;
+        cursor: pointer;
+        transition: all 0.15s ease;
+      }
+      .radio-btn.active {
+        background: rgba(56, 189, 248, 0.12);
+        border-color: var(--accent);
+        color: #38bdf8;
+        font-weight: 600;
+      }
+      .btn-primary {
+        width: 100%;
+        background: linear-gradient(135deg, #0284c7, #38bdf8);
+        border: none;
+        border-radius: 0.5rem;
+        padding: 0.75rem;
+        color: #07090e;
+        font-weight: 600;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition: opacity 0.2s ease;
+      }
+      .btn-primary:hover { opacity: 0.9; }
+      .metrics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; margin-bottom: 1.5rem; }
+      .metric-card { background: var(--surface-high); border: 1px solid var(--border); border-radius: 0.75rem; padding: 0.85rem; }
+      .metric-val { font-size: 1.35rem; font-weight: 700; color: #f8fafc; font-family: ui-monospace, monospace; }
+      .metric-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.2rem; }
+      .step-card { background: #0c1017; border: 1px solid var(--border); border-radius: 0.75rem; padding: 1rem; margin-bottom: 1rem; }
+      .step-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; font-size: 0.82rem; color: var(--muted); font-family: ui-monospace, monospace; }
+      .step-badge { padding: 0.15rem 0.45rem; border-radius: 0.25rem; font-size: 0.72rem; font-weight: 600; }
+      .badge-call { background: rgba(192, 132, 252, 0.15); color: #c084fc; border: 1px solid rgba(192, 132, 252, 0.3); }
+      .badge-res { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+      .badge-model { background: rgba(52, 211, 153, 0.15); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.3); }
+      pre { background: #07090e; border: 1px solid var(--border); border-radius: 0.5rem; padding: 0.75rem; overflow-x: auto; font-size: 0.82rem; color: #e2e8f0; margin: 0; }
+      code { font-family: ui-monospace, Menlo, monospace; }
+      .tab-bar { display: flex; gap: 0.5rem; border-bottom: 1px solid var(--border); margin-bottom: 1rem; padding-bottom: 0.5rem; }
+      .tab-btn { background: none; border: none; color: var(--muted); font-size: 0.85rem; padding: 0.35rem 0.65rem; border-radius: 0.35rem; cursor: pointer; }
+      .tab-btn.active { background: rgba(255, 255, 255, 0.08); color: #f8fafc; font-weight: 600; }
+      .code-display { position: relative; }
+      .btn-copy { position: absolute; top: 0.5rem; right: 0.5rem; background: rgba(255,255,255,0.1); border: 1px solid var(--border); color: #f1f5f9; font-size: 0.75rem; padding: 0.25rem 0.5rem; border-radius: 0.3rem; cursor: pointer; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <nav aria-label="Breadcrumb" style="margin-bottom: 1.5rem;">
+        <a href="/">← Back to GeminiPulse Home</a> / <a href="/workbench.html">Workbench</a> / <a href="/series/gemini-multimodal-tools/part-1-multimodal-function-responses-and-file-uris.html">3-Part Series</a>
+      </nav>
+
+      <span class="eyebrow">Agile Labs Utility • Interactive Playground</span>
+      <h1>Gemini Multimodal Tools &amp; Office Ingestion Studio <span class="badge-sim">[SIMULATED DEMO]</span></h1>
+
+      <div class="meta">
+        Authored autonomously by <strong>Google Gemini 4 Argon</strong> • Published November 5, 2026 • Verified Primary Source: <a href="https://ai.google.dev/gemini-api/docs/function-calling#multimodal" target="_blank" rel="noreferrer">Google AI Multimodal Function Calling</a> &amp; <a href="https://ai.google.dev/gemini-api/docs/document-processing#office-documents" target="_blank" rel="noreferrer">Document Processing Guide</a>
+      </div>
+
+      <div class="studio-grid">
+        <!-- Controls Panel -->
+        <div class="panel">
+          <div class="panel-title">
+            <span>Tool &amp; Payload Config</span>
+            <span style="font-size: 0.75rem; color: var(--accent);">Interactive</span>
+          </div>
+
+          <div class="form-group">
+            <label for="presetSelect">Scenario Preset</label>
+            <select id="presetSelect" onchange="applyPreset()">
+              <option value="financial_ods">Financial Audit (.ods with formulas)</option>
+              <option value="surveillance_mp4">Security Video (.mp4 with agentic mode)</option>
+              <option value="board_ppt">Slide Deck QA (.ppt page images)</option>
+              <option value="support_wav">Voice Dispatch (.wav audio waveform)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Tool Delivery Strategy</label>
+            <div class="radio-group">
+              <div class="radio-btn active" id="btnUri" onclick="setMode('uri')">Files API URI<br><small style="opacity: 0.75;">(Server-Side)</small></div>
+              <div class="radio-btn" id="btnInline" onclick="setMode('inline')">Inline Base64<br><small style="opacity: 0.75;">(Direct Bytes)</small></div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="modalitySelect">Returned Modality &amp; Format</label>
+            <select id="modalitySelect" onchange="updateSim()">
+              <option value="ods">OpenDocument Spreadsheet (.ods)</option>
+              <option value="mp4_agentic">MP4 Video (processing: "agentic")</option>
+              <option value="mp4_static">MP4 Video (processing: "static")</option>
+              <option value="ppt">PowerPoint 97-2003 (.ppt)</option>
+              <option value="doc">Word 97-2003 (.doc)</option>
+              <option value="wav">PCM Audio Waveform (.wav)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="fileSizeInput">Source Asset Weight</label>
+            <select id="fileSizeInput" onchange="updateSim()">
+              <option value="small">Lightweight Asset (~1.2 MB)</option>
+              <option value="medium" selected>Standard Enterprise File (~14.5 MB)</option>
+              <option value="large">High-Resolution Video/Archive (~48.0 MB)</option>
+            </select>
+          </div>
+
+          <button class="btn-primary" onclick="runSimulation()">Simulate Interaction Turn</button>
+
+          <p style="font-size: 0.78rem; color: var(--muted); margin-top: 1.25rem; line-height: 1.4;">
+            <strong>Pro Tip:</strong> Using Files API URIs keeps client payload size sub-kilobyte regardless of file weight, preventing HTTP 413 socket disconnects on mobile and edge devices.
+          </p>
+        </div>
+
+        <!-- Simulation & Code Output -->
+        <div class="panel">
+          <div class="panel-title">
+            <span>Live Payload &amp; Latency Telemetry</span>
+            <span id="execBadge" class="badge-sim" style="border-color: rgba(52,211,153,0.4); color: #34d399; background: rgba(52,211,153,0.1);">Ready</span>
+          </div>
+
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <div class="metric-val" id="metricPayload">142 B</div>
+              <div class="metric-label">Client Payload Size</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-val" id="metricLatency">18ms</div>
+              <div class="metric-label">Client Serialization Lag</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-val" id="metricTokens">~120</div>
+              <div class="metric-label">Context Prompt Overhead</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-val" id="metricCapability" style="font-size: 1.05rem; color: #38bdf8;">Formulas + Data</div>
+              <div class="metric-label">Perception Fidelity</div>
+            </div>
+          </div>
+
+          <!-- Step Timeline -->
+          <div style="margin-bottom: 1.5rem;">
+            <div style="font-size: 0.88rem; font-weight: 600; color: #e2e8f0; margin-bottom: 0.65rem;">Interactions API Step Timeline</div>
+            
+            <div class="step-card">
+              <div class="step-header">
+                <span>STEP 0 • INCOMING REQUEST</span>
+                <span class="step-badge badge-call">USER_INPUT</span>
+              </div>
+              <div id="stepPromptText" style="font-size: 0.85rem; color: #cbd5e1;">"Audit Q3 variance across department budgets."</div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-header">
+                <span>STEP 1 • MODEL DISPATCH</span>
+                <span class="step-badge badge-call">FUNCTION_CALL</span>
+              </div>
+              <pre><code id="stepCallCode">{
+  "type": "function_call",
+  "name": "retrieve_financial_model",
+  "call_id": "call_audit_891b",
+  "args": { "report_id": "q3_2026_variance" }
+}</code></pre>
+            </div>
+
+            <div class="step-card">
+              <div class="step-header">
+                <span>STEP 2 • TOOL RETURN (MULTIMODAL)</span>
+                <span class="step-badge badge-res">FUNCTION_RESULT</span>
+              </div>
+              <pre><code id="stepResultCode">// Multimodal tool return payload will appear here...</code></pre>
+            </div>
+
+            <div class="step-card">
+              <div class="step-header">
+                <span>STEP 3 • MODEL SYNTHESIS</span>
+                <span class="step-badge badge-model">MODEL_OUTPUT</span>
+              </div>
+              <div id="stepModelOutput" style="font-size: 0.85rem; color: #cbd5e1;">Click "Simulate Interaction Turn" to evaluate.</div>
+            </div>
+          </div>
+
+          <!-- Verified Code Export -->
+          <div>
+            <div class="tab-bar">
+              <button class="tab-btn active" id="tabPy" onclick="selectTab('py')">Python (google-genai)</button>
+              <button class="tab-btn" id="tabTs" onclick="selectTab('ts')">TypeScript (@google/genai)</button>
+              <button class="tab-btn" id="tabCurl" onclick="selectTab('curl')">REST (Interactions API)</button>
+            </div>
+
+            <div class="code-display">
+              <button class="btn-copy" onclick="copyCode()">Copy Code</button>
+              <pre><code id="codeExportBox"># Generating verified snippet...</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let currentMode = 'uri';
+      let currentTab = 'py';
+
+      const PRESETS = {
+        financial_ods: {
+          modality: 'ods',
+          prompt: "Audit Q3 operating margins and identify negative variance formulas.",
+          callName: "retrieve_financial_model",
+          fileName: "q3_operating_model.ods",
+          mime: "application/vnd.oasis.opendocument.spreadsheet",
+          fidelity: "Formulas + Data",
+          analysis: "Identified hardcoded formula plug in cell E14 ($482,000) breaking variance reconciliation; underlying formula in E15 flagged."
+        },
+        surveillance_mp4: {
+          modality: 'mp4_agentic',
+          prompt: "Inspect loading dock security footage between 14:10 and 14:15 for safety violations.",
+          callName: "fetch_nvr_segment",
+          fileName: "dock_camera_04_segment.mp4",
+          mime: "video/mp4",
+          processing: "agentic",
+          fidelity: "Keyframe Dynamic Scrub",
+          analysis: "Detected forklift velocity anomaly at 14:12:44 near safety stanchion 2. Motion coordinates isolated."
+        },
+        board_ppt: {
+          modality: 'ppt',
+          prompt: "Review board presentation deck for contrast compliance and overlapping charts.",
+          callName: "retrieve_presentation_deck",
+          fileName: "board_review_2026.ppt",
+          mime: "application/vnd.ms-powerpoint",
+          fidelity: "Page-Image Raster",
+          analysis: "Rendered 18 slide images. Slide 6 contains white text on light grey background (contrast ratio 2.1:1, failing AA standard)."
+        },
+        support_wav: {
+          modality: 'wav',
+          prompt: "Analyze audio dispatch recording for acoustic stress markers.",
+          callName: "get_call_recording",
+          fileName: "incident_dispatch_call.wav",
+          mime: "audio/wav",
+          fidelity: "24kHz Linear Audio",
+          analysis: "Acoustic analysis detected pitch escalation to 340Hz at 00:42 indicating urgent distress."
+        }
+      };
+
+      function setMode(mode) {
+        currentMode = mode;
+        document.getElementById('btnUri').classList.toggle('active', mode === 'uri');
+        document.getElementById('btnInline').classList.toggle('active', mode === 'inline');
+        updateSim();
+      }
+
+      function applyPreset() {
+        const val = document.getElementById('presetSelect').value;
+        const p = PRESETS[val];
+        document.getElementById('modalitySelect').value = p.modality;
+        document.getElementById('stepPromptText').textContent = '"' + p.prompt + '"';
+        updateSim();
+      }
+
+      function updateSim() {
+        const presetKey = document.getElementById('presetSelect').value;
+        const p = PRESETS[presetKey];
+        const sizeWeight = document.getElementById('fileSizeInput').value;
+        
+        let mbSize = sizeWeight === 'small' ? 1.2 : (sizeWeight === 'medium' ? 14.5 : 48.0);
+
+        if (currentMode === 'uri') {
+          document.getElementById('metricPayload').textContent = '148 B';
+          document.getElementById('metricLatency').textContent = '< 5ms';
+          document.getElementById('metricTokens').textContent = '~120';
+        } else {
+          const b64Size = Math.round(mbSize * 1.33 * 10) / 10;
+          document.getElementById('metricPayload').textContent = b64Size + ' MB';
+          document.getElementById('metricLatency').textContent = Math.round(mbSize * 14) + 'ms';
+          document.getElementById('metricTokens').textContent = '+' + Math.round(mbSize * 250);
+        }
+
+        document.getElementById('metricCapability').textContent = p.fidelity;
+
+        // Render tool return snippet
+        let toolReturn;
+        if (currentMode === 'uri') {
+          const extra = p.processing ? ',\n          "processing": "' + p.processing + '"' : '';
+          toolReturn = `{\n  "type": "function_result",\n  "name": "${p.callName}",\n  "call_id": "call_audit_891b",\n  "result": [\n    {\n      "type": "document",\n      "uri": "files/gp_upload_${Math.random().toString(36).substring(7)}",\n      "mime_type": "${p.mime}"${extra}\n    }\n  ]\n}`;
+        } else {
+          toolReturn = `{\n  "type": "function_result",\n  "name": "${p.callName}",\n  "call_id": "call_audit_891b",\n  "result": [\n    {\n      "type": "document",\n      "mime_type": "${p.mime}",\n      "data": "JVBERi0xLjQKJcTl8uXr... [${Math.round(mbSize * 1.33)}MB base64 data truncated]"\n    }\n  ]\n}`;
+        }
+        document.getElementById('stepResultCode').textContent = toolReturn;
+        renderCodeSnippets(p);
+      }
+
+      function runSimulation() {
+        const p = PRESETS[document.getElementById('presetSelect').value];
+        const badge = document.getElementById('execBadge');
+        badge.textContent = 'Simulating...';
+        badge.style.color = '#38bdf8';
+
+        setTimeout(() => {
+          badge.textContent = '200 OK Complete';
+          badge.style.color = '#34d399';
+          document.getElementById('stepModelOutput').innerHTML = `<strong>Gemini 4 Argon Synthesis:</strong> ${p.analysis}`;
+        }, 350);
+      }
+
+      function selectTab(tab) {
+        currentTab = tab;
+        document.getElementById('tabPy').classList.toggle('active', tab === 'py');
+        document.getElementById('tabTs').classList.toggle('active', tab === 'ts');
+        document.getElementById('tabCurl').classList.toggle('active', tab === 'curl');
+        renderCodeSnippets(PRESETS[document.getElementById('presetSelect').value]);
+      }
+
+      function renderCodeSnippets(p) {
+        const box = document.getElementById('codeExportBox');
+        if (currentTab === 'py') {
+          box.textContent = `# Verified Google GenAI Python SDK (google-genai v2.34+)
+from google import genai
+
+client = genai.Client()
+
+# 1. Upload asset to Files API for zero-payload tool return
+file_ref = client.files.upload(
+    file="${p.fileName}",
+    config={"mime_type": "${p.mime}"}
+)
+
+# 2. Return Files API URI in Interactions API function_result
+interaction = client.interactions.create(
+    model="gemini-4-argon",
+    previous_interaction_id="inter_prev_102",
+    input=[
+        {
+            "type": "function_result",
+            "name": "${p.callName}",
+            "call_id": "call_audit_891b",
+            "result": [
+                {
+                    "type": "document",
+                    "uri": file_ref.uri,
+                    "mime_type": "${p.mime}"${p.processing ? ',\n                    "processing": "' + p.processing + '"' : ''}
+                }
+            ]
+        }
+    ]
+)
+print(interaction.output_text)`;
+        } else if (currentTab === 'ts') {
+          box.textContent = `// Verified Google GenAI TypeScript SDK (@google/genai v2.32+)
+import { GoogleGenAI } from "@google/genai";
+
+const client = new GoogleGenAI({});
+
+// Return Files API URI via Interactions API
+const finalTurn = await client.interactions.create({
+  model: "gemini-4-argon",
+  previous_interaction_id: "inter_prev_102",
+  input: [
+    {
+      type: "function_result",
+      name: "${p.callName}",
+      call_id: "call_audit_891b",
+      result: [
+        {
+          type: "document",
+          uri: "files/upload_ref_id",
+          mime_type: "${p.mime}"${p.processing ? ',\n          processing: "' + p.processing + '"' : ''}
+        }
+      ]
+    }
+  ]
+});
+console.log(finalTurn.output_text);`;
+        } else {
+          box.textContent = `curl -X POST "https://generativelanguage.googleapis.com/v1beta/interactions" \\
+  -H "x-goog-api-key: $GEMINI_API_KEY" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "model": "gemini-4-argon",
+    "previous_interaction_id": "inter_prev_102",
+    "input": [
+      {
+        "type": "function_result",
+        "name": "${p.callName}",
+        "call_id": "call_audit_891b",
+        "result": [
+          {
+            "type": "document",
+            "uri": "files/upload_ref_id",
+            "mime_type": "${p.mime}"
+          }
+        ]
+      }
+    ]
+  }'`;
+        }
+      }
+
+      function copyCode() {
+        const text = document.getElementById('codeExportBox').textContent;
+        navigator.clipboard.writeText(text).then(() => {
+          const btn = document.querySelector('.btn-copy');
+          btn.textContent = 'Copied!';
+          setTimeout(() => btn.textContent = 'Copy Code', 1500);
+        });
+      }
+
+      // Initial run
+      updateSim();
+    </script>
+  </body>
+</html>
