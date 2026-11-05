@@ -5,6 +5,25 @@
 
 export const PULSE_INTELLIGENCE_FEED = [
   {
+    id: 'pulse-gemini-omni-1-2-flash-ga',
+    title: 'Google Announces General Availability of Gemini Omni 1.2 Flash: 30% Price Cut ($0.07/sec), 15s Video Length & Conversational Editing',
+    tldr: 'Released November 5, 2026: Google Cloud Sr. Product Manager John Nack announces GA for Gemini Omni 1.2 Flash (`gemini-omni-1.2-flash`)—cutting 720p video pricing by 30% down to $0.07/s, expanding maximum clips to 15 seconds, and unlocking conversational multi-turn video editing and draft-to-4K upscaling.',
+    summary:
+      'Google Cloud elevates generative video into high-volume commercial production with the General Availability of Gemini Omni 1.2 Flash (`gemini-omni-1.2-flash`). Key architectural upgrades include: (1) A 30% price reduction to $0.07 per second of 720p video, (2) Extended clip generation up to 15 seconds (in 1-second increments from 3s to 15s), enabling full Connected TV (CTV) ads and complete 360-degree e-commerce turntable spins in a single prompt, (3) Conversational multi-turn video editing via the Interactions API (`previous_interaction_id`) to alter backgrounds, lighting, and camera orbits while strictly preserving hero products and character facial geometry, (4) Rapid draft-to-4K workflows (draft at 360p/720p, upscale to 1080p/4K), and (5) Fluid natural dialogue with multi-speaker lip-synchrony and native SynthID watermarking. Validated by production deployments across Photoroom, QuickFrame AI, Artlist, Krea, Picsart, invideo, and Google Vids.',
+    category: 'SDK & API',
+    tag: 'Platform Milestone',
+    modelBadge: 'gemini-omni-1.2-flash (GA)',
+    impactScore: '10.0 / 10',
+    date: '2026-11-05T12:30:00Z',
+    sourceLabel: 'Google Cloud Blog: Gemini Omni 1.2 Flash GA',
+    sourceUrl: 'https://cloud.google.com/blog/products/ai-machine-learning/gemini-omni-1-2-flash-generally-available',
+    groundedBy: 'Google Cloud Official Release (Verified Nov 5, 2026)',
+    seriesUrl: '/series/gemini-omni-video/part-1-omni-1-2-flash-breakdown.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-omni-video-studio.html',
+    labLabel: 'Omni Lab [DEMO] →',
+  },
+  {
     id: 'pulse-gemini-multimodal-tools-opendocument',
     title: 'Google Releases Multimodal Function Responses & Files API URIs in Gemini API, Plus Expanded Office & ODF Ingestion',
     tldr: 'Released November 5, 2026: Google upgrades Gemini API & Interactions API function calling to accept audio, video, Office/OpenDocument files, and Files API URIs in tool returns—alongside native page-image rendering for legacy PPT, DOC, and ODP, and formula-preserving ODS spreadsheet ingestion.',
@@ -343,15 +362,15 @@ export const GEMINI_MODEL_MATRIX = [
     accentColor: 'from-emerald-400 to-blue-500',
   },
   {
-    id: 'gemini-omni-1.1-flash',
-    name: 'Gemini Omni 1.1 Flash',
-    apiString: 'gemini-omni-1.1-flash',
-    tier: 'Generative Video Studio',
+    id: 'gemini-omni-1.2-flash',
+    name: 'Gemini Omni 1.2 Flash (GA)',
+    apiString: 'gemini-omni-1.2-flash',
+    tier: 'Generative Video Studio (GA)',
     group: 'Live & Multimodal Media',
     contextWindow: 'Multimodal Frame & Prompt Context',
     modalities: 'Text, Images & Reference Video Clips → HD Video + Audio + SynthID',
-    bestFor: 'Text-to-video, image-to-video, multi-turn conversational video editing, and clip extension.',
-    highlightMetric: 'Multi-Turn Video Editing + SynthID',
+    bestFor: '15-second scenes, e-commerce catalog video, multi-turn conversational editing, and draft-to-4K upscaling.',
+    highlightMetric: '15s Clips • $0.07/s • Conversational Editing',
     accentColor: 'from-pink-500 to-amber-500',
   },
   {
@@ -704,11 +723,11 @@ print(interaction.output_text)`,
   },
   {
     id: 'lab-multimodal-media',
-    title: 'Omni 1.1 Video & Nano Banana 2.1 Visuals',
-    badge: 'Generative Media',
-    model: 'gemini-omni-1.1-flash',
+    title: 'Omni 1.2 Video & Nano Banana 2.1 Visuals',
+    badge: 'Generative Media (GA)',
+    model: 'gemini-omni-1.2-flash',
     description:
-      'Generate studio-grade visuals with multi-image reference fusion (`gemini-nano-banana-2.1`) and animate keyframe transitions into coherent video (`gemini-omni-1.1-flash`).',
+      'Generate studio-grade visuals with multi-image reference fusion (`gemini-nano-banana-2.1`) and animate keyframe transitions into coherent 15s video (`gemini-omni-1.2-flash`).',
     prompt: 'Create a 16:9 cinematic product reveal of a glassmorphic AI telemetry console with subtle blue-violet light refraction.',
     tsCode: `import { GoogleGenAI } from "@google/genai";
 
@@ -721,13 +740,14 @@ const imageTurn = await client.interactions.create({
   response_modalities: ["image", "text"],
 });
 
-// 2. Animate into video with Gemini Omni 1.1 Flash
+// 2. Animate into 15s video with Gemini Omni 1.2 Flash GA ($0.07/s)
 const videoTurn = await client.interactions.create({
-  model: "gemini-omni-1.1-flash",
+  model: "gemini-omni-1.2-flash",
   input: [
     { type: "image", data: imageTurn.output_image.data, mime_type: imageTurn.output_image.mime_type },
     { type: "text", text: "Slow orbital camera dolly in as holographic token telemetry graphs illuminate." }
   ],
+  generationConfig: { videoDurationSeconds: 15, resolution: "720p" }
 });`,
     pyCode: `from google import genai
 
@@ -740,25 +760,26 @@ image_turn = client.interactions.create(
     response_modalities=["image", "text"],
 )
 
-# 2. Animate into video with Gemini Omni 1.1 Flash
+# 2. Animate into 15s video with Gemini Omni 1.2 Flash GA ($0.07/s)
 video_turn = client.interactions.create(
-    model="gemini-omni-1.1-flash",
+    model="gemini-omni-1.2-flash",
     input=[
         {"type": "image", "data": image_turn.output_image.data, "mime_type": image_turn.output_image.mime_type},
         {"type": "text", "text": "Slow orbital camera dolly in as holographic token telemetry graphs illuminate."},
     ],
+    config={"duration_seconds": 15, "resolution": "720p"},
 )`,
     simulatedSteps: [
       {
         type: 'thought',
         label: 'step[0] • thought (multimodal pipeline)',
-        detail: 'Synthesizing 16:9 keyframe via gemini-nano-banana-2.1, then conditioning gemini-omni-1.1-flash for smooth camera trajectory and ambient soundscape.',
+        detail: 'Synthesizing 16:9 keyframe via gemini-nano-banana-2.1, then conditioning gemini-omni-1.2-flash for smooth camera trajectory and ambient soundscape.',
       },
       {
         type: 'model_output',
         label: 'step[1] • model_output (output_image + video stream)',
         detail:
-          'Generated 1920x1080 reference keyframe (`image/png`) + 10-second 60fps MP4 sequence (`video/mp4`) with synchronized spatial synth audio.',
+          'Generated 1920x1080 reference keyframe (`image/png`) + 15-second 60fps MP4 sequence (`video/mp4`) with synchronized spatial synth audio and SynthID watermark.',
       },
     ],
   },

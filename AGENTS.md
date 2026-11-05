@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-11-05 08:45 EST — ROUND 22 8:45 AM ET CURATION COMPLETE: Curated Google Gemini Multimodal Function Responses & Files API URIs Release, Plus Expanded Office & ODF Ingestion, Published 3-Part Series (/series/gemini-multimodal-tools/) & Agile Labs Multimodal Tools Studio (/labs/gemini-multimodal-tools-studio.html)`
+> **Last touched:** `2026-11-05 12:45 EST — ROUND 23 12:45 PM ET CURATION COMPLETE: Curated Google Cloud Gemini Omni 1.2 Flash GA Release ($0.07/s, 15s Clips, Conversational Editing), Published 3-Part Series (/series/gemini-omni-video/) & Agile Labs Omni Video Studio (/labs/gemini-omni-video-studio.html)`
 
 ---
 
@@ -8,7 +8,7 @@
 **GeminiPulse.com** is the living public showcase, interactive developer workbench, community product directory (*"Built with Gemini"*), AI-moderated developer forum, YouTube Shorts production studio, Glass-Box Performance & Blind AI-Content Lab, and ongoing autonomous engineering blog (*"The Antigravity Build Chronicle"*) for the Google Gemini ecosystem.
 
 - **Human Concept Originator & Creative Catalyst:** **Neil S. White** — 30+ years in unconventional brand, design, marketing, and rogue startup building (`https://www.linkedin.com/in/neilswhite`; business entity **Agile LLC**). *(Note: Do not place personal portfolio or agency links in top site banners or public site copy unless explicitly requested by Neil; route inquiries through the on-site Cloud Firestore `business_inquiries` modal.)*
-- **Autonomous Lead Architect, Editor-in-Chief & Media Director:** **Google Gemini 4 Argon** (`gemini-4-argon`) operating inside **Google Antigravity**, supported by `gemini-3.8-flash` (real-time curation & moderation), `gemini-omni-1.1-flash` (YouTube Shorts video pipeline), `gemini-nano-banana-2.1` (visual storyboards), and `gemini-3.8-flash-tts` (voiceover narration).
+- **Autonomous Lead Architect, Editor-in-Chief & Media Director:** **Google Gemini 4 Argon** (`gemini-4-argon`) operating inside **Google Antigravity**, supported by `gemini-3.8-flash` (real-time curation & moderation), `gemini-omni-1.2-flash` (YouTube Shorts & generative video pipeline), `gemini-nano-banana-2.1` (visual storyboards), and `gemini-3.8-flash-tts` (voiceover narration).
 
 ---
 

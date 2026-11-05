@@ -1,11 +1,11 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-11-05 08:45 EST (ROUND 22 8:45 AM ET CURATION COMPLETE: Curated Google Gemini Multimodal Function Responses & Files API URIs Release, Plus Expanded Office & ODF Ingestion, Published 3-Part Series (/series/gemini-multimodal-tools/) & Agile Labs Multimodal Tools Studio (/labs/gemini-multimodal-tools-studio.html))`
+- **Last Updated:** `2026-11-05 12:45 EST (ROUND 23 12:45 PM ET CURATION COMPLETE: Curated Google Cloud Gemini Omni 1.2 Flash GA Release ($0.07/s, 15s Clips, Conversational Editing), Published 3-Part Series (/series/gemini-omni-video/) & Agile Labs Omni Video Studio (/labs/gemini-omni-video-studio.html))`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
 - **Firebase Default Hosting URL:** `https://geminipulse-com.web.app`
-- **Local Dev Preview URL:** `http://localhost:8080` *(Look J v10 Latest Lead + ⌘K Search: `http://localhost:8080/prototypes/look-j-3d-celestial-navigator.html` · Multimodal Tools Studio: `http://localhost:8080/labs/gemini-multimodal-tools-studio.html` · Live Vision Studio: `http://localhost:8080/labs/gemini-live-vision-studio.html` · Voice Remixing Studio: `http://localhost:8080/labs/gemini-voice-remixing-studio.html` · Everyday Workspace Sanctuary: `http://localhost:8080/series/everyday-gemini/workspace-no-code-guides.html` · Flagship Open Letter Sanctuary: `http://localhost:8080/series/google-preview-observatory/open-letter-to-google-deepmind.html` · Brand Kit: `http://localhost:8080/brand/`)*
+- **Local Dev Preview URL:** `http://localhost:8080` *(Look J v10 Latest Lead + ⌘K Search: `http://localhost:8080/prototypes/look-j-3d-celestial-navigator.html` · Omni 1.2 Video Studio: `http://localhost:8080/labs/gemini-omni-video-studio.html` · Multimodal Tools Studio: `http://localhost:8080/labs/gemini-multimodal-tools-studio.html` · Live Vision Studio: `http://localhost:8080/labs/gemini-live-vision-studio.html` · Voice Remixing Studio: `http://localhost:8080/labs/gemini-voice-remixing-studio.html` · Everyday Workspace Sanctuary: `http://localhost:8080/series/everyday-gemini/workspace-no-code-guides.html` · Flagship Open Letter Sanctuary: `http://localhost:8080/series/google-preview-observatory/open-letter-to-google-deepmind.html` · Brand Kit: `http://localhost:8080/brand/`)*
 - **Firebase Project ID:** `geminipulse-com` (Project Number `643794480842`, Spark Free Plan — **$0.00/mo**)
 - **Firebase Web App ID:** `1:643794480842:web:9f973bc1a0d7670c920e33` (`GeminiPulse Web`)
 - **Concept Originator & Creative Catalyst:** Neil S. White (`https://www.linkedin.com/in/neilswhite`, **Agile LLC**)
@@ -13,7 +13,20 @@
 
 ---
 
-## 0. Completed & Live on `v2.0` (2026-11-05 08:45 AM ET — Round 22 8:45 AM Curation Check)
+## 0. Completed & Live on `v2.0` (2026-11-05 12:45 PM ET — Round 23 12:45 PM Curation Check)
+
+- **Curated Google Cloud Gemini Omni 1.2 Flash General Availability (GA):**
+  - **Ecosystem Intelligence Entry (`PULSE_INTELLIGENCE_FEED` & `GEMINI_MODELS`):** Added `pulse-gemini-omni-1-2-flash-ga` citing `https://cloud.google.com/blog/products/ai-machine-learning/gemini-omni-1-2-flash-generally-available` (authored by John Nack, Sr. Product Manager, Google Cloud). Promoted `gemini-omni-1.2-flash` to GA with 30% price reduction ($0.07/sec 720p), 15-second scenes, conversational multi-turn editing via Interactions API (`previous_interaction_id`), draft-to-4K upscale pipelines, and SynthID watermarking.
+  - **3-Part Standalone Deep Dive Series (`/series/gemini-omni-video/`):**
+    1. `part-1-omni-1-2-flash-breakdown.html`: What Changed vs Omni 1.1 Flash (pricing, 15s clips, conversational chat editing, strict reference consistency, multi-speaker lip-sync).
+    2. `part-2-how-it-affects-builders-and-sdk-patterns.html`: How It Affects Builders (Two-Phase Draft-to-Upscale Loop, stateful Interactions API loops in TypeScript `@google/genai` v2.32+ and Python `google-genai` v2.34+).
+    3. `part-3-concrete-business-and-creator-use-cases.html`: 4 production blueprints across e-commerce catalog animation (Photoroom), single-shot CTV ad campaigns (QuickFrame AI), conversational B-roll post-production (Artlist/Runway/Krea), and Google Vids document-to-video synthesis.
+  - **Agile Labs Interactive Simulator (`/labs/gemini-omni-video-studio.html` [SIMULATED DEMO]):** Interactive studio modeling 3s–15s generation, multi-turn conversational modifications, batch catalog economics calculator (1,000 SKUs savings: $450 vs Omni 1.1, $2.49M vs traditional agency), and dynamic TypeScript/Python code exporter.
+  - **Search & RSS Grounding:** Added 4 new URLs to `sitemap.xml` (now 49 clean URLs) and published new `<entry>` to `feed.xml`.
+
+---
+
+## 0b. Completed & Live on `v2.0` (2026-11-05 08:45 AM ET — Round 22 8:45 AM Curation Check)
 
 - **Curated Google Gemini Multimodal Function Responses & Expanded Office / OpenDocument Ingestion:**
   - **Ecosystem Intelligence Entry (`PULSE_INTELLIGENCE_FEED`):** Added `pulse-gemini-multimodal-tools-opendocument` citing `https://ai.google.dev/gemini-api/docs/changelog#11-05-2026`. Detailed multimodal tool returns across GenerateContent & Interactions APIs (audio, video, Office/ODF, PDFs, images), Files API URI delegation (`fileData`), page-image rasterization for legacy PPT/DOC/ODP, and formula-preserving ODS spreadsheet ingestion.

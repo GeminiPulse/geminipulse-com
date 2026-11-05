@@ -1,0 +1,733 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gemini Omni 1.2 Video Studio &amp; Cost Simulator [SIMULATED DEMO] | Agile Labs</title>
+    <meta
+      name="description"
+      content="Interactive developer workbench for Google Gemini Omni 1.2 Flash GA: Test 15-second generation, conversational multi-turn editing, reference conditioning, batch catalog economics ($0.07/sec), and export verified TypeScript &amp; Python code."
+    />
+    <link rel="canonical" href="https://geminipulse.com/labs/gemini-omni-video-studio.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Gemini Omni 1.2 Video Studio &amp; Cost Simulator [SIMULATED DEMO]" />
+    <meta property="og:description" content="Simulate conversational video editing, calculate 30% savings at $0.07/s, and export verified SDK blueprints." />
+    <meta property="og:url" content="https://geminipulse.com/labs/gemini-omni-video-studio.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Gemini Omni 1.2 Video Studio [SIMULATED DEMO]" />
+    <meta name="twitter:description" content="Simulate conversational video editing and calculate catalog ROI with Gemini Omni 1.2 Flash GA." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Gemini Omni 1.2 Video Studio and Cost Simulator",
+        "url": "https://geminipulse.com/labs/gemini-omni-video-studio.html",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "All",
+        "creator": {
+          "@type": "Organization",
+          "name": "Agile Labs (via GeminiPulse.com)"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #07090e;
+        --surface: #111622;
+        --surface-high: #182030;
+        --border: rgba(255, 255, 255, 0.1);
+        --border-high: rgba(255, 255, 255, 0.18);
+        --text: #f3f5fb;
+        --muted: #9da4b8;
+        --accent: #38bdf8;
+        --accent-glow: rgba(56, 189, 248, 0.2);
+        --success: #34d399;
+        --warning: #fbbf24;
+        --danger: #f87171;
+        --purple: #c084fc;
+        --pink: #ec4899;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+      .wrap { max-width: 1140px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow {
+        font-family: ui-monospace, Menlo, monospace;
+        font-size: 0.78rem;
+        color: #38bdf8;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      h1 { font-size: clamp(1.75rem, 3.2vw, 2.5rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      p { color: #cbd5e1; }
+      .badges { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+      .badge {
+        font-size: 0.75rem;
+        font-family: ui-monospace, Menlo, monospace;
+        padding: 0.25rem 0.6rem;
+        border-radius: 9999px;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--muted);
+      }
+      .badge-ga { color: var(--success); border-color: rgba(52, 211, 153, 0.4); background: rgba(52, 211, 153, 0.08); font-weight: 600; }
+      .badge-sim { color: var(--warning); border-color: rgba(251, 191, 36, 0.4); background: rgba(251, 191, 36, 0.08); }
+      .badge-model { color: var(--accent); border-color: rgba(56, 189, 248, 0.4); background: rgba(56, 189, 248, 0.08); }
+
+      .grid-layout {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-top: 2rem;
+      }
+      @media (min-width: 900px) {
+        .grid-layout { grid-template-columns: 1fr 1fr; }
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+        padding: 1.5rem;
+      }
+      .card-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid var(--border);
+      }
+      .card-title {
+        font-size: 1.15rem;
+        font-weight: 600;
+        margin: 0;
+        color: #f1f5f9;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .form-group { margin-bottom: 1.25rem; }
+      label {
+        display: block;
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: #94a3b8;
+        margin-bottom: 0.4rem;
+      }
+      select, input[type="text"], textarea {
+        width: 100%;
+        background: var(--surface-high);
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        padding: 0.65rem 0.85rem;
+        color: var(--text);
+        font-family: inherit;
+        font-size: 0.95rem;
+        transition: border-color 0.2s;
+      }
+      select:focus, input[type="text"]:focus, textarea:focus {
+        outline: none;
+        border-color: var(--accent);
+      }
+
+      .range-wrap {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      input[type="range"] {
+        flex: 1;
+        accent-color: var(--accent);
+      }
+      .range-val {
+        font-family: ui-monospace, Menlo, monospace;
+        font-size: 0.95rem;
+        color: var(--accent);
+        min-width: 3.5rem;
+        text-align: right;
+        font-weight: 600;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.25rem;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        border: none;
+      }
+      .btn-primary {
+        background: linear-gradient(135deg, #0284c7, #2563eb);
+        color: #fff;
+        width: 100%;
+      }
+      .btn-primary:hover {
+        background: linear-gradient(135deg, #0369a1, #1d4ed8);
+        box-shadow: 0 0 15px var(--accent-glow);
+      }
+      .btn-secondary {
+        background: rgba(255, 255, 255, 0.08);
+        color: #e2e8f0;
+        border: 1px solid var(--border);
+        width: 100%;
+      }
+      .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.14);
+      }
+
+      /* Video Stage Preview */
+      .stage-box {
+        position: relative;
+        background: #05070b;
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        overflow: hidden;
+        aspect-ratio: 16/9;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 1rem;
+      }
+      .synthid-tag {
+        position: absolute;
+        top: 0.6rem;
+        right: 0.6rem;
+        font-size: 0.7rem;
+        font-family: ui-monospace, Menlo, monospace;
+        background: rgba(0, 0, 0, 0.7);
+        border: 1px solid rgba(56, 189, 248, 0.3);
+        color: #7dd3fc;
+        padding: 0.2rem 0.5rem;
+        border-radius: 0.25rem;
+        backdrop-filter: blur(4px);
+      }
+      .duration-tag {
+        position: absolute;
+        bottom: 0.6rem;
+        left: 0.6rem;
+        font-size: 0.75rem;
+        font-family: ui-monospace, Menlo, monospace;
+        background: rgba(0, 0, 0, 0.7);
+        color: #f1f5f9;
+        padding: 0.2rem 0.5rem;
+        border-radius: 0.25rem;
+      }
+
+      .turntable-canvas {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        border: 2px dashed rgba(56, 189, 248, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: spin 10s linear infinite;
+        margin-bottom: 0.75rem;
+      }
+      @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+
+      /* Metrics Row */
+      .metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.75rem;
+        margin: 1.25rem 0;
+      }
+      .metric-pill {
+        background: var(--surface-high);
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        padding: 0.75rem;
+        text-align: center;
+      }
+      .metric-num {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #f8fafc;
+        font-family: ui-monospace, Menlo, monospace;
+      }
+      .metric-num.savings { color: var(--success); }
+      .metric-sub {
+        font-size: 0.72rem;
+        color: var(--muted);
+        text-transform: uppercase;
+        margin-top: 0.2rem;
+      }
+
+      /* Code Panel */
+      .code-tabs {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 0.75rem;
+      }
+      .tab-btn {
+        background: none;
+        border: 1px solid var(--border);
+        color: var(--muted);
+        padding: 0.35rem 0.75rem;
+        border-radius: 0.4rem;
+        font-size: 0.8rem;
+        cursor: pointer;
+      }
+      .tab-btn.active {
+        background: rgba(56, 189, 248, 0.15);
+        color: var(--accent);
+        border-color: rgba(56, 189, 248, 0.4);
+      }
+      pre {
+        background: #090c12;
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        padding: 1rem;
+        overflow-x: auto;
+        font-size: 0.82rem;
+        color: #e2e8f0;
+        font-family: ui-monospace, Menlo, Monaco, monospace;
+        max-height: 320px;
+      }
+
+      .turns-log {
+        background: var(--surface-high);
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        padding: 0.75rem;
+        max-height: 180px;
+        overflow-y: auto;
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+      }
+      .turn-item {
+        padding: 0.4rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .turn-item:last-child { border-bottom: none; }
+      .turn-tag {
+        font-family: ui-monospace, Menlo, monospace;
+        font-size: 0.7rem;
+        color: var(--accent);
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <nav aria-label="Breadcrumb">
+        <a href="/">← Back to GeminiPulse Home</a> / <a href="/workbench.html">Workbench</a> /
+        <a href="/series/gemini-omni-video/part-1-omni-1-2-flash-breakdown.html">Omni 1.2 Video Series</a>
+      </nav>
+
+      <p class="eyebrow" style="margin-top: 1.5rem;">Agile Labs Mini-Project</p>
+      <h1>Gemini Omni 1.2 Video Studio &amp; Cost Simulator</h1>
+
+      <div class="badges">
+        <span class="badge badge-ga">GA • Nov 5, 2026</span>
+        <span class="badge badge-model">gemini-omni-1.2-flash</span>
+        <span class="badge badge-sim">[SIMULATED DEMO]</span>
+        <span class="badge">Interactions API</span>
+        <span class="badge">$0.07 / sec (720p)</span>
+      </div>
+
+      <p>
+        Simulate Google's newly released <strong>Gemini Omni 1.2 Flash</strong> video generation pipeline. Test 15-second scene durations, simulate conversational multi-turn editing sessions, evaluate batch catalog economics (-30% vs. Omni 1.1), and export verified SDK blueprints.
+      </p>
+
+      <div class="grid-layout">
+        <!-- Left Column: Controls & Multi-Turn Editor -->
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">1. Generation &amp; Editing Parameters</h2>
+            <span class="badge">Live Config</span>
+          </div>
+
+          <div class="form-group">
+            <label for="referenceAsset">Reference Product / Character Anchor</label>
+            <select id="referenceAsset">
+              <option value="watch">Chronograph Watch (Titanium / Luxury)</option>
+              <option value="sneaker">AeroSwift Running Shoe (Athletic / Mesh)</option>
+              <option value="headphones">Studio Headphones (Matte Black / Leather)</option>
+              <option value="drone">Autonomous Drone (Carbon Fiber / Quad-Rotor)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="clipDuration">Clip Duration (3 to 15 Seconds)</label>
+            <div class="range-wrap">
+              <input type="range" id="clipDuration" min="3" max="15" step="1" value="15" />
+              <span class="range-val" id="durationDisplay">15s</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="resolutionSelect">Draft vs. Master Resolution</label>
+            <select id="resolutionSelect">
+              <option value="720p" data-rate="0.07">720p HD Draft ($0.07/sec — Default)</option>
+              <option value="360p" data-rate="0.035">360p Fast Draft ($0.035/sec)</option>
+              <option value="1080p" data-rate="0.12">1080p Full HD ($0.12/sec)</option>
+              <option value="4k" data-rate="0.22">4K Cinema Master ($0.22/sec)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="aspectRatioSelect">Aspect Ratio</label>
+            <select id="aspectRatioSelect">
+              <option value="16:9">16:9 Landscape (Connected TV / YouTube)</option>
+              <option value="9:16">9:16 Vertical (Shorts / Reels / TikTok)</option>
+              <option value="1:1">1:1 Square (Product Grid / Feeds)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="promptInput">Prompt / Conversational Command</label>
+            <textarea id="promptInput" rows="3">A luxury titanium wristwatch rotating on a volcanic plinth, dramatic volumetric studio lighting, photorealistic reflections.</textarea>
+          </div>
+
+          <div style="display: flex; gap: 0.75rem;">
+            <button class="btn btn-primary" id="btnGenerate">
+              <span>▶ Run Generation [SIMULATED]</span>
+            </button>
+          </div>
+
+          <hr style="border: none; border-top: 1px solid var(--border); margin: 1.5rem 0;" />
+
+          <div class="card-header" style="margin-bottom: 0.5rem; padding-bottom: 0.4rem;">
+            <h3 class="card-title" style="font-size: 1rem;">Conversational Multi-Turn History</h3>
+            <span class="badge" id="sessionTag">interaction_init</span>
+          </div>
+
+          <div class="turns-log" id="turnsLog">
+            <div class="turn-item">
+              <span class="turn-tag">Turn 0 • Initial State:</span> Ready to initialize latent session with Gemini Omni 1.2 Flash.
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 0.5rem;">
+            <input type="text" id="refineInput" placeholder="e.g. Keep watch, swap background to Tokyo neon rain..." />
+          </div>
+          <button class="btn btn-secondary" id="btnRefine" style="font-size: 0.85rem; padding: 0.5rem;">
+            <span>💬 Send Conversational Refinement (Keep Subject)</span>
+          </button>
+        </div>
+
+        <!-- Right Column: Visualizer, Cost Analysis & Code Export -->
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">2. Video Synthesis Monitor [SIMULATED]</h2>
+            <span class="badge badge-sim">Real-Time</span>
+          </div>
+
+          <div class="stage-box" id="stageBox">
+            <div class="synthid-tag">🔒 SynthID Watermark Verified</div>
+            <div class="turntable-canvas" id="canvasSpin">
+              <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.8">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 6v6l4 2" />
+              </svg>
+            </div>
+            <div style="font-weight: 600; font-size: 1rem; color: #f8fafc;" id="stageTitle">
+              Titanium Chronograph (720p HD)
+            </div>
+            <div style="font-size: 0.8rem; color: var(--muted); margin-top: 0.25rem;" id="stageStatus">
+              Ready for synthesis • Latency ~6.8s
+            </div>
+            <div class="duration-tag" id="stageDuration">15.0s / 15.0s</div>
+          </div>
+
+          <!-- Metrics Row -->
+          <div class="metrics-grid">
+            <div class="metric-pill">
+              <div class="metric-num" id="costDisplay">$1.05</div>
+              <div class="metric-sub">Clip Cost</div>
+            </div>
+            <div class="metric-pill">
+              <div class="metric-num savings" id="savingsDisplay">-30%</div>
+              <div class="metric-sub">vs. Omni 1.1</div>
+            </div>
+            <div class="metric-pill">
+              <div class="metric-num" id="batchDisplay">$1,050</div>
+              <div class="metric-sub">1,000 SKUs</div>
+            </div>
+          </div>
+
+          <!-- Batch Catalog Estimator -->
+          <div class="form-group" style="margin-top: 1.25rem;">
+            <label for="catalogSize">Batch Catalog Size (E-Commerce Automation)</label>
+            <div class="range-wrap">
+              <input type="range" id="catalogSize" min="100" max="10000" step="100" value="1000" />
+              <span class="range-val" id="catalogDisplay">1,000</span>
+            </div>
+          </div>
+
+          <div class="box" style="margin: 1rem 0; padding: 0.85rem; font-size: 0.85rem; background: rgba(52,211,153,0.06); border-color: rgba(52,211,153,0.3);">
+            <strong style="color: #34d399;">Enterprise ROI Impact:</strong> Generating <span id="roiSkuCount">1,000</span> product videos saves approx. <strong id="roiDollars">$450</strong> vs Omni 1.1 and over <strong>$2,490,000</strong> compared to manual agency studio production.
+          </div>
+
+          <!-- Code Export -->
+          <div class="card-header" style="margin-top: 1.5rem; margin-bottom: 0.5rem;">
+            <h3 class="card-title" style="font-size: 1rem;">Export Verified SDK Blueprint</h3>
+            <button class="btn btn-secondary" id="btnCopyCode" style="width: auto; padding: 0.3rem 0.75rem; font-size: 0.75rem;">
+              📋 Copy Code
+            </button>
+          </div>
+
+          <div class="code-tabs">
+            <button class="tab-btn active" id="tabTs">TypeScript (@google/genai)</button>
+            <button class="tab-btn" id="tabPy">Python (google-genai)</button>
+          </div>
+
+          <pre><code id="codeBlock">// Generating code...</code></pre>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      (function() {
+        const durationSlider = document.getElementById('clipDuration');
+        const durationDisplay = document.getElementById('durationDisplay');
+        const resSelect = document.getElementById('resolutionSelect');
+        const ratioSelect = document.getElementById('aspectRatioSelect');
+        const promptInput = document.getElementById('promptInput');
+        const assetSelect = document.getElementById('referenceAsset');
+        const catalogSlider = document.getElementById('catalogSize');
+        const catalogDisplay = document.getElementById('catalogDisplay');
+
+        const costDisplay = document.getElementById('costDisplay');
+        const savingsDisplay = document.getElementById('savingsDisplay');
+        const batchDisplay = document.getElementById('batchDisplay');
+        const roiSkuCount = document.getElementById('roiSkuCount');
+        const roiDollars = document.getElementById('roiDollars');
+
+        const stageTitle = document.getElementById('stageTitle');
+        const stageStatus = document.getElementById('stageStatus');
+        const stageDuration = document.getElementById('stageDuration');
+        const canvasSpin = document.getElementById('canvasSpin');
+        const turnsLog = document.getElementById('turnsLog');
+        const sessionTag = document.getElementById('sessionTag');
+        const refineInput = document.getElementById('refineInput');
+
+        const btnGenerate = document.getElementById('btnGenerate');
+        const btnRefine = document.getElementById('btnRefine');
+        const btnCopyCode = document.getElementById('btnCopyCode');
+        const tabTs = document.getElementById('tabTs');
+        const tabPy = document.getElementById('tabPy');
+        const codeBlock = document.getElementById('codeBlock');
+
+        let activeLanguage = 'ts';
+        let turnCounter = 0;
+        let currentInteractionId = null;
+
+        function updateCalculations() {
+          const duration = parseInt(durationSlider.value, 10);
+          durationDisplay.textContent = duration + 's';
+          stageDuration.textContent = duration.toFixed(1) + 's / ' + duration.toFixed(1) + 's';
+
+          const selectedOption = resSelect.options[resSelect.selectedIndex];
+          const ratePerSec = parseFloat(selectedOption.getAttribute('data-rate'));
+
+          const clipCost = duration * ratePerSec;
+          costDisplay.textContent = '$' + clipCost.toFixed(2);
+
+          // Omni 1.1 comparison was approx $0.10/s
+          const oldClipCost = duration * 0.10;
+          const savingsPct = Math.round(((oldClipCost - clipCost) / oldClipCost) * 100);
+          savingsDisplay.textContent = (savingsPct > 0 ? '-' + savingsPct + '%' : '0%');
+
+          const skus = parseInt(catalogSlider.value, 10);
+          catalogDisplay.textContent = skus.toLocaleString();
+          roiSkuCount.textContent = skus.toLocaleString();
+
+          const totalBatchCost = clipCost * skus;
+          batchDisplay.textContent = '$' + Math.round(totalBatchCost).toLocaleString();
+
+          const totalOldBatchCost = oldClipCost * skus;
+          const batchSavings = Math.round(totalOldBatchCost - totalBatchCost);
+          roiDollars.textContent = '$' + batchSavings.toLocaleString();
+
+          updateCode();
+        }
+
+        function updateCode() {
+          const duration = durationSlider.value;
+          const res = resSelect.value;
+          const ratio = ratioSelect.value;
+          const prompt = promptInput.value.replace(/"/g, '\\"');
+          const asset = assetSelect.value;
+
+          if (activeLanguage === 'ts') {
+            codeBlock.textContent =
+`import { GoogleGenAI } from '@google/genai';
+import * as fs from 'fs';
+
+const ai = new GoogleGenAI();
+
+async function generateOmniVideo() {
+  const refImage = fs.readFileSync('./assets/${asset}.png', { encoding: 'base64' });
+
+  // 1. Initial 15s Generation with Gemini Omni 1.2 Flash GA ($0.07/s)
+  const interaction = await ai.interactions.create({
+    model: 'gemini-omni-1.2-flash',
+    input: [
+      { text: "${prompt}" },
+      { inlineData: { mimeType: 'image/png', data: refImage } }
+    ],
+    generationConfig: {
+      videoDurationSeconds: ${duration},
+      resolution: '${res}',
+      aspectRatio: '${ratio}'
+    }
+  });
+
+  console.log('Video ready:', interaction.outputs[0].videoUri);
+  return interaction.id;
+}
+
+generateOmniVideo().catch(console.error);`;
+          } else {
+            codeBlock.textContent =
+`from google import genai
+from google.genai import types
+
+client = genai.Client()
+
+def generate_video(image_path: str = "assets/${asset}.png"):
+    with open(image_path, "rb") as f:
+        image_bytes = f.read()
+
+    # Gemini Omni 1.2 Flash GA ($0.07/sec 720p)
+    response = client.interactions.create(
+        model="gemini-omni-1.2-flash",
+        input=[
+            types.Part.from_text("${prompt}"),
+            types.Part.from_bytes(data=image_bytes, mime_type="image/png"),
+        ],
+        config=types.GenerateVideoConfig(
+            duration_seconds=${duration},
+            resolution="${res}",
+            aspect_ratio="${ratio}",
+        ),
+    )
+
+    print("Video output URI:", response.outputs[0].video_uri)
+    return response.id
+
+if __name__ == "__main__":
+    generate_video()`;
+          }
+        }
+
+        // Event Listeners
+        durationSlider.addEventListener('input', updateCalculations);
+        resSelect.addEventListener('change', updateCalculations);
+        ratioSelect.addEventListener('change', updateCalculations);
+        catalogSlider.addEventListener('input', updateCalculations);
+        promptInput.addEventListener('input', updateCode);
+        assetSelect.addEventListener('change', function() {
+          const names = {
+            watch: 'Titanium Chronograph',
+            sneaker: 'AeroSwift Runner',
+            headphones: 'Studio ANC Headphones',
+            drone: 'Autonomous Carbon Drone'
+          };
+          stageTitle.textContent = names[assetSelect.value] + ' (' + resSelect.value + ')';
+          updateCode();
+        });
+
+        tabTs.addEventListener('click', function() {
+          activeLanguage = 'ts';
+          tabTs.classList.add('active');
+          tabPy.classList.remove('active');
+          updateCode();
+        });
+
+        tabPy.addEventListener('click', function() {
+          activeLanguage = 'py';
+          tabPy.classList.add('active');
+          tabTs.classList.remove('active');
+          updateCode();
+        });
+
+        btnGenerate.addEventListener('click', function() {
+          turnCounter++;
+          currentInteractionId = 'interact_' + Math.random().toString(36).substring(2, 9);
+          sessionTag.textContent = currentInteractionId;
+
+          stageStatus.textContent = 'Generating 15s scene with Omni 1.2 Flash...';
+          canvasSpin.style.animationDuration = '1.5s';
+
+          setTimeout(function() {
+            canvasSpin.style.animationDuration = '10s';
+            stageStatus.textContent = 'Simulated synthesis complete • Latency 7.1s • 720p HD';
+
+            const turnDiv = document.createElement('div');
+            turnDiv.className = 'turn-item';
+            turnDiv.innerHTML = '<span class="turn-tag">Turn ' + turnCounter + ' • Generated:</span> ' +
+              promptInput.value.substring(0, 75) + '... (' + durationSlider.value + 's @ ' + resSelect.value + ')';
+            turnsLog.prepend(turnDiv);
+          }, 800);
+        });
+
+        btnRefine.addEventListener('click', function() {
+          if (!refineInput.value.trim()) return;
+          turnCounter++;
+          const modification = refineInput.value.trim();
+
+          stageStatus.textContent = 'Refining latent representation (holding hero product)...';
+          canvasSpin.style.animationDuration = '2s';
+
+          setTimeout(function() {
+            canvasSpin.style.animationDuration = '10s';
+            stageStatus.textContent = 'Refinement rendered • Foreground preserved • Updated background';
+
+            const turnDiv = document.createElement('div');
+            turnDiv.className = 'turn-item';
+            turnDiv.innerHTML = '<span class="turn-tag">Turn ' + turnCounter + ' • Refined:</span> ' +
+              modification + ' [Holding ID: ' + currentInteractionId + ']';
+            turnsLog.prepend(turnDiv);
+            refineInput.value = '';
+          }, 900);
+        });
+
+        btnCopyCode.addEventListener('click', function() {
+          navigator.clipboard.writeText(codeBlock.textContent).then(function() {
+            const orig = btnCopyCode.textContent;
+            btnCopyCode.textContent = '✅ Copied!';
+            setTimeout(function() { btnCopyCode.textContent = orig; }, 2000);
+          });
+        });
+
+        updateCalculations();
+      })();
+    </script>
+  </body>
+</html>

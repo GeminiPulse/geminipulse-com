@@ -13,6 +13,30 @@
     <priority>0.98</priority>
   </url>
   <url>
+    <loc>https://geminipulse.com/series/gemini-omni-video/part-1-omni-1-2-flash-breakdown.html</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/gemini-omni-video/part-2-how-it-affects-builders-and-sdk-patterns.html</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/gemini-omni-video/part-3-concrete-business-and-creator-use-cases.html</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/labs/gemini-omni-video-studio.html</loc>
+    <lastmod>2026-11-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
     <loc>https://geminipulse.com/series/gemini-multimodal-tools/part-1-multimodal-function-responses-and-file-uris.html</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>weekly</changefreq>

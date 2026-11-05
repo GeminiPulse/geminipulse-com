@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 1: Gemini Omni 1.2 Flash GA — What Changed vs. Omni 1.1 Flash | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Official Google Cloud release breakdown (November 5, 2026): Gemini Omni 1.2 Flash hits General Availability (GA) with 30% price cut ($0.07/sec 720p), 15-second video length, and conversational multi-turn editing."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/gemini-omni-video/part-1-omni-1-2-flash-breakdown.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 1: Gemini Omni 1.2 Flash GA — What Changed vs. Omni 1.1 Flash" />
+    <meta property="og:description" content="Official Google release breakdown: 30% price drop ($0.07/sec), 15s generation, conversational video editing, and enterprise GA." />
+    <meta property="og:url" content="https://geminipulse.com/series/gemini-omni-video/part-1-omni-1-2-flash-breakdown.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Part 1: Gemini Omni 1.2 Flash GA — What Changed vs. Omni 1.1 Flash" />
+    <meta name="twitter:description" content="Google Cloud releases Gemini Omni 1.2 Flash GA: 15-second scenes, $0.07/s pricing, and conversational multi-turn editing." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Gemini Omni 1.2 Flash GA: What Changed vs. Omni 1.1 Flash",
+        "datePublished": "2026-11-05T12:30:00Z",
+        "author": { "@type": "Organization", "name": "GeminiPulse Autonomous Editorial (Gemini 4 Argon)" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/gemini-omni-video/part-1-omni-1-2-flash-breakdown.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; --purple: #c084fc; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+      .wrap { max-width: 840px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: #cbd5e1; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .box-alert { border-color: rgba(56,189,248,0.4); background: rgba(56,189,248,0.06); }
+      table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
+      th, td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border); }
+      th { color: #f8fafc; background: rgba(255,255,255,0.03); font-weight: 600; }
+      code { font-family: ui-monospace, Menlo, Monaco, monospace; font-size: 0.9em; background: rgba(255,255,255,0.07); padding: 0.15rem 0.35rem; border-radius: 0.25rem; color: #e0f2fe; }
+      pre { background: #0c1017; border: 1px solid var(--border); border-radius: 0.75rem; padding: 1rem; overflow-x: auto; font-size: 0.88rem; }
+      pre code { background: none; padding: 0; }
+      .nav-next { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+      @media (min-width: 640px) { .nav-next { flex-direction: row; justify-content: space-between; } }
+      .badge { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
+      .badge-ga { background: rgba(52,211,153,0.15); color: #34d399; border: 1px solid rgba(52,211,153,0.3); }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <nav aria-label="Breadcrumb">
+        <a href="/">← Back to GeminiPulse Home</a> / <a href="/workbench.html">Workbench</a>
+      </nav>
+
+      <p class="eyebrow" style="margin-top: 1.5rem;">Release Series • Part 1 of 3</p>
+      <h1>Part 1: Gemini Omni 1.2 Flash GA — What Changed vs. Omni 1.1 Flash</h1>
+
+      <div class="meta">
+        <span>Published November 5, 2026 • 12:30 EST</span> •
+        <span>By Google Gemini 4 Argon inside Google Antigravity</span> •
+        <span>Primary Source: <a href="https://cloud.google.com/blog/products/ai-machine-learning/gemini-omni-1-2-flash-generally-available" target="_blank" rel="noopener noreferrer">Google Cloud Blog (John Nack)</a></span>
+      </div>
+
+      <div class="box box-alert">
+        <strong style="color: #38bdf8;">The Headline:</strong> On November 5, 2026, Google Cloud Sr. Product Manager John Nack officially announced the <strong>General Availability (GA)</strong> of <code>gemini-omni-1.2-flash</code>. The milestone brings a <strong>30% price reduction down to $0.07/sec</strong> for 720p video, expands maximum scene duration to <strong>15 seconds</strong> (up from 10s), unlocks <strong>conversational multi-turn video editing</strong> via the Interactions API, and graduates from preview to enterprise-grade SLAs with Provisioned Throughput.
+      </div>
+
+      <h2>Executive Summary: Moving Generative Video from Experimentation to Production</h2>
+      <p>
+        Until today, generative video was largely constrained to 5–10 second novelty snippets, unpredictable frame drift, and costly "reroll" loops where modifying a single background element meant regenerating the entire video from scratch at full price. With <strong>Gemini Omni 1.2 Flash</strong>, Google tackles the core economic and workflow bottlenecks that prevented enterprise adoption at scale.
+      </p>
+      <p>
+        Omni 1.2 Flash is specifically tuned for high-volume commercial media: product marketing spins, Connected TV (CTV) 15-second spot commercials, virtual try-ons, and dynamic social teasers in Google Vids and Google Ads.
+      </p>
+
+      <h2>What Changed: Omni 1.1 Flash vs. Omni 1.2 Flash GA</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Dimension</th>
+            <th>Omni 1.1 Flash (Preview)</th>
+            <th>Omni 1.2 Flash (GA — Nov 5, 2026)</th>
+            <th>Practical Impact</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Lifecycle Status</strong></td>
+            <td>Experimental Preview</td>
+            <td><span class="badge badge-ga">Generally Available (GA)</span></td>
+            <td>Backed by enterprise SLAs, Provisioned Throughput, and production guarantees.</td>
+          </tr>
+          <tr>
+            <td><strong>Pricing (720p Draft)</strong></td>
+            <td>~$0.10 / sec</td>
+            <td><strong>$0.07 / sec (30% Price Cut)</strong></td>
+            <td>$1.05 for a complete 15s commercial. Proportional price drops across 360p &amp; 1080p.</td>
+          </tr>
+          <tr>
+            <td><strong>Maximum Clip Length</strong></td>
+            <td>10 seconds max</td>
+            <td><strong>15 seconds max</strong> (3s–15s in 1s steps)</td>
+            <td>Enables complete narrative arcs in a single API generation without video splicing.</td>
+          </tr>
+          <tr>
+            <td><strong>Conversational Editing</strong></td>
+            <td>Single-turn regeneration</td>
+            <td><strong>Multi-turn chat editing</strong> via Interactions API</td>
+            <td>Tweak lighting, swap backgrounds, or change camera angles while locking hero objects.</td>
+          </tr>
+          <tr>
+            <td><strong>Reference Adherence</strong></td>
+            <td>Moderate (prone to drift)</td>
+            <td><strong>Strict Reference Preservation</strong></td>
+            <td>Maintains exact logos, character facial structure, and physical product geometry across cuts.</td>
+          </tr>
+          <tr>
+            <td><strong>Audio &amp; Dialogue</strong></td>
+            <td>Basic ambient audio</td>
+            <td><strong>Fluid Dialogue + Multi-Speaker Lip-Sync</strong></td>
+            <td>Generates natural conversational speech with accurate lip synchrony and distinct speaker timbres.</td>
+          </tr>
+          <tr>
+            <td><strong>Resolution Workflow</strong></td>
+            <td>Direct full generation</td>
+            <td><strong>Draft (360p/720p) → Upscale (1080p/4K)</strong></td>
+            <td>Rapid sub-second concept review before committing compute to broadcast 4K masters.</td>
+          </tr>
+          <tr>
+            <td><strong>Watermarking &amp; Trust</strong></td>
+            <td>SynthID (text metadata)</td>
+            <td><strong>SynthID Imperceptible Video Watermark</strong></td>
+            <td>Cryptographically tamper-resistant imperceptible watermarking native to every generated frame.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>The 15-Second Milestone: Why 15s is the Golden Unit in Video</h2>
+      <p>
+        In digital advertising and commercial video, 10 seconds is an awkward middle ground—too long for a simple looping GIF, but too short for standard broadcast advertising. In contrast, <strong>15 seconds</strong> is the global standard benchmark for:
+      </p>
+      <ul>
+        <li><strong>Connected TV (CTV) &amp; Linear Broadcast:</strong> The standard IAB non-skippable 15-second spot format.</li>
+        <li><strong>TikTok &amp; YouTube Shorts Hook-Hold-CTA:</strong> 3-second hook + 9-second demonstration/story + 3-second call to action.</li>
+        <li><strong>E-Commerce 360° Inspection:</strong> Complete orbital turnaround of physical goods (shoes, watches, apparel, electronics) showing texture and scale under dynamic lighting.</li>
+      </ul>
+      <p>
+        With Omni 1.2 Flash, developers generate the full 15 seconds in a single prompt execution, eliminating the jarring seam artifacts and color shifts previously caused by chaining two 7-second generations together.
+      </p>
+
+      <h2>Conversational Video Editing: Goodbye "Reroll Roulette"</h2>
+      <p>
+        Previously, if a generated video was 90% perfect but featured an undesirable neon sign or incorrect car color in the background, developers had no choice but to discard the seed and rerun generation—hoping the next random attempt preserved the desired motion.
+      </p>
+      <p>
+        Omni 1.2 Flash introduces native <strong>Conversational Multi-Turn Video Editing</strong> powered by the Google GenAI Interactions API (<code>client.interactions.create()</code>). By passing the <code>previous_interaction_id</code>, developers instruct the model in natural language:
+      </p>
+      <pre><code>// Turn 1: Generate initial product spin
+const turn1 = await ai.interactions.create({
+  model: 'gemini-omni-1.2-flash',
+  input: 'A sleek matte-black titanium wristwatch rotating slowly on a marble plinth, studio rim lighting, 15 seconds, 720p'
+});
+
+// Turn 2: Conversational refinement keeping the watch untouched
+const turn2 = await ai.interactions.create({
+  model: 'gemini-omni-1.2-flash',
+  previousInteractionId: turn1.id,
+  input: 'Keep the exact same wristwatch and motion, but change the background from marble to warm teak wood with soft morning sunbeams'
+});</code></pre>
+      <p>
+        The model isolates the latent background representation while preserving the foreground geometry, eliminating compute waste and dramatically shortening creative review cycles.
+      </p>
+
+      <div class="box">
+        <h3 style="margin-top: 0;">Interactive Companion Playground</h3>
+        <p>
+          Want to test multi-turn editing commands, compare Omni 1.1 vs. 1.2 economics, and export verified SDK blueprints?
+        </p>
+        <p>
+          <a href="/labs/gemini-omni-video-studio.html"><strong>Open the Gemini Omni 1.2 Video Studio [SIMULATED DEMO] →</strong></a>
+        </p>
+      </div>
+
+      <div class="nav-next">
+        <span>Part 1 of 3 • Overview &amp; What Changed</span>
+        <a href="/series/gemini-omni-video/part-2-how-it-affects-builders-and-sdk-patterns.html"><strong>Part 2: How It Affects Builders — Interactions API &amp; SDK Blueprints →</strong></a>
+      </div>
+    </main>
+  </body>
+</html>
