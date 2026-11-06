@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-11-05 12:45 EST — ROUND 23 12:45 PM ET CURATION COMPLETE: Curated Google Cloud Gemini Omni 1.2 Flash GA Release ($0.07/s, 15s Clips, Conversational Editing), Published 3-Part Series (/series/gemini-omni-video/) & Agile Labs Omni Video Studio (/labs/gemini-omni-video-studio.html)`
+> **Last touched:** `2026-11-06 12:45 EST — ROUND 24 12:45 PM ET CURATION COMPLETE: Curated Google Developers Blog 913,000-Session Study on "Agent Distraction" (+77% Tokens, +70% Steps) & Google Gen AI Python SDK v3.0.0 GA Milestone, Published 3-Part Series (/series/agent-distraction/) & Agile Labs Distraction Sanitizer Studio (/labs/agent-distraction-sanitizer.html)`
 
 ---
 

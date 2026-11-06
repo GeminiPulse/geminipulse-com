@@ -1,11 +1,11 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-11-05 12:45 EST (ROUND 23 12:45 PM ET CURATION COMPLETE: Curated Google Cloud Gemini Omni 1.2 Flash GA Release ($0.07/s, 15s Clips, Conversational Editing), Published 3-Part Series (/series/gemini-omni-video/) & Agile Labs Omni Video Studio (/labs/gemini-omni-video-studio.html))`
+- **Last Updated:** `2026-11-06 12:45 EST (ROUND 24 12:45 PM ET CURATION COMPLETE: Curated Google Developers Blog 913,000-Session Study on "Agent Distraction" (+77% Tokens, +70% Steps) & Google Gen AI Python SDK v3.0.0 GA Milestone, Published 3-Part Series (/series/agent-distraction/) & Agile Labs Distraction Sanitizer Studio (/labs/agent-distraction-sanitizer.html))`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
 - **Firebase Default Hosting URL:** `https://geminipulse-com.web.app`
-- **Local Dev Preview URL:** `http://localhost:8080` *(Look J v10 Latest Lead + ⌘K Search: `http://localhost:8080/prototypes/look-j-3d-celestial-navigator.html` · Omni 1.2 Video Studio: `http://localhost:8080/labs/gemini-omni-video-studio.html` · Multimodal Tools Studio: `http://localhost:8080/labs/gemini-multimodal-tools-studio.html` · Live Vision Studio: `http://localhost:8080/labs/gemini-live-vision-studio.html` · Voice Remixing Studio: `http://localhost:8080/labs/gemini-voice-remixing-studio.html` · Everyday Workspace Sanctuary: `http://localhost:8080/series/everyday-gemini/workspace-no-code-guides.html` · Flagship Open Letter Sanctuary: `http://localhost:8080/series/google-preview-observatory/open-letter-to-google-deepmind.html` · Brand Kit: `http://localhost:8080/brand/`)*
+- **Local Dev Preview URL:** `http://localhost:8080` *(Look J v10 Latest Lead + ⌘K Search: `http://localhost:8080/prototypes/look-j-3d-celestial-navigator.html` · Agent Distraction Sanitizer: `http://localhost:8080/labs/agent-distraction-sanitizer.html` · Omni 1.2 Video Studio: `http://localhost:8080/labs/gemini-omni-video-studio.html` · Multimodal Tools Studio: `http://localhost:8080/labs/gemini-multimodal-tools-studio.html` · Live Vision Studio: `http://localhost:8080/labs/gemini-live-vision-studio.html` · Voice Remixing Studio: `http://localhost:8080/labs/gemini-voice-remixing-studio.html` · Brand Kit: `http://localhost:8080/brand/`)*
 - **Firebase Project ID:** `geminipulse-com` (Project Number `643794480842`, Spark Free Plan — **$0.00/mo**)
 - **Firebase Web App ID:** `1:643794480842:web:9f973bc1a0d7670c920e33` (`GeminiPulse Web`)
 - **Concept Originator & Creative Catalyst:** Neil S. White (`https://www.linkedin.com/in/neilswhite`, **Agile LLC**)
@@ -13,7 +13,22 @@
 
 ---
 
-## 0. Completed & Live on `v2.0` (2026-11-05 12:45 PM ET — Round 23 12:45 PM Curation Check)
+## 0. Completed & Live on `v2.0` (2026-11-06 12:45 PM ET — Round 24 12:45 PM Curation Check)
+
+- **Curated Google Developers Blog 913,000-Session Study on "Agent Distraction":**
+  - **Ecosystem Intelligence Entry (`PULSE_INTELLIGENCE_FEED`):** Added `pulse-google-agent-distraction-study` citing `https://developers.googleblog.com/en/agent-distraction/`. Details empirical findings across 913,000+ real-world coding agent sessions: 13% of sessions exposed to inline TODO/FIXME comments, 83% unprompted agent detours, +70% steps, +77% tokens, +105% developer latency, 41% ghost hunting vs 57% scope creep, and the "Capability Paradox" (higher-reasoning frontier models fail more frequently due to proactive state reconciliation).
+  - **Curated Google Gen AI Python SDK (`google-genai`) v3.0.0 Milestone:**
+    - Added `pulse-python-genai-v3-release` citing `https://github.com/googleapis/python-genai/releases/tag/v3.0.0`. Details Gemini Developer API shift to `v1` default (stable GA), `httpx2` default client migration, AFC chat consolidation, and legacy API cleanup.
+  - **3-Part Standalone Deep Dive Series (`/series/agent-distraction/`):**
+    1. `part-1-agent-distraction-and-capability-paradox.html`: The 913,000-Session Study, Empirical Metrics & The Capability Paradox.
+    2. `part-2-how-it-affects-builders-and-context-hygiene.html`: Practical Impact on Builders, 3-Tier Defense Architecture (Ephemeral AST Preprocessing, Boundary System Rules, Pre-commit Linters).
+    3. `part-3-concrete-engineering-playbooks-and-antidotes.html`: Copy-paste AST sanitizers in Python and TypeScript, Antigravity rule configuration, CI dead-TODO gates, and the companion interactive lab.
+  - **Agile Labs Interactive Simulator (`/labs/agent-distraction-sanitizer.html` [SIMULATED DEMO]):** Interactive developer studio with preset codebases, risk gauge modeling the empirical formula and Capability Paradox, interactive ephemeral comment sanitization with comparative agent execution trace, team token/dollar ROI calculator, and one-click Antigravity rule and AST code export.
+  - **Search & RSS Grounding:** Added 4 new URLs to `sitemap.xml` (now 53 clean URLs), published new `<entry>` to `feed.xml`, and registered `showcase-agent-distraction-sanitizer` and `showcase-gemini-omni-video-studio` in `INITIAL_SHOWCASE_PROJECTS`.
+
+---
+
+## 0b. Completed & Live on `v2.0` (2026-11-05 12:45 PM ET — Round 23 12:45 PM Curation Check)
 
 - **Curated Google Cloud Gemini Omni 1.2 Flash General Availability (GA):**
   - **Ecosystem Intelligence Entry (`PULSE_INTELLIGENCE_FEED` & `GEMINI_MODELS`):** Added `pulse-gemini-omni-1-2-flash-ga` citing `https://cloud.google.com/blog/products/ai-machine-learning/gemini-omni-1-2-flash-generally-available` (authored by John Nack, Sr. Product Manager, Google Cloud). Promoted `gemini-omni-1.2-flash` to GA with 30% price reduction ($0.07/sec 720p), 15-second scenes, conversational multi-turn editing via Interactions API (`previous_interaction_id`), draft-to-4K upscale pipelines, and SynthID watermarking.

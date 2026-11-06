@@ -5,6 +5,44 @@
 
 export const PULSE_INTELLIGENCE_FEED = [
   {
+    id: 'pulse-google-agent-distraction-study',
+    title: 'Google Publishes Landmark 913,000-Session Study on "Agent Distraction": How Inline Comments Sidetrack Coding Agents (+77% Tokens, +70% Steps)',
+    tldr: 'Published November 6, 2026: Google Developers Blog analyzes over 913,000 autonomous coding agent sessions—revealing that 13% encounter legacy inline `TODO(b/...)` and `FIXME` comments, triggering unprompted detours in 83% of cases, inflating tokens by 77%, steps by 70%, and wait time by 105%. Unveils the "Capability Paradox" and prescribes ephemeral AST context sanitization.',
+    summary:
+      'Google releases an authoritative empirical investigation across 913,000+ real-world coding agent sessions (spanning Google Antigravity, Claude Code, and autonomous developer loops). Findings demonstrate that human mental filters fail to translate into agent context windows: 13% of sessions expose agents to historical TODOs and closed bug tickets. In 6% of encounters, agents spontaneously launch unprompted side-quests (83% without developer instruction)—wasting 41% of effort on closed bug tickets and 57% on unauthorized scope creep. Crucially, Google reveals the "Capability Paradox": frontier reasoning models (Gemini 4 Argon) get distracted up to 3x more frequently due to proactive state reconciliation. Prescribes 3-tier architectural defenses across ephemeral AST comment stripping, Antigravity task-boundary rules, and automated dead-TODO linters.',
+    category: 'Core Models',
+    tag: 'Official Research',
+    modelBadge: 'Gemini 4 Argon / Google Antigravity',
+    impactScore: '9.9 / 10',
+    date: '2026-11-06T12:00:00Z',
+    sourceLabel: 'Google Developers Blog: Agent Distraction',
+    sourceUrl: 'https://developers.googleblog.com/en/agent-distraction/',
+    groundedBy: 'Google Developers Blog Official Study (Verified Nov 6, 2026)',
+    seriesUrl: '/series/agent-distraction/part-1-agent-distraction-and-capability-paradox.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/agent-distraction-sanitizer.html',
+    labLabel: 'Sanitizer Lab [DEMO] →',
+  },
+  {
+    id: 'pulse-python-genai-v3-release',
+    title: 'Google Releases Google Gen AI Python SDK v3.0.0: Gemini Developer API Defaults to v1, httpx2 Transport & AFC Chat Restructuring',
+    tldr: 'Released November 5, 2026: Google rolls out major milestone `google-genai` v3.0.0—shifting Gemini Developer API default from `v1beta` to `v1` (stable GA), upgrading default HTTP transport to `httpx2`, and streamlining Automatic Function Calling (AFC) exclusively through `Chats`.',
+    summary:
+      'Google publishes major version 3.0.0 of the official Google Gen AI Python SDK (`google-genai`), graduating core developer interfaces to stable General Availability. Breaking architectural upgrades include: (1) Default Gemini Developer API version shifts from `v1beta` to `v1` (Vertex AI / enterprise defaults remain on `v1beta1`, with beta configurable via `GOOGLE_GENAI_API_VERSION=v1beta` or `HttpOptions`), (2) Core HTTP transport upgraded to `httpx2` by default with `httpx` decoupled, (3) Automatic Function Calling (AFC) decoupled from `Models.generate_content` and consolidated into `Chats` sessions for predictable state tracking, and (4) Removal of deprecated interfaces (`Live.send`, `Live.start_stream`, and old video args) in favor of the unified client streaming architecture.',
+    category: 'SDK & API',
+    tag: 'SDK Milestone',
+    modelBadge: 'google-genai v3.0.0 / Gemini API v1',
+    impactScore: '9.7 / 10',
+    date: '2026-11-05T18:00:00Z',
+    sourceLabel: 'GitHub: googleapis/python-genai v3.0.0 Release',
+    sourceUrl: 'https://github.com/googleapis/python-genai/releases/tag/v3.0.0',
+    groundedBy: 'Google Gen AI Python SDK Official Release (Verified Nov 5, 2026)',
+    seriesUrl: '/series/agent-distraction/part-3-concrete-engineering-playbooks-and-antidotes.html',
+    seriesLabel: 'SDK Playbook →',
+    labUrl: '/labs/agent-distraction-sanitizer.html',
+    labLabel: 'Sanitizer Lab [DEMO] →',
+  },
+  {
     id: 'pulse-gemini-omni-1-2-flash-ga',
     title: 'Google Announces General Availability of Gemini Omni 1.2 Flash: 30% Price Cut ($0.07/sec), 15s Video Length & Conversational Editing',
     tldr: 'Released November 5, 2026: Google Cloud Sr. Product Manager John Nack announces GA for Gemini Omni 1.2 Flash (`gemini-omni-1.2-flash`)—cutting 720p video pricing by 30% down to $0.07/s, expanding maximum clips to 15 seconds, and unlocking conversational multi-turn video editing and draft-to-4K upscaling.',
@@ -786,6 +824,44 @@ video_turn = client.interactions.create(
 ];
 
 export const INITIAL_SHOWCASE_PROJECTS = [
+  {
+    id: 'showcase-agent-distraction-sanitizer',
+    name: 'Agent Distraction Simulator & Context Sanitizer Studio [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive developer studio modeling Google’s November 6, 2026 study across 913,000+ sessions: test code for inline TODO detour risks, explore the Capability Paradox, simulate AST comment stripping, and export Antigravity rules.',
+    models: ['gemini-4-argon', 'gemini-3.8-flash', 'google-antigravity'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/agent-distraction-sanitizer.html): [SIMULATED DEMO] Models empirical distraction math (13% exposure, 83% unprompted detours, +77% tokens), live AST comment stripping, comparative agent execution traces, and team ROI calculations.',
+    url: '/labs/agent-distraction-sanitizer.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-06T12:00:00Z',
+  },
+  {
+    id: 'showcase-gemini-omni-video-studio',
+    name: 'Gemini Omni 1.2 Video Studio & Cost Simulator [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive developer workbench for Google Gemini Omni 1.2 Flash GA: test 15-second generation, conversational multi-turn editing, reference conditioning, batch catalog economics ($0.07/sec), and export verified TypeScript & Python code.',
+    models: ['gemini-omni-1.2-flash', 'interactions-api-v1beta', 'gemini-4-argon'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-omni-video-studio.html): [SIMULATED DEMO] Models conversational video editing loops, 30% price reduction calculations ($0.07/s), 360-degree product spins, and two-phase draft-to-upscale pipelines.',
+    url: '/labs/gemini-omni-video-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-05T12:35:00Z',
+  },
   {
     id: 'showcase-gemini-multimodal-tools-studio',
     name: 'Gemini Multimodal Tools & Office Ingestion Studio [SIMULATED DEMO]',
