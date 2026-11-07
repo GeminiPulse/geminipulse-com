@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-11-06 12:45 EST — ROUND 24 12:45 PM ET CURATION COMPLETE: Curated Google Developers Blog 913,000-Session Study on "Agent Distraction" (+77% Tokens, +70% Steps) & Google Gen AI Python SDK v3.0.0 GA Milestone, Published 3-Part Series (/series/agent-distraction/) & Agile Labs Distraction Sanitizer Studio (/labs/agent-distraction-sanitizer.html)`
+> **Last touched:** `2026-11-07 08:45 EST — ROUND 25 8:45 AM ET DEEPMIND/SDK CURATION COMPLETE: Curated Google Gen AI JavaScript/TypeScript SDK (@google/genai) v3.0.0 GA Milestone (v1 API Default, Removed Model Aliases, Node 22 Floor & Multimodal CodeExecutionResultStepResult Union), Gemini Embedding 2 Deprecation Auto-Route, Published 3-Part Series (/series/genai-sdk-v3-migration/) & Agile Labs Migration Workbench (/labs/genai-sdk-v3-migration-workbench.html)`
 
 ---
 
@@ -18,7 +18,7 @@
 | **Agentic IDE & Orchestration** | **Google Antigravity** + Scheduled Sidecar (`geminipulse-daily-curator`) | Autonomous coding, testing, daily Search-Grounded ecosystem research, and Chronicle publishing |
 | **Design System** | **Google Material Design 3 (M3 Expressive)** + Gemini Studio Dual-Theme CSS | Adaptive Dark (`#0B0F17`) & Daylight Editorial (`#F8FAFC`) surfaces, pill navigation, 4-color Gemini spectrum tokens, Google Fonts (`Plus Jakarta Sans`, `Inter`, `JetBrains Mono`) |
 | **Frontend Application** | **React 19 + Vite 7 + Tailwind CSS v4** (`public/`) | Fast SPA with 9 interactive modules, Schema.org JSON-LD (`WebSite`, `TechArticle`), `/llms.txt`, and `/sitemap.xml` |
-| **SDK & AI Layer** | **Google GenAI SDK (`@google/genai` v2.32+ / `google-genai` v2.34+)** — **Interactions API** | Uses `client.interactions.create()` with native `automatic_continuation`, `gemini-4-argon`, `gemini-3.8-flash`, and `tools: [{ type: "google_search" }]` |
+| **SDK & AI Layer** | **Google GenAI SDK (`@google/genai` v3.0.0+ / `google-genai` v3.0.0+)** — **Interactions API** | Uses `client.interactions.create()` with native `automatic_continuation`, `gemini-4-argon`, `gemini-3.8-flash`, and `tools: [{ type: "google_search" }]` |
 | **Authentication** | **Firebase Authentication (`GoogleAuthProvider`)** | Enforces Google Sign-In before any public showcase submission, forum thread, or reply |
 | **Database** | **Google Cloud Firestore** (`showcase_projects`, `forum_threads`, `ai_news`) | Real-time NoSQL document store with automatic local fallback when running in offline/Spark preview |
 | **Serverless Backend** | **Cloud Functions for Firebase (2nd Gen)** (`functions/index.js`) | `moderateForumPost`, `curateShowcaseProject`, and `autonomousNewsGenerator` (requires Blaze approval before deploying) |

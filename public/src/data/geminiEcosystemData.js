@@ -5,6 +5,25 @@
 
 export const PULSE_INTELLIGENCE_FEED = [
   {
+    id: 'pulse-js-genai-v3-release',
+    title: 'Google Releases Gen AI JavaScript/TypeScript SDK v3.0.0: Gemini Developer API Defaults to v1, Node 22 Required & Multimodal Code Execution',
+    tldr: 'Released November 6, 2026: Google rolls out major milestone `@google/genai` v3.0.0—shifting Gemini Developer API default from `v1beta` to `v1` (stable GA), retiring legacy `gemini-*-latest` model aliases, enforcing Node >= 22.0.0 floor, and typing `CodeExecutionResultStep.result` as `Array<Content> | string` for multimodal outputs.',
+    summary:
+      'Google elevates its official JavaScript and TypeScript SDK (`@google/genai`) to major version 3.0.0 GA, matching the Python v3 release. Key architectural upgrades and breaking changes include: (1) Default Gemini Developer API shifted from `v1beta` to `v1` GA; unpinned model aliases (`gemini-flash-latest`, `gemini-flash-lite-latest`, `gemini-pro-latest`) fail on `v1` and require explicit versions or `GOOGLE_GENAI_API_VERSION=v1beta`, (2) Enterprise Vertex AI (`vertexai: true`) remains insulated on `v1beta1`, (3) Node.js 20 EOL dropped, strictly enforcing `node >= 22.0.0`, (4) Interactions API `CodeExecutionResultStep.result` typed as `Array<Content> | string` (`CodeExecutionResultStepResult`) to natively support multimodal charts, images, and code returns, (5) Office and OpenDocument MIME types in Interactions API, (6) Addition of `source_text` in AudioTranscriptionConfig and `MALFORMED_RESPONSE` in FinishReason, (7) `Live.connect()` WebSocket early error/close rejection to eliminate zombie agent hangs, and (8) Security patches across protobufjs and ws dependencies.',
+    category: 'SDK & API',
+    tag: 'SDK Milestone',
+    modelBadge: '@google/genai v3.0.0 / Node 22+',
+    impactScore: '9.9 / 10',
+    date: '2026-11-06T18:00:00Z',
+    sourceLabel: 'GitHub: googleapis/js-genai v3.0.0 Release',
+    sourceUrl: 'https://github.com/googleapis/js-genai/releases/tag/v3.0.0',
+    groundedBy: 'Google Gen AI JavaScript SDK Official Release (Verified Nov 6, 2026)',
+    seriesUrl: '/series/genai-sdk-v3-migration/part-1-js-genai-v3-breakdown-and-v1-api-default.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/genai-sdk-v3-migration-workbench.html',
+    labLabel: 'Migration Lab [DEMO] →',
+  },
+  {
     id: 'pulse-google-agent-distraction-study',
     title: 'Google Publishes Landmark 913,000-Session Study on "Agent Distraction": How Inline Comments Sidetrack Coding Agents (+77% Tokens, +70% Steps)',
     tldr: 'Published November 6, 2026: Google Developers Blog analyzes over 913,000 autonomous coding agent sessions—revealing that 13% encounter legacy inline `TODO(b/...)` and `FIXME` comments, triggering unprompted detours in 83% of cases, inflating tokens by 77%, steps by 70%, and wait time by 105%. Unveils the "Capability Paradox" and prescribes ephemeral AST context sanitization.',
@@ -824,6 +843,25 @@ video_turn = client.interactions.create(
 ];
 
 export const INITIAL_SHOWCASE_PROJECTS = [
+  {
+    id: 'showcase-genai-sdk-v3-migration-workbench',
+    name: 'Google Gen AI SDK v3.0.0 Migration & Payload Workbench [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive developer utility for Google Gen AI SDK v3.0.0 GA: audit TypeScript & Python codebases for broken v1 model aliases, Node 22 engine constraints, and multimodal execution typings.',
+    models: ['gemini-4-argon', 'google-genai-v3', 'google-js-genai-v3'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/genai-sdk-v3-migration-workbench.html): [SIMULATED DEMO] Audits code for broken v1 aliases (gemini-flash-latest), Node 20 EOL, and typed CodeExecutionResultStepResult unions. Exports verified v3.0.0 code.',
+    url: '/labs/genai-sdk-v3-migration-workbench.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-06T18:00:00Z',
+  },
   {
     id: 'showcase-agent-distraction-sanitizer',
     name: 'Agent Distraction Simulator & Context Sanitizer Studio [SIMULATED DEMO]',

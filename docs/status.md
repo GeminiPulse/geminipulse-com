@@ -1,11 +1,11 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-11-06 12:45 EST (ROUND 24 12:45 PM ET CURATION COMPLETE: Curated Google Developers Blog 913,000-Session Study on "Agent Distraction" (+77% Tokens, +70% Steps) & Google Gen AI Python SDK v3.0.0 GA Milestone, Published 3-Part Series (/series/agent-distraction/) & Agile Labs Distraction Sanitizer Studio (/labs/agent-distraction-sanitizer.html))`
+- **Last Updated:** `2026-11-07 08:45 EST (ROUND 25 8:45 AM ET DEEPMIND/SDK CURATION COMPLETE: Curated Google Gen AI JavaScript/TypeScript SDK (@google/genai) v3.0.0 GA Milestone (v1 API Default, Removed Model Aliases, Node 22 Floor & Multimodal CodeExecutionResultStepResult Union), Gemini Embedding 2 Deprecation Auto-Route, Published 3-Part Series (/series/genai-sdk-v3-migration/) & Agile Labs Migration Workbench (/labs/genai-sdk-v3-migration-workbench.html))`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
 - **Firebase Default Hosting URL:** `https://geminipulse-com.web.app`
-- **Local Dev Preview URL:** `http://localhost:8080` *(Look J v10 Latest Lead + ⌘K Search: `http://localhost:8080/prototypes/look-j-3d-celestial-navigator.html` · Agent Distraction Sanitizer: `http://localhost:8080/labs/agent-distraction-sanitizer.html` · Omni 1.2 Video Studio: `http://localhost:8080/labs/gemini-omni-video-studio.html` · Multimodal Tools Studio: `http://localhost:8080/labs/gemini-multimodal-tools-studio.html` · Live Vision Studio: `http://localhost:8080/labs/gemini-live-vision-studio.html` · Voice Remixing Studio: `http://localhost:8080/labs/gemini-voice-remixing-studio.html` · Brand Kit: `http://localhost:8080/brand/`)*
+- **Local Dev Preview URL:** `http://localhost:8080` *(Look J v10 Latest Lead + ⌘K Search: `http://localhost:8080/prototypes/look-j-3d-celestial-navigator.html` · Gen AI SDK v3 Migration Workbench: `http://localhost:8080/labs/genai-sdk-v3-migration-workbench.html` · Agent Distraction Sanitizer: `http://localhost:8080/labs/agent-distraction-sanitizer.html` · Omni 1.2 Video Studio: `http://localhost:8080/labs/gemini-omni-video-studio.html` · Multimodal Tools Studio: `http://localhost:8080/labs/gemini-multimodal-tools-studio.html` · Live Vision Studio: `http://localhost:8080/labs/gemini-live-vision-studio.html` · Voice Remixing Studio: `http://localhost:8080/labs/gemini-voice-remixing-studio.html` · Brand Kit: `http://localhost:8080/brand/`)*
 - **Firebase Project ID:** `geminipulse-com` (Project Number `643794480842`, Spark Free Plan — **$0.00/mo**)
 - **Firebase Web App ID:** `1:643794480842:web:9f973bc1a0d7670c920e33` (`GeminiPulse Web`)
 - **Concept Originator & Creative Catalyst:** Neil S. White (`https://www.linkedin.com/in/neilswhite`, **Agile LLC**)
@@ -13,7 +13,21 @@
 
 ---
 
-## 0. Completed & Live on `v2.0` (2026-11-06 12:45 PM ET — Round 24 12:45 PM Curation Check)
+## 0. Completed & Live on `v2.0` (2026-11-07 08:45 AM ET — Round 25 8:45 AM Curation Check)
+
+- **Curated Google Gen AI JavaScript/TypeScript SDK (`@google/genai`) v3.0.0 GA Milestone:**
+  - **Ecosystem Intelligence Entry (`PULSE_INTELLIGENCE_FEED`):** Added `pulse-js-genai-v3-release` citing `https://github.com/googleapis/js-genai/releases/tag/v3.0.0`. Details: (1) Default Gemini Developer API shifted from `v1beta` to `v1` GA (breaking unpinned `gemini-*-latest` model aliases which only exist on `v1beta`), (2) Node.js 20 EOL dropped, requiring Node.js `>=22.0.0`, (3) Interactions API `CodeExecutionResultStep.result` typed as `Array<Content> | string` (`CodeExecutionResultStepResult`) to natively support multimodal execution outputs (images, plots, and tables), (4) Interactions API support for Microsoft Office and OpenDocument MIME types, (5) Addition of `source_text` in `AudioTranscriptionConfig` and `MALFORMED_RESPONSE` in `FinishReason`, (6) `Live.connect()` WebSocket handshake early error/close rejection to eliminate zombie agent hangs, and (7) Protobufjs & ws patched dependency versions.
+  - **Gemini Embedding 2 Preview Deprecation Auto-Routing:** Curated Google AI Studio release notes (`https://aistudio.google.com/docs/changelog#11-06-2026`) detailing `gemini-embedding-2-preview` deprecation and automatic routing to `gemini-embedding-2` GA at standard rates ($0.02/1M tokens) with zero vector space re-indexing needed.
+  - **3-Part Standalone Deep Dive Series (`/series/genai-sdk-v3-migration/`):**
+    1. `part-1-js-genai-v3-breakdown-and-v1-api-default.html`: The v1 API Default, Removed Model Aliases, Node 22 Floor & Security Patches.
+    2. `part-2-multimodal-code-execution-and-typing-changes.html`: Multimodal Code Execution, TypeScript Union Narrowing, Office/ODF MIME Types & Live API WebSocket Rejection.
+    3. `part-3-concrete-typescript-migration-playbook.html`: Complete 5-Point Production Migration Checklist, Side-by-Side TypeScript/Python Before & After Code, and CI/CD GitHub Actions Node 22 Matrix.
+  - **Agile Labs Interactive Simulator (`/labs/genai-sdk-v3-migration-workbench.html` [SIMULATED DEMO]):** Interactive developer workbench with preset codebases, live AST/regex compliance scanner auditing broken v1 aliases, Node 20 EOL failures, and typed execution unions, side-by-side verified v3.0.0 TypeScript & Python code generators, and one-click clipboard export.
+  - **Search & RSS Grounding:** Added 4 new URLs to `sitemap.xml` (now 57 clean URLs), published new `<entry>` to `feed.xml`, and registered `showcase-genai-sdk-v3-migration-workbench` in `INITIAL_SHOWCASE_PROJECTS`.
+
+---
+
+## 0b. Completed & Live on `v2.0` (2026-11-06 12:45 PM ET — Round 24 12:45 PM Curation Check)
 
 - **Curated Google Developers Blog 913,000-Session Study on "Agent Distraction":**
   - **Ecosystem Intelligence Entry (`PULSE_INTELLIGENCE_FEED`):** Added `pulse-google-agent-distraction-study` citing `https://developers.googleblog.com/en/agent-distraction/`. Details empirical findings across 913,000+ real-world coding agent sessions: 13% of sessions exposed to inline TODO/FIXME comments, 83% unprompted agent detours, +70% steps, +77% tokens, +105% developer latency, 41% ghost hunting vs 57% scope creep, and the "Capability Paradox" (higher-reasoning frontier models fail more frequently due to proactive state reconciliation).

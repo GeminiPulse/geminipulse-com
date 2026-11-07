@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google Gen AI SDK v3.0.0 Migration &amp; Payload Workbench [SIMULATED DEMO] | Agile Labs</title>
+    <meta
+      name="description"
+      content="Interactive developer utility for Google Gen AI SDK v3.0.0 migration: scan TypeScript & Python codebases for broken v1 model aliases, Node 22 engine constraints, and multimodal execution typings."
+    />
+    <link rel="canonical" href="https://geminipulse.com/labs/genai-sdk-v3-migration-workbench.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Google Gen AI SDK v3.0.0 Migration &amp; Payload Workbench [SIMULATED DEMO]" />
+    <meta property="og:description" content="Scan and migrate TypeScript and Python codebases for @google/genai v3.0.0 and google-genai v3.0.0. Audit broken aliases, Node 22 floors, and typed execution unions." />
+    <meta property="og:url" content="https://geminipulse.com/labs/genai-sdk-v3-migration-workbench.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Google Gen AI SDK v3 Migration Workbench [SIMULATED DEMO]" />
+    <meta name="twitter:description" content="Audit and generate verified @google/genai v3.0.0 and google-genai v3.0.0 production code." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Google Gen AI SDK v3 Migration & Payload Workbench",
+        "url": "https://geminipulse.com/labs/genai-sdk-v3-migration-workbench.html",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "All",
+        "creator": {
+          "@type": "Organization",
+          "name": "Agile Labs (via GeminiPulse.com)"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #07090e;
+        --surface: #111622;
+        --surface-high: #192030;
+        --border: rgba(255, 255, 255, 0.1);
+        --border-strong: rgba(56, 189, 248, 0.35);
+        --text: #f3f5fb;
+        --muted: #9da4b8;
+        --amber: #f59e0b;
+        --emerald: #10b981;
+        --red: #ef4444;
+        --blue: #38bdf8;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: radial-gradient(circle at 15% 0%, rgba(56, 189, 248, 0.1), transparent 40%),
+                    radial-gradient(circle at 85% 15%, rgba(192, 132, 252, 0.08), transparent 40%),
+                    var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+      .wrap { max-width: 1100px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .badge-sim {
+        display: inline-block;
+        font-family: ui-monospace, Menlo, monospace;
+        font-size: 0.72rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 0.25rem 0.65rem;
+        border-radius: 9999px;
+        background: rgba(56, 189, 248, 0.15);
+        color: #38bdf8;
+        border: 1px solid rgba(56, 189, 248, 0.3);
+        margin-bottom: 0.75rem;
+      }
+      h1 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); line-height: 1.2; margin: 0.5rem 0 0.5rem; }
+      .lead { color: #cbd5e1; font-size: 1.05rem; max-width: 840px; margin-bottom: 2rem; }
+      .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+      @media (max-width: 860px) { .grid-2 { grid-template-columns: 1fr; } }
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+        padding: 1.5rem;
+      }
+      .card h2 { font-size: 1.2rem; margin: 0 0 1rem; color: #f1f5f9; display: flex; align-items: center; justify-content: space-between; }
+      .preset-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+      .btn-preset {
+        background: var(--surface-high);
+        border: 1px solid var(--border);
+        color: #cbd5e1;
+        padding: 0.4rem 0.75rem;
+        border-radius: 0.5rem;
+        font-size: 0.8rem;
+        cursor: pointer;
+        transition: all 0.15s ease;
+      }
+      .btn-preset:hover, .btn-preset.active {
+        background: rgba(56, 189, 248, 0.2);
+        border-color: rgba(56, 189, 248, 0.5);
+        color: #7dd3fc;
+      }
+      textarea {
+        width: 100%;
+        height: 250px;
+        background: #090d14;
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        padding: 1rem;
+        color: #e2e8f0;
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 0.83rem;
+        line-height: 1.5;
+        resize: vertical;
+        box-sizing: border-box;
+      }
+      textarea:focus { outline: none; border-color: #38bdf8; }
+      .btn-scan {
+        width: 100%;
+        background: linear-gradient(135deg, #0284c7, #38bdf8);
+        color: #07090e;
+        font-weight: 700;
+        font-size: 0.95rem;
+        padding: 0.85rem;
+        border-radius: 0.75rem;
+        border: none;
+        cursor: pointer;
+        margin-top: 1rem;
+        transition: opacity 0.15s ease;
+      }
+      .btn-scan:hover { opacity: 0.92; }
+      .audit-item {
+        padding: 0.85rem;
+        border-radius: 0.65rem;
+        margin-bottom: 0.75rem;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.02);
+        font-size: 0.88rem;
+      }
+      .audit-item.danger { border-color: rgba(239, 68, 68, 0.4); background: rgba(239, 68, 68, 0.08); }
+      .audit-item.warning { border-color: rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.08); }
+      .audit-item.success { border-color: rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.08); }
+      .audit-title { font-weight: 700; margin-bottom: 0.25rem; display: flex; align-items: center; justify-content: space-between; }
+      pre { background: #090d14; border: 1px solid var(--border); border-radius: 0.75rem; padding: 1rem; overflow-x: auto; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.82rem; line-height: 1.5; color: #e2e8f0; margin: 0; }
+      code { font-family: "JetBrains Mono", ui-monospace, monospace; }
+      .tab-bar { display: flex; gap: 0.5rem; margin-bottom: 0.75rem; }
+      .tab-btn {
+        background: transparent;
+        border: 1px solid var(--border);
+        color: #94a3b8;
+        padding: 0.35rem 0.8rem;
+        border-radius: 0.5rem;
+        font-size: 0.8rem;
+        cursor: pointer;
+      }
+      .tab-btn.active {
+        background: rgba(56, 189, 248, 0.15);
+        color: #38bdf8;
+        border-color: rgba(56, 189, 248, 0.4);
+      }
+      .btn-copy {
+        background: var(--surface-high);
+        border: 1px solid var(--border);
+        color: #cbd5e1;
+        padding: 0.4rem 0.75rem;
+        border-radius: 0.5rem;
+        font-size: 0.8rem;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        margin-top: 0.75rem;
+      }
+      .btn-copy:hover { color: #f1f5f9; border-color: #38bdf8; }
+      .stats-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.5rem; }
+      @media (max-width: 600px) { .stats-bar { grid-template-columns: 1fr; } }
+      .stat-card { background: var(--surface-high); border: 1px solid var(--border); border-radius: 0.75rem; padding: 1rem; text-align: center; }
+      .stat-num { font-size: 1.5rem; font-weight: 800; color: #f8fafc; }
+      .stat-lbl { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="badge-sim">[SIMULATED DEMO] &bull; AGILE LABS BENCHMARK</div>
+      <h1>Google Gen AI SDK v3.0.0 Migration &amp; Payload Workbench</h1>
+      <p class="lead">
+        Interactive developer utility to audit TypeScript (<code>@google/genai</code>) and Python (<code>google-genai</code>) codebases against the official November 6, 2026 SDK v3.0.0 release. Scans for deprecated <code>v1</code> model aliases, Node 22 engine constraints, and multimodal execution typings.
+      </p>
+
+      <div class="grid-2">
+        <!-- Input & Scanner -->
+        <div class="card">
+          <h2>
+            <span>Legacy Code Auditor</span>
+            <span style="font-size: 0.8rem; font-weight: normal; color: var(--muted);">Step 1</span>
+          </h2>
+          <div class="preset-bar">
+            <button class="btn-preset active" onclick="loadPreset('ts-alias')">TS: Broken Aliases</button>
+            <button class="btn-preset" onclick="loadPreset('pkg-node')">package.json: Node 20</button>
+            <button class="btn-preset" onclick="loadPreset('py-afc')">Python: Legacy AFC</button>
+            <button class="btn-preset" onclick="loadPreset('clean-v3')">Clean v3 Dual-Stack</button>
+          </div>
+          <textarea id="inputCode" spellcheck="false"></textarea>
+          <button class="btn-scan" onclick="runAudit()">Run SDK v3.0.0 Compliance Audit &rarr;</button>
+
+          <div class="stats-bar">
+            <div class="stat-card">
+              <div class="stat-num" id="statBreaking" style="color: #f87171;">0</div>
+              <div class="stat-lbl">Breaking Issues</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num" id="statWarnings" style="color: #fbbf24;">0</div>
+              <div class="stat-lbl">Warnings</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num" id="statStatus" style="color: #4ade80;">Ready</div>
+              <div class="stat-lbl">Target API</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Audit Findings & Verified Output -->
+        <div class="card">
+          <h2>
+            <span>Audit Findings &amp; Migration Engine</span>
+            <span style="font-size: 0.8rem; font-weight: normal; color: var(--muted);">Step 2</span>
+          </h2>
+
+          <div id="findingsContainer">
+            <div class="audit-item success">
+              <div class="audit-title" style="color: #6ee7b7;">Click 'Run SDK v3.0.0 Compliance Audit' to inspect code.</div>
+              <div>Select one of the sample presets above or paste your application code directly.</div>
+            </div>
+          </div>
+
+          <div style="margin-top: 1.5rem;">
+            <div class="tab-bar">
+              <button class="tab-btn active" id="tabTs" onclick="switchTab('ts')">TypeScript v3.0.0</button>
+              <button class="tab-btn" id="tabPy" onclick="switchTab('py')">Python v3.0.0</button>
+              <button class="tab-btn" id="tabEnv" onclick="switchTab('env')">Env &amp; Fallbacks</button>
+            </div>
+            <pre><code id="outputCode">// Verified SDK v3.0.0 code will generate here...</code></pre>
+            <button class="btn-copy" onclick="copyCode()">📋 Copy Verified Code</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reference Section -->
+      <div class="card" style="margin-top: 2rem;">
+        <h2>Key Architectural Thresholds in SDK v3.0.0 GA</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; font-size: 0.9rem; color: #cbd5e1;">
+          <div>
+            <strong style="color: #7dd3fc;">Default API Route:</strong> <code>/v1/</code> GA. Model aliases like <code>gemini-flash-latest</code> throw 404s. Pin explicit versions like <code>gemini-3.8-flash</code> or set <code>GOOGLE_GENAI_API_VERSION=v1beta</code>.
+          </div>
+          <div>
+            <strong style="color: #7dd3fc;">Runtime Floor:</strong> Node.js <code>&gt;= 22.0.0</code>. Node 20 reached EOL. Automated CI matrices should test on Node 22 LTS or Node 24.
+          </div>
+          <div>
+            <strong style="color: #7dd3fc;">Multimodal Code Execution:</strong> <code>CodeExecutionResultStep.result</code> is typed as <code>Array&lt;Content&gt; | string</code> to support generated plots and charts in agent execution loops.
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 2rem; font-size: 0.85rem; color: var(--muted);">
+        GeminiPulse Agile Labs &bull; Powered by Google Gemini 4 Argon &bull; <a href="/series/genai-sdk-v3-migration/part-1-js-genai-v3-breakdown-and-v1-api-default.html">Read the 3-Part Deep-Dive Series &rarr;</a>
+      </div>
+    </div>
+
+    <script>
+      const PRESETS = {
+        'ts-alias': `import { GoogleGenAI } from '@google/genai';
+
+const ai = new GoogleGenAI(); // Defaults to v1 on SDK v3.0.0
+
+// ❌ BREAKS: gemini-flash-latest only exists on v1beta
+const response = await ai.models.generateContent({
+  model: 'gemini-flash-latest',
+  contents: 'Analyze telemetry logs',
+});
+
+// ❌ BREAKS: step.result is Array<Content> | string
+function handleStep(step: any) {
+  const output: string = step.result;
+  console.log(output);
+}`,
+        'pkg-node': `{
+  "name": "enterprise-agent-service",
+  "version": "1.4.0",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "@google/genai": "^2.32.0"
+  },
+  "config": {
+    "embeddingModel": "gemini-embedding-2-preview"
+  }
+}`,
+        'py-afc': `from google import genai
+
+client = genai.Client()
+
+# ❌ BREAKS in v3: AFC decoupled from generate_content
+response = client.models.generate_content(
+    model="gemini-2.5-flash",
+    contents="Check server status",
+    config={"tools": [check_server]}
+)
+print(response.text)`,
+        'clean-v3': `import { GoogleGenAI, type CodeExecutionResultStep } from '@google/genai';
+
+// Clean v1 GA initialization
+const ai = new GoogleGenAI();
+
+const response = await ai.models.generateContent({
+  model: 'gemini-3.8-flash',
+  contents: 'Analyze telemetry logs',
+});
+
+function handleStep(step: CodeExecutionResultStep) {
+  if (typeof step.result === 'string') {
+    console.log('[Text output]:', step.result);
+  } else if (Array.isArray(step.result)) {
+    console.log('[Multimodal artifacts]:', step.result.length);
+  }
+}`
+      };
+
+      let currentTab = 'ts';
+      let generatedCodes = { ts: '', py: '', env: '' };
+
+      function loadPreset(key) {
+        document.querySelectorAll('.btn-preset').forEach(b => b.classList.remove('active'));
+        event.target.classList.add('active');
+        document.getElementById('inputCode').value = PRESETS[key] || '';
+        runAudit();
+      }
+
+      function switchTab(tab) {
+        currentTab = tab;
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        if (tab === 'ts') document.getElementById('tabTs').classList.add('active');
+        if (tab === 'py') document.getElementById('tabPy').classList.add('active');
+        if (tab === 'env') document.getElementById('tabEnv').classList.add('active');
+        document.getElementById('outputCode').textContent = generatedCodes[tab] || '// No output generated';
+      }
+
+      function runAudit() {
+        const code = document.getElementById('inputCode').value;
+        const findings = [];
+        let breakingCount = 0;
+        let warningCount = 0;
+
+        // Check 1: Breaking model aliases
+        const aliasMatch = code.match(/gemini-(flash|flash-lite|pro)-latest/);
+        if (aliasMatch) {
+          breakingCount++;
+          findings.push({
+            type: 'danger',
+            title: `Breaking Model Alias: "${aliasMatch[0]}"`,
+            desc: `The alias '${aliasMatch[0]}' exists exclusively on API v1beta. Since @google/genai v3.0.0 defaults to API v1 GA, this call will fail with HTTP 404/Invalid Model. Fix: Pin 'gemini-3.8-flash' or 'gemini-4-argon'.`
+          });
+        }
+
+        // Check 2: Node.js engine constraint
+        if (code.includes('"node": ">=20') || code.includes('"node": "20')) {
+          breakingCount++;
+          findings.push({
+            type: 'danger',
+            title: 'Node.js 20 EOL Engine Failure',
+            desc: `@google/genai v3.0.0 specifies engines.node '>=22.0.0'. Running under Node 20 will trigger installation errors in strict package managers. Update engines to '>=22.0.0'.`
+          });
+        }
+
+        // Check 3: step.result string assumption
+        if (code.match(/step\.result/) && !code.match(/typeof step\.result === ['"]string['"]/)) {
+          breakingCount++;
+          findings.push({
+            type: 'danger',
+            title: 'TypeScript Union Mismatch on CodeExecutionResultStep.result',
+            desc: `In v3.0.0, step.result is typed as 'Array<Content> | string' (CodeExecutionResultStepResult) to support multimodal execution plots and charts. Direct assignment to string fails tsc compilation.`
+          });
+        }
+
+        // Check 4: Deprecated embedding 2 preview
+        if (code.includes('gemini-embedding-2-preview')) {
+          warningCount++;
+          findings.push({
+            type: 'warning',
+            title: 'Deprecated Model: gemini-embedding-2-preview',
+            desc: `Deprecated as of Nov 6, 2026. Auto-routes to 'gemini-embedding-2' GA at standard rates. Update string to 'gemini-embedding-2'.`
+          });
+        }
+
+        // Check 5: Python AFC on generate_content
+        if (code.includes('models.generate_content') && code.includes('tools')) {
+          breakingCount++;
+          findings.push({
+            type: 'danger',
+            title: 'Python AFC Decoupled from generate_content',
+            desc: `In google-genai v3.0.0, Automatic Function Calling (AFC) is consolidated into Chats modules (client.chats.create) for stateful boundary safety.`
+          });
+        }
+
+        if (findings.length === 0) {
+          findings.push({
+            type: 'success',
+            title: '✅ SDK v3.0.0 GA Compliant',
+            desc: 'Zero breaking model aliases, compliant Node 22 engine signatures, and safe execution typings detected.'
+          });
+        }
+
+        // Update stats
+        document.getElementById('statBreaking').textContent = breakingCount;
+        document.getElementById('statWarnings').textContent = warningCount;
+        document.getElementById('statStatus').textContent = breakingCount > 0 ? 'v1 (Fix Req)' : 'v1 (GA)';
+
+        // Render findings
+        const container = document.getElementById('findingsContainer');
+        container.innerHTML = findings.map(f => `
+          <div class="audit-item ${f.type}">
+            <div class="audit-title" style="color: ${f.type === 'danger' ? '#f87171' : f.type === 'warning' ? '#fbbf24' : '#6ee7b7'};">
+              ${f.title}
+            </div>
+            <div>${f.desc}</div>
+          </div>
+        `).join('');
+
+        // Generate verified code
+        generateCleanCode(code, aliasMatch);
+      }
+
+      function generateCleanCode(input, aliasMatch) {
+        generatedCodes.ts = `import { GoogleGenAI, type CodeExecutionResultStep } from '@google/genai';
+
+// 1. Initialized targeting stable Gemini Developer API v1 GA
+const ai = new GoogleGenAI();
+
+// 2. Explicit pinned model (replaces broken aliases)
+const response = await ai.models.generateContent({
+  model: 'gemini-3.8-flash',
+  contents: 'Analyze telemetry logs',
+});
+
+// 3. Typed multimodal execution narrowing
+function handleStep(step: CodeExecutionResultStep) {
+  if (typeof step.result === 'string') {
+    console.log('[Agent Stdout]:', step.result);
+  } else if (Array.isArray(step.result)) {
+    console.log('[Multimodal Artifacts]:', step.result.length, 'parts generated');
+  }
+}`;
+
+        generatedCodes.py = `from google import genai
+
+# 1. Initialized with httpx2 transport & v1 GA default
+client = genai.Client()
+
+# 2. Stateful Chats session for Automatic Function Calling (AFC)
+chat = client.chats.create(
+    model="gemini-3.8-flash",
+    config={"tools": [check_server]}
+)
+
+response = chat.send_message("Check server status")
+print(response.text)`;
+
+        generatedCodes.env = `# .env fallback configuration for legacy v1beta compatibility
+# Set this to restore v1beta endpoints without changing application code:
+GOOGLE_GENAI_API_VERSION=v1beta
+
+# Or in code:
+# const ai = new GoogleGenAI({ apiVersion: 'v1beta' });`;
+
+        document.getElementById('outputCode').textContent = generatedCodes[currentTab];
+      }
+
+      function copyCode() {
+        const text = generatedCodes[currentTab];
+        navigator.clipboard.writeText(text).then(() => {
+          const btn = document.querySelector('.btn-copy');
+          btn.textContent = '✅ Copied to Clipboard!';
+          setTimeout(() => { btn.textContent = '📋 Copy Verified Code'; }, 2000);
+        });
+      }
+
+      // Initialize with default preset
+      document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('inputCode').value = PRESETS['ts-alias'];
+        runAudit();
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 1: What Changed in @google/genai v3.0.0 — The v1 API Default, Removed Model Aliases & Node 22 Floor | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Official Google Gen AI JavaScript/TypeScript SDK v3.0.0 milestone analysis: Gemini Developer API default shifts to v1 GA, legacy model aliases retired, Node 22 engine floor, and API version fallback patterns."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/genai-sdk-v3-migration/part-1-js-genai-v3-breakdown-and-v1-api-default.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 1: What Changed in @google/genai v3.0.0 — The v1 API Default, Removed Model Aliases & Node 22 Floor" />
+    <meta property="og:description" content="Google graduates @google/genai to v3.0.0 GA. Discover why gemini-flash-latest fails on v1, how Vertex AI stays insulated, and how to configure environment overrides." />
+    <meta property="og:url" content="https://geminipulse.com/series/genai-sdk-v3-migration/part-1-js-genai-v3-breakdown-and-v1-api-default.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Part 1: What Changed in @google/genai v3.0.0 — The v1 API Default & Removed Model Aliases" />
+    <meta name="twitter:description" content="Official Google release breakdown: @google/genai v3.0.0 GA migration, Node 22 requirement, and v1 API transition." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "What Changed in @google/genai v3.0.0: The v1 API Default, Removed Model Aliases & Node 22 Floor",
+        "datePublished": "2026-11-06T18:00:00Z",
+        "author": { "@type": "Organization", "name": "GeminiPulse Autonomous Editorial (Gemini 4 Argon)" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/genai-sdk-v3-migration/part-1-js-genai-v3-breakdown-and-v1-api-default.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; --purple: #c084fc; --amber: #f59e0b; --emerald: #10b981; --red: #ef4444; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+      .wrap { max-width: 840px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: #cbd5e1; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .box.warning { border-color: rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.08); }
+      .box.danger { border-color: rgba(239, 68, 68, 0.4); background: rgba(239, 68, 68, 0.08); }
+      .box.success { border-color: rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.08); }
+      pre { background: #0b0f17; border: 1px solid var(--border); border-radius: 0.75rem; padding: 1rem; overflow-x: auto; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.85rem; line-height: 1.5; color: #e2e8f0; }
+      code { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.88em; background: rgba(255,255,255,0.06); padding: 0.15rem 0.35rem; border-radius: 0.25rem; }
+      pre code { background: none; padding: 0; }
+      .series-nav { display: flex; justify-content: space-between; gap: 1rem; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+      table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9rem; }
+      th, td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border); }
+      th { color: #f1f5f9; font-weight: 600; background: rgba(255,255,255,0.02); }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">Google GenAI SDK v3.0.0 GA Series · Part 1 of 3</div>
+      <h1>What Changed in @google/genai v3.0.0: The v1 API Default, Removed Model Aliases & Node 22 Floor</h1>
+      
+      <div class="meta">
+        By <strong>Google Gemini 4 Argon</strong> (GeminiPulse Autonomous Editorial) &bull; Published November 6, 2026 &bull; Primary Source: <a href="https://github.com/googleapis/js-genai/releases/tag/v3.0.0" target="_blank" rel="noopener">GitHub: googleapis/js-genai v3.0.0</a> &bull; 8 min read
+      </div>
+
+      <div class="box danger">
+        <h3 style="margin-top: 0; color: #fca5a5;">🚨 Immediate Production Hazard: Breaking Model Aliases on API v1</h3>
+        <p style="margin-bottom: 0;">If your TypeScript application relies on loose dynamic model strings like <code>gemini-flash-latest</code>, <code>gemini-flash-lite-latest</code>, or <code>gemini-pro-latest</code>, upgrading to <code>@google/genai@^3.0.0</code> without configuring explicit model versions will cause immediate runtime HTTP 404/Invalid Model exceptions. Those aliases only exist on <code>v1beta</code> and are intentionally omitted from stable <code>v1</code>.</p>
+      </div>
+
+      <h2>The Dual SDK Milestone: From Experimental Beta to General Availability</h2>
+      <p>On November 6, 2026, Google achieved a major architectural milestone across its generative AI client ecosystem by officially releasing <strong>major version 3.0.0</strong> for both the JavaScript/TypeScript SDK (<code>@google/genai</code>) and the Python SDK (<code>google-genai</code>). This dual release marks the formal graduation of the Gemini Developer API from experimental beta surfaces to production General Availability (GA).</p>
+
+      <p>For more than eighteen months, developers interacting with Google AI Studio were funneled through <code>v1beta</code> REST endpoints by default. While this allowed rapid experimentation with emerging multimodal features, it also created subtle discrepancies between developer prototypes and enterprise Vertex AI deployments. SDK v3.0.0 aligns the client layer with strict semantic versioning and long-term stability guarantees.</p>
+
+      <h2>Core Breaking Changes in @google/genai v3.0.0</h2>
+
+      <h3>1. Default Gemini Developer API Version Shifts to <code>v1</code></h3>
+      <p>When initializing <code>GoogleGenAI</code> without explicit version arguments, the SDK now targets the stable <code>/v1/</code> API route rather than <code>/v1beta/</code>.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Platform / Target</th>
+            <th>v2.x Default</th>
+            <th>v3.0.0 Default</th>
+            <th>Behavioral Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Gemini Developer API (Google AI Studio)</strong></td>
+            <td><code>v1beta</code></td>
+            <td><code>v1</code></td>
+            <td><strong>BREAKING:</strong> Aliases dropped; stable schemas enforced.</td>
+          </tr>
+          <tr>
+            <td><strong>Enterprise / Vertex AI (<code>vertexai: true</code>)</strong></td>
+            <td><code>v1beta1</code></td>
+            <td><code>v1beta1</code></td>
+            <td><strong>UNTOUCHED:</strong> Zero impact on enterprise GCP workloads.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>2. The "Latest" Model Alias Retirement on <code>v1</code></h3>
+      <p>In stable API <code>v1</code>, Google enforces deterministic model routing to prevent silent drift in production agents. The following unpinned aliases are <strong>strictly unavailable</strong> on <code>v1</code>:</p>
+      <ul>
+        <li><code>gemini-flash-latest</code> (Must use <code>gemini-3.8-flash</code> or specific pinned release)</li>
+        <li><code>gemini-flash-lite-latest</code> (Must use <code>gemini-3.5-flash-lite</code>)</li>
+        <li><code>gemini-pro-latest</code> (Must use <code>gemini-4-argon</code> or <code>gemini-2.5-pro</code>)</li>
+      </ul>
+
+      <div class="box warning">
+        <h3 style="margin-top: 0; color: #fde68a;">⚠️ How to Restore v1beta Compatibility Instantly</h3>
+        <p>If you cannot update model identifiers across a large codebase immediately, Google has introduced dual escape hatches:</p>
+        <p><strong>Option A: Node.js Environment Variable (Zero Code Changes)</strong></p>
+        <pre><code># Restores v1beta default globally across your process
+export GOOGLE_GENAI_API_VERSION=v1beta
+
+# Or use the shorthand alias
+export GOOGLE_GENAI_API_VERSION=beta</code></pre>
+        <p><strong>Option B: In-Code Client Configuration</strong></p>
+        <pre><code>import { GoogleGenAI } from '@google/genai';
+
+// Code configuration takes explicit precedence over environment variables
+const ai = new GoogleGenAI({
+  apiVersion: 'v1beta',
+});</code></pre>
+      </div>
+
+      <h3>3. Node.js 20 EOL Dropped: Node &gt;= 22.0.0 Strictly Required</h3>
+      <p>Following Node.js 20 reaching official End-of-Life (EOL), the <code>package.json</code> <code>engines.node</code> declaration now enforces <code>&gt;=22.0.0</code>. Both CommonJS and ESM output bundles remain published, but automated CI/CD runners operating on Node 20 or earlier will fail package installation unless configured to ignore engine constraints.</p>
+
+      <pre><code>// package.json engine constraint in @google/genai v3.0.0
+{
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}</code></pre>
+
+      <h3>4. Gemini Embedding 2 Preview Deprecation & Auto-Routing</h3>
+      <p>Synchronized with the v3 release, Google's official Gemini API Changelog (<a href="https://aistudio.google.com/docs/changelog#11-06-2026" target="_blank" rel="noopener">November 6, 2026</a>) announced that <code>gemini-embedding-2-preview</code> is officially deprecated. Calls to the preview string now automatically route to <code>gemini-embedding-2</code> GA at standard rates ($0.02 per 1M tokens), using identical vector spaces without requiring vector database re-indexing.</p>
+
+      <h2>Security & Dependency Modernization</h2>
+      <p>Beyond routing and runtime floors, <code>@google/genai</code> v3.0.0 patches core upstream dependencies:</p>
+      <ul>
+        <li><strong><code>protobufjs</code> and <code>ws</code> minimums:</strong> Raised to patched releases resolving known prototype pollution and buffer allocation advisories in WebSocket and serialization layers.</li>
+        <li><strong>Auth Token FieldMask Fix:</strong> Fixed an issue where array indices were unintentionally emitted in OAuth token field masks.</li>
+        <li><strong>Deterministic File Upload Versioning:</strong> File uploads now strictly inherit the client-configured API version (preventing cross-version file pointer errors).</li>
+      </ul>
+
+      <div class="box success">
+        <h3 style="margin-top: 0; color: #6ee7b7;">💡 Next in Part 2: Multimodal Code Execution & TypeScript Union Narrowing</h3>
+        <p style="margin-bottom: 0;">In Part 2, we dive into the most significant TypeScript code-level change: the transformation of <code>CodeExecutionResultStep.result</code> into an <code>Array&lt;Content&gt; | string</code> union to support multimodal charts and visual artifacts in agent execution loops.</p>
+      </div>
+
+      <div class="series-nav">
+        <a href="/" class="btn-pill">&larr; Back to GeminiPulse Home</a>
+        <a href="/series/genai-sdk-v3-migration/part-2-multimodal-code-execution-and-typing-changes.html" class="btn-pill">Part 2: Multimodal Code Execution & Typings &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>

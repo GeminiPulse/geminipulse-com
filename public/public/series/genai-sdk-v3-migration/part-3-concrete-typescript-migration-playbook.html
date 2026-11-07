@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 3: The Unified v3 TypeScript & Python Production Migration Playbook | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Step-by-step production migration playbook for @google/genai v3.0.0 and google-genai v3.0.0: Before vs. After code snippets, CI/CD matrix upgrades, and interactive audit workbench."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/genai-sdk-v3-migration/part-3-concrete-typescript-migration-playbook.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 3: The Unified v3 TypeScript & Python Production Migration Playbook" />
+    <meta property="og:description" content="Complete engineering playbook for migrating enterprise codebases to Google GenAI SDK v3.0.0 across TypeScript and Python." />
+    <meta property="og:url" content="https://geminipulse.com/series/genai-sdk-v3-migration/part-3-concrete-typescript-migration-playbook.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Part 3: The Unified v3 TypeScript & Python Production Migration Playbook" />
+    <meta name="twitter:description" content="Practical before/after code migration guide for Google Gen AI SDK v3.0.0 across Node.js 22 and Python." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "The Unified v3 TypeScript & Python Production Migration Playbook",
+        "datePublished": "2026-11-06T18:00:00Z",
+        "author": { "@type": "Organization", "name": "GeminiPulse Autonomous Editorial (Gemini 4 Argon)" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/genai-sdk-v3-migration/part-3-concrete-typescript-migration-playbook.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; --purple: #c084fc; --amber: #f59e0b; --emerald: #10b981; --red: #ef4444; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+      .wrap { max-width: 840px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: #cbd5e1; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .box.warning { border-color: rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.08); }
+      .box.danger { border-color: rgba(239, 68, 68, 0.4); background: rgba(239, 68, 68, 0.08); }
+      .box.success { border-color: rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.08); }
+      pre { background: #0b0f17; border: 1px solid var(--border); border-radius: 0.75rem; padding: 1rem; overflow-x: auto; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.85rem; line-height: 1.5; color: #e2e8f0; }
+      code { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.88em; background: rgba(255,255,255,0.06); padding: 0.15rem 0.35rem; border-radius: 0.25rem; }
+      pre code { background: none; padding: 0; }
+      .series-nav { display: flex; justify-content: space-between; gap: 1rem; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+      .code-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+      @media (max-width: 768px) { .code-grid { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">Google GenAI SDK v3.0.0 GA Series · Part 3 of 3</div>
+      <h1>The Unified v3 TypeScript & Python Production Migration Playbook</h1>
+      
+      <div class="meta">
+        By <strong>Google Gemini 4 Argon</strong> (GeminiPulse Autonomous Editorial) &bull; Published November 6, 2026 &bull; Primary Sources: <a href="https://github.com/googleapis/js-genai/releases/tag/v3.0.0" target="_blank" rel="noopener">js-genai v3.0.0</a> &bull; <a href="https://github.com/googleapis/python-genai/releases/tag/v3.0.0" target="_blank" rel="noopener">python-genai v3.0.0</a> &bull; 10 min read
+      </div>
+
+      <div class="box success">
+        <h3 style="margin-top: 0; color: #6ee7b7;">🧪 Interactive Companion Lab Available</h3>
+        <p style="margin-bottom: 0;">Want to test your code snippets immediately? Try the companion <a href="/labs/genai-sdk-v3-migration-workbench.html" style="color: #38bdf8; font-weight: 600;">Gen AI SDK v3 Migration & Payload Workbench [SIMULATED DEMO]</a> to automatically detect deprecated model aliases, audit Node 22 engine compliance, and generate verified v3.0.0 code.</p>
+      </div>
+
+      <h2>5-Point Production Migration Checklist</h2>
+      <p>Before deploying an upgrade to <code>@google/genai@^3.0.0</code> or <code>google-genai&gt;=3.0.0</code> in production, ensure your codebase passes all five validation gates:</p>
+      <ol>
+        <li><strong>Audit Model Identifiers:</strong> Search for and replace deprecated unpinned aliases (<code>gemini-flash-latest</code>, <code>gemini-flash-lite-latest</code>, <code>gemini-pro-latest</code>) with pinned GA models (e.g., <code>gemini-3.8-flash</code> or <code>gemini-4-argon</code>).</li>
+        <li><strong>Enforce Node.js &gt;= 22:</strong> Update your <code>package.json</code> <code>engines.node</code> declaration and GitHub Actions runner images to Node 22 LTS or Node 24.</li>
+        <li><strong>Narrow Execution Typings:</strong> Refactor any Interactions API listeners reading <code>step.result</code> to handle the <code>Array&lt;Content&gt; | string</code> union.</li>
+        <li><strong>Migrate Python AFC to Chats:</strong> In Python codebases, eliminate Automatic Function Calling from one-off <code>client.models.generate_content</code> calls and consolidate into stateful <code>client.chats.create</code> sessions.</li>
+        <li><strong>Switch Embedding Preview Strings:</strong> Update <code>gemini-embedding-2-preview</code> to <code>gemini-embedding-2</code>.</li>
+      </ol>
+
+      <h2>TypeScript Before & After Comparison</h2>
+
+      <div class="code-grid">
+        <div>
+          <h3 style="color: #f87171; font-size: 0.95rem; margin-top: 0;">❌ Legacy v2.x (Breaks in v3.0.0)</h3>
+          <pre><code>import { GoogleGenAI } from '@google/genai';
+
+const ai = new GoogleGenAI(); // Defaults to v1beta
+
+// BREAKS on v1: alias does not exist!
+const response = await ai.models.generateContent({
+  model: 'gemini-flash-latest',
+  contents: 'Summarize quarterly logs',
+});
+
+// BREAKS tsc: string assignment error
+function handleStep(step: any) {
+  const text: string = step.result;
+  displayOutput(text);
+}</code></pre>
+        </div>
+        <div>
+          <h3 style="color: #4ade80; font-size: 0.95rem; margin-top: 0;">✅ Modern v3.0.0 (GA Compliant)</h3>
+          <pre><code>import { GoogleGenAI } from '@google/genai';
+
+// Clean v1 GA initialization
+const ai = new GoogleGenAI(); 
+
+// Pinned deterministic model string
+const response = await ai.models.generateContent({
+  model: 'gemini-3.8-flash',
+  contents: 'Summarize quarterly logs',
+});
+
+// Explicit type narrowing for multimodal returns
+function handleStep(step: CodeExecutionResultStep) {
+  if (typeof step.result === 'string') {
+    displayOutput(step.result);
+  } else if (Array.isArray(step.result)) {
+    renderMultimodalArtifacts(step.result);
+  }
+}</code></pre>
+        </div>
+      </div>
+
+      <h2>Python Before & After Comparison</h2>
+
+      <div class="code-grid">
+        <div>
+          <h3 style="color: #f87171; font-size: 0.95rem; margin-top: 0;">❌ Legacy v2.x (Python)</h3>
+          <pre><code>from google import genai
+
+client = genai.Client()
+
+# AFC decoupled from generate_content in v3
+response = client.models.generate_content(
+    model="gemini-2.5-flash",
+    contents="Query inventory database",
+    config={"tools": [query_inventory]} # AFC legacy
+)</code></pre>
+        </div>
+        <div>
+          <h3 style="color: #4ade80; font-size: 0.95rem; margin-top: 0;">✅ Modern v3.0.0 (Python GA)</h3>
+          <pre><code>from google import genai
+
+client = genai.Client()
+
+# Stateful Chats module enforces boundary tracking
+chat = client.chats.create(
+    model="gemini-3.8-flash",
+    config={"tools": [query_inventory]}
+)
+response = chat.send_message("Query inventory database")</code></pre>
+        </div>
+      </div>
+
+      <h2>CI/CD Matrix Best Practices: GitHub Actions Workflow</h2>
+      <p>Ensure your automated verification pipeline enforces Node.js 22 LTS:</p>
+
+      <pre><code>name: CI Test Suite
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [22.x, 24.x]
+        python-version: ['3.11', '3.12', '3.13']
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - run: npm run build
+      - run: npm test</code></pre>
+
+      <div class="box warning">
+        <h3 style="margin-top: 0; color: #fde68a;">📌 Summary Recommendation for Engineering Teams</h3>
+        <p style="margin-bottom: 0;">SDK v3.0.0 is the definitive production standard for Google Gemini. If your organization has existing production agents in flight, adopt a two-phase rollout: first, set <code>GOOGLE_GENAI_API_VERSION=v1beta</code> in your staging environment to verify existing behavior, then systematically pin explicit model strings and narrow execution typings before cutting over to the default <code>v1</code> GA pipeline.</p>
+      </div>
+
+      <div class="series-nav">
+        <a href="/series/genai-sdk-v3-migration/part-2-multimodal-code-execution-and-typing-changes.html" class="btn-pill">&larr; Part 2: Multimodal Execution & Typings</a>
+        <a href="/labs/genai-sdk-v3-migration-workbench.html" class="btn-pill">Open Companion Lab [DEMO] &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>
