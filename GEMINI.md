@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-11-07 08:45 EST — ROUND 25 8:45 AM ET DEEPMIND/SDK CURATION COMPLETE: Curated Google Gen AI JavaScript/TypeScript SDK (@google/genai) v3.0.0 GA Milestone (v1 API Default, Removed Model Aliases, Node 22 Floor & Multimodal CodeExecutionResultStepResult Union), Gemini Embedding 2 Deprecation Auto-Route, Published 3-Part Series (/series/genai-sdk-v3-migration/) & Agile Labs Migration Workbench (/labs/genai-sdk-v3-migration-workbench.html)`
+> **Last touched:** `2026-11-08 12:45 EST — ROUND 26 12:45 PM ET EMBARGO CURATION COMPLETE: Curated Google Agent Substrate 1.0 & gVisor CNCF Sandbox Donation Milestone, Decoupled Actor-Worker Multiplexing, Sub-500ms Memory Hibernation, GKE Support, Published 3-Part Series (/series/agent-substrate/) & Agile Labs Agent Substrate Orchestrator (/labs/agent-substrate-orchestrator.html)`
 
 ---
 

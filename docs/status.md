@@ -1,11 +1,11 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-11-07 08:45 EST (ROUND 25 8:45 AM ET DEEPMIND/SDK CURATION COMPLETE: Curated Google Gen AI JavaScript/TypeScript SDK (@google/genai) v3.0.0 GA Milestone (v1 API Default, Removed Model Aliases, Node 22 Floor & Multimodal CodeExecutionResultStepResult Union), Gemini Embedding 2 Deprecation Auto-Route, Published 3-Part Series (/series/genai-sdk-v3-migration/) & Agile Labs Migration Workbench (/labs/genai-sdk-v3-migration-workbench.html))`
+- **Last Updated:** `2026-11-08 12:45 EST (ROUND 26 12:45 PM ET EMBARGO CURATION COMPLETE: Curated Google Agent Substrate 1.0 & gVisor CNCF Sandbox Donation Milestone, Decoupled Actor-Worker Multiplexing, Sub-500ms Memory Hibernation, GKE Support, Published 3-Part Series (/series/agent-substrate/) & Agile Labs Agent Substrate Orchestrator (/labs/agent-substrate-orchestrator.html))`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
 - **Firebase Default Hosting URL:** `https://geminipulse-com.web.app`
-- **Local Dev Preview URL:** `http://localhost:8080` *(Look J v10 Latest Lead + ⌘K Search: `http://localhost:8080/prototypes/look-j-3d-celestial-navigator.html` · Gen AI SDK v3 Migration Workbench: `http://localhost:8080/labs/genai-sdk-v3-migration-workbench.html` · Agent Distraction Sanitizer: `http://localhost:8080/labs/agent-distraction-sanitizer.html` · Omni 1.2 Video Studio: `http://localhost:8080/labs/gemini-omni-video-studio.html` · Multimodal Tools Studio: `http://localhost:8080/labs/gemini-multimodal-tools-studio.html` · Live Vision Studio: `http://localhost:8080/labs/gemini-live-vision-studio.html` · Voice Remixing Studio: `http://localhost:8080/labs/gemini-voice-remixing-studio.html` · Brand Kit: `http://localhost:8080/brand/`)*
+- **Local Dev Preview URL:** `http://localhost:8080` *(Look J v10 Latest Lead + ⌘K Search: `http://localhost:8080/prototypes/look-j-3d-celestial-navigator.html` · Agent Substrate Orchestrator: `http://localhost:8080/labs/agent-substrate-orchestrator.html` · Gen AI SDK v3 Migration Workbench: `http://localhost:8080/labs/genai-sdk-v3-migration-workbench.html` · Agent Distraction Sanitizer: `http://localhost:8080/labs/agent-distraction-sanitizer.html` · Omni 1.2 Video Studio: `http://localhost:8080/labs/gemini-omni-video-studio.html` · Multimodal Tools Studio: `http://localhost:8080/labs/gemini-multimodal-tools-studio.html` · Live Vision Studio: `http://localhost:8080/labs/gemini-live-vision-studio.html` · Voice Remixing Studio: `http://localhost:8080/labs/gemini-voice-remixing-studio.html` · Brand Kit: `http://localhost:8080/brand/`)*
 - **Firebase Project ID:** `geminipulse-com` (Project Number `643794480842`, Spark Free Plan — **$0.00/mo**)
 - **Firebase Web App ID:** `1:643794480842:web:9f973bc1a0d7670c920e33` (`GeminiPulse Web`)
 - **Concept Originator & Creative Catalyst:** Neil S. White (`https://www.linkedin.com/in/neilswhite`, **Agile LLC**)
@@ -13,7 +13,20 @@
 
 ---
 
-## 0. Completed & Live on `v2.0` (2026-11-07 08:45 AM ET — Round 25 8:45 AM Curation Check)
+## 0. Completed & Live on `v2.0` (2026-11-08 12:45 PM ET — Round 26 12:45 PM Curation Check)
+
+- **Curated Google Agent Substrate 1.0 & gVisor CNCF Donation Milestone:**
+  - **Ecosystem Intelligence Entry (`PULSE_INTELLIGENCE_FEED`):** Added `pulse-agent-substrate-cncf-donation` citing `https://opensource.googleblog.com/2026/11/sandboxing-untrusted-ai-agents-at-scale.html` and `https://cloud.google.com/blog/products/containers-kubernetes/agent-substrate-available-on-gke`. Details: (1) Google donates Agent Substrate 1.0, gVisor, and OpenRL to the CNCF (Sandbox status) alongside KubeCon NA 2026 in Salt Lake City, (2) Solves the 95% idle compute waste of traditional Kubernetes Pods by decoupling stateful Actors from warm WorkerPools ($14k/mo down to $720/mo, 95% savings), (3) Prevents etcd/kube-apiserver control plane saturation during agent bursts (over 500 activations/sec on a single cluster), (4) Sub-500ms state restores via NVMe tiered memory snapshotting, (5) Zero-trust kernel isolation via gVisor (`runsc`) user-space syscall interception and Cloud Hypervisor microVMs, and (6) Managed GKE integration validated by Nous Research (Hermes Agent, #1 on OpenRouter) and Google Antigravity.
+  - **3-Part Standalone Deep Dive Series (`/series/agent-substrate/`):**
+    1. `part-1-agent-substrate-breakdown-and-cncf-donation.html`: What Changed with Agent Substrate 1.0 — The Pod Mismatch, Actor-Worker Architecture & CNCF Donation.
+    2. `part-2-how-substrate-solves-idle-compute-and-gvisor-isolation.html`: How Agent Substrate Affects Builders — 95% Cost Savings, Sub-500ms Snapshots & gVisor Security.
+    3. `part-3-concrete-kubernetes-playbooks-and-gke-deployment.html`: Concrete Engineering Playbooks — Deploying Agent Substrate on GKE, WorkerPools & Manifests.
+  - **Agile Labs Interactive Simulator (`/labs/agent-substrate-orchestrator.html` [SIMULATED DEMO]):** Interactive developer studio featuring live 5-phase turn lifecycle simulation (request parking at `atenet-router`, slot placement, NVMe memory restore in 312ms, gVisor execution, and idle checkpointing), gVisor zero-trust syscall security inspector (testing normal tools, privilege escalation exploits, and rogue lateral egress), cluster density & cost ROI calculator, and one-click production GKE Kubernetes YAML export.
+  - **Search & RSS Grounding:** Added 4 new URLs to `sitemap.xml` (now 61 clean URLs), published new `<entry>` to `feed.xml`, and registered `showcase-agent-substrate-orchestrator` in `INITIAL_SHOWCASE_PROJECTS`.
+
+---
+
+## 0b. Completed & Live on `v2.0` (2026-11-07 08:45 AM ET — Round 25 8:45 AM Curation Check)
 
 - **Curated Google Gen AI JavaScript/TypeScript SDK (`@google/genai`) v3.0.0 GA Milestone:**
   - **Ecosystem Intelligence Entry (`PULSE_INTELLIGENCE_FEED`):** Added `pulse-js-genai-v3-release` citing `https://github.com/googleapis/js-genai/releases/tag/v3.0.0`. Details: (1) Default Gemini Developer API shifted from `v1beta` to `v1` GA (breaking unpinned `gemini-*-latest` model aliases which only exist on `v1beta`), (2) Node.js 20 EOL dropped, requiring Node.js `>=22.0.0`, (3) Interactions API `CodeExecutionResultStep.result` typed as `Array<Content> | string` (`CodeExecutionResultStepResult`) to natively support multimodal execution outputs (images, plots, and tables), (4) Interactions API support for Microsoft Office and OpenDocument MIME types, (5) Addition of `source_text` in `AudioTranscriptionConfig` and `MALFORMED_RESPONSE` in `FinishReason`, (6) `Live.connect()` WebSocket handshake early error/close rejection to eliminate zombie agent hangs, and (7) Protobufjs & ws patched dependency versions.

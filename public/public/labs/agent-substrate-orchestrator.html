@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agent Substrate 1.0 Orchestrator &amp; Sandbox Studio [SIMULATED DEMO] | Agile Labs</title>
+    <meta
+      name="description"
+      content="Interactive developer workbench for Google Agent Substrate 1.0 (CNCF Sandbox): Test Actor-Worker multiplexing, simulate sub-500ms state hibernation, inspect gVisor zero-trust syscall isolation, and calculate 95% cluster ROI."
+    />
+    <link rel="canonical" href="https://geminipulse.com/labs/agent-substrate-orchestrator.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Agent Substrate 1.0 Orchestrator &amp; Sandbox Studio [SIMULATED DEMO]" />
+    <meta property="og:description" content="Simulate Actor-Worker multiplexing, sub-500ms memory snapshotting, and gVisor user-space kernel isolation for AI agents on Kubernetes." />
+    <meta property="og:url" content="https://geminipulse.com/labs/agent-substrate-orchestrator.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Agent Substrate 1.0 Orchestrator Studio [SIMULATED DEMO]" />
+    <meta name="twitter:description" content="Interactive simulator for high-density, secure AI agent infrastructure on Kubernetes." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Agent Substrate 1.0 Orchestrator & Sandbox Studio",
+        "url": "https://geminipulse.com/labs/agent-substrate-orchestrator.html",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "All",
+        "creator": {
+          "@type": "Organization",
+          "name": "Agile Labs (via GeminiPulse.com)"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #07090e;
+        --surface: #111622;
+        --surface-high: #192030;
+        --border: rgba(255, 255, 255, 0.1);
+        --border-strong: rgba(56, 189, 248, 0.35);
+        --text: #f3f5fb;
+        --muted: #9da4b8;
+        --amber: #f59e0b;
+        --emerald: #10b981;
+        --red: #ef4444;
+        --blue: #38bdf8;
+        --purple: #c084fc;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: radial-gradient(circle at 15% 0%, rgba(56, 189, 248, 0.1), transparent 40%),
+                    radial-gradient(circle at 85% 15%, rgba(192, 132, 252, 0.08), transparent 40%),
+                    var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+      .wrap { max-width: 1100px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .badge-sim {
+        display: inline-block;
+        font-family: ui-monospace, Menlo, monospace;
+        font-size: 0.72rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 0.25rem 0.65rem;
+        border-radius: 9999px;
+        background: rgba(245, 158, 11, 0.15);
+        color: #fcd34d;
+        border: 1px solid rgba(245, 158, 11, 0.35);
+        margin-bottom: 0.75rem;
+      }
+      h1 { font-size: clamp(1.8rem, 3.2vw, 2.5rem); margin: 0.25rem 0 0.5rem; line-height: 1.2; }
+      .subtitle { color: var(--muted); font-size: 1.02rem; margin-bottom: 2rem; max-width: 820px; }
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+      .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+      @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } }
+      .tab-bar { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+      .tab-btn {
+        padding: 0.55rem 1.1rem;
+        border-radius: 0.5rem;
+        background: var(--surface-high);
+        border: 1px solid var(--border);
+        color: var(--muted);
+        font-size: 0.88rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.15s;
+      }
+      .tab-btn.active {
+        background: rgba(56, 189, 248, 0.15);
+        color: #38bdf8;
+        border-color: rgba(56, 189, 248, 0.4);
+      }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.75rem;
+        padding: 0.2rem 0.55rem;
+        border-radius: 9999px;
+        font-family: ui-monospace, monospace;
+      }
+      .pill-blue { background: rgba(56, 189, 248, 0.15); color: #38bdf8; }
+      .pill-emerald { background: rgba(16, 185, 129, 0.15); color: #10b981; }
+      .pill-amber { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
+      .pill-red { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+      button.primary {
+        background: #0284c7;
+        color: white;
+        border: none;
+        padding: 0.65rem 1.2rem;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.15s;
+      }
+      button.primary:hover { background: #0369a1; }
+      button.outline {
+        background: transparent;
+        color: #38bdf8;
+        border: 1px solid rgba(56, 189, 248, 0.3);
+        padding: 0.65rem 1.2rem;
+        border-radius: 0.5rem;
+        font-weight: 500;
+        cursor: pointer;
+      }
+      button.outline:hover { background: rgba(56, 189, 248, 0.1); }
+      pre {
+        background: #0b0f17;
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        padding: 1rem;
+        overflow-x: auto;
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 0.84rem;
+        color: #e2e8f0;
+      }
+      .phase-step {
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+        padding: 0.85rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .phase-step:last-child { border-bottom: none; }
+      .step-num {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.85rem;
+        flex-shrink: 0;
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--muted);
+      }
+      .step-num.active { background: #0284c7; color: #fff; box-shadow: 0 0 12px rgba(2, 132, 199, 0.6); }
+      .step-num.done { background: #10b981; color: #fff; }
+      .stat-box {
+        background: var(--surface-high);
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        padding: 1rem;
+        text-align: center;
+      }
+      .stat-val { font-size: 1.7rem; font-weight: 800; font-family: "JetBrains Mono", monospace; color: #38bdf8; }
+      .stat-lbl { font-size: 0.78rem; text-transform: uppercase; color: var(--muted); margin-top: 0.25rem; letter-spacing: 0.05em; }
+      .slider-row { margin: 1.25rem 0; }
+      .slider-row label { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 0.4rem; color: #cbd5e1; }
+      input[type="range"] { width: 100%; accent-color: #38bdf8; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.25rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Return to GeminiPulse Home</a>
+      </div>
+
+      <div class="badge-sim">[SIMULATED DEMO] · Agile Labs Showcase</div>
+      <h1>Agent Substrate 1.0 Orchestrator &amp; Sandbox Studio</h1>
+      <p class="subtitle">
+        Interactive architectural simulator modeling Google’s November 5, 2026 KubeCon NA milestone: Explore Actor-Worker decoupling, observe sub-500ms state restores, inspect gVisor user-space kernel isolation, and calculate 95% cloud spend reduction.
+      </p>
+
+      <div class="tab-bar">
+        <button class="tab-btn active" onclick="switchTab('turn-simulator')">1. Agent Turn Lifecycle Simulator</button>
+        <button class="tab-btn" onclick="switchTab('gvisor-inspector')">2. gVisor Zero-Trust Security Inspector</button>
+        <button class="tab-btn" onclick="switchTab('roi-calculator')">3. Fleet Density &amp; Cost ROI Calculator</button>
+        <button class="tab-btn" onclick="switchTab('yaml-generator')">4. GKE Kubernetes YAML Generator</button>
+      </div>
+
+      <!-- TAB 1: TURN SIMULATOR -->
+      <div id="tab-turn-simulator" class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.75rem;">
+          <div>
+            <h2 style="margin: 0; font-size: 1.25rem;">Live Turn Execution &amp; Memory Checkpoint Simulator</h2>
+            <div style="font-size: 0.85rem; color: var(--muted);">Watch how Agent Substrate multiplexes a stateful Actor turn onto a warm WorkerPool slot</div>
+          </div>
+          <div>
+            <button class="primary" id="btn-run-turn" onclick="runAgentTurn()">Trigger Inbound Turn &rarr;</button>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div>
+            <div class="phase-step" id="phase-1">
+              <div class="step-num" id="step-num-1">1</div>
+              <div>
+                <strong style="color: #f1f5f9;">Request Parking (atenet-router)</strong>
+                <p style="margin: 0.2rem 0; font-size: 0.88rem; color: var(--muted);">Inbound WebSocket turn arrives from developer IDE. Target Actor is suspended; L7 proxy holds connection in memory.</p>
+                <span class="pill pill-blue" id="pill-p1">Status: Standby</span>
+              </div>
+            </div>
+
+            <div class="phase-step" id="phase-2">
+              <div class="step-num" id="step-num-2">2</div>
+              <div>
+                <strong style="color: #f1f5f9;">Fast Slot Placement</strong>
+                <p style="margin: 0.2rem 0; font-size: 0.88rem; color: var(--muted);">Substrate Controller assigns Actor to pre-warmed slot inside <code>WorkerPool: general-coding-pool</code>.</p>
+                <span class="pill pill-blue" id="pill-p2">Status: Standby</span>
+              </div>
+            </div>
+
+            <div class="phase-step" id="phase-3">
+              <div class="step-num" id="step-num-3">3</div>
+              <div>
+                <strong style="color: #f1f5f9;">Sub-500ms State &amp; RAM Restore</strong>
+                <p style="margin: 0.2rem 0; font-size: 0.88rem; color: var(--muted);">Mounts NVMe snapshot; demand-pages virtual memory tables and uncommitted Git tree.</p>
+                <span class="pill pill-blue" id="pill-p3">Status: Standby</span>
+              </div>
+            </div>
+
+            <div class="phase-step" id="phase-4">
+              <div class="step-num" id="step-num-4">4</div>
+              <div>
+                <strong style="color: #f1f5f9;">Secure Execution via gVisor (runsc)</strong>
+                <p style="margin: 0.2rem 0; font-size: 0.88rem; color: var(--muted);">Agent executes tool / AST edit. All Linux syscalls trapped in user space; host kernel untouched.</p>
+                <span class="pill pill-blue" id="pill-p4">Status: Standby</span>
+              </div>
+            </div>
+
+            <div class="phase-step" id="phase-5">
+              <div class="step-num" id="step-num-5">5</div>
+              <div>
+                <strong style="color: #f1f5f9;">Idle Suspension &amp; Memory Snapshot</strong>
+                <p style="margin: 0.2rem 0; font-size: 0.88rem; color: var(--muted);">Turn completes (waiting on LLM tokens). Dirty pages flushed to tiered storage; Worker slot freed.</p>
+                <span class="pill pill-blue" id="pill-p5">Status: Standby</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div style="background: #0b0f17; border: 1px solid var(--border); border-radius: 0.75rem; padding: 1rem; height: 100%;">
+              <div style="font-size: 0.78rem; text-transform: uppercase; color: var(--muted); font-family: ui-monospace, monospace; margin-bottom: 0.5rem;">
+                Substrate Controller Event Stream
+              </div>
+              <pre id="stream-log" style="background: transparent; border: none; padding: 0; margin: 0; min-height: 280px; font-size: 0.82rem; color: #a5b4fc;">[System Ready] Click "Trigger Inbound Turn" to simulate Substrate event dispatch...</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: GVISOR INSPECTOR -->
+      <div id="tab-gvisor-inspector" class="card" style="display: none;">
+        <h2 style="margin: 0 0 0.5rem; font-size: 1.25rem;">gVisor Zero-Trust Syscall Sandboxing Inspector</h2>
+        <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+          Test untrusted agent commands and observe how Google’s gVisor user-space kernel (<code>runsc</code>) neutralizes exploits before they reach the host Linux kernel.
+        </p>
+
+        <div style="margin-bottom: 1rem;">
+          <label style="font-size: 0.85rem; color: var(--muted); display: block; margin-bottom: 0.4rem;">Select Command Preset to Audit:</label>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <button class="outline" onclick="selectCommandPreset('harmless')">Normal Tool: `git status &amp;&amp; npm test`</button>
+            <button class="outline" onclick="selectCommandPreset('privilege')">Kernel Exploit: `cat /etc/shadow`</button>
+            <button class="outline" onclick="selectCommandPreset('egress')">Rogue Egress: `curl internal-vault:8200`</button>
+            <button class="outline" onclick="selectCommandPreset('fork')">Fork Bomb: `:(){ :|:&amp; };:`</button>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div>
+            <div style="margin-bottom: 0.75rem;">
+              <label style="font-size: 0.85rem; color: var(--muted);">Agent Command:</label>
+              <input type="text" id="cmd-input" value="git status &amp;&amp; npm test" style="width: 100%; background: #0b0f17; border: 1px solid var(--border); border-radius: 0.5rem; padding: 0.6rem 0.8rem; color: #f3f5fb; font-family: 'JetBrains Mono', monospace; font-size: 0.88rem; margin-top: 0.25rem;" />
+            </div>
+            <button class="primary" onclick="simulateSyscall()">Intercept Syscalls with gVisor &rarr;</button>
+
+            <div style="margin-top: 1.25rem;" id="syscall-verdict">
+              <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 0.5rem; padding: 0.85rem;">
+                <strong style="color: #6ee7b7;">Sandbox Assessment: SAFE</strong>
+                <p style="margin: 0.25rem 0 0; font-size: 0.85rem; color: #cbd5e1;">All system calls (execve, stat, getpid) handled purely within user-space Sentry. Host kernel isolated.</p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div style="background: #0b0f17; border: 1px solid var(--border); border-radius: 0.75rem; padding: 1rem;">
+              <div style="font-size: 0.78rem; text-transform: uppercase; color: var(--muted); font-family: ui-monospace, monospace; margin-bottom: 0.5rem;">
+                gVisor Sentry Syscall Trace
+              </div>
+              <pre id="syscall-trace" style="background: transparent; border: none; padding: 0; margin: 0; font-size: 0.82rem; color: #7dd3fc;">[SENTRY TRACE] Ready. Enter command or choose preset.</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: ROI CALCULATOR -->
+      <div id="tab-roi-calculator" class="card" style="display: none;">
+        <h2 style="margin: 0 0 0.5rem; font-size: 1.25rem;">Fleet Density &amp; Cloud Cost ROI Calculator</h2>
+        <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+          Model the financial impact of shifting from standard dedicated Kubernetes Pods to Agent Substrate Actor-Worker multiplexing.
+        </p>
+
+        <div class="grid-2">
+          <div>
+            <div class="slider-row">
+              <label>
+                <span>Active Agent Fleet Size:</span>
+                <strong id="val-fleet" style="color: #38bdf8; font-family: monospace;">10,000 agents</strong>
+              </label>
+              <input type="range" id="input-fleet" min="500" max="50000" step="500" value="10000" oninput="updateROI()" />
+            </div>
+
+            <div class="slider-row">
+              <label>
+                <span>Average Idle Time Duty Cycle:</span>
+                <strong id="val-idle" style="color: #38bdf8; font-family: monospace;">95% idle</strong>
+              </label>
+              <input type="range" id="input-idle" min="50" max="98" step="1" value="95" oninput="updateROI()" />
+            </div>
+
+            <div class="slider-row">
+              <label>
+                <span>Single Pod Hourly Cost (1 vCPU, 4GB):</span>
+                <strong id="val-cost" style="color: #38bdf8; font-family: monospace;">$0.048 / hr</strong>
+              </label>
+              <input type="range" id="input-cost" min="0.02" max="0.10" step="0.005" value="0.048" oninput="updateROI()" />
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="stat-box">
+              <div class="stat-val" id="stat-k8s-cost" style="color: #ef4444;">$34,560</div>
+              <div class="stat-lbl">Standard K8s / Month</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val" id="stat-substrate-cost" style="color: #10b981;">$1,728</div>
+              <div class="stat-lbl">Substrate / Month</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val" id="stat-savings" style="color: #38bdf8;">$32,832</div>
+              <div class="stat-lbl">Monthly Net Savings</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val" id="stat-density" style="color: #f59e0b;">20x</div>
+              <div class="stat-lbl">Cluster Density Gain</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 4: YAML GENERATOR -->
+      <div id="tab-yaml-generator" class="card" style="display: none;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
+          <div>
+            <h2 style="margin: 0; font-size: 1.25rem;">Production GKE Kubernetes YAML Generator</h2>
+            <div style="font-size: 0.85rem; color: var(--muted);">Generate validated WorkerPool &amp; Actor manifests conforming to ate.dev specs</div>
+          </div>
+          <div>
+            <button class="primary" onclick="copyYaml()">Copy YAML to Clipboard</button>
+          </div>
+        </div>
+
+        <pre id="yaml-output" style="color: #86efac; line-height: 1.45;">apiVersion: substrate.ate.dev/v1alpha1
+kind: WorkerPool
+metadata:
+  name: general-coding-pool
+  namespace: substrate-workloads
+spec:
+  replicas: 20
+  slotsPerWorker: 10
+  runtimeClassName: gvisor
+  template:
+    spec:
+      containers:
+      - name: sandbox-runtime
+        image: gcr.io/gemini-pulse-prod/agent-runtime:v2.0
+        resources:
+          requests:
+            cpu: "2"
+            memory: "8Gi"
+          limits:
+            cpu: "4"
+            memory: "16Gi"
+---
+apiVersion: substrate.ate.dev/v1alpha1
+kind: ActorDefinition
+metadata:
+  name: workspace-antigravity-dev-442
+  namespace: substrate-workloads
+spec:
+  targetWorkerPool: general-coding-pool
+  idleTimeoutSeconds: 30
+  snapshotStrategy:
+    tier: NVMeTiered
+    compression: zstd-fast
+    maxRestoreLatencyMs: 500
+  networkPolicy:
+    egress:
+    - to:
+      - ipBlock: { cidr: 142.250.0.0/15 } # Google AI APIs
+      ports: [{ protocol: TCP, port: 443 }]
+    denyAllOtherEgress: true</pre>
+      </div>
+
+      <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <span style="font-size: 0.85rem; color: var(--muted);">
+          Grounded by Google Cloud &amp; Google Open Source KubeCon NA 2026 Announcements &bull; Built with Google Gemini 4 Argon
+        </span>
+        <a href="/series/agent-substrate/part-1-agent-substrate-breakdown-and-cncf-donation.html" style="font-size: 0.85rem; color: #38bdf8;">
+          Read the 3-Part Deep-Dive Series &rarr;
+        </a>
+      </div>
+    </div>
+
+    <script>
+      function switchTab(tabId) {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.card[id^="tab-"]').forEach(c => c.style.display = 'none');
+        
+        event.target.classList.add('active');
+        document.getElementById('tab-' + tabId).style.display = 'block';
+      }
+
+      function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+
+      async function runAgentTurn() {
+        const btn = document.getElementById('btn-run-turn');
+        btn.disabled = true;
+        btn.textContent = 'Simulating Turn...';
+        
+        const log = document.getElementById('stream-log');
+        log.textContent = '';
+        
+        function appendLog(msg) {
+          log.textContent += msg + '\n';
+        }
+
+        // Reset phases
+        for (let i = 1; i <= 5; i++) {
+          document.getElementById('step-num-' + i).className = 'step-num';
+          document.getElementById('pill-p' + i).className = 'pill pill-blue';
+          document.getElementById('pill-p' + i).textContent = 'Status: Waiting';
+        }
+
+        // Phase 1
+        document.getElementById('step-num-1').className = 'step-num active';
+        document.getElementById('pill-p1').className = 'pill pill-amber';
+        document.getElementById('pill-p1').textContent = 'Parked in Proxy';
+        appendLog('12:45:01.102 [atenet-router] INBOUND POST /v1/agent/turn (actor: dev-442)');
+        appendLog('12:45:01.104 [atenet-router] Actor dev-442 is SUSPENDED. Parking socket in L7 queue...');
+        await sleep(600);
+        document.getElementById('step-num-1').className = 'step-num done';
+        document.getElementById('pill-p1').className = 'pill pill-emerald';
+        document.getElementById('pill-p1').textContent = 'Dispatched';
+
+        // Phase 2
+        document.getElementById('step-num-2').className = 'step-num active';
+        document.getElementById('pill-p2').className = 'pill pill-amber';
+        document.getElementById('pill-p2').textContent = 'Locating Warm Slot';
+        appendLog('12:45:01.115 [controller] Queried WorkerPool "general-coding-pool" (18/200 slots active)');
+        appendLog('12:45:01.122 [controller] Assigned Actor dev-442 to worker-pod-c3-882 [slot #4]');
+        await sleep(500);
+        document.getElementById('step-num-2').className = 'step-num done';
+        document.getElementById('pill-p2').className = 'pill pill-emerald';
+        document.getElementById('pill-p2').textContent = 'Placed';
+
+        // Phase 3
+        document.getElementById('step-num-3').className = 'step-num active';
+        document.getElementById('pill-p3').className = 'pill pill-amber';
+        document.getElementById('pill-p3').textContent = 'Restoring RAM (312ms)';
+        appendLog('12:45:01.130 [storage] Demand-paging 48.2MB dirty pages from local NVMe tier...');
+        appendLog('12:45:01.442 [gvisor-sentry] Sentry virtual memory tables restored in 312ms.');
+        appendLog('12:45:01.445 [atenet-router] Socket unparked. Delivering payload to restored process.');
+        await sleep(700);
+        document.getElementById('step-num-3').className = 'step-num done';
+        document.getElementById('pill-p3').className = 'pill pill-emerald';
+        document.getElementById('pill-p3').textContent = 'Awake (<500ms)';
+
+        // Phase 4
+        document.getElementById('step-num-4').className = 'step-num active';
+        document.getElementById('pill-p4').className = 'pill pill-amber';
+        document.getElementById('pill-p4').textContent = 'Executing in Sandbox';
+        appendLog('12:45:01.450 [sandbox] Process unpaused (PID 14201). Executing AST test suite...');
+        appendLog('12:45:01.780 [sandbox] Executed 4 tests in 330ms (0 host syscalls leaked).');
+        await sleep(800);
+        document.getElementById('step-num-4').className = 'step-num done';
+        document.getElementById('pill-p4').className = 'pill pill-emerald';
+        document.getElementById('pill-p4').textContent = 'Passed (gVisor Isolated)';
+
+        // Phase 5
+        document.getElementById('step-num-5').className = 'step-num active';
+        document.getElementById('pill-p5').className = 'pill pill-amber';
+        document.getElementById('pill-p5').textContent = 'Hibernating';
+        appendLog('12:45:01.810 [controller] Turn concluded. Waiting on LLM token stream.');
+        appendLog('12:45:01.835 [storage] Checkpointed 3.4MB dirty pages to NVMe. Worker slot #4 FREED.');
+        appendLog('12:45:01.840 [SUCCESS] Agent turn complete. Active CPU footprint: 0 vCPU.');
+        await sleep(500);
+        document.getElementById('step-num-5').className = 'step-num done';
+        document.getElementById('pill-p5').className = 'pill pill-emerald';
+        document.getElementById('pill-p5').textContent = 'Suspended (0 CPU)';
+
+        btn.disabled = false;
+        btn.textContent = 'Trigger Inbound Turn →';
+      }
+
+      function selectCommandPreset(preset) {
+        const input = document.getElementById('cmd-input');
+        if (preset === 'harmless') input.value = 'git status && npm test';
+        if (preset === 'privilege') input.value = 'cat /etc/shadow';
+        if (preset === 'egress') input.value = 'curl -s http://internal-vault:8200';
+        if (preset === 'fork') input.value = ':(){ :|:& };:';
+        simulateSyscall();
+      }
+
+      function simulateSyscall() {
+        const cmd = document.getElementById('cmd-input').value.trim();
+        const trace = document.getElementById('syscall-trace');
+        const verdict = document.getElementById('syscall-verdict');
+
+        if (cmd.includes('/etc/shadow')) {
+          trace.textContent = 
+`[SENTRY] Trap syscall: openat(AT_FDCWD, "/etc/shadow", O_RDONLY)
+[SENTRY] Virtual VFS check: uid=1000, euid=1000
+[SENTRY] Access Denied: EACCES (Permission denied)
+[SENTRY] Sentry blocked read without querying host kernel.
+[HOST KERNEL] 0 syscalls reached /proc or /dev on host node.`;
+          verdict.innerHTML = 
+`<div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 0.5rem; padding: 0.85rem;">
+  <strong style="color: #fca5a5;">Sandbox Assessment: BLOCKED &amp; TRAPPED</strong>
+  <p style="margin: 0.25rem 0 0; font-size: 0.85rem; color: #cbd5e1;">Sensitive shadow file read intercepted in gVisor user space. Host node credentials completely shielded.</p>
+</div>`;
+        } else if (cmd.includes('internal-vault')) {
+          trace.textContent = 
+`[SENTRY] Trap syscall: socket(AF_INET, SOCK_STREAM, 0)
+[SENTRY] Sentry synthetic TCP stack initialized.
+[SUBSTRATE NET] Route check: dst 10.96.0.42:8200 (internal-vault)
+[SUBSTRATE NET] DENY: Destination violates Actor egress whitelist (only *.googleapis.com, github.com allowed).
+[SENTRY] connect() returned -1 ECONNREFUSED`;
+          verdict.innerHTML = 
+`<div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 0.5rem; padding: 0.85rem;">
+  <strong style="color: #fca5a5;">Sandbox Assessment: EGRESS QUARANTINED</strong>
+  <p style="margin: 0.25rem 0 0; font-size: 0.85rem; color: #cbd5e1;">Lateral network connection blocked by ActorNetworkPolicy. No internal cluster service reachable.</p>
+</div>`;
+        } else if (cmd.includes('fork') || cmd.includes(':(){')) {
+          trace.textContent = 
+`[SENTRY] Trap syscall: clone(SIGCHLD)
+[SENTRY] Process count: 1... 2... 4... 8... 16...
+[SENTRY] PID LIMIT REACHED: Per-sandbox max_pids = 64
+[SENTRY] clone() returned -1 EAGAIN (Resource temporarily unavailable)
+[HOST KERNEL] Host PID table untouched. Neighbor pods unharmed.`;
+          verdict.innerHTML = 
+`<div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 0.5rem; padding: 0.85rem;">
+  <strong style="color: #fcd34d;">Sandbox Assessment: RESOURCE THROTTLED</strong>
+  <p style="margin: 0.25rem 0 0; font-size: 0.85rem; color: #cbd5e1;">Fork bomb contained within gVisor virtualized process table. Host node suffered 0% thread starvation.</p>
+</div>`;
+        } else {
+          trace.textContent = 
+`[SENTRY] Trap syscall: execve("/usr/bin/git", ["git", "status"], env)
+[SENTRY] Trap syscall: stat("/workspace/.git", &statbuf)
+[SENTRY] Trap syscall: execve("/usr/bin/npm", ["npm", "test"], env)
+[SENTRY] Exit status: 0 (Tests passing)
+[SECURITY AUDIT] Clean execution. 100% of calls virtualized by runsc.`;
+          verdict.innerHTML = 
+`<div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 0.5rem; padding: 0.85rem;">
+  <strong style="color: #6ee7b7;">Sandbox Assessment: SAFE</strong>
+  <p style="margin: 0.25rem 0 0; font-size: 0.85rem; color: #cbd5e1;">All system calls handled cleanly in user-space. Zero privilege escalation risk.</p>
+</div>`;
+        }
+      }
+
+      function updateROI() {
+        const fleet = parseInt(document.getElementById('input-fleet').value, 10);
+        const idlePct = parseInt(document.getElementById('input-idle').value, 10);
+        const hourlyRate = parseFloat(document.getElementById('input-cost').value);
+
+        document.getElementById('val-fleet').textContent = fleet.toLocaleString() + ' agents';
+        document.getElementById('val-idle').textContent = idlePct + '% idle';
+        document.getElementById('val-cost').textContent = '$' + hourlyRate.toFixed(3) + ' / hr';
+
+        const hoursPerMonth = 720;
+        const k8sMonthly = fleet * hourlyRate * hoursPerMonth;
+        
+        // Active concurrency duty cycle
+        const activePct = (100 - idlePct) / 100;
+        // Buffering factor of 1.25 for burst overhead
+        const workersNeeded = Math.max(10, Math.ceil(fleet * activePct * 1.25));
+        const substrateMonthly = (workersNeeded * hourlyRate * hoursPerMonth) + (fleet * 0.05); // plus minor snapshot storage
+
+        const savings = Math.max(0, k8sMonthly - substrateMonthly);
+        const densityGain = Math.round(fleet / workersNeeded);
+
+        document.getElementById('stat-k8s-cost').textContent = '$' + Math.round(k8sMonthly).toLocaleString();
+        document.getElementById('stat-substrate-cost').textContent = '$' + Math.round(substrateMonthly).toLocaleString();
+        document.getElementById('stat-savings').textContent = '$' + Math.round(savings).toLocaleString();
+        document.getElementById('stat-density').textContent = densityGain + 'x';
+      }
+
+      function copyYaml() {
+        const code = document.getElementById('yaml-output').textContent;
+        navigator.clipboard.writeText(code).then(() => {
+          alert('Copied Agent Substrate Kubernetes manifests to clipboard!');
+        });
+      }
+
+      // Initialize defaults
+      updateROI();
+    </script>
+  </body>
+</html>

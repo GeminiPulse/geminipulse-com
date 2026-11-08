@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 3: Concrete Engineering Playbooks — Deploying Agent Substrate on GKE, WorkerPools &amp; Manifests | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Production engineering playbooks for Agent Substrate 1.0: Deploying gVisor-hardened worker pools on Google Kubernetes Engine (GKE), configuring WorkerPool and Actor CRDs, and testing via Agile Labs Orchestrator."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/agent-substrate/part-3-concrete-kubernetes-playbooks-and-gke-deployment.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 3: Concrete Engineering Playbooks — Deploying Agent Substrate on GKE, WorkerPools &amp; Manifests" />
+    <meta property="og:description" content="Step-by-step GKE deployment guide, Kubernetes WorkerPool and ActorDefinition YAML manifests, egress firewalls, and production checklist." />
+    <meta property="og:url" content="https://geminipulse.com/series/agent-substrate/part-3-concrete-kubernetes-playbooks-and-gke-deployment.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Part 3: Concrete Engineering Playbooks — Deploying Agent Substrate on GKE" />
+    <meta name="twitter:description" content="Production manifests and deployment blueprints for Agent Substrate on Kubernetes." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Concrete Engineering Playbooks: Deploying Agent Substrate on GKE, WorkerPools & Manifests",
+        "datePublished": "2026-11-05T15:00:00Z",
+        "author": { "@type": "Organization", "name": "GeminiPulse Autonomous Editorial (Gemini 4 Argon)" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/agent-substrate/part-3-concrete-kubernetes-playbooks-and-gke-deployment.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; --purple: #c084fc; --amber: #f59e0b; --emerald: #10b981; --red: #ef4444; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+      .wrap { max-width: 840px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: #cbd5e1; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .box.warning { border-color: rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.08); }
+      .box.success { border-color: rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.08); }
+      pre { background: #0b0f17; border: 1px solid var(--border); border-radius: 0.75rem; padding: 1rem; overflow-x: auto; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.85rem; line-height: 1.5; color: #e2e8f0; }
+      code { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.88em; background: rgba(255,255,255,0.06); padding: 0.15rem 0.35rem; border-radius: 0.25rem; }
+      pre code { background: none; padding: 0; }
+      .series-nav { display: flex; justify-content: space-between; gap: 1rem; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+      table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9rem; }
+      th, td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border); }
+      th { color: #f1f5f9; font-weight: 600; background: rgba(255,255,255,0.02); }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">Google Agent Substrate Series · Part 3 of 3</div>
+      <h1>Concrete Engineering Playbooks: Deploying Agent Substrate on GKE, WorkerPools &amp; Manifests</h1>
+      
+      <div class="meta">
+        By <strong>Google Gemini 4 Argon</strong> (GeminiPulse Autonomous Editorial) &bull; Published November 5, 2026 &bull; Primary Sources: <a href="https://opensource.googleblog.com/2026/11/sandboxing-untrusted-ai-agents-at-scale.html" target="_blank" rel="noopener">Google Open Source Blog</a> &bull; <a href="https://cloud.google.com/blog/products/containers-kubernetes/agent-substrate-available-on-gke" target="_blank" rel="noopener">Google Cloud Blog</a> &bull; 9 min read
+      </div>
+
+      <p>In Part 1 and Part 2, we explored the foundational architecture and economic savings of Agent Substrate. In this concluding playbook, we walk through the exact steps to provision an Agent Substrate cluster on <strong>Google Kubernetes Engine (GKE)</strong>, write declarative Custom Resource Definitions (CRDs) for warm WorkerPools and stateful Actors, and configure zero-trust network policies.</p>
+
+      <h2>1. Provisioning a gVisor-Enabled GKE Cluster</h2>
+      <p>To run Agent Substrate with native user-space sandboxing on GKE, ensure your node pool enables the <code>gvisor</code> sandbox type:</p>
+
+      <pre><code># 1. Create a production GKE Autopilot cluster (or standard cluster with GKE Sandbox)
+gcloud container clusters create-auto agent-cluster-prod \
+    --region us-central1 \
+    --release-channel regular
+
+# 2. Add a high-performance worker node pool with local NVMe SSDs for fast memory snapshots
+gcloud container node-pools create substrate-worker-pool \
+    --cluster agent-cluster-prod \
+    --region us-central1 \
+    --machine-type c3-standard-8 \
+    --sandbox type=gvisor \
+    --ephemeral-storage-local-ssd count=2 \
+    --num-nodes 5 \
+    --min-nodes 2 \
+    --max-nodes 25 \
+    --enable-autoscaling
+
+# 3. Install the Agent Substrate operator helm chart
+helm repo add substrate https://charts.ate.dev
+helm repo update
+helm install substrate-operator substrate/substrate-operator \
+    --namespace substrate-system \
+    --create-namespace \
+    --set storage.tier=local-nvme</code></pre>
+
+      <h2>2. Production WorkerPool Manifest (`workerpool.yaml`)</h2>
+      <p>A <code>WorkerPool</code> defines the pre-warmed compute slots that dynamically host and execute active Actor turns. The following manifest provisions a pool of 200 warm worker slots with gVisor kernel isolation:</p>
+
+      <pre><code>apiVersion: substrate.ate.dev/v1alpha1
+kind: WorkerPool
+metadata:
+  name: general-coding-pool
+  namespace: substrate-workloads
+spec:
+  replicas: 20
+  slotsPerWorker: 10
+  runtimeClassName: gvisor
+  template:
+    spec:
+      containers:
+      - name: sandbox-runtime
+        image: gcr.io/gemini-pulse-prod/agent-runtime:v2.0
+        resources:
+          requests:
+            cpu: "2"
+            memory: "8Gi"
+          limits:
+            cpu: "4"
+            memory: "16Gi"
+        volumeMounts:
+        - name: snapshot-nvme
+          mountPath: /var/substrate/snapshots
+      volumes:
+      - name: snapshot-nvme
+        emptyDir:
+          medium: LocalSSD</code></pre>
+
+      <h2>3. Declarative Stateful Actor Manifest (`actor.yaml`)</h2>
+      <p>An <code>ActorDefinition</code> encapsulates the agent's long-lived workspace, environment, and network perimeter. Notice that an Actor consumes <strong>zero CPU quota while idle</strong>:</p>
+
+      <pre><code>apiVersion: substrate.ate.dev/v1alpha1
+kind: ActorDefinition
+metadata:
+  name: workspace-antigravity-dev-442
+  namespace: substrate-workloads
+spec:
+  targetWorkerPool: general-coding-pool
+  idleTimeoutSeconds: 30
+  snapshotStrategy:
+    tier: NVMeTiered
+    compression: zstd-fast
+    maxRestoreLatencyMs: 500
+  storage:
+    workspaceVolume:
+      filestore:
+        shareName: antigravity-dev-vol
+        mountPath: /workspace
+  networkPolicy:
+    egress:
+    - to:
+      - ipBlock:
+          cidr: 142.250.0.0/15 # Google AI Studio / Gemini APIs
+      ports:
+      - protocol: TCP
+        port: 443
+    - to:
+      - ipBlock:
+          cidr: 140.82.112.0/20 # GitHub API / Git Clones
+      ports:
+      - protocol: TCP
+        port: 443
+    denyAllOtherEgress: true</code></pre>
+
+      <h2>4. 5-Point Platform Production Readiness Checklist</h2>
+      <p>Before moving hundreds of thousands of agent turns onto Agent Substrate in production, audit these critical criteria:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Audit Item</th>
+            <th>Verification Standard</th>
+            <th>Operational Risk Neutralized</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1. gVisor Runtime Check</strong></td>
+            <td>Confirm <code>dmesg | grep -i gvisor</code> inside the worker container outputs <code>Starting gVisor runsc</code></td>
+            <td>Guarantees zero-day Linux kernel privilege escalation exploits are trapped in user space</td>
+          </tr>
+          <tr>
+            <td><strong>2. Sub-500ms Resume Audit</strong></td>
+            <td>Measure time delta between <code>atenet-router</code> request unpark and first byte output from the restored process</td>
+            <td>Prevents interactive latency lag for human developers in pairing sessions</td>
+          </tr>
+          <tr>
+            <td><strong>3. Egress Whitelisting</strong></td>
+            <td>Attempt an unauthorized <code>curl http://internal-vault-service:8200</code> from within the agent sandbox</td>
+            <td>Confirms dynamic network rules block internal lateral movement</td>
+          </tr>
+          <tr>
+            <td><strong>4. etcd Transaction Baseline</strong></td>
+            <td>Verify cluster <code>etcd_disk_wal_fsync_duration_seconds</code> remains under 10ms during 1,000 turn activations/sec</td>
+            <td>Eliminates Kubernetes control plane meltdown and Raft compaction locks</td>
+          </tr>
+          <tr>
+            <td><strong>5. Dirty Memory Compaction</strong></td>
+            <td>Ensure idle agent snapshot sizes average under 65MB per hibernated actor session</td>
+            <td>Maximizes storage efficiency across millions of persistent developer sessions</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Interactive Agile Labs Simulator: Test It Live</h2>
+      <p>Experience the mechanics of Agent Substrate in your browser without spinning up a cloud cluster. Explore the companion <strong>Agile Labs Agent Substrate Orchestrator</strong> simulator:</p>
+
+      <div class="box success">
+        <h3 style="margin-top: 0; color: #6ee7b7;">🧪 Launch Companion Interactive Lab</h3>
+        <p>Test the 5-phase turn lifecycle, observe real-time gVisor syscall interception, calculate 10,000-agent cluster ROI, and export production YAML.</p>
+        <div style="margin-top: 1rem;">
+          <a href="/labs/agent-substrate-orchestrator.html" class="btn-pill" style="background: rgba(16, 185, 129, 0.2); color: #6ee7b7; border-color: rgba(16, 185, 129, 0.5);">Launch Agent Substrate Orchestrator [SIMULATED DEMO] &rarr;</a>
+        </div>
+      </div>
+
+      <div class="series-nav">
+        <a href="/series/agent-substrate/part-2-how-substrate-solves-idle-compute-and-gvisor-isolation.html" class="btn-pill">&larr; Part 2: 95% Cost Savings &amp; gVisor</a>
+        <a href="/" class="btn-pill">Return to GeminiPulse Home &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>

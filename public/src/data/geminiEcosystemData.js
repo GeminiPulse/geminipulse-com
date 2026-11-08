@@ -5,6 +5,25 @@
 
 export const PULSE_INTELLIGENCE_FEED = [
   {
+    id: 'pulse-agent-substrate-cncf-donation',
+    title: 'Google Donates Agent Substrate 1.0 & gVisor to CNCF: High-Density AI Agent Runtime with Sub-500ms State Hibernation on GKE',
+    tldr: 'Released November 5, 2026: Google donates Agent Substrate 1.0 alongside gVisor and OpenRL to the CNCF (Sandbox status)—introducing an actor-based agent runtime that decouples stateful Actors from warm WorkerPools to slash idle cloud compute by 95%, eliminate etcd Pod thrash, and deliver sub-500ms suspend/resume with gVisor user-space isolation.',
+    summary:
+      'At KubeCon North America 2026, Google Cloud and Google Open Source announced the 1.0 milestone and CNCF Sandbox donation of Agent Substrate, gVisor, and OpenRL. Engineered to overcome the structural mismatch between traditional continuous Kubernetes Pod lifecycles and modern AI agents (which sit idle 90–95% of the time awaiting model tokens, tool responses, or human review), Agent Substrate decouples stateful Actors (holding memory, disk state, and environment) from warm compute Workers. Key architectural pillars include: (1) L7 Request Parking via atenet-router to hold traffic while suspended actors wake up, (2) Sub-500ms snapshot restore from tiered storage to resume execution right where it paused, (3) 10x higher density (over 500 suspend/resume activations per second on a single cluster) without thrashing etcd or exhausting subnet IPs, (4) Zero-Trust kernel isolation via gVisor (runsc) user-space syscall interception and Cloud Hypervisor microVMs, and (5) Native GKE integration validated by leading production swarms including Nous Research (Hermes Agent, #1 on OpenRouter) and Google Antigravity.',
+    category: 'Agents & Antigravity',
+    tag: 'Platform Milestone',
+    modelBadge: 'Agent Substrate 1.0 / CNCF Sandbox',
+    impactScore: '10.0 / 10',
+    date: '2026-11-05T15:00:00Z',
+    sourceLabel: 'Google Open Source Blog: Sandboxing Untrusted AI Agents at Scale',
+    sourceUrl: 'https://opensource.googleblog.com/2026/11/sandboxing-untrusted-ai-agents-at-scale.html',
+    groundedBy: 'Google Open Source Blog & Google Cloud Official Releases (Verified Nov 5, 2026)',
+    seriesUrl: '/series/agent-substrate/part-1-agent-substrate-breakdown-and-cncf-donation.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/agent-substrate-orchestrator.html',
+    labLabel: 'Orchestrator Lab [DEMO] →',
+  },
+  {
     id: 'pulse-js-genai-v3-release',
     title: 'Google Releases Gen AI JavaScript/TypeScript SDK v3.0.0: Gemini Developer API Defaults to v1, Node 22 Required & Multimodal Code Execution',
     tldr: 'Released November 6, 2026: Google rolls out major milestone `@google/genai` v3.0.0—shifting Gemini Developer API default from `v1beta` to `v1` (stable GA), retiring legacy `gemini-*-latest` model aliases, enforcing Node >= 22.0.0 floor, and typing `CodeExecutionResultStep.result` as `Array<Content> | string` for multimodal outputs.',
@@ -843,6 +862,25 @@ video_turn = client.interactions.create(
 ];
 
 export const INITIAL_SHOWCASE_PROJECTS = [
+  {
+    id: 'showcase-agent-substrate-orchestrator',
+    name: 'Agent Substrate 1.0 Orchestrator & Sandbox Studio [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive architectural simulator for Google Agent Substrate 1.0 (CNCF Sandbox): test Actor-Worker multiplexing, simulate sub-500ms state hibernation, inspect gVisor user-space kernel isolation, and calculate 95% cluster ROI.',
+    models: ['gemini-4-argon', 'agent-substrate-1.0', 'gvisor-runsc'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/agent-substrate-orchestrator.html): [SIMULATED DEMO] Models 5-phase agent turn lifecycle, L7 request parking at atenet-router, sub-500ms memory restore from NVMe, gVisor syscall isolation, and GKE WorkerPool/Actor YAML export.',
+    url: '/labs/agent-substrate-orchestrator.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-05T15:00:00Z',
+  },
   {
     id: 'showcase-genai-sdk-v3-migration-workbench',
     name: 'Google Gen AI SDK v3.0.0 Migration & Payload Workbench [SIMULATED DEMO]',
