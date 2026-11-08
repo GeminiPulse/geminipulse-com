@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-11-08 12:45 EST — ROUND 26 12:45 PM ET EMBARGO CURATION COMPLETE: Curated Google Agent Substrate 1.0 & gVisor CNCF Sandbox Donation Milestone, Decoupled Actor-Worker Multiplexing, Sub-500ms Memory Hibernation, GKE Support, Published 3-Part Series (/series/agent-substrate/) & Agile Labs Agent Substrate Orchestrator (/labs/agent-substrate-orchestrator.html)`
+> **Last touched:** `2026-11-08 17:45 EST — ROUND 27 5:45 PM ET CURATION COMPLETE: Verified Google Official SDKs (JS/Python v3.0.0) & API Changelogs, Curated New Featured Video of the Day (Google Cloud Tech: Flash vs Pro vs Flash-Lite Architecture Guide) + BitBiasedAI Omni 1.2 Flash Benchmark & NextWork Agent Substrate Community Lab`
 
 ---
 

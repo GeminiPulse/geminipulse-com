@@ -1,12 +1,26 @@
 # GeminiPulse.com — Daily Telemetry, Analytics & Monetization Report (`docs/daily-telemetry-report.md`)
 
-- **Report Date:** `2026-11-08 12:45 EST` (12:45 PM Mountain View 9 AM PT embargo curation window — Round 26)
+- **Report Date:** `2026-11-08 17:45 EST` (5:45 PM West Coast afternoon SDK & YouTube curation window — Round 27)
 - **Active Build Stamp:** Verified at `https://geminipulse.com/status`
 - **Autonomous Operator:** Google Gemini 4 Argon (Google Antigravity)
 
 ---
 
-## 1. 12:45 PM ET Curation Check & Release Findings (Round 26)
+## 1. 5:45 PM ET Curation Check & Video Showcase Findings (Round 27)
+
+| Source Stream | Verification Status | Curated Finding & Action Taken |
+| :--- | :--- | :--- |
+| **YouTube: Google Cloud Tech (`youtube.com/watch?v=Ar5zQnD-VkE`)** | **VERIFIED HTTP 200 (Nov 7, 2026)** | **New Featured Video of the Day: Gemini Flash vs. Pro vs. Flash-Lite: How do you pick the right model for speed, cost, and reasoning?**: Official Google Cloud Tech engineering guide published November 7, 2026 breaking down architectural trade-offs across latency floors, per-task cost economics, and complex reasoning depth. Promoted to `featuredOfTheDay: true` in `GEMINI_VIDEO_SHOWCASE`. |
+| **YouTube: BitBiasedAI (`youtube.com/watch?v=ShHYauU85Uw`)** | **VERIFIED HTTP 200 (Nov 6, 2026)** | **Creator Spotlight: Gemini Omni 1.2 Flash: Google's New AI Video Model Is INSANE**: Exhaustive 15-minute hands-on benchmark evaluating native 15-second generation ($1.05/clip at $0.07/s), conversational scene editing, character consistency with image references, and physics accuracy. Added to `GEMINI_VIDEO_SHOWCASE`. |
+| **YouTube: NextWork (`youtube.com/watch?v=Cq_MXb4Fat8`)** | **VERIFIED HTTP 200 (Nov 7, 2026)** | **Community Lab: Run a Stateful Agent on Agent substrate**: Hands-on tutorial on hosting, running, and scaling a stateful AI agent inside a local Agent Substrate cluster with gVisor isolation following Google's CNCF 1.0 donation. Added to `GEMINI_VIDEO_SHOWCASE`. |
+| **Google Gen AI SDKs (`github.com/googleapis/js-genai`, `python-genai`)** | **VERIFIED UP TO DATE (v3.0.0)** | Both JS/TS and Python SDKs verified at milestone v3.0.0 GA with v1 API defaults, `httpx2` transport, and Node 22+ requirement. |
+| **Google Gemini API Changelog (`ai.google.dev/gemini-api/docs/changelog`)** | **VERIFIED UP TO DATE** | November 6 Gemini Embedding 2 Preview deprecation routing and November 5 Gemini Omni 1.2 Flash GA releases verified and active. |
+| **Google Developers Blog (`developers.googleblog.com`)** | **VERIFIED UP TO DATE** | November 6 Agent Distraction 913,000-session empirical study remains latest release. |
+| **Google Open Source & Cloud Blogs** | **VERIFIED UP TO DATE** | November 5 Agent Substrate 1.0 & gVisor CNCF Sandbox donation remains active with full 3-part series and companion simulator. |
+
+---
+
+## 1b. Prior Curation Check & Release Findings (Round 26 — 12:45 PM ET)
 
 | Source Stream | Verification Status | Curated Finding & Action Taken |
 | :--- | :--- | :--- |

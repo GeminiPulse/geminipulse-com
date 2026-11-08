@@ -1,6 +1,6 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-11-08 12:45 EST (ROUND 26 12:45 PM ET EMBARGO CURATION COMPLETE: Curated Google Agent Substrate 1.0 & gVisor CNCF Sandbox Donation Milestone, Decoupled Actor-Worker Multiplexing, Sub-500ms Memory Hibernation, GKE Support, Published 3-Part Series (/series/agent-substrate/) & Agile Labs Agent Substrate Orchestrator (/labs/agent-substrate-orchestrator.html))`
+- **Last Updated:** `2026-11-08 17:45 EST (ROUND 27 5:45 PM ET CURATION COMPLETE: Verified Google Official SDKs (JS/Python v3.0.0) & API Changelogs, Curated New Featured Video of the Day (Google Cloud Tech: Flash vs Pro vs Flash-Lite Architecture Guide) + BitBiasedAI Omni 1.2 Flash Benchmark & NextWork Agent Substrate Community Lab)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
@@ -13,7 +13,18 @@
 
 ---
 
-## 0. Completed & Live on `v2.0` (2026-11-08 12:45 PM ET — Round 26 12:45 PM Curation Check)
+## 0. Completed & Live on `v2.0` (2026-11-08 5:45 PM ET — Round 27 5:45 PM Curation Check)
+
+- **Curated New YouTube Featured Video of the Day & Ecosystem Spotlights:**
+  - **New Featured Video of the Day (`GEMINI_VIDEO_SHOWCASE`):** Set `vid-gemini-model-selection-guide` (`Ar5zQnD-VkE`) to `featuredOfTheDay: true` ("Gemini Flash vs. Pro vs. Flash-Lite: How do you pick the right model for speed, cost, and reasoning?" by Google Cloud Tech, published Nov 7, 2026). Explains the architectural trade-offs across latency floors, per-task cost economics, and complex reasoning depth.
+  - **Creator Spotlight:** Added `vid-omni-1-2-flash-bitbiased` (`ShHYauU85Uw`) — "Gemini Omni 1.2 Flash: Google's New AI Video Model Is INSANE" by BitBiasedAI. Comprehensive 15-minute hands-on benchmark evaluating native 15-second generation ($1.05/clip at $0.07/s), conversational scene editing, character consistency with image references, and physics accuracy.
+  - **Community Lab:** Added `vid-agent-substrate-nextwork` (`Cq_MXb4Fat8`) — "Run a Stateful Agent on Agent substrate" by NextWork. Hands-on engineering walkthrough hosting, running, and scaling a stateful AI agent inside a local Agent Substrate cluster with gVisor isolation following Google's CNCF 1.0 donation.
+  - **Rotated Previous Video:** Updated `vid-real-time-vision-gemini-live` (`dNGchf4InU0`) to `featuredOfTheDay: false` under `'OFFICIAL GOOGLE CLOUD TECH'`.
+- **Ecosystem Verification:** Verified upstream Google Gen AI SDKs (JS/TS v3.0.0 and Python v3.0.0), official API changelog (`ai.google.dev/gemini-api/docs/changelog`), and Google Developers Blog. All active models and benchmarks confirmed grounded.
+
+---
+
+## 0b. Prior Round on `v2.0` (2026-11-08 12:45 PM ET — Round 26 12:45 PM Curation Check)
 
 - **Curated Google Agent Substrate 1.0 & gVisor CNCF Donation Milestone:**
   - **Ecosystem Intelligence Entry (`PULSE_INTELLIGENCE_FEED`):** Added `pulse-agent-substrate-cncf-donation` citing `https://opensource.googleblog.com/2026/11/sandboxing-untrusted-ai-agents-at-scale.html` and `https://cloud.google.com/blog/products/containers-kubernetes/agent-substrate-available-on-gke`. Details: (1) Google donates Agent Substrate 1.0, gVisor, and OpenRL to the CNCF (Sandbox status) alongside KubeCon NA 2026 in Salt Lake City, (2) Solves the 95% idle compute waste of traditional Kubernetes Pods by decoupling stateful Actors from warm WorkerPools ($14k/mo down to $720/mo, 95% savings), (3) Prevents etcd/kube-apiserver control plane saturation during agent bursts (over 500 activations/sec on a single cluster), (4) Sub-500ms state restores via NVMe tiered memory snapshotting, (5) Zero-trust kernel isolation via gVisor (`runsc`) user-space syscall interception and Cloud Hypervisor microVMs, and (6) Managed GKE integration validated by Nous Research (Hermes Agent, #1 on OpenRouter) and Google Antigravity.
