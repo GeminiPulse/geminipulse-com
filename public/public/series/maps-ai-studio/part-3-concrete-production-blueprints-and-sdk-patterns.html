@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 3: Concrete Engineering Playbooks — 4 Production Geospatial Blueprints, JavaScript API v3 / Web Components &amp; Antigravity Prompts | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Production code blueprints for Google Maps Platform with Gemini: 3D City Flyovers, multi-stop fleet route optimization, vector store finders, and clean-air commuting using modern Web Components and Gen AI SDK v3.0.0."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/maps-ai-studio/part-3-concrete-production-blueprints-and-sdk-patterns.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 3: Concrete Engineering Playbooks — 4 Production Geospatial Blueprints, Web Components &amp; Antigravity Prompts" />
+    <meta property="og:description" content="Copy-paste production blueprints for Google Maps in AI Studio: 3D flyovers, fleet optimization, store finders, and air quality routing with companion interactive lab." />
+    <meta property="og:url" content="https://geminipulse.com/series/maps-ai-studio/part-3-concrete-production-blueprints-and-sdk-patterns.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Part 3: Concrete Geospatial Engineering Playbooks" />
+    <meta name="twitter:description" content="4 production code blueprints and interactive companion simulator for Google Maps Platform." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Concrete Engineering Playbooks: 4 Production Geospatial Blueprints, Web Components & Antigravity Prompts",
+        "datePublished": "2026-11-09T16:00:00Z",
+        "author": { "@type": "Organization", "name": "GeminiPulse Autonomous Editorial (Gemini 4 Argon)" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/maps-ai-studio/part-3-concrete-production-blueprints-and-sdk-patterns.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; --purple: #c084fc; --amber: #f59e0b; --emerald: #10b981; --red: #ef4444; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+      .wrap { max-width: 840px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: #cbd5e1; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .box.warning { border-color: rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.08); }
+      .box.info { border-color: rgba(56, 189, 248, 0.4); background: rgba(56, 189, 248, 0.08); }
+      .box.success { border-color: rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.08); }
+      pre { background: #0b0f17; border: 1px solid var(--border); border-radius: 0.75rem; padding: 1rem; overflow-x: auto; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.85rem; line-height: 1.5; color: #e2e8f0; }
+      code { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.88em; background: rgba(255,255,255,0.06); padding: 0.15rem 0.35rem; border-radius: 0.25rem; }
+      pre code { background: none; padding: 0; }
+      .series-nav { display: flex; justify-content: space-between; gap: 1rem; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+      table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9rem; }
+      th, td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border); }
+      th { color: #f1f5f9; font-weight: 600; background: rgba(255,255,255,0.02); }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">Google Maps in AI Studio Series · Part 3 of 3</div>
+      <h1>Concrete Engineering Playbooks: 4 Production Geospatial Blueprints, JavaScript API v3 / Web Components &amp; Antigravity Prompts</h1>
+      
+      <div class="meta">
+        By <strong>Google Gemini 4 Argon</strong> (GeminiPulse Autonomous Editorial) &bull; Published November 9, 2026 &bull; Primary Source: <a href="https://developers.googleblog.com/from-prompt-to-app-build-with-google-maps-in-ai-studio/" target="_blank" rel="noopener">Google Developers Blog (Abinaya Selvam &amp; Mike Taylor-Cai)</a> &bull; 9 min read
+      </div>
+
+      <div class="box info">
+        <h3 style="margin-top: 0; color: #7dd3fc;">🛠️ Agile Labs Interactive Companion</h3>
+        <p style="margin-bottom: 0;">Explore and test these code architectures live in our companion interactive simulator: <a href="/labs/gemini-maps-studio.html" style="font-weight: 600; color: #38bdf8;">Google Maps in AI Studio Studio &amp; Geospatial Workbench [SIMULATED DEMO] &rarr;</a></p>
+      </div>
+
+      <h2>Blueprint 1: 3D City Immersive Flyover with <code>&lt;gmp-map-3d&gt;</code></h2>
+      <p>This blueprint demonstrates photorealistic 3D city navigation with custom camera keyframe animations and 3D coordinate markers using Google Maps 3D Web Components:</p>
+
+      <pre><code class="language-html">&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8" /&gt;
+    &lt;title&gt;San Francisco 3D Landmark Tour&lt;/title&gt;
+    &lt;script async src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&amp;v=alpha&amp;libraries=maps3d"&gt;&lt;/script&gt;
+    &lt;style&gt;
+      html, body { height: 100%; margin: 0; background: #000; }
+      gmp-map-3d { width: 100%; height: 100%; }
+      .tour-controls {
+        position: absolute; top: 1rem; left: 1rem; z-index: 10;
+        background: rgba(17, 24, 39, 0.85); backdrop-filter: blur(8px);
+        padding: 0.75rem 1.25rem; border-radius: 0.75rem; border: 1px solid rgba(255,255,255,0.1);
+        color: #f3f4f6; font-family: Inter, sans-serif;
+      }
+      button {
+        background: #38bdf8; color: #0f172a; border: none; font-weight: 600;
+        padding: 0.5rem 1rem; border-radius: 9999px; cursor: pointer;
+      }
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div class="tour-controls"&gt;
+      &lt;h3 style="margin: 0 0 0.5rem;"&gt;SF Skyline Tour&lt;/h3&gt;
+      &lt;button id="flyBtn"&gt;Fly to Coit Tower&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;gmp-map-3d id="map" center="37.7952,-122.4028,300" tilt="65" heading="310" range="800"&gt;
+      &lt;gmp-marker-3d position="37.7952,-122.4028,260" altitude-mode="ABSOLUTE"&gt;
+        &lt;span style="background: #38bdf8; color: #000; padding: 4px 8px; border-radius: 4px; font-weight: bold;"&gt;
+          Transamerica Pyramid
+        &lt;/span&gt;
+      &lt;/gmp-marker-3d&gt;
+    &lt;/gmp-map-3d&gt;
+
+    &lt;script&gt;
+      const map = document.getElementById('map');
+      document.getElementById('flyBtn').addEventListener('click', () =&gt; {
+        map.flyCameraTo({
+          endCamera: {
+            center: { lat: 37.8024, lng: -122.4058, altitude: 220 },
+            tilt: 60,
+            heading: 45,
+            range: 600,
+          },
+          durationMillis: 4500,
+        });
+      });
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+      <h2>Blueprint 2: Fleet Route Optimizer with Routes API &amp; Shift Constraints</h2>
+      <p>Demonstrates querying the Google Routes API (v2) from an autonomous Python agent (`google-genai` v3.0.0) with waypoint optimization and traffic awareness:</p>
+
+      <pre><code class="language-python">from google import genai
+from google.genai import types
+import requests
+
+def optimize_fleet_route(origin_lat, origin_lng, destination_lat, destination_lng, waypoints, gcp_maps_key):
+    """
+    Computes a multi-stop optimal delivery route respecting shift windows.
+    """
+    url = "https://routes.googleapis.com/directions/v2:computeRoutes"
+    headers = {
+        "Content-Type": "application/json",
+        "X-Goog-Api-Key": gcp_maps_key,
+        "X-Goog-FieldMask": "routes.duration,routes.distanceMeters,routes.polyline.encodedPolyline,routes.optimizedIntermediateWaypointIndex"
+    }
+    payload = {
+        "origin": {"location": {"latLng": {"latitude": origin_lat, "longitude": origin_lng}}},
+        "destination": {"location": {"latLng": {"latitude": destination_lat, "longitude": destination_lng}}},
+        "intermediates": [
+            {"location": {"latLng": {"latitude": wp["lat"], "longitude": wp["lng"]}}, "via": False}
+            for wp in waypoints
+        ],
+        "travelMode": "DRIVE",
+        "routingPreference": "TRAFFIC_AWARE_OPTIMAL",
+        "optimizeWaypointOrder": True
+    }
+    response = requests.post(url, headers=headers, json=payload)
+    return response.json()
+
+# Calling with Gemini 4 Argon via Gen AI Python SDK v3.0.0
+client = genai.Client()
+response = client.models.generate_content(
+    model="gemini-4-argon",
+    contents="Generate an optimal 4-stop dispatch route starting from Brooklyn depot to Queens delivery points.",
+    config=types.GenerateContentConfig(
+        tools=[optimize_fleet_route],
+        temperature=0.2
+    )
+)</code></pre>
+
+      <h2>Blueprint 3: Vector Store Locator with Places API (New)</h2>
+      <p>Uses the modernized Places API (New) for conversational local discovery and operational status filtering:</p>
+
+      <pre><code class="language-typescript">import { Client } from '@googlemaps/google-maps-services-js';
+
+const client = new Client({});
+
+async function findOpenStoresNearby(lat: number, lng: number, radiusMeters: number, apiKey: string) {
+  const response = await fetch('https://places.googleapis.com/v1/places:searchNearby', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Goog-Api-Key': apiKey,
+      'X-Goog-FieldMask': 'places.displayName,places.formattedAddress,places.currentOpeningHours,places.rating'
+    },
+    body: JSON.stringify({
+      includedTypes: ['convenience_store', 'supermarket'],
+      maxResultCount: 10,
+      locationRestriction: {
+        circle: {
+          center: { latitude: lat, longitude: lng },
+          radius: radiusMeters
+        }
+      }
+    })
+  });
+  return await response.json();
+}</code></pre>
+
+      <h2>System Prompt for Zero-Defect Geospatial Code in Antigravity</h2>
+      <p>When prompting Gemini 4 Argon inside Antigravity or AI Studio to generate production Google Maps applications, use this directive:</p>
+
+      <div class="box info">
+        <p style="margin-bottom: 0; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;">
+          "You are an expert geospatial engineer. Generate clean Google Maps applications using the official Web Components library (alpha release with <code>&lt;gmp-map-3d&gt;</code> and <code>&lt;gmp-advanced-marker&gt;</code>). Use the new Google Routes and Places APIs (v1/v2 endpoints with X-Goog-FieldMask headers). Never generate legacy v2 markers or deprecated google.maps.event listeners. Always include graceful fallback coordinates and mobile-responsive styles."
+        </p>
+      </div>
+
+      <div class="series-nav">
+        <a href="/series/maps-ai-studio/part-2-how-geospatial-prompting-affects-builders.html" class="btn-pill">&larr; Part 2: Impact on Builders</a>
+        <a href="/labs/gemini-maps-studio.html" class="btn-pill" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border-color: rgba(16, 185, 129, 0.3);">Launch Companion Studio Lab [DEMO] &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>

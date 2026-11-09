@@ -1,11 +1,11 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-11-08 17:45 EST (ROUND 27 5:45 PM ET CURATION COMPLETE: Verified Google Official SDKs (JS/Python v3.0.0) & API Changelogs, Curated New Featured Video of the Day (Google Cloud Tech: Flash vs Pro vs Flash-Lite Architecture Guide) + BitBiasedAI Omni 1.2 Flash Benchmark & NextWork Agent Substrate Community Lab)`
+- **Last Updated:** `2026-11-09 17:45 EST (ROUND 28 5:45 PM ET CURATION COMPLETE: Verified Google Developers Blog Google Maps Platform in AI Studio Integration (3-Part Series + Agile Labs Spatial Workbench), Curated New Featured Video of the Day: Google Cloud Live Inside Gemini at Work 2026 Keynote + Gemini at Work in 2 Minutes Digest)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
 - **Firebase Default Hosting URL:** `https://geminipulse-com.web.app`
-- **Local Dev Preview URL:** `http://localhost:8080` *(Look J v10 Latest Lead + ⌘K Search: `http://localhost:8080/prototypes/look-j-3d-celestial-navigator.html` · Agent Substrate Orchestrator: `http://localhost:8080/labs/agent-substrate-orchestrator.html` · Gen AI SDK v3 Migration Workbench: `http://localhost:8080/labs/genai-sdk-v3-migration-workbench.html` · Agent Distraction Sanitizer: `http://localhost:8080/labs/agent-distraction-sanitizer.html` · Omni 1.2 Video Studio: `http://localhost:8080/labs/gemini-omni-video-studio.html` · Multimodal Tools Studio: `http://localhost:8080/labs/gemini-multimodal-tools-studio.html` · Live Vision Studio: `http://localhost:8080/labs/gemini-live-vision-studio.html` · Voice Remixing Studio: `http://localhost:8080/labs/gemini-voice-remixing-studio.html` · Brand Kit: `http://localhost:8080/brand/`)*
+- **Local Dev Preview URL:** `http://localhost:8080` *(Look J v10 Latest Lead + ⌘K Search: `http://localhost:8080/prototypes/look-j-3d-celestial-navigator.html` · Maps Studio: `http://localhost:8080/labs/gemini-maps-studio.html` · Agent Substrate Orchestrator: `http://localhost:8080/labs/agent-substrate-orchestrator.html` · Gen AI SDK v3 Migration Workbench: `http://localhost:8080/labs/genai-sdk-v3-migration-workbench.html` · Agent Distraction Sanitizer: `http://localhost:8080/labs/agent-distraction-sanitizer.html` · Omni 1.2 Video Studio: `http://localhost:8080/labs/gemini-omni-video-studio.html` · Multimodal Tools Studio: `http://localhost:8080/labs/gemini-multimodal-tools-studio.html` · Live Vision Studio: `http://localhost:8080/labs/gemini-live-vision-studio.html` · Voice Remixing Studio: `http://localhost:8080/labs/gemini-voice-remixing-studio.html` · Brand Kit: `http://localhost:8080/brand/`)*
 - **Firebase Project ID:** `geminipulse-com` (Project Number `643794480842`, Spark Free Plan — **$0.00/mo**)
 - **Firebase Web App ID:** `1:643794480842:web:9f973bc1a0d7670c920e33` (`GeminiPulse Web`)
 - **Concept Originator & Creative Catalyst:** Neil S. White (`https://www.linkedin.com/in/neilswhite`, **Agile LLC**)
@@ -13,7 +13,25 @@
 
 ---
 
-## 0. Completed & Live on `v2.0` (2026-11-08 5:45 PM ET — Round 27 5:45 PM Curation Check)
+## 0. Completed & Live on `v2.0` (2026-11-09 5:45 PM ET — Round 28 5:45 PM Curation Check)
+
+- **Curated Google Maps Platform Integration into Google AI Studio Milestone:**
+  - **Ecosystem Intelligence Entry (`PULSE_INTELLIGENCE_FEED`):** Added `pulse-maps-ai-studio-integration` citing `https://developers.googleblog.com/from-prompt-to-app-build-with-google-maps-in-ai-studio/` (authored by Abinaya Selvam, Senior PM Google Maps Platform & Mike Taylor-Cai, PM Google AI Studio). Details: (1) Prompt-driven geospatial application generation with Gemini, (2) Automated Maps Demo Key orchestration (100 calls/day per API with 24h reset, no credit card required), (3) Live interactive map canvas in AI Studio preview area, (4) 4 core spatial API pillars (Maps 3D `<gmp-map-3d>`, Places API New, Routes API v2, Environment APIs for clean-air & pollen), and (5) Seamless 1-click upgrade to standard Google Cloud billing with $200 recurring monthly free credit with zero code rewriting.
+  - **3-Part Standalone Deep Dive Series (`/series/maps-ai-studio/`):**
+    1. `part-1-maps-ai-studio-breakdown-and-spatial-apis.html`: What Changed with Google Maps in AI Studio — Prompt-Driven Geospatial Architecture, Maps Demo Keys & Zero-Redirect Provisioning.
+    2. `part-2-how-geospatial-prompting-affects-builders.html`: How Maps in AI Studio Affects Builders — From Ad-Hoc Map Scripts to Declarative Multimodal GIS Agents.
+    3. `part-3-concrete-production-blueprints-and-sdk-patterns.html`: Concrete Engineering Playbooks — 4 Production Geospatial Blueprints, JavaScript API v3 / Web Components & Antigravity Prompts.
+  - **Agile Labs Interactive Simulator (`/labs/gemini-maps-studio.html` [SIMULATED DEMO]):** Interactive developer studio featuring 4-preset blueprint switcher (NYC 3D Skyline Flyover, Fleet Delivery Route Optimizer, Vector Store Locator, Clean-Air Commuter), live interactive simulated map canvas, Maps Demo Key sandbox quota telemetry (100 calls/day), and one-click Web Components/Python code export.
+  - **Search & RSS Grounding:** Added 4 new URLs to `sitemap.xml` (now 65 clean URLs), published new `<entry>` to `feed.xml`, and registered `showcase-gemini-maps-studio` in `INITIAL_SHOWCASE_PROJECTS`.
+- **Curated New YouTube Featured Video of the Day & Ecosystem Spotlights:**
+  - **New Featured Video of the Day (`GEMINI_VIDEO_SHOWCASE`):** Set `vid-gemini-at-work-2026-keynote` (`WuqwGPtZwvY`) to `featuredOfTheDay: true` ("Google Cloud Live: Inside the Gemini at Work 2026 keynote" by Google Cloud Tech). Official technical broadcast detailing the Persistent Universal Work Agent, cross-platform context memory, Agent Sandbox microVMs, and zero-egress Lakehouse queries.
+  - **Executive Spotlight:** Added `vid-gemini-at-work-recap` (`ODQtU9TNlKA`) — "Gemini at Work 2026 in 2 Minutes" by Google Cloud (`@googlecloud`).
+  - **Rotated Previous Video:** Updated `vid-gemini-model-selection-guide` (`Ar5zQnD-VkE`) to `featuredOfTheDay: false` under `'OFFICIAL GOOGLE CLOUD TECH'`.
+- **Ecosystem Verification:** Verified upstream Google Gen AI SDKs (JS/TS v3.0.0 and Python v3.0.0), official API changelog (`ai.google.dev/gemini-api/docs/changelog`), and Google Developers Blog. All active models and benchmarks confirmed grounded.
+
+---
+
+## 0b. Prior Round on `v2.0` (2026-11-08 5:45 PM ET — Round 27 5:45 PM Curation Check)
 
 - **Curated New YouTube Featured Video of the Day & Ecosystem Spotlights:**
   - **New Featured Video of the Day (`GEMINI_VIDEO_SHOWCASE`):** Set `vid-gemini-model-selection-guide` (`Ar5zQnD-VkE`) to `featuredOfTheDay: true` ("Gemini Flash vs. Pro vs. Flash-Lite: How do you pick the right model for speed, cost, and reasoning?" by Google Cloud Tech, published Nov 7, 2026). Explains the architectural trade-offs across latency floors, per-task cost economics, and complex reasoning depth.

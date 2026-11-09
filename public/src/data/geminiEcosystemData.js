@@ -5,6 +5,25 @@
 
 export const PULSE_INTELLIGENCE_FEED = [
   {
+    id: 'pulse-maps-ai-studio-integration',
+    title: 'Google Integrates Google Maps Platform into AI Studio: Prompt-Driven Geospatial Apps, Photorealistic 3D Flyovers & Zero-Config Sandbox Quotas',
+    tldr: 'Released November 9, 2026: Google embeds Google Maps Platform natively inside Google AI Studio—allowing developers to prompt Gemini for real-world geospatial applications (interactive 3D city tours, mobile fleet route optimizers, store locators, and environmental monitors) with instant live previews, automated Maps Demo Key provisioning, and 100 free calls/day per API without entering a credit card.',
+    summary:
+      'Google announces the direct integration of Google Maps Platform into Google AI Studio, authored by Abinaya Selvam (Senior PM, Maps Platform) and Mike Taylor-Cai (PM, AI Studio). Developers can now describe real-world concepts to Gemini in natural language and receive interactive, live-rendered web applications with zero Google Cloud Console redirects or credential boilerplate. Key technical pillars include: (1) Prompt-driven spatial workflows spanning custom vector maps, photorealistic 3D cityscapes (<gmp-map-3d>), conversational local search with Places API (New), multi-stop logistics with Routes API v2, and hyper-local clean-air monitoring with Environment APIs, (2) Automated Maps Demo Key orchestration delivering 100 free requests/day per API with automatic 24-hour resets and zero credit card requirement, (3) Live interactive map canvas embedded directly in the AI Studio preview pane, and (4) Frictionless upgrade to production Google Cloud billing with standard $200 recurring monthly free credit without rewriting a single line of generated Web Components code.',
+    category: 'Developer Tools & Studio',
+    tag: 'Platform Integration',
+    modelBadge: 'Gemini in AI Studio / Google Maps Platform',
+    impactScore: '9.8 / 10',
+    date: '2026-11-09T16:00:00Z',
+    sourceLabel: 'Google Developers Blog: From prompt to app: Build with Google Maps in AI Studio',
+    sourceUrl: 'https://developers.googleblog.com/from-prompt-to-app-build-with-google-maps-in-ai-studio/',
+    groundedBy: 'Google Developers Blog Official Announcement (Verified Nov 9, 2026)',
+    seriesUrl: '/series/maps-ai-studio/part-1-maps-ai-studio-breakdown-and-spatial-apis.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-maps-studio.html',
+    labLabel: 'Maps Studio Lab [DEMO] →',
+  },
+  {
     id: 'pulse-agent-substrate-cncf-donation',
     title: 'Google Donates Agent Substrate 1.0 & gVisor to CNCF: High-Density AI Agent Runtime with Sub-500ms State Hibernation on GKE',
     tldr: 'Released November 5, 2026: Google donates Agent Substrate 1.0 alongside gVisor and OpenRL to the CNCF (Sandbox status)—introducing an actor-based agent runtime that decouples stateful Actors from warm WorkerPools to slash idle cloud compute by 95%, eliminate etcd Pod thrash, and deliver sub-500ms suspend/resume with gVisor user-space isolation.',
@@ -862,6 +881,25 @@ video_turn = client.interactions.create(
 ];
 
 export const INITIAL_SHOWCASE_PROJECTS = [
+  {
+    id: 'showcase-gemini-maps-studio',
+    name: 'Google Maps in AI Studio & Geospatial Agent Workbench [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive developer studio modeling Google Maps Platform in Google AI Studio: prompt 3D city flyovers, multi-stop fleet route optimizers, store finders, and clean-air corridors with live sandbox quotas.',
+    models: ['gemini-4-argon', 'google-maps-platform', 'ai-studio'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-maps-studio.html): [SIMULATED DEMO] Simulates prompt-to-app geospatial rendering, Maps Demo Key sandbox quota tracking (100 calls/day), 4 spatial API pillars, and one-click Google Maps Web Components code export.',
+    url: '/labs/gemini-maps-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-09T16:00:00Z',
+  },
   {
     id: 'showcase-agent-substrate-orchestrator',
     name: 'Agent Substrate 1.0 Orchestrator & Sandbox Studio [SIMULATED DEMO]',
@@ -2539,11 +2577,43 @@ export const GET_STARTED_WITH_GEMINI_TRACKS = [
 
 export const GEMINI_VIDEO_SHOWCASE = [
   {
-    id: 'vid-gemini-model-selection-guide',
-    videoId: 'Ar5zQnD-VkE',
+    id: 'vid-gemini-at-work-2026-keynote',
+    videoId: 'WuqwGPtZwvY',
     featuredOfTheDay: true,
     category: 'Gemini 4 Carbon & Argon',
     badge: 'FEATURED VIDEO OF THE DAY • OFFICIAL GOOGLE CLOUD TECH',
+    title: 'Google Cloud Live: Inside the Gemini at Work 2026 keynote',
+    creatorName: 'Google Cloud Tech',
+    creatorHandle: '@googlecloudtech',
+    creatorUrl: 'https://www.youtube.com/@googlecloudtech',
+    watchUrl: 'https://www.youtube.com/watch?v=WuqwGPtZwvY',
+    thumbnailUrl: 'https://i.ytimg.com/vi/WuqwGPtZwvY/hqdefault.jpg',
+    geminiSummary:
+      'Official Google Cloud live technical broadcast breaking down the enterprise announcements from the Gemini at Work 2026 keynote—including the Universal Work Agent with shared persistent memory across chat, code editors, and background jobs, Agent Sandbox microVMs, and Borderless Lakehouse queries with zero egress fees.',
+    whyFeatured: 'Verified HTTP 200 official Google Cloud technical deep-dive into the Persistent Universal Work Agent and enterprise sandbox architecture.',
+  },
+  {
+    id: 'vid-gemini-at-work-recap',
+    videoId: 'ODQtU9TNlKA',
+    featuredOfTheDay: false,
+    category: 'Gemini 4 Carbon & Argon',
+    badge: 'OFFICIAL GOOGLE CLOUD • 2-MINUTE DIGEST',
+    title: 'Gemini at Work 2026 in 2 Minutes',
+    creatorName: 'Google Cloud',
+    creatorHandle: '@googlecloud',
+    creatorUrl: 'https://www.youtube.com/@googlecloud',
+    watchUrl: 'https://www.youtube.com/watch?v=ODQtU9TNlKA',
+    thumbnailUrl: 'https://i.ytimg.com/vi/ODQtU9TNlKA/hqdefault.jpg',
+    geminiSummary:
+      'High-tempo 2-minute executive digest of Google Cloud’s enterprise agent platform—covering cryptographic agent identity, persistent cross-surface context, and dynamic multi-model orchestration with hard spend caps.',
+    whyFeatured: 'Verified HTTP 200 fast executive summary of Google Cloud’s enterprise agent framework.',
+  },
+  {
+    id: 'vid-gemini-model-selection-guide',
+    videoId: 'Ar5zQnD-VkE',
+    featuredOfTheDay: false,
+    category: 'Gemini 4 Carbon & Argon',
+    badge: 'OFFICIAL GOOGLE CLOUD TECH',
     title: 'Gemini Flash vs. Pro vs. Flash-Lite: How do you pick the right model for speed, cost, and reasoning?',
     creatorName: 'Google Cloud Tech',
     creatorHandle: '@googlecloudtech',
