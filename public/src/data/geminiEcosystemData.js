@@ -5,6 +5,25 @@
 
 export const PULSE_INTELLIGENCE_FEED = [
   {
+    id: 'pulse-gemini-4-carbon-ga-launch',
+    title: 'Google DeepMind Launches Gemini 4 Carbon to General Availability: 1M Unified Context, Tunable Thinking Levels & Antigravity /swarm Architecture',
+    tldr: 'Released November 10, 2026: Google DeepMind officially transitions Gemini 4 Carbon (gemini-4-carbon) to General Availability (GA) across the Gemini API, Google AI Studio, and Google Antigravity—introducing tunable thinking levels (low, medium, high), 1M-token long decode, and the new /swarm multi-agent coordination architecture at $2.00/1M input and $10.00/1M output tokens with 95% caching discounts.',
+    summary:
+      'Google DeepMind SVP and Chief AI Architect Koray Kavukcuoglu announces the General Availability (GA) of Gemini 4 Carbon (gemini-4-carbon), transitioning from its October 28 Fairwind cyber preview to all paying developers and enterprises via the Gemini API and Google AI Studio, with rollout to Google AI Ultra subscribers across Google Antigravity, the Gemini app, and AI Mode in Search. Key technical milestones include: (1) Tunable thinking levels (low, medium, high) allowing builders to optimize token budgets, latency, and reasoning depth per turn, (2) 1,048,576 unified token context window with Long Decode supporting single-turn responses beyond 64K up to 1M tokens, (3) Google Antigravity /swarm preview turning a single prompt into coordinated multi-agent teams with parallel isolated workspaces and adversarial verification loops, (4) Top independent benchmark validation—#1 on CursorBench 4.0, Perplexity WANDR, and Zapier AutomationBench at >2X lower cost per task, #2 on Artificial Analysis Multimodal Knowledge Agent (MKA) at >6X lower cost, #1 on Balyasny General Financial Intelligence across 23 frontier configurations, and 100% scan recall with 95% triage precision in Google Project Fortify cyber defense, and (5) Introductory pricing of $2.00/1M input and $10.00/1M output tokens through November 30, 2026 ($4/$20 thereafter) paired with a 95% prompt context caching discount.',
+    category: 'Frontier Models',
+    tag: 'General Availability',
+    modelBadge: 'Gemini 4 Carbon GA',
+    impactScore: '10.0 / 10',
+    date: '2026-11-10T16:00:00Z',
+    sourceLabel: 'Google Blog: Gemini 4 Carbon is now available (Koray Kavukcuoglu)',
+    sourceUrl: 'https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/',
+    groundedBy: 'Google DeepMind Official Launch & Gemini API Changelog (Verified Nov 10, 2026)',
+    seriesUrl: '/series/gemini-4-carbon-ga/part-1-gemini-4-carbon-ga-breakdown.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-carbon-swarm-studio.html',
+    labLabel: 'Swarm Studio Lab [DEMO] →',
+  },
+  {
     id: 'pulse-gemini-for-healthcare-launch',
     title: 'Google Cloud Launches Gemini for Healthcare: AI Workflow Automation, Universal Work Agent Architecture & Zero Write-Back Clinical Connectors',
     tldr: 'Released November 10, 2026: Google Cloud CEO Thomas Kurian unveils Gemini for healthcare—a purpose-built industry solution extending the universal Gemini agent across electronic health records (Epic, Oracle Health), payer policy engines, and Medicare datasets to reclaim clinicians’ 28 hrs/week lost to administrative burden with verifiable citations and HIPAA-compliant governance.',
@@ -900,6 +919,25 @@ video_turn = client.interactions.create(
 ];
 
 export const INITIAL_SHOWCASE_PROJECTS = [
+  {
+    id: 'showcase-gemini-carbon-swarm-studio',
+    name: 'Gemini 4 Carbon Swarm Studio & Multi-Agent Workbench [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive developer workbench modeling Gemini 4 Carbon GA: simulate Antigravity /swarm multi-agent teams, tunable thinking levels (low, medium, high), Long Decode up to 1M tokens, and 95% prompt cache economics.',
+    models: ['gemini-4-carbon', 'gemini-3.8-flash', 'antigravity-swarm'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-carbon-swarm-studio.html): [SIMULATED DEMO] Simulates 4 frontier scenarios (Three.js 3D Campus, Project Fortify Cyber, AlphaProof Code Formal Verification, and MKA 206 CAD drawings), tunable thinking levels, Long Decode up to 1M tokens, and 95% prompt cache ROI calculator.',
+    url: '/labs/gemini-carbon-swarm-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-10T16:00:00Z',
+  },
   {
     id: 'showcase-gemini-healthcare-studio',
     name: 'Gemini for Healthcare Studio & Clinical Workflow Workbench [SIMULATED DEMO]',

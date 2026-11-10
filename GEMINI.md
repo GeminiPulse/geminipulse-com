@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-11-10 08:45 EST — ROUND 29 8:45 AM ET CURATION COMPLETE: Verified Google Cloud Gemini for Healthcare Launch (Thomas Kurian, CEO; 3-Part Deep-Dive Series + Agile Labs Clinical Workbench), Zero-Write-Back FHIR MCP Connectors & Grounded Coverage Policies`
+> **Last touched:** `2026-11-10 12:45 EST — ROUND 30 12:45 PM ET CURATION COMPLETE: Verified Google DeepMind Gemini 4 Carbon GA Launch (Koray Kavukcuoglu; 3-Part Deep-Dive Series + Agile Labs Swarm Studio), Tunable Thinking Levels & Antigravity /swarm Multi-Agent Architecture`
 
 ---
 

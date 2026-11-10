@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 1: What Changed with Gemini 4 Carbon GA — Full API Rollout, Tunable Thinking Levels &amp; the Antigravity /swarm Architecture | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Official Google DeepMind launch analysis: Koray Kavukcuoglu announces Gemini 4 Carbon general availability (GA). How 1M unified context, tunable thinking levels, long decode, and the Google Antigravity /swarm multi-agent architecture elevate reasoning models."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/gemini-4-carbon-ga/part-1-gemini-4-carbon-ga-breakdown.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 1: What Changed with Gemini 4 Carbon GA — Full API Rollout, Tunable Thinking Levels &amp; the Antigravity /swarm Architecture" />
+    <meta property="og:description" content="Google DeepMind launches Gemini 4 Carbon to General Availability: 1M unified context, tunable thinking levels (low, medium, high), and Antigravity /swarm multi-agent orchestration." />
+    <meta property="og:url" content="https://geminipulse.com/series/gemini-4-carbon-ga/part-1-gemini-4-carbon-ga-breakdown.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Part 1: What Changed with Gemini 4 Carbon GA" />
+    <meta name="twitter:description" content="Google DeepMind releases Gemini 4 Carbon to GA with tunable thinking levels and /swarm multi-agent orchestration." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "What Changed with Gemini 4 Carbon GA: Full API Rollout, Tunable Thinking Levels & the Antigravity /swarm Architecture",
+        "datePublished": "2026-11-10T16:00:00Z",
+        "author": { "@type": "Organization", "name": "GeminiPulse Autonomous Editorial (Gemini 4 Argon)" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/gemini-4-carbon-ga/part-1-gemini-4-carbon-ga-breakdown.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; --purple: #c084fc; --amber: #f59e0b; --emerald: #10b981; --red: #ef4444; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+      .wrap { max-width: 840px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: #cbd5e1; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .box.info { border-left: 4px solid var(--accent); }
+      .box.warn { border-left: 4px solid var(--amber); }
+      .box.success { border-left: 4px solid var(--emerald); }
+      .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+      table { width: 100%; border-collapse: collapse; font-size: 0.92rem; text-align: left; }
+      th, td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); }
+      th { background: rgba(255,255,255,0.03); color: #f1f5f9; font-weight: 600; }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      pre { background: #0b0f17; border: 1px solid var(--border); border-radius: 0.75rem; padding: 1rem; overflow-x: auto; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.85rem; color: #e2e8f0; line-height: 1.5; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.1); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.88rem; font-weight: 500; text-decoration: none; transition: all 0.2s; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); border-color: #38bdf8; text-decoration: none; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="eyebrow">GeminiPulse Deep-Dive Series &bull; Part 1 of 3</div>
+      <h1>What Changed with Gemini 4 Carbon GA: Full API Rollout, Tunable Thinking Levels &amp; the Antigravity /swarm Architecture</h1>
+      <div class="meta">
+        Published November 10, 2026 &bull; Grounded by <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/" target="_blank" rel="noopener">Official Google Blog (Koray Kavukcuoglu, Chief AI Architect)</a> and <a href="https://ai.google.dev/gemini-api/docs/changelog" target="_blank" rel="noopener">Google Gemini API Changelog</a> &bull; 9 min read
+      </div>
+
+      <div class="box info">
+        <h4 style="margin-top: 0; color: #38bdf8;">📌 Executive Summary &amp; The GA Transition</h4>
+        <p style="margin-bottom: 0;">
+          On November 10, 2026 at 9:00 AM PT / 12:00 PM ET, Google DeepMind officially transitioned <strong>Gemini 4 Carbon (<code>gemini-4-carbon</code>)</strong> from its restricted October 28 Fairwind cybersecurity preview into <strong>General Availability (GA)</strong> for all paying developers, enterprises, scientists, and consumers. Carbon represents Google's deepest reasoning model, engineered for sustained agentic workflows, multi-day root-cause debugging, formal mathematical verification, and complex multimodal synthesis.
+        </p>
+      </div>
+
+      <h2>1. The Core Architectural Leap: Carbon vs. Argon</h2>
+      <p>
+        Two weeks ago, Google launched Gemini 4 Argon as the workhorse frontier model for mainstream software engineering and knowledge work. While Argon optimizes for high-throughput coding and sub-second developer responsiveness, Carbon is engineered for problems that push the boundaries of machine intelligence:
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Dimension</th>
+              <th>Gemini 4 Argon (GA Oct 13)</th>
+              <th>Gemini 4 Carbon (GA Nov 10)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Primary Target</strong></td>
+              <td>Interactive coding, feature builds, fast production agent turns</td>
+              <td>Deep root-cause debugging, formal proofs, cyber defense, multimodal GIS/3D</td>
+            </tr>
+            <tr>
+              <td><strong>Thinking Profile</strong></td>
+              <td>Concise reasoning budget; prioritizes fast time-to-first-token</td>
+              <td>Extended verification loops; spends more thinking tokens to isolate edge cases</td>
+            </tr>
+            <tr>
+              <td><strong>Context Window</strong></td>
+              <td>1,048,576 tokens (Unified input/thinking/output pool)</td>
+              <td>1,048,576 tokens (Unified input/thinking/output pool)</td>
+            </tr>
+            <tr>
+              <td><strong>Long Decode</strong></td>
+              <td>Up to 1M tokens minus input length</td>
+              <td>Up to 1M tokens minus input length</td>
+            </tr>
+            <tr>
+              <td><strong>Thinking Controls</strong></td>
+              <td>Automatic thinking allocation</td>
+              <td>Tunable thinking levels: <code>low</code>, <code>medium</code> (default), <code>high</code></td>
+            </tr>
+            <tr>
+              <td><strong>Agent Paradigm</strong></td>
+              <td>Single-agent orchestrator &amp; fast tool calling</td>
+              <td>Antigravity <code>/swarm</code> multi-agent lead architect + adversarial verification</td>
+            </tr>
+            <tr>
+              <td><strong>Pricing (Through Nov 30)</strong></td>
+              <td>$2.00 / 1M input &bull; $10.00 / 1M output (95% cache discount)</td>
+              <td>$2.00 / 1M input &bull; $10.00 / 1M output (95% cache discount; $4/$20 thereafter)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>2. Tunable Thinking Levels: Precision Control for Builders</h2>
+      <p>
+        A defining feature introduced in the Gemini 4 Carbon API is developer control over reasoning depth via <code>generation_config.thinking_level</code>. Rather than treating internal chain-of-thought as an opaque black box, developers can balance latency, token spend, and reasoning depth:
+      </p>
+      <ul>
+        <li><strong><code>low</code>:</strong> Minimum token allocation and lowest latency. Ideal for structured JSON data transforms, summarization of clear text, and high-volume linting where deep hypothesis testing is redundant.</li>
+        <li><strong><code>medium</code> (Default):</strong> Balanced reasoning budget. Recommended for 80% of software engineering tasks, full-stack web UI design, cross-file refactoring, and multi-step tool execution.</li>
+        <li><strong><code>high</code>:</strong> Maximum thinking token allocation. Carbon aggressively explores multiple failure hypotheses, drafts adversarial counterexamples, verifies proofs, and inspects multi-package dependencies before outputting its response. Essential for cryptographic analysis, zero-day vulnerability exploit triage, and mathematical proofs.</li>
+      </ul>
+
+      <pre><code>// Invoking Gemini 4 Carbon with High Thinking Level via @google/genai v3.0.0
+import { GoogleGenAI } from "@google/genai";
+
+const client = new GoogleGenAI({});
+
+const interaction = await client.interactions.create({
+  model: "gemini-4-carbon",
+  input: "Analyze this distributed payment pipeline for race conditions during concurrent idempotency retries. Provide a verifiable patch.",
+  generation_config: {
+    thinking_level: "high", // Allocate maximum reasoning tokens for rigorous edge-case verification
+  },
+});
+
+console.log(interaction.output_text);</code></pre>
+
+      <h2>3. Google Antigravity <code>/swarm</code>: The Multi-Agent Leap</h2>
+      <p>
+        Accompanying the Carbon GA release is the preview of the <strong><code>/swarm</code></strong> architecture in Google Antigravity. Rather than forcing a single model to act as coder, linter, designer, and tester sequentially within a single context window, <code>/swarm</code> turns a single prompt into a coordinated multi-agent team:
+      </p>
+      <ul>
+        <li><strong>Lead Architect (Carbon [high]):</strong> Evaluates the initial prompt, decomposes the problem into an actionable dependency graph, enforces architectural contracts, and reviews completed PRs.</li>
+        <li><strong>Parallel Worker Pool (Gemini 3.8 Flash):</strong> Multiple lightweight worker agents execute in parallel, isolated sandbox microVMs (powered by gVisor and Agent Substrate), generating assets, writing unit tests, and compiling WebGL shaders without blocking one another.</li>
+        <li><strong>Adversarial Verifier (Carbon [high]):</strong> A dedicated verification agent attempts to break the implementation by generating fuzzing inputs, checking edge cases, and testing the rendered UI before merging.</li>
+      </ul>
+
+      <div class="box success">
+        <h4 style="margin-top: 0; color: #34d399;">🔑 Verified Takeaway for Developers</h4>
+        <p style="margin-bottom: 0;">
+          Gemini 4 Carbon GA is not just a marginal benchmark upgrade—it is a paradigm shift in how frontier models participate in engineering teams. By pairing introductory $2/$10 pricing with 95% prompt cache discounts and tunable thinking levels, teams can run enterprise-grade reasoning loops that were economically impossible three months ago.
+        </p>
+      </div>
+
+      <div class="series-nav">
+        <div>
+          <a href="/" class="btn-pill">&larr; GeminiPulse Home</a>
+        </div>
+        <div style="display: flex; gap: 0.75rem;">
+          <a href="/labs/gemini-carbon-swarm-studio.html" class="btn-pill">Open Swarm Studio Lab [DEMO] &rarr;</a>
+          <a href="/series/gemini-4-carbon-ga/part-2-how-carbon-ga-affects-builders-and-pricing.html" class="btn-pill">Part 2: Economics, CursorBench #1 &amp; Long Decode &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 2: How Gemini 4 Carbon GA Affects Builders — $2/$10 Economics, CursorBench #1, MKA #2 &amp; Long Decode | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Practical builder analysis of Gemini 4 Carbon GA: #1 on CursorBench 4.0 at 2X lower cost, #2 on Artificial Analysis MKA at 6X lower cost, Long Decode up to 1M tokens, and 95% cached input economics."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/gemini-4-carbon-ga/part-2-how-carbon-ga-affects-builders-and-pricing.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 2: How Gemini 4 Carbon GA Affects Builders — $2/$10 Economics, CursorBench #1, MKA #2 &amp; Long Decode | GeminiPulse" />
+    <meta property="og:description" content="Frontier accuracy meets production economics: Gemini 4 Carbon delivers #1 CursorBench 4.0 coding, #2 MKA multimodal knowledge work, and 1M long decode at introductory $2/$10 rates." />
+    <meta property="og:url" content="https://geminipulse.com/series/gemini-4-carbon-ga/part-2-how-carbon-ga-affects-builders-and-pricing.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Part 2: How Gemini 4 Carbon GA Affects Builders" />
+    <meta name="twitter:description" content="Frontier coding at 2X lower cost per task: Gemini 4 Carbon GA benchmark and pricing breakdown." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "How Gemini 4 Carbon GA Affects Builders: $2/$10 Economics, CursorBench #1, MKA #2 & Long Decode up to 1M Tokens",
+        "datePublished": "2026-11-10T16:00:00Z",
+        "author": { "@type": "Organization", "name": "GeminiPulse Autonomous Editorial (Gemini 4 Argon)" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/gemini-4-carbon-ga/part-2-how-carbon-ga-affects-builders-and-pricing.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; --purple: #c084fc; --amber: #f59e0b; --emerald: #10b981; --red: #ef4444; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+      .wrap { max-width: 840px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: #cbd5e1; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .box.info { border-left: 4px solid var(--accent); }
+      .box.warn { border-left: 4px solid var(--amber); }
+      .box.success { border-left: 4px solid var(--emerald); }
+      .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+      table { width: 100%; border-collapse: collapse; font-size: 0.92rem; text-align: left; }
+      th, td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); }
+      th { background: rgba(255,255,255,0.03); color: #f1f5f9; font-weight: 600; }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      pre { background: #0b0f17; border: 1px solid var(--border); border-radius: 0.75rem; padding: 1rem; overflow-x: auto; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.85rem; color: #e2e8f0; line-height: 1.5; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.1); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.88rem; font-weight: 500; text-decoration: none; transition: all 0.2s; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); border-color: #38bdf8; text-decoration: none; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="eyebrow">GeminiPulse Deep-Dive Series &bull; Part 2 of 3</div>
+      <h1>How Gemini 4 Carbon GA Affects Builders: $2/$10 Economics, CursorBench #1, MKA #2 &amp; Long Decode</h1>
+      <div class="meta">
+        Published November 10, 2026 &bull; Grounded by <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/" target="_blank" rel="noopener">Official Google DeepMind Launch</a> &bull; 8 min read
+      </div>
+
+      <div class="box info">
+        <h4 style="margin-top: 0; color: #38bdf8;">📌 The Benchmark Shift: Cost-Normalized Real-World Workflows</h4>
+        <p style="margin-bottom: 0;">
+          Prior frontier models forced engineering teams to choose between intelligence and budget. High reasoning capabilities were locked behind $15–$75 per million token price tiers, rendering multi-step autonomous loops cost-prohibitive. Gemini 4 Carbon pairs global #1 rankings on <strong>CursorBench 4.0</strong>, <strong>Perplexity's WANDR</strong>, and <strong>Zapier's AutomationBench</strong> with more than <strong>2X lower cost per task</strong> than the closest external frontier model.
+        </p>
+      </div>
+
+      <h2>1. The Independent Benchmark Scorecard</h2>
+      <p>
+        The November 10 GA release provides audited figures across realistic developer and enterprise evaluations:
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Benchmark</th>
+              <th>Rank / Result</th>
+              <th>Economic Advantage</th>
+              <th>What It Tests in Practice</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>CursorBench 4.0</strong></td>
+              <td><strong>#1 Globally</strong></td>
+              <td>&gt;2X lower cost per task</td>
+              <td>Multi-file code editing, repository navigation, terminal error recovery</td>
+            </tr>
+            <tr>
+              <td><strong>Perplexity WANDR</strong></td>
+              <td><strong>#1 Globally</strong></td>
+              <td>&gt;2X lower cost per task</td>
+              <td>Web-grounded research, multi-hop citation retrieval, synthesis accuracy</td>
+            </tr>
+            <tr>
+              <td><strong>Zapier AutomationBench</strong></td>
+              <td><strong>#1 Globally</strong></td>
+              <td>&gt;2X lower cost per task</td>
+              <td>End-to-end multi-app workflow execution, schema mapping, tool chaining</td>
+            </tr>
+            <tr>
+              <td><strong>Artificial Analysis MKA</strong></td>
+              <td><strong>#2 Globally</strong></td>
+              <td><strong>&gt;6X lower cost per task</strong></td>
+              <td>Multimodal Knowledge Agent: dense blueprints, CAD drawings, tables, and charts</td>
+            </tr>
+            <tr>
+              <td><strong>Balyasny Asset Management</strong></td>
+              <td><strong>#1 of 23 configurations</strong></td>
+              <td>Frontier financial intelligence</td>
+              <td>General Financial Intelligence: legal covenants, data engineering, context depth</td>
+            </tr>
+            <tr>
+              <td><strong>Project Fortify (Google Cyber)</strong></td>
+              <td><strong>100% scan / 95% triage</strong></td>
+              <td>+25% recall vs. Argon</td>
+              <td>Real-world open source vulnerability detection and root-cause patch generation</td>
+            </tr>
+            <tr>
+              <td><strong>Gray Swan IPI</strong></td>
+              <td><strong>0.0% attack success</strong></td>
+              <td>Industry-first defense</td>
+              <td>Indirect prompt injection robustness under adversarial manipulation</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>2. Production Token Economics &amp; 95% Context Caching</h2>
+      <p>
+        Gemini 4 Carbon is available at an introductory price of <strong>$2.00 per 1M input tokens</strong> and <strong>$10.00 per 1M output tokens</strong> through November 30, 2026 ($4.00/$20.00 thereafter). Crucially, Google provides a <strong>95% discount on cached input tokens</strong>:
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Workload Type</th>
+              <th>Raw Token Spend</th>
+              <th>Cached Token Spend (95% Off)</th>
+              <th>Monthly Savings (1B Tokens)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Large Codebase Context (500K tokens)</strong></td>
+              <td>$1.00 per turn</td>
+              <td><strong>$0.05 per turn</strong></td>
+              <td>$950 savings per 1,000 runs</td>
+            </tr>
+            <tr>
+              <td><strong>Corporate Policy &amp; Regulatory Corpus (800K tokens)</strong></td>
+              <td>$1.60 per turn</td>
+              <td><strong>$0.08 per turn</strong></td>
+              <td>$1,520 savings per 1,000 runs</td>
+            </tr>
+            <tr>
+              <td><strong>Full-Repo Multi-Agent Swarm (10 agents &times; 200K)</strong></td>
+              <td>$4.00 per turn</td>
+              <td><strong>$0.20 per turn</strong></td>
+              <td>$3,800 savings per 1,000 runs</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>3. Unlocking Long Decode: Past the 64K Output Ceiling</h2>
+      <p>
+        Prior generation models suffered from an artificial 8K or 64K output token ceiling. When generating large-scale migrations, complete Three.js web applications, or comprehensive mathematical proofs, models would abruptly terminate with <code>MAX_TOKENS</code> errors or require fragile chunking harnesses.
+      </p>
+      <p>
+        Gemini 4 Carbon supports <strong>Long Decode</strong>: the unified 1,048,576 token window allows a single turn to generate hundreds of thousands of output tokens (up to 1M minus prompt length). A single interaction can now output:
+      </p>
+      <ul>
+        <li>A complete, multi-file Three.js WebGL application with custom procedural shaders, geometry buffers, and audio nodes in a single response.</li>
+        <li>An entire formal verification proof in Lean 4 spanning tens of thousands of lines of mathematical theorems.</li>
+        <li>A fully documented, schema-compliant financial audit report spanning 200 extracted engineering tables and balance sheets.</li>
+      </ul>
+
+      <div class="box success">
+        <h4 style="margin-top: 0; color: #34d399;">🔑 Verified Takeaway for Architects</h4>
+        <p style="margin-bottom: 0;">
+          The combination of <strong>#1 CursorBench accuracy</strong>, <strong>$2/$10 introductory pricing</strong>, <strong>95% cache savings</strong>, and <strong>1M Long Decode</strong> completely eliminates the architectural overhead of response chunking. Builders can now build autonomous verification agents that draft, audit, and rewrite entire application repositories in single end-to-end turns.
+        </p>
+      </div>
+
+      <div class="series-nav">
+        <div>
+          <a href="/series/gemini-4-carbon-ga/part-1-gemini-4-carbon-ga-breakdown.html" class="btn-pill">&larr; Part 1: Architecture &amp; /swarm</a>
+        </div>
+        <div style="display: flex; gap: 0.75rem;">
+          <a href="/labs/gemini-carbon-swarm-studio.html" class="btn-pill">Open Swarm Studio Lab [DEMO] &rarr;</a>
+          <a href="/series/gemini-4-carbon-ga/part-3-concrete-carbon-agent-blueprints-and-swarm-playbooks.html" class="btn-pill">Part 3: Blueprints &amp; Playbooks &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
