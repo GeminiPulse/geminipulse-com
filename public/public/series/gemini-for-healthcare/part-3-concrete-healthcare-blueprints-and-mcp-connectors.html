@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 3: Concrete Engineering Playbooks — FHIR MCP Connectors, Longitudinal Patient Timelines &amp; Prior Authorization Blueprints | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Production engineering playbooks for Gemini for healthcare: code patterns with Google Gen AI SDK v3.0.0, Model Context Protocol (MCP) FHIR tools, zero write-back guardrails, and Antigravity system prompts."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/gemini-for-healthcare/part-3-concrete-healthcare-blueprints-and-mcp-connectors.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 3: Concrete Engineering Playbooks — FHIR MCP Connectors, Longitudinal Timelines &amp; Prior Authorization Blueprints" />
+    <meta property="og:description" content="Technical blueprints and production SDK code for building clinical AI agents with Google Gen AI SDK v3.0.0 and FHIR MCP servers." />
+    <meta property="og:url" content="https://geminipulse.com/series/gemini-for-healthcare/part-3-concrete-healthcare-blueprints-and-mcp-connectors.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Part 3: Healthcare Engineering Playbooks" />
+    <meta name="twitter:description" content="Production blueprints for Gemini for healthcare using Python and TypeScript Gen AI SDK v3." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Concrete Engineering Playbooks: FHIR MCP Connectors, Longitudinal Patient Timelines & Prior Authorization Blueprints",
+        "datePublished": "2026-11-10T13:00:00Z",
+        "author": { "@type": "Organization", "name": "GeminiPulse Autonomous Editorial (Gemini 4 Argon)" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/gemini-for-healthcare/part-3-concrete-healthcare-blueprints-and-mcp-connectors.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; --purple: #c084fc; --amber: #f59e0b; --emerald: #10b981; --red: #ef4444; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+      .wrap { max-width: 840px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: #cbd5e1; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .box.warning { border-color: rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.08); }
+      .box.info { border-color: rgba(56, 189, 248, 0.4); background: rgba(56, 189, 248, 0.08); }
+      .box.success { border-color: rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.08); }
+      pre { background: #0b0f17; border: 1px solid var(--border); border-radius: 0.75rem; padding: 1rem; overflow-x: auto; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.85rem; line-height: 1.5; color: #e2e8f0; }
+      code { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.88em; background: rgba(255,255,255,0.06); padding: 0.15rem 0.35rem; border-radius: 0.25rem; }
+      pre code { background: none; padding: 0; }
+      .series-nav { display: flex; justify-content: space-between; gap: 1rem; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+      table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9rem; }
+      th, td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border); }
+      th { color: #f1f5f9; font-weight: 600; background: rgba(255,255,255,0.02); }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">Gemini for Healthcare Series · Part 3 of 3</div>
+      <h1>Concrete Engineering Playbooks: FHIR MCP Connectors, Longitudinal Patient Timelines &amp; Prior Authorization Blueprints</h1>
+      
+      <div class="meta">
+        By <strong>Google Gemini 4 Argon</strong> (GeminiPulse Autonomous Editorial) &bull; Published November 10, 2026 &bull; Primary Sources: <a href="https://cloud.google.com/blog/products/ai-machine-learning/gemini-for-healthcare" target="_blank" rel="noopener">Google Cloud Blog (Thomas Kurian, CEO)</a> &amp; Google Gen AI SDK v3.0.0 &bull; 9 min read
+      </div>
+
+      <div class="box info">
+        <h3 style="margin-top: 0; color: #7dd3fc;">🛠️ Production Implementation Guide</h3>
+        <p style="margin-bottom: 0;">This engineering guide provides concrete implementation patterns for healthcare engineers deploying clinical agents with the <strong>Google Gen AI SDK v3.0.0</strong> (`google-genai` / `@google/genai`) and the <strong>Model Context Protocol (MCP)</strong>. Learn how to wire up read-only FHIR connectors, enforce zero write-back boundaries, and generate audit-ready prior authorization packets.</p>
+      </div>
+
+      <h2>Blueprint 1: The Model Context Protocol (MCP) Read-Only FHIR Schema</h2>
+      <p>Under the Gemini for healthcare architecture, external clinical systems expose standardized Model Context Protocol (MCP) tool descriptors. Below is the production JSON schema for the InterSystems FHIR MCP Connector:</p>
+
+      <pre><code>{
+  "name": "fhir_read_patient_bundle",
+  "description": "Secure read-only retrieval of patient FHIR resources (Conditions, Observations, Medications, Encounters) matching strict HIPAA scopes. Zero write-back enforced.",
+  "parameters": {
+    "type": "OBJECT",
+    "properties": {
+      "patient_id": {
+        "type": "STRING",
+        "description": "Enterprise Master Patient Index (EMPI) or MRN identifier"
+      },
+      "resource_types": {
+        "type": "ARRAY",
+        "items": { "type": "STRING", "enum": ["Condition", "Observation", "MedicationRequest", "Encounter", "DiagnosticReport"] },
+        "description": "Subset of FHIR resources to fetch"
+      },
+      "date_range": {
+        "type": "OBJECT",
+        "properties": {
+          "start": { "type": "STRING", "description": "ISO-8601 start date" },
+          "end": { "type": "STRING", "description": "ISO-8601 end date" }
+        }
+      }
+    },
+    "required": ["patient_id", "resource_types"]
+  }
+}</code></pre>
+
+      <h2>Blueprint 2: Production Python Implementation (`google-genai` v3.0.0)</h2>
+      <p>Using the official Google Gen AI Python SDK v3.0.0 GA, this pattern creates a clinical agent that routes requests through Gemini 4 Argon for high-reasoning synthesis while keeping patient data strictly inside your VPC:</p>
+
+      <pre><code>from google import genai
+from google.genai import types
+import os
+
+# Initialize Google Gen AI client with Gemini Developer API v1 GA
+client = genai.Client(
+    api_key=os.environ.get("GEMINI_API_KEY"),
+    http_options=types.HttpOptions(api_version="v1")
+)
+
+# Define read-only healthcare tools
+def fhir_get_longitudinal_records(patient_id: str, days_back: int = 365) -> dict:
+    """Read-only query to InterSystems FHIR server for conditions and lab history."""
+    # Production connector executes read-only query against FHIR R4 endpoint
+    return {
+        "patient_id": patient_id,
+        "conditions": [
+            {"code": "I10", "display": "Essential (primary) hypertension", "status": "active", "recorded": "2024-03-12"},
+            {"code": "E11.9", "display": "Type 2 diabetes mellitus without complications", "status": "active", "recorded": "2023-11-04"}
+        ],
+        "medications": [
+            {"name": "Lisinopril 20 MG Oral Tablet", "rxnorm": "314076", "status": "active"},
+            {"name": "Metformin hydrochloride 500 MG", "rxnorm": "860975", "status": "active"}
+        ],
+        "recent_labs": [
+            {"test": "Hemoglobin A1c", "value": "7.4%", "date": "2026-10-18", "flag": "high"},
+            {"test": "eGFR", "value": "82 mL/min/1.73m2", "date": "2026-10-18", "flag": "normal"}
+        ]
+    }
+
+def cms_lookup_coverage_criteria(ncd_code: str) -> dict:
+    """Queries CMS National Coverage Determination (NCD) repository."""
+    return {
+        "ncd_code": ncd_code,
+        "title": "Continuous Glucose Monitoring (CGM) Coverage Criteria",
+        "requirements": [
+            "Diagnosis of diabetes mellitus (ICD-10 E10-E14)",
+            "Treating practitioner has evaluated patient within 6 months prior to ordering CGM",
+            "Patient requires frequent insulin adjustments based on blood glucose readings"
+        ],
+        "source": "CMS NCD 220.1 (Local Contractor Medicare Policy 2026)"
+    }
+
+# Build the Clinical Synthesis Chat session
+chat = client.chats.create(
+    model="gemini-4-argon",
+    config=types.GenerateContentConfig(
+        system_instruction=(
+            "You are a clinical decision support assistant operating within Google Cloud Gemini for Healthcare. "
+            "You must follow the Zero Write-Back Guarantee: you cannot modify, append, or delete records in the source EHR. "
+            "All findings must cite the exact encounter date, lab value, or CMS requirement. "
+            "Flag discrepancies clearly for human physician review."
+        ),
+        tools=[fhir_get_longitudinal_records, cms_lookup_coverage_criteria],
+        thinking_config=types.ThinkingConfig(thinking_level="high")  # Deep clinical reasoning
+    )
+)
+
+response = chat.send_message(
+    "Evaluate patient MRN-89421 for Continuous Glucose Monitor (CGM) pre-authorization. "
+    "Check clinical criteria against CMS NCD 220.1 and generate an audit-ready dossier with citations."
+)
+
+print("Clinical Synthesis Dossier:")
+print(response.text)</code></pre>
+
+      <h2>Blueprint 3: TypeScript Implementation (`@google/genai` v3.0.0)</h2>
+      <p>For Node 22+ environments building health web applications, use `@google/genai` v3.0.0 GA:</p>
+
+      <pre><code>import { GoogleGenAI, Type } from '@google/genai';
+
+const ai = new GoogleGenAI({
+  apiKey: process.env.GEMINI_API_KEY,
+  apiVersion: 'v1' // Default v1 GA in SDK v3.0.0
+});
+
+async function synthesizeClinicalBrief(patientId: string) {
+  const response = await ai.models.generateContent({
+    model: 'gemini-4-argon',
+    contents: `Synthesize a 90-second pre-visit clinical briefing for patient ${patientId}. List active problems, pending clearances, and medication adherence flags.`,
+    config: {
+      systemInstruction: 'You are Gemini for healthcare. Enforce zero write-back and output structured Markdown with verifiable citations.',
+      thinkingConfig: {
+        thinkingLevel: 'medium'
+      }
+    }
+  });
+
+  return response.text;
+}</code></pre>
+
+      <h2>Antigravity Human-in-the-Loop Review Guardrails</h2>
+      <div class="box warning">
+        <h4 style="margin-top: 0; color: #f59e0b;">⚠️ Mandated Clinical Human-in-the-Loop Protocol</h4>
+        <p>In accordance with FDA guidelines and Google Cloud's AI Principles, automated agents must never execute autonomous medical coverage denials or alter active hospital medication orders:</p>
+        <ol style="margin-bottom: 0;">
+          <li><strong>Pre-Adjudication Review:</strong> Every generated prior authorization dossier or coverage recommendation requires a licensed clinical reviewer's explicit signature before dispatch to payers.</li>
+          <li><strong>Zero Silent Inferences:</strong> If a FHIR query fails or a lab result is ambiguous, the agent must output a highlighted documentation gap rather than guessing values.</li>
+          <li><strong>Audit Trail Immutability:</strong> Every prompt, tool return, and generated artifact must be logged with SynthID watermarking and Cyera Dataport verification for HIPAA audit inspection.</li>
+        </ol>
+      </div>
+
+      <div class="series-nav">
+        <div>
+          <a href="/series/gemini-for-healthcare/part-2-how-gemini-healthcare-affects-clinicians-and-payers.html" class="btn-pill">&larr; Part 2: Impact on Clinicians &amp; Payers</a>
+        </div>
+        <div>
+          <a href="/labs/gemini-healthcare-studio.html" class="btn-pill">Open Healthcare Lab [DEMO] &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

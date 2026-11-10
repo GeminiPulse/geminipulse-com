@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google Cloud Gemini for Healthcare Studio &amp; Clinical Workflow Workbench [SIMULATED DEMO] | Agile Labs</title>
+    <meta
+      name="description"
+      content="Interactive developer studio modeling Google Cloud Gemini for Healthcare: simulate longitudinal patient timeline synthesis, prior authorization verification against CMS policies, zero write-back FHIR MCP connectors, and HIPAA audit trails."
+    />
+    <link rel="canonical" href="https://geminipulse.com/labs/gemini-healthcare-studio.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Google Cloud Gemini for Healthcare Studio &amp; Clinical Workflow Workbench [SIMULATED DEMO]" />
+    <meta property="og:description" content="Simulate agentic healthcare workflows with Gemini: FHIR MCP connectors, pre-visit charting, prior authorization dossiers, and zero write-back safeguards." />
+    <meta property="og:url" content="https://geminipulse.com/labs/gemini-healthcare-studio.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Gemini for Healthcare Studio [SIMULATED DEMO]" />
+    <meta name="twitter:description" content="Interactive clinical workflow simulator powered by Google Cloud Gemini for healthcare." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Google Cloud Gemini for Healthcare Studio & Clinical Workflow Workbench",
+        "url": "https://geminipulse.com/labs/gemini-healthcare-studio.html",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "All",
+        "creator": {
+          "@type": "Organization",
+          "name": "Agile Labs (via GeminiPulse.com)"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #07090e;
+        --surface: #111622;
+        --surface-high: #192030;
+        --border: rgba(255, 255, 255, 0.1);
+        --border-strong: rgba(56, 189, 248, 0.35);
+        --text: #f3f5fb;
+        --muted: #9da4b8;
+        --amber: #f59e0b;
+        --emerald: #10b981;
+        --red: #ef4444;
+        --blue: #38bdf8;
+        --purple: #c084fc;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        min-height: 100vh;
+      }
+      a { color: var(--blue); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .container { max-width: 1200px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+      
+      /* Header & Badges */
+      .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 0.75rem; }
+      .brand-badge { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--blue); }
+      .demo-tag { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.25rem 0.65rem; border-radius: 9999px; background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.4); color: #fbbf24; font-size: 0.75rem; font-weight: 600; font-family: ui-monospace, monospace; }
+      .hipaa-tag { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.25rem 0.65rem; border-radius: 9999px; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); color: #34d399; font-size: 0.75rem; font-weight: 600; font-family: ui-monospace, monospace; }
+
+      .hero { margin-bottom: 2rem; }
+      .hero h1 { font-size: clamp(1.6rem, 3vw, 2.3rem); margin: 0.25rem 0 0.5rem; line-height: 1.25; }
+      .hero p { color: var(--muted); margin: 0; font-size: 1.05rem; max-width: 900px; }
+
+      /* Preset Switcher */
+      .preset-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.75rem; margin-bottom: 1.5rem; }
+      .preset-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        padding: 1rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-align: left;
+      }
+      .preset-card:hover { border-color: rgba(56, 189, 248, 0.4); background: var(--surface-high); }
+      .preset-card.active { border-color: var(--blue); background: rgba(56, 189, 248, 0.08); box-shadow: 0 0 0 1px var(--blue); }
+      .preset-card h4 { margin: 0 0 0.35rem; font-size: 0.95rem; color: #fff; }
+      .preset-card p { margin: 0; font-size: 0.8rem; color: var(--muted); line-height: 1.4; }
+
+      /* Patient Demographics Bar */
+      .patient-bar {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        padding: 1rem 1.25rem;
+        margin-bottom: 1.5rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .patient-info { display: flex; flex-wrap: wrap; gap: 1.25rem; align-items: center; }
+      .info-item { display: flex; flex-direction: column; }
+      .info-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+      .info-value { font-size: 0.92rem; font-weight: 600; color: #f1f5f9; }
+
+      /* Main Workspace Layout */
+      .workspace { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+      @media (min-width: 900px) {
+        .workspace { grid-template-columns: 1fr 1fr; }
+      }
+
+      .panel {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+      }
+      .panel-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid var(--border);
+      }
+      .panel-title { margin: 0; font-size: 1rem; font-weight: 600; color: #e2e8f0; display: flex; align-items: center; gap: 0.5rem; }
+      .tab-group { display: flex; gap: 0.5rem; }
+      .tab-btn {
+        background: transparent;
+        border: 1px solid transparent;
+        color: var(--muted);
+        padding: 0.35rem 0.75rem;
+        border-radius: 0.5rem;
+        font-size: 0.8rem;
+        cursor: pointer;
+        transition: all 0.15s ease;
+      }
+      .tab-btn:hover { color: #fff; background: rgba(255, 255, 255, 0.05); }
+      .tab-btn.active { color: var(--blue); background: rgba(56, 189, 248, 0.1); border-color: rgba(56, 189, 248, 0.3); font-weight: 500; }
+
+      /* Clinical Cards & Items */
+      .timeline-list { display: flex; flex-direction: column; gap: 0.75rem; }
+      .timeline-item {
+        background: var(--surface-high);
+        border-left: 3px solid var(--blue);
+        border-radius: 0 0.5rem 0.5rem 0;
+        padding: 0.75rem 1rem;
+        font-size: 0.88rem;
+      }
+      .timeline-item.warning { border-left-color: var(--amber); }
+      .timeline-item.alert { border-left-color: var(--red); }
+      .timeline-item.success { border-left-color: var(--emerald); }
+      .timeline-date { font-size: 0.75rem; color: var(--muted); font-family: ui-monospace, monospace; margin-bottom: 0.25rem; }
+      .timeline-title { font-weight: 600; color: #f8fafc; margin-bottom: 0.2rem; }
+      .timeline-body { color: #cbd5e1; font-size: 0.84rem; line-height: 1.45; }
+      .citation-tag { display: inline-block; font-size: 0.72rem; font-family: ui-monospace, monospace; color: #38bdf8; background: rgba(56, 189, 248, 0.12); padding: 0.1rem 0.4rem; border-radius: 0.25rem; margin-top: 0.35rem; }
+
+      /* Telemetry & Code Previews */
+      pre.code-view {
+        background: #090c13;
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        padding: 0.85rem;
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 0.78rem;
+        line-height: 1.45;
+        color: #93c5fd;
+        overflow-x: auto;
+        margin: 0;
+        flex-grow: 1;
+        max-height: 480px;
+      }
+
+      /* Governance Banner */
+      .governance-card {
+        background: rgba(16, 185, 129, 0.06);
+        border: 1px solid rgba(16, 185, 129, 0.25);
+        border-radius: 0.75rem;
+        padding: 1rem 1.25rem;
+        margin-top: 1.5rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .gov-metrics { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+      .gov-metric { display: flex; flex-direction: column; }
+      .gov-val { font-weight: 600; font-size: 0.95rem; color: #34d399; font-family: ui-monospace, monospace; }
+      .gov-lbl { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; }
+
+      .btn-primary {
+        background: #0284c7;
+        color: #fff;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        font-size: 0.85rem;
+        font-weight: 500;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        transition: background 0.15s ease;
+      }
+      .btn-primary:hover { background: #0369a1; }
+      .btn-outline {
+        background: transparent;
+        color: #cbd5e1;
+        border: 1px solid var(--border);
+        padding: 0.5rem 0.9rem;
+        border-radius: 0.5rem;
+        font-size: 0.85rem;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        transition: all 0.15s ease;
+      }
+      .btn-outline:hover { background: rgba(255, 255, 255, 0.05); color: #fff; border-color: rgba(255, 255, 255, 0.2); }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Top Navigation -->
+      <div class="top-nav">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+        <div style="display: flex; gap: 0.5rem; align-items: center;">
+          <span class="hipaa-tag">🔒 Zero Write-Back Verified</span>
+          <span class="demo-tag">[SIMULATED DEMO]</span>
+        </div>
+      </div>
+
+      <!-- Hero Header -->
+      <div class="hero">
+        <div class="brand-badge">Agile Labs &bull; Official Architecture Simulation</div>
+        <h1>Google Cloud Gemini for Healthcare Studio</h1>
+        <p>
+          Simulating Google Cloud CEO Thomas Kurian's November 10, 2026 milestone: purposeful clinical agent workflows bridging Epic &amp; Oracle Health EHRs, Medicare CMS NCD/LCD guidelines, and InterSystems FHIR MCP servers to reclaim the 28 hours/week lost to administrative friction.
+        </p>
+      </div>
+
+      <!-- Scenario Selector -->
+      <div class="preset-grid">
+        <div class="preset-card active" onclick="loadPreset('timeline')">
+          <h4>1. Longitudinal Timeline Synthesis</h4>
+          <p>Unifies inpatient Epic records &amp; outpatient Oracle Health cardiology notes into an active-problem timeline.</p>
+        </div>
+        <div class="preset-card" onclick="loadPreset('prior_auth')">
+          <h4>2. Prior Auth &amp; Policy Adjudication</h4>
+          <p>Evaluates lumbar MRI request against CMS NCD 220.1 &amp; insurer medical criteria with sentence-level citations.</p>
+        </div>
+        <div class="preset-card" onclick="loadPreset('pre_visit')">
+          <h4>3. Pre-Visit Care Team Prep</h4>
+          <p>Scans upcoming surgery chart for missing cardiac clearance, unreturned labs, and medication conflicts.</p>
+        </div>
+        <div class="preset-card" onclick="loadPreset('benefits')">
+          <h4>4. Member Out-of-Pocket Liability</h4>
+          <p>Parses complex plan benefit booklets to calculate deductible progress, co-pays, and Rx savings via GoodRx.</p>
+        </div>
+      </div>
+
+      <!-- Patient Demographics Header -->
+      <div class="patient-bar">
+        <div class="patient-info">
+          <div class="info-item">
+            <span class="info-label">Patient Name</span>
+            <span class="info-value" id="pt-name">Eleanor Vance</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">MRN / EMPI</span>
+            <span class="info-value" id="pt-mrn">MRN-781920</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Demographics</span>
+            <span class="info-value" id="pt-demo">68 yo Female &bull; DOB 1958-04-12</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Coverage / Plan</span>
+            <span class="info-value" id="pt-plan">Medicare Advantage (BCBS MA)</span>
+          </div>
+        </div>
+        <div>
+          <button class="btn-primary" onclick="runAnalysis()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            Re-Run Agent Reasoning
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Workspace -->
+      <div class="workspace">
+        <!-- Left: Clinical Intelligence Output -->
+        <div class="panel">
+          <div class="panel-header">
+            <h3 class="panel-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              Clinical Agent Findings
+            </h3>
+            <span style="font-size: 0.75rem; color: var(--muted); font-family: ui-monospace, monospace;">Model: Gemini 4 Argon</span>
+          </div>
+          
+          <div class="timeline-list" id="clinical-feed">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Right: Connectors & Code Inspector -->
+        <div class="panel">
+          <div class="panel-header">
+            <div class="tab-group">
+              <button class="tab-btn active" onclick="switchRightTab('fhir')">FHIR Connector (MCP)</button>
+              <button class="tab-btn" onclick="switchRightTab('python')">Python SDK v3</button>
+              <button class="tab-btn" onclick="switchRightTab('audit')">Audit &amp; HIPAA</button>
+            </div>
+            <button class="btn-outline" style="padding: 0.2rem 0.5rem; font-size: 0.75rem;" onclick="copyCode()">Copy</button>
+          </div>
+
+          <pre class="code-view" id="code-display">
+// Loading InterSystems FHIR MCP Connector Telemetry...
+          </pre>
+        </div>
+      </div>
+
+      <!-- Governance & Zero Write-Back Guarantee Bar -->
+      <div class="governance-card">
+        <div class="gov-metrics">
+          <div class="gov-metric">
+            <span class="gov-val">READ-ONLY</span>
+            <span class="gov-lbl">EHR Access Mode (Epic / Oracle)</span>
+          </div>
+          <div class="gov-metric">
+            <span class="gov-val">0 BYTES WRITTEN</span>
+            <span class="gov-lbl">Source Chart Mutation</span>
+          </div>
+          <div class="gov-metric">
+            <span class="gov-val">HIPAA AES-256</span>
+            <span class="gov-lbl">In-Transit &amp; At-Rest PHI</span>
+          </div>
+          <div class="gov-metric">
+            <span class="gov-val">VERIFIED CITED</span>
+            <span class="gov-lbl">CMS NCD / Policy Trace</span>
+          </div>
+        </div>
+        <div style="display: flex; gap: 0.5rem;">
+          <a href="/series/gemini-for-healthcare/part-1-gemini-for-healthcare-breakdown-and-architecture.html" class="btn-outline">Read 3-Part Series &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const PRESETS = {
+        timeline: {
+          name: "Eleanor Vance",
+          mrn: "MRN-781920",
+          demo: "68 yo Female • DOB 1958-04-12",
+          plan: "Medicare Advantage (BCBS MA)",
+          findings: [
+            {
+              type: "alert",
+              date: "2026-11-04 (6 days ago)",
+              title: "Interval Emergency Encounter (Outside Network)",
+              body: "Evaluated at Mercy Regional ED for acute dizziness and orthostatic hypotension. SBP dropped to 88/54 mmHg. Note indicates Lisinopril held temporarily, but patient restarted home dose without primary clinic notification.",
+              cite: "Mercy Health FHIR Encounter #E-99120 • Epic Read-Only"
+            },
+            {
+              type: "warning",
+              date: "2026-10-18 (3 weeks ago)",
+              title: "Medication Adherence & Duplication Discrepancy",
+              body: "Prescription fill history reveals active duplicate ACE-inhibitor/ARB: Lisinopril 20mg (Dr. Adams) and Losartan 50mg (Telehealth visit 2026-09-12). Risk of hyperkalemia and acute kidney injury.",
+              cite: "Optum Coordination of Benefits • RxNorm Code 314076"
+            },
+            {
+              type: "normal",
+              date: "2026-08-22",
+              title: "Active Problem Reconciliation: CKD vs. T2D",
+              body: "Reconciled Chronic Kidney Disease Stage II (eGFR 64 mL/min) and Type 2 Diabetes Mellitus without end-organ damage. Historical appendectomy (1998) classified as resolved surgical history.",
+              cite: "Oracle Health EHR • ICD-10 N18.2, E11.9"
+            }
+          ],
+          fhir: JSON.stringify({
+            resourceType: "Bundle",
+            type: "searchset",
+            total: 3,
+            entry: [
+              {
+                fullUrl: "urn:uuid:encounter-mercy-ed",
+                resource: {
+                  resourceType: "Encounter",
+                  id: "E-99120",
+                  status: "finished",
+                  class: { code: "EMER", display: "Emergency" },
+                  period: { start: "2026-11-04T14:22:00Z", end: "2026-11-04T19:40:00Z" },
+                  reasonCode: [{ text: "Orthostatic hypotension with pre-syncope" }]
+                }
+              },
+              {
+                fullUrl: "urn:uuid:medication-conflict",
+                resource: {
+                  resourceType: "MedicationRequest",
+                  id: "MR-314076",
+                  status: "active",
+                  medicationCodeableConcept: {
+                    coding: [{ system: "http://www.nlm.nih.gov/research/umls/rxnorm", code: "314076", display: "Lisinopril 20 MG Oral Tablet" }]
+                  }
+                }
+              }
+            ]
+          }, null, 2),
+          python: `# Google Gen AI SDK v3.0.0 Python - Longitudinal Patient Synthesis
+from google import genai
+from google.genai import types
+
+client = genai.Client()
+
+# Read-only EHR query via InterSystems FHIR MCP Connector
+chat = client.chats.create(
+    model="gemini-4-argon",
+    config=types.GenerateContentConfig(
+        system_instruction="Enforce Zero Write-Back. Synthesize patient timeline with interval events.",
+        thinking_config=types.ThinkingConfig(thinking_level="high")
+    )
+)
+response = chat.send_message("Synthesize 12-month longitudinal record for MRN-781920.")
+print(response.text)`
+        },
+
+        prior_auth: {
+          name: "Marcus Chen",
+          mrn: "MRN-552109",
+          demo: "54 yo Male • DOB 1972-08-30",
+          plan: "Commercial PPO (Employer Plan)",
+          findings: [
+            {
+              type: "success",
+              date: "2026-11-09",
+              title: "Prior Auth Criteria Assessment: Lumbar Spine MRI (CPT 72148)",
+              body: "Clinical documentation satisfies 3 of 3 mandatory criteria under Medical Policy #RAD-204: (1) Persistent radicular pain radiating below knee > 6 weeks, (2) Completed 8 weeks supervised physical therapy, (3) Documented motor weakness on L5 reflex testing.",
+              cite: "BCBS Medical Policy RAD-204 §3.1 • Verifiable Source Match"
+            },
+            {
+              type: "normal",
+              date: "2026-10-02",
+              title: "Physical Therapy Conservative Care Verification",
+              body: "Extracted 12 completed sessions of targeted lumbar core stabilization and traction from outpatient notes. Failure of conservative NSAID management confirmed.",
+              cite: "InterSystems FHIR CarePlan #CP-88410 • PT Encounter Notes"
+            },
+            {
+              type: "warning",
+              date: "2026-11-08",
+              title: "Audit Pre-Submission Recommendation",
+              body: "Dossier assembled and flagged ready for licensed clinician sign-off. Zero documentation gaps detected; predicted first-pass approval probability: 98.4%.",
+              cite: "Gemini for Healthcare Prior Auth Engine • Pre-Submission Packet"
+            }
+          ],
+          fhir: JSON.stringify({
+            resourceType: "CoverageEligibilityRequest",
+            id: "CER-72148-CHEN",
+            status: "active",
+            purpose: ["validation", "auth-requirements"],
+            patient: { reference: "Patient/MRN-552109" },
+            servicedPeriod: { start: "2026-11-15", end: "2026-11-30" },
+            item: [{
+              category: { text: "Diagnostic Imaging - Spine" },
+              productOrService: {
+                coding: [{ system: "http://www.ama-assn.org/go/cpt", code: "72148", display: "MRI Lumbar Spine without Contrast" }]
+              }
+            }]
+          }, null, 2),
+          python: `# Prior Authorization Dossier Assembly with CMS / Policy Validation
+response = client.models.generate_content(
+    model="gemini-4-argon",
+    contents="Evaluate CPT 72148 request against BCBS RAD-204 policy criteria for Marcus Chen.",
+    config=types.GenerateContentConfig(
+        tools=[cms_lookup_coverage_criteria, fhir_get_chart_notes],
+        temperature=0.0
+    )
+)`
+        },
+
+        pre_visit: {
+          name: "Sarah Jenkins",
+          mrn: "MRN-334182",
+          demo: "42 yo Female • DOB 1984-11-19",
+          plan: "Northwell Direct Access Health",
+          findings: [
+            {
+              type: "alert",
+              date: "2026-11-08 (48 hours pre-op)",
+              title: "Missing Pre-Operative Cardiac Clearance",
+              body: "Laparoscopic Cholecystectomy scheduled for Nov 11, 2026. Surgical protocol mandates formal cardiology sign-off due to history of ventricular arrhythmia. Cardiology consult note pending.",
+              cite: "Northwell Surgical Clearance Protocol #SURG-OP-10 • Outstanding Item"
+            },
+            {
+              type: "warning",
+              date: "2026-11-07",
+              title: "Coagulation Panel Flag: Elevated PT/INR",
+              body: "Routine pre-admission lab results: PT 15.2s (H), INR 1.34 (H). Patient reported taking over-the-counter high-dose Turmeric/Curcumin supplement with anticoagulant properties.",
+              cite: "LabCorp DiagnosticReport #LAB-9921 • Value Flagged"
+            },
+            {
+              type: "success",
+              date: "2026-11-06",
+              title: "Surgical Consent & Anesthesia Evaluation Complete",
+              body: "Informed consent signed electronically. Airway evaluation Mallampati Class II; ASA Physical Status II confirmed by pre-admission testing clinic.",
+              cite: "Epic EHR DocumentReference #DOC-44810 • Validated"
+            }
+          ],
+          fhir: JSON.stringify({
+            resourceType: "DiagnosticReport",
+            id: "LAB-COAG-9921",
+            status: "final",
+            code: { text: "Prothrombin Time with INR" },
+            subject: { reference: "Patient/MRN-334182" },
+            result: [
+              { display: "Prothrombin Time", valueQuantity: { value: 15.2, unit: "s", flag: "high" } },
+              { display: "INR", valueQuantity: { value: 1.34, unit: "ratio", flag: "high" } }
+            ]
+          }, null, 2),
+          python: `# Pre-Visit Chart Screening & Clearance Audit
+brief = client.models.generate_content(
+    model="gemini-3.8-flash",  # Fast administrative screening
+    contents="Audit upcoming surgical admissions for missing clearances or abnormal labs within 72 hours."
+)`
+        },
+
+        benefits: {
+          name: "David Rivera",
+          mrn: "MRN-902341",
+          demo: "61 yo Male • DOB 1965-02-14",
+          plan: "Highmark Choice HDHP with HSA",
+          findings: [
+            {
+              type: "normal",
+              date: "2026-11-01",
+              title: "Plan Deductible & Out-of-Pocket Status",
+              body: "Individual in-network deductible: $3,000 ($2,640 met, $360 remaining). Out-of-Pocket Maximum: $6,500 ($3,120 accumulated). Coinsurance rate of 20% applies once $360 remaining deductible is fulfilled.",
+              cite: "Highmark Plan Benefit Document §4.2 • Verified via Optum COB"
+            },
+            {
+              type: "success",
+              date: "2026-11-09",
+              title: "Prescription Cost Optimization via GoodRx Connector",
+              body: "Prescribed branded medication Eliquis 5mg #60. Tier 3 formulary copay: $115/mo. GoodRx connector identified manufacturer co-pay assistance card reducing member liability to $10.00/mo.",
+              cite: "GoodRx Savings API • Manufacturer Assistance Program Validated"
+            },
+            {
+              type: "normal",
+              date: "2026-10-15",
+              title: "In-Network Specialist Tier Verification",
+              body: "Consulting cardiologist Dr. Patricia Hayes confirmed as Tier 1 Preferred Network Provider; covered at standard in-network coinsurance without pre-authorization requirement.",
+              cite: "NPPES NPI Registry #1942004121 • Network Validated"
+            }
+          ],
+          fhir: JSON.stringify({
+            resourceType: "Coverage",
+            id: "COV-RIVERA-HIGHMARK",
+            status: "active",
+            type: { text: "High Deductible Health Plan" },
+            beneficiary: { reference: "Patient/MRN-902341" },
+            costToBeneficiary: [
+              { type: { text: "Deductible Individual" }, valueMoney: { value: 3000, currency: "USD" } },
+              { type: { text: "Deductible Met" }, valueMoney: { value: 2640, currency: "USD" } }
+            ]
+          }, null, 2),
+          python: `# Benefit Booklet & Out-of-Pocket Calculation
+benefits = client.models.generate_content(
+    model="gemini-4-argon",
+    contents="Calculate David Rivera's exact out-of-pocket cost for upcoming Tier 1 cardiology visit and 90-day Eliquis refill."
+)`
+        }
+      };
+
+      let currentPresetKey = 'timeline';
+      let currentRightTab = 'fhir';
+
+      function loadPreset(key) {
+        currentPresetKey = key;
+        const p = PRESETS[key];
+        
+        // Update cards
+        document.querySelectorAll('.preset-card').forEach((c, idx) => {
+          c.classList.remove('active');
+        });
+        const indexMap = { timeline: 0, prior_auth: 1, pre_visit: 2, benefits: 3 };
+        document.querySelectorAll('.preset-card')[indexMap[key]].classList.add('active');
+
+        // Update demographics
+        document.getElementById('pt-name').textContent = p.name;
+        document.getElementById('pt-mrn').textContent = p.mrn;
+        document.getElementById('pt-demo').textContent = p.demo;
+        document.getElementById('pt-plan').textContent = p.plan;
+
+        // Render findings
+        const container = document.getElementById('clinical-feed');
+        container.innerHTML = '';
+        p.findings.forEach(f => {
+          const item = document.createElement('div');
+          item.className = `timeline-item ${f.type}`;
+          item.innerHTML = `
+            <div class="timeline-date">${f.date}</div>
+            <div class="timeline-title">${f.title}</div>
+            <div class="timeline-body">${f.body}</div>
+            <div><span class="citation-tag">${f.cite}</span></div>
+          `;
+          container.appendChild(item);
+        });
+
+        // Update code display
+        updateRightDisplay();
+      }
+
+      function switchRightTab(tab) {
+        currentRightTab = tab;
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        if (tab === 'fhir') document.querySelectorAll('.tab-btn')[0].classList.add('active');
+        if (tab === 'python') document.querySelectorAll('.tab-btn')[1].classList.add('active');
+        if (tab === 'audit') document.querySelectorAll('.tab-btn')[2].classList.add('active');
+        updateRightDisplay();
+      }
+
+      function updateRightDisplay() {
+        const p = PRESETS[currentPresetKey];
+        const display = document.getElementById('code-display');
+        if (currentRightTab === 'fhir') {
+          display.textContent = p.fhir;
+        } else if (currentRightTab === 'python') {
+          display.textContent = p.python;
+        } else if (currentRightTab === 'audit') {
+          display.textContent = JSON.stringify({
+            auditTimestamp: new Date().toISOString(),
+            zeroWriteBackEnforced: true,
+            actor: "gemini-4-argon@gemini-for-healthcare.iam.gserviceaccount.com",
+            customerVPC: "projects/health-prod-vpc/regions/us-central1",
+            dataTrainedOnFoundationModel: false,
+            synthIdAttributionWatermark: "SYNTHID_HC_2026_994101A",
+            hipaaAuditTrailId: "CYERA-LOG-881920-VERIFIED",
+            humanPhysicianReviewStatus: "AWAITING_PHYSICIAN_SIGNATURE"
+          }, null, 2);
+        }
+      }
+
+      function runAnalysis() {
+        const feed = document.getElementById('clinical-feed');
+        feed.style.opacity = '0.4';
+        setTimeout(() => {
+          feed.style.opacity = '1';
+          loadPreset(currentPresetKey);
+        }, 300);
+      }
+
+      function copyCode() {
+        const text = document.getElementById('code-display').textContent;
+        navigator.clipboard.writeText(text);
+        alert('Copied telemetry/code to clipboard!');
+      }
+
+      // Initialize default
+      loadPreset('timeline');
+    </script>
+  </body>
+</html>

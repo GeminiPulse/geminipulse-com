@@ -5,6 +5,25 @@
 
 export const PULSE_INTELLIGENCE_FEED = [
   {
+    id: 'pulse-gemini-for-healthcare-launch',
+    title: 'Google Cloud Launches Gemini for Healthcare: AI Workflow Automation, Universal Work Agent Architecture & Zero Write-Back Clinical Connectors',
+    tldr: 'Released November 10, 2026: Google Cloud CEO Thomas Kurian unveils Gemini for healthcare—a purpose-built industry solution extending the universal Gemini agent across electronic health records (Epic, Oracle Health), payer policy engines, and Medicare datasets to reclaim clinicians’ 28 hrs/week lost to administrative burden with verifiable citations and HIPAA-compliant governance.',
+    summary:
+      'Google Cloud CEO Thomas Kurian announces Gemini for healthcare, extending the universal Gemini agent into clinical and payer operations. Built to address the 28 hours per week clinicians spend on administrative paperwork, the platform operates across four core pillars: (1) Purpose-built clinical & payer skills (longitudinal patient timeline synthesis, pre-visit chart briefings, prior authorization dossiers, member out-of-pocket benefit determination), (2) Secure connectors with the Zero Write-Back Guarantee—enforcing read-only access to Epic and Oracle Health EHRs, InterSystems FHIR MCP Servers, CMS National Coverage Determinations (NCDs/LCDs), Optum Coordination of Benefits, TriZetto, and GoodRx without data migration or foundation model training on customer PHI, (3) Dual-model routing pairing Gemini 4 Argon for high-reasoning clinical synthesis with Gemini 3.8 Flash for high-speed administrative code lookups, and (4) Broad ecosystem validation across launch partners including HCA Healthcare, Northwell Health, Highmark Health, Optum Insight, Blue Cross Blue Shield of Massachusetts, and the American Society of Clinical Oncology (ASCO).',
+    category: 'Enterprise & Cloud',
+    tag: 'Industry Platform',
+    modelBadge: 'Gemini 4 Argon & 3.8 Flash / Healthcare Agent',
+    impactScore: '10.0 / 10',
+    date: '2026-11-10T13:00:00Z',
+    sourceLabel: 'Google Cloud Blog: Introducing Gemini for healthcare (Thomas Kurian, CEO)',
+    sourceUrl: 'https://cloud.google.com/blog/products/ai-machine-learning/gemini-for-healthcare',
+    groundedBy: 'Google Cloud Official Launch & The Keyword (Verified Nov 10, 2026)',
+    seriesUrl: '/series/gemini-for-healthcare/part-1-gemini-for-healthcare-breakdown-and-architecture.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-healthcare-studio.html',
+    labLabel: 'Healthcare Lab [DEMO] →',
+  },
+  {
     id: 'pulse-maps-ai-studio-integration',
     title: 'Google Integrates Google Maps Platform into AI Studio: Prompt-Driven Geospatial Apps, Photorealistic 3D Flyovers & Zero-Config Sandbox Quotas',
     tldr: 'Released November 9, 2026: Google embeds Google Maps Platform natively inside Google AI Studio—allowing developers to prompt Gemini for real-world geospatial applications (interactive 3D city tours, mobile fleet route optimizers, store locators, and environmental monitors) with instant live previews, automated Maps Demo Key provisioning, and 100 free calls/day per API without entering a credit card.',
@@ -881,6 +900,25 @@ video_turn = client.interactions.create(
 ];
 
 export const INITIAL_SHOWCASE_PROJECTS = [
+  {
+    id: 'showcase-gemini-healthcare-studio',
+    name: 'Gemini for Healthcare Studio & Clinical Workflow Workbench [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive developer studio modeling Google Cloud’s Gemini for healthcare: simulate longitudinal patient timeline synthesis, prior authorization verification against CMS policies, zero write-back FHIR MCP connectors, and HIPAA audit trails.',
+    models: ['gemini-4-argon', 'gemini-3.8-flash', 'google-cloud-healthcare'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-healthcare-studio.html): [SIMULATED DEMO] Simulates 4 clinical workflows, InterSystems FHIR MCP Connector queries, CMS NCD 220.1 policy checks, zero write-back guardrails, and Python google-genai v3.0.0 code export.',
+    url: '/labs/gemini-healthcare-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-10T13:00:00Z',
+  },
   {
     id: 'showcase-gemini-maps-studio',
     name: 'Google Maps in AI Studio & Geospatial Agent Workbench [SIMULATED DEMO]',
