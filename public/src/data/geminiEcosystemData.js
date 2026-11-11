@@ -5,6 +5,44 @@
 
 export const PULSE_INTELLIGENCE_FEED = [
   {
+    id: 'pulse-gemini-decisions-api-launch',
+    title: 'Google DeepMind Launches Gemini Decisions API & Gemini Decision 1 Model: Single-Pass Multimodal Logit Scoring at $0.10/1M with Zero Output Tokens',
+    tldr: 'Released November 11, 2026: Google DeepMind launches the Gemini Decisions API powered by Gemini Decision 1 (gemini-decision-1)—enabling single-forward-pass logit scoring over up to 1,000 closed-set questions (noul, choice, score) across text, images, video, and PDFs in 150–250 ms with $0 output token charges at $0.10/1M input tokens.',
+    summary:
+      'Google DeepMind Product Manager Min Choi and Principal Scientist Felix Yu unveil the Gemini Decisions API and its dedicated model Gemini Decision 1 (gemini-decision-1), introducing purpose-built primitives for closed-set, high-throughput probabilistic routing and guardrails. Rather than generating text tokens autoregressively, Gemini Decision 1 evaluates candidate options via direct logit scoring in a single forward pass, keeping median compute latency at 50–100 ms (150–250 ms end-to-end) across shared multimodal inputs (text, image, audio, video, PDFs up to 256K tokens) and evaluating up to 1,000 independent questions simultaneously with flat latency. Core technical breakthroughs include: (1) Three Native Decision Primitives—noul (calibrated binary yes/no probability), choice (mutually exclusive single-select over 2 to 255 candidate options with full probability distribution), and score (ordered rubric grading returning continuous weighted score and confidence), (2) Radical Economics—priced at $0.10 per 1M input tokens and $0.00 for output tokens (zero output token charges, ~5x cheaper than Gemini 3.5 Flash-Lite), (3) Built-In Confidence Scoring—every response surfaces normalized confidence (0 to 1) for automated fallback to human review or deep reasoning models, (4) Google Internal Production Validation—powers dynamic model routing in Gemini Notebook (40% lower overall latency), rapid wireframing in Stitch Rapid, 200+ emoji reaction selection in CC (Google Labs), and real-time MCP tool safety filtering in Google Search, and (5) Ecosystem Integrations—day-zero support in Google AI Studio, OpenRouter, LangChain, Vercel, LiteLLM, Pydantic AI, Pipecat, LiveKit, and OpenCode alongside the official Google Gen AI SDKs.',
+    category: 'SDK & API',
+    tag: 'Model Launch',
+    modelBadge: 'Gemini Decision 1 & Decisions API',
+    impactScore: '10.0 / 10',
+    date: '2026-11-11T17:30:00Z',
+    sourceLabel: 'Google DeepMind: Gemini Decisions API: Fast, calibrated multimodal decisions',
+    sourceUrl: 'https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/',
+    groundedBy: 'Google DeepMind Official Launch (Min Choi & Felix Yu, Verified Nov 11, 2026)',
+    seriesUrl: '/series/gemini-decisions-api/part-1-gemini-decisions-api-and-decision-1-breakdown.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-decisions-studio.html',
+    labLabel: 'Decisions Studio Lab [DEMO] →',
+  },
+  {
+    id: 'pulse-genai-sdk-v3-2-release',
+    title: 'Google Releases Gen AI SDK v3.2.0: Decisions API (client.decisions.create) & Self-Hosted BYOS Environments',
+    tldr: 'Released November 11, 2026 (17:22 UTC): Google releases milestone @google/genai and google-genai v3.2.0 across TypeScript and Python—introducing official client.decisions.create bindings for the Decisions API and Environments self-hosted BYOS (Bring Your Own Sandbox) mode for private VPC compute execution.',
+    summary:
+      'Google ships version 3.2.0 GA of its official JavaScript/TypeScript (@google/genai) and Python (google-genai) SDKs. Key architectural upgrades include: (1) Official Decisions API client—adds client.decisions.create routing through v1beta endpoints with typed schemas for noul-question, choice-question, and score-question primitives, (2) Self-Hosted BYOS Environments—introduces mode: "self_hosted" in ai.environments.create with system_instruction, custom_config, and environment_key, enabling enterprise agents to execute code within private customer-managed VPCs, air-gapped on-prem Kubernetes clusters, or sovereign bare-metal runners rather than Google-hosted on-demand microVMs, (3) Network egress configurations—adds EnvironmentNetworkEgressAllowlist alongside disabled network mode, and (4) CLI parity—updates gemini-cli to support local environment dispatch and decision evaluation.',
+    category: 'SDK & API',
+    tag: 'SDK Milestone',
+    modelBadge: '@google/genai & google-genai v3.2.0',
+    impactScore: '9.9 / 10',
+    date: '2026-11-11T17:22:34Z',
+    sourceLabel: 'GitHub: googleapis/js-genai & python-genai v3.2.0 Releases',
+    sourceUrl: 'https://github.com/googleapis/js-genai/releases/tag/v3.2.0',
+    groundedBy: 'Google Gen AI SDK Official Milestone Releases (Verified Nov 11, 2026)',
+    seriesUrl: '/series/gemini-decisions-api/part-3-concrete-decisions-api-blueprints-and-sdk-v3-2.html',
+    seriesLabel: 'SDK v3.2.0 Series →',
+    labUrl: '/labs/gemini-decisions-studio.html',
+    labLabel: 'Decisions Studio Lab [DEMO] →',
+  },
+  {
     id: 'pulse-a2ui-1-0-generative-ui-protocol',
     title: 'Google Launches A2UI 1.0 GA: The Open Generative UI Protocol for Native Interactive Agent Experiences Across Web & Mobile',
     tldr: 'Released November 11, 2026: Google launches A2UI 1.0 GA—an open-source, framework-agnostic Generative UI standard and protocol enabling AI agents to render rich, native, interactive screens (forms, cards, approval workflows, widgets) across React, Flutter, Angular, SwiftUI, and Jetpack Compose via declarative JSON blueprints with bidirectional RPC calls and A2UI Express compression.',
@@ -995,6 +1033,25 @@ video_turn = client.interactions.create(
 ];
 
 export const INITIAL_SHOWCASE_PROJECTS = [
+  {
+    id: 'showcase-gemini-decisions-studio',
+    name: 'Gemini Decisions Studio & Control Plane Workbench [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive developer workbench modeling Google DeepMind’s Gemini Decisions API: evaluate up to 1,000 closed-set questions (noul, choice, score) in a single pass across text, images, and documents with sub-250ms latency, zero output token charges, and self-hosted BYOS environments.',
+    models: ['gemini-decision-1', 'gemini-4-argon', 'gemini-4-carbon'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-decisions-studio.html): [SIMULATED DEMO] Simulates 4 production scenarios (Facility Safety, Dynamic Router, Expense Policy, MCP Tool Gate), interactive noul/choice/score primitive cards, sub-250ms single-pass telemetry, zero-output-token cost analyzer, and SDK v3.2.0 Python/TS/BYOS code export.',
+    url: '/labs/gemini-decisions-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-11T17:30:00Z',
+  },
   {
     id: 'showcase-gemini-a2ui-generative-studio',
     name: 'Gemini A2UI Generative Studio & Agentic UI Workbench [SIMULATED DEMO]',
@@ -2767,11 +2824,43 @@ export const GET_STARTED_WITH_GEMINI_TRACKS = [
 
 export const GEMINI_VIDEO_SHOWCASE = [
   {
+    id: 'vid-multimodal-ai-agent-architecture',
+    videoId: 'gg-gXO0tIUY',
+    featuredOfTheDay: true,
+    category: 'Agents & Antigravity',
+    badge: 'FEATURED VIDEO OF THE DAY • OFFICIAL GOOGLE CLOUD TECH',
+    title: 'Multimodal AI agent architecture: Voice, vision, tools & memory',
+    creatorName: 'Google Cloud Tech',
+    creatorHandle: '@googlecloudtech',
+    creatorUrl: 'https://www.youtube.com/@googlecloudtech',
+    watchUrl: 'https://www.youtube.com/watch?v=gg-gXO0tIUY',
+    thumbnailUrl: 'https://i.ytimg.com/vi/gg-gXO0tIUY/hqdefault.jpg',
+    geminiSummary:
+      'Official Google Cloud Tech engineering deep-dive published November 11, 2026—breaking down production architectures for multimodal AI agents combining real-time audio streaming, low-latency vision comprehension, autonomous tool execution loops, and persistent cross-session memory.',
+    whyFeatured: 'Verified HTTP 200 official Google Cloud Tech architecture guide detailing multimodal agent integration across voice, vision, tools, and stateful memory.',
+  },
+  {
+    id: 'vid-how-argon-carbon-built',
+    videoId: 'sUcvhFGc4mw',
+    featuredOfTheDay: false,
+    category: 'Gemini 4 Carbon & Argon',
+    badge: 'OFFICIAL GOOGLE CLOUD TECH • PRODUCT ARCHITECTURE',
+    title: 'How Gemini 4 Argon & Carbon were built (ft. DeepMind’s Head of Gemini Product)',
+    creatorName: 'Google Cloud Tech',
+    creatorHandle: '@googlecloudtech',
+    creatorUrl: 'https://www.youtube.com/@googlecloudtech',
+    watchUrl: 'https://www.youtube.com/watch?v=sUcvhFGc4mw',
+    thumbnailUrl: 'https://i.ytimg.com/vi/sUcvhFGc4mw/hqdefault.jpg',
+    geminiSummary:
+      'Technical deep-dive interview with DeepMind’s Head of Gemini Product—explaining the dual-architecture strategy behind Gemini 4 Argon (multimodal spatial/robotic reasoning) and Gemini 4 Carbon (long-horizon software engineering and cyber defense).',
+    whyFeatured: 'Verified HTTP 200 Google Cloud Tech architectural interview detailing the foundational design of Gemini 4 Argon and Carbon.',
+  },
+  {
     id: 'vid-gemini-at-work-2026-keynote',
     videoId: 'WuqwGPtZwvY',
-    featuredOfTheDay: true,
+    featuredOfTheDay: false,
     category: 'Gemini 4 Carbon & Argon',
-    badge: 'FEATURED VIDEO OF THE DAY • OFFICIAL GOOGLE CLOUD TECH',
+    badge: 'OFFICIAL GOOGLE CLOUD TECH • KEYNOTE ARCHIVE',
     title: 'Google Cloud Live: Inside the Gemini at Work 2026 keynote',
     creatorName: 'Google Cloud Tech',
     creatorHandle: '@googlecloudtech',

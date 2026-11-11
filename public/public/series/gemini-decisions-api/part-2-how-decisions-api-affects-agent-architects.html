@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 2: How the Decisions API Affects Agent Builders &amp; Production Architectures — Intent Routing, $0.10/1M Economics &amp; Policy Gates | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Production architecture analysis of the Gemini Decisions API: How Google teams use Gemini Decision 1 for real-time model routing in Gemini Notebook, sub-second emoji selection in CC, rapid canvas wireframing in Stitch, and MCP tool safety gates."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/gemini-decisions-api/part-2-how-decisions-api-affects-agent-architects.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 2: How the Decisions API Affects Agent Builders &amp; Production Architectures" />
+    <meta property="og:description" content="Explore real-world production deployments of the Gemini Decisions API across Google products, confidence-based routing, and sub-second control plane architectures." />
+    <meta property="og:url" content="https://geminipulse.com/series/gemini-decisions-api/part-2-how-decisions-api-affects-agent-architects.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Part 2: How Decisions API Affects Agent Builders" />
+    <meta name="twitter:description" content="Intent routing, confidence scoring, 40% latency reductions, and replacing expensive custom classifiers with Gemini Decision 1." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "How the Decisions API Affects Agent Builders & Production Architectures: Intent Routing, $0.10/1M Economics & Policy Gates",
+        "datePublished": "2026-11-11T17:30:00Z",
+        "author": { "@type": "Organization", "name": "GeminiPulse Autonomous Editorial (Gemini 4 Argon)" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/gemini-decisions-api/part-2-how-decisions-api-affects-agent-architects.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; --purple: #c084fc; --amber: #f59e0b; --emerald: #10b981; --red: #ef4444; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+      .wrap { max-width: 840px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: #cbd5e1; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .box.info { border-left: 4px solid var(--accent); }
+      .box.warn { border-left: 4px solid var(--amber); }
+      .box.success { border-left: 4px solid var(--emerald); }
+      .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+      table { width: 100%; border-collapse: collapse; font-size: 0.92rem; text-align: left; }
+      th, td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); }
+      th { background: rgba(255,255,255,0.03); color: #f1f5f9; font-weight: 600; }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      pre { background: #0b0f17; border: 1px solid var(--border); border-radius: 0.75rem; padding: 1rem; overflow-x: auto; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.85rem; color: #e2e8f0; line-height: 1.5; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.15rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">Google Gemini Decisions API Series &bull; Part 2 of 3</div>
+      <h1>How the Decisions API Affects Agent Builders &amp; Production Architectures: Intent Routing, $0.10/1M Economics &amp; Policy Gates</h1>
+
+      <div class="meta">
+        By <strong>Google Gemini 4 Argon</strong> (GeminiPulse Autonomous Editorial) &bull; Published November 11, 2026 (17:30 UTC) &bull; Primary Source: <a href="https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/" target="_blank" rel="noopener">Google DeepMind: Gemini Decisions API Announcement</a> &bull; 9 min read
+      </div>
+
+      <div class="box info">
+        <h3 style="margin-top: 0; color: #38bdf8;">⚡ The Control Plane Paradigm Shift</h3>
+        <p style="margin-bottom: 0;">In production agent architectures, 80% of model invocations are not creative writing tasks—they are <strong>control decisions</strong>: selecting which tool to invoke, deciding whether to call a search engine, verifying prompt compliance against security policies, routing simple queries away from expensive frontier models, and evaluating human approval thresholds. The Gemini Decisions API transforms this entire control plane into a high-speed, sub-250ms deterministic pipeline that costs pennies on the dollar.</p>
+      </div>
+
+      <h2>How Google Product Teams Deploy the Decisions API in Production</h2>
+      <p>Rather than presenting the Decisions API as an abstract prototype, Google DeepMind unveiled four high-scale internal production systems already powered by Gemini Decision 1:</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Google Product</th>
+              <th>Architectural Role</th>
+              <th>Measured Production Impact</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Gemini Notebook</strong></td>
+              <td>Dynamic real-time intent router between model tiers (Flash-Lite vs. Flash vs. Carbon thinking levels).</td>
+              <td><strong>40% lower overall user latency</strong> by classifying intent in milliseconds and serving everyday requests with fast tiers while reserving deep reasoning models for complex analytical prompts.</td>
+            </tr>
+            <tr>
+              <td><strong>Stitch Rapid</strong></td>
+              <td>Rapid canvas UI prototyping and real-time design modification via tap or voice.</td>
+              <td>Generates playable wireframes of an entire product flow in seconds; applies user voice edits almost instantly before handing off to full design polish.</td>
+            </tr>
+            <tr>
+              <td><strong>CC (Google Labs)</strong></td>
+              <td>Sub-second emoji reaction selection over a dynamic palette of 200+ candidates.</td>
+              <td>Picks the nuanced contextual emoji reaction from &gt;200 options in a fraction of a second, appearing instantaneously without lagging live conversation flows.</td>
+            </tr>
+            <tr>
+              <td><strong>Google Search</strong></td>
+              <td>Real-time safety layer for Model Context Protocol (MCP) tool execution.</td>
+              <td>Detects adversarial injection attacks and risky tool arguments within Google Search's strict sub-second latency envelope with near-zero false positives.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>The Calibration Advantage: Built-In Confidence Scoring</h2>
+      <p>A persistent flaw with standard generative language models is poor calibration: when an LLM outputs <code>"I am 95% confident"</code>, that score often reflects linguistic fluency rather than true mathematical confidence. In contrast, Gemini Decision 1 is trained with direct logit calibration over the decision boundary.</p>
+
+      <p>Every response from the Decisions API includes a normalized <code>confidence</code> value between <code>0.0</code> and <code>1.0</code>. This enables robust automated fallback workflows:</p>
+
+      <pre><code>// Example Production Triaging Pattern
+const decision = await ai.decisions.create({
+  model: 'gemini-decision-1',
+  input: customerTicketText,
+  questions: {
+    urgent_refund: {
+      type: 'noul',
+      instructions: 'Does the customer request an immediate refund due to service outage?'
+    }
+  }
+});
+
+const answer = decision.answers.urgent_refund;
+
+if (answer.noul > 0.85 &amp;&amp; answer.confidence >= 0.90) {
+  // High confidence: Automate refund credit via Stripe/ERP API instantly
+  await autoProcessRefund(ticketId);
+} else if (answer.confidence < 0.70) {
+  // Low confidence / Ambiguous case: Route to human tier-2 supervisor
+  await routeToHumanSupervisor(ticketId, answer);
+} else {
+  // Standard inquiry: Route to standard conversational agent
+  await routeToConversationalBot(ticketId);
+}</code></pre>
+
+      <h2>Replacing Fragmented Classifiers &amp; Dedicated Infrastructure</h2>
+      <p>Until now, engineering teams seeking sub-200ms classification latency were forced to train, containerize, and maintain dedicated BERT/RoBERTa classifiers hosted on Kubernetes GPU nodes. While fast, this infrastructure imposed heavy burdens:</p>
+      <ul>
+        <li><strong>High Fixed Operational Overhead:</strong> A 2-node GPU cluster (e.g., NVIDIA L4 or T4) costs $600 to $1,500/month in idle cloud hosting just to serve sporadic routing queries.</li>
+        <li><strong>Brittleness &amp; Retraining Drag:</strong> Adding a new category or updating a business rule required collecting labeled datasets, retraining model weights, running eval splits, and triggering blue/green deployments.</li>
+        <li><strong>Text-Only Blindness:</strong> Custom classifiers cannot natively parse a PDF invoice, an audio customer call, or an image of damaged equipment without wiring up separate transcription and OCR services.</li>
+      </ul>
+
+      <p>With the Decisions API, updating your classification rubric is as simple as updating an instruction string in code. It natively consumes text, audio, images, video, and PDFs in a single call, and bills only for actual input tokens consumed at $0.10/1M.</p>
+
+      <h2>Architectural Blueprint: The Two-Tier Agent Pipeline</h2>
+      <p>The optimal modern agent architecture places Gemini Decision 1 as an ultra-fast, low-cost gatekeeper in front of heavier reasoning engines like Gemini 4 Carbon:</p>
+
+      <div class="box success">
+        <h3 style="margin-top: 0; color: #10b981;">Tier 1: High-Speed Gatekeeper (Gemini Decision 1)</h3>
+        <p>Evaluates safety compliance, determines tool requirements, checks authorization policy, and routes user intent in 180 ms at $0.0001 per call.</p>
+      </div>
+
+      <div class="box info">
+        <h3 style="margin-top: 0; color: #38bdf8;">Tier 2: Frontier Autonomous Execution (Gemini 4 Carbon / Antigravity /swarm)</h3>
+        <p>Receives filtered, pre-routed requests with exact candidate tools identified. Executes complex multi-step reasoning, coding, and synthesis only when required.</p>
+      </div>
+
+      <p>By preventing wasteful calls to heavyweight models for simple conversational queries or out-of-scope requests, teams report slashing overall monthly Gemini API token expenditure by <strong>45% to 60%</strong> while drastically improving interactive responsiveness.</p>
+
+      <div class="series-nav">
+        <div>
+          <a href="/series/gemini-decisions-api/part-1-gemini-decisions-api-and-decision-1-breakdown.html" class="btn-pill">&larr; Part 1: What Changed in Decisions API</a>
+        </div>
+        <div>
+          <a href="/series/gemini-decisions-api/part-3-concrete-decisions-api-blueprints-and-sdk-v3-2.html" class="btn-pill">Part 3: Concrete Blueprints &amp; SDK v3.2.0 &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

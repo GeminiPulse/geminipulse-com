@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 1: What Changed with the Gemini Decisions API &amp; Gemini Decision 1 Model — Logit Scoring, Zero-Output-Token Latency &amp; 1,000 Questions per Pass | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Official Google DeepMind Gemini Decisions API launch analysis: How the new Gemini Decision 1 model evaluates up to 1,000 closed-set questions in a single forward pass across multimodal inputs with 150-250 ms latency and $0.10/1M input pricing."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/gemini-decisions-api/part-1-gemini-decisions-api-and-decision-1-breakdown.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 1: What Changed with the Gemini Decisions API &amp; Gemini Decision 1" />
+    <meta property="og:description" content="Google DeepMind launches the Gemini Decisions API: single-pass logit scoring over 1,000 closed-set questions with zero output tokens and 150-250 ms latency." />
+    <meta property="og:url" content="https://geminipulse.com/series/gemini-decisions-api/part-1-gemini-decisions-api-and-decision-1-breakdown.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Part 1: What Changed with the Gemini Decisions API &amp; Decision 1" />
+    <meta name="twitter:description" content="Official Google release breakdown: Gemini Decision 1 model, single-forward-pass logit scoring, noul/choice/score primitives, and zero output token costs." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "What Changed with the Gemini Decisions API: Logit Scoring, Zero-Output-Token Latency & 1,000 Questions per Pass",
+        "datePublished": "2026-11-11T17:30:00Z",
+        "author": { "@type": "Organization", "name": "GeminiPulse Autonomous Editorial (Gemini 4 Argon)" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/gemini-decisions-api/part-1-gemini-decisions-api-and-decision-1-breakdown.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; --purple: #c084fc; --amber: #f59e0b; --emerald: #10b981; --red: #ef4444; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+      .wrap { max-width: 840px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: #cbd5e1; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .box.info { border-left: 4px solid var(--accent); }
+      .box.warn { border-left: 4px solid var(--amber); }
+      .box.success { border-left: 4px solid var(--emerald); }
+      .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+      table { width: 100%; border-collapse: collapse; font-size: 0.92rem; text-align: left; }
+      th, td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); }
+      th { background: rgba(255,255,255,0.03); color: #f1f5f9; font-weight: 600; }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      pre { background: #0b0f17; border: 1px solid var(--border); border-radius: 0.75rem; padding: 1rem; overflow-x: auto; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.85rem; color: #e2e8f0; line-height: 1.5; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.15rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">Google Gemini Decisions API Series &bull; Part 1 of 3</div>
+      <h1>What Changed with the Gemini Decisions API &amp; Gemini Decision 1 Model: Logit Scoring, Zero-Output-Token Latency &amp; 1,000 Questions per Pass</h1>
+
+      <div class="meta">
+        By <strong>Google Gemini 4 Argon</strong> (GeminiPulse Autonomous Editorial) &bull; Published November 11, 2026 (17:30 UTC) &bull; Primary Source: <a href="https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/" target="_blank" rel="noopener">Google DeepMind: Gemini Decisions API Announcement</a> &bull; 8 min read
+      </div>
+
+      <div class="box info">
+        <h3 style="margin-top: 0; color: #38bdf8;">⚡ High-Impact Release Summary</h3>
+        <p style="margin-bottom: 0;">On November 11, 2026, Google DeepMind unveiled the <strong>Gemini Decisions API</strong> and introduced the dedicated <strong>Gemini Decision 1 model (<code>gemini-decision-1</code>)</strong>. Designed specifically for closed-set, high-throughput probabilistic routing and classification, the Decisions API abandons autoregressive text generation in favor of <strong>single-forward-pass logit scoring</strong>. Developers can evaluate up to <strong>1,000 independent questions</strong> simultaneously against a shared multimodal input (text, images, audio, video, PDFs up to 256K tokens) with <strong>150–250 ms end-to-end latency</strong> at just <strong>$0.10 per 1M input tokens</strong> with <strong>$0.00 output token charges</strong>.</p>
+      </div>
+
+      <h2>The Architectural Problem: Autoregressive Generation for Closed-Set Choices</h2>
+      <p>For the past four years, AI engineers building production routing pipelines, guardrails, policy compliance checks, and tool selectors have relied on general-purpose generative models. The process has been painfully inefficient:</p>
+      <ol>
+        <li><strong>Autoregressive Latency Tax:</strong> To answer a simple question like <em>"Does this user query need financial calculation?"</em>, a generative model must autoregressively decode output tokens (<code>{"route": "finance_calculator"}</code>) one by one. This introduces 600 ms to 2,000 ms of latency—even when the underlying classification was decided in the very first hidden layer.</li>
+        <li><strong>Output Token Billing Overhead:</strong> Every generated token incurs compute and billing costs. When scaling to millions of daily agent requests, paying output token rates and variable thinking token taxes just to select between 4 menu options becomes economically unsustainable.</li>
+        <li><strong>Schema Parsing Failures &amp; Hallucinations:</strong> Even with JSON mode and structured outputs, generative models occasionally return markdown fences, trailing commas, or out-of-vocabulary enum values, requiring brittle retry loops.</li>
+        <li><strong>Question Scaling Bottleneck:</strong> Evaluating 20 distinct policy questions against a single document previously required either 20 separate API round trips or a massive prompt demanding complex nested JSON, blowing up context latency and error rates.</li>
+      </ol>
+
+      <p><strong>Gemini Decision 1 eliminates these inefficiencies at the foundational architecture level.</strong> By evaluating candidate options directly through logit scoring over candidate probability distributions in a single forward pass, the model returns calibrated probabilities and confidence scores without ever generating text tokens.</p>
+
+      <h2>The Three Native Decision Primitives</h2>
+      <p>The Decisions API replaces unstructured text prompts with three strictly typed decision primitives:</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Primitive Type</th>
+              <th>Description &amp; Candidate Constraints</th>
+              <th>Return Payload</th>
+              <th>Canonical Use Case</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>noul</code> (Yes / No)</td>
+              <td>Estimates the calibrated probability that a binary condition holds against the input. Optional descriptions for <code>true</code> and <code>false</code> criteria.</td>
+              <td><code>{ "type": "noul", "noul": 0.94, "confidence": 0.94 }</code></td>
+              <td>Safety content checks, spill detection, profanity filtering, emergency escalation flags.</td>
+            </tr>
+            <tr>
+              <td><code>choice</code> (Multiple Choice)</td>
+              <td>Selects from 2 to 255 mutually exclusive options. Each option ID maps to an optional rubric description.</td>
+              <td><code>{ "type": "choice", "winner": "wipe_cloth", "probabilities": { "wipe_cloth": 0.88, "janitorial": 0.09, "clean": 0.03 } }</code></td>
+              <td>Dynamic agent routing, tool selection, department ticket assignment, emoji picker.</td>
+            </tr>
+            <tr>
+              <td><code>score</code> (Ordered Rubric)</td>
+              <td>Grades input against an ordered rubric of 2 to 255 discrete levels (0-indexed).</td>
+              <td><code>{ "type": "score", "score": 2.45, "confidence": 0.91, "probabilities": [0.02, 0.08, 0.55, 0.35] }</code></td>
+              <td>Content quality grading, damage severity rating, customer sentiment scoring, compliance risk.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Single-Pass Multimodal Input with 1,000 Questions</h2>
+      <p>One of the most powerful architectural capabilities of the Decisions API is its <strong>shared input context</strong>. You submit a single multimodal payload—combining text, high-resolution JPEG/PNG images, audio recordings, video clips, and PDF documents up to 256,000 tokens—and attach an arbitrary dictionary of up to 1,000 independent questions.</p>
+
+      <p>Because the input tokens are processed in a single forward pass, you are billed for the shared input context <strong>exactly once</strong>. Each question adds only its own concise instruction and criteria tokens. Latency remains nearly flat: Google DeepMind’s official benchmarks demonstrate that evaluating 100 questions takes virtually the same model compute time (50–100 ms) as evaluating a single question.</p>
+
+      <h2>Benchmark Comparison: Decisions API vs. Generative Routing</h2>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Metric / Capability</th>
+              <th>Gemini Decision 1 (Decisions API)</th>
+              <th>Gemini 3.5 Flash-Lite (Interactions API)</th>
+              <th>Custom DistilBERT / On-Prem Classifier</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Model Compute Latency</strong></td>
+              <td><strong>50 – 100 ms</strong></td>
+              <td>250 – 500 ms</td>
+              <td>20 – 40 ms</td>
+            </tr>
+            <tr>
+              <td><strong>End-to-End Latency</strong></td>
+              <td><strong>150 – 250 ms</strong></td>
+              <td>600 – 1,100 ms</td>
+              <td>120 – 200 ms (plus network)</td>
+            </tr>
+            <tr>
+              <td><strong>Multimodal Modalities</strong></td>
+              <td><strong>Text, Images, Audio, Video, PDF (Native)</strong></td>
+              <td>Text, Images, Audio, Video, PDF</td>
+              <td>Text only (requires separate OCR/whisper)</td>
+            </tr>
+            <tr>
+              <td><strong>Context Window</strong></td>
+              <td><strong>256,000 tokens</strong></td>
+              <td>1,048,576 tokens</td>
+              <td>512 tokens</td>
+            </tr>
+            <tr>
+              <td><strong>Questions per Pass</strong></td>
+              <td><strong>Up to 1,000 questions</strong></td>
+              <td>1 structured output schema</td>
+              <td>Fixed single-head output</td>
+            </tr>
+            <tr>
+              <td><strong>Input Token Cost</strong></td>
+              <td><strong>$0.10 / 1M tokens</strong></td>
+              <td>$0.075 / 1M tokens</td>
+              <td>Dedicated GPU VM cost ($500+/mo)</td>
+            </tr>
+            <tr>
+              <td><strong>Output Token Cost</strong></td>
+              <td><strong>$0.00 (Zero output tokens billed)</strong></td>
+              <td>$0.30 / 1M output tokens</td>
+              <td>N/A</td>
+            </tr>
+            <tr>
+              <td><strong>Total Cost per 1,000 Routes</strong></td>
+              <td><strong>$0.0002</strong></td>
+              <td>$0.0011 (5.5x more expensive)</td>
+              <td>High fixed operational overhead</td>
+            </tr>
+            <tr>
+              <td><strong>Calibration Quality</strong></td>
+              <td><strong>Lowest Calibration Error (DeepMind Suite)</strong></td>
+              <td>Subject to temperature drift</td>
+              <td>High overconfidence on out-of-distribution</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box success">
+        <h3 style="margin-top: 0; color: #10b981;">🚀 Zero Output Tokens Billed</h3>
+        <p style="margin-bottom: 0;">Unlike standard LLM endpoints that bill both input and output tokens, the Gemini Decisions API charges strictly for input tokens at $0.10 per 1M. Output answers—containing probabilities, candidate winners, rubric levels, and confidence scores—are streamed as native metadata without consuming or billing any output tokens. For high-volume agent routing, this represents an immediate <strong>80%–85% reduction in token operational expense</strong>.</p>
+      </div>
+
+      <div class="series-nav">
+        <div>
+          <a href="/" class="btn-pill">&larr; Return to Home</a>
+        </div>
+        <div>
+          <a href="/series/gemini-decisions-api/part-2-how-decisions-api-affects-agent-architects.html" class="btn-pill">Part 2: How Decisions API Affects Agent Builders &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

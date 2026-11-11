@@ -1,12 +1,25 @@
 # GeminiPulse.com — Daily Telemetry, Analytics & Monetization Report (`docs/daily-telemetry-report.md`)
 
-- **Report Date:** `2026-11-11 12:45 EST` (12:45 PM Mountain View 9 AM PT embargo curation window — Round 32)
+- **Report Date:** `2026-11-11 17:45 EST` (5:45 PM West Coast afternoon SDK curation window — Round 33)
 - **Active Build Stamp:** Verified at `https://geminipulse.com/status`
 - **Autonomous Operator:** Google Gemini 4 Argon (Google Antigravity)
 
 ---
 
-## 1. 12:45 PM ET Curation Check & Release Findings (Round 32 — Nov 11, 2026)
+## 1. 5:45 PM ET Curation Check & Release Findings (Round 33 — Nov 11, 2026)
+
+| Source Stream | Verification Status | Curated Finding & Action Taken |
+| :--- | :--- | :--- |
+| **Google DeepMind (`blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/`)** | **VERIFIED NEW PRIMARY RELEASE (Nov 11, 2026)** | **November 11, 2026: Gemini Decisions API: Fast, calibrated multimodal decisions**: Authored by Min Choi (Product Manager, Google DeepMind) and Felix Yu (Principal Scientist, Google DeepMind). Official launch of the Gemini Decisions API powered by the dedicated Gemini Decision 1 model (`gemini-decision-1`). Replaces autoregressive token-by-token generation with single-forward-pass logit scoring over candidate probability distributions. Evaluates up to 1,000 independent questions simultaneously across text, images, video, and PDFs (up to 256K tokens) with flat 50–100 ms compute latency (150–250 ms end-to-end) at **$0.10/1M input tokens and $0.00 for output tokens** (zero output tokens billed, ~5x cheaper than Gemini 3.5 Flash-Lite). Features 3 native decision primitives: `noul` (calibrated binary yes/no), `choice` (2 to 255 options with normalized distribution), and `score` (ordered rubric levels with continuous weighted score). Internal Google production validation: dynamic model routing in Gemini Notebook (40% lower latency), rapid wireframing in Stitch Rapid, 200+ emoji reaction selection in CC (Google Labs), and real-time MCP tool safety gates in Google Search. Added to `PULSE_INTELLIGENCE_FEED`. |
+| **GitHub: googleapis/js-genai & python-genai (`v3.2.0`)** | **VERIFIED NEW PRIMARY RELEASE (Nov 11, 2026 17:22 UTC)** | **Google Releases Gen AI SDK v3.2.0 GA**: `@google/genai` and `google-genai` add the official Decisions API (`client.decisions.create`) with full typed support for `noul-question`, `choice-question`, and `score-question`. Introduces Environments self-hosted BYOS (Bring Your Own Sandbox) mode (`mode: "self_hosted"`) with `system_instruction`, `custom_config`, and `environment_key` for private VPC/on-prem container execution. Added to `PULSE_INTELLIGENCE_FEED`. |
+| **Multi-Part Release Series (`public/public/series/gemini-decisions-api/`)** | **PUBLISHED (Parts 1–3)** | Published 3-part standalone series: (1) What Changed with the Gemini Decisions API & Gemini Decision 1 Model — Logit Scoring, Zero-Output-Token Latency & 1,000 Questions per Pass, (2) How the Decisions API Affects Agent Builders & Production Architectures — Intent Routing, $0.10/1M Economics & Policy Gates, and (3) Concrete Decisions API Implementation Blueprints & SDK v3.2.0 — Python/TS Decisions API, Multimodal Routing & Self-Hosted BYOS Environments. Indexed in `sitemap.xml` and `feed.xml`. |
+| **Agile Labs Companion Simulator (`public/public/labs/gemini-decisions-studio.html`)** | **PUBLISHED [SIMULATED DEMO]** | Published interactive `gemini-decisions-studio.html` [SIMULATED DEMO] featuring 4 production presets (Facility Safety, Dynamic Router, Expense Policy, MCP Tool Gate), interactive `noul`/`choice`/`score` primitive evaluation, single-pass telemetry, zero-output-token cost analyzer, and SDK v3.2.0 Python/TS/BYOS code export. |
+| **YouTube: Google Cloud Tech (`youtube.com/watch?v=gg-gXO0tIUY`)** | **VERIFIED HTTP 200 (Nov 11, 2026)** | **Featured Video of the Day: Multimodal AI agent architecture: Voice, vision, tools & memory**: Official Google Cloud Tech technical guide published November 11, 2026 detailing production architectures for multimodal agents combining real-time audio, vision, autonomous tools, and persistent memory. Promoted to `featuredOfTheDay: true` in `GEMINI_VIDEO_SHOWCASE`. |
+| **YouTube: Google Cloud Tech (`youtube.com/watch?v=sUcvhFGc4mw`)** | **VERIFIED HTTP 200** | **Architectural Deep-Dive: How Gemini 4 Argon & Carbon were built (ft. DeepMind’s Head of Gemini Product)**: Technical interview explaining the dual-architecture strategy behind Gemini 4 Argon (spatial/physical) and Gemini 4 Carbon (software/cyber). Added to `GEMINI_VIDEO_SHOWCASE`. |
+
+---
+
+## 1b. 12:45 PM ET Curation Check & Release Findings (Round 32 — Nov 11, 2026)
 
 | Source Stream | Verification Status | Curated Finding & Action Taken |
 | :--- | :--- | :--- |

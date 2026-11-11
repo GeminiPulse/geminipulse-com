@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-11-11 12:45 EST — ROUND 32 12:45 PM ET CURATION COMPLETE: Verified Google Developers Blog A2UI 1.0 GA Launch (Open Generative UI Protocol, 3-Part Deep-Dive Series + Agile Labs A2UI Studio [DEMO]) & DeepMind Gemini Robotics 2.5 Physical AI Humanoid Deployment on Mercedes-Benz Assembly Lines`
+> **Last touched:** `2026-11-11 17:45 EST — ROUND 33 5:45 PM ET CURATION COMPLETE: Verified Google DeepMind Gemini Decisions API Launch (Gemini Decision 1, $0.10/1M, 0 Output Tokens, 3-Part Deep-Dive Series + Agile Labs Decisions Studio [DEMO]), Gen AI SDK v3.2.0 GA (client.decisions.create & BYOS Environments) & Google Cloud Tech Multimodal Agent Video of the Day`
 
 ---
 
