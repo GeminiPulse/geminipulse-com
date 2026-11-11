@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-11-11 08:45 EST — ROUND 31 8:45 AM ET CURATION COMPLETE: Verified Google Gen AI SDK v3.1.0 GA Launch (@google/genai & google-genai; 3-Part Deep-Dive Series + Agile Labs Live Proactive Video Studio), Omni 1.2 Flash Video Default, Live API proactiveVideo, Carbon Model Enum & November 2026 Pixel Drop Gemini Intelligence Expansion`
+> **Last touched:** `2026-11-11 12:45 EST — ROUND 32 12:45 PM ET CURATION COMPLETE: Verified Google Developers Blog A2UI 1.0 GA Launch (Open Generative UI Protocol, 3-Part Deep-Dive Series + Agile Labs A2UI Studio [DEMO]) & DeepMind Gemini Robotics 2.5 Physical AI Humanoid Deployment on Mercedes-Benz Assembly Lines`
 
 ---
 

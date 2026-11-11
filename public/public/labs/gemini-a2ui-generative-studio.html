@@ -1,0 +1,687 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gemini A2UI Generative Studio &amp; Agentic UI Workbench [SIMULATED DEMO] | Agile Labs</title>
+    <meta
+      name="description"
+      content="Interactive developer playground modeling Google's A2UI 1.0 Generative UI protocol: Test declarative blueprints, simulate bidirectional RPC function calls, compare A2UI Express token compression, and inspect native React, Flutter, and SwiftUI renderers."
+    />
+    <link rel="canonical" href="https://geminipulse.com/labs/gemini-a2ui-generative-studio.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Gemini A2UI Generative Studio [SIMULATED DEMO]" />
+    <meta property="og:description" content="Simulate declarative Generative UI with Google's A2UI 1.0 open protocol: native cross-platform renderers, bidirectional RPC, and token compression." />
+    <meta property="og:url" content="https://geminipulse.com/labs/gemini-a2ui-generative-studio.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Gemini A2UI Generative Studio [SIMULATED DEMO]" />
+    <meta name="twitter:description" content="Interactive developer simulator for Google's A2UI 1.0 Generative UI protocol." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Gemini A2UI Generative Studio",
+        "url": "https://geminipulse.com/labs/gemini-a2ui-generative-studio.html",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "All",
+        "creator": {
+          "@type": "Organization",
+          "name": "Agile Labs (via GeminiPulse.com)"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #07090e;
+        --surface: #111622;
+        --surface-high: #182030;
+        --border: rgba(255, 255, 255, 0.1);
+        --border-high: rgba(255, 255, 255, 0.18);
+        --text: #f3f5fb;
+        --muted: #9da4b8;
+        --accent: #38bdf8;
+        --accent-glow: rgba(56, 189, 248, 0.2);
+        --success: #34d399;
+        --warning: #fbbf24;
+        --danger: #f87171;
+        --purple: #c084fc;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        padding-bottom: 5rem;
+      }
+      .wrap { max-width: 1280px; margin: 0 auto; padding: 2rem 1.25rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow {
+        font-family: ui-monospace, Menlo, Monaco, monospace;
+        font-size: 0.78rem;
+        color: #38bdf8;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      .header-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        background: rgba(192, 132, 252, 0.12);
+        border: 1px solid rgba(192, 132, 252, 0.3);
+        color: #c084fc;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      h1 {
+        font-size: clamp(1.85rem, 3.6vw, 2.6rem);
+        line-height: 1.2;
+        margin: 0.65rem 0 0.5rem;
+      }
+      p.lead {
+        font-size: 1.05rem;
+        color: var(--muted);
+        max-width: 900px;
+        margin: 0 0 1.5rem;
+      }
+      .demo-banner {
+        background: rgba(245, 158, 11, 0.08);
+        border: 1px solid rgba(245, 158, 11, 0.25);
+        border-radius: 0.75rem;
+        padding: 0.85rem 1.25rem;
+        margin-bottom: 2rem;
+        font-size: 0.88rem;
+        color: #fde68a;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .grid-layout {
+        display: grid;
+        grid-template-columns: 320px 1fr 420px;
+        gap: 1.5rem;
+        align-items: start;
+      }
+      @media (max-width: 1120px) {
+        .grid-layout { grid-template-columns: 1fr; }
+      }
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+        padding: 1.25rem;
+      }
+      .card-title {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #f1f5f9;
+        margin: 0 0 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .preset-btn {
+        display: block;
+        width: 100%;
+        text-align: left;
+        padding: 0.85rem 1rem;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        color: var(--text);
+        margin-bottom: 0.75rem;
+        cursor: pointer;
+        transition: all 0.15s ease;
+      }
+      .preset-btn:hover {
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(56, 189, 248, 0.4);
+      }
+      .preset-btn.active {
+        background: rgba(56, 189, 248, 0.12);
+        border-color: var(--accent);
+        box-shadow: 0 0 12px var(--accent-glow);
+      }
+      .preset-name { font-weight: 600; font-size: 0.92rem; display: block; }
+      .preset-desc { font-size: 0.78rem; color: var(--muted); margin-top: 0.2rem; }
+      
+      /* Framework Switcher */
+      .framework-bar {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 0.75rem;
+      }
+      .framework-btn {
+        padding: 0.35rem 0.75rem;
+        border-radius: 0.5rem;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid var(--border);
+        color: var(--muted);
+        font-size: 0.8rem;
+        cursor: pointer;
+      }
+      .framework-btn.active {
+        background: var(--accent);
+        color: #07090e;
+        border-color: var(--accent);
+        font-weight: 600;
+      }
+
+      /* Native Render Preview */
+      .canvas-wrap {
+        min-height: 440px;
+        background: #090d15;
+        border: 1px solid var(--border-high);
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .native-card {
+        background: rgba(24, 32, 48, 0.85);
+        border: 1px solid rgba(56, 189, 248, 0.25);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+      }
+      .native-title {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #ffffff;
+        margin: 0 0 0.5rem;
+      }
+      .native-badge {
+        display: inline-block;
+        padding: 0.2rem 0.6rem;
+        border-radius: 9999px;
+        font-size: 0.72rem;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+      .badge-pending { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4); }
+      .badge-approved { background: rgba(52, 211, 153, 0.2); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.4); }
+      .badge-rejected { background: rgba(248, 113, 113, 0.2); color: #f87171; border: 1px solid rgba(248, 113, 113, 0.4); }
+
+      .btn-action {
+        padding: 0.55rem 1.15rem;
+        border-radius: 0.5rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.15s ease;
+        border: none;
+      }
+      .btn-action-primary { background: #38bdf8; color: #07090e; }
+      .btn-action-primary:hover { background: #7dd3fc; }
+      .btn-action-outline { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: #cbd5e1; }
+      .btn-action-outline:hover { background: rgba(255,255,255,0.08); }
+      .btn-action-danger { background: rgba(239, 68, 68, 0.2); border: 1px solid rgba(239, 68, 68, 0.5); color: #fca5a5; }
+      .btn-action-danger:hover { background: rgba(239, 68, 68, 0.35); }
+
+      /* Tabs */
+      .tabs { display: flex; gap: 0.5rem; border-bottom: 1px solid var(--border); margin-bottom: 1rem; }
+      .tab-btn {
+        padding: 0.4rem 0.8rem;
+        background: transparent;
+        border: none;
+        color: var(--muted);
+        font-size: 0.82rem;
+        cursor: pointer;
+        border-bottom: 2px solid transparent;
+      }
+      .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+      .tab-content { display: none; }
+      .tab-content.active { display: block; }
+
+      pre {
+        background: #090d15;
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        padding: 0.85rem;
+        font-family: ui-monospace, Menlo, Monaco, monospace;
+        font-size: 0.78rem;
+        line-height: 1.45;
+        color: #e2e8f0;
+        overflow-x: auto;
+        max-height: 400px;
+      }
+      .log-stream {
+        background: #090d15;
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        padding: 0.75rem;
+        font-family: ui-monospace, Menlo, Monaco, monospace;
+        font-size: 0.75rem;
+        height: 280px;
+        overflow-y: auto;
+      }
+      .log-entry { margin-bottom: 0.5rem; padding-bottom: 0.5rem; border-bottom: 1px dashed rgba(255,255,255,0.07); }
+      .log-time { color: var(--muted); }
+      .log-type { color: #c084fc; font-weight: 600; }
+      .log-payload { color: #38bdf8; }
+
+      .stat-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        background: rgba(56, 189, 248, 0.08);
+        border: 1px solid rgba(56, 189, 248, 0.2);
+        padding: 0.25rem 0.65rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        color: #7dd3fc;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.25rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse.com</a>
+        <span style="color: var(--muted); margin: 0 0.5rem;">&bull;</span>
+        <a href="/series/a2ui-1-0/part-1-a2ui-1-0-breakdown-and-generative-ui-architecture.html" style="font-size: 0.85rem; color: #c084fc;">A2UI 1.0 3-Part Series &rarr;</a>
+      </div>
+
+      <div class="eyebrow">Agile Labs &bull; Autonomous Generative UI Sandbox</div>
+      <h1>Gemini A2UI Generative Studio &amp; Agentic UI Workbench</h1>
+      <p class="lead">
+        Interactive developer simulator modeling <strong>Google's A2UI 1.0 Open Generative UI Protocol</strong>. Test how AI agents emit declarative component blueprints, simulate bidirectional RPC function dispatch, and inspect native client renderers without executing unsafe client-side code.
+      </p>
+
+      <div class="demo-banner">
+        <span>⚠️</span>
+        <div>
+          <strong>[SIMULATED DEMO] NOTICE:</strong> This workbench operates in a client-side simulation sandbox illustrating A2UI 1.0 specifications announced on the Google Developers Blog (November 11, 2026). No live API keys or cloud spend required.
+        </div>
+      </div>
+
+      <div class="grid-layout">
+        <!-- LEFT: Scenario Presets & Model Config -->
+        <div>
+          <div class="card">
+            <div class="card-title">
+              <span>Agent Scenarios</span>
+              <span class="stat-pill">A2UI 1.0 GA</span>
+            </div>
+            
+            <button class="preset-btn active" onclick="selectPreset('expense')">
+              <span class="preset-name">1. Expense Approval Card</span>
+              <span class="preset-desc">Cloud GPU reservation with approval RPC</span>
+            </button>
+
+            <button class="preset-btn" onclick="selectPreset('flight')">
+              <span class="preset-name">2. Flight Cabin &amp; Seat Grid</span>
+              <span class="preset-desc">Interactive 6x4 seat map &amp; dynamic pricing</span>
+            </button>
+
+            <button class="preset-btn" onclick="selectPreset('health')">
+              <span class="preset-name">3. Clinical Pre-Auth Dossier</span>
+              <span class="preset-desc">ICD-10 clinical code tags &amp; sign-off</span>
+            </button>
+
+            <button class="preset-btn" onclick="selectPreset('fleet')">
+              <span class="preset-name">4. Server Fleet Incident</span>
+              <span class="preset-desc">Pod crash triage &amp; live cluster switch</span>
+            </button>
+
+            <div style="margin-top: 1.5rem; border-top: 1px solid var(--border); padding-top: 1rem;">
+              <label style="font-size: 0.8rem; color: var(--muted); display: block; margin-bottom: 0.4rem;">Orchestrating Model</label>
+              <select id="model-select" style="width: 100%; padding: 0.5rem; background: #090d15; border: 1px solid var(--border); color: #fff; border-radius: 0.5rem; font-size: 0.85rem;" onchange="onModelChange()">
+                <option value="gemini-4-argon">Gemini 4 Argon (Default Agent Engine)</option>
+                <option value="gemini-4-carbon">Gemini 4 Carbon (Cyber &amp; Multi-Agent Swarm)</option>
+                <option value="gemini-3.8-flash">Gemini 3.8 Flash (High-Speed Edge UI)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- CENTER: Native Render Canvas -->
+        <div>
+          <div class="card">
+            <div class="card-title">
+              <span>Native Client Renderer</span>
+              <div id="status-badge" class="native-badge badge-pending">Pending User Action</div>
+            </div>
+
+            <div class="framework-bar">
+              <button class="framework-btn active" onclick="setFramework('react')">React 19 (M3 Tailwind)</button>
+              <button class="framework-btn" onclick="setFramework('flutter')">Flutter (Material 3)</button>
+              <button class="framework-btn" onclick="setFramework('swiftui')">SwiftUI (iOS HIG)</button>
+            </div>
+
+            <div class="canvas-wrap" id="canvas-container">
+              <!-- Dynamically populated native component -->
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; font-size: 0.78rem; color: var(--muted);">
+              <span>🛡️ Zero-Eval Guarantee: Pure JSON Declarative Tree</span>
+              <span id="render-latency">Render Latency: 0.68s</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Protocol Inspector & RPC Log -->
+        <div>
+          <div class="card">
+            <div class="tabs">
+              <button class="tab-btn active" onclick="switchTab('json')">A2UI JSON</button>
+              <button class="tab-btn" onclick="switchTab('rpc')">RPC Events</button>
+              <button class="tab-btn" onclick="switchTab('compression')">Token Savings</button>
+              <button class="tab-btn" onclick="switchTab('code')">Export SDK</button>
+            </div>
+
+            <div id="tab-json" class="tab-content active">
+              <pre><code id="json-code">// A2UI 1.0 Declarative Blueprint</code></pre>
+            </div>
+
+            <div id="tab-rpc" class="tab-content">
+              <div class="log-stream" id="rpc-stream">
+                <div class="log-entry">
+                  <span class="log-time">[Init]</span> <span class="log-type">callRendererFunction</span><br/>
+                  <span class="log-payload">A2UI surface mounted to client DOM.</span>
+                </div>
+              </div>
+            </div>
+
+            <div id="tab-compression" class="tab-content">
+              <div style="background: #090d15; border: 1px solid var(--border); border-radius: 0.5rem; padding: 1rem;">
+                <div style="font-size: 0.85rem; font-weight: 600; color: #38bdf8; margin-bottom: 0.5rem;">A2UI Express Compression Efficiency</div>
+                <div style="font-size: 2.2rem; font-weight: 800; color: #34d399;" id="compression-stat">-63.8%</div>
+                <div style="font-size: 0.8rem; color: var(--muted); margin-bottom: 1rem;">Token overhead reduction vs raw serialized JSON</div>
+                
+                <table style="width: 100%; font-size: 0.78rem; border-collapse: collapse;">
+                  <tr>
+                    <td style="padding: 0.35rem 0; color: var(--muted);">Raw JSON Tokens:</td>
+                    <td style="text-align: right; font-weight: 600;" id="raw-tokens">420 tokens</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 0.35rem 0; color: var(--muted);">A2UI Express Stream:</td>
+                    <td style="text-align: right; font-weight: 600; color: #38bdf8;" id="express-tokens">152 tokens</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 0.35rem 0; color: var(--muted);">Tokens Saved / Turn:</td>
+                    <td style="text-align: right; font-weight: 600; color: #34d399;" id="saved-tokens">268 tokens</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+
+            <div id="tab-code" class="tab-content">
+              <pre><code id="export-code">// React 19 + @a2ui/react implementation snippet</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const PRESETS = {
+        expense: {
+          name: "Expense Approval Card",
+          rawTokens: 420,
+          expressTokens: 152,
+          savings: "-63.8%",
+          latency: "0.58s",
+          schema: {
+            "$schema": "https://a2ui.org/specification/v1.0/schema.json",
+            "surfaceId": "expense-approval-4820",
+            "catalogId": "corp.finance.approval@1.0",
+            "layout": {
+              "type": "ApprovalCard",
+              "props": {
+                "title": "Cloud GPU Cluster Reservation",
+                "amount": "$4,850.00 / mo",
+                "department": "AI Infrastructure Team",
+                "policyStatus": "Compliant (Within Q4 Budget)",
+                "status": "pending_approval"
+              }
+            }
+          },
+          render: (fw, status) => `
+            <div class="native-card">
+              <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.75rem;">
+                <div>
+                  <span style="font-size: 0.75rem; color: #38bdf8; font-weight: 600; text-transform: uppercase;">Cloud Infrastructure &bull; Corp Finance</span>
+                  <h3 class="native-title">Cloud GPU Cluster Reservation</h3>
+                </div>
+                <span class="native-badge ${status === 'approved' ? 'badge-approved' : status === 'rejected' ? 'badge-rejected' : 'badge-pending'}">
+                  ${status.toUpperCase()}
+                </span>
+              </div>
+              <div style="font-size: 1.85rem; font-weight: 800; color: #38bdf8; margin-bottom: 0.75rem;">$4,850.00 <span style="font-size: 0.85rem; color: var(--muted); font-weight: 400;">/ month</span></div>
+              <div style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 1.25rem;">
+                <strong>Instances:</strong> 4x NVIDIA L40S Nodes (us-central1)<br/>
+                <strong>Policy Engine:</strong> Automated Q4 Pre-Check Verified
+              </div>
+              <div style="display: flex; gap: 0.75rem; justify-content: flex-end;">
+                <button class="btn-action btn-action-danger" onclick="dispatchAction('rejectReservation', { id: 'res-4820' })">Reject</button>
+                <button class="btn-action btn-action-primary" onclick="dispatchAction('approveReservation', { id: 'res-4820' })">Approve &amp; Provision</button>
+              </div>
+            </div>
+          `
+        },
+        flight: {
+          name: "Flight Cabin & Seat Grid",
+          rawTokens: 1180,
+          expressTokens: 435,
+          savings: "-63.1%",
+          latency: "1.45s",
+          schema: {
+            "$schema": "https://a2ui.org/specification/v1.0/schema.json",
+            "surfaceId": "flight-seat-selector-801",
+            "catalogId": "travel.airline.booking@1.0",
+            "layout": {
+              "type": "SeatMapSelector",
+              "props": { "flightNumber": "GP-412", "from": "SFO", "to": "LHR", "selectedSeat": "14B" }
+            }
+          },
+          render: (fw, status) => `
+            <div class="native-card">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                <div>
+                  <span style="font-size: 0.75rem; color: #c084fc; font-weight: 600;">FLIGHT GP-412 &bull; BOEING 787-9</span>
+                  <h3 class="native-title">Select Premium Cabin Seat</h3>
+                </div>
+                <span class="native-badge badge-pending">Seat: 14B ($45.00)</span>
+              </div>
+              <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; max-width: 240px; margin: 1rem auto; text-align: center;">
+                <button class="btn-action btn-action-outline" onclick="selectSeat('12A')">12A</button>
+                <button class="btn-action btn-action-outline" onclick="selectSeat('12B')">12B</button>
+                <button class="btn-action btn-action-outline" onclick="selectSeat('12C')">12C</button>
+                <button class="btn-action btn-action-outline" onclick="selectSeat('12D')">12D</button>
+                <button class="btn-action btn-action-outline" onclick="selectSeat('14A')">14A</button>
+                <button class="btn-action btn-action-primary" onclick="selectSeat('14B')">14B</button>
+                <button class="btn-action btn-action-outline" onclick="selectSeat('14C')">14C</button>
+                <button class="btn-action btn-action-outline" onclick="selectSeat('14D')">14D</button>
+              </div>
+              <div style="display: flex; justify-content: flex-end; margin-top: 1rem;">
+                <button class="btn-action btn-action-primary" onclick="dispatchAction('confirmSeatAssignment', { seat: '14B', price: 45.00 })">Confirm Seat</button>
+              </div>
+            </div>
+          `
+        },
+        health: {
+          name: "Clinical Pre-Auth Dossier",
+          rawTokens: 940,
+          expressTokens: 350,
+          savings: "-62.7%",
+          latency: "1.12s",
+          schema: {
+            "$schema": "https://a2ui.org/specification/v1.0/schema.json",
+            "surfaceId": "clinical-preauth-992",
+            "catalogId": "health.fhir.priorauth@1.0",
+            "layout": {
+              "type": "PriorAuthReview",
+              "props": { "patientId": "PT-77102", "icd10": "M54.50", "cpt": "72148", "payer": "Blue Cross" }
+            }
+          },
+          render: (fw, status) => `
+            <div class="native-card">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem;">
+                <div>
+                  <span style="font-size: 0.75rem; color: #10b981; font-weight: 600;">HIPAA READ-ONLY &bull; ZERO WRITE-BACK</span>
+                  <h3 class="native-title">MRI Lumbar Spine (Pre-Auth Review)</h3>
+                </div>
+                <span class="native-badge ${status === 'approved' ? 'badge-approved' : 'badge-pending'}">${status.toUpperCase()}</span>
+              </div>
+              <div style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 1rem;">
+                <strong>ICD-10:</strong> <code>M54.50</code> (Low back pain, unspecified)<br/>
+                <strong>CPT Code:</strong> <code>72148</code> (MRI Lumbar Spine w/o Contrast)<br/>
+                <strong>CMS Policy:</strong> NCD 220.1 &bull; 6-Week Physical Therapy Documented
+              </div>
+              <div style="display: flex; justify-content: flex-end; gap: 0.5rem;">
+                <button class="btn-action btn-action-danger" onclick="dispatchAction('requestPeerToPeer', { authId: 'PA-992' })">Request Peer-to-Peer</button>
+                <button class="btn-action btn-action-primary" onclick="dispatchAction('certifyMedicalNecessity', { authId: 'PA-992' })">Certify &amp; Submit</button>
+              </div>
+            </div>
+          `
+        },
+        fleet: {
+          name: "Server Fleet Incident",
+          rawTokens: 1450,
+          expressTokens: 510,
+          savings: "-64.8%",
+          latency: "1.70s",
+          schema: {
+            "$schema": "https://a2ui.org/specification/v1.0/schema.json",
+            "surfaceId": "k8s-pod-incident-404",
+            "catalogId": "devops.k8s.incident@1.0",
+            "layout": {
+              "type": "IncidentTriage",
+              "props": { "cluster": "gke-prod-us-east", "failingPod": "payments-worker-7c9f8", "crashCount": 14 }
+            }
+          },
+          render: (fw, status) => `
+            <div class="native-card">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem;">
+                <div>
+                  <span style="font-size: 0.75rem; color: #f87171; font-weight: 600;">SEV-2 ALERT &bull; KUBERNETES CRASHLOOP</span>
+                  <h3 class="native-title">payments-worker-7c9f8 CrashLoopBackOff</h3>
+                </div>
+                <span class="native-badge ${status === 'restarted' ? 'badge-approved' : 'badge-rejected'}">${status.toUpperCase()}</span>
+              </div>
+              <div style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 1rem;">
+                <strong>Cluster:</strong> <code>gke-prod-us-east1-a</code><br/>
+                <strong>Restarts:</strong> 14 in last 12 minutes (OOMKilled - Exit Code 137)<br/>
+                <strong>Memory Usage:</strong> 4.02 GiB / 4.00 GiB Limit
+              </div>
+              <div style="display: flex; justify-content: flex-end; gap: 0.5rem;">
+                <button class="btn-action btn-action-outline" onclick="dispatchAction('drainNode', { node: 'gke-node-88a' })">Drain Node</button>
+                <button class="btn-action btn-action-primary" onclick="dispatchAction('restartWithExpandedMemory', { pod: 'payments-worker' })">Expand RAM &amp; Restart</button>
+              </div>
+            </div>
+          `
+        }
+      };
+
+      let currentPresetKey = 'expense';
+      let currentFramework = 'react';
+      let currentStatus = 'pending';
+
+      function updateUI() {
+        const p = PRESETS[currentPresetKey];
+        document.getElementById('canvas-container').innerHTML = p.render(currentFramework, currentStatus);
+        document.getElementById('json-code').textContent = JSON.stringify(p.schema, null, 2);
+        document.getElementById('raw-tokens').textContent = p.rawTokens + " tokens";
+        document.getElementById('express-tokens').textContent = p.expressTokens + " tokens";
+        document.getElementById('saved-tokens').textContent = (p.rawTokens - p.expressTokens) + " tokens";
+        document.getElementById('compression-stat').textContent = p.savings;
+        document.getElementById('render-latency').textContent = "Render Latency: " + p.latency;
+
+        document.getElementById('export-code').textContent = `// Production React 19 + @a2ui/react integration
+import { A2UISurface } from '@a2ui/react';
+
+export function WorkflowRenderer() {
+  return (
+    <A2UISurface
+      surfaceId="${p.schema.surfaceId}"
+      catalogId="${p.schema.catalogId}"
+      onAgentAction={async (action) => {
+        console.log("RPC Dispatch to Gemini:", action);
+      }}
+    />
+  );
+}`;
+      }
+
+      function selectPreset(key) {
+        currentPresetKey = key;
+        currentStatus = 'pending';
+        document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
+        event.currentTarget.classList.add('active');
+        logRpc("callRendererFunction", `Switched active surface blueprint to '${key}'`);
+        updateUI();
+      }
+
+      function setFramework(fw) {
+        currentFramework = fw;
+        document.querySelectorAll('.framework-bar .framework-btn').forEach(btn => btn.classList.remove('active'));
+        event.currentTarget.classList.add('active');
+        logRpc("callRendererFunction", `Re-mapped UI tree to '${fw}' native components`);
+        updateUI();
+      }
+
+      function selectSeat(seat) {
+        logRpc("callRendererFunction", `Seat selected: ${seat}`);
+        updateUI();
+      }
+
+      function dispatchAction(fn, params) {
+        if (fn.includes('approve') || fn.includes('confirm') || fn.includes('certify')) {
+          currentStatus = 'approved';
+        } else if (fn.includes('reject') || fn.includes('drain')) {
+          currentStatus = 'rejected';
+        } else if (fn.includes('restart')) {
+          currentStatus = 'restarted';
+        }
+        logRpc("callAgentFunction", `${fn}(${JSON.stringify(params)})`);
+        updateUI();
+      }
+
+      function logRpc(type, message) {
+        const stream = document.getElementById('rpc-stream');
+        const now = new Date().toTimeString().split(' ')[0];
+        const entry = document.createElement('div');
+        entry.className = 'log-entry';
+        entry.innerHTML = `<span class="log-time">[${now}]</span> <span class="log-type">${type}</span><br/><span class="log-payload">${message}</span>`;
+        stream.insertBefore(entry, stream.firstChild);
+      }
+
+      function switchTab(tabId) {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        event.currentTarget.classList.add('active');
+        document.getElementById('tab-' + tabId).classList.add('active');
+      }
+
+      function onModelChange() {
+        const model = document.getElementById('model-select').value;
+        logRpc("callAgentFunction", `Model orchestrator switched to '${model}'`);
+      }
+
+      // Initial render
+      updateUI();
+    </script>
+  </body>
+</html>

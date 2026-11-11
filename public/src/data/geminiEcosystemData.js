@@ -5,6 +5,44 @@
 
 export const PULSE_INTELLIGENCE_FEED = [
   {
+    id: 'pulse-a2ui-1-0-generative-ui-protocol',
+    title: 'Google Launches A2UI 1.0 GA: The Open Generative UI Protocol for Native Interactive Agent Experiences Across Web & Mobile',
+    tldr: 'Released November 11, 2026: Google launches A2UI 1.0 GA—an open-source, framework-agnostic Generative UI standard and protocol enabling AI agents to render rich, native, interactive screens (forms, cards, approval workflows, widgets) across React, Flutter, Angular, SwiftUI, and Jetpack Compose via declarative JSON blueprints with bidirectional RPC calls and A2UI Express compression.',
+    summary:
+      'Google announces the General Availability (GA) of A2UI 1.0 (Agent-to-User Interface), an open protocol and generative UI framework that transitions conversational AI from passive walls of text into dynamic, interactive client-side applications. Rather than returning raw markdown or executing unsafe arbitrary code in client sandboxes, A2UI agents stream structured, declarative JSON blueprints that native renderer SDKs compile into accessible, styled interface components that instantly inherit the host application’s design system and tokens. Core technical milestones in A2UI 1.0 include: (1) Cross-Platform Native Renderers—open-source renderer SDKs for React, Angular, and Lit on the web; Flutter for cross-platform mobile/desktop; SwiftUI for iOS; and Jetpack Compose for Android, (2) Multi-Language Agent SDKs—official agent libraries for TypeScript, Python, and Dart with native Google Gen AI SDK v3.1.0 and Interactions API bindings, (3) Bidirectional RPC Function Calls—role-based client-server messages (`callRendererFunction` and `callAgentFunction`) handling real-time form validation, data transformations, and immediate agent turn triggers without full UI re-renders, (4) A2UI Express Token Compression—an optimized intermediate token format reducing layout serialization overhead by up to 64% for sub-second streaming response times, (5) Mixed Catalog Interoperability—supports composition of multiple component and function catalogs within a single screen using scoped `catalogIds` and extensible `$defs/Extensions` (`a2ui_` namespace), (6) Secure Data-Binding Architecture—cleanly decouples UI layouts from private business state so sensitive server-side values never enter model context windows, and (7) Ecosystem Integration—day-zero compatibility with Model Context Protocol (MCP) Apps, Claude, and Gemini assistants across Google AI Studio and Google Antigravity.',
+    category: 'Developer Tools & Studio',
+    tag: 'General Availability',
+    modelBadge: 'A2UI 1.0 / Generative UI Protocol',
+    impactScore: '10.0 / 10',
+    date: '2026-11-11T16:30:00Z',
+    sourceLabel: 'Google Developers Blog: A2UI 1.0: Build delightful, fast, reliable, agentic experiences',
+    sourceUrl: 'https://developers.googleblog.com/a2ui-1-0-build-delightful-fast-reliable-agentic-experiences/',
+    groundedBy: 'Google Developers Blog Official GA Announcement (Verified Nov 11, 2026)',
+    seriesUrl: '/series/a2ui-1-0/part-1-a2ui-1-0-breakdown-and-generative-ui-architecture.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-a2ui-generative-studio.html',
+    labLabel: 'A2UI Studio Lab [DEMO] →',
+  },
+  {
+    id: 'pulse-gemini-robotics-2-5-launch',
+    title: 'Google DeepMind Unveils Gemini Robotics 2.5: Physical AI Foundation Model with Whole-Body Humanoid Control & 96% Mercedes-Benz Assembly Line Success',
+    tldr: 'Released November 10–11, 2026: Google DeepMind launches Gemini Robotics 2.5—its flagship Vision-Language-Action (VLA) foundation model delivering universal whole-body control across robotic arms and humanoids (Apptronik Apollo 2), achieving a 96% component kitting success rate on active Mercedes-Benz assembly lines with 22-DOF hand dexterity and Argon digital-twin simulation.',
+    summary:
+      'Google DeepMind introduces Gemini Robotics 2.5, its most capable vision-language-action (VLA) foundation model designed to serve as the unified physical AI brain across diverse robotic form factors. Moving beyond stationary robotic arms, Gemini Robotics 2.5 delivers intelligent whole-body control for bipedal humanoid robots—dynamically managing centers of gravity to step, squat, bend, and navigate cluttered industrial environments while managing high-dexterity 22-degree-of-freedom hands for fine manipulation. Key research and deployment milestones include: (1) Real-World Factory Validation—in proof-of-concept trials on active Mercedes-Benz assembly lines in Germany and Hungary, Apptronik’s Apollo 2 humanoid powered by Gemini Robotics 2.5 achieved an unprecedented 96% success rate sorting and kitting automotive components, (2) Empirical Benchmark Mastery—evaluated across 200+ distinct robotic manipulation tasks (handling deformable objects, using pipettes, tying ribbon, operating power tools), achieving 30% to 100% higher success rates and executing tasks 20% to 30% faster than previous baselines, (3) Synthetic Twin Acceleration—leveraged Gemini 4 Argon to synthesize thousands of photorealistic digital twins and physics simulation practice runs from single camera angles, compressing years of real-world physical training into days, (4) Companion Embodied Reasoning—pairs with Gemini Robotics ER 2 for multi-step semantic task decomposition, progress tracking, and multi-robot fleet collaboration, and (5) Open-Sourced ASIMOV-Jailbreak—released a dedicated robotics physical safety benchmark evaluating adversarial jailbreak resistance and collision prevention in shared human-robot workspaces.',
+    category: 'Frontier Models',
+    tag: 'Physical AI Milestone',
+    modelBadge: 'Gemini Robotics 2.5 & ER 2',
+    impactScore: '10.0 / 10',
+    date: '2026-11-10T22:30:00Z',
+    sourceLabel: 'Google DeepMind: Gemini Robotics 2.5 (Official Announcement)',
+    sourceUrl: 'https://deepmind.google/discover/blog/gemini-robotics-25/',
+    groundedBy: 'Google DeepMind Official Launch & Research Paper (Verified Nov 10, 2026)',
+    seriesUrl: '/series/a2ui-1-0/part-1-a2ui-1-0-breakdown-and-generative-ui-architecture.html',
+    seriesLabel: 'A2UI 1.0 Series →',
+    labUrl: '/labs/gemini-a2ui-generative-studio.html',
+    labLabel: 'A2UI Studio Lab [DEMO] →',
+  },
+  {
     id: 'pulse-genai-sdk-v3-1-release',
     title: 'Google Releases Gen AI SDK v3.1.0: Gemini Omni 1.2 Flash Video Default, Live API Proactive Video & Gemini 4 Carbon Model Enum',
     tldr: 'Released November 10, 2026 (20:17 UTC): Google ships milestone `@google/genai` and `google-genai` v3.1.0—elevating Gemini Omni 1.2 Flash (gemini-omni-1.2-flash) to the official video CLI/SDK default, introducing autonomous proactiveVideo in Live API ProactivityConfig, strictly typing gemini-4-carbon in the Model enum, and adding Enterprise embedding telemetry.',
@@ -957,6 +995,25 @@ video_turn = client.interactions.create(
 ];
 
 export const INITIAL_SHOWCASE_PROJECTS = [
+  {
+    id: 'showcase-gemini-a2ui-generative-studio',
+    name: 'Gemini A2UI Generative Studio & Agentic UI Workbench [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive developer workbench modeling Google’s A2UI 1.0 open Generative UI protocol: test declarative component blueprints, simulate bidirectional RPC function dispatch, analyze 64% token compression via A2UI Express, and inspect native React, Flutter, and SwiftUI renderers.',
+    models: ['gemini-4-argon', 'gemini-4-carbon', 'gemini-3.8-flash'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-a2ui-generative-studio.html): [SIMULATED DEMO] Simulates 4 enterprise workflows (Expense Approval, Flight Cabin Map, Clinical Pre-Auth, Server Fleet Incident), framework switcher (React 19, Flutter, SwiftUI), bidirectional RPC event stream, A2UI Express 64% token compression analyzer, and code export.',
+    url: '/labs/gemini-a2ui-generative-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-11T16:30:00Z',
+  },
   {
     id: 'showcase-gemini-live-proactive-video-studio',
     name: 'Gemini Live Proactive Video Studio & Realtime Workbench [SIMULATED DEMO]',

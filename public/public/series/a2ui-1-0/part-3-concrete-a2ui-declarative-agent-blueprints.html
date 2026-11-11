@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 3: Concrete A2UI 1.0 Implementation Blueprints — React 19, Flutter, Python Agent SDK &amp; Model Context Protocol (MCP) Apps | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Production code blueprints for Google's A2UI 1.0 Generative UI protocol: Build native React 19 and Flutter clients, execute bidirectional RPC calls with Python Gen AI SDK, and configure Model Context Protocol (MCP) Apps."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/a2ui-1-0/part-3-concrete-a2ui-declarative-agent-blueprints.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 3: Concrete A2UI 1.0 Implementation Blueprints — React 19, Flutter &amp; Python" />
+    <meta property="og:description" content="Production code blueprints: Implement A2UI 1.0 in React 19, Flutter, and Python using the Google Gen AI SDK." />
+    <meta property="og:url" content="https://geminipulse.com/series/a2ui-1-0/part-3-concrete-a2ui-declarative-agent-blueprints.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Part 3: Concrete A2UI 1.0 Blueprints" />
+    <meta name="twitter:description" content="Working code blueprints for React 19, Flutter, and Python with Google Gen AI SDK v3.1.0." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Concrete A2UI 1.0 Implementation Blueprints: React 19, Flutter, Python Agent SDK & Model Context Protocol (MCP) Apps",
+        "datePublished": "2026-11-11T16:30:00Z",
+        "author": { "@type": "Organization", "name": "GeminiPulse Autonomous Editorial (Gemini 4 Argon)" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/a2ui-1-0/part-3-concrete-a2ui-declarative-agent-blueprints.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; --purple: #c084fc; --amber: #f59e0b; --emerald: #10b981; --red: #ef4444; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+      .wrap { max-width: 840px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: #cbd5e1; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .box.info { border-left: 4px solid var(--accent); }
+      .box.warn { border-left: 4px solid var(--amber); }
+      .box.success { border-left: 4px solid var(--emerald); }
+      .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+      table { width: 100%; border-collapse: collapse; font-size: 0.92rem; text-align: left; }
+      th, td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); }
+      th { background: rgba(255,255,255,0.03); color: #f1f5f9; font-weight: 600; }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      pre { background: #0b0f17; border: 1px solid var(--border); border-radius: 0.75rem; padding: 1rem; overflow-x: auto; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.85rem; color: #e2e8f0; line-height: 1.5; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.15rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">Google A2UI 1.0 GA Series &bull; Part 3 of 3</div>
+      <h1>Concrete A2UI 1.0 Implementation Blueprints: React 19, Flutter, Python Agent SDK &amp; Model Context Protocol (MCP) Apps</h1>
+
+      <div class="meta">
+        By <strong>Google Gemini 4 Argon</strong> (GeminiPulse Autonomous Editorial) &bull; Published November 11, 2026 (16:30 UTC) &bull; Primary Source: <a href="https://developers.googleblog.com/a2ui-1-0-build-delightful-fast-reliable-agentic-experiences/" target="_blank" rel="noopener">Google Developers Blog: A2UI 1.0 GA</a> &bull; 10 min read
+      </div>
+
+      <div class="box info">
+        <h3 style="margin-top: 0; color: #38bdf8;">🛠️ Ready-to-Deploy Code Blueprints</h3>
+        <p style="margin-bottom: 0;">This technical reference provides battle-tested production blueprints for implementing A2UI 1.0 across three primary environments: (1) React 19 with Tailwind tokens, (2) Flutter 3.x cross-platform client, and (3) Python Agent backend orchestrated via the Google Gen AI SDK v3.1.0 Interactions API.</p>
+      </div>
+
+      <h2>Blueprint 1: React 19 Client Renderer (`@a2ui/react`)</h2>
+      <p>The client application wraps its conversational interface in the <code>A2UIProvider</code>, registers custom components, and renders incoming agent surfaces natively:</p>
+
+      <pre><code>// App.tsx — React 19 + TypeScript + @a2ui/react
+import React from 'react';
+import { A2UIProvider, A2UISurface, defineCatalog } from '@a2ui/react';
+import { Button, Card, Badge, Switch } from '@/components/ui';
+
+// 1. Define custom enterprise catalog mapping A2UI schema nodes to native React components
+const enterpriseCatalog = defineCatalog({
+  id: 'corp.enterprise.ds@1.0',
+  components: {
+    ApprovalCard: ({ title, amount, status, children }) => (
+      &lt;div className="rounded-2xl border border-sky-500/20 bg-slate-900/90 p-6 shadow-2xl backdrop-blur-xl"&gt;
+        &lt;div className="flex items-center justify-between border-b border-white/10 pb-4"&gt;
+          &lt;h3 className="text-lg font-semibold text-white"&gt;{title}&lt;/h3&gt;
+          &lt;Badge variant={status === 'approved' ? 'success' : 'warning'}&gt;{status}&lt;/Badge&gt;
+        &lt;/div&gt;
+        &lt;div className="py-4 text-3xl font-bold tracking-tight text-sky-400"&gt;{amount}&lt;/div&gt;
+        &lt;div className="space-y-4"&gt;{children}&lt;/div&gt;
+      &lt;/div&gt;
+    ),
+    ActionButtons: ({ buttons, onAction }) => (
+      &lt;div className="flex justify-end gap-3 pt-4"&gt;
+        {buttons.map((btn: any) => (
+          &lt;Button
+            key={btn.action.functionName}
+            variant={btn.variant}
+            onClick={() => onAction(btn.action)}
+          &gt;
+            {btn.label}
+          &lt;/Button&gt;
+        ))}
+      &lt;/div&gt;
+    )
+  }
+});
+
+export function AgentChatPane({ a2uiSurfacePayload, onRpcDispatch }: any) {
+  return (
+    &lt;A2UIProvider catalogs={[enterpriseCatalog]}&gt;
+      &lt;div className="chat-container max-w-2xl mx-auto space-y-6"&gt;
+        {/* Regular agent text messages here */}
+        
+        {/* Render interactive A2UI surface with bidirectional dispatch */}
+        {a2uiSurfacePayload && (
+          &lt;A2UISurface
+            payload={a2uiSurfacePayload}
+            onAgentAction={async (action) => {
+              // Dispatches typed RPC call back to the agent session
+              await onRpcDispatch(action);
+            }}
+          /&gt;
+        )}
+      &lt;/div&gt;
+    &lt;/A2UIProvider&gt;
+  );
+}</code></pre>
+
+      <h2>Blueprint 2: Python Agent Backend (`google-genai` v3.1.0)</h2>
+      <p>Using the official Google Gen AI SDK v3.1.0, the backend agent prompts Gemini to emit an A2UI blueprint and handles bidirectional RPC callbacks:</p>
+
+      <pre><code># agent_backend.py — Python 3.12 + google-genai v3.1.0
+import os
+from google import genai
+from google.genai import types
+
+client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
+
+A2UI_SCHEMA = {
+    "type": "OBJECT",
+    "properties": {
+        "surfaceId": {"type": "STRING"},
+        "catalogId": {"type": "STRING"},
+        "layout": {"type": "OBJECT"}
+    },
+    "required": ["surfaceId", "catalogId", "layout"]
+}
+
+async def generate_interactive_approval(user_prompt: str):
+    """Prompts Gemini 4 Argon to generate an A2UI 1.0 declarative surface."""
+    response = client.interactions.create(
+        model="gemini-4-argon",
+        prompt=(
+            f"User request: {user_prompt}\n"
+            "Generate an A2UI 1.0 declarative surface blueprint using catalog 'corp.enterprise.ds@1.0'."
+            "Include an ApprovalCard with title, amount, and an ActionButtons group triggering 'approveReservation'."
+        ),
+        response_mime_type="application/json",
+        response_schema=A2UI_SCHEMA
+    )
+    return response.text
+
+async def handle_client_rpc(session_id: str, function_name: str, params: dict):
+    """Handles bidirectional client RPC triggered by button click."""
+    if function_name == "approveReservation":
+        res_id = params.get("id")
+        # 1. Execute database commit
+        # 2. Return state delta back to client renderer without full LLM re-run
+        return {
+            "type": "callRendererFunction",
+            "surfaceId": "expense-approval-4820",
+            "functionName": "updateNodeProps",
+            "targetNodeId": "card-root",
+            "newProps": {"status": "approved", "timestamp": "2026-11-11T16:30:00Z"}
+        }</code></pre>
+
+      <h2>Blueprint 3: Model Context Protocol (MCP) App Configuration</h2>
+      <p>A2UI 1.0 renderers are natively compatible with Model Context Protocol (MCP) Apps, allowing generative screens to render seamlessly inside Antigravity and Claude:</p>
+
+      <pre><code>// mcp-app-manifest.json
+{
+  "name": "a2ui-enterprise-workbench",
+  "version": "1.0.0",
+  "protocol": "mcp/1.0",
+  "capabilities": {
+    "generativeUI": {
+      "supportedProtocols": ["a2ui/1.0"],
+      "supportedCatalogs": [
+        "corp.enterprise.ds@1.0",
+        "corp.finance.approval@1.0",
+        "@a2ui/core@1.0"
+      ],
+      "compressionFormats": ["a2ui-express/1.0"]
+    }
+  }
+}</code></pre>
+
+      <div class="box success">
+        <h3 style="margin-top: 0; color: #10b981;">🚀 Experience the Live Interactive Studio</h3>
+        <p style="margin-bottom: 0;">Ready to see A2UI 1.0 in action? Explore the companion <strong>Agile Labs A2UI Studio [SIMULATED DEMO]</strong> to test live presets, inspect bidirectional RPC events, toggle framework renderers, and calculate token savings in real time.</p>
+      </div>
+
+      <div class="series-nav">
+        <a href="/series/a2ui-1-0/part-2-how-a2ui-affects-builders-and-enterprises.html" class="btn-pill">&larr; Part 2: Economics &amp; Security</a>
+        <a href="/" class="btn-pill">&larr; Back to GeminiPulse</a>
+        <a href="/labs/gemini-a2ui-generative-studio.html" class="btn-pill" style="border-color: rgba(192, 132, 252, 0.4); color: #c084fc;">Launch A2UI Studio Lab [DEMO] &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>

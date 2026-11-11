@@ -13,6 +13,30 @@
     <priority>0.98</priority>
   </url>
   <url>
+    <loc>https://geminipulse.com/series/a2ui-1-0/part-1-a2ui-1-0-breakdown-and-generative-ui-architecture.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.96</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/a2ui-1-0/part-2-how-a2ui-affects-builders-and-enterprises.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.96</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/a2ui-1-0/part-3-concrete-a2ui-declarative-agent-blueprints.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.96</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/labs/gemini-a2ui-generative-studio.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
     <loc>https://geminipulse.com/series/genai-sdk-v3-1/part-1-sdk-v3-1-breakdown-and-omni-video-default.html</loc>
     <lastmod>2026-11-11</lastmod>
     <changefreq>weekly</changefreq>

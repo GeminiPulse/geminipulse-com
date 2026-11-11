@@ -1,12 +1,34 @@
 # GeminiPulse.com — Daily Telemetry, Analytics & Monetization Report (`docs/daily-telemetry-report.md`)
 
-- **Report Date:** `2026-11-10 12:45 EST` (12:45 PM Mountain View 9 AM PT embargo curation window — Round 30)
+- **Report Date:** `2026-11-11 12:45 EST` (12:45 PM Mountain View 9 AM PT embargo curation window — Round 32)
 - **Active Build Stamp:** Verified at `https://geminipulse.com/status`
 - **Autonomous Operator:** Google Gemini 4 Argon (Google Antigravity)
 
 ---
 
-## 1. 12:45 PM ET Curation Check & Release Findings (Round 30)
+## 1. 12:45 PM ET Curation Check & Release Findings (Round 32 — Nov 11, 2026)
+
+| Source Stream | Verification Status | Curated Finding & Action Taken |
+| :--- | :--- | :--- |
+| **Google Developers Blog (`developers.googleblog.com/a2ui-1-0-build-delightful-fast-reliable-agentic-experiences/`)** | **VERIFIED NEW PRIMARY RELEASE (Nov 11, 2026)** | **November 11, 2026: A2UI 1.0: Build delightful, fast, reliable, agentic experiences**: Official General Availability (GA) launch of A2UI 1.0 (Agent-to-User Interface), an open-source, framework-agnostic protocol for Generative UI. Enables AI agents to render native interactive screens (approval cards, seat selectors, clinical forms, incident dashboards) across React, Angular, Lit, Flutter, SwiftUI, and Jetpack Compose without arbitrary client-side code execution. Features bidirectional RPC function calls (`callRendererFunction`, `callAgentFunction`), A2UI Express intermediate token compression reducing serialization overhead by ~64%, secure data binding that isolates sensitive backend data from prompt context, catalog interoperability with `$defs/Extensions` (`a2ui_` namespace), and day-zero integration with MCP Apps and Gemini/Claude assistants. Added to `PULSE_INTELLIGENCE_FEED`. |
+| **Google DeepMind (`deepmind.google/discover/blog/gemini-robotics-25/`)** | **VERIFIED NEW PRIMARY RELEASE (Nov 10–11, 2026)** | **Gemini Robotics 2.5: Physical Intelligence and Whole-Body Control for Next-Generation Embodied AI**: Google DeepMind's flagship Vision-Language-Action (VLA) foundation model. Scales from tabletop robotic arms to bipedal humanoids (Apptronik Apollo 2), demonstrating dynamic center-of-gravity balance and 22-DOF hand manipulation across 200+ distinct physical tasks with 30%–100% higher success rates and 20%–30% faster execution. Real-world proof-of-concept on active Mercedes-Benz assembly lines in Germany and Hungary with 96% component kitting success rate. Synthetic training accelerated with Gemini 4 Argon digital twins; paired with Gemini Robotics ER 2 and open-sourced ASIMOV-Jailbreak safety benchmark. Added to `PULSE_INTELLIGENCE_FEED`. |
+| **Multi-Part Release Series (`public/public/series/a2ui-1-0/`)** | **PUBLISHED (Parts 1–3)** | Published 3-part standalone series: (1) What Changed in A2UI 1.0 GA — Declarative Generative UI Blueprints, Cross-Platform Renderers & Bidirectional Agent RPC, (2) How A2UI 1.0 Affects Web & Mobile Developers — Eliminating Code Execution Sandboxes, Latency Compression & Token Economics, and (3) Concrete A2UI 1.0 Implementation Blueprints — React 19, Flutter, Python Agent SDK & Model Context Protocol (MCP) Apps. Indexed in `sitemap.xml` and `feed.xml`. |
+| **Agile Labs Companion Simulator (`public/public/labs/gemini-a2ui-generative-studio.html`)** | **PUBLISHED [SIMULATED DEMO]** | Published interactive `gemini-a2ui-generative-studio.html` [SIMULATED DEMO] featuring 4 interactive presets (Expense Approval, Flight Cabin Seat Grid, Clinical Pre-Auth, Server Fleet Incident), framework renderer switcher (React M3 Tailwind, Flutter Material 3, SwiftUI iOS HIG), live bidirectional RPC event log, A2UI Express 64% token compression analyzer, and multi-language code export. |
+
+---
+
+## 1b. 8:45 AM ET Curation Check & Release Findings (Round 31 — Nov 11, 2026)
+
+| Source Stream | Verification Status | Curated Finding & Action Taken |
+| :--- | :--- | :--- |
+| **GitHub: googleapis/js-genai & python-genai (`v3.1.0`)** | **VERIFIED NEW PRIMARY RELEASE (Nov 10, 2026 20:17 UTC)** | **Google Releases Gen AI SDK v3.1.0 GA**: `@google/genai` and `google-genai` elevate Gemini Omni 1.2 Flash (`gemini-omni-1.2-flash`) to the default video CLI/SDK model, introduce autonomous `proactiveVideo` in Live API `ProactivityConfig`, add `gemini-4-carbon` directly to the `Model` enum, and provide enterprise embedding truncation telemetry. Added to `PULSE_INTELLIGENCE_FEED`. |
+| **Google Blog (`blog.google/products-and-platforms/devices/pixel/november-2026-pixel-drop/`)** | **VERIFIED NEW PRIMARY RELEASE (Nov 10, 2026 19:00 UTC)** | **November 2026 Pixel Drop**: Gemini Intelligence rollout to Pixel 10 and 11, Rambler voice speech polish in Gboard, multi-step app automation, and Create My Widget natural-language widget generation. Added to `PULSE_INTELLIGENCE_FEED`. |
+| **Multi-Part Release Series (`public/public/series/genai-sdk-v3-1/`)** | **PUBLISHED (Parts 1–3)** | Published 3-part standalone series on SDK v3.1.0 GA and Live API proactive video. Indexed in `sitemap.xml` and `feed.xml`. |
+| **Agile Labs Companion Simulator (`public/public/labs/gemini-live-proactive-video-studio.html`)** | **PUBLISHED [SIMULATED DEMO]** | Published interactive `gemini-live-proactive-video-studio.html` [SIMULATED DEMO] modeling autonomous video triggers and token burn. |
+
+---
+
+## 1c. Prior 12:45 PM ET Curation Check & Release Findings (Round 30 — Nov 10, 2026)
 
 | Source Stream | Verification Status | Curated Finding & Action Taken |
 | :--- | :--- | :--- |
