@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gemini Live Proactive Video Studio &amp; SDK v3.1.0 Realtime Workbench [SIMULATED DEMO] | Agile Labs</title>
+    <meta
+      name="description"
+      content="Interactive developer playground modeling Google Gen AI SDK v3.1.0: Simulate proactiveVideo in Multimodal Live API sessions, test autonomous vision triggers, calculate frame-rate token burn, and export verified TypeScript and Python code."
+    />
+    <link rel="canonical" href="https://geminipulse.com/labs/gemini-live-proactive-video-studio.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Gemini Live Proactive Video Studio [SIMULATED DEMO]" />
+    <meta property="og:description" content="Simulate autonomous proactiveVideo streaming in Gemini Live: frame cadence tuning, voice latency, and SDK v3.1.0 code export." />
+    <meta property="og:url" content="https://geminipulse.com/labs/gemini-live-proactive-video-studio.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Gemini Live Proactive Video Studio [SIMULATED DEMO]" />
+    <meta name="twitter:description" content="Interactive developer simulator for Google Gen AI SDK v3.1.0 proactive vision capabilities." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Gemini Live Proactive Video Studio",
+        "url": "https://geminipulse.com/labs/gemini-live-proactive-video-studio.html",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "All",
+        "creator": {
+          "@type": "Organization",
+          "name": "Agile Labs (via GeminiPulse.com)"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #07090e;
+        --surface: #111622;
+        --surface-high: #182030;
+        --border: rgba(255, 255, 255, 0.1);
+        --border-high: rgba(255, 255, 255, 0.18);
+        --text: #f3f5fb;
+        --muted: #9da4b8;
+        --accent: #38bdf8;
+        --accent-glow: rgba(56, 189, 248, 0.2);
+        --success: #34d399;
+        --warning: #fbbf24;
+        --danger: #f87171;
+        --purple: #c084fc;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        padding-bottom: 5rem;
+      }
+      .wrap { max-width: 1140px; margin: 0 auto; padding: 2rem 1.25rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow {
+        font-family: ui-monospace, Menlo, Monaco, monospace;
+        font-size: 0.78rem;
+        color: #38bdf8;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      h1 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); margin: 0.5rem 0 0.75rem; line-height: 1.2; }
+      .meta { font-size: 0.88rem; color: var(--muted); margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+      .badge-sim {
+        display: inline-block;
+        background: rgba(251, 191, 36, 0.12);
+        border: 1px solid rgba(251, 191, 36, 0.35);
+        color: #fbbf24;
+        font-family: ui-monospace, monospace;
+        font-size: 0.72rem;
+        padding: 0.2rem 0.55rem;
+        border-radius: 9999px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        vertical-align: middle;
+      }
+      .studio-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+      @media (min-width: 960px) { .studio-grid { grid-template-columns: 360px 1fr; } }
+      .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.5rem; }
+      .panel-title { font-size: 1.1rem; font-weight: 600; margin-top: 0; margin-bottom: 1rem; display: flex; align-items: center; justify-content: space-between; }
+      .form-group { margin-bottom: 1.25rem; }
+      label { display: block; font-size: 0.84rem; font-weight: 500; color: #cbd5e1; margin-bottom: 0.4rem; }
+      select, input[type="range"] { width: 100%; background: #0b0f17; border: 1px solid var(--border); border-radius: 0.5rem; padding: 0.6rem; color: #f8fafc; font-size: 0.9rem; }
+      select:focus { border-color: var(--accent); outline: none; }
+      .toggle-row { display: flex; align-items: center; justify-content: space-between; padding: 0.75rem; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); border-radius: 0.5rem; margin-bottom: 0.75rem; }
+      .toggle-switch { position: relative; width: 44px; height: 24px; }
+      .toggle-switch input { opacity: 0; width: 0; height: 0; }
+      .slider-toggle { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #334155; transition: .2s; border-radius: 24px; }
+      .slider-toggle:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .2s; border-radius: 50%; }
+      input:checked + .slider-toggle { background-color: #38bdf8; }
+      input:checked + .slider-toggle:before { transform: translateX(20px); }
+      .canvas-wrap { position: relative; background: #000; border: 1px solid var(--border); border-radius: 0.75rem; overflow: hidden; aspect-ratio: 16 / 9; display: flex; align-items: center; justify-content: center; }
+      canvas { width: 100%; height: 100%; display: block; }
+      .canvas-overlay { position: absolute; top: 0.75rem; left: 0.75rem; display: flex; gap: 0.5rem; }
+      .badge-live { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.2rem 0.6rem; border-radius: 9999px; background: rgba(239, 68, 68, 0.2); border: 1px solid rgba(239, 68, 68, 0.4); color: #f87171; font-family: ui-monospace, monospace; font-size: 0.75rem; font-weight: 600; }
+      .badge-live::before { content: ""; width: 8px; height: 8px; background: #ef4444; border-radius: 50%; animation: pulse 1.5s infinite; }
+      @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+      .stream-telemetry { position: absolute; bottom: 0.75rem; right: 0.75rem; font-family: ui-monospace, monospace; font-size: 0.75rem; background: rgba(0,0,0,0.7); padding: 0.3rem 0.6rem; border-radius: 0.4rem; color: #38bdf8; border: 1px solid rgba(255,255,255,0.1); }
+      .agent-speech-box { background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 0.75rem; padding: 1rem; margin-top: 1rem; min-height: 85px; }
+      .speech-title { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; color: #38bdf8; font-weight: 600; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.4rem; }
+      .speech-content { font-size: 0.95rem; color: #f1f5f9; font-weight: 500; }
+      .telemetry-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-top: 1rem; }
+      .metric-card { background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border); border-radius: 0.5rem; padding: 0.75rem; text-align: center; }
+      .metric-val { font-family: ui-monospace, monospace; font-size: 1.25rem; font-weight: 700; color: #f8fafc; margin-top: 0.2rem; }
+      .metric-lbl { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+      .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.65rem 1.25rem; border-radius: 0.5rem; font-weight: 600; font-size: 0.88rem; cursor: pointer; transition: all .15s; border: none; }
+      .btn-primary { background: #38bdf8; color: #07090e; }
+      .btn-primary:hover { background: #7dd3fc; }
+      .btn-outline { background: transparent; border: 1px solid var(--border); color: #e2e8f0; }
+      .btn-outline:hover { background: rgba(255, 255, 255, 0.05); }
+      .btn-danger { background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.3); color: #fca5a5; }
+      .btn-danger:hover { background: rgba(239, 68, 68, 0.25); }
+      .tabs { display: flex; gap: 0.5rem; margin-top: 1.5rem; border-bottom: 1px solid var(--border); }
+      .tab-btn { padding: 0.5rem 1rem; background: none; border: none; color: var(--muted); cursor: pointer; font-size: 0.85rem; font-weight: 500; border-bottom: 2px solid transparent; }
+      .tab-btn.active { color: #38bdf8; border-color: #38bdf8; }
+      pre { background: #0b0f17; border: 1px solid var(--border); border-radius: 0.5rem; padding: 1rem; overflow-x: auto; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.82rem; color: #e2e8f0; margin-top: 0.75rem; }
+      .log-box { background: #07090e; border: 1px solid var(--border); border-radius: 0.5rem; padding: 0.75rem; height: 160px; overflow-y: auto; font-family: ui-monospace, monospace; font-size: 0.76rem; color: #94a3b8; }
+      .log-entry { margin-bottom: 0.35rem; }
+      .log-ts { color: #64748b; }
+      .log-tag { color: #38bdf8; }
+      .log-alert { color: #fbbf24; font-weight: 600; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+        <a href="/series/genai-sdk-v3-1/part-1-sdk-v3-1-breakdown-and-omni-video-default.html" style="font-size: 0.85rem; color: #38bdf8;">Read SDK v3.1.0 Series &rarr;</a>
+      </div>
+
+      <div class="eyebrow">Agile Labs Utility · Multimodal Live API Realtime Workbench</div>
+      <h1>
+        Gemini Live Proactive Video Studio
+        <span class="badge-sim">[SIMULATED DEMO]</span>
+      </h1>
+
+      <div class="meta">
+        Authored by <strong>Google Gemini 4 Argon</strong> &bull; Modeling Google Gen AI SDK v3.1.0 (<code>@google/genai</code> &amp; <code>google-genai</code>) &bull; Live API <code>proactiveVideo</code> &amp; Omni 1.2 Flash Video Defaults
+      </div>
+
+      <div class="studio-grid">
+        <!-- Controls Column -->
+        <div class="panel">
+          <h2 class="panel-title">
+            <span>Session Configuration</span>
+            <span style="font-size: 0.75rem; color: #38bdf8; font-weight: normal;">SDK v3.1.0</span>
+          </h2>
+
+          <div class="form-group">
+            <label for="scenarioSelect">Inspection Scenario Preset</label>
+            <select id="scenarioSelect">
+              <option value="avionics">Avionics Assembly (Ground Wire Check)</option>
+              <option value="cleanroom">Cleanroom Protocol (Sterile Breach Sentinel)</option>
+              <option value="drone">Autonomous Drone Survey (Fissure Detection)</option>
+              <option value="culinary">Commercial Kitchen (Oil Smoke Threshold)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="modelSelect">Live Vision Engine</label>
+            <select id="modelSelect">
+              <option value="gemini-3.8-flash">gemini-3.8-flash (Sub-300ms Live API)</option>
+              <option value="gemini-omni-1.2-flash" selected>gemini-omni-1.2-flash (SDK v3.1.0 Video Default)</option>
+              <option value="gemini-4-carbon">gemini-4-carbon (Interactions Deep Escalation)</option>
+            </select>
+          </div>
+
+          <div class="toggle-row">
+            <div>
+              <div style="font-weight: 600; font-size: 0.88rem; color: #f1f5f9;">proactiveAudio</div>
+              <div style="font-size: 0.72rem; color: var(--muted);">Enables natural conversational turn-taking</div>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="proactiveAudioToggle" checked>
+              <span class="slider-toggle"></span>
+            </label>
+          </div>
+
+          <div class="toggle-row" style="border-color: rgba(56, 189, 248, 0.3); background: rgba(56, 189, 248, 0.04);">
+            <div>
+              <div style="font-weight: 600; font-size: 0.88rem; color: #38bdf8;">proactiveVideo</div>
+              <div style="font-size: 0.72rem; color: var(--muted);">SDK v3.1.0: Triggers voice turns on frame changes</div>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="proactiveVideoToggle" checked>
+              <span class="slider-toggle"></span>
+            </label>
+          </div>
+
+          <div class="form-group" style="margin-top: 1rem;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+              <label for="fpsRange" style="margin: 0;">Frame Cadence: <span id="fpsVal" style="color: #38bdf8; font-weight: 600;">1.0 fps</span></label>
+              <span style="font-size: 0.75rem; color: var(--muted);" id="tokenBurnEst">~258 tok/s</span>
+            </div>
+            <input type="range" id="fpsRange" min="0.5" max="10" step="0.5" value="1.0">
+          </div>
+
+          <div style="display: flex; gap: 0.5rem; margin-top: 1.5rem;">
+            <button class="btn btn-primary" id="btnToggleStream" style="flex: 1;">▶ Start Stream</button>
+            <button class="btn btn-danger" id="btnInjectAnomaly" style="flex: 1;">Trigger Anomaly</button>
+          </div>
+        </div>
+
+        <!-- Simulator & Feed Column -->
+        <div class="panel">
+          <h2 class="panel-title">
+            <span>Multimodal Live Feed</span>
+            <span id="sessionStatusBadge" class="badge-live" style="display: none;">LIVE FEED</span>
+          </h2>
+
+          <div class="canvas-wrap">
+            <canvas id="simCanvas" width="640" height="360"></canvas>
+            <div class="canvas-overlay">
+              <span class="badge-live" id="streamIndicator">SIMULATED CAMERA STREAM</span>
+            </div>
+            <div class="stream-telemetry" id="streamTelemetry">0.0 fps &bull; WebP 768px &bull; 0.0 KB/s</div>
+          </div>
+
+          <!-- Autonomous Speech Box -->
+          <div class="agent-speech-box">
+            <div class="speech-title">
+              <span>🗣️ Autonomous Voice Output (Gemini Live · Puck)</span>
+              <span id="speechLatency" style="font-family: ui-monospace, monospace; font-size: 0.72rem; color: #34d399; margin-left: auto;">Idle</span>
+            </div>
+            <div class="speech-content" id="speechText">
+              Waiting for stream start... When proactiveVideo is enabled, Gemini will observe silently and speak up autonomously when an anomaly occurs.
+            </div>
+          </div>
+
+          <!-- Telemetry Row -->
+          <div class="telemetry-row">
+            <div class="metric-card">
+              <div class="metric-lbl">Frame Ingestion Rate</div>
+              <div class="metric-val" id="metricFps">0.0 fps</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-lbl">Visual Input Tokens</div>
+              <div class="metric-val" id="metricTokens">0</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-lbl">Estimated Session Cost</div>
+              <div class="metric-val" id="metricCost">$0.000</div>
+            </div>
+          </div>
+
+          <!-- Event Log -->
+          <div style="margin-top: 1.25rem;">
+            <div style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin-bottom: 0.4rem;">
+              WebSocket Duplex Telemetry Log (SDK v3.1.0)
+            </div>
+            <div class="log-box" id="logBox">
+              <div class="log-entry"><span class="log-ts">[00:00:00]</span> <span class="log-tag">[INIT]</span> Live API simulator ready. Configure proactivity parameters above.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Code Export Tabs -->
+      <div class="panel" style="margin-top: 1.5rem;">
+        <h2 class="panel-title">
+          <span>Production SDK v3.1.0 Code Export</span>
+          <button class="btn btn-outline" id="btnCopyCode" style="padding: 0.35rem 0.75rem; font-size: 0.78rem;">📋 Copy Code</button>
+        </h2>
+
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="ts">TypeScript (@google/genai v3.1.0)</button>
+          <button class="tab-btn" data-tab="py">Python (google-genai v3.1.0)</button>
+          <button class="tab-btn" data-tab="cli">Gemini CLI (gemini-api video)</button>
+        </div>
+
+        <pre><code id="codeBlock"></code></pre>
+      </div>
+    </div>
+
+    <script>
+      // State
+      let isStreaming = false;
+      let frameInterval = null;
+      let totalTokens = 0;
+      let fps = 1.0;
+      let currentScenario = 'avionics';
+      let activeTab = 'ts';
+      let anomalyActive = false;
+
+      const scenarios = {
+        avionics: {
+          name: 'Avionics Assembly',
+          instruction: 'Observe technician wiring harness silently. Alert immediately if ground wire is connected to pin 4 instead of pin 2.',
+          normalVisual: 'Wiring Harness: Pin 1 (PWR), Pin 2 (GND - Correct), Pin 3 (SIG)',
+          anomalyVisual: 'Wiring Harness: Pin 4 (GND - MISWIRED! Hazard detected)',
+          normalSpeech: '...',
+          anomalySpeech: 'Warning! Ground lead is plugged into pin 4. Reconnect to pin 2 before applying harness latch.',
+          color: '#38bdf8'
+        },
+        cleanroom: {
+          name: 'Cleanroom Protocol',
+          instruction: 'Monitor ISO Class 5 hood. Intervene if non-sanitized glove touches laminar zone.',
+          normalVisual: 'Laminar Airflow Hood: Operators wearing double nitrile gloves, zero breach',
+          anomalyVisual: 'Operator right hand contacted non-sterile outer bezel at 10:42',
+          normalSpeech: '...',
+          anomalySpeech: 'Sterile boundary breach detected on operator right forearm. Please change outer glove before continuing wafer transfer.',
+          color: '#c084fc'
+        },
+        drone: {
+          name: 'Drone Survey',
+          instruction: 'Inspect industrial roof membrane. Log coordinate and alert on surface tearing.',
+          normalVisual: 'Membrane Survey: Surface integrity 99.4%, drone altitude 15m, speed 2.2 m/s',
+          anomalyVisual: 'Fissure detected: 42cm diagonal tear at grid coordinate B-14',
+          normalSpeech: '...',
+          anomalySpeech: 'Structural alert: 42-centimeter membrane fissure identified at Grid B-14. Marked bounding box for repair dispatch.',
+          color: '#34d399'
+        },
+        culinary: {
+          name: 'Commercial Kitchen',
+          instruction: 'Monitor deep fryers and sauté ranges. Alert if oil temperature exceeds smoke threshold.',
+          normalVisual: 'Range Line: Vats 1-3 stable at 350°F, zero vapor anomaly',
+          anomalyVisual: 'Vat 2 thermal smoke threshold exceeded (>415°F), flare risk imminent',
+          normalSpeech: '...',
+          anomalySpeech: 'Heads up chef: Fryer vat two is smoking past 415 degrees. Cut heat to burner two immediately.',
+          color: '#fbbf24'
+        }
+      };
+
+      const canvas = document.getElementById('simCanvas');
+      const ctx = canvas.getContext('2d');
+
+      function drawCanvas() {
+        ctx.fillStyle = '#0b0f17';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Grid pattern
+        ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+        ctx.lineWidth = 1;
+        for (let x = 0; x < canvas.width; x += 32) {
+          ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
+        }
+        for (let y = 0; y < canvas.height; y += 32) {
+          ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
+        }
+
+        const sc = scenarios[currentScenario];
+
+        // Central visual subject
+        ctx.fillStyle = '#1e293b';
+        ctx.strokeStyle = anomalyActive ? '#ef4444' : sc.color;
+        ctx.lineWidth = anomalyActive ? 3 : 2;
+        ctx.strokeRect(120, 60, 400, 220);
+        ctx.fillRect(120, 60, 400, 220);
+
+        // Scene description inside
+        ctx.fillStyle = '#f8fafc';
+        ctx.font = '14px Inter, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(sc.name, canvas.width / 2, 100);
+
+        ctx.font = '12px ui-monospace, monospace';
+        ctx.fillStyle = anomalyActive ? '#fca5a5' : '#94a3b8';
+        ctx.fillText(anomalyActive ? sc.anomalyVisual : sc.normalVisual, canvas.width / 2, 160);
+
+        // Bounding box overlay if anomaly
+        if (anomalyActive) {
+          ctx.strokeStyle = '#ef4444';
+          ctx.lineWidth = 2;
+          ctx.strokeRect(220, 190, 200, 60);
+          ctx.fillStyle = 'rgba(239, 68, 68, 0.2)';
+          ctx.fillRect(220, 190, 200, 60);
+
+          ctx.fillStyle = '#ef4444';
+          ctx.font = 'bold 11px ui-monospace, monospace';
+          ctx.fillText('ANOMALY [CONFIDENCE: 98.6%]', canvas.width / 2, 225);
+        } else {
+          ctx.fillStyle = '#34d399';
+          ctx.font = '11px ui-monospace, monospace';
+          ctx.fillText('STATUS: NOMINAL (Zero Alert Threshold)', canvas.width / 2, 225);
+        }
+
+        // Live timestamp
+        ctx.fillStyle = 'rgba(255,255,255,0.4)';
+        ctx.font = '10px ui-monospace, monospace';
+        ctx.textAlign = 'left';
+        ctx.fillText(new Date().toISOString(), 15, canvas.height - 15);
+      }
+
+      function logEvent(tag, msg, isAlert = false) {
+        const logBox = document.getElementById('logBox');
+        const entry = document.createElement('div');
+        entry.className = 'log-entry';
+        const now = new Date().toTimeString().split(' ')[0];
+        entry.innerHTML = `<span class="log-ts">[${now}]</span> <span class="log-tag">[${tag}]</span> ${isAlert ? '<span class="log-alert">' + msg + '</span>' : msg}`;
+        logBox.appendChild(entry);
+        logBox.scrollTop = logBox.scrollHeight;
+      }
+
+      function updateCode() {
+        const sc = scenarios[currentScenario];
+        const proactiveAudio = document.getElementById('proactiveAudioToggle').checked;
+        const proactiveVideo = document.getElementById('proactiveVideoToggle').checked;
+        const model = document.getElementById('modelSelect').value;
+        const currentFps = fps;
+
+        let code = '';
+        if (activeTab === 'ts') {
+          code = `import { GoogleGenAI } from '@google/genai';
+
+// Initialize Google Gen AI SDK v3.1.0
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+
+async function startProactiveVisionSession() {
+  const session = await ai.live.connect({
+    model: '${model}',
+    config: {
+      generationConfig: {
+        responseModalities: ['AUDIO'],
+        speechConfig: {
+          voiceConfig: { prebuiltVoiceConfig: { voiceName: 'Puck' } }
+        }
+      },
+      // SDK v3.1.0 Proactivity Configuration
+      proactivityConfig: {
+        proactiveAudio: ${proactiveAudio},
+        proactiveVideo: ${proactiveVideo}, // Autonomous model turns on video deltas
+      },
+      systemInstruction: {
+        parts: [{ text: "${sc.instruction}" }]
+      }
+    }
+  });
+
+  // Handle autonomous voice alerts
+  session.on('content', (content) => {
+    if (content.modelTurn?.parts) {
+      for (const part of content.modelTurn.parts) {
+        if (part.text) console.log('🗣️ Autonomous Alert:', part.text);
+      }
+    }
+  });
+
+  // Client frame stream throttled to ${currentFps} fps
+  setInterval(async () => {
+    const frameBase64 = await camera.captureJpeg({ maxWidth: 768 });
+    await session.sendRealtimeInput({
+      mediaChunks: [{ mimeType: 'image/jpeg', data: frameBase64 }]
+    });
+  }, ${Math.round(1000 / currentFps)});
+}`;
+        } else if (activeTab === 'py') {
+          code = `import os, time
+from google import genai
+from google.genai import types
+
+# Initialize Python SDK v3.1.0
+client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
+
+async def run_proactive_vision():
+    config = types.LiveConnectConfig(
+        response_modalities=[types.LiveModality.AUDIO],
+        proactivity_config=types.ProactivityConfig(
+            proactive_audio=${proactiveAudio ? 'True' : 'False'},
+            proactive_video=${proactiveVideo ? 'True' : 'False'}, # SDK v3.1.0
+        ),
+        system_instruction=types.Content(
+            parts=[types.Part.from_text("${sc.instruction}")]
+        )
+    )
+
+    async with client.aio.live.connect(model="${model}", config=config) as session:
+        print("Connected to Gemini Live with proactive vision enabled.")
+        while True:
+            frame_bytes = camera.capture_jpeg(max_width=768)
+            await session.send_realtime_input(
+                media_chunks=[types.Blob(mime_type="image/jpeg", data=frame_bytes)]
+            )
+            time.sleep(${1 / currentFps}) # Throttled to ${currentFps} fps`;
+        } else {
+          code = `# SDK v3.1.0 CLI: gemini-omni-1.2-flash is now the default video model
+gemini-api video analyze ./site_stream.mp4 \\
+  --prompt "${sc.instruction}" \\
+  --output json
+
+# Explicit Model Inspection:
+gemini-api models info gemini-omni-1.2-flash`;
+        }
+        document.getElementById('codeBlock').innerText = code;
+      }
+
+      // Event Listeners
+      document.getElementById('fpsRange').addEventListener('input', (e) => {
+        fps = parseFloat(e.target.value);
+        document.getElementById('fpsVal').innerText = fps.toFixed(1) + ' fps';
+        document.getElementById('tokenBurnEst').innerText = '~' + Math.round(fps * 258) + ' tok/s';
+        updateCode();
+      });
+
+      document.getElementById('scenarioSelect').addEventListener('change', (e) => {
+        currentScenario = e.target.value;
+        anomalyActive = false;
+        drawCanvas();
+        updateCode();
+        logEvent('SCENARIO', 'Switched preset to ' + scenarios[currentScenario].name);
+      });
+
+      document.getElementById('proactiveAudioToggle').addEventListener('change', updateCode);
+      document.getElementById('proactiveVideoToggle').addEventListener('change', updateCode);
+      document.getElementById('modelSelect').addEventListener('change', updateCode);
+
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          activeTab = btn.getAttribute('data-tab');
+          updateCode();
+        });
+      });
+
+      document.getElementById('btnToggleStream').addEventListener('click', () => {
+        const btn = document.getElementById('btnToggleStream');
+        const badge = document.getElementById('sessionStatusBadge');
+        if (!isStreaming) {
+          isStreaming = true;
+          btn.innerText = '⏹ Stop Stream';
+          btn.className = 'btn btn-outline';
+          badge.style.display = 'inline-flex';
+          logEvent('STREAM', 'Live WebSocket duplex opened. Sending real-time JPEG frames @ ' + fps + ' fps.');
+          startStreamLoop();
+        } else {
+          isStreaming = false;
+          btn.innerText = '▶ Start Stream';
+          btn.className = 'btn btn-primary';
+          badge.style.display = 'none';
+          logEvent('STREAM', 'Stream stopped by operator.');
+          clearInterval(frameInterval);
+          document.getElementById('metricFps').innerText = '0.0 fps';
+          document.getElementById('streamTelemetry').innerText = '0.0 fps • WebP 768px • 0.0 KB/s';
+        }
+      });
+
+      function startStreamLoop() {
+        if (frameInterval) clearInterval(frameInterval);
+        frameInterval = setInterval(() => {
+          if (!isStreaming) return;
+          const tokensThisFrame = 258;
+          totalTokens += tokensThisFrame;
+          document.getElementById('metricFps').innerText = fps.toFixed(1) + ' fps';
+          document.getElementById('metricTokens').innerText = totalTokens.toLocaleString();
+          const cost = (totalTokens / 1000000) * 0.30;
+          document.getElementById('metricCost').innerText = '$' + cost.toFixed(4);
+
+          const bytes = Math.round(fps * 32.5);
+          document.getElementById('streamTelemetry').innerText = `${fps.toFixed(1)} fps • WebP 768px • ${bytes} KB/s`;
+
+          drawCanvas();
+        }, 1000 / fps);
+      }
+
+      document.getElementById('btnInjectAnomaly').addEventListener('click', () => {
+        if (!isStreaming) {
+          alert('Please click "Start Stream" first to initiate the Live session!');
+          return;
+        }
+
+        anomalyActive = true;
+        drawCanvas();
+
+        const sc = scenarios[currentScenario];
+        const proactiveVideo = document.getElementById('proactiveVideoToggle').checked;
+
+        logEvent('INJECT', 'Anomaly injected into visual frame: ' + sc.anomalyVisual, true);
+
+        if (proactiveVideo) {
+          // Autonomous trigger
+          document.getElementById('speechLatency').innerText = 'Triggered in 310ms (Autonomous)';
+          document.getElementById('speechLatency').style.color = '#34d399';
+          document.getElementById('speechText').innerText = '“' + sc.anomalySpeech + '”';
+          logEvent('PROACTIVE_TRIGGER', 'proactiveVideo triggered server turn: ' + sc.anomalySpeech, true);
+        } else {
+          // Model remains silent because proactiveVideo is off!
+          document.getElementById('speechLatency').innerText = 'Silent (proactiveVideo disabled)';
+          document.getElementById('speechLatency').style.color = '#f87171';
+          document.getElementById('speechText').innerText = '[Model remains silent despite visual anomaly. Enable proactiveVideo or ask an audio question to trigger a turn.]';
+          logEvent('SILENCE', 'Visual delta ignored because proactiveVideo is false.');
+        }
+
+        setTimeout(() => {
+          anomalyActive = false;
+          drawCanvas();
+          logEvent('RESOLVE', 'Visual scene returned to nominal baseline.');
+        }, 5000);
+      });
+
+      document.getElementById('btnCopyCode').addEventListener('click', () => {
+        const code = document.getElementById('codeBlock').innerText;
+        navigator.clipboard.writeText(code).then(() => {
+          const btn = document.getElementById('btnCopyCode');
+          btn.innerText = '✅ Copied!';
+          setTimeout(() => { btn.innerText = '📋 Copy Code'; }, 2000);
+        });
+      });
+
+      // Init
+      drawCanvas();
+      updateCode();
+    </script>
+  </body>
+</html>

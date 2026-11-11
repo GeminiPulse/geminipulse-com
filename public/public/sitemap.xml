@@ -2,15 +2,39 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://geminipulse.com/</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://geminipulse.com/prototypes/look-j-3d-celestial-navigator.html</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/genai-sdk-v3-1/part-1-sdk-v3-1-breakdown-and-omni-video-default.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.96</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/genai-sdk-v3-1/part-2-how-proactive-video-and-omni-affect-builders.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.96</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/genai-sdk-v3-1/part-3-concrete-sdk-v3-1-live-api-and-proactivity-blueprints.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.96</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/labs/gemini-live-proactive-video-studio.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
   </url>
   <url>
     <loc>https://geminipulse.com/series/gemini-4-carbon-ga/part-1-gemini-4-carbon-ga-breakdown.html</loc>

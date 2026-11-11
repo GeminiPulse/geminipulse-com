@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-11-10 12:45 EST — ROUND 30 12:45 PM ET CURATION COMPLETE: Verified Google DeepMind Gemini 4 Carbon GA Launch (Koray Kavukcuoglu; 3-Part Deep-Dive Series + Agile Labs Swarm Studio), Tunable Thinking Levels & Antigravity /swarm Multi-Agent Architecture`
+> **Last touched:** `2026-11-11 08:45 EST — ROUND 31 8:45 AM ET CURATION COMPLETE: Verified Google Gen AI SDK v3.1.0 GA Launch (@google/genai & google-genai; 3-Part Deep-Dive Series + Agile Labs Live Proactive Video Studio), Omni 1.2 Flash Video Default, Live API proactiveVideo, Carbon Model Enum & November 2026 Pixel Drop Gemini Intelligence Expansion`
 
 ---
 

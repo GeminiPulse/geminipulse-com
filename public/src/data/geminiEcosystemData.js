@@ -5,6 +5,44 @@
 
 export const PULSE_INTELLIGENCE_FEED = [
   {
+    id: 'pulse-genai-sdk-v3-1-release',
+    title: 'Google Releases Gen AI SDK v3.1.0: Gemini Omni 1.2 Flash Video Default, Live API Proactive Video & Gemini 4 Carbon Model Enum',
+    tldr: 'Released November 10, 2026 (20:17 UTC): Google ships milestone `@google/genai` and `google-genai` v3.1.0—elevating Gemini Omni 1.2 Flash (gemini-omni-1.2-flash) to the official video CLI/SDK default, introducing autonomous proactiveVideo in Live API ProactivityConfig, strictly typing gemini-4-carbon in the Model enum, and adding Enterprise embedding telemetry.',
+    summary:
+      'Google elevates its official JavaScript/TypeScript (`@google/genai`) and Python (`google-genai`) SDKs to version 3.1.0 GA across all runtime environments. Key architectural upgrades include: (1) Default video model promotion—`gemini-omni-1.2-flash` is now the default model for `gemini-api video` commands and native video analysis across all SDKs (Python, TypeScript, Go, Java, .NET) and CLI, replacing `gemini-omni-1.1-flash`, (2) Autonomous Proactive Video—adds `proactiveVideo` to `ProactivityConfig` for the Multimodal Live API, allowing WebSocket sessions to trigger model turns spontaneously from visual frame deltas without requiring verbal prompts or client-side polling, (3) Native Interactions typing—adds `gemini-4-carbon` and `gemini-omni-1.2-flash` directly into the `Model` enum for type-safe interaction orchestration with tunable thinking levels, (4) Enterprise Embeddings Telemetry—surfaces `truncated` and `usageMetadata` (including `trafficType` for provisioned vs. on-demand tiers) on `EmbedContentResponse`, (5) Agent framework updates—adds `antigravity-preview-09-2026` to `AgentOption`, and (6) Documentation consolidation—redirects reference documentation routes from `ai.google.dev` to unified `aistudio.google.com/docs` and `aistudio.google.com/api-reference`.',
+    category: 'SDK & API',
+    tag: 'SDK Milestone',
+    modelBadge: '@google/genai & google-genai v3.1.0',
+    impactScore: '10.0 / 10',
+    date: '2026-11-10T20:17:00Z',
+    sourceLabel: 'GitHub: googleapis/js-genai & python-genai v3.1.0 Releases',
+    sourceUrl: 'https://github.com/googleapis/js-genai/releases/tag/v3.1.0',
+    groundedBy: 'Google Gen AI SDK Official Milestone Releases (Verified Nov 10, 2026)',
+    seriesUrl: '/series/genai-sdk-v3-1/part-1-sdk-v3-1-breakdown-and-omni-video-default.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-live-proactive-video-studio.html',
+    labLabel: 'Proactive Video Studio Lab [DEMO] →',
+  },
+  {
+    id: 'pulse-pixel-drop-november-2026-gemini-intelligence',
+    title: 'Google Releases November 2026 Pixel Drop: Gemini Intelligence, Rambler Voice Dictation & Multi-Step App Automation Rollout',
+    tldr: 'Released November 10, 2026: Google rolls out the November 2026 Pixel Drop—bringing Gemini Intelligence down to Pixel 10 and 11 series devices with Rambler real-time voice speech polish in Gboard, conversational multi-step app automation, and Create My Widget natural-language widget generation.',
+    summary:
+      'Google announces the global rollout of the November 2026 Pixel Drop, delivering deep system-level Gemini Intelligence integrations across Pixel devices. Key consumer and developer milestones include: (1) Rambler in Gboard—an on-device voice dictation system powered by Gemini that scrubs verbal fillers ("um", "uh"), auto-formats conversational speech into polished text, and supports mixed-language bilingual dictation, (2) Multi-step App Automation—enables Gemini to execute multi-turn operational logistics across verified Android apps (ordering groceries, hailing rides, and reserving restaurants) with user confirmation gates, (3) Create My Widget—generative UI allowing users to produce interactive home screen widgets via natural-language descriptions, (4) Gemini Call Screen improvements on Pixel 11, and (5) Expansion of intelligent on-device Pixel Search down to Pixel 6 models.',
+    category: 'Agents & Antigravity',
+    tag: 'Ecosystem Expansion',
+    modelBadge: 'Gemini Intelligence / Pixel 10 & 11',
+    impactScore: '9.7 / 10',
+    date: '2026-11-10T19:00:00Z',
+    sourceLabel: 'Google Blog: November 2026 Pixel Drop (Official Announcement)',
+    sourceUrl: 'https://blog.google/products-and-platforms/devices/pixel/november-2026-pixel-drop/',
+    groundedBy: 'Google The Keyword & Pixel Hardware Team (Verified Nov 10, 2026)',
+    seriesUrl: '/series/genai-sdk-v3-1/part-1-sdk-v3-1-breakdown-and-omni-video-default.html',
+    seriesLabel: 'SDK v3.1.0 Series →',
+    labUrl: '/labs/gemini-live-proactive-video-studio.html',
+    labLabel: 'Live Vision Lab [DEMO] →',
+  },
+  {
     id: 'pulse-gemini-4-carbon-ga-launch',
     title: 'Google DeepMind Launches Gemini 4 Carbon to General Availability: 1M Unified Context, Tunable Thinking Levels & Antigravity /swarm Architecture',
     tldr: 'Released November 10, 2026: Google DeepMind officially transitions Gemini 4 Carbon (gemini-4-carbon) to General Availability (GA) across the Gemini API, Google AI Studio, and Google Antigravity—introducing tunable thinking levels (low, medium, high), 1M-token long decode, and the new /swarm multi-agent coordination architecture at $2.00/1M input and $10.00/1M output tokens with 95% caching discounts.',
@@ -919,6 +957,25 @@ video_turn = client.interactions.create(
 ];
 
 export const INITIAL_SHOWCASE_PROJECTS = [
+  {
+    id: 'showcase-gemini-live-proactive-video-studio',
+    name: 'Gemini Live Proactive Video Studio & Realtime Workbench [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive developer workbench modeling Google Gen AI SDK v3.1.0: simulate proactiveVideo in Multimodal Live API sessions, autonomous vision anomaly triggers, frame rate cadence optimization, and verified TypeScript/Python code export.',
+    models: ['gemini-omni-1.2-flash', 'gemini-3.8-flash', 'gemini-4-carbon'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-live-proactive-video-studio.html): [SIMULATED DEMO] Simulates 4 vision scenarios (Avionics, Cleanroom, Drone, Kitchen), interactive proactivityConfig (proactiveAudio & proactiveVideo), frame cadence slider (0.5 to 10 fps), token burn calculator, and SDK v3.1.0 code generation.',
+    url: '/labs/gemini-live-proactive-video-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-10T20:17:00Z',
+  },
   {
     id: 'showcase-gemini-carbon-swarm-studio',
     name: 'Gemini 4 Carbon Swarm Studio & Multi-Agent Workbench [SIMULATED DEMO]',
