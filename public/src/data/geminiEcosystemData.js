@@ -5,6 +5,44 @@
 
 export const PULSE_INTELLIGENCE_FEED = [
   {
+    id: 'pulse-gemini-4-hydrogen-launch',
+    title: 'Google Launches Gemini 4 Hydrogen: Everyday Coding & Fast Agentic Execution with 1M Context, 4 Thinking Levels & Antigravity Orchestrator',
+    tldr: 'Released November 12, 2026: Google DeepMind launches Gemini 4 Hydrogen (gemini-4-hydrogen)—a 1M-token execution engine running 2.5x faster than 3.8 Flash at flat $1.50/1M input and $7.50/1M output, scoring 51–54 on the Artificial Analysis Intelligence Index and 57% on Terminal-Bench 4.1, paired with Antigravity Orchestrator (-24% quota, +19% speed), 81% less overreach, and a major Google Search upgrade.',
+    summary:
+      'Google DeepMind SVP and Chief AI Architect Koray Kavukcuoglu announces the global launch of Gemini 4 Hydrogen (gemini-4-hydrogen), bringing cutting-edge frontier intelligence to developers, enterprises, and consumers with velocity and discipline. While Gemini 4 Carbon and Argon are optimized for deep, multi-hour architectural reasoning and spatial systems design, Hydrogen operates as the rapid workhorse for repo coding, surgical debugging, interactive web prototyping, and high-frequency agentic loops. Core breakthroughs include: (1) Unit Economics & Window—priced flat across its entire 1-million-token unified context window at $1.50 per 1M input tokens and $7.50 per 1M output tokens (down to $0.075/1M with 95% prompt cache discount), (2) Four Thinking Levels—offers low, medium, high (default), and a new xhigh tier; at default high thinking it scores 51 on the Artificial Analysis Intelligence Index (surpassing Argon\'s 50) and reaches 54 at xhigh, while finishing tasks 2.5x faster than Gemini 3.8 Flash, (3) Benchmark Mastery—triples Terminal-Bench 4.1 scores (57% vs 18.2%), ranks #1 overall on Vals Tax Agent Bench (52.3%), ties for #1 on Vals Legal Research Bench (55.8%), leads class on HLE-Diamond (58.8%), ranks #5 on Agent Arena, and on antibody toxicology passes 67% of attempts vs 37% best non-Gemini, (4) Antigravity Orchestrator—dynamically switches between Carbon (planning) and Hydrogen (execution) in a single session, consuming 24% less quota and completing 19% faster on Terminal-Bench 4.0, or coordinating multi-agent /swarm worker pools across isolated workspaces, (5) Alignment & Safety—reduces agent overreach by 81% and under-service by 79%, cuts misaligned actions/shortcutting by 12x, achieves 96.7% honesty rate on internal agent benchmarks, preserves 99.9% chain-of-thought legibility across 200k turns, and is 2.3x more resilient against indirect prompt injection on Gray Swan IPI, and (6) Ecosystem Rollout—day-zero availability in Google AI Studio, Android Studio, Google Antigravity, Gemini for business, Google Sheets, the Gemini app, and an AI Search upgrade (Robby Stein) featuring intelligent intent comprehension, visual cards, and enhanced query fan-out.',
+    category: 'Frontier Models',
+    tag: 'Model Launch',
+    modelBadge: 'Gemini 4 Hydrogen (1M Window)',
+    impactScore: '10.0 / 10',
+    date: '2026-11-12T17:00:00Z',
+    sourceLabel: 'Google Blog: Introducing Gemini 4 Hydrogen (Koray Kavukcuoglu)',
+    sourceUrl: 'https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/',
+    groundedBy: 'Google DeepMind Official Launch & Google Blog (Koray Kavukcuoglu, Verified Nov 12, 2026)',
+    seriesUrl: '/series/gemini-4-hydrogen/part-1-gemini-4-hydrogen-breakdown-and-architecture.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-hydrogen-orchestrator-studio.html',
+    labLabel: 'Hydrogen Studio Lab [DEMO] →',
+  },
+  {
+    id: 'pulse-genai-sdk-v3-3-release',
+    title: 'Google Releases Gen AI SDK v3.3.0: Gemini 4 Hydrogen in Model Enum, ThinkingLevel.XHIGH & EAP Packaging',
+    tldr: 'Released November 12, 2026 (20:47 UTC): Google ships milestone @google/genai and google-genai v3.3.0 across TypeScript and Python—strictly typing gemini-4-hydrogen in the Model enum for the Interactions API, adding ThinkingLevel.XHIGH (xhigh) for maximum reasoning depth, adding missing FinishReason values, and introducing --flavor=interactions-eap packaging.',
+    summary:
+      'Google elevates its official JavaScript/TypeScript (@google/genai) and Python (google-genai) SDKs to version 3.3.0 GA across all runtime environments. Key architectural upgrades include: (1) Native Gemini 4 Hydrogen typing—adds "gemini-4-hydrogen" directly to the Model enum (client.interactions.create and client.models.generateContent), enabling type-safe interaction orchestration across Node.js, browser, and Python runtimes, (2) ThinkingLevel.XHIGH support—introduces "xhigh" (XHIGH) to the ThinkingLevel enum for tuning deep reasoning budgets (scoring 54 on the Artificial Analysis Intelligence Index), (3) FinishReason & Reinforcement Tuning—adds missing enum values to FinishReason and ReinforcementTuningThinkingLevel, (4) Python EAP packaging—adds --flavor=interactions-eap packaging and scrubs private exports in google-genai, and (5) Documentation updates reflecting major version 3 breaking changes and Interactions API defaults.',
+    category: 'SDK & API',
+    tag: 'SDK Milestone',
+    modelBadge: '@google/genai & google-genai v3.3.0',
+    impactScore: '9.9 / 10',
+    date: '2026-11-12T20:47:00Z',
+    sourceLabel: 'GitHub: googleapis/js-genai & python-genai v3.3.0 Releases',
+    sourceUrl: 'https://github.com/googleapis/js-genai/releases/tag/v3.3.0',
+    groundedBy: 'Google Gen AI SDK Official Milestone Releases (Verified Nov 12, 2026)',
+    seriesUrl: '/series/gemini-4-hydrogen/part-3-concrete-hydrogen-blueprints-and-sdk-v3-3.html',
+    seriesLabel: 'SDK v3.3.0 Series →',
+    labUrl: '/labs/gemini-hydrogen-orchestrator-studio.html',
+    labLabel: 'Hydrogen Studio Lab [DEMO] →',
+  },
+  {
     id: 'pulse-google-intelligent-eyewear-launch',
     title: 'Google Launches Intelligent Eyewear with Warby Parker & Gentle Monster: Hands-Free Multimodal Gemini Live, 12MP Camera & Hardware-Enforced Privacy',
     tldr: 'Released November 12, 2026 (14:00 UTC / 9:00 AM ET): Google opens pre-orders for its first consumer Intelligent Eyewear lineup engineered with Samsung, Warby Parker (Alden, Reid, Wren from $395), and Gentle Monster (6 luxury designs from $449)—bringing the Gemini Multimodal Live API to everyday glasses with 12MP photography, Guided Vision for accessibility, real-time 70+ language speech translation, and zero-training bystander privacy.',
@@ -611,6 +649,18 @@ export const GEMINI_MODEL_MATRIX = [
     accentColor: 'from-blue-500 to-purple-500',
   },
   {
+    id: 'gemini-4-hydrogen',
+    name: 'Gemini 4 Hydrogen',
+    apiString: 'gemini-4-hydrogen',
+    tier: 'Everyday Execution & Coding',
+    group: 'Frontier & Flash',
+    contextWindow: '1,000,000 tokens',
+    modalities: 'Multimodal In → High-Speed Code, Edits & Tools',
+    bestFor: 'Rapid iteration, surgical repo debugging, Antigravity multi-model orchestration, and high-frequency agentic loops.',
+    highlightMetric: 'AA Index 51–54 • $1.50/$7.50 • 2.5x Speed',
+    accentColor: 'from-cyan-400 to-emerald-500',
+  },
+  {
     id: 'gemini-3.8-flash',
     name: 'Gemini 3.8 Flash',
     apiString: 'gemini-3.8-flash',
@@ -721,6 +771,72 @@ export const GEMINI_MODEL_MATRIX = [
 ];
 
 export const STUDIO_LAB_BLUEPRINTS = [
+  {
+    id: 'lab-hydrogen-orchestrator',
+    title: 'Gemini 4 Hydrogen Multi-Model Orchestrator & Thinking Studio',
+    badge: 'Nov 12, 2026 GA',
+    model: 'gemini-4-hydrogen',
+    description:
+      'Dynamically orchestrate Gemini 4 Carbon (architectural design & planning) with Gemini 4 Hydrogen (fast execution, surgical repo coding & testing) across four configurable thinking tiers (low, medium, high, xhigh) with Gen AI SDK v3.3.0.',
+    prompt: 'Orchestrate a surgical bug repair across the tax calculator test suite using Carbon for dependency analysis and Hydrogen for parallel code edits and pytest verification.',
+    tsCode: `import { GoogleGenAI, ThinkingLevel } from "@google/genai";
+
+const client = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+
+// Multi-Model Orchestration with Gemini 4 Hydrogen (SDK v3.3.0)
+const interaction = await client.interactions.create({
+  model: "gemini-4-hydrogen", // Officially typed in v3.3.0
+  input: "Audit failing assertions in taxCalculator.test.ts and apply surgical diffs.",
+  config: {
+    thinking_level: "xhigh", // ThinkingLevel.XHIGH (Score 54 on AA Index)
+    automatic_continuation: true,
+    tools: [{ type: "code_execution" }, { type: "google_search" }],
+  },
+});
+
+for (const step of interaction.steps) {
+  if (step.thought) console.log("[Thinking Trace]:", step.thought);
+  if (step.output) console.log("[Hydrogen Diff]:", step.output.text);
+}`,
+    pyCode: `from google import genai
+from google.genai.types import InteractionsConfig
+
+client = genai.Client()
+
+# Official Python SDK v3.3.0 GA with typed gemini-4-hydrogen
+interaction = client.interactions.create(
+    model="gemini-4-hydrogen",
+    input=[{"role": "user", "content": "Audit failing assertions and apply surgical diffs."}],
+    config=InteractionsConfig(
+        thinking_level="high", # Default high tier (AA Index 51, 2.5x speed)
+        automatic_continuation=True
+    )
+)
+
+for step in interaction.steps:
+    if step.thought:
+        print("[CoT]:", step.thought)
+    if step.output:
+        print("[Output]:", step.output.text)`,
+    simulatedSteps: [
+      {
+        type: 'thought',
+        label: 'step[0] • Orchestrator dynamic dispatch',
+        detail: 'Carbon generated architectural decomposition in 1.4s. Routing code edits and test execution to gemini-4-hydrogen at $1.50/$7.50 flat rates.',
+      },
+      {
+        type: 'code_execution_result',
+        label: 'step[1] • parallel batch execution',
+        detail: 'Evaluated 8 source files in parallel; applied surgical +3/-1 diff to taxCalculator.ts with 0 collateral changes.',
+      },
+      {
+        type: 'model_output',
+        label: 'step[2] • model_output (24% quota saved)',
+        detail:
+          'Pytest passed across 32 assertions in 210ms. Terminal-Bench 4.0 validation complete: 24% quota saved, 19% faster clock time. Test live at `/labs/gemini-hydrogen-orchestrator-studio.html`.',
+      },
+    ],
+  },
   {
     id: 'lab-voice-remixing-tts',
     title: 'Gemini 3.8 Voice Remixing (POST /v1beta/voices)',
@@ -2881,11 +2997,27 @@ export const GET_STARTED_WITH_GEMINI_TRACKS = [
 
 export const GEMINI_VIDEO_SHOWCASE = [
   {
-    id: 'vid-google-intelligent-eyewear-10-things',
-    videoId: 'SMleb_gBhvA',
+    id: 'vid-google-intelligent-eyewear-pcmag-review',
+    videoId: '73-pjU97tGk',
     featuredOfTheDay: true,
     category: 'Intelligent Eyewear & XR',
-    badge: 'FEATURED VIDEO OF THE DAY • ANDROID AUTHORITY',
+    badge: 'FEATURED VIDEO OF THE DAY • PCMAG',
+    title: 'I\'m Impressed: Google\'s Intelligent Eyewear Is the Real Deal',
+    creatorName: 'PCMag',
+    creatorHandle: '@PCMag',
+    creatorUrl: 'https://www.youtube.com/@PCMag',
+    watchUrl: 'https://www.youtube.com/watch?v=73-pjU97tGk',
+    thumbnailUrl: 'https://i.ytimg.com/vi/73-pjU97tGk/hqdefault.jpg',
+    geminiSummary:
+      'Verified hands-on evaluation published November 12, 2026—testing Google’s newly unveiled Intelligent Eyewear with built-in Gemini AI. Explores live optical translation, real-time spatial navigation, Guided Vision accessibility features, 12MP camera clarity, and everyday wearability across Warby Parker and Gentle Monster frames.',
+    whyFeatured: 'Verified HTTP 200 hands-on testing and review of Google Intelligent Eyewear evaluating real-world multimodal vision, audio translation, and ergonomics.',
+  },
+  {
+    id: 'vid-google-intelligent-eyewear-10-things',
+    videoId: 'SMleb_gBhvA',
+    featuredOfTheDay: false,
+    category: 'Intelligent Eyewear & XR',
+    badge: 'HARDWARE BREAKDOWN • ANDROID AUTHORITY',
     title: 'Google Intelligent Eyewear: 10 Things You NEED to Know!',
     creatorName: 'Android Authority',
     creatorHandle: '@AndroidAuthority',
@@ -2895,6 +3027,22 @@ export const GEMINI_VIDEO_SHOWCASE = [
     geminiSummary:
       'Verified hands-on breakdown published November 12, 2026—detailing Google’s first Intelligent Eyewear lineup engineered with Warby Parker, Gentle Monster, and Samsung. Covers 12MP camera specs, open-ear directional audio, hands-free Gemini Live queries, Guided Vision for accessibility, and hardware-enforced tamper-proof privacy controls.',
     whyFeatured: 'Verified HTTP 200 comprehensive technical and hardware breakdown of Google Intelligent Eyewear, its Gemini Multimodal Live integration, and privacy features.',
+  },
+  {
+    id: 'vid-google-intelligent-eyewear-stage-demo',
+    videoId: 'SIXKbsHEb1k',
+    featuredOfTheDay: false,
+    category: 'Intelligent Eyewear & XR',
+    badge: 'LIVE STAGE DEMO • NATHIE',
+    title: 'Gentle Monster & Warby Parker Smart Glasses: Full Google Live Stage Demo',
+    creatorName: 'Nathie',
+    creatorHandle: '@nathie',
+    creatorUrl: 'https://www.youtube.com/@nathie',
+    watchUrl: 'https://www.youtube.com/watch?v=SIXKbsHEb1k',
+    thumbnailUrl: 'https://i.ytimg.com/vi/SIXKbsHEb1k/hqdefault.jpg',
+    geminiSummary:
+      'Complete live stage presentation showcasing the hardware collaboration between Google, Samsung, Warby Parker, and Gentle Monster—demonstrating real-time spatial audio, first-person Gemini Live queries, and luxury frame designs.',
+    whyFeatured: 'Verified HTTP 200 live-stage demonstration showcasing the physical design and interactive audio/vision features of Google Intelligent Eyewear.',
   },
   {
     id: 'vid-google-intelligent-eyewear-engadget-handson',

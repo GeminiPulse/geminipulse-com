@@ -13,6 +13,30 @@
     <priority>0.98</priority>
   </url>
   <url>
+    <loc>https://geminipulse.com/series/gemini-4-hydrogen/part-1-gemini-4-hydrogen-breakdown-and-architecture.html</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.96</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/gemini-4-hydrogen/part-2-how-gemini-4-hydrogen-affects-builders-and-enterprises.html</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.96</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/gemini-4-hydrogen/part-3-concrete-hydrogen-blueprints-and-sdk-v3-3.html</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.96</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/labs/gemini-hydrogen-orchestrator-studio.html</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.96</priority>
+  </url>
+  <url>
     <loc>https://geminipulse.com/series/intelligent-eyewear/part-1-google-intelligent-eyewear-breakdown-and-gemini-architecture.html</loc>
     <lastmod>2026-11-12</lastmod>
     <changefreq>weekly</changefreq>
