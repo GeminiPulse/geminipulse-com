@@ -5,6 +5,44 @@
 
 export const PULSE_INTELLIGENCE_FEED = [
   {
+    id: 'pulse-google-intelligent-eyewear-launch',
+    title: 'Google Launches Intelligent Eyewear with Warby Parker & Gentle Monster: Hands-Free Multimodal Gemini Live, 12MP Camera & Hardware-Enforced Privacy',
+    tldr: 'Released November 12, 2026 (14:00 UTC / 9:00 AM ET): Google opens pre-orders for its first consumer Intelligent Eyewear lineup engineered with Samsung, Warby Parker (Alden, Reid, Wren from $395), and Gentle Monster (6 luxury designs from $449)—bringing the Gemini Multimodal Live API to everyday glasses with 12MP photography, Guided Vision for accessibility, real-time 70+ language speech translation, and zero-training bystander privacy.',
+    summary:
+      'Google VP and GM of XR Shahram Izadi officially announces the launch and pre-order availability of Google Intelligent Eyewear, introducing a standardized ambient spatial computing platform designed in partnership with Warby Parker and Gentle Monster and engineered by Samsung. Arriving in retail stores and online on December 10, 2026, the lightweight frames pair the Gemini Multimodal Live API directly with the wearer’s line of sight and hearing. Core hardware and architectural breakthroughs include: (1) Two Distinct Collections—Warby Parker frames (Alden, Reid, Wren in Pine, Saddle, Jet Black starting at $395 with demos at 360+ US retail stores) and Gentle Monster statement silhouettes (6 luxury designs in dark red, pink, gray, yellow from $449 in US and South Korea), (2) Samsung-Engineered Hardware—12-megapixel ultra-wide camera with HDR processing and Electronic Image Stabilization (EIS), custom-tuned open-ear directional audio transducers, beamforming multi-mic array, and up to 9 hours of active mixed battery life with a 3-charge magnetic case, (3) Ambient Gemini Live Intelligence—hands-free "Hey Gemini" conversational queries, Guided Vision delivering conversational audio descriptions for blind and low-vision individuals, seamless "Hey Gemini, open Aira Explorer" handoff to professional human visual interpreters, spatial turn-by-turn Google Maps audio directions, and real-time speech translation across 70+ languages with automatic detection, (4) Cross-Platform OS Parity—works seamlessly with Pixel, Samsung Galaxy, and Apple iPhone devices, and (5) Hardware-Enforced Privacy by Design—visuals used for Gemini queries are strictly ephemeral (never saved to Gemini History, never used to train models or target ads), edge bystander face redaction before cloud processing, tamper-proof LED capture light that disables recording if covered, and a physical mechanical power-off switch.',
+    category: 'Hardware & XR',
+    tag: 'Pre-Orders Live',
+    modelBadge: 'Intelligent Eyewear & Gemini Live',
+    impactScore: '10.0 / 10',
+    date: '2026-11-12T14:00:00Z',
+    sourceLabel: 'Google Blog: See our intelligent eyewear lineup and pre-order your pair (Shahram Izadi)',
+    sourceUrl: 'https://blog.google/innovation-and-ai/technology/xr-ar/google-intelligent-eyewear-collections-pre-order/',
+    groundedBy: 'Google Official Blog Launch (Shahram Izadi, VP & GM, XR, Verified Nov 12, 2026)',
+    seriesUrl: '/series/intelligent-eyewear/part-1-google-intelligent-eyewear-breakdown-and-gemini-architecture.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-intelligent-eyewear-studio.html',
+    labLabel: 'Eyewear Studio Lab [DEMO] →',
+  },
+  {
+    id: 'pulse-deepmind-alphagenome-2-launch',
+    title: 'Google DeepMind Unveils AlphaGenome 2: Single-Cell Genomics Foundation Model Predicting Disease Variants Across 107M+ Individual Cells',
+    tldr: 'Released November 11, 2026 (15:00 UTC): Google DeepMind announces AlphaGenome 2—a breakthrough conditional foundation model trained on >107 million individual cell profiles across human and mouse biology, predicting how DNA variations affect gene regulation, methylation, and chromatin accessibility in specific cell types to pinpoint causal disease mechanisms.',
+    summary:
+      'Google DeepMind introduces AlphaGenome 2, its next-generation DNA sequence foundation model that bridges the gap between single-cell biology and human genetics. Moving beyond the bulk tissue averages of the original AlphaGenome (and the 9-billion variant AlphaGenome Atlas), AlphaGenome 2 introduces a fundamentally redesigned conditional architecture that evaluates 1-million-letter DNA sequences conditioned on individual single-cell biological states. Key scientific and technical milestones include: (1) Empirical Variant Mastery—identifies nearly twice as many gene expression-altering variants as previous state-of-the-art models, (2) Massive Single-Cell Scale—trained on both bulk and single-cell datasets encompassing over 107 million individual cell profiles across human and mouse samples, (3) Expanded Epigenetic Readouts—predicts gene expression, chromatin accessibility, histone modifications, RNA splicing, and newly adds DNA methylation (a critical regulatory mechanism across hundreds of cell lineages), (4) Zero-Shot Cell State Adaptation—adapts directly to newly profiled single-cell datasets from small experimental samples without retraining, and (5) Cross-Modality Biological Imputation—decouples cellular states from output channels, allowing computational researchers to reconstruct missing experimental assays from incomplete biological samples.',
+    category: 'Frontier Models',
+    tag: 'Research Breakthrough',
+    modelBadge: 'AlphaGenome 2',
+    impactScore: '10.0 / 10',
+    date: '2026-11-11T15:00:00Z',
+    sourceLabel: 'Google DeepMind: AlphaGenome 2: Deciphering how cells read DNA to better understand disease',
+    sourceUrl: 'https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/',
+    groundedBy: 'Google DeepMind Official Launch & Research Paper (Verified Nov 11, 2026)',
+    seriesUrl: '/series/intelligent-eyewear/part-1-google-intelligent-eyewear-breakdown-and-gemini-architecture.html',
+    seriesLabel: 'Eyewear Series →',
+    labUrl: '/labs/gemini-intelligent-eyewear-studio.html',
+    labLabel: 'Eyewear Studio Lab [DEMO] →',
+  },
+  {
     id: 'pulse-gemini-decisions-api-launch',
     title: 'Google DeepMind Launches Gemini Decisions API & Gemini Decision 1 Model: Single-Pass Multimodal Logit Scoring at $0.10/1M with Zero Output Tokens',
     tldr: 'Released November 11, 2026: Google DeepMind launches the Gemini Decisions API powered by Gemini Decision 1 (gemini-decision-1)—enabling single-forward-pass logit scoring over up to 1,000 closed-set questions (noul, choice, score) across text, images, video, and PDFs in 150–250 ms with $0 output token charges at $0.10/1M input tokens.',
@@ -1033,6 +1071,25 @@ video_turn = client.interactions.create(
 ];
 
 export const INITIAL_SHOWCASE_PROJECTS = [
+  {
+    id: 'showcase-gemini-intelligent-eyewear-studio',
+    name: 'Gemini Intelligent Eyewear Studio & Spatial Audio Workbench [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive developer workbench modeling Google’s first Intelligent Eyewear lineup (Warby Parker & Gentle Monster) powered by Gemini Live: test 12MP first-person vision feeds, Guided Vision accessibility, Aira visual handoff, spatial turn-by-turn audio, and edge bystander face redaction.',
+    models: ['gemini-omni-1.2-flash', 'gemini-4-argon', 'gemini-3.8-flash'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-intelligent-eyewear-studio.html): [SIMULATED DEMO] Simulates 4 real-world vision scenarios (Guided Vision Medication Reader, Aira Explorer Handoff, Field Service Diagnostics, Tokyo Subway Translation), frame collection selector (Warby Parker vs Gentle Monster), live spatial audio telemetry, edge bystander face redaction filter, and SDK v3.2.0 Live API code export.',
+    url: '/labs/gemini-intelligent-eyewear-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-12T14:00:00Z',
+  },
   {
     id: 'showcase-gemini-decisions-studio',
     name: 'Gemini Decisions Studio & Control Plane Workbench [SIMULATED DEMO]',
@@ -2824,9 +2881,41 @@ export const GET_STARTED_WITH_GEMINI_TRACKS = [
 
 export const GEMINI_VIDEO_SHOWCASE = [
   {
+    id: 'vid-google-intelligent-eyewear-10-things',
+    videoId: 'SMleb_gBhvA',
+    featuredOfTheDay: true,
+    category: 'Intelligent Eyewear & XR',
+    badge: 'FEATURED VIDEO OF THE DAY • ANDROID AUTHORITY',
+    title: 'Google Intelligent Eyewear: 10 Things You NEED to Know!',
+    creatorName: 'Android Authority',
+    creatorHandle: '@AndroidAuthority',
+    creatorUrl: 'https://www.youtube.com/@AndroidAuthority',
+    watchUrl: 'https://www.youtube.com/watch?v=SMleb_gBhvA',
+    thumbnailUrl: 'https://i.ytimg.com/vi/SMleb_gBhvA/hqdefault.jpg',
+    geminiSummary:
+      'Verified hands-on breakdown published November 12, 2026—detailing Google’s first Intelligent Eyewear lineup engineered with Warby Parker, Gentle Monster, and Samsung. Covers 12MP camera specs, open-ear directional audio, hands-free Gemini Live queries, Guided Vision for accessibility, and hardware-enforced tamper-proof privacy controls.',
+    whyFeatured: 'Verified HTTP 200 comprehensive technical and hardware breakdown of Google Intelligent Eyewear, its Gemini Multimodal Live integration, and privacy features.',
+  },
+  {
+    id: 'vid-google-intelligent-eyewear-engadget-handson',
+    videoId: 'moq-myNQKL4',
+    featuredOfTheDay: false,
+    category: 'Intelligent Eyewear & XR',
+    badge: 'HANDS-ON REVIEW • ENGADGET',
+    title: 'Google Intelligent Eyewear hands-on: Gemini, a camera and speakers on your face',
+    creatorName: 'Engadget',
+    creatorHandle: '@engadget',
+    creatorUrl: 'https://www.youtube.com/@engadget',
+    watchUrl: 'https://www.youtube.com/watch?v=moq-myNQKL4',
+    thumbnailUrl: 'https://i.ytimg.com/vi/moq-myNQKL4/hqdefault.jpg',
+    geminiSummary:
+      'Engadget hands-on demonstration of Google’s new Intelligent Eyewear collections with Warby Parker and Gentle Monster—testing real-time Guided Vision, Aira visual interpretation, 70+ language audio translation, and the physical power-off switch.',
+    whyFeatured: 'Verified HTTP 200 hands-on demonstration exploring everyday ergonomics, frame styles, and real-time multimodal assistance.',
+  },
+  {
     id: 'vid-multimodal-ai-agent-architecture',
     videoId: 'gg-gXO0tIUY',
-    featuredOfTheDay: true,
+    featuredOfTheDay: false,
     category: 'Agents & Antigravity',
     badge: 'FEATURED VIDEO OF THE DAY • OFFICIAL GOOGLE CLOUD TECH',
     title: 'Multimodal AI agent architecture: Voice, vision, tools & memory',

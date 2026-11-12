@@ -2,15 +2,39 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://geminipulse.com/</loc>
-    <lastmod>2026-11-11</lastmod>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://geminipulse.com/prototypes/look-j-3d-celestial-navigator.html</loc>
-    <lastmod>2026-11-11</lastmod>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/intelligent-eyewear/part-1-google-intelligent-eyewear-breakdown-and-gemini-architecture.html</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.96</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/intelligent-eyewear/part-2-how-intelligent-eyewear-affects-builders-and-enterprises.html</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.96</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/intelligent-eyewear/part-3-concrete-eyewear-multimodal-blueprints-and-live-api.html</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.96</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/labs/gemini-intelligent-eyewear-studio.html</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.96</priority>
   </url>
   <url>
     <loc>https://geminipulse.com/series/gemini-decisions-api/part-1-gemini-decisions-api-and-decision-1-breakdown.html</loc>

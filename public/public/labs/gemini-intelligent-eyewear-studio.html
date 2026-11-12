@@ -1,0 +1,809 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gemini Intelligent Eyewear Studio: Ambient Vision, Spatial Audio &amp; Privacy Workbench [SIMULATED DEMO] | Agile Labs</title>
+    <meta
+      name="description"
+      content="Interactive developer playground modeling Google Intelligent Eyewear (Warby Parker &amp; Gentle Monster): Simulate 12MP first-person vision feeds, Guided Vision accessibility, Aira Explorer handoff, spatial audio, and edge bystander face redaction."
+    />
+    <link rel="canonical" href="https://geminipulse.com/labs/gemini-intelligent-eyewear-studio.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Gemini Intelligent Eyewear Studio [SIMULATED DEMO]" />
+    <meta property="og:description" content="Simulate Google's Intelligent Eyewear powered by Gemini Live: first-person vision, Guided Vision, spatial audio cues, and tamper-proof privacy controls." />
+    <meta property="og:url" content="https://geminipulse.com/labs/gemini-intelligent-eyewear-studio.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Gemini Intelligent Eyewear Studio [SIMULATED DEMO]" />
+    <meta name="twitter:description" content="Interactive developer simulator for Google Intelligent Eyewear, Gemini Live API, and ambient spatial agents." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Gemini Intelligent Eyewear Studio",
+        "url": "https://geminipulse.com/labs/gemini-intelligent-eyewear-studio.html",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "All",
+        "creator": {
+          "@type": "Organization",
+          "name": "Agile Labs (via GeminiPulse.com)"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #07090e;
+        --surface: #111622;
+        --surface-high: #182030;
+        --border: rgba(255, 255, 255, 0.1);
+        --border-high: rgba(255, 255, 255, 0.18);
+        --text: #f3f5fb;
+        --muted: #9da4b8;
+        --accent: #38bdf8;
+        --accent-glow: rgba(56, 189, 248, 0.2);
+        --success: #34d399;
+        --warning: #fbbf24;
+        --danger: #f87171;
+        --purple: #c084fc;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+      .wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1.5rem 1rem 4rem;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 1rem;
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .brand-title {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-weight: 700;
+        font-size: 1.15rem;
+      }
+      .sim-badge {
+        font-size: 0.72rem;
+        font-weight: 700;
+        background: rgba(251, 191, 36, 0.15);
+        color: var(--warning);
+        border: 1px solid rgba(251, 191, 36, 0.35);
+        padding: 0.2rem 0.55rem;
+        border-radius: 9999px;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      .btn-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.45rem 1rem;
+        border-radius: 9999px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border);
+        color: var(--text);
+        text-decoration: none;
+        font-size: 0.85rem;
+        transition: all 0.15s ease;
+      }
+      .btn-pill:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      .hero-desc {
+        font-size: 1.05rem;
+        color: var(--muted);
+        max-width: 900px;
+        margin-bottom: 1.75rem;
+      }
+      .grid-main {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+      @media (max-width: 900px) {
+        .grid-main { grid-template-columns: 1fr; }
+      }
+      .panel {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+        padding: 1.25rem;
+      }
+      .panel-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 0.75rem;
+      }
+      .panel-title {
+        font-size: 0.95rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--accent);
+      }
+      .presets-bar {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+        flex-wrap: wrap;
+      }
+      .preset-btn {
+        background: var(--surface-high);
+        border: 1px solid var(--border);
+        color: var(--text);
+        padding: 0.5rem 0.85rem;
+        border-radius: 0.65rem;
+        font-size: 0.82rem;
+        cursor: pointer;
+        transition: all 0.15s ease;
+      }
+      .preset-btn:hover {
+        border-color: var(--accent);
+      }
+      .preset-btn.active {
+        background: rgba(56, 189, 248, 0.15);
+        border-color: var(--accent);
+        color: var(--accent);
+        font-weight: 600;
+      }
+      .frame-selector {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+        background: var(--surface-high);
+        padding: 0.35rem;
+        border-radius: 0.65rem;
+        border: 1px solid var(--border);
+      }
+      .frame-btn {
+        flex: 1;
+        text-align: center;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        font-size: 0.82rem;
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        color: var(--muted);
+        transition: all 0.15s ease;
+      }
+      .frame-btn.active {
+        background: var(--surface);
+        color: var(--text);
+        font-weight: 600;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      }
+      .first-person-viewport {
+        position: relative;
+        background: #020408;
+        border: 1px solid var(--border-high);
+        border-radius: 0.75rem;
+        aspect-ratio: 16 / 9;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 1rem;
+      }
+      .hud-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: ui-monospace, Menlo, monospace;
+        font-size: 0.75rem;
+        z-index: 2;
+      }
+      .led-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.2rem 0.55rem;
+        border-radius: 9999px;
+        background: rgba(0,0,0,0.6);
+        border: 1px solid var(--border);
+      }
+      .led-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #ef4444;
+        box-shadow: 0 0 8px #ef4444;
+      }
+      .led-dot.safe {
+        background: #10b981;
+        box-shadow: 0 0 8px #10b981;
+      }
+      .led-dot.blocked {
+        background: #f59e0b;
+        box-shadow: 0 0 8px #f59e0b;
+      }
+      .hud-center {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        z-index: 2;
+        padding: 1rem;
+      }
+      .reticle {
+        width: 140px;
+        height: 140px;
+        border: 1px dashed rgba(56, 189, 248, 0.4);
+        border-radius: 0.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0.5rem;
+        position: relative;
+        transition: all 0.2s ease;
+      }
+      .face-box {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        width: 65px;
+        height: 75px;
+        border: 1px solid #c084fc;
+        background: rgba(192, 132, 252, 0.1);
+        border-radius: 0.35rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.65rem;
+        color: #c084fc;
+        font-family: ui-monospace, Menlo, monospace;
+        backdrop-filter: blur(8px);
+        transition: all 0.2s ease;
+      }
+      .face-box.unblurred {
+        backdrop-filter: none;
+        background: rgba(239, 68, 68, 0.1);
+        border-color: #ef4444;
+        color: #ef4444;
+      }
+      .hud-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: ui-monospace, Menlo, monospace;
+        font-size: 0.75rem;
+        z-index: 2;
+        background: rgba(0,0,0,0.6);
+        padding: 0.4rem 0.75rem;
+        border-radius: 0.5rem;
+      }
+      .telemetry-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.55rem 0;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+        font-size: 0.86rem;
+      }
+      .telemetry-label {
+        color: var(--muted);
+      }
+      .telemetry-val {
+        font-weight: 600;
+        font-family: ui-monospace, Menlo, monospace;
+      }
+      .toggle-switch {
+        position: relative;
+        display: inline-block;
+        width: 42px;
+        height: 22px;
+      }
+      .toggle-switch input { opacity: 0; width: 0; height: 0; }
+      .slider {
+        position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+        background-color: #334155; transition: .2s; border-radius: 22px;
+      }
+      .slider:before {
+        position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px;
+        background-color: white; transition: .2s; border-radius: 50%;
+      }
+      input:checked + .slider { background-color: var(--accent); }
+      input:checked + .slider:before { transform: translateX(20px); }
+      .audio-transcript-box {
+        background: #0b0f17;
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        padding: 1rem;
+        margin-top: 1rem;
+        font-size: 0.92rem;
+      }
+      .audio-waveform {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+        height: 24px;
+        margin: 0.75rem 0;
+      }
+      .wave-bar {
+        width: 3px;
+        height: 8px;
+        background: var(--accent);
+        border-radius: 2px;
+        animation: pulseWave 1s infinite alternate;
+      }
+      @keyframes pulseWave {
+        0% { height: 4px; opacity: 0.4; }
+        100% { height: 22px; opacity: 1; }
+      }
+      .tab-btns {
+        display: flex;
+        gap: 0.5rem;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 0.75rem;
+      }
+      .tab-btn {
+        background: none;
+        border: none;
+        color: var(--muted);
+        padding: 0.45rem 0.85rem;
+        font-size: 0.82rem;
+        cursor: pointer;
+        border-bottom: 2px solid transparent;
+      }
+      .tab-btn.active {
+        color: var(--accent);
+        border-bottom-color: var(--accent);
+        font-weight: 600;
+      }
+      pre {
+        background: #020408;
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        padding: 0.85rem;
+        font-family: ui-monospace, Menlo, monospace;
+        font-size: 0.8rem;
+        color: #e2e8f0;
+        overflow-x: auto;
+        line-height: 1.5;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <div class="brand-title">
+          <a href="/" style="display: flex; align-items: center; gap: 0.5rem; color: var(--text); text-decoration: none;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            GeminiPulse
+          </a>
+          <span style="color: var(--muted);">&bull;</span>
+          <span>Agile Labs</span>
+          <span class="sim-badge">[SIMULATED DEMO]</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <a href="/series/intelligent-eyewear/part-1-google-intelligent-eyewear-breakdown-and-gemini-architecture.html" class="btn-pill">&larr; 3-Part Deep-Dive Series</a>
+          <a href="/" class="btn-pill">Home</a>
+        </div>
+      </header>
+
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h1 style="font-size: clamp(1.6rem, 2.8vw, 2.2rem); margin: 0 0 0.5rem;">Gemini Intelligent Eyewear Studio</h1>
+          <p class="hero-desc">Interactive developer simulation modeling Google's first Intelligent Eyewear lineup (Warby Parker &amp; Gentle Monster) powered by the Gemini Multimodal Live API. Test first-person vision feeds, Guided Vision accessibility, spatial turn-by-turn audio, and edge bystander face redaction.</p>
+        </div>
+        <div style="text-align: right;">
+          <span class="sim-badge" style="display: inline-block; margin-bottom: 0.35rem;">HARDWARE PREVIEW</span>
+          <div style="font-size: 0.85rem; color: var(--muted);">Engineered with Samsung &bull; Dec 10 GA</div>
+        </div>
+      </div>
+
+      <!-- Presets -->
+      <div style="margin-bottom: 1.5rem;">
+        <div style="font-size: 0.82rem; text-transform: uppercase; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 0.4rem;">Select Simulation Scenario</div>
+        <div class="presets-bar">
+          <button class="preset-btn active" id="btn-med" onclick="loadScenario('med')">💊 Guided Vision: Medication Dosage &amp; Safety</button>
+          <button class="preset-btn" id="btn-aira" onclick="loadScenario('aira')">👥 Aira Explorer: Live Human Visual Handoff</button>
+          <button class="preset-btn" id="btn-gear" onclick="loadScenario('gear')">⚙️ Ambient Field Service: "What Am I Looking At?"</button>
+          <button class="preset-btn" id="btn-subway" onclick="loadScenario('subway')">🚇 Tokyo Subway: 70+ Language Audio Translation &amp; Maps</button>
+        </div>
+      </div>
+
+      <div class="grid-main">
+        <!-- Left Column: Frame & Viewport -->
+        <div class="panel">
+          <div class="panel-header">
+            <span class="panel-title">12MP First-Person Camera Viewport</span>
+            <span id="scene-tag" class="sim-badge" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border-color: rgba(56,189,248,0.3);">ACCESSIBILITY • GUIDED VISION</span>
+          </div>
+
+          <!-- Collection Selector -->
+          <div class="frame-selector">
+            <button class="frame-btn active" id="btn-wp" onclick="selectCollection('wp')">Warby Parker (Alden $395)</button>
+            <button class="frame-btn" id="btn-gm" onclick="selectCollection('gm')">Gentle Monster (Bold Red $449)</button>
+          </div>
+
+          <!-- Viewport Box -->
+          <div class="first-person-viewport" id="viewport-box">
+            <div class="hud-top">
+              <div class="led-pill">
+                <span class="led-dot" id="hud-led-dot"></span>
+                <span id="hud-led-text">CAPTURE LED: ACTIVE</span>
+              </div>
+              <div>1080p60 EIS &bull; 12MP HDR</div>
+            </div>
+
+            <div class="hud-center">
+              <div class="reticle" id="hud-reticle">
+                <span style="font-size: 0.72rem; color: var(--accent); font-family: ui-monospace, Menlo, monospace;" id="hud-target-label">OBJECT DETECTED</span>
+              </div>
+              <div class="face-box" id="hud-face-box">
+                <span>BYSTANDER</span>
+                <span style="font-size: 0.55rem;">REDACTED</span>
+              </div>
+              <div style="font-size: 0.88rem; font-weight: 500; text-shadow: 0 2px 4px rgba(0,0,0,0.8);" id="hud-prompt-text">
+                "Hey Gemini, what is the dosage on this prescription bottle?"
+              </div>
+            </div>
+
+            <div class="hud-bottom">
+              <div>LATENCY: <strong id="hud-latency" style="color: #34d399;">182 ms</strong></div>
+              <div>BATTERY: <strong>8.4 HRS (93%)</strong></div>
+              <div>AUDIO: <strong>OPEN-EAR SPATIAL</strong></div>
+            </div>
+          </div>
+
+          <!-- Live Audio Spoken Transcript -->
+          <div class="audio-transcript-box">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 0.78rem; text-transform: uppercase; color: var(--accent); font-weight: 600;">Spoken Audio Response (Gemini Live Transducer)</span>
+              <span style="font-size: 0.75rem; color: var(--muted);" id="voice-name">Voice: Kore (Natural)</span>
+            </div>
+            <div class="audio-waveform">
+              <div class="wave-bar" style="animation-delay: 0.1s;"></div>
+              <div class="wave-bar" style="animation-delay: 0.3s;"></div>
+              <div class="wave-bar" style="animation-delay: 0.2s;"></div>
+              <div class="wave-bar" style="animation-delay: 0.4s;"></div>
+              <div class="wave-bar" style="animation-delay: 0.15s;"></div>
+              <div class="wave-bar" style="animation-delay: 0.5s;"></div>
+              <div class="wave-bar" style="animation-delay: 0.25s;"></div>
+              <div class="wave-bar" style="animation-delay: 0.35s;"></div>
+            </div>
+            <div id="spoken-response-text" style="color: #e2e8f0; font-style: italic;">
+              "This is Amoxicillin 500mg. Take one capsule every 8 hours with food. The bottle expires October 2027."
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Hardware & Privacy Control Plane -->
+        <div class="panel">
+          <div class="panel-header">
+            <span class="panel-title">Hardware Telemetry &amp; Privacy Plane</span>
+            <span class="sim-badge" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border-color: rgba(16,185,129,0.3);">POLICY: ZERO RETENTION</span>
+          </div>
+
+          <div style="margin-bottom: 1.25rem;">
+            <div class="telemetry-row">
+              <span class="telemetry-label">Mechanical Power Switch</span>
+              <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <span id="power-status" style="font-size: 0.8rem; font-weight: 600; color: #34d399;">SMART AI MODE</span>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="power-toggle" checked onchange="togglePower(this.checked)">
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="telemetry-row">
+              <span class="telemetry-label">Bystander Face Redaction</span>
+              <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <span id="redact-status" style="font-size: 0.8rem; font-weight: 600; color: #c084fc;">ACTIVE BLUR</span>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="redact-toggle" checked onchange="toggleRedaction(this.checked)">
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="telemetry-row">
+              <span class="telemetry-label">Capture LED Hardware Interlock</span>
+              <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <span id="led-interlock-status" style="font-size: 0.8rem; font-weight: 600; color: #34d399;">UNOBSTRUCTED</span>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="led-toggle" checked onchange="toggleLedInterlock(this.checked)">
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="telemetry-row">
+              <span class="telemetry-label">Gemini History Storage Policy</span>
+              <span class="telemetry-val" style="color: #34d399;">EPHEMERAL (ZERO RETENTION)</span>
+            </div>
+
+            <div class="telemetry-row">
+              <span class="telemetry-label">AI Model Training Usage</span>
+              <span class="telemetry-val" style="color: #ef4444;">NEVER USED FOR TRAINING</span>
+            </div>
+
+            <div class="telemetry-row">
+              <span class="telemetry-label">Companion OS Pairing</span>
+              <span class="telemetry-val" style="color: var(--accent);">Pixel 10 Pro / Galaxy S26 / iPhone 17</span>
+            </div>
+          </div>
+
+          <!-- Code Export -->
+          <div>
+            <div class="panel-header" style="border-bottom: none; margin-bottom: 0.25rem; padding-bottom: 0;">
+              <span class="panel-title" style="font-size: 0.82rem;">SDK v3.2.0 Live API Blueprint</span>
+              <div class="tab-btns">
+                <button class="tab-btn active" id="tab-ts-btn" onclick="showTab('ts')">TypeScript</button>
+                <button class="tab-btn" id="tab-py-btn" onclick="showTab('py')">Python</button>
+              </div>
+            </div>
+            <pre><code id="code-box">import { GoogleGenAI } from '@google/genai';
+
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+const session = await ai.live.connect({
+  model: 'gemini-omni-1.2-flash',
+  config: {
+    generationConfig: { responseModalities: ['AUDIO'] }
+  }
+});</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const SCENARIOS = {
+        med: {
+          tag: 'ACCESSIBILITY • GUIDED VISION',
+          target: 'PRESCRIPTION LABEL',
+          prompt: '"Hey Gemini, what is the dosage on this prescription bottle?"',
+          spoken: '"This is Amoxicillin 500mg. Take one capsule every 8 hours with food. The bottle expires October 2027."',
+          latency: '182 ms',
+          ts: `import { GoogleGenAI } from '@google/genai';
+
+// Initialize Gen AI SDK v3.2.0 client
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+
+// Connect to Multimodal Live API for Guided Vision
+const session = await ai.live.connect({
+  model: 'gemini-omni-1.2-flash',
+  config: {
+    generationConfig: {
+      responseModalities: ['AUDIO'],
+      speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: 'Kore' } } }
+    },
+    systemInstruction: {
+      parts: [{ text: 'You are the Guided Vision copilot for Google Intelligent Eyewear. Read critical medical dosage labels first.' }]
+    }
+  }
+});`,
+          py: `import asyncio
+from google import genai
+from google.genai import types
+
+client = genai.Client()
+
+async def stream_guided_vision():
+    async with client.aio.live.connect(
+        model="gemini-omni-1.2-flash",
+        config=types.LiveConnectConfig(
+            response_modalities=[types.LiveModality.AUDIO]
+        )
+    ) as session:
+        # Stream 12MP downscaled frame & audio query
+        await session.send(types.LiveClientContent(turns=[
+            types.Content(parts=[types.Part.from_text("What is the dosage on this prescription bottle?")])
+        ], turn_complete=True))
+        async for resp in session.receive():
+            pass`
+        },
+        aira: {
+          tag: 'HUMAN INTERPRETER • AIRA EXPLORER',
+          target: 'AIRPORT TRANSIT GATE',
+          prompt: '"Hey Gemini, open Aira Explorer."',
+          spoken: '"Opening Aira Explorer. Connecting your live 12MP camera feed to visual interpreter Sarah. Audio bridge active."',
+          latency: '215 ms',
+          ts: `// Aira Explorer Integration Handoff
+session.send({
+  realtimeInput: {
+    mediaChunks: [{
+      mimeType: 'application/vnd.aira.handoff',
+      data: Buffer.from(JSON.stringify({ intent: 'HUMAN_INTERPRETER_STREAM' })).toString('base64')
+    }]
+  }
+});`,
+          py: `# Python Aira Explorer Session Handoff
+await session.send(
+    types.LiveClientContent(
+        turns=[types.Content(parts=[types.Part.from_text("Hey Gemini, open Aira Explorer.")])],
+        turn_complete=True
+    )
+)`
+        },
+        gear: {
+          tag: 'FIELD SERVICE • AMBIENT INSPECTION',
+          target: 'PUMP RELAY VALVE B-4',
+          prompt: '"Hey Gemini, what is the torque specification on this fastener?"',
+          spoken: '"Valve B-4 requires 45 foot-pounds with blue Loctite 242. Caution: confirm line is depressurized before torqueing."',
+          latency: '168 ms',
+          ts: `// Field Service Diagnostics with Tool Calling
+const session = await ai.live.connect({
+  model: 'gemini-4-argon',
+  config: {
+    generationConfig: { responseModalities: ['AUDIO'] },
+    tools: [{
+      functionDeclarations: [{
+        name: 'query_schematic',
+        parameters: { type: 'OBJECT', properties: { component: { type: 'STRING' } } }
+      }]
+    }]
+  }
+});`,
+          py: `# Field Service Inspection with Gemini 4 Argon
+async with client.aio.live.connect(
+    model="gemini-4-argon",
+    config=types.LiveConnectConfig(
+        response_modalities=[types.LiveModality.AUDIO],
+        tools=[query_maintenance_ledger]
+    )
+) as session:
+    pass`
+        },
+        subway: {
+          tag: 'GLOBAL TRAVEL • 70+ LANGUAGES & MAPS',
+          target: 'TOKYO METRO MARUNOUCHI LINE',
+          prompt: '"Hey Gemini, how do I get to Shinjuku Station from here?"',
+          spoken: '"Turn 45 degrees left towards Track 2 for the Marunouchi Line. Departure in 3 minutes. Cost is 210 yen."',
+          latency: '194 ms',
+          ts: `// Real-Time Speech Translation & Google Maps Audio
+const session = await ai.live.connect({
+  model: 'gemini-omni-1.2-flash',
+  config: {
+    generationConfig: { responseModalities: ['AUDIO'] },
+    systemInstruction: { parts: [{ text: 'Deliver spatial audio navigation cues and translate signs in 70+ languages.' }] }
+  }
+});`,
+          py: `# Real-Time Audio Translation & Spatial Navigation
+async with client.aio.live.connect(
+    model="gemini-omni-1.2-flash",
+    config=types.LiveConnectConfig(
+        response_modalities=[types.LiveModality.AUDIO]
+    )
+) as session:
+    pass`
+        }
+      };
+
+      let currentScenario = 'med';
+      let currentTab = 'ts';
+      let currentBrand = 'wp';
+
+      function loadScenario(key) {
+        currentScenario = key;
+        document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(`btn-${key}`).classList.add('active');
+
+        const s = SCENARIOS[key];
+        document.getElementById('scene-tag').innerText = s.tag;
+        document.getElementById('hud-target-label').innerText = s.target;
+        document.getElementById('hud-prompt-text').innerText = s.prompt;
+        document.getElementById('spoken-response-text').innerText = s.spoken;
+        document.getElementById('hud-latency').innerText = s.latency;
+        renderCode();
+      }
+
+      function selectCollection(brand) {
+        currentBrand = brand;
+        document.querySelectorAll('.frame-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(`btn-${brand}`).classList.add('active');
+      }
+
+      function togglePower(enabled) {
+        const text = document.getElementById('power-status');
+        const viewport = document.getElementById('viewport-box');
+        const ledDot = document.getElementById('hud-led-dot');
+        const ledText = document.getElementById('hud-led-text');
+
+        if (enabled) {
+          text.innerText = 'SMART AI MODE';
+          text.style.color = '#34d399';
+          viewport.style.opacity = '1';
+          ledDot.className = 'led-dot';
+          ledText.innerText = 'CAPTURE LED: ACTIVE';
+        } else {
+          text.innerText = '100% PASSIVE OPTICAL';
+          text.style.color = '#9da4b8';
+          viewport.style.opacity = '0.35';
+          ledDot.className = 'led-dot safe';
+          ledText.innerText = 'CAMERA SEVERED (OFF)';
+        }
+      }
+
+      function toggleRedaction(enabled) {
+        const text = document.getElementById('redact-status');
+        const faceBox = document.getElementById('hud-face-box');
+        if (enabled) {
+          text.innerText = 'ACTIVE BLUR';
+          text.style.color = '#c084fc';
+          faceBox.className = 'face-box';
+          faceBox.innerHTML = '<span>BYSTANDER</span><span style="font-size:0.55rem;">REDACTED</span>';
+        } else {
+          text.innerText = 'UNBLURRED (NON-COMPLIANT)';
+          text.style.color = '#ef4444';
+          faceBox.className = 'face-box unblurred';
+          faceBox.innerHTML = '<span>BYSTANDER</span><span style="font-size:0.55rem;">UNSAFE</span>';
+        }
+      }
+
+      function toggleLedInterlock(unobstructed) {
+        const text = document.getElementById('led-interlock-status');
+        const ledDot = document.getElementById('hud-led-dot');
+        const ledText = document.getElementById('hud-led-text');
+        const reticle = document.getElementById('hud-reticle');
+
+        if (unobstructed) {
+          text.innerText = 'UNOBSTRUCTED';
+          text.style.color = '#34d399';
+          ledDot.className = 'led-dot';
+          ledText.innerText = 'CAPTURE LED: ACTIVE';
+          reticle.style.borderColor = 'rgba(56, 189, 248, 0.4)';
+        } else {
+          text.innerText = 'OBSTRUCTED / CUTOFF';
+          text.style.color = '#ef4444';
+          ledDot.className = 'led-dot blocked';
+          ledText.innerText = 'TAMPER DETECTED: CUTOFF';
+          reticle.style.borderColor = '#ef4444';
+        }
+      }
+
+      function showTab(tab) {
+        currentTab = tab;
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(`tab-${tab}-btn`).classList.add('active');
+        renderCode();
+      }
+
+      function renderCode() {
+        const s = SCENARIOS[currentScenario];
+        const codeBox = document.getElementById('code-box');
+        codeBox.innerText = currentTab === 'ts' ? s.ts : s.py;
+      }
+
+      // Initial render
+      loadScenario('med');
+    </script>
+  </body>
+</html>

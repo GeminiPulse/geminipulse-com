@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-11-11 17:45 EST — ROUND 33 5:45 PM ET CURATION COMPLETE: Verified Google DeepMind Gemini Decisions API Launch (Gemini Decision 1, $0.10/1M, 0 Output Tokens, 3-Part Deep-Dive Series + Agile Labs Decisions Studio [DEMO]), Gen AI SDK v3.2.0 GA (client.decisions.create & BYOS Environments) & Google Cloud Tech Multimodal Agent Video of the Day`
+> **Last touched:** `2026-11-12 12:45 EST — ROUND 34 12:45 PM ET CURATION COMPLETE: Verified Google Intelligent Eyewear Pre-Orders Launch (Warby Parker, Gentle Monster, Samsung, 12MP Camera, 3-Part Deep-Dive Series + Agile Labs Eyewear Studio [DEMO]), DeepMind AlphaGenome 2 (107M+ Cells) & Android Authority Intelligent Eyewear Video of the Day`
 
 ---
 
