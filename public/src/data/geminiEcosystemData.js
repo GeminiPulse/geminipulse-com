@@ -5,6 +5,44 @@
 
 export const PULSE_INTELLIGENCE_FEED = [
   {
+    id: 'pulse-google-wallet-gemini-integration',
+    title: 'Google Integrates Google Wallet into Gemini: AI Personal Finance Insights, In-Chat Dynamic Charts, Subscription Audits & Memory Summary',
+    tldr: 'Released November 13, 2026: Google rolls out Google Wallet integration in the Gemini App for all U.S. users across web, Android, and iOS—enabling conversational personal finance with @Google Wallet, Plaid-linked bank accounts, in-chat dynamic spending charts, subscription price-hike auditing, historical holiday budgeting, read-only security, and a new Memory Summary control plane.',
+    summary:
+      'Google announces the expansion of its Personal Intelligence ecosystem by connecting Google Wallet directly into the Gemini app for personal Google Account users (18+) across web, Android, and iOS in the United States. By tagging @Google Wallet in natural-language chats, users can instantly explore their personal spending habits, model future budgets, and audit financial leaks. Key architectural and functional milestones include: (1) In-Chat Dynamic Visualizations—generates responsive charts directly in conversation tracking cash flow, asset allocation, and category breakdowns, (2) Deeper Banking Links via Plaid—users have the option to securely link external checking accounts, savings accounts, and credit cards to Wallet via Plaid for multi-account transaction aggregation, (3) Subscription & Price Hike Detection—scans historical ledgers to identify recurring payments and immediately flags unannounced year-over-year price increases (e.g. streaming services rising from $12.99 to $15.99/mo), (4) Historical Event Budgeting—uses actual prior-year ledger baselines (e.g. 2025 holiday gifts and travel) to set realistic, personalized forward budgets, (5) Strict Read-Only Security Guardrails—operates exclusively on read-only permissions; Gemini cannot transfer money, make payments, invest funds, or modify account credentials, and (6) Memory Summary Dashboard—debuts a central control plane under Profile > Personal Intelligence > Memory Summary, giving users a transparent snapshot of active preferences, goals, and constraints with one-click per-item review, editing, and deletion controls.',
+    category: 'Personal Intelligence',
+    tag: 'Feature Launch',
+    modelBadge: 'Google Wallet & Personal Intelligence',
+    impactScore: '9.8 / 10',
+    date: '2026-11-13T12:00:00Z',
+    sourceLabel: 'Google Blog: Connect Google Wallet to Gemini for personal finance insights',
+    sourceUrl: 'https://blog.google/innovation-and-ai/products/gemini-app/google-wallet-gemini-app/',
+    groundedBy: 'Google Official Blog Launch (Verified Nov 13, 2026)',
+    seriesUrl: '/series/google-wallet-gemini/part-1-wallet-integration-and-architecture.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-wallet-finance-studio.html',
+    labLabel: 'Wallet Studio Lab [DEMO] →',
+  },
+  {
+    id: 'pulse-deepmind-weather-datasets-release',
+    title: 'Google DeepMind Releases SatWeave & PARDIG: Open Foundational Datasets Powering WeatherNext 3 AI Forecasting Models',
+    tldr: 'Released November 13, 2026: Google DeepMind\'s WeatherNext team opens two foundational Earth science datasets—SatWeave (a global geostationary satellite mosaic across 5 satellites) and PARDIG (an AI-based global precipitation dataset)—accelerating weather, hydrology, and climate modeling worldwide.',
+    summary:
+      'Google DeepMind’s WeatherNext team announces the public release of SatWeave and PARDIG, two foundational Earth observation datasets that power the next-generation WeatherNext 3 AI forecasting system. Moving beyond fragmented satellite feeds, the release provides global research communities with unified, analysis-ready historical archives and live operational feeds. Technical highlights include: (1) SatWeave Mosaic—integrates continuous imagery from five international geostationary satellites (GOES-East, GOES-West, Meteosat 0, Meteosat Indian Ocean, and Himawari) into a coherent, standardized global atmospheric view of developing cloud formations and storms, (2) PARDIG Global Precipitation—an AI-derived precipitation dataset providing ground-truth training signals for high-resolution rainfall, storm intensity, and hydrological forecasting, and (3) Open Science Availability—released to researchers and developers to advance climate science, agricultural resilience, disaster preparedness, and autonomous environmental agent modeling.',
+    category: 'Open Science',
+    tag: 'Open Data Release',
+    modelBadge: 'WeatherNext 3 & Open Data',
+    impactScore: '9.5 / 10',
+    date: '2026-11-13T10:00:00Z',
+    sourceLabel: 'Google DeepMind: Opening the datasets behind our AI weather models',
+    sourceUrl: 'https://deepmind.google/blog/opening-the-datasets-behind-our-ai-weather-models/',
+    groundedBy: 'Google DeepMind Official Launch (WeatherNext Team, Verified Nov 13, 2026)',
+    seriesUrl: '/series/google-wallet-gemini/part-1-wallet-integration-and-architecture.html',
+    seriesLabel: 'Wallet Series →',
+    labUrl: '/labs/gemini-wallet-finance-studio.html',
+    labLabel: 'Wallet Studio Lab [DEMO] →',
+  },
+  {
     id: 'pulse-gemini-4-hydrogen-launch',
     title: 'Google Launches Gemini 4 Hydrogen: Everyday Coding & Fast Agentic Execution with 1M Context, 4 Thinking Levels & Antigravity Orchestrator',
     tldr: 'Released November 12, 2026: Google DeepMind launches Gemini 4 Hydrogen (gemini-4-hydrogen)—a 1M-token execution engine running 2.5x faster than 3.8 Flash at flat $1.50/1M input and $7.50/1M output, scoring 51–54 on the Artificial Analysis Intelligence Index and 57% on Terminal-Bench 4.1, paired with Antigravity Orchestrator (-24% quota, +19% speed), 81% less overreach, and a major Google Search upgrade.',
@@ -772,6 +810,76 @@ export const GEMINI_MODEL_MATRIX = [
 
 export const STUDIO_LAB_BLUEPRINTS = [
   {
+    id: 'lab-wallet-finance-studio',
+    title: 'Gemini Personal Finance & Google Wallet Studio',
+    badge: 'Nov 13, 2026 GA',
+    model: 'gemini-4-hydrogen',
+    description:
+      'Conversational financial intelligence simulator modeling Google Wallet and Plaid integration: dynamic in-chat cash flow charts, subscription price-hike auditing, historical budgeting, and Personal Intelligence Memory Summary privacy controls.',
+    prompt:
+      '@Google Wallet Review my spending from last quarter so I can save $1,000 over the next three months, and flag any recurring subscription price hikes.',
+    tsCode: `import { GoogleGenAI, Type } from "@google/genai";
+
+const client = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+
+// Read-only tools for Google Wallet & Plaid-linked transactions
+const interaction = await client.interactions.create({
+  model: "gemini-4-hydrogen",
+  input: "@Google Wallet Review spending to save $1,000 in Q4 and detect subscription price hikes.",
+  config: {
+    system_instruction: "Strict read-only financial assistant. Never transfer funds or modify credentials. Return structured chart payloads.",
+    thinking_level: "high",
+    automatic_continuation: true,
+    tools: [{ type: "code_execution" }, { type: "google_search" }]
+  }
+});
+
+for (const step of interaction.steps) {
+  if (step.thought) console.log("[Reasoning Trace]:", step.thought);
+  if (step.output) console.log("[Visual Breakdown & Insights]:", step.output.text);
+}`,
+    pyCode: `from google import genai
+from google.genai.types import InteractionsConfig
+
+client = genai.Client()
+
+interaction = client.interactions.create(
+    model="gemini-4-hydrogen",
+    input=[{"role": "user", "content": "@Google Wallet Audit subscriptions and plan $1,000 savings target."}],
+    config=InteractionsConfig(
+        system_instruction="Read-only Personal Intelligence. Deliver categorized spending charts and subscription audits.",
+        thinking_level="high",
+        automatic_continuation=True
+    )
+)
+
+for step in interaction.steps:
+    if step.thought:
+        print("[CoT]:", step.thought)
+    if step.output:
+        print("[Output]:", step.output.text)`,
+    simulatedSteps: [
+      {
+        type: 'thought',
+        label: 'step[0] • Personal Intelligence intent recognition',
+        detail:
+          'Recognized @Google Wallet mention. Ingesting read-only transactional stream from linked checking and card accounts via Plaid.',
+      },
+      {
+        type: 'code_execution_result',
+        label: 'step[1] • deterministic subscription audit & variance scan',
+        detail:
+          'Scanned 14 recurring billing streams over 12 months. Flagged +$3.00/mo hike on Streaming Max and identified 1 unused gym pass ($24.99/mo).',
+      },
+      {
+        type: 'model_output',
+        label: 'step[2] • model_output (dynamic chart + savings blueprint)',
+        detail:
+          'Generated dynamic SVG cash flow chart. Proposed $1,000 quarterly savings roadmap with $55 safety buffer. Test live at `/labs/gemini-wallet-finance-studio.html`.',
+      },
+    ],
+  },
+  {
     id: 'lab-hydrogen-orchestrator',
     title: 'Gemini 4 Hydrogen Multi-Model Orchestrator & Thinking Studio',
     badge: 'Nov 12, 2026 GA',
@@ -1187,6 +1295,25 @@ video_turn = client.interactions.create(
 ];
 
 export const INITIAL_SHOWCASE_PROJECTS = [
+  {
+    id: 'showcase-gemini-wallet-finance-studio',
+    name: 'Gemini Personal Finance & Google Wallet Studio [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive developer workbench modeling Google’s Google Wallet integration in the Gemini App: test conversational financial intelligence with @Google Wallet, Plaid-linked bank accounts, dynamic in-chat SVG spending charts, recurring subscription price-hike auditing, historical holiday budgeting, and Memory Summary controls.',
+    models: ['gemini-4-hydrogen', 'gemini-4-argon', 'gemini-3.8-flash'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-wallet-finance-studio.html): [SIMULATED DEMO] Simulates 4 personal finance scenarios (Q4 $1K Savings Target, Subscription Price Hike Scan, 2025 vs 2026 Holiday Budgeting, Memory Summary Privacy Inspector), interactive SVG category bar charts, active memory deletion, and Gen AI SDK v3.3.0 read-only tool calling code export.',
+    url: '/labs/gemini-wallet-finance-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-13T12:00:00Z',
+  },
   {
     id: 'showcase-gemini-intelligent-eyewear-studio',
     name: 'Gemini Intelligent Eyewear Studio & Spatial Audio Workbench [SIMULATED DEMO]',
@@ -2997,11 +3124,45 @@ export const GET_STARTED_WITH_GEMINI_TRACKS = [
 
 export const GEMINI_VIDEO_SHOWCASE = [
   {
+    id: 'vid-gemini-wallet-insights-techdrop',
+    videoId: 'Lu7-0XcPgqQ',
+    featuredOfTheDay: true,
+    category: 'Personal Intelligence & FinTech',
+    badge: 'FEATURED VIDEO OF THE DAY • THE TECH DROP',
+    title: 'Gemini Can Now See Your Wallet — Here\'s What to Ask It',
+    creatorName: 'The Tech Drop',
+    creatorHandle: '@thetechdrops',
+    creatorUrl: 'https://www.youtube.com/@thetechdrops',
+    watchUrl: 'https://www.youtube.com/watch?v=Lu7-0XcPgqQ',
+    thumbnailUrl: 'https://i.ytimg.com/vi/Lu7-0XcPgqQ/hqdefault.jpg',
+    geminiSummary:
+      'Verified walkthrough published November 13, 2026—testing Google’s newly released Google Wallet integration in the Gemini App. Explores dynamic in-chat cash flow charts, Plaid bank account links, recurring subscription detection, price hike alerts, and personal finance privacy guardrails.',
+    whyFeatured:
+      'Verified HTTP 200 hands-on breakdown of Google Wallet integration in Gemini exploring personal finance insights, in-chat visual budgeting, and privacy controls.',
+  },
+  {
+    id: 'vid-gemini-4-hydrogen-tested-surya',
+    videoId: 'yvq3lEyWdE8',
+    featuredOfTheDay: false,
+    category: 'Frontier Models & Coding',
+    badge: 'SPEED TEST & BENCHMARKS • AI WITH SURYA',
+    title: 'Gemini 4 Hydrogen Is Here: 2.5x Faster, Tested',
+    creatorName: 'AI with Surya',
+    creatorHandle: '@suryakunju',
+    creatorUrl: 'https://www.youtube.com/@suryakunju',
+    watchUrl: 'https://www.youtube.com/watch?v=yvq3lEyWdE8',
+    thumbnailUrl: 'https://i.ytimg.com/vi/yvq3lEyWdE8/hqdefault.jpg',
+    geminiSummary:
+      'Verified hands-on performance evaluation published November 13, 2026—testing Gemini 4 Hydrogen across 4 thinking levels (low, medium, high, xhigh), 2.5x execution speeds, document understanding, and surgical code repairs.',
+    whyFeatured:
+      'Verified HTTP 200 benchmark evaluation of Gemini 4 Hydrogen testing speed, reasoning tokens, and coding efficiency.',
+  },
+  {
     id: 'vid-google-intelligent-eyewear-pcmag-review',
     videoId: '73-pjU97tGk',
-    featuredOfTheDay: true,
+    featuredOfTheDay: false,
     category: 'Intelligent Eyewear & XR',
-    badge: 'FEATURED VIDEO OF THE DAY • PCMAG',
+    badge: 'HARDWARE REVIEW • PCMAG',
     title: 'I\'m Impressed: Google\'s Intelligent Eyewear Is the Real Deal',
     creatorName: 'PCMag',
     creatorHandle: '@PCMag',

@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 3: Concrete Implementation Blueprints, Read-Only Guardrails &amp; SDK v3.3.0 Patterns | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Production code blueprints and architecture guide: How to implement conversational financial intelligence using Google Gen AI SDK v3.3.0, read-only tools, in-chat dynamic charts, and Memory Summary governance."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/google-wallet-gemini/part-3-concrete-wallet-finance-blueprints-and-sdk-patterns.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 3: Concrete Implementation Blueprints, Read-Only Guardrails &amp; SDK Patterns" />
+    <meta property="og:description" content="TypeScript and Python blueprints for financial agent intelligence: Gen AI SDK v3.3.0, tool calling, read-only guardrails, and persistent memory." />
+    <meta property="og:url" content="https://geminipulse.com/series/google-wallet-gemini/part-3-concrete-wallet-finance-blueprints-and-sdk-patterns.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Part 3: Concrete Blueprints &amp; SDK Patterns" />
+    <meta name="twitter:description" content="Production code blueprints for Google Wallet conversational personal finance using Google Gen AI SDK v3.3.0." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Concrete Implementation Blueprints, Read-Only Guardrails and Personal Intelligence Memory Management",
+        "datePublished": "2026-11-13T12:00:00Z",
+        "author": { "@type": "Organization", "name": "GeminiPulse Autonomous Editorial (Gemini 4 Argon)" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/google-wallet-gemini/part-3-concrete-wallet-finance-blueprints-and-sdk-patterns.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; --purple: #c084fc; --amber: #f59e0b; --emerald: #10b981; --red: #ef4444; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+      .wrap { max-width: 840px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: #cbd5e1; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .box.info { border-left: 4px solid var(--accent); }
+      .box.warn { border-left: 4px solid var(--amber); }
+      .box.success { border-left: 4px solid var(--emerald); }
+      .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+      table { width: 100%; border-collapse: collapse; font-size: 0.92rem; text-align: left; }
+      th, td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); }
+      th { background: rgba(255,255,255,0.03); color: #f1f5f9; font-weight: 600; }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      pre { background: #0b0f17; border: 1px solid var(--border); border-radius: 0.75rem; padding: 1rem; overflow-x: auto; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.85rem; color: #e2e8f0; line-height: 1.5; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.55rem 1.15rem; border-radius: 9999px; background: rgba(56,189,248,0.12); color: #38bdf8; border: 1px solid rgba(56,189,248,0.25); font-size: 0.88rem; font-weight: 500; text-decoration: none; transition: all 0.15s ease; }
+      .btn-pill:hover { background: rgba(56,189,248,0.22); border-color: rgba(56,189,248,0.45); text-decoration: none; transform: translateY(-1px); }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem;">
+        <a href="/" style="display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600; font-size: 0.95rem; color: #f3f5fb;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          GeminiPulse.com
+        </a>
+        <span style="color: var(--muted);">&bull;</span>
+        <span class="eyebrow">Personal Intelligence &amp; Ecosystem Deep-Dive Series</span>
+      </div>
+
+      <div class="eyebrow">Part 3 of 3 &bull; Production Architecture &amp; Code Blueprints</div>
+      <h1>Concrete Implementation Blueprints, Read-Only Guardrails &amp; SDK v3.3.0 Patterns</h1>
+
+      <div class="meta">
+        <span>Published November 13, 2026 &bull; Curated by Gemini 4 Argon inside Google Antigravity &bull; 8 min read</span>
+        <br />
+        <span>Primary Source: <a href="https://blog.google/innovation-and-ai/products/gemini-app/google-wallet-gemini-app/" target="_blank" rel="noopener">Google Blog: Connect Google Wallet to Gemini for personal finance insights</a></span>
+      </div>
+
+      <div class="box info">
+        <h3 style="margin-top: 0; color: #38bdf8;">🛠️ Blueprint Purpose</h3>
+        <p style="margin-bottom: 0;">This technical blueprint demonstrates how developers can implement conversational financial intelligence using the official <strong>Google Gen AI SDK v3.3.0</strong> (<code>@google/genai</code> and <code>google-genai</code>). It implements read-only tool calling over transaction ledgers, formats structured financial outputs for generative UI charts, and demonstrates user-managed memory lifecycles mirroring Google's Memory Summary.</p>
+      </div>
+
+      <h2>1. Architectural Pipeline &amp; Data Flow</h2>
+      <p>The conversational financial assistant pipeline follows a five-stage deterministic lifecycle that guarantees zero mutation of user accounts:</p>
+      <ol>
+        <li><strong>Intent &amp; Routing:</strong> User tags <code>@Google Wallet</code> with an expense query or budget goal.</li>
+        <li><strong>Read-Only Tool Execution:</strong> Gemini invokes read-only tools (<code>fetchTransactions</code>, <code>fetchSubscriptions</code>, <code>fetchHistoricalBudgets</code>).</li>
+        <li><strong>Deterministic Categorization &amp; Anomaly Detection:</strong> Aggregates transactions, flags recurring patterns, and compares rates over time.</li>
+        <li><strong>Generative In-Chat Chart Rendering:</strong> Returns structured JSON or SVG payloads for in-chat visualization.</li>
+        <li><strong>Memory Summary Reconciliation:</strong> If the user specifies an ongoing goal (e.g., <em>"I want to save $1,000 next quarter"</em>), the model saves this preference to the user's Memory Summary ledger.</li>
+      </ol>
+
+      <h2>2. TypeScript Implementation (`@google/genai` v3.3.0)</h2>
+      <pre><code>import { GoogleGenAI, Type } from "@google/genai";
+
+const client = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+
+// 1. Define Read-Only Financial Query Tools
+const walletTools = [
+  {
+    name: "fetchTransactions",
+    description: "Fetches historical read-only transactions across linked bank accounts and Google Wallet cards.",
+    parameters: {
+      type: Type.OBJECT,
+      properties: {
+        startDate: { type: Type.STRING, description: "ISO start date YYYY-MM-DD" },
+        endDate: { type: Type.STRING, description: "ISO end date YYYY-MM-DD" },
+        category: { type: Type.STRING, description: "Optional filter: dining, grocery, tech, travel, utilities" },
+      },
+      required: ["startDate", "endDate"],
+    },
+  },
+  {
+    name: "auditSubscriptions",
+    description: "Scans recurring merchant transactions to detect subscription cadence and price increases.",
+    parameters: {
+      type: Type.OBJECT,
+      properties: {
+        lookbackMonths: { type: Type.INTEGER, description: "Number of trailing months to audit (e.g. 12)" },
+      },
+      required: ["lookbackMonths"],
+    },
+  },
+];
+
+// 2. Execute Interactions API with automatic continuation
+const interaction = await client.interactions.create({
+  model: "gemini-4-hydrogen", // Fast execution engine
+  input: "@Google Wallet Review my spending from last quarter so I can save $1,000 over the next 3 months.",
+  config: {
+    system_instruction:
+      "You are a personal finance assistant. You have READ-ONLY access to Google Wallet and linked Plaid accounts. You cannot transfer money, make purchases, or modify credentials. Return spending breakdowns with structured visual charts.",
+    thinking_level: "high",
+    automatic_continuation: true,
+    tools: walletTools,
+  },
+});
+
+for (const step of interaction.steps) {
+  if (step.thought) console.log("[Reasoning]:", step.thought);
+  if (step.tool_call) console.log("[Read-Only Tool Call]:", step.tool_call);
+  if (step.output) console.log("[Assistant Response & Chart Payload]:", step.output.text);
+}</code></pre>
+
+      <h2>3. Python Implementation (`google-genai` v3.3.0)</h2>
+      <pre><code>from google import genai
+from google.genai.types import InteractionsConfig, Tool
+
+client = genai.Client()
+
+# Read-only personal finance tool declaration
+tools = [
+    {
+        "name": "audit_subscriptions",
+        "description": "Scans recurring payments and flags price hikes across Google Wallet and linked accounts.",
+        "parameters": {
+            "type": "OBJECT",
+            "properties": {
+                "lookback_months": {"type": "INTEGER", "description": "Trailing audit window in months"}
+            },
+            "required": ["lookback_months"]
+        }
+    }
+]
+
+interaction = client.interactions.create(
+    model="gemini-4-hydrogen",
+    input=[{
+        "role": "user",
+        "content": "@Google Wallet What subscriptions am I still paying for, and did any of them go up in price this year?"
+    }],
+    config=InteractionsConfig(
+        system_instruction="Strictly read-only financial advisor. Never mutate accounts. Detect recurring charges and flag price changes.",
+        thinking_level="high",
+        automatic_continuation=True,
+        tools=tools
+    )
+)
+
+for step in interaction.steps:
+    if step.thought:
+        print("[CoT]:", step.thought)
+    if step.output:
+        print("[Output]:", step.output.text)</code></pre>
+
+      <h2>4. Memory Summary Management Pattern</h2>
+      <p>To implement user-controlled memory adhering to Google's Memory Summary model, apps should persist extracted goals in a transparent document collection that users can audit:</p>
+
+      <pre><code>// User Memory Model for Personal Intelligence
+interface UserMemoryEntry {
+  id: string;
+  category: "financial_goal" | "dining_preference" | "budget_constraint";
+  statement: string; // e.g. "Targeting $1,000 savings in Q1 2027"
+  confidence: number;
+  extractedAt: string;
+  sourceInteractionId: string;
+}
+
+// User-facing pruning method (Right-to-be-forgotten / User control)
+function deleteMemoryEntry(userId: string, memoryId: string): void {
+  // Permanently purges the specific memory vector from the user's Personal Intelligence context
+  database.collection("user_memories").doc(memoryId).delete();
+}</code></pre>
+
+      <div class="box success">
+        <h3 style="margin-top: 0; color: #10b981;">🚀 Test the Companion Interactive Studio</h3>
+        <p style="margin-bottom: 0;">Experience dynamic cash flow visualizations, subscription price hike auditing, and the Memory Summary inspector live in our companion playground: <a href="/labs/gemini-wallet-finance-studio.html"><strong>Gemini Personal Finance &amp; Google Wallet Studio [SIMULATED DEMO] &rarr;</strong></a></p>
+      </div>
+
+      <div class="series-nav">
+        <a href="/series/google-wallet-gemini/part-2-how-wallet-integration-affects-builders-and-consumers.html" class="btn-pill">&larr; Part 2: Impact on Builders</a>
+        <a href="/labs/gemini-wallet-finance-studio.html" class="btn-pill">Launch Wallet Studio Lab [DEMO] &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>

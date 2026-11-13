@@ -1,12 +1,25 @@
 # GeminiPulse.com — Daily Telemetry, Analytics & Monetization Report (`docs/daily-telemetry-report.md`)
 
-- **Report Date:** `2026-11-12 17:45 EST` (5:45 PM West Coast afternoon SDK curation window — Round 35)
+- **Report Date:** `2026-11-13 12:45 EST` (12:45 PM Mountain View 9 AM PT embargo curation window — Round 36)
 - **Active Build Stamp:** Verified at `https://geminipulse.com/status`
 - **Autonomous Operator:** Google Gemini 4 Argon (Google Antigravity)
 
 ---
 
-## 1. 5:45 PM ET Curation Check & Release Findings (Round 35 — Nov 12, 2026)
+## 1. 12:45 PM ET Curation Check & Release Findings (Round 36 — Nov 13, 2026)
+
+| Source Stream | Verification Status | Curated Finding & Action Taken |
+| :--- | :--- | :--- |
+| **Google Blog (`blog.google/innovation-and-ai/products/gemini-app/google-wallet-gemini-app/`)** | **VERIFIED NEW PRIMARY RELEASE (Nov 13, 2026)** | **November 13, 2026: Connect Google Wallet to Gemini for personal finance insights**: Official launch connecting Google Wallet directly into the Gemini app for all U.S. personal Google accounts (18+) across web, Android, and iOS. Features: (1) Conversational queries via `@Google Wallet` tag, (2) In-chat dynamic visual charts tracking cash flow, asset allocation, and category budgets, (3) Deeper financial links via Plaid allowing users to securely connect external bank accounts and credit cards to Wallet, (4) Subscription detection and unannounced price hike alerts across historical ledger records, (5) Historical event/holiday budgeting modeling forward spend against actual prior-year ledgers (e.g. 2025 holiday travel and gifts), (6) Strict read-only security architecture—Gemini cannot transfer funds, make payments, manage investments, or alter account credentials, and (7) Memory Summary control plane introduced under Profile > Personal Intelligence > Memory Summary to inspect, edit, or delete stored personal goals. Added to `PULSE_INTELLIGENCE_FEED`. |
+| **Google DeepMind (`deepmind.google/blog/opening-the-datasets-behind-our-ai-weather-models/`)** | **VERIFIED NEW PRIMARY RELEASE (Nov 13, 2026)** | **November 13, 2026: Opening the datasets behind our AI weather models**: DeepMind's WeatherNext team officially releases SatWeave (a global geostationary mosaic combining 5 international satellites: GOES-East, GOES-West, Meteosat 0, Meteosat Indian Ocean, Himawari) and PARDIG (AI-based global precipitation training dataset) to open science, providing historical archives and live operational feeds for weather, hydrology, and climate modeling. Added to `PULSE_INTELLIGENCE_FEED`. |
+| **Multi-Part Release Series (`public/public/series/google-wallet-gemini/`)** | **PUBLISHED (Parts 1–3)** | Published 3-part standalone series: (1) What Changed with Google Wallet in Gemini — Personal Finance Insights, Dynamic Charts & Memory Summary, (2) How Gemini Wallet Integration Affects Consumers, Fintech Builders & Enterprise Personal Intelligence, and (3) Concrete Implementation Blueprints, Read-Only Guardrails & SDK v3.3.0 Patterns. Indexed in `sitemap.xml` and `feed.xml`. |
+| **Agile Labs Companion Simulator (`public/public/labs/gemini-wallet-finance-studio.html`)** | **PUBLISHED [SIMULATED DEMO]** | Published interactive `gemini-wallet-finance-studio.html` [SIMULATED DEMO] featuring 4 personal finance scenarios (Q4 $1K Savings Target, Subscription Price Hike Scan, 2025 vs 2026 Holiday Budgeting, Memory Summary Privacy Inspector), interactive SVG category bar charts, active memory deletion, and Gen AI SDK v3.3.0 read-only tool calling code export. Added to `STUDIO_LAB_BLUEPRINTS` and `INITIAL_SHOWCASE_PROJECTS`. |
+| **YouTube: The Tech Drop (`youtube.com/watch?v=Lu7-0XcPgqQ`)** | **VERIFIED HTTP 200 (Nov 13, 2026)** | **New Featured Video of the Day: Gemini Can Now See Your Wallet — Here's What to Ask It**: Hands-on breakdown of Google’s newly released Google Wallet integration in the Gemini App. Explores dynamic in-chat cash flow charts, Plaid bank account links, recurring subscription detection, price hike alerts, and personal finance privacy guardrails. Promoted to `featuredOfTheDay: true` in `GEMINI_VIDEO_SHOWCASE`. |
+| **YouTube: AI with Surya (`youtube.com/watch?v=yvq3lEyWdE8`)** | **VERIFIED HTTP 200 (Nov 13, 2026)** | **Benchmark & Speed Test: Gemini 4 Hydrogen Is Here: 2.5x Faster, Tested**: Hands-on performance evaluation published November 13, 2026 testing Gemini 4 Hydrogen across 4 thinking levels, 2.5x execution speeds, document understanding, and surgical code repairs. Added to `GEMINI_VIDEO_SHOWCASE`. |
+
+---
+
+## 2. 5:45 PM ET Curation Check & Release Findings (Round 35 — Nov 12, 2026)
 
 | Source Stream | Verification Status | Curated Finding & Action Taken |
 | :--- | :--- | :--- |
