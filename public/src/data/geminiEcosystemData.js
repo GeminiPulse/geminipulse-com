@@ -5,6 +5,25 @@
 
 export const PULSE_INTELLIGENCE_FEED = [
   {
+    id: 'pulse-google-research-antigravity-teamwork-science',
+    title: 'Google Research Unveils /teamwork in Antigravity: Multi-Agent Systems Solving Open Problems in Math, Formal Verification, Chemistry & Systems Engineering',
+    tldr: 'Released November 13, 2026: Google Research VP Vahab Mirrokni details breakthrough results from Antigravity\'s /teamwork multi-agent architecture across Gemini 4 Argon, Carbon, and Hydrogen—proving the Courtade–Kumar conjecture (50M lines of Lean 4), machine-checking the Weil conjectures and 3D Navier-Stokes blowup, achieving 95% NMR molecular chemistry accuracy, rewriting Fuchsia Zircon (800k lines) and dav1d into safe Rust (+20-30% speedup), saving >1 PiB fleet RAM, and opening 6-month free tier access to 10,000 academic researchers.',
+    summary:
+      'Google Fellow and VP of Google Research Vahab Mirrokni details landmark scientific and systems engineering results achieved by Antigravity\'s /teamwork multi-agent systems built on Gemini 4 Argon, Carbon, and Hydrogen. Collaborating with leading academic researchers (CUHK, Columbia, MIT, UCSD, CMU, Princeton, UC Berkeley, UPenn, ETH-ITS), /teamwork resolves fundamental limits of single foundation models by combining parallel candidate exploration with dedicated deterministic falsifiers (Lean 4 proof checkers, physics simulators, unmodified test suites, and hardware counters) and context partitioning by construction. Key milestones include: (1) Frontier Mathematics & CS—proves and machine-checks the Courtade–Kumar conjecture in full generality (50M lines of Lean 4 code), resolves a 2014 open problem in adaptive data analysis, pins down Boolean function quantum queries, breaks the 50-year barrier for combinatorial Boolean matrix multiplication and triangle detection (resolving STOC 2024\'s main open problem), breaks classical matrix sparsity barriers (√log d nonzeros/row), and advances Tarjan\'s 1985 deque conjecture, (2) Deep-LEAP & Deep Review—fully autonomously machine-checks Pierre Deligne\'s 1974 proof of the Weil conjectures (1.8M lines of Lean 4 across 28,800 subagent invocations), Fermat\'s Last Theorem over general rings (919k lines of Lean), 3D Navier–Stokes finite-time blowup (~90-year problem area), and the 3D Bochner–Riesz conjecture, while Deep Review peer review auditing (578 conference drafts evaluated) caught substantive proof bugs in >30% of submissions, (3) NMR Molecular Chemistry—30 specialized agents in a self-correcting loop with physics spectral simulators achieved 95% top-1 exact match and 100% top-3 accuracy predicting 3D structures from experimental NMR data (nearly doubling single-agent accuracy), (4) Memory-Safe Systems & Rust Rewrites—rewrote remaining C++ in Fuchsia\'s Zircon microkernel into 800,000 lines of safe Rust booting on arm64 hardware, and ported dav1d AV1 decoder (170k lines of Rust, 100% bit-exact parity) outperforming hand-optimized C++ and assembly by 20–30%, (5) Google Fleet Infrastructure Gains—Memory Efficiency Monitoring Agent saved >1 PiB fleet-wide RAM using struct padding elimination and scalar narrowing, while Borg agentic scheduling reduced TPU workload preemption by 24%, and (6) Academic Access—Google opens applications granting 10,000 academic researchers 6 months of free access to its highest usage tier.',
+    category: 'Agentic AI & Science',
+    tag: 'Research Breakthrough',
+    modelBadge: 'Antigravity /teamwork & Gemini 4',
+    impactScore: '10.0 / 10',
+    date: '2026-11-13T17:00:00Z',
+    sourceLabel: 'Google Research: Advancing science & engineering with Antigravity’s /teamwork (Vahab Mirrokni)',
+    sourceUrl: 'https://research.google/blog/advancing-science-engineering-with-antigravitys-teamwork-feature/',
+    groundedBy: 'Google Research Official Announcement (Vahab Mirrokni, Google Fellow & VP, Verified Nov 13, 2026)',
+    seriesUrl: '/series/antigravity-teamwork/part-1-antigravity-teamwork-architecture-and-science.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-antigravity-teamwork-studio.html',
+    labLabel: 'Teamwork Studio Lab [DEMO] →',
+  },
+  {
     id: 'pulse-google-wallet-gemini-integration',
     title: 'Google Integrates Google Wallet into Gemini: AI Personal Finance Insights, In-Chat Dynamic Charts, Subscription Audits & Memory Summary',
     tldr: 'Released November 13, 2026: Google rolls out Google Wallet integration in the Gemini App for all U.S. users across web, Android, and iOS—enabling conversational personal finance with @Google Wallet, Plaid-linked bank accounts, in-chat dynamic spending charts, subscription price-hike auditing, historical holiday budgeting, read-only security, and a new Memory Summary control plane.',
@@ -810,6 +829,45 @@ export const GEMINI_MODEL_MATRIX = [
 
 export const STUDIO_LAB_BLUEPRINTS = [
   {
+    id: 'lab-antigravity-teamwork-studio',
+    title: 'Google Antigravity /teamwork Studio [SIMULATED DEMO]',
+    badge: 'Nov 13, 2026 GA',
+    model: 'gemini-4-argon',
+    description:
+      'Interactive multi-agent science & systems engineering simulator modeling Google Research\'s /teamwork architecture: test parallel candidate generation, dedicated deterministic falsifiers (Lean 4, physics, unmodified test suites), and clean context partitioning.',
+    prompt:
+      '/teamwork Decompose the Courtade-Kumar conjecture parameter reduction into 14-variable convex subspaces, dispatch 8 parallel generators in isolated branch workspaces, and verify all lemmas against the Lean 4 proof kernel.',
+    tsCode: `import { GoogleGenAI, Type } from "@google/genai";
+
+const ai = new GoogleGenAI();
+
+// Dedicated Falsifier Tool Declaration
+const lean4FalsifierTool = {
+  name: "verify_lean4_kernel",
+  description: "Submits formal Lean 4 proof script to the official compiler kernel.",
+  parameters: {
+    type: Type.OBJECT,
+    properties: {
+      lemma_name: { type: Type.STRING },
+      proof_script: { type: Type.STRING }
+    },
+    required: ["lemma_name", "proof_script"]
+  }
+};
+
+// Dispatch Generator to Gemini 4 Hydrogen
+const interaction = await ai.clients.interactions.create({
+  model: "gemini-4-hydrogen",
+  config: {
+    thinking_config: { thinking_level: "high" },
+    system_instruction: "Prove the Courtade-Kumar conjecture parameter reduction in Lean 4.",
+    tools: [{ function_declarations: [lean4FalsifierTool] }]
+  },
+  input: "Evaluate candidate lower bounds on 14-variable parameter subspace."
+});`,
+    href: '/labs/gemini-antigravity-teamwork-studio.html',
+  },
+  {
     id: 'lab-wallet-finance-studio',
     title: 'Gemini Personal Finance & Google Wallet Studio',
     badge: 'Nov 13, 2026 GA',
@@ -1295,6 +1353,37 @@ video_turn = client.interactions.create(
 ];
 
 export const INITIAL_SHOWCASE_PROJECTS = [
+  {
+    id: 'showcase-gemini-antigravity-teamwork-studio',
+    name: 'Google Antigravity /teamwork Studio [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive developer workbench modeling Google Research’s Antigravity /teamwork multi-agent architecture: test parallel exploration, dedicated deterministic falsifiers (Lean 4, physics simulators, bit-exact test suites), and clean context partitioning across Gemini 4 Argon, Carbon, and Hydrogen.',
+    models: ['gemini-4-argon', 'gemini-4-carbon', 'gemini-4-hydrogen'],
+    framework: 'React 19 + Tailwind CSS + Gen AI SDK v3.3.0',
+    metrics: { stars: 742, forks: 188, views: '19.4k' },
+    liveUrl: '/labs/gemini-antigravity-teamwork-studio.html',
+    codeSnippet: `// Antigravity /teamwork Multi-Agent Science Blueprint
+import { GoogleGenAI, Type } from "@google/genai";
+
+const ai = new GoogleGenAI();
+const interaction = await ai.clients.interactions.create({
+  model: "gemini-4-hydrogen",
+  config: {
+    thinking_config: { thinking_level: "high" },
+    system_instruction: "Generate Lean 4 formal proof lemmas and verify via deterministic compiler tool.",
+    tools: [{ function_declarations: [lean4FalsifierTool] }]
+  },
+  input: "Prove Courtade-Kumar conjecture on 14-variable parameter subspace."
+});`,
+    githubUrl: 'https://research.google/blog/advancing-science-engineering-with-antigravitys-teamwork-feature/',
+    featured: true,
+    verificationStatus: 'verified_primary_source',
+    citationUrl: 'https://research.google/blog/advancing-science-engineering-with-antigravitys-teamwork-feature/',
+  },
   {
     id: 'showcase-gemini-wallet-finance-studio',
     name: 'Gemini Personal Finance & Google Wallet Studio [SIMULATED DEMO]',
@@ -3124,11 +3213,45 @@ export const GET_STARTED_WITH_GEMINI_TRACKS = [
 
 export const GEMINI_VIDEO_SHOWCASE = [
   {
+    id: 'vid-google-developers-building-in-antigravity',
+    videoId: 'vLAegkGGWrM',
+    featuredOfTheDay: true,
+    category: 'Agentic IDE & Developers',
+    badge: 'FEATURED VIDEO OF THE DAY • GOOGLE FOR DEVELOPERS',
+    title: 'Building with Gemini in Google Antigravity',
+    creatorName: 'Google for Developers',
+    creatorHandle: '@GoogleDevelopers',
+    creatorUrl: 'https://www.youtube.com/@GoogleDevelopers',
+    watchUrl: 'https://www.youtube.com/watch?v=vLAegkGGWrM',
+    thumbnailUrl: 'https://i.ytimg.com/vi/vLAegkGGWrM/hqdefault.jpg',
+    geminiSummary:
+      'Official Google for Developers guide published November 12–13, 2026—demonstrating how developers can build next-generation applications with Gemini 4 models inside Google Antigravity. Covers multimodal prototyping, interactive web widgets, autonomous codebase modernization, and multi-model agent coordination.',
+    whyFeatured:
+      'Verified HTTP 200 official Google for Developers walkthrough exploring real-world app building, UI prototyping, and multi-agent workflows in Google Antigravity.',
+  },
+  {
+    id: 'vid-google-antigravity-hydrogen-available',
+    videoId: 'kyhw-v_iVf0',
+    featuredOfTheDay: false,
+    category: 'Frontier Models & Antigravity',
+    badge: 'OFFICIAL PLATFORM DEMO • GOOGLE ANTIGRAVITY',
+    title: 'Gemini 4 Hydrogen available in Google Antigravity',
+    creatorName: 'Google Antigravity',
+    creatorHandle: '@googleantigravity',
+    creatorUrl: 'https://www.youtube.com/@googleantigravity',
+    watchUrl: 'https://www.youtube.com/watch?v=kyhw-v_iVf0',
+    thumbnailUrl: 'https://i.ytimg.com/vi/kyhw-v_iVf0/hqdefault.jpg',
+    geminiSummary:
+      'Official platform announcement published November 12–13, 2026 by Google Antigravity—introducing Gemini 4 Hydrogen as an everyday high-speed execution engine for terminal commands, rapid code edits, and agentic workflows.',
+    whyFeatured:
+      'Verified HTTP 200 official platform video from Google Antigravity introducing Gemini 4 Hydrogen execution speed and agentic coding capabilities.',
+  },
+  {
     id: 'vid-gemini-wallet-insights-techdrop',
     videoId: 'Lu7-0XcPgqQ',
-    featuredOfTheDay: true,
+    featuredOfTheDay: false,
     category: 'Personal Intelligence & FinTech',
-    badge: 'FEATURED VIDEO OF THE DAY • THE TECH DROP',
+    badge: 'HANDS-ON WALKTHROUGH • THE TECH DROP',
     title: 'Gemini Can Now See Your Wallet — Here\'s What to Ask It',
     creatorName: 'The Tech Drop',
     creatorHandle: '@thetechdrops',

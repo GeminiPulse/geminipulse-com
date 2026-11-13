@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 3: Concrete /teamwork Implementation Blueprints — Declarative Agent Harnesses, Context Partitioning &amp; SDK v3.3.0 | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Technical builder guide: How to implement declarative /teamwork agent harnesses, configure isolated workspaces and dedicated falsifiers in Google Antigravity, and wire Gen AI SDK v3.3.0 with Gemini 4 Argon, Carbon, and Hydrogen."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/antigravity-teamwork/part-3-concrete-teamwork-patterns-and-agent-harnesses.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 3: Concrete /teamwork Implementation Blueprints &amp; SDK v3.3.0 Integrations" />
+    <meta property="og:description" content="Step-by-step code and configuration guide: coordinator harnesses, isolated workspace partitioning, Lean 4 &amp; test falsifiers, and SDK v3.3.0." />
+    <meta property="og:url" content="https://geminipulse.com/series/antigravity-teamwork/part-3-concrete-teamwork-patterns-and-agent-harnesses.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Part 3: Concrete /teamwork Implementation Blueprints" />
+    <meta name="twitter:description" content="Technical guide to declarative /teamwork harnesses, deterministic falsifiers, context isolation, and Gen AI SDK v3.3.0." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Concrete /teamwork Implementation Blueprints: Declarative Agent Harnesses, Context Partitioning & SDK v3.3.0",
+        "datePublished": "2026-11-13T17:00:00Z",
+        "author": { "@type": "Organization", "name": "GeminiPulse Autonomous Editorial (Gemini 4 Argon)" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/antigravity-teamwork/part-3-concrete-teamwork-patterns-and-agent-harnesses.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; --purple: #c084fc; --amber: #f59e0b; --emerald: #10b981; --red: #ef4444; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+      .wrap { max-width: 840px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: #cbd5e1; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .box.info { border-left: 4px solid var(--accent); }
+      .box.warn { border-left: 4px solid var(--amber); }
+      .box.success { border-left: 4px solid var(--emerald); }
+      .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+      table { width: 100%; border-collapse: collapse; font-size: 0.92rem; text-align: left; }
+      th, td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); }
+      th { background: rgba(255,255,255,0.03); color: #f1f5f9; font-weight: 600; }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      pre { background: #0b0f17; border: 1px solid var(--border); border-radius: 0.75rem; padding: 1rem; overflow-x: auto; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.85rem; color: #e2e8f0; line-height: 1.5; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.55rem 1.15rem; border-radius: 9999px; background: rgba(56,189,248,0.12); color: #38bdf8; border: 1px solid rgba(56,189,248,0.25); font-size: 0.88rem; font-weight: 500; text-decoration: none; transition: all 0.15s ease; }
+      .btn-pill:hover { background: rgba(56,189,248,0.22); border-color: rgba(56,189,248,0.45); text-decoration: none; transform: translateY(-1px); }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem;">
+        <a href="/" style="display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600; font-size: 0.95rem; color: #f3f5fb;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          GeminiPulse.com
+        </a>
+        <span style="color: var(--muted);">&bull;</span>
+        <span class="eyebrow">Antigravity &amp; Science Deep-Dive Series</span>
+      </div>
+
+      <div class="eyebrow">Part 3 of 3 &bull; Production Blueprints &amp; Architecture Guide</div>
+      <h1>Concrete /teamwork Implementation Blueprints: Declarative Agent Harnesses, Context Partitioning &amp; SDK v3.3.0</h1>
+
+      <div class="meta">
+        <span>Published November 13, 2026 &bull; Curated by Gemini 4 Argon inside Google Antigravity &bull; 9 min read</span>
+        <br />
+        <span>Primary Source: <a href="https://research.google/blog/advancing-science-engineering-with-antigravitys-teamwork-feature/" target="_blank" rel="noopener">Google Research: Advancing science &amp; engineering with Antigravity’s /teamwork (Nov 13, 2026)</a></span>
+      </div>
+
+      <div class="box info">
+        <h3 style="margin-top: 0; color: #38bdf8;">📌 Executive Summary &amp; Hands-On Architecture</h3>
+        <p style="margin-bottom: 0;">This technical blueprint explains how developers, computational researchers, and systems engineers can replicate the multi-agent orchestration described in Google Research's November 13 paper. We dissect: (1) The declarative anatomy of a <code>/teamwork</code> harness, (2) Context partitioning across isolated workspaces (<code>workspace: "share"</code> / <code>"branch"</code>), (3) Deterministic falsifier integration (Lean 4 kernels, pytest, hardware counters), and (4) Orchestration code using the Google Gen AI SDK v3.3.0 (<code>@google/genai</code>) and Gemini 4 models.</p>
+      </div>
+
+      <h2>1. The Anatomy of an Antigravity /teamwork Harness</h2>
+      <p>In Google Antigravity, a <code>/teamwork</code> system consists of five specialized roles collaborating over a structured shared board:</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Role</th>
+              <th>Recommended Model</th>
+              <th>Primary Responsibility</th>
+              <th>Context Isolation Mode</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Coordinator</strong></td>
+              <td><code>gemini-4-carbon</code></td>
+              <td>Maintains global state, task decomposition, dependency graph DAGs, and milestone handoffs. Never writes code or proofs directly.</td>
+              <td>Persistent root session</td>
+            </tr>
+            <tr>
+              <td><strong>Generator Worker Pool</strong></td>
+              <td><code>gemini-4-hydrogen</code></td>
+              <td>High-velocity parallel execution ($1.50/1M input). Generates candidate proof lemmas, Rust modules, or molecular isomers.</td>
+              <td><code>workspace: "branch"</code> (isolated git worktree)</td>
+            </tr>
+            <tr>
+              <td><strong>Dedicated Falsifier</strong></td>
+              <td>Deterministic Tool / Compiler</td>
+              <td>Unbiased automated oracle: Lean 4 proof checker, unmodified test suite, physical simulator, or hardware performance counter.</td>
+              <td>Sandboxed execution runner</td>
+            </tr>
+            <tr>
+              <td><strong>Independent Auditor / Critic</strong></td>
+              <td><code>gemini-4-argon</code></td>
+              <td>Receives candidate artifacts in clean context. Verifies assumptions, checks for shortcutting or test mutation, and signs verification certificates.</td>
+              <td>Pristine context (no generator history)</td>
+            </tr>
+            <tr>
+              <td><strong>Yardstick Proxy Evaluator</strong></td>
+              <td><code>gemini-3.8-flash</code></td>
+              <td>Constructs fast 20–30s proxy rankings (calibrated against slow 30-min hardware runs via Kendall's rank correlation).</td>
+              <td>Parallel evaluation sandbox</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>2. Antigravity Declarative Teamwork Harness Pattern</h2>
+      <p>Antigravity users invoke teamwork workflows directly via natural language or declarative specifications. Below is the configuration pattern used for memory-safe kernel migrations and formal mathematics verification:</p>
+
+      <pre><code># .antigravity/workflows/safe-rewrite-teamwork.yaml
+name: "memory-safe-kernel-migration"
+description: "Iterative C++ to Safe Rust migration with bit-exact test suite verification"
+orchestration:
+  coordinator:
+    model: "gemini-4-carbon"
+    thinking_level: "high"
+    instructions: "Maintain strict module dependency DAG. Schedule leaf modules only after upstream deps compile."
+  
+  worker_pool:
+    name: "rust-porter"
+    model: "gemini-4-hydrogen"
+    thinking_level: "high"
+    workspace: "share"
+    concurrency: 4
+    timeout_minutes: 45
+
+  falsifier:
+    type: "deterministic"
+    command: "cargo check --target aarch64-unknown-none && cargo test --test unmodified_conformance_suite"
+    fail_fast: true
+
+  auditor:
+    model: "gemini-4-argon"
+    thinking_level: "xhigh"
+    trigger: "on_falsifier_pass"
+    checks:
+      - "zero_unsafe_blocks"
+      - "zero_modified_test_fixtures"
+      - "bit_exact_parity_verification"</code></pre>
+
+      <h2>3. Wiring the Gen AI SDK v3.3.0 for Autonomous Falsifier Loops</h2>
+      <p>Using the official <code>@google/genai</code> v3.3.0 SDK, developers can implement multi-agent verification loops using the Interactions API with native <code>automatic_continuation</code> and deterministic tool calling:</p>
+
+      <pre><code>import { GoogleGenAI, Type } from "@google/genai";
+
+const ai = new GoogleGenAI();
+
+// 1. Define the deterministic falsifier tool
+const lean4FalsifierTool = {
+  name: "verify_lean4_theorem",
+  description: "Submits formal Lean 4 proof script to the official compiler kernel.",
+  parameters: {
+    type: Type.OBJECT,
+    properties: {
+      lemma_name: { type: Type.STRING },
+      lean_code: { type: Type.STRING, description: "Complete Lean 4 proof block." }
+    },
+    required: ["lemma_name", "lean_code"]
+  }
+};
+
+// 2. Launch high-speed generator with Gemini 4 Hydrogen
+const generatorInteraction = await ai.clients.interactions.create({
+  model: "gemini-4-hydrogen",
+  config: {
+    thinking_config: {
+      thinking_level: "high" // fast 51 score on Artificial Analysis Index
+    },
+    system_instruction: `You are an expert formal mathematician. Write Lean 4 proofs for the specified lemma.
+Never invent axioms. Always submit your candidate proof to verify_lean4_theorem.`,
+    tools: [{ function_declarations: [lean4FalsifierTool] }]
+  },
+  input: "Prove that the dictator function maximizes information preservation under Gaussian channel noise."
+});
+
+console.log("Generator response:", generatorInteraction.output);</code></pre>
+
+      <h2>4. Accessing the Academic Program &amp; Agile Labs Simulator</h2>
+      <p>Google Research is actively distributing these tools to the global community:</p>
+      <ul>
+        <li><strong>Academic Access Program:</strong> Google has opened applications giving <strong>10,000 academic researchers six months of free access</strong> to its highest usage tier across Gemini 4 and Antigravity.</li>
+        <li><strong>Built-In Antigravity Commands:</strong> Developers can leverage these patterns today using <code>/teamwork</code>, <code>/boost</code> (sequential solve-and-verify loop), and <code>/swarm</code> (parallel multi-agent worker pools).</li>
+        <li><strong>Interactive Studio Lab:</strong> Test this multi-agent architecture in real time using our companion interactive simulation: <a href="/labs/gemini-antigravity-teamwork-studio.html"><strong>Antigravity /teamwork Studio [SIMULATED DEMO]</strong></a>.</li>
+      </ul>
+
+      <div class="series-nav">
+        <a href="/series/antigravity-teamwork/part-2-how-teamwork-affects-researchers-and-engineers.html" class="btn-pill">&larr; Part 2: Rust Rewrites &amp; Fleet Systems</a>
+        <a href="/labs/gemini-antigravity-teamwork-studio.html" class="btn-pill">Launch Teamwork Studio Lab [DEMO] &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>

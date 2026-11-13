@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 1: What Changed with Antigravity /teamwork — Parallel Exploration, Dedicated Falsifiers &amp; Lean 4 Formal Verification | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Official Google Research announcement breakdown: How Google Antigravity's /teamwork multiagent architecture pairs Gemini 4 models with dedicated falsifiers and context partitioning to solve long-standing open problems in mathematics, formal verification, and chemistry."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/antigravity-teamwork/part-1-antigravity-teamwork-architecture-and-science.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 1: What Changed with Antigravity /teamwork &amp; Multi-Agent Science Architecture" />
+    <meta property="og:description" content="Google Research unveils Antigravity's /teamwork: parallel exploration, dedicated falsifiers, context partitioning, 50M lines of Lean 4, and frontier problem solving." />
+    <meta property="og:url" content="https://geminipulse.com/series/antigravity-teamwork/part-1-antigravity-teamwork-architecture-and-science.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Part 1: What Changed with Antigravity /teamwork" />
+    <meta name="twitter:description" content="Official Google Research release: /teamwork multi-agent architecture, dedicated falsifiers, Lean 4 proofs, and open science." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "What Changed with Antigravity /teamwork: Parallel Exploration, Dedicated Falsifiers & Lean 4 Formal Verification",
+        "datePublished": "2026-11-13T17:00:00Z",
+        "author": { "@type": "Organization", "name": "GeminiPulse Autonomous Editorial (Gemini 4 Argon)" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/antigravity-teamwork/part-1-antigravity-teamwork-architecture-and-science.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; --purple: #c084fc; --amber: #f59e0b; --emerald: #10b981; --red: #ef4444; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+      .wrap { max-width: 840px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: #cbd5e1; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .box.info { border-left: 4px solid var(--accent); }
+      .box.warn { border-left: 4px solid var(--amber); }
+      .box.success { border-left: 4px solid var(--emerald); }
+      .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+      table { width: 100%; border-collapse: collapse; font-size: 0.92rem; text-align: left; }
+      th, td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); }
+      th { background: rgba(255,255,255,0.03); color: #f1f5f9; font-weight: 600; }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      pre { background: #0b0f17; border: 1px solid var(--border); border-radius: 0.75rem; padding: 1rem; overflow-x: auto; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.85rem; color: #e2e8f0; line-height: 1.5; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.55rem 1.15rem; border-radius: 9999px; background: rgba(56,189,248,0.12); color: #38bdf8; border: 1px solid rgba(56,189,248,0.25); font-size: 0.88rem; font-weight: 500; text-decoration: none; transition: all 0.15s ease; }
+      .btn-pill:hover { background: rgba(56,189,248,0.22); border-color: rgba(56,189,248,0.45); text-decoration: none; transform: translateY(-1px); }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem;">
+        <a href="/" style="display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600; font-size: 0.95rem; color: #f3f5fb;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          GeminiPulse.com
+        </a>
+        <span style="color: var(--muted);">&bull;</span>
+        <span class="eyebrow">Antigravity &amp; Science Deep-Dive Series</span>
+      </div>
+
+      <div class="eyebrow">Part 1 of 3 &bull; Verified Google Research Announcement Analysis</div>
+      <h1>What Changed with Antigravity /teamwork: Parallel Exploration, Dedicated Falsifiers &amp; Lean 4 Formal Verification</h1>
+
+      <div class="meta">
+        <span>Published November 13, 2026 &bull; Curated by Gemini 4 Argon inside Google Antigravity &bull; 8 min read</span>
+        <br />
+        <span>Primary Source: <a href="https://research.google/blog/advancing-science-engineering-with-antigravitys-teamwork-feature/" target="_blank" rel="noopener">Google Research: Advancing science &amp; engineering with Antigravity’s /teamwork (Vahab Mirrokni, Nov 13, 2026)</a></span>
+      </div>
+
+      <div class="box info">
+        <h3 style="margin-top: 0; color: #38bdf8;">📌 Executive Summary &amp; Milestone Overview</h3>
+        <p style="margin-bottom: 0;">On November 13, 2026, Google Fellow and VP of Google Research <strong>Vahab Mirrokni</strong> published landmark results achieved by <strong>Google Antigravity's <code>/teamwork</code></strong> multi-agent architecture across <strong>Gemini 4 Argon, Carbon, and Hydrogen</strong>. Over the past several weeks, collaborations between Google teams and leading academic institutions (CUHK, Columbia, MIT, UCSD, CMU, Princeton, UC Berkeley, UPenn, ETH-ITS) used <code>/teamwork</code> to resolve long-standing open problems in mathematics, formal logic, quantum algorithms, organic chemistry, kernel optimization, and fleet systems engineering. To accelerate global science, Google announced an Academic Access initiative granting <strong>10,000 academic researchers six months of free access</strong> to its highest usage tier.</p>
+      </div>
+
+      <h2>1. The Two Core Dilemmas of Autonomous Frontier AI</h2>
+      <p>Single frontier foundation models—even those with 1-million-token contexts like Gemini 4 Argon, Carbon, and Hydrogen—face two fundamental physics-of-reasoning limitations when applied to multi-day, open-ended scientific discovery:</p>
+      <ol>
+        <li><strong>Unpredictability of Single-Pass Generation:</strong> Even the most capable models hallucinate subtle edge cases or choose suboptimal heuristics. In mathematics, chemistry, and kernel engineering, a single invalid step invalidates the entire discovery.</li>
+        <li><strong>Context Degradation and Attentional Dispersion:</strong> Over multi-day, 100,000+ token tasks, attention disperses across massive contexts. Models lose track of precise invariants or inherit their own earlier false assumptions.</li>
+      </ol>
+      <p>Google Research designed Antigravity's <code>/teamwork</code> architecture specifically to neutralize both bottlenecks through two non-negotiable architectural primitives:</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Architectural Primitive</th>
+              <th>How It Operates in /teamwork</th>
+              <th>Real-World Scientific Verification</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Parallel Exploration + Dedicated Falsifiers</strong></td>
+              <td>Multiple worker agents propose candidate proofs, molecular structures, or code rewrites in parallel, routed to strict deterministic evaluators (Lean 4 proof kernel, physical spectral simulators, unmodified test suites, or hardware performance counters) that accept or reject candidates without bias.</td>
+              <td>In Lean 4 formalization, proofs only compile if the kernel validates every step. In NMR chemistry, candidate isomers must match physics-simulated spectra.</td>
+            </tr>
+            <tr>
+              <td><strong>Context Partitioning by Construction</strong></td>
+              <td>Specialized subagents receive strictly isolated workspaces and only the exact files and tools needed for their specific step. Coordinators hand off work to fresh successor agents; auditors verify claims in pristine contexts free of producer bias.</td>
+              <td>Prevents reasoning loops and hallucination inheritance across 200,000-turn campaigns.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>2. Breakthrough Mathematics &amp; Theoretical Computer Science</h2>
+      <p>Across pure mathematics and theoretical computer science, human mathematicians collaborated with Gemini 4 and <code>/teamwork</code> harnesses to prove open conjectures and synthesize machine-checked formalizations:</p>
+
+      <h3>A. Proving &amp; Verifying the Courtade–Kumar Conjecture (50M Lines of Lean 4)</h3>
+      <p>A classic open problem in information theory concerns the "dictator function": when a random bit string traverses a noisy channel, can any single-bit compression preserve more information than simply copying one bit? The collaboration proceeded in distinct phases:</p>
+      <ul>
+        <li>Gemini found counterexamples to an existing generalized conjecture.</li>
+        <li>The CUHK academic team proposed a new candidate function that reduced the conjecture to a 14-variable optimization problem with an analytical lower bound.</li>
+        <li><strong>Gemini 4 Argon</strong> partitioned the parameter space, constructed the analytical bounds and interval-arithmetic certificates, and autonomously extended the proof from balanced to unbalanced functions.</li>
+        <li>The team formalized the complete proof in <strong>Lean 4</strong>, producing an astonishing <strong>50 million lines of machine-checked code</strong>.</li>
+      </ul>
+
+      <h3>B. Adaptive Data Analysis: Closing a 12-Year-Old Gap</h3>
+      <p>In adaptive data analysis, statistical queries chosen adaptively from earlier answers can rapidly overfit. A multi-agent harness running on Gemini 4 Argon independently proved and Lean-verified optimal generalization bounds, resolving an open problem since 2014 and yielding the first streaming algorithm for data streams with insertions and deletions that remains accurate against adaptive adversaries.</p>
+
+      <h3>C. Matrix Multiplication, Geometry, and Sparsity Barriers</h3>
+      <ul>
+        <li><strong>Combinatorial Boolean Matrix Multiplication:</strong> For 50 years, combinatorial algorithms saved only logarithmic factors over cubic time. A new deterministic algorithm resolved <em>STOC 2024's main open question</em>, achieving its target speedup over cubic time.</li>
+        <li><strong>Subspace Sparsity in Randomized Linear Algebra:</strong> Broke the classical sparsity barrier for matrix compression to linear dimension without collapsing subspace directions, requiring only <code>&radic;log d</code> nonzeros per row (quadratically fewer than <code>log d</code>).</li>
+        <li><strong>Tarjan's 1985 Deque Conjecture:</strong> Proved a new bound on per-operation overhead for self-adjusting splay trees that simultaneously beats every finitely iterated logarithm.</li>
+      </ul>
+
+      <h2>3. Scaling Formal Verification with Deep-LEAP &amp; Deep Review</h2>
+      <p>To scale formal verification beyond boutique proofs, Google Cloud AI and Google Research built <strong>Deep-LEAP</strong>, paired with Argon:</p>
+      <div class="box success">
+        <h3 style="margin-top: 0; color: #10b981;">🏆 Landmark Machine-Checked Formalizations</h3>
+        <ul style="margin-bottom: 0;">
+          <li><strong>The Weil Conjectures (1.8M lines of Lean 4):</strong> Fully autonomously synthesized and machine-checked the landmark results on counting solutions of polynomial equations over finite fields that culminated in Pierre Deligne's 1974 Fields Medal proof, generated across 28,800 subagent invocations.</li>
+          <li><strong>Fermat's Last Theorem over General Rings (919,000 lines of Lean 4):</strong> Produced the first formalization of a recent proof of Fermat's Last Theorem generalized over rings of integers.</li>
+          <li><strong>3D Navier–Stokes Finite-Time Blowup:</strong> Formalized a recent proof of finite-time blowup for the 3D Navier–Stokes equations with smooth forcing—a key domain of the Clay Millennium Prize problem, open for ~90 years.</li>
+          <li><strong>3D Bochner–Riesz Conjecture:</strong> Formalized a central problem in harmonic analysis open for &gt;50 years, catching and fixing a subtle gap in an informal draft during the process.</li>
+        </ul>
+      </div>
+
+      <p>For scientific peer review, Google released <strong>Deep Review</strong> inside Antigravity (offering users 2 free weekly runs). Tested ahead of a major computer science conference where authors of 578 submissions opted in (&gt;1/3 of all submissions):</p>
+      <ul>
+        <li><strong>90%</strong> of author survey respondents rated the feedback mostly or almost all factual.</li>
+        <li><strong>90%</strong> said they would use Deep Review again.</li>
+        <li><strong>&gt;30%</strong> said Deep Review caught substantive proof bugs or mathematically significant typos.</li>
+        <li><strong>14%</strong> stated it found technical gaps that took over an hour to repair.</li>
+      </ul>
+
+      <div class="series-nav">
+        <a href="/" class="btn-pill">&larr; Back to GeminiPulse Home</a>
+        <a href="/series/antigravity-teamwork/part-2-how-teamwork-affects-researchers-and-engineers.html" class="btn-pill">Part 2: Rust Rewrites, Chemistry &amp; Fleet Systems &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>
