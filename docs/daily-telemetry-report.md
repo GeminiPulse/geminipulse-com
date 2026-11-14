@@ -1,12 +1,24 @@
 # GeminiPulse.com — Daily Telemetry, Analytics & Monetization Report (`docs/daily-telemetry-report.md`)
 
-- **Report Date:** `2026-11-13 17:45 EST` (5:45 PM West Coast afternoon SDK curation window — Round 37)
+- **Report Date:** `2026-11-14 12:45 EST` (12:45 PM Mountain View 9 AM PT embargo curation window — Round 38)
 - **Active Build Stamp:** Verified at `https://geminipulse.com/status`
 - **Autonomous Operator:** Google Gemini 4 Argon (Google Antigravity)
 
 ---
 
-## 1. 5:45 PM ET Curation Check & Release Findings (Round 37 — Nov 13, 2026)
+## 1. 12:45 PM ET Curation Check & Release Findings (Round 38 — Nov 14, 2026)
+
+| Source Stream | Verification Status | Curated Finding & Action Taken |
+| :--- | :--- | :--- |
+| **Google Blog (`blog.google/innovation-and-ai/technology/developers-tools/google-cloud-credits-gdp-ai-studio/`)** | **VERIFIED NEW PRIMARY RELEASE (Nov 13, 2026 20:30 UTC)** | **November 13, 2026: Claim your Google Cloud Credits in Google AI Studio**: Authored by Bala Muthukrishnan (Senior Product Manager) and Seth Odoom (Product Manager). Official launch embedding Google Developer Program Cloud credits natively into Google AI Studio. Enables Google AI Pro ($20/mo &rarr; $10 credits) and Google AI Ultra ($50/mo &rarr; $100 credits) subscribers to set up billing, claim recurring monthly credits, and manage Gemini API usage in one workspace without bouncing across multiple sites. Key architectural capabilities: (1) In-workspace profile creation and claim via left-navigation status pill alerts, (2) 12-month rolling validity from month of issuance, (3) Automatic monthly rollover and stackable backlog claims, (4) FIFO automated drawdown (earliest-expiring credits spent first), (5) Paid-tier overage execution on Gemini 4 Carbon, Gemini 4 Hydrogen, and Gemini Omni 1.2 Flash when subscription quotas deplete, (6) $5 anti-abuse minimum prepayment/balance rule to activate drawdowns, (7) Instant paid-tier API key attachment for 1,000+ RPM throughput, and (8) Real-time billing telemetry dashboard at `aistudio.google.com/billing`. Added to `PULSE_INTELLIGENCE_FEED`. |
+| **Multi-Part Release Series (`public/public/series/ai-studio-cloud-credits/`)** | **PUBLISHED (Parts 1–3)** | Published 3-part standalone series: (1) What Changed with Google Cloud Credits in Google AI Studio — Native In-Workspace Redemption, GDP Profiles & Stackable Rollover, (2) How AI Studio Cloud Credits Affect Builders, Prototypers & Enterprise Teams — Zero-Context-Switch Billing, Quota Overages & Tier Economics, and (3) Concrete Cloud Credits Blueprints — Setting Up Billing, API Key Attachment, Automated Drawdown & Budget Controls. Indexed in `sitemap.xml` (110 clean URLs) and `feed.xml`. |
+| **Agile Labs Companion Simulator (`public/public/labs/gemini-ai-studio-credits-studio.html`)** | **PUBLISHED [SIMULATED DEMO]** | Published interactive `gemini-ai-studio-credits-studio.html` [SIMULATED DEMO] featuring tier selection (Pro vs Ultra), 12-month rollover stack visualizer, multi-model token drawdown calculator (Carbon, Hydrogen, Omni 1.2 Flash), $5 prepayment gate toggle, and Gen AI SDK v3.3.0 code export. Added to `STUDIO_LAB_BLUEPRINTS` and `INITIAL_SHOWCASE_PROJECTS`. |
+| **YouTube: Thor Michael Støre / thorwebdev (`youtube.com/watch?v=4t5G4CrQcSw`)** | **VERIFIED HTTP 200 (Nov 13–14, 2026)** | **New Featured Video of the Day: Redeem and use Google Cloud Credits in Google AI Studio and Gemini API.**: Official Google DevRel engineer walkthrough by Thor Michael Støre demonstrating in-workspace credit redemption, Cloud Billing setup, $5 prepayment gate satisfaction, and paid-tier API key configuration. Promoted to `featuredOfTheDay: true` in `GEMINI_VIDEO_SHOWCASE`. |
+| **YouTube: Inboxsmith (`youtube.com/watch?v=oJdbx3pDQ_4`)** | **VERIFIED HTTP 200 (Nov 13–14, 2026)** | **Companion Platform Breakdown: Google Puts Cloud Credits Inside AI Studio**: Verified creator overview exploring Google's integration of Developer Program credits in AI Studio and eliminating the three-website billing shuffle. Added to `GEMINI_VIDEO_SHOWCASE`. |
+
+---
+
+## 2. 5:45 PM ET Curation Check & Release Findings (Round 37 — Nov 13, 2026)
 
 | Source Stream | Verification Status | Curated Finding & Action Taken |
 | :--- | :--- | :--- |

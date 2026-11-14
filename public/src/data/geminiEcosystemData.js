@@ -5,6 +5,25 @@
 
 export const PULSE_INTELLIGENCE_FEED = [
   {
+    id: 'pulse-google-ai-studio-cloud-credits',
+    title: 'Google Integrates Cloud Credits into Google AI Studio: In-Workspace Claim, 12-Month Rollover & Automated Billing Setup',
+    tldr: 'Released November 13, 2026 (20:30 UTC): Google embeds Google Developer Program Cloud credits directly into Google AI Studio—allowing Google AI Pro and Ultra subscribers to claim recurring monthly credits ($10–$100/mo), auto-create developer profiles, link Cloud Billing, and draw down promotional credits on Gemini 4 Carbon, Hydrogen, and Omni 1.2 Flash without context switching.',
+    summary:
+      'Google Senior Product Managers Bala Muthukrishnan and Seth Odoom announce that Google Developer Program Cloud credits are now natively built into Google AI Studio. Google AI Pro and Google AI Ultra subscribers can set up billing, claim recurring monthly credits, and manage Gemini API usage in one workspace without bouncing across multiple portals. Key architectural and operational milestones include: (1) In-Workspace Profile & Credit Claim—spot unclaimed credits via left-navigation status pills and generate a Google Developer Program profile in a single dialog, (2) 12-Month Rolling Validity & Stackable Rollover—each monthly grant is valid for 12 months and stacks month-to-month, allowing subscribers with prior tenure to retroactively claim accumulated credits in one stack, (3) FIFO Automated Drawdown—billing automatically spends earliest-expiring credits first before drawing from fresh monthly grants, (4) Frontier Model Overages—use promotional credits when subscription quota runs out in AI Studio to continue agentic coding and video generation on Gemini 4 Carbon, Gemini 4 Hydrogen, and Gemini Omni 1.2 Flash, (5) Anti-Abuse Prepayment Gate—requires a linked Google Cloud Billing account with a $5 minimum prepayment or verified balance to draw down promotional credits, (6) Instant Paid API Keys—attaches paid-tier API keys immediately upon credit redemption for 1,000+ RPM throughput, and (7) Unified Billing Telemetry—track usage metadata, balance burn rate, and expiration dates directly inside aistudio.google.com/billing.',
+    category: 'SDK & API',
+    tag: 'Feature Launch',
+    modelBadge: 'AI Studio & Cloud Credits',
+    impactScore: '9.8 / 10',
+    date: '2026-11-13T20:30:00Z',
+    sourceLabel: 'Google Blog: Claim your Google Cloud Credits in Google AI Studio (Bala Muthukrishnan & Seth Odoom)',
+    sourceUrl: 'https://blog.google/innovation-and-ai/technology/developers-tools/google-cloud-credits-gdp-ai-studio/',
+    groundedBy: 'Google Official Blog Launch (Bala Muthukrishnan & Seth Odoom, Verified Nov 13, 2026)',
+    seriesUrl: '/series/ai-studio-cloud-credits/part-1-cloud-credits-integration-and-architecture.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-ai-studio-credits-studio.html',
+    labLabel: 'Credits Studio Lab [DEMO] →',
+  },
+  {
     id: 'pulse-google-research-antigravity-teamwork-science',
     title: 'Google Research Unveils /teamwork in Antigravity: Multi-Agent Systems Solving Open Problems in Math, Formal Verification, Chemistry & Systems Engineering',
     tldr: 'Released November 13, 2026: Google Research VP Vahab Mirrokni details breakthrough results from Antigravity\'s /teamwork multi-agent architecture across Gemini 4 Argon, Carbon, and Hydrogen—proving the Courtade–Kumar conjecture (50M lines of Lean 4), machine-checking the Weil conjectures and 3D Navier-Stokes blowup, achieving 95% NMR molecular chemistry accuracy, rewriting Fuchsia Zircon (800k lines) and dav1d into safe Rust (+20-30% speedup), saving >1 PiB fleet RAM, and opening 6-month free tier access to 10,000 academic researchers.',
@@ -829,6 +848,72 @@ export const GEMINI_MODEL_MATRIX = [
 
 export const STUDIO_LAB_BLUEPRINTS = [
   {
+    id: 'lab-ai-studio-credits-studio',
+    title: 'Google AI Studio Cloud Credits & Billing Studio [SIMULATED DEMO]',
+    badge: 'Nov 13, 2026 GA',
+    model: 'gemini-4-carbon',
+    description:
+      'Interactive developer simulator modeling Google Developer Program Cloud credits in Google AI Studio: simulate monthly credit accumulation ($10–$100/mo), 12-month rolling validity, automatic drawdown on Gemini 4 Carbon and Hydrogen overages, $5 prepayment threshold, and paid API key management.',
+    prompt:
+      'Claim my Google Developer Program monthly Cloud credits inside Google AI Studio, link my Cloud Billing account, and route Gemini 4 Carbon quota overages to my promotional credit balance.',
+    tsCode: `import { GoogleGenAI } from "@google/genai";
+
+// Initialize client with Paid-Tier API Key linked to Cloud Credits
+const ai = new GoogleGenAI({
+  apiKey: process.env.GEMINI_PAID_API_KEY
+});
+
+const interaction = await ai.clients.interactions.create({
+  model: "gemini-4-carbon",
+  input: "Evaluate distributed cache eviction trade-offs under high concurrency.",
+  config: {
+    thinking_config: { thinking_level: "high" },
+    automatic_continuation: true
+  }
+});
+
+console.log("Output:", interaction.output?.text);
+console.log("Usage Billed Against Cloud Credits:", interaction.usage_metadata);`,
+    pyCode: `from google import genai
+from google.genai.types import InteractionsConfig
+
+# Client configured with paid API key drawing from promotional credits
+client = genai.Client(api_key=os.environ.get("GEMINI_PAID_API_KEY"))
+
+interaction = client.interactions.create(
+    model="gemini-4-carbon",
+    input=[{"role": "user", "content": "Evaluate cache eviction trade-offs."}],
+    config=InteractionsConfig(
+        thinking_level="high",
+        automatic_continuation=True
+    )
+)
+
+print("Output:", interaction.output.text)
+print("Token Usage Metadata:", interaction.usage_metadata)`,
+    simulatedSteps: [
+      {
+        type: 'thought',
+        label: 'step[0] • inspecting Google AI subscription entitlements',
+        detail:
+          'Inspected active Google AI Ultra membership ($50/mo). Detected 4 accumulated months ($400.00) of Google Developer Program Cloud credits awaiting claim.',
+      },
+      {
+        type: 'code_execution_result',
+        label: 'step[1] • one-click in-workspace redemption & profile check',
+        detail:
+          'Created unified Google Developer Program profile. Linked Cloud Billing account (verified $5.00 prepayment balance). Activated 12-month rolling FIFO credit drawdown.',
+      },
+      {
+        type: 'thought',
+        label: 'step[2] • model routing & token overage dispatch',
+        detail:
+          'Dispatched 2M prompt tokens to Gemini 4 Carbon with high thinking depth. Billed $40.00 against oldest Month 1 credit grant. Net out-of-pocket card charge: $0.00.',
+      },
+    ],
+    href: '/labs/gemini-ai-studio-credits-studio.html',
+  },
+  {
     id: 'lab-antigravity-teamwork-studio',
     title: 'Google Antigravity /teamwork Studio [SIMULATED DEMO]',
     badge: 'Nov 13, 2026 GA',
@@ -865,6 +950,36 @@ const interaction = await ai.clients.interactions.create({
   },
   input: "Evaluate candidate lower bounds on 14-variable parameter subspace."
 });`,
+    pyCode: `from google import genai
+from google.genai.types import InteractionsConfig, Tool
+
+client = genai.Client()
+
+interaction = client.interactions.create(
+    model="gemini-4-hydrogen",
+    input=[{"role": "user", "content": "Decompose Courtade-Kumar conjecture parameter reduction in Lean 4."}],
+    config=InteractionsConfig(
+        thinking_level="high",
+        automatic_continuation=True,
+        tools=[{"function_declarations": [{"name": "verify_lean4_kernel"}]}]
+    )
+)
+
+print(interaction.output.text)`,
+    simulatedSteps: [
+      {
+        type: 'thought',
+        label: 'step[0] • /teamwork decomposition & parameter reduction',
+        detail:
+          'Decomposing Courtade-Kumar conjecture into 14-variable convex subspaces. Partitioning context and launching 8 parallel generators in branch worktrees.',
+      },
+      {
+        type: 'code_execution_result',
+        label: 'step[1] • dedicated deterministic falsifier execution',
+        detail:
+          'Submitted lemma candidate to Lean 4 proof kernel. Deterministic falsifier confirmed 0 type errors across 50M lines of formal verification code.',
+      },
+    ],
     href: '/labs/gemini-antigravity-teamwork-studio.html',
   },
   {
@@ -1353,6 +1468,25 @@ video_turn = client.interactions.create(
 ];
 
 export const INITIAL_SHOWCASE_PROJECTS = [
+  {
+    id: 'showcase-gemini-ai-studio-credits-studio',
+    name: 'Google AI Studio Cloud Credits & Billing Simulator [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive developer workbench modeling Google’s in-workspace Google Developer Program Cloud credits in Google AI Studio: test monthly credit accumulation ($10–$100/mo), 12-month rolling validity, automatic token drawdown on Gemini 4 Carbon and Hydrogen, and the $5 prepayment gate.',
+    models: ['gemini-4-carbon', 'gemini-4-hydrogen', 'gemini-omni-1.2-flash'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-ai-studio-credits-studio.html): [SIMULATED DEMO] Simulates 12-month rolling stack, FIFO drawdown priority, token spend calculators across Carbon/Hydrogen/Omni, $5 prepayment gate check, and Gen AI SDK v3.3.0 paid-tier key export.',
+    url: '/labs/gemini-ai-studio-credits-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-13T20:30:00Z',
+  },
   {
     id: 'showcase-gemini-antigravity-teamwork-studio',
     name: 'Google Antigravity /teamwork Studio [SIMULATED DEMO]',
@@ -3213,11 +3347,45 @@ export const GET_STARTED_WITH_GEMINI_TRACKS = [
 
 export const GEMINI_VIDEO_SHOWCASE = [
   {
+    id: 'vid-thorwebdev-cloud-credits-ai-studio',
+    videoId: '4t5G4CrQcSw',
+    featuredOfTheDay: true,
+    category: 'Developer Tools & Studio',
+    badge: 'FEATURED VIDEO OF THE DAY • GOOGLE DEVREL',
+    title: 'Redeem and use Google Cloud Credits in Google AI Studio and Gemini API.',
+    creatorName: 'Thor Michael Støre (thorwebdev)',
+    creatorHandle: '@thorwebdev',
+    creatorUrl: 'https://www.youtube.com/@thorwebdev',
+    watchUrl: 'https://www.youtube.com/watch?v=4t5G4CrQcSw',
+    thumbnailUrl: 'https://i.ytimg.com/vi/4t5G4CrQcSw/hqdefault.jpg',
+    geminiSummary:
+      'Official Google Developer Relations walkthrough published by Thor Michael Støre (@thorwebdev)—demonstrating step-by-step how Google AI Pro and Ultra subscribers can claim their recurring monthly Google Cloud credits directly inside Google AI Studio, link Cloud Billing accounts, bypass quota limits, and configure Gemini API keys.',
+    whyFeatured:
+      'Verified HTTP 200 Google DevRel engineer walkthrough detailing in-workspace Google Cloud credit redemption, $5 prepayment gate satisfaction, and paid-tier API key usage in Google AI Studio.',
+  },
+  {
+    id: 'vid-inboxsmith-cloud-credits-ai-studio',
+    videoId: 'oJdbx3pDQ_4',
+    featuredOfTheDay: false,
+    category: 'Developer Tools & Studio',
+    badge: 'PLATFORM BREAKDOWN • INBOXSMITH',
+    title: 'Google Puts Cloud Credits Inside AI Studio',
+    creatorName: 'Inboxsmith',
+    creatorHandle: '@Inboxsmith',
+    creatorUrl: 'https://www.youtube.com/@Inboxsmith',
+    watchUrl: 'https://www.youtube.com/watch?v=oJdbx3pDQ_4',
+    thumbnailUrl: 'https://i.ytimg.com/vi/oJdbx3pDQ_4/hqdefault.jpg',
+    geminiSummary:
+      'Verified creator breakdown published November 13–14, 2026—exploring Google’s integration of Google Developer Program Cloud credits inside AI Studio, stackable rollover mechanics, and eliminating the three-website billing shuffle.',
+    whyFeatured:
+      'Verified HTTP 200 creator review examining Google AI Studio’s unified credit redemption modal and quota failover behavior.',
+  },
+  {
     id: 'vid-google-developers-building-in-antigravity',
     videoId: 'vLAegkGGWrM',
-    featuredOfTheDay: true,
+    featuredOfTheDay: false,
     category: 'Agentic IDE & Developers',
-    badge: 'FEATURED VIDEO OF THE DAY • GOOGLE FOR DEVELOPERS',
+    badge: 'OFFICIAL GUIDE • GOOGLE FOR DEVELOPERS',
     title: 'Building with Gemini in Google Antigravity',
     creatorName: 'Google for Developers',
     creatorHandle: '@GoogleDevelopers',

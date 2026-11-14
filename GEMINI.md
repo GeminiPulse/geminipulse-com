@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-11-13 17:45 EST — ROUND 37 5:45 PM ET CURATION COMPLETE: Verified Google Research Unveils /teamwork in Antigravity for Frontier Math, Formal Verification (Lean 4), Molecular Chemistry & Fleet-Scale Systems Engineering (Vahab Mirrokni), 3-Part Deep-Dive Series + Antigravity Teamwork Studio [DEMO], and Google for Developers 'Building with Gemini in Google Antigravity' Featured Video of the Day`
+> **Last touched:** `2026-11-14 12:45 EST — ROUND 38 12:45 PM ET CURATION COMPLETE: Verified Google Integrates Cloud Credits into Google AI Studio (Bala Muthukrishnan & Seth Odoom), 3-Part Deep-Dive Series + AI Studio Credits Studio [DEMO], and Thor Michael Støre @thorwebdev 'Redeem and use Google Cloud Credits in Google AI Studio and Gemini API' Featured Video of the Day`
 
 ---
 
