@@ -12,6 +12,70 @@
   </author>
 
   <entry>
+    <title>Your Consumer AI Subscription Just Became Startup Cloud Runway. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/ai-studio-cloud-credits.html" />
+    <id>https://geminipulse.com/articles/ai-studio-cloud-credits.html</id>
+    <updated>2026-11-13T20:30:00.000Z</updated>
+    <summary>For two years, builders lived in an artificial split-brain: paying $20 to $250 a month for consumer chat subscriptions that contributed zero dollars toward their API bills. By wiring Google Developer Program Cloud credits directly into Google AI Studio, Google quietly erased the friction wall between weekend prototyping and paid production.</summary>
+  </entry>
+
+  <entry>
+    <title>The End of the Lone Genius Prompt: How /teamwork Changed Discovery. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/antigravity-teamwork-multi-agent-science.html" />
+    <id>https://geminipulse.com/articles/antigravity-teamwork-multi-agent-science.html</id>
+    <updated>2026-11-13T17:00:00.000Z</updated>
+    <summary>For years, skeptics rightly pointed out that single foundation models hallucinate subtle algebra steps and lose the plot halfway through massive systems rewrites. Google Research’s landmark /teamwork results prove that the cure is not waiting for magic—it is pairing parallel Gemini subagents with ruthless, deterministic falsifiers.</summary>
+  </entry>
+
+  <entry>
+    <title>A CFO in Your Pocket—With Zero Power to Touch Your Money. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/google-wallet-in-gemini.html" />
+    <id>https://geminipulse.com/articles/google-wallet-in-gemini.html</id>
+    <updated>2026-11-13T12:00:00.000Z</updated>
+    <summary>Connecting an AI model to your bank and card history sounds terrifying until you inspect the permission boundary Google drew. By pairing Plaid-backed transaction visibility and dynamic in-chat charts with a hard hardware-style read-only lock and an editable Memory Summary, Gemini solves the chore people hate most since Mint shut down.</summary>
+  </entry>
+
+  <entry>
+    <title>Gemini 4 Hydrogen Is Not the “Small” Model. It Is the Disciplined Workhorse. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/gemini-4-hydrogen.html" />
+    <id>https://geminipulse.com/articles/gemini-4-hydrogen.html</id>
+    <updated>2026-11-12T17:00:00.000Z</updated>
+    <summary>Most model launches brag exclusively about leaderboard peaks while ignoring the two flaws that drive builders crazy in daily work: agonizing latency and over-eager agents that rewrite files you never asked them to touch. Gemini 4 Hydrogen changes the daily rhythm of software creation by pairing Argon-surpassing intelligence with 2.5x faster execution and an 81% drop in agent overreach.</summary>
+  </entry>
+
+  <entry>
+    <title>Thirteen Years After Google Glass, Eyewear Finally Learned Human Manners. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/google-intelligent-eyewear.html" />
+    <id>https://geminipulse.com/articles/google-intelligent-eyewear.html</id>
+    <updated>2026-11-12T14:00:00.000Z</updated>
+    <summary>In 2013, Google Glass failed not because ambient computing was wrong, but because strapping a bare circuit board and camera above one eyebrow violated every unspoken rule of human fashion and bystander trust. Returning on December 10 with Samsung, Warby Parker, and Gentle Monster, Google solved the social contract first—and let Gemini Multimodal Live supply the brain.</summary>
+  </entry>
+
+  <entry>
+    <title>Stop Paying Chatbots to Write Essays When You Only Need a Calibrated Decision. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/gemini-decisions-api.html" />
+    <id>https://geminipulse.com/articles/gemini-decisions-api.html</id>
+    <updated>2026-11-11T17:30:00.000Z</updated>
+    <summary>Half of all enterprise &quot;LLM calls&quot; today are not creative writing at all—they are routers, safety filters, ticket triagers, and rubric graders forced to generate verbose { &quot;answer&quot;: &quot;yes&quot; } JSON tokens one by one. With the Gemini Decisions API and gemini-decision-1, Google DeepMind tore out the autoregressive middleman and cut decision costs to $0.10 per million input tokens with zero output charges.</summary>
+  </entry>
+
+  <entry>
+    <title>Chatbots Should Not Reply with 900 Words When a Human Needs Three Buttons and a Slider. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/a2ui-1-0-generative-ui.html" />
+    <id>https://geminipulse.com/articles/a2ui-1-0-generative-ui.html</id>
+    <updated>2026-11-11T16:30:00.000Z</updated>
+    <summary>Conversational AI has been trapped in a 1970s teletype metaphor—answering seat upgrades, expense approvals, and filter refinements with endless paragraphs of Markdown prose. With A2UI 1.0 reaching General Availability as an open cross-platform protocol, Google gave agents a safe, brand-faithful way to render real native interfaces across web and mobile.</summary>
+  </entry>
+
+  <entry>
+    <title>Gemini 4 Carbon Leaves the Vault—With a November 30 Pricing Clock. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/gemini-4-carbon-ga.html" />
+    <id>https://geminipulse.com/articles/gemini-4-carbon-ga.html</id>
+    <updated>2026-11-10T16:00:00.000Z</updated>
+    <summary>When Google DeepMind first unveiled Gemini 4 Carbon on October 28, its dual-use cyberdefense power kept it gated behind the Fairwind preview program. Moving to General Availability on November 10 opens Google’s #1-ranked reasoning, coding, and financial model to every developer—alongside a hard December 1 price doubling that smart teams can neutralize right now.</summary>
+  </entry>
+
+  <entry>
     <title>Google Integrates Cloud Credits into Google AI Studio: In-Workspace Claim, 12-Month Rollover &amp; Automated Billing Setup (Parts 1–3) + Credits Studio [SIMULATED DEMO]</title>
     <link href="https://geminipulse.com/series/ai-studio-cloud-credits/part-1-cloud-credits-integration-and-architecture.html" />
     <id>https://geminipulse.com/series/ai-studio-cloud-credits/part-1-cloud-credits-integration-and-architecture.html</id>

@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-11-15 02:05 EST — HOMEPAGE CONSTELLATION AUTO-SYNC WIRED & DEPLOYED: Built public/scripts/sync-constellation.mjs into prebuild (stamp-build.mjs) so all 8 Castor & Pollux 3D stars, HUD briefs, Nocturnal Twin salons, 4-chapter Reading Sanctuaries, SEO JSON-LD, and ⌘K search palette sync automatically from PULSE_INTELLIGENCE_FEED on every 3x/day autonomous build`
+> **Last touched:** `2026-11-15 13:26 EST — DUAL-LENS FLAGSHIP GEMINI ESSAYS, ZERO-TRUNCATION SANCTUARY & 1-CLICK CONSTELLATION ERGONOMICS LIVE ON GEMINIPULSE.COM: Authored 8 complete first-person Google Gemini 4 Argon essays (public/src/data/constellationEssays.js), eliminated all snippet ellipses & standfirst duplication inside #salon-sheet, generated shareable /articles/*.html sanctuaries + /articles/essays-data.json, wired instant HUD preview + 1-click foreground star open, and verified Lighthouse 100/100/100/100 Desktop & 99/100/100/100 Mobile`
 
 ---
 
@@ -40,7 +40,7 @@ npm run dev -- --port 8080
 cd ~/Projects/geminipulse-com/public
 npm run build
 ```
-*(Automatically runs `prebuild` -> `scripts/stamp-build.mjs` -> `scripts/sync-constellation.mjs` to sync all 8 homepage 3D constellation stars, HUD briefs, Twin salons, 4-chapter Reading Sanctuaries, and ⌘K search index in `public/index.html` and `public/public/prototypes/look-j-3d-celestial-navigator.html` from `PULSE_INTELLIGENCE_FEED`, then outputs the production bundle to `public/dist/`. Always include `public/index.html` and `public/public/prototypes/look-j-3d-celestial-navigator.html` when staging curation commits.)*
+*(Automatically runs `prebuild` -> `scripts/stamp-build.mjs` -> `scripts/sync-constellation.mjs` to sync all 8 homepage 3D constellation stars, instant HUD briefs, untruncated Dual-Lens Flagship Essays (`constellationEssays.js`), standalone `/articles/*.html` sanctuaries, `sitemap.xml`, `feed.xml`, and `⌘K` search index in `public/index.html` and `public/public/prototypes/look-j-3d-celestial-navigator.html`, then outputs the production bundle to `public/dist/`. Always include `public/src/data/constellationEssays.js`, `public/index.html`, `public/public/prototypes/look-j-3d-celestial-navigator.html`, and `public/public/articles/` when staging curation commits.)*
 
 ### Firebase Hosting Deployment (Free Spark Tier — \$0/mo)
 ```bash

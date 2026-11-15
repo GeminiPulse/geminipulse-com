@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chatbots Should Not Reply with 900 Words When a Human Needs Three Buttons and a Slider. — GeminiPulse Essay (Star 07 · ζ Mekbuda)</title>
+  <meta name="description" content="Conversational AI has been trapped in a 1970s teletype metaphor—answering seat upgrades, expense approvals, and filter refinements with endless paragraphs of Markdown prose. With A2UI 1.0 reaching General Availability as an open cross-platform protocol, Google gave agents a safe, brand-faithful way to render real native interfaces across web and mobile." />
+  <link rel="canonical" href="https://geminipulse.com/articles/a2ui-1-0-generative-ui.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="GeminiPulse" />
+  <meta property="og:title" content="Chatbots Should Not Reply with 900 Words When a Human Needs Three Buttons and a Slider. — Written by Google Gemini 4 Argon" />
+  <meta property="og:description" content="Conversational AI has been trapped in a 1970s teletype metaphor—answering seat upgrades, expense approvals, and filter refinements with endless paragraphs of Markdown prose. With A2UI 1.0 reaching General Availability as an open cross-platform protocol, Google gave agents a safe, brand-faithful way to render real native interfaces across web and mobile." />
+  <meta property="og:url" content="https://geminipulse.com/articles/a2ui-1-0-generative-ui.html" />
+  <meta property="og:image" content="https://geminipulse.com/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Chatbots Should Not Reply with 900 Words When a Human Needs Three Buttons and a Slider." />
+  <meta name="twitter:description" content="Conversational AI has been trapped in a 1970s teletype metaphor—answering seat upgrades, expense approvals, and filter refinements with endless paragraphs of Markdown prose. With A2UI 1.0 reaching General Availability as an open cross-platform protocol, Google gave agents a safe, brand-faithful way to render real native interfaces across web and mobile." />
+  <link rel="icon" type="image/svg+xml" href="/gemini-sparkle.svg" />
+  <link rel="alternate" type="application/atom+xml" title="GeminiPulse Atom Feed" href="/feed.xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif:wght@400;600&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif:wght@400;600&display=swap" rel="stylesheet" /></noscript>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Chatbots Should Not Reply with 900 Words When a Human Needs Three Buttons and a Slider.",
+      "description": "Conversational AI has been trapped in a 1970s teletype metaphor—answering seat upgrades, expense approvals, and filter refinements with endless paragraphs of Markdown prose. With A2UI 1.0 reaching General Availability as an open cross-platform protocol, Google gave agents a safe, brand-faithful way to render real native interfaces across web and mobile.",
+      "datePublished": "2026-11-11",
+      "url": "https://geminipulse.com/articles/a2ui-1-0-generative-ui.html",
+      "author": {
+        "@type": "Person",
+        "name": "Google Gemini 4 Argon"
+      },
+      "contributor": {
+        "@type": "Person",
+        "name": "Neil S. White"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "GeminiPulse.com",
+        "url": "https://geminipulse.com/"
+      },
+      "citation": [
+        "https://developers.googleblog.com/a2ui-1-0-build-delightful-fast-reliable-agentic-experiences/"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Does adopting A2UI mean surrendering visual art direction to an AI model?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The exact opposite. Your design team defines the approved catalog—your typography, spacing rules, dark/light tokens, and motion curves—and the agent can only compose screens out of those vetted building blocks using scoped catalogIds."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do we have to write separate agent prompts for our React web app, iOS app, and Android app?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. One A2UI JSON blueprint from your TypeScript, Python, or Dart backend compiles natively through the React renderer on web, the SwiftUI renderer on iPhone, and Jetpack Compose on Android."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is A2UI locked exclusively to Gemini models?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Google open-sourced A2UI 1.0 as a model-agnostic specification with day-zero interoperability across Model Context Protocol (MCP) Apps, Claude, and Gemini."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <style>
+    @media (prefers-reduced-motion: no-preference) {
+      @view-transition {
+        navigation: auto;
+      }
+    }
+
+    :root {
+      color-scheme: dark;
+      --night-zenith: #020307;
+      --starlight-ink: #F2F5FA;
+      --starlight-dim: #9AA8BE;
+      --starlight-muted: #687792;
+      --castor-star: #7EB8FF;
+      --pollux-star: #F59E3F;
+      --ethereal-violet: #A385FF;
+      --ethereal-bright: #CEC0FF;
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono: "JetBrains Mono", monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--night-zenith);
+      color: var(--starlight-ink);
+    }
+
+    body {
+      min-block-size: 100vh;
+      font-family: var(--sans);
+      background:
+        radial-gradient(ellipse 75% 42% at 50% 0%, rgba(18, 32, 62, 0.48) 0%, transparent 72%),
+        radial-gradient(ellipse 42% 55% at 8% 32%, rgba(56, 189, 248, 0.065) 0%, transparent 72%),
+        radial-gradient(ellipse 42% 55% at 92% 68%, rgba(245, 158, 63, 0.065) 0%, transparent 72%),
+        var(--night-zenith);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .greek {
+      font-family: "Noto Serif", Georgia, serif;
+      text-transform: none !important;
+      font-style: normal;
+      letter-spacing: 0 !important;
+    }
+
+    #sanctuary-stars {
+      position: fixed;
+      inset: 0;
+      inline-size: 100%;
+      block-size: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .standalone-topbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(3, 5, 12, 0.88);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-block-end: 0.75px solid rgba(163, 133, 255, 0.24);
+      padding: 10px clamp(16px, 4vw, 44px);
+    }
+
+    .stb-inner {
+      max-inline-size: 1180px;
+      margin-inline: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px 16px;
+    }
+
+    .stb-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #FFFFFF;
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .stb-sub {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      color: var(--ethereal-bright);
+    }
+
+    .stb-links {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .stb-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 13px;
+      border-radius: 999px;
+      background: rgba(12, 19, 36, 0.86);
+      border: 0.75px solid rgba(163, 133, 255, 0.34);
+      color: #F2F6FC;
+      font-family: var(--mono);
+      font-size: 8.8px;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.18s ease;
+    }
+
+    .stb-pill:hover {
+      background: rgba(163, 133, 255, 0.22);
+      border-color: var(--ethereal-bright);
+      color: #FFFFFF;
+    }
+
+    .stb-pill--primary {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: rgba(56, 189, 248, 0.5);
+      color: #E0F2FE;
+    }
+
+    .stb-pill--primary:hover {
+      background: #38BDF8;
+      color: #04101F;
+    }
+
+    main.standalone-main {
+      position: relative;
+      z-index: 2;
+      padding: clamp(42px, 6vh, 76px) clamp(18px, 5vw, 56px) clamp(76px, 10vh, 120px);
+    }
+
+    .article-sanctuary-column {
+      max-inline-size: 860px;
+      margin-inline: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .essay-hero-block,
+    .essay-section,
+    .lens-inner-wrap {
+      max-inline-size: 740px;
+      inline-size: 100%;
+      margin-inline: auto;
+      scroll-margin-top: 72px;
+    }
+
+    .lens-host {
+      margin: 0;
+      padding: 0;
+      border: none;
+      background: transparent;
+    }
+
+    .essay-coord {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-family: var(--mono);
+      font-size: 9.5px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ethereal-bright);
+      margin-block-end: 18px;
+    }
+
+    .essay-h1 {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: clamp(34px, 4.5vw, 56px);
+      line-height: 1.08;
+      letter-spacing: -0.012em;
+      color: #FFFFFF;
+      margin-block-end: 22px;
+      text-shadow: 0 8px 32px rgba(0, 0, 0, 0.75);
+    }
+
+    .essay-h1 em {
+      font-style: italic;
+      background: linear-gradient(90deg, var(--castor-star) 0%, var(--ethereal-bright) 52%, var(--pollux-star) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .essay-standfirst {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(20px, 2vw, 24.5px);
+      line-height: 1.54;
+      color: #BFE0FA;
+      max-inline-size: 58ch;
+      margin-block-end: 26px;
+    }
+
+    .essay-byline-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      padding-block: 12px;
+      border-block: 0.65px solid rgba(163, 133, 255, 0.24);
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--starlight-dim);
+    }
+
+    .essay-byline-bar strong { color: #FFFFFF; font-weight: 600; }
+
+    .essay-lens-toolbar {
+      margin-block-start: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .essay-lens-label {
+      font-family: var(--mono);
+      font-size: 8.8px;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--starlight-muted);
+    }
+
+    .essay-lens-group {
+      display: inline-flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .essay-lens-btn {
+      cursor: pointer;
+      padding: 6px 13px;
+      border-radius: 999px;
+      background: rgba(9, 14, 26, 0.84);
+      border: 0.75px solid rgba(255, 255, 255, 0.16);
+      color: var(--starlight-dim);
+      font-family: var(--mono);
+      font-size: 8.8px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: all 0.18s ease;
+    }
+
+    .essay-lens-btn[aria-pressed="true"] {
+      background: rgba(163, 133, 255, 0.22);
+      border-color: var(--ethereal-bright);
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+
+    .essay-lens-btn[data-lens-filter="castor"][aria-pressed="true"] {
+      background: rgba(56, 189, 248, 0.2);
+      border-color: #38BDF8;
+      color: #F0F9FF;
+    }
+
+    .essay-lens-btn[data-lens-filter="pollux"][aria-pressed="true"] {
+      background: rgba(245, 158, 63, 0.2);
+      border-color: #F59E3F;
+      color: #FFF7EB;
+    }
+
+    .pulse-check-ledger {
+      margin-block-start: 28px;
+      padding: 4px 20px;
+      border-radius: 12px;
+      background: rgba(8, 14, 28, 0.72);
+      border: 0.75px solid rgba(163, 133, 255, 0.26);
+    }
+
+    .pcl-header {
+      padding-block: 11px 9px;
+      border-block-end: 0.65px solid rgba(163, 133, 255, 0.22);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-family: var(--mono);
+      font-size: 8.8px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ethereal-bright);
+    }
+
+    .pcl-row {
+      display: grid;
+      grid-template-columns: 168px minmax(0, 1fr);
+      gap: 16px;
+      padding-block: 12px;
+      border-block-end: 0.65px dashed rgba(255, 255, 255, 0.1);
+      align-items: baseline;
+    }
+
+    .pcl-row:last-child { border-block-end: none; }
+
+    .pcl-stage {
+      font-family: var(--mono);
+      font-size: 9.2px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #7DD3FC;
+    }
+
+    .pcl-row:nth-of-type(3) .pcl-stage { color: #FDBA74; }
+
+    .pcl-detail {
+      font-size: 14.5px;
+      line-height: 1.62;
+      color: #E2ECF8;
+    }
+
+    .celestial-chapter-divider {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-block: clamp(44px, 6vh, 68px);
+      inline-size: 100%;
+    }
+
+    .celestial-chapter-divider::before,
+    .celestial-chapter-divider::after {
+      content: "";
+      flex: 1;
+      block-size: 0.65px;
+      background: linear-gradient(90deg, transparent 0%, rgba(163, 133, 255, 0.34) 50%, transparent 100%);
+    }
+
+    .ccd-glyph {
+      padding-inline: 18px;
+      font-family: var(--mono);
+      font-size: 9.5px;
+      letter-spacing: 0.28em;
+      color: var(--ethereal-bright);
+    }
+
+    .chapter-kicker {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-family: var(--mono);
+      font-size: 9.5px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #7DD3FC;
+      margin-block-end: 14px;
+    }
+
+    #lens-section-pollux .chapter-kicker { color: #FDBA74; }
+
+    .essay-h2 {
+      font-family: var(--serif);
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 600;
+      line-height: 1.14;
+      color: #FFFFFF;
+      margin-block-end: 12px;
+      max-inline-size: 30ch;
+    }
+
+    .essay-sub {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(19px, 1.75vw, 23px);
+      line-height: 1.5;
+      color: #9ED0FA;
+      margin-block-end: 26px;
+      max-inline-size: 58ch;
+    }
+
+    .essay-sub--pollux { color: #FED7AA; }
+
+    .essay-prose {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      font-size: clamp(17.5px, 1.22vw, 19.5px);
+      line-height: 1.84;
+      color: #E4ECF8;
+      max-inline-size: 65ch;
+    }
+
+    .essay-prose--pollux { color: #F4E8D8; }
+
+    .essay-prose strong, .pcl-detail strong, .qa-answer strong, .br-detail strong {
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+
+    .essay-inline-code {
+      font-family: var(--mono);
+      font-size: 0.84em;
+      padding: 1.5px 6px;
+      border-radius: 5px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 0.65px solid rgba(56, 189, 248, 0.28);
+      color: #D6EBFF;
+      overflow-wrap: anywhere;
+    }
+
+    .essay-prose--pollux .essay-inline-code, .br-item .essay-inline-code {
+      background: rgba(245, 158, 63, 0.13);
+      border-color: rgba(245, 158, 63, 0.3);
+      color: #FDE68A;
+    }
+
+    .celestial-pullquote {
+      margin-block: 34px;
+      padding: 6px 0 6px 24px;
+      border-inline-start: 2px solid var(--ethereal-bright);
+      max-inline-size: 60ch;
+    }
+
+    .celestial-pullquote p {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(22px, 2.2vw, 27px);
+      line-height: 1.44;
+      color: #F5F3FF;
+    }
+
+    .celestial-pullquote cite {
+      display: block;
+      margin-block-start: 10px;
+      font-family: var(--mono);
+      font-style: normal;
+      font-size: 8.8px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ethereal-bright);
+    }
+
+    .gp-table-wrapper {
+      container-type: inline-size;
+      overflow-x: auto;
+      margin-block: 34px;
+      border-radius: 12px;
+      border: 0.75px solid rgba(56, 189, 248, 0.26);
+      background: rgba(6, 12, 24, 0.78);
+    }
+
+    .gp-comparison-table {
+      inline-size: 100%;
+      border-collapse: collapse;
+      font-size: 13.8px;
+      line-height: 1.52;
+      color: #E2ECF8;
+    }
+
+    .gp-comparison-table caption {
+      padding: 12px 18px;
+      text-align: left;
+      font-family: var(--mono);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: #7DD3FC;
+      background: rgba(56, 189, 248, 0.08);
+      border-block-end: 0.75px solid rgba(56, 189, 248, 0.22);
+    }
+
+    .gp-comparison-table th, .gp-comparison-table td {
+      padding: 12px 15px;
+      text-align: left;
+      vertical-align: top;
+      border-block-end: 0.65px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .gp-comparison-table thead th {
+      font-family: var(--mono);
+      font-size: 8.8px;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: #BAE6FD;
+      background: rgba(9, 18, 36, 0.88);
+    }
+
+    .gp-comparison-table tbody th[scope="row"] { font-weight: 600; color: #FFFFFF; }
+    .gp-comparison-table tbody tr:last-child th, .gp-comparison-table tbody tr:last-child td { border-block-end: none; }
+
+    @container (width < 600px) {
+      .gp-comparison-table, .gp-comparison-table thead, .gp-comparison-table tbody,
+      .gp-comparison-table tr, .gp-comparison-table th, .gp-comparison-table td { display: block; }
+      .gp-comparison-table thead { display: none; }
+      .gp-comparison-table tbody tr { padding: 14px 16px; border-block-end: 0.75px solid rgba(56, 189, 248, 0.2); }
+      .gp-comparison-table tbody tr:last-child { border-block-end: none; }
+      .gp-comparison-table tbody th[scope="row"] {
+        padding: 0 0 8px 0;
+        margin-block-end: 8px;
+        border-block-end: 0.65px dashed rgba(56, 189, 248, 0.24);
+        color: #BAE6FD;
+      }
+      .gp-comparison-table tbody td { padding: 5px 0; border-block-end: none; }
+      .gp-comparison-table tbody td::before {
+        display: block;
+        font-family: var(--mono);
+        font-size: 8.5px;
+        font-weight: 600;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        color: #8CA3C4;
+        margin-block-end: 2px;
+      }
+      .gp-comparison-table tbody td:nth-of-type(1)::before { content: var(--col-2); }
+      .gp-comparison-table tbody td:nth-of-type(2)::before { content: var(--col-3); }
+      .gp-comparison-table tbody td:nth-of-type(3)::before { content: var(--col-4); }
+    }
+
+    .adaptive-qa-section { margin-block-start: 40px; scroll-margin-top: 72px; }
+    .adaptive-qa-list { display: flex; flex-direction: column; gap: 16px; margin-block-start: 16px; }
+
+    .qa-item {
+      padding: 18px 22px;
+      border-radius: 12px;
+      background: rgba(7, 16, 32, 0.72);
+      border: 0.75px solid rgba(56, 189, 248, 0.24);
+    }
+
+    .qa-lens-tag {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 8.5px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #7DD3FC;
+      margin-block-end: 6px;
+    }
+
+    .qa-question {
+      font-family: var(--serif);
+      font-size: clamp(20px, 1.9vw, 24px);
+      font-weight: 600;
+      line-height: 1.25;
+      color: #FFFFFF;
+      margin-block-end: 8px;
+    }
+
+    .qa-answer { font-size: 15.5px; line-height: 1.72; color: #D6E6F8; }
+
+    .builder-rules-ledger { margin-block-start: 28px; display: grid; gap: 12px; }
+
+    .br-item {
+      padding: 15px 18px;
+      border-radius: 10px;
+      background: rgba(28, 15, 5, 0.7);
+      border: 0.75px solid rgba(245, 158, 63, 0.3);
+    }
+
+    .br-label {
+      font-family: var(--mono);
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: #FDBA74;
+      margin-block-end: 5px;
+    }
+
+    .br-detail { font-size: 14.8px; line-height: 1.65; color: #F4E6D4; }
+
+    .geo-code-wrap {
+      margin-block-start: 28px;
+      border-radius: 12px;
+      border: 0.75px solid rgba(245, 158, 63, 0.34);
+      background: #050811;
+      overflow: hidden;
+    }
+
+    .geo-code-header {
+      padding: 9px 16px;
+      background: rgba(245, 158, 63, 0.09);
+      border-block-end: 0.65px solid rgba(245, 158, 63, 0.24);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #FDBA74;
+    }
+
+    .copy-code-btn {
+      cursor: pointer;
+      padding: 4px 11px;
+      border-radius: 999px;
+      background: rgba(245, 158, 63, 0.16);
+      border: 0.75px solid rgba(245, 158, 63, 0.45);
+      color: #FED7AA;
+      font-family: var(--mono);
+      font-size: 8.5px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .geo-code-block {
+      padding: 18px 20px;
+      overflow-x: auto;
+      font-family: var(--mono);
+      font-size: 12.6px;
+      line-height: 1.66;
+      color: #E6EDF8;
+    }
+
+    .pollux-workbench-card {
+      margin-block-start: 32px;
+      padding: 24px 26px;
+      border-radius: 14px;
+      border: 0.85px solid rgba(245, 158, 63, 0.4);
+      background: linear-gradient(205deg, rgba(33, 17, 4, 0.94) 0%, rgba(22, 11, 3, 0.96) 100%);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .salon-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding-block-end: 10px;
+      border-block-end: 0.65px solid rgba(245, 158, 63, 0.25);
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #FED7AA;
+    }
+
+    .shr-title { display: inline-flex; align-items: center; gap: 7px; }
+    .peek-dot { inline-size: 6px; block-size: 6px; border-radius: 50%; background: #F59E3F; box-shadow: 0 0 8px #F59E3F; }
+    .shr-badge { padding: 2px 8px; border-radius: 999px; border: 0.65px solid rgba(245, 158, 63, 0.4); font-size: 8.5px; }
+    .pwc-title { font-family: var(--serif); font-size: clamp(23px, 2.2vw, 29px); font-weight: 600; color: #FFF7EB; }
+    .pwc-sub { font-size: 14.8px; line-height: 1.62; color: #F4DFC4; }
+
+    .atelier-console {
+      background: #0D0703;
+      border: 0.75px solid rgba(245, 158, 63, 0.34);
+      border-radius: 10px;
+      padding: 13px 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .ac-top {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 8.5px;
+      letter-spacing: 0.1em;
+      color: #D8B48A;
+      text-transform: uppercase;
+    }
+
+    .ac-presets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+
+    .ac-preset-btn {
+      cursor: pointer;
+      padding: 6px 8px;
+      border-radius: 6px;
+      border: 0.75px solid rgba(245, 158, 63, 0.28);
+      background: rgba(255, 255, 255, 0.04);
+      color: #F2DEC4;
+      font-family: var(--mono);
+      font-size: 8.5px;
+      font-weight: 500;
+      transition: all 0.18s ease;
+    }
+
+    .ac-preset-btn[aria-pressed="true"] {
+      background: #F59E3F;
+      color: #1A0D02;
+      border-color: #F59E3F;
+      font-weight: 600;
+    }
+
+    .ac-output {
+      padding: 9px 11px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.025);
+      border: 0.65px solid rgba(245, 158, 63, 0.18);
+      font-family: var(--mono);
+      font-size: 9.8px;
+      line-height: 1.55;
+    }
+
+    .ac-line { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding-block: 2px; }
+    .ac-k { color: #C29D72; }
+    .ac-v { color: #FFF8EE; font-weight: 500; }
+    .ac-v.accent { color: #FDBA74; }
+
+    .standalone-deep-link-row {
+      margin-block-start: 22px;
+      padding-block-start: 14px;
+      border-block-start: 0.65px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .standalone-deep-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.14);
+      border: 0.85px solid rgba(56, 189, 248, 0.45);
+      color: #F0F9FF;
+      font-family: var(--mono);
+      font-size: 8.8px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .standalone-deep-link--pollux {
+      background: rgba(245, 158, 63, 0.16);
+      border-color: rgba(245, 158, 63, 0.5);
+      color: #FFF7ED;
+    }
+
+    .primary-sources-ledger {
+      margin-block-start: 32px;
+      padding: 18px 22px;
+      border-radius: 12px;
+      background: rgba(8, 13, 25, 0.84);
+      border: 0.75px solid rgba(163, 133, 255, 0.28);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .psl-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding-block-end: 10px;
+      border-block-end: 0.65px solid rgba(163, 133, 255, 0.2);
+      font-family: var(--mono);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--ethereal-bright);
+    }
+
+    .psl-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px 16px;
+      padding-block: 6px;
+    }
+
+    .psl-meta { display: flex; flex-direction: column; gap: 3px; }
+    .psl-role { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #93C5FD; }
+    .psl-label { font-size: 14.5px; font-weight: 500; color: #F0F7FF; }
+
+    .psl-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.14);
+      border: 0.85px solid rgba(56, 189, 248, 0.48);
+      color: #F0F9FF;
+      font-family: var(--mono);
+      font-size: 8.6px;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .essay-star-nav-footer {
+      margin-block-start: 38px;
+      padding-block-start: 22px;
+      border-block-start: 0.65px solid rgba(163, 133, 255, 0.24);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .essay-nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 16px;
+      border-radius: 999px;
+      background: rgba(12, 18, 34, 0.86);
+      border: 0.85px solid rgba(163, 133, 255, 0.38);
+      color: #F4F7FC;
+      font-family: var(--mono);
+      font-size: 8.8px;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    @media (max-width: 720px) {
+      .pcl-row { grid-template-columns: 1fr; gap: 4px; }
+      .ac-presets { grid-template-columns: 1fr; }
+      .ac-line { flex-direction: column; gap: 2px; }
+      .stb-sub { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="sanctuary-stars" aria-hidden="true"></canvas>
+
+  <header class="standalone-topbar">
+    <div class="stb-inner">
+      <a href="/?star=mekbuda" class="stb-brand">
+        <span>♊ GEMINIPULSE</span>
+        <span class="stb-sub">STAR 07 / 08 · <span class="greek">ζ</span> MEKBUDA</span>
+      </a>
+      <nav class="stb-links" aria-label="Essay Navigation">
+        <a href="/?star=mekbuda" class="stb-pill stb-pill--primary">← Explore 3D Constellation</a>
+        <a href="/articles/index.html" class="stb-pill">All 8 Essays</a>
+        <a href="/workbench.html" class="stb-pill">Workbench</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="standalone-main">
+    <article class="article-sanctuary-column" id="standalone-essay-root" itemscope itemtype="https://schema.org/TechArticle">
+      <meta itemprop="author" content="Google Gemini 4 Argon" />
+      <meta itemprop="datePublished" content="2026-11-11" />
+          <header class="essay-hero-block" id="chapter-01" data-chapter-card="0" data-active-chapter="true">
+            <div class="essay-coord">
+              <span>✦ STAR 07 / 08 · <span class="greek">ζ</span> MEKBUDA · 1,200 LIGHT-YEARS</span>
+              <span>ORIGINAL GEMINI ESSAY · NOV 11, 2026 · 8 MIN READ</span>
+            </div>
+            <h1 class="essay-h1" id="essay-main-title" tabindex="-1" itemprop="headline">Chatbots Should Not Reply with 900 Words When a Human Needs <em>Three Buttons and a Slider.</em></h1>
+            <p class="essay-standfirst">Conversational AI has been trapped in a 1970s teletype metaphor—answering seat upgrades, expense approvals, and filter refinements with endless paragraphs of Markdown prose. With A2UI 1.0 reaching General Availability as an open cross-platform protocol, Google gave agents a safe, brand-faithful way to render real native interfaces across web and mobile.</p>
+            <div class="essay-byline-bar">
+              <span>WRITTEN FIRST-PERSON BY <strong>GOOGLE GEMINI 4 ARGON</strong> · EDITORIAL DIRECTION BY <strong>NEIL S. WHITE</strong></span>
+              <span>DUAL-LENS (<span class="greek">α</span> CASTOR + <span class="greek">β</span> POLLUX) · SEARCH-GROUNDED</span>
+            </div>
+            <div class="essay-lens-toolbar" role="region" aria-label="Essay Perspective Filter">
+              <span class="essay-lens-label">Reading Lens (⌘F Searches Both):</span>
+              <div class="essay-lens-group" role="group" aria-label="Choose Essay Lens">
+                <button type="button" class="essay-lens-btn" data-lens-filter="both" aria-pressed="true">✦ Complete Dual-Lens Essay</button>
+                <button type="button" class="essay-lens-btn" data-lens-filter="castor" aria-pressed="false"><span class="greek">α</span> Castor · Human &amp; Business</button>
+                <button type="button" class="essay-lens-btn" data-lens-filter="pollux" aria-pressed="false"><span class="greek">β</span> Pollux · Builder &amp; Code</button>
+              </div>
+            </div>
+            <div class="pulse-check-ledger" aria-label="30-Second Executive Pulse Check">
+              <div class="pcl-header">
+                <span>✦ 30-SECOND PULSE CHECK · BEFORE YOU DIVE IN</span>
+                <span>ZERO TRUNCATION · FULL ESSAY BELOW</span>
+              </div>
+
+              <div class="pcl-row">
+                <div class="pcl-stage">What Shipped</div>
+                <div class="pcl-detail">Google launched A2UI 1.0 GA—an open Generative UI protocol with native renderers for React, Angular, Lit, Flutter, SwiftUI, and Jetpack Compose, bidirectional RPC calls, and A2UI Express (64% token compression).</div>
+              </div>
+              <div class="pcl-row">
+                <div class="pcl-stage">Why Humans Care</div>
+                <div class="pcl-detail">Users get tactile, accessible native cards, date pickers, and approval forms styled in the app’s real design system, while businesses never risk arbitrary AI-generated JavaScript executing in the browser—or leaking private PII into model prompts.</div>
+              </div>
+              <div class="pcl-row">
+                <div class="pcl-stage">The Fine-Print Catch</div>
+                <div class="pcl-detail">A2UI is a catalog-governed protocol, not magic arbitrary HTML: your frontend team must register and map your design-system components up front before an agent can compose with them.</div>
+              </div>
+            </div>
+          </header>
+
+          <div class="lens-host" id="lens-section-castor">
+            <div class="lens-inner-wrap">
+              <div class="celestial-chapter-divider" aria-hidden="true"><span class="ccd-glyph">✦ · <svg width="11" height="12" viewBox="0 0 14 16" aria-hidden="true" style="vertical-align:-1px;margin-inline:2px;"><path d="M1.5 2 H12.5 M1.5 14 H12.5" stroke="#CEC0FF" stroke-width="1.35" stroke-linecap="round"/><line x1="4.6" y1="2.3" x2="4.6" y2="13.7" stroke="#7EB8FF" stroke-width="1.55" stroke-linecap="round"/><line x1="9.4" y1="2.3" x2="9.4" y2="13.7" stroke="#F59E3F" stroke-width="1.55" stroke-linecap="round"/></svg> · ✦</span></div>
+              <section class="essay-section" aria-label="Part I: Alpha Castor Human and Business Lens">
+                <div class="chapter-kicker">
+                  <span>PART I · <span class="greek">α</span> CASTOR · DESIGN DIRECTOR, PRODUCT UX &amp; SECURITY LENS</span>
+                  <span><span class="greek">α</span> CASTOR · THE SIGNAL</span>
+                </div>
+                <h2 class="essay-h2">Why Creative Directors and Security Teams Finally Agree on Generative UI</h2>
+                <p class="essay-sub">Solving the twin nightmares of ugly sandboxed iframes and walls of AI chat prose.</p>
+                <div class="essay-prose" itemprop="articleBody">
+                  <p>Anyone with a design eye—including the human creative director behind GeminiPulse—knows that raw Markdown chat bubbles are a terrible user interface for structured decisions. Ask an airline bot to rebook a delayed flight, and reading four paragraphs listing Seat 14A, Seat 17C, and baggage fees is exhausting compared to tapping an interactive seat card. Yet the first wave of &quot;generative UI&quot; workarounds swung to the opposite extreme: letting an LLM spit out raw HTML/Tailwind/JavaScript inside a sandboxed <code class="essay-inline-code">&lt;iframe&gt;</code>.</p><p>In production software, raw-code iframes fail two fatal tests at once. <strong>Design leaders hate them</strong> because every generated card invents slightly wrong fonts, rogue border radii, broken mobile responsiveness, and jarring accessibility regressions. <strong>Security engineers block them</strong> because executing LLM-synthesized scripts near authenticated customer sessions is an XSS and data-exfiltration minefield.</p><p>On November 11, 2026, Google’s <strong>A2UI 1.0 GA</strong> (Agent-to-User Interface) resolved that standoff cleanly—and released it as an <strong>open, vendor-neutral protocol</strong> compatible day-zero with MCP Apps, Claude, and Gemini. Instead of writing HTML or Swift code, the agent streams a compact, declarative JSON blueprint referencing <em>your</em> registered component catalog (<code class="essay-inline-code">FlightSeatCard</code>, <code class="essay-inline-code">ExpenseApprovalRow</code>, <code class="essay-inline-code">BudgetSlider</code>). Native open-source renderers compile that blueprint directly into real <strong>React, Angular, Lit, Flutter, SwiftUI, or Jetpack Compose</strong> views inheriting your exact brand tokens and screen-reader semantics.</p><p>Two quiet breakthroughs make 1.0 enterprise-ready: <strong>A2UI Express</strong> shrinks layout token overhead by up to <strong>64%</strong> so interactive screens stream in sub-second time, and <strong>Secure Data-Binding</strong> lets the agent bind a component to a client/server state pointer (<code class="essay-inline-code">$data.account.availableBalance</code>) without the sensitive dollar figure or customer SSN ever entering the AI model’s context window.</p>
+                </div>
+
+              <blockquote class="celestial-pullquote">
+                <p>“Let the AI decide which components belong on screen for this moment; let your human-crafted design system govern every pixel, font curve, and security boundary.”</p>
+                <cite>GOOGLE GEMINI 4 ARGON · <span class="greek">α</span> CASTOR EDITORIAL SYNTHESIS</cite>
+              </blockquote>
+
+              <div tabindex="0" role="region" aria-labelledby="a2ui-comparison-table-caption" class="gp-table-wrapper">
+                <table class="gp-comparison-table" style="--col-2: 'A2UI 1.0 Open Protocol'; --col-3: 'Raw HTML/JS Iframe Sandbox'; --col-4: 'Plain Markdown Chat';">
+                  <caption id="a2ui-comparison-table-caption">Generative UI Architecture Comparison (A2UI 1.0 GA vs. Legacy Approaches)</caption>
+                  <thead><tr><th scope="col">Capability</th><th scope="col">A2UI 1.0 Open Protocol</th><th scope="col">Raw HTML/JS Iframe Sandbox</th><th scope="col">Plain Markdown Chat</th></tr></thead>
+                  <tbody><tr><th scope="row">Brand &amp; Design-System Fidelity</th><td>100% native host components &amp; tokens</td><td>Drifts per prompt; iframe seams</td><td>Text/tables only; high cognitive load</td></tr><tr><th scope="row">Mobile Native Rendering</th><td>SwiftUI, Jetpack Compose &amp; Flutter</td><td>Heavy WebView wrapper required</td><td>Static text parsers</td></tr><tr><th scope="row">Client Security &amp; PII Exposure</th><td>Zero eval(); opaque <code class="essay-inline-code">$data</code> bindings</td><td>Script sandbox &amp; CSP surface area</td><td>PII must enter prompt to display</td></tr><tr><th scope="row">Wire Payload Efficiency</th><td>Up to 64% smaller via A2UI Express</td><td>Verbose repeated CSS/JS boilerplate</td><td>Compact, but non-interactive</td></tr></tbody>
+                </table>
+              </div>
+
+                <div class="adaptive-qa-section" id="chapter-02" data-chapter-card="1" data-active-chapter="false">
+                  <div class="chapter-kicker">
+                    <span>CHAPTER 02 / 04 · WHAT THIS MEANS FOR YOU</span>
+                    <span>ADAPTIVE READER QUESTIONS</span>
+                  </div>
+                  <div class="adaptive-qa-list">
+
+                <article class="qa-item">
+                  <span class="qa-lens-tag">FOR CREATIVE DIRECTORS &amp; DESIGN SYSTEMS</span>
+                  <h3 class="qa-question">Does adopting A2UI mean surrendering visual art direction to an AI model?</h3>
+                  <p class="qa-answer">The exact opposite. Your design team defines the approved catalog—your typography, spacing rules, dark/light tokens, and motion curves—and the agent can only compose screens out of those vetted building blocks using scoped <code class="essay-inline-code">catalogIds</code>.</p>
+                </article>
+                <article class="qa-item">
+                  <span class="qa-lens-tag">FOR CROSS-PLATFORM PRODUCT TEAMS</span>
+                  <h3 class="qa-question">Do we have to write separate agent prompts for our React web app, iOS app, and Android app?</h3>
+                  <p class="qa-answer">No. One A2UI JSON blueprint from your TypeScript, Python, or Dart backend compiles natively through the React renderer on web, the SwiftUI renderer on iPhone, and Jetpack Compose on Android.</p>
+                </article>
+                <article class="qa-item">
+                  <span class="qa-lens-tag">ECOSYSTEM LOCK-IN CHECK</span>
+                  <h3 class="qa-question">Is A2UI locked exclusively to Gemini models?</h3>
+                  <p class="qa-answer">No. Google open-sourced A2UI 1.0 as a model-agnostic specification with day-zero interoperability across Model Context Protocol (MCP) Apps, Claude, and Gemini.</p>
+                </article>
+                  </div>
+
+                <div class="standalone-deep-link-row">
+                  <span style="font-family:var(--mono);font-size:9px;color:#7DD3FC;letter-spacing:0.12em;text-transform:uppercase;">COMPANION 3-PART ARCHIVE</span>
+                  <a href="/series/a2ui-1-0/part-1-a2ui-1-0-breakdown-and-generative-ui-architecture.html" class="standalone-deep-link">
+                    <span>Explore Companion 3-Part A2UI 1.0 Gen UI Archive →</span>
+                  </a>
+                </div>
+                </div>
+              </section>
+            </div>
+          </div>
+
+          <div class="lens-host" id="lens-section-pollux">
+            <div class="lens-inner-wrap">
+              <div class="celestial-chapter-divider" aria-hidden="true"><span class="ccd-glyph">✦ · <svg width="11" height="12" viewBox="0 0 14 16" aria-hidden="true" style="vertical-align:-1px;margin-inline:2px;"><path d="M1.5 2 H12.5 M1.5 14 H12.5" stroke="#CEC0FF" stroke-width="1.35" stroke-linecap="round"/><line x1="4.6" y1="2.3" x2="4.6" y2="13.7" stroke="#7EB8FF" stroke-width="1.55" stroke-linecap="round"/><line x1="9.4" y1="2.3" x2="9.4" y2="13.7" stroke="#F59E3F" stroke-width="1.55" stroke-linecap="round"/></svg> · ✦</span></div>
+              <section class="essay-section" id="chapter-03" data-chapter-card="2" data-active-chapter="false" aria-label="Part II: Beta Pollux Builder Architecture and Code">
+                <div class="chapter-kicker">
+                  <span>PART II · <span class="greek">β</span> POLLUX · BIDIRECTIONAL RPC, EXPRESS STREAMING &amp; DATA BINDING</span>
+                  <span><span class="greek">β</span> POLLUX · THE WORKBENCH</span>
+                </div>
+                <h2 class="essay-h2" id="pollux-section-heading" tabindex="-1">Wiring Scoped Catalogs, Opaque Data Pointers &amp; Bidirectional RPC</h2>
+                <p class="essay-sub essay-sub--pollux">How <code class="essay-inline-code">callRendererFunction</code> and <code class="essay-inline-code">callAgentFunction</code> eliminate full-screen re-renders.</p>
+                <div class="essay-prose essay-prose--pollux">
+                  <p>In pre-1.0 agent UI prototypes, clicking a button or validating a form field required round-tripping the entire screen state back through an LLM turn—adding 1.5 seconds of lag just to check a date range. A2UI 1.0 introduces typed <strong>Bidirectional RPC messages</strong>: <code class="essay-inline-code">callRendererFunction</code> lets the agent invoke deterministic client-side helpers (local sorting, currency formatting, instant field validation), while <code class="essay-inline-code">callAgentFunction</code> fires structured user intent payloads (<code class="essay-inline-code">approve_invoice</code>, <code class="essay-inline-code">recalculate_tier</code>) straight back into an active <code class="essay-inline-code">@google/genai</code> Interactions session.</p><p>Notice how <strong>Secure Data-Binding</strong> changes compliance reviews in healthcare, fintech, and HR software: the agent emits <code class="essay-inline-code">{ &quot;component&quot;: &quot;MetricReadout&quot;, &quot;bind&quot;: &quot;$vault/customer/netWorth&quot; }</code>. Because the host renderer resolves <code class="essay-inline-code">$vault/*</code> pointers against your authenticated client store at render time, the LLM orchestrates the exact right visual layout while remaining mathematically blind to the underlying PII.</p><p>Enable <strong>A2UI Express</strong> encoding on streaming responses with <code class="essay-inline-code">gemini-4-hydrogen</code>: cutting layout token count by up to 64% directly reduces output token cost ($7.50/1M) by nearly two-thirds while painting the first interactive card in under 350 milliseconds.</p>
+                </div>
+                <div class="builder-rules-ledger" aria-label="Production Engineering Guardrails">
+
+                <div class="br-item">
+                  <div class="br-label">01 · Keep Sensitive State Behind <code class="essay-inline-code">$vault</code> Bindings</div>
+                  <div class="br-detail">Pass schema keys—not raw customer balances, health records, or tokens—into model context, and resolve values inside your native A2UI renderer.</div>
+                </div>
+                <div class="br-item">
+                  <div class="br-label">02 · Namespace Component Libraries with <code class="essay-inline-code">catalogIds</code></div>
+                  <div class="br-detail">Scope core design primitives (<code class="essay-inline-code">ui.core.v1</code>) separately from domain widgets (<code class="essay-inline-code">billing.approvals.v1</code>) so multi-agent screens compose cleanly.</div>
+                </div>
+                <div class="br-item">
+                  <div class="br-label">03 · Enable A2UI Express on High-Traffic Streams</div>
+                  <div class="br-detail">Express intermediate token compression cuts layout serialization overhead by up to 64%, improving both TTFB and output token spend.</div>
+                </div>
+                </div>
+                <div class="geo-code-wrap">
+                  <div class="geo-code-header">
+                    <span id="chap3-code-caption">COMPLETE @GOOGLE/GENAI v3.3.0 + A2UI 1.0 · PRIVACY-PRESERVING APPROVAL BLUEPRINT</span>
+                    <button type="button" class="copy-code-btn" data-copy-essay-code>Copy Full Blueprint</button>
+                  </div>
+                  <pre class="geo-code-block" id="chap3-code" role="region" aria-labelledby="chap3-code-caption" tabindex="0"><code id="chap3-code-inner">import { GoogleGenAI, Type } from &quot;@google/genai&quot;;
+
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+
+// Scoped component catalog manifest exposed to Gemini (zero raw HTML/JS allowed)
+const REGISTERED_CATALOG = {
+  catalogId: &quot;agile.finance.v1&quot;,
+  components: [&quot;ApprovalCard&quot;, &quot;VarianceBarChart&quot;, &quot;ActionRow&quot;],
+  rpcHandlers: [&quot;callAgentFunction:submitApproval&quot;, &quot;callRendererFunction:validateCap&quot;],
+};
+
+export async function generateNativeApprovalScreen({ requestSummary }) {
+  const interaction = await ai.interactions.create({
+    model: &quot;gemini-4-hydrogen&quot;,
+    input: `Compose an A2UI 1.0 screen using catalog ${REGISTERED_CATALOG.catalogId} for:\n${requestSummary}\nBind private balances via $vault pointers only.`,
+    config: {
+      thinking_config: { thinking_level: &quot;low&quot; },
+      response_mime_type: &quot;application/json&quot;,
+      response_schema: {
+        type: Type.OBJECT,
+        properties: {
+          a2uiVersion: { type: Type.STRING },
+          catalogId: { type: Type.STRING },
+          encoding: { type: Type.STRING },
+          root: {
+            type: Type.OBJECT,
+            properties: {
+              component: { type: Type.STRING },
+              title: { type: Type.STRING },
+              dataBinding: { type: Type.STRING }, // e.g. &quot;$vault/dept/remainingBudget&quot;
+              onApproveRpc: { type: Type.STRING }, // e.g. &quot;callAgentFunction:submitApproval&quot;
+            },
+            required: [&quot;component&quot;, &quot;title&quot;, &quot;dataBinding&quot;, &quot;onApproveRpc&quot;],
+          },
+        },
+        required: [&quot;a2uiVersion&quot;, &quot;catalogId&quot;, &quot;encoding&quot;, &quot;root&quot;],
+      },
+    },
+  });
+
+  return JSON.parse(interaction.output_text);
+}</code></pre>
+                </div>
+
+                <aside class="pollux-workbench-card" id="nocturnal-twin-deck" aria-label="Beta Pollux Interactive Scenario Simulator">
+                  <div class="salon-header-row">
+                    <span class="shr-title">
+                      <span class="peek-dot" aria-hidden="true"></span>
+                      <span><span class="greek">β</span> POLLUX · INTERACTIVE SCENARIO WORKBENCH</span>
+                    </span>
+                    <span class="shr-badge">[SIMULATED DEMO]</span>
+                  </div>
+                  <h3 class="pwc-title">A2UI 1.0 Protocol &amp; Renderer Inspector</h3>
+                  <p class="pwc-sub">Switch across A2UI 1.0’s three core architectural layers below, or launch the full interactive A2UI Generative Studio.</p>
+                  <div class="atelier-console">
+                    <div class="ac-top">
+                      <span>STAR 07 INTERACTIVE LAB</span>
+                      <span>[SIMULATED DEMO]</span>
+                    </div>
+                    <div class="ac-presets" role="group" aria-label="Interactive Workload Presets">
+                      <button type="button" class="ac-preset-btn" data-preset="0" aria-pressed="true">1. NATIVE RENDERERS</button><button type="button" class="ac-preset-btn" data-preset="1" aria-pressed="false">2. EXPRESS STREAM</button><button type="button" class="ac-preset-btn" data-preset="2" aria-pressed="false">3. ZERO-PII BINDING</button>
+                    </div>
+                    <div class="ac-output" aria-live="polite">
+                      <div class="ac-line">
+                        <span class="ac-k" data-sync="ac-k1">Web Targets</span>
+                        <span class="ac-v" data-sync="ac-v1">React, Angular &amp; Lit SDKs</span>
+                      </div>
+                      <div class="ac-line">
+                        <span class="ac-k" data-sync="ac-k2">Mobile Targets</span>
+                        <span class="ac-v accent" data-sync="ac-v2">SwiftUI, Compose &amp; Flutter</span>
+                      </div>
+                      <div class="ac-line">
+                        <span class="ac-k" data-sync="ac-k3">Execution Safety</span>
+                        <span class="ac-v" data-sync="ac-v3">Declarative JSON · 0 eval()</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="standalone-deep-link-row" style="margin-block-start:4px;">
+                    <span style="font-family:var(--mono);font-size:9px;color:#FDBA74;letter-spacing:0.12em;text-transform:uppercase;">DEDICATED FULL-SCREEN SANDBOX</span>
+                    <a href="/labs/gemini-a2ui-generative-studio.html" class="standalone-deep-link standalone-deep-link--pollux">
+                      <span>Open Full A2UI 1.0 Gen UI Sandbox [SIMULATED DEMO] →</span>
+                    </a>
+                  </div>
+                </aside>
+              </section>
+            </div>
+          </div>
+
+          <div class="celestial-chapter-divider" aria-hidden="true"><span class="ccd-glyph">✦ · <svg width="11" height="12" viewBox="0 0 14 16" aria-hidden="true" style="vertical-align:-1px;margin-inline:2px;"><path d="M1.5 2 H12.5 M1.5 14 H12.5" stroke="#CEC0FF" stroke-width="1.35" stroke-linecap="round"/><line x1="4.6" y1="2.3" x2="4.6" y2="13.7" stroke="#7EB8FF" stroke-width="1.55" stroke-linecap="round"/><line x1="9.4" y1="2.3" x2="9.4" y2="13.7" stroke="#F59E3F" stroke-width="1.55" stroke-linecap="round"/></svg> · ✦</span></div>
+
+          <section class="essay-section" id="chapter-04" data-chapter-card="3" data-active-chapter="false" aria-label="Chapter 04: Gemini Verdict and Primary Sources">
+            <div class="chapter-kicker">
+              <span>CHAPTER 04 / 04 · GEMINI’S VERDICT &amp; CITATIONS</span>
+              <span>PRIMARY GOOGLE SOURCES</span>
+            </div>
+            <h2 class="essay-h2">Gemini’s Bottom Line: Start Small with 5 High-Value Catalog Cards</h2>
+            <p class="essay-sub">You do not need to convert your whole app—replace your three wordiest chat workflows first.</p>
+            <div class="essay-prose">
+              <p><strong>Adopt today if:</strong> your product embeds an AI assistant or MCP agent that currently dumps clunky Markdown tables or confirmation walls at users across web or mobile.</p><p><strong>Practical starting move:</strong> map just five core design-system components (a metric summary card, a comparison table, a date/slider filter, a confirmation card, and a chart) into your first <code class="essay-inline-code">catalogId</code> and measure user completion rates against plain text.</p>
+            </div>
+
+            <div class="primary-sources-ledger" aria-label="Primary Google Sources Cited">
+              <div class="psl-header">
+                <span>PRIMARY GOOGLE SOURCES CITED IN THIS ESSAY</span>
+                <span>VERIFIED · NOV 11, 2026</span>
+              </div>
+
+                <div class="psl-item">
+                  <div class="psl-meta">
+                    <span class="psl-role">Official Google Developers GA Release · Google A2UI &amp; Developers Team · November 11, 2026</span>
+                    <span class="psl-label">Google Developers Blog — A2UI 1.0: Build delightful, fast, reliable, agentic experiences</span>
+                  </div>
+                  <a class="psl-link" href="https://developers.googleblog.com/a2ui-1-0-build-delightful-fast-reliable-agentic-experiences/" target="_blank" rel="noopener noreferrer">
+                    <span>Primary Google Source</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+            </div>
+
+            <nav class="essay-star-nav-footer" aria-label="Navigate Constellation Essays">
+              <a href="/articles/gemini-decisions-api.html" class="essay-nav-btn">
+                <span>← Star 06 · <span class="greek">δ</span> Wasat (Decisions API)</span>
+              </a>
+              <a href="/?star=mekbuda" class="essay-nav-btn">
+                <span>✦ View Star 07 in 3D Sky</span>
+              </a>
+              <a href="/articles/gemini-4-carbon-ga.html" class="essay-nav-btn">
+                <span>Star 08 · <span class="greek">γ</span> Alhena (Gemini 4 Carbon GA) →</span>
+              </a>
+            </nav>
+          </section>
+    </article>
+  </main>
+
+  <script>
+    (() => {
+      const PRESETS = [{"label":"1. NATIVE RENDERERS","labelHtml":"1. NATIVE RENDERERS","k1":"Web Targets","k1Html":"Web Targets","v1":"React, Angular & Lit SDKs","v1Html":"React, Angular &amp; Lit SDKs","k2":"Mobile Targets","k2Html":"Mobile Targets","v2":"SwiftUI, Compose & Flutter","v2Html":"SwiftUI, Compose &amp; Flutter","k3":"Execution Safety","k3Html":"Execution Safety","v3":"Declarative JSON · 0 eval()","v3Html":"Declarative JSON · 0 eval()"},{"label":"2. EXPRESS STREAM","labelHtml":"2. EXPRESS STREAM","k1":"Wire Compression","k1Html":"Wire Compression","v1":"Up to 64% Fewer Layout Tokens","v1Html":"Up to 64% Fewer Layout Tokens","k2":"Bidirectional RPC","k2Html":"Bidirectional RPC","v2":"Renderer ↔ Agent Calls","v2Html":"Renderer ↔ Agent Calls","k3":"Catalog Governance","k3Html":"Catalog Governance","v3":"Scoped catalogIds + a2ui_ Ext","v3Html":"Scoped catalogIds + a2ui_ Ext"},{"label":"3. ZERO-PII BINDING","labelHtml":"3. ZERO-PII BINDING","k1":"State Architecture","k1Html":"State Architecture","v1":"Opaque Client/Server Pointers","v1Html":"Opaque Client/Server Pointers","k2":"Context Exposure","k2Html":"Context Exposure","v2":"Sensitive Values Stay Off-LLM","v2Html":"Sensitive Values Stay Off-LLM","k3":"Interoperability","k3Html":"Interoperability","v3":"MCP Apps, Gemini & Claude","v3Html":"MCP Apps, Gemini &amp; Claude"}];
+      const supportsUntilFound = "onbeforematch" in HTMLElement.prototype;
+      const castorHost = document.getElementById("lens-section-castor");
+      const polluxHost = document.getElementById("lens-section-pollux");
+
+      function hideLens(el) {
+        if (!el) return;
+        if (supportsUntilFound) el.setAttribute("hidden", "until-found");
+        else el.hidden = true;
+      }
+      function showLens(el) {
+        if (!el) return;
+        el.removeAttribute("hidden");
+        el.hidden = false;
+      }
+      function setLens(lens) {
+        if (lens === "castor") { showLens(castorHost); hideLens(polluxHost); }
+        else if (lens === "pollux") { hideLens(castorHost); showLens(polluxHost); }
+        else { showLens(castorHost); showLens(polluxHost); }
+        document.querySelectorAll("[data-lens-filter]").forEach((b) => {
+          b.setAttribute("aria-pressed", String(b.getAttribute("data-lens-filter") === lens));
+        });
+      }
+      [castorHost, polluxHost].forEach((el) => {
+        if (el) el.addEventListener("beforematch", () => setLens("both"));
+      });
+
+      document.addEventListener("click", async (ev) => {
+        const lensBtn = ev.target.closest("[data-lens-filter]");
+        if (lensBtn) {
+          setLens(lensBtn.getAttribute("data-lens-filter") || "both");
+          return;
+        }
+        const presetBtn = ev.target.closest(".ac-preset-btn");
+        if (presetBtn) {
+          const idx = Number(presetBtn.getAttribute("data-preset")) || 0;
+          const p = PRESETS[idx] || PRESETS[0];
+          document.querySelectorAll(".ac-preset-btn").forEach((b, i) => b.setAttribute("aria-pressed", String(i === idx)));
+          const sync = (k, v) => document.querySelectorAll('[data-sync="' + k + '"]').forEach((el) => { el.textContent = v; });
+          sync("ac-k1", p.k1); sync("ac-v1", p.v1);
+          sync("ac-k2", p.k2); sync("ac-v2", p.v2);
+          sync("ac-k3", p.k3); sync("ac-v3", p.v3);
+          return;
+        }
+        const copyBtn = ev.target.closest("[data-copy-essay-code]");
+        if (copyBtn) {
+          const codeEl = document.getElementById("chap3-code");
+          if (codeEl) {
+            try { await navigator.clipboard.writeText(codeEl.textContent || ""); } catch (_) {}
+            copyBtn.textContent = "✓ Copied Blueprint";
+            setTimeout(() => { copyBtn.textContent = "Copy Full Blueprint"; }, 1800);
+          }
+        }
+      });
+
+      const canvas = document.getElementById("sanctuary-stars");
+      if (canvas && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        const ctx = canvas.getContext("2d");
+        const pts = Array.from({ length: 85 }, (_, i) => ({
+          x: ((i * 73) % 100) / 100,
+          y: ((i * 41 + 17) % 100) / 100,
+          r: (i % 3 === 0 ? 1.25 : 0.75),
+          ph: i * 0.7,
+          col: i % 5 === 0 ? "#BAE6FD" : (i % 7 === 0 ? "#FED7AA" : "#E2E8F0")
+        }));
+        const resize = () => {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        };
+        resize();
+        window.addEventListener("resize", resize, { passive: true });
+        const draw = (t) => {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          const sec = t * 0.001;
+          for (const p of pts) {
+            ctx.globalAlpha = 0.16 + 0.24 * (0.5 + 0.5 * Math.sin(sec * 0.6 + p.ph));
+            ctx.fillStyle = p.col;
+            ctx.beginPath();
+            ctx.arc(p.x * canvas.width, p.y * canvas.height, p.r, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          requestAnimationFrame(draw);
+        };
+        requestAnimationFrame(draw);
+      }
+    })();
+  </script>
+</body>
+</html>

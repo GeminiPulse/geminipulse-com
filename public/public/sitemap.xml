@@ -13,6 +13,60 @@
     <priority>0.98</priority>
   </url>
   <url>
+    <loc>https://geminipulse.com/articles/index.html</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.99</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/articles/ai-studio-cloud-credits.html</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/articles/antigravity-teamwork-multi-agent-science.html</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/articles/google-wallet-in-gemini.html</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/articles/gemini-4-hydrogen.html</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/articles/google-intelligent-eyewear.html</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/articles/gemini-decisions-api.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/articles/a2ui-1-0-generative-ui.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/articles/gemini-4-carbon-ga.html</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
     <loc>https://geminipulse.com/series/ai-studio-cloud-credits/part-1-cloud-credits-integration-and-architecture.html</loc>
     <lastmod>2026-11-14</lastmod>
     <changefreq>weekly</changefreq>

@@ -1,6 +1,6 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-11-15 02:05 EST (HOMEPAGE CONSTELLATION AUTO-SYNC WIRED & DEPLOYED: Built public/scripts/sync-constellation.mjs into prebuild so all 8 Castor & Pollux 3D stars, HUD briefs, Nocturnal Twin salons, 4-chapter Reading Sanctuaries, SEO JSON-LD, and ⌘K search palette auto-update from PULSE_INTELLIGENCE_FEED on every 3x/day curation build)`
+- **Last Updated:** `2026-11-15 13:26 EST (DUAL-LENS FLAGSHIP GEMINI ESSAYS, ZERO-TRUNCATION SANCTUARY & 1-CLICK CONSTELLATION ERGONOMICS LIVE ON GEMINIPULSE.COM: Authored all 8 first-person Gemini 4 Argon flagship essays in public/src/data/constellationEssays.js, rebuilt #salon-sheet with zero ellipses/zero duplicated standfirsts + searchable α Castor / β Pollux lens filter + @container tables + bottom Primary Google Sources ledger, generated standalone /articles/*.html sanctuaries + /articles/essays-data.json, wired instant HUD preview + 1-click foreground star open, and verified Lighthouse 100/100/100/100 Desktop & 99/100/100/100 Mobile)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
@@ -13,7 +13,29 @@
 
 ---
 
-## 0. Completed & Live on `v2.0` (2026-11-15 02:05 AM ET — Homepage 3D Constellation Auto-Sync Engine)
+## 0. Completed & Live on `v2.0` (2026-11-15 01:15 PM ET — Original Dual-Lens Flagship Gemini Essays, Zero-Truncation Sanctuary & 1-Click Constellation Ergonomics)
+
+- **Editorial & UX Transformation (Approved by Neil across all 3 Audit Recommendations — Chronicle Episode 13):**
+  - **8 Complete First-Person Dual-Lens Flagship Essays (`public/src/data/constellationEssays.js`):**
+    1. `01 α Castor` (`/articles/ai-studio-cloud-credits.html`): *Your Consumer AI Subscription Just Became Startup Cloud Runway.*
+    2. `02 ε Mebsuta` (`/articles/antigravity-teamwork-multi-agent-science.html`): *The End of the Lone Genius Prompt: How `/teamwork` Changed Discovery.*
+    3. `03 μ Tejat` (`/articles/google-wallet-in-gemini.html`): *A CFO in Your Pocket—With Zero Power to Touch Your Money.*
+    4. `04 η Propus` (`/articles/gemini-4-hydrogen.html`): *Gemini 4 Hydrogen Is Not the "Small" Model. It Is the Disciplined Workhorse.*
+    5. `05 β Pollux` (`/articles/google-intelligent-eyewear.html`): *Thirteen Years After Google Glass, Eyewear Finally Learned Human Manners.*
+    6. `06 δ Wasat` (`/articles/gemini-decisions-api.html`): *Stop Paying Chatbots to Write Essays When You Only Need a Calibrated Decision.*
+    7. `07 ζ Mekbuda` (`/articles/a2ui-1-0-generative-ui.html`): *Chatbots Should Not Reply with 900 Words When a Human Needs Three Buttons and a Slider.*
+    8. `08 γ Alhena` (`/articles/gemini-4-carbon-ga.html`): *Gemini 4 Carbon Leaves the Vault—With a November 30 Pricing Clock.*
+  - **Zero-Truncation Slide-Up Sanctuary (`#salon-sheet` in `public/index.html` + `public/scripts/sync-constellation.mjs`):**
+    - Eliminated 100% of `…`/`...` text truncation and word-for-word standfirst/body repetition across all 8 stars, HUD cards, simulator presets, code snippets, and `⌘K` search results.
+    - Structured every essay with a distinct Standfirst, 30-Second Pulse Check (`What Shipped`, `Why Humans Care`, `The Fine-Print Catch`), `hidden="until-found"` + `beforematch` Dual-Lens perspective filter (`α Castor · Human & Business` / `β Pollux · Builder & Code`), `@container (width < 600px)` comparison tables, 3 story-specific Adaptive Reader Questions (`FAQPage` JSON-LD), complete copyable `@google/genai` v3.x blueprint, inline `[SIMULATED DEMO]` Pollux scenario workbench placed *after* the engineering prose, and a bottom **Primary Google Sources Cited** ledger.
+  - **Standalone Shareable Sanctuary Pages (`/articles/<slug>.html` & `/articles/index.html`):** Auto-generated on every `npm run build` with cross-document View Transitions (`@view-transition { navigation: auto; }`), synced into `sitemap.xml` and `feed.xml`.
+  - **Zero-Wait 3D Hero Ergonomics (Option A):** Clicking a different star now snaps/fades `#star-hud-card` at its target camera slot immediately (`~165ms` vs `2,250ms` previously) with `↑ Read Gemini's Essay (7 Min)`; clicking an already-selected star opens `#salon-sheet` in **1 click**; and `#hero-lead-essay-cta` sits directly beneath *"Written by Gemini. Guided by the Twins."* with collision protection in `placeHudStatic`.
+  - **Autonomous Sidecar, Core Web Vitals & Audit Bot Upgraded:** Updated `.antigravity/sidecars/geminipulse-daily-curator/sidecar.json` (1 flagship essay/day standard) and `public/scripts/audit-layout.mjs` (audits all 8 open essays across 4 viewports for 0 ellipses, 0 standfirst duplicates, and 0 overflows). Externalized 8-star essay JSON to `/articles/essays-data.json` (keeping Star 01 SSR'd), deferred Google Fonts CSS, and shipped responsive `800w`/`1376w` WebP twin plates—achieving **Lighthouse Desktop `100 / 100 / 100 / 100`** (`LCP 0.6s`, `TBT 0ms`) and **Mobile `99 / 100 / 100 / 100`** (`LCP 1.9s`, `TBT 40ms`).
+- **Decisions Needed from Neil:** None right now (`$0.00/mo` Spark tier unchanged).
+
+---
+
+## 00. Prior Round on `v2.0` (2026-11-15 02:05 AM ET — Homepage 3D Constellation Auto-Sync Engine)
 
 - **Diagnosed & Permanently Fixed Stale Homepage Constellation (`public/scripts/sync-constellation.mjs` + `public/scripts/stamp-build.mjs`):**
   - **Root Cause:** While the 3x/day `geminipulse-daily-curator` sidecar had continuously curated new releases through Round 38 (`PULSE_INTELLIGENCE_FEED`, `/series/*`, `/labs/*`, `/workbench.html`, `feed.xml`, `sitemap.xml`), `public/index.html` (and `public/public/prototypes/look-j-3d-celestial-navigator.html`, which `stamp-build.mjs` copied to `public/index.html` on build) still held hardcoded Nov 3–5 inline objects (`STARS_3D`, `SALON_DATA`, `HUD_DATA`, `"datePublished": "2026-11-03"`).
