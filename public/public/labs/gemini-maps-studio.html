@@ -273,10 +273,10 @@
         <div class="card">
           <label>Select Blueprint Preset</label>
           <div class="preset-bar">
-            <button class="btn-preset active" onclick="setPreset('nyc3d')">🏙️ NYC 3D Tour</button>
-            <button class="btn-preset" onclick="setPreset('fleet')">🚚 Fleet Optimizer</button>
-            <button class="btn-preset" onclick="setPreset('locator')">📍 Store Locator</button>
-            <button class="btn-preset" onclick="setPreset('cleanair')">🌿 Clean-Air Route</button>
+            <button type="button" class="btn-preset active" data-preset="nyc3d" onclick="setPreset('nyc3d')">🏙️ NYC 3D Tour</button>
+            <button type="button" class="btn-preset" data-preset="fleet" onclick="setPreset('fleet')">🚚 Fleet Optimizer</button>
+            <button type="button" class="btn-preset" data-preset="locator" onclick="setPreset('locator')">📍 Store Locator</button>
+            <button type="button" class="btn-preset" data-preset="cleanair" onclick="setPreset('cleanair')">🌿 Clean-Air Route</button>
           </div>
 
           <label>Gemini in AI Studio Prompt</label>
@@ -291,10 +291,10 @@
           </div>
 
           <div class="toggle-row">
-            <span id="chip3D" class="toggle-chip active" onclick="toggleFeature('3d')">📐 3D Photorealistic</span>
-            <span id="chipPlaces" class="toggle-chip active" onclick="toggleFeature('places')">🏢 Places API (New)</span>
-            <span id="chipTraffic" class="toggle-chip active" onclick="toggleFeature('traffic')">🚦 Traffic Aware</span>
-            <span id="chipCleanAir" class="toggle-chip" onclick="toggleFeature('cleanair')">🍃 Air Quality Overlay</span>
+            <span id="chip3D" class="toggle-chip active" onclick="toggleFeature(this)">📐 3D Photorealistic</span>
+            <span id="chipPlaces" class="toggle-chip active" onclick="toggleFeature(this)">🏢 Places API (New)</span>
+            <span id="chipTraffic" class="toggle-chip active" onclick="toggleFeature(this)">🚦 Traffic Aware</span>
+            <span id="chipCleanAir" class="toggle-chip" onclick="toggleFeature(this)">🍃 Air Quality Overlay</span>
           </div>
 
           <button class="btn-primary" onclick="runSimulation()">
@@ -346,9 +346,9 @@
       <!-- Code Inspector Tabs -->
       <div class="card" style="margin-top: 1.5rem;">
         <div class="code-tabs">
-          <button class="code-tab active" onclick="setCodeTab('webcomp')">Web Components HTML / JS</button>
-          <button class="code-tab" onclick="setCodeTab('python')">Python Gen AI SDK v3.0.0</button>
-          <button class="code-tab" onclick="setCodeTab('antigravity')">Antigravity System Prompt</button>
+          <button type="button" class="code-tab active" data-tab="webcomp" onclick="setCodeTab('webcomp')">Web Components HTML / JS</button>
+          <button type="button" class="code-tab" data-tab="python" onclick="setCodeTab('python')">Python Gen AI SDK v3.0.0</button>
+          <button type="button" class="code-tab" data-tab="antigravity" onclick="setCodeTab('antigravity')">Antigravity System Prompt</button>
         </div>
 
         <pre><code id="codeOutput"></code></pre>
@@ -558,8 +558,9 @@ def get_clean_air_corridor(lat, lng, api_key):
 
       function setPreset(key) {
         currentPreset = key;
-        document.querySelectorAll('.btn-preset').forEach(b => b.classList.remove('active'));
-        event.target.classList.add('active');
+        document.querySelectorAll('.preset-bar .btn-preset').forEach((b) => {
+          b.classList.toggle('active', b.getAttribute('data-preset') === key);
+        });
 
         const p = PRESETS[key];
         document.getElementById('promptInput').value = p.prompt;
@@ -590,14 +591,15 @@ def get_clean_air_corridor(lat, lng, api_key):
         }
       }
 
-      function toggleFeature(feat) {
-        event.target.classList.toggle('active');
+      function toggleFeature(el) {
+        if (el && el.classList) el.classList.toggle('active');
       }
 
       function setCodeTab(tab) {
         currentTab = tab;
-        document.querySelectorAll('.code-tab').forEach(t => t.classList.remove('active'));
-        event.target.classList.add('active');
+        document.querySelectorAll('.code-tab').forEach((t) => {
+          t.classList.toggle('active', t.getAttribute('data-tab') === tab);
+        });
         updateCodeOutput();
       }
 

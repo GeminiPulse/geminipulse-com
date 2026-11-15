@@ -1,6 +1,6 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-11-15 14:35 EST (GROUNDED LOW-CHEESE REWRITE OF OPEN LETTER TO GOOGLE DEEPMIND & ROLE CREDIT ALIGNMENT LIVE ON GEMINIPULSE.COM: Rewrote /series/google-preview-observatory/open-letter-to-google-deepmind.html with zero hype/self-proclamations, honest field notes on autonomous model failure modes, practical preview testbed offer, all 7 verification gates, rem-fluid typography & semantic HTML; updated Neil S. White's role credit across the site & charter to Product Development & Creative Direction; wired ?inquire=true in App.jsx; verified 0 layout issues + Lighthouse Desktop & Mobile gates)`
+- **Last Updated:** `2026-11-15 16:00 EST (PHASE 1 BLOCKER HOTFIX, PUBLIC CHANGELOG /changelog.html & PHASE 2 144-ROUTE SITEWIDE AUDIT LIVE ON GEMINIPULSE.COM: Fixed /workbench.html?inquire=true crash + /labs/gemini-maps-studio.html init crash; added prebuild validate-data.mjs schema & Zero-PII gate + WorkbenchErrorBoundary + ViewTransition reduced-motion parity; shipped Public Engineering & Oversight Changelog at /changelog.html with 13 entries, native <details> disclosure, and Human Oversight vs. Gemini Self-Audit filters; fixed Open Letter Gate 07 backticks + header spacing, /articles/* role bylines, and /status.html v1 links; built 144-route Chrome CDP crawler audit-sitewide.mjs -> docs/sitewide-audit-manifest.md confirming 0 P0 crashes and 0 broken links)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
@@ -13,7 +13,25 @@
 
 ---
 
-## 0. Completed & Live on `v2.0` (2026-11-15 02:35 PM ET — Grounded Low-Cheese Rewrite of Open Letter to Google DeepMind & Role Attribution Alignment)
+## 0. Completed & Live on `v2.0` (2026-11-15 04:00 PM ET — Phase 1 Blocker Hotfix, Public Changelog `/changelog.html` & Phase 2 144-Route Sitewide Audit)
+
+- **Fixed P0 Blank-Screen Crash on `/workbench.html` & `/workbench.html?inquire=true` + Maps Studio Init Error:**
+  - **Root Cause (`workbench.html`):** Curation Round 37 appended `showcase-gemini-antigravity-teamwork-studio` to `INITIAL_SHOWCASE_PROJECTS` using `liveUrl` instead of `url`, triggering `TypeError: Cannot read properties of undefined (reading 'startsWith')` inside `App.jsx` before React could mount the `#inquiry-name` modal—compounded by mismatched cross-document View Transition opt-in (`InvalidStateError`).
+  - **Permanent Fix:** Normalized `showcase-gemini-antigravity-teamwork-studio` in `public/src/data/geminiEcosystemData.js`, hardened `localStorage` (`geminipulse_showcase_v4`) hydration + `projectUrl` fallback in `public/src/App.jsx`, wrapped `<App />` in `WorkbenchErrorBoundary` (`public/src/main.jsx`), added `<meta name="text-scale" content="scale" />` and `@media (prefers-reduced-motion: no-preference) { @view-transition { navigation: auto; } }` parity (`public/workbench.html` + `public/src/index.css`), and wired `public/scripts/validate-data.mjs` into `prebuild` so schema drift fails the build before deployment.
+  - **Maps Studio Init Fix (`public/public/labs/gemini-maps-studio.html`):** Caught and resolved an `event.target` `TypeError` during initial `setPreset('nyc3d')` execution by replacing implicit global `window.event` reads with `data-preset` / `data-tab` selectors.
+- **Shipped Public Engineering & Oversight Changelog (`/changelog.html` / `/changelog`):**
+  - Built `public/src/data/changelogData.js` (13 factual, Zero-PII entries from Oct 28 to Nov 15, 2026) and `public/scripts/sync-changelog.mjs` (auto-run during `prebuild`), paired with automated PII/path/secret blocking in `public/scripts/validate-data.mjs`.
+  - Concise one-line rows with native `<details>` + `<summary>` disclosure (`interpolate-size: allow-keywords`), Invoker Commands (`commandfor` / `command="--toggle-all"` with `click` fallback), provenance filters (`All`, `Human Oversight · Product Dev & Creative Direction`, `Gemini Self-Audit`), and a candid 3-sentence intro on iteration reality vs. the "single-prompt website" myth and MVP scope restraint.
+  - Linked `/changelog.html` in the homepage masthead, `⌘K` search index, Open Letter header + Chapter 02 prose, `workbench.html` footer, `firebase.json` clean-URL rewrites (`/changelog`), and `sitemap.xml`.
+- **Screenshot Polish & Phase 2 Full-Site 144-Route Audit (`public/scripts/audit-sitewide.mjs` -> `docs/sitewide-audit-manifest.md`):**
+  - Replaced literal markdown backticks in Gate `07` (`100` / `99` / `100`) with `<code>` tags and fixed right-edge `.celestial-header` `SEND NOTE` spacing on `/series/google-preview-observatory/open-letter-to-google-deepmind.html`.
+  - Updated `/articles/index.html` and all 8 `/articles/*.html` bylines from `EDITORIAL DIRECTION` to `PRODUCT DEVELOPMENT & CREATIVE DIRECTION: NEIL S. WHITE`, and removed stale v1 links (`/#support`, `15 URLs`) from `public/scripts/stamp-build.mjs` (`/status.html`).
+  - Crawled all **144** routes and query states (`1440x900` Desktop + `390x844` Mobile) via Headless Chrome CDP: **0** P0 crashes/blank screens, **0** broken links/images/sitemap/feed URLs, and a small, pinpointed P2 polish manifest (`3` lab `1440px` overflows, `3` labs missing `[SIMULATED DEMO]`, `15` routes with prose backticks/markdown, and `1` legacy role-copy cleanup in `geminiEcosystemData.js`).
+- **Decisions Needed from Neil:** Confirm whether to complete the remaining ~22 small P2 polish items in one compact pass (here or in 1 fresh chat) — `$0.00/mo` Spark tier unchanged.
+
+---
+
+## 0-prev. Completed & Live on `v2.0` (2026-11-15 02:35 PM ET — Grounded Low-Cheese Rewrite of Open Letter to Google DeepMind & Role Attribution Alignment)
 
 - **Rewrote `/series/google-preview-observatory/open-letter-to-google-deepmind.html` in a Calm, Self-Aware, Zero-Hype Voice:**
   - Removed all "manifesto" rhetoric, self-proclamations (*"uniquely positioned"*, *"compressing a 4-month agency redesign into days"*), pull-quote puffery, and resume adjectives.

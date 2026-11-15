@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+}
+
 /* Metric-calibrated system fallback for Plus Jakarta Sans to prevent font-swap CLS */
 @font-face {
   font-family: 'Plus Jakarta Fallback';

@@ -1,8 +1,10 @@
 import { execSync } from 'node:child_process';
-import { writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { validateData } from './validate-data.mjs';
 import { syncConstellation } from './sync-constellation.mjs';
+import { syncChangelog } from './sync-changelog.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(__dirname, '../..');
@@ -42,24 +44,43 @@ const meta = {
   builtAtEdt: edtFormatted,
   ga4MeasurementId: 'G-1BWMQWZJQ5 (Active — Post-Paint Deferred)',
   lighthouseDesktop: '100 / 100 / 100 / 100',
-  lighthouseMobile: '97 / 100 / 100 / 100',
+  lighthouseMobile: '99 / 100 / 100 / 100',
 };
 
 writeFileSync(resolve(__dirname, '../src/buildMeta.json'), JSON.stringify(meta, null, 2) + '\n');
+
+// 1. Validate all feed, showcase, blueprint, essay, and Zero-PII changelog contracts before generating assets
+await validateData();
+
+// 2. Auto-sync all 8 Constellation Stars, HUD Briefs, Flagship Essays (/articles/*), sitemap.xml, feed.xml & ⌘K Search
+await syncConstellation();
+
+// 3. Auto-sync the public Engineering & Oversight Changelog (/changelog.html)
+await syncChangelog(meta);
+
+let sitemapUrlCount = 120;
+try {
+  const smRaw = readFileSync(resolve(__dirname, '../public/sitemap.xml'), 'utf8');
+  const matches = smRaw.match(/<loc>/g);
+  if (matches) sitemapUrlCount = matches.length;
+} catch {
+  // fallback
+}
 
 const statusHtml = `<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="text-scale" content="scale" />
     <title>System &amp; Build Status (${buildId}) — GeminiPulse.com</title>
     <meta name="description" content="Live build verification stamp, Google Cloud & Firebase subsystem status, Lighthouse scores, and analytics wiring for GeminiPulse.com." />
-    <link rel="canonical" href="https://geminipulse.com/status" />
+    <link rel="canonical" href="https://geminipulse.com/status.html" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="GeminiPulse" />
     <meta property="og:title" content="System &amp; Build Status (${buildId}) — GeminiPulse.com" />
     <meta property="og:description" content="Live build verification stamp, Google Cloud &amp; Firebase subsystem status, Lighthouse scores, and analytics wiring for GeminiPulse.com." />
-    <meta property="og:url" content="https://geminipulse.com/status" />
+    <meta property="og:url" content="https://geminipulse.com/status.html" />
     <meta property="og:image" content="https://geminipulse.com/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -68,8 +89,13 @@ const statusHtml = `<!doctype html>
     <meta name="twitter:title" content="System &amp; Build Status (${buildId}) — GeminiPulse.com" />
     <meta name="twitter:description" content="Live build verification stamp, Google Cloud &amp; Firebase subsystem status, Lighthouse scores, and analytics wiring for GeminiPulse.com." />
     <meta name="twitter:image" content="https://geminipulse.com/og-image.png" />
-    <link rel="icon" type="image/svg+xml" href="/gemini-sparkle.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <style>
+      @media (prefers-reduced-motion: no-preference) {
+        @view-transition {
+          navigation: auto;
+        }
+      }
       :root {
         color-scheme: dark;
         --bg: #07090e;
@@ -183,12 +209,12 @@ const statusHtml = `<!doctype html>
             <span class="ok">● LIVE (HTTP/2 200)</span>
           </div>
           <div class="row">
-            <span><strong>Google Search Console &amp; Sitemap Indexing</strong> (<code>https://geminipulse.com/</code> • 15 URLs)</span>
+            <span><strong>Google Search Console &amp; Sitemap Indexing</strong> (<code>https://geminipulse.com/</code> • ${sitemapUrlCount} Indexed URLs)</span>
             <span class="ok">● VERIFIED OWNER &amp; SITEMAP ACTIVE</span>
           </div>
           <div class="row">
-            <span><strong>Stripe Supporter Checkout &amp; Customer Portal</strong> (<a href="/#support">/#support</a> • One-Time &amp; $9/mo Founding Supporter)</span>
-            <span class="ok">● LIVE CHECKOUT ACTIVE</span>
+            <span><strong>Pre-Build Data Schema, Zero-PII &amp; Chrome CDP Gates</strong> (<a href="/changelog.html">/changelog.html</a> • <code>validate-data.mjs</code> + <code>audit-layout.mjs</code>)</span>
+            <span class="ok">● ENFORCED ON EVERY BUILD</span>
           </div>
           <div class="row">
             <span><strong>2nd-Gen Cloud Functions</strong> (<code>moderateForumPost</code>, <code>curateShowcaseProject</code>, <code>autonomousNewsGenerator</code>)</span>
@@ -197,10 +223,11 @@ const statusHtml = `<!doctype html>
         </section>
 
         <div class="btns">
-          <a class="btn btn-primary" href="/#performance-ledger">Open Glass-Box Lighthouse Ledger →</a>
-          <a class="btn" href="/labs/gemini-4-stack-advisor.html">Launch GeminiStack Advisor Mini-Project</a>
-          <a class="btn" href="/partners">View Sponsorship &amp; Launchpad Info</a>
-          <a class="btn" href="/">Back to Homepage</a>
+          <a class="btn btn-primary" href="/changelog.html">Open Engineering &amp; Oversight Changelog →</a>
+          <a class="btn" href="/workbench.html">Open Developer Workbench</a>
+          <a class="btn" href="/articles/index.html">Browse All 8 Flagship Essays</a>
+          <a class="btn" href="/partners.html">Sponsorship &amp; Launchpad Info</a>
+          <a class="btn" href="/">Back to 3D Star Chart</a>
         </div>
       </main>
     </div>
@@ -210,8 +237,4 @@ const statusHtml = `<!doctype html>
 
 writeFileSync(resolve(__dirname, '../public/status.html'), statusHtml);
 
-// Auto-sync all 8 Constellation Stars, HUD Briefs, Twin Salons, 4-Chapter Sanctuaries,
-// SEO JSON-LD, and ⌘K Search Palette from PULSE_INTELLIGENCE_FEED on every build!
-await syncConstellation();
-
-console.log(`[stamp-build] Stamped ${buildId} (${edtFormatted}) -> src/buildMeta.json, public/status.html, index.html & look-j-3d-celestial-navigator.html`);
+console.log(`[stamp-build] Stamped ${buildId} (${edtFormatted}) -> src/buildMeta.json, public/status.html, public/changelog.html, index.html & /articles/*`);

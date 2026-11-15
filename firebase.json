@@ -57,6 +57,10 @@
         "destination": "/status.html"
       },
       {
+        "source": "/changelog",
+        "destination": "/changelog.html"
+      },
+      {
         "source": "/partners",
         "destination": "/partners.html"
       },

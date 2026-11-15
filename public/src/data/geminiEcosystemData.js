@@ -1497,26 +1497,14 @@ export const INITIAL_SHOWCASE_PROJECTS = [
     tagline:
       'Interactive developer workbench modeling Google Research’s Antigravity /teamwork multi-agent architecture: test parallel exploration, dedicated deterministic falsifiers (Lean 4, physics simulators, bit-exact test suites), and clean context partitioning across Gemini 4 Argon, Carbon, and Hydrogen.',
     models: ['gemini-4-argon', 'gemini-4-carbon', 'gemini-4-hydrogen'],
-    framework: 'React 19 + Tailwind CSS + Gen AI SDK v3.3.0',
-    metrics: { stars: 742, forks: 188, views: '19.4k' },
-    liveUrl: '/labs/gemini-antigravity-teamwork-studio.html',
-    codeSnippet: `// Antigravity /teamwork Multi-Agent Science Blueprint
-import { GoogleGenAI, Type } from "@google/genai";
-
-const ai = new GoogleGenAI();
-const interaction = await ai.clients.interactions.create({
-  model: "gemini-4-hydrogen",
-  config: {
-    thinking_config: { thinking_level: "high" },
-    system_instruction: "Generate Lean 4 formal proof lemmas and verify via deterministic compiler tool.",
-    tools: [{ function_declarations: [lean4FalsifierTool] }]
-  },
-  input: "Prove Courtade-Kumar conjecture on 14-variable parameter subspace."
-});`,
-    githubUrl: 'https://research.google/blog/advancing-science-engineering-with-antigravitys-teamwork-feature/',
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-antigravity-teamwork-studio.html): [SIMULATED DEMO] Simulates 4 research & systems presets (Courtade-Kumar Lean 4, NMR Molecular Solving, Fuchsia & dav1d Rust Rewrite, Borg & 1 PiB RAM Optimization), falsifier telemetry, context partitioning, and Gen AI SDK v3.3.0 code export.',
+    url: '/labs/gemini-antigravity-teamwork-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
     featured: true,
-    verificationStatus: 'verified_primary_source',
-    citationUrl: 'https://research.google/blog/advancing-science-engineering-with-antigravitys-teamwork-feature/',
+    status: 'published',
+    createdAt: '2026-11-13T17:45:00Z',
   },
   {
     id: 'showcase-gemini-wallet-finance-studio',

@@ -76,8 +76,10 @@
   </script>
 
   <style>
-    @view-transition {
-      navigation: auto;
+    @media (prefers-reduced-motion: no-preference) {
+      @view-transition {
+        navigation: auto;
+      }
     }
 
     @font-face {
@@ -231,11 +233,11 @@
       top: 0;
       z-index: 40;
       min-block-size: 3.5rem;
-      padding: 0.5rem clamp(1.25rem, 4vw, 3.5rem);
+      padding: 0.5rem clamp(1rem, 2.75vw, 2.75rem);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 1.25rem;
+      gap: 1rem;
       background: rgba(5, 8, 17, 0.86);
       backdrop-filter: blur(18px);
       border-block-end: 1px solid rgba(163, 133, 255, 0.16);
@@ -244,7 +246,7 @@
     .brand-cluster {
       display: flex;
       align-items: center;
-      gap: 1.15rem;
+      gap: 1rem;
       min-inline-size: 0;
     }
 
@@ -283,8 +285,10 @@
     .header-nav {
       display: flex;
       align-items: center;
+      justify-content: flex-end;
       flex-wrap: wrap;
-      gap: 0.65rem;
+      flex-shrink: 0;
+      gap: 0.5rem;
     }
 
     .nav-link {
@@ -965,6 +969,8 @@
     }
 
     @media (max-width: 76.25em) {
+      .header-kicker,
+      .header-divider,
       .atoc-you-are-here {
         display: none;
       }
@@ -974,8 +980,6 @@
     }
 
     @media (max-width: 61.25em) {
-      .header-kicker,
-      .header-divider,
       .atoc-back-link {
         display: none;
       }
@@ -1079,7 +1083,7 @@
     <nav class="header-nav" aria-label="Observatory Navigation">
       <a href="/articles/" class="nav-link nav-link-optional">Essays</a>
       <a href="/" class="nav-link nav-link-primary">← 3D Star Chart</a>
-      <a href="/prototypes/index.html" class="nav-link nav-link-optional">Archive</a>
+      <a href="/changelog.html" class="nav-link nav-link-optional">Changelog</a>
       <a href="/workbench.html?inquire=true" class="nav-link">Send Note</a>
     </nav>
   </header>
@@ -1140,7 +1144,7 @@
         </p>
         <div class="chapter-prose">
           <p>
-            Anyone who builds with coding agents knows that a clean demo rarely happens on prompt one. We kept all 18 intermediate builds online in our <a href="/prototypes/index.html">Prototype Archive</a>—not as a victory lap, but because the failure modes along the way are probably useful telemetry for the teams building Gemini and Antigravity:
+            Anyone who builds with coding agents knows that a clean demo rarely happens on prompt one. We kept all 18 intermediate builds online in our <a href="/prototypes/index.html">Prototype Archive</a> alongside an ongoing <a href="/changelog.html">Engineering &amp; Oversight Changelog</a>—not as a victory lap, but because the failure modes along the way are probably useful telemetry for the teams building Gemini and Antigravity:
           </p>
 
           <dl class="celestial-ledger-list">
@@ -1295,7 +1299,7 @@ const turn = await ai.interactions.create({
             <div class="celestial-ledger-row">
               <dt class="clr-stage">07 · Lighthouse Gate</dt>
               <dd class="clr-desc">
-                <strong>Measured Core Web Vitals:</strong> Every build is audited with Google Lighthouse across Desktop and Mobile (`100` Desktop / `99` Mobile Performance, alongside `100` Accessibility, Best Practices, and SEO).
+                <strong>Measured Core Web Vitals:</strong> Every build is audited with Google Lighthouse across Desktop and Mobile (<code>100</code> Desktop / <code>99</code> Mobile Performance, alongside <code>100</code> Accessibility, Best Practices, and SEO).
               </dd>
             </div>
           </dl>

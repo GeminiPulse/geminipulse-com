@@ -3,24 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>System &amp; Build Status (v2.0.101) — GeminiPulse.com</title>
+    <meta name="text-scale" content="scale" />
+    <title>System &amp; Build Status (v2.0.102) — GeminiPulse.com</title>
     <meta name="description" content="Live build verification stamp, Google Cloud & Firebase subsystem status, Lighthouse scores, and analytics wiring for GeminiPulse.com." />
-    <link rel="canonical" href="https://geminipulse.com/status" />
+    <link rel="canonical" href="https://geminipulse.com/status.html" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="GeminiPulse" />
-    <meta property="og:title" content="System &amp; Build Status (v2.0.101) — GeminiPulse.com" />
+    <meta property="og:title" content="System &amp; Build Status (v2.0.102) — GeminiPulse.com" />
     <meta property="og:description" content="Live build verification stamp, Google Cloud &amp; Firebase subsystem status, Lighthouse scores, and analytics wiring for GeminiPulse.com." />
-    <meta property="og:url" content="https://geminipulse.com/status" />
+    <meta property="og:url" content="https://geminipulse.com/status.html" />
     <meta property="og:image" content="https://geminipulse.com/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@geminipulse" />
-    <meta name="twitter:title" content="System &amp; Build Status (v2.0.101) — GeminiPulse.com" />
+    <meta name="twitter:title" content="System &amp; Build Status (v2.0.102) — GeminiPulse.com" />
     <meta name="twitter:description" content="Live build verification stamp, Google Cloud &amp; Firebase subsystem status, Lighthouse scores, and analytics wiring for GeminiPulse.com." />
     <meta name="twitter:image" content="https://geminipulse.com/og-image.png" />
-    <link rel="icon" type="image/svg+xml" href="/gemini-sparkle.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <style>
+      @media (prefers-reduced-motion: no-preference) {
+        @view-transition {
+          navigation: auto;
+        }
+      }
       :root {
         color-scheme: dark;
         --bg: #07090e;
@@ -91,15 +97,15 @@
         <section class="hero-box" aria-label="Build verification stamp">
           <div>
             <div class="kv-label">Active Build Number</div>
-            <div class="kv-val" id="build-id">v2.0.101</div>
+            <div class="kv-val" id="build-id">v2.0.102</div>
           </div>
           <div>
             <div class="kv-label">Deployed Timestamp (ET)</div>
-            <div class="kv-val" style="font-size: 0.98rem; color: #f3f5fb">Nov 15, 2026, 14:36:01 EST</div>
+            <div class="kv-val" style="font-size: 0.98rem; color: #f3f5fb">Nov 15, 2026, 15:58:43 EST</div>
           </div>
           <div>
             <div class="kv-label">Branch / Parent Commit</div>
-            <div class="kv-val" style="font-size: 0.98rem; color: #86efac">v2.0 @ e4211fb</div>
+            <div class="kv-val" style="font-size: 0.98rem; color: #86efac">v2.0 @ 38271fd</div>
           </div>
           <div>
             <div class="kv-label">Desktop Lighthouse</div>
@@ -134,12 +140,12 @@
             <span class="ok">● LIVE (HTTP/2 200)</span>
           </div>
           <div class="row">
-            <span><strong>Google Search Console &amp; Sitemap Indexing</strong> (<code>https://geminipulse.com/</code> • 15 URLs)</span>
+            <span><strong>Google Search Console &amp; Sitemap Indexing</strong> (<code>https://geminipulse.com/</code> • 120 Indexed URLs)</span>
             <span class="ok">● VERIFIED OWNER &amp; SITEMAP ACTIVE</span>
           </div>
           <div class="row">
-            <span><strong>Stripe Supporter Checkout &amp; Customer Portal</strong> (<a href="/#support">/#support</a> • One-Time &amp; $9/mo Founding Supporter)</span>
-            <span class="ok">● LIVE CHECKOUT ACTIVE</span>
+            <span><strong>Pre-Build Data Schema, Zero-PII &amp; Chrome CDP Gates</strong> (<a href="/changelog.html">/changelog.html</a> • <code>validate-data.mjs</code> + <code>audit-layout.mjs</code>)</span>
+            <span class="ok">● ENFORCED ON EVERY BUILD</span>
           </div>
           <div class="row">
             <span><strong>2nd-Gen Cloud Functions</strong> (<code>moderateForumPost</code>, <code>curateShowcaseProject</code>, <code>autonomousNewsGenerator</code>)</span>
@@ -148,10 +154,11 @@
         </section>
 
         <div class="btns">
-          <a class="btn btn-primary" href="/#performance-ledger">Open Glass-Box Lighthouse Ledger →</a>
-          <a class="btn" href="/labs/gemini-4-stack-advisor.html">Launch GeminiStack Advisor Mini-Project</a>
-          <a class="btn" href="/partners">View Sponsorship &amp; Launchpad Info</a>
-          <a class="btn" href="/">Back to Homepage</a>
+          <a class="btn btn-primary" href="/changelog.html">Open Engineering &amp; Oversight Changelog →</a>
+          <a class="btn" href="/workbench.html">Open Developer Workbench</a>
+          <a class="btn" href="/articles/index.html">Browse All 8 Flagship Essays</a>
+          <a class="btn" href="/partners.html">Sponsorship &amp; Launchpad Info</a>
+          <a class="btn" href="/">Back to 3D Star Chart</a>
         </div>
       </main>
     </div>

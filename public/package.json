@@ -5,10 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "validate:data": "node scripts/validate-data.mjs",
     "sync:constellation": "node scripts/sync-constellation.mjs",
+    "sync:changelog": "node scripts/sync-changelog.mjs",
     "prebuild": "node scripts/stamp-build.mjs",
     "build": "vite build",
     "audit:ui": "node scripts/audit-layout.mjs",
+    "audit:sitewide": "node scripts/audit-sitewide.mjs",
     "audit:lighthouse": "node scripts/audit-lighthouse.mjs",
     "lint": "eslint .",
     "preview": "vite preview"

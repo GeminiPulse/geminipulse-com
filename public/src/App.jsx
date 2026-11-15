@@ -173,7 +173,9 @@ export default function App() {
       if (!saved) return INITIAL_SHOWCASE_PROJECTS;
       const parsed = JSON.parse(saved);
       const seedIds = new Set(INITIAL_SHOWCASE_PROJECTS.map((p) => p.id));
-      const userAdded = Array.isArray(parsed) ? parsed.filter((p) => !seedIds.has(p.id)) : [];
+      const userAdded = Array.isArray(parsed)
+        ? parsed.filter((p) => p && typeof p.id === 'string' && !seedIds.has(p.id))
+        : [];
       return [...userAdded, ...INITIAL_SHOWCASE_PROJECTS];
     } catch {
       return INITIAL_SHOWCASE_PROJECTS;
@@ -3020,21 +3022,32 @@ export default function App() {
                     ))}
                   </div>
 
-                  <a
-                    href={proj.url}
-                    target={proj.url.startsWith('/') ? '_self' : '_blank'}
-                    rel={proj.url.startsWith('/') ? undefined : 'noreferrer'}
-                    className="text-xs font-semibold text-blue-400 hover:underline inline-flex items-center gap-1 whitespace-nowrap min-h-[28px]"
-                  >
-                    <span>
-                      {proj.id === 'showcase-twin-stars-game'
-                        ? 'Play Game Now'
-                        : proj.url.startsWith('/labs/')
-                        ? 'Open Interactive Lab'
-                        : 'Launch Project'}
-                    </span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </a>
+                  {(() => {
+                    const projectUrl =
+                      typeof proj.url === 'string' && proj.url
+                        ? proj.url
+                        : typeof proj.liveUrl === 'string' && proj.liveUrl
+                        ? proj.liveUrl
+                        : '#showcase';
+                    const isInternal = projectUrl.startsWith('/') || projectUrl.startsWith('#');
+                    return (
+                      <a
+                        href={projectUrl}
+                        target={isInternal ? '_self' : '_blank'}
+                        rel={isInternal ? undefined : 'noreferrer'}
+                        className="text-xs font-semibold text-blue-400 hover:underline inline-flex items-center gap-1 whitespace-nowrap min-h-[28px]"
+                      >
+                        <span>
+                          {proj.id === 'showcase-twin-stars-game'
+                            ? 'Play Game Now'
+                            : projectUrl.startsWith('/labs/')
+                            ? 'Open Interactive Lab'
+                            : 'Launch Project'}
+                        </span>
+                        <ArrowUpRight className="w-3.5 h-3.5" />
+                      </a>
+                    );
+                  })()}
                 </div>
               </div>
               );
@@ -5129,11 +5142,17 @@ export default function App() {
 
           <div className="flex flex-wrap items-center gap-4 font-mono">
             <a
-              href="/status"
+              href="/status.html"
               className="px-2.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-400/35 text-emerald-300 hover:bg-emerald-500/25 transition-colors font-semibold"
-              title="Open Live Build & System Status (/status)"
+              title="Open Live Build & System Status (/status.html)"
             >
               ● Build {buildMeta.buildId}
+            </a>
+            <a
+              href="/changelog.html"
+              className="text-sky-300 hover:text-sky-200 transition-colors font-semibold"
+            >
+              Changelog
             </a>
             <button
               type="button"
@@ -5143,7 +5162,7 @@ export default function App() {
               <Heart className="w-3.5 h-3.5 text-pink-400 shrink-0" />
               <span>Contribute</span>
             </button>
-            <a href="/partners" className="text-purple-300 hover:text-purple-200 transition-colors font-semibold">
+            <a href="/partners.html" className="text-purple-300 hover:text-purple-200 transition-colors font-semibold">
               Partners &amp; Sponsor
             </a>
             <button

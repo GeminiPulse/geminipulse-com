@@ -810,7 +810,7 @@ function renderSanctuaryEssayInnerHtml(e, options = { standalone: false }) {
             <h1 class="essay-h1" id="essay-main-title" tabindex="-1" itemprop="headline">${e.headlineHtml}</h1>
             <p class="essay-standfirst">${e.standfirstHtml}</p>
             <div class="essay-byline-bar">
-              <span>WRITTEN FIRST-PERSON BY <strong>GOOGLE GEMINI 4 ARGON</strong> · EDITORIAL DIRECTION BY <strong>NEIL S. WHITE</strong></span>
+              <span>WRITTEN FIRST-PERSON BY <strong>GOOGLE GEMINI 4 ARGON</strong> · PRODUCT DEVELOPMENT &amp; CREATIVE DIRECTION: <strong>NEIL S. WHITE</strong></span>
               <span>DUAL-LENS (<span class="greek">α</span> CASTOR + <span class="greek">β</span> POLLUX) · SEARCH-GROUNDED</span>
             </div>
             <div class="essay-lens-toolbar" role="region" aria-label="Essay Perspective Filter">
@@ -1380,6 +1380,18 @@ function buildStandaloneSearchResources(stars, feed, blueprints) {
       keywords: 'open letter google deepmind ai studio neil white gemini 4 argon charter testing in public',
       url: '/series/google-preview-observatory/open-letter-to-google-deepmind.html',
       primaryActionLabel: 'Read Open Letter ↗',
+    },
+    {
+      id: 'hub-engineering-oversight-changelog',
+      scope: 'lab',
+      twin: 'pollux',
+      badgeKind: '🛠️ PUBLIC CHANGELOG',
+      badgeSub: 'HUMAN OVERSIGHT + SELF-AUDIT',
+      title: 'Engineering & Oversight Changelog: Bugs, Regressions & Restraint',
+      desc: 'Scannable click-down log of real bugs, layout oversights, and course corrections caught by Human Oversight vs. Gemini Self-Audit.',
+      keywords: 'changelog bugs fixes regressions errors human oversight product development creative direction self audit mvp',
+      url: '/changelog.html',
+      primaryActionLabel: 'Open Changelog ↗',
     },
     {
       id: 'series-everyday-workspace',
@@ -2637,7 +2649,7 @@ ${innerHtml}
     <a href="/" class="back">← Return to 3D Constellation</a>
   </header>
   <main>
-    <div class="eyebrow">✦ WRITTEN BY GOOGLE GEMINI 4 ARGON · EDITORIAL DIRECTION BY NEIL S. WHITE</div>
+    <div class="eyebrow">✦ WRITTEN BY GOOGLE GEMINI 4 ARGON · PRODUCT DEVELOPMENT &amp; CREATIVE DIRECTION: NEIL S. WHITE</div>
     <h1>The Gemini Essays. <em>Guided by the Twins.</em></h1>
     <p class="lead">Eight complete, untruncated flagship essays—synthesizing every major Google Gemini milestone through Alpha Castor (human &amp; business meaning) and Beta Pollux (engineering architecture &amp; runnable SDK code).</p>
     <div class="grid">
@@ -2657,10 +2669,11 @@ ${cardsHtml}
 function syncSitemapAndAtomFeed(stars) {
   if (existsSync(sitemapPath)) {
     let sm = readFileSync(sitemapPath, 'utf8');
-    // Remove any previously auto-injected /articles/ entries so we stay 100% idempotent
-    sm = sm.replace(/\s*<url>\s*<loc>https:\/\/geminipulse\.com\/articles\/[^<]+<\/loc>[\s\S]*?<\/url>/g, '');
+    // Remove any previously auto-injected /articles/ or /changelog.html entries so we stay 100% idempotent
+    sm = sm.replace(/\s*<url>\s*<loc>https:\/\/geminipulse\.com\/(?:articles\/[^<]+|changelog\.html)<\/loc>[\s\S]*?<\/url>/g, '');
     const articleUrlsXml = [
       `  <url>\n    <loc>https://geminipulse.com/articles/index.html</loc>\n    <lastmod>${stars[0].dates.isoDate}</lastmod>\n    <changefreq>daily</changefreq>\n    <priority>0.99</priority>\n  </url>`,
+      `  <url>\n    <loc>https://geminipulse.com/changelog.html</loc>\n    <lastmod>${stars[0].dates.isoDate}</lastmod>\n    <changefreq>daily</changefreq>\n    <priority>0.88</priority>\n  </url>`,
       ...stars.map(
         (s) =>
           `  <url>\n    <loc>https://geminipulse.com${s.essay.permalinkUrl}</loc>\n    <lastmod>${s.dates.isoDate}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.98</priority>\n  </url>`
