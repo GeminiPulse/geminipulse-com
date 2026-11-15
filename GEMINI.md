@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-11-14 12:45 EST — ROUND 38 12:45 PM ET CURATION COMPLETE: Verified Google Integrates Cloud Credits into Google AI Studio (Bala Muthukrishnan & Seth Odoom), 3-Part Deep-Dive Series + AI Studio Credits Studio [DEMO], and Thor Michael Støre @thorwebdev 'Redeem and use Google Cloud Credits in Google AI Studio and Gemini API' Featured Video of the Day`
+> **Last touched:** `2026-11-15 02:05 EST — HOMEPAGE CONSTELLATION AUTO-SYNC WIRED & DEPLOYED: Built public/scripts/sync-constellation.mjs into prebuild (stamp-build.mjs) so all 8 Castor & Pollux 3D stars, HUD briefs, Nocturnal Twin salons, 4-chapter Reading Sanctuaries, SEO JSON-LD, and ⌘K search palette sync automatically from PULSE_INTELLIGENCE_FEED on every 3x/day autonomous build`
 
 ---
 
@@ -40,7 +40,7 @@ npm run dev -- --port 8080
 cd ~/Projects/geminipulse-com/public
 npm run build
 ```
-*(Outputs production bundle to `public/dist/` as configured in `firebase.json`.)*
+*(Automatically runs `prebuild` -> `scripts/stamp-build.mjs` -> `scripts/sync-constellation.mjs` to sync all 8 homepage 3D constellation stars, HUD briefs, Twin salons, 4-chapter Reading Sanctuaries, and ⌘K search index in `public/index.html` and `public/public/prototypes/look-j-3d-celestial-navigator.html` from `PULSE_INTELLIGENCE_FEED`, then outputs the production bundle to `public/dist/`. Always include `public/index.html` and `public/public/prototypes/look-j-3d-celestial-navigator.html` when staging curation commits.)*
 
 ### Firebase Hosting Deployment (Free Spark Tier — \$0/mo)
 ```bash

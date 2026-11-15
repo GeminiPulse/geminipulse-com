@@ -1,6 +1,6 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-11-14 12:45 EST (ROUND 38 12:45 PM ET CURATION COMPLETE: Verified Google Integrates Cloud Credits into Google AI Studio (Bala Muthukrishnan & Seth Odoom), 3-Part Deep-Dive Series + AI Studio Credits Studio [DEMO], and Thor Michael Støre @thorwebdev 'Redeem and use Google Cloud Credits in Google AI Studio and Gemini API' Featured Video of the Day)`
+- **Last Updated:** `2026-11-15 02:05 EST (HOMEPAGE CONSTELLATION AUTO-SYNC WIRED & DEPLOYED: Built public/scripts/sync-constellation.mjs into prebuild so all 8 Castor & Pollux 3D stars, HUD briefs, Nocturnal Twin salons, 4-chapter Reading Sanctuaries, SEO JSON-LD, and ⌘K search palette auto-update from PULSE_INTELLIGENCE_FEED on every 3x/day curation build)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
@@ -13,7 +13,25 @@
 
 ---
 
-## 0. Completed & Live on `v2.0` (2026-11-14 12:45 PM ET — Round 38 12:45 PM Embargo Curation Check)
+## 0. Completed & Live on `v2.0` (2026-11-15 02:05 AM ET — Homepage 3D Constellation Auto-Sync Engine)
+
+- **Diagnosed & Permanently Fixed Stale Homepage Constellation (`public/scripts/sync-constellation.mjs` + `public/scripts/stamp-build.mjs`):**
+  - **Root Cause:** While the 3x/day `geminipulse-daily-curator` sidecar had continuously curated new releases through Round 38 (`PULSE_INTELLIGENCE_FEED`, `/series/*`, `/labs/*`, `/workbench.html`, `feed.xml`, `sitemap.xml`), `public/index.html` (and `public/public/prototypes/look-j-3d-celestial-navigator.html`, which `stamp-build.mjs` copied to `public/index.html` on build) still held hardcoded Nov 3–5 inline objects (`STARS_3D`, `SALON_DATA`, `HUD_DATA`, `"datePublished": "2026-11-03"`).
+  - **Permanent Build-Time Fix:** Built `public/scripts/sync-constellation.mjs` and wired `await syncConstellation()` directly into `public/scripts/stamp-build.mjs` (`npm run prebuild`). Every `npm run build` executed by the 3x/day sidecar now deterministically selects the 8 freshest distinct flagship stories from `PULSE_INTELLIGENCE_FEED`, extracts companion 3-part HTML series chapters and `@google/genai` SDK snippets from `public/public/series/`, computes zero-collision SVG star pill geometry, and updates both `public/index.html` and `public/public/prototypes/look-j-3d-celestial-navigator.html` (including SSR sanctuary markup, Dynamic `TechArticle`/`FAQPage` JSON-LD, and 53-item `⌘K` Celestial Search & Instant Answer index).
+  - **Live 8-Star Constellation Lineup (`Nov 13 → Nov 10, 2026`):**
+    1. `01 α Castor`: **AI Studio Credits** (Nov 13, 2026) — Google Integrates Cloud Credits into Google AI Studio
+    2. `02 ε Mebsuta`: **Teamwork Agents** (Nov 13, 2026) — Google Research Unveils `/teamwork` in Antigravity
+    3. `03 μ Tejat`: **Google Wallet AI** (Nov 13, 2026) — Google Integrates Google Wallet into Gemini
+    4. `04 η Propus`: **Gemini 4 Hydrogen** (Nov 12, 2026) — Google Launches Gemini 4 Hydrogen
+    5. `05 β Pollux`: **Intelligent Eyewear** (Nov 12, 2026) — Google Launches Intelligent Eyewear with Warby Parker & Gentle Monster
+    6. `06 δ Wasat`: **Decisions API** (Nov 11, 2026) — Google DeepMind Launches Gemini Decisions API & Gemini Decision 1 Model
+    7. `07 ζ Mekbuda`: **A2UI 1.0 Gen UI** (Nov 11, 2026) — Google Launches A2UI 1.0 GA
+    8. `08 γ Alhena`: **Gen AI SDK v3.1.0** (Nov 10, 2026) — Google Releases Gen AI SDK v3.1.0
+  - **7-Point Self-Audit:** Verified `0` layout/box/ellipsis overflows across `1440px`, `1120px`, `768px`, and `390px` viewports (`audit-layout.mjs`), `HTTP 200` across all 16 star Series & Lab URLs, Lighthouse Desktop & Mobile thresholds, and Zero-PII git status.
+
+---
+
+## 0a. Prior Round on `v2.0` (2026-11-14 12:45 PM ET — Round 38 12:45 PM Embargo Curation Check)
 
 - **Curated Google AI Studio Cloud Credits Integration by Bala Muthukrishnan & Seth Odoom:**
   - **Ecosystem Intelligence Entry (`PULSE_INTELLIGENCE_FEED`):** Added `pulse-google-ai-studio-cloud-credits` citing `https://blog.google/innovation-and-ai/technology/developers-tools/google-cloud-credits-gdp-ai-studio/` (Google Official Blog, Nov 13, 2026 20:30 UTC). Details: (1) In-workspace Google Developer Program profile creation and credit claiming directly in AI Studio left navigation, (2) Monthly credit grants scaling with tier: Google AI Pro ($20/mo &rarr; $10 credits) and Google AI Ultra ($50/mo &rarr; $100 credits), (3) 12-month rolling validity from issuance date, (4) Month-to-month automatic stacking and retroactive back-claim capability, (5) FIFO automated drawdown (earliest expiring grant deducted first), (6) Paid-tier quota overage execution on Gemini 4 Carbon, Gemini 4 Hydrogen, and Gemini Omni 1.2 Flash, (7) $5 anti-abuse minimum prepayment/balance rule to activate promotional drawdowns, and (8) Instant paid-tier API keys for 1,000+ RPM with live telemetry at `aistudio.google.com/billing`.

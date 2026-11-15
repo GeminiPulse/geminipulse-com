@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "sync:constellation": "node scripts/sync-constellation.mjs",
     "prebuild": "node scripts/stamp-build.mjs",
     "build": "vite build",
     "audit:ui": "node scripts/audit-layout.mjs",

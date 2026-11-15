@@ -1,7 +1,8 @@
 import { execSync } from 'node:child_process';
-import { readFileSync, writeFileSync } from 'node:fs';
+import { writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { syncConstellation } from './sync-constellation.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(__dirname, '../..');
@@ -209,17 +210,8 @@ const statusHtml = `<!doctype html>
 
 writeFileSync(resolve(__dirname, '../public/status.html'), statusHtml);
 
-// Sync flagship Look J v10 3D Celestial Navigator to root index.html
-const lookJSourcePath = resolve(__dirname, '../public/prototypes/look-j-3d-celestial-navigator.html');
-const rootIndexHtml = readFileSync(lookJSourcePath, 'utf8')
-  .replace(
-    '<link rel="canonical" href="https://geminipulse.com/prototypes/look-j-3d-celestial-navigator.html" />',
-    '<link rel="canonical" href="https://geminipulse.com/" />'
-  )
-  .replace(
-    '<meta property="og:url" content="https://geminipulse.com/prototypes/look-j-3d-celestial-navigator.html" />',
-    '<meta property="og:url" content="https://geminipulse.com/" />'
-  );
-writeFileSync(resolve(__dirname, '../index.html'), rootIndexHtml);
+// Auto-sync all 8 Constellation Stars, HUD Briefs, Twin Salons, 4-Chapter Sanctuaries,
+// SEO JSON-LD, and ⌘K Search Palette from PULSE_INTELLIGENCE_FEED on every build!
+await syncConstellation();
 
-console.log(`[stamp-build] Stamped ${buildId} (${edtFormatted}) -> src/buildMeta.json, public/status.html & root index.html`);
+console.log(`[stamp-build] Stamped ${buildId} (${edtFormatted}) -> src/buildMeta.json, public/status.html, index.html & look-j-3d-celestial-navigator.html`);
