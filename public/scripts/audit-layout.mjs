@@ -360,6 +360,41 @@ const IN_PAGE_AUDIT_FN = `
       }
 
       auditEssayContainer(document.getElementById('sanctuary-essay-root'), 'star:' + sk);
+
+      // Verify Bottom TOC Bar (.atoc-link) pills have zero horizontal cramping/truncation and generous dot & right-edge margins
+      document.querySelectorAll('.article-constellation-toc-bar .atoc-link').forEach((linkEl, tocIdx) => {
+        const lRect = linkEl.getBoundingClientRect();
+        if (lRect.width === 0 || lRect.height === 0) return;
+        if (linkEl.scrollWidth > linkEl.clientWidth + 2) {
+          issues.push({
+            type: 'TOC_PILL_SCROLL_OVERFLOW',
+            star: sk,
+            tocIdx,
+            text: (linkEl.innerText || '').trim(),
+            scrollWidth: linkEl.scrollWidth,
+            clientWidth: linkEl.clientWidth
+          });
+        }
+        const dotEl = linkEl.querySelector('.atoc-star-dot');
+        const labelEl = linkEl.querySelector('[id^="atoc-label-"]');
+        if (vw >= 700 && dotEl && labelEl) {
+          const dRect = dotEl.getBoundingClientRect();
+          const tRect = labelEl.getBoundingClientRect();
+          const leftInset = dRect.left - lRect.left;
+          const rightInset = lRect.right - tRect.right;
+          if (leftInset < 14 || rightInset < 10) {
+            issues.push({
+              type: 'TOC_PILL_CRAMPED_MARGIN',
+              star: sk,
+              tocIdx,
+              text: (linkEl.innerText || '').trim(),
+              leftInset: Math.round(leftInset * 10) / 10,
+              rightInset: Math.round(rightInset * 10) / 10
+            });
+          }
+        }
+      });
+
       auditedStars++;
     }
 

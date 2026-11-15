@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="text-scale" content="scale" />
   <title>A CFO in Your Pocket—With Zero Power to Touch Your Money. — GeminiPulse Essay (Star 03 · μ Tejat)</title>
   <meta name="description" content="Connecting an AI model to your bank and card history sounds terrifying until you inspect the permission boundary Google drew. By pairing Plaid-backed transaction visibility and dynamic in-chat charts with a hard hardware-style read-only lock and an editable Memory Summary, Gemini solves the chore people hate most since Mint shut down." />
   <link rel="canonical" href="https://geminipulse.com/articles/google-wallet-in-gemini.html" />
@@ -178,8 +179,8 @@
 
     .stb-sub {
       font-family: var(--mono);
-      font-size: 9px;
-      letter-spacing: 0.12em;
+      font-size: 0.6875rem;
+      letter-spacing: 0.09em;
       color: var(--ethereal-bright);
     }
 
@@ -187,22 +188,22 @@
       display: flex;
       align-items: center;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 0.5rem;
     }
 
     .stb-pill {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 6px 13px;
+      gap: 0.4rem;
+      padding: 0.45rem 0.95rem;
       border-radius: 999px;
       background: rgba(12, 19, 36, 0.86);
       border: 0.75px solid rgba(163, 133, 255, 0.34);
       color: #F2F6FC;
       font-family: var(--mono);
-      font-size: 8.8px;
+      font-size: 0.6875rem;
       font-weight: 600;
-      letter-spacing: 0.09em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       text-decoration: none;
       transition: all 0.18s ease;
@@ -228,11 +229,11 @@
     main.standalone-main {
       position: relative;
       z-index: 2;
-      padding: clamp(42px, 6vh, 76px) clamp(18px, 5vw, 56px) clamp(76px, 10vh, 120px);
+      padding: clamp(3rem, 6.5vh, 5.5rem) clamp(1.25rem, 5vw, 4rem) clamp(6rem, 12vh, 9rem);
     }
 
     .article-sanctuary-column {
-      max-inline-size: 860px;
+      max-inline-size: 56rem;
       margin-inline: auto;
       display: flex;
       flex-direction: column;
@@ -241,7 +242,7 @@
     .essay-hero-block,
     .essay-section,
     .lens-inner-wrap {
-      max-inline-size: 740px;
+      max-inline-size: 48.75rem;
       inline-size: 100%;
       margin-inline: auto;
       scroll-margin-top: 72px;
@@ -259,24 +260,25 @@
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 0.65rem;
       font-family: var(--mono);
-      font-size: 9.5px;
-      letter-spacing: 0.16em;
+      font-size: 0.6875rem;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--ethereal-bright);
-      margin-block-end: 18px;
+      margin-block-end: 1.25rem;
     }
 
     .essay-h1 {
       font-family: var(--serif);
       font-weight: 500;
-      font-size: clamp(34px, 4.5vw, 56px);
+      font-size: clamp(2.25rem, 1.65rem + 2.15vw, 3.65rem);
       line-height: 1.08;
       letter-spacing: -0.012em;
       color: #FFFFFF;
-      margin-block-end: 22px;
+      margin-block-end: 1.5rem;
       text-shadow: 0 8px 32px rgba(0, 0, 0, 0.75);
+      text-wrap: balance;
     }
 
     .essay-h1 em {
@@ -290,11 +292,12 @@
     .essay-standfirst {
       font-family: var(--serif);
       font-style: italic;
-      font-size: clamp(20px, 2vw, 24.5px);
-      line-height: 1.54;
+      font-size: clamp(1.3rem, 1.14rem + 0.62vw, 1.625rem);
+      line-height: 1.56;
       color: #BFE0FA;
       max-inline-size: 58ch;
-      margin-block-end: 26px;
+      margin-block-end: 1.85rem;
+      text-wrap: pretty;
     }
 
     .essay-byline-bar {
@@ -302,12 +305,12 @@
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 10px 18px;
-      padding-block: 12px;
+      gap: 0.65rem 1.25rem;
+      padding-block: 0.85rem;
       border-block: 0.65px solid rgba(163, 133, 255, 0.24);
       font-family: var(--mono);
-      font-size: 9px;
-      letter-spacing: 0.1em;
+      font-size: 0.6875rem;
+      letter-spacing: 0.07em;
       text-transform: uppercase;
       color: var(--starlight-dim);
     }
@@ -315,18 +318,18 @@
     .essay-byline-bar strong { color: #FFFFFF; font-weight: 600; }
 
     .essay-lens-toolbar {
-      margin-block-start: 18px;
+      margin-block-start: 1.35rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 0.75rem;
     }
 
     .essay-lens-label {
       font-family: var(--mono);
-      font-size: 8.8px;
-      letter-spacing: 0.13em;
+      font-size: 0.6875rem;
+      letter-spacing: 0.09em;
       text-transform: uppercase;
       color: var(--starlight-muted);
     }
@@ -335,20 +338,20 @@
       display: inline-flex;
       align-items: center;
       flex-wrap: wrap;
-      gap: 6px;
+      gap: 0.45rem;
     }
 
     .essay-lens-btn {
       cursor: pointer;
-      padding: 6px 13px;
+      padding: 0.45rem 0.95rem;
       border-radius: 999px;
       background: rgba(9, 14, 26, 0.84);
       border: 0.75px solid rgba(255, 255, 255, 0.16);
       color: var(--starlight-dim);
       font-family: var(--mono);
-      font-size: 8.8px;
+      font-size: 0.6875rem;
       font-weight: 500;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
       transition: all 0.18s ease;
     }
@@ -373,34 +376,34 @@
     }
 
     .pulse-check-ledger {
-      margin-block-start: 28px;
-      padding: 4px 20px;
+      margin-block-start: 2rem;
+      padding: 0.35rem 1.5rem;
       border-radius: 12px;
       background: rgba(8, 14, 28, 0.72);
       border: 0.75px solid rgba(163, 133, 255, 0.26);
     }
 
     .pcl-header {
-      padding-block: 11px 9px;
+      padding-block: 0.85rem 0.75rem;
       border-block-end: 0.65px solid rgba(163, 133, 255, 0.22);
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 0.65rem;
       font-family: var(--mono);
-      font-size: 8.8px;
+      font-size: 0.6875rem;
       font-weight: 600;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--ethereal-bright);
     }
 
     .pcl-row {
       display: grid;
-      grid-template-columns: 168px minmax(0, 1fr);
-      gap: 16px;
-      padding-block: 12px;
+      grid-template-columns: 11.75rem minmax(0, 1fr);
+      gap: 1.25rem;
+      padding-block: 0.95rem;
       border-block-end: 0.65px dashed rgba(255, 255, 255, 0.1);
       align-items: baseline;
     }
@@ -409,9 +412,9 @@
 
     .pcl-stage {
       font-family: var(--mono);
-      font-size: 9.2px;
+      font-size: 0.6875rem;
       font-weight: 600;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       color: #7DD3FC;
     }
@@ -419,9 +422,10 @@
     .pcl-row:nth-of-type(3) .pcl-stage { color: #FDBA74; }
 
     .pcl-detail {
-      font-size: 14.5px;
-      line-height: 1.62;
+      font-size: clamp(1.025rem, 0.98rem + 0.18vw, 1.125rem);
+      line-height: 1.68;
       color: #E2ECF8;
+      text-wrap: pretty;
     }
 
     .celestial-chapter-divider {
@@ -429,7 +433,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-block: clamp(44px, 6vh, 68px);
+      margin-block: clamp(3.5rem, 7vh, 5.25rem);
       inline-size: 100%;
     }
 
@@ -444,8 +448,8 @@
     .ccd-glyph {
       padding-inline: 18px;
       font-family: var(--mono);
-      font-size: 9.5px;
-      letter-spacing: 0.28em;
+      font-size: 0.6875rem;
+      letter-spacing: 0.26em;
       color: var(--ethereal-bright);
     }
 
@@ -454,36 +458,38 @@
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 0.65rem;
       font-family: var(--mono);
-      font-size: 9.5px;
+      font-size: 0.6875rem;
       font-weight: 500;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: #7DD3FC;
-      margin-block-end: 14px;
+      margin-block-end: 1.05rem;
     }
 
     #lens-section-pollux .chapter-kicker { color: #FDBA74; }
 
     .essay-h2 {
       font-family: var(--serif);
-      font-size: clamp(28px, 3vw, 40px);
+      font-size: clamp(1.85rem, 1.48rem + 1.25vw, 2.65rem);
       font-weight: 600;
-      line-height: 1.14;
+      line-height: 1.15;
       color: #FFFFFF;
-      margin-block-end: 12px;
+      margin-block-end: 0.9rem;
       max-inline-size: 30ch;
+      text-wrap: balance;
     }
 
     .essay-sub {
       font-family: var(--serif);
       font-style: italic;
-      font-size: clamp(19px, 1.75vw, 23px);
-      line-height: 1.5;
+      font-size: clamp(1.22rem, 1.08rem + 0.48vw, 1.5rem);
+      line-height: 1.52;
       color: #9ED0FA;
-      margin-block-end: 26px;
+      margin-block-end: 1.85rem;
       max-inline-size: 58ch;
+      text-wrap: pretty;
     }
 
     .essay-sub--pollux { color: #FED7AA; }
@@ -491,12 +497,14 @@
     .essay-prose {
       display: flex;
       flex-direction: column;
-      gap: 22px;
-      font-size: clamp(17.5px, 1.22vw, 19.5px);
-      line-height: 1.84;
+      gap: 1.45em;
+      font-size: clamp(1.125rem, 1.02rem + 0.38vw, 1.275rem);
+      line-height: 1.85;
       color: #E4ECF8;
       max-inline-size: 65ch;
     }
+
+    .essay-prose p { text-wrap: pretty; }
 
     .essay-prose--pollux { color: #F4E8D8; }
 
@@ -523,8 +531,8 @@
     }
 
     .celestial-pullquote {
-      margin-block: 34px;
-      padding: 6px 0 6px 24px;
+      margin-block: 2.5rem;
+      padding: 0.5rem 0 0.5rem 1.65rem;
       border-inline-start: 2px solid var(--ethereal-bright);
       max-inline-size: 60ch;
     }
@@ -532,18 +540,19 @@
     .celestial-pullquote p {
       font-family: var(--serif);
       font-style: italic;
-      font-size: clamp(22px, 2.2vw, 27px);
-      line-height: 1.44;
+      font-size: clamp(1.4rem, 1.2rem + 0.7vw, 1.78rem);
+      line-height: 1.45;
       color: #F5F3FF;
+      text-wrap: pretty;
     }
 
     .celestial-pullquote cite {
       display: block;
-      margin-block-start: 10px;
+      margin-block-start: 0.75rem;
       font-family: var(--mono);
       font-style: normal;
-      font-size: 8.8px;
-      letter-spacing: 0.14em;
+      font-size: 0.6875rem;
+      letter-spacing: 0.11em;
       text-transform: uppercase;
       color: var(--ethereal-bright);
     }
@@ -551,7 +560,7 @@
     .gp-table-wrapper {
       container-type: inline-size;
       overflow-x: auto;
-      margin-block: 34px;
+      margin-block: 2.5rem;
       border-radius: 12px;
       border: 0.75px solid rgba(56, 189, 248, 0.26);
       background: rgba(6, 12, 24, 0.78);
@@ -560,18 +569,18 @@
     .gp-comparison-table {
       inline-size: 100%;
       border-collapse: collapse;
-      font-size: 13.8px;
-      line-height: 1.52;
+      font-size: 0.95rem;
+      line-height: 1.58;
       color: #E2ECF8;
     }
 
     .gp-comparison-table caption {
-      padding: 12px 18px;
+      padding: 0.9rem 1.25rem;
       text-align: left;
       font-family: var(--mono);
-      font-size: 9px;
+      font-size: 0.6875rem;
       font-weight: 600;
-      letter-spacing: 0.13em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: #7DD3FC;
       background: rgba(56, 189, 248, 0.08);
@@ -579,7 +588,7 @@
     }
 
     .gp-comparison-table th, .gp-comparison-table td {
-      padding: 12px 15px;
+      padding: 0.9rem 1.1rem;
       text-align: left;
       vertical-align: top;
       border-block-end: 0.65px solid rgba(255, 255, 255, 0.08);
@@ -587,9 +596,9 @@
 
     .gp-comparison-table thead th {
       font-family: var(--mono);
-      font-size: 8.8px;
+      font-size: 0.6875rem;
       font-weight: 600;
-      letter-spacing: 0.09em;
+      letter-spacing: 0.07em;
       text-transform: uppercase;
       color: #BAE6FD;
       background: rgba(9, 18, 36, 0.88);
@@ -602,35 +611,35 @@
       .gp-comparison-table, .gp-comparison-table thead, .gp-comparison-table tbody,
       .gp-comparison-table tr, .gp-comparison-table th, .gp-comparison-table td { display: block; }
       .gp-comparison-table thead { display: none; }
-      .gp-comparison-table tbody tr { padding: 14px 16px; border-block-end: 0.75px solid rgba(56, 189, 248, 0.2); }
+      .gp-comparison-table tbody tr { padding: 1rem 1.1rem; border-block-end: 0.75px solid rgba(56, 189, 248, 0.2); }
       .gp-comparison-table tbody tr:last-child { border-block-end: none; }
       .gp-comparison-table tbody th[scope="row"] {
-        padding: 0 0 8px 0;
-        margin-block-end: 8px;
+        padding: 0 0 0.55rem 0;
+        margin-block-end: 0.55rem;
         border-block-end: 0.65px dashed rgba(56, 189, 248, 0.24);
         color: #BAE6FD;
       }
-      .gp-comparison-table tbody td { padding: 5px 0; border-block-end: none; }
+      .gp-comparison-table tbody td { padding: 0.35rem 0; border-block-end: none; }
       .gp-comparison-table tbody td::before {
         display: block;
         font-family: var(--mono);
-        font-size: 8.5px;
+        font-size: 0.65rem;
         font-weight: 600;
-        letter-spacing: 0.09em;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
         color: #8CA3C4;
-        margin-block-end: 2px;
+        margin-block-end: 0.15rem;
       }
       .gp-comparison-table tbody td:nth-of-type(1)::before { content: var(--col-2); }
       .gp-comparison-table tbody td:nth-of-type(2)::before { content: var(--col-3); }
       .gp-comparison-table tbody td:nth-of-type(3)::before { content: var(--col-4); }
     }
 
-    .adaptive-qa-section { margin-block-start: 40px; scroll-margin-top: 72px; }
-    .adaptive-qa-list { display: flex; flex-direction: column; gap: 16px; margin-block-start: 16px; }
+    .adaptive-qa-section { margin-block-start: 3rem; scroll-margin-top: 72px; }
+    .adaptive-qa-list { display: flex; flex-direction: column; gap: 1.25rem; margin-block-start: 1.15rem; }
 
     .qa-item {
-      padding: 18px 22px;
+      padding: 1.35rem 1.65rem;
       border-radius: 12px;
       background: rgba(7, 16, 32, 0.72);
       border: 0.75px solid rgba(56, 189, 248, 0.24);
@@ -639,29 +648,35 @@
     .qa-lens-tag {
       display: inline-block;
       font-family: var(--mono);
-      font-size: 8.5px;
+      font-size: 0.6875rem;
       font-weight: 600;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.09em;
       text-transform: uppercase;
       color: #7DD3FC;
-      margin-block-end: 6px;
+      margin-block-end: 0.45rem;
     }
 
     .qa-question {
       font-family: var(--serif);
-      font-size: clamp(20px, 1.9vw, 24px);
+      font-size: clamp(1.3rem, 1.18rem + 0.45vw, 1.58rem);
       font-weight: 600;
-      line-height: 1.25;
+      line-height: 1.26;
       color: #FFFFFF;
-      margin-block-end: 8px;
+      margin-block-end: 0.6rem;
+      text-wrap: balance;
     }
 
-    .qa-answer { font-size: 15.5px; line-height: 1.72; color: #D6E6F8; }
+    .qa-answer {
+      font-size: clamp(1.025rem, 0.98rem + 0.18vw, 1.125rem);
+      line-height: 1.74;
+      color: #D6E6F8;
+      text-wrap: pretty;
+    }
 
-    .builder-rules-ledger { margin-block-start: 28px; display: grid; gap: 12px; }
+    .builder-rules-ledger { margin-block-start: 2rem; display: grid; gap: 1rem; }
 
     .br-item {
-      padding: 15px 18px;
+      padding: 1.15rem 1.4rem;
       border-radius: 10px;
       background: rgba(28, 15, 5, 0.7);
       border: 0.75px solid rgba(245, 158, 63, 0.3);
@@ -669,72 +684,77 @@
 
     .br-label {
       font-family: var(--mono);
-      font-size: 9.5px;
+      font-size: 0.6875rem;
       font-weight: 600;
-      letter-spacing: 0.09em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       color: #FDBA74;
-      margin-block-end: 5px;
+      margin-block-end: 0.4rem;
     }
 
-    .br-detail { font-size: 14.8px; line-height: 1.65; color: #F4E6D4; }
+    .br-detail {
+      font-size: clamp(1.02rem, 0.97rem + 0.18vw, 1.1rem);
+      line-height: 1.68;
+      color: #F4E6D4;
+      text-wrap: pretty;
+    }
 
     .geo-code-wrap {
-      margin-block-start: 28px;
+      margin-block-start: 2rem;
       border-radius: 12px;
-      border: 0.75px solid rgba(245, 158, 63, 0.34);
+      border: 0.75px solid rgba(245, 158, 63, 0.36);
       background: #050811;
       overflow: hidden;
     }
 
     .geo-code-header {
-      padding: 9px 16px;
+      padding: 0.7rem 1.15rem;
       background: rgba(245, 158, 63, 0.09);
       border-block-end: 0.65px solid rgba(245, 158, 63, 0.24);
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 0.5rem;
       font-family: var(--mono);
-      font-size: 9px;
-      letter-spacing: 0.1em;
+      font-size: 0.6875rem;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       color: #FDBA74;
     }
 
     .copy-code-btn {
       cursor: pointer;
-      padding: 4px 11px;
+      padding: 0.32rem 0.85rem;
       border-radius: 999px;
-      background: rgba(245, 158, 63, 0.16);
-      border: 0.75px solid rgba(245, 158, 63, 0.45);
+      background: rgba(245, 158, 63, 0.18);
+      border: 0.75px solid rgba(245, 158, 63, 0.48);
       color: #FED7AA;
       font-family: var(--mono);
-      font-size: 8.5px;
+      font-size: 0.65rem;
       font-weight: 600;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
     }
 
     .geo-code-block {
-      padding: 18px 20px;
+      padding: 1.25rem 1.4rem;
       overflow-x: auto;
       font-family: var(--mono);
-      font-size: 12.6px;
-      line-height: 1.66;
+      font-size: 0.875rem;
+      line-height: 1.72;
       color: #E6EDF8;
     }
 
     .pollux-workbench-card {
-      margin-block-start: 32px;
-      padding: 24px 26px;
+      margin-block-start: 2.35rem;
+      padding: 1.75rem 1.9rem;
       border-radius: 14px;
       border: 0.85px solid rgba(245, 158, 63, 0.4);
       background: linear-gradient(205deg, rgba(33, 17, 4, 0.94) 0%, rgba(22, 11, 3, 0.96) 100%);
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 1.15rem;
     }
 
     .salon-header-row {
@@ -742,38 +762,38 @@
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 8px;
-      padding-block-end: 10px;
+      gap: 0.5rem;
+      padding-block-end: 0.75rem;
       border-block-end: 0.65px solid rgba(245, 158, 63, 0.25);
       font-family: var(--mono);
-      font-size: 9px;
-      letter-spacing: 0.12em;
+      font-size: 0.6875rem;
+      letter-spacing: 0.09em;
       text-transform: uppercase;
       color: #FED7AA;
     }
 
     .shr-title { display: inline-flex; align-items: center; gap: 7px; }
     .peek-dot { inline-size: 6px; block-size: 6px; border-radius: 50%; background: #F59E3F; box-shadow: 0 0 8px #F59E3F; }
-    .shr-badge { padding: 2px 8px; border-radius: 999px; border: 0.65px solid rgba(245, 158, 63, 0.4); font-size: 8.5px; }
-    .pwc-title { font-family: var(--serif); font-size: clamp(23px, 2.2vw, 29px); font-weight: 600; color: #FFF7EB; }
-    .pwc-sub { font-size: 14.8px; line-height: 1.62; color: #F4DFC4; }
+    .shr-badge { padding: 0.18rem 0.55rem; border-radius: 999px; border: 0.65px solid rgba(245, 158, 63, 0.4); font-size: 0.625rem; }
+    .pwc-title { font-family: var(--serif); font-size: clamp(1.5rem, 1.32rem + 0.6vw, 1.875rem); line-height: 1.18; font-weight: 600; color: #FFF7EB; text-wrap: balance; }
+    .pwc-sub { font-size: clamp(1.02rem, 0.97rem + 0.18vw, 1.1rem); line-height: 1.66; color: #F4DFC4; text-wrap: pretty; }
 
     .atelier-console {
       background: #0D0703;
       border: 0.75px solid rgba(245, 158, 63, 0.34);
       border-radius: 10px;
-      padding: 13px 15px;
+      padding: 1rem 1.2rem;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 0.7rem;
     }
 
     .ac-top {
       display: flex;
       justify-content: space-between;
       font-family: var(--mono);
-      font-size: 8.5px;
-      letter-spacing: 0.1em;
+      font-size: 0.6875rem;
+      letter-spacing: 0.09em;
       color: #D8B48A;
       text-transform: uppercase;
     }
@@ -782,13 +802,13 @@
 
     .ac-preset-btn {
       cursor: pointer;
-      padding: 6px 8px;
+      padding: 0.48rem 0.6rem;
       border-radius: 6px;
       border: 0.75px solid rgba(245, 158, 63, 0.28);
       background: rgba(255, 255, 255, 0.04);
       color: #F2DEC4;
       font-family: var(--mono);
-      font-size: 8.5px;
+      font-size: 0.6875rem;
       font-weight: 500;
       transition: all 0.18s ease;
     }
@@ -801,44 +821,54 @@
     }
 
     .ac-output {
-      padding: 9px 11px;
+      padding: 0.75rem 0.95rem;
       border-radius: 6px;
       background: rgba(255, 255, 255, 0.025);
       border: 0.65px solid rgba(245, 158, 63, 0.18);
       font-family: var(--mono);
-      font-size: 9.8px;
+      font-size: 0.8125rem;
       line-height: 1.55;
     }
 
-    .ac-line { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding-block: 2px; }
-    .ac-k { color: #C29D72; }
+    .ac-line { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding-block: 0.25rem; }
+    .ac-k { color: #C29D72; font-size: 0.6875rem; }
     .ac-v { color: #FFF8EE; font-weight: 500; }
     .ac-v.accent { color: #FDBA74; }
 
     .standalone-deep-link-row {
-      margin-block-start: 22px;
-      padding-block-start: 14px;
+      margin-block-start: 1.8rem;
+      padding-block-start: 1.05rem;
       border-block-start: 0.65px solid rgba(255, 255, 255, 0.1);
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 0.75rem;
     }
+
+    .sdl-kicker {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: #7DD3FC;
+    }
+
+    .sdl-kicker--pollux { color: #FDBA74; }
 
     .standalone-deep-link {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
-      padding: 7px 14px;
+      gap: 0.5rem;
+      padding: 0.52rem 1.15rem;
       border-radius: 999px;
       background: rgba(56, 189, 248, 0.14);
       border: 0.85px solid rgba(56, 189, 248, 0.45);
       color: #F0F9FF;
       font-family: var(--mono);
-      font-size: 8.8px;
+      font-size: 0.6875rem;
       font-weight: 600;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.07em;
       text-transform: uppercase;
       text-decoration: none;
     }
@@ -850,14 +880,14 @@
     }
 
     .primary-sources-ledger {
-      margin-block-start: 32px;
-      padding: 18px 22px;
+      margin-block-start: 2.4rem;
+      padding: 1.35rem 1.65rem;
       border-radius: 12px;
       background: rgba(8, 13, 25, 0.84);
       border: 0.75px solid rgba(163, 133, 255, 0.28);
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 0.9rem;
     }
 
     .psl-header {
@@ -865,13 +895,13 @@
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 8px;
-      padding-block-end: 10px;
+      gap: 0.5rem;
+      padding-block-end: 0.7rem;
       border-block-end: 0.65px solid rgba(163, 133, 255, 0.2);
       font-family: var(--mono);
-      font-size: 9px;
+      font-size: 0.6875rem;
       font-weight: 600;
-      letter-spacing: 0.13em;
+      letter-spacing: 0.09em;
       text-transform: uppercase;
       color: var(--ethereal-bright);
     }
@@ -881,55 +911,55 @@
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 10px 16px;
-      padding-block: 6px;
+      gap: 0.75rem 1.15rem;
+      padding-block: 0.45rem;
     }
 
-    .psl-meta { display: flex; flex-direction: column; gap: 3px; }
-    .psl-role { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #93C5FD; }
-    .psl-label { font-size: 14.5px; font-weight: 500; color: #F0F7FF; }
+    .psl-meta { display: flex; flex-direction: column; gap: 0.25rem; }
+    .psl-role { font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.07em; text-transform: uppercase; color: #93C5FD; }
+    .psl-label { font-size: 1rem; font-weight: 500; color: #F0F7FF; }
 
     .psl-link {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 6px 14px;
+      gap: 0.4rem;
+      padding: 0.45rem 1rem;
       border-radius: 999px;
       background: rgba(56, 189, 248, 0.14);
       border: 0.85px solid rgba(56, 189, 248, 0.48);
       color: #F0F9FF;
       font-family: var(--mono);
-      font-size: 8.6px;
+      font-size: 0.6875rem;
       font-weight: 600;
-      letter-spacing: 0.09em;
+      letter-spacing: 0.07em;
       text-transform: uppercase;
       text-decoration: none;
     }
 
     .essay-star-nav-footer {
-      margin-block-start: 38px;
-      padding-block-start: 22px;
+      margin-block-start: 2.75rem;
+      padding-block-start: 1.5rem;
       border-block-start: 0.65px solid rgba(163, 133, 255, 0.24);
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 0.8rem;
     }
 
     .essay-nav-btn {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 9px 16px;
+      gap: 0.5rem;
+      padding: 0.62rem 1.15rem;
       border-radius: 999px;
       background: rgba(12, 18, 34, 0.86);
       border: 0.85px solid rgba(163, 133, 255, 0.38);
       color: #F4F7FC;
       font-family: var(--mono);
-      font-size: 8.8px;
+      font-size: 0.6875rem;
       font-weight: 600;
-      letter-spacing: 0.09em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       text-decoration: none;
     }
@@ -1055,7 +1085,7 @@
                   </div>
 
                 <div class="standalone-deep-link-row">
-                  <span style="font-family:var(--mono);font-size:9px;color:#7DD3FC;letter-spacing:0.12em;text-transform:uppercase;">COMPANION 3-PART ARCHIVE</span>
+                  <span class="sdl-kicker">COMPANION 3-PART ARCHIVE</span>
                   <a href="/series/google-wallet-gemini/part-1-wallet-integration-and-architecture.html" class="standalone-deep-link">
                     <span>Explore Companion 3-Part Google Wallet AI Archive →</span>
                   </a>
@@ -1184,7 +1214,7 @@ export async function auditHouseholdSubscriptions(recurringLedger) {
                     </div>
                   </div>
                   <div class="standalone-deep-link-row" style="margin-block-start:4px;">
-                    <span style="font-family:var(--mono);font-size:9px;color:#FDBA74;letter-spacing:0.12em;text-transform:uppercase;">DEDICATED FULL-SCREEN SANDBOX</span>
+                    <span class="sdl-kicker sdl-kicker--pollux">DEDICATED FULL-SCREEN SANDBOX</span>
                     <a href="/labs/gemini-wallet-finance-studio.html" class="standalone-deep-link standalone-deep-link--pollux">
                       <span>Open Full Google Wallet AI Sandbox [SIMULATED DEMO] →</span>
                     </a>

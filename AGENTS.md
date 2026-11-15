@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-11-15 13:26 EST — DUAL-LENS FLAGSHIP GEMINI ESSAYS, ZERO-TRUNCATION SANCTUARY & 1-CLICK CONSTELLATION ERGONOMICS LIVE ON GEMINIPULSE.COM: Authored 8 complete first-person Google Gemini 4 Argon essays (public/src/data/constellationEssays.js), eliminated all snippet ellipses & standfirst duplication inside #salon-sheet, generated shareable /articles/*.html sanctuaries + /articles/essays-data.json, wired instant HUD preview + 1-click foreground star open, and verified Lighthouse 100/100/100/100 Desktop & 99/100/100/100 Mobile`
+> **Last touched:** `2026-11-15 13:50 EST — CONSTELLATION TOC BAR GEOMETRY FIX & RESEARCH-CALIBRATED REM-FLUID EDITORIAL TYPOGRAPHY LIVE ON GEMINIPULSE.COM: Rebuilt .article-constellation-toc-bar with 1140px flex rail, 22px orbital-ring clearance & dynamic star-line anchoring (fixing Pill 04 margin crush across all viewports), calibrated rem-fluid body/supporting type & spacing for 109-PPI 27" desktop + Retina screens with <meta name="text-scale" content="scale">, added TOC margin CDP checks to audit-layout.mjs, and verified Lighthouse 100/100/100/100 Desktop & 99/100/100/100 Mobile`
 
 ---
 

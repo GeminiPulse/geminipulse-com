@@ -1,6 +1,6 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-11-15 13:26 EST (DUAL-LENS FLAGSHIP GEMINI ESSAYS, ZERO-TRUNCATION SANCTUARY & 1-CLICK CONSTELLATION ERGONOMICS LIVE ON GEMINIPULSE.COM: Authored all 8 first-person Gemini 4 Argon flagship essays in public/src/data/constellationEssays.js, rebuilt #salon-sheet with zero ellipses/zero duplicated standfirsts + searchable α Castor / β Pollux lens filter + @container tables + bottom Primary Google Sources ledger, generated standalone /articles/*.html sanctuaries + /articles/essays-data.json, wired instant HUD preview + 1-click foreground star open, and verified Lighthouse 100/100/100/100 Desktop & 99/100/100/100 Mobile)`
+- **Last Updated:** `2026-11-15 13:50 EST (CONSTELLATION TOC BAR GEOMETRY FIX & RESEARCH-CALIBRATED REM-FLUID EDITORIAL TYPOGRAPHY LIVE ON GEMINIPULSE.COM: Rebuilt .article-constellation-toc-bar with 1140px natural-width flex pills, 22px orbital-ring clearance, dynamic constellation-line anchoring, and em-based responsive breakpoints; calibrated rem-fluid editorial prose [18px–20.4px, 1.85 leading], supporting cards [16.3px–18px], and 11px UI chrome with <meta name="text-scale" content="scale"> across index.html + /articles/*.html; added TOC pill margin/overflow CDP checks to audit-layout.mjs; verified Lighthouse 100/100/100/100 Desktop & 99/100/100/100 Mobile)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
@@ -13,7 +13,21 @@
 
 ---
 
-## 0. Completed & Live on `v2.0` (2026-11-15 01:15 PM ET — Original Dual-Lens Flagship Gemini Essays, Zero-Truncation Sanctuary & 1-Click Constellation Ergonomics)
+## 0. Completed & Live on `v2.0` (2026-11-15 01:50 PM ET — Constellation TOC Bar Geometry Fix & Research-Calibrated `rem`-Fluid Editorial Typography)
+
+- **Bottom TOC Bar (`04 · Verdict & Sources`) Margin & Orbital-Ring Fix (`public/index.html` + `public/scripts/audit-layout.mjs`):**
+  - **Root Cause:** `.atoc-inner` capped the bar at `920px` and `.atoc-list` forced `grid-template-columns: repeat(4, minmax(0, 1fr))` (`~149px` per cell), giving short labels (`01 · The Signal`, 15 chars) excess room while crushing 22-character `04 · Verdict & Sources` flush against both pill borders—causing the `22px` spinning `.atoc-gliding-star::after` ring to overhang outside Pill 04's left border.
+  - **Fix:** Widened `.atoc-inner` (and `.sheet-handle-inner`) to `1140px`, switched `.atoc-list` to natural-width flex pills (`justify-content: space-between; gap: 0.65rem`), added ring-compensated padding (`1.35rem` left / `1.15rem` right with `0.78rem` dot gap), dynamically anchored `.atoc-constellation-line` between Pill 0 and Pill 3 dot centers in `setArticleTocChapter()` (with resize re-sync), converted text-space breakpoints to scalable `em` media queries (`76.25em`, `61.25em`, `52.5em`, `42.5em`), and added automated `TOC_PILL_SCROLL_OVERFLOW` & `TOC_PILL_CRAMPED_MARGIN` CDP checks across all 8 stars in `public/scripts/audit-layout.mjs`.
+- **Research-Calibrated `rem`-Fluid Typography & Breathing Room (`public/index.html`, `public/scripts/sync-constellation.mjs`, `/articles/*.html`):**
+  - Opted into OS/accessibility dynamic text scaling (`<meta name="text-scale" content="scale" />` with zero root `font-size` override on `html`/`:root`).
+  - Preserved balanced display headlines and the `62–66ch` measure (widening `.essay-hero-block, .lens-inner-wrap, .essay-section` from `740px` to `48.75rem` / `780px`), while upgrading `.essay-prose` to `clamp(1.125rem, 1.02rem + 0.38vw, 1.275rem)` (`18px` mobile -> `19.6px` at `1440px` -> `20.4px` on `2560px` 27" monitors), `line-height: 1.85`, `1.45em` (`~28.5px`) paragraph rhythm, `text-wrap: pretty` on prose, and `text-wrap: balance` strictly on unboxed headings.
+  - Raised Sanctuary interactive pills, kickers, bylines, and table headers from `8.5px–9.5px` micro-mono up to `0.6875rem` (`11px`), closed the supporting-card size cliff (`16.3px–18px` across Pulse Check, Adaptive Q&A, Builder Rules, Pollux Workbench, and Primary Sources), enlarged 3D Hero HUD card type (`15.2px` title / `13px` summary), and expanded card/section vertical breathing room.
+  - **7-Point Self-Audit:** Live `https://geminipulse.com` passed `audit-layout.mjs` (`0 issues` across `1440px`, `1120px`, `768px`, `390px`) and `audit-lighthouse.mjs` (**Desktop `100 / 100 / 100 / 100`**, **Mobile `99 / 100 / 100 / 100`**).
+- **Decisions Needed from Neil:** None right now (`$0.00/mo` Spark tier unchanged).
+
+---
+
+## 0a-prev. Completed on `v2.0` (2026-11-15 01:15 PM ET — Original Dual-Lens Flagship Gemini Essays, Zero-Truncation Sanctuary & 1-Click Constellation Ergonomics)
 
 - **Editorial & UX Transformation (Approved by Neil across all 3 Audit Recommendations — Chronicle Episode 13):**
   - **8 Complete First-Person Dual-Lens Flagship Essays (`public/src/data/constellationEssays.js`):**
