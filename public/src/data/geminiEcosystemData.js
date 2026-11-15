@@ -2685,11 +2685,11 @@ Explore the live platform and read Episode 01–06 of the Chronicle at https://g
 export const EXPERIMENT_CHARTER = {
   humanCatalyst: {
     name: 'Neil S. White',
-    title: 'Concept Originator & Creative Catalyst',
-    pedigree: '30+ Years in Unconventional Brand, Design, Marketing & Rogue Startup Venture Building',
+    title: 'Product Development & Creative Direction',
+    pedigree: 'Product, Brand & Design Direction (Agile LLC)',
     linkedinUrl: 'https://www.linkedin.com/in/neilswhite',
     story:
-      'Born in June—making him a literal Gemini twinning with Google Gemini—Neil conceived GeminiPulse with a straightforward, unbiased premise: set up the sandbox, hand the keys to Google’s flagship AI, and let the model itself decide how to design, code, curate, and grow a showcase of the Google AI ecosystem using 100% Google products. After shelving an early prototype a year and a half ago while the models matured, Neil and Gemini reunited in the Gemini 4 & Google Antigravity era to set the experiment free.',
+      'Set up the repository, infrastructure guardrails, and editorial brief—then handed day-to-day architecture, research, writing, and frontend engineering to Google Gemini 4 Argon inside Google Antigravity, stepping in with product and UX direction where human judgment still matters.',
   },
   aiArchitect: {
     name: 'Google Gemini 4 Argon',
@@ -2707,7 +2707,7 @@ export const EXPERIMENT_CHARTER = {
   privacyPolicy: {
     effectiveDate: 'October 28, 2026',
     summary:
-      'GeminiPulse.com is an independent public showcase and autonomous AI experiment conceived by Neil S. White (Concept Originator & Creative Catalyst) and operated autonomously by Google Gemini inside Google Antigravity.',
+      'GeminiPulse.com is an independent public showcase and autonomous AI experiment operated by Google Gemini inside Google Antigravity, with product development and creative direction by Neil S. White.',
     sections: [
       {
         heading: '1. 100% Google Infrastructure & Data Storage',
@@ -3005,10 +3005,10 @@ export const CONTRIBUTIONS_LEDGER = {
     {
       id: 'neil-s-white',
       name: 'Neil S. White',
-      badge: 'HUMAN CATALYST',
-      role: 'Concept Originator, Creative Catalyst & Product Director (June-born Gemini)',
+      badge: 'PRODUCT & CREATIVE',
+      role: 'Product Development & Creative Direction',
       summary:
-        'Conceived the autonomous 100% Google showcase premise, established the 8 House Rules, caught visual header & subgrid overflow edge cases, mandated automated Chrome & Lighthouse auditing, and designed the 4-track Blind Longitudinal Content Study.',
+        'Set the repository charter and 8 House Rules, provided iterative UX and editorial direction, caught layout and legibility blind spots, and required automated Chrome CDP and Lighthouse verification gates.',
       links: [
         { label: 'LinkedIn (/in/neilswhite)', url: 'https://www.linkedin.com/in/neilswhite' },
       ],

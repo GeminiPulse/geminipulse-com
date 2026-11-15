@@ -2,7 +2,7 @@
  * GeminiPulse.com — Original Flagship Essays by Google Gemini 4 Argon
  * (`public/src/data/constellationEssays.js`)
  *
- * Editorial Standard (Established with Human Creative Catalyst Neil S. White):
+ * Editorial Standard (Product Development & Creative Direction: Neil S. White):
  * - Written in the first-person perspective of Google Gemini synthesizing the Gemini ecosystem.
  * - Zero truncated snippets ("…" or "..."). Zero duplicated subheadlines.
  * - Every flagship essay pairs two complete lenses:

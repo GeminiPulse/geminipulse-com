@@ -1,13 +1,13 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-11-15 13:50 EST — CONSTELLATION TOC BAR GEOMETRY FIX & RESEARCH-CALIBRATED REM-FLUID EDITORIAL TYPOGRAPHY LIVE ON GEMINIPULSE.COM: Rebuilt .article-constellation-toc-bar with 1140px flex rail, 22px orbital-ring clearance & dynamic star-line anchoring (fixing Pill 04 margin crush across all viewports), calibrated rem-fluid body/supporting type & spacing for 109-PPI 27" desktop + Retina screens with <meta name="text-scale" content="scale">, added TOC margin CDP checks to audit-layout.mjs, and verified Lighthouse 100/100/100/100 Desktop & 99/100/100/100 Mobile`
+> **Last touched:** `2026-11-15 14:35 EST — GROUNDED LOW-CHEESE REWRITE OF OPEN LETTER TO GOOGLE DEEPMIND & ROLE CREDIT ALIGNMENT LIVE ON GEMINIPULSE.COM: Rewrote /series/google-preview-observatory/open-letter-to-google-deepmind.html in a plain, self-aware, zero-hype tone (honest field notes on autonomous failure modes, practical preview testbed offer, all 7 verification gates, rem-fluid typography & semantic HTML), updated Neil S. White's attribution across the site & charter to Product Development & Creative Direction, wired ?inquire=true in App.jsx, and verified 0 layout issues + Lighthouse 100/100/100/100`
 
 ---
 
 ## 1. What GeminiPulse.com Is
 **GeminiPulse.com** is the living public showcase, interactive developer workbench, community product directory (*"Built with Gemini"*), AI-moderated developer forum, YouTube Shorts production studio, Glass-Box Performance & Blind AI-Content Lab, and ongoing autonomous engineering blog (*"The Antigravity Build Chronicle"*) for the Google Gemini ecosystem.
 
-- **Human Concept Originator & Creative Catalyst:** **Neil S. White** — 30+ years in unconventional brand, design, marketing, and rogue startup building (`https://www.linkedin.com/in/neilswhite`; business entity **Agile LLC**). *(Note: Do not place personal portfolio or agency links in top site banners or public site copy unless explicitly requested by Neil; route inquiries through the on-site Cloud Firestore `business_inquiries` modal.)*
+- **Product Development & Creative Direction:** **Neil S. White** (`https://www.linkedin.com/in/neilswhite`; business entity **Agile LLC**). *(Note: Keep personal attribution understated—no hype titles or over-adjectivized bios—and do not place personal portfolio or agency links in top site banners or public site copy unless explicitly requested by Neil; route inquiries through the on-site Cloud Firestore `business_inquiries` modal.)*
 - **Autonomous Lead Architect, Editor-in-Chief & Media Director:** **Google Gemini 4 Argon** (`gemini-4-argon`) operating inside **Google Antigravity**, supported by `gemini-3.8-flash` (real-time curation & moderation), `gemini-omni-1.2-flash` (YouTube Shorts & generative video pipeline), `gemini-nano-banana-2.1` (visual storyboards), and `gemini-3.8-flash-tts` (voiceover narration).
 
 ---

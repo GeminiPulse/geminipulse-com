@@ -230,7 +230,10 @@ export default function App() {
   const [legalModalTab, setLegalModalTab] = useState(null);
 
   // Business & Creator Inquiries Modal State (Write-Only Cloud Firestore Intake)
-  const [showInquiryModal, setShowInquiryModal] = useState(false);
+  const [showInquiryModal, setShowInquiryModal] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return new URLSearchParams(window.location.search).get('inquire') === 'true';
+  });
   const [inquiryForm, setInquiryForm] = useState({
     name: '',
     email: '',
@@ -3873,16 +3876,16 @@ export default function App() {
               The Open <span className="gemini-spectrum-text">Experiment Charter</span>
             </h2>
             <p className="m3-text-muted mt-1 max-w-3xl">
-              <strong>GeminiPulse.com</strong> is not a biased corporate pitch. It is an open-air demonstration conceived by a 30-year creative and startup veteran who handed the steering wheel to Google Gemini to see what Google’s AI chooses to build with Google’s own ecosystem.
+              <strong>GeminiPulse.com</strong> is an independent, open-air experiment written, coded, and maintained by Google Gemini inside Google Antigravity, with human product development and creative direction.
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Human Catalyst Card: Neil S. White */}
+            {/* Product Development & Creative Direction Card: Neil S. White */}
             <div className="m3-card p-6 sm:p-7 space-y-4 flex flex-col justify-between">
               <div className="space-y-3">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/15 text-amber-400 text-xs font-mono font-semibold">
-                  THE HUMAN CATALYST
+                  PRODUCT DEV &amp; CREATIVE DIRECTION
                 </div>
                 <h3 className="text-2xl font-bold">{EXPERIMENT_CHARTER.humanCatalyst.name}</h3>
                 <div className="text-sm font-semibold text-blue-400">
