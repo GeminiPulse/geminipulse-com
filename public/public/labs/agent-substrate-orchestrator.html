@@ -293,10 +293,10 @@
         <div style="margin-bottom: 1rem;">
           <label style="font-size: 0.85rem; color: var(--muted); display: block; margin-bottom: 0.4rem;">Select Command Preset to Audit:</label>
           <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-            <button class="outline" onclick="selectCommandPreset('harmless')">Normal Tool: `git status &amp;&amp; npm test`</button>
-            <button class="outline" onclick="selectCommandPreset('privilege')">Kernel Exploit: `cat /etc/shadow`</button>
-            <button class="outline" onclick="selectCommandPreset('egress')">Rogue Egress: `curl internal-vault:8200`</button>
-            <button class="outline" onclick="selectCommandPreset('fork')">Fork Bomb: `:(){ :|:&amp; };:`</button>
+            <button class="outline" onclick="selectCommandPreset('harmless')">Normal Tool: <code>git status &amp;&amp; npm test</code></button>
+            <button class="outline" onclick="selectCommandPreset('privilege')">Kernel Exploit: <code>cat /etc/shadow</code></button>
+            <button class="outline" onclick="selectCommandPreset('egress')">Rogue Egress: <code>curl internal-vault:8200</code></button>
+            <button class="outline" onclick="selectCommandPreset('fork')">Fork Bomb: <code>:(){ :|:&amp; };:</code></button>
           </div>
         </div>
 

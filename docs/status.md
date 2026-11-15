@@ -1,6 +1,6 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-11-15 16:00 EST (PHASE 1 BLOCKER HOTFIX, PUBLIC CHANGELOG /changelog.html & PHASE 2 144-ROUTE SITEWIDE AUDIT LIVE ON GEMINIPULSE.COM: Fixed /workbench.html?inquire=true crash + /labs/gemini-maps-studio.html init crash; added prebuild validate-data.mjs schema & Zero-PII gate + WorkbenchErrorBoundary + ViewTransition reduced-motion parity; shipped Public Engineering & Oversight Changelog at /changelog.html with 13 entries, native <details> disclosure, and Human Oversight vs. Gemini Self-Audit filters; fixed Open Letter Gate 07 backticks + header spacing, /articles/* role bylines, and /status.html v1 links; built 144-route Chrome CDP crawler audit-sitewide.mjs -> docs/sitewide-audit-manifest.md confirming 0 P0 crashes and 0 broken links)`
+- **Last Updated:** `2026-11-15 18:45 EST (PHASE 3 SITEWIDE P2 SWEEP COMPLETE — ZERO ISSUES ACROSS ALL 144 ROUTES LIVE ON GEMINIPULSE.COM: Fixed 1440px CSS Grid horizontal overflows on carbon-swarm, eyewear & omni-video labs via minmax(0, 1fr) + min-inline-size: 0; added [SIMULATED DEMO] badges to stack-advisor, cosmic-horoscope & twin-stars labs so 25/25 labs comply; added structured MarkdownArticleView renderer for Antigravity Chronicles in App.jsx + semantic <code> tags across 15 arena/labs/series/workbench routes; aligned remaining legacy role copy in geminiEcosystemData.js; logged entry #14 on /changelog.html)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
@@ -13,7 +13,17 @@
 
 ---
 
-## 0. Completed & Live on `v2.0` (2026-11-15 04:00 PM ET — Phase 1 Blocker Hotfix, Public Changelog `/changelog.html` & Phase 2 144-Route Sitewide Audit)
+## 0. Completed & Live on `v2.0` (2026-11-15 06:45 PM ET — Phase 3 Sitewide P2 Sweep Complete: 0 Issues Across All 144 Routes)
+
+- **Resolved All Remaining P2 Manifest Items Across 144 Audited Routes (`audit-sitewide.mjs --strict`):**
+  - **0 Desktop/Mobile Horizontal Overflows:** Replaced unbounded `1fr` CSS Grid tracks with `minmax(0, 1fr)` and `min-inline-size: 0` on `/labs/gemini-carbon-swarm-studio.html`, `/labs/gemini-intelligent-eyewear-studio.html`, and `/labs/gemini-omni-video-studio.html` so wide `<pre>` code blocks scroll cleanly inside their containers instead of expanding columns past `1440px`.
+  - **25 / 25 Developer Labs `[SIMULATED DEMO]` Compliant (House Rule #5):** Added explicit `[SIMULATED DEMO]` badges and updated v2 navigation links on `/labs/gemini-4-stack-advisor.html`, `/labs/gemini-cosmic-horoscope.html`, and `/labs/twin-stars-of-gemini.html`.
+  - **0 Leaked Raw Markdown / Backticks & 0 Legacy Role Copy:** Added a lightweight `MarkdownArticleView` + `RichInlineText` renderer in `public/src/App.jsx` for Antigravity Build Chronicles, Shorts storyboards, Inquiry privacy notes, and Pro Pack dialogs; converted inline backticks to semantic `<code>` tags across 14 `/arena/*`, `/labs/*`, and `/series/*` pages; aligned all historical role credits in `public/src/data/geminiEcosystemData.js` to **`Product Development & Creative Direction: Neil S. White`**; and logged entry #14 on `/changelog.html`.
+- **Decisions Needed from Neil:** None right now (`$0.00/mo` Spark tier unchanged; all 3 phases of the Full-Site Audit & Public Changelog plan are complete).
+
+---
+
+## 0-phase1-2. Completed on `v2.0` (2026-11-15 04:00 PM ET — Phase 1 Blocker Hotfix, Public Changelog `/changelog.html` & Phase 2 144-Route Sitewide Audit)
 
 - **Fixed P0 Blank-Screen Crash on `/workbench.html` & `/workbench.html?inquire=true` + Maps Studio Init Error:**
   - **Root Cause (`workbench.html`):** Curation Round 37 appended `showcase-gemini-antigravity-teamwork-studio` to `INITIAL_SHOWCASE_PROJECTS` using `liveUrl` instead of `url`, triggering `TypeError: Cannot read properties of undefined (reading 'startsWith')` inside `App.jsx` before React could mount the `#inquiry-name` modal—compounded by mismatched cross-document View Transition opt-in (`InvalidStateError`).

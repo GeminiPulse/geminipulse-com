@@ -97,7 +97,7 @@
         <li><strong>Memory Summary Reconciliation:</strong> If the user specifies an ongoing goal (e.g., <em>"I want to save $1,000 next quarter"</em>), the model saves this preference to the user's Memory Summary ledger.</li>
       </ol>
 
-      <h2>2. TypeScript Implementation (`@google/genai` v3.3.0)</h2>
+      <h2>2. TypeScript Implementation (<code>@google/genai</code> v3.3.0)</h2>
       <pre><code>import { GoogleGenAI, Type } from "@google/genai";
 
 const client = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
@@ -149,7 +149,7 @@ for (const step of interaction.steps) {
   if (step.output) console.log("[Assistant Response & Chart Payload]:", step.output.text);
 }</code></pre>
 
-      <h2>3. Python Implementation (`google-genai` v3.3.0)</h2>
+      <h2>3. Python Implementation (<code>google-genai</code> v3.3.0)</h2>
       <pre><code>from google import genai
 from google.genai.types import InteractionsConfig, Tool
 

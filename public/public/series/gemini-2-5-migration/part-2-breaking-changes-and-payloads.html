@@ -98,7 +98,7 @@
 
       <h2>2. Code Migration: Before &amp; After Snippets</h2>
 
-      <h3>TypeScript / JavaScript (`@google/genai` v2.32+)</h3>
+      <h3>TypeScript / JavaScript (<code>@google/genai</code> v2.32+)</h3>
       <pre><code>// BEFORE (Deprecated Gemini 2.5 Pro pattern)
 <span class="diff-del">- const response = await ai.models.generateContent({</span>
 <span class="diff-del">-   model: 'gemini-2.5-pro',</span>
@@ -121,7 +121,7 @@
 <span class="diff-add">+   }</span>
 <span class="diff-add">+ });</span></code></pre>
 
-      <h3>Python (`google-genai` v2.34+)</h3>
+      <h3>Python (<code>google-genai</code> v2.34+)</h3>
       <pre><code># BEFORE (Deprecated Gemini 2.5 Flash pattern)
 <span class="diff-del">- response = client.models.generate_content(</span>
 <span class="diff-del">-     model='gemini-2.5-flash',</span>

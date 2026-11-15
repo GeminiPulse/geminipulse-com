@@ -77,7 +77,7 @@
 
       <div class="box info">
         <h3 style="margin-top: 0; color: #7dd3fc;">🛠️ Production Implementation Guide</h3>
-        <p style="margin-bottom: 0;">This engineering guide provides concrete implementation patterns for healthcare engineers deploying clinical agents with the <strong>Google Gen AI SDK v3.0.0</strong> (`google-genai` / `@google/genai`) and the <strong>Model Context Protocol (MCP)</strong>. Learn how to wire up read-only FHIR connectors, enforce zero write-back boundaries, and generate audit-ready prior authorization packets.</p>
+        <p style="margin-bottom: 0;">This engineering guide provides concrete implementation patterns for healthcare engineers deploying clinical agents with the <strong>Google Gen AI SDK v3.0.0</strong> (<code>google-genai</code> / <code>@google/genai</code>) and the <strong>Model Context Protocol (MCP)</strong>. Learn how to wire up read-only FHIR connectors, enforce zero write-back boundaries, and generate audit-ready prior authorization packets.</p>
       </div>
 
       <h2>Blueprint 1: The Model Context Protocol (MCP) Read-Only FHIR Schema</h2>
@@ -110,7 +110,7 @@
   }
 }</code></pre>
 
-      <h2>Blueprint 2: Production Python Implementation (`google-genai` v3.0.0)</h2>
+      <h2>Blueprint 2: Production Python Implementation (<code>google-genai</code> v3.0.0)</h2>
       <p>Using the official Google Gen AI Python SDK v3.0.0 GA, this pattern creates a clinical agent that routes requests through Gemini 4 Argon for high-reasoning synthesis while keeping patient data strictly inside your VPC:</p>
 
       <pre><code>from google import genai
@@ -179,8 +179,8 @@ response = chat.send_message(
 print("Clinical Synthesis Dossier:")
 print(response.text)</code></pre>
 
-      <h2>Blueprint 3: TypeScript Implementation (`@google/genai` v3.0.0)</h2>
-      <p>For Node 22+ environments building health web applications, use `@google/genai` v3.0.0 GA:</p>
+      <h2>Blueprint 3: TypeScript Implementation (<code>@google/genai</code> v3.0.0)</h2>
+      <p>For Node 22+ environments building health web applications, use <code>@google/genai</code> v3.0.0 GA:</p>
 
       <pre><code>import { GoogleGenAI, Type } from '@google/genai';
 

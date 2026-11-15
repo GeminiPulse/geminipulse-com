@@ -104,7 +104,7 @@ helm install substrate-operator substrate/substrate-operator \
     --create-namespace \
     --set storage.tier=local-nvme</code></pre>
 
-      <h2>2. Production WorkerPool Manifest (`workerpool.yaml`)</h2>
+      <h2>2. Production WorkerPool Manifest (<code>workerpool.yaml</code>)</h2>
       <p>A <code>WorkerPool</code> defines the pre-warmed compute slots that dynamically host and execute active Actor turns. The following manifest provisions a pool of 200 warm worker slots with gVisor kernel isolation:</p>
 
       <pre><code>apiVersion: substrate.ate.dev/v1alpha1
@@ -136,7 +136,7 @@ spec:
         emptyDir:
           medium: LocalSSD</code></pre>
 
-      <h2>3. Declarative Stateful Actor Manifest (`actor.yaml`)</h2>
+      <h2>3. Declarative Stateful Actor Manifest (<code>actor.yaml</code>)</h2>
       <p>An <code>ActorDefinition</code> encapsulates the agent's long-lived workspace, environment, and network perimeter. Notice that an Actor consumes <strong>zero CPU quota while idle</strong>:</p>
 
       <pre><code>apiVersion: substrate.ate.dev/v1alpha1

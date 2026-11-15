@@ -111,20 +111,144 @@ const GoogleGIcon = ({ className = 'w-4 h-4' }) => (
   </svg>
 );
 
-// Helper component that parses backticked `code` segments into styled <code className="m3-inline-code"> pills
-const InlineCodeText = ({ text }) => {
+// Helper component that parses inline `code`, **bold**, and *italic* segments into clean React elements
+const RichInlineText = ({ text }) => {
   if (!text || typeof text !== 'string') return text;
-  const parts = text.split(/(`[^`]+`)/g);
-  return parts.map((part, idx) => {
-    if (part.startsWith('`') && part.endsWith('`') && part.length > 2) {
+  const tokens = text.split(/(`[^`]+`|\*\*[^*]+\*\*|\*[^*\n]+\*)/g);
+  return tokens.map((tok, idx) => {
+    if (tok.startsWith('`') && tok.endsWith('`') && tok.length > 2) {
       return (
         <code key={idx} className="m3-inline-code">
-          {part.slice(1, -1)}
+          {tok.slice(1, -1)}
         </code>
       );
     }
-    return part;
+    if (tok.startsWith('**') && tok.endsWith('**') && tok.length > 4) {
+      return (
+        <strong key={idx} className="font-semibold text-[var(--md-sys-color-on-surface)]">
+          <RichInlineText text={tok.slice(2, -2)} />
+        </strong>
+      );
+    }
+    if (tok.startsWith('*') && tok.endsWith('*') && tok.length > 2) {
+      return <em key={idx}>{tok.slice(1, -1)}</em>;
+    }
+    return tok;
   });
+};
+
+const InlineCodeText = RichInlineText;
+
+// Lightweight semantic Markdown renderer for Antigravity Chronicle episodes (headings, lists, code fences, inline formatting)
+const MarkdownArticleView = ({ markdown }) => {
+  if (!markdown || typeof markdown !== 'string') return null;
+  const blocks = [];
+  const lines = markdown.split('\n');
+  let i = 0;
+
+  while (i < lines.length) {
+    const line = lines[i];
+    const trimmed = line.trim();
+
+    if (!trimmed) {
+      i += 1;
+      continue;
+    }
+
+    if (trimmed.startsWith('```')) {
+      const codeLines = [];
+      i += 1;
+      while (i < lines.length && !lines[i].trim().startsWith('```')) {
+        codeLines.push(lines[i]);
+        i += 1;
+      }
+      i += 1;
+      blocks.push(
+        <pre
+          key={`code-${blocks.length}`}
+          className="p-3.5 rounded-xl bg-[#070B12] border border-[var(--md-sys-color-outline)] font-mono text-xs overflow-x-auto leading-relaxed text-slate-200"
+        >
+          <code>{codeLines.join('\n')}</code>
+        </pre>
+      );
+      continue;
+    }
+
+    if (trimmed.startsWith('### ')) {
+      blocks.push(
+        <h5 key={`h5-${blocks.length}`} className="font-bold text-sm mt-3 text-[var(--md-sys-color-on-surface)]">
+          <RichInlineText text={trimmed.slice(4)} />
+        </h5>
+      );
+      i += 1;
+      continue;
+    }
+
+    if (trimmed.startsWith('## ')) {
+      blocks.push(
+        <h4 key={`h4-${blocks.length}`} className="font-bold text-base mt-4 pt-2 border-t border-[var(--md-sys-color-outline)] text-blue-300">
+          <RichInlineText text={trimmed.slice(3)} />
+        </h4>
+      );
+      i += 1;
+      continue;
+    }
+
+    if (trimmed.startsWith('# ')) {
+      blocks.push(
+        <h4 key={`h3-${blocks.length}`} className="font-bold text-lg text-[var(--md-sys-color-on-surface)]">
+          <RichInlineText text={trimmed.slice(2)} />
+        </h4>
+      );
+      i += 1;
+      continue;
+    }
+
+    if (/^[-*]\s+/.test(trimmed)) {
+      const items = [];
+      while (i < lines.length && /^[-*]\s+/.test(lines[i].trim())) {
+        items.push(lines[i].trim().replace(/^[-*]\s+/, ''));
+        i += 1;
+      }
+      blocks.push(
+        <ul key={`ul-${blocks.length}`} className="list-disc pl-5 space-y-1.5 text-xs sm:text-sm m3-text-muted leading-relaxed">
+          {items.map((item, idx) => (
+            <li key={idx}>
+              <RichInlineText text={item} />
+            </li>
+          ))}
+        </ul>
+      );
+      continue;
+    }
+
+    if (/^\d+\.\s+/.test(trimmed)) {
+      const items = [];
+      while (i < lines.length && /^\d+\.\s+/.test(lines[i].trim())) {
+        items.push(lines[i].trim().replace(/^\d+\.\s+/, ''));
+        i += 1;
+      }
+      blocks.push(
+        <ol key={`ol-${blocks.length}`} className="list-decimal pl-5 space-y-1.5 text-xs sm:text-sm m3-text-muted leading-relaxed">
+          {items.map((item, idx) => (
+            <li key={idx}>
+              <RichInlineText text={item} />
+            </li>
+          ))}
+        </ol>
+      );
+      continue;
+    }
+
+    blocks.push(
+      <p key={`p-${blocks.length}`} className="text-xs sm:text-sm m3-text-muted leading-relaxed">
+        <RichInlineText text={trimmed} />
+      </p>
+    );
+    i += 1;
+  }
+
+  return <div className="space-y-2.5">{blocks}</div>;
 };
 
 // Helper to synthesize an instant local Gemini 3.8 Flash review preview when running in local/demo mode (Rule 5)
@@ -3408,8 +3532,8 @@ export default function App() {
                   </ul>
                 </div>
 
-                <div className="p-5 rounded-2xl bg-[var(--md-sys-color-surface)] border border-[var(--md-sys-color-outline)] font-mono text-xs leading-relaxed whitespace-pre-wrap overflow-x-auto max-h-[28rem]">
-                  {activeEpisode.markdownBody}
+                <div className="p-5 rounded-2xl bg-[var(--md-sys-color-surface)] border border-[var(--md-sys-color-outline)] overflow-y-auto max-h-[28rem]">
+                  <MarkdownArticleView markdown={activeEpisode.markdownBody} />
                 </div>
               </div>
             </div>
@@ -3559,13 +3683,17 @@ export default function App() {
                     <span className="font-mono font-bold text-blue-400 uppercase block">
                       1. Visual Storyboard (Nano Banana 2.1):
                     </span>
-                    <p className="m3-text-muted leading-relaxed">{activeShort.visualDirection}</p>
+                    <p className="m3-text-muted leading-relaxed">
+                      <InlineCodeText text={activeShort.visualDirection} />
+                    </p>
                   </div>
                   <div className="p-3.5 rounded-xl bg-[var(--md-sys-color-surface)] border border-[var(--md-sys-color-outline)] space-y-1">
                     <span className="font-mono font-bold text-purple-400 uppercase block">
                       2. Omni 1.1 Video Prompt (<code className="m3-inline-code">gemini-omni-1.1-flash</code>):
                     </span>
-                    <p className="m3-text-muted font-mono leading-relaxed">{activeShort.omniPrompt}</p>
+                    <p className="m3-text-muted font-mono leading-relaxed">
+                      <InlineCodeText text={activeShort.omniPrompt} />
+                    </p>
                   </div>
                 </div>
 
@@ -3574,7 +3702,7 @@ export default function App() {
                     3. Voiceover Narration Script (<code className="m3-inline-code">gemini-3.8-flash-tts</code>):
                   </span>
                   <p className="font-mono leading-relaxed text-[var(--md-sys-color-on-surface)]">
-                    {activeShort.ttsScript}
+                    <InlineCodeText text={activeShort.ttsScript} />
                   </p>
                 </div>
               </div>
@@ -3610,11 +3738,13 @@ export default function App() {
                       <span className="m3-text-muted">{channel.cadence}</span>
                     </div>
                     <h3 className="font-bold text-base">{channel.platform}</h3>
-                    <p className="text-xs m3-text-muted leading-relaxed">{channel.whyItWorks}</p>
+                    <p className="text-xs m3-text-muted leading-relaxed">
+                      <InlineCodeText text={channel.whyItWorks} />
+                    </p>
 
-                    <div className="p-3 rounded-xl bg-[var(--md-sys-color-surface)] border border-[var(--md-sys-color-outline)] text-xs font-mono max-h-40 overflow-y-auto whitespace-pre-wrap leading-relaxed">
+                    <div className="p-3 rounded-xl bg-[var(--md-sys-color-surface)] border border-[var(--md-sys-color-outline)] text-xs font-mono max-h-40 overflow-y-auto leading-relaxed">
                       <div className="font-bold text-blue-400 mb-1">{channel.postTitle}</div>
-                      {channel.copyablePost}
+                      <pre className="whitespace-pre-wrap font-mono m-0">{channel.copyablePost}</pre>
                     </div>
                   </div>
 
@@ -4801,7 +4931,7 @@ export default function App() {
                       className="w-full px-3.5 py-2.5 rounded-xl m3-surface-elevated text-base sm:text-sm focus:outline-none focus:border-blue-400"
                     />
                     <p id="inquiry-privacy-note" className="text-[11px] font-mono m3-text-muted mt-1">
-                      Stored in a private write-only Cloud Firestore collection (`allow get, list: if false`). Never displayed publicly.
+                      Stored in a private write-only Cloud Firestore collection (<code className="m3-inline-code">allow get, list: if false</code>). Never displayed publicly.
                     </p>
                   </div>
 
@@ -4939,7 +5069,7 @@ export default function App() {
                       </>
                     ) : (
                       <>
-                        unlock <strong className="text-emerald-300">ALL $116+ of Pro Packs</strong> (`Workspace 50-Vault`, `WP → Firebase CLI`, `9:16 Shorts Studio`, and `Arena Eval Harness`) with the <strong>$9/mo Pro Insider All-Access Pass</strong>, or enter <strong className="text-amber-300">$19</strong> / <strong className="text-amber-300">$29</strong> on One-Time Checkout for a single Prepaid pack.
+                        unlock <strong className="text-emerald-300">ALL $116+ of Pro Packs</strong> (<code className="m3-inline-code">Workspace 50-Vault</code>, <code className="m3-inline-code">WP → Firebase CLI</code>, <code className="m3-inline-code">9:16 Shorts Studio</code>, and <code className="m3-inline-code">Arena Eval Harness</code>) with the <strong>$9/mo Pro Insider All-Access Pass</strong>, or enter <strong className="text-amber-300">$19</strong> / <strong className="text-amber-300">$29</strong> on One-Time Checkout for a single Prepaid pack.
                       </>
                     )}
                   </p>

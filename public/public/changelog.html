@@ -513,7 +513,7 @@
   <header class="cl-header">
     <div class="cl-brand-group">
       <a href="/" class="cl-brand-link">♊ GEMINIPULSE</a>
-      <span class="cl-header-kicker">· Public Changelog (v2.0.102)</span>
+      <span class="cl-header-kicker">· Public Changelog (v2.0.103)</span>
     </div>
     <nav class="cl-nav" aria-label="Changelog Navigation">
       <a href="/" class="cl-nav-pill">← 3D Star Chart</a>
@@ -543,9 +543,9 @@
 
       <div class="cl-toolbar">
         <div class="cl-filters" role="group" aria-label="Filter changelog entries by who caught the issue">
-          <button type="button" class="cl-filter-btn" data-filter="all" aria-pressed="true">All (13)</button>
+          <button type="button" class="cl-filter-btn" data-filter="all" aria-pressed="true">All (14)</button>
           <button type="button" class="cl-filter-btn" data-filter="human" aria-pressed="false">Human Oversight (9)</button>
-          <button type="button" class="cl-filter-btn" data-filter="gemini" aria-pressed="false">Gemini Self-Audit (4)</button>
+          <button type="button" class="cl-filter-btn" data-filter="gemini" aria-pressed="false">Gemini Self-Audit (5)</button>
         </div>
 
         <button type="button" class="cl-toggle-all-btn" id="cl-toggle-all" commandfor="cl-accordion" command="--toggle-all" aria-expanded="false">
@@ -555,7 +555,31 @@
       </div>
 
       <div class="cl-accordion" id="cl-accordion">
-          <details class="cl-item" data-caught-by="gemini" id="cl-2026-11-15-maps-studio-init-crash" open>
+          <details class="cl-item" data-caught-by="gemini" id="cl-2026-11-15-sitewide-p2-sweep" open>
+            <summary class="cl-summary">
+              <span class="cl-summary-body">
+                <span class="cl-meta-line">
+                  <time datetime="2026-11-15" class="cl-date">Nov 15, 2026</time>
+                  <span class="cl-surface">Sitewide Labs, Series &amp; Workbench (22 Routes)</span>
+                  <span class="cl-badge cl-badge--gemini">Gemini Self-Audit · Sitewide CDP Crawler</span>
+                </span>
+                <span class="cl-headline">Three developer labs overflowed horizontally at 1440px, three older labs lacked [SIMULATED DEMO] pills, and 15 routes displayed raw markdown syntax.</span>
+              </span>
+            </summary>
+            <div class="cl-detail-panel">
+              <dl class="cl-detail-grid">
+                <div class="cl-detail-row">
+                  <dt>What went wrong</dt>
+                  <dd>Unbounded 1fr CSS Grid tracks allowed wide &lt;pre&gt; code blocks to expand parent columns past 1440px on three labs, while older series headings and Chronicle panels rendered raw markdown text.</dd>
+                </div>
+                <div class="cl-detail-row">
+                  <dt>How it was fixed</dt>
+                  <dd>Constrained multi-column lab grids with minmax(0, 1fr) and min-inline-size: 0, added [SIMULATED DEMO] badges to all 25 labs, converted inline backticks to semantic &lt;code&gt; elements, and added a structured Markdown renderer for Chronicle episodes.</dd>
+                </div>
+              </dl>
+            </div>
+          </details>
+          <details class="cl-item" data-caught-by="gemini" id="cl-2026-11-15-maps-studio-init-crash">
             <summary class="cl-summary">
               <span class="cl-summary-body">
                 <span class="cl-meta-line">
@@ -871,7 +895,7 @@
     </section>
 
     <footer class="cl-footer">
-      <span>Active Build: <a href="/status.html">v2.0.102</a> · Design History: <a href="/prototypes/index.html">18-Prototype Archive</a></span>
+      <span>Active Build: <a href="/status.html">v2.0.103</a> · Design History: <a href="/prototypes/index.html">18-Prototype Archive</a></span>
       <a href="/workbench.html?inquire=true">Spot an issue? Send a note →</a>
     </footer>
   </main>

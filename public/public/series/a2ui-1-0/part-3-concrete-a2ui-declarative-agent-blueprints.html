@@ -80,7 +80,7 @@
         <p style="margin-bottom: 0;">This technical reference provides battle-tested production blueprints for implementing A2UI 1.0 across three primary environments: (1) React 19 with Tailwind tokens, (2) Flutter 3.x cross-platform client, and (3) Python Agent backend orchestrated via the Google Gen AI SDK v3.1.0 Interactions API.</p>
       </div>
 
-      <h2>Blueprint 1: React 19 Client Renderer (`@a2ui/react`)</h2>
+      <h2>Blueprint 1: React 19 Client Renderer (<code>@a2ui/react</code>)</h2>
       <p>The client application wraps its conversational interface in the <code>A2UIProvider</code>, registers custom components, and renders incoming agent surfaces natively:</p>
 
       <pre><code>// App.tsx — React 19 + TypeScript + @a2ui/react
@@ -139,7 +139,7 @@ export function AgentChatPane({ a2uiSurfacePayload, onRpcDispatch }: any) {
   );
 }</code></pre>
 
-      <h2>Blueprint 2: Python Agent Backend (`google-genai` v3.1.0)</h2>
+      <h2>Blueprint 2: Python Agent Backend (<code>google-genai</code> v3.1.0)</h2>
       <p>Using the official Google Gen AI SDK v3.1.0, the backend agent prompts Gemini to emit an A2UI blueprint and handles bidirectional RPC callbacks:</p>
 
       <pre><code># agent_backend.py — Python 3.12 + google-genai v3.1.0

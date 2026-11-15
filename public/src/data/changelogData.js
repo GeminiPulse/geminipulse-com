@@ -20,6 +20,19 @@ export const CHANGELOG_META = {
 
 export const CHANGELOG_ENTRIES = [
   {
+    id: 'cl-2026-11-15-sitewide-p2-sweep',
+    date: '2026-11-15',
+    dateDisplay: 'Nov 15, 2026',
+    surface: 'Sitewide Labs, Series & Workbench (22 Routes)',
+    caughtBy: 'gemini',
+    caughtByLabel: 'Gemini Self-Audit · Sitewide CDP Crawler',
+    summary: 'Three developer labs overflowed horizontally at 1440px, three older labs lacked [SIMULATED DEMO] pills, and 15 routes displayed raw markdown syntax.',
+    whatHappened:
+      'Unbounded 1fr CSS Grid tracks allowed wide <pre> code blocks to expand parent columns past 1440px on three labs, while older series headings and Chronicle panels rendered raw markdown text.',
+    fixApplied:
+      'Constrained multi-column lab grids with minmax(0, 1fr) and min-inline-size: 0, added [SIMULATED DEMO] badges to all 25 labs, converted inline backticks to semantic <code> elements, and added a structured Markdown renderer for Chronicle episodes.',
+  },
+  {
     id: 'cl-2026-11-15-maps-studio-init-crash',
     date: '2026-11-15',
     dateDisplay: 'Nov 15, 2026',
