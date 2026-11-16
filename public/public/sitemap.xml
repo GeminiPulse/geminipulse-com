@@ -14,24 +14,30 @@
   </url>
   <url>
     <loc>https://geminipulse.com/articles/index.html</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.99</priority>
   </url>
   <url>
     <loc>https://geminipulse.com/changelog.html</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.88</priority>
   </url>
   <url>
-    <loc>https://geminipulse.com/articles/ai-studio-cloud-credits.html</loc>
-    <lastmod>2026-11-13</lastmod>
+    <loc>https://geminipulse.com/articles/genai-sdk-v3-4-release.html</loc>
+    <lastmod>2026-11-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.98</priority>
   </url>
   <url>
     <loc>https://geminipulse.com/articles/antigravity-teamwork-multi-agent-science.html</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/articles/ai-studio-cloud-credits.html</loc>
     <lastmod>2026-11-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.98</priority>
@@ -67,10 +73,28 @@
     <priority>0.98</priority>
   </url>
   <url>
-    <loc>https://geminipulse.com/articles/gemini-4-carbon-ga.html</loc>
-    <lastmod>2026-11-10</lastmod>
+    <loc>https://geminipulse.com/series/genai-sdk-v3-4/part-1-sdk-v3-4-tool-search-and-interactions-architecture.html</loc>
+    <lastmod>2026-11-16</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.98</priority>
+    <priority>0.96</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/genai-sdk-v3-4/part-2-how-tool-search-and-media-processing-affect-builders.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.96</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/genai-sdk-v3-4/part-3-concrete-sdk-v3-4-implementation-blueprints-and-batch-embeddings.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.96</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/labs/gemini-sdk-v3-4-tool-search-studio.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.96</priority>
   </url>
   <url>
     <loc>https://geminipulse.com/series/ai-studio-cloud-credits/part-1-cloud-credits-integration-and-architecture.html</loc>

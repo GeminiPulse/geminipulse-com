@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google Gen AI SDK v3.4.0 Tool Search &amp; Media Slicing Studio [SIMULATED DEMO] | Agile Labs</title>
+    <meta
+      name="description"
+      content="Interactive developer playground modeling Google Gen AI SDK v3.4.0: simulate dynamic Tool Search in the Interactions API (slashing prompt tokens by 95%), static audio and document slicing, and batch embeddings with usage metadata."
+    />
+    <link rel="canonical" href="https://geminipulse.com/labs/gemini-sdk-v3-4-tool-search-studio.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Google Gen AI SDK v3.4.0 Tool Search &amp; Media Slicing Studio [SIMULATED DEMO]" />
+    <meta property="og:description" content="Simulate dynamic ToolSearch, static audio and document slicing, and batch embeddings in Google Gen AI SDK v3.4.0." />
+    <meta property="og:url" content="https://geminipulse.com/labs/gemini-sdk-v3-4-tool-search-studio.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Gen AI SDK v3.4.0 Tool Search Studio [SIMULATED DEMO]" />
+    <meta name="twitter:description" content="Interactive developer simulator for Gen AI SDK v3.4.0 dynamic ToolSearch, audio slicing, and batch embeddings." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Google Gen AI SDK v3.4.0 Tool Search & Media Slicing Studio",
+        "url": "https://geminipulse.com/labs/gemini-sdk-v3-4-tool-search-studio.html",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "All",
+        "creator": {
+          "@type": "Organization",
+          "name": "Agile Labs (via GeminiPulse.com)"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #07090e;
+        --surface: #111622;
+        --surface-high: #182030;
+        --border: rgba(255, 255, 255, 0.1);
+        --border-high: rgba(255, 255, 255, 0.18);
+        --text: #f3f5fb;
+        --muted: #9da4b8;
+        --accent: #38bdf8;
+        --accent-glow: rgba(56, 189, 248, 0.2);
+        --success: #34d399;
+        --warning: #fbbf24;
+        --danger: #f87171;
+        --purple: #c084fc;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+      .wrap { max-width: 1080px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .badge-sim {
+        display: inline-block;
+        font-family: ui-monospace, Menlo, monospace;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        padding: 0.25rem 0.65rem;
+        border-radius: 9999px;
+        background: rgba(245, 158, 11, 0.15);
+        color: #fbbf24;
+        border: 1px solid rgba(245, 158, 11, 0.35);
+        text-transform: uppercase;
+      }
+      .header-title { font-size: clamp(1.6rem, 3.2vw, 2.3rem); font-weight: 800; margin: 0.6rem 0 0.3rem; }
+      .header-sub { font-size: 1.05rem; color: var(--muted); margin: 0 0 1.5rem; }
+      .grid-cols-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 1.5rem; min-inline-size: 0; }
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+        padding: 1.4rem;
+        position: relative;
+        min-inline-size: 0;
+      }
+      .card-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin: 0 0 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .scenario-btn {
+        display: block;
+        width: 100%;
+        text-align: left;
+        background: var(--surface-high);
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        padding: 0.85rem 1rem;
+        margin-bottom: 0.75rem;
+        color: var(--text);
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+      .scenario-btn:hover { border-color: var(--accent); background: rgba(56, 189, 248, 0.06); }
+      .scenario-btn.active {
+        border-color: var(--accent);
+        background: rgba(56, 189, 248, 0.12);
+        box-shadow: 0 0 0 1px var(--accent);
+      }
+      .scenario-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.2rem; }
+      .scenario-desc { font-size: 0.82rem; color: var(--muted); }
+      .stat-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; margin-bottom: 1.25rem; }
+      .stat-box { background: var(--surface-high); border: 1px solid var(--border); border-radius: 0.75rem; padding: 0.85rem; }
+      .stat-val { font-size: 1.35rem; font-weight: 800; color: var(--accent); }
+      .stat-val.green { color: var(--success); }
+      .stat-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+      .bar-track { background: rgba(255, 255, 255, 0.08); border-radius: 9999px; height: 10px; overflow: hidden; margin: 0.5rem 0 1.25rem; position: relative; }
+      .bar-fill { height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); border-radius: 9999px; transition: width 0.4s ease; }
+      .step-item {
+        background: var(--surface-high);
+        border-left: 3px solid var(--accent);
+        border-radius: 0 0.5rem 0.5rem 0;
+        padding: 0.65rem 0.85rem;
+        margin-bottom: 0.5rem;
+        font-family: ui-monospace, Menlo, monospace;
+        font-size: 0.82rem;
+      }
+      .step-item.search { border-left-color: var(--purple); }
+      .step-item.tool { border-left-color: var(--warning); }
+      .step-item.output { border-left-color: var(--success); }
+      pre {
+        background: #0b0f17;
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        padding: 1rem;
+        overflow-x: auto;
+        font-family: ui-monospace, Menlo, monospace;
+        font-size: 0.82rem;
+        color: #e2e8f0;
+        line-height: 1.5;
+        min-inline-size: 0;
+      }
+      .tab-bar { display: flex; gap: 0.5rem; margin-bottom: 0.75rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+      .tab-btn {
+        background: transparent;
+        border: none;
+        color: var(--muted);
+        font-weight: 600;
+        font-size: 0.82rem;
+        padding: 0.4rem 0.8rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+      }
+      .tab-btn.active { color: var(--accent); background: rgba(56, 189, 248, 0.1); }
+      .series-links {
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .btn-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1.15rem;
+        border-radius: 9999px;
+        background: rgba(56, 189, 248, 0.12);
+        color: #38bdf8;
+        border: 1px solid rgba(56, 189, 248, 0.3);
+        font-size: 0.85rem;
+        font-weight: 500;
+      }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.25rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+        <span style="color: var(--border); margin: 0 0.5rem;">|</span>
+        <a href="/workbench.html" style="font-size: 0.85rem; color: var(--muted);">Developer Workbench</a>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+        <span class="badge-sim">[SIMULATED DEMO]</span>
+        <span style="font-family: ui-monospace, Menlo, monospace; font-size: 0.8rem; color: var(--accent);">GOOGLE GEN AI SDK v3.4.0 GA</span>
+      </div>
+
+      <h1 class="header-title">Tool Search &amp; Static Media Slicing Studio</h1>
+      <p class="header-sub">
+        Interactive simulator exploring Google Gen AI SDK v3.4.0: evaluate dynamic <code>ToolSearch</code> in the Interactions API (saving 95%+ prompt tokens), simulate declarative audio and document slicing, and calculate batch embedding token efficiencies.
+      </p>
+
+      <div class="grid-cols-2">
+        <!-- Left Column: Scenario Selector & Parameters -->
+        <div class="card">
+          <div class="card-title">
+            <span>🎯</span> Select Production Scenario
+          </div>
+
+          <button class="scenario-btn active" id="btn-scenario-tools" onclick="selectScenario('tools')">
+            <div class="scenario-title">1. Enterprise Tool Registry (120 Tools)</div>
+            <div class="scenario-desc">Dynamic ToolSearch discovers Kubernetes pods inspector on-demand; saves 41,500 prompt tokens per turn.</div>
+          </button>
+
+          <button class="scenario-btn" id="btn-scenario-pdf" onclick="selectScenario('pdf')">
+            <div class="scenario-title">2. SEC 10-K Document Slicing (Pages 42–45)</div>
+            <div class="scenario-desc">PageProcessingOptions extracts only target balance sheet pages from a 250-page PDF; cuts 65,000 tokens.</div>
+          </button>
+
+          <button class="scenario-btn" id="btn-scenario-audio" onclick="selectScenario('audio')">
+            <div class="scenario-title">3. Call Center Audio Time Offset (14.5s – 38.0s)</div>
+            <div class="scenario-desc">AudioStaticMediaProcessing targets customer dispute window in a 45-minute recording without local clipping.</div>
+          </button>
+
+          <button class="scenario-btn" id="btn-scenario-batch" onclick="selectScenario('batch')">
+            <div class="scenario-title">4. Gemini Enterprise Batch Embeddings</div>
+            <div class="scenario-desc">Batch multi-content input on gemini-embedding-2 with usage metadata token auditing.</div>
+          </button>
+
+          <div style="margin-top: 1.5rem;">
+            <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem;">Simulated Configuration Controls</div>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <button class="btn-pill" style="font-size: 0.78rem; padding: 0.35rem 0.85rem;" onclick="runSimulation()">⚡ Run Interaction Turn</button>
+              <button class="btn-pill" style="font-size: 0.78rem; padding: 0.35rem 0.85rem; background: rgba(255,255,255,0.06); color: var(--text); border-color: var(--border);" onclick="resetScenario()">↺ Reset</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Live Telemetry & Step Trace -->
+        <div class="card">
+          <div class="card-title">
+            <span>📊</span> Token Efficiency &amp; Execution Trace
+          </div>
+
+          <div class="stat-grid">
+            <div class="stat-box">
+              <div class="stat-val" id="stat-before">42,850</div>
+              <div class="stat-label">Prior Static Prompt Tokens</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val green" id="stat-after">480</div>
+              <div class="stat-label">SDK v3.4.0 Tokens Used</div>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 0.25rem;">
+            <span>Token Budget Reduction</span>
+            <strong id="stat-reduction" style="color: var(--success);">98.9% Saved</strong>
+          </div>
+          <div class="bar-track">
+            <div class="bar-fill" id="bar-fill" style="width: 98.9%;"></div>
+          </div>
+
+          <div style="font-weight: 600; font-size: 0.85rem; margin-bottom: 0.5rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em;">
+            Interactions Step Stream
+          </div>
+          <div id="step-stream">
+            <div class="step-item">step[0] • user input: "Check pod crash restarts in us-east-prod namespace checkout"</div>
+            <div class="step-item search">step[1] • tool_search_call: query="kubernetes pod status" (evaluating 120 tools)</div>
+            <div class="step-item search">step[2] • tool_search_result: mounted [query_k8s_pods] schema (380 tokens)</div>
+            <div class="step-item tool">step[3] • tool_call: query_k8s_pods({ cluster: "us-east-prod", namespace: "checkout" })</div>
+            <div class="step-item output">step[4] • model output: "Found 2 crashing pods with OOMKilled status. Recommendation: raise memory limit to 2Gi."</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Card: Code Export -->
+      <div class="card" style="margin-top: 1.5rem;">
+        <div class="tab-bar">
+          <button class="tab-btn active" id="tab-ts" onclick="switchCodeTab('ts')">TypeScript (@google/genai v3.4.0)</button>
+          <button class="tab-btn" id="tab-py" onclick="switchCodeTab('py')">Python (google-genai v3.4.0)</button>
+          <button class="tab-btn" id="tab-batch" onclick="switchCodeTab('batch')">Enterprise Batch Embeddings</button>
+        </div>
+
+        <pre role="region" tabindex="0" id="code-snippet"><code>import { GoogleGenAI } from "@google/genai";
+
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+
+// Launch interaction with dynamic ToolSearch enabled
+const interaction = await ai.clients.interactions.create({
+  model: "gemini-4-hydrogen",
+  input: "Check why the pods in our us-east-prod cluster under namespace 'checkout' are restarting.",
+  config: {
+    thinking_config: { thinking_level: "high" },
+    automatic_continuation: true,
+    tools: [
+      {
+        tool_search: {
+          description: "Enterprise infrastructure, Kubernetes and observability tool registry"
+        }
+      }
+    ]
+  }
+});
+
+console.log("Final Resolution:", interaction.output?.text);</code></pre>
+      </div>
+
+      <div class="series-links">
+        <div>
+          <span style="font-size: 0.85rem; color: var(--muted);">Explore the 3-Part Deep Dive:</span>
+        </div>
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+          <a class="btn-pill" href="/series/genai-sdk-v3-4/part-1-sdk-v3-4-tool-search-and-interactions-architecture.html">Part 1: What Changed &rarr;</a>
+          <a class="btn-pill" href="/series/genai-sdk-v3-4/part-2-how-tool-search-and-media-processing-affect-builders.html">Part 2: Developer Impact &rarr;</a>
+          <a class="btn-pill" href="/series/genai-sdk-v3-4/part-3-concrete-sdk-v3-4-implementation-blueprints-and-batch-embeddings.html">Part 3: Blueprints &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const scenarios = {
+        tools: {
+          before: '42,850',
+          after: '480',
+          reduction: '98.9% Saved',
+          percent: 98.9,
+          steps: [
+            { text: 'step[0] • user input: "Check pod crash restarts in us-east-prod namespace checkout"', cls: '' },
+            { text: 'step[1] • tool_search_call: query="kubernetes pod status" (evaluating 120 tools)', cls: 'search' },
+            { text: 'step[2] • tool_search_result: mounted [query_k8s_pods] schema (380 tokens)', cls: 'search' },
+            { text: 'step[3] • tool_call: query_k8s_pods({ cluster: "us-east-prod", namespace: "checkout" })', cls: 'tool' },
+            { text: 'step[4] • model output: "Found 2 crashing pods with OOMKilled status. Recommendation: raise memory limit to 2Gi."', cls: 'output' }
+          ],
+          ts: `import { GoogleGenAI } from "@google/genai";
+
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+
+// Launch interaction with dynamic ToolSearch enabled
+const interaction = await ai.clients.interactions.create({
+  model: "gemini-4-hydrogen",
+  input: "Check why the pods in our us-east-prod cluster under namespace 'checkout' are restarting.",
+  config: {
+    thinking_config: { thinking_level: "high" },
+    automatic_continuation: true,
+    tools: [
+      {
+        tool_search: {
+          description: "Enterprise infrastructure, Kubernetes and observability tool registry"
+        }
+      }
+    ]
+  }
+});
+
+console.log("Final Resolution:", interaction.output?.text);`,
+          py: `from google import genai
+from google.genai.types import InteractionsConfig
+
+client = genai.Client()
+
+interaction = client.interactions.create(
+    model="gemini-4-hydrogen",
+    input="Check why the pods in us-east-prod cluster under namespace 'checkout' are restarting.",
+    config=InteractionsConfig(
+        thinking_level="high",
+        automatic_continuation=True,
+        tools=[{"tool_search": {"description": "Enterprise microservice and cluster registry"}}]
+    )
+)
+
+print(interaction.output.text)`
+        },
+        pdf: {
+          before: '72,400',
+          after: '2,850',
+          reduction: '96.1% Saved',
+          percent: 96.1,
+          steps: [
+            { text: 'step[0] • user input: "Extract operating lease obligations from SEC 10-K filing pages 42-45"', cls: '' },
+            { text: 'step[1] • static_processing: document_url="gs://filings/10k-2026.pdf", page_ranges=["42-45"]', cls: 'search' },
+            { text: 'step[2] • media_resolution: set to "high" for financial tabular data preservation', cls: 'search' },
+            { text: 'step[3] • model analysis: parsed 4 targeted pages instead of 250-page complete PDF', cls: 'tool' },
+            { text: 'step[4] • model output: "Operating lease obligations total $412.8M over the next 5 years ($82.5M due in FY2027)."', cls: 'output' }
+          ],
+          ts: `// Target specific pages in high-density document
+const interaction = await ai.clients.interactions.create({
+  model: "gemini-4-carbon",
+  input: [
+    {
+      type: "document",
+      mime_type: "application/pdf",
+      document_url: "gs://filings/annual-report-2026.pdf",
+      processing: {
+        type: "static",
+        page_processing_options: { page_ranges: ["42-45"] },
+        media_resolution: "high"
+      }
+    },
+    "Extract operating lease obligations table."
+  ]
+});`,
+          py: `doc_input = {
+    "type": "document",
+    "mime_type": "application/pdf",
+    "document_url": "gs://filings/annual-report-2026.pdf",
+    "processing": {
+        "type": "static",
+        "page_processing_options": {"page_ranges": ["42-45"]},
+        "media_resolution": "high"
+    }
+}
+
+interaction = client.interactions.create(
+    model="gemini-4-carbon",
+    input=[doc_input, "Extract operating lease obligations table."]
+)`
+        },
+        audio: {
+          before: '21,600',
+          after: '1,120',
+          reduction: '94.8% Saved',
+          percent: 94.8,
+          steps: [
+            { text: 'step[0] • user input: "Audit representative tone during customer return dispute (14.5s – 38.0s)"', cls: '' },
+            { text: 'step[1] • static_processing: audio_url="gs://calls/support-call-4819.webm", start="14.5s", end="38.0s"', cls: 'search' },
+            { text: 'step[2] • audio_offset: isolated 23.5-second dispute window without local ffmpeg transcoding', cls: 'search' },
+            { text: 'step[3] • speech_model: evaluated de-escalation protocol adherence', cls: 'tool' },
+            { text: 'step[4] • model output: "Agent adhered to de-escalation script, validated customer frustration, and issued store credit in 18s."', cls: 'output' }
+          ],
+          ts: `const interaction = await ai.clients.interactions.create({
+  model: "gemini-4-carbon",
+  input: [
+    {
+      type: "audio",
+      mime_type: "audio/webm",
+      audio_url: "gs://calls/support-call-4819.webm",
+      processing: {
+        type: "static",
+        start_offset: "14.5s",
+        end_offset: "38.0s"
+      }
+    },
+    "Audit representative tone during return dispute window."
+  ]
+});`,
+          py: `audio_input = {
+    "type": "audio",
+    "mime_type": "audio/webm",
+    "audio_url": "gs://calls/support-call-4819.webm",
+    "processing": {
+        "type": "static",
+        "start_offset": "14.5s",
+        "end_offset": "38.0s"
+    }
+}
+
+interaction = client.interactions.create(
+    model="gemini-4-carbon",
+    input=[audio_input, "Audit representative tone during dispute window."]
+)`
+        },
+        batch: {
+          before: '18,500',
+          after: '4,200',
+          reduction: '77.3% Faster & Tracked',
+          percent: 77.3,
+          steps: [
+            { text: 'step[0] • batch input: 3 multi-content enterprise queries submitted in one roundtrip', cls: '' },
+            { text: 'step[1] • model normalization: tEmbedContents unified text and document parts', cls: 'search' },
+            { text: 'step[2] • enterprise endpoint: dispatched to publishers/google/models/gemini-embedding-2', cls: 'search' },
+            { text: 'step[3] • vector generation: outputDimensionality=768 generated 3 embedding vectors', cls: 'tool' },
+            { text: 'step[4] • telemetry return: usageMetadata={ promptTokenCount: 52, totalTokenCount: 52 }', cls: 'output' }
+          ],
+          ts: `const response = await ai.models.embedContent({
+  model: "publishers/google/models/gemini-embedding-2",
+  contents: [
+    "Analyze European manufacturing margin trends.",
+    "Fleet battery degradation analysis.",
+    "Kernel vulnerability CVE-2026-9812 patch note."
+  ],
+  config: { outputDimensionality: 768 }
+});
+
+console.log("Tokens Billed:", response.usageMetadata);`,
+          py: `response = client.models.embed_content(
+    model="publishers/google/models/gemini-embedding-2",
+    contents=[
+        "Analyze European manufacturing margin trends.",
+        "Fleet battery degradation analysis.",
+        "Kernel vulnerability CVE-2026-9812 patch note."
+    ],
+    config={"output_dimensionality": 768}
+)
+
+print("Usage Telemetry:", response.usage_metadata)`
+        }
+      };
+
+      let currentScenario = 'tools';
+      let currentTab = 'ts';
+
+      function selectScenario(key) {
+        currentScenario = key;
+        document.querySelectorAll('.scenario-btn').forEach(b => b.classList.remove('active'));
+        const activeBtn = document.getElementById('btn-scenario-' + key);
+        if (activeBtn) activeBtn.classList.add('active');
+        runSimulation();
+      }
+
+      function runSimulation() {
+        const data = scenarios[currentScenario];
+        document.getElementById('stat-before').textContent = data.before;
+        document.getElementById('stat-after').textContent = data.after;
+        document.getElementById('stat-reduction').textContent = data.reduction;
+        document.getElementById('bar-fill').style.width = data.percent + '%';
+
+        const stream = document.getElementById('step-stream');
+        stream.innerHTML = '';
+        data.steps.forEach(s => {
+          const div = document.createElement('div');
+          div.className = 'step-item ' + (s.cls || '');
+          div.textContent = s.text;
+          stream.appendChild(div);
+        });
+
+        updateCodeSnippet();
+      }
+
+      function switchCodeTab(tab) {
+        currentTab = tab;
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        const btn = document.getElementById('tab-' + tab);
+        if (btn) btn.classList.add('active');
+        updateCodeSnippet();
+      }
+
+      function updateCodeSnippet() {
+        const data = scenarios[currentScenario];
+        const snippetEl = document.getElementById('code-snippet');
+        let code = '';
+        if (currentTab === 'ts') code = data.ts;
+        else if (currentTab === 'py') code = data.py;
+        else if (currentTab === 'batch') code = scenarios.batch.ts;
+        snippetEl.querySelector('code').textContent = code;
+      }
+
+      function resetScenario() {
+        selectScenario('tools');
+      }
+    </script>
+  </body>
+</html>

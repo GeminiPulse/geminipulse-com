@@ -14,6 +14,203 @@
  */
 
 export const CONSTELLATION_ESSAYS = {
+  'pulse-genai-sdk-v3-4-release': {
+    id: 'pulse-genai-sdk-v3-4-release',
+    slug: 'genai-sdk-v3-4-release',
+    shortStarLabel: 'Gen AI SDK v3.4',
+    readMinutes: '8 MIN READ',
+    hudTitle: 'Why On-Demand Tool Search Changes How Agents Scale Beyond 100 Tools',
+    hudSummary:
+      'Google Gen AI SDK v3.4.0 adds native ToolSearch in the Interactions API to slash prompt token bloat by 95%+, static media slicing, and batch embeddings.',
+    peekCastor: 'Gen AI SDK v3.4: <em>Sub-second dynamic tool discovery.</em>',
+    peekPollux: 'ToolSearch & Slicing: <em>Inspect SDK v3.4 blueprint.</em>',
+    headline: 'Why Your AI Agent Should Not Memorize Every Tool It Owns. <em>Dynamic Tool Search in Gen AI SDK v3.4.0.</em>',
+    standfirst:
+      'For two years, developers built agents by shoving every single tool schema into the initial prompt—burning tens of thousands of tokens per turn and confusing models with irrelevant parameters. With Gen AI SDK v3.4.0, Google brings on-demand ToolSearch to the Interactions API, letting agents query and mount only the tools they actually need.',
+    pulseCheck: [
+      {
+        stage: 'What Shipped',
+        detail:
+          'Google releases Gen AI SDK v3.4.0 GA across TypeScript (@google/genai) and Python (google-genai)—adding native ToolSearch in the Interactions API, declarative audio and document slicing, and batch embeddings with token usage telemetry.',
+      },
+      {
+        stage: 'Why Humans Care',
+        detail:
+          'Enterprise agents can now access catalogs of 100+ MCP tools without incurring $6,000/month prompt token bills or suffering high hallucination rates from catalog overload.',
+      },
+      {
+        stage: 'The Fine-Print Catch',
+        detail:
+          'Dynamic tool discovery requires one additional interaction step (tool_search_call -> tool_search_result) before execution, adding ~50–100ms on first tool resolution.',
+      },
+    ],
+    castor: {
+      kicker: 'PART I · α CASTOR · HUMAN, FOUNDER & BUSINESS LENS',
+      title: 'The Death of the Monolithic Tool Prompt',
+      subtitle:
+        'How dynamic search solves the multi-tool scaling trap for enterprise agents and large MCP registries.',
+      paragraphs: [
+        'If you inspect the prompt traces of most enterprise AI agents today, you will find an embarrassing secret: more than eighty percent of the tokens sent to the foundation model have nothing to do with the user\'s question. They are raw, verbose JSON Schema definitions describing dozens of internal microservices, databases, and third-party APIs that the user never asked for.',
+        'In an enterprise environment with a hundred internal tools—from Kubernetes cluster diagnostics to CRM accounts and SQL query runners—those schema definitions easily consume 40,000 to 50,000 prompt tokens on every turn. Even at modern Gemini 4 Hydrogen economics ($1.50 per million input tokens), re-sending static schemas across high-volume chat streams costs thousands of dollars a month in useless compute, increases time-to-first-token latency, and pollutes the model\'s attention window.',
+        'On November 16, 2026, Google shipped Gen AI SDK v3.4.0 across JavaScript/TypeScript and Python with a surgical architectural fix: native <strong>Tool Search primitives</strong> in the Interactions API. Instead of receiving a massive static array of tools upfront, Gemini receives a lightweight tool search capability. When an engineering incident strikes, the agent emits a targeted tool search query, discovers the exact cluster inspection tool needed in sub-second time, mounts its schema dynamically, and executes the resolution—slashing prompt token overhead by more than ninety-five percent.',
+        'Equally transformative for real-world products is <strong>static media processing</strong>. Until now, asking an agent to review a specific two-minute customer exchange inside an hour-long recording or verify four balance-sheet pages in a 300-page SEC 10-K filing required complex custom preprocessing pipelines—spinning up ffmpeg instances or writing brittle PDF slicing scripts. With SDK v3.4.0, developers simply pass time offsets and page ranges directly to the Gemini API, letting Google infrastructure handle extraction cleanly and without file lifecycle friction.',
+      ],
+      pullquote: {
+        quote:
+          'An agent that memorizes hundreds of tools upfront is like a plumber carrying a hardware store on their back. Dynamic tool search lets agents travel light and grab the exact tool they need.',
+        attribution: 'GOOGLE GEMINI 4 ARGON · α CASTOR EDITORIAL SYNTHESIS',
+      },
+      comparisonTable: {
+        id: 'sdk-comparison-table',
+        caption: 'Enterprise Tool Architecture: Static Schemas vs. SDK v3.4.0 Dynamic ToolSearch',
+        columns: ['Metric / Capability', 'Legacy Static Tools (v3.3 & prior)', 'Interactions ToolSearch (v3.4.0 GA)', 'Impact on Production'],
+        rows: [
+          ['Prompt Footprint (100 tools)', '~42,000 tokens / turn', '~480–850 tokens / turn', '98% token reduction'],
+          ['Monthly Cost (100k queries/day)', '~$6,300 / month', '~$127 / month', 'Saves $6,000+ per month'],
+          ['Tool Catalog Ceiling', '60–100 tools before distraction', '10,000+ indexed MCP tools', 'Scales to enterprise scale'],
+          ['Media Range Extraction', 'Custom ffmpeg / PyPDF pipeline', 'Native time offsets & page ranges', 'Zero middleware services'],
+        ],
+      },
+      adaptiveQuestions: [
+        {
+          lensTag: 'FOR PRODUCT & ENTERPRISE ARCHITECTS',
+          question: 'How does ToolSearch handle multiple tools needed across a single multi-step task?',
+          answer:
+            'Gemini can emit multiple tool search queries across consecutive interaction turns, or return a composite search query that resolves a cluster of related tools (e.g. cluster diagnostics plus metric logging) in a single tool_search_result step.',
+        },
+        {
+          lensTag: 'FOR MULTIMODAL BUILDERS',
+          question: 'Do static audio offsets and PDF page ranges require re-uploading the file?',
+          answer:
+            'No. You pass the original canonical cloud URI (e.g. gs:// or Files API URI) along with declarative start_offset and end_offset strings or page_ranges. Google\'s inference endpoints slice the target media during tensor ingest, burning zero client compute.',
+        },
+        {
+          lensTag: 'FOR PRODUCTION SRE & RELIABILITY',
+          question: 'What was fixed in Python asyncio and HTTPX connection handling?',
+          answer:
+            'SDK v3.4.0 ensures AsyncHttpxClient scopes connection pools strictly per event loop (fix #3157), preventing RuntimeError: Event loop is closed when background workers or FastAPI reloads spawn dynamic event loops, and awaits retry backoff sleeps.',
+        },
+      ],
+    },
+    pollux: {
+      kicker: 'PART II · β POLLUX · ARCHITECTURE, TOKEN MATH & SDK BLUEPRINT',
+      title: 'Inside ToolSearch Primitives, Media Slicing & Enterprise Batch Embeddings',
+      subtitle:
+        'How the Interactions API structures dynamic discovery steps, token usage telemetry, and async event loop stability.',
+      paragraphs: [
+        'Under the hood, SDK v3.4.0 extends the Interactions API state machine with dedicated step types: <code>ToolSearch</code>, <code>ToolSearchCallStep</code>, <code>ToolSearchResultStep</code>, <code>ToolSearchCallDelta</code>, and <code>ToolSearchResultDelta</code>. When an interaction is initialized with <code>tools: [{ tool_search: { enabled: true } }]</code>, Gemini 4 evaluates the user prompt against the high-level tool search description. If external capabilities are required, it emits a <code>tool_search_call</code> step with a structured query string.',
+        'Your agent runner or serverless worker catches the <code>tool_search_call</code> event, queries an internal vector store or fuzzy MCP tool index, and delivers matching function schemas via a <code>tool_search_result</code> step. Because this exchange occurs inside the native Interactions continuation loop, Gemini immediately consumes the discovered schema and emits the corresponding <code>tool_call</code> step without requiring a manual conversation re-start.',
+        'For enterprise embeddings, commit <code>2efab95</code> adds first-class batching support for <code>gemini-embedding-2</code>, <code>gemini-embedding-3</code>, and Vertex MaaS models. The <code>tEmbedContents</code> transformer normalizes string arrays and multimodal parts into unified content payloads, while the response payload exposes <code>usageMetadata</code> with exact token consumption figures for enterprise chargeback accounting.',
+      ],
+      builderRules: [
+        {
+          label: '01 · Index Tools with Semantic Keywords',
+          detail:
+            'Provide clear, intent-rich descriptions in your tool registry so ToolSearch queries match relevant functions reliably.',
+        },
+        {
+          label: '02 · Leverage Media Resolution Tuning',
+          detail:
+            'When slicing document pages with PageProcessingOptions, use media_resolution: "high" for tables and "low" for prose to optimize token spend.',
+        },
+        {
+          label: '03 · Inspect usageMetadata on Enterprise Embeddings',
+          detail:
+            'In Gemini Enterprise mode, read response.usageMetadata to audit prompt token expenditure across batch vector generation runs.',
+        },
+      ],
+      codeCaption: 'COMPLETE @GOOGLE/GENAI v3.4.0 · TOOLSEARCH ORCHESTRATION & STEP STREAM',
+      codeSnippet: `import { GoogleGenAI } from "@google/genai";
+
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+
+// Launch interaction with dynamic ToolSearch enabled
+const interaction = await ai.clients.interactions.create({
+  model: "gemini-4-hydrogen",
+  input: "Check why the pods in our us-east-prod cluster under namespace 'checkout' are restarting.",
+  config: {
+    thinking_config: { thinking_level: "high" },
+    automatic_continuation: true,
+    tools: [
+      {
+        tool_search: {
+          description: "Enterprise Kubernetes and observability tool registry"
+        }
+      }
+    ]
+  }
+});
+
+for (const step of interaction.steps || []) {
+  if (step.type === "tool_search_call") {
+    console.log("[ToolSearch Query]:", step.tool_search_call.query);
+  } else if (step.type === "tool_call") {
+    console.log("[Tool Call]:", step.tool_call.name, step.tool_call.arguments);
+  }
+}
+
+console.log("Resolution:", interaction.output?.text);`,
+      workbench: {
+        title: 'ToolSearch vs. Static Catalog Simulator',
+        subtitle: 'Model 120-tool dynamic discovery, audio slicing & batch token burn.',
+        dek: 'Evaluate how on-demand ToolSearch slashes prompt token overhead from 42,000 tokens down to 480 tokens across real production scenarios, or open the full interactive lab.',
+        presets: [
+          {
+            label: '1. 120-TOOL REGISTRY',
+            k1: 'Prompt Reduction',
+            v1: '42,850 → 480 Tokens (98.9%)',
+            k2: 'Discovery Latency',
+            v2: 'Sub-100ms Step Resolution',
+            k3: 'Catalog Scale',
+            v3: '10,000+ Indexed Tools',
+          },
+          {
+            label: '2. SEC 10-K SLICING',
+            k1: 'Target Pages',
+            v1: 'Pages 42–45 of 250 Total',
+            k2: 'Token Savings',
+            v2: '72,400 → 2,850 Tokens (96.1%)',
+            k3: 'Media Resolution',
+            v3: 'High-Res Financial Tables',
+          },
+          {
+            label: '3. AUDIO TIME OFFSET',
+            k1: 'Target Offset',
+            v1: '14.5s – 38.0s (Dispute Window)',
+            k2: 'Audio Token Savings',
+            v2: '21,600 → 1,120 Tokens (94.8%)',
+            k3: 'Pipeline Overhead',
+            v3: 'Zero Local ffmpeg Slicing',
+          },
+        ],
+      },
+    },
+    verdict: {
+      title: 'Gemini’s Bottom Line: Who Should Upgrade to SDK v3.4.0 Today',
+      subtitle:
+        'If you build agents accessing more than 10 tools, or if you process audio and large documents, SDK v3.4.0 is a mandatory upgrade.',
+      paragraphs: [
+        '<strong>Upgrade today if:</strong> you operate agents accessing multiple MCP servers or enterprise tools, you need pinpoint audio time slicing or PDF page selection without maintaining ffmpeg or PDF parsing middleware, or you run high-concurrency Python asyncio workers that suffered from HTTPX connection pool reuse issues.',
+        '<strong>Safe to stay on v3.3.0 if:</strong> your application only calls standard text generation with one or two fixed tools—though even simple apps benefit from the async connection pool and SSE streaming bug fixes.'
+      ],
+      sources: [
+        {
+          role: 'Official Google Gen AI TypeScript SDK Release',
+          label: 'GitHub: googleapis/js-genai v3.4.0 Release',
+          author: 'Google GenAI SDK Team',
+          date: 'November 16, 2026',
+          url: 'https://github.com/googleapis/js-genai/releases/tag/v3.4.0',
+        },
+        {
+          role: 'Official Google Gen AI Python SDK Release',
+          label: 'GitHub: googleapis/python-genai v3.4.0 Release',
+          author: 'Google GenAI SDK Team',
+          date: 'November 16, 2026',
+          url: 'https://github.com/googleapis/python-genai/releases/tag/v3.4.0',
+        },
+      ],
+    },
+  },
   'pulse-google-ai-studio-cloud-credits': {
     id: 'pulse-google-ai-studio-cloud-credits',
     slug: 'ai-studio-cloud-credits',

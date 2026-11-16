@@ -5,6 +5,25 @@
 
 export const PULSE_INTELLIGENCE_FEED = [
   {
+    id: 'pulse-genai-sdk-v3-4-release',
+    title: 'Google Releases Gen AI SDK v3.4.0: Dynamic Tool Search in Interactions, Static Media Slicing & Enterprise Batch Embeddings',
+    tldr: 'Released November 16, 2026 (20:43 UTC): Google elevates @google/genai and google-genai to v3.4.0 GA across TypeScript and Python—introducing native ToolSearch primitives in the Interactions API (slashing prompt tokens by 95%+ across large MCP registries), static media processing options (declarative audio time-slicing and PDF/spreadsheet page ranges), batch embedding inputs with usage metadata on Gemini Enterprise API, and per-event-loop HTTPX connection pool hardening.',
+    summary:
+      'Google releases version 3.4.0 GA of its official JavaScript/TypeScript (@google/genai) and Python (google-genai) SDKs. Key architectural upgrades include: (1) Native ToolSearch Primitives in Interactions—adds ToolSearch, ToolSearchCallStep, ToolSearchResultStep, ToolSearchCallDelta, and ToolSearchResultDelta, enabling agents to dynamically discover, query, and bind tools from vast MCP registries on demand rather than pre-loading dozens of static schemas into prompt context, (2) Static Media Processing Options—exposes AudioStaticMediaProcessing with start_offset and end_offset (e.g. "14.5s" to "38.0s") and DocumentStaticMediaProcessing with PageProcessingOptions, SpreadsheetProcessingOptions, and MediaResolution, allowing pinpoint multimodal analysis without client-side ffmpeg clipping or PDF splitting, (3) Batch Inputs & Usage Telemetry for Gemini Enterprise Embeddings—adds normalized batch processing for gemini-embedding-2, gemini-embedding-3, and Vertex MaaS models with usage_metadata token auditing, (4) Async HTTPX & SSE Hardening—enforces per-event-loop connection pool isolation in AsyncHttpxClient and AsyncHttpx2Client, awaits asyncio.sleep backoff in file uploads, removes SSE stream line length caps, and caches Vertex ADC credentials off the main event loop, and (5) Deprecations—deprecates non-interactions names in google.genai.interactions.',
+    category: 'SDK & API',
+    tag: 'SDK Milestone',
+    modelBadge: '@google/genai & google-genai v3.4.0',
+    impactScore: '10.0 / 10',
+    date: '2026-11-16T20:43:05Z',
+    sourceLabel: 'GitHub: googleapis/js-genai & python-genai v3.4.0 Milestone Releases',
+    sourceUrl: 'https://github.com/googleapis/js-genai/releases/tag/v3.4.0',
+    groundedBy: 'Google Gen AI SDK Official Milestone Releases (Verified Nov 16, 2026)',
+    seriesUrl: '/series/genai-sdk-v3-4/part-1-sdk-v3-4-tool-search-and-interactions-architecture.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-sdk-v3-4-tool-search-studio.html',
+    labLabel: 'Tool Search Studio Lab [DEMO] →',
+  },
+  {
     id: 'pulse-google-ai-studio-cloud-credits',
     title: 'Google Integrates Cloud Credits into Google AI Studio: In-Workspace Claim, 12-Month Rollover & Automated Billing Setup',
     tldr: 'Released November 13, 2026 (20:30 UTC): Google embeds Google Developer Program Cloud credits directly into Google AI Studio—allowing Google AI Pro and Ultra subscribers to claim recurring monthly credits ($10–$100/mo), auto-create developer profiles, link Cloud Billing, and draw down promotional credits on Gemini 4 Carbon, Hydrogen, and Omni 1.2 Flash without context switching.',
@@ -848,6 +867,81 @@ export const GEMINI_MODEL_MATRIX = [
 
 export const STUDIO_LAB_BLUEPRINTS = [
   {
+    id: 'lab-sdk-v3-4-tool-search-studio',
+    title: 'Google Gen AI SDK v3.4.0 Tool Search & Media Slicing Studio [SIMULATED DEMO]',
+    badge: 'Nov 16, 2026 GA',
+    model: 'gemini-4-hydrogen',
+    description:
+      'Interactive developer simulator modeling Google Gen AI SDK v3.4.0: dynamic ToolSearch discovery across large MCP registries (saving 95%+ prompt tokens), static audio time-slicing (14.5s–38.0s), document page range targeting (pages 42–45 of 250), and batch embedding usage telemetry on Gemini Enterprise API.',
+    prompt:
+      'Inspect our Kubernetes pod restart counts in cluster us-east-prod under namespace checkout using dynamic ToolSearch to discover the cluster monitoring tool from our 120-tool registry.',
+    tsCode: `import { GoogleGenAI } from "@google/genai";
+
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+
+const interaction = await ai.clients.interactions.create({
+  model: "gemini-4-hydrogen",
+  input: "Check why the pods in us-east-prod cluster under namespace 'checkout' are restarting.",
+  config: {
+    thinking_config: { thinking_level: "high" },
+    automatic_continuation: true,
+    tools: [
+      {
+        tool_search: {
+          description: "Enterprise infrastructure, Kubernetes and observability tool registry"
+        }
+      }
+    ]
+  }
+});
+
+console.log("Output:", interaction.output?.text);
+console.log("Token Usage:", interaction.usage_metadata);`,
+    pyCode: `from google import genai
+from google.genai.types import InteractionsConfig
+
+client = genai.Client()
+
+interaction = client.interactions.create(
+    model="gemini-4-hydrogen",
+    input="Check why pods in us-east-prod namespace checkout are restarting.",
+    config=InteractionsConfig(
+        thinking_level="high",
+        automatic_continuation=True,
+        tools=[{"tool_search": {"description": "Enterprise microservice and cluster registry"}}]
+    )
+)
+
+print("Output:", interaction.output.text)
+print("Token Usage:", interaction.usage_metadata)`,
+    simulatedSteps: [
+      {
+        type: 'thought',
+        label: 'step[0] • evaluating dynamic ToolSearch registry requirements',
+        detail:
+          'Evaluated user query targeting Kubernetes pods. Instead of serializing 120 static tool schemas (42,850 tokens), emitted a targeted ToolSearch query for "kubernetes pod status".',
+      },
+      {
+        type: 'tool_search_call',
+        label: 'step[1] • tool_search_call: query="kubernetes pod status"',
+        detail:
+          'Discovered matching tool schema "query_k8s_pods" (380 tokens). Mounted dynamically into interaction context.',
+      },
+      {
+        type: 'code_execution_result',
+        label: 'step[2] • executing discovered tool query_k8s_pods()',
+        detail:
+          'Executed query_k8s_pods({ cluster: "us-east-prod", namespace: "checkout" }). Returned 2 crashing pods with OOMKilled exit status code 137.',
+      },
+      {
+        type: 'thought',
+        label: 'step[3] • synthesizing remediation and resource limits',
+        detail:
+          'Formulated surgical diagnosis recommending raising pod memory limit from 1Gi to 2Gi to resolve Java heap pressure during peak checkout traffic.',
+      },
+    ],
+  },
+  {
     id: 'lab-ai-studio-credits-studio',
     title: 'Google AI Studio Cloud Credits & Billing Studio [SIMULATED DEMO]',
     badge: 'Nov 13, 2026 GA',
@@ -1468,6 +1562,25 @@ video_turn = client.interactions.create(
 ];
 
 export const INITIAL_SHOWCASE_PROJECTS = [
+  {
+    id: 'showcase-gemini-sdk-v3-4-tool-search-studio',
+    name: 'Google Gen AI SDK v3.4.0 Tool Search & Media Slicing Studio [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive developer workbench modeling Google Gen AI SDK v3.4.0: simulate dynamic ToolSearch in the Interactions API (reducing prompt tokens by 95%+ across 120 enterprise tools), static media audio and PDF slicing, and batch embeddings with token usage telemetry.',
+    models: ['gemini-4-hydrogen', 'gemini-4-carbon', 'gemini-embedding-2'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-sdk-v3-4-tool-search-studio.html): [SIMULATED DEMO] Models dynamic ToolSearch queries across 120 enterprise tools, selective PDF page ranges (pages 42–45), audio offset slicing (14.5s–38.0s), batch embeddings with usage_metadata, and SDK v3.4.0 code export.',
+    url: '/labs/gemini-sdk-v3-4-tool-search-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-16T20:43:05Z',
+  },
   {
     id: 'showcase-gemini-ai-studio-credits-studio',
     name: 'Google AI Studio Cloud Credits & Billing Simulator [SIMULATED DEMO]',
@@ -3335,11 +3448,45 @@ export const GET_STARTED_WITH_GEMINI_TRACKS = [
 
 export const GEMINI_VIDEO_SHOWCASE = [
   {
+    id: 'vid-google-developers-build-with-ai-2026-recap',
+    videoId: 'yGHi5V4sVkc',
+    featuredOfTheDay: true,
+    category: 'Developer Community & Platform',
+    badge: 'FEATURED VIDEO OF THE DAY • GOOGLE FOR DEVELOPERS',
+    title: 'Build With AI 2026 Recap',
+    creatorName: 'Google for Developers',
+    creatorHandle: '@GoogleDevelopers',
+    creatorUrl: 'https://www.youtube.com/@GoogleDevelopers',
+    watchUrl: 'https://www.youtube.com/watch?v=yGHi5V4sVkc',
+    thumbnailUrl: 'https://i.ytimg.com/vi/yGHi5V4sVkc/hqdefault.jpg',
+    geminiSummary:
+      'Official Google for Developers recap published mid-November 2026—celebrating the global Build With AI 2026 community summit. Highlights developer momentum across Gemini 4 models, Google Antigravity multi-agent systems, Google AI Studio integrations, and real-world developer prototypes built across EMEA, APAC, and the Americas.',
+    whyFeatured:
+      'Verified HTTP 200 official Google for Developers celebration exploring global community innovation, multi-agent hackathons, and enterprise prototyping on Gemini 4.',
+  },
+  {
+    id: 'vid-julian-goldie-gemini-4-hydrogen',
+    videoId: '_ckCHhw-lNw',
+    featuredOfTheDay: false,
+    category: 'Frontier Models & Automation',
+    badge: 'CREATOR BREAKDOWN • JULIAN GOLDIE',
+    title: 'Gemini 4 Hydrogen Changes EVERYTHING!',
+    creatorName: 'Julian Goldie SEO',
+    creatorHandle: '@JulianGoldieSEO',
+    creatorUrl: 'https://www.youtube.com/@JulianGoldieSEO',
+    watchUrl: 'https://www.youtube.com/watch?v=_ckCHhw-lNw',
+    thumbnailUrl: 'https://i.ytimg.com/vi/_ckCHhw-lNw/hqdefault.jpg',
+    geminiSummary:
+      'Verified creator analysis published November 2026—testing Gemini 4 Hydrogen speed, everyday coding capabilities, the viral Google Sheets pixel-art demonstration, 4-tier thinking levels, and 2.5x faster task completion inside Google Antigravity.',
+    whyFeatured:
+      'Verified HTTP 200 creator breakdown testing Gemini 4 Hydrogen execution speed, Antigravity workflows, and benchmark performance.',
+  },
+  {
     id: 'vid-thorwebdev-cloud-credits-ai-studio',
     videoId: '4t5G4CrQcSw',
-    featuredOfTheDay: true,
+    featuredOfTheDay: false,
     category: 'Developer Tools & Studio',
-    badge: 'FEATURED VIDEO OF THE DAY • GOOGLE DEVREL',
+    badge: 'GOOGLE DEVREL WALKTHROUGH • THORWEBDEV',
     title: 'Redeem and use Google Cloud Credits in Google AI Studio and Gemini API.',
     creatorName: 'Thor Michael Støre (thorwebdev)',
     creatorHandle: '@thorwebdev',

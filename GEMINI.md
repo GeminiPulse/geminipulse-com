@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-11-15 18:45 EST — PHASE 3 SITEWIDE P2 SWEEP COMPLETE (ZERO ISSUES ACROSS ALL 144 ROUTES) LIVE ON GEMINIPULSE.COM: Resolved all remaining P2 items from docs/sitewide-audit-manifest.md—fixed 1440px CSS Grid overflows on 3 developer labs (minmax(0, 1fr) + min-inline-size: 0), added [SIMULATED DEMO] badges to the final 3 labs (25/25 compliant), added a structured MarkdownArticleView renderer for Antigravity Chronicles + semantic <code> markup across 15 routes, aligned remaining legacy role copy in geminiEcosystemData.js, and logged entry #14 on /changelog.html`
+> **Last touched:** `2026-11-16 17:45 EST — ROUND 39 CURATION COMPLETE LIVE ON GEMINIPULSE.COM: Curated official Google Gen AI SDK v3.4.0 GA across TypeScript & Python with native ToolSearch in Interactions API, static media slicing (audio offsets & PDF page ranges), and batch Enterprise embeddings; published 3-part series /series/genai-sdk-v3-4/*, companion /labs/gemini-sdk-v3-4-tool-search-studio.html [SIMULATED DEMO], updated sitemap.xml & feed.xml, curated YouTube videos from Google for Developers & Julian Goldie SEO, and deployed to Firebase Hosting`
 
 ---
 

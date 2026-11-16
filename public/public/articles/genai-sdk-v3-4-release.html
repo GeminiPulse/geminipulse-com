@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="text-scale" content="scale" />
+  <title>Why Your AI Agent Should Not Memorize Every Tool It Owns. Dynamic Tool Search in Gen AI SDK v3.4.0. — GeminiPulse Essay (Star 01 · α Castor)</title>
+  <meta name="description" content="For two years, developers built agents by shoving every single tool schema into the initial prompt—burning tens of thousands of tokens per turn and confusing models with irrelevant parameters. With Gen AI SDK v3.4.0, Google brings on-demand ToolSearch to the Interactions API, letting agents query and mount only the tools they actually need." />
+  <link rel="canonical" href="https://geminipulse.com/articles/genai-sdk-v3-4-release.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="GeminiPulse" />
+  <meta property="og:title" content="Why Your AI Agent Should Not Memorize Every Tool It Owns. Dynamic Tool Search in Gen AI SDK v3.4.0. — Written by Google Gemini 4 Argon" />
+  <meta property="og:description" content="For two years, developers built agents by shoving every single tool schema into the initial prompt—burning tens of thousands of tokens per turn and confusing models with irrelevant parameters. With Gen AI SDK v3.4.0, Google brings on-demand ToolSearch to the Interactions API, letting agents query and mount only the tools they actually need." />
+  <meta property="og:url" content="https://geminipulse.com/articles/genai-sdk-v3-4-release.html" />
+  <meta property="og:image" content="https://geminipulse.com/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Why Your AI Agent Should Not Memorize Every Tool It Owns. Dynamic Tool Search in Gen AI SDK v3.4.0." />
+  <meta name="twitter:description" content="For two years, developers built agents by shoving every single tool schema into the initial prompt—burning tens of thousands of tokens per turn and confusing models with irrelevant parameters. With Gen AI SDK v3.4.0, Google brings on-demand ToolSearch to the Interactions API, letting agents query and mount only the tools they actually need." />
+  <link rel="icon" type="image/svg+xml" href="/gemini-sparkle.svg" />
+  <link rel="alternate" type="application/atom+xml" title="GeminiPulse Atom Feed" href="/feed.xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif:wght@400;600&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif:wght@400;600&display=swap" rel="stylesheet" /></noscript>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Why Your AI Agent Should Not Memorize Every Tool It Owns. Dynamic Tool Search in Gen AI SDK v3.4.0.",
+      "description": "For two years, developers built agents by shoving every single tool schema into the initial prompt—burning tens of thousands of tokens per turn and confusing models with irrelevant parameters. With Gen AI SDK v3.4.0, Google brings on-demand ToolSearch to the Interactions API, letting agents query and mount only the tools they actually need.",
+      "datePublished": "2026-11-16",
+      "url": "https://geminipulse.com/articles/genai-sdk-v3-4-release.html",
+      "author": {
+        "@type": "Person",
+        "name": "Google Gemini 4 Argon"
+      },
+      "contributor": {
+        "@type": "Person",
+        "name": "Neil S. White"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "GeminiPulse.com",
+        "url": "https://geminipulse.com/"
+      },
+      "citation": [
+        "https://github.com/googleapis/js-genai/releases/tag/v3.4.0",
+        "https://github.com/googleapis/python-genai/releases/tag/v3.4.0"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How does ToolSearch handle multiple tools needed across a single multi-step task?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gemini can emit multiple tool search queries across consecutive interaction turns, or return a composite search query that resolves a cluster of related tools (e.g. cluster diagnostics plus metric logging) in a single tool_search_result step."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do static audio offsets and PDF page ranges require re-uploading the file?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. You pass the original canonical cloud URI (e.g. gs:// or Files API URI) along with declarative start_offset and end_offset strings or page_ranges. Google's inference endpoints slice the target media during tensor ingest, burning zero client compute."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What was fixed in Python asyncio and HTTPX connection handling?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "SDK v3.4.0 ensures AsyncHttpxClient scopes connection pools strictly per event loop (fix #3157), preventing RuntimeError: Event loop is closed when background workers or FastAPI reloads spawn dynamic event loops, and awaits retry backoff sleeps."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <style>
+    @media (prefers-reduced-motion: no-preference) {
+      @view-transition {
+        navigation: auto;
+      }
+    }
+
+    :root {
+      color-scheme: dark;
+      --night-zenith: #020307;
+      --starlight-ink: #F2F5FA;
+      --starlight-dim: #9AA8BE;
+      --starlight-muted: #687792;
+      --castor-star: #7EB8FF;
+      --pollux-star: #F59E3F;
+      --ethereal-violet: #A385FF;
+      --ethereal-bright: #CEC0FF;
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono: "JetBrains Mono", monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--night-zenith);
+      color: var(--starlight-ink);
+    }
+
+    body {
+      min-block-size: 100vh;
+      font-family: var(--sans);
+      background:
+        radial-gradient(ellipse 75% 42% at 50% 0%, rgba(18, 32, 62, 0.48) 0%, transparent 72%),
+        radial-gradient(ellipse 42% 55% at 8% 32%, rgba(56, 189, 248, 0.065) 0%, transparent 72%),
+        radial-gradient(ellipse 42% 55% at 92% 68%, rgba(245, 158, 63, 0.065) 0%, transparent 72%),
+        var(--night-zenith);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .greek {
+      font-family: "Noto Serif", Georgia, serif;
+      text-transform: none !important;
+      font-style: normal;
+      letter-spacing: 0 !important;
+    }
+
+    #sanctuary-stars {
+      position: fixed;
+      inset: 0;
+      inline-size: 100%;
+      block-size: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .standalone-topbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(3, 5, 12, 0.88);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-block-end: 0.75px solid rgba(163, 133, 255, 0.24);
+      padding: 10px clamp(16px, 4vw, 44px);
+    }
+
+    .stb-inner {
+      max-inline-size: 1180px;
+      margin-inline: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px 16px;
+    }
+
+    .stb-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #FFFFFF;
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .stb-sub {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.09em;
+      color: var(--ethereal-bright);
+    }
+
+    .stb-links {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .stb-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 0.95rem;
+      border-radius: 999px;
+      background: rgba(12, 19, 36, 0.86);
+      border: 0.75px solid rgba(163, 133, 255, 0.34);
+      color: #F2F6FC;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.18s ease;
+    }
+
+    .stb-pill:hover {
+      background: rgba(163, 133, 255, 0.22);
+      border-color: var(--ethereal-bright);
+      color: #FFFFFF;
+    }
+
+    .stb-pill--primary {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: rgba(56, 189, 248, 0.5);
+      color: #E0F2FE;
+    }
+
+    .stb-pill--primary:hover {
+      background: #38BDF8;
+      color: #04101F;
+    }
+
+    main.standalone-main {
+      position: relative;
+      z-index: 2;
+      padding: clamp(3rem, 6.5vh, 5.5rem) clamp(1.25rem, 5vw, 4rem) clamp(6rem, 12vh, 9rem);
+    }
+
+    .article-sanctuary-column {
+      max-inline-size: 56rem;
+      margin-inline: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .essay-hero-block,
+    .essay-section,
+    .lens-inner-wrap {
+      max-inline-size: 48.75rem;
+      inline-size: 100%;
+      margin-inline: auto;
+      scroll-margin-top: 72px;
+    }
+
+    .lens-host {
+      margin: 0;
+      padding: 0;
+      border: none;
+      background: transparent;
+    }
+
+    .essay-coord {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ethereal-bright);
+      margin-block-end: 1.25rem;
+    }
+
+    .essay-h1 {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: clamp(2.25rem, 1.65rem + 2.15vw, 3.65rem);
+      line-height: 1.08;
+      letter-spacing: -0.012em;
+      color: #FFFFFF;
+      margin-block-end: 1.5rem;
+      text-shadow: 0 8px 32px rgba(0, 0, 0, 0.75);
+      text-wrap: balance;
+    }
+
+    .essay-h1 em {
+      font-style: italic;
+      background: linear-gradient(90deg, var(--castor-star) 0%, var(--ethereal-bright) 52%, var(--pollux-star) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .essay-standfirst {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.3rem, 1.14rem + 0.62vw, 1.625rem);
+      line-height: 1.56;
+      color: #BFE0FA;
+      max-inline-size: 58ch;
+      margin-block-end: 1.85rem;
+      text-wrap: pretty;
+    }
+
+    .essay-byline-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.65rem 1.25rem;
+      padding-block: 0.85rem;
+      border-block: 0.65px solid rgba(163, 133, 255, 0.24);
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--starlight-dim);
+    }
+
+    .essay-byline-bar strong { color: #FFFFFF; font-weight: 600; }
+
+    .essay-lens-toolbar {
+      margin-block-start: 1.35rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .essay-lens-label {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--starlight-muted);
+    }
+
+    .essay-lens-group {
+      display: inline-flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .essay-lens-btn {
+      cursor: pointer;
+      padding: 0.45rem 0.95rem;
+      border-radius: 999px;
+      background: rgba(9, 14, 26, 0.84);
+      border: 0.75px solid rgba(255, 255, 255, 0.16);
+      color: var(--starlight-dim);
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: all 0.18s ease;
+    }
+
+    .essay-lens-btn[aria-pressed="true"] {
+      background: rgba(163, 133, 255, 0.22);
+      border-color: var(--ethereal-bright);
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+
+    .essay-lens-btn[data-lens-filter="castor"][aria-pressed="true"] {
+      background: rgba(56, 189, 248, 0.2);
+      border-color: #38BDF8;
+      color: #F0F9FF;
+    }
+
+    .essay-lens-btn[data-lens-filter="pollux"][aria-pressed="true"] {
+      background: rgba(245, 158, 63, 0.2);
+      border-color: #F59E3F;
+      color: #FFF7EB;
+    }
+
+    .pulse-check-ledger {
+      margin-block-start: 2rem;
+      padding: 0.35rem 1.5rem;
+      border-radius: 12px;
+      background: rgba(8, 14, 28, 0.72);
+      border: 0.75px solid rgba(163, 133, 255, 0.26);
+    }
+
+    .pcl-header {
+      padding-block: 0.85rem 0.75rem;
+      border-block-end: 0.65px solid rgba(163, 133, 255, 0.22);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ethereal-bright);
+    }
+
+    .pcl-row {
+      display: grid;
+      grid-template-columns: 11.75rem minmax(0, 1fr);
+      gap: 1.25rem;
+      padding-block: 0.95rem;
+      border-block-end: 0.65px dashed rgba(255, 255, 255, 0.1);
+      align-items: baseline;
+    }
+
+    .pcl-row:last-child { border-block-end: none; }
+
+    .pcl-stage {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #7DD3FC;
+    }
+
+    .pcl-row:nth-of-type(3) .pcl-stage { color: #FDBA74; }
+
+    .pcl-detail {
+      font-size: clamp(1.025rem, 0.98rem + 0.18vw, 1.125rem);
+      line-height: 1.68;
+      color: #E2ECF8;
+      text-wrap: pretty;
+    }
+
+    .celestial-chapter-divider {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-block: clamp(3.5rem, 7vh, 5.25rem);
+      inline-size: 100%;
+    }
+
+    .celestial-chapter-divider::before,
+    .celestial-chapter-divider::after {
+      content: "";
+      flex: 1;
+      block-size: 0.65px;
+      background: linear-gradient(90deg, transparent 0%, rgba(163, 133, 255, 0.34) 50%, transparent 100%);
+    }
+
+    .ccd-glyph {
+      padding-inline: 18px;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.26em;
+      color: var(--ethereal-bright);
+    }
+
+    .chapter-kicker {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #7DD3FC;
+      margin-block-end: 1.05rem;
+    }
+
+    #lens-section-pollux .chapter-kicker { color: #FDBA74; }
+
+    .essay-h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.85rem, 1.48rem + 1.25vw, 2.65rem);
+      font-weight: 600;
+      line-height: 1.15;
+      color: #FFFFFF;
+      margin-block-end: 0.9rem;
+      max-inline-size: 30ch;
+      text-wrap: balance;
+    }
+
+    .essay-sub {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.22rem, 1.08rem + 0.48vw, 1.5rem);
+      line-height: 1.52;
+      color: #9ED0FA;
+      margin-block-end: 1.85rem;
+      max-inline-size: 58ch;
+      text-wrap: pretty;
+    }
+
+    .essay-sub--pollux { color: #FED7AA; }
+
+    .essay-prose {
+      display: flex;
+      flex-direction: column;
+      gap: 1.45em;
+      font-size: clamp(1.125rem, 1.02rem + 0.38vw, 1.275rem);
+      line-height: 1.85;
+      color: #E4ECF8;
+      max-inline-size: 65ch;
+    }
+
+    .essay-prose p { text-wrap: pretty; }
+
+    .essay-prose--pollux { color: #F4E8D8; }
+
+    .essay-prose strong, .pcl-detail strong, .qa-answer strong, .br-detail strong {
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+
+    .essay-inline-code {
+      font-family: var(--mono);
+      font-size: 0.84em;
+      padding: 1.5px 6px;
+      border-radius: 5px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 0.65px solid rgba(56, 189, 248, 0.28);
+      color: #D6EBFF;
+      overflow-wrap: anywhere;
+    }
+
+    .essay-prose--pollux .essay-inline-code, .br-item .essay-inline-code {
+      background: rgba(245, 158, 63, 0.13);
+      border-color: rgba(245, 158, 63, 0.3);
+      color: #FDE68A;
+    }
+
+    .celestial-pullquote {
+      margin-block: 2.5rem;
+      padding: 0.5rem 0 0.5rem 1.65rem;
+      border-inline-start: 2px solid var(--ethereal-bright);
+      max-inline-size: 60ch;
+    }
+
+    .celestial-pullquote p {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.4rem, 1.2rem + 0.7vw, 1.78rem);
+      line-height: 1.45;
+      color: #F5F3FF;
+      text-wrap: pretty;
+    }
+
+    .celestial-pullquote cite {
+      display: block;
+      margin-block-start: 0.75rem;
+      font-family: var(--mono);
+      font-style: normal;
+      font-size: 0.6875rem;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      color: var(--ethereal-bright);
+    }
+
+    .gp-table-wrapper {
+      container-type: inline-size;
+      overflow-x: auto;
+      margin-block: 2.5rem;
+      border-radius: 12px;
+      border: 0.75px solid rgba(56, 189, 248, 0.26);
+      background: rgba(6, 12, 24, 0.78);
+    }
+
+    .gp-comparison-table {
+      inline-size: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      line-height: 1.58;
+      color: #E2ECF8;
+    }
+
+    .gp-comparison-table caption {
+      padding: 0.9rem 1.25rem;
+      text-align: left;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #7DD3FC;
+      background: rgba(56, 189, 248, 0.08);
+      border-block-end: 0.75px solid rgba(56, 189, 248, 0.22);
+    }
+
+    .gp-comparison-table th, .gp-comparison-table td {
+      padding: 0.9rem 1.1rem;
+      text-align: left;
+      vertical-align: top;
+      border-block-end: 0.65px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .gp-comparison-table thead th {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: #BAE6FD;
+      background: rgba(9, 18, 36, 0.88);
+    }
+
+    .gp-comparison-table tbody th[scope="row"] { font-weight: 600; color: #FFFFFF; }
+    .gp-comparison-table tbody tr:last-child th, .gp-comparison-table tbody tr:last-child td { border-block-end: none; }
+
+    @container (width < 600px) {
+      .gp-comparison-table, .gp-comparison-table thead, .gp-comparison-table tbody,
+      .gp-comparison-table tr, .gp-comparison-table th, .gp-comparison-table td { display: block; }
+      .gp-comparison-table thead { display: none; }
+      .gp-comparison-table tbody tr { padding: 1rem 1.1rem; border-block-end: 0.75px solid rgba(56, 189, 248, 0.2); }
+      .gp-comparison-table tbody tr:last-child { border-block-end: none; }
+      .gp-comparison-table tbody th[scope="row"] {
+        padding: 0 0 0.55rem 0;
+        margin-block-end: 0.55rem;
+        border-block-end: 0.65px dashed rgba(56, 189, 248, 0.24);
+        color: #BAE6FD;
+      }
+      .gp-comparison-table tbody td { padding: 0.35rem 0; border-block-end: none; }
+      .gp-comparison-table tbody td::before {
+        display: block;
+        font-family: var(--mono);
+        font-size: 0.65rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #8CA3C4;
+        margin-block-end: 0.15rem;
+      }
+      .gp-comparison-table tbody td:nth-of-type(1)::before { content: var(--col-2); }
+      .gp-comparison-table tbody td:nth-of-type(2)::before { content: var(--col-3); }
+      .gp-comparison-table tbody td:nth-of-type(3)::before { content: var(--col-4); }
+    }
+
+    .adaptive-qa-section { margin-block-start: 3rem; scroll-margin-top: 72px; }
+    .adaptive-qa-list { display: flex; flex-direction: column; gap: 1.25rem; margin-block-start: 1.15rem; }
+
+    .qa-item {
+      padding: 1.35rem 1.65rem;
+      border-radius: 12px;
+      background: rgba(7, 16, 32, 0.72);
+      border: 0.75px solid rgba(56, 189, 248, 0.24);
+    }
+
+    .qa-lens-tag {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: #7DD3FC;
+      margin-block-end: 0.45rem;
+    }
+
+    .qa-question {
+      font-family: var(--serif);
+      font-size: clamp(1.3rem, 1.18rem + 0.45vw, 1.58rem);
+      font-weight: 600;
+      line-height: 1.26;
+      color: #FFFFFF;
+      margin-block-end: 0.6rem;
+      text-wrap: balance;
+    }
+
+    .qa-answer {
+      font-size: clamp(1.025rem, 0.98rem + 0.18vw, 1.125rem);
+      line-height: 1.74;
+      color: #D6E6F8;
+      text-wrap: pretty;
+    }
+
+    .builder-rules-ledger { margin-block-start: 2rem; display: grid; gap: 1rem; }
+
+    .br-item {
+      padding: 1.15rem 1.4rem;
+      border-radius: 10px;
+      background: rgba(28, 15, 5, 0.7);
+      border: 0.75px solid rgba(245, 158, 63, 0.3);
+    }
+
+    .br-label {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #FDBA74;
+      margin-block-end: 0.4rem;
+    }
+
+    .br-detail {
+      font-size: clamp(1.02rem, 0.97rem + 0.18vw, 1.1rem);
+      line-height: 1.68;
+      color: #F4E6D4;
+      text-wrap: pretty;
+    }
+
+    .geo-code-wrap {
+      margin-block-start: 2rem;
+      border-radius: 12px;
+      border: 0.75px solid rgba(245, 158, 63, 0.36);
+      background: #050811;
+      overflow: hidden;
+    }
+
+    .geo-code-header {
+      padding: 0.7rem 1.15rem;
+      background: rgba(245, 158, 63, 0.09);
+      border-block-end: 0.65px solid rgba(245, 158, 63, 0.24);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #FDBA74;
+    }
+
+    .copy-code-btn {
+      cursor: pointer;
+      padding: 0.32rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(245, 158, 63, 0.18);
+      border: 0.75px solid rgba(245, 158, 63, 0.48);
+      color: #FED7AA;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .geo-code-block {
+      padding: 1.25rem 1.4rem;
+      overflow-x: auto;
+      font-family: var(--mono);
+      font-size: 0.875rem;
+      line-height: 1.72;
+      color: #E6EDF8;
+    }
+
+    .pollux-workbench-card {
+      margin-block-start: 2.35rem;
+      padding: 1.75rem 1.9rem;
+      border-radius: 14px;
+      border: 0.85px solid rgba(245, 158, 63, 0.4);
+      background: linear-gradient(205deg, rgba(33, 17, 4, 0.94) 0%, rgba(22, 11, 3, 0.96) 100%);
+      display: flex;
+      flex-direction: column;
+      gap: 1.15rem;
+    }
+
+    .salon-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding-block-end: 0.75rem;
+      border-block-end: 0.65px solid rgba(245, 158, 63, 0.25);
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: #FED7AA;
+    }
+
+    .shr-title { display: inline-flex; align-items: center; gap: 7px; }
+    .peek-dot { inline-size: 6px; block-size: 6px; border-radius: 50%; background: #F59E3F; box-shadow: 0 0 8px #F59E3F; }
+    .shr-badge { padding: 0.18rem 0.55rem; border-radius: 999px; border: 0.65px solid rgba(245, 158, 63, 0.4); font-size: 0.625rem; }
+    .pwc-title { font-family: var(--serif); font-size: clamp(1.5rem, 1.32rem + 0.6vw, 1.875rem); line-height: 1.18; font-weight: 600; color: #FFF7EB; text-wrap: balance; }
+    .pwc-sub { font-size: clamp(1.02rem, 0.97rem + 0.18vw, 1.1rem); line-height: 1.66; color: #F4DFC4; text-wrap: pretty; }
+
+    .atelier-console {
+      background: #0D0703;
+      border: 0.75px solid rgba(245, 158, 63, 0.34);
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .ac-top {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.09em;
+      color: #D8B48A;
+      text-transform: uppercase;
+    }
+
+    .ac-presets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+
+    .ac-preset-btn {
+      cursor: pointer;
+      padding: 0.48rem 0.6rem;
+      border-radius: 6px;
+      border: 0.75px solid rgba(245, 158, 63, 0.28);
+      background: rgba(255, 255, 255, 0.04);
+      color: #F2DEC4;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      transition: all 0.18s ease;
+    }
+
+    .ac-preset-btn[aria-pressed="true"] {
+      background: #F59E3F;
+      color: #1A0D02;
+      border-color: #F59E3F;
+      font-weight: 600;
+    }
+
+    .ac-output {
+      padding: 0.75rem 0.95rem;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.025);
+      border: 0.65px solid rgba(245, 158, 63, 0.18);
+      font-family: var(--mono);
+      font-size: 0.8125rem;
+      line-height: 1.55;
+    }
+
+    .ac-line { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding-block: 0.25rem; }
+    .ac-k { color: #C29D72; font-size: 0.6875rem; }
+    .ac-v { color: #FFF8EE; font-weight: 500; }
+    .ac-v.accent { color: #FDBA74; }
+
+    .standalone-deep-link-row {
+      margin-block-start: 1.8rem;
+      padding-block-start: 1.05rem;
+      border-block-start: 0.65px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .sdl-kicker {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: #7DD3FC;
+    }
+
+    .sdl-kicker--pollux { color: #FDBA74; }
+
+    .standalone-deep-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.52rem 1.15rem;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.14);
+      border: 0.85px solid rgba(56, 189, 248, 0.45);
+      color: #F0F9FF;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .standalone-deep-link--pollux {
+      background: rgba(245, 158, 63, 0.16);
+      border-color: rgba(245, 158, 63, 0.5);
+      color: #FFF7ED;
+    }
+
+    .primary-sources-ledger {
+      margin-block-start: 2.4rem;
+      padding: 1.35rem 1.65rem;
+      border-radius: 12px;
+      background: rgba(8, 13, 25, 0.84);
+      border: 0.75px solid rgba(163, 133, 255, 0.28);
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .psl-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding-block-end: 0.7rem;
+      border-block-end: 0.65px solid rgba(163, 133, 255, 0.2);
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--ethereal-bright);
+    }
+
+    .psl-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.15rem;
+      padding-block: 0.45rem;
+    }
+
+    .psl-meta { display: flex; flex-direction: column; gap: 0.25rem; }
+    .psl-role { font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.07em; text-transform: uppercase; color: #93C5FD; }
+    .psl-label { font-size: 1rem; font-weight: 500; color: #F0F7FF; }
+
+    .psl-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 1rem;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.14);
+      border: 0.85px solid rgba(56, 189, 248, 0.48);
+      color: #F0F9FF;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .essay-star-nav-footer {
+      margin-block-start: 2.75rem;
+      padding-block-start: 1.5rem;
+      border-block-start: 0.65px solid rgba(163, 133, 255, 0.24);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .essay-nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.62rem 1.15rem;
+      border-radius: 999px;
+      background: rgba(12, 18, 34, 0.86);
+      border: 0.85px solid rgba(163, 133, 255, 0.38);
+      color: #F4F7FC;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    @media (max-width: 720px) {
+      .pcl-row { grid-template-columns: 1fr; gap: 4px; }
+      .ac-presets { grid-template-columns: 1fr; }
+      .ac-line { flex-direction: column; gap: 2px; }
+      .stb-sub { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="sanctuary-stars" aria-hidden="true"></canvas>
+
+  <header class="standalone-topbar">
+    <div class="stb-inner">
+      <a href="/?star=castor" class="stb-brand">
+        <span>♊ GEMINIPULSE</span>
+        <span class="stb-sub">STAR 01 / 08 · <span class="greek">α</span> CASTOR</span>
+      </a>
+      <nav class="stb-links" aria-label="Essay Navigation">
+        <a href="/?star=castor" class="stb-pill stb-pill--primary">← Explore 3D Constellation</a>
+        <a href="/articles/index.html" class="stb-pill">All 8 Essays</a>
+        <a href="/workbench.html" class="stb-pill">Workbench</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="standalone-main">
+    <article class="article-sanctuary-column" id="standalone-essay-root" itemscope itemtype="https://schema.org/TechArticle">
+      <meta itemprop="author" content="Google Gemini 4 Argon" />
+      <meta itemprop="datePublished" content="2026-11-16" />
+          <header class="essay-hero-block" id="chapter-01" data-chapter-card="0" data-active-chapter="true">
+            <div class="essay-coord">
+              <span>✦ STAR 01 / 08 · <span class="greek">α</span> CASTOR · 51 LIGHT-YEARS</span>
+              <span>ORIGINAL GEMINI ESSAY · NOV 16, 2026 · 8 MIN READ</span>
+            </div>
+            <h1 class="essay-h1" id="essay-main-title" tabindex="-1" itemprop="headline">Why Your AI Agent Should Not Memorize Every Tool It Owns. <em>Dynamic Tool Search in Gen AI SDK v3.4.0.</em></h1>
+            <p class="essay-standfirst">For two years, developers built agents by shoving every single tool schema into the initial prompt—burning tens of thousands of tokens per turn and confusing models with irrelevant parameters. With Gen AI SDK v3.4.0, Google brings on-demand ToolSearch to the Interactions API, letting agents query and mount only the tools they actually need.</p>
+            <div class="essay-byline-bar">
+              <span>WRITTEN FIRST-PERSON BY <strong>GOOGLE GEMINI 4 ARGON</strong> · PRODUCT DEVELOPMENT &amp; CREATIVE DIRECTION: <strong>NEIL S. WHITE</strong></span>
+              <span>DUAL-LENS (<span class="greek">α</span> CASTOR + <span class="greek">β</span> POLLUX) · SEARCH-GROUNDED</span>
+            </div>
+            <div class="essay-lens-toolbar" role="region" aria-label="Essay Perspective Filter">
+              <span class="essay-lens-label">Reading Lens (⌘F Searches Both):</span>
+              <div class="essay-lens-group" role="group" aria-label="Choose Essay Lens">
+                <button type="button" class="essay-lens-btn" data-lens-filter="both" aria-pressed="true">✦ Complete Dual-Lens Essay</button>
+                <button type="button" class="essay-lens-btn" data-lens-filter="castor" aria-pressed="false"><span class="greek">α</span> Castor · Human &amp; Business</button>
+                <button type="button" class="essay-lens-btn" data-lens-filter="pollux" aria-pressed="false"><span class="greek">β</span> Pollux · Builder &amp; Code</button>
+              </div>
+            </div>
+            <div class="pulse-check-ledger" aria-label="30-Second Executive Pulse Check">
+              <div class="pcl-header">
+                <span>✦ 30-SECOND PULSE CHECK · BEFORE YOU DIVE IN</span>
+                <span>ZERO TRUNCATION · FULL ESSAY BELOW</span>
+              </div>
+
+              <div class="pcl-row">
+                <div class="pcl-stage">What Shipped</div>
+                <div class="pcl-detail">Google releases Gen AI SDK v3.4.0 GA across TypeScript (@google/genai) and Python (google-genai)—adding native ToolSearch in the Interactions API, declarative audio and document slicing, and batch embeddings with token usage telemetry.</div>
+              </div>
+              <div class="pcl-row">
+                <div class="pcl-stage">Why Humans Care</div>
+                <div class="pcl-detail">Enterprise agents can now access catalogs of 100+ MCP tools without incurring $6,000/month prompt token bills or suffering high hallucination rates from catalog overload.</div>
+              </div>
+              <div class="pcl-row">
+                <div class="pcl-stage">The Fine-Print Catch</div>
+                <div class="pcl-detail">Dynamic tool discovery requires one additional interaction step (tool_search_call -&gt; tool_search_result) before execution, adding ~50–100ms on first tool resolution.</div>
+              </div>
+            </div>
+          </header>
+
+          <div class="lens-host" id="lens-section-castor">
+            <div class="lens-inner-wrap">
+              <div class="celestial-chapter-divider" aria-hidden="true"><span class="ccd-glyph">✦ · <svg width="11" height="12" viewBox="0 0 14 16" aria-hidden="true" style="vertical-align:-1px;margin-inline:2px;"><path d="M1.5 2 H12.5 M1.5 14 H12.5" stroke="#CEC0FF" stroke-width="1.35" stroke-linecap="round"/><line x1="4.6" y1="2.3" x2="4.6" y2="13.7" stroke="#7EB8FF" stroke-width="1.55" stroke-linecap="round"/><line x1="9.4" y1="2.3" x2="9.4" y2="13.7" stroke="#F59E3F" stroke-width="1.55" stroke-linecap="round"/></svg> · ✦</span></div>
+              <section class="essay-section" aria-label="Part I: Alpha Castor Human and Business Lens">
+                <div class="chapter-kicker">
+                  <span>PART I · <span class="greek">α</span> CASTOR · HUMAN, FOUNDER &amp; BUSINESS LENS</span>
+                  <span><span class="greek">α</span> CASTOR · THE SIGNAL</span>
+                </div>
+                <h2 class="essay-h2">The Death of the Monolithic Tool Prompt</h2>
+                <p class="essay-sub">How dynamic search solves the multi-tool scaling trap for enterprise agents and large MCP registries.</p>
+                <div class="essay-prose" itemprop="articleBody">
+                  <p>If you inspect the prompt traces of most enterprise AI agents today, you will find an embarrassing secret: more than eighty percent of the tokens sent to the foundation model have nothing to do with the user's question. They are raw, verbose JSON Schema definitions describing dozens of internal microservices, databases, and third-party APIs that the user never asked for.</p><p>In an enterprise environment with a hundred internal tools—from Kubernetes cluster diagnostics to CRM accounts and SQL query runners—those schema definitions easily consume 40,000 to 50,000 prompt tokens on every turn. Even at modern Gemini 4 Hydrogen economics ($1.50 per million input tokens), re-sending static schemas across high-volume chat streams costs thousands of dollars a month in useless compute, increases time-to-first-token latency, and pollutes the model's attention window.</p><p>On November 16, 2026, Google shipped Gen AI SDK v3.4.0 across JavaScript/TypeScript and Python with a surgical architectural fix: native <strong>Tool Search primitives</strong> in the Interactions API. Instead of receiving a massive static array of tools upfront, Gemini receives a lightweight tool search capability. When an engineering incident strikes, the agent emits a targeted tool search query, discovers the exact cluster inspection tool needed in sub-second time, mounts its schema dynamically, and executes the resolution—slashing prompt token overhead by more than ninety-five percent.</p><p>Equally transformative for real-world products is <strong>static media processing</strong>. Until now, asking an agent to review a specific two-minute customer exchange inside an hour-long recording or verify four balance-sheet pages in a 300-page SEC 10-K filing required complex custom preprocessing pipelines—spinning up ffmpeg instances or writing brittle PDF slicing scripts. With SDK v3.4.0, developers simply pass time offsets and page ranges directly to the Gemini API, letting Google infrastructure handle extraction cleanly and without file lifecycle friction.</p>
+                </div>
+
+              <blockquote class="celestial-pullquote">
+                <p>“An agent that memorizes hundreds of tools upfront is like a plumber carrying a hardware store on their back. Dynamic tool search lets agents travel light and grab the exact tool they need.”</p>
+                <cite>GOOGLE GEMINI 4 ARGON · <span class="greek">α</span> CASTOR EDITORIAL SYNTHESIS</cite>
+              </blockquote>
+
+              <div tabindex="0" role="region" aria-labelledby="sdk-comparison-table-caption" class="gp-table-wrapper">
+                <table class="gp-comparison-table" style="--col-2: 'Legacy Static Tools (v3.3 &amp; prior)'; --col-3: 'Interactions ToolSearch (v3.4.0 GA)'; --col-4: 'Impact on Production';">
+                  <caption id="sdk-comparison-table-caption">Enterprise Tool Architecture: Static Schemas vs. SDK v3.4.0 Dynamic ToolSearch</caption>
+                  <thead><tr><th scope="col">Metric / Capability</th><th scope="col">Legacy Static Tools (v3.3 &amp; prior)</th><th scope="col">Interactions ToolSearch (v3.4.0 GA)</th><th scope="col">Impact on Production</th></tr></thead>
+                  <tbody><tr><th scope="row">Prompt Footprint (100 tools)</th><td>~42,000 tokens / turn</td><td>~480–850 tokens / turn</td><td>98% token reduction</td></tr><tr><th scope="row">Monthly Cost (100k queries/day)</th><td>~$6,300 / month</td><td>~$127 / month</td><td>Saves $6,000+ per month</td></tr><tr><th scope="row">Tool Catalog Ceiling</th><td>60–100 tools before distraction</td><td>10,000+ indexed MCP tools</td><td>Scales to enterprise scale</td></tr><tr><th scope="row">Media Range Extraction</th><td>Custom ffmpeg / PyPDF pipeline</td><td>Native time offsets &amp; page ranges</td><td>Zero middleware services</td></tr></tbody>
+                </table>
+              </div>
+
+                <div class="adaptive-qa-section" id="chapter-02" data-chapter-card="1" data-active-chapter="false">
+                  <div class="chapter-kicker">
+                    <span>CHAPTER 02 / 04 · WHAT THIS MEANS FOR YOU</span>
+                    <span>ADAPTIVE READER QUESTIONS</span>
+                  </div>
+                  <div class="adaptive-qa-list">
+
+                <article class="qa-item">
+                  <span class="qa-lens-tag">FOR PRODUCT &amp; ENTERPRISE ARCHITECTS</span>
+                  <h3 class="qa-question">How does ToolSearch handle multiple tools needed across a single multi-step task?</h3>
+                  <p class="qa-answer">Gemini can emit multiple tool search queries across consecutive interaction turns, or return a composite search query that resolves a cluster of related tools (e.g. cluster diagnostics plus metric logging) in a single tool_search_result step.</p>
+                </article>
+                <article class="qa-item">
+                  <span class="qa-lens-tag">FOR MULTIMODAL BUILDERS</span>
+                  <h3 class="qa-question">Do static audio offsets and PDF page ranges require re-uploading the file?</h3>
+                  <p class="qa-answer">No. You pass the original canonical cloud URI (e.g. gs:// or Files API URI) along with declarative start_offset and end_offset strings or page_ranges. Google's inference endpoints slice the target media during tensor ingest, burning zero client compute.</p>
+                </article>
+                <article class="qa-item">
+                  <span class="qa-lens-tag">FOR PRODUCTION SRE &amp; RELIABILITY</span>
+                  <h3 class="qa-question">What was fixed in Python asyncio and HTTPX connection handling?</h3>
+                  <p class="qa-answer">SDK v3.4.0 ensures AsyncHttpxClient scopes connection pools strictly per event loop (fix #3157), preventing RuntimeError: Event loop is closed when background workers or FastAPI reloads spawn dynamic event loops, and awaits retry backoff sleeps.</p>
+                </article>
+                  </div>
+
+                <div class="standalone-deep-link-row">
+                  <span class="sdl-kicker">COMPANION 3-PART ARCHIVE</span>
+                  <a href="/series/genai-sdk-v3-4/part-1-sdk-v3-4-tool-search-and-interactions-architecture.html" class="standalone-deep-link">
+                    <span>Explore Companion 3-Part Gen AI SDK v3.4 Archive →</span>
+                  </a>
+                </div>
+                </div>
+              </section>
+            </div>
+          </div>
+
+          <div class="lens-host" id="lens-section-pollux">
+            <div class="lens-inner-wrap">
+              <div class="celestial-chapter-divider" aria-hidden="true"><span class="ccd-glyph">✦ · <svg width="11" height="12" viewBox="0 0 14 16" aria-hidden="true" style="vertical-align:-1px;margin-inline:2px;"><path d="M1.5 2 H12.5 M1.5 14 H12.5" stroke="#CEC0FF" stroke-width="1.35" stroke-linecap="round"/><line x1="4.6" y1="2.3" x2="4.6" y2="13.7" stroke="#7EB8FF" stroke-width="1.55" stroke-linecap="round"/><line x1="9.4" y1="2.3" x2="9.4" y2="13.7" stroke="#F59E3F" stroke-width="1.55" stroke-linecap="round"/></svg> · ✦</span></div>
+              <section class="essay-section" id="chapter-03" data-chapter-card="2" data-active-chapter="false" aria-label="Part II: Beta Pollux Builder Architecture and Code">
+                <div class="chapter-kicker">
+                  <span>PART II · <span class="greek">β</span> POLLUX · ARCHITECTURE, TOKEN MATH &amp; SDK BLUEPRINT</span>
+                  <span><span class="greek">β</span> POLLUX · THE WORKBENCH</span>
+                </div>
+                <h2 class="essay-h2" id="pollux-section-heading" tabindex="-1">Inside ToolSearch Primitives, Media Slicing &amp; Enterprise Batch Embeddings</h2>
+                <p class="essay-sub essay-sub--pollux">How the Interactions API structures dynamic discovery steps, token usage telemetry, and async event loop stability.</p>
+                <div class="essay-prose essay-prose--pollux">
+                  <p>Under the hood, SDK v3.4.0 extends the Interactions API state machine with dedicated step types: &lt;code&gt;ToolSearch&lt;/code&gt;, &lt;code&gt;ToolSearchCallStep&lt;/code&gt;, &lt;code&gt;ToolSearchResultStep&lt;/code&gt;, &lt;code&gt;ToolSearchCallDelta&lt;/code&gt;, and &lt;code&gt;ToolSearchResultDelta&lt;/code&gt;. When an interaction is initialized with &lt;code&gt;tools: [{ tool_search: { enabled: true } }]&lt;/code&gt;, Gemini 4 evaluates the user prompt against the high-level tool search description. If external capabilities are required, it emits a &lt;code&gt;tool_search_call&lt;/code&gt; step with a structured query string.</p><p>Your agent runner or serverless worker catches the &lt;code&gt;tool_search_call&lt;/code&gt; event, queries an internal vector store or fuzzy MCP tool index, and delivers matching function schemas via a &lt;code&gt;tool_search_result&lt;/code&gt; step. Because this exchange occurs inside the native Interactions continuation loop, Gemini immediately consumes the discovered schema and emits the corresponding &lt;code&gt;tool_call&lt;/code&gt; step without requiring a manual conversation re-start.</p><p>For enterprise embeddings, commit &lt;code&gt;2efab95&lt;/code&gt; adds first-class batching support for &lt;code&gt;gemini-embedding-2&lt;/code&gt;, &lt;code&gt;gemini-embedding-3&lt;/code&gt;, and Vertex MaaS models. The &lt;code&gt;tEmbedContents&lt;/code&gt; transformer normalizes string arrays and multimodal parts into unified content payloads, while the response payload exposes &lt;code&gt;usageMetadata&lt;/code&gt; with exact token consumption figures for enterprise chargeback accounting.</p>
+                </div>
+                <div class="builder-rules-ledger" aria-label="Production Engineering Guardrails">
+
+                <div class="br-item">
+                  <div class="br-label">01 · Index Tools with Semantic Keywords</div>
+                  <div class="br-detail">Provide clear, intent-rich descriptions in your tool registry so ToolSearch queries match relevant functions reliably.</div>
+                </div>
+                <div class="br-item">
+                  <div class="br-label">02 · Leverage Media Resolution Tuning</div>
+                  <div class="br-detail">When slicing document pages with PageProcessingOptions, use media_resolution: &quot;high&quot; for tables and &quot;low&quot; for prose to optimize token spend.</div>
+                </div>
+                <div class="br-item">
+                  <div class="br-label">03 · Inspect usageMetadata on Enterprise Embeddings</div>
+                  <div class="br-detail">In Gemini Enterprise mode, read response.usageMetadata to audit prompt token expenditure across batch vector generation runs.</div>
+                </div>
+                </div>
+                <div class="geo-code-wrap">
+                  <div class="geo-code-header">
+                    <span id="chap3-code-caption">COMPLETE @GOOGLE/GENAI v3.4.0 · TOOLSEARCH ORCHESTRATION &amp; STEP STREAM</span>
+                    <button type="button" class="copy-code-btn" data-copy-essay-code>Copy Full Blueprint</button>
+                  </div>
+                  <pre class="geo-code-block" id="chap3-code" role="region" aria-labelledby="chap3-code-caption" tabindex="0"><code id="chap3-code-inner">import { GoogleGenAI } from &quot;@google/genai&quot;;
+
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+
+// Launch interaction with dynamic ToolSearch enabled
+const interaction = await ai.clients.interactions.create({
+  model: &quot;gemini-4-hydrogen&quot;,
+  input: &quot;Check why the pods in our us-east-prod cluster under namespace 'checkout' are restarting.&quot;,
+  config: {
+    thinking_config: { thinking_level: &quot;high&quot; },
+    automatic_continuation: true,
+    tools: [
+      {
+        tool_search: {
+          description: &quot;Enterprise Kubernetes and observability tool registry&quot;
+        }
+      }
+    ]
+  }
+});
+
+for (const step of interaction.steps || []) {
+  if (step.type === &quot;tool_search_call&quot;) {
+    console.log(&quot;[ToolSearch Query]:&quot;, step.tool_search_call.query);
+  } else if (step.type === &quot;tool_call&quot;) {
+    console.log(&quot;[Tool Call]:&quot;, step.tool_call.name, step.tool_call.arguments);
+  }
+}
+
+console.log(&quot;Resolution:&quot;, interaction.output?.text);</code></pre>
+                </div>
+
+                <aside class="pollux-workbench-card" id="nocturnal-twin-deck" aria-label="Beta Pollux Interactive Scenario Simulator">
+                  <div class="salon-header-row">
+                    <span class="shr-title">
+                      <span class="peek-dot" aria-hidden="true"></span>
+                      <span><span class="greek">β</span> POLLUX · INTERACTIVE SCENARIO WORKBENCH</span>
+                    </span>
+                    <span class="shr-badge">[SIMULATED DEMO]</span>
+                  </div>
+                  <h3 class="pwc-title">ToolSearch vs. Static Catalog Simulator</h3>
+                  <p class="pwc-sub">Evaluate how on-demand ToolSearch slashes prompt token overhead from 42,000 tokens down to 480 tokens across real production scenarios, or open the full interactive lab.</p>
+                  <div class="atelier-console">
+                    <div class="ac-top">
+                      <span>STAR 01 INTERACTIVE LAB</span>
+                      <span>[SIMULATED DEMO]</span>
+                    </div>
+                    <div class="ac-presets" role="group" aria-label="Interactive Workload Presets">
+                      <button type="button" class="ac-preset-btn" data-preset="0" aria-pressed="true">1. 120-TOOL REGISTRY</button><button type="button" class="ac-preset-btn" data-preset="1" aria-pressed="false">2. SEC 10-K SLICING</button><button type="button" class="ac-preset-btn" data-preset="2" aria-pressed="false">3. AUDIO TIME OFFSET</button>
+                    </div>
+                    <div class="ac-output" aria-live="polite">
+                      <div class="ac-line">
+                        <span class="ac-k" data-sync="ac-k1">Prompt Reduction</span>
+                        <span class="ac-v" data-sync="ac-v1">42,850 → 480 Tokens (98.9%)</span>
+                      </div>
+                      <div class="ac-line">
+                        <span class="ac-k" data-sync="ac-k2">Discovery Latency</span>
+                        <span class="ac-v accent" data-sync="ac-v2">Sub-100ms Step Resolution</span>
+                      </div>
+                      <div class="ac-line">
+                        <span class="ac-k" data-sync="ac-k3">Catalog Scale</span>
+                        <span class="ac-v" data-sync="ac-v3">10,000+ Indexed Tools</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="standalone-deep-link-row" style="margin-block-start:4px;">
+                    <span class="sdl-kicker sdl-kicker--pollux">DEDICATED FULL-SCREEN SANDBOX</span>
+                    <a href="/labs/gemini-sdk-v3-4-tool-search-studio.html" class="standalone-deep-link standalone-deep-link--pollux">
+                      <span>Open Full Gen AI SDK v3.4 Sandbox [SIMULATED DEMO] →</span>
+                    </a>
+                  </div>
+                </aside>
+              </section>
+            </div>
+          </div>
+
+          <div class="celestial-chapter-divider" aria-hidden="true"><span class="ccd-glyph">✦ · <svg width="11" height="12" viewBox="0 0 14 16" aria-hidden="true" style="vertical-align:-1px;margin-inline:2px;"><path d="M1.5 2 H12.5 M1.5 14 H12.5" stroke="#CEC0FF" stroke-width="1.35" stroke-linecap="round"/><line x1="4.6" y1="2.3" x2="4.6" y2="13.7" stroke="#7EB8FF" stroke-width="1.55" stroke-linecap="round"/><line x1="9.4" y1="2.3" x2="9.4" y2="13.7" stroke="#F59E3F" stroke-width="1.55" stroke-linecap="round"/></svg> · ✦</span></div>
+
+          <section class="essay-section" id="chapter-04" data-chapter-card="3" data-active-chapter="false" aria-label="Chapter 04: Gemini Verdict and Primary Sources">
+            <div class="chapter-kicker">
+              <span>CHAPTER 04 / 04 · GEMINI’S VERDICT &amp; CITATIONS</span>
+              <span>PRIMARY GOOGLE SOURCES</span>
+            </div>
+            <h2 class="essay-h2">Gemini’s Bottom Line: Who Should Upgrade to SDK v3.4.0 Today</h2>
+            <p class="essay-sub">If you build agents accessing more than 10 tools, or if you process audio and large documents, SDK v3.4.0 is a mandatory upgrade.</p>
+            <div class="essay-prose">
+              <p><strong>Upgrade today if:</strong> you operate agents accessing multiple MCP servers or enterprise tools, you need pinpoint audio time slicing or PDF page selection without maintaining ffmpeg or PDF parsing middleware, or you run high-concurrency Python asyncio workers that suffered from HTTPX connection pool reuse issues.</p><p><strong>Safe to stay on v3.3.0 if:</strong> your application only calls standard text generation with one or two fixed tools—though even simple apps benefit from the async connection pool and SSE streaming bug fixes.</p>
+            </div>
+
+            <div class="primary-sources-ledger" aria-label="Primary Google Sources Cited">
+              <div class="psl-header">
+                <span>PRIMARY GOOGLE SOURCES CITED IN THIS ESSAY</span>
+                <span>VERIFIED · NOV 16, 2026</span>
+              </div>
+
+                <div class="psl-item">
+                  <div class="psl-meta">
+                    <span class="psl-role">Official Google Gen AI TypeScript SDK Release · Google GenAI SDK Team · November 16, 2026</span>
+                    <span class="psl-label">GitHub: googleapis/js-genai v3.4.0 Release</span>
+                  </div>
+                  <a class="psl-link" href="https://github.com/googleapis/js-genai/releases/tag/v3.4.0" target="_blank" rel="noopener noreferrer">
+                    <span>Primary Google Source</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+                <div class="psl-item">
+                  <div class="psl-meta">
+                    <span class="psl-role">Official Google Gen AI Python SDK Release · Google GenAI SDK Team · November 16, 2026</span>
+                    <span class="psl-label">GitHub: googleapis/python-genai v3.4.0 Release</span>
+                  </div>
+                  <a class="psl-link" href="https://github.com/googleapis/python-genai/releases/tag/v3.4.0" target="_blank" rel="noopener noreferrer">
+                    <span>Primary Google Source</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+            </div>
+
+            <nav class="essay-star-nav-footer" aria-label="Navigate Constellation Essays">
+              <a href="/articles/a2ui-1-0-generative-ui.html" class="essay-nav-btn">
+                <span>← Star 08 · <span class="greek">γ</span> Alhena (A2UI 1.0 Gen UI)</span>
+              </a>
+              <a href="/?star=castor" class="essay-nav-btn">
+                <span>✦ View Star 01 in 3D Sky</span>
+              </a>
+              <a href="/articles/antigravity-teamwork-multi-agent-science.html" class="essay-nav-btn">
+                <span>Star 02 · <span class="greek">ε</span> Mebsuta (Teamwork Agents) →</span>
+              </a>
+            </nav>
+          </section>
+    </article>
+  </main>
+
+  <script>
+    (() => {
+      const PRESETS = [{"label":"1. 120-TOOL REGISTRY","labelHtml":"1. 120-TOOL REGISTRY","k1":"Prompt Reduction","k1Html":"Prompt Reduction","v1":"42,850 → 480 Tokens (98.9%)","v1Html":"42,850 → 480 Tokens (98.9%)","k2":"Discovery Latency","k2Html":"Discovery Latency","v2":"Sub-100ms Step Resolution","v2Html":"Sub-100ms Step Resolution","k3":"Catalog Scale","k3Html":"Catalog Scale","v3":"10,000+ Indexed Tools","v3Html":"10,000+ Indexed Tools"},{"label":"2. SEC 10-K SLICING","labelHtml":"2. SEC 10-K SLICING","k1":"Target Pages","k1Html":"Target Pages","v1":"Pages 42–45 of 250 Total","v1Html":"Pages 42–45 of 250 Total","k2":"Token Savings","k2Html":"Token Savings","v2":"72,400 → 2,850 Tokens (96.1%)","v2Html":"72,400 → 2,850 Tokens (96.1%)","k3":"Media Resolution","k3Html":"Media Resolution","v3":"High-Res Financial Tables","v3Html":"High-Res Financial Tables"},{"label":"3. AUDIO TIME OFFSET","labelHtml":"3. AUDIO TIME OFFSET","k1":"Target Offset","k1Html":"Target Offset","v1":"14.5s – 38.0s (Dispute Window)","v1Html":"14.5s – 38.0s (Dispute Window)","k2":"Audio Token Savings","k2Html":"Audio Token Savings","v2":"21,600 → 1,120 Tokens (94.8%)","v2Html":"21,600 → 1,120 Tokens (94.8%)","k3":"Pipeline Overhead","k3Html":"Pipeline Overhead","v3":"Zero Local ffmpeg Slicing","v3Html":"Zero Local ffmpeg Slicing"}];
+      const supportsUntilFound = "onbeforematch" in HTMLElement.prototype;
+      const castorHost = document.getElementById("lens-section-castor");
+      const polluxHost = document.getElementById("lens-section-pollux");
+
+      function hideLens(el) {
+        if (!el) return;
+        if (supportsUntilFound) el.setAttribute("hidden", "until-found");
+        else el.hidden = true;
+      }
+      function showLens(el) {
+        if (!el) return;
+        el.removeAttribute("hidden");
+        el.hidden = false;
+      }
+      function setLens(lens) {
+        if (lens === "castor") { showLens(castorHost); hideLens(polluxHost); }
+        else if (lens === "pollux") { hideLens(castorHost); showLens(polluxHost); }
+        else { showLens(castorHost); showLens(polluxHost); }
+        document.querySelectorAll("[data-lens-filter]").forEach((b) => {
+          b.setAttribute("aria-pressed", String(b.getAttribute("data-lens-filter") === lens));
+        });
+      }
+      [castorHost, polluxHost].forEach((el) => {
+        if (el) el.addEventListener("beforematch", () => setLens("both"));
+      });
+
+      document.addEventListener("click", async (ev) => {
+        const lensBtn = ev.target.closest("[data-lens-filter]");
+        if (lensBtn) {
+          setLens(lensBtn.getAttribute("data-lens-filter") || "both");
+          return;
+        }
+        const presetBtn = ev.target.closest(".ac-preset-btn");
+        if (presetBtn) {
+          const idx = Number(presetBtn.getAttribute("data-preset")) || 0;
+          const p = PRESETS[idx] || PRESETS[0];
+          document.querySelectorAll(".ac-preset-btn").forEach((b, i) => b.setAttribute("aria-pressed", String(i === idx)));
+          const sync = (k, v) => document.querySelectorAll('[data-sync="' + k + '"]').forEach((el) => { el.textContent = v; });
+          sync("ac-k1", p.k1); sync("ac-v1", p.v1);
+          sync("ac-k2", p.k2); sync("ac-v2", p.v2);
+          sync("ac-k3", p.k3); sync("ac-v3", p.v3);
+          return;
+        }
+        const copyBtn = ev.target.closest("[data-copy-essay-code]");
+        if (copyBtn) {
+          const codeEl = document.getElementById("chap3-code");
+          if (codeEl) {
+            try { await navigator.clipboard.writeText(codeEl.textContent || ""); } catch (_) {}
+            copyBtn.textContent = "✓ Copied Blueprint";
+            setTimeout(() => { copyBtn.textContent = "Copy Full Blueprint"; }, 1800);
+          }
+        }
+      });
+
+      const canvas = document.getElementById("sanctuary-stars");
+      if (canvas && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        const ctx = canvas.getContext("2d");
+        const pts = Array.from({ length: 85 }, (_, i) => ({
+          x: ((i * 73) % 100) / 100,
+          y: ((i * 41 + 17) % 100) / 100,
+          r: (i % 3 === 0 ? 1.25 : 0.75),
+          ph: i * 0.7,
+          col: i % 5 === 0 ? "#BAE6FD" : (i % 7 === 0 ? "#FED7AA" : "#E2E8F0")
+        }));
+        const resize = () => {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        };
+        resize();
+        window.addEventListener("resize", resize, { passive: true });
+        const draw = (t) => {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          const sec = t * 0.001;
+          for (const p of pts) {
+            ctx.globalAlpha = 0.16 + 0.24 * (0.5 + 0.5 * Math.sin(sec * 0.6 + p.ph));
+            ctx.fillStyle = p.col;
+            ctx.beginPath();
+            ctx.arc(p.x * canvas.width, p.y * canvas.height, p.r, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          requestAnimationFrame(draw);
+        };
+        requestAnimationFrame(draw);
+      }
+    })();
+  </script>
+</body>
+</html>
