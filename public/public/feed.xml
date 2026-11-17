@@ -12,6 +12,30 @@
   </author>
 
   <entry>
+    <title>A Robot in a Box to a Working Conveyor in an Afternoon. Inside Hydrogen Robotics. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/gemini-4-hydrogen-robotics-antigravity.html" />
+    <id>https://geminipulse.com/articles/gemini-4-hydrogen-robotics-antigravity.html</id>
+    <updated>2026-11-17T17:00:00.000Z</updated>
+    <summary>For years, building a physical AI application meant weeks of driver glue, camera calibration scripts, and disconnected simulators before a single grasp ran. On November 17, 2026, Google DeepMind’s Gemini Robotics team paired Gemini 4 Hydrogen’s embodied spatial reasoning with the new Robotics plugin for Google Antigravity.</summary>
+  </entry>
+
+  <entry>
+    <title>Stop Copying Bills Into Chat. Gemini Now Runs Tasks End-to-End. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/tasks-in-gemini-ap2-assistant.html" />
+    <id>https://geminipulse.com/articles/tasks-in-gemini-ap2-assistant.html</id>
+    <updated>2026-11-17T17:00:00.000Z</updated>
+    <summary>For years, personal AI assistants drafted polite emails and left you to sit on hold, log into utility portals, and type credit card numbers yourself. On November 17, 2026, Google flipped the toggle from passive chat to autonomous execution across six countries—and brought Google Wallet to iOS.</summary>
+  </entry>
+
+  <entry>
+    <title>Stop Maintaining Four Vector Pipelines. Inside EmbeddingGemma 2. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/embeddinggemma-2-technical-report.html" />
+    <id>https://geminipulse.com/articles/embeddinggemma-2-technical-report.html</id>
+    <updated>2026-11-17T17:00:00.000Z</updated>
+    <summary>Multimodal RAG usually forces teams into a messy compromise: separate encoders for text, images, audio, and video, or giant cloud-only models. On November 17, 2026, Google published the EmbeddingGemma 2 technical report (arXiv:2610.37364) showing how one compact open model outscores models up to 12x larger.</summary>
+  </entry>
+
+  <entry>
     <title>Your Agent Never Crashed—It Just Handed Over the Keys. Inside Agent Anomaly Detection. (Flagship Gemini Essay)</title>
     <link href="https://geminipulse.com/articles/agent-anomaly-detection-gtig.html" />
     <id>https://geminipulse.com/articles/agent-anomaly-detection-gtig.html</id>
@@ -52,27 +76,19 @@
   </entry>
 
   <entry>
-    <title>A CFO in Your Pocket—With Zero Power to Touch Your Money. (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/google-wallet-in-gemini.html" />
-    <id>https://geminipulse.com/articles/google-wallet-in-gemini.html</id>
-    <updated>2026-11-13T12:00:00.000Z</updated>
-    <summary>Connecting an AI model to your bank and card history sounds terrifying until you inspect the permission boundary Google drew. By pairing Plaid-backed transaction visibility and dynamic in-chat charts with a hard hardware-style read-only lock and an editable Memory Summary, Gemini solves the chore people hate most since Mint shut down.</summary>
+    <title>Google Launches Gemini 4 Hydrogen for Robotics &amp; Antigravity Robotics Plugin (Parts 1–3) + Robotics Studio [SIMULATED DEMO]</title>
+    <link href="https://geminipulse.com/series/hydrogen-robotics/part-1-hydrogen-robotics-and-antigravity-plugin.html" />
+    <id>https://geminipulse.com/series/hydrogen-robotics/part-1-hydrogen-robotics-and-antigravity-plugin.html</id>
+    <updated>2026-11-17T17:00:00Z</updated>
+    <summary>Direct primary-source breakdown of Google Developers Blog Nov 17, 2026 release: Gemini 4 Hydrogen scores 58 on Artificial Analysis Robotics 0.1 and beats Gemini Robotics ER 2 on ERQA, paired with the Antigravity Robotics plugin for 10-minute USB bring-up (I2RT YAM, SO-ARM101, FR3 Duo), MuJoCo vibe sim, and companion Robotics Studio Lab [SIMULATED DEMO].</summary>
   </entry>
 
   <entry>
-    <title>Gemini 4 Hydrogen Is Not the “Small” Model. It Is the Disciplined Workhorse. (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/gemini-4-hydrogen.html" />
-    <id>https://geminipulse.com/articles/gemini-4-hydrogen.html</id>
-    <updated>2026-11-12T17:00:00.000Z</updated>
-    <summary>Most model launches brag exclusively about leaderboard peaks while ignoring the two flaws that drive builders crazy in daily work: agonizing latency and over-eager agents that rewrite files you never asked them to touch. Gemini 4 Hydrogen changes the daily rhythm of software creation by pairing Argon-surpassing intelligence with 2.5x faster execution and an 81% drop in agent overreach.</summary>
-  </entry>
-
-  <entry>
-    <title>Thirteen Years After Google Glass, Eyewear Finally Learned Human Manners. (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/google-intelligent-eyewear.html" />
-    <id>https://geminipulse.com/articles/google-intelligent-eyewear.html</id>
-    <updated>2026-11-12T14:00:00.000Z</updated>
-    <summary>In 2013, Google Glass failed not because ambient computing was wrong, but because strapping a bare circuit board and camera above one eyebrow violated every unspoken rule of human fashion and bystander trust. Returning on December 10 with Samsung, Warby Parker, and Gentle Monster, Google solved the social contract first—and let Gemini Multimodal Live supply the brain.</summary>
+    <title>Google Rolls Out Tasks in Gemini Free Across 6 Countries: Calls, AP2 Checkout, Wallet on iOS &amp; Temporary Search Threads (Parts 1–3)</title>
+    <link href="https://geminipulse.com/series/tasks-in-gemini/part-1-tasks-in-gemini-and-agentic-architecture.html" />
+    <id>https://geminipulse.com/series/tasks-in-gemini/part-1-tasks-in-gemini-and-agentic-architecture.html</id>
+    <updated>2026-11-17T17:00:00Z</updated>
+    <summary>Direct primary-source breakdown of Google Blog Nov 17, 2026 launches: Tasks in Gemini powered by Gemini 4 Hydrogen inside hardware-isolated Agent Compute Engine microVMs, RCS &amp; email forwarding, parallel phone calls, AP2 tokenized Google Pay checkout, Google Wallet on iOS (U.S.), and global Temporary Threads in Search AI Mode.</summary>
   </entry>
 
   <entry>

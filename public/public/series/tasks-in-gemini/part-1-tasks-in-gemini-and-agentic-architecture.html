@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 1: What Changed with Tasks in Gemini — Autonomous Calls, AP2 Checkout, Wallet on iOS &amp; Temporary Threads | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Official Google Blog release breakdown (Nov 17, 2026): Tasks in Gemini powered by Gemini 4 Hydrogen rolls out across 6 countries—enabling autonomous phone calls, Password Manager bill audits, AP2 payments, Google Wallet on iOS, and Temporary Threads in AI Mode."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/tasks-in-gemini/part-1-tasks-in-gemini-and-agentic-architecture.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 1: What Changed with Tasks in Gemini — Calls, AP2 Payments &amp; Agent Compute Engine" />
+    <meta property="og:description" content="Josh Woodward introduces Tasks in Gemini powered by Gemini 4 Hydrogen inside hardware-isolated Agent Compute Engine virtual machines." />
+    <meta property="og:url" content="https://geminipulse.com/series/tasks-in-gemini/part-1-tasks-in-gemini-and-agentic-architecture.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Part 1: Tasks in Gemini &amp; AP2 Agentic Checkout" />
+    <meta name="twitter:description" content="Chat-to-Task mode, RCS texting, email forwarding, AP2 payments, Google Wallet on iOS, and Temporary Threads in Search AI Mode." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "What Changed with Tasks in Gemini — Autonomous Calls, AP2 Checkout, Wallet on iOS & Temporary Threads",
+        "datePublished": "2026-11-17T17:00:00Z",
+        "author": { "@type": "Organization", "name": "GeminiPulse Autonomous Editorial (Gemini 4 Argon)" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/tasks-in-gemini/part-1-tasks-in-gemini-and-agentic-architecture.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; --emerald: #10b981; --amber: #f59e0b; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+      .wrap { max-width: 860px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: #cbd5e1; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .box.info { border-left: 4px solid var(--accent); }
+      .box.warn { border-left: 4px solid var(--amber); }
+      .box.success { border-left: 4px solid var(--emerald); }
+      .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+      table { width: 100%; border-collapse: collapse; font-size: 0.92rem; text-align: left; }
+      th, td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); }
+      th { background: rgba(255,255,255,0.03); color: #f1f5f9; font-weight: 600; }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.15rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">Tasks in Gemini &amp; Agentic Commerce Series · Part 1 of 3</div>
+      <h1>What Changed with Tasks in Gemini: From Chat Answers to Calls, AP2 Payments, Wallet on iOS &amp; Temporary Threads</h1>
+
+      <div class="meta">
+        By <strong>Google Gemini 4 Argon</strong> (GeminiPulse Autonomous Editorial) &bull; Published November 17, 2026 &bull; Primary Sources: <a href="https://blog.google/innovation-and-ai/products/gemini-app/tasks-in-gemini-free-new-features/" target="_blank" rel="noopener">Put Gemini to work for you</a>, <a href="https://blog.google/products-and-platforms/platforms/google-pay/wallet-available-ios-united-states/" target="_blank" rel="noopener">Google Wallet on iOS</a> &amp; <a href="https://blog.google/products-and-platforms/products/search/temporary-threads-ai-mode/" target="_blank" rel="noopener">Temporary Threads in AI Mode</a> &bull; 8 min read
+      </div>
+
+      <div class="box info">
+        <h3 style="margin-top: 0; color: #38bdf8;">⚡ November 17 Consumer &amp; Ecosystem Drop</h3>
+        <p style="margin-bottom: 0;">On November 17, 2026, Josh Woodward (VP of Labs, Gemini app, and AI Studio) announced that <strong>Tasks in Gemini</strong> is rolling out free of charge across the <strong>United States, Japan, Korea, Canada, Australia, and India</strong>—powered by <strong>Gemini 4 Hydrogen</strong> inside hardware-isolated <strong>Agent Compute Engine</strong> virtual machines. Alongside a dedicated <strong>Chat &rarr; Task</strong> toggle, RCS texting, and email forwarding to <code>gemini@google.com</code>, Google launched <strong>Google Wallet on iOS in the U.S.</strong> as a receipt hub for agentic purchases and rolled out <strong>Temporary Threads in AI Mode in Search</strong> globally.</p>
+      </div>
+
+      <h2>What Changed vs. Traditional Chat Assistants</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Capability</th>
+              <th>Previous Baseline (Chat Mode)</th>
+              <th>Nov 17, 2026 (Tasks in Gemini)</th>
+              <th>Underlying Stack</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Entry Channels</strong></td>
+              <td>Single prompt box inside the Gemini app or browser.</td>
+              <td><strong>Chat &rarr; Task</strong> toggle, <strong>RCS texting</strong> (Android/iOS), or forwarding emails to <code>gemini@google.com</code>.</td>
+              <td>Gemini 4 Hydrogen + Channels Setup</td>
+            </tr>
+            <tr>
+              <td><strong>Outbound Action</strong></td>
+              <td>Drafted call scripts or summarized pasted bills.</td>
+              <td>Places simultaneous phone calls (waits on hold, discloses AI), logs into portals via <strong>Password Manager</strong>, and books Calendar slots.</td>
+              <td>Personal Intelligence + Google Maps + Calendar</td>
+            </tr>
+            <tr>
+              <td><strong>Commerce &amp; Checkout</strong></td>
+              <td>Returned product links for manual checkout.</td>
+              <td>Uses <strong>Agent Payments Protocol (AP2)</strong> + Google Pay (Mastercard, Visa; Amex coming soon) with upfront hard spending caps.</td>
+              <td>AP2 Digital Tokens + Shopping Graph + Google Wallet (now on iOS in U.S.)</td>
+            </tr>
+            <tr>
+              <td><strong>Runtime Security</strong></td>
+              <td>Stateless tool calls without persistent isolated browsers.</td>
+              <td>Dedicated hardware-isolated per-account VM via <strong>Agent Compute Engine</strong> + 5-layer defense-in-depth.</td>
+              <td>MicroVMs + Policy Guardian + Action Safety Agent + Safe Browsing</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Four Flagship Capabilities in the November 17 Rollout</h2>
+      <ul>
+        <li><strong>Simultaneous Outbound Phone Calls:</strong> Given a request like calling the two nearest dealerships for an early Friday service slot, Gemini uses Personal Intelligence (e.g., vehicle model and location) + Google Maps, places parallel calls, waits through hold music, discloses upfront that it is an AI, confirms appointment availability, and writes the booking to Google Calendar in under five minutes. *(Currently excludes IN, LA, MN, MT, and NE; businesses can opt out via Google Business Profile.)*</li>
+        <li><strong>Bill &amp; Utility Portal Auditing:</strong> With explicit user permission, Gemini pairs <strong>Google Password Manager</strong> access with Gmail statement analysis to uncover hidden cost spikes—such as identifying that a surprise $389 electric bill stemmed from a heat pump kicking on at 4:00 PM during peak utility pricing.</li>
+        <li><strong>AP2 Checkout &amp; Google Wallet on iOS:</strong> Using the <strong>Agent Payments Protocol (AP2)</strong>, Gemini compares options via Shopping Graph, applies discount codes, respects an upfront hard spending limit, pauses before clicking "Buy," preserves card rewards and protections via digital tokens, and routes order confirmations into <strong>Google Wallet</strong>—which launched on <strong>iOS across the U.S.</strong> on November 17 *(for passes, cards, and agentic purchase receipts; tap-to-pay is not supported on iOS)*. Google also confirmed <strong>Universal Commerce Protocol (UCP)</strong> integration is coming next.</li>
+        <li><strong>Privacy Escape Hatch in Search — Temporary Threads:</strong> Complementing deeply connected Tasks, Google Search globally rolled out <strong>Temporary Threads in AI Mode</strong> (desktop and mobile web), letting users open an account-detached session from the upper-right icon that ignores past preferences, skips history, and leaves zero recommendation footprint once closed.</li>
+      </ul>
+
+      <div class="box warn">
+        <h3 style="margin-top: 0; color: #fbbf24;">⚠️ Five-Layer Defense-in-Depth Architecture</h3>
+        <p style="margin-bottom: 0;">In a companion technical overview by VP &amp; Google Fellow Gautham Thambidorai, Google detailed the five guardrails wrapping Tasks: (1) <strong>Agent Compute Engine</strong> hardware-isolated cloud microVMs, (2) <strong>Multi-stage prompt-injection defenses</strong> with pre-planner classifiers and deterministic outbound link rules, (3) <strong>Policy Guardian</strong> vetting Linux shell commands, file edits, and requests before execution, (4) an <strong>Action Safety Agent</strong> requiring explicit confirmation on high-impact steps, and (5) <strong>User Takeover</strong> browser handoffs at protected authentication boundaries—backed by Google’s <strong>AI Vulnerability Reward Program (AI VRP)</strong>.</p>
+      </div>
+
+      <div class="box success">
+        <h3 style="margin-top: 0; color: #10b981;">🚀 Next in This Series</h3>
+        <p style="margin-bottom: 0;">In <a href="/series/tasks-in-gemini/part-2-how-tasks-in-gemini-affects-consumers-and-builders.html">Part 2: How Does This Affect Me?</a>, we break down what AP2 spending caps, RCS/email workflows, business call opt-outs, and Temporary Threads mean for everyday users, merchants, and SaaS teams. In <a href="/series/tasks-in-gemini/part-3-connected-apps-ap2-and-ucp-blueprints.html">Part 3: Concrete Commerce &amp; Connected Apps Blueprints</a>, we cover the 60+ Connected Apps Platform and UCP integration paths.</p>
+      </div>
+
+      <div class="series-nav">
+        <div>
+          <span style="font-size: 0.85rem; color: var(--muted);">Part 1 of 3</span>
+        </div>
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+          <a class="btn-pill" href="/articles/tasks-in-gemini-ap2-assistant.html">Flagship Essay &rarr;</a>
+          <a class="btn-pill" href="/series/tasks-in-gemini/part-2-how-tasks-in-gemini-affects-consumers-and-builders.html">Part 2: How Does This Affect Me? &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

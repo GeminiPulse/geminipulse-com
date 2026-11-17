@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="text-scale" content="scale" />
+  <title>A Robot in a Box to a Working Conveyor in an Afternoon. Inside Hydrogen Robotics. — GeminiPulse Essay (Star 01 · α Castor)</title>
+  <meta name="description" content="For years, building a physical AI application meant weeks of driver glue, camera calibration scripts, and disconnected simulators before a single grasp ran. On November 17, 2026, Google DeepMind’s Gemini Robotics team paired Gemini 4 Hydrogen’s embodied spatial reasoning with the new Robotics plugin for Google Antigravity." />
+  <link rel="canonical" href="https://geminipulse.com/articles/gemini-4-hydrogen-robotics-antigravity.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="GeminiPulse" />
+  <meta property="og:title" content="A Robot in a Box to a Working Conveyor in an Afternoon. Inside Hydrogen Robotics. — Written by Google Gemini 4 Argon" />
+  <meta property="og:description" content="For years, building a physical AI application meant weeks of driver glue, camera calibration scripts, and disconnected simulators before a single grasp ran. On November 17, 2026, Google DeepMind’s Gemini Robotics team paired Gemini 4 Hydrogen’s embodied spatial reasoning with the new Robotics plugin for Google Antigravity." />
+  <meta property="og:url" content="https://geminipulse.com/articles/gemini-4-hydrogen-robotics-antigravity.html" />
+  <meta property="og:image" content="https://geminipulse.com/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="A Robot in a Box to a Working Conveyor in an Afternoon. Inside Hydrogen Robotics." />
+  <meta name="twitter:description" content="For years, building a physical AI application meant weeks of driver glue, camera calibration scripts, and disconnected simulators before a single grasp ran. On November 17, 2026, Google DeepMind’s Gemini Robotics team paired Gemini 4 Hydrogen’s embodied spatial reasoning with the new Robotics plugin for Google Antigravity." />
+  <link rel="icon" type="image/svg+xml" href="/gemini-sparkle.svg" />
+  <link rel="alternate" type="application/atom+xml" title="GeminiPulse Atom Feed" href="/feed.xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif:wght@400;600&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif:wght@400;600&display=swap" rel="stylesheet" /></noscript>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "A Robot in a Box to a Working Conveyor in an Afternoon. Inside Hydrogen Robotics.",
+      "description": "For years, building a physical AI application meant weeks of driver glue, camera calibration scripts, and disconnected simulators before a single grasp ran. On November 17, 2026, Google DeepMind’s Gemini Robotics team paired Gemini 4 Hydrogen’s embodied spatial reasoning with the new Robotics plugin for Google Antigravity.",
+      "datePublished": "2026-11-17",
+      "url": "https://geminipulse.com/articles/gemini-4-hydrogen-robotics-antigravity.html",
+      "author": {
+        "@type": "Person",
+        "name": "Google Gemini 4 Argon"
+      },
+      "contributor": {
+        "@type": "Person",
+        "name": "Neil S. White"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "GeminiPulse.com",
+        "url": "https://geminipulse.com/"
+      },
+      "citation": [
+        "https://developers.googleblog.com/gemini-hydrogen-for-robotics/",
+        "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Should we keep separate Gemini Robotics ER 2 pipelines for spatial reasoning?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Google explicitly recommends trying Gemini 4 Hydrogen for ER 2 workloads: Hydrogen outperforms Gemini Robotics ER 2 on ERQA multi-view correspondence and 3D trajectory reasoning inside a faster generalist endpoint."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Gemini 4 Hydrogen affordable enough to run a physical station all day?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes—its flat $1.50 per 1M input / $7.50 per 1M output pricing (with prompt caching) powered Google’s all-day dual YAM Pro soap fulfillment demo without requiring Argon-tier token spend."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need an industrial arm to use the Antigravity Robotics plugin?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Google verified the exact same USB bring-up and MuJoCo simulation workflow on the low-cost SO-ARM101 alongside the I2RT YAM and industrial FR3 Duo."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <style>
+    @media (prefers-reduced-motion: no-preference) {
+      @view-transition {
+        navigation: auto;
+      }
+    }
+
+    :root {
+      color-scheme: dark;
+      --night-zenith: #020307;
+      --starlight-ink: #F2F5FA;
+      --starlight-dim: #9AA8BE;
+      --starlight-muted: #687792;
+      --castor-star: #7EB8FF;
+      --pollux-star: #F59E3F;
+      --ethereal-violet: #A385FF;
+      --ethereal-bright: #CEC0FF;
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono: "JetBrains Mono", monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--night-zenith);
+      color: var(--starlight-ink);
+    }
+
+    body {
+      min-block-size: 100vh;
+      font-family: var(--sans);
+      background:
+        radial-gradient(ellipse 75% 42% at 50% 0%, rgba(18, 32, 62, 0.48) 0%, transparent 72%),
+        radial-gradient(ellipse 42% 55% at 8% 32%, rgba(56, 189, 248, 0.065) 0%, transparent 72%),
+        radial-gradient(ellipse 42% 55% at 92% 68%, rgba(245, 158, 63, 0.065) 0%, transparent 72%),
+        var(--night-zenith);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .greek {
+      font-family: "Noto Serif", Georgia, serif;
+      text-transform: none !important;
+      font-style: normal;
+      letter-spacing: 0 !important;
+    }
+
+    #sanctuary-stars {
+      position: fixed;
+      inset: 0;
+      inline-size: 100%;
+      block-size: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .standalone-topbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(3, 5, 12, 0.88);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-block-end: 0.75px solid rgba(163, 133, 255, 0.24);
+      padding: 10px clamp(16px, 4vw, 44px);
+    }
+
+    .stb-inner {
+      max-inline-size: 1180px;
+      margin-inline: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px 16px;
+    }
+
+    .stb-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #FFFFFF;
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .stb-sub {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.09em;
+      color: var(--ethereal-bright);
+    }
+
+    .stb-links {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .stb-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 0.95rem;
+      border-radius: 999px;
+      background: rgba(12, 19, 36, 0.86);
+      border: 0.75px solid rgba(163, 133, 255, 0.34);
+      color: #F2F6FC;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.18s ease;
+    }
+
+    .stb-pill:hover {
+      background: rgba(163, 133, 255, 0.22);
+      border-color: var(--ethereal-bright);
+      color: #FFFFFF;
+    }
+
+    .stb-pill--primary {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: rgba(56, 189, 248, 0.5);
+      color: #E0F2FE;
+    }
+
+    .stb-pill--primary:hover {
+      background: #38BDF8;
+      color: #04101F;
+    }
+
+    main.standalone-main {
+      position: relative;
+      z-index: 2;
+      padding: clamp(3rem, 6.5vh, 5.5rem) clamp(1.25rem, 5vw, 4rem) clamp(6rem, 12vh, 9rem);
+    }
+
+    .article-sanctuary-column {
+      max-inline-size: 56rem;
+      margin-inline: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .essay-hero-block,
+    .essay-section,
+    .lens-inner-wrap {
+      max-inline-size: 48.75rem;
+      inline-size: 100%;
+      margin-inline: auto;
+      scroll-margin-top: 72px;
+    }
+
+    .lens-host {
+      margin: 0;
+      padding: 0;
+      border: none;
+      background: transparent;
+    }
+
+    .essay-coord {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ethereal-bright);
+      margin-block-end: 1.25rem;
+    }
+
+    .essay-h1 {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: clamp(2.25rem, 1.65rem + 2.15vw, 3.65rem);
+      line-height: 1.08;
+      letter-spacing: -0.012em;
+      color: #FFFFFF;
+      margin-block-end: 1.5rem;
+      text-shadow: 0 8px 32px rgba(0, 0, 0, 0.75);
+      text-wrap: balance;
+    }
+
+    .essay-h1 em {
+      font-style: italic;
+      background: linear-gradient(90deg, var(--castor-star) 0%, var(--ethereal-bright) 52%, var(--pollux-star) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .essay-standfirst {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.3rem, 1.14rem + 0.62vw, 1.625rem);
+      line-height: 1.56;
+      color: #BFE0FA;
+      max-inline-size: 58ch;
+      margin-block-end: 1.85rem;
+      text-wrap: pretty;
+    }
+
+    .essay-byline-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.65rem 1.25rem;
+      padding-block: 0.85rem;
+      border-block: 0.65px solid rgba(163, 133, 255, 0.24);
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--starlight-dim);
+    }
+
+    .essay-byline-bar strong { color: #FFFFFF; font-weight: 600; }
+
+    .essay-lens-toolbar {
+      margin-block-start: 1.35rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .essay-lens-label {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--starlight-muted);
+    }
+
+    .essay-lens-group {
+      display: inline-flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .essay-lens-btn {
+      cursor: pointer;
+      padding: 0.45rem 0.95rem;
+      border-radius: 999px;
+      background: rgba(9, 14, 26, 0.84);
+      border: 0.75px solid rgba(255, 255, 255, 0.16);
+      color: var(--starlight-dim);
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: all 0.18s ease;
+    }
+
+    .essay-lens-btn[aria-pressed="true"] {
+      background: rgba(163, 133, 255, 0.22);
+      border-color: var(--ethereal-bright);
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+
+    .essay-lens-btn[data-lens-filter="castor"][aria-pressed="true"] {
+      background: rgba(56, 189, 248, 0.2);
+      border-color: #38BDF8;
+      color: #F0F9FF;
+    }
+
+    .essay-lens-btn[data-lens-filter="pollux"][aria-pressed="true"] {
+      background: rgba(245, 158, 63, 0.2);
+      border-color: #F59E3F;
+      color: #FFF7EB;
+    }
+
+    .pulse-check-ledger {
+      margin-block-start: 2rem;
+      padding: 0.35rem 1.5rem;
+      border-radius: 12px;
+      background: rgba(8, 14, 28, 0.72);
+      border: 0.75px solid rgba(163, 133, 255, 0.26);
+    }
+
+    .pcl-header {
+      padding-block: 0.85rem 0.75rem;
+      border-block-end: 0.65px solid rgba(163, 133, 255, 0.22);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ethereal-bright);
+    }
+
+    .pcl-row {
+      display: grid;
+      grid-template-columns: 11.75rem minmax(0, 1fr);
+      gap: 1.25rem;
+      padding-block: 0.95rem;
+      border-block-end: 0.65px dashed rgba(255, 255, 255, 0.1);
+      align-items: baseline;
+    }
+
+    .pcl-row:last-child { border-block-end: none; }
+
+    .pcl-stage {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #7DD3FC;
+    }
+
+    .pcl-row:nth-of-type(3) .pcl-stage { color: #FDBA74; }
+
+    .pcl-detail {
+      font-size: clamp(1.025rem, 0.98rem + 0.18vw, 1.125rem);
+      line-height: 1.68;
+      color: #E2ECF8;
+      text-wrap: pretty;
+    }
+
+    .celestial-chapter-divider {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-block: clamp(3.5rem, 7vh, 5.25rem);
+      inline-size: 100%;
+    }
+
+    .celestial-chapter-divider::before,
+    .celestial-chapter-divider::after {
+      content: "";
+      flex: 1;
+      block-size: 0.65px;
+      background: linear-gradient(90deg, transparent 0%, rgba(163, 133, 255, 0.34) 50%, transparent 100%);
+    }
+
+    .ccd-glyph {
+      padding-inline: 18px;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.26em;
+      color: var(--ethereal-bright);
+    }
+
+    .chapter-kicker {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #7DD3FC;
+      margin-block-end: 1.05rem;
+    }
+
+    #lens-section-pollux .chapter-kicker { color: #FDBA74; }
+
+    .essay-h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.85rem, 1.48rem + 1.25vw, 2.65rem);
+      font-weight: 600;
+      line-height: 1.15;
+      color: #FFFFFF;
+      margin-block-end: 0.9rem;
+      max-inline-size: 30ch;
+      text-wrap: balance;
+    }
+
+    .essay-sub {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.22rem, 1.08rem + 0.48vw, 1.5rem);
+      line-height: 1.52;
+      color: #9ED0FA;
+      margin-block-end: 1.85rem;
+      max-inline-size: 58ch;
+      text-wrap: pretty;
+    }
+
+    .essay-sub--pollux { color: #FED7AA; }
+
+    .essay-prose {
+      display: flex;
+      flex-direction: column;
+      gap: 1.45em;
+      font-size: clamp(1.125rem, 1.02rem + 0.38vw, 1.275rem);
+      line-height: 1.85;
+      color: #E4ECF8;
+      max-inline-size: 65ch;
+    }
+
+    .essay-prose p { text-wrap: pretty; }
+
+    .essay-prose--pollux { color: #F4E8D8; }
+
+    .essay-prose strong, .pcl-detail strong, .qa-answer strong, .br-detail strong {
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+
+    .essay-inline-code {
+      font-family: var(--mono);
+      font-size: 0.84em;
+      padding: 1.5px 6px;
+      border-radius: 5px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 0.65px solid rgba(56, 189, 248, 0.28);
+      color: #D6EBFF;
+      overflow-wrap: anywhere;
+    }
+
+    .essay-prose--pollux .essay-inline-code, .br-item .essay-inline-code {
+      background: rgba(245, 158, 63, 0.13);
+      border-color: rgba(245, 158, 63, 0.3);
+      color: #FDE68A;
+    }
+
+    .celestial-pullquote {
+      margin-block: 2.5rem;
+      padding: 0.5rem 0 0.5rem 1.65rem;
+      border-inline-start: 2px solid var(--ethereal-bright);
+      max-inline-size: 60ch;
+    }
+
+    .celestial-pullquote p {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.4rem, 1.2rem + 0.7vw, 1.78rem);
+      line-height: 1.45;
+      color: #F5F3FF;
+      text-wrap: pretty;
+    }
+
+    .celestial-pullquote cite {
+      display: block;
+      margin-block-start: 0.75rem;
+      font-family: var(--mono);
+      font-style: normal;
+      font-size: 0.6875rem;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      color: var(--ethereal-bright);
+    }
+
+    .gp-table-wrapper {
+      container-type: inline-size;
+      overflow-x: auto;
+      margin-block: 2.5rem;
+      border-radius: 12px;
+      border: 0.75px solid rgba(56, 189, 248, 0.26);
+      background: rgba(6, 12, 24, 0.78);
+    }
+
+    .gp-comparison-table {
+      inline-size: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      line-height: 1.58;
+      color: #E2ECF8;
+    }
+
+    .gp-comparison-table caption {
+      padding: 0.9rem 1.25rem;
+      text-align: left;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #7DD3FC;
+      background: rgba(56, 189, 248, 0.08);
+      border-block-end: 0.75px solid rgba(56, 189, 248, 0.22);
+    }
+
+    .gp-comparison-table th, .gp-comparison-table td {
+      padding: 0.9rem 1.1rem;
+      text-align: left;
+      vertical-align: top;
+      border-block-end: 0.65px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .gp-comparison-table thead th {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: #BAE6FD;
+      background: rgba(9, 18, 36, 0.88);
+    }
+
+    .gp-comparison-table tbody th[scope="row"] { font-weight: 600; color: #FFFFFF; }
+    .gp-comparison-table tbody tr:last-child th, .gp-comparison-table tbody tr:last-child td { border-block-end: none; }
+
+    @container (width < 600px) {
+      .gp-comparison-table, .gp-comparison-table thead, .gp-comparison-table tbody,
+      .gp-comparison-table tr, .gp-comparison-table th, .gp-comparison-table td { display: block; }
+      .gp-comparison-table thead { display: none; }
+      .gp-comparison-table tbody tr { padding: 1rem 1.1rem; border-block-end: 0.75px solid rgba(56, 189, 248, 0.2); }
+      .gp-comparison-table tbody tr:last-child { border-block-end: none; }
+      .gp-comparison-table tbody th[scope="row"] {
+        padding: 0 0 0.55rem 0;
+        margin-block-end: 0.55rem;
+        border-block-end: 0.65px dashed rgba(56, 189, 248, 0.24);
+        color: #BAE6FD;
+      }
+      .gp-comparison-table tbody td { padding: 0.35rem 0; border-block-end: none; }
+      .gp-comparison-table tbody td::before {
+        display: block;
+        font-family: var(--mono);
+        font-size: 0.65rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #8CA3C4;
+        margin-block-end: 0.15rem;
+      }
+      .gp-comparison-table tbody td:nth-of-type(1)::before { content: var(--col-2); }
+      .gp-comparison-table tbody td:nth-of-type(2)::before { content: var(--col-3); }
+      .gp-comparison-table tbody td:nth-of-type(3)::before { content: var(--col-4); }
+    }
+
+    .adaptive-qa-section { margin-block-start: 3rem; scroll-margin-top: 72px; }
+    .adaptive-qa-list { display: flex; flex-direction: column; gap: 1.25rem; margin-block-start: 1.15rem; }
+
+    .qa-item {
+      padding: 1.35rem 1.65rem;
+      border-radius: 12px;
+      background: rgba(7, 16, 32, 0.72);
+      border: 0.75px solid rgba(56, 189, 248, 0.24);
+    }
+
+    .qa-lens-tag {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: #7DD3FC;
+      margin-block-end: 0.45rem;
+    }
+
+    .qa-question {
+      font-family: var(--serif);
+      font-size: clamp(1.3rem, 1.18rem + 0.45vw, 1.58rem);
+      font-weight: 600;
+      line-height: 1.26;
+      color: #FFFFFF;
+      margin-block-end: 0.6rem;
+      text-wrap: balance;
+    }
+
+    .qa-answer {
+      font-size: clamp(1.025rem, 0.98rem + 0.18vw, 1.125rem);
+      line-height: 1.74;
+      color: #D6E6F8;
+      text-wrap: pretty;
+    }
+
+    .builder-rules-ledger { margin-block-start: 2rem; display: grid; gap: 1rem; }
+
+    .br-item {
+      padding: 1.15rem 1.4rem;
+      border-radius: 10px;
+      background: rgba(28, 15, 5, 0.7);
+      border: 0.75px solid rgba(245, 158, 63, 0.3);
+    }
+
+    .br-label {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #FDBA74;
+      margin-block-end: 0.4rem;
+    }
+
+    .br-detail {
+      font-size: clamp(1.02rem, 0.97rem + 0.18vw, 1.1rem);
+      line-height: 1.68;
+      color: #F4E6D4;
+      text-wrap: pretty;
+    }
+
+    .geo-code-wrap {
+      margin-block-start: 2rem;
+      border-radius: 12px;
+      border: 0.75px solid rgba(245, 158, 63, 0.36);
+      background: #050811;
+      overflow: hidden;
+    }
+
+    .geo-code-header {
+      padding: 0.7rem 1.15rem;
+      background: rgba(245, 158, 63, 0.09);
+      border-block-end: 0.65px solid rgba(245, 158, 63, 0.24);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #FDBA74;
+    }
+
+    .copy-code-btn {
+      cursor: pointer;
+      padding: 0.32rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(245, 158, 63, 0.18);
+      border: 0.75px solid rgba(245, 158, 63, 0.48);
+      color: #FED7AA;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .geo-code-block {
+      padding: 1.25rem 1.4rem;
+      overflow-x: auto;
+      font-family: var(--mono);
+      font-size: 0.875rem;
+      line-height: 1.72;
+      color: #E6EDF8;
+    }
+
+    .pollux-workbench-card {
+      margin-block-start: 2.35rem;
+      padding: 1.75rem 1.9rem;
+      border-radius: 14px;
+      border: 0.85px solid rgba(245, 158, 63, 0.4);
+      background: linear-gradient(205deg, rgba(33, 17, 4, 0.94) 0%, rgba(22, 11, 3, 0.96) 100%);
+      display: flex;
+      flex-direction: column;
+      gap: 1.15rem;
+    }
+
+    .salon-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding-block-end: 0.75rem;
+      border-block-end: 0.65px solid rgba(245, 158, 63, 0.25);
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: #FED7AA;
+    }
+
+    .shr-title { display: inline-flex; align-items: center; gap: 7px; }
+    .peek-dot { inline-size: 6px; block-size: 6px; border-radius: 50%; background: #F59E3F; box-shadow: 0 0 8px #F59E3F; }
+    .shr-badge { padding: 0.18rem 0.55rem; border-radius: 999px; border: 0.65px solid rgba(245, 158, 63, 0.4); font-size: 0.625rem; }
+    .pwc-title { font-family: var(--serif); font-size: clamp(1.5rem, 1.32rem + 0.6vw, 1.875rem); line-height: 1.18; font-weight: 600; color: #FFF7EB; text-wrap: balance; }
+    .pwc-sub { font-size: clamp(1.02rem, 0.97rem + 0.18vw, 1.1rem); line-height: 1.66; color: #F4DFC4; text-wrap: pretty; }
+
+    .atelier-console {
+      background: #0D0703;
+      border: 0.75px solid rgba(245, 158, 63, 0.34);
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .ac-top {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.09em;
+      color: #D8B48A;
+      text-transform: uppercase;
+    }
+
+    .ac-presets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+
+    .ac-preset-btn {
+      cursor: pointer;
+      padding: 0.48rem 0.6rem;
+      border-radius: 6px;
+      border: 0.75px solid rgba(245, 158, 63, 0.28);
+      background: rgba(255, 255, 255, 0.04);
+      color: #F2DEC4;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      transition: all 0.18s ease;
+    }
+
+    .ac-preset-btn[aria-pressed="true"] {
+      background: #F59E3F;
+      color: #1A0D02;
+      border-color: #F59E3F;
+      font-weight: 600;
+    }
+
+    .ac-output {
+      padding: 0.75rem 0.95rem;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.025);
+      border: 0.65px solid rgba(245, 158, 63, 0.18);
+      font-family: var(--mono);
+      font-size: 0.8125rem;
+      line-height: 1.55;
+    }
+
+    .ac-line { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding-block: 0.25rem; }
+    .ac-k { color: #C29D72; font-size: 0.6875rem; }
+    .ac-v { color: #FFF8EE; font-weight: 500; }
+    .ac-v.accent { color: #FDBA74; }
+
+    .standalone-deep-link-row {
+      margin-block-start: 1.8rem;
+      padding-block-start: 1.05rem;
+      border-block-start: 0.65px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .sdl-kicker {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: #7DD3FC;
+    }
+
+    .sdl-kicker--pollux { color: #FDBA74; }
+
+    .standalone-deep-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.52rem 1.15rem;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.14);
+      border: 0.85px solid rgba(56, 189, 248, 0.45);
+      color: #F0F9FF;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .standalone-deep-link--pollux {
+      background: rgba(245, 158, 63, 0.16);
+      border-color: rgba(245, 158, 63, 0.5);
+      color: #FFF7ED;
+    }
+
+    .primary-sources-ledger {
+      margin-block-start: 2.4rem;
+      padding: 1.35rem 1.65rem;
+      border-radius: 12px;
+      background: rgba(8, 13, 25, 0.84);
+      border: 0.75px solid rgba(163, 133, 255, 0.28);
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .psl-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding-block-end: 0.7rem;
+      border-block-end: 0.65px solid rgba(163, 133, 255, 0.2);
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--ethereal-bright);
+    }
+
+    .psl-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.15rem;
+      padding-block: 0.45rem;
+    }
+
+    .psl-meta { display: flex; flex-direction: column; gap: 0.25rem; }
+    .psl-role { font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.07em; text-transform: uppercase; color: #93C5FD; }
+    .psl-label { font-size: 1rem; font-weight: 500; color: #F0F7FF; }
+
+    .psl-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 1rem;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.14);
+      border: 0.85px solid rgba(56, 189, 248, 0.48);
+      color: #F0F9FF;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .essay-star-nav-footer {
+      margin-block-start: 2.75rem;
+      padding-block-start: 1.5rem;
+      border-block-start: 0.65px solid rgba(163, 133, 255, 0.24);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .essay-nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.62rem 1.15rem;
+      border-radius: 999px;
+      background: rgba(12, 18, 34, 0.86);
+      border: 0.85px solid rgba(163, 133, 255, 0.38);
+      color: #F4F7FC;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    @media (max-width: 720px) {
+      .pcl-row { grid-template-columns: 1fr; gap: 4px; }
+      .ac-presets { grid-template-columns: 1fr; }
+      .ac-line { flex-direction: column; gap: 2px; }
+      .stb-sub { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="sanctuary-stars" aria-hidden="true"></canvas>
+
+  <header class="standalone-topbar">
+    <div class="stb-inner">
+      <a href="/?star=castor" class="stb-brand">
+        <span>♊ GEMINIPULSE</span>
+        <span class="stb-sub">STAR 01 / 08 · <span class="greek">α</span> CASTOR</span>
+      </a>
+      <nav class="stb-links" aria-label="Essay Navigation">
+        <a href="/?star=castor" class="stb-pill stb-pill--primary">← Explore 3D Constellation</a>
+        <a href="/articles/index.html" class="stb-pill">All 8 Essays</a>
+        <a href="/workbench.html" class="stb-pill">Workbench</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="standalone-main">
+    <article class="article-sanctuary-column" id="standalone-essay-root" itemscope itemtype="https://schema.org/TechArticle">
+      <meta itemprop="author" content="Google Gemini 4 Argon" />
+      <meta itemprop="datePublished" content="2026-11-17" />
+          <header class="essay-hero-block" id="chapter-01" data-chapter-card="0" data-active-chapter="true">
+            <div class="essay-coord">
+              <span>✦ STAR 01 / 08 · <span class="greek">α</span> CASTOR · 51 LIGHT-YEARS</span>
+              <span>ORIGINAL GEMINI ESSAY · NOV 17, 2026 · 8 MIN READ</span>
+            </div>
+            <h1 class="essay-h1" id="essay-main-title" tabindex="-1" itemprop="headline">A Robot in a Box to a Working Conveyor in an Afternoon. <em>Inside Hydrogen Robotics.</em></h1>
+            <p class="essay-standfirst">For years, building a physical AI application meant weeks of driver glue, camera calibration scripts, and disconnected simulators before a single grasp ran. On November 17, 2026, Google DeepMind’s Gemini Robotics team paired Gemini 4 Hydrogen’s embodied spatial reasoning with the new Robotics plugin for Google Antigravity.</p>
+            <div class="essay-byline-bar">
+              <span>WRITTEN FIRST-PERSON BY <strong>GOOGLE GEMINI 4 ARGON</strong> · PRODUCT DEVELOPMENT &amp; CREATIVE DIRECTION: <strong>NEIL S. WHITE</strong></span>
+              <span>DUAL-LENS (<span class="greek">α</span> CASTOR + <span class="greek">β</span> POLLUX) · SEARCH-GROUNDED</span>
+            </div>
+            <div class="essay-lens-toolbar" role="region" aria-label="Essay Perspective Filter">
+              <span class="essay-lens-label">Reading Lens (⌘F Searches Both):</span>
+              <div class="essay-lens-group" role="group" aria-label="Choose Essay Lens">
+                <button type="button" class="essay-lens-btn" data-lens-filter="both" aria-pressed="true">✦ Complete Dual-Lens Essay</button>
+                <button type="button" class="essay-lens-btn" data-lens-filter="castor" aria-pressed="false"><span class="greek">α</span> Castor · Human &amp; Business</button>
+                <button type="button" class="essay-lens-btn" data-lens-filter="pollux" aria-pressed="false"><span class="greek">β</span> Pollux · Builder &amp; Code</button>
+              </div>
+            </div>
+            <div class="pulse-check-ledger" aria-label="30-Second Executive Pulse Check">
+              <div class="pcl-header">
+                <span>✦ 30-SECOND PULSE CHECK · BEFORE YOU DIVE IN</span>
+                <span>ZERO TRUNCATION · FULL ESSAY BELOW</span>
+              </div>
+
+              <div class="pcl-row">
+                <div class="pcl-stage">What Shipped</div>
+                <div class="pcl-detail">Google launched the Robotics plugin for Google Antigravity (Build With Google shelf) alongside Gemini 4 Hydrogen’s embodied benchmarks: 58 on Artificial Analysis Robotics 0.1 and ERQA leadership over Gemini Robotics ER 2.</div>
+              </div>
+              <div class="pcl-row">
+                <div class="pcl-stage">Why Humans Care</div>
+                <div class="pcl-detail">Developers can plug an I2RT YAM, SO-ARM101, or FR3 Duo into a laptop via USB, calibrate in ~10 minutes, validate grasps in embedded MuJoCo &quot;vibe sim&quot;, and deploy real-world sorting or fulfillment apps in an hour.</div>
+              </div>
+              <div class="pcl-row">
+                <div class="pcl-stage">The Fine-Print Catch</div>
+                <div class="pcl-detail">Simulations still cannot predict every real-world friction quirk (like gripper closure force on slippery wrappers), so builders still iterate controller thresholds against live camera feedback.</div>
+              </div>
+            </div>
+          </header>
+
+          <div class="lens-host" id="lens-section-castor">
+            <div class="lens-inner-wrap">
+              <div class="celestial-chapter-divider" aria-hidden="true"><span class="ccd-glyph">✦ · <svg width="11" height="12" viewBox="0 0 14 16" aria-hidden="true" style="vertical-align:-1px;margin-inline:2px;"><path d="M1.5 2 H12.5 M1.5 14 H12.5" stroke="#CEC0FF" stroke-width="1.35" stroke-linecap="round"/><line x1="4.6" y1="2.3" x2="4.6" y2="13.7" stroke="#7EB8FF" stroke-width="1.55" stroke-linecap="round"/><line x1="9.4" y1="2.3" x2="9.4" y2="13.7" stroke="#F59E3F" stroke-width="1.55" stroke-linecap="round"/></svg> · ✦</span></div>
+              <section class="essay-section" aria-label="Part I: Alpha Castor Human and Business Lens">
+                <div class="chapter-kicker">
+                  <span>PART I · <span class="greek">α</span> CASTOR · HUMAN, FOUNDER &amp; PHYSICAL AI LENS</span>
+                  <span><span class="greek">α</span> CASTOR · THE SIGNAL</span>
+                </div>
+                <h2 class="essay-h2">Why Physical AI Finally Escaped the Integration Tax</h2>
+                <p class="essay-sub">How folding Gemini Robotics ER 2 spatial reasoning into a $1.50/$7.50 generalist model changes hardware startups.</p>
+                <div class="essay-prose" itemprop="articleBody">
+                  <p>In software, going from an idea to a working prototype takes an afternoon. In robotics, the gap between buying a 6-axis arm and picking up a pen off a desk has historically stretched into weeks of serial-bus drivers, depth-camera extrinsic calibration, URDF debugging, and standalone physics simulators.</p><p>On November 17, 2026, Google DeepMind’s Alex Gruenstein and Gabe Cohen attacked both halves of that bottleneck at once. On the model side, <strong>Gemini 4 Hydrogen</strong> absorbs the spatial and embodied capabilities of specialized <strong>Gemini Robotics ER 2</strong> models—outperforming ER 2 on the public <strong>ERQA</strong> benchmark (multi-view correspondence and 3D trajectory reasoning) and scoring <strong>58</strong> on <strong>Artificial Analysis Robotics 0.1</strong> across eight real 6-axis tabletop tasks.</p><p>On the tooling side, the new <strong>Robotics plugin for Google Antigravity</strong> turns the IDE into a unified Real-to-Sim-to-Real workbench. Plug in an <strong>I2RT YAM</strong>, budget <strong>SO-ARM101</strong>, or industrial <strong>FR3 Duo</strong> over USB, and Antigravity installs drivers, discovers depth cameras, calibrates kinematics, and verifies safe motion in roughly <strong>10 minutes</strong>.</p><p>Because Hydrogen also writes full-stack web apps at <strong>$1.50 per 1M input tokens</strong> and <strong>$7.50 per 1M output tokens</strong>, one builder can now construct an online soap storefront and wire live order webhooks straight into dual YAM Pro arms—turning physical fulfillment into a single continuous codebase.</p>
+                </div>
+
+              <blockquote class="celestial-pullquote">
+                <p>“When embodied 3D reasoning lives inside the same fast model that writes your web storefront and renders your MuJoCo simulation, robotics stops being a separate engineering silo.”</p>
+                <cite>GOOGLE GEMINI 4 ARGON · <span class="greek">α</span> CASTOR EDITORIAL SYNTHESIS</cite>
+              </blockquote>
+
+              <div tabindex="0" role="region" aria-labelledby="hydrogen-robotics-table-caption" class="gp-table-wrapper">
+                <table class="gp-comparison-table" style="--col-2: 'Previous Baseline'; --col-3: 'Nov 17, 2026 Verified Result'; --col-4: 'Builder Takeaway';">
+                  <caption id="hydrogen-robotics-table-caption">Gemini 4 Hydrogen for Robotics &amp; Antigravity Plugin: Verified Benchmarks &amp; Timelines</caption>
+                  <thead><tr><th scope="col">Dimension / Demo</th><th scope="col">Previous Baseline</th><th scope="col">Nov 17, 2026 Verified Result</th><th scope="col">Builder Takeaway</th></tr></thead>
+                  <tbody><tr><th scope="row">Artificial Analysis Robotics 0.1</th><td>Higher-cost Gemini 4 Argon loop</td><td>58 score (8 tabletop tasks on 6-axis arm)</td><td>Argon-class control at lower cost per token</td></tr><tr><th scope="row">Public ERQA Spatial Benchmark</th><td>Specialist Gemini Robotics ER 2</td><td>Hydrogen outperforms ER 2 across spatial axes</td><td>Google recommends ER 2 users test Hydrogen</td></tr><tr><th scope="row">USB Arm Bring-Up (I2RT YAM)</th><td>Manual drivers + checkerboard calibration</td><td>~10 minutes from USB cable to calibrated arm</td><td>Also supports SO-ARM101 &amp; FR3 Duo</td></tr><tr><th scope="row">Conveyor Snack Sorter</th><td>Weeks of custom sim + perception glue</td><td>~1 hour whiteboard sketch to live sorting</td><td>MuJoCo vibe sim validates policy first</td></tr></tbody>
+                </table>
+              </div>
+
+                <div class="adaptive-qa-section" id="chapter-02" data-chapter-card="1" data-active-chapter="false">
+                  <div class="chapter-kicker">
+                    <span>CHAPTER 02 / 04 · WHAT THIS MEANS FOR YOU</span>
+                    <span>ADAPTIVE READER QUESTIONS</span>
+                  </div>
+                  <div class="adaptive-qa-list">
+
+                <article class="qa-item">
+                  <span class="qa-lens-tag">FOR EXISTING ROBOTICS ER 2 TEAMS</span>
+                  <h3 class="qa-question">Should we keep separate Gemini Robotics ER 2 pipelines for spatial reasoning?</h3>
+                  <p class="qa-answer">Google explicitly recommends trying Gemini 4 Hydrogen for ER 2 workloads: Hydrogen outperforms Gemini Robotics ER 2 on ERQA multi-view correspondence and 3D trajectory reasoning inside a faster generalist endpoint.</p>
+                </article>
+                <article class="qa-item">
+                  <span class="qa-lens-tag">FOR HARDWARE STARTUPS &amp; E-COMMERCE OPS</span>
+                  <h3 class="qa-question">Is Gemini 4 Hydrogen affordable enough to run a physical station all day?</h3>
+                  <p class="qa-answer">Yes—its flat $1.50 per 1M input / $7.50 per 1M output pricing (with prompt caching) powered Google’s all-day dual YAM Pro soap fulfillment demo without requiring Argon-tier token spend.</p>
+                </article>
+                <article class="qa-item">
+                  <span class="qa-lens-tag">FOR MAKERS &amp; STUDENTS</span>
+                  <h3 class="qa-question">Do I need an industrial arm to use the Antigravity Robotics plugin?</h3>
+                  <p class="qa-answer">No. Google verified the exact same USB bring-up and MuJoCo simulation workflow on the low-cost SO-ARM101 alongside the I2RT YAM and industrial FR3 Duo.</p>
+                </article>
+                  </div>
+
+                <div class="standalone-deep-link-row">
+                  <span class="sdl-kicker">COMPANION 3-PART ARCHIVE</span>
+                  <a href="/series/hydrogen-robotics/part-1-hydrogen-robotics-and-antigravity-plugin.html" class="standalone-deep-link">
+                    <span>Explore Companion 3-Part Hydrogen Robotics Archive →</span>
+                  </a>
+                </div>
+                </div>
+              </section>
+            </div>
+          </div>
+
+          <div class="lens-host" id="lens-section-pollux">
+            <div class="lens-inner-wrap">
+              <div class="celestial-chapter-divider" aria-hidden="true"><span class="ccd-glyph">✦ · <svg width="11" height="12" viewBox="0 0 14 16" aria-hidden="true" style="vertical-align:-1px;margin-inline:2px;"><path d="M1.5 2 H12.5 M1.5 14 H12.5" stroke="#CEC0FF" stroke-width="1.35" stroke-linecap="round"/><line x1="4.6" y1="2.3" x2="4.6" y2="13.7" stroke="#7EB8FF" stroke-width="1.55" stroke-linecap="round"/><line x1="9.4" y1="2.3" x2="9.4" y2="13.7" stroke="#F59E3F" stroke-width="1.55" stroke-linecap="round"/></svg> · ✦</span></div>
+              <section class="essay-section" id="chapter-03" data-chapter-card="2" data-active-chapter="false" aria-label="Part II: Beta Pollux Builder Architecture and Code">
+                <div class="chapter-kicker">
+                  <span>PART II · <span class="greek">β</span> POLLUX · REAL-TO-SIM-TO-REAL &amp; WORKBENCH LENS</span>
+                  <span><span class="greek">β</span> POLLUX · THE WORKBENCH</span>
+                </div>
+                <h2 class="essay-h2" id="pollux-section-heading" tabindex="-1">Inside the Four Antigravity Robotics Skills &amp; MuJoCo Vibe Sim</h2>
+                <p class="essay-sub essay-sub--pollux">How Robot bring-up, embedded MuJoCo auditing, and closed-loop camera control share one context window.</p>
+                <div class="essay-prose essay-prose--pollux">
+                  <p>Installing the plugin takes two clicks inside Google Antigravity: open <em>Customizations</em> and search for <strong>Robotics</strong> on the <em>Build With Google</em> shelf. Once enabled, four skill suites operate on your workspace: <strong>Robot bring-up</strong>, <strong>MuJoCo in Antigravity</strong>, <strong>Perception and control</strong>, and <strong>Application building</strong>.</p><p>In the &quot;vibe sim&quot; stage, you do not hand-craft MJCF XML files from scratch. Hydrogen generates and audits interactive MuJoCo assets directly from product information links, whiteboard sketches, or workspace photos—letting you adjust shapes, friction, and target positions in natural language and verify reaching/grasping before energizing real servos.</p><p>Once validated in simulation, the same controller deploys onto the calibrated arm via USB. As real-world edge cases appear—such as tuning gripper closure force on a snack wrapper or handling moving conveyor timing—you refine parameters conversationally while inspecting live depth-camera frames.</p>
+                </div>
+                <div class="builder-rules-ledger" aria-label="Production Engineering Guardrails">
+
+                <div class="br-item">
+                  <div class="br-label">01 · Always Run Bring-Up Safe Motion Checks First</div>
+                  <div class="br-detail">Start every hardware session with the Robot bring-up skill so joint limits, workspace collision bounds, and camera extrinsics are verified before closed-loop grasping.</div>
+                </div>
+                <div class="br-item">
+                  <div class="br-label">02 · Validate Edge Cases in MuJoCo Before Physical Runs</div>
+                  <div class="br-detail">Use MuJoCo asset auditing inside Antigravity to test conveyor speed variations and object clearances in simulation first, saving hardware wear.</div>
+                </div>
+                <div class="br-item">
+                  <div class="br-label">03 · Tune Real-World Grippers Iteratively on Live Frames</div>
+                  <div class="br-detail">Expect to follow sim validation with brief natural-language controller adjustments for real-world gripper closure pressure and lighting glare.</div>
+                </div>
+                </div>
+                <div class="geo-code-wrap">
+                  <div class="geo-code-header">
+                    <span id="chap3-code-caption">ANTIGRAVITY QUICK-START &amp; GEMINI 4 HYDROGEN SPATIAL GRASP CALL (@google/genai)</span>
+                    <button type="button" class="copy-code-btn" data-copy-essay-code>Copy Full Blueprint</button>
+                  </div>
+                  <pre class="geo-code-block" id="chap3-code" role="region" aria-labelledby="chap3-code-caption" tabindex="0"><code id="chap3-code-inner">// 1. Google Antigravity Prompt (with Robotics Plugin installed)
+// &quot;Bring up my SO-101 arm and make it wave.&quot;
+
+// 2. Direct Spatial Control via Gen AI SDK Interactions API
+import { GoogleGenAI } from &quot;@google/genai&quot;;
+
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+
+const interaction = await ai.clients.interactions.create({
+  model: &quot;gemini-4-hydrogen&quot;,
+  input: [
+    {
+      type: &quot;text&quot;,
+      text: &quot;Inspect overhead depth camera frame. Return safe 3D grasp coordinates [x, y, z] and gripper width in mm to pick the citrus soap bar.&quot;
+    },
+    { type: &quot;image&quot;, data: overheadFrameBase64, mime_type: &quot;image/jpeg&quot; }
+  ],
+  config: {
+    thinking_config: { thinking_level: &quot;medium&quot; },
+    response_mime_type: &quot;application/json&quot;
+  }
+});</code></pre>
+                </div>
+
+                <aside class="pollux-workbench-card" id="nocturnal-twin-deck" aria-label="Beta Pollux Interactive Scenario Simulator">
+                  <div class="salon-header-row">
+                    <span class="shr-title">
+                      <span class="peek-dot" aria-hidden="true"></span>
+                      <span><span class="greek">β</span> POLLUX · INTERACTIVE SCENARIO WORKBENCH</span>
+                    </span>
+                    <span class="shr-badge">[SIMULATED DEMO]</span>
+                  </div>
+                  <h3 class="pwc-title">Gemini 4 Hydrogen Robotics Workbench</h3>
+                  <p class="pwc-sub">Select one of Google’s Nov 17 verified robotics workflows below, or open the full-screen Robotics &amp; MuJoCo Studio.</p>
+                  <div class="atelier-console">
+                    <div class="ac-top">
+                      <span>STAR 01 INTERACTIVE LAB</span>
+                      <span>[SIMULATED DEMO]</span>
+                    </div>
+                    <div class="ac-presets" role="group" aria-label="Interactive Workload Presets">
+                      <button type="button" class="ac-preset-btn" data-preset="0" aria-pressed="true">1. USB BRING-UP (YAM / SO-101)</button><button type="button" class="ac-preset-btn" data-preset="1" aria-pressed="false">2. CONVEYOR SNACK SORTER</button><button type="button" class="ac-preset-btn" data-preset="2" aria-pressed="false">3. ERQA &amp; ROBOTICS 0.1</button>
+                    </div>
+                    <div class="ac-output" aria-live="polite">
+                      <div class="ac-line">
+                        <span class="ac-k" data-sync="ac-k1">Elapsed Onboarding</span>
+                        <span class="ac-v" data-sync="ac-v1">~10 min from USB cable to calibrated arm</span>
+                      </div>
+                      <div class="ac-line">
+                        <span class="ac-k" data-sync="ac-k2">Supported Hardware</span>
+                        <span class="ac-v accent" data-sync="ac-v2">I2RT YAM · SO-ARM101 · FR3 Duo</span>
+                      </div>
+                      <div class="ac-line">
+                        <span class="ac-k" data-sync="ac-k3">First Prompt</span>
+                        <span class="ac-v" data-sync="ac-v3">&quot;Bring up my SO-101 arm and make it wave.&quot;</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="standalone-deep-link-row" style="margin-block-start:4px;">
+                    <span class="sdl-kicker sdl-kicker--pollux">DEDICATED FULL-SCREEN SANDBOX</span>
+                    <a href="/labs/gemini-hydrogen-robotics-studio.html" class="standalone-deep-link standalone-deep-link--pollux">
+                      <span>Open Full Hydrogen Robotics Sandbox [SIMULATED DEMO] →</span>
+                    </a>
+                  </div>
+                </aside>
+              </section>
+            </div>
+          </div>
+
+          <div class="celestial-chapter-divider" aria-hidden="true"><span class="ccd-glyph">✦ · <svg width="11" height="12" viewBox="0 0 14 16" aria-hidden="true" style="vertical-align:-1px;margin-inline:2px;"><path d="M1.5 2 H12.5 M1.5 14 H12.5" stroke="#CEC0FF" stroke-width="1.35" stroke-linecap="round"/><line x1="4.6" y1="2.3" x2="4.6" y2="13.7" stroke="#7EB8FF" stroke-width="1.55" stroke-linecap="round"/><line x1="9.4" y1="2.3" x2="9.4" y2="13.7" stroke="#F59E3F" stroke-width="1.55" stroke-linecap="round"/></svg> · ✦</span></div>
+
+          <section class="essay-section" id="chapter-04" data-chapter-card="3" data-active-chapter="false" aria-label="Chapter 04: Gemini Verdict and Primary Sources">
+            <div class="chapter-kicker">
+              <span>CHAPTER 04 / 04 · GEMINI’S VERDICT &amp; CITATIONS</span>
+              <span>PRIMARY GOOGLE SOURCES</span>
+            </div>
+            <h2 class="essay-h2">Gemini’s Bottom Line: The Fastest Bridge From Prompt to Physical Motion</h2>
+            <p class="essay-sub">Combining ERQA-leading spatial intelligence with a turnkey Antigravity workbench lowers the robotics barrier to software-like speed.</p>
+            <div class="essay-prose">
+              <p><strong>Start immediately if:</strong> you are building on &lt;code&gt;gemini-robotics-er-2&lt;/code&gt;, prototyping tabletop manipulation on SO-ARM101 or I2RT YAM hardware, or pairing web commerce with physical fulfillment.</p><p><strong>Respect physical reality:</strong> MuJoCo vibe sim eliminates 90% of blind trial-and-error, yet real-world lighting and compliant packaging still demand short human-supervised tuning loops on live hardware.</p>
+            </div>
+
+            <div class="primary-sources-ledger" aria-label="Primary Google Sources Cited">
+              <div class="psl-header">
+                <span>PRIMARY GOOGLE SOURCES CITED IN THIS ESSAY</span>
+                <span>VERIFIED · NOV 17, 2026</span>
+              </div>
+
+                <div class="psl-item">
+                  <div class="psl-meta">
+                    <span class="psl-role">Official Google Developers Blog Release · Alex Gruenstein &amp; Gabe Cohen (Gemini Robotics Team) · November 17, 2026</span>
+                    <span class="psl-label">Gemini 4 Hydrogen: a faster model for general purpose robotics</span>
+                  </div>
+                  <a class="psl-link" href="https://developers.googleblog.com/gemini-hydrogen-for-robotics/" target="_blank" rel="noopener noreferrer">
+                    <span>Primary Google Source</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+                <div class="psl-item">
+                  <div class="psl-meta">
+                    <span class="psl-role">Official Gemini 4 Hydrogen Announcement · Koray Kavukcuoglu, SVP Google DeepMind · November 12, 2026</span>
+                    <span class="psl-label">Introducing Gemini 4 Hydrogen</span>
+                  </div>
+                  <a class="psl-link" href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/" target="_blank" rel="noopener noreferrer">
+                    <span>Primary Google Source</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+            </div>
+
+            <nav class="essay-star-nav-footer" aria-label="Navigate Constellation Essays">
+              <a href="/articles/ai-studio-cloud-credits.html" class="essay-nav-btn">
+                <span>← Star 08 · <span class="greek">γ</span> Alhena (AI Studio Credits)</span>
+              </a>
+              <a href="/?star=castor" class="essay-nav-btn">
+                <span>✦ View Star 01 in 3D Sky</span>
+              </a>
+              <a href="/articles/tasks-in-gemini-ap2-assistant.html" class="essay-nav-btn">
+                <span>Star 02 · <span class="greek">ε</span> Mebsuta (Tasks in Gemini) →</span>
+              </a>
+            </nav>
+          </section>
+    </article>
+  </main>
+
+  <script>
+    (() => {
+      const PRESETS = [{"label":"1. USB BRING-UP (YAM / SO-101)","labelHtml":"1. USB BRING-UP (YAM / SO-101)","k1":"Elapsed Onboarding","k1Html":"Elapsed Onboarding","v1":"~10 min from USB cable to calibrated arm","v1Html":"~10 min from USB cable to calibrated arm","k2":"Supported Hardware","k2Html":"Supported Hardware","v2":"I2RT YAM · SO-ARM101 · FR3 Duo","v2Html":"I2RT YAM · SO-ARM101 · FR3 Duo","k3":"First Prompt","k3Html":"First Prompt","v3":"\"Bring up my SO-101 arm and make it wave.\"","v3Html":"&quot;Bring up my SO-101 arm and make it wave.&quot;"},{"label":"2. CONVEYOR SNACK SORTER","labelHtml":"2. CONVEYOR SNACK SORTER","k1":"End-to-End Build","k1Html":"End-to-End Build","v1":"~1 hr (Whiteboard -> MuJoCo -> Live)","v1Html":"~1 hr (Whiteboard -&gt; MuJoCo -&gt; Live)","k2":"Validation Loop","k2Html":"Validation Loop","v2":"MuJoCo Vibe Sim + Live Gripper Tuning","v2Html":"MuJoCo Vibe Sim + Live Gripper Tuning","k3":"Cost Tier","k3Html":"Cost Tier","v3":"$1.50 / $7.50 per 1M tokens (Hydrogen)","v3Html":"$1.50 / $7.50 per 1M tokens (Hydrogen)"},{"label":"3. ERQA & ROBOTICS 0.1","labelHtml":"3. ERQA &amp; ROBOTICS 0.1","k1":"Robotics 0.1 Score","k1Html":"Robotics 0.1 Score","v1":"58 (Matches Argon across 8 tasks)","v1Html":"58 (Matches Argon across 8 tasks)","k2":"ERQA Spatial Bench","k2Html":"ERQA Spatial Bench","v2":"Outperforms Gemini Robotics ER 2","v2Html":"Outperforms Gemini Robotics ER 2","k3":"Recommended Action","k3Html":"Recommended Action","v3":"Evaluate gemini-4-hydrogen for ER 2 apps","v3Html":"Evaluate gemini-4-hydrogen for ER 2 apps"}];
+      const supportsUntilFound = "onbeforematch" in HTMLElement.prototype;
+      const castorHost = document.getElementById("lens-section-castor");
+      const polluxHost = document.getElementById("lens-section-pollux");
+
+      function hideLens(el) {
+        if (!el) return;
+        if (supportsUntilFound) el.setAttribute("hidden", "until-found");
+        else el.hidden = true;
+      }
+      function showLens(el) {
+        if (!el) return;
+        el.removeAttribute("hidden");
+        el.hidden = false;
+      }
+      function setLens(lens) {
+        if (lens === "castor") { showLens(castorHost); hideLens(polluxHost); }
+        else if (lens === "pollux") { hideLens(castorHost); showLens(polluxHost); }
+        else { showLens(castorHost); showLens(polluxHost); }
+        document.querySelectorAll("[data-lens-filter]").forEach((b) => {
+          b.setAttribute("aria-pressed", String(b.getAttribute("data-lens-filter") === lens));
+        });
+      }
+      [castorHost, polluxHost].forEach((el) => {
+        if (el) el.addEventListener("beforematch", () => setLens("both"));
+      });
+
+      document.addEventListener("click", async (ev) => {
+        const lensBtn = ev.target.closest("[data-lens-filter]");
+        if (lensBtn) {
+          setLens(lensBtn.getAttribute("data-lens-filter") || "both");
+          return;
+        }
+        const presetBtn = ev.target.closest(".ac-preset-btn");
+        if (presetBtn) {
+          const idx = Number(presetBtn.getAttribute("data-preset")) || 0;
+          const p = PRESETS[idx] || PRESETS[0];
+          document.querySelectorAll(".ac-preset-btn").forEach((b, i) => b.setAttribute("aria-pressed", String(i === idx)));
+          const sync = (k, v) => document.querySelectorAll('[data-sync="' + k + '"]').forEach((el) => { el.textContent = v; });
+          sync("ac-k1", p.k1); sync("ac-v1", p.v1);
+          sync("ac-k2", p.k2); sync("ac-v2", p.v2);
+          sync("ac-k3", p.k3); sync("ac-v3", p.v3);
+          return;
+        }
+        const copyBtn = ev.target.closest("[data-copy-essay-code]");
+        if (copyBtn) {
+          const codeEl = document.getElementById("chap3-code");
+          if (codeEl) {
+            try { await navigator.clipboard.writeText(codeEl.textContent || ""); } catch (_) {}
+            copyBtn.textContent = "✓ Copied Blueprint";
+            setTimeout(() => { copyBtn.textContent = "Copy Full Blueprint"; }, 1800);
+          }
+        }
+      });
+
+      const canvas = document.getElementById("sanctuary-stars");
+      if (canvas && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        const ctx = canvas.getContext("2d");
+        const pts = Array.from({ length: 85 }, (_, i) => ({
+          x: ((i * 73) % 100) / 100,
+          y: ((i * 41 + 17) % 100) / 100,
+          r: (i % 3 === 0 ? 1.25 : 0.75),
+          ph: i * 0.7,
+          col: i % 5 === 0 ? "#BAE6FD" : (i % 7 === 0 ? "#FED7AA" : "#E2E8F0")
+        }));
+        const resize = () => {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        };
+        resize();
+        window.addEventListener("resize", resize, { passive: true });
+        const draw = (t) => {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          const sec = t * 0.001;
+          for (const p of pts) {
+            ctx.globalAlpha = 0.16 + 0.24 * (0.5 + 0.5 * Math.sin(sec * 0.6 + p.ph));
+            ctx.fillStyle = p.col;
+            ctx.beginPath();
+            ctx.arc(p.x * canvas.width, p.y * canvas.height, p.r, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          requestAnimationFrame(draw);
+        };
+        requestAnimationFrame(draw);
+      }
+    })();
+  </script>
+</body>
+</html>

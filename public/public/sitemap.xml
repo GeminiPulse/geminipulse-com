@@ -14,15 +14,33 @@
   </url>
   <url>
     <loc>https://geminipulse.com/articles/index.html</loc>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.99</priority>
   </url>
   <url>
     <loc>https://geminipulse.com/changelog.html</loc>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.88</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/articles/gemini-4-hydrogen-robotics-antigravity.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/articles/tasks-in-gemini-ap2-assistant.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/articles/embeddinggemma-2-technical-report.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
   </url>
   <url>
     <loc>https://geminipulse.com/articles/agent-anomaly-detection-gtig.html</loc>
@@ -55,22 +73,46 @@
     <priority>0.98</priority>
   </url>
   <url>
-    <loc>https://geminipulse.com/articles/google-wallet-in-gemini.html</loc>
-    <lastmod>2026-11-13</lastmod>
+    <loc>https://geminipulse.com/series/hydrogen-robotics/part-1-hydrogen-robotics-and-antigravity-plugin.html</loc>
+    <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.98</priority>
+    <priority>0.96</priority>
   </url>
   <url>
-    <loc>https://geminipulse.com/articles/gemini-4-hydrogen.html</loc>
-    <lastmod>2026-11-12</lastmod>
+    <loc>https://geminipulse.com/series/hydrogen-robotics/part-2-how-hydrogen-robotics-affects-builders.html</loc>
+    <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.98</priority>
+    <priority>0.96</priority>
   </url>
   <url>
-    <loc>https://geminipulse.com/articles/google-intelligent-eyewear.html</loc>
-    <lastmod>2026-11-12</lastmod>
+    <loc>https://geminipulse.com/series/hydrogen-robotics/part-3-concrete-real-to-sim-to-real-blueprints.html</loc>
+    <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.98</priority>
+    <priority>0.96</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/labs/gemini-hydrogen-robotics-studio.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.96</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/tasks-in-gemini/part-1-tasks-in-gemini-and-agentic-architecture.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.96</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/tasks-in-gemini/part-2-how-tasks-in-gemini-affects-consumers-and-builders.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.96</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/tasks-in-gemini/part-3-connected-apps-ap2-and-ucp-blueprints.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.96</priority>
   </url>
   <url>
     <loc>https://geminipulse.com/series/agent-anomaly-detection/part-1-agent-anomaly-detection-and-gtig-architecture.html</loc>

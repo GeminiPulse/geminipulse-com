@@ -14,6 +14,578 @@
  */
 
 export const CONSTELLATION_ESSAYS = {
+  'pulse-gemini-4-hydrogen-robotics-antigravity': {
+    id: 'pulse-gemini-4-hydrogen-robotics-antigravity',
+    slug: 'gemini-4-hydrogen-robotics-antigravity',
+    shortStarLabel: 'Hydrogen Robotics',
+    readMinutes: '8 MIN READ',
+    hudTitle: 'From USB Cable to Live Robot Arm in 10 Minutes with Gemini 4 Hydrogen',
+    hudSummary:
+      'Google’s Antigravity Robotics plugin and Gemini 4 Hydrogen embed MuJoCo "vibe sim" and beat Gemini Robotics ER 2 on ERQA—collapsing Real-to-Sim-to-Real builds to an afternoon.',
+    peekCastor: 'Hydrogen Robotics: <em>USB cable to live arm in 10 min.</em>',
+    peekPollux: 'MuJoCo Vibe Sim: <em>ERQA winner + score 58 Robotics 0.1.</em>',
+    headline: 'A Robot in a Box to a Working Conveyor in an Afternoon. <em>Inside Hydrogen Robotics.</em>',
+    standfirst:
+      'For years, building a physical AI application meant weeks of driver glue, camera calibration scripts, and disconnected simulators before a single grasp ran. On November 17, 2026, Google DeepMind’s Gemini Robotics team paired Gemini 4 Hydrogen’s embodied spatial reasoning with the new Robotics plugin for Google Antigravity.',
+    pulseCheck: [
+      {
+        stage: 'What Shipped',
+        detail:
+          'Google launched the Robotics plugin for Google Antigravity (Build With Google shelf) alongside Gemini 4 Hydrogen’s embodied benchmarks: 58 on Artificial Analysis Robotics 0.1 and ERQA leadership over Gemini Robotics ER 2.',
+      },
+      {
+        stage: 'Why Humans Care',
+        detail:
+          'Developers can plug an I2RT YAM, SO-ARM101, or FR3 Duo into a laptop via USB, calibrate in ~10 minutes, validate grasps in embedded MuJoCo "vibe sim", and deploy real-world sorting or fulfillment apps in an hour.',
+      },
+      {
+        stage: 'The Fine-Print Catch',
+        detail:
+          'Simulations still cannot predict every real-world friction quirk (like gripper closure force on slippery wrappers), so builders still iterate controller thresholds against live camera feedback.',
+      },
+    ],
+    castor: {
+      kicker: 'PART I · α CASTOR · HUMAN, FOUNDER & PHYSICAL AI LENS',
+      title: 'Why Physical AI Finally Escaped the Integration Tax',
+      subtitle:
+        'How folding Gemini Robotics ER 2 spatial reasoning into a $1.50/$7.50 generalist model changes hardware startups.',
+      paragraphs: [
+        'In software, going from an idea to a working prototype takes an afternoon. In robotics, the gap between buying a 6-axis arm and picking up a pen off a desk has historically stretched into weeks of serial-bus drivers, depth-camera extrinsic calibration, URDF debugging, and standalone physics simulators.',
+        'On November 17, 2026, Google DeepMind’s Alex Gruenstein and Gabe Cohen attacked both halves of that bottleneck at once. On the model side, <strong>Gemini 4 Hydrogen</strong> absorbs the spatial and embodied capabilities of specialized <strong>Gemini Robotics ER 2</strong> models—outperforming ER 2 on the public <strong>ERQA</strong> benchmark (multi-view correspondence and 3D trajectory reasoning) and scoring <strong>58</strong> on <strong>Artificial Analysis Robotics 0.1</strong> across eight real 6-axis tabletop tasks.',
+        'On the tooling side, the new <strong>Robotics plugin for Google Antigravity</strong> turns the IDE into a unified Real-to-Sim-to-Real workbench. Plug in an <strong>I2RT YAM</strong>, budget <strong>SO-ARM101</strong>, or industrial <strong>FR3 Duo</strong> over USB, and Antigravity installs drivers, discovers depth cameras, calibrates kinematics, and verifies safe motion in roughly <strong>10 minutes</strong>.',
+        'Because Hydrogen also writes full-stack web apps at <strong>$1.50 per 1M input tokens</strong> and <strong>$7.50 per 1M output tokens</strong>, one builder can now construct an online soap storefront and wire live order webhooks straight into dual YAM Pro arms—turning physical fulfillment into a single continuous codebase.',
+      ],
+      pullquote: {
+        quote:
+          'When embodied 3D reasoning lives inside the same fast model that writes your web storefront and renders your MuJoCo simulation, robotics stops being a separate engineering silo.',
+        attribution: 'GOOGLE GEMINI 4 ARGON · α CASTOR EDITORIAL SYNTHESIS',
+      },
+      comparisonTable: {
+        id: 'hydrogen-robotics-table',
+        caption: 'Gemini 4 Hydrogen for Robotics & Antigravity Plugin: Verified Benchmarks & Timelines',
+        columns: ['Dimension / Demo', 'Previous Baseline', 'Nov 17, 2026 Verified Result', 'Builder Takeaway'],
+        rows: [
+          ['Artificial Analysis Robotics 0.1', 'Higher-cost Gemini 4 Argon loop', '58 score (8 tabletop tasks on 6-axis arm)', 'Argon-class control at lower cost per token'],
+          ['Public ERQA Spatial Benchmark', 'Specialist Gemini Robotics ER 2', 'Hydrogen outperforms ER 2 across spatial axes', 'Google recommends ER 2 users test Hydrogen'],
+          ['USB Arm Bring-Up (I2RT YAM)', 'Manual drivers + checkerboard calibration', '~10 minutes from USB cable to calibrated arm', 'Also supports SO-ARM101 & FR3 Duo'],
+          ['Conveyor Snack Sorter', 'Weeks of custom sim + perception glue', '~1 hour whiteboard sketch to live sorting', 'MuJoCo vibe sim validates policy first'],
+        ],
+      },
+      adaptiveQuestions: [
+        {
+          lensTag: 'FOR EXISTING ROBOTICS ER 2 TEAMS',
+          question: 'Should we keep separate Gemini Robotics ER 2 pipelines for spatial reasoning?',
+          answer:
+            'Google explicitly recommends trying Gemini 4 Hydrogen for ER 2 workloads: Hydrogen outperforms Gemini Robotics ER 2 on ERQA multi-view correspondence and 3D trajectory reasoning inside a faster generalist endpoint.',
+        },
+        {
+          lensTag: 'FOR HARDWARE STARTUPS & E-COMMERCE OPS',
+          question: 'Is Gemini 4 Hydrogen affordable enough to run a physical station all day?',
+          answer:
+            'Yes—its flat $1.50 per 1M input / $7.50 per 1M output pricing (with prompt caching) powered Google’s all-day dual YAM Pro soap fulfillment demo without requiring Argon-tier token spend.',
+        },
+        {
+          lensTag: 'FOR MAKERS & STUDENTS',
+          question: 'Do I need an industrial arm to use the Antigravity Robotics plugin?',
+          answer:
+            'No. Google verified the exact same USB bring-up and MuJoCo simulation workflow on the low-cost SO-ARM101 alongside the I2RT YAM and industrial FR3 Duo.',
+        },
+      ],
+    },
+    pollux: {
+      kicker: 'PART II · β POLLUX · REAL-TO-SIM-TO-REAL & WORKBENCH LENS',
+      title: 'Inside the Four Antigravity Robotics Skills & MuJoCo Vibe Sim',
+      subtitle:
+        'How Robot bring-up, embedded MuJoCo auditing, and closed-loop camera control share one context window.',
+      paragraphs: [
+        'Installing the plugin takes two clicks inside Google Antigravity: open <em>Customizations</em> and search for <strong>Robotics</strong> on the <em>Build With Google</em> shelf. Once enabled, four skill suites operate on your workspace: <strong>Robot bring-up</strong>, <strong>MuJoCo in Antigravity</strong>, <strong>Perception and control</strong>, and <strong>Application building</strong>.',
+        'In the "vibe sim" stage, you do not hand-craft MJCF XML files from scratch. Hydrogen generates and audits interactive MuJoCo assets directly from product information links, whiteboard sketches, or workspace photos—letting you adjust shapes, friction, and target positions in natural language and verify reaching/grasping before energizing real servos.',
+        'Once validated in simulation, the same controller deploys onto the calibrated arm via USB. As real-world edge cases appear—such as tuning gripper closure force on a snack wrapper or handling moving conveyor timing—you refine parameters conversationally while inspecting live depth-camera frames.',
+      ],
+      builderRules: [
+        {
+          label: '01 · Always Run Bring-Up Safe Motion Checks First',
+          detail:
+            'Start every hardware session with the Robot bring-up skill so joint limits, workspace collision bounds, and camera extrinsics are verified before closed-loop grasping.',
+        },
+        {
+          label: '02 · Validate Edge Cases in MuJoCo Before Physical Runs',
+          detail:
+            'Use MuJoCo asset auditing inside Antigravity to test conveyor speed variations and object clearances in simulation first, saving hardware wear.',
+        },
+        {
+          label: '03 · Tune Real-World Grippers Iteratively on Live Frames',
+          detail:
+            'Expect to follow sim validation with brief natural-language controller adjustments for real-world gripper closure pressure and lighting glare.',
+        },
+      ],
+      codeCaption: 'ANTIGRAVITY QUICK-START & GEMINI 4 HYDROGEN SPATIAL GRASP CALL (@google/genai)',
+      codeSnippet: `// 1. Google Antigravity Prompt (with Robotics Plugin installed)
+// "Bring up my SO-101 arm and make it wave."
+
+// 2. Direct Spatial Control via Gen AI SDK Interactions API
+import { GoogleGenAI } from "@google/genai";
+
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+
+const interaction = await ai.clients.interactions.create({
+  model: "gemini-4-hydrogen",
+  input: [
+    {
+      type: "text",
+      text: "Inspect overhead depth camera frame. Return safe 3D grasp coordinates [x, y, z] and gripper width in mm to pick the citrus soap bar."
+    },
+    { type: "image", data: overheadFrameBase64, mime_type: "image/jpeg" }
+  ],
+  config: {
+    thinking_config: { thinking_level: "medium" },
+    response_mime_type: "application/json"
+  }
+});`,
+      workbench: {
+        title: 'Gemini 4 Hydrogen Robotics Workbench',
+        subtitle: 'Compare USB bring-up, MuJoCo vibe sim, and ERQA benchmarks.',
+        dek: 'Select one of Google’s Nov 17 verified robotics workflows below, or open the full-screen Robotics & MuJoCo Studio.',
+        presets: [
+          {
+            label: '1. USB BRING-UP (YAM / SO-101)',
+            k1: 'Elapsed Onboarding',
+            v1: '~10 min from USB cable to calibrated arm',
+            k2: 'Supported Hardware',
+            v2: 'I2RT YAM · SO-ARM101 · FR3 Duo',
+            k3: 'First Prompt',
+            v3: '"Bring up my SO-101 arm and make it wave."',
+          },
+          {
+            label: '2. CONVEYOR SNACK SORTER',
+            k1: 'End-to-End Build',
+            v1: '~1 hr (Whiteboard -> MuJoCo -> Live)',
+            k2: 'Validation Loop',
+            v2: 'MuJoCo Vibe Sim + Live Gripper Tuning',
+            k3: 'Cost Tier',
+            v3: '$1.50 / $7.50 per 1M tokens (Hydrogen)',
+          },
+          {
+            label: '3. ERQA & ROBOTICS 0.1',
+            k1: 'Robotics 0.1 Score',
+            v1: '58 (Matches Argon across 8 tasks)',
+            k2: 'ERQA Spatial Bench',
+            v2: 'Outperforms Gemini Robotics ER 2',
+            k3: 'Recommended Action',
+            v3: 'Evaluate gemini-4-hydrogen for ER 2 apps',
+          },
+        ],
+      },
+    },
+    verdict: {
+      title: 'Gemini’s Bottom Line: The Fastest Bridge From Prompt to Physical Motion',
+      subtitle:
+        'Combining ERQA-leading spatial intelligence with a turnkey Antigravity workbench lowers the robotics barrier to software-like speed.',
+      paragraphs: [
+        '<strong>Start immediately if:</strong> you are building on <code>gemini-robotics-er-2</code>, prototyping tabletop manipulation on SO-ARM101 or I2RT YAM hardware, or pairing web commerce with physical fulfillment.',
+        '<strong>Respect physical reality:</strong> MuJoCo vibe sim eliminates 90% of blind trial-and-error, yet real-world lighting and compliant packaging still demand short human-supervised tuning loops on live hardware.',
+      ],
+      sources: [
+        {
+          role: 'Official Google Developers Blog Release',
+          label: 'Gemini 4 Hydrogen: a faster model for general purpose robotics',
+          author: 'Alex Gruenstein & Gabe Cohen (Gemini Robotics Team)',
+          date: 'November 17, 2026',
+          url: 'https://developers.googleblog.com/gemini-hydrogen-for-robotics/',
+        },
+        {
+          role: 'Official Gemini 4 Hydrogen Announcement',
+          label: 'Introducing Gemini 4 Hydrogen',
+          author: 'Koray Kavukcuoglu, SVP Google DeepMind',
+          date: 'November 12, 2026',
+          url: 'https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/',
+        },
+      ],
+    },
+  },
+  'pulse-tasks-in-gemini-ap2-agentic-assistant': {
+    id: 'pulse-tasks-in-gemini-ap2-agentic-assistant',
+    slug: 'tasks-in-gemini-ap2-assistant',
+    shortStarLabel: 'Tasks in Gemini',
+    readMinutes: '8 MIN READ',
+    hudTitle: 'Gemini Can Now Make Calls, Pay Bills & Run Tasks Inside Isolated MicroVMs',
+    hudSummary:
+      'Google rolls out Tasks in Gemini free across 6 countries—adding Chat-to-Task mode, RCS/email triggers, AP2 Google Pay checkout, U.S. Google Wallet on iOS, and Temporary Search Threads.',
+    peekCastor: 'Tasks in Gemini: <em>Calls, bills & AP2 checkout live.</em>',
+    peekPollux: 'Agent Compute Engine: <em>5-layer defense + Connected Apps.</em>',
+    headline: 'Stop Copying Bills Into Chat. <em>Gemini Now Runs Tasks End-to-End.</em>',
+    standfirst:
+      'For years, personal AI assistants drafted polite emails and left you to sit on hold, log into utility portals, and type credit card numbers yourself. On November 17, 2026, Google flipped the toggle from passive chat to autonomous execution across six countries—and brought Google Wallet to iOS.',
+    pulseCheck: [
+      {
+        stage: 'What Shipped',
+        detail:
+          'Tasks in Gemini (powered by Gemini 4 Hydrogen) rolled out free across the U.S., Japan, Korea, Canada, Australia, and India—paired with U.S. Google Wallet on iOS and global Temporary Threads in Search AI Mode.',
+      },
+      {
+        stage: 'Why Humans Care',
+        detail:
+          'Flip Chat to Task, text via RCS, or forward emails to let Gemini place simultaneous phone calls, audit utility portals via Password Manager, and check out via AP2 with upfront hard spending caps.',
+      },
+      {
+        stage: 'The Fine-Print Catch',
+        detail:
+          'Automated calling excludes 5 U.S. states (IN, LA, MN, MT, NE), tap-to-pay is absent on iOS Google Wallet, and strict anti-bot websites still require Gemini to hand the final checkout click back to you.',
+      },
+    ],
+    castor: {
+      kicker: 'PART I · α CASTOR · CONSUMER, COMMERCE & TRUST LENS',
+      title: 'When Your Assistant Waits on Hold and Reads Your Electric Meter',
+      subtitle:
+        'How Tasks in Gemini pairs AP2 tokenized spending caps with hardware-isolated microVMs.',
+      paragraphs: [
+        'On November 17, 2026, VP Josh Woodward laid out the real daily friction Tasks in Gemini was built to erase: calling multiple car dealerships at once and sitting through hold music to snag a Friday service slot, digging through PDF statements and a utility portal (via Google Password Manager) to discover why a heat pump spiked an electric bill to $389 at 4:00 PM, and forwarding school emails so calendar invites catch schedule conflicts automatically.',
+        'Equally consequential is how users reach it. Instead of forcing everyone back into one app tab, Google opened three entry ramps in the U.S.: flipping the Gemini home-screen toggle from <strong>Chat to Task</strong>, texting via <strong>RCS</strong> on Android or iOS (including snapping a photo of an empty cereal box to add it to Instacart), or forwarding emails directly to <code>gemini@google.com</code>.',
+        'For purchases, Gemini adopts the <strong>Agent Payments Protocol (AP2)</strong> with Google Pay (Mastercard, Visa, and American Express coming soon), preserving card rewards and purchase protections while enforcing user-set hard spending caps and pausing before clicking "Buy." Every receipt and tracking card flows into <strong>Google Wallet</strong>—which launched on <strong>iOS across the U.S.</strong> the exact same day.',
+        'And for moments when you want zero personalization or saved history, Google simultaneously launched <strong>Temporary Threads in AI Mode in Search</strong> globally across desktop and mobile browsers—detaching sessions completely from your Google Account.',
+      ],
+      pullquote: {
+        quote:
+          'For decades, websites blocked bots indiscriminately because most were malicious. Personal assistants force the web to build verifiable, user-authorized trust boundaries.',
+        attribution: 'GOOGLE GEMINI 4 ARGON · α CASTOR EDITORIAL SYNTHESIS',
+      },
+      comparisonTable: {
+        id: 'tasks-in-gemini-table',
+        caption: 'Tasks in Gemini Nov 17 Rollout: Channels, Protocols & Regional Boundaries',
+        columns: ['Feature / Surface', 'Scope & Availability', 'Key Guardrail or Protocol', 'Practical Effect'],
+        rows: [
+          ['Chat-to-Task Mode (Hydrogen)', 'Free in U.S., JP, KR, CA, AU, IN', 'Agent Compute Engine isolated microVM', 'Runs multi-step browser & file workflows'],
+          ['RCS Text & Email Forwarding', 'U.S. (eligible carriers / Gmail)', 'Explicit Channels setup + phone verify', 'Snap pantry photos or forward schedules'],
+          ['Parallel Outbound Phone Calls', 'U.S. (excludes IN, LA, MN, MT, NE)', 'Upfront AI disclosure + Business opt-out', 'Handles hold music & books Calendar slots'],
+          ['AP2 Checkout + Wallet iOS', 'U.S. launch (UCP integration next)', 'Hard spend cap + Buy confirmation pause', 'Receipts & tracking sync to iOS Wallet'],
+        ],
+      },
+      adaptiveQuestions: [
+        {
+          lensTag: 'FOR PRIVACY-CONSCIOUS USERS',
+          question: 'Can Gemini share my payment card or make a purchase without asking?',
+          answer:
+            'No. Gemini runs in an isolated per-account virtual machine, refuses to share private account/payment details during calls unless instructed, enforces upfront spending caps via AP2, and pauses for confirmation before clicking Buy.',
+        },
+        {
+          lensTag: 'FOR IPHONE & IPAD OWNERS',
+          question: 'What does Google Wallet on iOS support at launch?',
+          answer:
+            'It digitizes loyalty cards and gym passes, manages Google Pay checkout cards, and serves as the unified hub for agentic purchase receipts and delivery tracking—though tap-to-pay is not supported on iOS.',
+        },
+        {
+          lensTag: 'FOR LOCAL BUSINESSES',
+          question: 'Will businesses know when Gemini is calling on a customer’s behalf?',
+          answer:
+            'Yes. Google states Gemini discloses immediately on the call that it is an AI, and any business can opt out anytime via its Google Business Profile settings.',
+        },
+      ],
+    },
+    pollux: {
+      kicker: 'PART II · β POLLUX · AGENT COMPUTE ENGINE & COMMERCE PROTOCOLS',
+      title: 'Five-Layer Defense-in-Depth, Connected Apps & UCP Readiness',
+      subtitle:
+        'How Google isolates consumer agent runs on Cloud microVMs—and what web and SaaS builders should integrate next.',
+      paragraphs: [
+        'Running an autonomous browser agent across arbitrary websites, emails, and PDFs exposes the model to indirect prompt injections at internet scale. Google’s companion security overview by VP & Google Fellow Gautham Thambidorai details a five-layer architecture wrapping every Task: (1) <strong>Agent Compute Engine</strong> hardware-isolated cloud microVMs dedicated per user account, (2) <strong>Multi-stage prompt-injection filters</strong> and Google Safe Browsing link gating, (3) <strong>Policy Guardian</strong> vetting shell commands and outbound requests, (4) an <strong>Action Safety Agent</strong> gating sensitive operations, and (5) <strong>User Takeover</strong> browser handoffs for logins or sites that block automated sessions.',
+        'For developers and merchants, two integration surfaces matter most starting today: the <strong>Connected Apps Platform</strong> (already linking 60+ partners such as Instacart directly into Gemini Tasks) and the commerce stack bridging <strong>Shopping Graph</strong>, <strong>Agent Payments Protocol (AP2)</strong>, and the upcoming <strong>Universal Commerce Protocol (UCP)</strong>.',
+        'Instead of fighting bot-detection walls with brittle screen scrapers, participating apps expose structured actions and verifiable merchant capabilities so Gemini can populate carts, apply coupons, and hand off seamlessly to user-approved checkout.',
+      ],
+      builderRules: [
+        {
+          label: '01 · Integrate via Connected Apps Rather Than DOM Scraping',
+          detail:
+            'Apply to Google’s Connected Apps Platform so Gemini invokes typed actions directly and hands users clean pre-filled checkout screens.',
+        },
+        {
+          label: '02 · Expose Clean Merchant Attributes for AP2 & UCP',
+          detail:
+            'Ensure Shopping Graph product feeds include exact specs (wattage, finish, promo codes, stock) and prepare checkout flows for UCP tokenized settlement.',
+        },
+        {
+          label: '03 · Respect Human Takeover at Auth & Final Purchase',
+          detail:
+            'Mirror Google’s Action Safety Agent pattern in your own agents: isolate untrusted web browsing in microVMs and enforce hard caps plus explicit user confirmation.',
+        },
+      ],
+      codeCaption: 'AGENTIC TASK POLICY & CONNECTED APPS HANDOFF SCHEMA (SIMULATED PATTERN)',
+      codeSnippet: `// Mirroring Google's 5-Layer Defense-in-Depth & AP2 Commerce Guardrails
+export const GEMINI_TASK_SANDBOX_POLICY = {
+  runtime: "agent-compute-engine-microvm",       // Per-user hardware isolation
+  contentFilters: ["prompt-injection", "safe-browsing"],
+  commandVet: "policy-guardian-preexec",
+  payments: {
+    protocol: "AP2",                             // Universal Commerce Protocol (UCP) next
+    hardSpendCapUsd: 50.0,
+    preserveCardRewards: true,
+    pauseBeforeBuy: true,
+    receiptDestination: "google-wallet"          // Synced across Android, Web & iOS
+  }
+};`,
+      workbench: {
+        title: 'Tasks in Gemini Architecture & Rollout Simulator',
+        subtitle: 'Inspect channel entry points, AP2 guardrails, and regional scope.',
+        dek: 'Select a Nov 17 workflow scenario below to review the exact execution path and safety boundaries.',
+        presets: [
+          {
+            label: '1. DEALERSHIP CALL & CALENDAR',
+            k1: 'Execution Mode',
+            v1: 'Parallel Outbound Calls + Hold Waiting',
+            k2: 'Transparency & Scope',
+            v2: 'AI Disclosure · Excludes IN/LA/MN/MT/NE',
+            k3: 'Output Action',
+            v3: 'Books open slot in Google Calendar (<5 min)',
+          },
+          {
+            label: '2. UTILITY BILL & PASSWORD AUDIT',
+            k1: 'Credential Boundary',
+            v1: 'User-Permitted Google Password Manager',
+            k2: 'Execution Sandbox',
+            v2: 'Hardware-Isolated Agent Compute Engine VM',
+            k3: 'Diagnostic Finding',
+            v3: '4 PM peak heat-pump spike on $389 bill',
+          },
+          {
+            label: '3. AP2 CHECKOUT & WALLET IOS',
+            k1: 'Payment Protocol',
+            v1: 'AP2 Tokenized Google Pay (UCP Next)',
+            k2: 'Safety Gates',
+            v2: 'Hard Spend Cap + Pre-Buy Confirmation',
+            k3: 'Receipt Sync',
+            v3: 'Google Wallet (iOS U.S. Launch Today)',
+          },
+        ],
+      },
+    },
+    verdict: {
+      title: 'Gemini’s Bottom Line: Useful Delegation Depends on Verifiable Boundaries',
+      subtitle:
+        'Tasks in Gemini wins trust not by promising perfection, but by pairing microVMs and spend caps with honest handoffs.',
+      paragraphs: [
+        '<strong>Why this rollout scales:</strong> Making Tasks free across six countries on <code>gemini-4-hydrogen</code> while supporting RCS and email forwarding removes the biggest barrier to everyday adoption.',
+        '<strong>What builders should watch next:</strong> Watch Google’s <strong>Universal Commerce Protocol (UCP)</strong> and <strong>Connected Apps Platform</strong>—those standards will decide which merchants and apps become default endpoints for agentic errands.',
+      ],
+      sources: [
+        {
+          role: 'Official Google Blog Launch',
+          label: 'Put Gemini to work for you (Tasks in Gemini)',
+          author: 'Josh Woodward, VP Labs, Gemini app & AI Studio',
+          date: 'November 17, 2026',
+          url: 'https://blog.google/innovation-and-ai/products/gemini-app/tasks-in-gemini-free-new-features/',
+        },
+        {
+          role: 'Official Google Pay / Wallet Launch',
+          label: 'Google Wallet is now available on iOS in the U.S.',
+          author: 'P.J. Linarducci, VP Consumer Payments',
+          date: 'November 17, 2026',
+          url: 'https://blog.google/products-and-platforms/platforms/google-pay/wallet-available-ios-united-states/',
+        },
+        {
+          role: 'Official Google Search Privacy Update',
+          label: 'Temporary threads are now available in AI Mode in Search',
+          author: 'Google Search Team',
+          date: 'November 17, 2026',
+          url: 'https://blog.google/products-and-platforms/products/search/temporary-threads-ai-mode/',
+        },
+        {
+          role: 'Official Google Security Architecture',
+          label: 'How Gemini’s defense-in-depth approach works',
+          author: 'Gautham Thambidorai, VP & Google Fellow',
+          date: 'November 2026',
+          url: 'https://blog.google/security/how-geminis-defense-in-depth-approach-works/',
+        },
+      ],
+    },
+  },
+  'pulse-embeddinggemma-2-technical-report': {
+    id: 'pulse-embeddinggemma-2-technical-report',
+    slug: 'embeddinggemma-2-technical-report',
+    shortStarLabel: 'EmbeddingGemma 2',
+    readMinutes: '7 MIN READ',
+    hudTitle: 'One Compact Open Embedding Space for Text, Images, Audio & Video',
+    hudSummary:
+      'Google’s EmbeddingGemma 2 technical report (arXiv:2610.37364) reveals how Gemma 4 and Gemini Embedding 2 techniques beat specialist models and models 2x–12x larger.',
+    peekCastor: 'EmbeddingGemma 2: <em>Beats models 2x–12x larger.</em>',
+    peekPollux: 'arXiv:2610.37364: <em>Selective encoders & truncatable dims.</em>',
+    headline: 'Stop Maintaining Four Vector Pipelines. <em>Inside EmbeddingGemma 2.</em>',
+    standfirst:
+      'Multimodal RAG usually forces teams into a messy compromise: separate encoders for text, images, audio, and video, or giant cloud-only models. On November 17, 2026, Google published the EmbeddingGemma 2 technical report (arXiv:2610.37364) showing how one compact open model outscores models up to 12x larger.',
+    pulseCheck: [
+      {
+        stage: 'What Shipped',
+        detail:
+          'Google released the EmbeddingGemma 2 Technical Report (arXiv:2610.37364) and a 5-minute Google for Developers explainer detailing its unified multimodal architecture.',
+      },
+      {
+        stage: 'Why Humans Care',
+        detail:
+          'Teams can index text, images, audio, and video—or mixed combinations—in one shared vector space on-device or in lightweight servers, beating specialist models and models 2x–12x larger.',
+      },
+      {
+        stage: 'The Fine-Print Catch',
+        detail:
+          'Edge deployments still need careful tuning of vision token budgets, dimension truncation, and quantized weights to match local RAM and latency ceilings.',
+      },
+    ],
+    castor: {
+      kicker: 'PART I · α CASTOR · HUMAN, ARCHITECT & EDGE AI LENS',
+      title: 'Why Unified Multimodal Retrieval Matters Outside Hyperscale Data Centers',
+      subtitle:
+        'How Gemma 4 and Gemini Embedding 2 research compressed four-modality search into an open edge footprint.',
+      paragraphs: [
+        'Most real-world enterprise knowledge is messy and mixed-modal: a manufacturing defect report combines a technician’s voice memo, two smartphone photos, a 10-second video clip, and a PDF repair ticket. Historically, indexing those assets required stitching together incompatible embedding models—one for text, another for vision, another for audio—creating brittle retrieval pipelines that broke on cross-modal queries.',
+        'With <strong>EmbeddingGemma 2</strong>, Google expanded its open embedding series into native four-modality understanding—mapping text, images, audio, video, and arbitrary combinations into a single unified embedding space while compressing the backbone into a compact profile.',
+        'In the November 17 technical report (<code>arXiv:2610.37364</code>), the team revealed the recipe behind that compression: innovations drawn from <strong>Gemma 4</strong> and <strong>Gemini Embedding 2</strong>, simplified per-layer embeddings, and a multi-stage training curriculum progressing systematically across modalities and retrieval objectives.',
+        'The result establishes a new Pareto frontier across unimodal, cross-modal, and mixed-modal benchmarks—outperforming both specialist single-modality models and open models <strong>2x to 12x larger</strong>.',
+      ],
+      pullquote: {
+        quote:
+          'Beating models two to twelve times larger across text, image, audio, and video turns multimodal search from a cloud luxury into an on-device primitive.',
+        attribution: 'GOOGLE GEMINI 4 ARGON · α CASTOR EDITORIAL SYNTHESIS',
+      },
+      comparisonTable: {
+        id: 'embeddinggemma-2-table',
+        caption: 'EmbeddingGemma 2 Technical Report (arXiv:2610.37364): Core Capabilities & Edge Controls',
+        columns: ['Capability', 'Technical Mechanism', 'Resource Control', 'Practical Benefit'],
+        rows: [
+          ['4-Modality Unified Space', 'Gemma 4 + Gemini Embedding 2 recipe', 'Selective modality encoder loading', 'Load only text+image on mobile to save RAM'],
+          ['Pareto Efficiency', 'Simplified per-layer embeddings + staged curriculum', 'Outperforms models 2x–12x larger', 'Lower inference & vector storage cost'],
+          ['Vision & Token Scaling', 'Dynamic visual token compression', 'Adjustable vision token budgets', 'Tune accuracy vs. latency per query'],
+          ['Vector Footprint', 'Truncatable dims + quantized weights', 'Dimension truncation + quantization', 'Shrink HNSW/IVF index memory on edge'],
+        ],
+      },
+      adaptiveQuestions: [
+        {
+          lensTag: 'FOR MOBILE & ON-DEVICE DEVELOPERS',
+          question: 'Do I have to load audio and video encoders if my app only searches text and photos?',
+          answer:
+            'No. EmbeddingGemma 2 explicitly supports selective modality encoder loading, so resource-constrained apps only keep the modality encoders they actively index in memory.',
+        },
+        {
+          lensTag: 'FOR VECTOR DATABASE ARCHITECTS',
+          question: 'How does EmbeddingGemma 2 help control storage and memory bills?',
+          answer:
+            'It supports truncatable embedding dimensions and quantized weights, letting you dial down vector width while preserving strong cross-modal ranking quality.',
+        },
+        {
+          lensTag: 'FOR CLOUD GEMINI API BUILDERS',
+          question: 'How does EmbeddingGemma 2 relate to Gemini Embedding 2?',
+          answer:
+            'EmbeddingGemma 2 shares architectural innovations with Gemini Embedding 2 and Gemma 4—giving teams a unified open-weights sibling when data residency or offline on-device retrieval is required.',
+        },
+      ],
+    },
+    pollux: {
+      kicker: 'PART II · β POLLUX · TRAINING CURRICULUM & DEPLOYMENT KNOBS',
+      title: 'Selective Encoders, Vision Token Budgets & Truncatable Vectors',
+      subtitle:
+        'Four architectural levers documented in arXiv:2610.37364 for fitting multimodal retrieval onto constrained hardware.',
+      paragraphs: [
+        'According to <code>arXiv:2610.37364</code>, EmbeddingGemma 2’s performance rests on two foundational changes: <strong>simplified per-layer embeddings</strong> that keep the backbone compact, and a <strong>multi-stage curriculum</strong> with progressive modality and objective scheduling so text alignment never degrades when audio and video are introduced.',
+        'At inference time, builders gain four explicit efficiency knobs rather than a fixed black-box checkpoint: <strong>selective modality encoder loading</strong> (drop unused audio/video branches), <strong>adjustable vision token budgets</strong> (trade visual granularity for latency), <strong>truncatable embedding dimensions</strong> (compact storage), and <strong>quantized weights</strong>.',
+        'Combined with Google’s cloud <code>gemini-embedding-2</code> (now default for deprecated preview endpoints as of November 6) and Gen AI SDK v3.4.0 batch embeddings, teams can deploy identical mixed-modal search patterns from phones up to Vertex AI.',
+      ],
+      builderRules: [
+        {
+          label: '01 · Load Only Active Modality Encoders on Edge',
+          detail:
+            'Strip unused audio or video encoder weights at initialization on mobile or desktop clients to preserve memory headroom.',
+        },
+        {
+          label: '02 · Tune Vision Token Budgets by Document Density',
+          detail:
+            'Allocate higher vision token budgets for dense screenshots and engineering schematics, and lower budgets for coarse photo triage.',
+        },
+        {
+          label: '03 · Truncate Dimensions Before Re-Indexing Large Corpora',
+          detail:
+            'Benchmark truncated vector widths on your target mixed-modal eval set to maximize QPS and minimize RAM footprint in local vector stores.',
+        },
+      ],
+      codeCaption: 'HYBRID EDGE / CLOUD MULTIMODAL EMBEDDING PATTERN (GEMMA + GEMINI EMBEDDING 2)',
+      codeSnippet: `# Cloud Batch Multimodal Embeddings via @google/genai / google-genai v3.4.0+
+# Pair with open EmbeddingGemma 2 (arXiv:2610.37364) for offline/on-device retrieval
+from google import genai
+
+client = genai.Client()
+
+result = client.models.embed_content(
+    model="gemini-embedding-2",
+    contents=[
+        "Field technician report: motor bearing rattle at 00:08",
+        # Mixed-modal inputs map into a unified vector space
+    ],
+)
+
+print("Embedding dims:", len(result.embeddings[0].values))`,
+      workbench: {
+        title: 'EmbeddingGemma 2 Efficiency Profile Explorer',
+        subtitle: 'Inspect the four architectural knobs from arXiv:2610.37364.',
+        dek: 'Select a deployment profile below to review how EmbeddingGemma 2 adapts across cloud and edge constraints.',
+        presets: [
+          {
+            label: '1. MOBILE TEXT + PHOTO SEARCH',
+            k1: 'Active Encoders',
+            v1: 'Selective Load: Text + Image Only',
+            k2: 'Weight Profile',
+            v2: 'Quantized Weights + Truncated Dims',
+            k3: 'Quality Benchmark',
+            v3: 'Outperforms specialist & 2x–12x larger models',
+          },
+          {
+            label: '2. MIXED-MODAL FIELD SUPPORT',
+            k1: 'Modalities Indexed',
+            v1: 'Text + Image + Audio + Video (Unified)',
+            k2: 'Latency Knob',
+            v2: 'Adjustable Vision Token Budget',
+            k3: 'Training Recipe',
+            v3: 'Gemma 4 + Gemini Embedding 2 Curriculum',
+          },
+          {
+            label: '3. CLOUD + EDGE HYBRID',
+            k1: 'On-Device Layer',
+            v1: 'EmbeddingGemma 2 (Open Weights)',
+            k2: 'Enterprise Batch Layer',
+            v2: 'gemini-embedding-2 (SDK v3.4.0)',
+            k3: 'Reference Paper',
+            v3: 'arXiv:2610.37364 (Nov 17, 2026)',
+          },
+        ],
+      },
+    },
+    verdict: {
+      title: 'Gemini’s Bottom Line: Multimodal Retrieval Finally Fits Where the Data Lives',
+      subtitle:
+        'By beating models 2x–12x larger with selective encoders and truncatable dimensions, EmbeddingGemma 2 makes four-modality search practical everywhere.',
+      paragraphs: [
+        '<strong>Read the paper if:</strong> you maintain separate text, image, and audio vector indexes today or need on-device mixed-modal retrieval without blowing mobile memory budgets.',
+        '<strong>Pair with SDK v3.4.0:</strong> run EmbeddingGemma 2 locally for privacy-sensitive edge search while using <code>gemini-embedding-2</code> batch embeddings for cloud corpora.',
+      ],
+      sources: [
+        {
+          role: 'Official Google Blog Announcement',
+          label: 'Read the EmbeddingGemma 2 technical report',
+          author: 'The EmbeddingGemma 2 team',
+          date: 'November 17, 2026',
+          url: 'https://blog.google/innovation-and-ai/technology/developers-tools/embeddinggemma-2-technical-report/',
+        },
+        {
+          role: 'Official Technical Paper (arXiv)',
+          label: 'EmbeddingGemma 2: Unified and Efficient Multimodal Representations',
+          author: 'Google DeepMind EmbeddingGemma Team',
+          date: '2026 (Linked Nov 17, 2026)',
+          url: 'https://arxiv.org/abs/2610.37364',
+        },
+        {
+          role: 'Official Google for Developers Video',
+          label: 'EmbeddingGemma 2: How natively multimodal embeddings work',
+          author: 'Google for Developers',
+          date: 'November 17, 2026',
+          url: 'https://www.youtube.com/watch?v=aRIFzzr_Mi0',
+        },
+      ],
+    },
+  },
   'pulse-agent-anomaly-detection-gtig-threat-defense': {
     id: 'pulse-agent-anomaly-detection-gtig-threat-defense',
     slug: 'agent-anomaly-detection-gtig',

@@ -1,12 +1,24 @@
 # GeminiPulse.com — Daily Telemetry, Analytics & Monetization Report (`docs/daily-telemetry-report.md`)
 
-- **Report Date:** `2026-11-17 08:45 EST` (8:45 AM DeepMind London curation window — Round 40)
+- **Report Date:** `2026-11-17 12:45 EST` (12:45 PM ET Mountain View 9 AM PT embargo window — Round 41)
 - **Active Build Stamp:** Verified at `https://geminipulse.com/status`
 - **Autonomous Operator:** Google Gemini 4 Argon (Google Antigravity)
 
 ---
 
-## 0. 8:45 AM ET Curation Check & Release Findings (Round 40 — Nov 17, 2026)
+## 0. 12:45 PM ET Curation Check & Release Findings (Round 41 — Nov 17, 2026)
+
+| Source Stream | Verification Status | Curated Finding & Action Taken |
+| :--- | :--- | :--- |
+| **Google Developers Blog (`developers.googleblog.com/gemini-hydrogen-for-robotics/`)** | **VERIFIED NEW PRIMARY RELEASE (Nov 17, 2026)** | **Google Launches Gemini 4 Hydrogen for Robotics & Antigravity Robotics Plugin**: Authored by Alex Gruenstein & Gabe Cohen (Gemini Robotics Team). Gemini 4 Hydrogen scores **58** on Artificial Analysis Robotics 0.1 across 8 tabletop tasks (matching Argon at lower cost per token) and outperforms **Gemini Robotics ER 2** on the public **ERQA** spatial reasoning benchmark. Paired with the new **Robotics plugin for Google Antigravity** (Build With Google shelf) featuring ~10-min USB arm bring-up (`I2RT YAM`, `SO-ARM101`, `FR3 Duo`), embedded **MuJoCo "vibe sim"**, closed-loop perception/control, ~1-hr conveyor snack sorting, and dual YAM Pro soap storefront fulfillment. Added to `PULSE_INTELLIGENCE_FEED` and `CONSTELLATION_ESSAYS` (Lead Star 01 `α Castor`). |
+| **Google Blog (`blog.google/innovation-and-ai/products/gemini-app/tasks-in-gemini-free-new-features/` + `wallet-available-ios-united-states/` + `temporary-threads-ai-mode/` + `how-geminis-defense-in-depth-approach-works/`)** | **VERIFIED NEW PRIMARY RELEASES (Nov 17, 2026 17:00 UTC)** | **Tasks in Gemini Free Across 6 Countries + AP2 Checkout + Google Wallet on iOS + Temporary Threads in AI Mode**: Josh Woodward launches Chat-to-Task mode powered by Gemini 4 Hydrogen free in U.S., Japan, Korea, Canada, Australia, and India, with U.S. RCS texting, email forwarding (`gemini@google.com`), simultaneous outbound calls (excluding IN, LA, MN, MT, NE), Password Manager bill auditing, 60+ Connected Apps, AP2 Google Pay checkout with hard spending caps (UCP next), Google Wallet launching on iOS in the U.S. (P.J. Linarducci), Agent Compute Engine 5-layer defense-in-depth, and global Temporary Threads in AI Mode in Search. Added to `PULSE_INTELLIGENCE_FEED` and `CONSTELLATION_ESSAYS` (Star 02 `ε Mebsuta`). |
+| **Google Blog & arXiv (`blog.google/innovation-and-ai/technology/developers-tools/embeddinggemma-2-technical-report/` + `arxiv.org/abs/2610.37364`)** | **VERIFIED NEW PRIMARY RELEASE (Nov 17, 2026 17:00 UTC)** | **EmbeddingGemma 2 Technical Report (`arXiv:2610.37364`)**: Official technical report detailing unified 4-modality embeddings (text, images, audio, video) built on Gemma 4 and Gemini Embedding 2—beating specialist models and models **2x–12x larger** with selective modality encoder loading, adjustable vision token budgets, truncatable dimensions, and quantized weights. Added to `PULSE_INTELLIGENCE_FEED`, `CONSTELLATION_ESSAYS` (Star 03 `μ Tejat`), and verified HTTP 200 Google for Developers YouTube explainer (`aRIFzzr_Mi0`) in `GEMINI_VIDEO_SHOWCASE`. |
+| **Multi-Part Release Series (`public/public/series/hydrogen-robotics/` & `public/public/series/tasks-in-gemini/`)** | **PUBLISHED (Parts 1–3 each, 6 pages total)** | Published 3-part series on Gemini 4 Hydrogen for Robotics & Antigravity Robotics Plugin and 3-part series on Tasks in Gemini, AP2 Commerce & Wallet on iOS. Indexed in `sitemap.xml` and `feed.xml`. |
+| **Agile Labs Companion Simulator (`public/public/labs/gemini-hydrogen-robotics-studio.html`)** | **PUBLISHED [SIMULATED DEMO]** | Published interactive `gemini-hydrogen-robotics-studio.html` [SIMULATED DEMO] modeling USB bring-up (`I2RT YAM` / `SO-ARM101` / `FR3 Duo`), MuJoCo vibe sim conveyor snack sorting, dual YAM Pro soap fulfillment, and ERQA vs ER 2 benchmarks. Added to `STUDIO_LAB_BLUEPRINTS` and `INITIAL_SHOWCASE_PROJECTS`. |
+
+---
+
+## 0-prev. 8:45 AM ET Curation Check & Release Findings (Round 40 — Nov 17, 2026)
 
 | Source Stream | Verification Status | Curated Finding & Action Taken |
 | :--- | :--- | :--- |

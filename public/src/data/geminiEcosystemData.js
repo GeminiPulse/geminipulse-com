@@ -5,6 +5,61 @@
 
 export const PULSE_INTELLIGENCE_FEED = [
   {
+    id: 'pulse-gemini-4-hydrogen-robotics-antigravity',
+    title: 'Google Launches Gemini 4 Hydrogen for Robotics & Antigravity Robotics Plugin: 10-Min USB Bring-Up, MuJoCo Vibe Sim & ERQA Leadership',
+    tldr: 'Released November 17, 2026: Google DeepMind’s Gemini Robotics team brings Gemini Robotics ER 2 spatial reasoning into Gemini 4 Hydrogen—scoring 58 on Artificial Analysis Robotics 0.1 and beating ER 2 on ERQA—alongside the new Robotics plugin for Google Antigravity with ~10-minute USB arm onboarding (I2RT YAM, SO-ARM101, FR3 Duo) and embedded MuJoCo "vibe sim".',
+    summary:
+      'Google Developers Blog (Alex Gruenstein & Gabe Cohen, Gemini Robotics Team) unveils the Robotics plugin for Google Antigravity alongside embodied spatial reasoning benchmarks for Gemini 4 Hydrogen (gemini-4-hydrogen). Key verified milestones include: (1) ERQA & Robotics 0.1 Benchmarks—Hydrogen scores 58 on Artificial Analysis Robotics 0.1 across 8 real 6-axis tabletop tasks (matching Argon at lower token cost) and outperforms Gemini Robotics ER 2 on the public ERQA spatial reasoning benchmark (multi-view correspondence and 3D trajectory reasoning), (2) Four Core Plugin Skills—Robot bring-up (USB cable to drivers, depth camera discovery, calibration, and safe motion in ~10 minutes on I2RT YAM, SO-ARM101, and FR3 Duo), MuJoCo in Antigravity ("vibe sim" asset creation, auditing, and rendering from prompts/links/photos), Perception & Closed-Loop Control, and Real-to-Sim-to-Real Application Building, and (3) Verified Deployments—whiteboard-to-live conveyor snack sorting in ~1 hour, a self-fulfilling soap storefront driving dual YAM Pro arms (1x dev / 5x fulfillment), and a chess-playing FR3 Duo robot.',
+    category: 'Robotics & Spatial AI',
+    tag: 'Plugin & Benchmark Launch',
+    modelBadge: 'Gemini 4 Hydrogen & Robotics Plugin',
+    impactScore: '10.0 / 10',
+    date: '2026-11-17T17:00:00Z',
+    sourceLabel: 'Google Developers Blog: Gemini 4 Hydrogen for Robotics & Antigravity Plugin',
+    sourceUrl: 'https://developers.googleblog.com/gemini-hydrogen-for-robotics/',
+    groundedBy: 'Google Developers Blog Official Launch (Alex Gruenstein & Gabe Cohen, Verified Nov 17, 2026)',
+    seriesUrl: '/series/hydrogen-robotics/part-1-hydrogen-robotics-and-antigravity-plugin.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-hydrogen-robotics-studio.html',
+    labLabel: 'Robotics Studio Lab [DEMO] →',
+  },
+  {
+    id: 'pulse-tasks-in-gemini-ap2-agentic-assistant',
+    title: 'Google Rolls Out Tasks in Gemini Free Across 6 Countries: Autonomous Calls, AP2 Checkout, Wallet on iOS & Search Temporary Threads',
+    tldr: 'Released November 17, 2026 (17:00 UTC): Josh Woodward launches Tasks in Gemini (powered by Gemini 4 Hydrogen) free in the U.S., Japan, Korea, Canada, Australia, and India—adding Chat-to-Task mode, U.S. RCS texting & email forwarding, parallel phone calls, AP2 Google Pay checkout, U.S. Google Wallet on iOS, Agent Compute Engine microVM sandboxing, and global Temporary Threads in AI Mode.',
+    summary:
+      'Across a coordinated November 17 Gemini App, Payments, and Search launch, Google transitions Gemini from passive chat into an autonomous personal assistant inside hardware-isolated Agent Compute Engine microVMs: (1) Three Entry Surfaces—flip Chat to Task in the Gemini app, text via RCS on Android/iOS, or forward emails to gemini@google.com (U.S. channels), (2) Real-World Execution—places simultaneous phone calls (disclosing AI and handling hold music, excluding IN/LA/MN/MT/NE with Business Profile opt-out), audits utility bills via Google Password Manager, and integrates 60+ Connected Apps (e.g., Instacart photo-to-cart), (3) Agent Payments Protocol (AP2) & Wallet on iOS—checks out via Shopping Graph and Google Pay digital tokens (Mastercard, Visa; Amex coming soon) with upfront hard spending caps and Universal Commerce Protocol (UCP) coming next, paired with Google Wallet launching on iOS in the U.S. for receipts and tracking, (4) Five-Layer Defense-in-Depth—Agent Compute Engine VMs, prompt-injection filters + Safe Browsing, Policy Guardian, Action Safety Agent pre-buy confirmations, and User Takeover, and (5) Temporary Threads in AI Mode—global desktop/mobile Search update for account-detached, history-free sessions.',
+    category: 'Agentic Apps & Commerce',
+    tag: 'Global Rollout',
+    modelBadge: 'Tasks in Gemini, AP2 & Wallet iOS',
+    impactScore: '9.9 / 10',
+    date: '2026-11-17T17:00:00Z',
+    sourceLabel: 'Google Blog: Put Gemini to work for you + Wallet on iOS + Temporary Threads',
+    sourceUrl: 'https://blog.google/innovation-and-ai/products/gemini-app/tasks-in-gemini-free-new-features/',
+    groundedBy: 'Google Blog Official Releases (Josh Woodward & P.J. Linarducci, Verified Nov 17, 2026)',
+    seriesUrl: '/series/tasks-in-gemini/part-1-tasks-in-gemini-and-agentic-architecture.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-agent-anomaly-studio.html',
+    labLabel: 'Security & Anomaly Lab [DEMO] →',
+  },
+  {
+    id: 'pulse-embeddinggemma-2-technical-report',
+    title: 'Google Publishes EmbeddingGemma 2 Technical Report (arXiv:2610.37364): Unified Multimodal Open Embeddings Outperforming Models 2x–12x Larger',
+    tldr: 'Published November 17, 2026 (17:00 UTC): Google releases the official EmbeddingGemma 2 technical report and 5-minute developer explainer—detailing how Gemma 4 and Gemini Embedding 2 innovations map text, images, audio, and video into a single compact space with selective modality loading, adjustable vision token budgets, truncatable dimensions, and quantized weights.',
+    summary:
+      'The EmbeddingGemma 2 team publishes the full technical report (arXiv:2610.37364: "EmbeddingGemma 2: Unified and Efficient Multimodal Representations") alongside an official Google for Developers explainer video. Expanding Google’s text-only open embedding line with native multimodal understanding, EmbeddingGemma 2 maps text, images, audio, video, and mixed combinations into a single unified vector space using simplified per-layer embeddings and a multi-stage curriculum across modalities and objectives. On comprehensive unimodal, cross-modal, and mixed-modal embedding benchmarks, EmbeddingGemma 2 sets a new Pareto frontier—outperforming both specialist models and models 2x to 12x larger—while offering edge-ready controls including selective modality encoder loading, adjustable vision token budgets, truncatable embedding dimensions, and quantized weights.',
+    category: 'Open Models & Embeddings',
+    tag: 'Technical Report',
+    modelBadge: 'EmbeddingGemma 2 (arXiv:2610.37364)',
+    impactScore: '9.7 / 10',
+    date: '2026-11-17T17:00:00Z',
+    sourceLabel: 'Google Blog & arXiv: EmbeddingGemma 2 Technical Report (arXiv:2610.37364)',
+    sourceUrl: 'https://blog.google/innovation-and-ai/technology/developers-tools/embeddinggemma-2-technical-report/',
+    groundedBy: 'Google Blog & arXiv Primary Technical Report (Verified Nov 17, 2026)',
+    labUrl: '/labs/gemini-hydrogen-robotics-studio.html',
+    labLabel: 'Robotics Studio Lab [DEMO] →',
+  },
+  {
     id: 'pulse-agent-anomaly-detection-gtig-threat-defense',
     title: 'Google Ships Agent Anomaly Detection Hands-On Guide & GTIG AI Threat Defense: Zero-Latency Trace Auditing Catching 87% of Goal Hijacks',
     tldr: 'Published November 16, 2026: Google Cloud & GTIG unveil a hands-on deployment blueprint and 1,774-session external benchmark audit for Agent Anomaly Detection (flagging 87% of executed harmful instructions at 0 ms live runtime latency via OpenTelemetry traces and Cloud Logging), paired with Google AI Threat Defense uniting Gemini, Wiz, CodeMender, and Mandiant against autonomous LLM exploit frameworks.',
@@ -924,6 +979,53 @@ export const GEMINI_MODEL_MATRIX = [
 
 export const STUDIO_LAB_BLUEPRINTS = [
   {
+    id: 'lab-hydrogen-robotics-studio',
+    title: 'Gemini 4 Hydrogen Robotics & MuJoCo Studio [SIMULATED DEMO]',
+    badge: 'Nov 17, 2026 Robotics',
+    model: 'gemini-4-hydrogen',
+    href: '/labs/gemini-hydrogen-robotics-studio.html',
+    description:
+      'Interactive developer simulator modeling Google’s Nov 17 Gemini 4 Hydrogen for Robotics release and Antigravity Robotics Plugin: step through ~10-min USB arm bring-up (I2RT YAM, SO-ARM101, FR3 Duo), MuJoCo vibe sim, conveyor snack sorting, dual-arm soap fulfillment, and ERQA / Robotics 0.1 benchmarks.',
+    prompt:
+      'Bring up my SO-101 arm over USB, generate a MuJoCo conveyor snack-sorting simulation from workspace photos, and deploy closed-loop 3D grasp control.',
+    tsCode: `import { GoogleGenAI } from "@google/genai";
+
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+
+const interaction = await ai.clients.interactions.create({
+  model: "gemini-4-hydrogen",
+  input: [
+    { type: "text", text: "Identify the citrus soap bar and return safe 3D grasp pose [x, y, z] in workspace frame." },
+    { type: "image", data: depthCameraBase64, mime_type: "image/jpeg" }
+  ],
+  config: { thinking_config: { thinking_level: "medium" } }
+});`,
+    pyCode: `from google import genai
+
+client = genai.Client()
+
+# Replaces specialized Gemini Robotics ER 2 pipelines on ERQA spatial reasoning tasks
+interaction = client.interactions.create(
+    model="gemini-4-hydrogen",
+    input="Bring up I2RT YAM arm via Antigravity Robotics plugin, audit MuJoCo cell, and calibrate conveyor grasp thresholds.",
+    config={"thinking_config": {"thinking_level": "high"}}
+)`,
+    simulatedSteps: [
+      {
+        type: 'thought',
+        label: 'step[0] • Antigravity Robot bring-up & camera discovery',
+        detail:
+          'Installed serial drivers over USB, discovered depth camera extrinsics, and verified safe workspace joint bounds on I2RT YAM (~10 min elapsed).',
+      },
+      {
+        type: 'tool_call',
+        label: 'step[1] • MuJoCo vibe sim & closed-loop control',
+        detail:
+          'Synthesized interactive MuJoCo conveyor scene, validated 3D grasp trajectories (Artificial Analysis Robotics 0.1 score: 58), and deployed live arm policy.',
+      },
+    ],
+  },
+  {
     id: 'lab-agent-anomaly-studio',
     title: 'Agent Anomaly Detection & Defense-in-Depth Studio [SIMULATED DEMO]',
     badge: 'Nov 16, 2026 Security',
@@ -1673,6 +1775,25 @@ video_turn = client.interactions.create(
 ];
 
 export const INITIAL_SHOWCASE_PROJECTS = [
+  {
+    id: 'showcase-gemini-hydrogen-robotics-studio',
+    name: 'Gemini 4 Hydrogen Robotics & MuJoCo Studio [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive developer workbench modeling Google’s Nov 17 Gemini 4 Hydrogen for Robotics release and the Antigravity Robotics Plugin: ~10-min USB arm bring-up, MuJoCo vibe sim, conveyor sorting, and ERQA spatial benchmarks.',
+    models: ['gemini-4-hydrogen', 'gemini-4-argon'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-hydrogen-robotics-studio.html): [SIMULATED DEMO] Models I2RT YAM / SO-ARM101 / FR3 Duo bring-up, MuJoCo Real-to-Sim-to-Real workflows, Robotics 0.1 (58), and ERQA benchmarks.',
+    url: '/labs/gemini-hydrogen-robotics-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-17T17:00:00Z',
+  },
   {
     id: 'showcase-gemini-agent-anomaly-studio',
     name: 'Agent Anomaly Detection & Defense-in-Depth Studio [SIMULATED DEMO]',
@@ -3593,6 +3714,23 @@ export const GEMINI_VIDEO_SHOWCASE = [
       'Official Google for Developers recap published mid-November 2026—celebrating the global Build With AI 2026 community summit. Highlights developer momentum across Gemini 4 models, Google Antigravity multi-agent systems, Google AI Studio integrations, and real-world developer prototypes built across EMEA, APAC, and the Americas.',
     whyFeatured:
       'Verified HTTP 200 official Google for Developers celebration exploring global community innovation, multi-agent hackathons, and enterprise prototyping on Gemini 4.',
+  },
+  {
+    id: 'vid-google-developers-embeddinggemma-2',
+    videoId: 'aRIFzzr_Mi0',
+    featuredOfTheDay: false,
+    category: 'Open Models & Embeddings',
+    badge: 'OFFICIAL EXPLAINER • GOOGLE FOR DEVELOPERS',
+    title: 'EmbeddingGemma 2: How natively multimodal embeddings work',
+    creatorName: 'Google for Developers',
+    creatorHandle: '@GoogleDevelopers',
+    creatorUrl: 'https://www.youtube.com/@GoogleDevelopers',
+    watchUrl: 'https://www.youtube.com/watch?v=aRIFzzr_Mi0',
+    thumbnailUrl: 'https://i.ytimg.com/vi/aRIFzzr_Mi0/hqdefault.jpg',
+    geminiSummary:
+      'Official 5-minute Google for Developers explainer accompanying the November 17, 2026 EmbeddingGemma 2 technical report (arXiv:2610.37364). Breaks down how Gemma 4 and Gemini Embedding 2 techniques unify text, images, audio, and video into one compact vector space.',
+    whyFeatured:
+      'Verified HTTP 200 official Google for Developers technical explainer accompanying the Nov 17 EmbeddingGemma 2 technical report.',
   },
   {
     id: 'vid-julian-goldie-gemini-4-hydrogen',

@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gemini 4 Hydrogen Robotics &amp; MuJoCo Studio [SIMULATED DEMO] | Agile Labs</title>
+    <meta
+      name="description"
+      content="Interactive developer playground [SIMULATED DEMO] modeling Google's Nov 17 Gemini 4 Hydrogen for Robotics release and the Antigravity Robotics plugin: simulate 10-minute USB arm bring-up, MuJoCo vibe sim, conveyor snack sorting, and ERQA spatial benchmarks."
+    />
+    <link rel="canonical" href="https://geminipulse.com/labs/gemini-hydrogen-robotics-studio.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Gemini 4 Hydrogen Robotics &amp; MuJoCo Studio [SIMULATED DEMO]" />
+    <meta property="og:description" content="Simulate Real-to-Sim-to-Real robotics workflows with Gemini 4 Hydrogen, MuJoCo vibe sim, and the Antigravity Robotics plugin." />
+    <meta property="og:url" content="https://geminipulse.com/labs/gemini-hydrogen-robotics-studio.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Gemini 4 Hydrogen Robotics Studio [SIMULATED DEMO]" />
+    <meta name="twitter:description" content="Interactive Real-to-Sim-to-Real robotics workbench modeling Antigravity Robotics plugin skills and ERQA spatial reasoning." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Gemini 4 Hydrogen Robotics & MuJoCo Studio",
+        "url": "https://geminipulse.com/labs/gemini-hydrogen-robotics-studio.html",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "All",
+        "creator": { "@type": "Organization", "name": "Agile Labs (via GeminiPulse.com)" },
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      }
+    </script>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #07090e;
+        --surface: #111622;
+        --surface-high: #182030;
+        --border: rgba(255, 255, 255, 0.1);
+        --text: #f3f5fb;
+        --muted: #9da4b8;
+        --accent: #38bdf8;
+        --success: #34d399;
+        --warning: #fbbf24;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+      .wrap { max-width: 1080px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .badge-sim {
+        display: inline-block;
+        font-family: ui-monospace, Menlo, monospace;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        padding: 0.25rem 0.65rem;
+        border-radius: 9999px;
+        background: rgba(245, 158, 11, 0.15);
+        color: #fbbf24;
+        border: 1px solid rgba(245, 158, 11, 0.35);
+        text-transform: uppercase;
+      }
+      .header-title { font-size: clamp(1.55rem, 3.2vw, 2.25rem); font-weight: 800; margin: 0.6rem 0 0.3rem; }
+      .header-sub { font-size: 1.02rem; color: var(--muted); margin: 0 0 1.5rem; }
+      .grid-cols-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 1.5rem; min-inline-size: 0; }
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+        padding: 1.4rem;
+        min-inline-size: 0;
+      }
+      .card-title { font-size: 1.08rem; font-weight: 700; margin: 0 0 1rem; }
+      .preset-btn {
+        display: block;
+        width: 100%;
+        text-align: left;
+        background: var(--surface-high);
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        padding: 0.85rem 1rem;
+        margin-bottom: 0.75rem;
+        color: var(--text);
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+      .preset-btn:hover { border-color: var(--accent); background: rgba(56, 189, 248, 0.06); }
+      .preset-btn.active { border-color: var(--accent); background: rgba(56, 189, 248, 0.12); box-shadow: 0 0 0 1px var(--accent); }
+      .preset-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.2rem; }
+      .preset-desc { font-size: 0.82rem; color: var(--muted); }
+      .stage-tabs { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.5rem; margin-bottom: 1.15rem; }
+      .stage-tab {
+        background: var(--surface-high);
+        border: 1px solid var(--border);
+        border-radius: 0.6rem;
+        padding: 0.55rem 0.6rem;
+        color: var(--muted);
+        font-size: 0.78rem;
+        font-weight: 600;
+        cursor: pointer;
+        text-align: center;
+      }
+      .stage-tab.active { border-color: var(--success); color: var(--success); background: rgba(52, 211, 153, 0.12); }
+      .stat-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; margin-bottom: 1.15rem; }
+      .stat-box { background: var(--surface-high); border: 1px solid var(--border); border-radius: 0.75rem; padding: 0.85rem; min-inline-size: 0; }
+      .stat-val { font-size: 1.15rem; font-weight: 800; color: var(--accent); }
+      .stat-val.green { color: var(--success); }
+      .stat-val.amber { color: var(--warning); }
+      .stat-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+      .step-item {
+        background: var(--surface-high);
+        border-left: 3px solid var(--accent);
+        padding: 0.75rem 1rem;
+        border-radius: 0.5rem;
+        margin-bottom: 0.65rem;
+        font-size: 0.88rem;
+      }
+      .step-item.success { border-left-color: var(--success); }
+      .step-tag { font-family: ui-monospace, Menlo, monospace; font-size: 0.72rem; font-weight: 700; color: var(--accent); margin-right: 0.45rem; }
+      .step-item.success .step-tag { color: var(--success); }
+      pre {
+        background: #0b0f17;
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        padding: 1rem;
+        overflow-x: auto;
+        font-family: ui-monospace, Menlo, Consolas, monospace;
+        font-size: 0.8rem;
+        color: #e2e8f0;
+        line-height: 1.48;
+        margin: 0;
+        min-inline-size: 0;
+      }
+      .copy-btn {
+        background: rgba(56, 189, 248, 0.14);
+        color: #7dd3fc;
+        border: 1px solid rgba(56, 189, 248, 0.35);
+        border-radius: 0.5rem;
+        padding: 0.35rem 0.75rem;
+        font-size: 0.78rem;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .footer-nav { margin-top: 2.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; font-size: 0.85rem; color: var(--muted); }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.25rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+        <div style="display: flex; gap: 1rem; font-size: 0.85rem;">
+          <a href="/series/hydrogen-robotics/part-1-hydrogen-robotics-and-antigravity-plugin.html">3-Part Robotics Series &rarr;</a>
+          <a href="/workbench.html">Workbench &rarr;</a>
+        </div>
+      </div>
+
+      <span class="badge-sim">[SIMULATED DEMO] · NOV 17, 2026 RELEASE LAB</span>
+      <h1 class="header-title">Gemini 4 Hydrogen Robotics &amp; MuJoCo Studio</h1>
+      <p class="header-sub">
+        Simulate Google’s November 17 <strong>Gemini 4 Hydrogen for Robotics</strong> release and the <strong>Google Antigravity Robotics Plugin</strong>: step through USB arm bring-up (~10 min), MuJoCo "vibe sim", closed-loop camera control, and ERQA / Robotics 0.1 benchmarks.
+      </p>
+
+      <div class="grid-cols-2">
+        <div class="card">
+          <div class="card-title">1. Select Hardware &amp; Real-to-Sim-to-Real Scenario</div>
+          <button type="button" class="preset-btn active" data-preset="bringup">
+            <div class="preset-title">I2RT YAM / SO-ARM101 · 10-Min USB Bring-Up</div>
+            <div class="preset-desc">Plug USB cable, auto-install drivers, calibrate depth camera &amp; verify safe arm motion.</div>
+          </button>
+          <button type="button" class="preset-btn" data-preset="conveyor">
+            <div class="preset-title">Snack-Sorting Conveyor (~1 Hr Real-to-Sim-to-Real)</div>
+            <div class="preset-desc">Whiteboard sketch &rarr; MuJoCo vibe sim grasp validation &rarr; live conveyor deployment &amp; gripper tuning.</div>
+          </button>
+          <button type="button" class="preset-btn" data-preset="soapstore">
+            <div class="preset-title">Soap Store Dual YAM Pro (1× Dev / 5× Fulfillment)</div>
+            <div class="preset-desc">Web storefront webhook triggers dual arms to pick mint/citrus bars and pull a thank-you note.</div>
+          </button>
+          <button type="button" class="preset-btn" data-preset="erqa">
+            <div class="preset-title">Robotics 0.1 (58) &amp; ERQA Benchmark vs. ER 2</div>
+            <div class="preset-desc">Compare Gemini 4 Hydrogen against Gemini 4 Argon and Gemini Robotics ER 2 on 3D trajectory tasks.</div>
+          </button>
+
+          <div class="card-title" style="margin-top: 1.25rem;">2. Inspect Antigravity Plugin Skill Stage</div>
+          <div class="stage-tabs" role="group" aria-label="Antigravity Robotics Skill Stage">
+            <button type="button" class="stage-tab active" data-stage="0">01 Bring-Up</button>
+            <button type="button" class="stage-tab" data-stage="1">02 MuJoCo Sim</button>
+            <button type="button" class="stage-tab" data-stage="2">03 Control</button>
+            <button type="button" class="stage-tab" data-stage="3">04 Deploy</button>
+          </div>
+          <div id="stage-detail" class="step-item success"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Simulated Workbench Telemetry [SIMULATED DEMO]</div>
+          <div class="stat-grid">
+            <div class="stat-box">
+              <div class="stat-label">Hardware Target</div>
+              <div class="stat-val" id="stat-hw">I2RT YAM / SO-101</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">Benchmark / Timing</div>
+              <div class="stat-val green" id="stat-metric">~10 min setup</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">Model Pricing</div>
+              <div class="stat-val amber">$1.50 / $7.50 per 1M</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">Plugin Skill Active</div>
+              <div class="stat-val" id="stat-skill">Robot bring-up</div>
+            </div>
+          </div>
+
+          <div id="telemetry-steps"></div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; margin: 1.15rem 0 0.55rem;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em;">Antigravity / Gen AI SDK Snippet</span>
+            <button type="button" class="copy-btn" id="copy-btn">Copy Snippet</button>
+          </div>
+          <pre><code id="code-box"></code></pre>
+        </div>
+      </div>
+
+      <div class="footer-nav">
+        <span>[SIMULATED DEMO] · Grounded in Google Developers Blog (Nov 17, 2026) · Gemini 4 Hydrogen Robotics</span>
+        <a href="https://developers.googleblog.com/gemini-hydrogen-for-robotics/" target="_blank" rel="noopener">Official Google Developers Blog Source &nearr;</a>
+      </div>
+    </div>
+
+    <script>
+      const PRESETS = {
+        bringup: {
+          hw: 'I2RT YAM / SO-ARM101',
+          metric: '~10 min USB to Live',
+          skill: 'Robot bring-up',
+          stages: [
+            'USB connection detected: Robotics plugin installs serial drivers and enumerates depth camera streams.',
+            'MuJoCo scene initialized with calibrated arm kinematics and desk workspace collision bounds.',
+            'Closed-loop test motion verified: safe joint limits enforced before waving & pen pickup prompts.',
+            'Ready for natural-language tasks ("Pick up a pen on the table" / "Stack snacks").'
+          ],
+          steps: [
+            { cls: '', tag: 'USB INIT', text: 'Plug I2RT YAM arm and external depth camera into laptop USB port.' },
+            { cls: 'success', tag: 'CALIBRATE', text: 'Antigravity Robotics skill auto-calibrates extrinsics and verifies safe motion (~10 min elapsed).' },
+            { cls: 'success', tag: 'FIRST TASK', text: 'Prompt: "Bring up my SO-101 arm and make it wave." Arm executes smoothly.' }
+          ],
+          code: `// Antigravity Prompt (Robotics Plugin from Build With Google shelf)
+"Bring up my SO-101 arm and make it wave."
+
+// Next natural-language verification prompts:
+"Pick up a pen on the table."
+"Stack snacks on top of each other."`
+        },
+        conveyor: {
+          hw: '6-Axis Arm + Conveyor',
+          metric: '~1 hr End-to-End',
+          skill: 'MuJoCo Vibe Sim',
+          stages: [
+            'Whiteboard sketch & real desk photos ingested to identify conveyor geometry and snack bins.',
+            'MuJoCo cell generated directly in Antigravity; grasping policy validated across multiple sim runs.',
+            'Policy deployed to physical arm; gripper closure force and sorting thresholds tuned in chat.',
+            'Continuous real-world sorting active across moving mixed snacks.'
+          ],
+          steps: [
+            { cls: '', tag: 'INPUT', text: 'Upload whiteboard brainstorm + desk photo into Antigravity workspace.' },
+            { cls: '', tag: 'VIBE SIM', text: 'MuJoCo skill renders interactive conveyor cell and verifies grasp clearances before touching hardware.' },
+            { cls: 'success', tag: 'REAL DEPLOY', text: 'Developer iterates gripper pressure in plain English; live sorter runs reliably in ~1 hour.' }
+          ],
+          code: `import { GoogleGenAI } from "@google/genai";
+
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+const interaction = await ai.clients.interactions.create({
+  model: "gemini-4-hydrogen",
+  input: [
+    { type: "text", text: "Locate next snack on moving conveyor and return bin + 3D grasp pose." },
+    { type: "image", data: conveyorFrameB64, mime_type: "image/jpeg" }
+  ],
+  config: { thinking_config: { thinking_level: "medium" } }
+});`
+        },
+        soapstore: {
+          hw: 'Dual YAM Pro Arms',
+          metric: '1x Dev / 5x Fulfill',
+          skill: 'Full-Stack App + Control',
+          stages: [
+            'Dual YAM Pro arms onboarded and calibrated over USB alongside packing bin zones.',
+            'Packing layout & thermal printer pickup zone audited inside MuJoCo simulation.',
+            'Storefront order webhook triggers arm pick-and-place for mint and citrus soap bars.',
+            'Dual arms place bars into packing bin and pull printed thank-you note autonomously.'
+          ],
+          steps: [
+            { cls: '', tag: 'WEB BUILD', text: 'Hydrogen builds a custom soap e-commerce storefront UI and order queue.' },
+            { cls: '', tag: 'ORDER EVENT', text: 'Incoming order requests 1x Mint Bar + 1x Citrus Bar + thank-you card.' },
+            { cls: 'success', tag: 'DUAL ARM', text: 'Two YAM Pro arms stage packing bin, pick ordered bars, and pull printed receipt.' }
+          ],
+          code: `# Python (google-genai v3.3.0+) — Fulfillment Action Dispatcher
+from google import genai
+
+client = genai.Client()
+response = client.interactions.create(
+    model="gemini-4-hydrogen",
+    input="Order #409: 1x Mint Soap, 1x Citrus Soap. Plan dual YAM Pro pick sequence and printer note retrieval.",
+    config={"thinking_config": {"thinking_level": "high"}}
+)`
+        },
+        erqa: {
+          hw: 'Real 6-Axis + ERQA',
+          metric: '58 Robotics 0.1 Score',
+          skill: 'Perception & Control',
+          stages: [
+            'Multi-view camera correspondence evaluated across workspace angles.',
+            '3D trajectory reasoning simulated and scored against Gemini Robotics ER 2 baseline.',
+            'Hydrogen achieves 58 on Artificial Analysis Robotics 0.1 across 8 tabletop tasks.',
+            'Google recommends Gemini Robotics ER 2 users evaluate gemini-4-hydrogen directly.'
+          ],
+          steps: [
+            { cls: 'success', tag: 'ROBOTICS 0.1', text: 'Gemini 4 Hydrogen scores 58 on 8 everyday tabletop tasks (pouring drinks, packing blocks), matching Argon.' },
+            { cls: 'success', tag: 'ERQA BENCH', text: 'Outperforms Gemini Robotics ER 2 on multi-view correspondence & 3D trajectory reasoning.' },
+            { cls: '', tag: 'ECONOMICS', text: 'Flat $1.50/1M input & $7.50/1M output enables practical all-day closed-loop operation.' }
+          ],
+          code: `# Migrate from Gemini Robotics ER 2 to Gemini 4 Hydrogen in Interactions API
+MODEL_ID = "gemini-4-hydrogen"  # Outperforms ER 2 on ERQA; 58 on Artificial Analysis Robotics 0.1
+THINKING_LEVEL = "medium"       # Adjust low / medium / high / xhigh per loop latency budget`
+        }
+      };
+
+      let activePreset = 'bringup';
+      let activeStage = 0;
+
+      function render() {
+        const p = PRESETS[activePreset];
+        document.getElementById('stat-hw').textContent = p.hw;
+        document.getElementById('stat-metric').textContent = p.metric;
+        document.getElementById('stat-skill').textContent = p.skill;
+        document.getElementById('stage-detail').innerHTML =
+          '<span class="step-tag">STAGE 0' + (activeStage + 1) + '</span> ' + p.stages[activeStage];
+
+        const container = document.getElementById('telemetry-steps');
+        container.innerHTML = '';
+        p.steps.forEach((s) => {
+          const el = document.createElement('div');
+          el.className = 'step-item ' + s.cls;
+          el.innerHTML = '<span class="step-tag">' + s.tag + '</span> ' + s.text;
+          container.appendChild(el);
+        });
+        document.getElementById('code-box').textContent = p.code;
+      }
+
+      document.querySelectorAll('.preset-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.preset-btn').forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+          activePreset = btn.getAttribute('data-preset');
+          render();
+        });
+      });
+
+      document.querySelectorAll('.stage-tab').forEach((tab) => {
+        tab.addEventListener('click', () => {
+          document.querySelectorAll('.stage-tab').forEach((t) => t.classList.remove('active'));
+          tab.classList.add('active');
+          activeStage = Number(tab.getAttribute('data-stage'));
+          render();
+        });
+      });
+
+      document.getElementById('copy-btn').addEventListener('click', () => {
+        navigator.clipboard?.writeText(document.getElementById('code-box').textContent);
+        const btn = document.getElementById('copy-btn');
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = 'Copy Snippet'; }, 1500);
+      });
+
+      render();
+    </script>
+  </body>
+</html>
