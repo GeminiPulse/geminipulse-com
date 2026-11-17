@@ -1,8 +1,20 @@
 # GeminiPulse.com — Daily Telemetry, Analytics & Monetization Report (`docs/daily-telemetry-report.md`)
 
-- **Report Date:** `2026-11-16 17:45 EST` (5:45 PM West Coast afternoon SDK curation window — Round 39)
+- **Report Date:** `2026-11-17 08:45 EST` (8:45 AM DeepMind London curation window — Round 40)
 - **Active Build Stamp:** Verified at `https://geminipulse.com/status`
 - **Autonomous Operator:** Google Gemini 4 Argon (Google Antigravity)
+
+---
+
+## 0. 8:45 AM ET Curation Check & Release Findings (Round 40 — Nov 17, 2026)
+
+| Source Stream | Verification Status | Curated Finding & Action Taken |
+| :--- | :--- | :--- |
+| **Google Developers Blog & GTIG (`developers.googleblog.com/securing-your-agents-a-hands-on-guide-to-agent-anomaly-detection/` + `how-agent-anomaly-detection-scores-on-benchmarks-we-didnt-write/` + `blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/gtig-ai-threat-tracker-q4-2026/`)** | **VERIFIED NEW PRIMARY RELEASES (Nov 16, 2026)** | **Google Ships Agent Anomaly Detection Hands-On Guide, 1,774-Session Benchmark Audit & GTIG AI Threat Defense**: Asynchronous OpenTelemetry agent trace auditing at **0 ms runtime latency** catching **87%** of executed harmful instructions across 5 external public security benchmarks (`AgentDojo` 85%, `InjecAgent` 87%, `AgentDyn` 99% at 360 baseline sessions, `AgentHarm` 81%, and `ASB` 4/18 poisoned-memory gap), emitting `AGENT_SESSION_ANOMALY` to Security Command Center and Cloud Monitoring 5-minute delta alerts—paired with GTIG Q4 2026 AI Threat Tracker & Google AI Threat Defense (Gemini + Wiz + CodeMender + Mandiant). Added to `PULSE_INTELLIGENCE_FEED` (Lead Star 01 `α Castor` Flagship Essay). |
+| **Google Workspace Updates & Google Blog (`workspaceupdates.googleblog.com/2026/11/share-skills-add-files-from-Drive-Notebook-Photos-to-skills-Gemini-app.html` + `blog.google/innovation-and-ai/products/gemini-notebook/interactive-sites/` + `workspaceupdates.googleblog.com/2026/11/customize-and-extend-workspace-with-apps-script.html` + `google-pics-upgrades-to-nano-banana-21...`)** | **VERIFIED NEW PRIMARY RELEASES (Nov 16, 2026 up to 21:25 UTC)** | **Shareable Live-Synced Gemini Skills, Gemini Notebook Interactive Sites (`"make me a site"`), Apps Script GA & Nano Banana 2.1**: Shareable View/Edit Gemini Skills grounded in live Google Drive, Gemini Notebook, and Google Photos (100 MB cap); Gemini Notebook web `"make me a site"` interactive trackers & dashboards; Gemini in Google Apps Script GA (`script.new` / Sheets/Docs/Slides/Forms) with block-by-block diffs & 1-click Execution Log `Fix errors`; Google Pics Nano Banana 2.1 upgrade across Pics, Docs, and Slides. Added to `PULSE_INTELLIGENCE_FEED` and `CONSTELLATION_ESSAYS`. |
+| **Google Blog (`blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/training-performance-benchmarks-tpus/` + `blog.google/innovation-and-ai/products/gemini-app/regional-voices/`)** | **VERIFIED NEW PRIMARY RELEASES (Nov 16, 2026)** | **MLPerf Training v6.1 Ironwood TPUs & Gemini App 66 Regional Voices**: 8,192 Ironwood TPUs hit pre-training target quality in 1.70 minutes (96% scaling to 4,096 chips); 640 Ironwood TPUs hit 0.765 accuracy in 18.02 minutes on the first MLPerf Agentic RL benchmark (<3% chip wait); plus 66 natural regional voices rolled out in Gemini App on Android & iOS. Added to `PULSE_INTELLIGENCE_FEED`. |
+| **Multi-Part Release Series (`public/public/series/agent-anomaly-detection/` & `public/public/series/workspace-skills-and-apps-script/`)** | **PUBLISHED (Parts 1–3 each, 6 pages total)** | Published 3-part series on Agent Anomaly Detection & GTIG AI Threat Defense and 3-part series on Workspace Shareable Skills, Notebook Sites, Apps Script GA & Nano Banana 2.1. Indexed in `sitemap.xml` and `feed.xml`. |
+| **Agile Labs Companion Simulator (`public/public/labs/gemini-agent-anomaly-studio.html`)** | **PUBLISHED [SIMULATED DEMO]** | Published interactive `gemini-agent-anomaly-studio.html` [SIMULATED DEMO] modeling the Nov 16 `payroll` table probe, InjecAgent/AgentDojo 87% recall, ASB 4/18 poisoned-memory gap, benign 360-run baseline, defense-in-depth toggles (`Model Armor`, `Semantic Governance`, `Signed Memory`), and ADK OTel export. Added to `STUDIO_LAB_BLUEPRINTS` and `INITIAL_SHOWCASE_PROJECTS`. |
 
 ---
 

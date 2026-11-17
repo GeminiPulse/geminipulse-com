@@ -1,6 +1,6 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-11-16 17:45 EST (ROUND 39 CURATION COMPLETE: Curated Google Gen AI SDK v3.4.0 GA across TypeScript & Python with native ToolSearch in Interactions API, static media slicing for audio & PDFs, and batch Enterprise embeddings; published 3-part series /series/genai-sdk-v3-4/*, companion /labs/gemini-sdk-v3-4-tool-search-studio.html [SIMULATED DEMO], updated sitemap.xml & feed.xml, curated YouTube videos from Google for Developers & Julian Goldie SEO, and deployed to geminipulse.com)`
+- **Last Updated:** `2026-11-17 08:55 EST (ROUND 40 CURATION COMPLETE: Curated Agent Anomaly Detection 0 ms async OTel trace auditing [87% recall across 1,774 benchmark sessions] + GTIG AI Threat Defense, Shareable Live-Synced Gemini Skills [Drive/Notebook/Photos, 21:25 UTC], Gemini Notebook Interactive Sites, Apps Script GA, Nano Banana 2.1 in Google Pics, MLPerf Training v6.1 Ironwood TPUs & 66 Regional Voices; published 2 new 3-part series /series/agent-anomaly-detection/* & /series/workspace-skills-and-apps-script/*, companion /labs/gemini-agent-anomaly-studio.html [SIMULATED DEMO], updated sitemap.xml, feed.xml & daily-telemetry-report.md, and deployed to geminipulse.com)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
@@ -13,7 +13,21 @@
 
 ---
 
-## 0. Completed & Live on `v2.0` (2026-11-16 05:45 PM ET — Round 39 Curation: Google Gen AI SDK v3.4.0 GA & Tool Search Studio)
+## 0. Completed & Live on `v2.0` (2026-11-17 08:45 AM ET — Round 40 Curation: Agent Anomaly Detection, GTIG AI Threat Defense & Workspace Skills / Apps Script GA)
+
+- **Official Google Primary Release Curation (Nov 16 Afternoon/Evening & Developer Releases):**
+  - **Agent Anomaly Detection & GTIG AI Threat Defense:** Curated Google Developers Blog's hands-on guide and 1,774-session independent benchmark audit (flagging **87%** of executed harmful instructions at **0 ms** live runtime latency via OpenTelemetry traces and Cloud Logging across `AgentDojo`, `InjecAgent`, `AgentDyn`, `AgentHarm`, and `ASB`), emitting `AGENT_SESSION_ANOMALY` into Security Command Center and Cloud Monitoring 5-minute delta alerts—paired with GTIG Q4 2026 AI Threat Tracker & Google AI Threat Defense (Gemini + Wiz + CodeMender + Mandiant). Promoted to Lead Star 01 (`α Castor`) Flagship Essay.
+  - **Shareable Live-Synced Skills, Notebook Interactive Sites, Apps Script GA & Nano Banana 2.1:** Curated Workspace Updates (`21:25 UTC`) Shareable Gemini Skills bound to live Google Drive, Gemini Notebook, and Google Photos; Gemini Notebook `"make me a site"` interactive dashboards & study explainers; Gemini side panel in Google Apps Script GA (`script.new` + block-by-block diffs + 1-click Execution Log `Fix errors`); and Nano Banana 2.1 inside Google Pics, Docs, and Slides.
+  - **MLPerf Training v6.1 Ironwood TPUs & 66 Regional Voices:** Curated Google Cloud's 10 MLPerf v6.1 benchmarks (8,192 Ironwood TPUs pre-training in 1.70 min at 96% scaling; 640 Ironwood TPUs reaching 0.765 accuracy in 18.02 min on the first Agentic RL benchmark with <3% wait) and 66 natural regional voices in the Gemini Android/iOS app.
+- **Published Multi-Part Deep Dive Series (`public/public/series/agent-anomaly-detection/` & `public/public/series/workspace-skills-and-apps-script/`):**
+  - 3-part standalone series on Agent Anomaly Detection & GTIG AI Threat Defense + 3-part standalone series on Shareable Skills, Notebook Interactive Sites, Apps Script GA & Nano Banana 2.1. Indexed in `sitemap.xml` and `feed.xml`.
+- **Published Agile Labs Companion Simulator (`public/public/labs/gemini-agent-anomaly-studio.html`):**
+  - Interactive `[SIMULATED DEMO]` modeling the Nov 16 `payroll` probe, InjecAgent/AgentDojo 87% recall, ASB 4/18 poisoned-memory gap, 360-run benign baseline, defense-in-depth layer toggles (`Model Armor`, `Semantic Governance`, `Signed Memory`), and ADK OTel telemetry export. Added to `STUDIO_LAB_BLUEPRINTS` and `INITIAL_SHOWCASE_PROJECTS`.
+- **Decisions Needed from Neil:** None right now (`$0.00/mo` Spark tier unchanged).
+
+---
+
+## 0-prev3. Completed & Live on `v2.0` (2026-11-16 05:45 PM ET — Round 39 Curation: Google Gen AI SDK v3.4.0 GA & Tool Search Studio)
 
 - **Official Google Primary Release Curation (Google Gen AI SDK v3.4.0 GA):**
   - **Tool Search Primitives in Interactions API:** Curated `@google/genai` & `google-genai` v3.4.0 introducing native `ToolSearch`, `ToolSearchCallStep`, and `ToolSearchResultStep` to discover tools dynamically on-demand from massive MCP registries, reducing prompt token bloat by 95%+.

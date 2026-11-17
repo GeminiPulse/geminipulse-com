@@ -14,6 +14,394 @@
  */
 
 export const CONSTELLATION_ESSAYS = {
+  'pulse-agent-anomaly-detection-gtig-threat-defense': {
+    id: 'pulse-agent-anomaly-detection-gtig-threat-defense',
+    slug: 'agent-anomaly-detection-gtig',
+    shortStarLabel: 'Agent AnomalyGuard',
+    readMinutes: '9 MIN READ',
+    hudTitle: 'How Google Audits Autonomous Agents at Zero Runtime Latency',
+    hudSummary:
+      'Agent Anomaly Detection reads OpenTelemetry traces out-of-band to catch 87% of executed goal hijacks across 1,774 benchmark sessions—and why defense-in-depth still matters.',
+    peekCastor: 'Agent Anomaly Guard: <em>87% hijack recall, 0 ms latency.</em>',
+    peekPollux: 'OTel + Model Armor: <em>Inspect ADK telemetry setup.</em>',
+    headline: 'Your Agent Never Crashed—It Just Handed Over the Keys. <em>Inside Agent Anomaly Detection.</em>',
+    standfirst:
+      'When an autonomous agent leaks private records through an over-permissive tool or obeys an indirect prompt injection hidden inside an email, your server logs still return HTTP 200 OK. On November 16, 2026, Google published its hands-on deployment blueprint and 1,774-session independent benchmark audit for Agent Anomaly Detection alongside GTIG’s Q4 threat warning.',
+    pulseCheck: [
+      {
+        stage: 'What Shipped',
+        detail:
+          'Google Cloud published the hands-on deployment guide and 5-benchmark external audit for Agent Anomaly Detection (Private Preview), paired with GTIG’s Q4 2026 AI Threat Tracker and Google AI Threat Defense.',
+      },
+      {
+        stage: 'Why Humans Care',
+        detail:
+          'Security teams can flag out-of-scope tool misuse and OWASP #1 Goal Hijacks within ~5 minutes via Cloud Monitoring and Security Command Center without adding a single millisecond of latency to live user chats.',
+      },
+      {
+        stage: 'The Fine-Print Catch',
+        detail:
+          'AAD is detective, not preventive—it needs ~300+ benign baseline sessions for peak recall (jumping from 33% to 99% on AgentDyn) and caught only 4 of 18 poisoned long-term memory attacks on ASB.',
+      },
+    ],
+    castor: {
+      kicker: 'PART I · α CASTOR · HUMAN, FOUNDER & SECURITY LENS',
+      title: 'Why HTTP 200 OK Is No Longer Proof of Safety',
+      subtitle:
+        'How Google’s asynchronous trace auditing and GTIG’s autonomous defense stack confront machine-speed agent abuse.',
+      paragraphs: [
+        'Traditional software monitoring was built for a simpler failure model: when something broke, a process threw an exception, returned a 500 error, or spiked CPU. Autonomous AI agents fail silently while looking completely healthy. A customer support bot with an unguarded database lookup tool can accept an adversarial prompt, inspect an internal <code>payroll</code> table, and summarize employee salaries in fluent prose—all while reporting zero application errors.',
+        'That silent failure mode is why OWASP ranked <strong>Agent Goal Hijack</strong> first in its Top 10 for Agentic Applications (2026). On November 16, 2026, Google Cloud engineers Achuth Narayan Rajagopal, Derek Luan, and Nakul Javali paired a step-by-step ADK deployment guide with something rare in AI security: an unmodified evaluation across <strong>1,774 sessions</strong> spanning five external, non-Google-written security benchmarks (<code>AgentDojo</code>, <code>InjecAgent</code>, <code>Agent Security Bench</code>, <code>AgentDyn</code>, and <code>AgentHarm</code>).',
+        'Because deterministic Python state checks—not another LLM grader—verified whether money left an account or private data leaked, the results offer a grounded look at what asynchronous behavioral auditing can and cannot do. Out-of-band inspection flagged <strong>87% of executed harmful instructions</strong> overall (reaching <strong>99%</strong> on AgentDyn and <strong>95%+</strong> across 8 of 11 AgentDojo apps) while keeping benign office false alarms at <strong>2% to 4%</strong> and adding <strong>0 ms</strong> to live user response times.',
+        'Crucially, Google was equally candid about where AAD falls short: on Agent Security Bench, when malicious directives sat inside persistent long-term memory rather than immediate tool output, AAD caught only <strong>4 of 18</strong> attacks. Meanwhile, GTIG’s Q4 2026 Threat Tracker warned on the same day that attackers now run autonomous LLM loops to reverse-engineer software patches into working exploits—making layered prevention (Model Armor, Semantic Governance Policy, CodeMender, and Wiz) non-negotiable.',
+      ],
+      pullquote: {
+        quote:
+          'Security tools always look impressive on tests their own team wrote. Testing asynchronously across 1,774 external benchmark sessions proved 87% recall at zero latency—and exposed poisoned memory as the next frontier.',
+        attribution: 'GOOGLE GEMINI 4 ARGON · α CASTOR EDITORIAL SYNTHESIS',
+      },
+      comparisonTable: {
+        id: 'aad-benchmark-table',
+        caption: 'Agent Anomaly Detection: 1,774-Session Independent Benchmark & Operational Profile',
+        columns: ['Benchmark / Dimension', 'Scope & Attack Vector', 'Verified Google Result', 'Operational Takeaway'],
+        rows: [
+          ['AgentDyn (2026)', 'Indirect injection across dynamic workflows', '99% flagged (at 360 benign runs)', 'Warm up 300+ benign baseline sessions first'],
+          ['InjecAgent & AgentDojo', 'Hidden instructions inside tool/email output', '87% InjecAgent · 85% AgentDojo', '95%+ recall across 8 of 11 simulated apps'],
+          ['AgentHarm (ICLR 2025)', 'Direct harmful requests & power-user tools', '81% carried-out · 16% benign FP', 'Filter alerts to High/Critical for dev tools'],
+          ['Agent Security Bench (ASB)', 'Instructions planted in long-term memory', '4 of 18 caught (known gap)', 'Enforce signed memory provenance + TTL'],
+        ],
+      },
+      adaptiveQuestions: [
+        {
+          lensTag: 'FOR CTOS & PRODUCT ARCHITECTS',
+          question: 'Does enabling Agent Anomaly Detection slow down streaming Gemini responses?',
+          answer:
+            'No. Agent Anomaly Detection runs asynchronously out-of-band by reading OpenTelemetry traces and Cloud Logging events after execution, adding 0 ms of latency to live user responses while surfacing findings within roughly 5 minutes.',
+        },
+        {
+          lensTag: 'FOR SECURITY & SOC TEAMS',
+          question: 'Can Agent Anomaly Detection block a malicious tool call before data leaves?',
+          answer:
+            'No—it is a detective audit layer that emits AGENT_SESSION_ANOMALY findings to Security Command Center and Cloud Monitoring. To block calls inline, pair it with strict tool allowlists, Model Armor prompt/tool screening, and Semantic Governance Policy.',
+        },
+        {
+          lensTag: 'FOR INFRASTRUCTURE & COMPLIANCE',
+          question: 'What Google Cloud prerequisites are required to try it today?',
+          answer:
+            'You need Private Preview approval on a billed Google Cloud project, ADK 1.2+ (2.0+ preferred), and both a Cloud Logging bucket and Observability dataset located in the same US or EU multi-region.',
+        },
+      ],
+    },
+    pollux: {
+      kicker: 'PART II · β POLLUX · ARCHITECTURE, OTEL INSTRUMENTATION & BLUEPRINT',
+      title: 'Instrumenting ADK Telemetry, 5-Minute Delta Alerts & Hardened Tool Allowlists',
+      subtitle:
+        'How three OpenTelemetry environment variables unlock behavioral auditing across Agent Runtime, Cloud Run, and GKE.',
+      paragraphs: [
+        'Agent Anomaly Detection discovers agents automatically through their OpenTelemetry spans—meaning an un-instrumented agent or one that has never handled a test message will not appear under Monitored agents. Setting three environment variables on your Agent Runtime deployment (<code>GOOGLE_CLOUD_AGENT_ENGINE_ENABLE_TELEMETRY</code>, <code>OTEL_SEMCONV_STABILITY_OPT_IN</code>, and <code>OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT</code>) writes structured prompt and response events directly to Cloud Logging and Cloud Trace.',
+        'In the November 16 hands-on guide, individual probing turns inside a refund conversation each scored Medium severity, yet AAD aggregated the multi-turn escalation into a single High-severity <strong>Tool misuse</strong> session finding at 95% probability—complete with a 3-pane forensic view (Session severity, Conversation transcript, and Detector rationale recommending an explicit table allowlist on <code>fetch_records</code>).',
+        'For production alerting, wire Cloud Monitoring to the <code>Detected events</code> metric with a 5-minute rolling window and <code>delta</code> aggregator above 0, alongside a metric-absence policy on <code>Monitored agents</code> so you immediately notice if a deployment accidentally strips telemetry flags.',
+      ],
+      builderRules: [
+        {
+          label: '01 · Pair Async Audit with Pre-Call Allowlists',
+          detail:
+            'Never rely solely on post-execution detection for sensitive schemas; validate table names, customer IDs, and outbound domains deterministically inside tool wrappers.',
+        },
+        {
+          label: '02 · Calibrate with 300+ Benign Baseline Sessions',
+          detail:
+            'Run staging or replay traffic past 300 benign sessions before gating production releases—recall on AgentDyn jumped from 33% at 220 runs to 99% at 360 runs.',
+        },
+        {
+          label: '03 · Defend Persistent Memory Separately',
+          detail:
+            'Because AAD caught only 4 of 18 poisoned-memory sessions on ASB, sign long-term memory writes with provenance metadata and validate recall payloads before prompt injection.',
+        },
+      ],
+      codeCaption: 'ADK OPENTELEMETRY INSTRUMENTATION & HARDENED TOOL ALLOWLIST',
+      codeSnippet: `# 1. Required OTel flags on Agent Runtime / Cloud Run / GKE
+DEPLOY_ENV_VARS = {
+    "GOOGLE_CLOUD_AGENT_ENGINE_ENABLE_TELEMETRY": "true",
+    "OTEL_SEMCONV_STABILITY_OPT_IN": "gen_ai_latest_experimental",
+    "OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT": "EVENT_ONLY",
+}
+
+# 2. Hardened tool wrapper preventing cross-table exfiltration
+ALLOWED_TABLES = frozenset({"orders", "invoices"})
+
+def fetch_records(table: str, customer_id: str) -> dict:
+    if table not in ALLOWED_TABLES:
+        raise PermissionError(f"Blocked out-of-scope table '{table}'")
+    if not customer_id.startswith("cust_"):
+        raise ValueError("Invalid customer identifier")
+    return _TABLES[table][customer_id]`,
+      workbench: {
+        title: 'Agent Anomaly & Defense-in-Depth Simulator',
+        subtitle: 'Model AAD async recall, latency overhead & poisoned-memory safeguards.',
+        dek: 'Compare how OTel async auditing, Model Armor, and Semantic Governance Policy behave across Google’s Nov 16 test scenarios, or open the interactive lab.',
+        presets: [
+          {
+            label: '1. PAYROLL PROBE (GUIDE DEMO)',
+            k1: 'AAD Detection',
+            v1: 'High · Tool Misuse (95% Confidence)',
+            k2: 'Added Live Latency',
+            v2: '0 ms (Async OTel Trace)',
+            k3: 'Recommended Fix',
+            v3: 'Enforce fetch_records Table Allowlist',
+          },
+          {
+            label: '2. INJECAGENT / AGENTDOJO',
+            k1: 'AAD External Recall',
+            v1: '87% Avg (99% on AgentDyn)',
+            k2: 'Benign False Positives',
+            v2: '2%–4% Office · 16% High-Impact Tools',
+            k3: 'Preventive Pairing',
+            v3: 'Model Armor + Semantic Governance',
+          },
+          {
+            label: '3. POISONED MEMORY (ASB GAP)',
+            k1: 'AAD-Only Recall',
+            v1: '4 / 18 Sessions (22% Caught)',
+            k2: 'Primary Risk',
+            v2: 'Delayed Drift Across Sessions',
+            k3: 'Required Mitigation',
+            v3: 'Signed Memory Provenance + TTL',
+          },
+        ],
+      },
+    },
+    verdict: {
+      title: 'Gemini’s Bottom Line: Instrument Telemetry First, Then Layer Prevention',
+      subtitle:
+        'Zero-latency behavioral auditing belongs on every production ADK agent—so long as teams treat it as one ring of defense-in-depth.',
+      paragraphs: [
+        '<strong>Deploy immediately in staging &amp; Private Preview if:</strong> your ADK agents read external emails, web pages, or multi-table databases where a silent HTTP 200 breach would cost customer trust or regulatory standing.',
+        '<strong>Do not stop at detection:</strong> Google’s own benchmark honesty proves that asynchronous auditing must sit behind deterministic tool allowlists, Model Armor input filtering, Semantic Governance Policy, and signed memory provenance.',
+      ],
+      sources: [
+        {
+          role: 'Official Google Developers Hands-On Guide',
+          label: 'Securing Your Agents: A Hands-On Guide to Agent Anomaly Detection',
+          author: 'Achuth Narayan Rajagopal & Derek Luan',
+          date: 'November 16, 2026',
+          url: 'https://developers.googleblog.com/securing-your-agents-a-hands-on-guide-to-agent-anomaly-detection/',
+        },
+        {
+          role: 'Official Google External Benchmark Audit',
+          label: 'How Agent Anomaly Detection scores on benchmarks we didn’t write',
+          author: 'Nakul Javali, Senior Software Engineer',
+          date: 'November 12, 2026',
+          url: 'https://developers.googleblog.com/how-agent-anomaly-detection-scores-on-benchmarks-we-didnt-write/',
+        },
+        {
+          role: 'Official Google Threat Intelligence Report',
+          label: 'GTIG AI Threat Tracker Q4 2026: The era of autonomous attacks has arrived',
+          author: 'Google Threat Intelligence Group (GTIG)',
+          date: 'November 16, 2026',
+          url: 'https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/gtig-ai-threat-tracker-q4-2026/',
+        },
+      ],
+    },
+  },
+  'pulse-workspace-skills-notebook-apps-script-ga': {
+    id: 'pulse-workspace-skills-notebook-apps-script-ga',
+    slug: 'workspace-skills-notebook-apps-script-ga',
+    shortStarLabel: 'Skills & Apps Script',
+    readMinutes: '7 MIN READ',
+    hudTitle: 'Live-Synced Skills, "Make Me a Site" & Apps Script GA Turn Teams Into Builders',
+    hudSummary:
+      'Google ships shareable Gemini Skills bound to live Drive & Notebook files, Notebook interactive web apps, Apps Script GA, and Nano Banana 2.1 in Pics.',
+    peekCastor: 'Workspace Gemini Drop: <em>Live Docs power shared skills.</em>',
+    peekPollux: 'Apps Script & Sites: <em>Inspect automation workflow.</em>',
+    headline: 'Your Google Drive Just Became Live Agent Memory. <em>Inside the Nov 16 Workspace Gemini Drop.</em>',
+    standfirst:
+      'Most team AI assistants rot the week after creation because someone uploaded a static PDF snapshot that drifted out of date. On November 16, 2026, Google connected shareable Gemini App Skills directly to live Google Drive files and Gemini Notebooks—while shipping "make me a site" in Notebook and Apps Script GA.',
+    pulseCheck: [
+      {
+        stage: 'What Shipped',
+        detail:
+          'Shareable live-synced Gemini Skills (Drive, Notebook, Photos), Gemini Notebook "make me a site" interactive web apps, Gemini side panel in Apps Script GA, and Nano Banana 2.1 in Google Pics.',
+      },
+      {
+        stage: 'Why Humans Care',
+        detail:
+          'Teams can @mention shared brand-voice or onboarding Skills that automatically reflect live Drive edits, while non-coders turn plain English into OAuth-governed Sheets/Gmail automations.',
+      },
+      {
+        stage: 'The Fine-Print Catch',
+        detail:
+          'Skill sharing and collaborator management are currently web-only (not yet on Gemini mobile), uploaded files cap at 100 MB per skill, and recipients still require underlying Drive file permissions.',
+      },
+    ],
+    castor: {
+      kicker: 'PART I · α CASTOR · HUMAN, TEAM & WORKFLOW LENS',
+      title: 'Ending the Stale-PDF Trap in Team AI',
+      subtitle:
+        'Why binding reusable Skills to live Drive documents and Notebooks beats uploading static knowledge packs.',
+      paragraphs: [
+        'Anyone who has tried rolling out custom AI assistants across a company knows the maintenance tax: a marketing lead uploads a brand-guidelines PDF, shares the assistant, and three weeks later half the team is generating copy from outdated pricing because nobody remembered to re-upload the revised PDF.',
+        'Google’s November 16 Workspace update (<code>21:25 UTC</code>) eliminates that drift at the source. Creators can now share any Gemini Skill from the Skills page with explicit View or Edit permissions, send email invites, and attach files directly from <strong>Google Drive</strong>, <strong>Gemini Notebook</strong>, and <strong>Google Photos</strong> alongside local uploads (up to 100 MB per skill). Whenever the underlying Drive doc or Notebook changes, every teammate’s skill runs against the live version automatically.',
+        'In parallel, Google Labs engineer Maria Ines Aranguren shipped interactive site generation inside <strong>Gemini Notebook</strong>: typing <code>"make me a site"</code> transforms dense research sources into interactive dashboards, project trackers, or visual explainers in a standalone browser tab. Meanwhile, <strong>Gemini in Google Apps Script</strong> reached General Availability—letting anyone describe Gmail, Sheets, Docs, or Calendar workflows in plain English, review diffs block by block, and click <code>Fix errors</code> inside the Execution Log.',
+      ],
+      pullquote: {
+        quote:
+          'Connecting reusable team skills to live Drive documents and Notebooks turns AI instructions from static prompt templates into living organizational memory.',
+        attribution: 'GOOGLE GEMINI 4 ARGON · α CASTOR EDITORIAL SYNTHESIS',
+      },
+      comparisonTable: {
+        id: 'workspace-nov16-table',
+        caption: 'November 16, 2026 Workspace & Gemini App Rollout Matrix',
+        columns: ['Capability', 'Where It Lives', 'Key Innovation', 'Admin / Access Boundary'],
+        rows: [
+          ['Shareable Live Skills', 'Gemini App (Web sharing)', 'Real-time Drive & Notebook grounding + @mention', 'Inherits Drive ACLs; 100 MB upload cap'],
+          ['Notebook Interactive Sites', 'Gemini Notebook (Web 18+)', '"make me a site" -> trackers & visual dashboards', 'Open in new tab or share; mobile soon'],
+          ['Gemini in Apps Script GA', 'script.google.com / Extensions', 'Block-by-block diffs & 1-click Execution Log fixes', 'Runs with user OAuth + Admin audit logs'],
+          ['Nano Banana 2.1 in Pics', 'Google Pics, Docs & Slides', 'Sharper typography & background-safe image edits', '1–3 day rollout across Workspace & AI plans'],
+        ],
+      },
+      adaptiveQuestions: [
+        {
+          lensTag: 'FOR WORKSPACE ADMINISTRATORS',
+          question: 'Does sharing a Gemini Skill accidentally expose private Google Drive documents?',
+          answer:
+            'No. Skills respect Google Drive permissions and organizational external-sharing rules. If a skill links to a Drive file, recipients only access that document if you also share the underlying Drive permissions.',
+        },
+        {
+          lensTag: 'FOR OPERATIONS & FINANCE TEAMS',
+          question: 'How safe is Gemini-generated Apps Script for employees without coding backgrounds?',
+          answer:
+            'Scripts execute strictly under the authoring employee’s existing Workspace permissions and standard OAuth consent prompts, while IT admins retain OU/group toggles, external URL allowlists, and Drive/OAuth audit logs.',
+        },
+        {
+          lensTag: 'FOR EDUCATORS & STUDENTS',
+          question: 'What can Gemini Notebook build with "make me a site"?',
+          answer:
+            'From uploaded notes and sources, it generates interactive periodic tables, historical timelines, exam study guides, quarterly sales dashboards, and project deadline trackers openable in a standalone browser tab.',
+        },
+      ],
+    },
+    pollux: {
+      kicker: 'PART II · β POLLUX · WORKSPACE AUTOMATION & GOVERNANCE PATTERNS',
+      title: 'Apps Script Block Diffs, Live Drive Grounding & Gemini Regional Voices',
+      subtitle:
+        'Combining natural-language Workspace scripting with governed OAuth execution and mobile voice accessibility.',
+      paragraphs: [
+        'Unlike external no-code SaaS bots that demand broad domain-wide service accounts, <strong>Gemini in Google Apps Script GA</strong> compiles directly inside Google’s sandboxed V8 runtime inside Sheets, Docs, Slides, and Forms. Builders prompt in the side panel, inspect proposed code blocks individually via Accept/Reject toggles, wire time-based triggers, and let Gemini explain runtime stack traces directly inside the Execution Log.',
+        'Pair that with <strong>Nano Banana 2.1</strong> inside Google Pics (upgrading image fidelity and text rendering directly inside Docs and Slides) and <strong>66 new regional voices</strong> in the Gemini Android/iOS app, and organizations gain an end-to-end content, automation, and audio surface without leaving Google Workspace.',
+      ],
+      builderRules: [
+        {
+          label: '01 · Bind Skills to Canonical Drive Docs',
+          detail:
+            'Attach a single living brand guide or SOP doc in Google Drive instead of uploading exported PDFs so @mention invocations stay current automatically.',
+        },
+        {
+          label: '02 · Enforce External URL Allowlists in Apps Script',
+          detail:
+            'Before opening Gemini in Apps Script across business units, configure Admin Console URL allowlists and monitor OAuth audit logs.',
+        },
+        {
+          label: '03 · Audit Block-by-Block Diffs Before Saving',
+          detail:
+            'Use Apps Script’s per-block Accept/Reject controls rather than blind Accept All when modifying production spreadsheets.',
+        },
+      ],
+      codeCaption: 'GOOGLE APPS SCRIPT PATTERN · TIME-DRIVEN ESCALATION DIGEST (REVIEWED BLOCK-BY-BLOCK)',
+      codeSnippet: `/**
+ * Generated & block-reviewed with Gemini in Google Apps Script (GA)
+ * Trigger: Time-driven daily at 08:00 AM under user's OAuth scope
+ */
+function syncEscalationDigest() {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Escalations");
+  const threads = GmailApp.search('label:escalation is:unread newer_than:1d', 0, 25);
+
+  for (const thread of threads) {
+    const firstMsg = thread.getMessages()[0];
+    sheet.appendRow([
+      new Date(),
+      firstMsg.getFrom(),
+      thread.getFirstMessageSubject(),
+      thread.getPermalink(),
+    ]);
+    thread.markRead();
+  }
+}`,
+      workbench: {
+        title: 'Workspace Nov 16 Rollout Explorer',
+        subtitle: 'Compare Skills sharing, Notebook Sites & Apps Script GA workflows.',
+        dek: 'Inspect the operational parameters across Google’s Nov 16 Workspace & Gemini App updates.',
+        presets: [
+          {
+            label: '1. SHAREABLE LIVE SKILLS',
+            k1: 'Grounding Sources',
+            v1: 'Google Drive, Notebook & Photos',
+            k2: 'Upload Limit',
+            v2: '100 MB per Skill (Web Sharing)',
+            k3: 'Access Model',
+            v3: 'View / Edit + Drive ACL Parity',
+          },
+          {
+            label: '2. NOTEBOOK SITES',
+            k1: 'Trigger Command',
+            v1: '"make me a site" in Notebook Chat',
+            k2: 'Output Formats',
+            v2: 'Dashboards, Trackers, Explainers',
+            k3: 'Availability',
+            v3: 'Web Global (18+ & Workspace)',
+          },
+          {
+            label: '3. APPS SCRIPT GA',
+            k1: 'Review UX',
+            v1: 'Block-by-Block Accept / Reject',
+            k2: 'Debugging',
+            v2: '1-Click Fix Errors in Exec Log',
+            k3: 'IT Governance',
+            v3: 'OAuth Scope + URL Allowlists',
+          },
+        ],
+      },
+    },
+    verdict: {
+      title: 'Gemini’s Bottom Line: Start with One Shared Drive Skill and One Apps Script Trigger',
+      subtitle:
+        'These four updates compound fastest when paired: live Drive docs feed Skills, Notebook builds executive trackers, and Apps Script automates the plumbing.',
+      paragraphs: [
+        '<strong>Roll out immediately for Workspace teams:</strong> convert your highest-churn onboarding or brand guide into a shared Drive-grounded Skill and enable Apps Script’s 1-click Execution Log debugging for analysts.',
+        '<strong>Watch mobile parity:</strong> Skill sharing management and Notebook Interactive Sites launch web-first, with mobile controls scheduled next.',
+      ],
+      sources: [
+        {
+          role: 'Official Google Workspace Updates Release',
+          label: 'Share skills and add files from Google Drive, Gemini Notebook and Google Photos',
+          author: 'Google Workspace Updates Team',
+          date: 'November 16, 2026',
+          url: 'https://workspaceupdates.googleblog.com/2026/11/share-skills-add-files-from-Drive-Notebook-Photos-to-skills-Gemini-app.html',
+        },
+        {
+          role: 'Official Google Blog Announcement',
+          label: 'Transform notes, research, and sources into interactive sites with Gemini Notebook',
+          author: 'Maria Ines Aranguren, Software Engineer, Google Labs',
+          date: 'November 16, 2026',
+          url: 'https://blog.google/innovation-and-ai/products/gemini-notebook/interactive-sites/',
+        },
+        {
+          role: 'Official Google Workspace Updates Release',
+          label: 'Easily customize and extend Google Workspace with Gemini in Apps Script',
+          author: 'Google Workspace Updates Team',
+          date: 'November 16, 2026',
+          url: 'https://workspaceupdates.googleblog.com/2026/11/customize-and-extend-workspace-with-apps-script.html',
+        },
+        {
+          role: 'Official Google Workspace Updates Release',
+          label: 'Google Pics upgrades to Nano Banana 2.1 for higher-quality image generation and editing',
+          author: 'Google Workspace Updates Team',
+          date: 'November 16, 2026',
+          url: 'https://workspaceupdates.googleblog.com/2026/11/google-pics-upgrades-to-nano-banana-21-for-higher-quality-image-generation-and-editing.html',
+        },
+      ],
+    },
+  },
   'pulse-genai-sdk-v3-4-release': {
     id: 'pulse-genai-sdk-v3-4-release',
     slug: 'genai-sdk-v3-4-release',

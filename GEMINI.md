@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-11-16 17:45 EST — ROUND 39 CURATION COMPLETE LIVE ON GEMINIPULSE.COM: Curated official Google Gen AI SDK v3.4.0 GA across TypeScript & Python with native ToolSearch in Interactions API, static media slicing (audio offsets & PDF page ranges), and batch Enterprise embeddings; published 3-part series /series/genai-sdk-v3-4/*, companion /labs/gemini-sdk-v3-4-tool-search-studio.html [SIMULATED DEMO], updated sitemap.xml & feed.xml, curated YouTube videos from Google for Developers & Julian Goldie SEO, and deployed to Firebase Hosting`
+> **Last touched:** `2026-11-17 08:55 EST — ROUND 40 CURATION COMPLETE LIVE ON GEMINIPULSE.COM: Curated Nov 16 late-afternoon & developer releases—Agent Anomaly Detection (0 ms async OTel trace auditing catching 87% of goal hijacks across 1,774 external benchmark sessions) + GTIG Q4 2026 AI Threat Defense, Shareable Live-Synced Skills (Drive/Notebook/Photos, 21:25 UTC), Gemini Notebook Interactive Sites ("make me a site"), Gemini in Apps Script GA, Nano Banana 2.1 in Google Pics, MLPerf Training v6.1 on 8,192 Ironwood TPUs & 66 Regional Voices; published 2 new 3-part series (/series/agent-anomaly-detection/* & /series/workspace-skills-and-apps-script/*), companion /labs/gemini-agent-anomaly-studio.html [SIMULATED DEMO], updated sitemap.xml, feed.xml & daily-telemetry-report.md, and deployed to Firebase Hosting`
 
 ---
 

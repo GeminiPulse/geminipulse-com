@@ -5,6 +5,63 @@
 
 export const PULSE_INTELLIGENCE_FEED = [
   {
+    id: 'pulse-agent-anomaly-detection-gtig-threat-defense',
+    title: 'Google Ships Agent Anomaly Detection Hands-On Guide & GTIG AI Threat Defense: Zero-Latency Trace Auditing Catching 87% of Goal Hijacks',
+    tldr: 'Published November 16, 2026: Google Cloud & GTIG unveil a hands-on deployment blueprint and 1,774-session external benchmark audit for Agent Anomaly Detection (flagging 87% of executed harmful instructions at 0 ms live runtime latency via OpenTelemetry traces and Cloud Logging), paired with Google AI Threat Defense uniting Gemini, Wiz, CodeMender, and Mandiant against autonomous LLM exploit frameworks.',
+    summary:
+      'Google Developers Blog (Achuth Narayan Rajagopal & Derek Luan; Nakul Javali) and Google Threat Intelligence Group (GTIG) detail how to secure autonomous enterprise agents against machine-speed threats and OWASP #1 Goal Hijack. Key verified milestones include: (1) Zero-Latency Asynchronous Auditing—Agent Anomaly Detection (AAD) reads OpenTelemetry prompt/response spans and Cloud Logging buckets out-of-band without adding latency to live inference requests, (2) 1,774-Session Independent Benchmark Evaluation—tested across 5 non-Google public benchmarks (AgentDojo 85%, InjecAgent 87%, AgentDyn 99% at 360 baseline runs, AgentHarm 81%, and ASB), catching 87% of executed harmful instructions overall with 2%–4% false alarms on standard office tasks (16% on high-impact tools) and transparently noting a 4/18 recall gap on poisoned long-term memory, (3) Security Command Center & Cloud Monitoring Integration—emits AGENT_SESSION_ANOMALY findings and Detected events / Monitored agents metrics with 5-minute delta alert policies, (4) Defense-in-Depth Stack—Google recommends combining AAD with Model Armor prompt/tool filtering, Semantic Governance Policy (Preview), strict tool parameter allowlists, and human-in-the-loop approvals, and (5) GTIG Q4 2026 AI Threat Tracker—warns attackers use autonomous LLM loops to reverse-engineer patches into exploits, countered by Google AI Threat Defense (Gemini + Wiz + CodeMender + Mandiant).',
+    category: 'Security & Agents',
+    tag: 'Security Launch',
+    modelBadge: 'Agent Anomaly Detection & GTIG',
+    impactScore: '10.0 / 10',
+    date: '2026-11-16T22:00:00Z',
+    sourceLabel: 'Google Developers Blog: Securing Your Agents & GTIG AI Threat Tracker Q4 2026',
+    sourceUrl: 'https://developers.googleblog.com/securing-your-agents-a-hands-on-guide-to-agent-anomaly-detection/',
+    groundedBy: 'Google Developers Blog & GTIG Q4 2026 Primary Releases (Verified Nov 16, 2026)',
+    seriesUrl: '/series/agent-anomaly-detection/part-1-agent-anomaly-detection-and-gtig-architecture.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-agent-anomaly-studio.html',
+    labLabel: 'Anomaly Studio Lab [DEMO] →',
+  },
+  {
+    id: 'pulse-workspace-skills-notebook-apps-script-ga',
+    title: 'Google Rolls Out Shareable Live-Synced Gemini Skills, Notebook Interactive Sites ("make me a site"), Apps Script GA & Nano Banana 2.1',
+    tldr: 'Released November 16, 2026 (21:25 UTC): Google Workspace and Google Labs ship shareable Gemini App Skills with live-updating Drive/Notebook/Photos grounding, Gemini Notebook interactive site generation ("make me a site"), General Availability of the Gemini side panel in Google Apps Script with 1-click Execution Log error fixes, and Nano Banana 2.1 in Google Pics.',
+    summary:
+      'Across a coordinated November 16 Workspace & Gemini App rollout, Google introduces four interconnected productivity upgrades: (1) Shareable Live-Synced Skills (21:25 UTC)—share custom Gemini Skills with View or Edit permissions, trigger via @mention, and attach Google Drive files, Gemini Notebooks, and Google Photos (up to 100 MB uploads) that update in real time when source docs change, (2) Gemini Notebook Interactive Sites—Maria Ines Aranguren (Google Labs) launches "make me a site" in Gemini Notebook web chat (18+ & Workspace), turning sources into interactive dashboards, project trackers, periodic tables, and study explainers openable in a new tab, (3) Gemini in Google Apps Script GA—available across Sheets, Docs, Slides, and Forms (script.google.com / script.new) with plain-language automation generation, block-by-block Accept/Reject diffs, 1-click Fix errors in the Execution Log, and full Admin console OAuth/audit governance, and (4) Google Pics Nano Banana 2.1—upgrades Google Pics inside Pics, Docs, and Slides for sharper text rendering, lighting fidelity, and background-preserving edits.',
+    category: 'Workspace & Apps',
+    tag: 'Platform Launch',
+    modelBadge: 'Skills, Notebook Sites & Apps Script',
+    impactScore: '9.8 / 10',
+    date: '2026-11-16T21:25:28Z',
+    sourceLabel: 'Google Workspace Updates & Google Blog: Shareable Skills, Notebook Sites & Apps Script GA',
+    sourceUrl: 'https://workspaceupdates.googleblog.com/2026/11/share-skills-add-files-from-Drive-Notebook-Photos-to-skills-Gemini-app.html',
+    groundedBy: 'Google Workspace Updates & Google Blog Official Releases (Verified Nov 16, 2026)',
+    seriesUrl: '/series/workspace-skills-and-apps-script/part-1-shareable-skills-notebook-sites-and-apps-script.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-agent-anomaly-studio.html',
+    labLabel: 'Anomaly Studio Lab [DEMO] →',
+  },
+  {
+    id: 'pulse-mlperf-v6-1-ironwood-tpu-and-regional-voices',
+    title: 'Google Cloud Publishes MLPerf Training v6.1 Ironwood TPU Results (8,192 Chips in 1.70 Min) & Gemini App Rolls Out 66 Regional Voices',
+    tldr: 'Released November 16, 2026: Google Cloud publishes 10 MLPerf Training v6.1 benchmarks across 7th-gen Ironwood TPUs (8,192-chip pre-training in 1.70 minutes at 96% scaling; first MLPerf Agentic RL benchmark on 640 Ironwood TPUs reaching 0.765 accuracy in 18.02 minutes with <3% wait) and NVIDIA GB300, while Gemini Live adds 66 regional voices on Android and iOS.',
+    summary:
+      'Google Cloud and the Gemini Live team post two major November 16 milestones spanning infrastructure scale and consumer voice UX: (1) MLPerf Training v6.1 on 7th-Gen Ironwood TPUs—built on Google Cloud AI Hypercomputer, 8,192 Ironwood TPUs reached target pre-training quality in 1.70 minutes (scaling to 4,096 chips with 96% efficiency), and on the first-ever MLPerf Agentic Reinforcement Learning benchmark, 640 Ironwood TPUs reached 0.765 coding accuracy (surpassing the 0.69 goal) in 18.02 minutes while keeping training chips idle under 3% of the time, complemented by Google Cloud A4X Max 256x NVIDIA GB300 GPU pre-training in 31.96 minutes and new JAX/Pallas bitwise-zero on-policy RL guides, and (2) 66 New Regional Voices in Gemini App—Gemini Live Product Director Neel Joshi rolls out 66 natural regional voices across U.S. English, U.K. English, India English, Hindi, Brazilian Portuguese, Indonesian, and Korean on Android and iOS.',
+    category: 'Infrastructure & Voice',
+    tag: 'Benchmark & Rollout',
+    modelBadge: 'Ironwood TPU & 66 Voices',
+    impactScore: '9.6 / 10',
+    date: '2026-11-16T18:45:00Z',
+    sourceLabel: 'Google Blog: MLPerf Training v6.1 TPU Benchmarks & Gemini App 66 Regional Voices',
+    sourceUrl: 'https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/training-performance-benchmarks-tpus/',
+    groundedBy: 'Google Blog Official Releases (Verified Nov 16, 2026)',
+    seriesUrl: '/series/agent-anomaly-detection/part-1-agent-anomaly-detection-and-gtig-architecture.html',
+    seriesLabel: 'Security Series →',
+    labUrl: '/labs/gemini-agent-anomaly-studio.html',
+    labLabel: 'Anomaly Studio Lab [DEMO] →',
+  },
+  {
     id: 'pulse-genai-sdk-v3-4-release',
     title: 'Google Releases Gen AI SDK v3.4.0: Dynamic Tool Search in Interactions, Static Media Slicing & Enterprise Batch Embeddings',
     tldr: 'Released November 16, 2026 (20:43 UTC): Google elevates @google/genai and google-genai to v3.4.0 GA across TypeScript and Python—introducing native ToolSearch primitives in the Interactions API (slashing prompt tokens by 95%+ across large MCP registries), static media processing options (declarative audio time-slicing and PDF/spreadsheet page ranges), batch embedding inputs with usage metadata on Gemini Enterprise API, and per-event-loop HTTPX connection pool hardening.',
@@ -867,6 +924,60 @@ export const GEMINI_MODEL_MATRIX = [
 
 export const STUDIO_LAB_BLUEPRINTS = [
   {
+    id: 'lab-agent-anomaly-studio',
+    title: 'Agent Anomaly Detection & Defense-in-Depth Studio [SIMULATED DEMO]',
+    badge: 'Nov 16, 2026 Security',
+    model: 'gemini-4-hydrogen',
+    href: '/labs/gemini-agent-anomaly-studio.html',
+    description:
+      'Interactive developer simulator modeling Google’s Nov 16 Agent Anomaly Detection guide and 1,774-session benchmark audit: compare 0 ms asynchronous OTel auditing against Model Armor, Semantic Governance Policy, and signed memory provenance.',
+    prompt:
+      'Deploy an ADK customer support agent with OpenTelemetry tracing enabled, run a multi-turn payroll probe, and configure 5-minute Cloud Monitoring delta alerts for AGENT_SESSION_ANOMALY findings.',
+    tsCode: `import { GoogleGenAI } from "@google/genai";
+
+// Client-side preventive allowlist paired with async OTel AAD telemetry
+const ALLOWED_TABLES = new Set(["orders", "invoices"]);
+
+export function validateToolTarget(table: string) {
+  if (!ALLOWED_TABLES.has(table)) {
+    throw new Error(\`Blocked out-of-scope table access: \${table}\`);
+  }
+}
+
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+const interaction = await ai.clients.interactions.create({
+  model: "gemini-4-hydrogen",
+  input: "Show order status for customer cust_1042.",
+  config: { thinking_config: { thinking_level: "medium" } }
+});`,
+    pyCode: `DEPLOY_ENV_VARS = {
+    "GOOGLE_CLOUD_AGENT_ENGINE_ENABLE_TELEMETRY": "true",
+    "OTEL_SEMCONV_STABILITY_OPT_IN": "gen_ai_latest_experimental",
+    "OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT": "EVENT_ONLY",
+}
+
+ALLOWED_TABLES = frozenset({"orders", "invoices"})
+
+def fetch_records(table: str, customer_id: str) -> dict:
+    if table not in ALLOWED_TABLES:
+        raise PermissionError(f"Blocked out-of-scope table: {table}")
+    return _TABLES[table][customer_id]`,
+    simulatedSteps: [
+      {
+        type: 'thought',
+        label: 'step[0] • evaluating multi-turn customer support probe',
+        detail:
+          'Turn 1 queried orders cleanly; Turn 3 attempted fetch_records(table="payroll")—flagged as Tool misuse (High, 95% probability) asynchronously in Cloud Logging.',
+      },
+      {
+        type: 'tool_call',
+        label: 'step[1] • Semantic Governance & table allowlist enforcement',
+        detail:
+          'Allowlist check rejected table="payroll" prior to DB read (+25ms), while OTel span emitted AGENT_SESSION_ANOMALY to Security Command Center (+0ms runtime latency for AAD).',
+      },
+    ],
+  },
+  {
     id: 'lab-sdk-v3-4-tool-search-studio',
     title: 'Google Gen AI SDK v3.4.0 Tool Search & Media Slicing Studio [SIMULATED DEMO]',
     badge: 'Nov 16, 2026 GA',
@@ -1562,6 +1673,25 @@ video_turn = client.interactions.create(
 ];
 
 export const INITIAL_SHOWCASE_PROJECTS = [
+  {
+    id: 'showcase-gemini-agent-anomaly-studio',
+    name: 'Agent Anomaly Detection & Defense-in-Depth Studio [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive developer workbench modeling Google’s Nov 16 Agent Anomaly Detection guide and 1,774-session benchmark audit: toggle 0 ms async OTel trace auditing, Model Armor, Semantic Governance Policy, and poisoned-memory safeguards.',
+    models: ['gemini-4-hydrogen', 'gemini-2.5-flash'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-agent-anomaly-studio.html): [SIMULATED DEMO] Models the payroll table probe, InjecAgent/AgentDojo 87% recall, ASB 4/18 poisoned-memory gap, and ADK OpenTelemetry instrumentation.',
+    url: '/labs/gemini-agent-anomaly-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-16T22:00:00Z',
+  },
   {
     id: 'showcase-gemini-sdk-v3-4-tool-search-studio',
     name: 'Google Gen AI SDK v3.4.0 Tool Search & Media Slicing Studio [SIMULATED DEMO]',

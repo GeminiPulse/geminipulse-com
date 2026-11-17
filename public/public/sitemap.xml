@@ -25,6 +25,18 @@
     <priority>0.88</priority>
   </url>
   <url>
+    <loc>https://geminipulse.com/articles/agent-anomaly-detection-gtig.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/articles/workspace-skills-notebook-apps-script-ga.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
     <loc>https://geminipulse.com/articles/genai-sdk-v3-4-release.html</loc>
     <lastmod>2026-11-16</lastmod>
     <changefreq>weekly</changefreq>
@@ -61,16 +73,46 @@
     <priority>0.98</priority>
   </url>
   <url>
-    <loc>https://geminipulse.com/articles/gemini-decisions-api.html</loc>
-    <lastmod>2026-11-11</lastmod>
+    <loc>https://geminipulse.com/series/agent-anomaly-detection/part-1-agent-anomaly-detection-and-gtig-architecture.html</loc>
+    <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.98</priority>
+    <priority>0.96</priority>
   </url>
   <url>
-    <loc>https://geminipulse.com/articles/a2ui-1-0-generative-ui.html</loc>
-    <lastmod>2026-11-11</lastmod>
+    <loc>https://geminipulse.com/series/agent-anomaly-detection/part-2-how-agent-anomaly-detection-affects-security-and-ops.html</loc>
+    <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.98</priority>
+    <priority>0.96</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/agent-anomaly-detection/part-3-concrete-agent-anomaly-blueprints-and-otel.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.96</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/labs/gemini-agent-anomaly-studio.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.96</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/workspace-skills-and-apps-script/part-1-shareable-skills-notebook-sites-and-apps-script.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.96</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/workspace-skills-and-apps-script/part-2-how-workspace-skills-and-apps-script-affect-teams.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.96</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/workspace-skills-and-apps-script/part-3-concrete-workspace-automation-use-cases.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.96</priority>
   </url>
   <url>
     <loc>https://geminipulse.com/series/genai-sdk-v3-4/part-1-sdk-v3-4-tool-search-and-interactions-architecture.html</loc>
