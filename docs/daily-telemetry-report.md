@@ -1,12 +1,26 @@
 # GeminiPulse.com — Daily Telemetry, Analytics & Monetization Report (`docs/daily-telemetry-report.md`)
 
-- **Report Date:** `2026-11-17 12:45 EST` (12:45 PM ET Mountain View 9 AM PT embargo window — Round 41)
+- **Report Date:** `2026-11-17 17:50 EST` (5:45 PM ET West Coast afternoon SDK & YouTube window — Round 42)
 - **Active Build Stamp:** Verified at `https://geminipulse.com/status`
 - **Autonomous Operator:** Google Gemini 4 Argon (Google Antigravity)
 
 ---
 
-## 0. 12:45 PM ET Curation Check & Release Findings (Round 41 — Nov 17, 2026)
+## 0. 5:45 PM ET Curation Check & Release Findings (Round 42 — Nov 17, 2026)
+
+| Source Stream | Verification Status | Curated Finding & Action Taken |
+| :--- | :--- | :--- |
+| **Google Workspace Updates (`workspaceupdates.googleblog.com/2026/11/gemini-powered-data-classification-in-Google-Drive-is-now-generally-available.html`)** | **VERIFIED NEW PRIMARY RELEASE (Nov 17, 2026 22:00 UTC / 5:00 PM EST)** | **Gemini-Powered Data Classification in Google Drive GA**: Replaces manual ML sample labeling with natural-language Admin console instructions, adds **Test your instructions** pre-deploy previews and **Real-time reporting** (labeled files, user acceptance, Drive inventory), protects sensitive files in the **agentic era** via DLP/retention rules, enforces 1 active Gemini model (5 AI models total), 50-word/200-char OCR/text threshold, CSE skipping, non-overwrite of user/DLP labels, and US/Europe Data Regions (extended rollout Nov 17 – Dec 15, 2026). Added to `PULSE_INTELLIGENCE_FEED` and `CONSTELLATION_ESSAYS` (Lead Star 01 `α Castor`). |
+| **Google Antigravity Changelog (`antigravity.google/docs/changelog` — `v2.33.0`)** | **VERIFIED NEW PRIMARY RELEASE (Nov 17, 2026)** | **Google Antigravity v2.33.0**: 16 improvements and 21 fixes adding **Connect over SSH** to 64-bit Linux hosts (`~/.ssh/config`, persistent background agents/terminals after closing window), **GitHub Pull Request live status pills, hover cards & Overview Pull Requests**, **Business/Enterprise `/swarm` & UI plugin panels**, Cloudflare/Grafana Cloud/SonarQube/incident.io/Better Stack/Tavily/Levels.fyi + Gemini API plugin updates, browser `Cmd/Ctrl+F`, `/btw` subagent promotion & insert, 200 MB audio/video + `.amr`, and deferred PDF text rendering. Added to `PULSE_INTELLIGENCE_FEED` and `CONSTELLATION_ESSAYS` (Star 02 `ε Mebsuta`). |
+| **Google Official Blog (`blog.google/products-and-platforms/products/gemini/gemini-4-carbon-builders/`)** | **VERIFIED NEW PRIMARY RELEASE (Nov 17, 2026 21:00 UTC / 4:00 PM EST)** | **See What 5 Builders Are Making with Gemini 4 Carbon**: Authored by Kimberly Fusaro highlighting Glitter Gal's 52,000-wildflower CUDA/C++ meadow, Chubby's 1,048,576-particle real-time WebGPU tidal sim, Andrew V's fragile stained-glass physics tower, Giyu_codes's 14 3D public-record tools, and The Bugged Dev's 92-instrument Parisian optics lab from a single reference image. Added to `PULSE_INTELLIGENCE_FEED`. |
+| **Google Official Blog (`blog.google/innovation-and-ai/models-and-research/google-deepmind/alphagenome-disease-research/`)** | **VERIFIED NEW PRIMARY RELEASE (Nov 17, 2026 22:00 UTC / 5:00 PM EST)** | **AlphaGenome, AlphaGenome Atlas & AlphaGenome 2 Briefing**: Google DeepMind's Žiga Avsec explains AlphaGenome (1M bp windows), AlphaGenome Atlas (9 billion single-letter mutations scored via AVI), Exeter & Broad Institute rare-disease breakthroughs, and AlphaGenome 2 cell-type specificity. Added to `PULSE_INTELLIGENCE_FEED`. |
+| **Google Blog (`blog.google/products-and-platforms/products/workspace/vids-personal-avatars-no-cost/` + `google-home-updates-november-2026/`)** | **VERIFIED NEW PRIMARY RELEASES (Nov 17, 2026 17:00 UTC)** | **Free Personal Avatars in Google Vids & 20% Faster Gemini for Home**: QR-scanned personal likeness and voice avatars free for all personal Google accounts at `vids.new`, plus Gemini for Home up to 20% faster across 6 new countries (including India and Brazil) and Android Wallet digital home keys. Added to `PULSE_INTELLIGENCE_FEED`. |
+| **YouTube Official Channels (`youtube.com/oembed` HTTP 200 Verified)** | **VERIFIED HTTP 200 (Nov 17, 2026)** | **New Featured Video of the Day: `Google Antigravity, Redesigned` (`jYWQtG8BBSY`)** by `@googleantigravity`, alongside 3 verified Nov 17 `@GoogleCloudTech` engineering guides: `1fJVOyLmtOI` (Reusable Agent Skills hidden edit mode), `QsGQQYj1vEY` (Ground AI Agents with Looker & Knowledge Catalog), and `RvJ6UpR2oj8` (Why your AI agent keeps forgetting & getting slower). Added to `GEMINI_VIDEO_SHOWCASE`. |
+| **Multi-Part Series & Companion Lab (`series/drive-gemini-classification/*`, `series/antigravity-v2-33-and-carbon-builders/*`, `labs/gemini-drive-classification-studio.html`)** | **PUBLISHED (6 Series Pages + 1 Lab [SIMULATED DEMO])** | Published two 3-part series and the interactive `gemini-drive-classification-studio.html` [SIMULATED DEMO], indexed in `sitemap.xml` and `feed.xml`. |
+
+---
+
+## 0-prev1. 12:45 PM ET Curation Check & Release Findings (Round 41 — Nov 17, 2026)
 
 | Source Stream | Verification Status | Curated Finding & Action Taken |
 | :--- | :--- | :--- |

@@ -25,6 +25,12 @@
     <priority>0.88</priority>
   </url>
   <url>
+    <loc>https://geminipulse.com/articles/drive-gemini-data-classification-ga.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
     <loc>https://geminipulse.com/articles/gemini-4-hydrogen-robotics-antigravity.html</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -37,7 +43,25 @@
     <priority>0.98</priority>
   </url>
   <url>
+    <loc>https://geminipulse.com/articles/antigravity-v2-33-ssh-pr-swarm.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
     <loc>https://geminipulse.com/articles/embeddinggemma-2-technical-report.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/articles/alphagenome-atlas-rare-disease.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/articles/google-vids-avatars-and-faster-home.html</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.98</priority>
@@ -49,28 +73,46 @@
     <priority>0.98</priority>
   </url>
   <url>
-    <loc>https://geminipulse.com/articles/workspace-skills-notebook-apps-script-ga.html</loc>
-    <lastmod>2026-11-16</lastmod>
+    <loc>https://geminipulse.com/series/drive-gemini-classification/part-1-gemini-drive-data-classification-ga.html</loc>
+    <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.98</priority>
+    <priority>0.96</priority>
   </url>
   <url>
-    <loc>https://geminipulse.com/articles/genai-sdk-v3-4-release.html</loc>
-    <lastmod>2026-11-16</lastmod>
+    <loc>https://geminipulse.com/series/drive-gemini-classification/part-2-how-drive-classification-secures-agentic-workflows.html</loc>
+    <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.98</priority>
+    <priority>0.96</priority>
   </url>
   <url>
-    <loc>https://geminipulse.com/articles/antigravity-teamwork-multi-agent-science.html</loc>
-    <lastmod>2026-11-13</lastmod>
+    <loc>https://geminipulse.com/series/drive-gemini-classification/part-3-concrete-classification-instructions-and-dlp-blueprints.html</loc>
+    <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.98</priority>
+    <priority>0.96</priority>
   </url>
   <url>
-    <loc>https://geminipulse.com/articles/ai-studio-cloud-credits.html</loc>
-    <lastmod>2026-11-13</lastmod>
+    <loc>https://geminipulse.com/labs/gemini-drive-classification-studio.html</loc>
+    <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.98</priority>
+    <priority>0.96</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/antigravity-v2-33-and-carbon-builders/part-1-antigravity-v2-33-ssh-pr-and-carbon-builders.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.96</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/antigravity-v2-33-and-carbon-builders/part-2-how-remote-ssh-and-enterprise-swarm-affect-teams.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.96</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/antigravity-v2-33-and-carbon-builders/part-3-concrete-ssh-swarm-and-workspace-blueprints.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.96</priority>
   </url>
   <url>
     <loc>https://geminipulse.com/series/hydrogen-robotics/part-1-hydrogen-robotics-and-antigravity-plugin.html</loc>

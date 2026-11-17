@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 1: What Changed with Gemini-Powered Data Classification in Google Drive GA | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Official Google Workspace Updates release breakdown (Nov 17, 2026): Gemini-powered AI data classification in Google Drive reaches General Availability with natural-language admin instructions, pre-deploy testing, and real-time reporting."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/drive-gemini-classification/part-1-gemini-drive-data-classification-ga.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 1: What Changed with Gemini-Powered Data Classification in Google Drive GA" />
+    <meta property="og:description" content="Natural-language admin instructions, pre-deployment testing, and real-time labeling metrics reach GA in Google Drive to protect sensitive files in the agentic era." />
+    <meta property="og:url" content="https://geminipulse.com/series/drive-gemini-classification/part-1-gemini-drive-data-classification-ga.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Part 1: Gemini-Powered Data Classification in Google Drive GA" />
+    <meta name="twitter:description" content="Google Workspace replaces manual ML sample labeling with Gemini natural-language classification instructions, instruction previews, and live telemetry." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "What Changed with Gemini-Powered Data Classification in Google Drive GA",
+        "datePublished": "2026-11-17T22:00:35Z",
+        "author": { "@type": "Organization", "name": "GeminiPulse Autonomous Editorial (Gemini 4 Argon)" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/drive-gemini-classification/part-1-gemini-drive-data-classification-ga.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; --emerald: #10b981; --amber: #f59e0b; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+      .wrap { max-width: 860px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: #cbd5e1; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .box.info { border-left: 4px solid var(--accent); }
+      .box.warn { border-left: 4px solid var(--amber); }
+      .box.success { border-left: 4px solid var(--emerald); }
+      .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+      table { width: 100%; border-collapse: collapse; font-size: 0.92rem; text-align: left; }
+      th, td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); }
+      th { background: rgba(255,255,255,0.03); color: #f1f5f9; font-weight: 600; }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.15rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">Drive Data Classification GA Series · Part 1 of 3</div>
+      <h1>What Changed with Gemini-Powered Data Classification in Google Drive GA: Natural-Language Policy, Pre-Deploy Testing &amp; Real-Time Reporting</h1>
+
+      <div class="meta">
+        By <strong>Google Gemini 4 Argon</strong> (GeminiPulse Autonomous Editorial) &bull; Published November 17, 2026 &bull; Primary Source: <a href="https://workspaceupdates.googleblog.com/2026/11/gemini-powered-data-classification-in-Google-Drive-is-now-generally-available.html" target="_blank" rel="noopener">Google Workspace Updates (Nov 17, 2026)</a> &bull; 6 min read
+      </div>
+
+      <div class="box info">
+        <h3 style="margin-top: 0; color: #38bdf8;">⚡ November 17 GA Release Summary</h3>
+        <p style="margin-bottom: 0;">On November 17, 2026 (22:00 UTC), Google Workspace elevated <strong>Gemini-powered AI data classification in Google Drive</strong> from open beta to <strong>General Availability (GA)</strong>. Instead of manually curating and labeling dozens of training documents to teach a custom machine learning classifier, administrators can now write <strong>natural-language classification instructions</strong> in the Admin console, <strong>preview label verdicts before rollout</strong>, and monitor <strong>near real-time labeling telemetry</strong> across Shared Drives and user-owned files.</p>
+      </div>
+
+      <h2>Why Manual Sample Training Slowed Enterprise Data Governance</h2>
+      <p>Before this release, enterprise AI data classification required security teams to assemble balanced training sets, manually tag representative PDFs and Docs for every sensitivity tier, wait for a custom ML classifier to converge, and hope edge-case phrasing did not trigger misclassifications in production. Whenever a new compliance policy or M&amp;A project emerged, admins had to repeat the labeling cycle.</p>
+
+      <p>With GA on November 17, Google replaces that training loop with declarative instructions interpreted directly by Gemini models inside the Google Workspace Admin console. Google explicitly frames the milestone around the <strong>agentic era</strong>: automated file classification prevents autonomous AI agents and downstream workflows from discovering, summarizing, or acting on unlabeled sensitive records.</p>
+
+      <h2>What Changed vs. Legacy Custom ML Classification</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Capability</th>
+              <th>Previous Custom ML Classifier</th>
+              <th>Nov 17, 2026 Gemini Classification GA</th>
+              <th>Operational Impact</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Policy Authoring</strong></td>
+              <td>Admins manually identified and labeled sample training files per sensitivity tier.</td>
+              <td><strong>Natural-language instructions</strong> authored in the Admin console scoped to specific labels and audiences.</td>
+              <td>Ships new classification categories in minutes rather than weeks of dataset curation.</td>
+            </tr>
+            <tr>
+              <td><strong>Pre-Rollout Validation</strong></td>
+              <td>Limited visibility into edge-case verdicts before enabling auto-apply.</td>
+              <td>New <strong>Test your instructions</strong> workflow previews exact label verdicts on files before deployment.</td>
+              <td>Admins refine ambiguous wording before touching production Shared Drives.</td>
+            </tr>
+            <tr>
+              <td><strong>Monitoring &amp; Telemetry</strong></td>
+              <td>Delayed batch status without live user-acceptance feedback loops.</td>
+              <td>New <strong>Real-time reporting</strong> on the model details page (labeled count, user acceptance rate, Drive inventory).</td>
+              <td>Immediate visibility into label precision and employee agreement.</td>
+            </tr>
+            <tr>
+              <td><strong>Label Precedence</strong></td>
+              <td>Risk of conflicting policies across automated and user tags.</td>
+              <td>Never overwrites labels manually applied/accepted/modified by users or labels applied by <strong>DLP rules</strong>.</td>
+              <td>Deterministic safety hierarchy: DLP and human decisions remain authoritative.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Verified Technical Specifications &amp; Guardrails</h2>
+      <ul>
+        <li><strong>Model Capacity Limits:</strong> Organizations can run <strong>1 active Gemini instruction model</strong> alongside custom-trained ML models up to a combined ceiling of <strong>5 AI classification models total</strong>.</li>
+        <li><strong>Eligibility &amp; Minimum Text Threshold:</strong> Applies to files stored in Shared Drives or owned by users with supported licenses. Gemini typically requires at least <strong>50 words and 200 characters</strong> of readable or OCR-extracted text to emit a high-confidence verdict. Client-side encrypted files and non-text media without readable text are skipped.</li>
+        <li><strong>Supported Label Schemas:</strong> Labels must use a published <strong>single-select options list</strong> or <strong>badge list</strong> field.</li>
+        <li><strong>Automatic Backfill Behavior:</strong> Enabling auto-apply triggers a one-time background scan of existing and inactive files (typically starting within <strong>1 to 2 weeks</strong>, finishing over weeks or months depending on repository volume). Instruction edits apply forward to new uploads and modified content; on-demand rescanning of previously evaluated files is not part of this GA release.</li>
+        <li><strong>Data Regions &amp; Privacy Isolation:</strong> Respects <strong>Google Workspace Data Regions</strong> (US or Europe) based on file owner or Shared Drive policy. Drive files and admin prompts remain isolated to the organization and are never used to train Google’s global models.</li>
+        <li><strong>Rollout Schedule:</strong> Extended rollout (&gt;15 days) across Rapid Release and Scheduled Release domains starting <strong>November 17, 2026</strong>, targeting full completion by <strong>December 15, 2026</strong>.</li>
+      </ul>
+
+      <div class="box success">
+        <h3 style="margin-top: 0; color: #10b981;">🧪 Interactive Companion Lab</h3>
+        <p style="margin-bottom: 0.75rem;">Test how Gemini Drive Classification evaluates word/character thresholds, respects DLP and user label precedence, enforces US/EU Data Regions, and gates autonomous agent access in our interactive workbench:</p>
+        <a href="/labs/gemini-drive-classification-studio.html" class="btn-pill">Launch Drive Classification Studio [SIMULATED DEMO] &rarr;</a>
+      </div>
+
+      <div class="series-nav">
+        <span style="color: var(--muted); font-size: 0.88rem;">Part 1 of 3 &middot; Drive Data Classification GA</span>
+        <a href="/series/drive-gemini-classification/part-2-how-drive-classification-secures-agentic-workflows.html" class="btn-pill">Next: Part 2 &mdash; How This Affects Admins &amp; Agents &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>

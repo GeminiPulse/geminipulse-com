@@ -5,6 +5,91 @@
 
 export const PULSE_INTELLIGENCE_FEED = [
   {
+    id: 'pulse-drive-gemini-classification-ga',
+    title: 'Google Workspace Launches Gemini-Powered Data Classification in Google Drive GA: Natural-Language Policy, Pre-Deploy Testing & Agentic Protection',
+    tldr: 'Released November 17, 2026 (22:00 UTC): Google Drive AI data classification reaches General Availability—replacing manual ML sample training with natural-language admin instructions, pre-rollout instruction testing, near real-time acceptance reporting, US/EU Data Region isolation, and automated DLP guardrails for the agentic era.',
+    summary:
+      'Google Workspace Updates announces General Availability of Gemini-powered AI data classification in Google Drive (extended rollout Nov 17 – Dec 15, 2026). Key verified specifications include: (1) Natural-Language Admin Instructions—replaces manual ML sample labeling with plain-English criteria scoped to published single-select or badge list fields, (2) Two New GA Controls—Test your instructions in the Admin console before deployment and monitor near real-time metrics (labeled files, user acceptance rate, Drive inventory), (3) Agentic Era Security Posture—prevents autonomous workflows from accessing sensitive data by enforcing DLP, retention, and audit rules at scale, (4) Deterministic Guardrails—supports 1 active Gemini instruction model (5 AI models total), requires ~50 words and 200 characters of readable or OCR text, skips client-side encrypted files, never overwrites DLP or user-accepted/modified labels, and (5) Residency & Privacy—processes files within US or Europe Data Regions and never trains global models.',
+    category: 'Drive Security',
+    tag: 'GA Launch',
+    modelBadge: 'Gemini Drive Classification GA',
+    impactScore: '9.8 / 10',
+    date: '2026-11-17T22:00:35Z',
+    sourceLabel: 'Google Workspace Updates: Gemini-Powered Data Classification in Google Drive GA',
+    sourceUrl: 'https://workspaceupdates.googleblog.com/2026/11/gemini-powered-data-classification-in-Google-Drive-is-now-generally-available.html',
+    groundedBy: 'Google Workspace Updates Official Release (Verified Nov 17, 2026)',
+    seriesUrl: '/series/drive-gemini-classification/part-1-gemini-drive-data-classification-ga.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-drive-classification-studio.html',
+    labLabel: 'Classification Lab [DEMO] →',
+  },
+  {
+    id: 'pulse-antigravity-v2-33-ssh-github-swarm',
+    title: 'Google Antigravity v2.33.0 Ships Remote 64-Bit Linux SSH, Live GitHub PR Pills, Enterprise /swarm & 200 MB Media Playback',
+    tldr: 'Released November 17, 2026: Antigravity v2.33.0 (16 improvements, 21 fixes) adds automatic OpenSSH remote Linux host hosting (~/.ssh/config) where agents keep running after closing the window, live GitHub PR status pills & Overview PR section, Business/Enterprise /swarm & UI plugin panels, browser Cmd/Ctrl+F, and 200 MB audio/video playback.',
+    summary:
+      'Google Antigravity releases v2.33.0 on November 17, 2026 alongside the official "Google Antigravity, Redesigned" walkthrough. Key verified updates include: (1) Connect over SSH—attach to 64-bit Linux hosts via ~/.ssh/config with automatic remote server installation so projects, Git worktrees, agents, and terminals continue running even after closing the window, (2) Live GitHub PR Integration—GitHub pull request links in chat and URL artifact cards render live status pills with hover cards, backed by an Overview Pull Requests section and optional sidebar indicator, (3) Enterprise /swarm & Partner Marketplace—opens /swarm and UI plugin panels to business and enterprise accounts (subject to admin settings) and adds Cloudflare, Grafana Cloud, SonarQube, incident.io, Better Stack, Tavily, Levels.fyi, plus updated Gemini API and 15 partner plugins, and (4) Browser, /btw & Media Upgrades—Cmd/Ctrl+F in-page browser search, /btw subagent promotion and main-conversation insertion, Nord dark theme, R/R Markdown highlighting, deferred PDF text rendering, and 200 MB audio/video playback with .amr voice attachments.',
+    category: 'Agentic IDE',
+    tag: 'IDE Release v2.33.0',
+    modelBadge: 'Antigravity v2.33.0',
+    impactScore: '9.8 / 10',
+    date: '2026-11-17T21:30:00Z',
+    sourceLabel: 'Google Antigravity Changelog v2.33.0 (Nov 17, 2026)',
+    sourceUrl: 'https://antigravity.google/docs/changelog',
+    groundedBy: 'Google Antigravity Official Changelog (Verified Nov 17, 2026)',
+    seriesUrl: '/series/antigravity-v2-33-and-carbon-builders/part-1-antigravity-v2-33-ssh-pr-and-carbon-builders.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-hydrogen-robotics-studio.html',
+    labLabel: 'Robotics Studio Lab [DEMO] →',
+  },
+  {
+    id: 'pulse-gemini-4-carbon-5-builders',
+    title: 'Google Spotlights 5 Builders on Gemini 4 Carbon: 1.048M-Particle WebGPU Sims, 52K-Flower CUDA Meadows & 92-Instrument 3D Labs',
+    tldr: 'Published November 17, 2026 (21:00 UTC): Official Google Blog showcase highlights five community builds pushing Gemini 4 Carbon’s deep reasoning and extended verification loops across CUDA/C++, WebGPU, glass fracture physics, 14 public-data 3D tools, and single-image optical lab reconstruction.',
+    summary:
+      'Authored by Kimberly Fusaro on the official Google Blog (21:00 UTC), Google highlights five developer builds demonstrating Gemini 4 Carbon’s extended verification and physical simulation capabilities: (1) Glitter Gal (@GlitterPixely) synthesized a wind-swept meadow of 52,000 wildflowers and grass blades from scratch in CUDA and C++, (2) Chubby (@kimmonismus) simulated 1,048,576 glowing tidal particles in real time using WebGPU, (3) Andrew V (@AI_Andrew) modeled fragile stained-glass block-stacking physics with light refraction, tapping acoustics, and shard shattering, (4) Giyu_codes (@giyu_codes) transformed scattered public records into 14 interactive 3D tools, and (5) The Bugged Dev (@thebuggeddev) reconstructed an interactive 19th-century Parisian optics lab with 92 tunable brass and glass instruments from one reference image.',
+    category: 'Frontier Models & Builders',
+    tag: 'Builder Showcase',
+    modelBadge: 'Gemini 4 Carbon',
+    impactScore: '9.4 / 10',
+    date: '2026-11-17T21:00:00Z',
+    sourceLabel: 'Google Blog: See what 5 builders are making with Gemini 4 Carbon',
+    sourceUrl: 'https://blog.google/products-and-platforms/products/gemini/gemini-4-carbon-builders/',
+    groundedBy: 'Google Official Blog Showcase (Kimberly Fusaro, Verified Nov 17, 2026)',
+    seriesUrl: '/series/antigravity-v2-33-and-carbon-builders/part-1-antigravity-v2-33-ssh-pr-and-carbon-builders.html',
+    seriesLabel: '3-Part Series →',
+  },
+  {
+    id: 'pulse-alphagenome-atlas-rare-disease',
+    title: 'Google DeepMind Details AlphaGenome Atlas (9B Single-Letter DNA Predictions) & AlphaGenome 2 Cell-Type Specificity',
+    tldr: 'Published November 17, 2026 (22:00 UTC): Google DeepMind research scientist Žiga Avsec explains how AlphaGenome (1M bp windows), AlphaGenome Atlas (AVI scores across all 9 billion single-letter DNA variants), and AlphaGenome 2’s cell-type specificity accelerate rare genetic disease discovery.',
+    summary:
+      'In Google DeepMind’s November 17 Ask a Scientist feature, genomics initiative lead Žiga Avsec breaks down the AlphaGenome stack: (1) AlphaGenome evaluates 1-million-base-pair DNA sequences to predict non-coding gene regulation effects, (2) AlphaGenome Atlas pre-computed all 9 billion possible single-letter substitutions across the 3-billion-base-pair human genome into instant AVI (AlphaGenome Variant Impact) scores, (3) Real-world clinical research validation—University of Exeter fellow Gareth Hawkes narrowed 1 billion variants to the top 1% to isolate 19 BMI-linked variant groups, while Broad Institute fellow Laura Covill resolved an unsolved rare neurodevelopmental disease case, and (4) AlphaGenome 2 advances beyond bulk tissue averages to cell-type-specific variant disruption and prediction confidence calibration.',
+    category: 'Science & DeepMind',
+    tag: 'Genomics Briefing',
+    modelBadge: 'AlphaGenome 2 & Atlas',
+    impactScore: '9.5 / 10',
+    date: '2026-11-17T22:00:00Z',
+    sourceLabel: 'Google Blog: How genome mapping can help researchers better understand disease',
+    sourceUrl: 'https://blog.google/innovation-and-ai/models-and-research/google-deepmind/alphagenome-disease-research/',
+    groundedBy: 'Google Blog & Google DeepMind Ask a Scientist (Verified Nov 17, 2026)',
+  },
+  {
+    id: 'pulse-google-vids-avatars-and-faster-home',
+    title: 'Google Makes Personal Avatars in Google Vids Free for All Personal Accounts & Accelerates Gemini for Home by 20% Across 6 New Countries',
+    tldr: 'Published November 17, 2026 (17:00 UTC): Anyone with a personal Google account can create a reusable QR-scanned likeness and voice avatar in Google Vids at no cost (vids.new), while Gemini for Home speeds up everyday requests by up to 20% and expands to 6 new countries including India and Brazil.',
+    summary:
+      'Two consumer Gemini expansions went live on November 17, 2026 across Google Workspace and Google Nest: (1) Personal Avatars in Google Vids at No Cost—personal Google account holders can visit vids.new on desktop, scan a QR code to capture their own likeness and voice (restricted strictly to the account holder’s likeness), type a script, and reuse the consistent avatar across scenes without camera gear, and (2) Google Home November 2026 Update—Group PM Mark Alexander confirms Gemini for Home now responds up to 20% faster and expands to six additional countries including India and Brazil, alongside Google Wallet digital home keys on Android, audio detection (barking dogs, breaking glass) in Home Premium Advanced event descriptions, and Nest thermostat cumulative savings.',
+    category: 'Workspace & Consumer AI',
+    tag: 'Global Rollout',
+    modelBadge: 'Google Vids & Gemini for Home',
+    impactScore: '9.3 / 10',
+    date: '2026-11-17T17:00:00Z',
+    sourceLabel: 'Google Blog: Google Vids Personal Avatars + Google Home Updates (Nov 17, 2026)',
+    sourceUrl: 'https://blog.google/products-and-platforms/products/workspace/vids-personal-avatars-no-cost/',
+    groundedBy: 'Google Official Blog Releases (Verified Nov 17, 2026)',
+  },
+  {
     id: 'pulse-gemini-4-hydrogen-robotics-antigravity',
     title: 'Google Launches Gemini 4 Hydrogen for Robotics & Antigravity Robotics Plugin: 10-Min USB Bring-Up, MuJoCo Vibe Sim & ERQA Leadership',
     tldr: 'Released November 17, 2026: Google DeepMind’s Gemini Robotics team brings Gemini Robotics ER 2 spatial reasoning into Gemini 4 Hydrogen—scoring 58 on Artificial Analysis Robotics 0.1 and beating ER 2 on ERQA—alongside the new Robotics plugin for Google Antigravity with ~10-minute USB arm onboarding (I2RT YAM, SO-ARM101, FR3 Duo) and embedded MuJoCo "vibe sim".',
@@ -979,6 +1064,53 @@ export const GEMINI_MODEL_MATRIX = [
 
 export const STUDIO_LAB_BLUEPRINTS = [
   {
+    id: 'lab-drive-classification-studio',
+    title: 'Google Drive Gemini Data Classification Studio [SIMULATED DEMO]',
+    badge: 'Nov 17, 2026 Workspace GA',
+    model: 'gemini-4-hydrogen',
+    href: '/labs/gemini-drive-classification-studio.html',
+    description:
+      'Interactive Workspace governance simulator modeling Google’s Nov 17 Gemini-powered data classification in Google Drive GA: test natural-language admin instructions, inspect 50-word / 200-char OCR eligibility, verify DLP and user-override precedence, and test US/Europe Data Region agentic retrieval gates.',
+    prompt:
+      'Apply "Confidential" to Shared Drive files containing M&A pricing, non-public forecasts, or system incident postmortems while skipping CSE files and preserving existing DLP or user-accepted labels.',
+    tsCode: `import { GoogleGenAI } from "@google/genai";
+
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+
+// Mirrors Drive AI Classification pre-deploy instruction verification pattern
+const interaction = await ai.clients.interactions.create({
+  model: "gemini-4-hydrogen",
+  input: [
+    { type: "text", text: "Evaluate whether this 420-word document matches Confidential M&A criteria without overwriting existing DLP tags." }
+  ],
+  config: { thinking_config: { thinking_level: "low" } }
+});`,
+    pyCode: `from google import genai
+
+client = genai.Client()
+
+# Simulate natural-language Drive label classification check (>= 50 words / 200 chars)
+interaction = client.interactions.create(
+    model="gemini-4-hydrogen",
+    input="Classify Shared Drive OCR text against single-select Data Sensitivity badge rules (Confidential / Restricted / Internal).",
+    config={"thinking_config": {"thinking_level": "low"}}
+)`,
+    simulatedSteps: [
+      {
+        type: 'thought',
+        label: 'step[0] • Check eligibility, CSE & label precedence',
+        detail:
+          'Verified 420 words / 2,680 chars (>= 50w/200c minimum), confirmed non-CSE file in US Data Region, and verified no prior DLP or user-accepted label exists.',
+      },
+      {
+        type: 'tool_call',
+        label: 'step[1] • Apply badge label & enforce agentic DLP gate',
+        detail:
+          'Applied Data Sensitivity = "Confidential", emitted Workspace Audit Log entry, and blocked autonomous Gemini Skill indexing on external/unscoped prompts.',
+      },
+    ],
+  },
+  {
     id: 'lab-hydrogen-robotics-studio',
     title: 'Gemini 4 Hydrogen Robotics & MuJoCo Studio [SIMULATED DEMO]',
     badge: 'Nov 17, 2026 Robotics',
@@ -1775,6 +1907,25 @@ video_turn = client.interactions.create(
 ];
 
 export const INITIAL_SHOWCASE_PROJECTS = [
+  {
+    id: 'showcase-gemini-drive-classification-studio',
+    name: 'Google Drive Gemini Data Classification Studio [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive Workspace admin workbench modeling Google’s Nov 17 Gemini-powered Drive data classification GA: pre-deploy instruction testing, 50-word/200-char OCR eligibility, DLP/user label precedence, Data Regions, and agentic retrieval gates.',
+    models: ['gemini-4-hydrogen', 'gemini-4-argon'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-drive-classification-studio.html): [SIMULATED DEMO] Models natural-language Drive labeling, CSE skipping, US/EU Data Region isolation, and Workspace audit logs.',
+    url: '/labs/gemini-drive-classification-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-17T22:00:35Z',
+  },
   {
     id: 'showcase-gemini-hydrogen-robotics-studio',
     name: 'Gemini 4 Hydrogen Robotics & MuJoCo Studio [SIMULATED DEMO]',
@@ -3699,9 +3850,77 @@ export const GET_STARTED_WITH_GEMINI_TRACKS = [
 
 export const GEMINI_VIDEO_SHOWCASE = [
   {
+    id: 'vid-google-antigravity-redesigned',
+    videoId: 'jYWQtG8BBSY',
+    featuredOfTheDay: true,
+    category: 'Agentic IDE & Platform',
+    badge: 'FEATURED VIDEO OF THE DAY • GOOGLE ANTIGRAVITY',
+    title: 'Google Antigravity, Redesigned',
+    creatorName: 'Google Antigravity',
+    creatorHandle: '@googleantigravity',
+    creatorUrl: 'https://www.youtube.com/@googleantigravity',
+    watchUrl: 'https://www.youtube.com/watch?v=jYWQtG8BBSY',
+    thumbnailUrl: 'https://i.ytimg.com/vi/jYWQtG8BBSY/hqdefault.jpg',
+    geminiSummary:
+      'Official November 17, 2026 Google Antigravity showcase unveiling the redesigned agentic IDE experience—pairing cleanly with Antigravity v2.33.0’s remote Linux SSH hosting, live GitHub PR status pills, Business/Enterprise /swarm, and multi-agent workspaces.',
+    whyFeatured:
+      'Verified HTTP 200 official Google Antigravity release showcase published Nov 17, 2026 alongside Antigravity v2.33.0.',
+  },
+  {
+    id: 'vid-google-cloud-tech-reusable-agent-skills',
+    videoId: '1fJVOyLmtOI',
+    featuredOfTheDay: false,
+    category: 'Agentic Architecture & Skills',
+    badge: 'OFFICIAL DEVELOPER GUIDE • GOOGLE CLOUD TECH',
+    title: 'Build a hidden edit mode for your AI app with reusable agent skills',
+    creatorName: 'Google Cloud Tech',
+    creatorHandle: '@GoogleCloudTech',
+    creatorUrl: 'https://www.youtube.com/@GoogleCloudTech',
+    watchUrl: 'https://www.youtube.com/watch?v=1fJVOyLmtOI',
+    thumbnailUrl: 'https://i.ytimg.com/vi/1fJVOyLmtOI/hqdefault.jpg',
+    geminiSummary:
+      'Published November 17, 2026 (21:24 UTC) by Google Cloud Tech—demonstrating how to package modular, reusable agent skills to add safe in-app edit modes and composable workflows to Gemini-powered applications.',
+    whyFeatured:
+      'Verified HTTP 200 Nov 17 Google Cloud Tech engineering walkthrough on reusable agent skills.',
+  },
+  {
+    id: 'vid-google-cloud-tech-looker-grounding',
+    videoId: 'QsGQQYj1vEY',
+    featuredOfTheDay: false,
+    category: 'Enterprise Grounding & Data',
+    badge: 'OFFICIAL ENTERPRISE GUIDE • GOOGLE CLOUD TECH',
+    title: 'Ground AI Agents with Looker and Knowledge Catalog on Google Cloud',
+    creatorName: 'Google Cloud Tech',
+    creatorHandle: '@GoogleCloudTech',
+    creatorUrl: 'https://www.youtube.com/@GoogleCloudTech',
+    watchUrl: 'https://www.youtube.com/watch?v=QsGQQYj1vEY',
+    thumbnailUrl: 'https://i.ytimg.com/vi/QsGQQYj1vEY/hqdefault.jpg',
+    geminiSummary:
+      'Published November 17, 2026 (19:55 UTC) by Google Cloud Tech—showing enterprise builders how to ground autonomous AI agents in governed Looker semantic metrics and Google Cloud Knowledge Catalog metadata.',
+    whyFeatured:
+      'Verified HTTP 200 Nov 17 Google Cloud Tech guide on enterprise agent grounding with Looker and Knowledge Catalog.',
+  },
+  {
+    id: 'vid-google-cloud-tech-agent-memory-latency',
+    videoId: 'RvJ6UpR2oj8',
+    featuredOfTheDay: false,
+    category: 'Agent Memory & Performance',
+    badge: 'ARCHITECTURE DEEP-DIVE • GOOGLE CLOUD TECH',
+    title: 'Why your AI agent keeps forgetting (and getting slower)',
+    creatorName: 'Google Cloud Tech',
+    creatorHandle: '@GoogleCloudTech',
+    creatorUrl: 'https://www.youtube.com/@GoogleCloudTech',
+    watchUrl: 'https://www.youtube.com/watch?v=RvJ6UpR2oj8',
+    thumbnailUrl: 'https://i.ytimg.com/vi/RvJ6UpR2oj8/hqdefault.jpg',
+    geminiSummary:
+      'Published November 17, 2026 (16:33 UTC) by Google Cloud Tech—diagnosing context bloat, retrieval drift, and multi-turn latency degradation in long-running AI agents, with practical context pruning fixes.',
+    whyFeatured:
+      'Verified HTTP 200 Nov 17 Google Cloud Tech architecture deep dive on agent memory and latency.',
+  },
+  {
     id: 'vid-google-developers-build-with-ai-2026-recap',
     videoId: 'yGHi5V4sVkc',
-    featuredOfTheDay: true,
+    featuredOfTheDay: false,
     category: 'Developer Community & Platform',
     badge: 'FEATURED VIDEO OF THE DAY • GOOGLE FOR DEVELOPERS',
     title: 'Build With AI 2026 Recap',

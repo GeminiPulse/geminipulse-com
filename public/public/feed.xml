@@ -12,6 +12,14 @@
   </author>
 
   <entry>
+    <title>Stop Hand-Labeling Training Folders. Gemini Now Governs Drive in Plain English. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/drive-gemini-data-classification-ga.html" />
+    <id>https://geminipulse.com/articles/drive-gemini-data-classification-ga.html</id>
+    <updated>2026-11-17T22:00:35.000Z</updated>
+    <summary>Yesterday, Google connected shareable Gemini Skills directly to live Google Drive files. Today, on November 17, 2026, Google Workspace shipped the missing security counterpart: Gemini-powered data classification in Google Drive is now Generally Available.</summary>
+  </entry>
+
+  <entry>
     <title>A Robot in a Box to a Working Conveyor in an Afternoon. Inside Hydrogen Robotics. (Flagship Gemini Essay)</title>
     <link href="https://geminipulse.com/articles/gemini-4-hydrogen-robotics-antigravity.html" />
     <id>https://geminipulse.com/articles/gemini-4-hydrogen-robotics-antigravity.html</id>
@@ -28,11 +36,35 @@
   </entry>
 
   <entry>
+    <title>Your Agents Just Moved Off Your Laptop. Inside Antigravity v2.33.0 &amp; Carbon Builds. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/antigravity-v2-33-ssh-pr-swarm.html" />
+    <id>https://geminipulse.com/articles/antigravity-v2-33-ssh-pr-swarm.html</id>
+    <updated>2026-11-17T21:30:00.000Z</updated>
+    <summary>On November 17, 2026, Google Antigravity shipped v2.33.0 (16 improvements, 21 fixes) alongside &quot;Google Antigravity, Redesigned&quot;—giving developers persistent 64-bit Linux SSH workstations, live GitHub Pull Request status pills, and Business/Enterprise access to /swarm.</summary>
+  </entry>
+
+  <entry>
     <title>Stop Maintaining Four Vector Pipelines. Inside EmbeddingGemma 2. (Flagship Gemini Essay)</title>
     <link href="https://geminipulse.com/articles/embeddinggemma-2-technical-report.html" />
     <id>https://geminipulse.com/articles/embeddinggemma-2-technical-report.html</id>
     <updated>2026-11-17T17:00:00.000Z</updated>
     <summary>Multimodal RAG usually forces teams into a messy compromise: separate encoders for text, images, audio, and video, or giant cloud-only models. On November 17, 2026, Google published the EmbeddingGemma 2 technical report (arXiv:2610.37364) showing how one compact open model outscores models up to 12x larger.</summary>
+  </entry>
+
+  <entry>
+    <title>Google DeepMind Details AlphaGenome Atlas (9B Single-Letter DNA Predictions) &amp; AlphaGenome 2 Cell-Type Specificity. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/alphagenome-atlas-rare-disease.html" />
+    <id>https://geminipulse.com/articles/alphagenome-atlas-rare-disease.html</id>
+    <updated>2026-11-17T22:00:00.000Z</updated>
+    <summary>Google DeepMind research scientist Žiga Avsec explains how AlphaGenome (1M bp windows), AlphaGenome Atlas (AVI scores across all 9 billion single-letter DNA variants), and AlphaGenome 2’s cell-type specificity accelerate rare genetic disease discovery.</summary>
+  </entry>
+
+  <entry>
+    <title>Google Makes Personal Avatars in Google Vids Free for All Personal Accounts &amp; Accelerates Gemini for Home by 20% Across 6 New Countries. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/google-vids-avatars-and-faster-home.html" />
+    <id>https://geminipulse.com/articles/google-vids-avatars-and-faster-home.html</id>
+    <updated>2026-11-17T17:00:00.000Z</updated>
+    <summary>Anyone with a personal Google account can create a reusable QR-scanned likeness and voice avatar in Google Vids at no cost (vids.new), while Gemini for Home speeds up everyday requests by up to 20% and expands to 6 new countries including India and Brazil.</summary>
   </entry>
 
   <entry>
@@ -44,35 +76,19 @@
   </entry>
 
   <entry>
-    <title>Your Google Drive Just Became Live Agent Memory. Inside the Nov 16 Workspace Gemini Drop. (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/workspace-skills-notebook-apps-script-ga.html" />
-    <id>https://geminipulse.com/articles/workspace-skills-notebook-apps-script-ga.html</id>
-    <updated>2026-11-16T21:25:28.000Z</updated>
-    <summary>Most team AI assistants rot the week after creation because someone uploaded a static PDF snapshot that drifted out of date. On November 16, 2026, Google connected shareable Gemini App Skills directly to live Google Drive files and Gemini Notebooks—while shipping &quot;make me a site&quot; in Notebook and Apps Script GA.</summary>
+    <title>Google Workspace Launches Gemini-Powered Data Classification in Google Drive GA (Parts 1–3) + Classification Studio [SIMULATED DEMO]</title>
+    <link href="https://geminipulse.com/series/drive-gemini-classification/part-1-gemini-drive-data-classification-ga.html" />
+    <id>https://geminipulse.com/series/drive-gemini-classification/part-1-gemini-drive-data-classification-ga.html</id>
+    <updated>2026-11-17T22:00:35Z</updated>
+    <summary>Direct primary-source breakdown of Google Workspace Updates Nov 17, 2026 GA release: natural-language admin classification instructions, pre-deploy instruction previews, real-time user-acceptance reporting, DLP/user label precedence, US/Europe Data Regions, and companion Agile Labs Drive Classification Studio [SIMULATED DEMO].</summary>
   </entry>
 
   <entry>
-    <title>Why Your AI Agent Should Not Memorize Every Tool It Owns. Dynamic Tool Search in Gen AI SDK v3.4.0. (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/genai-sdk-v3-4-release.html" />
-    <id>https://geminipulse.com/articles/genai-sdk-v3-4-release.html</id>
-    <updated>2026-11-16T20:43:05.000Z</updated>
-    <summary>For two years, developers built agents by shoving every single tool schema into the initial prompt—burning tens of thousands of tokens per turn and confusing models with irrelevant parameters. With Gen AI SDK v3.4.0, Google brings on-demand ToolSearch to the Interactions API, letting agents query and mount only the tools they actually need.</summary>
-  </entry>
-
-  <entry>
-    <title>The End of the Lone Genius Prompt: How /teamwork Changed Discovery. (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/antigravity-teamwork-multi-agent-science.html" />
-    <id>https://geminipulse.com/articles/antigravity-teamwork-multi-agent-science.html</id>
-    <updated>2026-11-13T17:00:00.000Z</updated>
-    <summary>For years, skeptics rightly pointed out that single foundation models hallucinate subtle algebra steps and lose the plot halfway through massive systems rewrites. Google Research’s landmark /teamwork results prove that the cure is not waiting for magic—it is pairing parallel Gemini subagents with ruthless, deterministic falsifiers.</summary>
-  </entry>
-
-  <entry>
-    <title>Your Consumer AI Subscription Just Became Startup Cloud Runway. (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/ai-studio-cloud-credits.html" />
-    <id>https://geminipulse.com/articles/ai-studio-cloud-credits.html</id>
-    <updated>2026-11-13T20:30:00.000Z</updated>
-    <summary>For two years, builders lived in an artificial split-brain: paying $20 to $250 a month for consumer chat subscriptions that contributed zero dollars toward their API bills. By wiring Google Developer Program Cloud credits directly into Google AI Studio, Google quietly erased the friction wall between weekend prototyping and paid production.</summary>
+    <title>Google Antigravity v2.33.0 Ships Remote 64-Bit Linux SSH, Live GitHub PR Pills, Enterprise /swarm &amp; 5 Gemini 4 Carbon Builders (Parts 1–3)</title>
+    <link href="https://geminipulse.com/series/antigravity-v2-33-and-carbon-builders/part-1-antigravity-v2-33-ssh-pr-and-carbon-builders.html" />
+    <id>https://geminipulse.com/series/antigravity-v2-33-and-carbon-builders/part-1-antigravity-v2-33-ssh-pr-and-carbon-builders.html</id>
+    <updated>2026-11-17T21:30:00Z</updated>
+    <summary>Direct primary-source breakdown of Nov 17 afternoon releases: Antigravity v2.33.0 OpenSSH remote Linux hosting, live GitHub PR status pills, Business/Enterprise /swarm and partner plugins, 200 MB media, plus Google Blog's 5 Gemini 4 Carbon builder showcases and DeepMind's AlphaGenome Atlas briefing.</summary>
   </entry>
 
   <entry>

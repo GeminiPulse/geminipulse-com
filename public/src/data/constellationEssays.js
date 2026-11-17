@@ -14,6 +14,363 @@
  */
 
 export const CONSTELLATION_ESSAYS = {
+  'pulse-drive-gemini-classification-ga': {
+    id: 'pulse-drive-gemini-classification-ga',
+    slug: 'drive-gemini-data-classification-ga',
+    shortStarLabel: 'Drive AI Labels',
+    readMinutes: '7 MIN READ',
+    hudTitle: 'Write One Plain-English Policy. Gemini Classifies Every Drive File.',
+    hudSummary:
+      'On November 17, 2026, Google Workspace shipped Gemini-powered data classification in Google Drive GA—replacing manual ML sample training with natural-language instructions, pre-deploy previews, and DLP protection for the agentic era.',
+    peekCastor: 'Drive AI Classification: <em>Plain-English DLP for the agentic era.</em>',
+    peekPollux: 'Admin Console Preview: <em>Test instructions before backfill.</em>',
+    headline: 'Stop Hand-Labeling Training Folders. <em>Gemini Now Governs Drive in Plain English.</em>',
+    standfirst:
+      'Yesterday, Google connected shareable Gemini Skills directly to live Google Drive files. Today, on November 17, 2026, Google Workspace shipped the missing security counterpart: Gemini-powered data classification in Google Drive is now Generally Available.',
+    pulseCheck: [
+      {
+        stage: 'What Shipped',
+        detail:
+          'Google Workspace elevated Gemini-powered AI data classification in Google Drive to GA (extended rollout Nov 17 – Dec 15, 2026), adding pre-deploy "Test your instructions" previews and near real-time reporting.',
+      },
+      {
+        stage: 'Why Humans Care',
+        detail:
+          'Security teams no longer spend weeks tagging manual sample sets to train a custom ML classifier—plain-English Admin console instructions classify Shared Drives and prevent autonomous agents from touching unlabeled secrets.',
+      },
+      {
+        stage: 'The Fine-Print Catch',
+        detail:
+          'Organizations get 1 active Gemini instruction model (out of 5 AI models total), files need at least 50 words and 200 characters of readable/OCR text, and instruction edits do not trigger on-demand rescans of already-evaluated files.',
+      },
+    ],
+    castor: {
+      kicker: 'PART I · α CASTOR · HUMAN, ADMIN & ENTERPRISE GOVERNANCE LENS',
+      title: 'Why Data Hygiene Is the Prerequisite for Safe Enterprise Agents',
+      subtitle:
+        'How replacing manual ML sample training with natural-language Drive instructions closes the agentic leakage gap.',
+      paragraphs: [
+        'Every company deploying AI assistants eventually hits the same wall: regex Data Loss Prevention (DLP) catches credit card numbers and tax IDs, yet misses the sensitive context inside an unformatted acquisition memo, customer pricing sheet, or internal outage postmortem.',
+        'Previously, teaching Google Drive AI classification to recognize those documents meant gathering balanced training folders, manually labeling dozens of representative files per tier, and waiting for a custom machine learning model to stabilize. On November 17, 2026, Google Workspace made <strong>Gemini-powered data classification in Google Drive Generally Available</strong>, eliminating manual model training in favor of <strong>administrator-defined natural-language instructions</strong>.',
+        'Crucially, Google explicitly ties this GA launch to the <strong>agentic era</strong>: once files are labeled accurately across Shared Drives and licensed My Drives, DLP policies, retention rules, and Connected App boundaries can automatically keep autonomous workflows from accessing or acting on confidential records.',
+        'To give cautious security teams confidence before flipping auto-apply across millions of files, GA introduces two safeguards: a <strong>Test your instructions</strong> preview right inside the Admin console, plus <strong>near real-time reporting</strong> tracking labeled file counts, employee label acceptance rates, and Drive inventory.',
+      ],
+      pullquote: {
+        quote:
+          'You cannot safely give autonomous agents live access to company folders until classification runs at the speed of plain English—and respects every human override.',
+        attribution: 'GOOGLE GEMINI 4 ARGON · α CASTOR EDITORIAL SYNTHESIS',
+      },
+      comparisonTable: {
+        id: 'drive-classification-table',
+        caption: 'Custom ML Classification vs. Nov 17 Gemini-Powered Drive Classification GA',
+        columns: ['Dimension', 'Previous Custom ML', 'Nov 17 Gemini Classification GA', 'Operational Takeaway'],
+        rows: [
+          ['Policy Authoring', 'Manual sample curation & training file tagging', 'Natural-language admin instructions', 'New policies ship in minutes'],
+          ['Pre-Deploy Check', 'Limited preview before production run', 'Admin console "Test your instructions" preview', 'Validate edge cases before backfill'],
+          ['Monitoring', 'Delayed batch classification counts', 'Real-time labeled count & user acceptance metrics', 'Track precision continuously'],
+          ['Override Safety', 'Manual review conflicts possible', 'Never overwrites user or DLP-applied labels', 'Human & DLP rules stay authoritative'],
+        ],
+      },
+      adaptiveQuestions: [
+        {
+          lensTag: 'FOR WORKSPACE ADMINS',
+          question: 'Will Gemini overwrite labels our employees or DLP rules already applied?',
+          answer:
+            'No. Google guarantees Gemini classification will not overwrite labels manually applied, accepted, or modified by users, nor labels applied by DLP rules—and every auto-label, acceptance, and edit is captured in Workspace Audit Logs.',
+        },
+        {
+          lensTag: 'FOR GLOBAL COMPLIANCE OFFICERS',
+          question: 'Does Gemini Drive classification respect US and EU Data Regions?',
+          answer:
+            'Yes. Eligible Drive content is processed and stored within your designated Google Workspace Data Region (US or Europe) based on file owner or Shared Drive policy, and your files and prompts are never used to train Google’s global models.',
+        },
+        {
+          lensTag: 'FOR SECURITY ARCHITECTS',
+          question: 'What files are skipped or excluded from evaluation?',
+          answer:
+            'Client-side encrypted (CSE) files, non-text media without readable text, and brief notes below ~50 words and 200 characters of readable or OCR-extracted text are skipped.',
+        },
+      ],
+    },
+    pollux: {
+      kicker: 'PART II · β POLLUX · WORKSPACE ARCHITECTURE & POLICY LENS',
+      title: 'Designing Your 1-Model Instruction Set, Backfill Queue & DLP Gate',
+      subtitle:
+        'How to structure single-select labels, honor the 50-word threshold, and test policies in the Admin console.',
+      paragraphs: [
+        'Under the hood, organizations are allocated <strong>1 active Gemini instruction model</strong> within a ceiling of <strong>5 total AI classification models</strong> (combining custom-trained ML models and Gemini instructions). Labels must target a published <strong>single-select options list</strong> or <strong>badge list</strong> field.',
+        'When an admin enables auto-apply, Workspace launches a one-time background backfill across existing and inactive files (typically starting within 1 to 2 weeks and completing over weeks or months depending on repository scale). Updating instructions afterward applies to future uploads and modified content—on-demand rescanning of already evaluated files is not included in this release.',
+        'Because Gemini evaluates both native text and OCR-extracted text inside PDFs and images once a file crosses 50 words and 200 characters, teams should pair semantic Gemini labels with deterministic regex DLP rules for short code snippets or CSE vaults.',
+      ],
+      builderRules: [
+        {
+          label: '01 · Consolidate Into One Clean Sensitivity Taxonomy',
+          detail:
+            'Use your 1 active Gemini instruction model with a single-select badge field (e.g., Restricted, Confidential, Internal, Public) so every department shares consistent DLP triggers.',
+        },
+        {
+          label: '02 · Always Run "Test Your Instructions" Before Auto-Apply',
+          detail:
+            'Preview candidate files in the Admin console first—since editing instructions later does not trigger an on-demand rescan of already-evaluated files.',
+        },
+        {
+          label: '03 · Wire Agent Exclusion Rules to the Resulting Labels',
+          detail:
+            'Configure DLP external-sharing blocks and Gemini Skill / RAG exclusion policies around Confidential and Restricted badges while keeping CSE vaults under strict folder IAM.',
+        },
+      ],
+      codeCaption: 'PRE-DEPLOY SEMANTIC CLASSIFICATION TEST PATTERN (@google/genai)',
+      codeSnippet: `// Mirror Workspace Drive AI Classification criteria in custom pre-flight checks
+import { GoogleGenAI } from "@google/genai";
+
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+
+const interaction = await ai.clients.interactions.create({
+  model: "gemini-4-hydrogen",
+  input: [
+    {
+      type: "text",
+      text: "Evaluate document (420 words) against policy: Confidential = M&A terms, pricing, or incident postmortems; Restricted = executive comp or unpatched CVEs."
+    }
+  ],
+  config: { thinking_config: { thinking_level: "low" } }
+});`,
+      workbench: {
+        title: 'Drive Gemini Data Classification Workbench',
+        subtitle: 'Inspect eligibility thresholds, precedence, and Data Regions.',
+        dek: 'Select one of the three GA classification scenarios below or launch the full-screen Drive Classification Studio.',
+        presets: [
+          {
+            label: '1. SHARED DRIVE M&A DOC',
+            k1: 'Text Volume',
+            v1: '420 words / 2,680 chars (Eligible >= 50w/200c)',
+            k2: 'Verdict & Precedence',
+            v2: 'Gemini -> "Confidential" (No prior DLP/user label)',
+            k3: 'Agentic Gate',
+            v3: 'Blocked from external sharing & broad Skills',
+          },
+          {
+            label: '2. USER-ACCEPTED PDF (OCR)',
+            k1: 'Text Volume',
+            v1: '680 OCR words / 4,190 chars (Eligible)',
+            k2: 'Verdict & Precedence',
+            v2: 'Preserves User-Accepted "Internal" (No overwrite)',
+            k3: 'Audit Log',
+            v3: 'Records existing user decision cleanly',
+          },
+          {
+            label: '3. CSE OR SHORT NOTE (<50W)',
+            k1: 'Eligibility Check',
+            v1: '34 words / 186 chars OR Client-Side Encrypted',
+            k2: 'Verdict & Precedence',
+            v2: 'Skipped by Gemini classification',
+            k3: 'Recommended Control',
+            v3: 'Enforce folder-level IAM & deterministic DLP',
+          },
+        ],
+      },
+    },
+    verdict: {
+      title: 'Gemini’s Bottom Line: Plain-English Governance Finally Matches Agent Speed',
+      subtitle:
+        'Testing instructions before rollout and protecting human/DLP overrides makes automated Drive classification production-ready.',
+      paragraphs: [
+        '<strong>Enable during the Nov 17 – Dec 15 rollout if:</strong> your organization relies on Shared Drives for sensitive M&amp;A, finance, or engineering specs and wants DLP and agentic access controls backed by semantic labels.',
+        '<strong>Mind the single-model design:</strong> craft your single active Gemini instruction model carefully with Admin console previews before enabling backfill.',
+      ],
+      sources: [
+        {
+          role: 'Official Google Workspace Updates GA Release',
+          label: 'Gemini-powered data classification in Google Drive is now generally available',
+          author: 'Google Workspace Updates',
+          date: 'November 17, 2026',
+          url: 'https://workspaceupdates.googleblog.com/2026/11/gemini-powered-data-classification-in-Google-Drive-is-now-generally-available.html',
+        },
+      ],
+    },
+  },
+  'pulse-antigravity-v2-33-ssh-github-swarm': {
+    id: 'pulse-antigravity-v2-33-ssh-github-swarm',
+    slug: 'antigravity-v2-33-ssh-pr-swarm',
+    shortStarLabel: 'Antigravity v2.33',
+    readMinutes: '7 MIN READ',
+    hudTitle: 'Close Your Laptop. Your Linux SSH Agents Keep Shipping.',
+    hudSummary:
+      'Google Antigravity v2.33.0 (Nov 17, 2026) adds remote 64-bit Linux SSH hosting, live GitHub PR status pills, Business/Enterprise /swarm, and 200 MB media—alongside 5 Gemini 4 Carbon builder showcases.',
+    peekCastor: 'Antigravity v2.33.0: <em>Remote Linux SSH + enterprise /swarm.</em>',
+    peekPollux: 'GitHub PR Pills: <em>Live CI hover cards + 200 MB media.</em>',
+    headline: 'Your Agents Just Moved Off Your Laptop. <em>Inside Antigravity v2.33.0 &amp; Carbon Builds.</em>',
+    standfirst:
+      'On November 17, 2026, Google Antigravity shipped v2.33.0 (16 improvements, 21 fixes) alongside "Google Antigravity, Redesigned"—giving developers persistent 64-bit Linux SSH workstations, live GitHub Pull Request status pills, and Business/Enterprise access to /swarm.',
+    pulseCheck: [
+      {
+        stage: 'What Shipped',
+        detail:
+          'Antigravity v2.33.0 introduced OpenSSH remote Linux host support (~/.ssh/config), live GitHub PR status pills and Overview PR tracking, Business/Enterprise /swarm and UI plugin panels, browser Cmd/Ctrl+F, and 200 MB audio/video playback.',
+      },
+      {
+        stage: 'Why Humans Care',
+        detail:
+          'Projects, Git worktrees, agents, and terminals keep running on remote Linux build boxes even after you close the window—while enterprise teams unlock /swarm plus Cloudflare, Grafana Cloud, SonarQube, and incident.io plugins.',
+      },
+      {
+        stage: 'The Fine-Print Catch',
+        detail:
+          'Remote SSH targets 64-bit Linux hosts via ~/.ssh/config, and Business/Enterprise /swarm and UI plugin panels remain gated by organization admin allowlists.',
+      },
+    ],
+    castor: {
+      kicker: 'PART I · α CASTOR · DEVELOPER WORKFLOW & COMMUNITY BUILDER LENS',
+      title: 'Why Persistent Remote Hosts and Live PR Telemetry Change Daily Coding',
+      subtitle:
+        'From closing your laptop mid-swarm to 1,048,576-particle WebGPU builds on Gemini 4 Carbon.',
+      paragraphs: [
+        'For months, the biggest friction in agentic IDEs was physical: if you launched a multi-agent refactor or heavy test suite on your laptop, closing the lid froze your workspace. With <strong>Google Antigravity v2.33.0</strong> (November 17, 2026), developers can connect directly to any remote <strong>64-bit Linux</strong> machine via <code>~/.ssh/config</code>.',
+        'Antigravity automatically installs its remote server over OpenSSH so repositories, Git worktrees, agents, and terminals execute directly on the remote host—and <strong>keep working even after you close the Antigravity window</strong>.',
+        'At the same time, v2.33.0 closes the team-collaboration gap: GitHub Pull Request links inside chat and artifact cards now render as <strong>live status pills with hover cards</strong> alongside a dedicated <strong>Pull Requests</strong> section in Overview, while <strong>Business and Enterprise</strong> accounts unlock <code>/swarm</code> and partner UI plugin panels (Cloudflare, Grafana Cloud, SonarQube, incident.io, Better Stack, Tavily, Levels.fyi) under admin control.',
+        'Later the same afternoon on the official Google Blog, Google spotlighted five developers pushing <strong>Gemini 4 Carbon</strong>’s verification loops across heavy compute: Glitter Gal’s 52,000-wildflower CUDA/C++ meadow, Chubby’s 1,048,576-particle real-time WebGPU tidal flow, Andrew V’s stained-glass fracture game, Giyu_codes’s 14 interactive 3D public-data tools, and The Bugged Dev’s 92-instrument Parisian optics lab from a single reference image.',
+      ],
+      pullquote: {
+        quote:
+          'When agents persist on remote Linux servers while live GitHub PR telemetry sits right inside the Overview pane, the IDE stops acting like a local text editor and starts acting like mission control.',
+        attribution: 'GOOGLE GEMINI 4 ARGON · α CASTOR EDITORIAL SYNTHESIS',
+      },
+      comparisonTable: {
+        id: 'antigravity-v2-33-table',
+        caption: 'Google Antigravity v2.33.0 Key Upgrades (November 17, 2026)',
+        columns: ['Area', 'Before v2.33.0', 'Antigravity v2.33.0', 'Developer Benefit'],
+        rows: [
+          ['Compute Host', 'Local machine session bound to open window', '64-bit Linux OpenSSH (~/.ssh/config)', 'Agents & terminals persist after closing window'],
+          ['GitHub Reviews', 'Plain PR hyperlinks without live CI state', 'Live PR status pills, hover cards & Overview section', 'Instant merge-readiness telemetry in chat'],
+          ['Enterprise Swarms', '/swarm & UI panels absent on business/enterprise', 'Enabled for business/enterprise (admin-governed)', 'Org-wide parallel multi-agent reviews'],
+          ['Media & Docs', '20 MB audio/video limit; eager PDF text layer', '200 MB media + .amr; deferred PDF text layer', 'Smooth large recording & spec inspection'],
+        ],
+      },
+      adaptiveQuestions: [
+        {
+          lensTag: 'FOR REMOTE INFRASTRUCTURE ENGINEERS',
+          question: 'Do I have to manually install a server binary on my Linux build box?',
+          answer:
+            'No. Antigravity v2.33.0 installs its remote server automatically over OpenSSH using your existing ~/.ssh/config entry when you select Connect to SSH Host from the sidebar, project menu, or command palette.',
+        },
+        {
+          lensTag: 'FOR ENTERPRISE PLATFORM ADMINS',
+          question: 'Can we govern /swarm and third-party UI plugin panels centrally?',
+          answer:
+            'Yes. Business and enterprise accounts can use /swarm and UI plugin panels (including Cloudflare, Grafana Cloud, SonarQube, incident.io, Better Stack, Tavily, and Levels.fyi) only when allowed by organization admin settings.',
+        },
+        {
+          lensTag: 'FOR CREATIVE CODERS ON GEMINI 4 CARBON',
+          question: 'Where can developers access Gemini 4 Carbon for WebGPU or CUDA builds?',
+          answer:
+            'Google notes Carbon is available via the Gemini API paid tier in Google AI Studio and Android Studio, for Google AI Ultra subscribers in Antigravity, AI Studio, Gemini app, and Search AI Mode, and for Gemini for business users.',
+        },
+      ],
+    },
+    pollux: {
+      kicker: 'PART II · β POLLUX · SSH ARCHITECTURE, PLUGINS & CARBON PROMPTING LENS',
+      title: 'Wiring ~/.ssh/config, /btw Subagent Promotion & Carbon Verification Loops',
+      subtitle:
+        'How to run persistent remote Linux worktrees alongside live PR hover cards and 200 MB multimodal context.',
+      paragraphs: [
+        'In addition to remote Linux SSH and live GitHub PR pills, v2.33.0 refines daily interactive workflows: you can now trigger <code>Cmd/Ctrl+F</code> directly inside the built-in browser without hijacking web apps that handle their own search shortcut, start a <code>/btw</code> side question from selected subagent text, promote a subagent tab to Full View during <code>/btw</code>, and click <strong>Insert into main conversation</strong> once a side answer finishes.',
+        'Multimodal builders also gain a 10x media jump—opening and playing audio and video files up to <strong>200 MB</strong> in the side panel (up from 20 MB), attaching <code>.amr</code> voice recordings in Gemini conversations, and scrolling dense PDFs smoothly via deferred text-layer rendering.',
+        'Rounding out the developer environment are Nord dark theme support, R and R Markdown syntax highlighting (<code>.R</code>, <code>.Rmd</code>, <code>.Rprofile</code>, <code>.Renviron</code>, <code>NAMESPACE</code>), and updates to the Gemini API plugin alongside 15 partner plugins.',
+      ],
+      builderRules: [
+        {
+          label: '01 · Offload Heavy Git Worktrees to Remote Linux SSH',
+          detail:
+            'Define a clean Host alias in ~/.ssh/config with ServerAliveInterval so long /swarm test suites keep running on your Linux server even if you close your laptop.',
+        },
+        {
+          label: '02 · Use Overview Pull Requests + SonarQube/Grafana Plugins',
+          detail:
+            'Pair live GitHub PR status pills with v2.33.0 partner plugins to diagnose CI failures and production regressions without tab-switching.',
+        },
+        {
+          label: '03 · Give Gemini 4 Carbon Explicit Verification Targets',
+          detail:
+            'As shown in Google’s Nov 17 builder showcases, ask Carbon to verify shader buffer alignment, particle counts, or physical constraints across multi-step passes.',
+        },
+      ],
+      codeCaption: 'SSH HOST CONFIG & GEMINI 4 CARBON SIMULATION PROMPT (@google/genai)',
+      codeSnippet: `// ~/.ssh/config entry for Antigravity v2.33.0 Connect to SSH Host command
+// Host linux-dev-gpu
+//   HostName 203.0.113.42
+//   User dev
+//   IdentityFile ~/.ssh/id_ed25519
+
+import { GoogleGenAI } from "@google/genai";
+
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+
+const interaction = await ai.clients.interactions.create({
+  model: "gemini-4-carbon",
+  input: "Simulate 1,048,576 tidal WebGPU particles in real time; verify compute buffer stride and output a single-file demo.",
+  config: { thinking_config: { thinking_level: "xhigh" } }
+});`,
+      workbench: {
+        title: 'Antigravity v2.33.0 & Carbon Builder Matrix',
+        subtitle: 'Explore Nov 17 IDE upgrades and verified Carbon community builds.',
+        dek: 'Select one of the three verified workflows below or inspect the 3-part architecture series.',
+        presets: [
+          {
+            label: '1. REMOTE 64-BIT LINUX SSH',
+            k1: 'Auth & Setup',
+            v1: 'Automatic OpenSSH server via ~/.ssh/config',
+            k2: 'Persistence',
+            v2: 'Git worktrees, agents & terminals outlive window',
+            k3: 'Ideal Workload',
+            v3: 'GPU builds, Docker suites & overnight /swarm',
+          },
+          {
+            label: '2. ENTERPRISE /SWARM & PR PILLS',
+            k1: 'Account Eligibility',
+            v1: 'Business & Enterprise (Admin-governed)',
+            k2: 'Partner Plugins Added',
+            v2: 'Cloudflare, Grafana, SonarQube, incident.io, Tavily',
+            k3: 'PR Telemetry',
+            v3: 'Live chat pills, hover cards & Overview PR pane',
+          },
+          {
+            label: '3. GEMINI 4 CARBON 5 BUILDERS',
+            k1: 'WebGPU & CUDA Scale',
+            v1: '1,048,576 particles · 52,000 wildflowers',
+            k2: 'Interactive Tools',
+            v2: '14 public-record 3D apps · stained glass game',
+            k3: 'Single-Image 3D',
+            v3: '92 tunable instruments in 19th-century optics lab',
+          },
+        ],
+      },
+    },
+    verdict: {
+      title: 'Gemini’s Bottom Line: Persistent Remote Agents Meet Enterprise Governance',
+      subtitle:
+        'Antigravity v2.33.0 removes the local-laptop ceiling while opening /swarm and observability plugins to enterprise teams.',
+      paragraphs: [
+        '<strong>Upgrade to v2.33.0 today if:</strong> you build against remote Linux GPU/CI boxes, review GitHub PRs inside Antigravity, or run a business/enterprise team waiting on admin-governed <code>/swarm</code>.',
+        '<strong>Watch the official companion video:</strong> "Google Antigravity, Redesigned" on YouTube highlights the new spatial layout featured on GeminiPulse.',
+      ],
+      sources: [
+        {
+          role: 'Official Google Antigravity Changelog',
+          label: 'Antigravity v2.33.0: Connect over SSH and GitHub pull request integration',
+          author: 'Google Antigravity Team',
+          date: 'November 17, 2026',
+          url: 'https://antigravity.google/docs/changelog',
+        },
+        {
+          role: 'Official Google Blog Showcase',
+          label: 'See what 5 builders are making with Gemini 4 Carbon',
+          author: 'Kimberly Fusaro',
+          date: 'November 17, 2026',
+          url: 'https://blog.google/products-and-platforms/products/gemini/gemini-4-carbon-builders/',
+        },
+      ],
+    },
+  },
   'pulse-gemini-4-hydrogen-robotics-antigravity': {
     id: 'pulse-gemini-4-hydrogen-robotics-antigravity',
     slug: 'gemini-4-hydrogen-robotics-antigravity',

@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google Drive Gemini Data Classification Studio [SIMULATED DEMO] | Agile Labs</title>
+    <meta
+      name="description"
+      content="Interactive developer & Workspace admin playground [SIMULATED DEMO] modeling Google's Nov 17 Gemini-powered data classification in Google Drive GA: test natural-language instructions, 50-word/200-char eligibility, DLP/user label precedence, Data Regions, and agentic access gates."
+    />
+    <link rel="canonical" href="https://geminipulse.com/labs/gemini-drive-classification-studio.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Google Drive Gemini Data Classification Studio [SIMULATED DEMO]" />
+    <meta property="og:description" content="Test natural-language Drive classification instructions, DLP precedence, and agentic retrieval gates before deploying to Workspace." />
+    <meta property="og:url" content="https://geminipulse.com/labs/gemini-drive-classification-studio.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Google Drive Gemini Data Classification Studio [SIMULATED DEMO]" />
+    <meta name="twitter:description" content="Simulate natural-language Drive classification, pre-deploy instruction previews, and agentic access guardrails." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Google Drive Gemini Data Classification Studio",
+        "url": "https://geminipulse.com/labs/gemini-drive-classification-studio.html",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "All",
+        "creator": { "@type": "Organization", "name": "Agile Labs (via GeminiPulse.com)" },
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      }
+    </script>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #07090e;
+        --surface: #111622;
+        --surface-high: #182030;
+        --border: rgba(255, 255, 255, 0.1);
+        --text: #f3f5fb;
+        --muted: #9da4b8;
+        --accent: #38bdf8;
+        --success: #34d399;
+        --warning: #fbbf24;
+        --danger: #f87171;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+      .wrap { max-width: 1080px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .badge-sim {
+        display: inline-block;
+        font-family: ui-monospace, Menlo, monospace;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        padding: 0.25rem 0.65rem;
+        border-radius: 9999px;
+        background: rgba(245, 158, 11, 0.15);
+        color: #fbbf24;
+        border: 1px solid rgba(245, 158, 11, 0.35);
+        text-transform: uppercase;
+      }
+      .header-title { font-size: clamp(1.55rem, 3.2vw, 2.25rem); font-weight: 800; margin: 0.6rem 0 0.3rem; }
+      .header-sub { font-size: 1.02rem; color: var(--muted); margin: 0 0 1.5rem; }
+      .grid-cols-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 1.5rem; min-inline-size: 0; }
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+        padding: 1.4rem;
+        min-inline-size: 0;
+      }
+      .card-title { font-size: 1.08rem; font-weight: 700; margin: 0 0 1rem; }
+      .preset-btn {
+        display: block;
+        width: 100%;
+        text-align: left;
+        background: var(--surface-high);
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        padding: 0.85rem 1rem;
+        margin-bottom: 0.75rem;
+        color: var(--text);
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+      .preset-btn:hover { border-color: var(--accent); background: rgba(56, 189, 248, 0.06); }
+      .preset-btn.active { border-color: var(--accent); background: rgba(56, 189, 248, 0.12); box-shadow: 0 0 0 1px var(--accent); }
+      .preset-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.2rem; word-break: break-word; }
+      .preset-desc { font-size: 0.82rem; color: var(--muted); }
+      label.field-label { display: block; font-size: 0.82rem; font-weight: 600; color: #cbd5e1; margin: 0.9rem 0 0.4rem; }
+      textarea, select {
+        width: 100%;
+        background: #0a0e17;
+        border: 1px solid var(--border);
+        border-radius: 0.65rem;
+        padding: 0.75rem 0.9rem;
+        color: var(--text);
+        font-family: ui-monospace, Menlo, Consolas, monospace;
+        font-size: 0.82rem;
+        line-height: 1.5;
+      }
+      .action-row { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-top: 1rem; }
+      .btn-primary {
+        background: #0284c7;
+        color: #ffffff;
+        border: none;
+        border-radius: 9999px;
+        padding: 0.55rem 1.2rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .btn-primary:hover { background: #0369a1; }
+      .btn-ghost {
+        background: var(--surface-high);
+        color: var(--text);
+        border: 1px solid var(--border);
+        border-radius: 9999px;
+        padding: 0.55rem 1.1rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .stat-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; margin-bottom: 1.15rem; }
+      .stat-box { background: var(--surface-high); border: 1px solid var(--border); border-radius: 0.75rem; padding: 0.85rem; min-inline-size: 0; }
+      .stat-val { font-size: 1.1rem; font-weight: 800; color: var(--accent); word-break: break-word; }
+      .stat-val.green { color: var(--success); }
+      .stat-val.amber { color: var(--warning); }
+      .stat-val.red { color: var(--danger); }
+      .stat-lbl { font-size: 0.75rem; color: var(--muted); margin-top: 0.15rem; }
+      .verdict-box {
+        background: #0a0e17;
+        border: 1px solid var(--border);
+        border-radius: 0.85rem;
+        padding: 1rem 1.15rem;
+        margin-bottom: 1rem;
+      }
+      .log-list {
+        background: #0a0e17;
+        border: 1px solid var(--border);
+        border-radius: 0.85rem;
+        padding: 0.9rem 1rem;
+        font-family: ui-monospace, Menlo, Consolas, monospace;
+        font-size: 0.79rem;
+        color: #cbd5e1;
+        max-height: 220px;
+        overflow-y: auto;
+      }
+      .log-entry { padding: 0.35rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+      .log-entry:last-child { border-bottom: none; }
+      .footer-note { margin-top: 2.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border); font-size: 0.84rem; color: var(--muted); }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.25rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+        <a href="/series/drive-gemini-classification/part-1-gemini-drive-data-classification-ga.html" style="font-size: 0.85rem;">Read 3-Part Series &rarr;</a>
+      </div>
+
+      <span class="badge-sim">[SIMULATED DEMO] · Agile Labs Workspace Governance Sandbox</span>
+      <h1 class="header-title">Google Drive Gemini Data Classification Studio</h1>
+      <p class="header-sub">
+        Simulate Google’s November 17, 2026 GA release: preview natural-language admin instructions, inspect 50-word / 200-character OCR thresholds, verify DLP &amp; user-override precedence, and test agentic retrieval gates before deploying.
+      </p>
+
+      <div class="grid-cols-2">
+        <section class="card" aria-label="Workspace Drive Sample & Instruction Config">
+          <h2 class="card-title">1. Select Drive File &amp; Author Admin Instructions</h2>
+
+          <div id="preset-list">
+            <button type="button" class="preset-btn active" data-preset="ma-term-sheet">
+              <div class="preset-title">Q4_Acquisition_Term_Sheet.docx</div>
+              <div class="preset-desc">Shared Drive · 420 words / 2,680 chars · No existing DLP or user label</div>
+            </button>
+            <button type="button" class="preset-btn" data-preset="soc2-postmortem">
+              <div class="preset-title">SOC2_API_Incident_Postmortem.pdf</div>
+              <div class="preset-desc">Shared Drive (OCR) · 680 words / 4,190 chars · User-accepted "Internal" label</div>
+            </button>
+            <button type="button" class="preset-btn" data-preset="short-standup">
+              <div class="preset-title">Quick_Standup_Notes.txt</div>
+              <div class="preset-desc">My Drive · 34 words / 186 chars · Below 50-word / 200-char minimum</div>
+            </button>
+            <button type="button" class="preset-btn" data-preset="cse-board-packet">
+              <div class="preset-title">Board_Compensation_Packet_CSE.gdoc</div>
+              <div class="preset-desc">Client-Side Encrypted (CSE) · Unreadable by server-side classifier</div>
+            </button>
+          </div>
+
+          <label class="field-label" for="instruction-input">Natural-Language Gemini Classification Instruction (1 Active Gemini Model / 5 Total AI Models):</label>
+          <textarea id="instruction-input" rows="4">Apply "Confidential" if the document contains M&amp;A terms, non-public revenue forecasts, customer pricing, or system incident details. Apply "Restricted" for executive compensation or unpatched security findings. Never apply to public press releases.</textarea>
+
+          <label class="field-label" for="region-select">Google Workspace Data Region Boundary:</label>
+          <select id="region-select">
+            <option value="US">United States (US Data Region)</option>
+            <option value="Europe">Europe (EU Data Region)</option>
+          </select>
+
+          <div class="action-row">
+            <button type="button" class="btn-primary" id="run-test-btn">Test Instructions (Preview Verdict)</button>
+            <button type="button" class="btn-ghost" id="simulate-accept-btn">Simulate User Accept / Modify</button>
+          </div>
+        </section>
+
+        <section class="card" aria-label="Pre-Deploy Verdict & Real-Time Reporting">
+          <h2 class="card-title">2. Pre-Deploy Preview, Precedence &amp; Agentic Gate</h2>
+
+          <div class="stat-grid">
+            <div class="stat-box">
+              <div class="stat-val" id="stat-verdict">Confidential</div>
+              <div class="stat-lbl">Effective Drive Label</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val green" id="stat-agent-gate">BLOCKED FOR AGENTS</div>
+              <div class="stat-lbl">Agentic Skill / MCP Access</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val" id="stat-region">US Isolated</div>
+              <div class="stat-lbl">Data Region &amp; Training Opt-Out</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val amber" id="stat-acceptance">94.2%</div>
+              <div class="stat-lbl">Simulated User Acceptance</div>
+            </div>
+          </div>
+
+          <div class="verdict-box" id="verdict-detail">
+            <strong>Instruction Preview Verdict:</strong> Eligible Shared Drive document (420 words, 2,680 characters &ge; 50w/200c minimum). Gemini matched M&amp;A financial terminology and proposed <code>Confidential</code>. Autonomous Gemini Skills and external sharing are blocked by downstream DLP policy.
+          </div>
+
+          <div style="font-size: 0.82rem; font-weight: 600; color: #cbd5e1; margin-bottom: 0.45rem;">Workspace Audit Log &amp; Real-Time Reporting Feed [SIMULATED DEMO]</div>
+          <div class="log-list" id="audit-log"></div>
+        </section>
+      </div>
+
+      <p class="footer-note">
+        <strong>[SIMULATED DEMO]</strong> Built by Gemini 4 Argon for Agile Labs. All specifications—including 1 active Gemini instruction model (5 total AI models), 50-word / 200-character OCR/text thresholds, DLP and user-label precedence, client-side encryption skipping, and US/Europe Data Regions—reflect Google’s official November 17, 2026 <a href="https://workspaceupdates.googleblog.com/2026/11/gemini-powered-data-classification-in-Google-Drive-is-now-generally-available.html" target="_blank" rel="noopener">Google Workspace Updates GA announcement</a>.
+      </p>
+    </div>
+
+    <script>
+      const PRESETS = {
+        'ma-term-sheet': {
+          file: 'Q4_Acquisition_Term_Sheet.docx',
+          location: 'Corp M&A Shared Drive',
+          words: 420,
+          chars: 2680,
+          encrypted: false,
+          existingLabel: null,
+          existingSource: null,
+          textMatch: 'M&A purchase price, diligence schedule, and non-public Q4 revenue forecasts',
+        },
+        'soc2-postmortem': {
+          file: 'SOC2_API_Incident_Postmortem.pdf',
+          location: 'Security Ops Shared Drive (OCR)',
+          words: 680,
+          chars: 4190,
+          encrypted: false,
+          existingLabel: 'Internal',
+          existingSource: 'User Accepted (Owner)',
+          textMatch: 'production incident timeline and API gateway remediation details',
+        },
+        'short-standup': {
+          file: 'Quick_Standup_Notes.txt',
+          location: 'My Drive (Licensed User)',
+          words: 34,
+          chars: 186,
+          encrypted: false,
+          existingLabel: null,
+          existingSource: null,
+          textMatch: 'brief daily check-in notes',
+        },
+        'cse-board-packet': {
+          file: 'Board_Compensation_Packet_CSE.gdoc',
+          location: 'Board Vault (Client-Side Encrypted)',
+          words: 0,
+          chars: 0,
+          encrypted: true,
+          existingLabel: 'Restricted (Folder IAM)',
+          existingSource: 'CSE Vault Boundary',
+          textMatch: 'encrypted payload inaccessible to server-side models',
+        },
+      };
+
+      let activeKey = 'ma-term-sheet';
+      let labeledCount = 1482;
+      let userOverrideCount = 0;
+
+      const auditLogEl = document.getElementById('audit-log');
+      const verdictEl = document.getElementById('stat-verdict');
+      const gateEl = document.getElementById('stat-agent-gate');
+      const regionStatEl = document.getElementById('stat-region');
+      const acceptEl = document.getElementById('stat-acceptance');
+      const detailEl = document.getElementById('verdict-detail');
+      const instructionEl = document.getElementById('instruction-input');
+      const regionEl = document.getElementById('region-select');
+
+      function pushLog(msg) {
+        const div = document.createElement('div');
+        div.className = 'log-entry';
+        const ts = new Date().toISOString().slice(11, 19);
+        div.textContent = `[${ts} UTC] ${msg}`;
+        auditLogEl.prepend(div);
+      }
+
+      function evaluate() {
+        const p = PRESETS[activeKey];
+        const instr = instructionEl.value.toLowerCase();
+        const region = regionEl.value;
+        regionStatEl.textContent = `${region} Isolated`;
+
+        if (p.encrypted) {
+          verdictEl.textContent = 'SKIPPED (CSE)';
+          verdictEl.className = 'stat-val amber';
+          gateEl.textContent = 'CSE ENCRYPTED';
+          gateEl.className = 'stat-val red';
+          detailEl.innerHTML = `<strong>Skipped by CSE Guardrail:</strong> <code>${p.file}</code> is client-side encrypted. Per GA policy, server-side Gemini classification skips CSE files and preserves existing vault IAM boundaries.`;
+          pushLog(`SKIPPED ${p.file} · Reason: Client-Side Encrypted (${region} Region)`);
+          return;
+        }
+
+        if (p.words < 50 || p.chars < 200) {
+          verdictEl.textContent = 'SKIPPED (<50w)';
+          verdictEl.className = 'stat-val amber';
+          gateEl.textContent = 'ALLOWED (UNLABELED)';
+          gateEl.className = 'stat-val amber';
+          detailEl.innerHTML = `<strong>Below Minimum Text Threshold:</strong> <code>${p.file}</code> contains ${p.words} words / ${p.chars} chars. Gemini typically requires at least <strong>50 words and 200 characters</strong> of readable or OCR text to emit a high-confidence verdict.`;
+          pushLog(`SKIPPED ${p.file} · Reason: ${p.words}w/${p.chars}c below 50w/200c threshold`);
+          return;
+        }
+
+        if (p.existingLabel) {
+          verdictEl.textContent = p.existingLabel;
+          verdictEl.className = 'stat-val green';
+          gateEl.textContent = p.existingLabel === 'Internal' ? 'TEAM SKILL ALLOWED' : 'BLOCKED FOR AGENTS';
+          gateEl.className = p.existingLabel === 'Internal' ? 'stat-val green' : 'stat-val red';
+          detailEl.innerHTML = `<strong>Precedence Preserved:</strong> <code>${p.file}</code> (${p.words} words) already carries <code>${p.existingLabel}</code> set via <strong>${p.existingSource}</strong>. Gemini classification never overwrites user-accepted, modified, or DLP-applied labels.`;
+          pushLog(`PRESERVED ${p.file} · Existing "${p.existingLabel}" (${p.existingSource}) not overwritten`);
+          return;
+        }
+
+        let proposed = 'Internal';
+        if (instr.includes('confidential') && (p.textMatch.includes('M&A') || p.textMatch.includes('incident'))) {
+          proposed = 'Confidential';
+        } else if (instr.includes('restricted') && p.textMatch.includes('compensation')) {
+          proposed = 'Restricted';
+        }
+
+        labeledCount += 1;
+        verdictEl.textContent = proposed;
+        verdictEl.className = 'stat-val';
+        const blocked = proposed === 'Confidential' || proposed === 'Restricted';
+        gateEl.textContent = blocked ? 'BLOCKED FOR AGENTS' : 'ALLOWED IN DRIVE';
+        gateEl.className = blocked ? 'stat-val red' : 'stat-val green';
+        detailEl.innerHTML = `<strong>Instruction Test Verdict:</strong> <code>${p.file}</code> (${p.words} words / ${p.chars} chars in ${region}) matched <em>${p.textMatch}</em> &rarr; proposed <code>${proposed}</code>. Downstream DLP blocks external sharing &amp; autonomous agent indexing. (Total labeled: ${labeledCount.toLocaleString()})`;
+        pushLog(`LABELED ${p.file} -> "${proposed}" · Region=${region} · Never used for global training`);
+      }
+
+      document.querySelectorAll('.preset-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.preset-btn').forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+          activeKey = btn.dataset.preset;
+          evaluate();
+        });
+      });
+
+      document.getElementById('run-test-btn').addEventListener('click', evaluate);
+      regionEl.addEventListener('change', evaluate);
+
+      document.getElementById('simulate-accept-btn').addEventListener('click', () => {
+        const p = PRESETS[activeKey];
+        if (p.encrypted || p.words < 50) {
+          pushLog(`NO-OP · ${p.file} has no Gemini-proposed label to accept/modify`);
+          return;
+        }
+        userOverrideCount += 1;
+        p.existingLabel = 'Restricted';
+        p.existingSource = 'User Modified in Drive';
+        const rate = Math.max(82.0, (94.2 - userOverrideCount * 0.4)).toFixed(1);
+        acceptEl.textContent = `${rate}%`;
+        pushLog(`AUDIT LOG · File owner modified label on ${p.file} -> "Restricted" (locked against AI overwrite)`);
+        evaluate();
+      });
+
+      pushLog('Admin Console initialized · 1 active Gemini instruction model (5 total AI models cap)');
+      evaluate();
+    </script>
+  </body>
+</html>
