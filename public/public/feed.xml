@@ -12,6 +12,14 @@
   </author>
 
   <entry>
+    <title>Carbon Depth Meets Hydrogen Velocity. Inside Gemini 4 Neon GA &amp; SDK v3.6.1. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/gemini-4-neon-ga-launch-and-sdk-v3-6-1.html" />
+    <id>https://geminipulse.com/articles/gemini-4-neon-ga-launch-and-sdk-v3-6-1.html</id>
+    <updated>2026-11-18T21:00:00.000Z</updated>
+    <summary>Until today, teams had to choose between Hydrogen’s rapid everyday execution and Carbon’s maximum-horizon reasoning. On November 18, 2026, Google DeepMind launched Gemini 4 Neon—delivering frontier coding, knowledge work, science, and cyber defense with 32% lower cost per task than Carbon.</summary>
+  </entry>
+
+  <entry>
     <title>Shipping Is Where the Real Work Starts. Stitch Loop Turns Production Metrics Into 24/7 PRs. (Flagship Gemini Essay)</title>
     <link href="https://geminipulse.com/articles/google-labs-stitch-loop-and-codemender.html" />
     <id>https://geminipulse.com/articles/google-labs-stitch-loop-and-codemender.html</id>
@@ -25,6 +33,14 @@
     <id>https://geminipulse.com/articles/gemini-multimodal-file-slicing-and-sdk-v3-6.html</id>
     <updated>2026-11-18T13:30:00.000Z</updated>
     <summary>For years, feeding enterprise files into an AI model meant maintaining brittle LibreOffice and ffmpeg chop-shops—or paying full-file token bills every turn. On November 18, 2026, Google moved surgical document, spreadsheet, video, and audio slicing directly into the Gemini API and function_result.</summary>
+  </entry>
+
+  <entry>
+    <title>Prompt Inside the World. Genie 4 Opens in Project Genie With Live Edits &amp; Native Audio. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/project-genie-4-real-time-worlds-and-audio.html" />
+    <id>https://geminipulse.com/articles/project-genie-4-real-time-worlds-and-audio.html</id>
+    <updated>2026-11-18T18:13:42.000Z</updated>
+    <summary>Early world-model prototypes generated 60-second clips you could steer but rarely reshape on the fly. On November 18, 2026, Google DeepMind opened Genie 4 to Google AI Ultra subscribers with real-time mid-session prompting, native audio, and a remixable gallery.</summary>
   </entry>
 
   <entry>
@@ -60,19 +76,11 @@
   </entry>
 
   <entry>
-    <title>Stop Hand-Labeling Training Folders. Gemini Now Governs Drive in Plain English. (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/drive-gemini-data-classification-ga.html" />
-    <id>https://geminipulse.com/articles/drive-gemini-data-classification-ga.html</id>
-    <updated>2026-11-17T22:00:35.000Z</updated>
-    <summary>Yesterday, Google connected shareable Gemini Skills directly to live Google Drive files. Today, on November 17, 2026, Google Workspace shipped the missing security counterpart: Gemini-powered data classification in Google Drive is now Generally Available.</summary>
-  </entry>
-
-  <entry>
-    <title>Your Agents Just Moved Off Your Laptop. Inside Antigravity v2.33.0 &amp; Carbon Builds. (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/antigravity-v2-33-ssh-pr-swarm.html" />
-    <id>https://geminipulse.com/articles/antigravity-v2-33-ssh-pr-swarm.html</id>
-    <updated>2026-11-17T21:30:00.000Z</updated>
-    <summary>On November 17, 2026, Google Antigravity shipped v2.33.0 (16 improvements, 21 fixes) alongside &quot;Google Antigravity, Redesigned&quot;—giving developers persistent 64-bit Linux SSH workstations, live GitHub Pull Request status pills, and Business/Enterprise access to /swarm.</summary>
+    <title>Google DeepMind Launches Gemini 4 Neon (gemini-4-neon) GA &amp; Gen AI SDK v3.6.1 (Parts 1–3) + Neon Routing Studio [SIMULATED DEMO]</title>
+    <link href="https://geminipulse.com/series/gemini-4-neon/part-1-what-changed-with-gemini-4-neon.html" />
+    <id>https://geminipulse.com/series/gemini-4-neon/part-1-what-changed-with-gemini-4-neon.html</id>
+    <updated>2026-11-18T21:52:37Z</updated>
+    <summary>Direct primary-source breakdown of Google DeepMind's November 18, 2026 (21:00 UTC) Gemini 4 Neon launch: AA Index 61 (xhigh), Vals Index 70.9% (#2), 39.0% SWE-sweep in Antigravity, 90.5% SEC-bench Pro, $3/$15 pricing (32% lower cost/task than Carbon), Gen AI SDK v3.6.1 enum support, Project Genie 4 Ultra rollout, and companion Gemini 4 Neon Studio [SIMULATED DEMO].</summary>
   </entry>
 
   <entry>

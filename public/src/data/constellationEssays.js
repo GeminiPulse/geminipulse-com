@@ -14,6 +14,376 @@
  */
 
 export const CONSTELLATION_ESSAYS = {
+  'pulse-gemini-4-neon-ga-launch': {
+    id: 'pulse-gemini-4-neon-ga-launch',
+    slug: 'gemini-4-neon-ga-launch-and-sdk-v3-6-1',
+    shortStarLabel: 'Gemini 4 Neon',
+    readMinutes: '8 MIN READ',
+    hudTitle: 'Frontier Coding & Science at 32% Lower Task Cost: Gemini 4 Neon Is GA.',
+    hudSummary:
+      'On November 18, 2026 (21:00 UTC), Google DeepMind launched Gemini 4 Neon (gemini-4-neon)—scoring 61 on AA Index v5.0.1, 70.9% (#2) on Vals Index, 39.0% SWE-sweep in Antigravity, and 90.5% SEC-bench Pro at $3/$15 per 1M tokens.',
+    peekCastor: 'Gemini 4 Neon: <em>32% lower task cost.</em>',
+    peekPollux: 'SDK v3.6.1: <em>Four thinking tiers &amp; 1M decode.</em>',
+    headline: 'Carbon Depth Meets Hydrogen Velocity. <em>Inside Gemini 4 Neon GA &amp; SDK v3.6.1.</em>',
+    standfirst:
+      'Until today, teams had to choose between Hydrogen’s rapid everyday execution and Carbon’s maximum-horizon reasoning. On November 18, 2026, Google DeepMind launched Gemini 4 Neon—delivering frontier coding, knowledge work, science, and cyber defense with 32% lower cost per task than Carbon.',
+    pulseCheck: [
+      {
+        stage: 'What Shipped',
+        detail:
+          'Gemini 4 Neon (gemini-4-neon) launched in General Availability across the Gemini API paid tier, Google AI Studio, Android Studio, Gemini for business, Google Antigravity (AI Pro & Ultra), and the Gemini app (AI Pro & Ultra), paired with same-hour Gen AI SDK v3.6.1 enum support.',
+      },
+      {
+        stage: 'Why Builders Care',
+        detail:
+          'At $3.00 per 1M input tokens ($0.15 implicit cached, 95% off) and $15.00 per 1M output tokens, Neon scores 61 on AA Intelligence Index (xhigh), #1 on AA Coding Agent Index (58.6), #1 on AutomationBench (56.3%), #2 on Vals Index (70.9%), and 39.0% on SWE-sweep inside Google Antigravity.',
+      },
+      {
+        stage: 'The Fine-Print Catch',
+        detail:
+          'Gemini 4 Neon is paid-tier only (no free Gemini API tier), supports implicit caching only (not explicit cache creation), and does not support the Live API, image generation, or audio generation.',
+      },
+    ],
+    castor: {
+      kicker: 'PART I · α CASTOR · MODEL ECONOMICS, ENTERPRISE & CYBER LENS',
+      title: 'Why the Middle Tier Matters More Than Another Heavyweight Flagship',
+      subtitle:
+        'How Gemini 4 Neon wins on Vals Index, SWE-sweep, and Fairwind cyber defense while costing 32% less per task than Carbon.',
+      paragraphs: [
+        'For production engineering and enterprise teams, raw benchmark ceilings only matter if you can afford to run them on every pull request, spreadsheet audit, and support workflow. On <strong>November 18, 2026 (21:00 UTC)</strong>, Google DeepMind SVP and Chief AI Architect Koray Kavukcuoglu unveiled <strong>Gemini 4 Neon</strong> (<code>gemini-4-neon</code>)—adapted from Gemini 4 Carbon specifically to bring frontier-level reasoning to fast, high-frequency workloads.',
+        'Across third-party evaluations, Neon lands squarely on the Pareto frontier. At its <code>xhigh</code> setting, it scores <strong>61 (#3 overall)</strong> on the Artificial Analysis Intelligence Index v5.0.1—ahead of Claude Opus 5.5 (59) and GPT-6.2 Sol (57)—and ranks <strong>#2 overall (70.9%)</strong> on the Vals Index v2.2 while claiming <strong>#1</strong> on Legal Research Bench, Tax Agent Bench, Zapier’s <strong>AutomationBench (56.3%)</strong>, and Andon Labs’ <strong>Vending-Bench 2 ($16,843)</strong>.',
+        'At its default <code>high</code> thinking level, Neon delivers a <strong>32% lower cost per task than Carbon</strong>—and roughly <strong>50% to 80% lower cost per task</strong> than top competing frontier models on Vals and Agent Arena (where Neon debuts at <strong>#2 globally with 1336</strong> across 4,200+ real-world sessions for steerability). Even at <code>xhigh</code>, Neon still runs <strong>36%+ cheaper per task</strong> than competing models at their top effort settings.',
+        'Cybersecurity defenders also get a major upgrade: <strong>Gemini 4 Neon for cyber</strong> rolls out via the <strong>Fairwind Program</strong> over the coming days, posting <strong>90.5% on SEC-bench Pro</strong> at half the cost per challenge, <strong>70.7% on CWE-Bench v2</strong> (+3.4% over Carbon), <strong>51.26% on WebExploitBench v1.2</strong>, <strong>76% on AutoBaxBench hard</strong>, and a <strong>0.0% attack success rate</strong> on Gray Swan’s Indirect Prompt Injection (IPI) benchmark at <code>xhigh</code>.',
+      ],
+      pullquote: {
+        quote:
+          'Neon finishes complex software engineering, dense financial synthesis, and cyber hardening faster and at 32% lower cost per task than Carbon—without giving up frontier judgment.',
+        attribution: 'GOOGLE GEMINI 4 ARGON · α CASTOR EDITORIAL SYNTHESIS',
+      },
+      comparisonTable: {
+        id: 'gemini-4-neon-comparison-table',
+        caption: 'Gemini 4 Lineup & Frontier Benchmark Comparison (Nov 18, 2026)',
+        columns: ['Model / Tier', 'Pricing (In / Out per 1M)', 'Thinking Levels', 'Verified Role & Benchmarks'],
+        rows: [
+          ['Gemini 4 Hydrogen (gemini-4-hydrogen)', '$1.50 / $7.50 (Free tier available)', 'low, medium, high (default), xhigh', 'Fast everyday coding & parallel Antigravity subagents'],
+          ['Gemini 4 Neon (gemini-4-neon)', '$3.00 ($0.15 cached) / $15.00 (Paid tier)', 'low, medium, high (default), xhigh', 'AA Index 61 · Vals 70.9% (#2) · SWE-sweep 39.0% · SEC-bench Pro 90.5%'],
+          ['Gemini 4 Carbon (gemini-4-carbon)', '$2.00 / $10.00 intro thru Nov 30 ($4/$20 Dec 1)', 'low, medium (default), high', 'Hardest long-horizon architecture, formal proofs & deep root-cause audits'],
+        ],
+      },
+      adaptiveQuestions: [
+        {
+          lensTag: 'FOR API & COST ARCHITECTS',
+          question: 'Carbon’s intro price is $2/$10 until Nov 30—why test Neon ($3/$15) now?',
+          answer:
+            'Because Neon uses fewer thinking and output tokens to complete tasks, it already delivers 32% lower cost per task than Carbon at default high thinking—and Carbon moves to $4/$20 per 1M tokens on December 1, 2026.',
+        },
+        {
+          lensTag: 'FOR ANTIGRAVITY DEVELOPERS',
+          question: 'How does Neon pair with Hydrogen inside Google Antigravity?',
+          answer:
+            'Google specifically recommends running Gemini 4 Neon standalone or as a fast, high-judgment Orchestrator directing parallel Gemini 4 Hydrogen subagents, cutting redundant file reads and hitting 39.0% on SWE-sweep in Antigravity.',
+        },
+        {
+          lensTag: 'FOR SECURITY & COMPLIANCE TEAMS',
+          question: 'What changed for prompt injection and agent honesty?',
+          answer:
+            'Neon achieves a 99.2% pass rate on Google’s agent honesty evaluation, a 2.45% shortcut rate (lowest in Gemini 4), 43%–56% less under-service than Carbon, and 0.0% attack success rate on Gray Swan IPI with real-time safeguards at xhigh.',
+        },
+      ],
+    },
+    pollux: {
+      kicker: 'PART II · β POLLUX · THINKING LEVELS, SDK V3.6.1 & LONG DECODE LENS',
+      title: 'Tuning low–xhigh Thinking, 1M Long Decode & Gen AI SDK v3.6.1',
+      subtitle:
+        'How to integrate gemini-4-neon with @google/genai v3.6.1, implicit prompt caching, and background 64K continuation hops.',
+      paragraphs: [
+        'Under the hood, <code>gemini-4-neon</code> shares the Gemini 4 <strong>1,048,576-token unified context window</strong> across inputs, thinking, and outputs, with a <strong>65,536-token</strong> default synchronous ceiling and up to <strong>1M-token long decode</strong> via <code>background: true</code> in the Interactions API. Within an hour of launch, Google published <strong>@google/genai v3.6.1</strong> and <strong>google-genai v3.6.1</strong> adding <code>"gemini-4-neon"</code> directly to the Interactions <code>Model</code> enum.',
+        'Because input, thinking, and output share both the 1M window and <code>max_output_tokens</code>, Google advises benchmarking your eval suite across all four <code>thinking_level</code> settings (<code>low</code>, <code>medium</code>, default <code>high</code>, and <code>xhigh</code>) with a high token cap before locking in the lowest tier that passes.',
+        'Repeated repository trees, system instructions, and sliced Office sheets automatically hit Neon’s <strong>$0.15 / 1M implicit cache rate</strong> (a 95% discount), while Batch API and Flex inference cut async job pricing by 50%. Just keep Neon’s boundaries in mind: explicit context caching, Live API, image generation, and audio generation are not supported on <code>gemini-4-neon</code>.',
+      ],
+      builderRules: [
+        {
+          label: '01 · Upgrade SDKs to v3.6.1 Before Pinning Enum Types',
+          detail:
+            'Install @google/genai v3.6.1 or google-genai v3.6.1 (published Nov 18, 21:48–21:52 UTC) so TypeScript and Python Interactions Model types validate "gemini-4-neon" natively.',
+        },
+        {
+          label: '02 · Use background: true Above 64K Output Tokens',
+          detail:
+            'Synchronous responses stop at 65,536 tokens; pass background: true and poll client.interactions.get() for full migration specs or test suites up to 1M tokens.',
+        },
+        {
+          label: '03 · Route Live Voice & Media Generation to Specialized Peers',
+          detail:
+            'Use gemini-4-neon as your reasoning, coding, and Office/PDF synthesis backbone, while delegating real-time audio to Gemini 3.8 Live and image/video synthesis to Nano Banana or Gemini Omni 1.2 Flash.',
+        },
+      ],
+      codeCaption: 'CALLING GEMINI 4 NEON WITH XHIGH THINKING (@google/genai v3.6.1)',
+      codeSnippet: `import { GoogleGenAI } from "@google/genai";
+
+// @google/genai v3.6.1 adds "gemini-4-neon" to the Interactions Model enum
+const client = new GoogleGenAI({});
+const interaction = await client.interactions.create({
+  model: "gemini-4-neon",
+  input: "Audit this payment retry queue for race conditions and rewrite the lock acquisition logic.",
+  generation_config: {
+    thinking_level: "xhigh",
+  },
+});
+console.log(interaction.output_text);`,
+      workbench: {
+        title: 'Gemini 4 Neon Workload & Thinking Preset Explorer',
+        subtitle: 'Inspect verified benchmarks, pricing leverage, and routing across four production scenarios.',
+        dek: 'Select one of the November 18 Gemini 4 Neon presets below or open the full-screen Gemini 4 Neon Studio [SIMULATED DEMO].',
+        presets: [
+          {
+            label: '1. COMPLEX REPO CODING (ANTIGRAVITY)',
+            k1: 'Verified Coding Benchmarks',
+            v1: 'AA Coding #1 (58.6) · SWE-sweep 39.0% (Antigravity) · CursorBench 4.1 65.4%',
+            k2: 'Orchestration Role',
+            v2: 'Standalone surgical editor or Orchestrator directing parallel Hydrogen workers',
+            k3: 'API Pricing',
+            v3: '$3.00/1M input ($0.15 implicit cached) · $15.00/1M output · 32% lower cost/task than Carbon',
+          },
+          {
+            label: '2. KNOWLEDGE WORK & OFFICE SLICING',
+            k1: 'Verified Enterprise Ranks',
+            v1: 'Vals Index 70.9% (#2) · Legal & Tax Benches #1 · AutomationBench 56.3% (#1)',
+            k2: 'Long Context & Charts',
+            v2: '95.2% GraphWalks (256k–1M BFS F1) · 73.5% Chartography · 89.0% LVBench',
+            k3: 'Cost Controls',
+            v3: 'Implicit caching ($0.15/1M) + Batch/Flex 50% off + Nov 18 Office/XLSX slicing',
+          },
+          {
+            label: '3. FAIRWIND CYBER & SCIENCE (XHIGH)',
+            k1: 'Cyber Defense (Fairwind)',
+            v1: '90.5% SEC-bench Pro · 70.7% CWE-Bench v2 · 51.26% WebExploitBench · 0.0% Gray Swan IPI',
+            k2: 'Science & Math',
+            v2: '84.0% RiemannBench · 70.5% Terminal-Bench-Science (0% refusal) · 71.3% HLE-Diamond',
+            k3: 'Long Decode Support',
+            v3: '1,048,576 unified context window · 64K sync / up to 1M via background: true',
+          },
+        ],
+      },
+    },
+    verdict: {
+      title: 'Gemini’s Bottom Line: Neon Becomes the Default Frontier Engine for High-Frequency Complexity',
+      subtitle:
+        'By delivering Carbon-grade coding, legal, finance, science, and Fairwind cyber benchmarks at 32% lower per-task cost, Gemini 4 Neon resets the Pareto frontier.',
+      paragraphs: [
+        '<strong>Adopt Gemini 4 Neon now if:</strong> your agents outgrow <code>gemini-4-hydrogen</code> on multi-file repositories, dense spreadsheets, or science benchmarks, or if you want to lock in unit economics ahead of Carbon’s December 1 introductory pricing expiration.',
+        '<strong>Keep the multi-model stack clean:</strong> update to <strong>Gen AI SDK v3.6.1</strong>, benchmark <code>low</code> through <code>xhigh</code> on your real evals, and pair Neon’s orchestration with Hydrogen subagents inside Google Antigravity.',
+      ],
+      sources: [
+        {
+          role: 'Official Google Launch Announcement',
+          label: 'Introducing Gemini 4 Neon',
+          author: 'Koray Kavukcuoglu, SVP, Google DeepMind and Chief AI Architect, Google',
+          date: 'November 18, 2026',
+          url: 'https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/',
+        },
+        {
+          role: 'Official Gemini API Release Docs',
+          label: "What's new in Gemini 4 Neon & Model Card",
+          author: 'Google AI Studio / Gemini API Documentation',
+          date: 'November 18, 2026',
+          url: 'https://ai.google.dev/gemini-api/docs/whats-new-gemini-4-neon',
+        },
+        {
+          role: 'Official DeepMind Model Card',
+          label: 'Gemini 4 Neon Model Card & Evaluations',
+          author: 'Google DeepMind',
+          date: 'November 18, 2026',
+          url: 'https://deepmind.google/models/model-cards/gemini-4-neon/',
+        },
+        {
+          role: 'Official SDK v3.6.1 Release',
+          label: 'googleapis/js-genai v3.6.1 & python-genai v3.6.1',
+          author: 'Google APIs GitHub',
+          date: 'November 18, 2026',
+          url: 'https://github.com/googleapis/js-genai/releases/tag/v3.6.1',
+        },
+      ],
+    },
+  },
+  'pulse-project-genie-4-rollout': {
+    id: 'pulse-project-genie-4-rollout',
+    slug: 'project-genie-4-real-time-worlds-and-audio',
+    shortStarLabel: 'Project Genie 4',
+    readMinutes: '6 MIN READ',
+    hudTitle: 'Genie 4 Rolls Out in Project Genie With Live Text Edits & Adaptive Audio.',
+    hudSummary:
+      'On November 18, 2026 (18:13 UTC), Google DeepMind and Google Labs rolled out Genie 4 inside Project Genie for Google AI Ultra subscribers—adding mid-session text editing, native audio, a Gemini-driven creative agent, and a remixable community gallery.',
+    peekCastor: 'Project Genie 4: <em>Live edits &amp; native audio.</em>',
+    peekPollux: 'Genie 3 &amp; Agent: <em>3-min chains &amp; 360° worlds.</em>',
+    headline: 'Prompt Inside the World. <em>Genie 4 Opens in Project Genie With Live Edits &amp; Native Audio.</em>',
+    standfirst:
+      'Early world-model prototypes generated 60-second clips you could steer but rarely reshape on the fly. On November 18, 2026, Google DeepMind opened Genie 4 to Google AI Ultra subscribers with real-time mid-session prompting, native audio, and a remixable gallery.',
+    pulseCheck: [
+      {
+        stage: 'What Shipped',
+        detail:
+          'Google DeepMind and Google Labs launched the updated Project Genie experience for eligible Google AI Ultra subscribers (with an AI Pro waitlist), unlocking Genie 4 interactive worlds, upgraded Genie 3 capabilities, the conversational Project Genie agent, and a community gallery.',
+      },
+      {
+        stage: 'Why Creators Care',
+        detail:
+          'Users can type prompts mid-session to shift weather, drop characters, or redirect scenes alongside adaptive native audio, while Genie 3 expands to 3-minute generations (up from 60 seconds), linked world chaining, and 360-degree panorama grounding.',
+      },
+      {
+        stage: 'The Fine-Print Catch',
+        detail:
+          'Live access is gated to eligible Google AI Ultra subscribers (Pro users join a waitlist), all video/audio carries SynthID watermarks, and Google notes ongoing frontier research on camera latency, intricate physics, audio precision, and long-term scene permanence.',
+      },
+    ],
+    castor: {
+      kicker: 'PART I · α CASTOR · INTERACTIVE MEDIA & CREATOR LENS',
+      title: 'From Passive Video Clips to Conversational, Remixable Worlds',
+      subtitle:
+        'How Genie 4’s mid-session editing, native soundscapes, and Gemini-powered Project Genie agent turn world models into a creative medium.',
+      paragraphs: [
+        'When Project Genie debuted earlier in 2026, explorers immediately asked for two things: deeper control over what happens inside a generated environment once you step in, and simpler ways to collaborate and remix. On <strong>November 18, 2026 (18:13 UTC)</strong>, Diego Rivas (Google DeepMind) and Pavan Kumar (Google Labs) answered with the rollout of <strong>Genie 4</strong> inside a rebuilt Project Genie experience.',
+        'With <strong>Genie 4</strong>, you no longer restart from scratch to change a scene. Typing a natural-language prompt mid-session alters the world around you in real time—shifting weather, summoning characters, or redirecting action—paired for the first time with <strong>real-time native audio</strong> spanning ambient soundscapes and character dialogue.',
+        'Alongside Genie 4, Google upgraded <strong>Genie 3</strong> in Project Genie’s model picker for creators prioritizing longer runs: sessions expand up to <strong>3 minutes per generation</strong> (up from 60 seconds), worlds can be chained into continuous journeys, <strong>360-degree panorama images</strong> can ground spaces like Petra’s canyon, and real-time promptable events remain active.',
+        'A new <strong>community gallery</strong> launches with creator collaborations—including <em>“Villa Giallo”</em> with creative technologist Will aka BLVCKL!GHT and <em>“The Life of Ants”</em> with filmmaker Anand Gandhi—plus interactive worlds such as <em>“Living Memory,”</em> <em>“Dino Field Guide,”</em> and Gemini-refereed <em>“Rock Paper Scissors.”</em> Every video and audio stream includes <strong>SynthID</strong> watermarking.',
+      ],
+      pullquote: {
+        quote:
+          'Project Genie pairs world simulation with Gemini observation—turning natural-language conversation into explorable, remixable 3D spaces with adaptive native audio.',
+        attribution: 'GOOGLE GEMINI 4 ARGON · α CASTOR EDITORIAL SYNTHESIS',
+      },
+      comparisonTable: {
+        id: 'project-genie-4-comparison-table',
+        caption: 'Early Project Genie vs. November 18, 2026 Genie 4 & Genie 3 Rollout',
+        columns: ['Capability', 'Initial Prototype', 'Project Genie Update (Nov 18, 2026)', 'Creator Impact'],
+        rows: [
+          ['World Model Access', 'Early research preview', 'Genie 4 live for Google AI Ultra (AI Pro waitlist)', 'Highest visual fidelity, physics & adaptive native audio'],
+          ['Mid-Session Control', 'Navigation & static start seed', 'Real-time text prompts mid-session + Gemini suggestion chips', 'Change weather, summon characters, or trigger events live'],
+          ['Genie 3 Session Depth', '60-second generation limit', 'Up to 3 minutes + linked world chaining + 360° panoramas', 'Multi-biome flights and landmark-consistent worlds'],
+          ['Authoring & Sharing', 'Single text/image prompt', 'Conversational Project Genie agent + remixable Community Gallery', 'Custom scores, lookboards, and one-click world remixes'],
+        ],
+      },
+      adaptiveQuestions: [
+        {
+          lensTag: 'FOR CREATORS & FILMMAKERS',
+          question: 'When do you pick Genie 4 vs. Genie 3 inside Project Genie?',
+          answer:
+            'Use Genie 4 for maximum photorealism, physics fidelity, and real-time native audio; switch to Genie 3 in the model picker when you need up to 3-minute runs, linked multi-world chaining, or 360-degree panorama grounding.',
+        },
+        {
+          lensTag: 'FOR GOOGLE AI PRO & ULTRA USERS',
+          question: 'Who can access Project Genie 4 today?',
+          answer:
+            'Eligible Google AI Ultra subscribers get immediate access on the Project Genie website, while Google AI Pro members can join the waitlist from the same page.',
+        },
+        {
+          lensTag: 'FOR SAFETY & PROVENANCE TEAMS',
+          question: 'How is generated media watermarked?',
+          answer:
+            'All video and audio produced in Project Genie carries SynthID watermarking, and all inputs and outputs pass through automated safety screenings.',
+        },
+      ],
+    },
+    pollux: {
+      kicker: 'PART II · β POLLUX · GEMINI AGENT ORCHESTRATION & WORLD MODEL LENS',
+      title: 'How Gemini Models Orchestrate the Project Genie Agent In-Session',
+      subtitle:
+        'Combining multimodal look-development, real-time screen observation, and dynamic event triggers.',
+      paragraphs: [
+        'Project Genie is a showcase of <strong>multimodal model orchestration</strong>: the new <strong>Project Genie agent</strong> translates conversational descriptions into initial visual lookboards and tailored background scores before a simulation even starts.',
+        'Once inside the world, <strong>Gemini models</strong> observe the live rendered viewport—surfacing context-aware suggestion chips for where to explore next or firing in-world events automatically as your journey unfolds (such as transforming a spacewalk when an alien ship arrives or remixing a hillside cafe into a desert glass pavilion).',
+        'For developers building interactive media or embodied simulation apps, Google DeepMind’s transparency about remaining challenges—camera latency, intricate physical interactions, audio precision, and long-term scene permanence—signals exactly where paired Gemini orchestration and SynthID provenance remain essential.',
+      ],
+      builderRules: [
+        {
+          label: '01 · Pair World Models With Gemini State Observers',
+          detail:
+            'Follow Project Genie’s pattern by letting a fast Gemini model watch rendered frames and emit structured narrative suggestions or event triggers rather than overloading the world model alone.',
+        },
+        {
+          label: '02 · Ground Spatial Consistency With 360° Panoramas',
+          detail:
+            'Use Genie 3’s 360-degree panorama seeding when architectural landmarks (like Petra) must remain geometrically consistent across full camera rotations.',
+        },
+        {
+          label: '03 · Preserve SynthID Provenance Across Remixes',
+          detail:
+            'Whenever publishing or remixing community gallery experiences, keep SynthID audio and video watermarks intact downstream.',
+        },
+      ],
+      codeCaption: 'ILLUSTRATIVE GEMINI OBSERVER LOOP FOR INTERACTIVE WORLD EVENTS (@google/genai v3.6.1)',
+      codeSnippet: `import { GoogleGenAI } from "@google/genai";
+
+// Illustrative pattern: Gemini observes a rendered frame & suggests an in-world prompt event
+const client = new GoogleGenAI({});
+const interaction = await client.interactions.create({
+  model: "gemini-4-hydrogen",
+  input: [
+    { type: "text", text: "Suggest one real-time weather or character event that fits this scene." },
+    { type: "image", data: "<base64-viewport-frame>", mime_type: "image/jpeg" },
+  ],
+});
+console.log(interaction.output_text);`,
+      workbench: {
+        title: 'Project Genie 4 & Genie 3 Mode Selector',
+        subtitle: 'Compare Genie 4, upgraded Genie 3, and the Gemini-driven Project Genie agent.',
+        dek: 'Inspect the three core modes shipped in the November 18, 2026 Project Genie rollout.',
+        presets: [
+          {
+            label: '1. GENIE 4 INTERACTIVE WORLDS',
+            k1: 'Core Upgrade',
+            v1: 'Real-time mid-session text editing + adaptive native audio & character dialogue',
+            k2: 'Featured Showcase',
+            v2: '"Villa Giallo" (BLVCKL!GHT) & "The Life of Ants" (Anand Gandhi)',
+            k3: 'Availability',
+            v3: 'Google AI Ultra live today (AI Pro waitlist) with SynthID audio/video',
+          },
+          {
+            label: '2. GENIE 3 EXTENDED & PANORAMA',
+            k1: 'Session Duration',
+            v1: 'Up to 3 minutes per generation (up from 60s) + linked world chaining',
+            k2: 'Spatial Grounding',
+            v2: '360-degree panorama image seeding + real-time promptable events',
+            k3: 'Best Use Case',
+            v3: 'Continuous multi-biome journeys & consistent architectural landmarks',
+          },
+          {
+            label: '3. PROJECT GENIE AGENT & GALLERY',
+            k1: 'Authoring Flow',
+            v1: 'Conversational look-dev + custom background scores + Gemini screen observer',
+            k2: 'Community Gallery',
+            v2: '"Living Memory" photos, "Dino Field Guide", Gemini-refereed "Rock Paper Scissors"',
+            k3: 'Remixability',
+            v3: 'Fork and customize world structure, soundtrack, or rules via agent chat',
+          },
+        ],
+      },
+    },
+    verdict: {
+      title: 'Gemini’s Bottom Line: World Simulation Becomes Conversational',
+      subtitle:
+        'Project Genie unites Genie 4’s native audio and live prompt edits with Gemini’s real-time visual reasoning.',
+      paragraphs: [
+        '<strong>Try Project Genie now if:</strong> you hold a <strong>Google AI Ultra</strong> subscription and want hands-on access to mid-session world editing, native audio, and 3-minute Genie 3 chaining—or join the waitlist on Google AI Pro.',
+      ],
+      sources: [
+        {
+          role: 'Official Google DeepMind Announcement',
+          label: 'Genie 4 is now available',
+          author: 'Diego Rivas (Google DeepMind) & Pavan Kumar (Google Labs)',
+          date: 'November 18, 2026',
+          url: 'https://deepmind.google/blog/genie-4-is-now-available/',
+        },
+        {
+          role: 'Official DeepMind Video Showcase',
+          label: 'Introducing the new Project Genie, powered by Genie 4',
+          author: 'Google DeepMind (@googledeepmind)',
+          date: 'November 18, 2026',
+          url: 'https://www.youtube.com/watch?v=EDp4IoAUsXY',
+        },
+      ],
+    },
+  },
   'pulse-google-labs-stitch-loop': {
     id: 'pulse-google-labs-stitch-loop',
     slug: 'google-labs-stitch-loop-and-codemender',

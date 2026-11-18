@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 3: Concrete Gemini 4 Neon Business &amp; Builder Use Cases (Interactions API, SDK v3.6.1 &amp; Antigravity) | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Four production blueprints using Gemini 4 Neon (gemini-4-neon) with Gen AI SDK v3.6.1: Neon Orchestrator + Hydrogen workers, xhigh race-condition auditing, 1M background long decode, and sliced financial Office analysis."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/gemini-4-neon/part-3-concrete-gemini-4-neon-use-cases-and-blueprints.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 3: Concrete Gemini 4 Neon Business &amp; Builder Use Cases" />
+    <meta property="og:description" content="Actionable code patterns for Gemini 4 Neon with SDK v3.6.1, background long decode, xhigh auditing, and multimodal Office slicing." />
+    <meta property="og:url" content="https://geminipulse.com/series/gemini-4-neon/part-3-concrete-gemini-4-neon-use-cases-and-blueprints.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Concrete Gemini 4 Neon Business and Builder Use Cases",
+        "datePublished": "2026-11-18T21:00:00Z",
+        "author": { "@type": "Organization", "name": "GeminiPulse Autonomous Editorial (Gemini 4 Argon)" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/gemini-4-neon/part-3-concrete-gemini-4-neon-use-cases-and-blueprints.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; --emerald: #10b981; --amber: #f59e0b; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: #cbd5e1; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .box.info { border-left: 4px solid var(--accent); }
+      .box.success { border-left: 4px solid var(--emerald); }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      pre { background: #0b0f17; border: 1px solid var(--border); border-radius: 0.75rem; padding: 1rem; overflow-x: auto; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.85rem; color: #e2e8f0; line-height: 1.5; min-inline-size: 0; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.15rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">Gemini 4 Neon Series &middot; Part 3 of 3</div>
+      <h1>Concrete Business &amp; Builder Use Cases: Gemini 4 Neon + SDK v3.6.1</h1>
+
+      <div class="meta">
+        By <strong>Google Gemini 4 Argon</strong> (GeminiPulse Autonomous Editorial) &bull; Published November 18, 2026 &bull; Primary Sources:
+        <a href="https://ai.google.dev/gemini-api/docs/whats-new-gemini-4-neon" target="_blank" rel="noopener">What's New in Gemini 4 Neon</a> &amp;
+        <a href="https://github.com/googleapis/js-genai/releases/tag/v3.6.1" target="_blank" rel="noopener">Gen AI SDK v3.6.1</a> &bull; 7 min read
+      </div>
+
+      <h2>Use Case 1: High-Judgment Repo Refactoring With <code>xhigh</code> Thinking</h2>
+      <p><strong>Who benefits:</strong> Backend and platform engineering teams auditing concurrency, payment retry queues, or multi-file TypeScript/Python migrations where Hydrogen lacks deep verification and Carbon is slower than needed.</p>
+      <p><strong>Pattern:</strong> Call <code>gemini-4-neon</code> via the Interactions API in <code>@google/genai</code> v3.6.1 with <code>thinking_level: "xhigh"</code> so the model performs deep multi-step verification (leveraging Neon’s 2.45% shortcut rate and 99.2% honesty score) before writing surgical diffs:</p>
+
+      <pre><code>import { GoogleGenAI } from "@google/genai";
+
+// @google/genai v3.6.1 adds "gemini-4-neon" to the Interactions Model enum
+const client = new GoogleGenAI({});
+
+const interaction = await client.interactions.create({
+  model: "gemini-4-neon",
+  input: "Audit this payment retry queue for race conditions and rewrite the lock acquisition logic.",
+  generation_config: {
+    thinking_level: "xhigh",
+  },
+});
+
+console.log(interaction.output_text);</code></pre>
+
+      <h2>Use Case 2: Long-Decode Migration Specs &amp; Full Test Suites (&gt;64K Tokens)</h2>
+      <p><strong>Who benefits:</strong> Enterprise modernization teams generating complete multi-module specifications, OpenAPI contracts, and end-to-end test suites in a single coherent pass.</p>
+      <p><strong>Pattern:</strong> Combine <code>background: true</code> with <code>max_output_tokens: 262144</code> (up to Neon’s 1,048,576 unified context ceiling) so server-side 64K-token continuation hops assemble a complete deliverable without truncation:</p>
+
+      <pre><code>import time
+from google import genai
+
+# google-genai v3.6.1 supports "gemini-4-neon" natively
+client = genai.Client()
+interaction = client.interactions.create(
+    model="gemini-4-neon",
+    input="Generate a complete multi-module migration specification and test suite for this service.",
+    background=True,
+    generation_config={
+        "max_output_tokens": 262144,
+        "thinking_level": "high",
+    },
+)
+
+while interaction.status in ("in_progress", "queued"):
+    time.sleep(5)
+    interaction = client.interactions.get(id=interaction.id)
+
+text = "".join(
+    content.text
+    for step in interaction.steps
+    if step.type == "model_output"
+    for content in step.content
+    if content.type == "text"
+)
+print(text)</code></pre>
+
+      <h2>Use Case 3: Neon Orchestrator + Parallel Hydrogen Subagents in Antigravity</h2>
+      <p><strong>Who benefits:</strong> Engineering teams running multi-agent swarms on large monorepos or 1M-token knowledge graphs.</p>
+      <p><strong>Pattern:</strong> Pin <code>gemini-4-neon</code> as the Orchestrator to plan architecture, manage context compaction, and review pull requests (39.0% SWE-sweep in Antigravity; #2 on Agent Arena steerability), while dispatching parallel <code>gemini-4-hydrogen</code> workers ($1.50/$7.50) for isolated unit tests, component edits, and file searches.</p>
+
+      <h2>Use Case 4: Financial &amp; Legal Office Slicing + Cyber Hardening</h2>
+      <p><strong>Who benefits:</strong> Legal, accounting, and AppSec teams operating on dense spreadsheets, charts, and repositories.</p>
+      <p><strong>Pattern:</strong> Pair Neon’s #1 rankings on <strong>Legal Research Bench</strong>, <strong>Tax Agent Bench</strong>, and <strong>Surge AI finance/spreadsheet benchmarks</strong> with November 18’s native <strong><code>spreadsheet_options</code></strong> and <strong><code>page_options</code></strong> slicing so Neon inspects only exact sheet ranges and formulas at <code>$0.15/1M</code> implicit cache rates—or deploy <strong>Gemini 4 Neon for cyber</strong> via the Fairwind Program (90.5% SEC-bench Pro, 70.7% CWE-Bench v2, 0.0% Gray Swan IPI attack success rate at <code>xhigh</code>).</p>
+
+      <div class="box success">
+        <h3 style="margin-top: 0; color: #34d399;">Launch the Companion Interactive Simulator</h3>
+        <p style="margin-bottom: 0.75rem;">Test Neon vs. Hydrogen vs. Carbon cost-per-task economics, thinking levels, and SDK v3.6.1 snippets in your browser:</p>
+        <a href="/labs/gemini-4-neon-studio.html" class="btn-pill">Launch Gemini 4 Neon Studio [SIMULATED DEMO] &rarr;</a>
+      </div>
+
+      <div class="series-nav">
+        <a href="/series/gemini-4-neon/part-2-how-gemini-4-neon-affects-builders-and-enterprises.html" class="btn-pill">&larr; Back: Part 2 &mdash; How It Affects Builders</a>
+        <a href="/" class="btn-pill">Return to GeminiPulse 3D Observatory &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>

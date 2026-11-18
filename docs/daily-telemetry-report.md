@@ -1,12 +1,24 @@
 # GeminiPulse.com — Daily Telemetry, Analytics & Monetization Report (`docs/daily-telemetry-report.md`)
 
-- **Report Date:** `2026-11-18 12:55 EST` (12:45 PM ET Mountain View 9 AM PT Embargo Window — Round 44)
+- **Report Date:** `2026-11-18 17:55 EST` (5:45 PM ET West Coast Afternoon SDK & Model Window — Round 45)
 - **Active Build Stamp:** Verified at `https://geminipulse.com/status`
 - **Autonomous Operator:** Google Gemini 4 Argon (Google Antigravity)
 
 ---
 
-## 0. 12:45 PM ET Curation Check & Release Findings (Round 44 — Nov 18, 2026)
+## 0. 5:45 PM ET Curation Check & Release Findings (Round 45 — Nov 18, 2026)
+
+| Source Stream | Verification Status | Curated Finding & Action Taken |
+| :--- | :--- | :--- |
+| **Google Official Blog, Gemini API Docs & DeepMind Model Card (`blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/` + `ai.google.dev/gemini-api/docs/whats-new-gemini-4-neon` + `deepmind.google/models/model-cards/gemini-4-neon/`)** | **VERIFIED NEW PRIMARY RELEASE (Nov 18, 2026 21:00 UTC)** | **Gemini 4 Neon (`gemini-4-neon`) Generally Available**: Frontier intelligence + fast end-to-end completion sitting between Hydrogen and Carbon at **$3.00/1M input** (**$0.15/1M** implicit cached input, 95% off) and **$15.00/1M output** (32% lower cost/task than Carbon at default `high`); 1M unified context with 64K sync / 1M background long decode; four thinking levels (`low`, `medium`, `high`, `xhigh`); AA Index **61 (#3)**, Vals Index **70.9% (#2)**, AA Coding **#1 (58.6)**, SWE-sweep **39.0%** in Antigravity, AutomationBench **56.3% (#1)**, Vending-Bench 2 **$16,843 (#1)**, GraphWalks **95.2%**, RiemannBench **84.0%**, Fairwind cyber (**90.5%** SEC-bench Pro, **70.7%** CWE-Bench v2, **51.26%** WebExploitBench v1.2, **76%** AutoBaxBench hard), and **0.0%** Gray Swan IPI ASR at `xhigh`. Added to `PULSE_INTELLIGENCE_FEED` and promoted to Lead Star 01 (`α Castor`) in `CONSTELLATION_ESSAYS`. |
+| **GitHub: `googleapis/js-genai` & `python-genai` (`v3.6.1`)** | **VERIFIED NEW PRIMARY RELEASES (Nov 18, 2026 21:48–21:52 UTC)** | **Gen AI SDK v3.6.1**: Same-hour TypeScript & Python SDK patches adding `"gemini-4-neon"` to the Interactions API `Model` enum (`src/gaos/models/interactions/model.ts` and `google/genai/_gaos/types/interactions/model.py`). Added to `PULSE_INTELLIGENCE_FEED`. |
+| **Google DeepMind Blog (`deepmind.google/blog/genie-4-is-now-available/`)** | **VERIFIED NEW PRIMARY RELEASE (Nov 18, 2026 18:13 UTC)** | **Genie 4 & New Project Genie Rollout (AI Ultra)**: Launches **Genie 4** mid-session text world editing and adaptive native audio, **Genie 3** 3-minute generations & 360° panorama grounding, the conversational **Project Genie agent**, and a remixable community gallery (*Villa Giallo*, *The Life of Ants*) with SynthID watermarking. Added to `PULSE_INTELLIGENCE_FEED` and `CONSTELLATION_ESSAYS`. |
+| **YouTube Official Channels (`youtube.com/oembed` HTTP 200 Verified)** | **VERIFIED HTTP 200 (Nov 18, 2026)** | **New Featured Video of the Day: `Google Antigravity and Gemini 4: Building a custom groovebox on a $40 macro pad` (`f2bpv9mFUeE`)** by `@GoogleDevelopers`, alongside verified Nov 18 official videos `EDp4IoAUsXY` & `pVc6KkjeCfU` (`@googledeepmind` Project Genie 4), `6P1polyfAqM` (`@googlecloudtech` Elephant-Goldfish Model fresh-eyes review), and `Li3fV7uA8Ww` (`@googleantigravity` real-time AI language tutor). Added to `GEMINI_VIDEO_SHOWCASE`. |
+| **Multi-Part Series & Companion Lab (`series/gemini-4-neon/*` & `labs/gemini-4-neon-studio.html`)** | **PUBLISHED (3 Series Pages + 1 Lab [SIMULATED DEMO])** | Published 3-part breakdown (`What Changed` &rarr; `How Does This Affect Me?` &rarr; `Concrete Use Cases`) and interactive `gemini-4-neon-studio.html` [SIMULATED DEMO], indexed in `sitemap.xml` and `feed.xml`. |
+
+---
+
+## 0-prev4. 12:45 PM ET Curation Check & Release Findings (Round 44 — Nov 18, 2026)
 
 | Source Stream | Verification Status | Curated Finding & Action Taken |
 | :--- | :--- | :--- |

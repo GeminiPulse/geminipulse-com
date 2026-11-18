@@ -5,6 +5,59 @@
 
 export const PULSE_INTELLIGENCE_FEED = [
   {
+    id: 'pulse-gemini-4-neon-ga-launch',
+    title: 'Google DeepMind Launches Gemini 4 Neon (gemini-4-neon) GA: Frontier Coding, Knowledge & Cyber Defense at 32% Lower Cost/Task',
+    tldr: 'Released November 18, 2026 (21:00 UTC): Google DeepMind launches Gemini 4 Neon—delivering AA Index 61 (xhigh), Vals Index 70.9% (#2), 39.0% SWE-sweep in Google Antigravity, 90.5% SEC-bench Pro, and 0.0% Gray Swan IPI attack success rate at $3.00/$15.00 per 1M tokens.',
+    summary:
+      'Announced by Koray Kavukcuoglu (SVP, Google DeepMind and Chief AI Architect, Google) alongside official Gemini API docs and DeepMind Model Card: (1) Positioning & Economics—adapted from Gemini 4 Carbon, Gemini 4 Neon sits between Hydrogen and Carbon at $3.00 per 1M input tokens ($0.15 implicit cached input, 95% discount) and $15.00 per 1M output tokens, delivering 32% lower cost per task than Carbon at default high thinking, (2) Unified 1M Context & Four Thinking Levels—supports low, medium, high (default), and xhigh thinking levels across a 1,048,576-token unified window with 64K synchronous output and 1M background long decode, (3) Frontier Coding, Knowledge & Science—ranks #1 on AA Coding Agent Index (58.6), #1 on AutomationBench (56.3%) and Vending-Bench 2 ($16,843), #2 on Vals Index (70.9%) and Agent Arena (1336, 4,200+ sessions), 39.0% SWE-sweep in Antigravity, 95.2% GraphWalks (256k–1M BFS F1), 84.0% RiemannBench, and 70.5% Terminal-Bench-Science, (4) Fairwind Cyber & Alignment—achieves 90.5% SEC-bench Pro, 70.7% CWE-Bench v2 (+3.4% vs Carbon), 51.26% WebExploitBench v1.2, 76% AutoBaxBench Hard, 99.2% honesty pass rate, 2.45% shortcut rate, and 0.0% Gray Swan IPI ASR at xhigh, and (5) Immediate Rollout—live on Gemini API paid tier, Google AI Studio, Android Studio, Gemini for business, Google Antigravity (Pro/Ultra), Gemini app (Pro/Ultra), and Fairwind Program.',
+    category: 'Frontier Models',
+    tag: 'Model GA Launch',
+    modelBadge: 'Gemini 4 Neon GA',
+    impactScore: '10.0 / 10',
+    date: '2026-11-18T21:00:00Z',
+    sourceLabel: 'Google Blog: Introducing Gemini 4 Neon',
+    sourceUrl: 'https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/',
+    groundedBy: 'Google Official Blog, Gemini API Docs & DeepMind Model Card (Nov 18, 2026 21:00 UTC)',
+    seriesUrl: '/series/gemini-4-neon/part-1-what-changed-with-gemini-4-neon.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-4-neon-studio.html',
+    labLabel: 'Neon Studio [DEMO] →',
+  },
+  {
+    id: 'pulse-genai-sdk-v3-6-1-neon-enum',
+    title: 'Google Ships Gen AI SDK v3.6.1 (@google/genai & google-genai) With Native gemini-4-neon Interactions Enum',
+    tldr: 'Released November 18, 2026 (21:48–21:52 UTC): Both official TypeScript (@google/genai) and Python (google-genai) SDKs ship v3.6.1 patches adding "gemini-4-neon" directly to the Interactions API Model enum on launch day.',
+    summary:
+      'Within an hour of Gemini 4 Neon’s 21:00 UTC launch, Google released google-genai v3.6.1 (PyPI, 21:48 UTC) and @google/genai v3.6.1 (npm, 21:52 UTC), adding "gemini-4-neon" to src/gaos/models/interactions/model.ts and google/genai/_gaos/types/interactions/model.py so typed client.interactions.create() workflows, thinking_level ("low" | "medium" | "high" | "xhigh"), and background 1M long-decode polls target Gemini 4 Neon natively.',
+    category: 'Gen AI SDKs',
+    tag: 'SDK Milestone',
+    modelBadge: '@google/genai & google-genai v3.6.1',
+    impactScore: '9.4 / 10',
+    date: '2026-11-18T21:52:37Z',
+    sourceLabel: 'GitHub Releases: googleapis/js-genai v3.6.1 & python-genai v3.6.1',
+    sourceUrl: 'https://github.com/googleapis/js-genai/releases/tag/v3.6.1',
+    groundedBy: 'Official Google GitHub Releases v3.6.1 (Nov 18, 2026 21:48–21:52 UTC)',
+    seriesUrl: '/series/gemini-4-neon/part-3-concrete-gemini-4-neon-use-cases-and-blueprints.html',
+    seriesLabel: 'SDK v3.6.1 Blueprint →',
+    labUrl: '/labs/gemini-4-neon-studio.html',
+    labLabel: 'Neon Studio [DEMO] →',
+  },
+  {
+    id: 'pulse-project-genie-4-rollout',
+    title: 'Google DeepMind Rolls Out Genie 4 & New Project Genie Experience to AI Ultra: Mid-Session Prompt Edits, Native Audio & Community Gallery',
+    tldr: 'Published November 18, 2026 (18:13 UTC): Google DeepMind and Google Labs roll out Genie 4 inside Project Genie for eligible Google AI Ultra subscribers—adding mid-session text world editing, adaptive native audio, conversational Project Genie agent, 3-minute Genie 3 world chaining, and a remixable community gallery.',
+    summary:
+      'Authored by Diego Rivas (Google DeepMind) and Pavan Kumar (Google Labs), the November 18 Project Genie launch brings interactive world models to eligible Google AI Ultra subscribers (with an AI Pro waitlist): (1) Genie 4 Interactive Worlds—type prompts mid-session to alter weather, drop characters, or redirect scenes in real time alongside adaptive native audio (ambient soundscapes and character dialogue), (2) Genie 3 Upgrades—extended sessions up to 3 minutes per generation (up from 60s), linked world chaining, 360-degree panorama grounding, and real-time in-world events, (3) Conversational Project Genie Agent—orchestrates Google multimodal and Gemini models to craft visuals, custom background scores, context-aware suggestion chips, and dynamic in-world triggers, and (4) Remixable Community Gallery & SynthID—features creator collaborations ("Villa Giallo" with BLVCKL!GHT and "The Life of Ants" with Anand Gandhi) with SynthID watermarking on all generated video and audio.',
+    category: 'World Models & Labs',
+    tag: 'Ultra Rollout',
+    modelBadge: 'Genie 4 · Project Genie',
+    impactScore: '9.8 / 10',
+    date: '2026-11-18T18:13:42Z',
+    sourceLabel: 'Google DeepMind: Genie 4 is now available',
+    sourceUrl: 'https://deepmind.google/blog/genie-4-is-now-available/',
+    groundedBy: 'Google DeepMind Official Blog & YouTube Showcase (Nov 18, 2026 18:13 UTC)',
+  },
+  {
     id: 'pulse-google-labs-stitch-loop',
     title: 'Google Labs Introduces Stitch Loop: 24/7 Product Optimization Agent Powered by Gemini 4 Carbon, CodeMender & Antigravity MCP',
     tldr: 'Released November 18, 2026 (17:00 UTC): Google Labs unveils Stitch Loop—a long-running product agent connecting GitHub and live metrics across 180+ integrations, custom MCP servers, or local CLI uploads to run evergreen Suggestions → Solutions → Build → Reflect loops with human-approved PRs.',
@@ -1198,6 +1251,55 @@ export const GEMINI_MODEL_MATRIX = [
 
 export const STUDIO_LAB_BLUEPRINTS = [
   {
+    id: 'lab-gemini-4-neon-studio',
+    title: 'Gemini 4 Neon Routing, Thinking & Cost Studio [SIMULATED DEMO]',
+    badge: 'Nov 18, 2026 Model GA',
+    model: 'gemini-4-neon',
+    href: '/labs/gemini-4-neon-studio.html',
+    description:
+      'Interactive developer workbench modeling Google DeepMind’s Nov 18 Gemini 4 Neon release: compare Hydrogen ($1.50/$7.50), Neon ($3.00/$15.00, 32% lower cost/task than Carbon), and Carbon across low–xhigh thinking levels, 95% implicit cache discounts ($0.15/1M), Fairwind cyber benchmarks, and Gen AI SDK v3.6.1.',
+    prompt:
+      'Audit this payment retry queue for race conditions and rewrite the lock acquisition logic at thinking_level="xhigh".',
+    tsCode: `import { GoogleGenAI } from "@google/genai";
+
+// @google/genai v3.6.1 adds "gemini-4-neon" to the Interactions Model enum
+const client = new GoogleGenAI({});
+const interaction = await client.interactions.create({
+  model: "gemini-4-neon",
+  input: "Audit this payment retry queue for race conditions and rewrite the lock acquisition logic.",
+  generation_config: {
+    thinking_level: "xhigh",
+  },
+});
+console.log(interaction.output_text);`,
+    pyCode: `from google import genai
+
+# google-genai v3.6.1 adds "gemini-4-neon" to the Interactions Model enum
+client = genai.Client()
+interaction = client.interactions.create(
+    model="gemini-4-neon",
+    input="Audit this payment retry queue for race conditions and rewrite the lock acquisition logic.",
+    generation_config={
+        "thinking_level": "xhigh",
+    },
+)
+print(interaction.output_text)`,
+    simulatedSteps: [
+      {
+        type: 'thought',
+        label: 'step[0] • Thinking (xhigh) · AA Index 61 & Vals 70.9%',
+        detail:
+          'Evaluates race conditions across lock acquisition paths with Neon’s 2.45% shortcut rate and 99.2% agent honesty baseline at $3.00/1M input ($0.15/1M implicit cached).',
+      },
+      {
+        type: 'tool_call',
+        label: 'step[1] • Surgical Diff & Verification (39.0% SWE-sweep in Antigravity)',
+        detail:
+          'Applies minimal multi-file repository edits or runs background: true 1M long-decode specifications while routing parallel worker subtasks to gemini-4-hydrogen.',
+      },
+    ],
+  },
+  {
     id: 'lab-stitch-loop-studio',
     title: 'Stitch Loop & CodeMender Continuous Agent Studio [SIMULATED DEMO]',
     badge: 'Nov 18, 2026 Google Labs',
@@ -2177,6 +2279,25 @@ video_turn = client.interactions.create(
 ];
 
 export const INITIAL_SHOWCASE_PROJECTS = [
+  {
+    id: 'showcase-gemini-4-neon-studio',
+    name: 'Gemini 4 Neon Routing, Thinking & Cost Studio [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive developer workbench modeling Google DeepMind’s Nov 18 Gemini 4 Neon (gemini-4-neon) GA release: simulate low–xhigh thinking levels, 95% implicit cache savings ($0.15/1M), Carbon vs. Neon per-task economics, Fairwind cyber metrics, and SDK v3.6.1 snippets.',
+    models: ['gemini-4-neon', 'gemini-4-hydrogen', 'gemini-4-carbon'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-4-neon-studio.html): [SIMULATED DEMO] Models $3/$15 pricing, 32% per-task savings vs. Carbon, 1M background long decode, and published DeepMind Model Card benchmarks.',
+    url: '/labs/gemini-4-neon-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-18T21:00:00Z',
+  },
   {
     id: 'showcase-gemini-stitch-loop-studio',
     name: 'Stitch Loop & CodeMender Continuous Agent Studio [SIMULATED DEMO]',
@@ -4158,9 +4279,94 @@ export const GET_STARTED_WITH_GEMINI_TRACKS = [
 
 export const GEMINI_VIDEO_SHOWCASE = [
   {
+    id: 'vid-google-developers-antigravity-groovebox',
+    videoId: 'f2bpv9mFUeE',
+    featuredOfTheDay: true,
+    category: 'Hardware & Agentic Coding',
+    badge: 'FEATURED VIDEO OF THE DAY • GOOGLE FOR DEVELOPERS',
+    title: 'Google Antigravity and Gemini 4: Building a custom groovebox on a $40 macro pad',
+    creatorName: 'Google for Developers',
+    creatorHandle: '@GoogleDevelopers',
+    creatorUrl: 'https://www.youtube.com/@GoogleDevelopers',
+    watchUrl: 'https://www.youtube.com/watch?v=f2bpv9mFUeE',
+    thumbnailUrl: 'https://i.ytimg.com/vi/f2bpv9mFUeE/hqdefault.jpg',
+    geminiSummary:
+      'Official November 18, 2026 (20:00 UTC) Google for Developers hardware-meets-AI build—using Google Antigravity and Gemini 4 to turn an off-the-shelf $40 macro pad into a custom programmable groovebox with real-time firmware and audio synthesis.',
+    whyFeatured:
+      'Verified HTTP 200 Nov 18 Google for Developers hands-on hardware build pairing Gemini 4 with Google Antigravity.',
+  },
+  {
+    id: 'vid-google-deepmind-project-genie-4',
+    videoId: 'EDp4IoAUsXY',
+    featuredOfTheDay: false,
+    category: 'World Models & Project Genie',
+    badge: 'OFFICIAL LAUNCH SHOWCASE • GOOGLE DEEPMIND',
+    title: 'Introducing the new Project Genie, powered by Genie 4',
+    creatorName: 'Google DeepMind',
+    creatorHandle: '@googledeepmind',
+    creatorUrl: 'https://www.youtube.com/@googledeepmind',
+    watchUrl: 'https://www.youtube.com/watch?v=EDp4IoAUsXY',
+    thumbnailUrl: 'https://i.ytimg.com/vi/EDp4IoAUsXY/hqdefault.jpg',
+    geminiSummary:
+      'Official November 18, 2026 (18:12 UTC) Google DeepMind launch video showcasing Genie 4 inside Project Genie for Google AI Ultra—demonstrating mid-session text world editing, real-time adaptive native audio, the Project Genie agent, and the community gallery.',
+    whyFeatured:
+      'Verified HTTP 200 Nov 18 Google DeepMind launch video accompanying Genie 4 availability in Project Genie.',
+  },
+  {
+    id: 'vid-google-deepmind-genie-4-bts',
+    videoId: 'pVc6KkjeCfU',
+    featuredOfTheDay: false,
+    category: 'World Models & Creators',
+    badge: 'BEHIND THE SCENES • GOOGLE DEEPMIND',
+    title: 'Behind the scenes with Genie 4',
+    creatorName: 'Google DeepMind',
+    creatorHandle: '@googledeepmind',
+    creatorUrl: 'https://www.youtube.com/@googledeepmind',
+    watchUrl: 'https://www.youtube.com/watch?v=pVc6KkjeCfU',
+    thumbnailUrl: 'https://i.ytimg.com/vi/pVc6KkjeCfU/hqdefault.jpg',
+    geminiSummary:
+      'Published November 18, 2026 (18:12 UTC) by Google DeepMind—going behind the scenes with pioneering creators (including Will aka BLVCKL!GHT on "Villa Giallo" and filmmaker Anand Gandhi on "The Life of Ants") building photorealistic interactive worlds with Genie 4.',
+    whyFeatured:
+      'Verified HTTP 200 Nov 18 Google DeepMind creator behind-the-scenes feature on Genie 4.',
+  },
+  {
+    id: 'vid-google-cloud-tech-egm-review',
+    videoId: '6P1polyfAqM',
+    featuredOfTheDay: false,
+    category: 'Agent Architecture & Code Review',
+    badge: 'OFFICIAL ENGINEERING GUIDE • GOOGLE CLOUD TECH',
+    title: 'What is the Elephant-Goldfish Model (EGM)? Fresh-eyes AI review for specs and code',
+    creatorName: 'Google Cloud Tech',
+    creatorHandle: '@googlecloudtech',
+    creatorUrl: 'https://www.youtube.com/@googlecloudtech',
+    watchUrl: 'https://www.youtube.com/watch?v=6P1polyfAqM',
+    thumbnailUrl: 'https://i.ytimg.com/vi/6P1polyfAqM/hqdefault.jpg',
+    geminiSummary:
+      'Published November 18, 2026 (20:00 UTC) by Google Cloud Tech—explaining the Elephant-Goldfish Model (EGM) pattern to prevent confirmation bias by pairing persistent-context implementation agents with fresh-eyes spec and code reviewers.',
+    whyFeatured:
+      'Verified HTTP 200 Nov 18 Google Cloud Tech engineering guide on fresh-eyes AI code and spec review.',
+  },
+  {
+    id: 'vid-google-antigravity-language-tutor',
+    videoId: 'Li3fV7uA8Ww',
+    featuredOfTheDay: false,
+    category: 'Agentic Apps & Voice',
+    badge: 'OFFICIAL BUILD WALKTHROUGH • GOOGLE ANTIGRAVITY',
+    title: 'Building a real-time AI language tutor',
+    creatorName: 'Google Antigravity',
+    creatorHandle: '@googleantigravity',
+    creatorUrl: 'https://www.youtube.com/@googleantigravity',
+    watchUrl: 'https://www.youtube.com/watch?v=Li3fV7uA8Ww',
+    thumbnailUrl: 'https://i.ytimg.com/vi/Li3fV7uA8Ww/hqdefault.jpg',
+    geminiSummary:
+      'Published November 18, 2026 (00:33 UTC) by Google Antigravity—building an interactive, real-time AI language tutor end-to-end inside Google Antigravity.',
+    whyFeatured:
+      'Verified HTTP 200 Nov 18 Google Antigravity real-time language tutor build walkthrough.',
+  },
+  {
     id: 'vid-google-antigravity-redesigned',
     videoId: 'jYWQtG8BBSY',
-    featuredOfTheDay: true,
+    featuredOfTheDay: false,
     category: 'Agentic IDE & Platform',
     badge: 'FEATURED VIDEO OF THE DAY • GOOGLE ANTIGRAVITY',
     title: 'Google Antigravity, Redesigned',
