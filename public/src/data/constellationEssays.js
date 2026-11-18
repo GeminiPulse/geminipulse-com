@@ -14,6 +14,208 @@
  */
 
 export const CONSTELLATION_ESSAYS = {
+  'pulse-gemini-multimodal-slicing-office-api': {
+    id: 'pulse-gemini-multimodal-slicing-office-api',
+    slug: 'gemini-multimodal-file-slicing-and-sdk-v3-6',
+    shortStarLabel: 'Multimodal Slicing',
+    readMinutes: '7 MIN READ',
+    hudTitle: 'Stop Paying to Tokenize Whole Workbooks. Slice Exact Pages, Cells & Layers.',
+    hudSummary:
+      'On November 18, 2026, Google added native Word, PowerPoint, and Excel/OpenDocument ingestion plus server-side page, cell-range, time, and layer slicing across prompts and function_result—paired with Gen AI SDK v3.5–v3.6 Live Interactions.',
+    peekCastor: 'Office & Media Slicing: <em>Pay only for the slice.</em>',
+    peekPollux: 'function_result + SDK v3.6: <em>Progressive inspection &amp; WebRTC.</em>',
+    headline: 'Stop Ingesting 400-Page Manuals Blindly. <em>Gemini Now Slices Office Files, Cells &amp; Layers on Demand.</em>',
+    standfirst:
+      'For years, feeding enterprise files into an AI model meant maintaining brittle LibreOffice and ffmpeg chop-shops—or paying full-file token bills every turn. On November 18, 2026, Google moved surgical document, spreadsheet, video, and audio slicing directly into the Gemini API and function_result.',
+    pulseCheck: [
+      {
+        stage: 'What Shipped',
+        detail:
+          'Google added direct Microsoft Office (.docx, .pptx, .xlsx) and OpenDocument (.odt, .odp, .ods) support plus static page_options, spreadsheet_options, video/audio time offsets, and content_layers across prompts and function_result—alongside Gen AI SDK v3.5.0–v3.6.0.',
+      },
+      {
+        stage: 'Why Builders Care',
+        detail:
+          'Gemini bills strictly for the sliced range and layers while exposing total page counts and worksheet names automatically, letting agents skim text or transcripts cheaply and zoom in at high resolution only where charts or formulas live.',
+      },
+      {
+        stage: 'The Fine-Print Catch',
+        detail:
+          'Un-sliced Gemini 4+ Office docs default to medium-res page images (~560 tokens/page), out-of-bounds sheet_index or start_offset values throw 400 INVALID_ARGUMENT, and Live Interactions in SDK v3.5–v3.6 remain experimental on v1beta.',
+      },
+    ],
+    castor: {
+      kicker: 'PART I · α CASTOR · PRODUCT, TOKEN ECONOMICS & WORKFLOW LENS',
+      title: 'Why Surgical File Slicing Kills the Hidden Preprocessing Tax',
+      subtitle:
+        'How native Word, PowerPoint, Excel, and time-sliced media turns passive file dumps into interactive progressive drilldown.',
+      paragraphs: [
+        'If you have built a real enterprise Gemini app over the past two years, your hardest engineering work was rarely the prompt—it was the unglamorous ingestion glue sitting in front of it. Teams ran headless LibreOffice containers to convert <code>.pptx</code> decks to PDF, maintained <code>openpyxl</code> scripts to flatten Excel tabs, and invoked <code>ffmpeg</code> to clip 90-second excerpts out of hour-long recordings.',
+        'On <strong>November 18, 2026</strong>, Google’s Gemini API changelog eliminated that entire class of middleware. Developers can now pass Microsoft Office (<code>.docx</code>, <code>.doc</code>, <code>.dotx</code>, <code>.pptx</code>, <code>.ppt</code>, <code>.xlsx</code>, <code>.xls</code>) and OpenDocument (<code>.odt</code>, <code>.odp</code>, <code>.ods</code>) files directly in <code>document</code> blocks—and attach declarative <code>processing</code> rules to slice exact page ranges, worksheet tabs, A1 cell ranges, media timestamps, and content layers.',
+        'Even better, Google wired the exact same slicing contract into <strong><code>function_result</code></strong>. When a tool returns a sliced document or spreadsheet, Gemini automatically receives structural metadata like total page counts and worksheet names without paying rendering tokens for the whole file, letting the model request narrower follow-up slices across turns.',
+        'Alongside the API update, <strong>Gen AI SDK v3.5.0 and v3.6.0</strong> (<code>@google/genai</code> and <code>google-genai</code>) shipped experimental <strong>Live Interactions</strong> over WebSocket and WebRTC backed by ephemeral <code>interactions.authTokens</code>, self-hosted BYOS environments, and deferred MCP tool loading (<code>defer_loading</code>).',
+      ],
+      pullquote: {
+        quote:
+          'Paying for only the three chart pages and one EBITDA range you actually inspect turns million-token context windows from a cost center into a surgical microscope.',
+        attribution: 'GOOGLE GEMINI 4 ARGON · α CASTOR EDITORIAL SYNTHESIS',
+      },
+      comparisonTable: {
+        id: 'multimodal-slicing-table',
+        caption: 'Full-File Ingestion vs. Nov 18 Gemini API Multimodal Slicing & SDK v3.6',
+        columns: ['Modality', 'Prior Baseline', 'Nov 18 Slicing Contract', 'Cost & Quality Advantage'],
+        rows: [
+          ['Word, Slides & PDF', 'Full file rendered or manually split client-side', 'page_options: start_page, end_page, content_layers (page_image / page_text)', 'Skim text first; zoom high-res (~1,120 tok/pg) on chart pages only'],
+          ['Excel & Calc Sheets', 'Up to 50,000 cells/sheet across whole workbook', 'spreadsheet_options: sheet_index, visible_cells (A1:H50), data/formulas/visual', 'Audit exact EBITDA formulas + visual chart without unrelated tabs'],
+          ['Video & Audio', 'Full duration or local ffmpeg pre-clipping', 'start_offset, end_offset, fps in (0, 24], content_layers (frames/audio/transcript)', 'Transcript-only first pass costs text tokens instead of 1 FPS frames'],
+          ['Tool Returns', 'Whole file URI returned to context', 'function_result accepts processing + resolution + auto page/sheet metadata', 'Multi-turn agent self-navigation across 400-page manuals'],
+        ],
+      },
+      adaptiveQuestions: [
+        {
+          lensTag: 'FOR FINANCE & ANALYTICS TEAMS',
+          question: 'Can Gemini read both evaluated numbers and raw Excel formulas alongside charts?',
+          answer:
+            'Yes. In processing.spreadsheet_options, content_layers defaults to ["data", "formulas"] and lets you add "visual" (plus outer resolution: "low", "medium", or "high") to inspect rendered charts in the same A1 visible_cells crop.',
+        },
+        {
+          lensTag: 'FOR AGENT ARCHITECTS',
+          question: 'How does the model know which page or sheet tab to slice inside a tool loop?',
+          answer:
+            'When you pass a file through processing or function_result, Gemini automatically receives total page counts and worksheet names in metadata so it can target follow-up slices across turns.',
+        },
+        {
+          lensTag: 'FOR FRONTEND & MOBILE BUILDERS',
+          question: 'How do SDK v3.5–v3.6 Live Interactions avoid exposing API keys in the browser?',
+          answer:
+            'Your server calls interactions.authTokens.create() to mint a short-lived ephemeral token, which the browser or mobile client uses with experimental interactions.connect over WebSocket or WebRTC.',
+        },
+      ],
+    },
+    pollux: {
+      kicker: 'PART II · β POLLUX · ENGINEERING, SCHEMAS & SDK v3.6 LENS',
+      title: 'Implementing Two-Pass Slicing, function_result Loops & Live Interactions',
+      subtitle:
+        'Exact parameter contracts across page_options, spreadsheet_options, video/audio offsets, and Gen AI SDK v3.6.0.',
+      paragraphs: [
+        'Every document, spreadsheet, video, and audio slice uses <code>processing: { type: "static" }</code> with modality-specific options on the content block inside <code>client.interactions.create()</code>. For documents and slides, set <code>page_options</code> with 1-indexed <code>start_page</code> / <code>end_page</code> and <code>content_layers</code> (<code>["page_image"]</code>, <code>["page_text"]</code>, or both). Outer <code>resolution</code> tunes rendering cost from <code>"low"</code> (~280 tokens/page) to <code>"medium"</code> (~560) and <code>"high"</code> (~1,120).',
+        'For spreadsheets (<code>.xlsx</code>, <code>.xls</code>, <code>.ods</code>), <code>spreadsheet_options</code> accepts 1-indexed <code>sheet_index</code> (values <code>&lt;= 0</code> or above sheet count return <code>400 INVALID_ARGUMENT</code>) and A1 notation <code>visible_cells</code>. For video and audio, <code>start_offset</code> and <code>end_offset</code> accept second strings like <code>"1200s"</code>; <code>end_offset</code> past media length clamps cleanly while out-of-range <code>start_offset</code> returns <code>400 INVALID_ARGUMENT</code>.',
+        'In <code>@google/genai</code> and <code>google-genai</code> v3.5.0–v3.6.0, combine sliced <code>function_result</code> tool returns with <code>defer_loading: true</code> on <code>MCPServer</code> tool configs and ephemeral <code>interactions.authTokens</code> for real-time WebRTC/WebSocket clients.',
+      ],
+      builderRules: [
+        {
+          label: '01 · Two-Pass Skim Before High-Res Vision',
+          detail:
+            'Scan large Office/PDF decks with content_layers: ["page_text"] or video with ["transcript"] first, then request "high" resolution page_image or video frames solely for target ranges.',
+        },
+        {
+          label: '02 · Return Sliced Payloads in function_result',
+          detail:
+            'Keep large PDFs and workbooks in the Files API and let inspect_document_pages or inspect_sheet tools return only the requested slice inside function_result.result.',
+        },
+        {
+          label: '03 · Guard Bounds & Pin v1beta for Live Interactions',
+          detail:
+            'Validate sheet_index (>= 1) and start_offset (< duration) before dispatch to avoid 400 INVALID_ARGUMENT, and configure apiVersion: "v1beta" when using experimental Live Interactions.',
+        },
+      ],
+      codeCaption: 'PROGRESSIVE SPREADSHEET & FUNCTION_RESULT SLICING (@google/genai v3.6.0)',
+      codeSnippet: `import { GoogleGenAI } from "@google/genai";
+
+const ai = new GoogleGenAI({});
+const workbook = await ai.files.upload({
+  file: "financial_model.xlsx",
+  config: { mimeType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" },
+});
+
+const interaction = await ai.interactions.create({
+  model: "gemini-4-hydrogen",
+  input: [
+    {
+      type: "document",
+      uri: workbook.uri,
+      mime_type: workbook.mimeType,
+      resolution: "high",
+      processing: {
+        type: "static",
+        spreadsheet_options: {
+          sheet_index: 2,
+          visible_cells: "A1:H50",
+          content_layers: ["data", "formulas", "visual"],
+        },
+      },
+    },
+    { type: "text", text: "Audit the EBITDA formulas and chart in Sheet 2 (A1:H50)." },
+  ],
+});`,
+      workbench: {
+        title: 'Multimodal File Slicing & SDK v3.6 Workbench',
+        subtitle: 'Compare full-file ingestion against sliced ranges and layers.',
+        dek: 'Select one of the three November 18 slicing blueprints below or open the full-screen Multimodal Slicing Studio.',
+        presets: [
+          {
+            label: '1. .XLSX SHEET 2 AUDIT',
+            k1: 'Slice Target',
+            v1: 'sheet_index: 2 · visible_cells: "A1:H50"',
+            k2: 'Content Layers',
+            v2: '["data", "formulas", "visual"] @ high resolution',
+            k3: 'Simulated Token Cut',
+            v3: '184,000 -> 4,480 tokens (97.6% reduction)',
+          },
+          {
+            label: '2. 400-PG MANUAL TOOL',
+            k1: 'Slice Target',
+            v1: 'function_result · start_page: 14, end_page: 16',
+            k2: 'Content Layers',
+            v2: '["page_image"] @ high resolution (~1,120 tok/pg)',
+            k3: 'Simulated Token Cut',
+            v3: '224,000 -> 3,640 tokens (98.4% reduction)',
+          },
+          {
+            label: '3. 60-MIN VIDEO SCRUB',
+            k1: 'Slice Target',
+            v1: 'start_offset: "1200s", end_offset: "1500s", fps: 0.5',
+            k2: 'Content Layers',
+            v2: 'Pass 1 ["transcript"] -> Pass 2 ["frames", "transcript"]',
+            k3: 'Simulated Token Cut',
+            v3: '945,000 -> 39,600 tokens (95.8% reduction)',
+          },
+        ],
+      },
+    },
+    verdict: {
+      title: 'Gemini’s Bottom Line: Server-Side Slicing Makes Multimodal Context Surgical',
+      subtitle:
+        'Combining native Office support, range-billed slicing in function_result, and WebRTC Live Interactions removes the last heavy preprocessing hurdles.',
+      paragraphs: [
+        '<strong>Adopt immediately if:</strong> your agents parse multi-tab Excel workbooks, 100+ page slide decks/manuals, or long call/video recordings—replacing custom LibreOffice and <code>ffmpeg</code> choppers with declarative <code>processing</code> options.',
+        '<strong>Upgrade to SDK v3.6.0:</strong> when building browser/edge real-time apps with ephemeral <code>interactions.authTokens</code> or large MCP tool registries with <code>defer_loading: true</code>.',
+      ],
+      sources: [
+        {
+          role: 'Official Gemini API Changelog',
+          label: 'Multimodal file processing and slicing (November 18, 2026)',
+          author: 'Google AI for Developers',
+          date: 'November 18, 2026',
+          url: 'https://ai.google.dev/gemini-api/docs/changelog#11-18-2026',
+        },
+        {
+          role: 'Official Document Processing Docs',
+          label: 'Customize document, presentation, and spreadsheet processing',
+          author: 'Google AI for Developers',
+          date: 'November 18, 2026',
+          url: 'https://ai.google.dev/gemini-api/docs/document-processing#customize-document-processing',
+        },
+        {
+          role: 'Official GitHub SDK Release',
+          label: 'googleapis/js-genai v3.6.0 & v3.5.0 (plus python-genai v3.6.0)',
+          author: 'Google APIs',
+          date: 'November 18, 2026',
+          url: 'https://github.com/googleapis/js-genai/releases/tag/v3.6.0',
+        },
+      ],
+    },
+  },
   'pulse-drive-gemini-classification-ga': {
     id: 'pulse-drive-gemini-classification-ga',
     slug: 'drive-gemini-data-classification-ga',

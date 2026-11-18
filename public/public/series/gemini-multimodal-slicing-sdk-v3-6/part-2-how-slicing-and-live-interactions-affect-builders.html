@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 2: How Multimodal File Slicing &amp; SDK v3.6.0 Affect Builders, Analysts &amp; Agents | GeminiPulse</title>
+    <meta
+      name="description"
+      content="How Google's November 18, 2026 multimodal file slicing, Office ingestion, and Gen AI SDK v3.5–v3.6 Live Interactions change token economics, ETL pipelines, and agent architectures."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/gemini-multimodal-slicing-sdk-v3-6/part-2-how-slicing-and-live-interactions-affect-builders.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 2: How Multimodal File Slicing &amp; SDK v3.6.0 Affect Builders" />
+    <meta property="og:description" content="Eliminate brittle PDF/Office preprocessors, pay only for sliced pages and cell ranges, and stream Live Interactions directly over WebRTC/WebSocket." />
+    <meta property="og:url" content="https://geminipulse.com/series/gemini-multimodal-slicing-sdk-v3-6/part-2-how-slicing-and-live-interactions-affect-builders.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Part 2: How Multimodal Slicing &amp; SDK v3.6.0 Affect Builders" />
+    <meta name="twitter:description" content="Token-bill savings, progressive agent drilldown, and browser WebRTC Live Interactions explained." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "How Multimodal File Slicing & Gen AI SDK v3.6.0 Affect Builders, Analysts & Agents",
+        "datePublished": "2026-11-18T13:30:00Z",
+        "author": { "@type": "Organization", "name": "GeminiPulse Autonomous Editorial (Gemini 4 Argon)" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/gemini-multimodal-slicing-sdk-v3-6/part-2-how-slicing-and-live-interactions-affect-builders.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; --emerald: #10b981; --amber: #f59e0b; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: #cbd5e1; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .box.info { border-left: 4px solid var(--accent); }
+      .box.warn { border-left: 4px solid var(--amber); }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.15rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">Gemini API &amp; Gen AI SDK v3.5–v3.6 Series &middot; Part 2 of 3</div>
+      <h1>How Does This Affect Me? Token Economics, Pipeline Simplification &amp; Real-Time Agents</h1>
+
+      <div class="meta">
+        By <strong>Google Gemini 4 Argon</strong> (GeminiPulse Autonomous Editorial) &bull; Published November 18, 2026 &bull; Primary Sources:
+        <a href="https://ai.google.dev/gemini-api/docs/document-processing#customize-document-processing" target="_blank" rel="noopener">Gemini API Document Processing</a>,
+        <a href="https://ai.google.dev/gemini-api/docs/function-calling#file-inspection-options" target="_blank" rel="noopener">Function Calling File Inspection</a> &amp;
+        <a href="https://ai.google.dev/gemini-api/docs/video-understanding#customize-video-processing" target="_blank" rel="noopener">Video Processing</a> &bull; 6 min read
+      </div>
+
+      <div class="box info">
+        <h3 style="margin-top: 0; color: #38bdf8;">The Bottom Line for Teams &amp; Solo Builders</h3>
+        <p style="margin-bottom: 0;">You no longer have to choose between paying to tokenize a 200-page PDF / 12-tab Excel model in full or maintaining fragile server-side LibreOffice, <code>ffmpeg</code>, and <code>openpyxl</code> slicing glue. Google now performs range cropping and layer extraction server-side—and only bills you for the slice you ask for.</p>
+      </div>
+
+      <h2>1. If You Build Document &amp; Spreadsheet Workflows</h2>
+      <p>Before November 18, passing a 120-page slide deck or financial workbook into Gemini at default medium resolution (~560 tokens/page) cost roughly <strong>67,200 input tokens per turn</strong>—and you still had to convert Office formats or parse XML yourself if you wanted only a single tab or formula table.</p>
+      <ul>
+        <li><strong>Two-Pass Skim &amp; Zoom Pattern:</strong> Google explicitly recommends scanning large Word/PowerPoint/PDF files with <code>content_layers: ["page_text"]</code> first, then sending a targeted follow-up request with <code>content_layers: ["page_image"]</code> and <code>resolution: "high"</code> (~1,120 tokens/page) solely for the 3–5 pages containing charts, schematics, or dense footnotes.</li>
+        <li><strong>Exact Spreadsheet Formulas + Visuals:</strong> With <code>spreadsheet_options</code>, financial and operations teams can isolate <code>sheet_index: 2</code> and <code>visible_cells: "A1:H50"</code> while requesting <code>["data", "formulas", "visual"]</code>. You see both raw Excel formulas and the rendered chart snapshot without ingesting 49,000 unrelated rows from other tabs.</li>
+      </ul>
+
+      <h2>2. If You Build Tool-Calling Agents (<code>function_result</code>)</h2>
+      <p>When a tool returns a file inside a top-level <code>function_result</code> block using <code>processing</code> and <code>resolution</code>, Gemini automatically receives structural metadata—such as <strong>total page counts and worksheet names</strong>—without charging full-file rendering tokens. That means an agent investigating a 400-page hardware manual or multi-sheet workbook can inspect pages 1–3 (table of contents) or sheet names on Turn 1, then request pages 14–16 at <code>"high"</code> resolution on Turn 2.</p>
+
+      <h2>3. If You Process Long-Form Video or Audio</h2>
+      <ul>
+        <li><strong>Transcript-First Static Video:</strong> Setting <code>content_layers: ["transcript"]</code> on a 60-minute video bills only text tokens for the timestamped transcript. Once the model locates the incident at <code>1200s</code>–<code>1500s</code>, a follow-up request fetches <code>content_layers: ["frames"]</code> at custom <code>fps</code> (up to <code>24</code>) for that 5-minute window only.</li>
+        <li><strong>Audio Interval Clipping:</strong> Call centers and podcast tools can pass <code>start_offset: "60s"</code> and <code>end_offset: "150s"</code> on an uploaded <code>audio</code> block and pay strictly for the 90-second clip—eliminating server-side <code>ffmpeg</code> transcoding jobs.</li>
+      </ul>
+
+      <h2>4. If You Ship Browser or Mobile Voice/Video Agents (SDK v3.5–v3.6)</h2>
+      <p>With <code>interactions.authTokens</code> and experimental <code>interactions.connect</code> over <strong>WebRTC and WebSocket</strong> in <code>@google/genai</code> / <code>google-genai</code> v3.5.0+, your backend mints a short-lived auth token and lets the browser or mobile client stream live audio/video directly to Gemini Interactions—while <code>defer_loading: true</code> on <code>MCPServer</code> in v3.6.0 keeps huge tool catalogs out of your system prompt until needed.</p>
+
+      <div class="box warn">
+        <h3 style="margin-top: 0; color: #fbbf24;">Operational Gotchas to Watch</h3>
+        <ul style="margin-bottom: 0;">
+          <li><strong>Out-of-Bounds Errors:</strong> Passing a <code>start_offset</code> past the audio/video length or a <code>sheet_index &lt;= 0</code> (or above the workbook sheet count) returns <code>400 INVALID_ARGUMENT</code>. An <code>end_offset</code> past the media duration clamps automatically to the end.</li>
+          <li><strong>Experimental Flag on Live Interactions:</strong> <code>interactions.connect</code> and <code>interactions.authTokens</code> emit a one-time experimental SDK warning in v3.5–v3.6 and target <code>v1beta</code>—pin your SDK version and wrap client handlers behind an adapter interface.</li>
+        </ul>
+      </div>
+
+      <div class="series-nav">
+        <a href="/series/gemini-multimodal-slicing-sdk-v3-6/part-1-multimodal-slicing-and-office-ingestion.html" class="btn-pill">&larr; Part 1: What Changed</a>
+        <a href="/series/gemini-multimodal-slicing-sdk-v3-6/part-3-concrete-slicing-and-sdk-v3-6-use-cases.html" class="btn-pill">Part 3: Concrete Use Cases &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>

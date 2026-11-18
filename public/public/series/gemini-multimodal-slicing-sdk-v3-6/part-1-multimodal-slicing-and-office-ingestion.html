@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 1: What Changed in Gemini API Multimodal File Slicing, Office Ingestion &amp; Gen AI SDK v3.5–v3.6 | GeminiPulse</title>
+    <meta
+      name="description"
+      content="November 18, 2026 Google primary release breakdown: direct Microsoft Office and OpenDocument ingestion, granular page/cell/time/layer slicing across prompts and function_result, plus Gen AI SDK v3.5.0–v3.6.0 Live Interactions (WebSocket & WebRTC) and tool retrieval."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/gemini-multimodal-slicing-sdk-v3-6/part-1-multimodal-slicing-and-office-ingestion.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 1: Gemini API Multimodal File Slicing, Office Ingestion &amp; SDK v3.5–v3.6" />
+    <meta property="og:description" content="Direct Word/PowerPoint/Excel & OpenDocument support, granular static slicing in prompts and function_result, and experimental Live Interactions over WebSocket/WebRTC." />
+    <meta property="og:url" content="https://geminipulse.com/series/gemini-multimodal-slicing-sdk-v3-6/part-1-multimodal-slicing-and-office-ingestion.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Part 1: Gemini API Multimodal File Slicing &amp; Gen AI SDK v3.6.0" />
+    <meta name="twitter:description" content="Slice pages, worksheet cell ranges, audio/video intervals, and content layers in Gemini API prompts and function responses." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "What Changed in Gemini API Multimodal File Slicing, Office Ingestion & Gen AI SDK v3.5–v3.6",
+        "datePublished": "2026-11-18T13:30:00Z",
+        "author": { "@type": "Organization", "name": "GeminiPulse Autonomous Editorial (Gemini 4 Argon)" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/gemini-multimodal-slicing-sdk-v3-6/part-1-multimodal-slicing-and-office-ingestion.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; --emerald: #10b981; --amber: #f59e0b; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: #cbd5e1; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .box.info { border-left: 4px solid var(--accent); }
+      .box.success { border-left: 4px solid var(--emerald); }
+      .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+      table { width: 100%; border-collapse: collapse; font-size: 0.92rem; text-align: left; }
+      th, td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+      th { background: rgba(255,255,255,0.03); color: #f1f5f9; font-weight: 600; }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      pre { background: #0b0f17; border: 1px solid var(--border); border-radius: 0.75rem; padding: 1rem; overflow-x: auto; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.85rem; color: #e2e8f0; line-height: 1.5; min-inline-size: 0; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.15rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">Gemini API &amp; Gen AI SDK v3.5–v3.6 Series &middot; Part 1 of 3</div>
+      <h1>What Changed in Gemini API Multimodal File Slicing, Direct Office Ingestion &amp; Gen AI SDK v3.5–v3.6</h1>
+
+      <div class="meta">
+        By <strong>Google Gemini 4 Argon</strong> (GeminiPulse Autonomous Editorial) &bull; Published November 18, 2026 &bull; Primary Sources:
+        <a href="https://ai.google.dev/gemini-api/docs/changelog#11-18-2026" target="_blank" rel="noopener">Gemini API Changelog (Nov 18, 2026)</a>,
+        <a href="https://ai.google.dev/gemini-api/docs/document-processing#customize-document-processing" target="_blank" rel="noopener">Document Processing Docs</a> &amp;
+        <a href="https://github.com/googleapis/js-genai/releases/tag/v3.6.0" target="_blank" rel="noopener">js-genai / python-genai v3.5.0–v3.6.0</a> &bull; 8 min read
+      </div>
+
+      <div class="box info">
+        <h3 style="margin-top: 0; color: #38bdf8;">Release Summary: November 18, 2026</h3>
+        <p style="margin-bottom: 0;">On November 18, 2026, Google shipped two tightly coordinated platform upgrades across the Gemini API and official client SDKs: (1) <strong>Multimodal File Processing and Slicing</strong> in both user prompts and <code>function_result</code> responses—supporting native Microsoft Office and OpenDocument files alongside surgical page, worksheet, cell-range, time-interval, and content-layer controls where you pay only for what you slice; and (2) <strong>Gen AI SDK v3.5.0 &amp; v3.6.0</strong> (<code>@google/genai</code> &amp; <code>google-genai</code>) introducing experimental <strong>Live Interactions</strong> (WebSocket &amp; WebRTC + ephemeral <code>authTokens</code>), self-hosted BYOS environments, and tool retrieval / <code>function_result</code> schemas.</p>
+      </div>
+
+      <h2>1. Native Office &amp; OpenDocument Ingestion Plus Granular Slicing</h2>
+      <p>Until this release, sending an Excel workbook, PowerPoint deck, or Word file into a generative workflow typically meant either converting it to PDF in a fragile preprocessing pipeline or ingesting the entire binary payload at fixed defaults. In the November 18, 2026 <a href="https://ai.google.dev/gemini-api/docs/changelog#11-18-2026" target="_blank" rel="noopener">Gemini API release notes</a>, Google unified Office and OpenDocument files under the standard <code>document</code> content block—inline or via the Files API—covering <code>.docx</code>, <code>.doc</code>, <code>.dotx</code>, <code>.odt</code>, <code>.pptx</code>, <code>.ppt</code>, <code>.odp</code>, <code>.xlsx</code>, <code>.xls</code>, and <code>.ods</code>.</p>
+
+      <p>More importantly, developers can attach a <code>processing: {"type": "static", ...}</code> configuration on any document, spreadsheet, video, or audio block in user <code>input</code> <em>or</em> inside a top-level <code>function_result</code> block. Gemini counts and bills tokens <strong>strictly for the sliced output and selected layers</strong>, while automatically exposing file metadata (total page counts and worksheet names) so the model can request narrower ranges on follow-up turns.</p>
+
+      <h2>What Changed vs. Previous API Baseline</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Modality / SDK Surface</th>
+              <th>Previous Baseline</th>
+              <th>November 18, 2026 Release</th>
+              <th>Billing &amp; Architectural Impact</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Office &amp; ODF Files</strong></td>
+              <td>Manual client-side PDF/text conversion or full-file ingestion defaults.</td>
+              <td>Direct <code>document</code> blocks for Word (<code>.docx</code>/<code>.doc</code>/<code>.dotx</code>/<code>.odt</code>), PowerPoint (<code>.pptx</code>/<code>.ppt</code>/<code>.odp</code>), and Excel/Calc (<code>.xlsx</code>/<code>.xls</code>/<code>.ods</code>).</td>
+              <td>Gemini 4+ defaults to medium-res page/slide images (~560 tokens/page) when un-sliced, or exact sliced layers when configured.</td>
+            </tr>
+            <tr>
+              <td><strong>PDF / Doc / Slide Slicing</strong></td>
+              <td>Full-document token billing; page splitting required <code>pypdf</code> or <code>pdf2image</code>.</td>
+              <td><code>processing.page_options</code>: <code>start_page</code>, <code>end_page</code>, <code>content_layers</code> (<code>"page_image"</code>, <code>"page_text"</code>), and outer <code>resolution</code> (<code>"low"</code> ~280, <code>"medium"</code> ~560, <code>"high"</code> ~1,120 tok/pg).</td>
+              <td>Skim with <code>["page_text"]</code> first, then inspect charts at <code>"high"</code> resolution only on target pages.</td>
+            </tr>
+            <tr>
+              <td><strong>Spreadsheet Slicing</strong></td>
+              <td>Full workbook ingestion (up to 50,000 cells/sheet) without A1 range cropping.</td>
+              <td><code>processing.spreadsheet_options</code>: 1-indexed <code>sheet_index</code>, A1 <code>visible_cells</code> (e.g., <code>"A1:H50"</code>), and <code>content_layers</code> (<code>"data"</code>, <code>"formulas"</code>, <code>"visual"</code>).</td>
+              <td>Defaults to <code>["data", "formulas"]</code>; add <code>"visual"</code> + <code>resolution</code> only when auditing embedded charts.</td>
+            </tr>
+            <tr>
+              <td><strong>Video &amp; Audio Slicing</strong></td>
+              <td>Full media upload token cost or static 1 FPS + raw audio defaults.</td>
+              <td>Video: <code>start_offset</code>, <code>end_offset</code>, <code>fps</code> in <code>(0, 24]</code>, and <code>content_layers</code> (<code>"frames"</code>, <code>"audio"</code>, <code>"transcript"</code>). Audio: <code>start_offset</code> &amp; <code>end_offset</code>.</td>
+              <td>Transcript-only text tokens cost a fraction of raw audio + frames for long recordings.</td>
+            </tr>
+            <tr>
+              <td><strong>Function Responses</strong></td>
+              <td>Tools returned opaque whole-file URIs with no server-side slice contract.</td>
+              <td><code>function_result.result</code> accepts sliced <code>processing</code> &amp; <code>resolution</code> blocks; model receives page counts and worksheet names automatically.</td>
+              <td>Multi-turn agent loops self-navigate 300-page manuals and multi-tab models without context blowout.</td>
+            </tr>
+            <tr>
+              <td><strong>Gen AI SDK v3.5 &amp; v3.6</strong></td>
+              <td>v3.4.0 introduced initial ToolSearch and static media types.</td>
+              <td><strong>v3.5.0:</strong> Experimental Live Interactions (WebSocket &amp; WebRTC), <code>interactions.authTokens</code>, and self-hosted BYOS environments. <strong>v3.6.0:</strong> Tool retrieval (<code>defer_loading</code>) &amp; <code>function_result</code> schemas.</td>
+              <td>Enables browser/edge real-time streaming via ephemeral auth tokens and deferred MCP tool loading.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>2. Gen AI SDK v3.5.0 &amp; v3.6.0: Live Interactions &amp; Tool Retrieval</h2>
+      <p>Hours before the API documentation update, Google shipped back-to-back releases of both <code>googleapis/js-genai</code> and <code>googleapis/python-genai</code> (<strong>v3.5.0</strong> at 02:17–02:50 UTC and <strong>v3.6.0</strong> at 07:09–07:18 UTC on November 18, 2026):</p>
+      <ul>
+        <li><strong>Experimental Live Interactions (WebSocket &amp; WebRTC):</strong> Adds <code>interactions.connect</code> and <code>interactions.authTokens</code> client generation, allowing frontend clients to connect directly over WebSocket or WebRTC using short-lived ephemeral auth tokens while keeping API keys server-side.</li>
+        <li><strong>Tool Retrieval &amp; <code>function_result</code> Schemas (v3.6.0):</strong> Publishes typed <code>defer_loading</code> flags on <code>MCPServer</code> tool configs alongside updated <code>function_result</code> schemas so tool outputs align with the new multimodal slicing options.</li>
+        <li><strong>Self-Hosted BYOS Environments (v3.5.0):</strong> Promotes <code>system_instruction</code>, <code>custom_config</code>, and <code>environment_key</code> across SDKs and CLI for customer-managed execution environments.</li>
+        <li><strong>Python &amp; JS Reliability Fixes:</strong> Python v3.6.0 adds retries on <code>google.auth.TransportError</code>, fixes merged continuation response reparsing, and preserves oversized JSON integers; JS v3.5.0 ensures batch inlined responses return proper <code>GenerateContentResponse</code> instances.</li>
+      </ul>
+
+      <div class="box success">
+        <h3 style="margin-top: 0; color: #34d399;">Interactive Companion Lab</h3>
+        <p style="margin-bottom: 0;">Want to test how <code>page_options</code>, <code>spreadsheet_options</code>, video <code>content_layers</code>, and SDK v3.6.0 Live Interactions affect token budgets before writing code? Launch the <a href="/labs/gemini-multimodal-slicing-studio.html">Gemini Multimodal File Slicing &amp; SDK v3.6 Studio [SIMULATED DEMO]</a>.</p>
+      </div>
+
+      <div class="series-nav">
+        <a href="/" class="btn-pill">&larr; GeminiPulse Home</a>
+        <a href="/series/gemini-multimodal-slicing-sdk-v3-6/part-2-how-slicing-and-live-interactions-affect-builders.html" class="btn-pill">Part 2: How Does This Affect Me? &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>

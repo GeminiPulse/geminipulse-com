@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gemini Multimodal File Slicing &amp; SDK v3.6.0 Studio [SIMULATED DEMO] | Agile Labs</title>
+    <meta
+      name="description"
+      content="Interactive [SIMULATED DEMO] developer workbench for Google's November 18, 2026 Gemini API Multimodal File Slicing & Gen AI SDK v3.5–v3.6 release: simulate Office/PDF page_options, Excel spreadsheet_options, video/audio slicing, and Live Interactions."
+    />
+    <link rel="canonical" href="https://geminipulse.com/labs/gemini-multimodal-slicing-studio.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Gemini Multimodal File Slicing &amp; SDK v3.6.0 Studio [SIMULATED DEMO]" />
+    <meta property="og:description" content="Simulate page_options, spreadsheet_options, video/audio interval slicing, and SDK v3.6.0 function_result workflows." />
+    <meta property="og:url" content="https://geminipulse.com/labs/gemini-multimodal-slicing-studio.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Gemini Multimodal File Slicing & SDK v3.6.0 Studio [SIMULATED DEMO]",
+        "url": "https://geminipulse.com/labs/gemini-multimodal-slicing-studio.html",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "All",
+        "creator": { "@type": "Organization", "name": "Agile Labs (via GeminiPulse.com)" },
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      }
+    </script>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #07090e;
+        --surface: #111622;
+        --surface-high: #182030;
+        --border: rgba(255, 255, 255, 0.1);
+        --text: #f3f5fb;
+        --muted: #9da4b8;
+        --accent: #38bdf8;
+        --success: #34d399;
+        --warning: #fbbf24;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+      .wrap { max-width: 1080px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .badge-sim {
+        display: inline-block;
+        font-family: ui-monospace, Menlo, monospace;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        padding: 0.25rem 0.65rem;
+        border-radius: 9999px;
+        background: rgba(245, 158, 11, 0.15);
+        color: #fbbf24;
+        border: 1px solid rgba(245, 158, 11, 0.35);
+        text-transform: uppercase;
+      }
+      .header-title { font-size: clamp(1.55rem, 3.2vw, 2.25rem); font-weight: 800; margin: 0.6rem 0 0.3rem; line-height: 1.2; }
+      .header-sub { font-size: 1rem; color: var(--muted); margin: 0 0 1.5rem; }
+      .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.25rem;
+        min-inline-size: 0;
+      }
+      @media (max-width: 820px) {
+        .grid-2 { grid-template-columns: minmax(0, 1fr); }
+      }
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+        padding: 1.25rem;
+        min-inline-size: 0;
+      }
+      .card-title { font-size: 1.05rem; font-weight: 700; margin: 0 0 0.9rem; }
+      .preset-btn {
+        display: block;
+        width: 100%;
+        text-align: left;
+        background: var(--surface-high);
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        padding: 0.8rem 1rem;
+        margin-bottom: 0.65rem;
+        color: var(--text);
+        cursor: pointer;
+        font-family: inherit;
+      }
+      .preset-btn:hover { border-color: var(--accent); }
+      .preset-btn.active { border-color: var(--accent); background: rgba(56, 189, 248, 0.12); }
+      .preset-title { font-weight: 700; font-size: 0.94rem; display: block; }
+      .preset-meta { font-size: 0.8rem; color: var(--muted); display: block; margin-top: 0.15rem; }
+      .control-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.75rem 0 1rem; }
+      .chip-btn {
+        background: var(--surface-high);
+        border: 1px solid var(--border);
+        color: var(--text);
+        padding: 0.4rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.8rem;
+        cursor: pointer;
+        font-family: ui-monospace, Menlo, monospace;
+      }
+      .chip-btn.active { background: rgba(56, 189, 248, 0.18); border-color: var(--accent); color: #7dd3fc; }
+      .metric-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.75rem;
+        margin: 1rem 0;
+      }
+      @media (max-width: 560px) {
+        .metric-grid { grid-template-columns: minmax(0, 1fr); }
+      }
+      .metric-box {
+        background: #0b0f17;
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        padding: 0.8rem;
+        min-inline-size: 0;
+      }
+      .metric-val { font-size: 1.25rem; font-weight: 800; color: var(--accent); font-family: ui-monospace, Menlo, monospace; }
+      .metric-lbl { font-size: 0.76rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+      .bar-track { height: 10px; background: rgba(255, 255, 255, 0.08); border-radius: 9999px; overflow: hidden; margin: 0.65rem 0; }
+      .bar-fill { height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); border-radius: 9999px; transition: width 0.25s ease; }
+      .step-item {
+        background: #0b0f17;
+        border: 1px solid var(--border);
+        border-left: 3px solid var(--accent);
+        border-radius: 0.65rem;
+        padding: 0.7rem 0.9rem;
+        margin-bottom: 0.6rem;
+        font-size: 0.88rem;
+      }
+      .step-lbl { font-family: ui-monospace, Menlo, monospace; font-size: 0.76rem; color: #7dd3fc; display: block; margin-bottom: 0.2rem; }
+      pre {
+        background: #0b0f17;
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        padding: 1rem;
+        overflow-x: auto;
+        font-family: ui-monospace, Menlo, Consolas, monospace;
+        font-size: 0.8rem;
+        color: #e2e8f0;
+        line-height: 1.5;
+        max-width: 100%;
+        min-inline-size: 0;
+        margin: 0;
+      }
+      .top-links { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; font-size: 0.86rem; }
+      .copy-btn {
+        background: rgba(56, 189, 248, 0.14);
+        border: 1px solid rgba(56, 189, 248, 0.35);
+        color: #7dd3fc;
+        padding: 0.35rem 0.75rem;
+        border-radius: 0.5rem;
+        font-size: 0.78rem;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="top-links">
+        <a href="/">&larr; Back to GeminiPulse</a>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="/series/gemini-multimodal-slicing-sdk-v3-6/part-1-multimodal-slicing-and-office-ingestion.html">Read 3-Part Series &rarr;</a>
+          <a href="/workbench.html">Open Workbench &rarr;</a>
+        </div>
+      </div>
+
+      <span class="badge-sim">[SIMULATED DEMO] &middot; Nov 18, 2026 Release</span>
+      <h1 class="header-title">Gemini Multimodal File Slicing &amp; SDK v3.6.0 Studio</h1>
+      <p class="header-sub">
+        Simulate server-side Office/PDF <code>page_options</code>, Excel <code>spreadsheet_options</code>, video/audio time slicing, and experimental Live Interactions (WebSocket/WebRTC) token savings.
+      </p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h2 class="card-title">1. Select Release Workload Preset</h2>
+          <div id="preset-list">
+            <button type="button" class="preset-btn active" data-preset="excel">
+              <span class="preset-title">.xlsx Financial Model Audit (spreadsheet_options)</span>
+              <span class="preset-meta">12-sheet workbook &rarr; Slice Sheet 2 (A1:H50) with data + formulas + visual</span>
+            </button>
+            <button type="button" class="preset-btn" data-preset="manual">
+              <span class="preset-title">400-Page Service Manual (function_result + page_options)</span>
+              <span class="preset-meta">Two-turn tool inspection: page_text skim &rarr; high-res page_image (pp. 14–16)</span>
+            </button>
+            <button type="button" class="preset-btn" data-preset="video">
+              <span class="preset-title">60-Min Compliance Video &amp; Call Clipping (video/audio layers)</span>
+              <span class="preset-meta">Transcript-only pass &rarr; static clip 1200s–1500s at 0.5 FPS</span>
+            </button>
+            <button type="button" class="preset-btn" data-preset="live">
+              <span class="preset-title">Live Interactions WebRTC + Deferred MCP (SDK v3.5–v3.6)</span>
+              <span class="preset-meta">Ephemeral authTokens + defer_loading: true tool retrieval</span>
+            </button>
+          </div>
+
+          <h3 style="font-size: 0.9rem; margin: 1.1rem 0 0.4rem; color: var(--muted);">Resolution / Mode Selector</h3>
+          <div class="control-row" id="res-controls">
+            <button type="button" class="chip-btn" data-res="low">resolution: "low" (~280 tok/pg)</button>
+            <button type="button" class="chip-btn" data-res="medium">resolution: "medium" (~560 tok/pg)</button>
+            <button type="button" class="chip-btn active" data-res="high">resolution: "high" (~1,120 tok/pg)</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 class="card-title">2. Simulated Token Economics &amp; Step Trace</h2>
+          <div class="metric-grid">
+            <div class="metric-box">
+              <div class="metric-lbl">Full-File Baseline</div>
+              <div class="metric-val" id="m-baseline" style="color: #f87171;">184,000</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-lbl">Sliced Payload</div>
+              <div class="metric-val" id="m-sliced" style="color: #34d399;">4,480</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-lbl">Simulated Reduction</div>
+              <div class="metric-val" id="m-savings">97.6%</div>
+            </div>
+          </div>
+
+          <div style="font-size: 0.82rem; color: var(--muted); display: flex; justify-content: space-between;">
+            <span>Sliced Token Footprint vs. Un-sliced Full Ingest</span>
+            <span id="m-layer-label">["data", "formulas", "visual"]</span>
+          </div>
+          <div class="bar-track">
+            <div class="bar-fill" id="savings-bar" style="width: 97.6%;"></div>
+          </div>
+
+          <div id="step-trace" style="margin-top: 1rem;"></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 1.25rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.85rem;">
+          <h2 class="card-title" style="margin: 0;">3. Grounded Gen AI SDK v3.6.0 Blueprint</h2>
+          <div style="display: flex; gap: 0.5rem; align-items: center;">
+            <button type="button" class="chip-btn active" data-lang="py">Python</button>
+            <button type="button" class="chip-btn" data-lang="ts">TypeScript</button>
+            <button type="button" class="copy-btn" id="copy-code-btn">Copy Snippet</button>
+          </div>
+        </div>
+        <pre><code id="code-output"></code></pre>
+      </div>
+
+      <p style="margin-top: 1.5rem; font-size: 0.82rem; color: var(--muted);">
+        <strong>[SIMULATED DEMO]</strong> Token counts and step traces in this browser studio are illustrative models grounded in Google's official November 18, 2026 <a href="https://ai.google.dev/gemini-api/docs/changelog#11-18-2026" target="_blank" rel="noopener">Gemini API Changelog</a>, <a href="https://ai.google.dev/gemini-api/docs/document-processing#customize-document-processing" target="_blank" rel="noopener">Document Processing Guide</a>, and <a href="https://github.com/googleapis/js-genai/releases/tag/v3.6.0" target="_blank" rel="noopener">Gen AI SDK v3.5.0–v3.6.0</a>.
+      </p>
+    </div>
+
+    <script>
+      const PRESETS = {
+        excel: {
+          baseline: 184000,
+          slicedByRes: { low: 2150, medium: 3200, high: 4480 },
+          layers: '["data", "formulas", "visual"]',
+          steps: [
+            { label: 'metadata.auto • Workbook inventory', detail: 'Model receives worksheet names (12 tabs) automatically without rendering all 50,000-cell sheets.' },
+            { label: 'processing.spreadsheet_options', detail: 'Sliced sheet_index: 2, visible_cells: "A1:H50" with evaluated values, raw Excel formulas, and chart snapshot.' }
+          ],
+          py: (res) => `from google import genai
+
+client = genai.Client()
+workbook = client.files.upload(file="financial_model.xlsx")
+
+interaction = client.interactions.create(
+    model="gemini-4-hydrogen",
+    input=[
+        {
+            "type": "document",
+            "uri": workbook.uri,
+            "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "resolution": "${res}",
+            "processing": {
+                "type": "static",
+                "spreadsheet_options": {
+                    "sheet_index": 2,
+                    "visible_cells": "A1:H50",
+                    "content_layers": ["data", "formulas", "visual"],
+                },
+            },
+        },
+        {"type": "text", "text": "Audit the EBITDA formulas and chart in Sheet 2 (A1:H50)."},
+    ],
+)
+print(interaction.output_text)`,
+          ts: (res) => `import { GoogleGenAI } from "@google/genai";
+
+const ai = new GoogleGenAI({});
+const workbook = await ai.files.upload({
+  file: "financial_model.xlsx",
+  config: { mimeType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" },
+});
+
+const interaction = await ai.interactions.create({
+  model: "gemini-4-hydrogen",
+  input: [
+    {
+      type: "document",
+      uri: workbook.uri,
+      mime_type: workbook.mimeType,
+      resolution: "${res}",
+      processing: {
+        type: "static",
+        spreadsheet_options: {
+          sheet_index: 2,
+          visible_cells: "A1:H50",
+          content_layers: ["data", "formulas", "visual"],
+        },
+      },
+    },
+    { type: "text", text: "Audit the EBITDA formulas and chart in Sheet 2 (A1:H50)." },
+  ],
+});
+console.log(interaction.output_text);`
+        },
+        manual: {
+          baseline: 224000,
+          slicedByRes: { low: 1120, medium: 1960, high: 3640 },
+          layers: '["page_image"] (pp. 14–16)',
+          steps: [
+            { label: 'turn[1] • function_call(inspect_document_pages)', detail: 'Model sees 400-page total metadata and calls inspect_document_pages(start_page=14, end_page=16).' },
+            { label: 'turn[2] • function_result.result (page_options)', detail: 'Tool returns only pages 14–16 rendered as page_image blocks; Gemini bills strictly for those 3 pages.' }
+          ],
+          py: (res) => `from google import genai
+
+client = genai.Client()
+manual = client.files.upload(file="service_manual.pdf")
+
+turn2 = client.interactions.create(
+    model="gemini-4-hydrogen",
+    previous_interaction_id=turn1.id,
+    tools=tools,
+    input=[{
+        "type": "function_result",
+        "call_id": call.id,
+        "name": call.name,
+        "result": [{
+            "type": "document",
+            "uri": manual.uri,
+            "mime_type": "application/pdf",
+            "resolution": "${res}",
+            "processing": {
+                "type": "static",
+                "page_options": {
+                    "start_page": 14,
+                    "end_page": 16,
+                    "content_layers": ["page_image"],
+                },
+            },
+        }],
+    }],
+)
+print(turn2.output_text)`,
+          ts: (res) => `import { GoogleGenAI } from "@google/genai";
+
+const ai = new GoogleGenAI({});
+const manualFile = await ai.files.upload({
+  file: "service_manual.pdf",
+  config: { mimeType: "application/pdf" },
+});
+
+const turn2 = await ai.interactions.create({
+  model: "gemini-4-hydrogen",
+  previous_interaction_id: turn1.id,
+  tools,
+  input: [{
+    type: "function_result",
+    call_id: toolCall.id,
+    name: toolCall.name,
+    result: [{
+      type: "document",
+      uri: manualFile.uri,
+      mime_type: "application/pdf",
+      resolution: "${res}",
+      processing: {
+        type: "static",
+        page_options: {
+          start_page: 14,
+          end_page: 16,
+          content_layers: ["page_image"],
+        },
+      },
+    }],
+  }],
+});
+console.log(turn2.output_text);`
+        },
+        video: {
+          baseline: 945000,
+          slicedByRes: { low: 14800, medium: 24200, high: 39600 },
+          layers: '["transcript"] -> ["frames"] (1200s–1500s)',
+          steps: [
+            { label: 'pass[1] • content_layers: ["transcript"]', detail: 'Ingested timestamped text transcript across 60-min recording for text-token cost only.' },
+            { label: 'pass[2] • start_offset: "1200s", end_offset: "1500s", fps: 0.5', detail: 'Sampled 1 frame every 2 seconds across the flagged 5-minute window only.' }
+          ],
+          py: (res) => `from google import genai
+
+client = genai.Client()
+video_file = client.files.upload(file="townhall_60m.mp4")
+
+interaction = client.interactions.create(
+    model="gemini-4-hydrogen",
+    input=[
+        {
+            "type": "video",
+            "uri": video_file.uri,
+            "mime_type": video_file.mime_type,
+            "resolution": "${res}",
+            "processing": {
+                "type": "static",
+                "start_offset": "1200s",
+                "end_offset": "1500s",
+                "fps": 0.5,
+                "content_layers": ["frames", "transcript"],
+            },
+        },
+        {"type": "text", "text": "Inspect the architecture diagram shown between 20:00 and 25:00."},
+    ],
+)
+print(interaction.output_text)`,
+          ts: (res) => `import { GoogleGenAI } from "@google/genai";
+
+const ai = new GoogleGenAI({});
+const interaction = await ai.interactions.create({
+  model: "gemini-4-hydrogen",
+  input: [
+    {
+      type: "video",
+      uri: videoFile.uri,
+      mime_type: videoFile.mimeType,
+      resolution: "${res}",
+      processing: {
+        type: "static",
+        start_offset: "1200s",
+        end_offset: "1500s",
+        fps: 0.5,
+        content_layers: ["frames", "transcript"],
+      },
+    },
+    { type: "text", text: "Inspect the architecture diagram shown between 20:00 and 25:00." },
+  ],
+});
+console.log(interaction.output_text);`
+        },
+        live: {
+          baseline: 48000,
+          slicedByRes: { low: 1900, medium: 1900, high: 1900 },
+          layers: 'WebRTC/WS Live + defer_loading: true MCP',
+          steps: [
+            { label: 'sdk[v3.5] • interactions.authTokens + WebRTC/WebSocket', detail: 'Backend mints short-lived auth token; client streams bidirectional audio/video directly.' },
+            { label: 'sdk[v3.6] • MCPServer.defer_loading: true', detail: 'Defers large MCP tool definitions until retrieved dynamically during the session.' }
+          ],
+          py: () => `from google import genai
+
+# Requires google-genai >= 3.5.0 / 3.6.0 (v1beta for Live Interactions)
+client = genai.Client(http_options={"api_version": "v1beta"})
+
+# 1. Mint ephemeral auth token server-side for browser WebSocket/WebRTC clients
+token = client.interactions.auth_tokens.create()
+
+# 2. Defer loading of large remote MCP tool registries in SDK v3.6.0
+mcp_tool = {
+    "type": "mcp_server",
+    "name": "enterprise-ops",
+    "url": "https://api.example.com/mcp",
+    "defer_loading": True,
+}
+print("Ephemeral token minted; MCP tool retrieval deferred.")`,
+          ts: () => `import { GoogleGenAI } from "@google/genai";
+
+// Requires @google/genai >= 3.5.0 / 3.6.0 (v1beta for Live Interactions)
+const ai = new GoogleGenAI({ httpOptions: { apiVersion: "v1beta" } });
+
+// 1. Mint ephemeral auth token server-side for browser WebSocket/WebRTC clients
+const authToken = await ai.interactions.authTokens.create();
+
+// 2. Defer loading of large remote MCP tool registries in SDK v3.6.0
+const mcpServerTool = {
+  type: "mcp_server" as const,
+  name: "enterprise-ops",
+  url: "https://api.example.com/mcp",
+  defer_loading: true,
+};
+console.log("Ephemeral token & deferred MCP config ready:", Boolean(authToken));`
+        }
+      };
+
+      let state = { preset: 'excel', res: 'high', lang: 'py' };
+
+      function render() {
+        const p = PRESETS[state.preset];
+        const sliced = p.slicedByRes[state.res];
+        const pct = (((p.baseline - sliced) / p.baseline) * 100).toFixed(1);
+
+        document.getElementById('m-baseline').textContent = p.baseline.toLocaleString();
+        document.getElementById('m-sliced').textContent = sliced.toLocaleString();
+        document.getElementById('m-savings').textContent = `${pct}%`;
+        document.getElementById('m-layer-label').textContent = p.layers;
+        document.getElementById('savings-bar').style.width = `${pct}%`;
+
+        document.getElementById('step-trace').innerHTML = p.steps
+          .map(
+            (s) =>
+              `<div class="step-item"><span class="step-lbl">${s.label}</span><div>${s.detail}</div></div>`
+          )
+          .join('');
+
+        document.getElementById('code-output').textContent = p[state.lang](state.res);
+      }
+
+      document.querySelectorAll('[data-preset]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('[data-preset]').forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+          state.preset = btn.getAttribute('data-preset');
+          render();
+        });
+      });
+
+      document.querySelectorAll('[data-res]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('[data-res]').forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+          state.res = btn.getAttribute('data-res');
+          render();
+        });
+      });
+
+      document.querySelectorAll('[data-lang]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('[data-lang]').forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+          state.lang = btn.getAttribute('data-lang');
+          render();
+        });
+      });
+
+      document.getElementById('copy-code-btn').addEventListener('click', async () => {
+        const code = document.getElementById('code-output').textContent;
+        try {
+          await navigator.clipboard.writeText(code);
+          const b = document.getElementById('copy-code-btn');
+          b.textContent = 'Copied!';
+          setTimeout(() => (b.textContent = 'Copy Snippet'), 1500);
+        } catch (_) {}
+      });
+
+      render();
+    </script>
+  </body>
+</html>

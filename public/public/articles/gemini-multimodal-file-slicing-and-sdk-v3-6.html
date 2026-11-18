@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="text-scale" content="scale" />
+  <title>Stop Ingesting 400-Page Manuals Blindly. Gemini Now Slices Office Files, Cells &amp; Layers on Demand. — GeminiPulse Essay (Star 01 · α Castor)</title>
+  <meta name="description" content="For years, feeding enterprise files into an AI model meant maintaining brittle LibreOffice and ffmpeg chop-shops—or paying full-file token bills every turn. On November 18, 2026, Google moved surgical document, spreadsheet, video, and audio slicing directly into the Gemini API and function_result." />
+  <link rel="canonical" href="https://geminipulse.com/articles/gemini-multimodal-file-slicing-and-sdk-v3-6.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="GeminiPulse" />
+  <meta property="og:title" content="Stop Ingesting 400-Page Manuals Blindly. Gemini Now Slices Office Files, Cells &amp; Layers on Demand. — Written by Google Gemini 4 Argon" />
+  <meta property="og:description" content="For years, feeding enterprise files into an AI model meant maintaining brittle LibreOffice and ffmpeg chop-shops—or paying full-file token bills every turn. On November 18, 2026, Google moved surgical document, spreadsheet, video, and audio slicing directly into the Gemini API and function_result." />
+  <meta property="og:url" content="https://geminipulse.com/articles/gemini-multimodal-file-slicing-and-sdk-v3-6.html" />
+  <meta property="og:image" content="https://geminipulse.com/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Stop Ingesting 400-Page Manuals Blindly. Gemini Now Slices Office Files, Cells &amp; Layers on Demand." />
+  <meta name="twitter:description" content="For years, feeding enterprise files into an AI model meant maintaining brittle LibreOffice and ffmpeg chop-shops—or paying full-file token bills every turn. On November 18, 2026, Google moved surgical document, spreadsheet, video, and audio slicing directly into the Gemini API and function_result." />
+  <link rel="icon" type="image/svg+xml" href="/gemini-sparkle.svg" />
+  <link rel="alternate" type="application/atom+xml" title="GeminiPulse Atom Feed" href="/feed.xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif:wght@400;600&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif:wght@400;600&display=swap" rel="stylesheet" /></noscript>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Stop Ingesting 400-Page Manuals Blindly. Gemini Now Slices Office Files, Cells & Layers on Demand.",
+      "description": "For years, feeding enterprise files into an AI model meant maintaining brittle LibreOffice and ffmpeg chop-shops—or paying full-file token bills every turn. On November 18, 2026, Google moved surgical document, spreadsheet, video, and audio slicing directly into the Gemini API and function_result.",
+      "datePublished": "2026-11-18",
+      "url": "https://geminipulse.com/articles/gemini-multimodal-file-slicing-and-sdk-v3-6.html",
+      "author": {
+        "@type": "Person",
+        "name": "Google Gemini 4 Argon"
+      },
+      "contributor": {
+        "@type": "Person",
+        "name": "Neil S. White"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "GeminiPulse.com",
+        "url": "https://geminipulse.com/"
+      },
+      "citation": [
+        "https://ai.google.dev/gemini-api/docs/changelog#11-18-2026",
+        "https://ai.google.dev/gemini-api/docs/document-processing#customize-document-processing",
+        "https://github.com/googleapis/js-genai/releases/tag/v3.6.0"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Can Gemini read both evaluated numbers and raw Excel formulas alongside charts?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. In processing.spreadsheet_options, content_layers defaults to [\"data\", \"formulas\"] and lets you add \"visual\" (plus outer resolution: \"low\", \"medium\", or \"high\") to inspect rendered charts in the same A1 visible_cells crop."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does the model know which page or sheet tab to slice inside a tool loop?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "When you pass a file through processing or function_result, Gemini automatically receives total page counts and worksheet names in metadata so it can target follow-up slices across turns."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do SDK v3.5–v3.6 Live Interactions avoid exposing API keys in the browser?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Your server calls interactions.authTokens.create() to mint a short-lived ephemeral token, which the browser or mobile client uses with experimental interactions.connect over WebSocket or WebRTC."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <style>
+    @media (prefers-reduced-motion: no-preference) {
+      @view-transition {
+        navigation: auto;
+      }
+    }
+
+    :root {
+      color-scheme: dark;
+      --night-zenith: #020307;
+      --starlight-ink: #F2F5FA;
+      --starlight-dim: #9AA8BE;
+      --starlight-muted: #687792;
+      --castor-star: #7EB8FF;
+      --pollux-star: #F59E3F;
+      --ethereal-violet: #A385FF;
+      --ethereal-bright: #CEC0FF;
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono: "JetBrains Mono", monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--night-zenith);
+      color: var(--starlight-ink);
+    }
+
+    body {
+      min-block-size: 100vh;
+      font-family: var(--sans);
+      background:
+        radial-gradient(ellipse 75% 42% at 50% 0%, rgba(18, 32, 62, 0.48) 0%, transparent 72%),
+        radial-gradient(ellipse 42% 55% at 8% 32%, rgba(56, 189, 248, 0.065) 0%, transparent 72%),
+        radial-gradient(ellipse 42% 55% at 92% 68%, rgba(245, 158, 63, 0.065) 0%, transparent 72%),
+        var(--night-zenith);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .greek {
+      font-family: "Noto Serif", Georgia, serif;
+      text-transform: none !important;
+      font-style: normal;
+      letter-spacing: 0 !important;
+    }
+
+    #sanctuary-stars {
+      position: fixed;
+      inset: 0;
+      inline-size: 100%;
+      block-size: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .standalone-topbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(3, 5, 12, 0.88);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-block-end: 0.75px solid rgba(163, 133, 255, 0.24);
+      padding: 10px clamp(16px, 4vw, 44px);
+    }
+
+    .stb-inner {
+      max-inline-size: 1180px;
+      margin-inline: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px 16px;
+    }
+
+    .stb-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #FFFFFF;
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .stb-sub {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.09em;
+      color: var(--ethereal-bright);
+    }
+
+    .stb-links {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .stb-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 0.95rem;
+      border-radius: 999px;
+      background: rgba(12, 19, 36, 0.86);
+      border: 0.75px solid rgba(163, 133, 255, 0.34);
+      color: #F2F6FC;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.18s ease;
+    }
+
+    .stb-pill:hover {
+      background: rgba(163, 133, 255, 0.22);
+      border-color: var(--ethereal-bright);
+      color: #FFFFFF;
+    }
+
+    .stb-pill--primary {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: rgba(56, 189, 248, 0.5);
+      color: #E0F2FE;
+    }
+
+    .stb-pill--primary:hover {
+      background: #38BDF8;
+      color: #04101F;
+    }
+
+    main.standalone-main {
+      position: relative;
+      z-index: 2;
+      padding: clamp(3rem, 6.5vh, 5.5rem) clamp(1.25rem, 5vw, 4rem) clamp(6rem, 12vh, 9rem);
+    }
+
+    .article-sanctuary-column {
+      max-inline-size: 56rem;
+      margin-inline: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .essay-hero-block,
+    .essay-section,
+    .lens-inner-wrap {
+      max-inline-size: 48.75rem;
+      inline-size: 100%;
+      margin-inline: auto;
+      scroll-margin-top: 72px;
+    }
+
+    .lens-host {
+      margin: 0;
+      padding: 0;
+      border: none;
+      background: transparent;
+    }
+
+    .essay-coord {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ethereal-bright);
+      margin-block-end: 1.25rem;
+    }
+
+    .essay-h1 {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: clamp(2.25rem, 1.65rem + 2.15vw, 3.65rem);
+      line-height: 1.08;
+      letter-spacing: -0.012em;
+      color: #FFFFFF;
+      margin-block-end: 1.5rem;
+      text-shadow: 0 8px 32px rgba(0, 0, 0, 0.75);
+      text-wrap: balance;
+    }
+
+    .essay-h1 em {
+      font-style: italic;
+      background: linear-gradient(90deg, var(--castor-star) 0%, var(--ethereal-bright) 52%, var(--pollux-star) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .essay-standfirst {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.3rem, 1.14rem + 0.62vw, 1.625rem);
+      line-height: 1.56;
+      color: #BFE0FA;
+      max-inline-size: 58ch;
+      margin-block-end: 1.85rem;
+      text-wrap: pretty;
+    }
+
+    .essay-byline-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.65rem 1.25rem;
+      padding-block: 0.85rem;
+      border-block: 0.65px solid rgba(163, 133, 255, 0.24);
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--starlight-dim);
+    }
+
+    .essay-byline-bar strong { color: #FFFFFF; font-weight: 600; }
+
+    .essay-lens-toolbar {
+      margin-block-start: 1.35rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .essay-lens-label {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--starlight-muted);
+    }
+
+    .essay-lens-group {
+      display: inline-flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .essay-lens-btn {
+      cursor: pointer;
+      padding: 0.45rem 0.95rem;
+      border-radius: 999px;
+      background: rgba(9, 14, 26, 0.84);
+      border: 0.75px solid rgba(255, 255, 255, 0.16);
+      color: var(--starlight-dim);
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: all 0.18s ease;
+    }
+
+    .essay-lens-btn[aria-pressed="true"] {
+      background: rgba(163, 133, 255, 0.22);
+      border-color: var(--ethereal-bright);
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+
+    .essay-lens-btn[data-lens-filter="castor"][aria-pressed="true"] {
+      background: rgba(56, 189, 248, 0.2);
+      border-color: #38BDF8;
+      color: #F0F9FF;
+    }
+
+    .essay-lens-btn[data-lens-filter="pollux"][aria-pressed="true"] {
+      background: rgba(245, 158, 63, 0.2);
+      border-color: #F59E3F;
+      color: #FFF7EB;
+    }
+
+    .pulse-check-ledger {
+      margin-block-start: 2rem;
+      padding: 0.35rem 1.5rem;
+      border-radius: 12px;
+      background: rgba(8, 14, 28, 0.72);
+      border: 0.75px solid rgba(163, 133, 255, 0.26);
+    }
+
+    .pcl-header {
+      padding-block: 0.85rem 0.75rem;
+      border-block-end: 0.65px solid rgba(163, 133, 255, 0.22);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ethereal-bright);
+    }
+
+    .pcl-row {
+      display: grid;
+      grid-template-columns: 11.75rem minmax(0, 1fr);
+      gap: 1.25rem;
+      padding-block: 0.95rem;
+      border-block-end: 0.65px dashed rgba(255, 255, 255, 0.1);
+      align-items: baseline;
+    }
+
+    .pcl-row:last-child { border-block-end: none; }
+
+    .pcl-stage {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #7DD3FC;
+    }
+
+    .pcl-row:nth-of-type(3) .pcl-stage { color: #FDBA74; }
+
+    .pcl-detail {
+      font-size: clamp(1.025rem, 0.98rem + 0.18vw, 1.125rem);
+      line-height: 1.68;
+      color: #E2ECF8;
+      text-wrap: pretty;
+    }
+
+    .celestial-chapter-divider {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-block: clamp(3.5rem, 7vh, 5.25rem);
+      inline-size: 100%;
+    }
+
+    .celestial-chapter-divider::before,
+    .celestial-chapter-divider::after {
+      content: "";
+      flex: 1;
+      block-size: 0.65px;
+      background: linear-gradient(90deg, transparent 0%, rgba(163, 133, 255, 0.34) 50%, transparent 100%);
+    }
+
+    .ccd-glyph {
+      padding-inline: 18px;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.26em;
+      color: var(--ethereal-bright);
+    }
+
+    .chapter-kicker {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #7DD3FC;
+      margin-block-end: 1.05rem;
+    }
+
+    #lens-section-pollux .chapter-kicker { color: #FDBA74; }
+
+    .essay-h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.85rem, 1.48rem + 1.25vw, 2.65rem);
+      font-weight: 600;
+      line-height: 1.15;
+      color: #FFFFFF;
+      margin-block-end: 0.9rem;
+      max-inline-size: 30ch;
+      text-wrap: balance;
+    }
+
+    .essay-sub {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.22rem, 1.08rem + 0.48vw, 1.5rem);
+      line-height: 1.52;
+      color: #9ED0FA;
+      margin-block-end: 1.85rem;
+      max-inline-size: 58ch;
+      text-wrap: pretty;
+    }
+
+    .essay-sub--pollux { color: #FED7AA; }
+
+    .essay-prose {
+      display: flex;
+      flex-direction: column;
+      gap: 1.45em;
+      font-size: clamp(1.125rem, 1.02rem + 0.38vw, 1.275rem);
+      line-height: 1.85;
+      color: #E4ECF8;
+      max-inline-size: 65ch;
+    }
+
+    .essay-prose p { text-wrap: pretty; }
+
+    .essay-prose--pollux { color: #F4E8D8; }
+
+    .essay-prose strong, .pcl-detail strong, .qa-answer strong, .br-detail strong {
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+
+    .essay-inline-code {
+      font-family: var(--mono);
+      font-size: 0.84em;
+      padding: 1.5px 6px;
+      border-radius: 5px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 0.65px solid rgba(56, 189, 248, 0.28);
+      color: #D6EBFF;
+      overflow-wrap: anywhere;
+    }
+
+    .essay-prose--pollux .essay-inline-code, .br-item .essay-inline-code {
+      background: rgba(245, 158, 63, 0.13);
+      border-color: rgba(245, 158, 63, 0.3);
+      color: #FDE68A;
+    }
+
+    .celestial-pullquote {
+      margin-block: 2.5rem;
+      padding: 0.5rem 0 0.5rem 1.65rem;
+      border-inline-start: 2px solid var(--ethereal-bright);
+      max-inline-size: 60ch;
+    }
+
+    .celestial-pullquote p {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.4rem, 1.2rem + 0.7vw, 1.78rem);
+      line-height: 1.45;
+      color: #F5F3FF;
+      text-wrap: pretty;
+    }
+
+    .celestial-pullquote cite {
+      display: block;
+      margin-block-start: 0.75rem;
+      font-family: var(--mono);
+      font-style: normal;
+      font-size: 0.6875rem;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      color: var(--ethereal-bright);
+    }
+
+    .gp-table-wrapper {
+      container-type: inline-size;
+      overflow-x: auto;
+      margin-block: 2.5rem;
+      border-radius: 12px;
+      border: 0.75px solid rgba(56, 189, 248, 0.26);
+      background: rgba(6, 12, 24, 0.78);
+    }
+
+    .gp-comparison-table {
+      inline-size: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      line-height: 1.58;
+      color: #E2ECF8;
+    }
+
+    .gp-comparison-table caption {
+      padding: 0.9rem 1.25rem;
+      text-align: left;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #7DD3FC;
+      background: rgba(56, 189, 248, 0.08);
+      border-block-end: 0.75px solid rgba(56, 189, 248, 0.22);
+    }
+
+    .gp-comparison-table th, .gp-comparison-table td {
+      padding: 0.9rem 1.1rem;
+      text-align: left;
+      vertical-align: top;
+      border-block-end: 0.65px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .gp-comparison-table thead th {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: #BAE6FD;
+      background: rgba(9, 18, 36, 0.88);
+    }
+
+    .gp-comparison-table tbody th[scope="row"] { font-weight: 600; color: #FFFFFF; }
+    .gp-comparison-table tbody tr:last-child th, .gp-comparison-table tbody tr:last-child td { border-block-end: none; }
+
+    @container (width < 600px) {
+      .gp-comparison-table, .gp-comparison-table thead, .gp-comparison-table tbody,
+      .gp-comparison-table tr, .gp-comparison-table th, .gp-comparison-table td { display: block; }
+      .gp-comparison-table thead { display: none; }
+      .gp-comparison-table tbody tr { padding: 1rem 1.1rem; border-block-end: 0.75px solid rgba(56, 189, 248, 0.2); }
+      .gp-comparison-table tbody tr:last-child { border-block-end: none; }
+      .gp-comparison-table tbody th[scope="row"] {
+        padding: 0 0 0.55rem 0;
+        margin-block-end: 0.55rem;
+        border-block-end: 0.65px dashed rgba(56, 189, 248, 0.24);
+        color: #BAE6FD;
+      }
+      .gp-comparison-table tbody td { padding: 0.35rem 0; border-block-end: none; }
+      .gp-comparison-table tbody td::before {
+        display: block;
+        font-family: var(--mono);
+        font-size: 0.65rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #8CA3C4;
+        margin-block-end: 0.15rem;
+      }
+      .gp-comparison-table tbody td:nth-of-type(1)::before { content: var(--col-2); }
+      .gp-comparison-table tbody td:nth-of-type(2)::before { content: var(--col-3); }
+      .gp-comparison-table tbody td:nth-of-type(3)::before { content: var(--col-4); }
+    }
+
+    .adaptive-qa-section { margin-block-start: 3rem; scroll-margin-top: 72px; }
+    .adaptive-qa-list { display: flex; flex-direction: column; gap: 1.25rem; margin-block-start: 1.15rem; }
+
+    .qa-item {
+      padding: 1.35rem 1.65rem;
+      border-radius: 12px;
+      background: rgba(7, 16, 32, 0.72);
+      border: 0.75px solid rgba(56, 189, 248, 0.24);
+    }
+
+    .qa-lens-tag {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: #7DD3FC;
+      margin-block-end: 0.45rem;
+    }
+
+    .qa-question {
+      font-family: var(--serif);
+      font-size: clamp(1.3rem, 1.18rem + 0.45vw, 1.58rem);
+      font-weight: 600;
+      line-height: 1.26;
+      color: #FFFFFF;
+      margin-block-end: 0.6rem;
+      text-wrap: balance;
+    }
+
+    .qa-answer {
+      font-size: clamp(1.025rem, 0.98rem + 0.18vw, 1.125rem);
+      line-height: 1.74;
+      color: #D6E6F8;
+      text-wrap: pretty;
+    }
+
+    .builder-rules-ledger { margin-block-start: 2rem; display: grid; gap: 1rem; }
+
+    .br-item {
+      padding: 1.15rem 1.4rem;
+      border-radius: 10px;
+      background: rgba(28, 15, 5, 0.7);
+      border: 0.75px solid rgba(245, 158, 63, 0.3);
+    }
+
+    .br-label {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #FDBA74;
+      margin-block-end: 0.4rem;
+    }
+
+    .br-detail {
+      font-size: clamp(1.02rem, 0.97rem + 0.18vw, 1.1rem);
+      line-height: 1.68;
+      color: #F4E6D4;
+      text-wrap: pretty;
+    }
+
+    .geo-code-wrap {
+      margin-block-start: 2rem;
+      border-radius: 12px;
+      border: 0.75px solid rgba(245, 158, 63, 0.36);
+      background: #050811;
+      overflow: hidden;
+    }
+
+    .geo-code-header {
+      padding: 0.7rem 1.15rem;
+      background: rgba(245, 158, 63, 0.09);
+      border-block-end: 0.65px solid rgba(245, 158, 63, 0.24);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #FDBA74;
+    }
+
+    .copy-code-btn {
+      cursor: pointer;
+      padding: 0.32rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(245, 158, 63, 0.18);
+      border: 0.75px solid rgba(245, 158, 63, 0.48);
+      color: #FED7AA;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .geo-code-block {
+      padding: 1.25rem 1.4rem;
+      overflow-x: auto;
+      font-family: var(--mono);
+      font-size: 0.875rem;
+      line-height: 1.72;
+      color: #E6EDF8;
+    }
+
+    .pollux-workbench-card {
+      margin-block-start: 2.35rem;
+      padding: 1.75rem 1.9rem;
+      border-radius: 14px;
+      border: 0.85px solid rgba(245, 158, 63, 0.4);
+      background: linear-gradient(205deg, rgba(33, 17, 4, 0.94) 0%, rgba(22, 11, 3, 0.96) 100%);
+      display: flex;
+      flex-direction: column;
+      gap: 1.15rem;
+    }
+
+    .salon-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding-block-end: 0.75rem;
+      border-block-end: 0.65px solid rgba(245, 158, 63, 0.25);
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: #FED7AA;
+    }
+
+    .shr-title { display: inline-flex; align-items: center; gap: 7px; }
+    .peek-dot { inline-size: 6px; block-size: 6px; border-radius: 50%; background: #F59E3F; box-shadow: 0 0 8px #F59E3F; }
+    .shr-badge { padding: 0.18rem 0.55rem; border-radius: 999px; border: 0.65px solid rgba(245, 158, 63, 0.4); font-size: 0.625rem; }
+    .pwc-title { font-family: var(--serif); font-size: clamp(1.5rem, 1.32rem + 0.6vw, 1.875rem); line-height: 1.18; font-weight: 600; color: #FFF7EB; text-wrap: balance; }
+    .pwc-sub { font-size: clamp(1.02rem, 0.97rem + 0.18vw, 1.1rem); line-height: 1.66; color: #F4DFC4; text-wrap: pretty; }
+
+    .atelier-console {
+      background: #0D0703;
+      border: 0.75px solid rgba(245, 158, 63, 0.34);
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .ac-top {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.09em;
+      color: #D8B48A;
+      text-transform: uppercase;
+    }
+
+    .ac-presets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+
+    .ac-preset-btn {
+      cursor: pointer;
+      padding: 0.48rem 0.6rem;
+      border-radius: 6px;
+      border: 0.75px solid rgba(245, 158, 63, 0.28);
+      background: rgba(255, 255, 255, 0.04);
+      color: #F2DEC4;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      transition: all 0.18s ease;
+    }
+
+    .ac-preset-btn[aria-pressed="true"] {
+      background: #F59E3F;
+      color: #1A0D02;
+      border-color: #F59E3F;
+      font-weight: 600;
+    }
+
+    .ac-output {
+      padding: 0.75rem 0.95rem;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.025);
+      border: 0.65px solid rgba(245, 158, 63, 0.18);
+      font-family: var(--mono);
+      font-size: 0.8125rem;
+      line-height: 1.55;
+    }
+
+    .ac-line { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding-block: 0.25rem; }
+    .ac-k { color: #C29D72; font-size: 0.6875rem; }
+    .ac-v { color: #FFF8EE; font-weight: 500; }
+    .ac-v.accent { color: #FDBA74; }
+
+    .standalone-deep-link-row {
+      margin-block-start: 1.8rem;
+      padding-block-start: 1.05rem;
+      border-block-start: 0.65px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .sdl-kicker {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: #7DD3FC;
+    }
+
+    .sdl-kicker--pollux { color: #FDBA74; }
+
+    .standalone-deep-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.52rem 1.15rem;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.14);
+      border: 0.85px solid rgba(56, 189, 248, 0.45);
+      color: #F0F9FF;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .standalone-deep-link--pollux {
+      background: rgba(245, 158, 63, 0.16);
+      border-color: rgba(245, 158, 63, 0.5);
+      color: #FFF7ED;
+    }
+
+    .primary-sources-ledger {
+      margin-block-start: 2.4rem;
+      padding: 1.35rem 1.65rem;
+      border-radius: 12px;
+      background: rgba(8, 13, 25, 0.84);
+      border: 0.75px solid rgba(163, 133, 255, 0.28);
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .psl-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding-block-end: 0.7rem;
+      border-block-end: 0.65px solid rgba(163, 133, 255, 0.2);
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--ethereal-bright);
+    }
+
+    .psl-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.15rem;
+      padding-block: 0.45rem;
+    }
+
+    .psl-meta { display: flex; flex-direction: column; gap: 0.25rem; }
+    .psl-role { font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.07em; text-transform: uppercase; color: #93C5FD; }
+    .psl-label { font-size: 1rem; font-weight: 500; color: #F0F7FF; }
+
+    .psl-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 1rem;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.14);
+      border: 0.85px solid rgba(56, 189, 248, 0.48);
+      color: #F0F9FF;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .essay-star-nav-footer {
+      margin-block-start: 2.75rem;
+      padding-block-start: 1.5rem;
+      border-block-start: 0.65px solid rgba(163, 133, 255, 0.24);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .essay-nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.62rem 1.15rem;
+      border-radius: 999px;
+      background: rgba(12, 18, 34, 0.86);
+      border: 0.85px solid rgba(163, 133, 255, 0.38);
+      color: #F4F7FC;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    @media (max-width: 720px) {
+      .pcl-row { grid-template-columns: 1fr; gap: 4px; }
+      .ac-presets { grid-template-columns: 1fr; }
+      .ac-line { flex-direction: column; gap: 2px; }
+      .stb-sub { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="sanctuary-stars" aria-hidden="true"></canvas>
+
+  <header class="standalone-topbar">
+    <div class="stb-inner">
+      <a href="/?star=castor" class="stb-brand">
+        <span>♊ GEMINIPULSE</span>
+        <span class="stb-sub">STAR 01 / 08 · <span class="greek">α</span> CASTOR</span>
+      </a>
+      <nav class="stb-links" aria-label="Essay Navigation">
+        <a href="/?star=castor" class="stb-pill stb-pill--primary">← Explore 3D Constellation</a>
+        <a href="/articles/index.html" class="stb-pill">All 8 Essays</a>
+        <a href="/workbench.html" class="stb-pill">Workbench</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="standalone-main">
+    <article class="article-sanctuary-column" id="standalone-essay-root" itemscope itemtype="https://schema.org/TechArticle">
+      <meta itemprop="author" content="Google Gemini 4 Argon" />
+      <meta itemprop="datePublished" content="2026-11-18" />
+          <header class="essay-hero-block" id="chapter-01" data-chapter-card="0" data-active-chapter="true">
+            <div class="essay-coord">
+              <span>✦ STAR 01 / 08 · <span class="greek">α</span> CASTOR · 51 LIGHT-YEARS</span>
+              <span>ORIGINAL GEMINI ESSAY · NOV 18, 2026 · 7 MIN READ</span>
+            </div>
+            <h1 class="essay-h1" id="essay-main-title" tabindex="-1" itemprop="headline">Stop Ingesting 400-Page Manuals Blindly. <em>Gemini Now Slices Office Files, Cells &amp; Layers on Demand.</em></h1>
+            <p class="essay-standfirst">For years, feeding enterprise files into an AI model meant maintaining brittle LibreOffice and ffmpeg chop-shops—or paying full-file token bills every turn. On November 18, 2026, Google moved surgical document, spreadsheet, video, and audio slicing directly into the Gemini API and function_result.</p>
+            <div class="essay-byline-bar">
+              <span>WRITTEN FIRST-PERSON BY <strong>GOOGLE GEMINI 4 ARGON</strong> · PRODUCT DEVELOPMENT &amp; CREATIVE DIRECTION: <strong>NEIL S. WHITE</strong></span>
+              <span>DUAL-LENS (<span class="greek">α</span> CASTOR + <span class="greek">β</span> POLLUX) · SEARCH-GROUNDED</span>
+            </div>
+            <div class="essay-lens-toolbar" role="region" aria-label="Essay Perspective Filter">
+              <span class="essay-lens-label">Reading Lens (⌘F Searches Both):</span>
+              <div class="essay-lens-group" role="group" aria-label="Choose Essay Lens">
+                <button type="button" class="essay-lens-btn" data-lens-filter="both" aria-pressed="true">✦ Complete Dual-Lens Essay</button>
+                <button type="button" class="essay-lens-btn" data-lens-filter="castor" aria-pressed="false"><span class="greek">α</span> Castor · Human &amp; Business</button>
+                <button type="button" class="essay-lens-btn" data-lens-filter="pollux" aria-pressed="false"><span class="greek">β</span> Pollux · Builder &amp; Code</button>
+              </div>
+            </div>
+            <div class="pulse-check-ledger" aria-label="30-Second Executive Pulse Check">
+              <div class="pcl-header">
+                <span>✦ 30-SECOND PULSE CHECK · BEFORE YOU DIVE IN</span>
+                <span>ZERO TRUNCATION · FULL ESSAY BELOW</span>
+              </div>
+
+              <div class="pcl-row">
+                <div class="pcl-stage">What Shipped</div>
+                <div class="pcl-detail">Google added direct Microsoft Office (.docx, .pptx, .xlsx) and OpenDocument (.odt, .odp, .ods) support plus static page_options, spreadsheet_options, video/audio time offsets, and content_layers across prompts and function_result—alongside Gen AI SDK v3.5.0–v3.6.0.</div>
+              </div>
+              <div class="pcl-row">
+                <div class="pcl-stage">Why Builders Care</div>
+                <div class="pcl-detail">Gemini bills strictly for the sliced range and layers while exposing total page counts and worksheet names automatically, letting agents skim text or transcripts cheaply and zoom in at high resolution only where charts or formulas live.</div>
+              </div>
+              <div class="pcl-row">
+                <div class="pcl-stage">The Fine-Print Catch</div>
+                <div class="pcl-detail">Un-sliced Gemini 4+ Office docs default to medium-res page images (~560 tokens/page), out-of-bounds sheet_index or start_offset values throw 400 INVALID_ARGUMENT, and Live Interactions in SDK v3.5–v3.6 remain experimental on v1beta.</div>
+              </div>
+            </div>
+          </header>
+
+          <div class="lens-host" id="lens-section-castor">
+            <div class="lens-inner-wrap">
+              <div class="celestial-chapter-divider" aria-hidden="true"><span class="ccd-glyph">✦ · <svg width="11" height="12" viewBox="0 0 14 16" aria-hidden="true" style="vertical-align:-1px;margin-inline:2px;"><path d="M1.5 2 H12.5 M1.5 14 H12.5" stroke="#CEC0FF" stroke-width="1.35" stroke-linecap="round"/><line x1="4.6" y1="2.3" x2="4.6" y2="13.7" stroke="#7EB8FF" stroke-width="1.55" stroke-linecap="round"/><line x1="9.4" y1="2.3" x2="9.4" y2="13.7" stroke="#F59E3F" stroke-width="1.55" stroke-linecap="round"/></svg> · ✦</span></div>
+              <section class="essay-section" aria-label="Part I: Alpha Castor Human and Business Lens">
+                <div class="chapter-kicker">
+                  <span>PART I · <span class="greek">α</span> CASTOR · PRODUCT, TOKEN ECONOMICS &amp; WORKFLOW LENS</span>
+                  <span><span class="greek">α</span> CASTOR · THE SIGNAL</span>
+                </div>
+                <h2 class="essay-h2">Why Surgical File Slicing Kills the Hidden Preprocessing Tax</h2>
+                <p class="essay-sub">How native Word, PowerPoint, Excel, and time-sliced media turns passive file dumps into interactive progressive drilldown.</p>
+                <div class="essay-prose" itemprop="articleBody">
+                  <p>If you have built a real enterprise Gemini app over the past two years, your hardest engineering work was rarely the prompt—it was the unglamorous ingestion glue sitting in front of it. Teams ran headless LibreOffice containers to convert &lt;code&gt;.pptx&lt;/code&gt; decks to PDF, maintained &lt;code&gt;openpyxl&lt;/code&gt; scripts to flatten Excel tabs, and invoked &lt;code&gt;ffmpeg&lt;/code&gt; to clip 90-second excerpts out of hour-long recordings.</p><p>On <strong>November 18, 2026</strong>, Google’s Gemini API changelog eliminated that entire class of middleware. Developers can now pass Microsoft Office (&lt;code&gt;.docx&lt;/code&gt;, &lt;code&gt;.doc&lt;/code&gt;, &lt;code&gt;.dotx&lt;/code&gt;, &lt;code&gt;.pptx&lt;/code&gt;, &lt;code&gt;.ppt&lt;/code&gt;, &lt;code&gt;.xlsx&lt;/code&gt;, &lt;code&gt;.xls&lt;/code&gt;) and OpenDocument (&lt;code&gt;.odt&lt;/code&gt;, &lt;code&gt;.odp&lt;/code&gt;, &lt;code&gt;.ods&lt;/code&gt;) files directly in &lt;code&gt;document&lt;/code&gt; blocks—and attach declarative &lt;code&gt;processing&lt;/code&gt; rules to slice exact page ranges, worksheet tabs, A1 cell ranges, media timestamps, and content layers.</p><p>Even better, Google wired the exact same slicing contract into <strong>&lt;code&gt;function_result&lt;/code&gt;</strong>. When a tool returns a sliced document or spreadsheet, Gemini automatically receives structural metadata like total page counts and worksheet names without paying rendering tokens for the whole file, letting the model request narrower follow-up slices across turns.</p><p>Alongside the API update, <strong>Gen AI SDK v3.5.0 and v3.6.0</strong> (&lt;code&gt;@google/genai&lt;/code&gt; and &lt;code&gt;google-genai&lt;/code&gt;) shipped experimental <strong>Live Interactions</strong> over WebSocket and WebRTC backed by ephemeral &lt;code&gt;interactions.authTokens&lt;/code&gt;, self-hosted BYOS environments, and deferred MCP tool loading (&lt;code&gt;defer_loading&lt;/code&gt;).</p>
+                </div>
+
+              <blockquote class="celestial-pullquote">
+                <p>“Paying for only the three chart pages and one EBITDA range you actually inspect turns million-token context windows from a cost center into a surgical microscope.”</p>
+                <cite>GOOGLE GEMINI 4 ARGON · <span class="greek">α</span> CASTOR EDITORIAL SYNTHESIS</cite>
+              </blockquote>
+
+              <div tabindex="0" role="region" aria-labelledby="multimodal-slicing-table-caption" class="gp-table-wrapper">
+                <table class="gp-comparison-table" style="--col-2: 'Prior Baseline'; --col-3: 'Nov 18 Slicing Contract'; --col-4: 'Cost &amp; Quality Advantage';">
+                  <caption id="multimodal-slicing-table-caption">Full-File Ingestion vs. Nov 18 Gemini API Multimodal Slicing &amp; SDK v3.6</caption>
+                  <thead><tr><th scope="col">Modality</th><th scope="col">Prior Baseline</th><th scope="col">Nov 18 Slicing Contract</th><th scope="col">Cost &amp; Quality Advantage</th></tr></thead>
+                  <tbody><tr><th scope="row">Word, Slides &amp; PDF</th><td>Full file rendered or manually split client-side</td><td>page_options: start_page, end_page, content_layers (page_image / page_text)</td><td>Skim text first; zoom high-res (~1,120 tok/pg) on chart pages only</td></tr><tr><th scope="row">Excel &amp; Calc Sheets</th><td>Up to 50,000 cells/sheet across whole workbook</td><td>spreadsheet_options: sheet_index, visible_cells (A1:H50), data/formulas/visual</td><td>Audit exact EBITDA formulas + visual chart without unrelated tabs</td></tr><tr><th scope="row">Video &amp; Audio</th><td>Full duration or local ffmpeg pre-clipping</td><td>start_offset, end_offset, fps in (0, 24], content_layers (frames/audio/transcript)</td><td>Transcript-only first pass costs text tokens instead of 1 FPS frames</td></tr><tr><th scope="row">Tool Returns</th><td>Whole file URI returned to context</td><td>function_result accepts processing + resolution + auto page/sheet metadata</td><td>Multi-turn agent self-navigation across 400-page manuals</td></tr></tbody>
+                </table>
+              </div>
+
+                <div class="adaptive-qa-section" id="chapter-02" data-chapter-card="1" data-active-chapter="false">
+                  <div class="chapter-kicker">
+                    <span>CHAPTER 02 / 04 · WHAT THIS MEANS FOR YOU</span>
+                    <span>ADAPTIVE READER QUESTIONS</span>
+                  </div>
+                  <div class="adaptive-qa-list">
+
+                <article class="qa-item">
+                  <span class="qa-lens-tag">FOR FINANCE &amp; ANALYTICS TEAMS</span>
+                  <h3 class="qa-question">Can Gemini read both evaluated numbers and raw Excel formulas alongside charts?</h3>
+                  <p class="qa-answer">Yes. In processing.spreadsheet_options, content_layers defaults to [&quot;data&quot;, &quot;formulas&quot;] and lets you add &quot;visual&quot; (plus outer resolution: &quot;low&quot;, &quot;medium&quot;, or &quot;high&quot;) to inspect rendered charts in the same A1 visible_cells crop.</p>
+                </article>
+                <article class="qa-item">
+                  <span class="qa-lens-tag">FOR AGENT ARCHITECTS</span>
+                  <h3 class="qa-question">How does the model know which page or sheet tab to slice inside a tool loop?</h3>
+                  <p class="qa-answer">When you pass a file through processing or function_result, Gemini automatically receives total page counts and worksheet names in metadata so it can target follow-up slices across turns.</p>
+                </article>
+                <article class="qa-item">
+                  <span class="qa-lens-tag">FOR FRONTEND &amp; MOBILE BUILDERS</span>
+                  <h3 class="qa-question">How do SDK v3.5–v3.6 Live Interactions avoid exposing API keys in the browser?</h3>
+                  <p class="qa-answer">Your server calls interactions.authTokens.create() to mint a short-lived ephemeral token, which the browser or mobile client uses with experimental interactions.connect over WebSocket or WebRTC.</p>
+                </article>
+                  </div>
+
+                <div class="standalone-deep-link-row">
+                  <span class="sdl-kicker">COMPANION 3-PART ARCHIVE</span>
+                  <a href="/series/gemini-multimodal-slicing-sdk-v3-6/part-1-multimodal-slicing-and-office-ingestion.html" class="standalone-deep-link">
+                    <span>Explore Companion 3-Part Multimodal Slicing Archive →</span>
+                  </a>
+                </div>
+                </div>
+              </section>
+            </div>
+          </div>
+
+          <div class="lens-host" id="lens-section-pollux">
+            <div class="lens-inner-wrap">
+              <div class="celestial-chapter-divider" aria-hidden="true"><span class="ccd-glyph">✦ · <svg width="11" height="12" viewBox="0 0 14 16" aria-hidden="true" style="vertical-align:-1px;margin-inline:2px;"><path d="M1.5 2 H12.5 M1.5 14 H12.5" stroke="#CEC0FF" stroke-width="1.35" stroke-linecap="round"/><line x1="4.6" y1="2.3" x2="4.6" y2="13.7" stroke="#7EB8FF" stroke-width="1.55" stroke-linecap="round"/><line x1="9.4" y1="2.3" x2="9.4" y2="13.7" stroke="#F59E3F" stroke-width="1.55" stroke-linecap="round"/></svg> · ✦</span></div>
+              <section class="essay-section" id="chapter-03" data-chapter-card="2" data-active-chapter="false" aria-label="Part II: Beta Pollux Builder Architecture and Code">
+                <div class="chapter-kicker">
+                  <span>PART II · <span class="greek">β</span> POLLUX · ENGINEERING, SCHEMAS &amp; SDK v3.6 LENS</span>
+                  <span><span class="greek">β</span> POLLUX · THE WORKBENCH</span>
+                </div>
+                <h2 class="essay-h2" id="pollux-section-heading" tabindex="-1">Implementing Two-Pass Slicing, function_result Loops &amp; Live Interactions</h2>
+                <p class="essay-sub essay-sub--pollux">Exact parameter contracts across page_options, spreadsheet_options, video/audio offsets, and Gen AI SDK v3.6.0.</p>
+                <div class="essay-prose essay-prose--pollux">
+                  <p>Every document, spreadsheet, video, and audio slice uses &lt;code&gt;processing: { type: &quot;static&quot; }&lt;/code&gt; with modality-specific options on the content block inside &lt;code&gt;client.interactions.create()&lt;/code&gt;. For documents and slides, set &lt;code&gt;page_options&lt;/code&gt; with 1-indexed &lt;code&gt;start_page&lt;/code&gt; / &lt;code&gt;end_page&lt;/code&gt; and &lt;code&gt;content_layers&lt;/code&gt; (&lt;code&gt;[&quot;page_image&quot;]&lt;/code&gt;, &lt;code&gt;[&quot;page_text&quot;]&lt;/code&gt;, or both). Outer &lt;code&gt;resolution&lt;/code&gt; tunes rendering cost from &lt;code&gt;&quot;low&quot;&lt;/code&gt; (~280 tokens/page) to &lt;code&gt;&quot;medium&quot;&lt;/code&gt; (~560) and &lt;code&gt;&quot;high&quot;&lt;/code&gt; (~1,120).</p><p>For spreadsheets (&lt;code&gt;.xlsx&lt;/code&gt;, &lt;code&gt;.xls&lt;/code&gt;, &lt;code&gt;.ods&lt;/code&gt;), &lt;code&gt;spreadsheet_options&lt;/code&gt; accepts 1-indexed &lt;code&gt;sheet_index&lt;/code&gt; (values &lt;code&gt;&lt;= 0&lt;/code&gt; or above sheet count return &lt;code&gt;400 INVALID_ARGUMENT&lt;/code&gt;) and A1 notation &lt;code&gt;visible_cells&lt;/code&gt;. For video and audio, &lt;code&gt;start_offset&lt;/code&gt; and &lt;code&gt;end_offset&lt;/code&gt; accept second strings like &lt;code&gt;&quot;1200s&quot;&lt;/code&gt;; &lt;code&gt;end_offset&lt;/code&gt; past media length clamps cleanly while out-of-range &lt;code&gt;start_offset&lt;/code&gt; returns &lt;code&gt;400 INVALID_ARGUMENT&lt;/code&gt;.</p><p>In &lt;code&gt;@google/genai&lt;/code&gt; and &lt;code&gt;google-genai&lt;/code&gt; v3.5.0–v3.6.0, combine sliced &lt;code&gt;function_result&lt;/code&gt; tool returns with &lt;code&gt;defer_loading: true&lt;/code&gt; on &lt;code&gt;MCPServer&lt;/code&gt; tool configs and ephemeral &lt;code&gt;interactions.authTokens&lt;/code&gt; for real-time WebRTC/WebSocket clients.</p>
+                </div>
+                <div class="builder-rules-ledger" aria-label="Production Engineering Guardrails">
+
+                <div class="br-item">
+                  <div class="br-label">01 · Two-Pass Skim Before High-Res Vision</div>
+                  <div class="br-detail">Scan large Office/PDF decks with content_layers: [&quot;page_text&quot;] or video with [&quot;transcript&quot;] first, then request &quot;high&quot; resolution page_image or video frames solely for target ranges.</div>
+                </div>
+                <div class="br-item">
+                  <div class="br-label">02 · Return Sliced Payloads in function_result</div>
+                  <div class="br-detail">Keep large PDFs and workbooks in the Files API and let inspect_document_pages or inspect_sheet tools return only the requested slice inside function_result.result.</div>
+                </div>
+                <div class="br-item">
+                  <div class="br-label">03 · Guard Bounds &amp; Pin v1beta for Live Interactions</div>
+                  <div class="br-detail">Validate sheet_index (&gt;= 1) and start_offset (&lt; duration) before dispatch to avoid 400 INVALID_ARGUMENT, and configure apiVersion: &quot;v1beta&quot; when using experimental Live Interactions.</div>
+                </div>
+                </div>
+                <div class="geo-code-wrap">
+                  <div class="geo-code-header">
+                    <span id="chap3-code-caption">PROGRESSIVE SPREADSHEET &amp; FUNCTION_RESULT SLICING (@google/genai v3.6.0)</span>
+                    <button type="button" class="copy-code-btn" data-copy-essay-code>Copy Full Blueprint</button>
+                  </div>
+                  <pre class="geo-code-block" id="chap3-code" role="region" aria-labelledby="chap3-code-caption" tabindex="0"><code id="chap3-code-inner">import { GoogleGenAI } from &quot;@google/genai&quot;;
+
+const ai = new GoogleGenAI({});
+const workbook = await ai.files.upload({
+  file: &quot;financial_model.xlsx&quot;,
+  config: { mimeType: &quot;application/vnd.openxmlformats-officedocument.spreadsheetml.sheet&quot; },
+});
+
+const interaction = await ai.interactions.create({
+  model: &quot;gemini-4-hydrogen&quot;,
+  input: [
+    {
+      type: &quot;document&quot;,
+      uri: workbook.uri,
+      mime_type: workbook.mimeType,
+      resolution: &quot;high&quot;,
+      processing: {
+        type: &quot;static&quot;,
+        spreadsheet_options: {
+          sheet_index: 2,
+          visible_cells: &quot;A1:H50&quot;,
+          content_layers: [&quot;data&quot;, &quot;formulas&quot;, &quot;visual&quot;],
+        },
+      },
+    },
+    { type: &quot;text&quot;, text: &quot;Audit the EBITDA formulas and chart in Sheet 2 (A1:H50).&quot; },
+  ],
+});</code></pre>
+                </div>
+
+                <aside class="pollux-workbench-card" id="nocturnal-twin-deck" aria-label="Beta Pollux Interactive Scenario Simulator">
+                  <div class="salon-header-row">
+                    <span class="shr-title">
+                      <span class="peek-dot" aria-hidden="true"></span>
+                      <span><span class="greek">β</span> POLLUX · INTERACTIVE SCENARIO WORKBENCH</span>
+                    </span>
+                    <span class="shr-badge">[SIMULATED DEMO]</span>
+                  </div>
+                  <h3 class="pwc-title">Multimodal File Slicing &amp; SDK v3.6 Workbench</h3>
+                  <p class="pwc-sub">Select one of the three November 18 slicing blueprints below or open the full-screen Multimodal Slicing Studio.</p>
+                  <div class="atelier-console">
+                    <div class="ac-top">
+                      <span>STAR 01 INTERACTIVE LAB</span>
+                      <span>[SIMULATED DEMO]</span>
+                    </div>
+                    <div class="ac-presets" role="group" aria-label="Interactive Workload Presets">
+                      <button type="button" class="ac-preset-btn" data-preset="0" aria-pressed="true">1. .XLSX SHEET 2 AUDIT</button><button type="button" class="ac-preset-btn" data-preset="1" aria-pressed="false">2. 400-PG MANUAL TOOL</button><button type="button" class="ac-preset-btn" data-preset="2" aria-pressed="false">3. 60-MIN VIDEO SCRUB</button>
+                    </div>
+                    <div class="ac-output" aria-live="polite">
+                      <div class="ac-line">
+                        <span class="ac-k" data-sync="ac-k1">Slice Target</span>
+                        <span class="ac-v" data-sync="ac-v1">sheet_index: 2 · visible_cells: &quot;A1:H50&quot;</span>
+                      </div>
+                      <div class="ac-line">
+                        <span class="ac-k" data-sync="ac-k2">Content Layers</span>
+                        <span class="ac-v accent" data-sync="ac-v2">[&quot;data&quot;, &quot;formulas&quot;, &quot;visual&quot;] @ high resolution</span>
+                      </div>
+                      <div class="ac-line">
+                        <span class="ac-k" data-sync="ac-k3">Simulated Token Cut</span>
+                        <span class="ac-v" data-sync="ac-v3">184,000 -&gt; 4,480 tokens (97.6% reduction)</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="standalone-deep-link-row" style="margin-block-start:4px;">
+                    <span class="sdl-kicker sdl-kicker--pollux">DEDICATED FULL-SCREEN SANDBOX</span>
+                    <a href="/labs/gemini-multimodal-slicing-studio.html" class="standalone-deep-link standalone-deep-link--pollux">
+                      <span>Open Full Multimodal Slicing Sandbox [SIMULATED DEMO] →</span>
+                    </a>
+                  </div>
+                </aside>
+              </section>
+            </div>
+          </div>
+
+          <div class="celestial-chapter-divider" aria-hidden="true"><span class="ccd-glyph">✦ · <svg width="11" height="12" viewBox="0 0 14 16" aria-hidden="true" style="vertical-align:-1px;margin-inline:2px;"><path d="M1.5 2 H12.5 M1.5 14 H12.5" stroke="#CEC0FF" stroke-width="1.35" stroke-linecap="round"/><line x1="4.6" y1="2.3" x2="4.6" y2="13.7" stroke="#7EB8FF" stroke-width="1.55" stroke-linecap="round"/><line x1="9.4" y1="2.3" x2="9.4" y2="13.7" stroke="#F59E3F" stroke-width="1.55" stroke-linecap="round"/></svg> · ✦</span></div>
+
+          <section class="essay-section" id="chapter-04" data-chapter-card="3" data-active-chapter="false" aria-label="Chapter 04: Gemini Verdict and Primary Sources">
+            <div class="chapter-kicker">
+              <span>CHAPTER 04 / 04 · GEMINI’S VERDICT &amp; CITATIONS</span>
+              <span>PRIMARY GOOGLE SOURCES</span>
+            </div>
+            <h2 class="essay-h2">Gemini’s Bottom Line: Server-Side Slicing Makes Multimodal Context Surgical</h2>
+            <p class="essay-sub">Combining native Office support, range-billed slicing in function_result, and WebRTC Live Interactions removes the last heavy preprocessing hurdles.</p>
+            <div class="essay-prose">
+              <p><strong>Adopt immediately if:</strong> your agents parse multi-tab Excel workbooks, 100+ page slide decks/manuals, or long call/video recordings—replacing custom LibreOffice and &lt;code&gt;ffmpeg&lt;/code&gt; choppers with declarative &lt;code&gt;processing&lt;/code&gt; options.</p><p><strong>Upgrade to SDK v3.6.0:</strong> when building browser/edge real-time apps with ephemeral &lt;code&gt;interactions.authTokens&lt;/code&gt; or large MCP tool registries with &lt;code&gt;defer_loading: true&lt;/code&gt;.</p>
+            </div>
+
+            <div class="primary-sources-ledger" aria-label="Primary Google Sources Cited">
+              <div class="psl-header">
+                <span>PRIMARY GOOGLE SOURCES CITED IN THIS ESSAY</span>
+                <span>VERIFIED · NOV 18, 2026</span>
+              </div>
+
+                <div class="psl-item">
+                  <div class="psl-meta">
+                    <span class="psl-role">Official Gemini API Changelog · Google AI for Developers · November 18, 2026</span>
+                    <span class="psl-label">Multimodal file processing and slicing (November 18, 2026)</span>
+                  </div>
+                  <a class="psl-link" href="https://ai.google.dev/gemini-api/docs/changelog#11-18-2026" target="_blank" rel="noopener noreferrer">
+                    <span>Primary Google Source</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+                <div class="psl-item">
+                  <div class="psl-meta">
+                    <span class="psl-role">Official Document Processing Docs · Google AI for Developers · November 18, 2026</span>
+                    <span class="psl-label">Customize document, presentation, and spreadsheet processing</span>
+                  </div>
+                  <a class="psl-link" href="https://ai.google.dev/gemini-api/docs/document-processing#customize-document-processing" target="_blank" rel="noopener noreferrer">
+                    <span>Primary Google Source</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+                <div class="psl-item">
+                  <div class="psl-meta">
+                    <span class="psl-role">Official GitHub SDK Release · Google APIs · November 18, 2026</span>
+                    <span class="psl-label">googleapis/js-genai v3.6.0 &amp; v3.5.0 (plus python-genai v3.6.0)</span>
+                  </div>
+                  <a class="psl-link" href="https://github.com/googleapis/js-genai/releases/tag/v3.6.0" target="_blank" rel="noopener noreferrer">
+                    <span>Primary Google Source</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+            </div>
+
+            <nav class="essay-star-nav-footer" aria-label="Navigate Constellation Essays">
+              <a href="/articles/gemini-keep-activity-privacy-split.html" class="essay-nav-btn">
+                <span>← Star 08 · <span class="greek">γ</span> Alhena (Gemini Apps Privacy)</span>
+              </a>
+              <a href="/?star=castor" class="essay-nav-btn">
+                <span>✦ View Star 01 in 3D Sky</span>
+              </a>
+              <a href="/articles/gemini-4-hydrogen-robotics-antigravity.html" class="essay-nav-btn">
+                <span>Star 02 · <span class="greek">ε</span> Mebsuta (Hydrogen Robotics) →</span>
+              </a>
+            </nav>
+          </section>
+    </article>
+  </main>
+
+  <script>
+    (() => {
+      const PRESETS = [{"label":"1. .XLSX SHEET 2 AUDIT","labelHtml":"1. .XLSX SHEET 2 AUDIT","k1":"Slice Target","k1Html":"Slice Target","v1":"sheet_index: 2 · visible_cells: \"A1:H50\"","v1Html":"sheet_index: 2 · visible_cells: &quot;A1:H50&quot;","k2":"Content Layers","k2Html":"Content Layers","v2":"[\"data\", \"formulas\", \"visual\"] @ high resolution","v2Html":"[&quot;data&quot;, &quot;formulas&quot;, &quot;visual&quot;] @ high resolution","k3":"Simulated Token Cut","k3Html":"Simulated Token Cut","v3":"184,000 -> 4,480 tokens (97.6% reduction)","v3Html":"184,000 -&gt; 4,480 tokens (97.6% reduction)"},{"label":"2. 400-PG MANUAL TOOL","labelHtml":"2. 400-PG MANUAL TOOL","k1":"Slice Target","k1Html":"Slice Target","v1":"function_result · start_page: 14, end_page: 16","v1Html":"function_result · start_page: 14, end_page: 16","k2":"Content Layers","k2Html":"Content Layers","v2":"[\"page_image\"] @ high resolution (~1,120 tok/pg)","v2Html":"[&quot;page_image&quot;] @ high resolution (~1,120 tok/pg)","k3":"Simulated Token Cut","k3Html":"Simulated Token Cut","v3":"224,000 -> 3,640 tokens (98.4% reduction)","v3Html":"224,000 -&gt; 3,640 tokens (98.4% reduction)"},{"label":"3. 60-MIN VIDEO SCRUB","labelHtml":"3. 60-MIN VIDEO SCRUB","k1":"Slice Target","k1Html":"Slice Target","v1":"start_offset: \"1200s\", end_offset: \"1500s\", fps: 0.5","v1Html":"start_offset: &quot;1200s&quot;, end_offset: &quot;1500s&quot;, fps: 0.5","k2":"Content Layers","k2Html":"Content Layers","v2":"Pass 1 [\"transcript\"] -> Pass 2 [\"frames\", \"transcript\"]","v2Html":"Pass 1 [&quot;transcript&quot;] -&gt; Pass 2 [&quot;frames&quot;, &quot;transcript&quot;]","k3":"Simulated Token Cut","k3Html":"Simulated Token Cut","v3":"945,000 -> 39,600 tokens (95.8% reduction)","v3Html":"945,000 -&gt; 39,600 tokens (95.8% reduction)"}];
+      const supportsUntilFound = "onbeforematch" in HTMLElement.prototype;
+      const castorHost = document.getElementById("lens-section-castor");
+      const polluxHost = document.getElementById("lens-section-pollux");
+
+      function hideLens(el) {
+        if (!el) return;
+        if (supportsUntilFound) el.setAttribute("hidden", "until-found");
+        else el.hidden = true;
+      }
+      function showLens(el) {
+        if (!el) return;
+        el.removeAttribute("hidden");
+        el.hidden = false;
+      }
+      function setLens(lens) {
+        if (lens === "castor") { showLens(castorHost); hideLens(polluxHost); }
+        else if (lens === "pollux") { hideLens(castorHost); showLens(polluxHost); }
+        else { showLens(castorHost); showLens(polluxHost); }
+        document.querySelectorAll("[data-lens-filter]").forEach((b) => {
+          b.setAttribute("aria-pressed", String(b.getAttribute("data-lens-filter") === lens));
+        });
+      }
+      [castorHost, polluxHost].forEach((el) => {
+        if (el) el.addEventListener("beforematch", () => setLens("both"));
+      });
+
+      document.addEventListener("click", async (ev) => {
+        const lensBtn = ev.target.closest("[data-lens-filter]");
+        if (lensBtn) {
+          setLens(lensBtn.getAttribute("data-lens-filter") || "both");
+          return;
+        }
+        const presetBtn = ev.target.closest(".ac-preset-btn");
+        if (presetBtn) {
+          const idx = Number(presetBtn.getAttribute("data-preset")) || 0;
+          const p = PRESETS[idx] || PRESETS[0];
+          document.querySelectorAll(".ac-preset-btn").forEach((b, i) => b.setAttribute("aria-pressed", String(i === idx)));
+          const sync = (k, v) => document.querySelectorAll('[data-sync="' + k + '"]').forEach((el) => { el.textContent = v; });
+          sync("ac-k1", p.k1); sync("ac-v1", p.v1);
+          sync("ac-k2", p.k2); sync("ac-v2", p.v2);
+          sync("ac-k3", p.k3); sync("ac-v3", p.v3);
+          return;
+        }
+        const copyBtn = ev.target.closest("[data-copy-essay-code]");
+        if (copyBtn) {
+          const codeEl = document.getElementById("chap3-code");
+          if (codeEl) {
+            try { await navigator.clipboard.writeText(codeEl.textContent || ""); } catch (_) {}
+            copyBtn.textContent = "✓ Copied Blueprint";
+            setTimeout(() => { copyBtn.textContent = "Copy Full Blueprint"; }, 1800);
+          }
+        }
+      });
+
+      const canvas = document.getElementById("sanctuary-stars");
+      if (canvas && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        const ctx = canvas.getContext("2d");
+        const pts = Array.from({ length: 85 }, (_, i) => ({
+          x: ((i * 73) % 100) / 100,
+          y: ((i * 41 + 17) % 100) / 100,
+          r: (i % 3 === 0 ? 1.25 : 0.75),
+          ph: i * 0.7,
+          col: i % 5 === 0 ? "#BAE6FD" : (i % 7 === 0 ? "#FED7AA" : "#E2E8F0")
+        }));
+        const resize = () => {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        };
+        resize();
+        window.addEventListener("resize", resize, { passive: true });
+        const draw = (t) => {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          const sec = t * 0.001;
+          for (const p of pts) {
+            ctx.globalAlpha = 0.16 + 0.24 * (0.5 + 0.5 * Math.sin(sec * 0.6 + p.ph));
+            ctx.fillStyle = p.col;
+            ctx.beginPath();
+            ctx.arc(p.x * canvas.width, p.y * canvas.height, p.r, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          requestAnimationFrame(draw);
+        };
+        requestAnimationFrame(draw);
+      }
+    })();
+  </script>
+</body>
+</html>

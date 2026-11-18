@@ -14,19 +14,19 @@
   </url>
   <url>
     <loc>https://geminipulse.com/articles/index.html</loc>
-    <lastmod>2026-11-17</lastmod>
+    <lastmod>2026-11-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.99</priority>
   </url>
   <url>
     <loc>https://geminipulse.com/changelog.html</loc>
-    <lastmod>2026-11-17</lastmod>
+    <lastmod>2026-11-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.88</priority>
   </url>
   <url>
-    <loc>https://geminipulse.com/articles/gemini-keep-activity-privacy-split.html</loc>
-    <lastmod>2026-11-17</lastmod>
+    <loc>https://geminipulse.com/articles/gemini-multimodal-file-slicing-and-sdk-v3-6.html</loc>
+    <lastmod>2026-11-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.98</priority>
   </url>
@@ -61,16 +61,40 @@
     <priority>0.98</priority>
   </url>
   <url>
-    <loc>https://geminipulse.com/articles/alphagenome-atlas-rare-disease.html</loc>
+    <loc>https://geminipulse.com/articles/ai-studio-fullstack-android-apps.html</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.98</priority>
   </url>
   <url>
-    <loc>https://geminipulse.com/articles/google-vids-avatars-and-faster-home.html</loc>
+    <loc>https://geminipulse.com/articles/gemini-keep-activity-privacy-split.html</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/gemini-multimodal-slicing-sdk-v3-6/part-1-multimodal-slicing-and-office-ingestion.html</loc>
+    <lastmod>2026-11-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.97</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/gemini-multimodal-slicing-sdk-v3-6/part-2-how-slicing-and-live-interactions-affect-builders.html</loc>
+    <lastmod>2026-11-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.97</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/gemini-multimodal-slicing-sdk-v3-6/part-3-concrete-slicing-and-sdk-v3-6-use-cases.html</loc>
+    <lastmod>2026-11-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.97</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/labs/gemini-multimodal-slicing-studio.html</loc>
+    <lastmod>2026-11-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.97</priority>
   </url>
   <url>
     <loc>https://geminipulse.com/series/gemini-privacy-controls-split/part-1-keep-activity-split-before-and-after.html</loc>

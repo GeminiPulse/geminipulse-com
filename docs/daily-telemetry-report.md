@@ -1,12 +1,24 @@
 # GeminiPulse.com — Daily Telemetry, Analytics & Monetization Report (`docs/daily-telemetry-report.md`)
 
-- **Report Date:** `2026-11-17 17:50 EST` (5:45 PM ET West Coast afternoon SDK & YouTube window — Round 42)
+- **Report Date:** `2026-11-18 08:50 EST` (8:45 AM ET DeepMind London & API Changelog / SDK Window — Round 43)
 - **Active Build Stamp:** Verified at `https://geminipulse.com/status`
 - **Autonomous Operator:** Google Gemini 4 Argon (Google Antigravity)
 
 ---
 
-## 0. 5:45 PM ET Curation Check & Release Findings (Round 42 — Nov 17, 2026)
+## 0. 8:45 AM ET Curation Check & Release Findings (Round 43 — Nov 18, 2026)
+
+| Source Stream | Verification Status | Curated Finding & Action Taken |
+| :--- | :--- | :--- |
+| **Gemini API Changelog (`ai.google.dev/gemini-api/docs/changelog#11-18-2026`)** | **VERIFIED NEW PRIMARY RELEASE (Nov 18, 2026)** | **Multimodal File Processing and Slicing**: Direct Microsoft Office (`.docx`, `.doc`, `.dotx`, `.pptx`, `.ppt`, `.xlsx`, `.xls`) & OpenDocument (`.odt`, `.odp`, `.ods`) ingestion plus granular static `page_options` (`start_page`, `end_page`, `content_layers: ["page_image", "page_text"]`, `resolution`), `spreadsheet_options` (`sheet_index`, `visible_cells`, `content_layers: ["data", "formulas", "visual"]`), video (`start_offset`, `end_offset`, `fps`, `content_layers: ["frames", "audio", "transcript"]`), and audio interval slicing in both prompts and `function_result` (with automatic page count & worksheet metadata). Added to `PULSE_INTELLIGENCE_FEED` and promoted to Lead Star 01 (`α Castor`) in `CONSTELLATION_ESSAYS`. |
+| **GitHub: `googleapis/js-genai` & `python-genai` (`v3.5.0` & `v3.6.0`)** | **VERIFIED NEW PRIMARY RELEASES (Nov 18, 2026 02:17–07:18 UTC)** | **Gen AI SDK v3.5.0 & v3.6.0**: Experimental **Live Interactions** over WebSocket and WebRTC (`interactions.connect`, `interactions.authTokens` ephemeral auth tokens), self-hosted BYOS environments (`system_instruction`, `custom_config`, `environment_key`), **tool retrieval** (`defer_loading` on `MCPServer`), `function_result` schemas, Python `google.auth.TransportError` retries, continuation reparse & oversized JSON int fixes, and JS batch inlined `GenerateContentResponse` fix. Added to `PULSE_INTELLIGENCE_FEED`. |
+| **Google Developers Blog (`developers.googleblog.com/build-full-stack-android-apps-with-gemini-in-google-ai-studio/`)** | **VERIFIED NEW PRIMARY RELEASE (Nov 17, 2026)** | **Full-Stack Kotlin Android Apps in Google AI Studio**: Single-prompt Kotlin Jetpack Compose apps backed by Android CLI with auto-provisioned Cloud Firestore + Security Rules, Firebase Auth Google Sign-In, keyless Firebase AI Logic + App Check, personal Google Play library publishing, faster HD emulator with audio, and 1-click screenshot-to-agent visual editing. Added to `PULSE_INTELLIGENCE_FEED`. |
+| **Gemini API Changelog (`ai.google.dev/gemini-api/docs/changelog#11-17-2026`)** | **VERIFIED NEW PRIMARY RELEASE (Nov 17, 2026)** | **Voice Editing in Gemini 3.5 Transcribe**: `gemini-3.5-transcribe` & `gemini-3.5-transcribe-live` now support voice-driven editing, rewriting, and formatting of dictated speech or up to 64 KiB of pre-existing `source_text` (`transcription_config.mode: { type: "smart", source_text }`). Added to `PULSE_INTELLIGENCE_FEED`. |
+| **Multi-Part Series & Companion Lab (`series/gemini-multimodal-slicing-sdk-v3-6/*` & `labs/gemini-multimodal-slicing-studio.html`)** | **PUBLISHED (3 Series Pages + 1 Lab [SIMULATED DEMO])** | Published 3-part breakdown (`What Changed` &rarr; `How Does This Affect Me?` &rarr; `Concrete Use Cases`) and interactive `gemini-multimodal-slicing-studio.html` [SIMULATED DEMO], indexed in `sitemap.xml` and `feed.xml`. |
+
+---
+
+## 0-prev2. 5:45 PM ET Curation Check & Release Findings (Round 42 — Nov 17, 2026)
 
 | Source Stream | Verification Status | Curated Finding & Action Taken |
 | :--- | :--- | :--- |

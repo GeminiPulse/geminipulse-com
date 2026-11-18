@@ -12,11 +12,11 @@
   </author>
 
   <entry>
-    <title>Google Splits Gemini &quot;Keep Activity&quot; Into Independent History &amp; Model Training Controls (With ~2-Month Off-History Retention). (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/gemini-keep-activity-privacy-split.html" />
-    <id>https://geminipulse.com/articles/gemini-keep-activity-privacy-split.html</id>
-    <updated>2026-11-17T22:30:00.000Z</updated>
-    <summary>Updated November 17, 2026: Google is replacing Gemini Apps’ single Keep Activity toggle with two separate settings—History (saving &amp; auto-delete) and Generative AI Model Training (text &amp; attachments)—letting users keep chat history ON while opting out of training, while retaining off-history chats for around 2 months for safety and reliability.</summary>
+    <title>Stop Ingesting 400-Page Manuals Blindly. Gemini Now Slices Office Files, Cells &amp; Layers on Demand. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/gemini-multimodal-file-slicing-and-sdk-v3-6.html" />
+    <id>https://geminipulse.com/articles/gemini-multimodal-file-slicing-and-sdk-v3-6.html</id>
+    <updated>2026-11-18T13:30:00.000Z</updated>
+    <summary>For years, feeding enterprise files into an AI model meant maintaining brittle LibreOffice and ffmpeg chop-shops—or paying full-file token bills every turn. On November 18, 2026, Google moved surgical document, spreadsheet, video, and audio slicing directly into the Gemini API and function_result.</summary>
   </entry>
 
   <entry>
@@ -60,19 +60,27 @@
   </entry>
 
   <entry>
-    <title>Google DeepMind Details AlphaGenome Atlas (9B Single-Letter DNA Predictions) &amp; AlphaGenome 2 Cell-Type Specificity. (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/alphagenome-atlas-rare-disease.html" />
-    <id>https://geminipulse.com/articles/alphagenome-atlas-rare-disease.html</id>
-    <updated>2026-11-17T22:00:00.000Z</updated>
-    <summary>Google DeepMind research scientist Žiga Avsec explains how AlphaGenome (1M bp windows), AlphaGenome Atlas (AVI scores across all 9 billion single-letter DNA variants), and AlphaGenome 2’s cell-type specificity accelerate rare genetic disease discovery.</summary>
+    <title>Google AI Studio Launches Full-Stack Kotlin Android App Builder: Cloud Firestore, Firebase Auth, AI Logic &amp; Play Store Publishing. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/ai-studio-fullstack-android-apps.html" />
+    <id>https://geminipulse.com/articles/ai-studio-fullstack-android-apps.html</id>
+    <updated>2026-11-17T23:15:00.000Z</updated>
+    <summary>Google AI Studio (with Gemini 4 Carbon &amp; Hydrogen and Android CLI) now builds, tests, and publishes full-stack Kotlin Android apps from a single prompt—auto-provisioning Cloud Firestore, Google Sign-In, keyless Firebase AI Logic + App Check, an HD browser emulator with audio, and personal Google Play library publishing.</summary>
   </entry>
 
   <entry>
-    <title>Google Makes Personal Avatars in Google Vids Free for All Personal Accounts &amp; Accelerates Gemini for Home by 20% Across 6 New Countries. (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/google-vids-avatars-and-faster-home.html" />
-    <id>https://geminipulse.com/articles/google-vids-avatars-and-faster-home.html</id>
-    <updated>2026-11-17T17:00:00.000Z</updated>
-    <summary>Anyone with a personal Google account can create a reusable QR-scanned likeness and voice avatar in Google Vids at no cost (vids.new), while Gemini for Home speeds up everyday requests by up to 20% and expands to 6 new countries including India and Brazil.</summary>
+    <title>Google Splits Gemini &quot;Keep Activity&quot; Into Independent History &amp; Model Training Controls (With ~2-Month Off-History Retention). (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/gemini-keep-activity-privacy-split.html" />
+    <id>https://geminipulse.com/articles/gemini-keep-activity-privacy-split.html</id>
+    <updated>2026-11-17T22:30:00.000Z</updated>
+    <summary>Updated November 17, 2026: Google is replacing Gemini Apps’ single Keep Activity toggle with two separate settings—History (saving &amp; auto-delete) and Generative AI Model Training (text &amp; attachments)—letting users keep chat history ON while opting out of training, while retaining off-history chats for around 2 months for safety and reliability.</summary>
+  </entry>
+
+  <entry>
+    <title>Gemini API Launches Multimodal File Slicing &amp; Native Office Ingestion + Gen AI SDK v3.5–v3.6 Live Interactions (Parts 1–3) + Slicing Studio [SIMULATED DEMO]</title>
+    <link href="https://geminipulse.com/series/gemini-multimodal-slicing-sdk-v3-6/part-1-multimodal-slicing-and-office-ingestion.html" />
+    <id>https://geminipulse.com/series/gemini-multimodal-slicing-sdk-v3-6/part-1-multimodal-slicing-and-office-ingestion.html</id>
+    <updated>2026-11-18T13:30:00Z</updated>
+    <summary>Direct primary-source breakdown of Google's November 18, 2026 Gemini API &amp; SDK updates: native Microsoft Office &amp; OpenDocument ingestion, granular page_options/spreadsheet_options/video/audio slicing across prompts and function_result, Gen AI SDK v3.5.0–v3.6.0 experimental Live Interactions (WebSocket &amp; WebRTC) and tool retrieval, plus companion Multimodal Slicing Studio [SIMULATED DEMO].</summary>
   </entry>
 
   <entry>

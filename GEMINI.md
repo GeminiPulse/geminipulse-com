@@ -1,6 +1,6 @@
 # GEMINI.md — GeminiPulse.com Autonomous Repository Charter
 
-> **Last touched:** `2026-11-17 21:55 EST — GEMINI PRIVACY CONTROLS SPLIT CURATED LIVE ON GEMINIPULSE.COM: Added Nov 17 Gemini Apps Privacy Hub update (splitting Keep Activity into separate History + Generative AI Model Training toggles, ~2-month off-history retention, migration rules & unchanged audio/auto-delete) to PULSE_INTELLIGENCE_FEED, published 3-part Before-vs-After series (/series/gemini-privacy-controls-split/*), updated sitemap.xml, feed.xml, status.md & daily-telemetry-report.md, verified 0 layout overflows, and deployed to Firebase Hosting`
+> **Last touched:** `2026-11-18 08:50 EST — ROUND 43 CURATION LIVE ON GEMINIPULSE.COM: Curated Nov 18 Gemini API Multimodal File Processing & Slicing (native Office/ODF + page_options, spreadsheet_options, video/audio layers in prompts & function_result), Gen AI SDK v3.5.0–v3.6.0 (experimental Live Interactions WebSocket/WebRTC, authTokens, BYOS, tool retrieval), AI Studio Full-Stack Android Apps & Gemini 3.5 Transcribe Voice Editing; promoted Lead Star 01 α Castor essay; published 3-part series (/series/gemini-multimodal-slicing-sdk-v3-6/*) + Multimodal Slicing Studio [SIMULATED DEMO] (/labs/gemini-multimodal-slicing-studio.html); updated sitemap.xml, feed.xml, status.md & daily-telemetry-report.md; verified 0 layout overflows and deployed to Firebase Hosting`
 
 ---
 

@@ -5,6 +5,74 @@
 
 export const PULSE_INTELLIGENCE_FEED = [
   {
+    id: 'pulse-gemini-multimodal-slicing-office-api',
+    title: 'Gemini API Launches Multimodal File Slicing & Native Office/OpenDocument Processing Across Prompts and Function Responses',
+    tldr: 'Released November 18, 2026: Pass Microsoft Office (.docx, .pptx, .xlsx) and OpenDocument (.odt, .odp, .ods) files directly to the Gemini API, and slice pages, worksheet tabs, A1 cell ranges, video/audio time intervals, and content layers in user prompts and function_result blocks—paying only for the sliced content.',
+    summary:
+      'Google’s November 18, 2026 Gemini API changelog introduces unified Office/OpenDocument ingestion and server-side static slicing across both user input and tool function_result payloads: (1) Native Office & ODF Support—accepts Word (.docx, .doc, .dotx, .odt), PowerPoint (.pptx, .ppt, .odp), and Excel/Calc (.xlsx, .xls, .ods) files inline or via the Files API; un-sliced Gemini 4+ defaults render page/slide images at medium resolution (~560 tokens/page), (2) Granular Document & Spreadsheet Slicing—processing.page_options exposes start_page, end_page, content_layers (["page_image", "page_text"]), and resolution ("low" ~280, "medium" ~560, "high" ~1,120 tokens/page), while processing.spreadsheet_options exposes 1-indexed sheet_index, A1 visible_cells (e.g., "A1:H50"), and content_layers (["data", "formulas", "visual"]), (3) Video & Audio Slicing—video supports start_offset, end_offset, fps in (0, 24], and content_layers (["frames", "audio", "transcript"]), while audio supports start_offset and end_offset, and (4) Function Calling Integration—tools returning sliced blocks inside function_result automatically expose page counts and worksheet names so the model can narrow follow-up turns while paying strictly for sliced tokens.',
+    category: 'Gemini API',
+    tag: 'API Release',
+    modelBadge: 'Gemini API Slicing & Office',
+    impactScore: '10.0 / 10',
+    date: '2026-11-18T13:30:00Z',
+    sourceLabel: 'Gemini API Changelog: Multimodal File Processing and Slicing (Nov 18, 2026)',
+    sourceUrl: 'https://ai.google.dev/gemini-api/docs/changelog#11-18-2026',
+    groundedBy: 'ai.google.dev Official Changelog & Document Processing Docs (Verified Nov 18, 2026)',
+    seriesUrl: '/series/gemini-multimodal-slicing-sdk-v3-6/part-1-multimodal-slicing-and-office-ingestion.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-multimodal-slicing-studio.html',
+    labLabel: 'Slicing Lab [DEMO] →',
+  },
+  {
+    id: 'pulse-genai-sdk-v3-6-live-interactions-tool-retrieval',
+    title: 'Google Releases Gen AI SDK v3.5.0 & v3.6.0: Experimental Live Interactions (WebSocket & WebRTC), Auth Tokens, BYOS Environments & Tool Retrieval',
+    tldr: 'Released November 18, 2026 (02:17–07:18 UTC): @google/genai and google-genai ship back-to-back v3.5.0 and v3.6.0 updates—introducing experimental Live Interactions over WebSocket and WebRTC with ephemeral authTokens, self-hosted BYOS environment configs, and MCP tool retrieval (defer_loading) plus function_result schemas.',
+    summary:
+      'Google shipped back-to-back minor releases for both TypeScript (@google/genai) and Python (google-genai) official SDKs on November 18, 2026: (1) Experimental Live Interactions (v3.5.0)—adds interactions.connect over WebSocket and WebRTC alongside interactions.authTokens ephemeral token creation so browsers and edge clients can stream bidirectional audio/video without exposing long-lived API keys, (2) Tool Retrieval & Function Result Schemas (v3.6.0)—adds defer_loading on MCPServer tool definitions and typed function_result schemas matching Gemini API multimodal slicing, (3) Self-Hosted BYOS Environments (v3.5.0)—promotes mode: "self_hosted", system_instruction, custom_config, and environment_key across SDKs and CLI, and (4) Runtime Reliability—adds Python google.auth.TransportError retries, fixes merged continuation reparsing, preserves oversized JSON integers, and returns GenerateContentResponse instances for JS batch inlined responses.',
+    category: 'Gen AI SDKs',
+    tag: 'SDK Release v3.6.0',
+    modelBadge: '@google/genai & google-genai v3.6.0',
+    impactScore: '9.8 / 10',
+    date: '2026-11-18T07:18:47Z',
+    sourceLabel: 'GitHub Releases: googleapis/js-genai v3.6.0 & googleapis/python-genai v3.6.0',
+    sourceUrl: 'https://github.com/googleapis/js-genai/releases/tag/v3.6.0',
+    groundedBy: 'Official Google GitHub Releases v3.5.0 & v3.6.0 (Verified Nov 18, 2026)',
+    seriesUrl: '/series/gemini-multimodal-slicing-sdk-v3-6/part-1-multimodal-slicing-and-office-ingestion.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-multimodal-slicing-studio.html',
+    labLabel: 'SDK v3.6 Lab [DEMO] →',
+  },
+  {
+    id: 'pulse-ai-studio-fullstack-android-apps',
+    title: 'Google AI Studio Launches Full-Stack Kotlin Android App Builder: Cloud Firestore, Firebase Auth, AI Logic & Play Store Publishing',
+    tldr: 'Published November 17, 2026: Google AI Studio (with Gemini 4 Carbon & Hydrogen and Android CLI) now builds, tests, and publishes full-stack Kotlin Android apps from a single prompt—auto-provisioning Cloud Firestore, Google Sign-In, keyless Firebase AI Logic + App Check, an HD browser emulator with audio, and personal Google Play library publishing.',
+    summary:
+      'Authored by Google AI Studio Product Manager Mike Taylor-Cai on Google Developers Blog, the November 17 Android wave turns AI Studio into an end-to-end mobile builder: (1) Automated Firebase Full-Stack Provisioning—when prompted for persistent data, auth, or AI features, the Build agent configures Cloud Firestore with Security Rules, Firebase Authentication (Google Sign-In), and Firebase AI Logic protected by App Check so API keys never ship inside APKs, (2) Personal Google Play Publishing—ship Kotlin Jetpack Compose apps directly to a personal Google Play library with a standard Google account, (3) Upgraded HD Emulator & Visual Debugging—lower-latency browser Android emulator with HD video streaming, real-time audio output, and one-click screenshot-to-agent UI editing, and (4) Custom Fonts & Android CLI—custom typography backed under the hood by the official Android CLI.',
+    category: 'Mobile & AI Studio',
+    tag: 'Platform Launch',
+    modelBadge: 'AI Studio Android & Firebase',
+    impactScore: '9.7 / 10',
+    date: '2026-11-17T23:15:00Z',
+    sourceLabel: 'Google Developers Blog: Build full-stack Android apps with Gemini in Google AI Studio',
+    sourceUrl: 'https://developers.googleblog.com/build-full-stack-android-apps-with-gemini-in-google-ai-studio/',
+    groundedBy: 'Google Developers Blog Official Announcement (Verified Nov 18, 2026)',
+  },
+  {
+    id: 'pulse-gemini-3-5-transcribe-voice-editing',
+    title: 'Gemini 3.5 Transcribe & Live Transcribe Add Voice-Driven Editing & Pre-Existing source_text Rewriting',
+    tldr: 'Released November 17, 2026: gemini-3.5-transcribe and gemini-3.5-transcribe-live now support voice-driven editing, rewriting, and formatting of dictated speech or up to 64 KiB of pre-existing text via transcription_config.mode: { type: "smart", source_text }.',
+    summary:
+      'Per the November 17, 2026 Gemini API changelog and Audio Transcription documentation, Smart transcription mode (mode: "smart") on gemini-3.5-transcribe and gemini-3.5-transcribe-live now enables voice editing by default. Speakers can mix dictation with spoken rewrite/formatting instructions in a single recording, or supply pre-existing text (up to 64 KiB) in transcription_config.mode: { type: "smart", source_text: "..." } so the model applies spoken edits and returns the complete updated text in response.output_text.',
+    category: 'Speech & Audio',
+    tag: 'API Feature',
+    modelBadge: 'Gemini 3.5 Transcribe',
+    impactScore: '9.4 / 10',
+    date: '2026-11-17T22:45:00Z',
+    sourceLabel: 'Gemini API Changelog: Voice editing in Gemini 3.5 Transcribe (Nov 17, 2026)',
+    sourceUrl: 'https://ai.google.dev/gemini-api/docs/changelog#11-17-2026',
+    groundedBy: 'ai.google.dev Official Changelog & Transcribe Docs (Verified Nov 18, 2026)',
+  },
+  {
     id: 'pulse-gemini-keep-activity-privacy-split',
     title: 'Google Splits Gemini "Keep Activity" Into Independent History & Model Training Controls (With ~2-Month Off-History Retention)',
     tldr: 'Updated November 17, 2026: Google is replacing Gemini Apps’ single Keep Activity toggle with two separate settings—History (saving & auto-delete) and Generative AI Model Training (text & attachments)—letting users keep chat history ON while opting out of training, while retaining off-history chats for around 2 months for safety and reliability.',
@@ -1081,6 +1149,84 @@ export const GEMINI_MODEL_MATRIX = [
 
 export const STUDIO_LAB_BLUEPRINTS = [
   {
+    id: 'lab-multimodal-slicing-studio',
+    title: 'Gemini Multimodal File Slicing & SDK v3.6.0 Studio [SIMULATED DEMO]',
+    badge: 'Nov 18, 2026 API & SDK',
+    model: 'gemini-4-hydrogen',
+    href: '/labs/gemini-multimodal-slicing-studio.html',
+    description:
+      'Interactive developer simulator modeling Google’s Nov 18 Gemini API Multimodal File Processing & Slicing release and Gen AI SDK v3.5–v3.6: compare full-file token costs against Excel spreadsheet_options, PDF/Office page_options, video/audio interval layers, function_result progressive inspection, and ephemeral Live Interactions.',
+    prompt:
+      'Audit EBITDA formulas and the chart in Sheet 2 (A1:H50) of financial_model.xlsx using static spreadsheet_options with data, formulas, and visual layers.',
+    tsCode: `import { GoogleGenAI } from "@google/genai";
+
+const ai = new GoogleGenAI({});
+const workbook = await ai.files.upload({
+  file: "financial_model.xlsx",
+  config: { mimeType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" },
+});
+
+const interaction = await ai.interactions.create({
+  model: "gemini-4-hydrogen",
+  input: [
+    {
+      type: "document",
+      uri: workbook.uri,
+      mime_type: workbook.mimeType,
+      resolution: "high",
+      processing: {
+        type: "static",
+        spreadsheet_options: {
+          sheet_index: 2,
+          visible_cells: "A1:H50",
+          content_layers: ["data", "formulas", "visual"],
+        },
+      },
+    },
+    { type: "text", text: "Audit the EBITDA formulas and chart in Sheet 2 (A1:H50)." },
+  ],
+});`,
+    pyCode: `from google import genai
+
+client = genai.Client()
+workbook = client.files.upload(file="financial_model.xlsx")
+
+interaction = client.interactions.create(
+    model="gemini-4-hydrogen",
+    input=[
+        {
+            "type": "document",
+            "uri": workbook.uri,
+            "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "resolution": "high",
+            "processing": {
+                "type": "static",
+                "spreadsheet_options": {
+                    "sheet_index": 2,
+                    "visible_cells": "A1:H50",
+                    "content_layers": ["data", "formulas", "visual"],
+                },
+            },
+        },
+        {"type": "text", "text": "Audit the EBITDA formulas and chart in Sheet 2 (A1:H50)."},
+    ],
+)`,
+    simulatedSteps: [
+      {
+        type: 'thought',
+        label: 'step[0] • Inspect workbook metadata & slice target',
+        detail:
+          'Received automatic worksheet inventory (12 sheets); isolated sheet_index: 2, visible_cells: "A1:H50" with ["data", "formulas", "visual"] at high resolution.',
+      },
+      {
+        type: 'tool_call',
+        label: 'step[1] • Audit sliced range & bill strictly for slice',
+        detail:
+          'Reduced simulated input footprint from 184,000 full-workbook tokens down to 4,480 sliced tokens (97.6% savings) while preserving chart visual fidelity.',
+      },
+    ],
+  },
+  {
     id: 'lab-drive-classification-studio',
     title: 'Google Drive Gemini Data Classification Studio [SIMULATED DEMO]',
     badge: 'Nov 17, 2026 Workspace GA',
@@ -1924,6 +2070,25 @@ video_turn = client.interactions.create(
 ];
 
 export const INITIAL_SHOWCASE_PROJECTS = [
+  {
+    id: 'showcase-gemini-multimodal-slicing-studio',
+    name: 'Gemini Multimodal File Slicing & SDK v3.6.0 Studio [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive developer workbench modeling Google’s Nov 18 Gemini API Multimodal File Slicing & Office ingestion release plus Gen AI SDK v3.5–v3.6 Live Interactions (WebSocket/WebRTC) and tool retrieval.',
+    models: ['gemini-4-hydrogen', 'gemini-4-argon'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-multimodal-slicing-studio.html): [SIMULATED DEMO] Simulates spreadsheet_options, page_options inside function_result, video/audio layer slicing, and SDK v3.6.0 token reduction.',
+    url: '/labs/gemini-multimodal-slicing-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-18T13:30:00Z',
+  },
   {
     id: 'showcase-gemini-drive-classification-studio',
     name: 'Google Drive Gemini Data Classification Studio [SIMULATED DEMO]',
