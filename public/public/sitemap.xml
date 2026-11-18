@@ -25,7 +25,25 @@
     <priority>0.88</priority>
   </url>
   <url>
+    <loc>https://geminipulse.com/articles/google-labs-stitch-loop-and-codemender.html</loc>
+    <lastmod>2026-11-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
     <loc>https://geminipulse.com/articles/gemini-multimodal-file-slicing-and-sdk-v3-6.html</loc>
+    <lastmod>2026-11-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/articles/gemini-app-lower-memory-android-go-edition.html</loc>
+    <lastmod>2026-11-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/articles/google-cloud-okf-v0-3.html</loc>
     <lastmod>2026-11-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.98</priority>
@@ -55,20 +73,26 @@
     <priority>0.98</priority>
   </url>
   <url>
-    <loc>https://geminipulse.com/articles/embeddinggemma-2-technical-report.html</loc>
-    <lastmod>2026-11-17</lastmod>
+    <loc>https://geminipulse.com/series/stitch-loop/part-1-what-changed-with-stitch-loop.html</loc>
+    <lastmod>2026-11-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.98</priority>
   </url>
   <url>
-    <loc>https://geminipulse.com/articles/ai-studio-fullstack-android-apps.html</loc>
-    <lastmod>2026-11-17</lastmod>
+    <loc>https://geminipulse.com/series/stitch-loop/part-2-how-stitch-loop-affects-builders-and-teams.html</loc>
+    <lastmod>2026-11-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.98</priority>
   </url>
   <url>
-    <loc>https://geminipulse.com/articles/gemini-keep-activity-privacy-split.html</loc>
-    <lastmod>2026-11-17</lastmod>
+    <loc>https://geminipulse.com/series/stitch-loop/part-3-concrete-stitch-loop-and-okf-blueprints.html</loc>
+    <lastmod>2026-11-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/labs/gemini-stitch-loop-studio.html</loc>
+    <lastmod>2026-11-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.98</priority>
   </url>

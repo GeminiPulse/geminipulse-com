@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stitch Loop &amp; CodeMender Continuous Agent Studio [SIMULATED DEMO] | Agile Labs</title>
+    <meta
+      name="description"
+      content="Interactive [SIMULATED DEMO] developer workbench modeling Google Labs' November 18, 2026 Stitch Loop release: step through Suggestions, Solutions, Build (sandbox PRs with screenshots/video), and Reflect across Cybersecurity (Gemini 4 Carbon + CodeMender), Latency, Accessibility, and Antigravity MCP."
+    />
+    <link rel="canonical" href="https://geminipulse.com/labs/gemini-stitch-loop-studio.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Stitch Loop &amp; CodeMender Continuous Agent Studio [SIMULATED DEMO]" />
+    <meta property="og:description" content="Simulate Google Labs Stitch Loop's 4-stage evergreen optimization cycle, CodeMender PRs, Slack @stitch digests, and Antigravity MCP context." />
+    <meta property="og:url" content="https://geminipulse.com/labs/gemini-stitch-loop-studio.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Stitch Loop & CodeMender Continuous Agent Studio [SIMULATED DEMO]",
+        "url": "https://geminipulse.com/labs/gemini-stitch-loop-studio.html",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "All",
+        "creator": { "@type": "Organization", "name": "Agile Labs (via GeminiPulse.com)" },
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      }
+    </script>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #07090e;
+        --surface: #111622;
+        --surface-high: #182030;
+        --border: rgba(255, 255, 255, 0.1);
+        --text: #f3f5fb;
+        --muted: #9da4b8;
+        --accent: #38bdf8;
+        --success: #34d399;
+        --warning: #fbbf24;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+      .wrap { max-width: 1080px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .badge-sim {
+        display: inline-block;
+        font-family: ui-monospace, Menlo, monospace;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        padding: 0.25rem 0.65rem;
+        border-radius: 9999px;
+        background: rgba(245, 158, 11, 0.15);
+        color: #fbbf24;
+        border: 1px solid rgba(245, 158, 11, 0.35);
+        text-transform: uppercase;
+      }
+      .header-title { font-size: clamp(1.55rem, 3.2vw, 2.25rem); font-weight: 800; margin: 0.6rem 0 0.3rem; line-height: 1.2; }
+      .header-sub { font-size: 1rem; color: var(--muted); margin: 0 0 1.5rem; }
+      .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.25rem;
+        min-inline-size: 0;
+      }
+      @media (max-width: 820px) {
+        .grid-2 { grid-template-columns: minmax(0, 1fr); }
+      }
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+        padding: 1.25rem;
+        min-inline-size: 0;
+      }
+      .card-title { font-size: 1.05rem; font-weight: 700; margin: 0 0 0.9rem; }
+      .preset-btn {
+        display: block;
+        width: 100%;
+        text-align: left;
+        background: var(--surface-high);
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        padding: 0.8rem 1rem;
+        margin-bottom: 0.65rem;
+        color: var(--text);
+        cursor: pointer;
+        font-family: inherit;
+      }
+      .preset-btn:hover { border-color: var(--accent); }
+      .preset-btn.active { border-color: var(--accent); background: rgba(56, 189, 248, 0.12); }
+      .preset-title { font-weight: 700; font-size: 0.94rem; display: block; }
+      .preset-meta { font-size: 0.8rem; color: var(--muted); display: block; margin-top: 0.15rem; }
+      .control-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.75rem 0 1rem; }
+      .chip-btn {
+        background: var(--surface-high);
+        border: 1px solid var(--border);
+        color: var(--text);
+        padding: 0.4rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.8rem;
+        cursor: pointer;
+        font-family: ui-monospace, Menlo, monospace;
+      }
+      .chip-btn.active { background: rgba(56, 189, 248, 0.18); border-color: var(--accent); color: #7dd3fc; }
+      .metric-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+      }
+      @media (max-width: 560px) {
+        .metric-grid { grid-template-columns: minmax(0, 1fr); }
+      }
+      .metric-box {
+        background: var(--surface-high);
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        padding: 0.75rem;
+        min-inline-size: 0;
+      }
+      .metric-lbl { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+      .metric-val { font-size: 1.25rem; font-weight: 800; font-family: ui-monospace, Menlo, monospace; margin-top: 0.2rem; }
+      .bar-track { height: 10px; background: rgba(255,255,255,0.08); border-radius: 9999px; overflow: hidden; margin: 0.5rem 0 1rem; }
+      .bar-fill { height: 100%; background: linear-gradient(90deg, #38bdf8, #34d399); border-radius: 9999px; transition: width 0.25s ease; }
+      .step-item {
+        background: var(--surface-high);
+        border: 1px solid var(--border);
+        border-left: 3px solid var(--accent);
+        border-radius: 0.65rem;
+        padding: 0.75rem 0.9rem;
+        margin-bottom: 0.6rem;
+        font-size: 0.87rem;
+      }
+      .step-item.active-stage {
+        border-left-color: var(--success);
+        background: rgba(16, 185, 129, 0.1);
+      }
+      .step-lbl { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #7dd3fc; font-weight: 700; display: block; margin-bottom: 0.2rem; }
+      pre {
+        background: #0b0f17;
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        padding: 1rem;
+        overflow-x: auto;
+        font-family: ui-monospace, Menlo, Consolas, monospace;
+        font-size: 0.82rem;
+        color: #e2e8f0;
+        margin: 0;
+        min-inline-size: 0;
+      }
+      .copy-btn {
+        background: rgba(56, 189, 248, 0.14);
+        border: 1px solid rgba(56, 189, 248, 0.35);
+        color: #7dd3fc;
+        padding: 0.35rem 0.85rem;
+        border-radius: 9999px;
+        font-size: 0.78rem;
+        cursor: pointer;
+        font-family: ui-monospace, Menlo, monospace;
+      }
+      .nav-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.25rem; font-size: 0.85rem; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="nav-top">
+        <a href="/">&larr; Back to GeminiPulse 3D Observatory</a>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="/series/stitch-loop/part-1-what-changed-with-stitch-loop.html">Read 3-Part Stitch Loop Series &rarr;</a>
+          <a href="/workbench.html">Open Workbench &rarr;</a>
+        </div>
+      </div>
+
+      <span class="badge-sim">[SIMULATED DEMO] · NOV 18, 2026 GOOGLE LABS RELEASE</span>
+      <h1 class="header-title">Stitch Loop &amp; CodeMender Continuous Agent Studio</h1>
+      <p class="header-sub">
+        Simulate Google Labs’ 24/7 product optimization loops across <strong>Suggestions &rarr; Solutions &rarr; Build &rarr; Reflect</strong>, Gemini 4 Carbon + CodeMender security PRs, and Google Antigravity MCP context.
+      </p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h2 class="card-title">1. Choose an Evergreen Loop &amp; Stage</h2>
+          <div id="preset-list">
+            <button type="button" class="preset-btn active" data-preset="security">
+              <span class="preset-title">Default Loop 01 · Cybersecurity (Gemini 4 Carbon + CodeMender)</span>
+              <span class="preset-meta">Scans codebase &amp; logs &rarr; sandboxed fix PR + human approval gate</span>
+            </button>
+            <button type="button" class="preset-btn" data-preset="latency">
+              <span class="preset-title">Default Loop 02 · Checkout Latency Optimization</span>
+              <span class="preset-meta">Tracks live P95 drop &rarr; compares 2 scoped solutions &rarr; Reflect watch</span>
+            </button>
+            <button type="button" class="preset-btn" data-preset="accessibility">
+              <span class="preset-title">Default Loop 03 · Accessibility &amp; Lower-Memory Android UI</span>
+              <span class="preset-meta">Detects contrast/ARIA gaps &rarr; PR attaches screenshots &amp; video proof</span>
+            </button>
+            <button type="button" class="preset-btn" data-preset="antigravity">
+              <span class="preset-title">Service Layer · Google Antigravity MCP + Slack @stitch</span>
+              <span class="preset-meta">180+ integrations / custom MCP &rarr; shared context &amp; daily Slack digest</span>
+            </button>
+          </div>
+
+          <h3 style="font-size: 0.9rem; margin: 1.1rem 0 0.4rem; color: var(--muted);">Inspect Loop Stage</h3>
+          <div class="control-row" id="stage-controls">
+            <button type="button" class="chip-btn active" data-stage="suggestions">1. Suggestions</button>
+            <button type="button" class="chip-btn" data-stage="solutions">2. Solutions</button>
+            <button type="button" class="chip-btn" data-stage="build">3. Build (Sandbox PR)</button>
+            <button type="button" class="chip-btn" data-stage="reflect">4. Reflect</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 class="card-title">2. Simulated Loop Telemetry &amp; 4-Stage Trace</h2>
+          <div class="metric-grid">
+            <div class="metric-box">
+              <div class="metric-lbl">Signal Source</div>
+              <div class="metric-val" id="m-source" style="font-size: 0.95rem; color: #7dd3fc;">GitHub + Logs</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-lbl">Target Metric</div>
+              <div class="metric-val" id="m-target" style="font-size: 0.95rem; color: #34d399;">0 Critical Vulns</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-lbl">Merge Gate</div>
+              <div class="metric-val" id="m-gate" style="font-size: 0.95rem; color: #fbbf24;">Human PR Sign-Off</div>
+            </div>
+          </div>
+
+          <div style="font-size: 0.82rem; color: var(--muted); display: flex; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap;">
+            <span>Evergreen Loop Progress</span>
+            <span id="m-stage-label">Stage 1 of 4 · Suggestions</span>
+          </div>
+          <div class="bar-track">
+            <div class="bar-fill" id="stage-bar" style="width: 25%;"></div>
+          </div>
+
+          <div id="step-trace" style="margin-top: 1rem;"></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 1.25rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.85rem;">
+          <h2 class="card-title" style="margin: 0;">3. Grounded Antigravity MCP / OKF v0.3 / SDK v3.6 Integration Snippet</h2>
+          <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+            <button type="button" class="chip-btn active" data-lang="ts">TypeScript (MCP)</button>
+            <button type="button" class="chip-btn" data-lang="yaml">OKF v0.3 + Slack</button>
+            <button type="button" class="copy-btn" id="copy-code-btn">Copy Snippet</button>
+          </div>
+        </div>
+        <pre><code id="code-output"></code></pre>
+      </div>
+
+      <p style="margin-top: 1.5rem; font-size: 0.82rem; color: var(--muted);">
+        <strong>[SIMULATED DEMO]</strong> Loop traces, telemetry cards, and PR evidence previews in this browser studio are illustrative models grounded in Google Labs’ November 18, 2026 <a href="https://blog.google/innovation-and-ai/models-and-research/google-labs/stitch-loop/" target="_blank" rel="noopener">Introducing Stitch Loop</a> announcement and Google Cloud’s <a href="https://cloud.google.com/blog/products/data-analytics/introducing-okf-v0-3/" target="_blank" rel="noopener">OKF v0.3 specification</a>. Join the official waitlist at <a href="https://stitch.google.com/loop/waitlist" target="_blank" rel="noopener">stitch.google.com/loop/waitlist</a>.
+      </p>
+    </div>
+
+    <script>
+      const STAGE_ORDER = ['suggestions', 'solutions', 'build', 'reflect'];
+      const STAGE_LABELS = {
+        suggestions: 'Stage 1 of 4 · Suggestions',
+        solutions: 'Stage 2 of 4 · Solutions',
+        build: 'Stage 3 of 4 · Build (Sandbox PR)',
+        reflect: 'Stage 4 of 4 · Reflect'
+      };
+      const STAGE_PCT = { suggestions: 25, solutions: 50, build: 75, reflect: 100 };
+
+      const PRESETS = {
+        security: {
+          source: 'CodeMender + Repo',
+          target: '0 Critical Vulns',
+          gate: 'Human PR Sign-Off',
+          stages: {
+            suggestions: 'Gemini 4 Carbon + DeepMind CodeMender scan repository routes and runtime error logs, flagging an unvalidated query parameter in /api/invoices.',
+            solutions: 'Presents two scoped options: (A) strict Zod schema + parameterized query (low blast radius) vs. (B) middleware gateway rewrite.',
+            build: 'Runs regression tests inside an isolated cloud sandbox and opens GitHub PR #418 with diff, test log, and security evidence—waiting for human approval.',
+            reflect: 'Verifies clean telemetry post-merge and keeps watching future commits so the vulnerability pattern never re-enters.'
+          },
+          ts: () => `import { GoogleGenAI } from "@google/genai";
+
+// Illustrative @google/genai v3.6.0 agent reading Stitch Loop security context via MCP
+const ai = new GoogleGenAI({});
+const interaction = await ai.interactions.create({
+  model: "gemini-4-carbon",
+  input: "Review Stitch Loop's CodeMender security PR #418 and verify regression coverage.",
+  tools: [
+    {
+      type: "mcp_server",
+      name: "stitch-loop",
+      url: "https://mcp.example.com/stitch-loop",
+      defer_loading: true,
+    },
+  ],
+});
+console.log(interaction.output_text);`,
+          yaml: () => `# Slack trigger + OKF v0.3 trust-tracked security loop record
+# In Slack: @stitch create security loop for /api/invoices
+---
+okf_version: "0.3"
+title: Invoice API Security Loop Context
+description: Continuous Gemini 4 Carbon + CodeMender verification status.
+---
+generated: { by: stitch_loop/codemender-gemini-4-carbon, at: "2026-11-18T17:00:00Z" }
+verified:
+  - { by: "human:appsec-reviewer", at: "2026-11-18T17:20:00Z" }  # PR #418 approved`
+        },
+        latency: {
+          source: 'Live Logs + Metrics',
+          target: 'P95 < 180 ms',
+          gate: 'Human PR Sign-Off',
+          stages: {
+            suggestions: 'Live product telemetry detects P95 checkout API latency drifting to 640 ms following Tuesday deployment.',
+            solutions: 'Compares Option A (eliminate N+1 cart hydration query) vs. Option B (edge cache key split), detailing bundle and DB tradeoffs.',
+            build: 'Implements Option A in an isolated cloud sandbox and opens GitHub PR #421 with before/after trace screenshots and benchmark video.',
+            reflect: 'Tracks live checkout P95 dropping to 145 ms after merge and keeps monitoring for future regressions.'
+          },
+          ts: () => `import { GoogleGenAI } from "@google/genai";
+
+// Connect Google Antigravity coding agent to persistent Stitch Loop latency context
+const ai = new GoogleGenAI({});
+const interaction = await ai.interactions.create({
+  model: "gemini-4-hydrogen",
+  input: "Pull Stitch Loop's checkout P95 Reflect telemetry and confirm no N+1 queries remain.",
+  tools: [
+    {
+      type: "mcp_server",
+      name: "stitch-loop",
+      url: "https://mcp.example.com/stitch-loop",
+      defer_loading: true,
+    },
+  ],
+});
+console.log(interaction.output_text);`,
+          yaml: () => `# Slack digest command:
+# @stitch show daily latency digest for checkout-service
+---
+okf_version: "0.3"
+title: Checkout P95 Latency Loop
+description: Live SLO tracking (target P95 < 180 ms) across web and Android Go clients.
+---
+generated: { by: stitch_loop/latency-monitor, at: "2026-11-18T17:00:00Z" }
+verified:
+  - { by: "process:synthetic-checkout-probe", at: "2026-11-18T17:10:00Z" }`
+        },
+        accessibility: {
+          source: 'UI + User Feedback',
+          target: 'WCAG AA 100%',
+          gate: 'Human PR Sign-Off',
+          stages: {
+            suggestions: 'Flags low-contrast secondary labels and missing keyboard focus ring on the mobile checkout modal.',
+            solutions: 'Generates updated design tokens and visual comparison options preserving brand palette contrast.',
+            build: 'Patches CSS tokens and ARIA attributes in the cloud sandbox, opening a GitHub PR with desktop + lower-memory mobile screenshots and walkthrough video.',
+            reflect: 'Confirms zero accessibility violations on live routes and keeps watching subsequent UI commits.'
+          },
+          ts: () => `import { GoogleGenAI } from "@google/genai";
+
+const ai = new GoogleGenAI({});
+const interaction = await ai.interactions.create({
+  model: "gemini-4-hydrogen",
+  input: "Audit Stitch Loop's Accessibility PR screenshots for WCAG AA compliance.",
+  tools: [
+    {
+      type: "mcp_server",
+      name: "stitch-loop",
+      url: "https://mcp.example.com/stitch-loop",
+      defer_loading: true,
+    },
+  ],
+});
+console.log(interaction.output_text);`,
+          yaml: () => `# Custom Accessibility + Android (Go edition) Viewport Loop
+# Triggered via Stitch CLI upload + 180+ product integrations
+---
+okf_version: "0.3"
+title: Accessibility & Low-Memory Mobile Loop
+description: Continuous WCAG AA contrast, focus order, and lightweight DOM verification.
+---
+generated: { by: stitch_loop/a11y-watcher, at: "2026-11-18T17:00:00Z" }`
+        },
+        antigravity: {
+          source: '180+ Apps & MCP',
+          target: 'Shared Agent Context',
+          gate: 'Human PR Sign-Off',
+          stages: {
+            suggestions: 'Aggregates logs, user behavior, and feedback across 180+ integrations, custom MCP servers, or local Stitch CLI uploads.',
+            solutions: 'Exposes persistent product context to Google Antigravity and mixed-model coding agents while posting daily digests via @stitch in Slack.',
+            build: 'Coordinates sandboxed PR generation with full visual diffs and test artifacts for engineering approval.',
+            reflect: 'Feeds real production outcomes back into the shared Stitch MCP context layer for every subsequent agent session.'
+          },
+          ts: () => `import { GoogleGenAI } from "@google/genai";
+
+// Use Stitch Loop as the persistent service layer for Google Antigravity agents
+const ai = new GoogleGenAI({});
+const interaction = await ai.interactions.create({
+  model: "gemini-4-carbon",
+  input: "Query Stitch Loop via MCP for top 3 user-feedback friction points this week.",
+  tools: [
+    {
+      type: "mcp_server",
+      name: "stitch-loop-product-context",
+      url: "https://mcp.example.com/stitch-loop",
+      defer_loading: true,
+    },
+  ],
+});
+console.log(interaction.output_text);`,
+          yaml: () => `# Slack & Antigravity Integration Checklist:
+# 1. Connect GitHub + logs/feedback via 180+ integrations, custom MCP, or Stitch CLI
+# 2. In Slack: @stitch digest  |  @stitch new-loop "Improve signup conversion"
+# 3. In Google Antigravity: attach Stitch MCP server for persistent product context
+# 4. Priority Waitlist (Google AI Ultra): https://stitch.google.com/loop/waitlist`
+        }
+      };
+
+      let state = { preset: 'security', stage: 'suggestions', lang: 'ts' };
+
+      function render() {
+        const p = PRESETS[state.preset];
+        document.getElementById('m-source').textContent = p.source;
+        document.getElementById('m-target').textContent = p.target;
+        document.getElementById('m-gate').textContent = p.gate;
+        document.getElementById('m-stage-label').textContent = STAGE_LABELS[state.stage];
+        document.getElementById('stage-bar').style.width = `${STAGE_PCT[state.stage]}%`;
+
+        document.getElementById('step-trace').innerHTML = STAGE_ORDER
+          .map((st, idx) => {
+            const isActive = st === state.stage;
+            const titles = ['1. Suggestions', '2. Solutions', '3. Build (Isolated Sandbox PR)', '4. Reflect (Live Watch)'];
+            return `<div class="step-item ${isActive ? 'active-stage' : ''}">
+              <span class="step-lbl">${titles[idx]}${isActive ? ' · ACTIVE' : ''}</span>
+              <div>${p.stages[st]}</div>
+            </div>`;
+          })
+          .join('');
+
+        document.getElementById('code-output').textContent = p[state.lang]();
+      }
+
+      document.querySelectorAll('[data-preset]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('[data-preset]').forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+          state.preset = btn.getAttribute('data-preset');
+          render();
+        });
+      });
+
+      document.querySelectorAll('[data-stage]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('[data-stage]').forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+          state.stage = btn.getAttribute('data-stage');
+          render();
+        });
+      });
+
+      document.querySelectorAll('[data-lang]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('[data-lang]').forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+          state.lang = btn.getAttribute('data-lang');
+          render();
+        });
+      });
+
+      document.getElementById('copy-code-btn').addEventListener('click', async () => {
+        const code = document.getElementById('code-output').textContent;
+        try {
+          await navigator.clipboard.writeText(code);
+          const b = document.getElementById('copy-code-btn');
+          b.textContent = 'Copied!';
+          setTimeout(() => (b.textContent = 'Copy Snippet'), 1500);
+        } catch (_) {}
+      });
+
+      render();
+    </script>
+  </body>
+</html>

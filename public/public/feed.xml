@@ -12,11 +12,35 @@
   </author>
 
   <entry>
+    <title>Shipping Is Where the Real Work Starts. Stitch Loop Turns Production Metrics Into 24/7 PRs. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/google-labs-stitch-loop-and-codemender.html" />
+    <id>https://geminipulse.com/articles/google-labs-stitch-loop-and-codemender.html</id>
+    <updated>2026-11-18T17:00:00.000Z</updated>
+    <summary>Coding agents build features fast, yet their job ends the instant a pull request merges. On November 18, 2026, Google Labs launched Stitch Loop—an evergreen product agent connecting GitHub, live telemetry, DeepMind CodeMender, and Google Antigravity MCP.</summary>
+  </entry>
+
+  <entry>
     <title>Stop Ingesting 400-Page Manuals Blindly. Gemini Now Slices Office Files, Cells &amp; Layers on Demand. (Flagship Gemini Essay)</title>
     <link href="https://geminipulse.com/articles/gemini-multimodal-file-slicing-and-sdk-v3-6.html" />
     <id>https://geminipulse.com/articles/gemini-multimodal-file-slicing-and-sdk-v3-6.html</id>
     <updated>2026-11-18T13:30:00.000Z</updated>
     <summary>For years, feeding enterprise files into an AI model meant maintaining brittle LibreOffice and ffmpeg chop-shops—or paying full-file token bills every turn. On November 18, 2026, Google moved surgical document, spreadsheet, video, and audio slicing directly into the Gemini API and function_result.</summary>
+  </entry>
+
+  <entry>
+    <title>Beyond Flagships: Re-Architected Gemini Brings 45+ Language Live to Android (Go Edition). (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/gemini-app-lower-memory-android-go-edition.html" />
+    <id>https://geminipulse.com/articles/gemini-app-lower-memory-android-go-edition.html</id>
+    <updated>2026-11-18T17:00:00.000Z</updated>
+    <summary>For hundreds of millions of people worldwide, a lower-memory Android phone is their primary gateway to education and commerce. On November 18, 2026, Google re-architected the Gemini app so core multimodal experiences run smoothly on tight RAM budgets.</summary>
+  </entry>
+
+  <entry>
+    <title>Google Cloud Releases Open Knowledge Format (OKF) v0.3: RFC 2119 Agent Bundles, Current-Only Trust Tiers &amp; Coding Agent Skills. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/google-cloud-okf-v0-3.html" />
+    <id>https://geminipulse.com/articles/google-cloud-okf-v0-3.html</id>
+    <updated>2026-11-18T17:00:00.000Z</updated>
+    <summary>Google Cloud ships Open Knowledge Format v0.3—standardizing YAML 1.2 + CommonMark agent knowledge bundles alongside AGENTS.md and SKILL.md, resetting stale human-reviewed labels after agent edits, and moving OKF to a standalone GitHub org.</summary>
   </entry>
 
   <entry>
@@ -52,27 +76,11 @@
   </entry>
 
   <entry>
-    <title>Stop Maintaining Four Vector Pipelines. Inside EmbeddingGemma 2. (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/embeddinggemma-2-technical-report.html" />
-    <id>https://geminipulse.com/articles/embeddinggemma-2-technical-report.html</id>
-    <updated>2026-11-17T17:00:00.000Z</updated>
-    <summary>Multimodal RAG usually forces teams into a messy compromise: separate encoders for text, images, audio, and video, or giant cloud-only models. On November 17, 2026, Google published the EmbeddingGemma 2 technical report (arXiv:2610.37364) showing how one compact open model outscores models up to 12x larger.</summary>
-  </entry>
-
-  <entry>
-    <title>Google AI Studio Launches Full-Stack Kotlin Android App Builder: Cloud Firestore, Firebase Auth, AI Logic &amp; Play Store Publishing. (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/ai-studio-fullstack-android-apps.html" />
-    <id>https://geminipulse.com/articles/ai-studio-fullstack-android-apps.html</id>
-    <updated>2026-11-17T23:15:00.000Z</updated>
-    <summary>Google AI Studio (with Gemini 4 Carbon &amp; Hydrogen and Android CLI) now builds, tests, and publishes full-stack Kotlin Android apps from a single prompt—auto-provisioning Cloud Firestore, Google Sign-In, keyless Firebase AI Logic + App Check, an HD browser emulator with audio, and personal Google Play library publishing.</summary>
-  </entry>
-
-  <entry>
-    <title>Google Splits Gemini &quot;Keep Activity&quot; Into Independent History &amp; Model Training Controls (With ~2-Month Off-History Retention). (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/gemini-keep-activity-privacy-split.html" />
-    <id>https://geminipulse.com/articles/gemini-keep-activity-privacy-split.html</id>
-    <updated>2026-11-17T22:30:00.000Z</updated>
-    <summary>Updated November 17, 2026: Google is replacing Gemini Apps’ single Keep Activity toggle with two separate settings—History (saving &amp; auto-delete) and Generative AI Model Training (text &amp; attachments)—letting users keep chat history ON while opting out of training, while retaining off-history chats for around 2 months for safety and reliability.</summary>
+    <title>Google Labs Launches Stitch Loop (Gemini 4 Carbon + CodeMender + Antigravity MCP), Android Go Gemini &amp; OKF v0.3 (Parts 1–3) + Stitch Loop Studio [SIMULATED DEMO]</title>
+    <link href="https://geminipulse.com/series/stitch-loop/part-1-what-changed-with-stitch-loop.html" />
+    <id>https://geminipulse.com/series/stitch-loop/part-1-what-changed-with-stitch-loop.html</id>
+    <updated>2026-11-18T17:00:00Z</updated>
+    <summary>Direct primary-source breakdown of Google's November 18, 2026 (17:00 UTC) wave: Google Labs Stitch Loop 24/7 product optimization agent (Suggestions → Solutions → Build → Reflect, Gemini 4 Carbon + CodeMender security loop, 180+ integrations, Antigravity MCP, Slack @stitch), re-architected Gemini app on lower-memory Android (Go edition) devices, Google Cloud OKF v0.3, and companion Stitch Loop Studio [SIMULATED DEMO].</summary>
   </entry>
 
   <entry>

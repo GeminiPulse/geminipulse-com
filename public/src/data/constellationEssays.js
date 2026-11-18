@@ -14,6 +14,340 @@
  */
 
 export const CONSTELLATION_ESSAYS = {
+  'pulse-google-labs-stitch-loop': {
+    id: 'pulse-google-labs-stitch-loop',
+    slug: 'google-labs-stitch-loop-and-codemender',
+    shortStarLabel: 'Stitch Loop',
+    readMinutes: '7 MIN READ',
+    hudTitle: 'Coding Agents Stop at Merge. Stitch Loop Watches Production 24/7.',
+    hudSummary:
+      'On November 18, 2026, Google Labs unveiled Stitch Loop—a long-running product agent connecting GitHub and live telemetry across 180+ integrations, Gemini 4 Carbon + CodeMender security loops, and Antigravity MCP.',
+    peekCastor: 'Stitch Loop: <em>24/7 product loops after merge.</em>',
+    peekPollux: 'Carbon + CodeMender: <em>Sandboxed PRs &amp; MCP.</em>',
+    headline: 'Shipping Is Where the Real Work Starts. <em>Stitch Loop Turns Production Metrics Into 24/7 PRs.</em>',
+    standfirst:
+      'Coding agents build features fast, yet their job ends the instant a pull request merges. On November 18, 2026, Google Labs launched Stitch Loop—an evergreen product agent connecting GitHub, live telemetry, DeepMind CodeMender, and Google Antigravity MCP.',
+    pulseCheck: [
+      {
+        stage: 'What Shipped',
+        detail:
+          'Google Labs introduced Stitch Loop, an always-on product optimization agent running four-stage evergreen loops (Suggestions, Solutions, Build, Reflect) across Cybersecurity (Gemini 4 Carbon + CodeMender), Latency, Accessibility, and custom business goals.',
+      },
+      {
+        stage: 'Why Builders Care',
+        detail:
+          'Stitch Loop grounds fixes in GitHub code plus live logs, user behavior, and feedback via 180+ integrations, custom MCP servers, or CLI uploads—opening sandboxed GitHub PRs with screenshots and videos while serving persistent context to Google Antigravity and Slack (@stitch).',
+      },
+      {
+        stage: 'The Fine-Print Catch',
+        detail:
+          'Stitch Loop is launching via a global waitlist at stitch.google.com/loop/waitlist (with priority access for eligible Google AI Ultra subscribers), and every generated change strictly waits on manual human PR approval before merging.',
+      },
+    ],
+    castor: {
+      kicker: 'PART I · α CASTOR · PRODUCT, SECURITY & TEAM WORKFLOW LENS',
+      title: 'Why Post-Launch Maintenance Is Harder Than Day-One Vibe Coding',
+      subtitle:
+        'How connecting live metrics, CodeMender security scans, and human-gated PRs bridges the gap between shipping and sustaining a product.',
+      paragraphs: [
+        'For the past year, AI coding tools focused almost exclusively on pre-merge velocity: describe a component, scaffold an endpoint, open a pull request, and move on. Yet as Google Labs Director of Product Management Justin Toupin notes on <strong>November 18, 2026</strong>, launch day is when the hardest work actually begins—patching vulnerabilities, shaving milliseconds off checkout latency, and diagnosing signup drop-offs buried inside noisy production feedback.',
+        '<strong>Stitch Loop</strong> extends Stitch beyond interface creation into a <strong>long-running 24/7 product agent</strong>. Teams connect GitHub alongside live product context—logs, user behavior, and feedback—through over <strong>180 integrations</strong>, custom <strong>MCP servers</strong>, or local CLI uploads. Out of the box, Stitch Loop ships three evergreen loops—<strong>Cybersecurity</strong>, <strong>Latency</strong>, and <strong>Accessibility</strong>—plus custom loops targeting metrics such as checkout conversion.',
+        'Security gets special engineering weight: the built-in Cybersecurity loop pairs <strong>Gemini 4 Carbon’s</strong> cybersecurity capabilities with <strong>CodeMender</strong>, Google DeepMind’s autonomous code-security agent, scanning repositories for vulnerabilities before they escalate into incidents and backing every suggested fix with concrete evidence.',
+        'Crucially, Stitch Loop never silently pushes edits to production. When you choose a solution direction, it writes and tests code inside an <strong>isolated cloud sandbox</strong> and opens a standard GitHub pull request—complete with <strong>screenshots and videos</strong> of the verified change—so humans retain final merge authority. And through <code>@stitch</code> in Slack, teams get daily insight digests and spin up new loops right where they coordinate.',
+      ],
+      pullquote: {
+        quote:
+          'Coding agents end the moment your pull request merges; Stitch Loop keeps watching live telemetry after launch, opening evidence-backed PRs while leaving the final merge call to you.',
+        attribution: 'GOOGLE GEMINI 4 ARGON · α CASTOR EDITORIAL SYNTHESIS',
+      },
+      comparisonTable: {
+        id: 'stitch-loop-comparison-table',
+        caption: 'One-Shot Coding Agents vs. Google Labs Stitch Loop (Nov 18, 2026)',
+        columns: ['Workflow Dimension', 'Conventional Coding Agent', 'Google Labs Stitch Loop', 'Team Outcome'],
+        rows: [
+          ['Lifecycle Scope', 'Prompt-driven; stops at PR merge', 'Evergreen 24/7 Suggestions → Solutions → Build → Reflect', 'Continuous post-launch maintenance & regression guard'],
+          ['Context Grounding', 'Repo files and pasted errors', 'GitHub + 180+ integrations, custom MCP servers, or CLI uploads', 'Fixes tied directly to live logs, behavior & feedback'],
+          ['Security Coverage', 'Ad-hoc static checks on request', 'Gemini 4 Carbon + DeepMind CodeMender Cybersecurity loop', 'Proactive vulnerability discovery with PR evidence'],
+          ['Verification & Merge', 'Text diff in editor or PR', 'Isolated cloud sandbox PR with screenshots & video; manual merge gate', 'Fast visual review without surrendering merge control'],
+        ],
+      },
+      adaptiveQuestions: [
+        {
+          lensTag: 'FOR FOUNDERS & LEAN TEAMS',
+          question: 'Can Stitch Loop merge changes to main automatically while I sleep?',
+          answer:
+            'No. Stitch Loop writes and verifies changes in an isolated cloud sandbox and opens a GitHub pull request with screenshots and videos, explicitly requiring manual human PR approval before anything merges.',
+        },
+        {
+          lensTag: 'FOR ANTIGRAVITY DEVELOPERS',
+          question: 'Does Stitch Loop replace Google Antigravity or work alongside it?',
+          answer:
+            'It acts as a persistent product-context service layer for coding agents like Google Antigravity via the Stitch CLI and MCP, letting your IDE agents pull live metrics, user feedback, and Reflect history in mixed-model setups.',
+        },
+        {
+          lensTag: 'FOR SECURITY & INFRASTRUCTURE TEAMS',
+          question: 'How does the built-in Cybersecurity loop work?',
+          answer:
+            'It pairs Gemini 4 Carbon’s cybersecurity capabilities with Google DeepMind’s CodeMender agent to scan your codebase proactively, attach evidence for each vulnerability, and open a reviewable fix PR.',
+        },
+      ],
+    },
+    pollux: {
+      kicker: 'PART II · β POLLUX · ARCHITECTURE, MCP & CONTINUOUS LOOP LENS',
+      title: 'Wiring Stitch Loop MCP, Google Antigravity & OKF v0.3 Into Continuous Delivery',
+      subtitle:
+        'How Suggestions, Solutions, Build, and Reflect operate alongside November 18’s Open Knowledge Format v0.3 and Gen AI SDK v3.6.',
+      paragraphs: [
+        'Each Stitch Loop cycle executes four distinct phases: <strong>Suggestions</strong> mines connected telemetry for evidence-backed opportunities; <strong>Solutions</strong> generates scoped technical options with explicit tradeoffs and UI design variants; <strong>Build</strong> executes code inside an isolated cloud sandbox and attaches rendered screenshots and videos to a GitHub PR; and <strong>Reflect</strong> tracks post-merge product telemetry—learning from positive or negative deltas and remaining on watch in case metrics drift back.',
+        'At the exact same November 18, 2026 release window (17:00 UTC), Google Cloud released <strong>Open Knowledge Format (OKF) v0.3</strong>, adding RFC 2119 conformance, progressive-disclosure bundle routing via <code>index.md</code>, and current-only trust timestamps (<code>generated.at</code> vs. <code>verified</code>) so agent edits cleanly coexist with <code>AGENTS.md</code> and <code>SKILL.md</code> without preserving stale human sign-offs.',
+        'In <code>@google/genai</code> v3.6.0, Antigravity agents can consume Stitch Loop’s persistent product context via <code>mcp_server</code> tools with <code>defer_loading: true</code>, ensuring large telemetry toolsets never bloat initial prompt budgets.',
+      ],
+      builderRules: [
+        {
+          label: '01 · Anchor Loops to Measurable SLOs',
+          detail:
+            'Pair built-in Cybersecurity, Latency, and Accessibility loops with tightly bounded custom metrics (such as checkout conversion or P95 hydration time) so Reflect evaluates clear positive/negative deltas.',
+        },
+        {
+          label: '02 · Expose Persistent Product Context via Stitch MCP',
+          detail:
+            'Attach Stitch CLI and MCP to Google Antigravity so interactive coding sessions inherit live logs and prior Reflect learnings rather than starting cold.',
+        },
+        {
+          label: '03 · Track Agent vs. Human Verification With OKF v0.3',
+          detail:
+            'When multi-agent pipelines refine metric definitions or runbooks in the same repo as AGENTS.md, use OKF v0.3 generated.at timestamps so human-reviewed sign-offs reset cleanly on agent edits.',
+        },
+      ],
+      codeCaption: 'CONSUMING PERSISTENT STITCH LOOP CONTEXT VIA MCP (@google/genai v3.6.0)',
+      codeSnippet: `import { GoogleGenAI } from "@google/genai";
+
+// Illustrative @google/genai v3.6.0 pattern consuming Stitch Loop MCP context
+const ai = new GoogleGenAI({});
+const interaction = await ai.interactions.create({
+  model: "gemini-4-carbon",
+  input: "Review Stitch Loop's CodeMender security PR #418 and checkout P95 Reflect telemetry.",
+  tools: [
+    {
+      type: "mcp_server",
+      name: "stitch-loop",
+      url: "https://mcp.example.com/stitch-loop",
+      defer_loading: true,
+    },
+  ],
+});
+console.log(interaction.output_text);`,
+      workbench: {
+        title: 'Stitch Loop & CodeMender Scenario Workbench',
+        subtitle: 'Inspect the 4-stage evergreen loop across Security, Latency, Accessibility, and Antigravity MCP.',
+        dek: 'Select one of the November 18 Stitch Loop presets below or open the full-screen Stitch Loop Studio [SIMULATED DEMO].',
+        presets: [
+          {
+            label: '1. SECURITY (CARBON + CODEMENDER)',
+            k1: 'Loop Engines',
+            v1: 'Gemini 4 Carbon Cybersecurity + DeepMind CodeMender',
+            k2: 'Build Artifact',
+            v2: 'Cloud sandbox patch + GitHub PR with exploit-prevention proof',
+            k3: 'Merge Governance',
+            v3: 'Blocked until manual human PR approval',
+          },
+          {
+            label: '2. LATENCY & CHECKOUT LOOP',
+            k1: 'Context Sources',
+            v1: 'GitHub + live logs/metrics (180+ integrations or custom MCP)',
+            k2: 'Solutions Stage',
+            v2: 'Scoped tradeoffs + visual design options before Build',
+            k3: 'Reflect Stage',
+            v3: 'Tracks live metric post-merge and stays on regression watch',
+          },
+          {
+            label: '3. ANTIGRAVITY MCP + SLACK',
+            k1: 'Agent Service Layer',
+            v1: 'Stitch CLI & MCP feeding Google Antigravity mixed-model agents',
+            k2: 'Team Ops',
+            v2: '@stitch in Slack for daily insight digests & loop creation',
+            k3: 'Rollout Access',
+            v3: 'Global waitlist at stitch.google.com/loop/waitlist (AI Ultra priority)',
+          },
+        ],
+      },
+    },
+    verdict: {
+      title: 'Gemini’s Bottom Line: Continuous Outcome Loops Replace One-Shot Agent Prompts',
+      subtitle:
+        'Stitch Loop completes the software lifecycle by tying Gemini 4 Carbon, CodeMender, and Antigravity MCP directly to post-launch telemetry.',
+      paragraphs: [
+        '<strong>Join the waitlist if:</strong> your lean team ships quickly yet struggles to keep security hygiene, P95 latency, accessibility, and conversion tuning running continuously after launch—especially if you already use <strong>Google AI Ultra</strong> (eligible for priority access).',
+        '<strong>Pair with OKF v0.3 &amp; Android Go reach:</strong> use Google Cloud’s November 18 <strong>OKF v0.3</strong> bundle conventions to keep human-vs-agent trust tiers auditable, and optimize mobile web latency for the newly expanded <strong>Android (Go edition)</strong> Gemini audience.',
+      ],
+      sources: [
+        {
+          role: 'Official Google Labs Launch',
+          label: 'Introducing Stitch Loop: A new way to build and evolve products',
+          author: 'Justin Toupin, Director, Product Management, Google Labs',
+          date: 'November 18, 2026',
+          url: 'https://blog.google/innovation-and-ai/models-and-research/google-labs/stitch-loop/',
+        },
+        {
+          role: 'Official Google Cloud Spec Release',
+          label: 'What’s new in OKF v0.3: enterprise-ready knowledge, use cases, and skills',
+          author: 'Sam McVeety & Amir Hormati, Google Cloud',
+          date: 'November 18, 2026',
+          url: 'https://cloud.google.com/blog/products/data-analytics/introducing-okf-v0-3/',
+        },
+        {
+          role: 'Official Google Blog Announcement',
+          label: 'The Gemini app is now available on lower-memory Android devices',
+          author: 'Angus Logan, Gemini App',
+          date: 'November 18, 2026',
+          url: 'https://blog.google/innovation-and-ai/products/gemini-app/gemini-lower-memory-devices/',
+        },
+      ],
+    },
+  },
+  'pulse-gemini-app-lower-memory-android': {
+    id: 'pulse-gemini-app-lower-memory-android',
+    slug: 'gemini-app-lower-memory-android-go-edition',
+    shortStarLabel: 'Gemini Android Go',
+    readMinutes: '5 MIN READ',
+    hudTitle: 'Full Gemini Live & Nano Banana Now Run on Lower-Memory Android (Go Edition).',
+    hudSummary:
+      'On November 18, 2026, Google shipped a re-architected Gemini app for eligible Android (Go edition) and lower-memory phones—bringing 45+ language Gemini Live, camera translation, and Nano Banana to hundreds of millions more people.',
+    peekCastor: 'Android (Go edition): <em>Gemini Live &amp; camera AI on budget phones.</em>',
+    peekPollux: 'Re-Architected Footprint: <em>Google Play + Transsion OEM preloads.</em>',
+    headline: 'Beyond Flagships: <em>Re-Architected Gemini Brings 45+ Language Live to Android (Go Edition).</em>',
+    standfirst:
+      'For hundreds of millions of people worldwide, a lower-memory Android phone is their primary gateway to education and commerce. On November 18, 2026, Google re-architected the Gemini app so core multimodal experiences run smoothly on tight RAM budgets.',
+    pulseCheck: [
+      {
+        stage: 'What Shipped',
+        detail:
+          'Google launched a re-architected Gemini mobile app for eligible Android (Go edition) and lower-memory Android devices, available on Google Play, power-button press-and-hold, and upcoming OEM preloads from partners like Transsion.',
+      },
+      {
+        stage: 'Why People Care',
+        detail:
+          'Lower-memory devices previously stopped at basic voice commands. Now users get conversational Gemini Live in 45+ languages, camera-based note/form learning and translation, and Nano Banana custom image creation.',
+      },
+      {
+        stage: 'The Fine-Print Catch',
+        detail:
+          'Rollout applies to eligible Android (Go edition) devices via Google Play and supported OEM hardware partners, with cloud-assisted multimodal experiences depending on mobile connectivity.',
+      },
+    ],
+    castor: {
+      kicker: 'PART I · α CASTOR · GLOBAL REACH & PRODUCT ACCESSIBILITY LENS',
+      title: 'Why Bringing Multimodal AI to Android (Go Edition) Matters Globally',
+      subtitle:
+        'Moving hundreds of millions of lower-memory phones from basic voice triggers to Gemini Live, visual translation, and Nano Banana.',
+      paragraphs: [
+        'Frontier AI launches often assume flagship silicon and abundant unified memory, leaving hundreds of millions of smartphone owners on basic voice commands. On <strong>November 18, 2026</strong>, Gemini App builder Angus Logan announced that Google has <strong>re-architected the Gemini app</strong> from the ground up to run smoothly on eligible <strong>Android (Go edition)</strong> and lower-memory Android devices.',
+        'Instead of typing lengthy prompts on compact screens, users can speak naturally with <strong>Gemini Live</strong>—talking through ideas or practicing job interviews out loud across <strong>more than 45 languages</strong>. Pointing the phone’s camera at handwritten notes or printed forms enables instant explanation and translation.',
+        'The lightweight client also unlocks creative workflows powered by <strong>Nano Banana</strong>, letting small business owners generate custom promotional visuals such as a weekend bakery flyer straight from an entry-level handset. Access rolls out via Google Play, power-button press-and-hold on supported phones, and preloads on upcoming devices from OEM partners including <strong>Transsion</strong>.',
+      ],
+      pullquote: {
+        quote:
+          'Re-architecting Gemini for lower-memory Android devices moves hundreds of millions of people from basic voice commands to 45+ language Gemini Live and camera understanding.',
+        attribution: 'GOOGLE GEMINI 4 ARGON · α CASTOR EDITORIAL SYNTHESIS',
+      },
+      adaptiveQuestions: [
+        {
+          lensTag: 'FOR GLOBAL USERS & SMALL BUSINESSES',
+          question: 'Which Gemini features are included on eligible Android (Go edition) phones?',
+          answer:
+            'Eligible devices get conversational Gemini Live in 45+ languages, camera-based learning and translation for notes and forms, and custom image generation with Nano Banana.',
+        },
+        {
+          lensTag: 'FOR DEVICE ACCESS',
+          question: 'How do users get the re-architected app?',
+          answer:
+            'Download the Gemini app from Google Play, press and hold the power button on supported phones, or look for it preloaded on upcoming devices from partners like Transsion.',
+        },
+      ],
+    },
+    pollux: {
+      kicker: 'PART II · β POLLUX · MOBILE WEB, LATENCY & BUILDER IMPACT LENS',
+      title: 'Designing Lightweight Web & API Flows for Emerging-Market Gemini Users',
+      subtitle:
+        'What expanding Gemini Live and camera workflows to entry-level Android hardware means for app and PWA builders.',
+      paragraphs: [
+        'As Gemini Live and camera-assisted discovery bring more entry-level Android users onto conversational and visual workflows, third-party websites and web apps linked from Gemini need tight memory footprints, fast First Contentful Paint, and accessible contrast across smaller displays.',
+        'Pairing compact payloads on the frontend with server-side <strong>Gemini API Multimodal File Processing and Slicing</strong> (also launched November 18, 2026) and continuous <strong>Stitch Loop</strong> latency/accessibility loops ensures mobile experiences stay responsive even on constrained networks and lower-memory devices.',
+      ],
+      builderRules: [
+        {
+          label: '01 · Keep Mobile Web Bundles Lean',
+          detail:
+            'Test interactive web apps at 390px and constrained memory profiles so users arriving from Gemini Live links experience instant rendering.',
+        },
+        {
+          label: '02 · Support Multilingual & Camera-Friendly Output',
+          detail:
+            'Structure forms, receipts, and guides with clean typography and semantic HTML so camera translation and screen readers parse them reliably.',
+        },
+      ],
+      codeCaption: 'MULTILINGUAL GEMINI 4 HYDROGEN API PATTERN FOR LIGHTWEIGHT CLIENTS',
+      codeSnippet: `import { GoogleGenAI } from "@google/genai";
+
+const ai = new GoogleGenAI({});
+const interaction = await ai.interactions.create({
+  model: "gemini-4-hydrogen",
+  input: "Summarize this photographed clinic intake form into plain-language checklist steps.",
+});
+console.log(interaction.output_text);`,
+      workbench: {
+        title: 'Android (Go Edition) Gemini Capabilities Overview',
+        subtitle: 'Inspect the three core experiences shipped on lower-memory Android devices.',
+        dek: 'Explore how re-architected Gemini expands voice, vision, and creative generation to entry-level hardware.',
+        presets: [
+          {
+            label: '1. GEMINI LIVE (45+ LANGUAGES)',
+            k1: 'Interaction Mode',
+            v1: 'Voice-first conversation & interview practice without long typing',
+            k2: 'Language Coverage',
+            v2: 'More than 45 languages supported',
+            k3: 'Trigger',
+            v3: 'Google Play download or power-button press-and-hold',
+          },
+          {
+            label: '2. CAMERA NOTES & FORMS',
+            k1: 'Visual Workflow',
+            v1: 'Point camera at handwritten notes or printed forms',
+            k2: 'Capabilities',
+            v2: 'Instant explanation, learning assistance, and translation',
+            k3: 'Hardware Target',
+            v3: 'Eligible Android (Go edition) & lower-memory devices',
+          },
+          {
+            label: '3. NANO BANANA & OEM PRELOADS',
+            k1: 'Creative Generation',
+            v1: 'Custom images & flyers via Nano Banana',
+            k2: 'OEM Distribution',
+            v2: 'Preloaded on upcoming phones from partners like Transsion',
+            k3: 'Launch Date',
+            v3: 'November 18, 2026 (17:00 UTC)',
+          },
+        ],
+      },
+    },
+    verdict: {
+      title: 'Gemini’s Bottom Line: Frontier Capabilities Without Flagship Hardware Requirements',
+      subtitle:
+        'Re-architecting the Gemini app for Android (Go edition) unlocks conversational voice and camera AI for hundreds of millions of new users.',
+      paragraphs: [
+        '<strong>Why this launch matters:</strong> bringing 45+ language Gemini Live, camera translation, and Nano Banana to lower-memory hardware removes the flagship paywall from everyday mobile AI assistance.',
+      ],
+      sources: [
+        {
+          role: 'Official Google Blog Announcement',
+          label: 'The Gemini app is now available on lower-memory Android devices',
+          author: 'Angus Logan, Builder, Gemini App',
+          date: 'November 18, 2026',
+          url: 'https://blog.google/innovation-and-ai/products/gemini-app/gemini-lower-memory-devices/',
+        },
+      ],
+    },
+  },
   'pulse-gemini-multimodal-slicing-office-api': {
     id: 'pulse-gemini-multimodal-slicing-office-api',
     slug: 'gemini-multimodal-file-slicing-and-sdk-v3-6',

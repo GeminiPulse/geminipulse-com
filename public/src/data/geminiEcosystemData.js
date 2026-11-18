@@ -5,6 +5,55 @@
 
 export const PULSE_INTELLIGENCE_FEED = [
   {
+    id: 'pulse-google-labs-stitch-loop',
+    title: 'Google Labs Introduces Stitch Loop: 24/7 Product Optimization Agent Powered by Gemini 4 Carbon, CodeMender & Antigravity MCP',
+    tldr: 'Released November 18, 2026 (17:00 UTC): Google Labs unveils Stitch Loop—a long-running product agent connecting GitHub and live metrics across 180+ integrations, custom MCP servers, or local CLI uploads to run evergreen Suggestions → Solutions → Build → Reflect loops with human-approved PRs.',
+    summary:
+      'Authored by Google Labs Director of Product Management Justin Toupin, Stitch Loop extends Stitch beyond initial UI generation into 24/7 post-launch product maintenance: (1) Evergreen Four-Stage Loop—Suggestions (evidence from logs/behavior/feedback) → Solutions (tradeoffs, scoping & visual design options) → Build (writes code in an isolated cloud sandbox and opens a GitHub pull request with screenshots and videos for human approval) → Reflect (monitors live metrics and stays on watch after goals are met), (2) Three Built-In Loops + Custom Loops—Cybersecurity (pairing Gemini 4 Carbon’s cybersecurity capabilities with Google DeepMind’s CodeMender agent), Latency, and Accessibility, plus custom loops like checkout conversion, (3) Agent & Slack Service Layer—feeds persistent product context to coding agents like Google Antigravity via Stitch CLI and MCP, and supports @stitch in Slack for daily insight digests and loop creation, and (4) Global Waitlist—open at stitch.google.com/loop/waitlist with priority access for eligible Google AI Ultra subscribers.',
+    category: 'Agentic Product Engineering',
+    tag: 'Google Labs Launch',
+    modelBadge: 'Stitch Loop · Carbon + CodeMender',
+    impactScore: '10.0 / 10',
+    date: '2026-11-18T17:00:00Z',
+    sourceLabel: 'Google Blog: Introducing Stitch Loop — A new way to build and evolve products',
+    sourceUrl: 'https://blog.google/innovation-and-ai/models-and-research/google-labs/stitch-loop/',
+    groundedBy: 'Google Official Blog (Google Labs, Nov 18, 2026 17:00 UTC)',
+    seriesUrl: '/series/stitch-loop/part-1-what-changed-with-stitch-loop.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-stitch-loop-studio.html',
+    labLabel: 'Stitch Loop Lab [DEMO] →',
+  },
+  {
+    id: 'pulse-gemini-app-lower-memory-android',
+    title: 'Google Launches Re-Architected Gemini App on Lower-Memory & Android (Go Edition) Devices With 45+ Language Live & Nano Banana',
+    tldr: 'Released November 18, 2026 (17:00 UTC): Google re-architected the Gemini app to run smoothly on eligible Android (Go edition) and lower-memory phones—bringing Gemini Live in 45+ languages, camera note/form translation, and Nano Banana image generation to hundreds of millions more people.',
+    summary:
+      'Announced by Angus Logan on the official Google Blog (Nov 18, 2026 17:00 UTC), Google re-architected the Gemini mobile app for hardware with tighter RAM budgets so eligible Android (Go edition) devices move beyond basic voice commands to the core Gemini assistant experience. Users can talk through ideas or rehearse interviews out loud in more than 45 languages with Gemini Live, point their camera at handwritten notes or forms to learn and translate, and generate custom flyers or images with Nano Banana. Available immediately on Google Play, via power-button press-and-hold on supported phones, and preloaded on upcoming devices from OEM partners such as Transsion.',
+    category: 'Gemini App & Android',
+    tag: 'Global Rollout',
+    modelBadge: 'Gemini App · Android Go',
+    impactScore: '9.6 / 10',
+    date: '2026-11-18T17:00:00Z',
+    sourceLabel: 'Google Blog: The Gemini app is now available on lower-memory Android devices',
+    sourceUrl: 'https://blog.google/innovation-and-ai/products/gemini-app/gemini-lower-memory-devices/',
+    groundedBy: 'Google Official Blog (Gemini App, Nov 18, 2026 17:00 UTC)',
+  },
+  {
+    id: 'pulse-google-cloud-okf-v0-3',
+    title: 'Google Cloud Releases Open Knowledge Format (OKF) v0.3: RFC 2119 Agent Bundles, Current-Only Trust Tiers & Coding Agent Skills',
+    tldr: 'Released November 18, 2026 (17:00 UTC): Google Cloud ships Open Knowledge Format v0.3—standardizing YAML 1.2 + CommonMark agent knowledge bundles alongside AGENTS.md and SKILL.md, resetting stale human-reviewed labels after agent edits, and moving OKF to a standalone GitHub org.',
+    summary:
+      'Published by Sam McVeety and Amir Hormati on the Google Cloud Blog, Open Knowledge Format (OKF) v0.3 upgrades Google’s open agent-context specification for cross-organization production pipelines: (1) RFC 2119 Conformance & Coexistence—uses YAML 1.2 frontmatter, CommonMark with GFM tables, and RFC 3339 timestamps while skipping .md files without a type field so README.md, AGENTS.md, CONTRIBUTING.md, and SKILL.md live cleanly inside the same bundle, (2) Current-Only Trust Verification—only verifications dated at or after generated.at count, automatically downgrading human-reviewed concepts to machine-confirmed when an agent refines content, and adding team: alongside human: and process: actor identifiers, (3) Self-Describing Progressive Disclosure—bundle-root index.md frontmatter provides routing descriptions and licensing without forcing agents to read every file, and (4) OKF Use Cases, 2 Coding Agent Skills & Standalone Org—adds community guides, two skills letting coding agents read/write OKF bundles, and moves the repository to github.com/open-knowledge-format/open-knowledge-format/.',
+    category: 'Enterprise Knowledge & Agents',
+    tag: 'Open Spec v0.3',
+    modelBadge: 'Google Cloud OKF v0.3',
+    impactScore: '9.5 / 10',
+    date: '2026-11-18T17:00:00Z',
+    sourceLabel: 'Google Cloud Blog: What’s new in OKF v0.3 — enterprise-ready knowledge, use cases, and skills',
+    sourceUrl: 'https://cloud.google.com/blog/products/data-analytics/introducing-okf-v0-3/',
+    groundedBy: 'Google Cloud Official Blog (Nov 18, 2026 17:00 UTC)',
+  },
+  {
     id: 'pulse-gemini-multimodal-slicing-office-api',
     title: 'Gemini API Launches Multimodal File Slicing & Native Office/OpenDocument Processing Across Prompts and Function Responses',
     tldr: 'Released November 18, 2026: Pass Microsoft Office (.docx, .pptx, .xlsx) and OpenDocument (.odt, .odp, .ods) files directly to the Gemini API, and slice pages, worksheet tabs, A1 cell ranges, video/audio time intervals, and content layers in user prompts and function_result blocks—paying only for the sliced content.',
@@ -1149,6 +1198,64 @@ export const GEMINI_MODEL_MATRIX = [
 
 export const STUDIO_LAB_BLUEPRINTS = [
   {
+    id: 'lab-stitch-loop-studio',
+    title: 'Stitch Loop & CodeMender Continuous Agent Studio [SIMULATED DEMO]',
+    badge: 'Nov 18, 2026 Google Labs',
+    model: 'gemini-4-carbon',
+    href: '/labs/gemini-stitch-loop-studio.html',
+    description:
+      'Interactive developer simulator modeling Google Labs’ Nov 18 Stitch Loop release: step through Suggestions → Solutions → Build (isolated sandbox GitHub PRs with screenshots & video) → Reflect across Cybersecurity (Gemini 4 Carbon + CodeMender), Latency, Accessibility, and Google Antigravity MCP context.',
+    prompt:
+      'Query Stitch Loop via MCP for live checkout-latency Reflect telemetry and verify CodeMender security PR #418 before human sign-off.',
+    tsCode: `import { GoogleGenAI } from "@google/genai";
+
+// Illustrative @google/genai v3.6.0 pattern consuming Stitch Loop MCP context
+const ai = new GoogleGenAI({});
+const interaction = await ai.interactions.create({
+  model: "gemini-4-carbon",
+  input: "Review Stitch Loop's CodeMender security PR #418 and checkout P95 Reflect telemetry.",
+  tools: [
+    {
+      type: "mcp_server",
+      name: "stitch-loop",
+      url: "https://mcp.example.com/stitch-loop",
+      defer_loading: true,
+    },
+  ],
+});
+console.log(interaction.output_text);`,
+    pyCode: `from google import genai
+
+client = genai.Client()
+interaction = client.interactions.create(
+    model="gemini-4-carbon",
+    input="Review Stitch Loop's CodeMender security PR #418 and checkout P95 Reflect telemetry.",
+    tools=[
+        {
+            "type": "mcp_server",
+            "name": "stitch-loop",
+            "url": "https://mcp.example.com/stitch-loop",
+            "defer_loading": True,
+        }
+    ],
+)
+print(interaction.output_text)`,
+    simulatedSteps: [
+      {
+        type: 'thought',
+        label: 'step[0] • Suggestions + Solutions (180+ integrations & logs)',
+        detail:
+          'Correlated GitHub source with live error/latency telemetry; generated two scoped solutions with tradeoffs and visual diffs.',
+      },
+      {
+        type: 'tool_call',
+        label: 'step[1] • Build (Sandbox PR) → Reflect (Live Watch)',
+        detail:
+          'Gemini 4 Carbon + CodeMender opened GitHub PR #418 with screenshots and video for manual human approval; Reflect watches post-merge metrics continuously.',
+      },
+    ],
+  },
+  {
     id: 'lab-multimodal-slicing-studio',
     title: 'Gemini Multimodal File Slicing & SDK v3.6.0 Studio [SIMULATED DEMO]',
     badge: 'Nov 18, 2026 API & SDK',
@@ -2070,6 +2177,25 @@ video_turn = client.interactions.create(
 ];
 
 export const INITIAL_SHOWCASE_PROJECTS = [
+  {
+    id: 'showcase-gemini-stitch-loop-studio',
+    name: 'Stitch Loop & CodeMender Continuous Agent Studio [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive developer workbench modeling Google Labs’ Nov 18 Stitch Loop release: Suggestions → Solutions → Build (sandbox PRs with screenshots/video) → Reflect across Cybersecurity (Gemini 4 Carbon + CodeMender), Latency, Accessibility, and Antigravity MCP.',
+    models: ['gemini-4-carbon', 'gemini-4-hydrogen'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-stitch-loop-studio.html): [SIMULATED DEMO] Models 24/7 CodeMender security PRs, P95 latency loops, Slack @stitch digests, and OKF v0.3 trust tracking.',
+    url: '/labs/gemini-stitch-loop-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-18T17:00:00Z',
+  },
   {
     id: 'showcase-gemini-multimodal-slicing-studio',
     name: 'Gemini Multimodal File Slicing & SDK v3.6.0 Studio [SIMULATED DEMO]',

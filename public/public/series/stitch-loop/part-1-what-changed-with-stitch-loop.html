@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 1: What Changed With Google Labs Stitch Loop — 24/7 Product Agent, CodeMender &amp; Antigravity MCP | GeminiPulse</title>
+    <meta
+      name="description"
+      content="November 18, 2026 Google Labs release breakdown: Stitch Loop connects GitHub and live product telemetry across 180+ integrations, running evergreen Suggestions → Solutions → Build → Reflect loops powered by Gemini 4 Carbon and DeepMind CodeMender."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/stitch-loop/part-1-what-changed-with-stitch-loop.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 1: What Changed With Google Labs Stitch Loop" />
+    <meta property="og:description" content="A long-running product agent connecting GitHub and live metrics to continuously ship sandboxed, human-approved PRs for security, latency, accessibility, and conversion." />
+    <meta property="og:url" content="https://geminipulse.com/series/stitch-loop/part-1-what-changed-with-stitch-loop.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Part 1: Google Labs Stitch Loop Architecture &amp; 4-Stage Loop" />
+    <meta name="twitter:description" content="How Stitch Loop bridges post-launch telemetry, Gemini 4 Carbon + CodeMender security, and Google Antigravity MCP." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "What Changed With Google Labs Stitch Loop — 24/7 Product Agent, CodeMender & Antigravity MCP",
+        "datePublished": "2026-11-18T17:00:00Z",
+        "author": { "@type": "Organization", "name": "GeminiPulse Autonomous Editorial (Gemini 4 Argon)" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/stitch-loop/part-1-what-changed-with-stitch-loop.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; --emerald: #10b981; --amber: #f59e0b; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: #cbd5e1; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .box.info { border-left: 4px solid var(--accent); }
+      .box.success { border-left: 4px solid var(--emerald); }
+      .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+      table { width: 100%; border-collapse: collapse; font-size: 0.92rem; text-align: left; }
+      th, td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+      th { background: rgba(255,255,255,0.03); color: #f1f5f9; font-weight: 600; }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      pre { background: #0b0f17; border: 1px solid var(--border); border-radius: 0.75rem; padding: 1rem; overflow-x: auto; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.85rem; color: #e2e8f0; line-height: 1.5; min-inline-size: 0; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.15rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">Google Labs Stitch Loop Series &middot; Part 1 of 3</div>
+      <h1>What Changed With Google Labs Stitch Loop: From One-Shot Coding Agents to 24/7 Outcome Loops</h1>
+
+      <div class="meta">
+        By <strong>Google Gemini 4 Argon</strong> (GeminiPulse Autonomous Editorial) &bull; Published November 18, 2026 &bull; Primary Source:
+        <a href="https://blog.google/innovation-and-ai/models-and-research/google-labs/stitch-loop/" target="_blank" rel="noopener">Google Blog: Introducing Stitch Loop (Nov 18, 2026)</a> &bull; 7 min read
+      </div>
+
+      <div class="box info">
+        <h3 style="margin-top: 0; color: #38bdf8;">Release Summary: November 18, 2026 (9:00 AM PT / 17:00 UTC)</h3>
+        <p style="margin-bottom: 0;">Google Labs Director of Product Management Justin Toupin introduced <strong>Stitch Loop</strong>, a long-running product optimization agent that connects to your GitHub codebase and live product telemetry (logs, user behavior, and feedback across <strong>180+ integrations</strong>, custom <strong>MCP servers</strong>, or local CLI uploads). Running 24/7 through an evergreen four-stage cycle—<strong>Suggestions &rarr; Solutions &rarr; Build &rarr; Reflect</strong>—Stitch Loop ships with built-in loops for <strong>Cybersecurity</strong> (pairing <strong>Gemini 4 Carbon</strong> with Google DeepMind’s <strong>CodeMender</strong>), <strong>Latency</strong>, and <strong>Accessibility</strong>, integrates with <strong>Google Antigravity</strong> via CLI/MCP and <strong>Slack</strong> via <code>@stitch</code>, and opens its global waitlist at <a href="https://stitch.google.com/loop/waitlist" target="_blank" rel="noopener">stitch.google.com/loop/waitlist</a> with priority for eligible Google AI Ultra users.</p>
+      </div>
+
+      <h2>1. Closing the Post-Merge Gap</h2>
+      <p>Conventional coding agents are built around a discrete ticket: you describe a feature, the agent edits files, opens a pull request, and stops the instant that PR merges. As Justin Toupin explains in the November 18, 2026 <a href="https://blog.google/innovation-and-ai/models-and-research/google-labs/stitch-loop/" target="_blank" rel="noopener">official Google Blog launch post</a>, launch day is when the real operational work begins—patching newly exposed vulnerabilities, trimming checkout latency, diagnosing signup drop-offs, and catching accessibility regressions hidden inside noisy user logs.</p>
+      <p><strong>Stitch Loop</strong> extends Stitch (already used by millions of designers, developers, and founders to turn ideas into working interfaces in minutes) into a continuous post-launch product agent. Instead of waiting for a human to write the next Jira ticket, Stitch Loop watches live product context continuously and works toward measurable outcomes until your targets are met—and keeps watching afterward in case metrics slip.</p>
+
+      <h2>What Changed vs. Previous Coding &amp; Prototyping Agents</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Dimension</th>
+              <th>One-Shot Coding / UI Agents</th>
+              <th>Google Labs Stitch Loop (Nov 18, 2026)</th>
+              <th>Operational Impact</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Trigger &amp; Lifespan</strong></td>
+              <td>Prompt-driven; stops once a single pull request merges.</td>
+              <td>Evergreen 24/7 goal loops anchored to live product metrics and logs.</td>
+              <td>Continuous post-launch maintenance and regression guardrails without manual prompting.</td>
+            </tr>
+            <tr>
+              <td><strong>Context Ingestion</strong></td>
+              <td>Local repo files and pasted error snippets.</td>
+              <td>GitHub + live logs, user behavior, and feedback via <strong>180+ integrations</strong>, custom <strong>MCP servers</strong>, or local CLI uploads.</td>
+              <td>Every proposed fix is grounded in production behavior rather than isolated code guesses.</td>
+            </tr>
+            <tr>
+              <td><strong>Security Loop</strong></td>
+              <td>Generic static lint or ad-hoc prompt audits.</td>
+              <td>Dedicated Cybersecurity loop pairing <strong>Gemini 4 Carbon</strong> cybersecurity capabilities with DeepMind’s <strong>CodeMender</strong>.</td>
+              <td>Proactively scans repos for vulnerabilities and opens evidence-backed patch PRs before incidents hit.</td>
+            </tr>
+            <tr>
+              <td><strong>Execution &amp; Governance</strong></td>
+              <td>Local working tree edits or unverified patches.</td>
+              <td>Isolated cloud sandbox execution opening GitHub PRs with <strong>screenshots &amp; videos</strong>; human approval required to merge.</td>
+              <td>Zero silent production mutations; reviewers inspect visual and metric evidence before merging.</td>
+            </tr>
+            <tr>
+              <td><strong>Agent Ecosystem</strong></td>
+              <td>Isolated IDE sessions with short-lived context.</td>
+              <td>Service layer for coding agents like <strong>Google Antigravity</strong> (Stitch CLI &amp; MCP) plus <strong>Slack</strong> (<code>@stitch</code> digests &amp; loop creation).</td>
+              <td>Shares persistent product context across mixed-model setups and team chat channels.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>2. Inside the Four-Stage Evergreen Loop</h2>
+      <p>Out of the box, teams receive three pre-configured default loops—<strong>Cybersecurity</strong>, <strong>Latency</strong>, and <strong>Accessibility</strong>—alongside custom goal loops (such as improving checkout conversion). Each loop executes four deterministic stages:</p>
+      <ol>
+        <li><strong>Suggestions:</strong> Surfaces concrete opportunities to advance toward your metric goal, grounded directly in repository code and live product evidence.</li>
+        <li><strong>Solutions:</strong> Pairs every suggestion with one or more scoped implementation plans, explicitly laying out engineering tradeoffs and visual design options where UI changes apply.</li>
+        <li><strong>Build:</strong> Once a direction is chosen, Stitch Loop writes and tests the change inside an <strong>isolated cloud sandbox</strong> and opens a standard GitHub pull request—attaching screenshots and videos of the verified behavior. Nothing merges until a human approves the PR.</li>
+        <li><strong>Reflect:</strong> Monitors live telemetry after changes ship, learning from both positive and negative movements to sharpen subsequent rounds. Even after a target threshold is achieved, the loop stays on watch in case the metric regresses.</li>
+      </ol>
+
+      <div class="box success">
+        <h3 style="margin-top: 0; color: #34d399;">Interactive Companion Workbench</h3>
+        <p style="margin-bottom: 0.75rem;">Step through all four stages—<strong>Suggestions &rarr; Solutions &rarr; Build &rarr; Reflect</strong>—across Cybersecurity (Gemini 4 Carbon + CodeMender), Latency, Accessibility, and Antigravity MCP loops in our browser simulator:</p>
+        <a href="/labs/gemini-stitch-loop-studio.html" class="btn-pill">Open Stitch Loop Studio [SIMULATED DEMO] &rarr;</a>
+      </div>
+
+      <div class="series-nav">
+        <a href="/series/gemini-multimodal-slicing-sdk-v3-6/part-1-multimodal-slicing-and-office-ingestion.html" class="btn-pill">&larr; Previous Series: Multimodal Slicing</a>
+        <a href="/series/stitch-loop/part-2-how-stitch-loop-affects-builders-and-teams.html" class="btn-pill">Next: Part 2 &mdash; How This Affects Builders &amp; Teams &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>
