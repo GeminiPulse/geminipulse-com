@@ -5,6 +5,23 @@
 
 export const PULSE_INTELLIGENCE_FEED = [
   {
+    id: 'pulse-gemini-keep-activity-privacy-split',
+    title: 'Google Splits Gemini "Keep Activity" Into Independent History & Model Training Controls (With ~2-Month Off-History Retention)',
+    tldr: 'Updated November 17, 2026: Google is replacing Gemini Apps’ single Keep Activity toggle with two separate settings—History (saving & auto-delete) and Generative AI Model Training (text & attachments)—letting users keep chat history ON while opting out of training, while retaining off-history chats for around 2 months for safety and reliability.',
+    summary:
+      'According to Google’s November 17, 2026 Gemini Apps Privacy Hub update and user rollout notice, Google is decoupling chat retention from AI model training: (1) Two Separate Controls—replaces Keep Activity with an independent History setting and a separate Generative AI Model Training setting for chat text and attachments, (2) Migration Behavior—accounts with Keep Activity OFF migrate with both new toggles OFF, while accounts with Keep Activity ON migrate with both ON (allowing users to turn off training while keeping history), (3) Off-History Retention Window—when History is OFF (or in Temporary Chats), future chats are retained with the account for around 2 months (not shown in History) to respond using 24-hour context, handle system failures, process submitted feedback, and protect Google, users, and the public with human reviewers, and (4) Unchanged Controls—auto-delete defaults (18 months, configurable), manual deletion, and opt-in-only audio/Gemini Live recording settings remain unchanged.',
+    category: 'Privacy & Policy',
+    tag: 'Privacy Update',
+    modelBadge: 'Gemini Apps Privacy Hub',
+    impactScore: '9.6 / 10',
+    date: '2026-11-17T22:30:00Z',
+    sourceLabel: 'Google Support: Gemini Apps Privacy Hub (Last updated Nov 17, 2026)',
+    sourceUrl: 'https://support.google.com/gemini/answer/13594961?hl=en',
+    groundedBy: 'Gemini Apps Privacy Hub & Official Rollout Notice (Verified Nov 17, 2026)',
+    seriesUrl: '/series/gemini-privacy-controls-split/part-1-keep-activity-split-before-and-after.html',
+    seriesLabel: 'Before vs. After →',
+  },
+  {
     id: 'pulse-drive-gemini-classification-ga',
     title: 'Google Workspace Launches Gemini-Powered Data Classification in Google Drive GA: Natural-Language Policy, Pre-Deploy Testing & Agentic Protection',
     tldr: 'Released November 17, 2026 (22:00 UTC): Google Drive AI data classification reaches General Availability—replacing manual ML sample training with natural-language admin instructions, pre-rollout instruction testing, near real-time acceptance reporting, US/EU Data Region isolation, and automated DLP guardrails for the agentic era.',

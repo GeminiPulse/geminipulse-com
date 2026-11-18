@@ -25,7 +25,7 @@
     <priority>0.88</priority>
   </url>
   <url>
-    <loc>https://geminipulse.com/articles/drive-gemini-data-classification-ga.html</loc>
+    <loc>https://geminipulse.com/articles/gemini-keep-activity-privacy-split.html</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.98</priority>
@@ -38,6 +38,12 @@
   </url>
   <url>
     <loc>https://geminipulse.com/articles/tasks-in-gemini-ap2-assistant.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/articles/drive-gemini-data-classification-ga.html</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.98</priority>
@@ -67,10 +73,22 @@
     <priority>0.98</priority>
   </url>
   <url>
-    <loc>https://geminipulse.com/articles/agent-anomaly-detection-gtig.html</loc>
-    <lastmod>2026-11-16</lastmod>
+    <loc>https://geminipulse.com/series/gemini-privacy-controls-split/part-1-keep-activity-split-before-and-after.html</loc>
+    <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.98</priority>
+    <priority>0.96</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/gemini-privacy-controls-split/part-2-how-history-vs-training-affects-users.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.96</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/gemini-privacy-controls-split/part-3-step-by-step-privacy-checklist-and-settings.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.96</priority>
   </url>
   <url>
     <loc>https://geminipulse.com/series/drive-gemini-classification/part-1-gemini-drive-data-classification-ga.html</loc>

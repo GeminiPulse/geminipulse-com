@@ -12,11 +12,11 @@
   </author>
 
   <entry>
-    <title>Stop Hand-Labeling Training Folders. Gemini Now Governs Drive in Plain English. (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/drive-gemini-data-classification-ga.html" />
-    <id>https://geminipulse.com/articles/drive-gemini-data-classification-ga.html</id>
-    <updated>2026-11-17T22:00:35.000Z</updated>
-    <summary>Yesterday, Google connected shareable Gemini Skills directly to live Google Drive files. Today, on November 17, 2026, Google Workspace shipped the missing security counterpart: Gemini-powered data classification in Google Drive is now Generally Available.</summary>
+    <title>Google Splits Gemini &quot;Keep Activity&quot; Into Independent History &amp; Model Training Controls (With ~2-Month Off-History Retention). (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/gemini-keep-activity-privacy-split.html" />
+    <id>https://geminipulse.com/articles/gemini-keep-activity-privacy-split.html</id>
+    <updated>2026-11-17T22:30:00.000Z</updated>
+    <summary>Updated November 17, 2026: Google is replacing Gemini Apps’ single Keep Activity toggle with two separate settings—History (saving &amp; auto-delete) and Generative AI Model Training (text &amp; attachments)—letting users keep chat history ON while opting out of training, while retaining off-history chats for around 2 months for safety and reliability.</summary>
   </entry>
 
   <entry>
@@ -33,6 +33,14 @@
     <id>https://geminipulse.com/articles/tasks-in-gemini-ap2-assistant.html</id>
     <updated>2026-11-17T17:00:00.000Z</updated>
     <summary>For years, personal AI assistants drafted polite emails and left you to sit on hold, log into utility portals, and type credit card numbers yourself. On November 17, 2026, Google flipped the toggle from passive chat to autonomous execution across six countries—and brought Google Wallet to iOS.</summary>
+  </entry>
+
+  <entry>
+    <title>Stop Hand-Labeling Training Folders. Gemini Now Governs Drive in Plain English. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/drive-gemini-data-classification-ga.html" />
+    <id>https://geminipulse.com/articles/drive-gemini-data-classification-ga.html</id>
+    <updated>2026-11-17T22:00:35.000Z</updated>
+    <summary>Yesterday, Google connected shareable Gemini Skills directly to live Google Drive files. Today, on November 17, 2026, Google Workspace shipped the missing security counterpart: Gemini-powered data classification in Google Drive is now Generally Available.</summary>
   </entry>
 
   <entry>
@@ -68,11 +76,11 @@
   </entry>
 
   <entry>
-    <title>Your Agent Never Crashed—It Just Handed Over the Keys. Inside Agent Anomaly Detection. (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/agent-anomaly-detection-gtig.html" />
-    <id>https://geminipulse.com/articles/agent-anomaly-detection-gtig.html</id>
-    <updated>2026-11-16T22:00:00.000Z</updated>
-    <summary>When an autonomous agent leaks private records through an over-permissive tool or obeys an indirect prompt injection hidden inside an email, your server logs still return HTTP 200 OK. On November 16, 2026, Google published its hands-on deployment blueprint and 1,774-session independent benchmark audit for Agent Anomaly Detection alongside GTIG’s Q4 threat warning.</summary>
+    <title>Before vs. After: Google Splits Gemini "Keep Activity" Into Independent History &amp; Model Training Controls (Parts 1–3)</title>
+    <link href="https://geminipulse.com/series/gemini-privacy-controls-split/part-1-keep-activity-split-before-and-after.html" />
+    <id>https://geminipulse.com/series/gemini-privacy-controls-split/part-1-keep-activity-split-before-and-after.html</id>
+    <updated>2026-11-17T22:30:00Z</updated>
+    <summary>Before vs. After comparison of Google's November 17, 2026 Gemini Apps Privacy Hub update: replacing Keep Activity with separate History and Generative AI Model Training toggles, ~2-month off-history retention, migration defaults, and a 4-step settings checklist.</summary>
   </entry>
 
   <entry>
