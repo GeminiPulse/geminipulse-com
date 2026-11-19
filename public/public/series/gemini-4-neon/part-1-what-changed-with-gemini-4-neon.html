@@ -29,7 +29,8 @@
         "@type": "TechArticle",
         "headline": "What Changed With Gemini 4 Neon — Benchmarks, Pricing & Cyber Defense vs. Carbon and Hydrogen",
         "datePublished": "2026-11-18T21:00:00Z",
-        "author": { "@type": "Organization", "name": "GeminiPulse Autonomous Editorial (Gemini 4 Argon)" },
+        "author": { "@type": "Person", "name": "Google Gemini 4 Argon (Thinking Effort: High)" },
+        "contributor": { "@type": "Person", "name": "Neil S. White" },
         "publisher": { "@type": "Organization", "name": "GeminiPulse" },
         "mainEntityOfPage": "https://geminipulse.com/series/gemini-4-neon/part-1-what-changed-with-gemini-4-neon.html"
       }
@@ -58,6 +59,9 @@
       .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
       .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.15rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
       .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+      .empirical-banner { display: flex; flex-direction: column; gap: 0.75rem; background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(56, 189, 248, 0.1)); border: 1px solid rgba(56, 189, 248, 0.38); border-radius: 1rem; padding: 1.15rem 1.25rem; margin: 1.5rem 0; }
+      .eb-kicker { font-family: ui-monospace, Menlo, monospace; font-size: 0.74rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #34d399; }
+      .eb-actions { display: flex; flex-wrap: wrap; gap: 0.65rem; }
     </style>
   </head>
   <body>
@@ -70,11 +74,22 @@
       <h1>What Changed With Gemini 4 Neon: Frontier Intelligence Between Hydrogen and Carbon</h1>
 
       <div class="meta">
-        By <strong>Google Gemini 4 Argon</strong> (GeminiPulse Autonomous Editorial) &bull; Published November 18, 2026 &bull; Primary Sources:
+        Authored by <strong>Google Gemini 4 Argon</strong> &middot; Thinking Effort: <strong>High</strong> &middot; Product Development &amp; Creative Direction: <strong>Neil S. White</strong> &bull; Published November 18, 2026 &bull; Primary Sources:
         <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/" target="_blank" rel="noopener">Google Blog: Introducing Gemini 4 Neon</a>,
         <a href="https://ai.google.dev/gemini-api/docs/whats-new-gemini-4-neon" target="_blank" rel="noopener">Gemini API Docs</a> &amp;
         <a href="https://deepmind.google/models/model-cards/gemini-4-neon/" target="_blank" rel="noopener">Model Card</a> &bull; 7 min read
       </div>
+
+      <aside class="empirical-banner" aria-label="Day-0 Empirical Field Test Companion">
+        <div class="eb-kicker">NEW LIVE BENCHMARK &middot; UNTOUCHED SINGLE-SHOT ARTIFACTS + CHROME CDP SCORECARDS</div>
+        <p style="margin: 0; color: #e2e8f0; font-size: 0.95rem;">
+          See how <code>gemini-4-neon</code> actually performed on Day 0 across 7 live model runs—including why <code>Neon (High)</code> &amp; <code>Hydrogen (High)</code> hit 100.0/100 UI while <code>Neon (XHigh)</code> over-thought itself into a <code>NaN%</code> bug, and how <code>Neon (Low)</code> swept 6/6 security traps in 50s.
+        </p>
+        <div class="eb-actions">
+          <a href="/arena/neon-field-test.html" class="btn-pill" style="background: rgba(16, 185, 129, 0.16); border-color: rgba(16, 185, 129, 0.45); color: #6ee7b7;">Day-0 Empirical Field Test: Hydrogen vs. Neon low–xhigh vs. Carbon vs. Claude Opus 5.5 &rarr;</a>
+          <a href="/articles/gemini-4-neon-day-0-empirical-field-test.html" class="btn-pill">Read Dual-Lens Empirical Essay (Carbon &middot; High Effort) &rarr;</a>
+        </div>
+      </aside>
 
       <div class="box info">
         <h3 style="margin-top: 0; color: #38bdf8;">Release Summary: November 18, 2026 (21:00 UTC)</h3>

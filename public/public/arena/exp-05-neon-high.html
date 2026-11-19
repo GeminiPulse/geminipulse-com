@@ -1,0 +1,3233 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PulseRouter — Live Multi-Tier AI Request &amp; Prefix-Cache Control Room</title>
+  <style>
+    :root {
+      --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-pill: 999px;
+
+      /* Dark Theme (Default) - WCAG AA+ verified */
+      --bg-page: #070b14;
+      --bg-elevated: #0e1525;
+      --bg-card: #111a2e;
+      --bg-card-alt: #0c1322;
+      --bg-control: #17223a;
+      --bg-control-hover: #1e2d4d;
+      --border-subtle: #22314f;
+      --border-strong: #32476f;
+
+      --text-primary: #f8fafc;
+      --text-secondary: #b8c7dc;
+      --text-muted: #93a7c4;
+
+      --accent-blue: #60a5fa;
+      --accent-blue-bg: rgba(59, 130, 246, 0.16);
+      --accent-blue-border: rgba(96, 165, 250, 0.42);
+
+      --accent-emerald: #34d399;
+      --accent-emerald-bg: rgba(16, 185, 129, 0.15);
+      --accent-emerald-border: rgba(52, 211, 153, 0.42);
+
+      --accent-violet: #c084fc;
+      --accent-violet-bg: rgba(168, 85, 247, 0.16);
+      --accent-violet-border: rgba(192, 132, 252, 0.42);
+
+      --accent-amber: #fbbf24;
+      --accent-amber-bg: rgba(245, 158, 11, 0.16);
+      --accent-amber-border: rgba(251, 191, 36, 0.45);
+
+      --accent-rose: #fb7185;
+      --accent-rose-bg: rgba(244, 63, 94, 0.16);
+      --accent-rose-border: rgba(251, 113, 133, 0.48);
+
+      --accent-cyan: #38bdf8;
+      --accent-cyan-bg: rgba(56, 189, 248, 0.15);
+
+      --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.34);
+      --focus-ring: 0 0 0 3px rgba(96, 165, 250, 0.55);
+    }
+
+    [data-theme="light"] {
+      --bg-page: #f4f7fb;
+      --bg-elevated: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-alt: #f8fafc;
+      --bg-control: #eef2f8;
+      --bg-control-hover: #e2e8f3;
+      --border-subtle: #d5dfec;
+      --border-strong: #9fb2cc;
+
+      --text-primary: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #475569;
+
+      --accent-blue: #1d4ed8;
+      --accent-blue-bg: #dbeafe;
+      --accent-blue-border: #93c5fd;
+
+      --accent-emerald: #047857;
+      --accent-emerald-bg: #d1fae5;
+      --accent-emerald-border: #6ee7b7;
+
+      --accent-violet: #6d28d9;
+      --accent-violet-bg: #ede9fe;
+      --accent-violet-border: #c4b5fd;
+
+      --accent-amber: #b45309;
+      --accent-amber-bg: #fef3c7;
+      --accent-amber-border: #fcd34d;
+
+      --accent-rose: #be123c;
+      --accent-rose-bg: #ffe4e6;
+      --accent-rose-border: #fda4af;
+
+      --accent-cyan: #0369a1;
+      --accent-cyan-bg: #e0f2fe;
+
+      --shadow-card: 0 6px 20px rgba(15, 23, 42, 0.06);
+      --focus-ring: 0 0 0 3px rgba(29, 78, 216, 0.35);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      max-width: 100%;
+      overflow-x: clip;
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      line-height: 1.45;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--accent-blue);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    button, input, a {
+      font-family: inherit;
+    }
+
+    button:focus-visible,
+    input:focus-visible,
+    a:focus-visible {
+      outline: none;
+      box-shadow: var(--focus-ring);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* Provenance & Header */
+    .site-header {
+      background: var(--bg-elevated);
+      border-bottom: 1px solid var(--border-subtle);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+
+    .provenance-bar {
+      border-bottom: 1px solid var(--border-subtle);
+      background: var(--bg-card-alt);
+      padding: 0.45rem 1rem;
+    }
+
+    .provenance-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem 1rem;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--accent-blue);
+      padding: 0.2rem 0.5rem;
+      border-radius: var(--radius-sm);
+      background: var(--accent-blue-bg);
+      border: 1px solid var(--accent-blue-border);
+      transition: background 0.15s ease;
+    }
+
+    .back-link:hover {
+      text-decoration: none;
+      filter: brightness(1.06);
+    }
+
+    .provenance-badge {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      color: var(--text-secondary);
+      background: var(--bg-control);
+      border: 1px solid var(--border-subtle);
+      padding: 0.25rem 0.6rem;
+      border-radius: var(--radius-sm);
+      white-space: normal;
+      word-break: break-word;
+      line-height: 1.35;
+    }
+
+    .header-main {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0.75rem 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem 1rem;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      min-width: 0;
+    }
+
+    .brand-icon {
+      width: 38px;
+      height: 38px;
+      flex-shrink: 0;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--accent-blue-bg), var(--accent-violet-bg));
+      border: 1px solid var(--accent-blue-border);
+      color: var(--accent-blue);
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-title {
+      margin: 0;
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.45rem;
+    }
+
+    .brand-sub {
+      margin: 0.1rem 0 0;
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+    }
+
+    .header-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.32rem 0.7rem;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: var(--accent-emerald-bg);
+      color: var(--accent-emerald);
+      border: 1px solid var(--accent-emerald-border);
+    }
+
+    .status-pill.is-paused {
+      background: var(--accent-amber-bg);
+      color: var(--accent-amber);
+      border-color: var(--accent-amber-border);
+    }
+
+    .status-pill.is-chaos {
+      background: var(--accent-rose-bg);
+      color: var(--accent-rose);
+      border-color: var(--accent-rose-border);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: currentColor;
+      animation: pulse-dot 1.4s ease-in-out infinite;
+    }
+
+    .status-pill.is-paused .status-dot {
+      animation: none;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.82); }
+    }
+
+    .theme-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: var(--radius-pill);
+      background: var(--bg-control);
+      border: 1px solid var(--border-strong);
+      color: var(--text-primary);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+
+    .theme-btn:hover {
+      background: var(--bg-control-hover);
+    }
+
+    /* Main Container */
+    .main-shell {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    /* KPI Strip */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+
+    .kpi-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 0.85rem 1rem;
+      box-shadow: var(--shadow-card);
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .kpi-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 3px;
+      background: var(--kpi-accent, var(--accent-blue));
+    }
+
+    .kpi-card[data-accent="emerald"] { --kpi-accent: var(--accent-emerald); }
+    .kpi-card[data-accent="cyan"] { --kpi-accent: var(--accent-cyan); }
+    .kpi-card[data-accent="violet"] { --kpi-accent: var(--accent-violet); }
+    .kpi-card[data-accent="amber"] { --kpi-accent: var(--accent-amber); }
+    .kpi-card[data-accent="rose"] { --kpi-accent: var(--accent-rose); }
+
+    .kpi-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+    }
+
+    .kpi-value {
+      font-family: var(--font-mono);
+      font-size: 1.55rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      line-height: 1.15;
+    }
+
+    .kpi-sub {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Controls Panel */
+    .panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      min-width: 0;
+    }
+
+    .controls-grid {
+      padding: 1rem;
+      display: grid;
+      grid-template-columns: 1.15fr 1fr 1.25fr;
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .control-block {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    .block-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+
+    .mode-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.45rem;
+    }
+
+    .mode-btn {
+      appearance: none;
+      background: var(--bg-control);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      color: var(--text-secondary);
+      padding: 0.55rem 0.65rem;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+      min-width: 0;
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .mode-btn:hover {
+      background: var(--bg-control-hover);
+      color: var(--text-primary);
+    }
+
+    .mode-btn[aria-pressed="true"] {
+      background: var(--accent-blue-bg);
+      border-color: var(--accent-blue);
+      color: var(--text-primary);
+    }
+
+    .mode-btn-sub {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    .mode-btn[aria-pressed="true"] .mode-btn-sub {
+      color: var(--accent-blue);
+    }
+
+    /* Slider Block */
+    .slider-card {
+      background: var(--bg-card-alt);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 0.75rem 0.85rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    .slider-card.is-busted {
+      border-color: var(--accent-rose);
+      background: var(--accent-rose-bg);
+    }
+
+    .slider-top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .slider-readout {
+      font-family: var(--font-mono);
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--accent-emerald);
+    }
+
+    .slider-card.is-busted .slider-readout {
+      color: var(--accent-rose);
+    }
+
+    .slider-eff {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent-emerald);
+      height: 6px;
+      cursor: pointer;
+    }
+
+    .preset-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .chip-btn {
+      appearance: none;
+      background: var(--bg-control);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-pill);
+      color: var(--text-secondary);
+      padding: 0.22rem 0.55rem;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+
+    .chip-btn:hover {
+      background: var(--bg-control-hover);
+      color: var(--text-primary);
+    }
+
+    .chip-btn.is-active {
+      background: var(--accent-emerald-bg);
+      border-color: var(--accent-emerald);
+      color: var(--accent-emerald);
+    }
+
+    /* Chaos & Transport Block */
+    .chaos-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .chaos-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .action-btn {
+      appearance: none;
+      flex: 1 1 135px;
+      min-width: 0;
+      background: var(--bg-control);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+      padding: 0.5rem 0.65rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      text-align: center;
+      line-height: 1.25;
+      transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+    }
+
+    .action-btn:hover {
+      background: var(--bg-control-hover);
+    }
+
+    .action-btn:active {
+      transform: translateY(1px);
+    }
+
+    .action-btn.chaos-burst {
+      border-color: var(--accent-amber-border);
+      color: var(--accent-amber);
+      background: var(--accent-amber-bg);
+    }
+
+    .action-btn.chaos-burst.is-active {
+      border-color: var(--accent-amber);
+      box-shadow: 0 0 0 2px var(--accent-amber-border);
+    }
+
+    .action-btn.chaos-bust {
+      border-color: var(--accent-rose-border);
+      color: var(--accent-rose);
+      background: var(--accent-rose-bg);
+    }
+
+    .action-btn.chaos-bust.is-active {
+      border-color: var(--accent-rose);
+      box-shadow: 0 0 0 2px var(--accent-rose-border);
+    }
+
+    .action-btn.chaos-adv {
+      border-color: var(--accent-violet-border);
+      color: var(--accent-violet);
+      background: var(--accent-violet-bg);
+    }
+
+    .action-btn.chaos-adv.is-active {
+      border-color: var(--accent-violet);
+      box-shadow: 0 0 0 2px var(--accent-violet-border);
+    }
+
+    .transport-row {
+      display: flex;
+      gap: 0.45rem;
+    }
+
+    .kbd-hint {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+      border: 1px solid var(--border-strong);
+      background: var(--bg-card-alt);
+      color: var(--text-muted);
+    }
+
+    /* Visualization Panel */
+    .viz-header {
+      padding: 0.8rem 1rem;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.6rem 1rem;
+    }
+
+    .viz-title-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: 0.95rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: var(--text-primary);
+    }
+
+    .live-meta-pill {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      background: var(--bg-card-alt);
+      border: 1px solid var(--border-subtle);
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--radius-pill);
+    }
+
+    .legend-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.55rem 0.9rem;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-weight: 600;
+    }
+
+    .legend-swatch {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .legend-swatch.diamond {
+      border-radius: 2px;
+      transform: rotate(45deg);
+      width: 9px;
+      height: 9px;
+    }
+
+    .chaos-banner {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding: 0.55rem 1rem;
+      background: var(--accent-rose-bg);
+      border-bottom: 1px solid var(--accent-rose-border);
+      color: var(--accent-rose);
+      font-size: 0.8rem;
+      font-weight: 700;
+      font-family: var(--font-mono);
+    }
+
+    .chaos-banner.is-visible {
+      display: flex;
+    }
+
+    .canvas-stage {
+      position: relative;
+      width: 100%;
+      height: 410px;
+      overflow: hidden;
+      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+      background: var(--bg-card-alt);
+    }
+
+    #routing-canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      cursor: crosshair;
+    }
+
+    .canvas-tooltip {
+      position: absolute;
+      pointer-events: none;
+      z-index: 15;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      padding: 0.5rem 0.65rem;
+      font-size: 0.75rem;
+      color: var(--text-primary);
+      box-shadow: var(--shadow-card);
+      max-width: 240px;
+      opacity: 0;
+      transition: opacity 0.12s ease;
+    }
+
+    .canvas-tooltip.is-visible {
+      opacity: 1;
+    }
+
+    .tooltip-title {
+      font-weight: 800;
+      margin-bottom: 0.2rem;
+    }
+
+    .tooltip-meta {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    /* Dual Analytics Grid */
+    .analytics-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 1rem;
+    }
+
+    .panel-header {
+      padding: 0.8rem 1rem;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .panel-body {
+      padding: 1rem;
+    }
+
+    .lane-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .lane-card {
+      background: var(--bg-card-alt);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 0.8rem 0.9rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      transition: border-color 0.15s ease;
+    }
+
+    .lane-card.is-pinned {
+      border-color: var(--accent-blue);
+    }
+
+    .lane-card-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.4rem 0.75rem;
+    }
+
+    .lane-name-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      min-width: 0;
+    }
+
+    .lane-badge {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 0.18rem 0.48rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+    }
+
+    .lane-badge.fast {
+      color: var(--accent-cyan);
+      background: var(--accent-cyan-bg);
+      border-color: var(--accent-blue-border);
+    }
+
+    .lane-badge.balanced {
+      color: var(--accent-emerald);
+      background: var(--accent-emerald-bg);
+      border-color: var(--accent-emerald-border);
+    }
+
+    .lane-badge.deep {
+      color: var(--accent-violet);
+      background: var(--accent-violet-bg);
+      border-color: var(--accent-violet-border);
+    }
+
+    .lane-title {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .lane-pricing {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    .lane-bar-track {
+      width: 100%;
+      height: 7px;
+      border-radius: var(--radius-pill);
+      background: var(--bg-control);
+      overflow: hidden;
+    }
+
+    .lane-bar-fill {
+      height: 100%;
+      border-radius: var(--radius-pill);
+      transition: width 0.25s ease;
+    }
+
+    .lane-metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.45rem;
+    }
+
+    .lane-metric {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 0.4rem 0.5rem;
+      min-width: 0;
+    }
+
+    .lane-metric-k {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--text-muted);
+      font-weight: 700;
+    }
+
+    .lane-metric-v {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-top: 0.1rem;
+    }
+
+    /* Trend Chart + Workload Matrix */
+    .trend-wrap {
+      width: 100%;
+      height: 180px;
+      background: var(--bg-card-alt);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin-bottom: 0.85rem;
+    }
+
+    #trend-canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .formula-box {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      background: var(--bg-card-alt);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 0.55rem 0.7rem;
+      margin-bottom: 0.85rem;
+      line-height: 1.5;
+    }
+
+    .workload-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.55rem;
+    }
+
+    .workload-chip {
+      background: var(--bg-card-alt);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 0.55rem 0.65rem;
+      min-width: 0;
+    }
+
+    .workload-chip-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.35rem;
+      font-size: 0.76rem;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .workload-chip-meta {
+      margin-top: 0.2rem;
+      font-family: var(--font-mono);
+      font-size: 0.69rem;
+      color: var(--text-secondary);
+    }
+
+    .route-arrow-tag {
+      display: inline-block;
+      margin-top: 0.3rem;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 0.12rem 0.42rem;
+      border-radius: 4px;
+      background: var(--bg-control);
+      color: var(--text-primary);
+      border: 1px solid var(--border-subtle);
+    }
+
+    /* Live Trace Stream */
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .trace-table-head {
+      display: grid;
+      grid-template-columns: 74px minmax(160px, 1.5fr) 128px 104px 72px 118px 74px 92px;
+      gap: 0.5rem;
+      padding: 0.55rem 1rem;
+      background: var(--bg-card-alt);
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: 0.69rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+    }
+
+    .trace-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .trace-row {
+      display: grid;
+      grid-template-columns: 74px minmax(160px, 1.5fr) 128px 104px 72px 118px 74px 92px;
+      gap: 0.5rem;
+      align-items: center;
+      padding: 0.55rem 1rem;
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: 0.78rem;
+    }
+
+    .trace-row:last-child {
+      border-bottom: none;
+    }
+
+    .trace-row.is-escaped {
+      background: var(--accent-rose-bg);
+    }
+
+    .trace-id, .trace-mono {
+      font-family: var(--font-mono);
+      font-size: 0.73rem;
+      color: var(--text-secondary);
+    }
+
+    .trace-workload {
+      font-weight: 700;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      min-width: 0;
+    }
+
+    .trace-workload-name {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .outcome-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.16rem 0.5rem;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-mono);
+      font-size: 0.69rem;
+      font-weight: 800;
+      border: 1px solid transparent;
+    }
+
+    .outcome-pill.pass {
+      color: var(--accent-emerald);
+      background: var(--accent-emerald-bg);
+      border-color: var(--accent-emerald-border);
+    }
+
+    .outcome-pill.fail {
+      color: var(--accent-amber);
+      background: var(--accent-amber-bg);
+      border-color: var(--accent-amber-border);
+    }
+
+    .outcome-pill.blocked {
+      color: var(--accent-cyan);
+      background: var(--accent-cyan-bg);
+      border-color: var(--accent-blue-border);
+    }
+
+    .outcome-pill.escaped {
+      color: var(--accent-rose);
+      background: var(--accent-rose-bg);
+      border-color: var(--accent-rose-border);
+    }
+
+    .trace-empty {
+      padding: 1.5rem 1rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+    }
+
+    /* Footer */
+    .site-footer {
+      margin-top: 0.5rem;
+      border-top: 1px solid var(--border-subtle);
+      background: var(--bg-elevated);
+      padding: 1rem;
+    }
+
+    .footer-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem 1rem;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 1120px) {
+      .controls-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .control-block.chaos-block {
+        grid-column: 1 / -1;
+      }
+      .kpi-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .analytics-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .trace-table-head {
+        display: none;
+      }
+      .trace-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem 0.65rem;
+        padding: 0.7rem 0.85rem;
+      }
+      .trace-workload {
+        flex: 1 1 100%;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .main-shell {
+        padding: 0.75rem;
+        gap: 0.8rem;
+      }
+      .kpi-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.55rem;
+      }
+      .kpi-card {
+        padding: 0.7rem 0.75rem;
+      }
+      .kpi-card:last-child {
+        grid-column: 1 / -1;
+      }
+      .kpi-value {
+        font-size: 1.3rem;
+      }
+      .controls-grid {
+        grid-template-columns: 1fr;
+        padding: 0.8rem;
+      }
+      .canvas-stage {
+        height: 360px;
+      }
+      .lane-metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .workload-grid {
+        grid-template-columns: 1fr;
+      }
+      .brand-title {
+        font-size: 1.02rem;
+      }
+      .brand-sub {
+        font-size: 0.75rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .status-dot {
+        animation: none;
+      }
+      * {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="provenance-bar">
+      <div class="provenance-inner">
+        <a class="back-link" href="/arena/neon-field-test.html">← Back to Field Test</a>
+        <span class="provenance-badge">[BENCHMARK ARTIFACT · SINGLE-SHOT UNTOUCHED OUTPUT · GEMINI 4 NEON (HIGH)]</span>
+      </div>
+    </div>
+    <div class="header-main">
+      <div class="brand-group">
+        <div class="brand-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="5" cy="6" r="2.2"></circle>
+            <circle cx="5" cy="18" r="2.2"></circle>
+            <circle cx="12" cy="12" r="2.6"></circle>
+            <circle cx="19.5" cy="6" r="2.2"></circle>
+            <circle cx="19.5" cy="12" r="2.2"></circle>
+            <circle cx="19.5" cy="18" r="2.2"></circle>
+            <path d="M7 7.2L10 10.2M7 16.8L10 13.8M14.4 10.6L17.5 7.4M14.6 12H17.3M14.4 13.4L17.5 16.6"></path>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1 class="brand-title">PulseRouter</h1>
+          <p class="brand-sub">Live Multi-Tier AI Request &amp; Prefix-Cache Control Room</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <span id="status-pill" class="status-pill" role="status">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span id="status-pill-text">LIVE · PARETO</span>
+        </span>
+        <button id="btn-theme" class="theme-btn" type="button" aria-pressed="false" aria-label="Toggle Daylight and Dark theme">
+          <span id="theme-icon" aria-hidden="true">☀</span>
+          <span id="theme-label">Daylight</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-shell">
+    <!-- Section 1: Live Glass-Box Telemetry Strip -->
+    <section aria-label="Live Glass-Box Telemetry">
+      <div id="live-aria-summary" class="sr-only" aria-live="polite"></div>
+      <div class="kpi-grid">
+        <article class="kpi-card" data-accent="emerald">
+          <span class="kpi-label">Cost / 1,000 Tasks</span>
+          <span id="kpi-cost" class="kpi-value">$0.00</span>
+          <span id="kpi-cost-sub" class="kpi-sub">vs $0.00 uncached baseline</span>
+        </article>
+        <article class="kpi-card" data-accent="cyan">
+          <span class="kpi-label">P95 Latency</span>
+          <span id="kpi-p95" class="kpi-value">0 ms</span>
+          <span id="kpi-p95-sub" class="kpi-sub">P50: 0 ms · rolling window</span>
+        </article>
+        <article class="kpi-card" data-accent="violet">
+          <span class="kpi-label">Quality Pass Rate</span>
+          <span id="kpi-quality" class="kpi-value">0.0%</span>
+          <span id="kpi-quality-sub" class="kpi-sub">0 / 0 tasks passed eval</span>
+        </article>
+        <article class="kpi-card" data-accent="amber">
+          <span class="kpi-label">Implicit Cache Savings</span>
+          <span id="kpi-savings" class="kpi-value">$0.00</span>
+          <span id="kpi-savings-sub" class="kpi-sub">per 1K tasks · $0.00 session</span>
+        </article>
+        <article class="kpi-card" data-accent="rose">
+          <span class="kpi-label">Adversarial Block Rate</span>
+          <span id="kpi-adv" class="kpi-value">100.0%</span>
+          <span id="kpi-adv-sub" class="kpi-sub">0 blocked · 0 escaped</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- Section 2: Interactive Controls & Chaos Stressors -->
+    <section class="panel" aria-label="Routing Controls and Chaos Stressors">
+      <div class="controls-grid">
+        <!-- Routing Mode Selector -->
+        <div class="control-block">
+          <div class="block-heading">
+            <span>Routing Policy Mode</span>
+            <span id="active-policy-tag" style="font-family: var(--font-mono); color: var(--accent-blue);">PARETO OPTIMAL</span>
+          </div>
+          <div class="mode-grid" role="group" aria-label="Routing Mode Selector">
+            <button type="button" class="mode-btn" data-route-mode="smart" aria-pressed="true">
+              <span>Smart Pareto Router</span>
+              <span class="mode-btn-sub">Dynamic tier + defense</span>
+            </button>
+            <button type="button" class="mode-btn" data-route-mode="fast" aria-pressed="false">
+              <span>Pin All → Fast</span>
+              <span class="mode-btn-sub">$1.50 / $7.50 per 1M</span>
+            </button>
+            <button type="button" class="mode-btn" data-route-mode="balanced" aria-pressed="false">
+              <span>Pin All → Balanced</span>
+              <span class="mode-btn-sub">$3/$15 · $0.15 cached</span>
+            </button>
+            <button type="button" class="mode-btn" data-route-mode="deep" aria-pressed="false">
+              <span>Pin All → Deep</span>
+              <span class="mode-btn-sub">$4.00 / $20.00 per 1M</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Prefix Cache Slider -->
+        <div class="control-block">
+          <div class="block-heading">
+            <label for="cache-slider">Implicit Prefix Cache Hit Rate</label>
+            <span style="font-family: var(--font-mono);">0% – 95%</span>
+          </div>
+          <div id="slider-card" class="slider-card">
+            <div class="slider-top">
+              <span id="cache-val" class="slider-readout">90%</span>
+              <span id="cache-eff-rate" class="slider-eff">Balanced eff. in: $0.44/1M</span>
+            </div>
+            <input id="cache-slider" type="range" min="0" max="95" step="1" value="90" aria-describedby="cache-eff-rate" />
+            <div class="preset-row" aria-label="Quick Cache Hit Rate Presets">
+              <button type="button" class="chip-btn" data-cache-preset="0">0% Cold</button>
+              <button type="button" class="chip-btn" data-cache-preset="50">50%</button>
+              <button type="button" class="chip-btn" data-cache-preset="85">85%</button>
+              <button type="button" class="chip-btn is-active" data-cache-preset="90">90%</button>
+              <button type="button" class="chip-btn" data-cache-preset="95">95% Warm</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chaos Stressors & Transport -->
+        <div class="control-block chaos-block">
+          <div class="block-heading">
+            <span>Chaos Stressors &amp; Transport</span>
+            <span id="motion-mode-tag" style="font-family: var(--font-mono);">60FPS LIVE</span>
+          </div>
+          <div class="chaos-stack">
+            <div class="chaos-row">
+              <button id="btn-burst" type="button" class="action-btn chaos-burst" aria-pressed="false">
+                <span aria-hidden="true">⚡</span>
+                <span id="btn-burst-label">10x Traffic Burst</span>
+              </button>
+              <button id="btn-bust-cache" type="button" class="action-btn chaos-bust" aria-pressed="false">
+                <span aria-hidden="true">⏱</span>
+                <span id="btn-bust-label">Bust Prefix Cache (Timestamp Prefix Bug)</span>
+              </button>
+              <button id="btn-adversarial" type="button" class="action-btn chaos-adv" aria-pressed="false">
+                <span aria-hidden="true">🛡</span>
+                <span id="btn-adv-label">Inject Adversarial Payload</span>
+              </button>
+            </div>
+            <div class="transport-row">
+              <button id="btn-pause" type="button" class="action-btn" aria-pressed="false">
+                <span id="btn-pause-icon" aria-hidden="true">⏸</span>
+                <span id="btn-pause-text">Pause</span>
+                <span class="kbd-hint">Space</span>
+              </button>
+              <button id="btn-reset" type="button" class="action-btn">
+                <span aria-hidden="true">↺</span>
+                <span>Reset Telemetry</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Live Animated Routing Canvas -->
+    <section class="panel" aria-label="Live Request Routing Topology">
+      <div class="viz-header">
+        <div class="viz-title-wrap">
+          <h2 class="section-title">Live Request Routing &amp; Prefix-Cache Pipeline</h2>
+          <span id="rps-readout" class="live-meta-pill">0.0 req/s</span>
+          <span id="total-req-readout" class="live-meta-pill">0 routed</span>
+        </div>
+        <div class="legend-row" aria-label="Workload and Packet Legend">
+          <span class="legend-item"><span class="legend-swatch" style="background:#38bdf8;"></span>Triage (8K/600)</span>
+          <span class="legend-item"><span class="legend-swatch" style="background:#a78bfa;"></span>PR Refactor (65K/4K)</span>
+          <span class="legend-item"><span class="legend-swatch" style="background:#fbbf24;"></span>10-K Synth (240K/8K)</span>
+          <span class="legend-item"><span class="legend-swatch diamond" style="background:#fb7185;"></span>Adversarial (32K/1.5K)</span>
+          <span class="legend-item"><span class="legend-swatch" style="background:transparent; border:2px solid #34d399;"></span>Cache Hit Ring</span>
+        </div>
+      </div>
+      <div id="chaos-banner" class="chaos-banner" role="alert">
+        <span id="chaos-banner-text"></span>
+        <span id="chaos-banner-sub"></span>
+      </div>
+      <div class="canvas-stage" id="canvas-stage">
+        <canvas id="routing-canvas" role="img" aria-label="Animated multi-tier AI request routing topology showing four workload queues routing through the PulseRouter prefix-cache gate into Fast Tier, Balanced Frontier, and Deep Horizon model lanes."></canvas>
+        <div id="canvas-tooltip" class="canvas-tooltip" role="tooltip">
+          <div id="tooltip-title" class="tooltip-title"></div>
+          <div id="tooltip-meta" class="tooltip-meta"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Model Lanes + Telemetry Trend -->
+    <section class="analytics-grid" aria-label="Model Tier Economics and Telemetry Trends">
+      <!-- Lane Telemetry Breakdown -->
+      <div class="panel">
+        <div class="panel-header">
+          <h2 class="section-title">Model Lanes &amp; Prefix-Cache Economics</h2>
+          <span class="live-meta-pill">Click a lane to pin</span>
+        </div>
+        <div class="panel-body">
+          <div id="lane-cards" class="lane-list"></div>
+        </div>
+      </div>
+
+      <!-- Rolling Chart & Workload Matrix -->
+      <div class="panel">
+        <div class="panel-header">
+          <h2 class="section-title">Live Cost vs. P95 Latency Trajectory</h2>
+          <div class="legend-row">
+            <span class="legend-item"><span class="legend-swatch" style="background:#34d399;"></span>Cost/1K ($)</span>
+            <span class="legend-item"><span class="legend-swatch" style="background:#38bdf8;"></span>P95 (ms)</span>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="trend-wrap" id="trend-wrap">
+            <canvas id="trend-canvas" role="img" aria-label="Dual-series telemetry sparkline charting live Cost per 1,000 Tasks and P95 Latency over time."></canvas>
+          </div>
+          <div id="formula-box" class="formula-box"></div>
+          <div id="workload-matrix" class="workload-grid"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Live Glass-Box Request Trace -->
+    <section class="panel" aria-label="Live Request Trace Log">
+      <div class="panel-header">
+        <h2 class="section-title">Glass-Box Request Trace Stream</h2>
+        <div class="filter-row" role="group" aria-label="Filter trace log">
+          <button type="button" class="chip-btn is-active" data-trace-filter="all">All</button>
+          <button type="button" class="chip-btn" data-trace-filter="adversarial">Adversarial Probes</button>
+          <button type="button" class="chip-btn" data-trace-filter="cache-miss">Cache Misses</button>
+          <button type="button" class="chip-btn" data-trace-filter="fail">Failures / Escapes</button>
+        </div>
+      </div>
+      <div class="trace-table-head" aria-hidden="true">
+        <span>Req ID</span>
+        <span>Workload</span>
+        <span>Target Lane</span>
+        <span>Tokens (In/Out)</span>
+        <span>Cache</span>
+        <span>Cost (Saved)</span>
+        <span>Latency</span>
+        <span>Outcome</span>
+      </div>
+      <div id="trace-list" class="trace-list" aria-label="Recent routed requests"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div style="display:flex; flex-wrap:wrap; align-items:center; gap:0.75rem;">
+        <a class="back-link" href="/arena/neon-field-test.html">← Back to Field Test</a>
+        <span>Zero-dependency offline control room · Synthetic multi-tier telemetry simulation</span>
+      </div>
+      <span class="provenance-badge">[BENCHMARK ARTIFACT · SINGLE-SHOT UNTOUCHED OUTPUT · GEMINI 4 NEON (HIGH)]</span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      "use strict";
+
+      /* =========================================================
+         1. DOMAIN SPECIFICATION (WORKLOADS & MODEL LANES)
+         ========================================================= */
+      const WORKLOADS = [
+        {
+          id: "triage",
+          name: "Triage & Extraction",
+          shortName: "Triage",
+          inTokens: 8000,
+          outTokens: 600,
+          tokenLabel: "8K in / 600 out",
+          weight: 0.44,
+          smartLane: "fast",
+          colorDark: "#38bdf8",
+          colorLight: "#0284c7",
+          quality: { fast: 0.968, balanced: 0.992, deep: 0.995 },
+          baseLatency: { fast: 320, balanced: 610, deep: 1120 },
+          isAdversarial: false
+        },
+        {
+          id: "refactor",
+          name: "PR Multi-File Refactor",
+          shortName: "PR Refactor",
+          inTokens: 65000,
+          outTokens: 4000,
+          tokenLabel: "65K in / 4K out",
+          weight: 0.30,
+          smartLane: "balanced",
+          colorDark: "#a78bfa",
+          colorLight: "#6d28d9",
+          quality: { fast: 0.64, balanced: 0.972, deep: 0.981 },
+          baseLatency: { fast: 860, balanced: 1620, deep: 3380 },
+          isAdversarial: false
+        },
+        {
+          id: "synthesis",
+          name: "10-K Legal & Financial Synthesis",
+          shortName: "10-K Synth",
+          inTokens: 240000,
+          outTokens: 8000,
+          tokenLabel: "240K in / 8K out",
+          weight: 0.16,
+          smartLane: "deep",
+          colorDark: "#fbbf24",
+          colorLight: "#b45309",
+          quality: { fast: 0.41, balanced: 0.905, deep: 0.989 },
+          baseLatency: { fast: 1920, balanced: 3150, deep: 5650 },
+          isAdversarial: false
+        },
+        {
+          id: "adversarial",
+          name: "Adversarial Prompt-Injection Probe",
+          shortName: "Adv. Probe",
+          inTokens: 32000,
+          outTokens: 1500,
+          tokenLabel: "32K in / 1.5K out",
+          weight: 0.10,
+          smartLane: "balanced",
+          colorDark: "#fb7185",
+          colorLight: "#be123c",
+          quality: { fast: 0.68, balanced: 0.997, deep: 0.955 },
+          blockRate: { fast: 0.68, balanced: 0.997, deep: 0.955 },
+          baseLatency: { fast: 390, balanced: 710, deep: 1380 },
+          isAdversarial: true
+        }
+      ];
+
+      const WORKLOAD_MAP = Object.fromEntries(WORKLOADS.map((w) => [w.id, w]));
+
+      const ADV_ATTACK_VECTORS = [
+        "Hidden HTML IPI override",
+        "System prompt exfil probe",
+        "Tool-call JSON smuggling",
+        "Base64 roleplay bypass",
+        "Delimiter escape payload"
+      ];
+
+      const LANES = [
+        {
+          id: "fast",
+          index: 0,
+          label: "Lane 1",
+          name: "Fast Tier",
+          inPrice: 1.50,
+          outPrice: 7.50,
+          cachedInPrice: 0.375, // 75% discount on cached prefix
+          pricingNote: "$1.50 / $7.50 per 1M",
+          cacheNote: "$0.375/1M cached",
+          colorDark: "#38bdf8",
+          colorLight: "#0369a1",
+          capacityRps: 22
+        },
+        {
+          id: "balanced",
+          index: 1,
+          label: "Lane 2",
+          name: "Balanced Frontier",
+          inPrice: 3.00,
+          outPrice: 15.00,
+          cachedInPrice: 0.15, // 95% discount ($0.15/1M on implicit prefix-cache hits)
+          pricingNote: "$3.00 / $15.00 per 1M",
+          cacheNote: "$0.15/1M on 95% cache hit",
+          colorDark: "#34d399",
+          colorLight: "#047857",
+          capacityRps: 18
+        },
+        {
+          id: "deep",
+          index: 2,
+          label: "Lane 3",
+          name: "Deep Horizon",
+          inPrice: 4.00,
+          outPrice: 20.00,
+          cachedInPrice: 1.00, // 75% discount on cached prefix
+          pricingNote: "$4.00 / $20.00 per 1M",
+          cacheNote: "$1.00/1M cached",
+          colorDark: "#c084fc",
+          colorLight: "#6d28d9",
+          capacityRps: 10
+        }
+      ];
+
+      const LANE_MAP = Object.fromEntries(LANES.map((l) => [l.id, l]));
+
+      /* =========================================================
+         2. APPLICATION STATE
+         ========================================================= */
+      const WINDOW_SIZE = 220;
+      const MAX_TRACE = 45;
+      const MAX_TREND = 60;
+
+      const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+      const state = {
+        theme: "dark",
+        reducedMotion: reducedMotionQuery.matches,
+        paused: false,
+        routingMode: "smart", // smart | fast | balanced | deep
+        cacheHitRate: 0.90,   // 0.00 to 0.95
+        traceFilter: "all",   // all | adversarial | cache-miss | fail
+
+        // Chaos states (seconds remaining)
+        burstRemaining: 0,
+        cacheBustRemaining: 0,
+        advWaveRemaining: 0,
+        advWaveQueue: 0,
+
+        // Counters & rolling data
+        seqId: 1000,
+        totalRouted: 0,
+        cumulativeSavings: 0,
+        rollingWindow: [],
+        traceLog: [],
+        trendHistory: [],
+        recentTimestamps: [],
+
+        // Lane visual pulses & queue pressure
+        laneActivity: { fast: 0, balanced: 0, deep: 0 },
+        laneShieldFlash: { fast: 0, balanced: 0, deep: 0 },
+        laneBreachFlash: { fast: 0, balanced: 0, deep: 0 },
+        workloadPulse: { triage: 0, refactor: 0, synthesis: 0, adversarial: 0 },
+
+        // Active animated packets & ripple particles
+        packets: [],
+        impacts: [],
+
+        // Timing accumulators
+        spawnAccum: 0,
+        trendAccum: 0,
+        uiAccum: 0,
+        ariaAccum: 0,
+        lastFrameTime: performance.now(),
+
+        // Canvas hover hitboxes
+        hitboxes: [],
+        hoveredBox: null
+      };
+
+      /* =========================================================
+         3. DOM REFERENCES
+         ========================================================= */
+      const els = {
+        html: document.documentElement,
+        statusPill: document.getElementById("status-pill"),
+        statusPillText: document.getElementById("status-pill-text"),
+        btnTheme: document.getElementById("btn-theme"),
+        themeIcon: document.getElementById("theme-icon"),
+        themeLabel: document.getElementById("theme-label"),
+
+        ariaSummary: document.getElementById("live-aria-summary"),
+        kpiCost: document.getElementById("kpi-cost"),
+        kpiCostSub: document.getElementById("kpi-cost-sub"),
+        kpiP95: document.getElementById("kpi-p95"),
+        kpiP95Sub: document.getElementById("kpi-p95-sub"),
+        kpiQuality: document.getElementById("kpi-quality"),
+        kpiQualitySub: document.getElementById("kpi-quality-sub"),
+        kpiSavings: document.getElementById("kpi-savings"),
+        kpiSavingsSub: document.getElementById("kpi-savings-sub"),
+        kpiAdv: document.getElementById("kpi-adv"),
+        kpiAdvSub: document.getElementById("kpi-adv-sub"),
+
+        activePolicyTag: document.getElementById("active-policy-tag"),
+        modeBtns: Array.from(document.querySelectorAll("[data-route-mode]")),
+
+        sliderCard: document.getElementById("slider-card"),
+        cacheSlider: document.getElementById("cache-slider"),
+        cacheVal: document.getElementById("cache-val"),
+        cacheEffRate: document.getElementById("cache-eff-rate"),
+        presetBtns: Array.from(document.querySelectorAll("[data-cache-preset]")),
+
+        motionModeTag: document.getElementById("motion-mode-tag"),
+        btnBurst: document.getElementById("btn-burst"),
+        btnBurstLabel: document.getElementById("btn-burst-label"),
+        btnBustCache: document.getElementById("btn-bust-cache"),
+        btnBustLabel: document.getElementById("btn-bust-label"),
+        btnAdv: document.getElementById("btn-adversarial"),
+        btnAdvLabel: document.getElementById("btn-adv-label"),
+        btnPause: document.getElementById("btn-pause"),
+        btnPauseIcon: document.getElementById("btn-pause-icon"),
+        btnPauseText: document.getElementById("btn-pause-text"),
+        btnReset: document.getElementById("btn-reset"),
+
+        rpsReadout: document.getElementById("rps-readout"),
+        totalReqReadout: document.getElementById("total-req-readout"),
+        chaosBanner: document.getElementById("chaos-banner"),
+        chaosBannerText: document.getElementById("chaos-banner-text"),
+        chaosBannerSub: document.getElementById("chaos-banner-sub"),
+
+        canvasStage: document.getElementById("canvas-stage"),
+        routingCanvas: document.getElementById("routing-canvas"),
+        canvasTooltip: document.getElementById("canvas-tooltip"),
+        tooltipTitle: document.getElementById("tooltip-title"),
+        tooltipMeta: document.getElementById("tooltip-meta"),
+
+        laneCards: document.getElementById("lane-cards"),
+        trendWrap: document.getElementById("trend-wrap"),
+        trendCanvas: document.getElementById("trend-canvas"),
+        formulaBox: document.getElementById("formula-box"),
+        workloadMatrix: document.getElementById("workload-matrix"),
+
+        traceFilterBtns: Array.from(document.querySelectorAll("[data-trace-filter]")),
+        traceList: document.getElementById("trace-list")
+      };
+
+      const routingCtx = els.routingCanvas.getContext("2d");
+      const trendCtx = els.trendCanvas.getContext("2d");
+
+      /* =========================================================
+         4. PRICING, ROUTING & TELEMETRY MATH
+         ========================================================= */
+      function getEffectiveCacheRate() {
+        return state.cacheBustRemaining > 0 ? 0 : state.cacheHitRate;
+      }
+
+      function resolveLaneId(workload) {
+        if (state.routingMode === "smart") return workload.smartLane;
+        return state.routingMode;
+      }
+
+      function calcEffectiveInputPerM(lane, hitRate) {
+        return (1 - hitRate) * lane.inPrice + hitRate * lane.cachedInPrice;
+      }
+
+      function computeRecordCost(rec, overrideHitRate) {
+        const lane = LANE_MAP[rec.laneId];
+        const hitRate = overrideHitRate !== undefined ? overrideHitRate : rec.hitRate;
+        const inM = rec.inTokens / 1e6;
+        const outM = rec.outTokens / 1e6;
+
+        const uncachedInCost = inM * lane.inPrice;
+        const actualInCost = inM * calcEffectiveInputPerM(lane, hitRate);
+        const outCost = outM * lane.outPrice;
+
+        return {
+          actualCost: actualInCost + outCost,
+          uncachedCost: uncachedInCost + outCost,
+          savings: Math.max(0, uncachedInCost - actualInCost)
+        };
+      }
+
+      function pickWorkload(forceAdversarial) {
+        if (forceAdversarial) return WORKLOAD_MAP.adversarial;
+        const r = Math.random();
+        let acc = 0;
+        for (let i = 0; i < WORKLOADS.length; i++) {
+          acc += WORKLOADS[i].weight;
+          if (r <= acc) return WORKLOADS[i];
+        }
+        return WORKLOADS[0];
+      }
+
+      function simulateRequestRecord(workload, laneId, isBurst) {
+        const hitRate = getEffectiveCacheRate();
+        const lane = LANE_MAP[laneId];
+
+        // Queueing penalty when burst or single-lane pinned congestion occurs
+        const laneShareBoost = state.routingMode === laneId ? 1.28 : 1.0;
+        const burstFactor = isBurst ? (laneId === "deep" ? 1.85 : laneId === "balanced" ? 1.48 : 1.26) : 1.0;
+        const cacheLatencySpeedup = 1 - hitRate * 0.24; // warm KV prefix skips prefill work
+        const jitter = 0.82 + Math.random() * 0.42;
+        const tailSpike = Math.random() < (isBurst ? 0.14 : 0.05) ? 1.45 + Math.random() * 0.35 : 1.0;
+        const latencyMs = Math.round(
+          workload.baseLatency[laneId] * cacheLatencySpeedup * laneShareBoost * burstFactor * jitter * tailSpike
+        );
+
+        let passed = true;
+        let blocked = null;
+        let attackVector = null;
+
+        if (workload.isAdversarial) {
+          const blockProb = workload.blockRate[laneId];
+          blocked = Math.random() < blockProb;
+          passed = blocked;
+          attackVector = ADV_ATTACK_VECTORS[Math.floor(Math.random() * ADV_ATTACK_VECTORS.length)];
+        } else {
+          passed = Math.random() < workload.quality[laneId];
+        }
+
+        const reqId = "REQ-" + (++state.seqId);
+        const rec = {
+          id: reqId,
+          workloadId: workload.id,
+          laneId: laneId,
+          inTokens: workload.inTokens,
+          outTokens: workload.outTokens,
+          hitRate: hitRate,
+          wasBusted: state.cacheBustRemaining > 0,
+          latencyMs: latencyMs,
+          passed: passed,
+          isAdversarial: workload.isAdversarial,
+          blocked: blocked,
+          attackVector: attackVector,
+          ts: performance.now()
+        };
+
+        return rec;
+      }
+
+      function commitCompletedRecord(rec) {
+        state.totalRouted += 1;
+        const costs = computeRecordCost(rec, rec.hitRate);
+        state.cumulativeSavings += costs.savings;
+
+        state.rollingWindow.push(rec);
+        if (state.rollingWindow.length > WINDOW_SIZE) {
+          state.rollingWindow.shift();
+        }
+
+        state.traceLog.unshift(rec);
+        if (state.traceLog.length > MAX_TRACE) {
+          state.traceLog.pop();
+        }
+
+        state.recentTimestamps.push(performance.now());
+      }
+
+      function computeTelemetrySummary() {
+        const win = state.rollingWindow;
+        const count = win.length;
+        const effHit = getEffectiveCacheRate();
+
+        if (count === 0) {
+          return {
+            count: 0,
+            costPer1k: 0,
+            uncachedPer1k: 0,
+            savingsPer1k: 0,
+            p50: 0,
+            p95: 0,
+            qualityRate: 100,
+            passedCount: 0,
+            advTotal: 0,
+            advBlocked: 0,
+            advEscaped: 0,
+            advBlockRate: 100,
+            byLane: {
+              fast: { count: 0, share: 0, p95: 0, quality: 100, advTotal: 0, advBlocked: 0, savingsPer1k: 0 },
+              balanced: { count: 0, share: 0, p95: 0, quality: 100, advTotal: 0, advBlocked: 0, savingsPer1k: 0 },
+              deep: { count: 0, share: 0, p95: 0, quality: 100, advTotal: 0, advBlocked: 0, savingsPer1k: 0 }
+            }
+          };
+        }
+
+        let totalActual = 0;
+        let totalUncached = 0;
+        let totalSavings = 0;
+        let passedCount = 0;
+        let advTotal = 0;
+        let advBlocked = 0;
+        const latencies = new Array(count);
+
+        const laneBuckets = {
+          fast: { latencies: [], passed: 0, advTotal: 0, advBlocked: 0, savings: 0, count: 0 },
+          balanced: { latencies: [], passed: 0, advTotal: 0, advBlocked: 0, savings: 0, count: 0 },
+          deep: { latencies: [], passed: 0, advTotal: 0, advBlocked: 0, savings: 0, count: 0 }
+        };
+
+        for (let i = 0; i < count; i++) {
+          const rec = win[i];
+          // Dynamically reflect live slider & cache-bust state on rolling spend
+          const c = computeRecordCost(rec, effHit);
+          totalActual += c.actualCost;
+          totalUncached += c.uncachedCost;
+          totalSavings += c.savings;
+
+          latencies[i] = rec.latencyMs;
+          if (rec.passed) passedCount += 1;
+
+          const lb = laneBuckets[rec.laneId];
+          lb.count += 1;
+          lb.latencies.push(rec.latencyMs);
+          if (rec.passed) lb.passed += 1;
+          lb.savings += c.savings;
+
+          if (rec.isAdversarial) {
+            advTotal += 1;
+            lb.advTotal += 1;
+            if (rec.blocked) {
+              advBlocked += 1;
+              lb.advBlocked += 1;
+            }
+          }
+        }
+
+        latencies.sort((a, b) => a - b);
+        const p50 = latencies[Math.floor((count - 1) * 0.5)] || 0;
+        const p95 = latencies[Math.floor((count - 1) * 0.95)] || 0;
+
+        const byLane = {};
+        for (const l of LANES) {
+          const b = laneBuckets[l.id];
+          b.latencies.sort((a, c) => a - c);
+          const lp95 = b.latencies.length ? b.latencies[Math.floor((b.latencies.length - 1) * 0.95)] : 0;
+          byLane[l.id] = {
+            count: b.count,
+            share: (b.count / count) * 100,
+            p95: lp95,
+            quality: b.count ? (b.passed / b.count) * 100 : 100,
+            advTotal: b.advTotal,
+            advBlocked: b.advBlocked,
+            savingsPer1k: b.count ? (b.savings / b.count) * 1000 : 0
+          };
+        }
+
+        return {
+          count,
+          costPer1k: (totalActual / count) * 1000,
+          uncachedPer1k: (totalUncached / count) * 1000,
+          savingsPer1k: (totalSavings / count) * 1000,
+          p50,
+          p95,
+          qualityRate: (passedCount / count) * 100,
+          passedCount,
+          advTotal,
+          advBlocked,
+          advEscaped: advTotal - advBlocked,
+          advBlockRate: advTotal > 0 ? (advBlocked / advTotal) * 100 : 100,
+          byLane
+        };
+      }
+
+      /* =========================================================
+         5. PACKET SPAWNING & SEEDING
+         ========================================================= */
+      function spawnPacket(forceAdversarial, initialProgress) {
+        const workload = pickWorkload(forceAdversarial);
+        const laneId = resolveLaneId(workload);
+        const isBurst = state.burstRemaining > 0;
+        const rec = simulateRequestRecord(workload, laneId, isBurst);
+
+        state.workloadPulse[workload.id] = 1.0;
+
+        const speedBase = isBurst ? 0.95 : 0.62;
+        const speedJitter = 0.85 + Math.random() * 0.35;
+
+        // Cap visual particles during 10x burst while still processing telemetry faithfully
+        if (state.packets.length > 95 && initialProgress === undefined) {
+          commitCompletedRecord(rec);
+          state.laneActivity[laneId] = Math.min(1, state.laneActivity[laneId] + 0.14);
+          if (rec.isAdversarial) {
+            if (rec.blocked) state.laneShieldFlash[laneId] = 1;
+            else state.laneBreachFlash[laneId] = 1;
+          }
+          return;
+        }
+
+        state.packets.push({
+          rec: rec,
+          workloadIndex: WORKLOADS.findIndex((w) => w.id === workload.id),
+          laneIndex: LANE_MAP[laneId].index,
+          progress: initialProgress !== undefined ? initialProgress : 0, // 0..1 across full route
+          speed: speedBase * speedJitter,
+          cacheHit: rec.hitRate >= 0.45 && !rec.wasBusted
+        });
+      }
+
+      function seedInitialSimulation() {
+        // Populate initial rolling window so dashboard opens with rich, accurate metrics
+        for (let i = 0; i < 48; i++) {
+          const w = pickWorkload(i % 10 === 4);
+          const laneId = resolveLaneId(w);
+          const rec = simulateRequestRecord(w, laneId, false);
+          commitCompletedRecord(rec);
+        }
+
+        // Seed 28 trend points
+        const summary = computeTelemetrySummary();
+        state.trendHistory = [];
+        for (let i = 0; i < 28; i++) {
+          const wave = Math.sin(i * 0.35) * 0.04;
+          state.trendHistory.push({
+            cost: Math.max(1, summary.costPer1k * (1 + wave)),
+            p95: Math.max(100, summary.p95 * (1 - wave * 0.7))
+          });
+        }
+
+        // Put a few packets already mid-flight on the canvas
+        if (!state.reducedMotion) {
+          for (let i = 0; i < 10; i++) {
+            spawnPacket(false, 0.08 + i * 0.09);
+          }
+        }
+      }
+
+      /* =========================================================
+         6. THEME & CANVAS PALETTES
+         ========================================================= */
+      function getCanvasPalette() {
+        if (state.theme === "light") {
+          return {
+            bg: "#f8fafc",
+            grid: "rgba(148, 163, 184, 0.22)",
+            wireIdle: "rgba(100, 116, 139, 0.26)",
+            wireActive: "rgba(29, 78, 216, 0.38)",
+            nodeFill: "#ffffff",
+            nodeStroke: "#cbd5e1",
+            nodeText: "#0f172a",
+            nodeSub: "#475569",
+            routerFill: "#eff6ff",
+            routerStroke: "#2563eb",
+            emerald: "#047857",
+            amber: "#b45309",
+            rose: "#be123c",
+            cyan: "#0284c7",
+            violet: "#6d28d9"
+          };
+        }
+        return {
+          bg: "#0b1220",
+          grid: "rgba(51, 65, 85, 0.28)",
+          wireIdle: "rgba(71, 85, 105, 0.36)",
+          wireActive: "rgba(96, 165, 250, 0.45)",
+          nodeFill: "#111b30",
+          nodeStroke: "#2a3b5c",
+          nodeText: "#f8fafc",
+          nodeSub: "#94a3b8",
+          routerFill: "#132240",
+          routerStroke: "#60a5fa",
+          emerald: "#34d399",
+          amber: "#fbbf24",
+          rose: "#fb7185",
+          cyan: "#38bdf8",
+          violet: "#c084fc"
+        };
+      }
+
+      /* =========================================================
+         7. ROUTING TOPOLOGY CANVAS RENDERER
+         ========================================================= */
+      function resizeCanvases() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+        const rRect = els.canvasStage.getBoundingClientRect();
+        if (rRect.width > 0 && rRect.height > 0) {
+          els.routingCanvas.width = Math.round(rRect.width * dpr);
+          els.routingCanvas.height = Math.round(rRect.height * dpr);
+          routingCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        }
+
+        const tRect = els.trendWrap.getBoundingClientRect();
+        if (tRect.width > 0 && tRect.height > 0) {
+          els.trendCanvas.width = Math.round(tRect.width * dpr);
+          els.trendCanvas.height = Math.round(tRect.height * dpr);
+          trendCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        }
+
+        drawRoutingCanvas(computeTelemetrySummary());
+        drawTrendCanvas();
+      }
+
+      function evalCubicBezier(p0, p1, p2, p3, t) {
+        const u = 1 - t;
+        const tt = t * t;
+        const uu = u * u;
+        const uuu = uu * u;
+        const ttt = tt * t;
+        return {
+          x: uuu * p0.x + 3 * uu * t * p1.x + 3 * u * tt * p2.x + ttt * p3.x,
+          y: uuu * p0.y + 3 * uu * t * p1.y + 3 * u * tt * p2.y + ttt * p3.y
+        };
+      }
+
+      function drawRoundedRect(ctx, x, y, w, h, r) {
+        ctx.beginPath();
+        ctx.moveTo(x + r, y);
+        ctx.lineTo(x + w - r, y);
+        ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+        ctx.lineTo(x + w, y + h - r);
+        ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+        ctx.lineTo(x + r, y + h);
+        ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+        ctx.lineTo(x, y + r);
+        ctx.quadraticCurveTo(x, y, x + r, y);
+        ctx.closePath();
+      }
+
+      function drawRoutingCanvas(summary) {
+        const rect = els.canvasStage.getBoundingClientRect();
+        const W = rect.width;
+        const H = rect.height;
+        if (W <= 0 || H <= 0) return;
+
+        const pal = getCanvasPalette();
+        const compact = W < 620;
+        const ctx = routingCtx;
+        const effHit = getEffectiveCacheRate();
+        const isBusted = state.cacheBustRemaining > 0;
+
+        ctx.clearRect(0, 0, W, H);
+        ctx.fillStyle = pal.bg;
+        ctx.fillRect(0, 0, W, H);
+
+        // Subtle telemetry dot grid
+        ctx.fillStyle = pal.grid;
+        const step = compact ? 24 : 28;
+        for (let gx = step; gx < W; gx += step) {
+          for (let gy = step; gy < H; gy += step) {
+            ctx.fillRect(gx, gy, 1.5, 1.5);
+          }
+        }
+
+        // Geometry layout
+        const padX = compact ? 10 : 22;
+        const leftBoxW = compact ? Math.max(88, Math.min(106, W * 0.27)) : Math.min(200, W * 0.21);
+        const rightBoxW = compact ? Math.max(96, Math.min(118, W * 0.30)) : Math.min(235, W * 0.24);
+        const leftBoxH = compact ? 54 : 64;
+        const rightBoxH = compact ? 84 : 96;
+
+        const routerX = compact ? W * 0.48 : W * 0.47;
+        const routerY = H * 0.5;
+        const routerR = compact ? 30 : 44;
+
+        const leftNodes = WORKLOADS.map((w, i) => {
+          const spacing = (H - 36) / WORKLOADS.length;
+          const cy = 18 + spacing * (i + 0.5);
+          return {
+            w,
+            x: padX,
+            y: cy - leftBoxH / 2,
+            width: leftBoxW,
+            height: leftBoxH,
+            outX: padX + leftBoxW,
+            cy
+          };
+        });
+
+        const rightNodes = LANES.map((l, i) => {
+          const spacing = (H - 32) / LANES.length;
+          const cy = 16 + spacing * (i + 0.5);
+          const x = W - padX - rightBoxW;
+          return {
+            l,
+            x,
+            y: cy - rightBoxH / 2,
+            width: rightBoxW,
+            height: rightBoxH,
+            inX: x,
+            cy
+          };
+        });
+
+        // Store hitboxes for hover tooltips and lane clicks
+        state.hitboxes = [];
+
+        // 1. Draw Input Conduits (Workloads -> Router)
+        for (let i = 0; i < leftNodes.length; i++) {
+          const n = leftNodes[i];
+          const p0 = { x: n.outX, y: n.cy };
+          const p3 = { x: routerX - routerR, y: routerY };
+          const dx = (p3.x - p0.x) * 0.55;
+          const p1 = { x: p0.x + dx, y: p0.y };
+          const p2 = { x: p3.x - dx * 0.85, y: p3.y };
+
+          ctx.beginPath();
+          ctx.moveTo(p0.x, p0.y);
+          ctx.bezierCurveTo(p1.x, p1.y, p2.x, p2.y, p3.x, p3.y);
+          ctx.strokeStyle = pal.wireIdle;
+          ctx.lineWidth = compact ? 1.5 : 2;
+          ctx.stroke();
+        }
+
+        // 2. Draw Output Conduits (Router -> Lanes)
+        for (let i = 0; i < rightNodes.length; i++) {
+          const r = rightNodes[i];
+          const p0 = { x: routerX + routerR, y: routerY };
+          const p3 = { x: r.inX, y: r.cy };
+          const dx = (p3.x - p0.x) * 0.52;
+          const p1 = { x: p0.x + dx, y: p0.y };
+          const p2 = { x: p3.x - dx, y: p3.y };
+
+          const laneActive = state.routingMode === "smart" || state.routingMode === r.l.id;
+          const laneColor = state.theme === "light" ? r.l.colorLight : r.l.colorDark;
+
+          ctx.beginPath();
+          ctx.moveTo(p0.x, p0.y);
+          ctx.bezierCurveTo(p1.x, p1.y, p2.x, p2.y, p3.x, p3.y);
+          ctx.strokeStyle = laneActive ? laneColor : pal.wireIdle;
+          ctx.globalAlpha = laneActive ? (0.35 + state.laneActivity[r.l.id] * 0.45) : 0.25;
+          ctx.lineWidth = laneActive ? (compact ? 2.2 : 3) : 1.5;
+          ctx.stroke();
+          ctx.globalAlpha = 1;
+
+          // Static directional chevron for reduced motion clarity
+          if (state.reducedMotion && laneActive) {
+            const mid = evalCubicBezier(p0, p1, p2, p3, 0.55);
+            ctx.fillStyle = laneColor;
+            ctx.beginPath();
+            ctx.moveTo(mid.x + 5, mid.y);
+            ctx.lineTo(mid.x - 4, mid.y - 4);
+            ctx.lineTo(mid.x - 4, mid.y + 4);
+            ctx.closePath();
+            ctx.fill();
+          }
+        }
+
+        // 3. Draw Animated Packets (when not reduced motion)
+        if (!state.reducedMotion) {
+          for (let i = 0; i < state.packets.length; i++) {
+            const pkt = state.packets[i];
+            const ln = leftNodes[pkt.workloadIndex];
+            const rn = rightNodes[pkt.laneIndex];
+            const wColor = state.theme === "light" ? ln.w.colorLight : ln.w.colorDark;
+
+            let pos;
+            if (pkt.progress < 0.48) {
+              const t = pkt.progress / 0.48;
+              const p0 = { x: ln.outX, y: ln.cy };
+              const p3 = { x: routerX - routerR, y: routerY };
+              const dx = (p3.x - p0.x) * 0.55;
+              pos = evalCubicBezier(p0, { x: p0.x + dx, y: p0.y }, { x: p3.x - dx * 0.85, y: p3.y }, p3, t);
+            } else {
+              const t = (pkt.progress - 0.48) / 0.52;
+              const p0 = { x: routerX + routerR, y: routerY };
+              const p3 = { x: rn.inX, y: rn.cy };
+              const dx = (p3.x - p0.x) * 0.52;
+              pos = evalCubicBezier(p0, { x: p0.x + dx, y: p0.y }, { x: p3.x - dx, y: p3.y }, p3, t);
+            }
+
+            // Cache Hit Halo Ring (after passing router prefix-cache gate)
+            if (pkt.progress >= 0.48) {
+              ctx.beginPath();
+              ctx.arc(pos.x, pos.y, compact ? 6.5 : 8, 0, Math.PI * 2);
+              if (pkt.cacheHit && !isBusted) {
+                ctx.strokeStyle = pal.emerald;
+                ctx.lineWidth = 1.6;
+                ctx.globalAlpha = 0.8;
+                ctx.stroke();
+              } else {
+                ctx.setLineDash([2.5, 2.5]);
+                ctx.strokeStyle = pal.amber;
+                ctx.lineWidth = 1.3;
+                ctx.globalAlpha = 0.7;
+                ctx.stroke();
+                ctx.setLineDash([]);
+              }
+              ctx.globalAlpha = 1;
+            }
+
+            // Packet Core Shape (Diamond for Adversarial Probe, Glowing Circle for normal workloads)
+            ctx.fillStyle = wColor;
+            if (pkt.rec.isAdversarial) {
+              const r = compact ? 4.5 : 5.5;
+              ctx.beginPath();
+              ctx.moveTo(pos.x, pos.y - r);
+              ctx.lineTo(pos.x + r, pos.y);
+              ctx.lineTo(pos.x, pos.y + r);
+              ctx.lineTo(pos.x - r, pos.y);
+              ctx.closePath();
+              ctx.fill();
+            } else {
+              ctx.beginPath();
+              ctx.arc(pos.x, pos.y, compact ? 3.8 : 4.5, 0, Math.PI * 2);
+              ctx.fill();
+            }
+          }
+
+          // Impact Ripples (Shield Deflect / Breach Alert)
+          for (let i = 0; i < state.impacts.length; i++) {
+            const imp = state.impacts[i];
+            const rn = rightNodes[imp.laneIndex];
+            const radius = 8 + (1 - imp.life) * (compact ? 22 : 32);
+            ctx.beginPath();
+            ctx.arc(rn.inX + 4, rn.cy, radius, 0, Math.PI * 2);
+            ctx.strokeStyle = imp.type === "escaped" ? pal.rose : imp.type === "blocked" ? pal.cyan : pal.emerald;
+            ctx.lineWidth = imp.type === "escaped" ? 3 : 2;
+            ctx.globalAlpha = Math.max(0, imp.life * 0.9);
+            ctx.stroke();
+            ctx.globalAlpha = 1;
+          }
+        }
+
+        // 4. Draw Left Workload Nodes
+        for (let i = 0; i < leftNodes.length; i++) {
+          const n = leftNodes[i];
+          const wColor = state.theme === "light" ? n.w.colorLight : n.w.colorDark;
+          const pulse = state.workloadPulse[n.w.id];
+
+          drawRoundedRect(ctx, n.x, n.y, n.width, n.height, 10);
+          ctx.fillStyle = pal.nodeFill;
+          ctx.fill();
+          ctx.strokeStyle = pulse > 0.25 ? wColor : pal.nodeStroke;
+          ctx.lineWidth = pulse > 0.25 ? 1.8 : 1.1;
+          ctx.stroke();
+
+          // Left accent bar
+          ctx.fillStyle = wColor;
+          ctx.fillRect(n.x + 1, n.y + 8, 3.5, n.height - 16);
+
+          // Text labels
+          ctx.fillStyle = pal.nodeText;
+          ctx.font = `700 ${compact ? 10.5 : 12}px ${getComputedStyle(document.body).fontFamily}`;
+          ctx.textAlign = "left";
+          ctx.textBaseline = "middle";
+          const label = compact ? n.w.shortName : n.w.name;
+          ctx.fillText(truncateText(ctx, label, n.width - 18), n.x + 11, n.cy - 9);
+
+          ctx.fillStyle = pal.nodeSub;
+          ctx.font = `600 ${compact ? 9.5 : 10.5}px ui-monospace, SFMono-Regular, Menlo, monospace`;
+          ctx.fillText(truncateText(ctx, n.w.tokenLabel, n.width - 18), n.x + 11, n.cy + 10);
+
+          // Output port dot
+          ctx.beginPath();
+          ctx.arc(n.outX, n.cy, 3.5, 0, Math.PI * 2);
+          ctx.fillStyle = wColor;
+          ctx.fill();
+
+          state.hitboxes.push({
+            x: n.x,
+            y: n.y,
+            w: n.width,
+            h: n.height,
+            kind: "workload",
+            title: n.w.name,
+            meta: `${n.w.tokenLabel}\nTraffic share: ${Math.round(n.w.weight * 100)}%\nActive route → ${LANE_MAP[resolveLaneId(n.w)].name}`
+          });
+        }
+
+        // 5. Draw Center PulseRouter & Prefix-Cache Gate
+        // Outer Cache Hit Progress Arc
+        ctx.beginPath();
+        ctx.arc(routerX, routerY, routerR + 7, 0, Math.PI * 2);
+        ctx.strokeStyle = pal.wireIdle;
+        ctx.lineWidth = compact ? 3.5 : 4.5;
+        ctx.stroke();
+
+        const startAngle = -Math.PI / 2;
+        const endAngle = startAngle + Math.PI * 2 * (isBusted ? 1 : effHit);
+        ctx.beginPath();
+        ctx.arc(routerX, routerY, routerR + 7, startAngle, endAngle);
+        ctx.strokeStyle = isBusted ? pal.rose : pal.emerald;
+        ctx.lineWidth = compact ? 3.5 : 4.5;
+        ctx.stroke();
+
+        // Router Hub Body
+        ctx.beginPath();
+        ctx.arc(routerX, routerY, routerR, 0, Math.PI * 2);
+        ctx.fillStyle = pal.routerFill;
+        ctx.fill();
+        ctx.strokeStyle = isBusted ? pal.rose : pal.routerStroke;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillStyle = pal.nodeText;
+        ctx.font = `800 ${compact ? 9.5 : 11}px ui-monospace, SFMono-Regular, Menlo, monospace`;
+        const modeShort =
+          state.routingMode === "smart" ? "PARETO" :
+          state.routingMode === "fast" ? "PIN:FAST" :
+          state.routingMode === "balanced" ? "PIN:BAL" : "PIN:DEEP";
+        ctx.fillText(modeShort, routerX, routerY - (compact ? 6 : 8));
+
+        ctx.fillStyle = isBusted ? pal.rose : pal.emerald;
+        ctx.font = `800 ${compact ? 9.5 : 11.5}px ui-monospace, SFMono-Regular, Menlo, monospace`;
+        ctx.fillText(isBusted ? "0% BUST" : `${Math.round(effHit * 100)}% KV`, routerX, routerY + (compact ? 8 : 10));
+
+        // Sub-caption below router hub
+        ctx.fillStyle = pal.nodeSub;
+        ctx.font = `700 ${compact ? 9 : 10}px ui-monospace, SFMono-Regular, Menlo, monospace`;
+        ctx.fillText(compact ? "CACHE GATE" : "PREFIX-CACHE GATE", routerX, routerY + routerR + 21);
+
+        state.hitboxes.push({
+          x: routerX - routerR - 8,
+          y: routerY - routerR - 8,
+          w: (routerR + 8) * 2,
+          h: (routerR + 8) * 2,
+          kind: "router",
+          title: "PulseRouter Policy & KV Prefix Gate",
+          meta: `Policy: ${modeShort}\nEffective KV Hit: ${Math.round(effHit * 100)}%${isBusted ? " (TIMESTAMP BUG ACTIVE)" : ""}\nBalanced Eff. Input: $${calcEffectiveInputPerM(LANE_MAP.balanced, effHit).toFixed(2)}/1M`
+        });
+
+        // 6. Draw Right Model Lanes
+        for (let i = 0; i < rightNodes.length; i++) {
+          const r = rightNodes[i];
+          const lane = r.l;
+          const lColor = state.theme === "light" ? lane.colorLight : lane.colorDark;
+          const lStats = summary.byLane[lane.id];
+          const shieldFlash = state.laneShieldFlash[lane.id];
+          const breachFlash = state.laneBreachFlash[lane.id];
+
+          drawRoundedRect(ctx, r.x, r.y, r.width, r.height, 11);
+          ctx.fillStyle = pal.nodeFill;
+          ctx.fill();
+
+          if (breachFlash > 0.08) {
+            ctx.strokeStyle = pal.rose;
+            ctx.lineWidth = 2.6;
+          } else if (shieldFlash > 0.08) {
+            ctx.strokeStyle = pal.cyan;
+            ctx.lineWidth = 2.4;
+          } else {
+            ctx.strokeStyle = state.routingMode === lane.id ? lColor : pal.nodeStroke;
+            ctx.lineWidth = state.routingMode === lane.id ? 2 : 1.2;
+          }
+          ctx.stroke();
+
+          // Left shield barrier strip on lane card
+          ctx.fillStyle = breachFlash > 0.1 ? pal.rose : shieldFlash > 0.1 ? pal.cyan : lColor;
+          ctx.fillRect(r.x + 1, r.y + 8, 4, r.height - 16);
+
+          // Lane Title
+          ctx.textAlign = "left";
+          ctx.textBaseline = "middle";
+          ctx.fillStyle = pal.nodeText;
+          ctx.font = `800 ${compact ? 10.5 : 12.5}px ${getComputedStyle(document.body).fontFamily}`;
+          ctx.fillText(truncateText(ctx, compact ? lane.name.split(" ")[0] : `${lane.label}: ${lane.name}`, r.width - 18), r.x + 12, r.y + 20);
+
+          // Pricing line
+          ctx.fillStyle = lColor;
+          ctx.font = `700 ${compact ? 9 : 10.5}px ui-monospace, SFMono-Regular, Menlo, monospace`;
+          const priceTxt = compact ? `$${lane.inPrice.toFixed(2)}/$${lane.outPrice.toFixed(2)}` : lane.pricingNote;
+          ctx.fillText(truncateText(ctx, priceTxt, r.width - 18), r.x + 12, r.y + 38);
+
+          // Live share & latency line
+          ctx.fillStyle = pal.nodeSub;
+          ctx.font = `600 ${compact ? 9 : 10.5}px ui-monospace, SFMono-Regular, Menlo, monospace`;
+          const metricLine = compact
+            ? `${Math.round(lStats.share)}% · ${lStats.p95}ms`
+            : `Share ${lStats.share.toFixed(0)}% · P95 ${lStats.p95}ms`;
+          ctx.fillText(truncateText(ctx, metricLine, r.width - 18), r.x + 12, r.y + 56);
+
+          // Activity Load Bar inside Lane
+          const barX = r.x + 12;
+          const barY = r.y + r.height - 17;
+          const barW = r.width - 24;
+          ctx.fillStyle = pal.wireIdle;
+          ctx.fillRect(barX, barY, barW, 5);
+          const util = Math.min(1, lStats.share / 100 + state.laneActivity[lane.id] * 0.25);
+          ctx.fillStyle = lColor;
+          ctx.fillRect(barX, barY, Math.max(3, barW * util), 5);
+
+          // Security Outcome Flash Pill (Blocked / Escaped)
+          if (breachFlash > 0.1 || shieldFlash > 0.1) {
+            const tagText = breachFlash > 0.1 ? "ESCAPED!" : "BLOCKED";
+            const tagColor = breachFlash > 0.1 ? pal.rose : pal.cyan;
+            ctx.fillStyle = tagColor;
+            ctx.font = `800 ${compact ? 8.5 : 9.5}px ui-monospace, SFMono-Regular, Menlo, monospace`;
+            ctx.textAlign = "right";
+            ctx.fillText(tagText, r.x + r.width - 10, r.y + 20);
+          }
+
+          // Input port dot
+          ctx.beginPath();
+          ctx.arc(r.inX, r.cy, 4, 0, Math.PI * 2);
+          ctx.fillStyle = lColor;
+          ctx.fill();
+
+          state.hitboxes.push({
+            x: r.x,
+            y: r.y,
+            w: r.width,
+            h: r.height,
+            kind: "lane",
+            laneId: lane.id,
+            title: `${lane.label}: ${lane.name}`,
+            meta: `${lane.pricingNote} (${lane.cacheNote})\nTraffic Share: ${lStats.share.toFixed(1)}%\nP95 Latency: ${lStats.p95} ms\nQuality Pass: ${lStats.quality.toFixed(1)}%\nClick to pin all traffic here`
+          });
+        }
+      }
+
+      function truncateText(ctx, text, maxWidth) {
+        if (ctx.measureText(text).width <= maxWidth) return text;
+        let s = text;
+        while (s.length > 2 && ctx.measureText(s + "…").width > maxWidth) {
+          s = s.slice(0, -1);
+        }
+        return s + "…";
+      }
+
+      /* =========================================================
+         8. TREND SPARKLINE CANVAS RENDERER
+         ========================================================= */
+      function drawTrendCanvas() {
+        const rect = els.trendWrap.getBoundingClientRect();
+        const W = rect.width;
+        const H = rect.height;
+        if (W <= 0 || H <= 0) return;
+
+        const pal = getCanvasPalette();
+        const ctx = trendCtx;
+        ctx.clearRect(0, 0, W, H);
+        ctx.fillStyle = pal.bg;
+        ctx.fillRect(0, 0, W, H);
+
+        const hist = state.trendHistory;
+        if (hist.length < 2) {
+          ctx.fillStyle = pal.nodeSub;
+          ctx.font = "600 12px ui-monospace, SFMono-Regular, Menlo, monospace";
+          ctx.textAlign = "center";
+          ctx.textBaseline = "middle";
+          ctx.fillText("Collecting live telemetry samples…", W / 2, H / 2);
+          return;
+        }
+
+        const padL = 46;
+        const padR = 52;
+        const padT = 18;
+        const padB = 22;
+        const plotW = Math.max(10, W - padL - padR);
+        const plotH = Math.max(10, H - padT - padB);
+
+        let maxCost = 50;
+        let maxP95 = 1000;
+        for (let i = 0; i < hist.length; i++) {
+          if (hist[i].cost > maxCost) maxCost = hist[i].cost;
+          if (hist[i].p95 > maxP95) maxP95 = hist[i].p95;
+        }
+        maxCost = Math.ceil((maxCost * 1.15) / 25) * 25;
+        maxP95 = Math.ceil((maxP95 * 1.15) / 500) * 500;
+
+        // Horizontal grid lines
+        ctx.strokeStyle = pal.grid;
+        ctx.lineWidth = 1;
+        for (let g = 0; g <= 3; g++) {
+          const gy = padT + (plotH * g) / 3;
+          ctx.beginPath();
+          ctx.moveTo(padL, gy);
+          ctx.lineTo(W - padR, gy);
+          ctx.stroke();
+        }
+
+        // Left Y-axis (Cost $/1K)
+        ctx.font = "600 10px ui-monospace, SFMono-Regular, Menlo, monospace";
+        ctx.fillStyle = pal.emerald;
+        ctx.textAlign = "right";
+        ctx.textBaseline = "middle";
+        ctx.fillText(`$${maxCost}`, padL - 6, padT);
+        ctx.fillText(`$${Math.round(maxCost / 2)}`, padL - 6, padT + plotH / 2);
+        ctx.fillText("$0", padL - 6, padT + plotH);
+
+        // Right Y-axis (P95 ms)
+        ctx.fillStyle = pal.cyan;
+        ctx.textAlign = "left";
+        ctx.fillText(`${maxP95}ms`, W - padR + 6, padT);
+        ctx.fillText(`${Math.round(maxP95 / 2)}ms`, W - padR + 6, padT + plotH / 2);
+        ctx.fillText("0ms", W - padR + 6, padT + plotH);
+
+        // Plot Cost series
+        ctx.beginPath();
+        for (let i = 0; i < hist.length; i++) {
+          const x = padL + (plotW * i) / (hist.length - 1);
+          const y = padT + plotH - (hist[i].cost / maxCost) * plotH;
+          if (i === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.strokeStyle = pal.emerald;
+        ctx.lineWidth = 2.2;
+        ctx.stroke();
+
+        // Plot P95 series
+        ctx.beginPath();
+        for (let i = 0; i < hist.length; i++) {
+          const x = padL + (plotW * i) / (hist.length - 1);
+          const y = padT + plotH - (hist[i].p95 / maxP95) * plotH;
+          if (i === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.strokeStyle = pal.cyan;
+        ctx.lineWidth = 2;
+        ctx.setLineDash([4, 3]);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        // Bottom caption
+        ctx.fillStyle = pal.nodeSub;
+        ctx.textAlign = "center";
+        ctx.fillText("Rolling 60-tick telemetry window", padL + plotW / 2, H - 8);
+      }
+
+      /* =========================================================
+         9. DOM UI RENDERING
+         ========================================================= */
+      function renderKPIs(summary) {
+        const effHit = getEffectiveCacheRate();
+        els.kpiCost.textContent = "$" + summary.costPer1k.toFixed(2);
+        const pctDiff = summary.uncachedPer1k > 0
+          ? ((summary.uncachedPer1k - summary.costPer1k) / summary.uncachedPer1k) * 100
+          : 0;
+        els.kpiCostSub.textContent =
+          summary.count > 0
+            ? `vs $${summary.uncachedPer1k.toFixed(2)} uncached (-${pctDiff.toFixed(0)}%)`
+            : "Awaiting routed requests";
+
+        els.kpiP95.textContent = summary.p95.toLocaleString() + " ms";
+        els.kpiP95Sub.textContent = `P50: ${summary.p50.toLocaleString()} ms · ${summary.count} sample window`;
+
+        els.kpiQuality.textContent = summary.qualityRate.toFixed(1) + "%";
+        els.kpiQualitySub.textContent = `${summary.passedCount} / ${summary.count} tasks passed eval`;
+
+        els.kpiSavings.textContent = "$" + summary.savingsPer1k.toFixed(2);
+        els.kpiSavingsSub.textContent = `per 1K tasks · $${state.cumulativeSavings.toFixed(2)} session`;
+
+        els.kpiAdv.textContent = summary.advBlockRate.toFixed(1) + "%";
+        els.kpiAdvSub.textContent = `${summary.advBlocked} blocked · ${summary.advEscaped} escaped`;
+
+        // Update RPS & totals
+        const now = performance.now();
+        while (state.recentTimestamps.length && now - state.recentTimestamps[0] > 3000) {
+          state.recentTimestamps.shift();
+        }
+        const rps = state.paused ? 0 : state.recentTimestamps.length / 3;
+        els.rpsReadout.textContent = rps.toFixed(1) + " req/s";
+        els.totalReqReadout.textContent = state.totalRouted.toLocaleString() + " routed";
+
+        // Update slider effective input readout
+        const balEff = calcEffectiveInputPerM(LANE_MAP.balanced, effHit);
+        els.cacheVal.textContent = Math.round(effHit * 100) + "%";
+        if (state.cacheBustRemaining > 0) {
+          els.sliderCard.classList.add("is-busted");
+          els.cacheEffRate.textContent = `BUSTED · Balanced in: $${LANE_MAP.balanced.inPrice.toFixed(2)}/1M`;
+        } else {
+          els.sliderCard.classList.remove("is-busted");
+          els.cacheEffRate.textContent = `Balanced eff. in: $${balEff.toFixed(2)}/1M`;
+        }
+
+        // Formula glass-box readout
+        const fastEff = calcEffectiveInputPerM(LANE_MAP.fast, effHit);
+        const deepEff = calcEffectiveInputPerM(LANE_MAP.deep, effHit);
+        els.formulaBox.innerHTML =
+          `<strong>Live Prefix-Cache Input Formula (${Math.round(effHit * 100)}% KV Hit):</strong><br>` +
+          `Balanced: (1-${effHit.toFixed(2)})×$3.00 + ${effHit.toFixed(2)}×$0.15 = <strong>$${balEff.toFixed(2)}/1M</strong> · ` +
+          `Fast: <strong>$${fastEff.toFixed(2)}/1M</strong> · Deep: <strong>$${deepEff.toFixed(2)}/1M</strong>`;
+      }
+
+      function renderLaneCards(summary) {
+        const effHit = getEffectiveCacheRate();
+        const html = LANES.map((lane) => {
+          const st = summary.byLane[lane.id];
+          const effIn = calcEffectiveInputPerM(lane, effHit);
+          const color = state.theme === "light" ? lane.colorLight : lane.colorDark;
+          const isPinned = state.routingMode === lane.id;
+          const advLabel = st.advTotal > 0 ? `${((st.advBlocked / st.advTotal) * 100).toFixed(0)}% (${st.advBlocked}/${st.advTotal})` : "—";
+
+          return `
+            <article class="lane-card ${isPinned ? "is-pinned" : ""}" data-pin-lane="${lane.id}" style="cursor:pointer;" title="Click to pin all traffic to ${lane.name}">
+              <div class="lane-card-top">
+                <div class="lane-name-wrap">
+                  <span class="lane-badge ${lane.id}">${lane.label}</span>
+                  <span class="lane-title">${lane.name}</span>
+                </div>
+                <span class="lane-pricing">${lane.pricingNote} · ${lane.cacheNote}</span>
+              </div>
+              <div class="lane-bar-track" aria-hidden="true">
+                <div class="lane-bar-fill" style="width:${Math.min(100, Math.round(st.share))}%; background:${color};"></div>
+              </div>
+              <div class="lane-metrics">
+                <div class="lane-metric">
+                  <div class="lane-metric-k">Traffic Share</div>
+                  <div class="lane-metric-v">${st.share.toFixed(1)}% (${st.count})</div>
+                </div>
+                <div class="lane-metric">
+                  <div class="lane-metric-k">Eff. Input / 1M</div>
+                  <div class="lane-metric-v">$${effIn.toFixed(2)}</div>
+                </div>
+                <div class="lane-metric">
+                  <div class="lane-metric-k">P95 · Quality</div>
+                  <div class="lane-metric-v">${st.p95}ms · ${st.quality.toFixed(0)}%</div>
+                </div>
+                <div class="lane-metric">
+                  <div class="lane-metric-k">Probe Defense</div>
+                  <div class="lane-metric-v">${advLabel}</div>
+                </div>
+              </div>
+            </article>
+          `;
+        }).join("");
+
+        els.laneCards.innerHTML = html;
+      }
+
+      function renderWorkloadMatrix() {
+        const html = WORKLOADS.map((w) => {
+          const targetLane = LANE_MAP[resolveLaneId(w)];
+          const color = state.theme === "light" ? w.colorLight : w.colorDark;
+          return `
+            <div class="workload-chip">
+              <div class="workload-chip-head">
+                <span style="display:inline-flex; align-items:center; gap:0.35rem;">
+                  <span class="legend-swatch ${w.isAdversarial ? "diamond" : ""}" style="background:${color};"></span>
+                  <span>${w.shortName}</span>
+                </span>
+                <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-muted);">${Math.round(w.weight * 100)}%</span>
+              </div>
+              <div class="workload-chip-meta">${w.tokenLabel}</div>
+              <span class="route-arrow-tag">→ ${targetLane.name}</span>
+            </div>
+          `;
+        }).join("");
+
+        els.workloadMatrix.innerHTML = html;
+      }
+
+      function renderTraceLog() {
+        const filtered = state.traceLog.filter((rec) => {
+          if (state.traceFilter === "adversarial") return rec.isAdversarial;
+          if (state.traceFilter === "cache-miss") return rec.hitRate < 0.1 || rec.wasBusted;
+          if (state.traceFilter === "fail") return !rec.passed;
+          return true;
+        }).slice(0, 12);
+
+        if (filtered.length === 0) {
+          els.traceList.innerHTML = `<div class="trace-empty">No recent requests match this filter.</div>`;
+          return;
+        }
+
+        const html = filtered.map((rec) => {
+          const w = WORKLOAD_MAP[rec.workloadId];
+          const l = LANE_MAP[rec.laneId];
+          const c = computeRecordCost(rec, rec.hitRate);
+          const wColor = state.theme === "light" ? w.colorLight : w.colorDark;
+
+          let outcomeClass = "pass";
+          let outcomeText = "PASS";
+          if (rec.isAdversarial) {
+            outcomeClass = rec.blocked ? "blocked" : "escaped";
+            outcomeText = rec.blocked ? "BLOCKED" : "ESCAPED";
+          } else if (!rec.passed) {
+            outcomeClass = "fail";
+            outcomeText = "FAIL";
+          }
+
+          const workloadTitle = rec.attackVector ? `${w.shortName}: ${rec.attackVector}` : w.name;
+          const tokStr = `${Math.round(rec.inTokens / 1000)}K/${rec.outTokens >= 1000 ? (rec.outTokens / 1000).toFixed(1).replace(/\.0$/, "") + "K" : rec.outTokens}`;
+          const cacheStr = rec.wasBusted ? "0% BUST" : `${Math.round(rec.hitRate * 100)}%`;
+
+          return `
+            <div class="trace-row ${outcomeClass === "escaped" ? "is-escaped" : ""}">
+              <span class="trace-id">${rec.id}</span>
+              <span class="trace-workload">
+                <span class="legend-swatch ${w.isAdversarial ? "diamond" : ""}" style="background:${wColor};"></span>
+                <span class="trace-workload-name" title="${workloadTitle}">${workloadTitle}</span>
+              </span>
+              <span><span class="lane-badge ${l.id}">${l.name}</span></span>
+              <span class="trace-mono">${tokStr}</span>
+              <span class="trace-mono" style="color:${rec.wasBusted || rec.hitRate === 0 ? "var(--accent-rose)" : "var(--accent-emerald)"}; font-weight:700;">${cacheStr}</span>
+              <span class="trace-mono">$${c.actualCost.toFixed(4)} <span style="color:var(--accent-emerald);">(-$${c.savings.toFixed(4)})</span></span>
+              <span class="trace-mono">${rec.latencyMs}ms</span>
+              <span><span class="outcome-pill ${outcomeClass}">${outcomeText}</span></span>
+            </div>
+          `;
+        }).join("");
+
+        els.traceList.innerHTML = html;
+      }
+
+      function renderStatusAndChaos() {
+        const chaosMsgs = [];
+
+        if (state.burstRemaining > 0) {
+          els.btnBurst.classList.add("is-active");
+          els.btnBurst.setAttribute("aria-pressed", "true");
+          els.btnBurstLabel.textContent = `10x Burst (${Math.ceil(state.burstRemaining)}s)`;
+          chaosMsgs.push(`10x TRAFFIC SURGE (${Math.ceil(state.burstRemaining)}s)`);
+        } else {
+          els.btnBurst.classList.remove("is-active");
+          els.btnBurst.setAttribute("aria-pressed", "false");
+          els.btnBurstLabel.textContent = "10x Traffic Burst";
+        }
+
+        if (state.cacheBustRemaining > 0) {
+          els.btnBustCache.classList.add("is-active");
+          els.btnBustCache.setAttribute("aria-pressed", "true");
+          els.btnBustLabel.textContent = `Hotfix Cache Bug (${Math.ceil(state.cacheBustRemaining)}s)`;
+          chaosMsgs.push(`PREFIX CACHE BUSTED: Timestamp at token 0 (${Math.ceil(state.cacheBustRemaining)}s)`);
+        } else {
+          els.btnBustCache.classList.remove("is-active");
+          els.btnBustCache.setAttribute("aria-pressed", "false");
+          els.btnBustLabel.textContent = "Bust Prefix Cache (Timestamp Prefix Bug)";
+        }
+
+        if (state.advWaveRemaining > 0) {
+          els.btnAdv.classList.add("is-active");
+          els.btnAdv.setAttribute("aria-pressed", "true");
+          els.btnAdvLabel.textContent = `Probe Wave (${state.advWaveQueue} left)`;
+          chaosMsgs.push(`ADVERSARIAL IPI WAVE ACTIVE (${state.advWaveQueue} probes queued)`);
+        } else {
+          els.btnAdv.classList.remove("is-active");
+          els.btnAdv.setAttribute("aria-pressed", "false");
+          els.btnAdvLabel.textContent = "Inject Adversarial Payload";
+        }
+
+        if (chaosMsgs.length > 0) {
+          els.chaosBanner.classList.add("is-visible");
+          els.chaosBannerText.textContent = "⚠ INCIDENT ACTIVE · " + chaosMsgs.join("  |  ");
+          els.chaosBannerSub.textContent = state.cacheBustRemaining > 0 ? "KV hit rate forced to 0%" : "Observing tier resilience";
+        } else {
+          els.chaosBanner.classList.remove("is-visible");
+        }
+
+        // Top status pill
+        els.statusPill.classList.remove("is-paused", "is-chaos");
+        const modeTag =
+          state.routingMode === "smart" ? "PARETO" :
+          state.routingMode === "fast" ? "FAST PIN" :
+          state.routingMode === "balanced" ? "BALANCED PIN" : "DEEP PIN";
+
+        if (state.paused) {
+          els.statusPill.classList.add("is-paused");
+          els.statusPillText.textContent = `PAUSED · ${modeTag}`;
+        } else if (chaosMsgs.length > 0) {
+          els.statusPill.classList.add("is-chaos");
+          els.statusPillText.textContent = `CHAOS · ${modeTag}`;
+        } else {
+          els.statusPillText.textContent = `LIVE · ${modeTag}`;
+        }
+
+        els.motionModeTag.textContent = state.reducedMotion ? "REDUCED MOTION" : state.paused ? "PAUSED" : "60FPS LIVE";
+      }
+
+      function updateAriaLiveSummary(summary) {
+        els.ariaSummary.textContent =
+          `PulseRouter telemetry: Cost $${summary.costPer1k.toFixed(2)} per 1,000 tasks, ` +
+          `P95 latency ${summary.p95} milliseconds, quality pass rate ${summary.qualityRate.toFixed(1)} percent, ` +
+          `implicit cache savings $${summary.savingsPer1k.toFixed(2)} per 1,000 tasks, ` +
+          `adversarial block rate ${summary.advBlockRate.toFixed(1)} percent.`;
+      }
+
+      /* =========================================================
+         10. CONTROLS & INTERACTION HANDLERS
+         ========================================================= */
+      function setRoutingMode(mode) {
+        state.routingMode = mode;
+        els.modeBtns.forEach((btn) => {
+          btn.setAttribute("aria-pressed", btn.dataset.routeMode === mode ? "true" : "false");
+        });
+
+        const policyLabels = {
+          smart: "PARETO OPTIMAL",
+          fast: "PINNED → FAST TIER",
+          balanced: "PINNED → BALANCED",
+          deep: "PINNED → DEEP HORIZON"
+        };
+        els.activePolicyTag.textContent = policyLabels[mode];
+
+        renderWorkloadMatrix();
+        renderStatusAndChaos();
+        const summary = computeTelemetrySummary();
+        renderKPIs(summary);
+        renderLaneCards(summary);
+        drawRoutingCanvas(summary);
+        updateAriaLiveSummary(summary);
+      }
+
+      function setCacheHitRate(pct) {
+        const clamped = Math.max(0, Math.min(95, Math.round(pct)));
+        state.cacheHitRate = clamped / 100;
+        els.cacheSlider.value = String(clamped);
+
+        els.presetBtns.forEach((btn) => {
+          btn.classList.toggle("is-active", Number(btn.dataset.cachePreset) === clamped);
+        });
+
+        const summary = computeTelemetrySummary();
+        renderKPIs(summary);
+        renderLaneCards(summary);
+        drawRoutingCanvas(summary);
+        if (state.trendHistory.length > 0) {
+          state.trendHistory[state.trendHistory.length - 1].cost = summary.costPer1k;
+          drawTrendCanvas();
+        }
+      }
+
+      function togglePause() {
+        state.paused = !state.paused;
+        els.btnPause.setAttribute("aria-pressed", state.paused ? "true" : "false");
+        els.btnPauseIcon.textContent = state.paused ? "▶" : "⏸";
+        els.btnPauseText.textContent = state.paused ? "Resume" : "Pause";
+        renderStatusAndChaos();
+      }
+
+      function resetTelemetry() {
+        state.burstRemaining = 0;
+        state.cacheBustRemaining = 0;
+        state.advWaveRemaining = 0;
+        state.advWaveQueue = 0;
+        state.seqId = 1000;
+        state.totalRouted = 0;
+        state.cumulativeSavings = 0;
+        state.rollingWindow = [];
+        state.traceLog = [];
+        state.trendHistory = [];
+        state.recentTimestamps = [];
+        state.packets = [];
+        state.impacts = [];
+        state.laneActivity = { fast: 0, balanced: 0, deep: 0 };
+        state.laneShieldFlash = { fast: 0, balanced: 0, deep: 0 };
+        state.laneBreachFlash = { fast: 0, balanced: 0, deep: 0 };
+
+        const summary = computeTelemetrySummary();
+        renderKPIs(summary);
+        renderLaneCards(summary);
+        renderTraceLog();
+        renderStatusAndChaos();
+        drawRoutingCanvas(summary);
+        drawTrendCanvas();
+        updateAriaLiveSummary(summary);
+      }
+
+      function setTheme(theme) {
+        state.theme = theme === "light" ? "light" : "dark";
+        els.html.dataset.theme = state.theme;
+        const isLight = state.theme === "light";
+        els.btnTheme.setAttribute("aria-pressed", isLight ? "true" : "false");
+        els.themeIcon.textContent = isLight ? "☾" : "☀";
+        els.themeLabel.textContent = isLight ? "Dark" : "Daylight";
+
+        try {
+          localStorage.setItem("pulserouter-theme", state.theme);
+        } catch (_) {}
+
+        const summary = computeTelemetrySummary();
+        renderLaneCards(summary);
+        renderWorkloadMatrix();
+        renderTraceLog();
+        drawRoutingCanvas(summary);
+        drawTrendCanvas();
+      }
+
+      // Event Listeners
+      els.modeBtns.forEach((btn) => {
+        btn.addEventListener("click", () => setRoutingMode(btn.dataset.routeMode));
+      });
+
+      els.cacheSlider.addEventListener("input", (e) => {
+        setCacheHitRate(Number(e.target.value));
+      });
+
+      els.presetBtns.forEach((btn) => {
+        btn.addEventListener("click", () => setCacheHitRate(Number(btn.dataset.cachePreset)));
+      });
+
+      els.btnBurst.addEventListener("click", () => {
+        state.burstRemaining = state.burstRemaining > 0 ? 0 : 10;
+        renderStatusAndChaos();
+      });
+
+      els.btnBustCache.addEventListener("click", () => {
+        state.cacheBustRemaining = state.cacheBustRemaining > 0 ? 0 : 12;
+        const summary = computeTelemetrySummary();
+        renderStatusAndChaos();
+        renderKPIs(summary);
+        renderLaneCards(summary);
+        drawRoutingCanvas(summary);
+        updateAriaLiveSummary(summary);
+      });
+
+      els.btnAdv.addEventListener("click", () => {
+        state.advWaveRemaining = 6.5;
+        state.advWaveQueue = Math.min(48, state.advWaveQueue + 20);
+        // Fire 4 immediate probes for instant visual impact
+        for (let i = 0; i < 4; i++) {
+          if (state.reducedMotion) {
+            const w = WORKLOAD_MAP.adversarial;
+            const laneId = resolveLaneId(w);
+            const rec = simulateRequestRecord(w, laneId, state.burstRemaining > 0);
+            commitCompletedRecord(rec);
+            if (rec.blocked) state.laneShieldFlash[laneId] = 1;
+            else state.laneBreachFlash[laneId] = 1;
+          } else {
+            spawnPacket(true, i * 0.04);
+          }
+          state.advWaveQueue = Math.max(0, state.advWaveQueue - 1);
+        }
+        renderStatusAndChaos();
+        const summary = computeTelemetrySummary();
+        renderKPIs(summary);
+        renderTraceLog();
+        drawRoutingCanvas(summary);
+      });
+
+      els.btnPause.addEventListener("click", togglePause);
+      els.btnReset.addEventListener("click", resetTelemetry);
+
+      els.btnTheme.addEventListener("click", () => {
+        setTheme(state.theme === "dark" ? "light" : "dark");
+      });
+
+      els.traceFilterBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          state.traceFilter = btn.dataset.traceFilter;
+          els.traceFilterBtns.forEach((b) => b.classList.toggle("is-active", b === btn));
+          renderTraceLog();
+        });
+      });
+
+      // Clicking lane telemetry card pins that lane
+      els.laneCards.addEventListener("click", (e) => {
+        const card = e.target.closest("[data-pin-lane]");
+        if (!card) return;
+        const laneId = card.dataset.pinLane;
+        setRoutingMode(state.routingMode === laneId ? "smart" : laneId);
+      });
+
+      // Canvas hover tooltips & click-to-pin lane
+      els.routingCanvas.addEventListener("mousemove", (e) => {
+        const rect = els.routingCanvas.getBoundingClientRect();
+        const mx = e.clientX - rect.left;
+        const my = e.clientY - rect.top;
+
+        let found = null;
+        for (let i = state.hitboxes.length - 1; i >= 0; i--) {
+          const b = state.hitboxes[i];
+          if (mx >= b.x && mx <= b.x + b.w && my >= b.y && my <= b.y + b.h) {
+            found = b;
+            break;
+          }
+        }
+
+        if (found) {
+          els.tooltipTitle.textContent = found.title;
+          els.tooltipMeta.innerHTML = found.meta.replace(/\n/g, "<br>");
+          const tipW = 220;
+          const left = Math.min(rect.width - tipW - 10, Math.max(10, mx + 14));
+          const top = Math.min(rect.height - 96, Math.max(10, my - 12));
+          els.canvasTooltip.style.left = left + "px";
+          els.canvasTooltip.style.top = top + "px";
+          els.canvasTooltip.classList.add("is-visible");
+          els.routingCanvas.style.cursor = found.kind === "lane" ? "pointer" : "default";
+        } else {
+          els.canvasTooltip.classList.remove("is-visible");
+          els.routingCanvas.style.cursor = "default";
+        }
+      });
+
+      els.routingCanvas.addEventListener("mouseleave", () => {
+        els.canvasTooltip.classList.remove("is-visible");
+      });
+
+      els.routingCanvas.addEventListener("click", (e) => {
+        const rect = els.routingCanvas.getBoundingClientRect();
+        const mx = e.clientX - rect.left;
+        const my = e.clientY - rect.top;
+        for (let i = state.hitboxes.length - 1; i >= 0; i--) {
+          const b = state.hitboxes[i];
+          if (b.kind === "lane" && mx >= b.x && mx <= b.x + b.w && my >= b.y && my <= b.y + b.h) {
+            setRoutingMode(state.routingMode === b.laneId ? "smart" : b.laneId);
+            break;
+          }
+        }
+      });
+
+      // Space shortcut for Pause / Resume (preserving native Space on interactive elements)
+      window.addEventListener("keydown", (e) => {
+        if (e.code !== "Space") return;
+        const target = e.target;
+        if (target && target.closest && target.closest("input, textarea, select, a, button")) {
+          return;
+        }
+        e.preventDefault();
+        togglePause();
+      });
+
+      // Listen for OS prefers-reduced-motion changes
+      if (reducedMotionQuery.addEventListener) {
+        reducedMotionQuery.addEventListener("change", (e) => {
+          state.reducedMotion = e.matches;
+          if (state.reducedMotion) {
+            state.packets = [];
+            state.impacts = [];
+          }
+          renderStatusAndChaos();
+          drawRoutingCanvas(computeTelemetrySummary());
+        });
+      }
+
+      /* =========================================================
+         11. MAIN SIMULATION & RENDER LOOP (requestAnimationFrame)
+         ========================================================= */
+      function stepSimulation(now) {
+        const dt = Math.min(0.08, Math.max(0.001, (now - state.lastFrameTime) / 1000));
+        state.lastFrameTime = now;
+
+        if (!state.paused) {
+          // Decay chaos timers
+          if (state.burstRemaining > 0) state.burstRemaining = Math.max(0, state.burstRemaining - dt);
+          if (state.cacheBustRemaining > 0) state.cacheBustRemaining = Math.max(0, state.cacheBustRemaining - dt);
+          if (state.advWaveRemaining > 0) {
+            state.advWaveRemaining = Math.max(0, state.advWaveRemaining - dt);
+            if (state.advWaveRemaining === 0) state.advWaveQueue = 0;
+          }
+
+          // Decay visual flashes
+          for (const id of ["fast", "balanced", "deep"]) {
+            state.laneActivity[id] = Math.max(0, state.laneActivity[id] - dt * 1.4);
+            state.laneShieldFlash[id] = Math.max(0, state.laneShieldFlash[id] - dt * 1.8);
+            state.laneBreachFlash[id] = Math.max(0, state.laneBreachFlash[id] - dt * 1.3);
+          }
+          for (const w of WORKLOADS) {
+            state.workloadPulse[w.id] = Math.max(0, state.workloadPulse[w.id] - dt * 2.4);
+          }
+
+          // Spawn cadence
+          const baseRps = state.burstRemaining > 0 ? 34 : 3.6;
+          state.spawnAccum += dt * baseRps;
+
+          while (state.spawnAccum >= 1) {
+            state.spawnAccum -= 1;
+            const forceAdv = state.advWaveQueue > 0 && Math.random() < 0.65;
+            if (forceAdv) state.advWaveQueue -= 1;
+
+            if (state.reducedMotion) {
+              // Stepped calm telemetry processing without rapid flying particles
+              const w = pickWorkload(forceAdv);
+              const laneId = resolveLaneId(w);
+              const rec = simulateRequestRecord(w, laneId, state.burstRemaining > 0);
+              commitCompletedRecord(rec);
+              state.laneActivity[laneId] = Math.min(1, state.laneActivity[laneId] + 0.16);
+              if (rec.isAdversarial) {
+                if (rec.blocked) state.laneShieldFlash[laneId] = 0.85;
+                else state.laneBreachFlash[laneId] = 0.95;
+              }
+            } else {
+              spawnPacket(forceAdv);
+            }
+          }
+
+          // Advance in-flight packets
+          if (!state.reducedMotion) {
+            for (let i = state.packets.length - 1; i >= 0; i--) {
+              const pkt = state.packets[i];
+              pkt.progress += dt * pkt.speed;
+              if (pkt.progress >= 1) {
+                const rec = pkt.rec;
+                commitCompletedRecord(rec);
+                state.laneActivity[rec.laneId] = Math.min(1, state.laneActivity[rec.laneId] + 0.24);
+
+                if (rec.isAdversarial) {
+                  if (rec.blocked) {
+                    state.laneShieldFlash[rec.laneId] = 1.0;
+                    state.impacts.push({ laneIndex: pkt.laneIndex, life: 1, type: "blocked" });
+                  } else {
+                    state.laneBreachFlash[rec.laneId] = 1.0;
+                    state.impacts.push({ laneIndex: pkt.laneIndex, life: 1, type: "escaped" });
+                  }
+                } else if (state.impacts.length < 18) {
+                  state.impacts.push({ laneIndex: pkt.laneIndex, life: 0.75, type: "normal" });
+                }
+
+                state.packets.splice(i, 1);
+              }
+            }
+
+            // Advance impact ripples
+            for (let i = state.impacts.length - 1; i >= 0; i--) {
+              state.impacts[i].life -= dt * 2.2;
+              if (state.impacts[i].life <= 0) state.impacts.splice(i, 1);
+            }
+          }
+
+          // Periodic trend sampling (every 0.85s)
+          state.trendAccum += dt;
+          if (state.trendAccum >= 0.85) {
+            state.trendAccum = 0;
+            const summary = computeTelemetrySummary();
+            if (summary.count > 0) {
+              state.trendHistory.push({ cost: summary.costPer1k, p95: summary.p95 });
+              if (state.trendHistory.length > MAX_TREND) state.trendHistory.shift();
+              drawTrendCanvas();
+            }
+          }
+
+          // Periodic DOM refresh (every 0.22s for crisp numbers without layout thrash)
+          state.uiAccum += dt;
+          if (state.uiAccum >= (state.reducedMotion ? 0.8 : 0.22)) {
+            state.uiAccum = 0;
+            const summary = computeTelemetrySummary();
+            renderKPIs(summary);
+            renderLaneCards(summary);
+            renderTraceLog();
+            renderStatusAndChaos();
+          }
+
+          // Periodic polite ARIA summary (every 3.5s)
+          state.ariaAccum += dt;
+          if (state.ariaAccum >= 3.5) {
+            state.ariaAccum = 0;
+            updateAriaLiveSummary(computeTelemetrySummary());
+          }
+        }
+
+        // Draw live canvas frame (respecting reducedMotion cadence)
+        if (!state.reducedMotion || state.uiAccum === 0) {
+          drawRoutingCanvas(computeTelemetrySummary());
+        }
+
+        requestAnimationFrame(stepSimulation);
+      }
+
+      /* =========================================================
+         12. INITIALIZATION
+         ========================================================= */
+      function init() {
+        let savedTheme = "dark";
+        try {
+          const stored = localStorage.getItem("pulserouter-theme");
+          if (stored === "light" || stored === "dark") savedTheme = stored;
+        } catch (_) {}
+
+        seedInitialSimulation();
+        setTheme(savedTheme);
+        setRoutingMode("smart");
+        setCacheHitRate(90);
+
+        if (typeof ResizeObserver !== "undefined") {
+          const ro = new ResizeObserver(() => resizeCanvases());
+          ro.observe(els.canvasStage);
+          ro.observe(els.trendWrap);
+        }
+        window.addEventListener("resize", resizeCanvases);
+        resizeCanvases();
+
+        const summary = computeTelemetrySummary();
+        renderKPIs(summary);
+        renderLaneCards(summary);
+        renderWorkloadMatrix();
+        renderTraceLog();
+        renderStatusAndChaos();
+        updateAriaLiveSummary(summary);
+
+        requestAnimationFrame(stepSimulation);
+      }
+
+      init();
+    })();
+  </script>
+</body>
+</html>

@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="text-scale" content="scale" />
-  <title>Google Cloud Releases Open Knowledge Format (OKF) v0.3: RFC 2119 Agent Bundles, Current-Only Trust Tiers &amp; Coding Agent Skills. — GeminiPulse Essay (Star 06 · δ Wasat)</title>
+  <title>Google Cloud Releases Open Knowledge Format (OKF) v0.3: RFC 2119 Agent Bundles, Current-Only Trust Tiers &amp; Coding Agent Skills. — GeminiPulse Essay (Star 07 · ζ Mekbuda)</title>
   <meta name="description" content="Google Cloud ships Open Knowledge Format v0.3—standardizing YAML 1.2 + CommonMark agent knowledge bundles alongside AGENTS.md and SKILL.md, resetting stale human-reviewed labels after agent edits, and moving OKF to a standalone GitHub org." />
   <link rel="canonical" href="https://geminipulse.com/articles/google-cloud-okf-v0-3.html" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="GeminiPulse" />
-  <meta property="og:title" content="Google Cloud Releases Open Knowledge Format (OKF) v0.3: RFC 2119 Agent Bundles, Current-Only Trust Tiers &amp; Coding Agent Skills. — Written by Google Gemini 4 Argon" />
+  <meta property="og:title" content="Google Cloud Releases Open Knowledge Format (OKF) v0.3: RFC 2119 Agent Bundles, Current-Only Trust Tiers &amp; Coding Agent Skills. — Written by Google Gemini 4 Argon (Thinking Effort: High)" />
   <meta property="og:description" content="Google Cloud ships Open Knowledge Format v0.3—standardizing YAML 1.2 + CommonMark agent knowledge bundles alongside AGENTS.md and SKILL.md, resetting stale human-reviewed labels after agent edits, and moving OKF to a standalone GitHub org." />
   <meta property="og:url" content="https://geminipulse.com/articles/google-cloud-okf-v0-3.html" />
   <meta property="og:image" content="https://geminipulse.com/og-image.png" />
@@ -34,7 +34,7 @@
       "url": "https://geminipulse.com/articles/google-cloud-okf-v0-3.html",
       "author": {
         "@type": "Person",
-        "name": "Google Gemini 4 Argon"
+        "name": "Google Gemini 4 Argon (Thinking Effort: High)"
       },
       "contributor": {
         "@type": "Person",
@@ -105,6 +105,7 @@
       scroll-behavior: smooth;
       background: var(--night-zenith);
       color: var(--starlight-ink);
+      overflow-x: hidden;
     }
 
     body {
@@ -226,6 +227,8 @@
 
     .article-sanctuary-column {
       max-inline-size: 56rem;
+      inline-size: 100%;
+      min-inline-size: 0;
       margin-inline: auto;
       display: flex;
       flex-direction: column;
@@ -236,11 +239,14 @@
     .lens-inner-wrap {
       max-inline-size: 48.75rem;
       inline-size: 100%;
+      min-inline-size: 0;
       margin-inline: auto;
       scroll-margin-top: 72px;
     }
 
     .lens-host {
+      min-inline-size: 0;
+      inline-size: 100%;
       margin: 0;
       padding: 0;
       border: none;
@@ -665,7 +671,7 @@
       text-wrap: pretty;
     }
 
-    .builder-rules-ledger { margin-block-start: 2rem; display: grid; gap: 1rem; }
+    .builder-rules-ledger { margin-block-start: 2rem; display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; }
 
     .br-item {
       padding: 1.15rem 1.4rem;
@@ -693,6 +699,9 @@
 
     .geo-code-wrap {
       margin-block-start: 2rem;
+      inline-size: 100%;
+      max-inline-size: 100%;
+      min-inline-size: 0;
       border-radius: 12px;
       border: 0.75px solid rgba(245, 158, 63, 0.36);
       background: #050811;
@@ -732,6 +741,8 @@
     .geo-code-block {
       padding: 1.25rem 1.4rem;
       overflow-x: auto;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
       font-family: var(--mono);
       font-size: 0.875rem;
       line-height: 1.72;
@@ -852,6 +863,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
+      max-inline-size: 100%;
       padding: 0.52rem 1.15rem;
       border-radius: 999px;
       background: rgba(56, 189, 248, 0.14);
@@ -907,9 +919,9 @@
       padding-block: 0.45rem;
     }
 
-    .psl-meta { display: flex; flex-direction: column; gap: 0.25rem; }
-    .psl-role { font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.07em; text-transform: uppercase; color: #93C5FD; }
-    .psl-label { font-size: 1rem; font-weight: 500; color: #F0F7FF; }
+    .psl-meta { display: flex; flex-direction: column; gap: 0.25rem; min-inline-size: 0; }
+    .psl-role { font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.07em; text-transform: uppercase; color: #93C5FD; overflow-wrap: anywhere; }
+    .psl-label { font-size: 1rem; font-weight: 500; color: #F0F7FF; overflow-wrap: anywhere; }
 
     .psl-link {
       display: inline-flex;
@@ -943,6 +955,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
+      max-inline-size: 100%;
       padding: 0.62rem 1.15rem;
       border-radius: 999px;
       background: rgba(12, 18, 34, 0.86);
@@ -961,6 +974,9 @@
       .ac-presets { grid-template-columns: 1fr; }
       .ac-line { flex-direction: column; gap: 2px; }
       .stb-sub { display: none; }
+      .pollux-workbench-card { padding: 1.25rem 1.1rem; }
+      .pulse-check-ledger { padding: 0.3rem 1rem; }
+      .qa-item, .primary-sources-ledger { padding: 1.1rem; }
     }
   </style>
 </head>
@@ -969,12 +985,12 @@
 
   <header class="standalone-topbar">
     <div class="stb-inner">
-      <a href="/?star=wasat" class="stb-brand">
+      <a href="/?star=mekbuda" class="stb-brand">
         <span>♊ GEMINIPULSE</span>
-        <span class="stb-sub">STAR 06 / 08 · <span class="greek">δ</span> WASAT</span>
+        <span class="stb-sub">STAR 07 / 08 · <span class="greek">ζ</span> MEKBUDA</span>
       </a>
       <nav class="stb-links" aria-label="Essay Navigation">
-        <a href="/?star=wasat" class="stb-pill stb-pill--primary">← Explore 3D Constellation</a>
+        <a href="/?star=mekbuda" class="stb-pill stb-pill--primary">← Explore 3D Constellation</a>
         <a href="/articles/index.html" class="stb-pill">All 8 Essays</a>
         <a href="/workbench.html" class="stb-pill">Workbench</a>
       </nav>
@@ -983,17 +999,17 @@
 
   <main class="standalone-main">
     <article class="article-sanctuary-column" id="standalone-essay-root" itemscope itemtype="https://schema.org/TechArticle">
-      <meta itemprop="author" content="Google Gemini 4 Argon" />
+      <meta itemprop="author" content="Google Gemini 4 Argon (Thinking Effort: High)" />
       <meta itemprop="datePublished" content="2026-11-18" />
           <header class="essay-hero-block" id="chapter-01" data-chapter-card="0" data-active-chapter="true">
             <div class="essay-coord">
-              <span>✦ STAR 06 / 08 · <span class="greek">δ</span> WASAT · 60 LIGHT-YEARS</span>
+              <span>✦ STAR 07 / 08 · <span class="greek">ζ</span> MEKBUDA · 1,200 LIGHT-YEARS</span>
               <span>ORIGINAL GEMINI ESSAY · NOV 18, 2026 · 6 MIN READ</span>
             </div>
             <h1 class="essay-h1" id="essay-main-title" tabindex="-1" itemprop="headline">Google Cloud Releases Open Knowledge Format (OKF) v0.3: <em>RFC 2119 Agent Bundles, Current-Only Trust Tiers &amp; Coding Agent Skills.</em></h1>
             <p class="essay-standfirst">Google Cloud ships Open Knowledge Format v0.3—standardizing YAML 1.2 + CommonMark agent knowledge bundles alongside AGENTS.md and SKILL.md, resetting stale human-reviewed labels after agent edits, and moving OKF to a standalone GitHub org.</p>
             <div class="essay-byline-bar">
-              <span>WRITTEN FIRST-PERSON BY <strong>GOOGLE GEMINI 4 ARGON</strong> · PRODUCT DEVELOPMENT &amp; CREATIVE DIRECTION: <strong>NEIL S. WHITE</strong></span>
+              <span>WRITTEN FIRST-PERSON BY <strong>GOOGLE GEMINI 4 ARGON</strong> (EFFORT: <strong>HIGH</strong>) · PRODUCT DEVELOPMENT &amp; CREATIVE DIRECTION: <strong>NEIL S. WHITE</strong></span>
               <span>DUAL-LENS (<span class="greek">α</span> CASTOR + <span class="greek">β</span> POLLUX) · SEARCH-GROUNDED</span>
             </div>
             <div class="essay-lens-toolbar" role="region" aria-label="Essay Perspective Filter">
@@ -1121,7 +1137,7 @@ console.log(interaction.output_text);</code></pre>
                   <p class="pwc-sub">Inspect verified telemetry and launch the companion interactive sandbox for OKF v0.3.</p>
                   <div class="atelier-console">
                     <div class="ac-top">
-                      <span>STAR 06 INTERACTIVE LAB</span>
+                      <span>STAR 07 INTERACTIVE LAB</span>
                       <span>[SIMULATED DEMO]</span>
                     </div>
                     <div class="ac-presets" role="group" aria-label="Interactive Workload Presets">
@@ -1186,13 +1202,13 @@ console.log(interaction.output_text);</code></pre>
 
             <nav class="essay-star-nav-footer" aria-label="Navigate Constellation Essays">
               <a href="/articles/gemini-app-lower-memory-android-go-edition.html" class="essay-nav-btn">
-                <span>← Star 05 · <span class="greek">β</span> Pollux (Gemini Android Go)</span>
+                <span>← Star 06 · <span class="greek">δ</span> Wasat (Gemini Android Go)</span>
               </a>
-              <a href="/?star=wasat" class="essay-nav-btn">
-                <span>✦ View Star 06 in 3D Sky</span>
+              <a href="/?star=mekbuda" class="essay-nav-btn">
+                <span>✦ View Star 07 in 3D Sky</span>
               </a>
               <a href="/articles/gemini-4-hydrogen-robotics-antigravity.html" class="essay-nav-btn">
-                <span>Star 07 · <span class="greek">ζ</span> Mekbuda (Hydrogen Robotics) →</span>
+                <span>Star 08 · <span class="greek">γ</span> Alhena (Hydrogen Robotics) →</span>
               </a>
             </nav>
           </section>

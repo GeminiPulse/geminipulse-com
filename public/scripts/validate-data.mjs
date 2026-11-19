@@ -44,10 +44,10 @@ export async function validateData() {
     if (typeof p?.url === 'string' && !p.url.startsWith('/') && !p.url.startsWith('https://')) {
       errors.push(`${label}: url "${p.url}" must start with "/" or "https://".`);
     }
-    if (typeof p?.url === 'string' && p.url.startsWith('/labs/')) {
+    if (typeof p?.url === 'string' && (p.url.startsWith('/labs/') || p.url.startsWith('/arena/'))) {
       const diskFile = resolve(staticPublicDir, p.url.slice(1));
       if (!existsSync(diskFile)) {
-        errors.push(`${label}: local lab file does not exist at public/public${p.url}.`);
+        errors.push(`${label}: local showcase file does not exist at public/public${p.url}.`);
       }
     }
     if (!Array.isArray(p?.models) || p.models.length === 0) {
@@ -110,7 +110,7 @@ export async function validateData() {
   }
   for (const [feedId, essay] of essayEntries) {
     const label = `CONSTELLATION_ESSAYS["${feedId}"]`;
-    for (const key of ['slug', 'headline', 'standfirst', 'readMinutes']) {
+    for (const key of ['slug', 'headline', 'standfirst', 'readMinutes', 'authoredByModel', 'thinkingEffort']) {
       if (typeof essay?.[key] !== 'string' || !essay[key].trim()) {
         errors.push(`${label}: missing "${key}".`);
       }

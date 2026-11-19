@@ -1,7 +1,7 @@
 # GeminiPulse.com — Sitewide Automated Audit Manifest (`docs/sitewide-audit-manifest.md`)
 
-- **Generated:** `2026-11-15T23:43:15.832Z`
-- **Routes & States Crawled:** **144** (Desktop `1440x900` + Mobile `390x844`, Headless Chrome CDP)
+- **Generated:** `2026-11-19T00:41:24.680Z`
+- **Routes & States Crawled:** **210** (Desktop `1440x900` + Mobile `390x844`, Headless Chrome CDP)
 - **P0 Runtime Crashes / Blank Screens / Broken Inquiry Modal:** **0**
 - **P1 Broken Internal Links / Images / Sitemap / Feed URLs:** **0**
 - **P1/P2 Viewport Overflow or Header Clipping (Active Pages):** **0**
@@ -15,13 +15,13 @@
 | :--- | :---: |
 | **Root 3D Constellation** | 2 |
 | **Developer Workbench SPA** | 2 |
-| **Tri-Model Arena (/arena/*)** | 4 |
-| **Flagship Essays (/articles/*)** | 9 |
+| **Tri-Model Arena (/arena/*)** | 11 |
+| **Flagship Essays (/articles/*)** | 28 |
 | **Static & Brand Pages** | 5 |
 | **Public Changelog** | 1 |
-| **Interactive Developer Labs (/labs/*)** | 25 |
+| **Interactive Developer Labs (/labs/*)** | 32 |
 | **Prototype Archive (/prototypes/*)** | 23 |
-| **Deep-Dive Series (/series/*)** | 73 |
+| **Deep-Dive Series (/series/*)** | 106 |
 
 ## 2. P0 Runtime Crashes, Blank Renders & Critical Flow Checks
 

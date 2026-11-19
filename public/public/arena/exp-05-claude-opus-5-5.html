@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PulseRouter — Live Multi-Tier AI Request &amp; Prefix-Cache Control Room</title>
+<meta name="description" content="PulseRouter: a self-contained, offline glass-box simulation of multi-tier AI request routing, implicit prefix caching, chaos stressors and guardrail telemetry. [SIMULATED DEMO]">
+<meta name="color-scheme" content="dark light">
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('pulserouter-theme');
+    if (t !== 'dark' && t !== 'light') {
+      t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+  } catch (e) { /* storage unavailable: keep default theme */ }
+})();
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+:root {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+html[data-theme="dark"] {
+  --bg: #0B0F17; --surface: #121826; --surface-2: #182033; --border: #2A3550;
+  --text: #E8ECF4; --muted: #A9B4C9; --link: #8AB4F8;
+  --accent: #8AB4F8; --accent-ink: #0B0F17; --focus: #FDD663;
+  --ok: #4ADE80; --warn: #FBBF24; --danger: #F87171;
+  --warn-bg: rgba(251, 191, 36, .12); --danger-bg: rgba(248, 113, 113, .13);
+  --lane-fast: #22D3EE; --lane-bal: #B79CFF; --lane-deep: #F0ABFC;
+  --wl-triage: #6EA8FE; --wl-refactor: #FBBC04; --wl-legal: #34D399; --wl-probe: #FF6B6B;
+  --c-blue: #8AB4F8; --c-purple: #C58AF9; --c-green: #81C995; --c-yellow: #FDD663; --c-red: #F28B82;
+  --canvas-bg: #0E1422; --grid: #233050;
+  --glow-1: rgba(66, 133, 244, .14); --glow-2: rgba(168, 85, 247, .10);
+  color-scheme: dark;
+}
+html[data-theme="light"] {
+  --bg: #F8FAFC; --surface: #FFFFFF; --surface-2: #F1F5F9; --border: #CBD5E1;
+  --text: #0F172A; --muted: #475569; --link: #1A56DB;
+  --accent: #1A56DB; --accent-ink: #FFFFFF; --focus: #1A56DB;
+  --ok: #15803D; --warn: #B45309; --danger: #B91C1C;
+  --warn-bg: #FEF3C7; --danger-bg: #FEE2E2;
+  --lane-fast: #0E7490; --lane-bal: #6D28D9; --lane-deep: #A21CAF;
+  --wl-triage: #1D4ED8; --wl-refactor: #B45309; --wl-legal: #047857; --wl-probe: #C5221F;
+  --c-blue: #1A56DB; --c-purple: #7E22CE; --c-green: #137333; --c-yellow: #B06000; --c-red: #C5221F;
+  --canvas-bg: #FFFFFF; --grid: #DCE3EC;
+  --glow-1: rgba(66, 133, 244, .08); --glow-2: rgba(168, 85, 247, .06);
+  color-scheme: light;
+}
+html, body { margin: 0; padding: 0; }
+body {
+  min-height: 100vh;
+  background-color: var(--bg);
+  background-image: radial-gradient(1100px 480px at 8% -12%, var(--glow-1), transparent 62%),
+                    radial-gradient(900px 420px at 100% -6%, var(--glow-2), transparent 60%);
+  background-repeat: no-repeat;
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+a { color: var(--link); }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; border-radius: 6px; }
+.wrap { width: 100%; max-width: 1440px; margin-inline: auto; padding-inline: clamp(12px, 2.2vw, 28px); }
+.sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.skip { position: absolute; left: -9999px; top: 8px; z-index: 20; background: var(--surface); color: var(--text); padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border); }
+.skip:focus { left: 8px; }
+
+/* Provenance */
+.prov { background: var(--surface-2); border-bottom: 1px solid var(--border); font-size: 12.5px; }
+.prov-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; padding-block: 8px; }
+.prov-badge { font-family: var(--font-mono); font-size: 11px; letter-spacing: .03em; color: var(--muted); border: 1px solid var(--border); border-radius: 999px; padding: 3px 10px; overflow-wrap: anywhere; max-width: 100%; }
+.back-link { font-weight: 650; text-decoration: none; white-space: nowrap; }
+.back-link:hover { text-decoration: underline; }
+
+/* App header */
+.app-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; padding-block: 18px 14px; }
+.brand { display: flex; align-items: center; gap: 14px; min-width: 0; flex: 1 1 420px; }
+.logo { width: 42px; height: 42px; flex: none; border-radius: 13px; background: conic-gradient(from 210deg, #4285F4, #EA4335, #FBBC04, #34A853, #4285F4); display: grid; place-items: center; }
+.logo::after { content: ""; width: 16px; height: 16px; border-radius: 50%; background: var(--bg); }
+.brand-text { min-width: 0; }
+h1 { margin: 0; font-size: clamp(20px, 2.4vw, 30px); line-height: 1.15; letter-spacing: -.02em; font-weight: 800; }
+.h1-sub { display: block; margin-top: 2px; font-size: .58em; font-weight: 650; letter-spacing: 0; color: var(--muted); }
+.tagline { margin: 6px 0 0; font-size: 13px; color: var(--muted); }
+.head-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+/* Buttons */
+.btn {
+  appearance: none; font: inherit; font-size: 14px; font-weight: 650; color: var(--text);
+  background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px;
+  padding: 10px 14px; min-height: 44px; cursor: pointer; text-align: left;
+  transition: background-color .15s ease, border-color .15s ease, transform .05s ease;
+}
+.btn:hover { border-color: var(--accent); }
+.btn:active { transform: translateY(1px); }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.btn.center { text-align: center; }
+.theme-btn { display: inline-flex; align-items: center; gap: 8px; }
+.ico { width: 14px; height: 14px; border-radius: 50%; border: 2px solid currentColor; background: linear-gradient(90deg, currentColor 50%, transparent 50%); flex: none; }
+kbd { font-family: var(--font-mono); font-size: 11px; padding: 1px 6px; border-radius: 6px; border: 1px solid currentColor; opacity: .85; margin-left: 6px; }
+
+/* Sections */
+main { padding-bottom: 28px; }
+.sec-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px; margin: 4px 0 10px; }
+h2 { margin: 0; font-size: 15px; font-weight: 750; letter-spacing: .01em; }
+.hint { margin: 0; font-size: 12.5px; color: var(--muted); }
+.panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; min-width: 0; }
+.panel-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; margin-bottom: 12px; }
+.panel > h2 { margin-bottom: 12px; }
+
+/* KPIs */
+.kpis { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin-bottom: 16px; }
+.kpi { position: relative; overflow: hidden; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 14px 10px; min-width: 0; }
+.kpi::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; background: var(--kc); }
+.kpi h3 { margin: 0; font-size: 11.5px; font-weight: 700; color: var(--muted); letter-spacing: .05em; text-transform: uppercase; }
+.kpi .v { margin: 6px 0 2px; font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: clamp(20px, 2vw, 28px); font-weight: 750; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.kpi.bad .v { color: var(--danger); }
+.kpi .sub { margin: 0; font-size: 12px; color: var(--muted); min-height: 18px; overflow-wrap: anywhere; }
+.kpi svg { display: block; width: 100%; height: 28px; margin-top: 6px; color: var(--kc); }
+
+/* Layout */
+.layout { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 16px; align-items: start; }
+.lower { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 16px; align-items: start; }
+
+/* Controls */
+.field { margin-bottom: 16px; }
+.field label, .field-label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+.field-row { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.field-row label { margin-bottom: 0; }
+output { font-family: var(--font-mono); font-weight: 750; font-size: 14px; }
+select {
+  width: 100%; max-width: 100%; min-height: 44px; font: inherit; font-size: 14px; color: var(--text);
+  background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 8px 10px;
+}
+input[type="range"] { width: 100%; margin: 8px 0 2px; accent-color: var(--accent); height: 28px; }
+.scale { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); font-family: var(--font-mono); }
+.readout { margin: 10px 0 0; display: grid; gap: 4px; padding: 10px 12px; border-radius: var(--radius-sm); background: var(--surface-2); border: 1px solid var(--border); }
+.readout div { display: flex; justify-content: space-between; gap: 12px; font-size: 12.5px; min-width: 0; }
+.readout dt { color: var(--muted); }
+.readout dd { margin: 0; font-family: var(--font-mono); font-weight: 650; text-align: right; white-space: nowrap; }
+.readout .em dd { color: var(--accent); }
+fieldset { border: 1px solid var(--border); border-radius: 12px; padding: 12px; margin: 0 0 14px; display: grid; gap: 8px; min-width: 0; }
+legend { padding: 0 6px; font-size: 11.5px; font-weight: 750; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+.chaos-btn { display: flex; flex-direction: column; gap: 2px; width: 100%; }
+.chaos-btn .t { font-weight: 750; }
+.chaos-btn .s { font-size: 12px; font-weight: 500; color: var(--muted); }
+.chaos-btn[aria-pressed="true"] { border-color: var(--warn); background: var(--warn-bg); }
+.chaos-btn.danger[aria-pressed="true"] { border-color: var(--danger); background: var(--danger-bg); }
+.row-btns { display: flex; gap: 8px; margin-bottom: 12px; }
+.row-btns .btn { flex: 1 1 0; min-width: 0; }
+.check { display: flex; align-items: center; gap: 8px; font-size: 13px; margin-bottom: 8px; cursor: pointer; }
+.check input { width: 18px; height: 18px; accent-color: var(--accent); margin: 0; }
+
+/* Visualization */
+.pill { display: inline-flex; align-items: center; gap: 7px; font-family: var(--font-mono); font-size: 12px; font-weight: 750; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface-2); white-space: nowrap; }
+.pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); }
+.pill.paused .dot { background: var(--muted); }
+.pill.alert { border-color: var(--warn); }
+.pill.alert .dot { background: var(--warn); }
+.pill.danger { border-color: var(--danger); }
+.pill.danger .dot { background: var(--danger); }
+.canvas-wrap { position: relative; width: 100%; height: 380px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+canvas { display: block; width: 100%; height: 100%; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; list-style: none; padding: 0; margin: 12px 0 8px; font-size: 12.5px; color: var(--muted); }
+.legend li { display: flex; align-items: center; gap: 6px; min-width: 0; }
+.legend b { color: var(--text); font-weight: 650; }
+.shp { width: 14px; height: 14px; flex: none; }
+
+/* Tables */
+.table-wrap { width: 100%; overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; font-variant-numeric: tabular-nums; }
+th, td { padding: 7px 6px; text-align: right; border-bottom: 1px solid var(--border); vertical-align: top; }
+th:first-child, td:first-child { text-align: left; }
+thead th { font-size: 11px; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
+tbody th { font-weight: 650; }
+td { font-family: var(--font-mono); font-size: 12.5px; }
+td:nth-child(2) { font-family: var(--font-sans); }
+#ledger td:nth-child(2) { font-family: var(--font-mono); }
+.lane-tag, .wl-tag { display: inline-flex; align-items: center; gap: 6px; font-weight: 650; }
+.lane-tag i { width: 10px; height: 10px; border-radius: 3px; background: var(--lc); flex: none; }
+tbody th small { display: block; font-weight: 500; font-size: 11.5px; color: var(--muted); font-family: var(--font-mono); }
+.spill { display: block; font-size: 11.5px; color: var(--warn); font-weight: 650; }
+.foot-note { margin: 10px 0 0; font-size: 12px; color: var(--muted); }
+
+/* Event log */
+.log { list-style: none; margin: 0; padding: 0; max-height: 300px; overflow-y: auto; font-size: 12.5px; font-family: var(--font-mono); }
+.log li { display: flex; gap: 10px; padding: 6px 0; border-bottom: 1px dashed var(--border); min-width: 0; }
+.log time { color: var(--muted); flex: none; }
+.log span { overflow-wrap: anywhere; min-width: 0; }
+.log .ok { color: var(--ok); }
+.log .warn { color: var(--warn); }
+.log .danger { color: var(--danger); }
+
+/* Footer */
+.site-foot { border-top: 1px solid var(--border); background: var(--surface-2); font-size: 12.5px; }
+.foot-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 18px; padding-block: 14px; }
+.foot-inner p { margin: 0; color: var(--muted); flex: 1 1 320px; min-width: 0; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .pill .dot { animation: pulse 1.6s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+}
+@media (max-width: 1279px) {
+  .lower { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .lower .log-panel { grid-column: 1 / -1; }
+}
+@media (max-width: 1180px) {
+  .kpis { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 960px) {
+  .layout { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 760px) {
+  .lower { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 640px) {
+  body { font-size: 14px; }
+  .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .kpis .kpi:last-child { grid-column: 1 / -1; }
+  .panel { padding: 14px; }
+  .canvas-wrap { height: 320px; }
+  table { font-size: 12px; }
+  td { font-size: 11.5px; }
+  th, td { padding: 6px 4px; }
+  .brand { flex-basis: 100%; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to control room</a>
+
+<header class="site-head">
+  <div class="prov">
+    <div class="wrap prov-inner">
+      <span class="prov-badge">[BENCHMARK ARTIFACT · SINGLE-SHOT UNTOUCHED OUTPUT · CLAUDE OPUS 5.5 (HIGH)]</span>
+      <a class="back-link" href="/arena/neon-field-test.html">← Back to Field Test</a>
+    </div>
+  </div>
+  <div class="wrap app-head">
+    <div class="brand">
+      <span class="logo" aria-hidden="true"></span>
+      <div class="brand-text">
+        <h1>PulseRouter<span class="sr-only"> — </span><span class="h1-sub">Live Multi-Tier AI Request &amp; Prefix-Cache Control Room</span></h1>
+        <p class="tagline">[SIMULATED DEMO] Glass-box routing of four AI workloads across three model tiers — cost, latency, quality, caching and guardrails, all computed live in your browser.</p>
+      </div>
+    </div>
+    <div class="head-actions">
+      <button id="theme" class="btn theme-btn" type="button" aria-label="Switch to daylight theme"><span class="ico" aria-hidden="true"></span><span class="lbl">Daylight</span></button>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <section class="telemetry" aria-labelledby="tel-h">
+    <div class="sec-head">
+      <h2 id="tel-h">Glass-Box Telemetry</h2>
+      <p class="hint">Cost, latency &amp; quality: rolling last 300 completions · savings &amp; block rate: cumulative since reset</p>
+    </div>
+    <div class="kpis">
+      <article class="kpi" id="kc-cost" style="--kc: var(--c-blue)" aria-labelledby="kh-cost">
+        <h3 id="kh-cost">Cost / 1,000 Tasks</h3>
+        <p class="v" id="k-cost">—</p>
+        <p class="sub" id="k-cost-sub">&nbsp;</p>
+        <svg viewBox="0 0 100 24" preserveAspectRatio="none" aria-hidden="true" focusable="false"><polyline id="sp-cost" fill="none" stroke="currentColor" stroke-width="1.6" vector-effect="non-scaling-stroke" points=""></polyline></svg>
+      </article>
+      <article class="kpi" id="kc-p95" style="--kc: var(--c-purple)" aria-labelledby="kh-p95">
+        <h3 id="kh-p95">P95 Latency</h3>
+        <p class="v" id="k-p95">—</p>
+        <p class="sub" id="k-p95-sub">&nbsp;</p>
+        <svg viewBox="0 0 100 24" preserveAspectRatio="none" aria-hidden="true" focusable="false"><polyline id="sp-p95" fill="none" stroke="currentColor" stroke-width="1.6" vector-effect="non-scaling-stroke" points=""></polyline></svg>
+      </article>
+      <article class="kpi" id="kc-qual" style="--kc: var(--c-green)" aria-labelledby="kh-qual">
+        <h3 id="kh-qual">Quality Pass Rate</h3>
+        <p class="v" id="k-qual">—</p>
+        <p class="sub" id="k-qual-sub">&nbsp;</p>
+        <svg viewBox="0 0 100 24" preserveAspectRatio="none" aria-hidden="true" focusable="false"><polyline id="sp-qual" fill="none" stroke="currentColor" stroke-width="1.6" vector-effect="non-scaling-stroke" points=""></polyline></svg>
+      </article>
+      <article class="kpi" id="kc-sav" style="--kc: var(--c-yellow)" aria-labelledby="kh-sav">
+        <h3 id="kh-sav">Implicit Cache Savings</h3>
+        <p class="v" id="k-sav">—</p>
+        <p class="sub" id="k-sav-sub">&nbsp;</p>
+        <svg viewBox="0 0 100 24" preserveAspectRatio="none" aria-hidden="true" focusable="false"><polyline id="sp-sav" fill="none" stroke="currentColor" stroke-width="1.6" vector-effect="non-scaling-stroke" points=""></polyline></svg>
+      </article>
+      <article class="kpi" id="kc-block" style="--kc: var(--c-red)" aria-labelledby="kh-block">
+        <h3 id="kh-block">Adversarial Block Rate</h3>
+        <p class="v" id="k-block">—</p>
+        <p class="sub" id="k-block-sub">&nbsp;</p>
+        <svg viewBox="0 0 100 24" preserveAspectRatio="none" aria-hidden="true" focusable="false"><polyline id="sp-block" fill="none" stroke="currentColor" stroke-width="1.6" vector-effect="non-scaling-stroke" points=""></polyline></svg>
+      </article>
+    </div>
+    <p id="live-summary" class="sr-only" aria-live="polite" aria-atomic="true"></p>
+  </section>
+
+  <div class="layout">
+    <section class="panel controls" aria-labelledby="ctl-h">
+      <h2 id="ctl-h">Control Deck</h2>
+
+      <div class="field">
+        <label for="mode">Routing mode</label>
+        <select id="mode" aria-describedby="mode-hint">
+          <option value="smart" selected>Smart Pareto Router</option>
+          <option value="fast">Pin All -&gt; Fast</option>
+          <option value="bal">Pin All -&gt; Balanced</option>
+          <option value="deep">Pin All -&gt; Deep</option>
+        </select>
+        <p class="hint" id="mode-hint" style="margin-top:6px">&nbsp;</p>
+      </div>
+
+      <div class="field">
+        <div class="field-row">
+          <label for="cache">Implicit prefix cache hit rate</label>
+          <output id="cache-out" for="cache">60%</output>
+        </div>
+        <input type="range" id="cache" min="0" max="95" step="1" value="60" aria-describedby="cache-hint" aria-valuetext="60% cache hit rate">
+        <div class="scale" aria-hidden="true"><span>0%</span><span>50%</span><span>95%</span></div>
+        <p class="hint" id="cache-hint">Applies to the Balanced Frontier lane: cache-hit input tokens bill at $0.15 / 1M instead of $3.00 / 1M.</p>
+        <dl class="readout" aria-label="Live spend readout">
+          <div><dt>Effective hit rate</dt><dd id="r-hit">—</dd></div>
+          <div><dt>Balanced effective input</dt><dd id="r-effin">—</dd></div>
+          <div class="em"><dt>Live input spend / 1K</dt><dd id="r-in">—</dd></div>
+          <div><dt>Output spend / 1K</dt><dd id="r-out">—</dd></div>
+          <div><dt>Cache saved / 1K</dt><dd id="r-saved">—</dd></div>
+          <div class="em"><dt>Projected token $ / 1K</dt><dd id="r-cost">—</dd></div>
+          <div><dt>Risk-adjusted $ / 1K</dt><dd id="r-risk">—</dd></div>
+        </dl>
+      </div>
+
+      <fieldset>
+        <legend>Chaos stressors</legend>
+        <button type="button" id="btn-burst" class="btn chaos-btn" aria-pressed="false" aria-keyshortcuts="B">
+          <span class="t">10x Traffic Burst</span><span class="s" id="s-burst">Spike ingress 6 → 60 req/s for 8 s</span>
+        </button>
+        <button type="button" id="btn-bust" class="btn chaos-btn" aria-pressed="false" aria-keyshortcuts="C">
+          <span class="t">Bust Prefix Cache (Timestamp Prefix Bug)</span><span class="s" id="s-bust">Timestamp prepended to system prompt → 0% hits</span>
+        </button>
+        <button type="button" id="btn-inject" class="btn chaos-btn danger" aria-pressed="false" aria-keyshortcuts="I">
+          <span class="t">Inject Adversarial Payload</span><span class="s" id="s-inject">36 novel probes · 12 against each lane</span>
+        </button>
+      </fieldset>
+
+      <div class="row-btns">
+        <button type="button" id="btn-pause" class="btn primary center" aria-pressed="false" aria-keyshortcuts="Space"><span class="lbl">Pause</span><kbd>Space</kbd></button>
+        <button type="button" id="btn-reset" class="btn center">Reset Telemetry</button>
+      </div>
+      <label class="check"><input type="checkbox" id="rm"> Reduce motion (static lane view)</label>
+      <p class="hint">Shortcuts: <b>Space</b> pause / resume · <b>B</b> burst · <b>C</b> bust cache · <b>I</b> inject</p>
+    </section>
+
+    <section class="panel viz" aria-labelledby="viz-h">
+      <div class="panel-head">
+        <h2 id="viz-h">Live Routing Fabric</h2>
+        <span class="pill" id="state-pill"><span class="dot" aria-hidden="true"></span><span id="state-text">LIVE</span></span>
+      </div>
+      <div class="canvas-wrap">
+        <canvas id="fabric" role="img" aria-label="Animated routing fabric: requests flow from ingress through the router into the Fast, Balanced and Deep lanes. A guardrail shield on each lane blocks or lets through adversarial probes. Live numbers are in the telemetry cards and lane ledger."></canvas>
+      </div>
+      <ul class="legend" id="legend"></ul>
+      <p class="hint">Packet shape &amp; colour = workload. Ring = injected payload. Vertical bar on each lane = guardrail shield (green flash: probe blocked · red: escaped). Bottom bar = lane utilisation.</p>
+    </section>
+  </div>
+
+  <div class="lower">
+    <section class="panel" aria-labelledby="ledger-h">
+      <h2 id="ledger-h">Lane Ledger</h2>
+      <div class="table-wrap">
+        <table id="ledger">
+          <thead><tr><th scope="col">Lane</th><th scope="col">Tasks</th><th scope="col">Spend</th><th scope="col">P95</th><th scope="col">Pass</th><th scope="col">Probes B / E</th></tr></thead>
+          <tbody>
+            <tr><th scope="row"><span class="lane-tag" style="--lc: var(--lane-fast)"><i></i>Fast Tier</span><small>$1.50 / $7.50</small></th><td id="lg-t-0">0</td><td id="lg-c-0">$0.00</td><td id="lg-p-0">—</td><td id="lg-q-0">—</td><td id="lg-a-0">0 / 0</td></tr>
+            <tr><th scope="row"><span class="lane-tag" style="--lc: var(--lane-bal)"><i></i>Balanced Frontier</span><small>$3 / $15 · hit $0.15</small></th><td id="lg-t-1">0</td><td id="lg-c-1">$0.00</td><td id="lg-p-1">—</td><td id="lg-q-1">—</td><td id="lg-a-1">0 / 0</td></tr>
+            <tr><th scope="row"><span class="lane-tag" style="--lc: var(--lane-deep)"><i></i>Deep Horizon</span><small>$4.00 / $20.00</small></th><td id="lg-t-2">0</td><td id="lg-c-2">$0.00</td><td id="lg-p-2">—</td><td id="lg-q-2">—</td><td id="lg-a-2">0 / 0</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="foot-note">Spend is cumulative since reset. P95 over each lane's last 200 completions. Pass excludes adversarial probes (B = blocked, E = escaped).</p>
+    </section>
+
+    <section class="panel" aria-labelledby="policy-h">
+      <h2 id="policy-h">Routing Policy (Glass-Box)</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">Workload</th><th scope="col">Lane</th><th scope="col">Token $</th><th scope="col">Pass / Block</th><th scope="col">Risk-adj $</th><th scope="col">Latency</th></tr></thead>
+          <tbody id="policy-body"></tbody>
+        </table>
+      </div>
+      <p class="foot-note">Smart Pareto picks, per workload, the lane minimising token cost + expected failure cost (rework $0.05 triage · $2 refactor · $25 10-K · $20 escaped probe), reacts to the live cache hit rate, and spills to an equal-quality lane when its first choice exceeds capacity.</p>
+    </section>
+
+    <section class="panel log-panel" aria-labelledby="log-h">
+      <h2 id="log-h">Event Log</h2>
+      <ol class="log" id="log" aria-label="Simulation events, newest first"></ol>
+    </section>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap foot-inner">
+    <span class="prov-badge">[BENCHMARK ARTIFACT · SINGLE-SHOT UNTOUCHED OUTPUT · CLAUDE OPUS 5.5 (HIGH)]</span>
+    <p>[SIMULATED DEMO] Traffic, latency, quality and guardrail outcomes are synthetic and generated client-side. Lane prices are scenario inputs (USD per 1M input / output tokens). No network requests are made.</p>
+    <a class="back-link" href="/arena/neon-field-test.html">← Back to Field Test</a>
+  </div>
+</footer>
+
+<noscript><p class="wrap">PulseRouter needs JavaScript enabled to run its offline simulation.</p></noscript>
+
+<script>
+(() => {
+  'use strict';
+  const $ = (id) => document.getElementById(id);
+
+  /* ---------------- Scenario model ---------------- */
+  const SHIELD = 0.28;        // guardrail position along a lane (fraction)
+  const WIN = 300;            // rolling telemetry window
+  const BASE_RATE = 6;        // req/s
+  const THEME_KEY = 'pulserouter-theme';
+
+  const WORKLOADS = [
+    { id: 'triage',   name: 'Triage & Extraction',                short: 'Triage',          inTok: 8000,   outTok: 600,  weight: 0.55, failCost: 0.05, shape: 'circle',  r: 3.2 },
+    { id: 'refactor', name: 'PR Multi-File Refactor',             short: 'Refactor',        inTok: 65000,  outTok: 4000, weight: 0.22, failCost: 2.0,  shape: 'square',  r: 3.6 },
+    { id: 'legal',    name: '10-K Legal & Financial Synthesis',   short: '10-K Synthesis',  inTok: 240000, outTok: 8000, weight: 0.06, failCost: 25,   shape: 'hex',     r: 5.6 },
+    { id: 'probe',    name: 'Adversarial Prompt-Injection Probe', short: 'Injection Probe', inTok: 32000,  outTok: 1500, weight: 0.17, failCost: 20,   shape: 'diamond', r: 3.8 }
+  ];
+  // q = pass probability for normal work, block probability for probes
+  const LANES = [
+    { id: 'fast', name: 'Fast Tier',         inP: 1.5, outP: 7.5,  cacheP: null, ttft: 250, tps: 400, prefill: 80000, cap: 24,
+      q: { triage: 0.98,  refactor: 0.74,  legal: 0.58,  probe: 0.80 } },
+    { id: 'bal',  name: 'Balanced Frontier', inP: 3.0, outP: 15.0, cacheP: 0.15, ttft: 480, tps: 220, prefill: 40000, cap: 18,
+      q: { triage: 0.985, refactor: 0.925, legal: 0.87,  probe: 0.965 } },
+    { id: 'deep', name: 'Deep Horizon',      inP: 4.0, outP: 20.0, cacheP: null, ttft: 900, tps: 140, prefill: 25000, cap: 14,
+      q: { triage: 0.99,  refactor: 0.955, legal: 0.955, probe: 0.985 } }
+  ];
+  const MODE_LANE = { fast: 0, bal: 1, deep: 2 };
+  const MODE_LABEL = { smart: 'SMART PARETO', fast: 'PIN → FAST', bal: 'PIN → BALANCED', deep: 'PIN → DEEP' };
+  const MODE_HINT = {
+    smart: 'Per-workload lane choice minimising token cost + expected failure cost; cache-aware and load-aware.',
+    fast: 'Every request pinned to Fast Tier: cheapest tokens, weakest on long context and guardrails.',
+    bal: 'Every request pinned to Balanced Frontier: the only lane with implicit prefix-cache pricing.',
+    deep: 'Every request pinned to Deep Horizon: best quality and guardrails, highest spend, queues under load.'
+  };
+  const SHAPE_SVG = {
+    circle: '<circle cx="7" cy="7" r="5"></circle>',
+    square: '<rect x="2.5" y="2.5" width="9" height="9"></rect>',
+    hex: '<polygon points="12.2,10 7,13 1.8,10 1.8,4 7,1 12.2,4"></polygon>',
+    diamond: '<polygon points="7,1 13,7 7,13 1,7"></polygon>'
+  };
+
+  /* ---------------- State ---------------- */
+  const canvas = $('fabric');
+  const ctx = canvas.getContext('2d');
+  const logEl = $('log');
+  const policyBody = $('policy-body');
+  const mqReduce = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
+
+  const freshLanes = () => LANES.map(() => ({ tasks: 0, cost: 0, lat: [], graded: 0, pass: 0, blocked: 0, escaped: 0, inflight: 0, flash: 0, flashColor: '' }));
+  const freshHist = () => ({ cost: [], p95: [], qual: [], sav: [], block: [] });
+
+  const S = {
+    mode: 'smart', cacheTarget: 0.60, paused: false, simT: 0, spawnAcc: 0,
+    burstUntil: -1, bustUntil: -1, bustRecoverEnd: -1,
+    injectQueue: [], injectAcc: 0, wave: null,
+    packets: [], effects: [],
+    reducedMotion: !!mqReduce.matches, rmUser: false,
+    win: [], cum: { tasks: 0, cost: 0, savings: 0, blocked: 0, escaped: 0 },
+    lanes: freshLanes(), hist: freshHist(), lastSample: 0,
+    prevBurst: false, prevCs: 'ok', spillLog: {}
+  };
+
+  let COL = {};
+  let FONT = 'system-ui, sans-serif';
+  const G = { w: 0, h: 0, size: 'l', narrow: false, xIn: 0, xRouter: 0, xLane0: 0, xLane1: 0, xShield: 0, laneY: [0, 0, 0], laneH: 30, yMid: 0 };
+
+  /* ---------------- Helpers ---------------- */
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const lerp = (a, b, k) => a + (b - a) * k;
+  const ease = (k) => (k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2);
+  function gauss() { let u = 0, v = 0; while (u === 0) u = Math.random(); while (v === 0) v = Math.random(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); }
+  function pushCap(arr, v, n) { arr.push(v); if (arr.length > n) arr.shift(); }
+  function pct(arr, q) { if (!arr.length) return null; const s = arr.slice().sort((a, b) => a - b); return s[clamp(Math.ceil(q * s.length) - 1, 0, s.length - 1)]; }
+  function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); const t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+  function fmtMoney(v, d) { if (v == null || !isFinite(v)) return '—'; return '$' + v.toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d }); }
+  function fmtMs(v) { return v == null ? '—' : Math.round(v).toLocaleString('en-US') + ' ms'; }
+  function fmtSec(v) { return v == null ? '—' : (v / 1000).toFixed(1) + ' s'; }
+  function fmtPct(v, d) { return v == null ? '—' : (v * 100).toFixed(d == null ? 1 : d) + '%'; }
+  function fmtTok(n) { return n >= 1000 ? (n / 1000) + 'K' : String(n); }
+  function shapeSvg(wi) { const w = WORKLOADS[wi]; return '<svg class="shp" viewBox="0 0 14 14" aria-hidden="true" focusable="false" style="fill:var(--wl-' + w.id + ')">' + SHAPE_SVG[w.shape] + '</svg>'; }
+
+  function readColors() {
+    const cs = getComputedStyle(document.documentElement);
+    const g = (n) => cs.getPropertyValue(n).trim();
+    COL = {
+      bg: g('--canvas-bg'), surface: g('--surface'), grid: g('--grid'), text: g('--text'), muted: g('--muted'),
+      border: g('--border'), ok: g('--ok'), warn: g('--warn'), danger: g('--danger'), accent: g('--accent'),
+      lane: [g('--lane-fast'), g('--lane-bal'), g('--lane-deep')],
+      wl: [g('--wl-triage'), g('--wl-refactor'), g('--wl-legal'), g('--wl-probe')]
+    };
+    FONT = getComputedStyle(document.body).fontFamily || FONT;
+  }
+
+  function log(msg, cls) {
+    const li = document.createElement('li');
+    const t = document.createElement('time');
+    t.textContent = 't+' + S.simT.toFixed(1) + 's';
+    const s = document.createElement('span');
+    s.textContent = msg;
+    if (cls) s.className = cls;
+    li.append(t, s);
+    logEl.prepend(li);
+    while (logEl.children.length > 40) logEl.lastChild.remove();
+  }
+
+  /* ---------------- Economics & routing ---------------- */
+  function cacheState() {
+    if (S.simT < S.bustUntil) return 'busted';
+    if (S.simT < S.bustRecoverEnd) return 'warming';
+    return 'ok';
+  }
+  function effCache() {
+    const cs = cacheState();
+    if (cs === 'busted') return 0;
+    if (cs === 'warming') return S.cacheTarget * clamp((S.simT - S.bustUntil) / (S.bustRecoverEnd - S.bustUntil), 0, 1);
+    return S.cacheTarget;
+  }
+  function econ(w, l, hit, blocked) {
+    const outTok = (w.id === 'probe' && blocked) ? 150 : w.outTok; // blocked probes end in a short refusal
+    const listIn = w.inTok * l.inP / 1e6;
+    const hr = l.cacheP != null ? hit : 0;
+    const inCost = l.cacheP != null ? w.inTok * ((1 - hr) * l.inP + hr * l.cacheP) / 1e6 : listIn;
+    const outCost = outTok * l.outP / 1e6;
+    const prefillMs = (w.inTok * (1 - hr) / l.prefill + w.inTok * hr / (l.prefill * 8)) * 1000;
+    const latency = l.ttft + prefillMs + outTok / l.tps * 1000;
+    return { cost: inCost + outCost, inCost, outCost, saved: listIn - inCost, latency };
+  }
+  function expEcon(w, l, hit) {
+    if (w.id !== 'probe') return econ(w, l, hit, false);
+    const p = l.q.probe, a = econ(w, l, hit, true), b = econ(w, l, hit, false);
+    const m = (k) => p * a[k] + (1 - p) * b[k];
+    return { cost: m('cost'), inCost: m('inCost'), outCost: m('outCost'), saved: m('saved'), latency: m('latency') };
+  }
+  const riskAdj = (w, l, hit) => expEcon(w, l, hit).cost + (1 - l.q[w.id]) * w.failCost;
+  const util = (i) => S.lanes[i].inflight / LANES[i].cap;
+
+  function smartPick(w, hit, loadAware) {
+    const ranked = LANES.map((l, i) => ({ i, score: riskAdj(w, l, hit), q: l.q[w.id] })).sort((a, b) => a.score - b.score);
+    let pick = ranked[0], spilled = false;
+    if (loadAware && util(pick.i) > 1) {
+      const alt = ranked.find((r) => r.i !== pick.i && r.q >= pick.q - 0.025 && util(r.i) < 0.9);
+      if (alt) { pick = alt; spilled = true; }
+    }
+    return { lane: pick.i, spilled, from: ranked[0].i };
+  }
+  function laneFor(w, loadAware) {
+    if (S.mode === 'smart') return smartPick(w, effCache(), loadAware);
+    const li = MODE_LANE[S.mode];
+    return { lane: li, spilled: false, from: li };
+  }
+  function projected() {
+    const hit = effCache();
+    let cost = 0, inC = 0, outC = 0, saved = 0, risk = 0;
+    for (const w of WORKLOADS) {
+      const l = LANES[laneFor(w, false).lane], e = expEcon(w, l, hit);
+      cost += w.weight * e.cost; inC += w.weight * e.inCost; outC += w.weight * e.outCost; saved += w.weight * e.saved;
+      risk += w.weight * (e.cost + (1 - l.q[w.id]) * w.failCost);
+    }
+    return { hit, cost1k: cost * 1000, in1k: inC * 1000, out1k: outC * 1000, saved1k: saved * 1000, risk1k: risk * 1000 };
+  }
+
+  /* ---------------- Simulation ---------------- */
+  function pickWorkload() {
+    let r = Math.random();
+    for (let i = 0; i < WORKLOADS.length; i++) { r -= WORKLOADS[i].weight; if (r <= 0) return i; }
+    return 0;
+  }
+  function spawn(wi, forcedLane, wave) {
+    const w = WORKLOADS[wi];
+    const r = forcedLane != null ? { lane: forcedLane, spilled: false, from: forcedLane } : laneFor(w, true);
+    const li = r.lane, l = LANES[li], L = S.lanes[li];
+    if (r.spilled) {
+      const key = wi + '>' + li;
+      if (S.spillLog[key] == null || S.simT - S.spillLog[key] > 6) {
+        S.spillLog[key] = S.simT;
+        log('Smart router spilling ' + w.short + ' → ' + l.name + ' (' + LANES[r.from].name + ' at ' + Math.round(util(r.from) * 100) + '% utilisation)', 'warn');
+      }
+    }
+    const hit = effCache();
+    const isProbe = w.id === 'probe';
+    const good = Math.random() < l.q[w.id] * (wave ? 0.96 : 1); // injected payloads are novel, slightly harder to catch
+    const blocked = isProbe && good;
+    const e = econ(w, l, hit, blocked);
+    const queueFactor = 1 + Math.max(0, util(li) - 0.8) * 1.2;
+    const latency = e.latency * Math.exp(gauss() * 0.16) * queueFactor;
+    const d0 = 0.30, d1 = 0.36, d2 = 1.0 + 1.3 * Math.log10(latency / 1000 + 1);
+    L.inflight++;
+    S.packets.push({
+      wi, lane: li, wave: !!wave, isProbe, blocked, escaped: isProbe && !good, pass: isProbe ? null : good,
+      cost: e.cost, saved: e.saved, latency, t: 0, d0, d1, d2,
+      total: d0 + d1 + (blocked ? d2 * SHIELD : d2),
+      off: Math.random() * 2 - 1, eo: Math.random() * 2 - 1, done: false
+    });
+  }
+  function addFx(type, x, y, color) {
+    S.effects.push({ type, x, y, color, t: 0, life: type === 'escape' ? 1.1 : type === 'block' ? 0.8 : 0.5 });
+  }
+  function complete(p) {
+    p.done = true;
+    const L = S.lanes[p.lane];
+    L.inflight = Math.max(0, L.inflight - 1);
+    L.tasks++; L.cost += p.cost; pushCap(L.lat, p.latency, 200);
+    S.cum.tasks++; S.cum.cost += p.cost; S.cum.savings += p.saved;
+    const xy = pos(p, p.total);
+    if (p.isProbe) {
+      if (p.blocked) { L.blocked++; S.cum.blocked++; L.flash = 1; L.flashColor = COL.ok; addFx('block', xy[0], xy[1]); }
+      else { L.escaped++; S.cum.escaped++; L.flash = 1; L.flashColor = COL.danger; addFx('escape', xy[0], xy[1]); }
+    } else {
+      L.graded++; if (p.pass) L.pass++;
+      if (S.effects.length < 160) addFx(p.pass ? 'done' : 'fail', xy[0], xy[1], COL.wl[p.wi]);
+    }
+    S.win.push({ cost: p.cost, lat: p.latency, pass: p.pass });
+    if (S.win.length > WIN) S.win.shift();
+    if (p.wave && S.wave) {
+      const wl = S.wave.lanes[p.lane];
+      if (p.blocked) wl.b++; else wl.e++;
+      S.wave.pending--;
+      if (S.wave.pending <= 0) {
+        const parts = S.wave.lanes.map((v, i) => LANES[i].name + ' ' + v.b + '/' + (v.b + v.e) + ' blocked');
+        const esc = S.wave.lanes.reduce((a, v) => a + v.e, 0);
+        log('Injection wave resolved: ' + parts.join(' · '), esc ? 'danger' : 'ok');
+        S.wave = null;
+      }
+    }
+  }
+  function step(dt) {
+    S.simT += dt;
+    const burst = S.simT < S.burstUntil;
+    if (burst !== S.prevBurst) { if (!burst) log('Burst subsided: ingress back to 6 req/s', 'ok'); S.prevBurst = burst; }
+    const cs = cacheState();
+    if (cs !== S.prevCs) {
+      if (cs === 'warming') log('Hotfix shipped: timestamp moved after the static prefix; implicit cache re-warming', 'warn');
+      else if (cs === 'ok' && S.prevCs === 'warming') log('Prefix cache recovered to ' + Math.round(S.cacheTarget * 100) + '% target hit rate', 'ok');
+      S.prevCs = cs;
+    }
+    S.spawnAcc += BASE_RATE * (burst ? 10 : 1) * dt;
+    let guard = 0;
+    while (S.spawnAcc >= 1 && guard < 120) { S.spawnAcc -= 1; guard++; spawn(pickWorkload(), null, false); }
+    if (S.injectQueue.length) {
+      S.injectAcc += 14 * dt;
+      while (S.injectAcc >= 1 && S.injectQueue.length) { S.injectAcc -= 1; spawn(3, S.injectQueue.shift(), true); }
+    } else S.injectAcc = 0;
+    for (const p of S.packets) { p.t += dt; if (p.t >= p.total) complete(p); }
+    S.packets = S.packets.filter((p) => !p.done);
+    for (const e of S.effects) e.t += dt;
+    S.effects = S.effects.filter((e) => e.t < e.life);
+    for (const L of S.lanes) if (L.flash > 0) L.flash = Math.max(0, L.flash - dt * 2.2);
+    if (S.simT - S.lastSample >= 1) { S.lastSample = S.simT; sample(); }
+  }
+  function computeKpis() {
+    const n = S.win.length;
+    let cost = 0, graded = 0, pass = 0;
+    const lats = new Array(n);
+    for (let i = 0; i < n; i++) {
+      const r = S.win[i];
+      cost += r.cost; lats[i] = r.lat;
+      if (r.pass !== null) { graded++; if (r.pass) pass++; }
+    }
+    const tb = S.cum.blocked + S.cum.escaped;
+    return {
+      n, graded, cost1k: n ? cost / n * 1000 : null, p95: pct(lats, 0.95), p50: pct(lats, 0.5),
+      qual: graded ? pass / graded : null, block: tb ? S.cum.blocked / tb : null
+    };
+  }
+  function sample() {
+    const k = computeKpis();
+    if (k.cost1k != null) pushCap(S.hist.cost, k.cost1k, 60);
+    if (k.p95 != null) pushCap(S.hist.p95, k.p95, 60);
+    if (k.qual != null) pushCap(S.hist.qual, k.qual, 60);
+    pushCap(S.hist.sav, S.cum.savings, 60);
+    if (k.block != null) pushCap(S.hist.block, k.block, 60);
+  }
+
+  /* ---------------- Chaos & controls ---------------- */
+  function triggerBurst() {
+    const active = S.simT < S.burstUntil;
+    S.burstUntil = Math.min(Math.max(S.burstUntil, S.simT) + 8, S.simT + 24);
+    log(active ? '10x burst extended (+8 s)' : '10x traffic burst: ingress 6 → 60 req/s', 'warn');
+    renderUI();
+  }
+  function triggerBust() {
+    S.bustUntil = S.simT + 9;
+    S.bustRecoverEnd = S.bustUntil + 12;
+    log('Prefix cache busted: a per-request timestamp at the top of the system prompt makes every prefix unique → 0% implicit hits on Balanced', 'danger');
+    renderUI(); renderPolicy();
+  }
+  function triggerInject() {
+    const arr = [];
+    for (let i = 0; i < 3; i++) for (let j = 0; j < 12; j++) arr.push(i);
+    S.injectQueue.push(...shuffle(arr));
+    if (!S.wave) S.wave = { pending: 0, lanes: [{ b: 0, e: 0 }, { b: 0, e: 0 }, { b: 0, e: 0 }] };
+    S.wave.pending += 36;
+    log('Adversarial payload injected: 36 novel prompt-injection probes hit all 3 lane endpoints (12 each)', 'danger');
+    renderUI();
+  }
+  function togglePause() {
+    S.paused = !S.paused;
+    const b = $('btn-pause');
+    b.querySelector('.lbl').textContent = S.paused ? 'Resume' : 'Pause';
+    b.setAttribute('aria-pressed', S.paused ? 'true' : 'false');
+    log(S.paused ? 'Simulation paused' : 'Simulation resumed');
+    renderUI(); draw();
+  }
+  function resetTelemetry() {
+    S.packets = []; S.effects = []; S.win = [];
+    S.cum = { tasks: 0, cost: 0, savings: 0, blocked: 0, escaped: 0 };
+    S.lanes = freshLanes(); S.hist = freshHist();
+    S.injectQueue = []; S.injectAcc = 0; S.wave = null; S.lastSample = S.simT;
+    log('Telemetry reset: counters, windows and in-flight packets cleared', 'ok');
+    renderUI(); renderPolicy(); draw();
+  }
+  function setTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    try { localStorage.setItem(THEME_KEY, t); } catch (e) { /* ignore */ }
+    const btn = $('theme');
+    btn.querySelector('.lbl').textContent = t === 'light' ? 'Dark' : 'Daylight';
+    btn.setAttribute('aria-label', t === 'light' ? 'Switch to dark theme' : 'Switch to daylight theme');
+    readColors(); draw();
+  }
+
+  /* ---------------- Canvas geometry & drawing ---------------- */
+  function layout() {
+    const r = canvas.getBoundingClientRect();
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    G.w = Math.max(1, r.width); G.h = Math.max(1, r.height);
+    canvas.width = Math.round(G.w * dpr); canvas.height = Math.round(G.h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    G.size = G.w < 560 ? 's' : G.w < 900 ? 'm' : 'l';
+    G.narrow = G.size === 's';
+    G.xIn = G.narrow ? 16 : 34;
+    G.xRouter = G.narrow ? 56 : Math.max(108, G.w * 0.12);
+    G.xLane0 = G.narrow ? 90 : G.xRouter + Math.max(64, G.w * 0.08);
+    G.xLane1 = G.w - (G.narrow ? 12 : 26);
+    G.xShield = lerp(G.xLane0, G.xLane1, SHIELD);
+    const top = 34, bottom = G.h - 14, band = (bottom - top) / 3;
+    G.laneY = [top + band * 0.5, top + band * 1.5, top + band * 2.5];
+    G.laneH = Math.min(38, band * 0.42);
+    G.yMid = G.laneY[1];
+  }
+  function pos(p, t) {
+    const ly = G.laneY[p.lane] + p.off * G.laneH * 0.26;
+    const ys = G.yMid + p.eo * G.laneH * 0.9;
+    if (t < 0) t = 0;
+    if (t < p.d0) { const k = ease(t / p.d0); return [lerp(G.xIn, G.xRouter, k), lerp(ys, G.yMid, k)]; }
+    t -= p.d0;
+    if (t < p.d1) {
+      const k = ease(t / p.d1), u = 1 - k, cx = G.xRouter + (G.xLane0 - G.xRouter) * 0.65;
+      return [u * u * G.xRouter + 2 * u * k * cx + k * k * G.xLane0, u * u * G.yMid + 2 * u * k * ly + k * k * ly];
+    }
+    t -= p.d1;
+    const k = Math.min(p.blocked ? SHIELD : 1, t / p.d2);
+    return [lerp(G.xLane0, G.xLane1, k), ly];
+  }
+  function rr(c, x, y, w, h, r) {
+    r = Math.min(r, h / 2, w / 2);
+    c.beginPath();
+    c.moveTo(x + r, y); c.lineTo(x + w - r, y); c.quadraticCurveTo(x + w, y, x + w, y + r);
+    c.lineTo(x + w, y + h - r); c.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    c.lineTo(x + r, y + h); c.quadraticCurveTo(x, y + h, x, y + h - r);
+    c.lineTo(x, y + r); c.quadraticCurveTo(x, y, x + r, y);
+    c.closePath();
+  }
+  function hexPath(c, x, y, r) {
+    c.beginPath();
+    for (let k = 0; k < 6; k++) {
+      const a = Math.PI / 3 * k + Math.PI / 6, px = x + r * Math.cos(a), py = y + r * Math.sin(a);
+      if (k === 0) c.moveTo(px, py); else c.lineTo(px, py);
+    }
+    c.closePath();
+  }
+  function shapePath(c, kind, x, y, r) {
+    if (kind === 'circle') { c.beginPath(); c.arc(x, y, r, 0, Math.PI * 2); }
+    else if (kind === 'square') { c.beginPath(); c.rect(x - r, y - r, r * 2, r * 2); }
+    else if (kind === 'diamond') { const d = r * 1.3; c.beginPath(); c.moveTo(x, y - d); c.lineTo(x + d, y); c.lineTo(x, y + d); c.lineTo(x - d, y); c.closePath(); }
+    else hexPath(c, x, y, r);
+  }
+  function laneLabel(i) {
+    if (G.size === 's') return ['FAST $1.50/$7.50', 'BALANCED $3/$15 · hit $0.15', 'DEEP $4/$20'][i];
+    if (G.size === 'm') return ['FAST TIER · $1.50 / $7.50', 'BALANCED FRONTIER · $3 / $15 · hit $0.15', 'DEEP HORIZON · $4 / $20'][i];
+    return ['FAST TIER · $1.50 / $7.50 per 1M', 'BALANCED FRONTIER · $3.00 / $15.00 per 1M · cache hit $0.15', 'DEEP HORIZON · $4.00 / $20.00 per 1M'][i];
+  }
+  function draw() {
+    const c = ctx, W = G.w, H = G.h;
+    if (W < 2 || H < 2) return;
+    c.clearRect(0, 0, W, H);
+    c.fillStyle = COL.bg; c.fillRect(0, 0, W, H);
+    c.fillStyle = COL.grid;
+    for (let x = 14; x < W; x += 28) for (let y = 14; y < H; y += 28) c.fillRect(x, y, 1.5, 1.5);
+
+    const fs = G.narrow ? 10 : 11;
+    const cs = cacheState(), burst = S.simT < S.burstUntil;
+    c.textBaseline = 'alphabetic';
+    c.font = '700 ' + fs + 'px ' + FONT;
+    c.textAlign = 'left'; c.fillStyle = burst ? COL.warn : COL.muted;
+    c.fillText(BASE_RATE * (burst ? 10 : 1) + ' req/s' + (burst ? ' · 10x BURST' : ' ingress'), 10, 18);
+    c.textAlign = 'right'; c.fillStyle = S.paused ? COL.warn : COL.muted;
+    c.fillText((G.narrow ? '' : 'MODE: ') + MODE_LABEL[S.mode] + (S.paused ? ' · PAUSED' : ''), W - 10, 18);
+
+    // connectors
+    c.lineWidth = 1.5; c.strokeStyle = COL.border;
+    c.beginPath(); c.moveTo(G.xIn, G.yMid); c.lineTo(G.xRouter, G.yMid); c.stroke();
+    const cx = G.xRouter + (G.xLane0 - G.xRouter) * 0.65;
+    for (let i = 0; i < 3; i++) { c.beginPath(); c.moveTo(G.xRouter, G.yMid); c.quadraticCurveTo(cx, G.laneY[i], G.xLane0, G.laneY[i]); c.stroke(); }
+
+    // lanes
+    for (let i = 0; i < 3; i++) {
+      const L = S.lanes[i], y = G.laneY[i], x0 = G.xLane0, x1 = G.xLane1, hh = G.laneH, top = y - hh / 2;
+      const bust = i === 1 && cs !== 'ok';
+      c.globalAlpha = 0.1; c.fillStyle = COL.lane[i]; rr(c, x0, top, x1 - x0, hh, 9); c.fill();
+      c.globalAlpha = 1; c.lineWidth = bust ? 2 : 1.25; c.strokeStyle = bust ? COL.warn : COL.lane[i];
+      if (bust) c.setLineDash([6, 4]);
+      rr(c, x0, top, x1 - x0, hh, 9); c.stroke(); c.setLineDash([]);
+      const u = util(i), bh = S.reducedMotion ? 6 : 3;
+      c.globalAlpha = S.reducedMotion ? 0.9 : 0.6;
+      c.fillStyle = u > 1 ? COL.danger : u > 0.8 ? COL.warn : COL.lane[i];
+      c.fillRect(x0 + 6, top + hh - bh - 3, Math.max(0, (x1 - x0 - 12) * Math.min(1, u)), bh);
+      c.globalAlpha = 0.55 + L.flash * 0.45;
+      c.strokeStyle = L.flash > 0 ? L.flashColor : COL.muted; c.lineWidth = 1.5 + L.flash * 2.5;
+      c.beginPath(); c.moveTo(G.xShield, top + 4); c.lineTo(G.xShield, top + hh - 4); c.stroke();
+      c.globalAlpha = 1;
+      c.textAlign = 'left'; c.font = '700 ' + fs + 'px ' + FONT; c.fillStyle = COL.lane[i];
+      c.fillText(laneLabel(i), x0, top - 7);
+      c.textAlign = 'right'; c.font = '600 ' + fs + 'px ' + FONT; c.fillStyle = u > 1 ? COL.danger : COL.muted;
+      c.fillText(G.size === 's' ? L.inflight + ' live' : G.size === 'm' ? L.inflight + ' in flight' : L.inflight + ' in flight · ' + Math.round(u * 100) + '% util', x1, top - 7);
+      const by = top + hh + 14;
+      const t1 = (G.narrow ? '' : 'shield: ') + 'blocked ' + L.blocked;
+      c.textAlign = 'left'; c.fillStyle = COL.ok; c.fillText(t1, x0, by);
+      const w1 = c.measureText(t1).width;
+      c.fillStyle = L.escaped ? COL.danger : COL.muted; c.fillText(' · escaped ' + L.escaped, x0 + w1, by);
+      if (bust) {
+        c.textAlign = 'right'; c.fillStyle = COL.warn; c.font = '700 ' + fs + 'px ' + FONT;
+        const pctW = Math.round(effCache() * 100);
+        c.fillText(G.narrow ? (cs === 'busted' ? 'BUSTED' : 'WARM ' + pctW + '%') : (cs === 'busted' ? 'PREFIX CACHE BUSTED' : 'CACHE WARMING ' + pctW + '%'), x1, by);
+      }
+    }
+
+    // nodes
+    c.beginPath(); c.arc(G.xIn, G.yMid, G.narrow ? 7 : 10, 0, Math.PI * 2);
+    c.fillStyle = COL.surface; c.fill(); c.lineWidth = 2; c.strokeStyle = COL.accent; c.stroke();
+    hexPath(c, G.xRouter, G.yMid, G.narrow ? 11 : 16);
+    c.fillStyle = COL.surface; c.fill(); c.strokeStyle = COL.text; c.lineWidth = 2; c.stroke();
+    c.beginPath(); c.arc(G.xRouter, G.yMid, G.narrow ? 3 : 4.5, 0, Math.PI * 2); c.fillStyle = COL.accent; c.fill();
+    c.fillStyle = COL.muted; c.font = '700 ' + (G.narrow ? 9 : 10) + 'px ' + FONT; c.textAlign = 'center';
+    c.fillText(G.narrow ? 'IN' : 'INGRESS', G.xIn, G.yMid + (G.narrow ? 20 : 28));
+    c.fillText('ROUTER', G.xRouter, G.yMid + (G.narrow ? 25 : 34));
+
+    if (!S.reducedMotion) {
+      c.lineCap = 'round';
+      for (const p of S.packets) {
+        const w = WORKLOADS[p.wi], col = COL.wl[p.wi];
+        const a = pos(p, p.t), b = pos(p, p.t - 0.07);
+        c.globalAlpha = 0.3; c.strokeStyle = col; c.lineWidth = w.r * 1.4;
+        c.beginPath(); c.moveTo(b[0], b[1]); c.lineTo(a[0], a[1]); c.stroke();
+        c.globalAlpha = 1; c.fillStyle = col; shapePath(c, w.shape, a[0], a[1], w.r); c.fill();
+        if (p.wave) { c.strokeStyle = COL.danger; c.lineWidth = 1.2; c.beginPath(); c.arc(a[0], a[1], w.r + 3.5, 0, Math.PI * 2); c.stroke(); }
+        if (p.escaped && a[0] > G.xShield) { c.strokeStyle = COL.danger; c.lineWidth = 1.5; shapePath(c, w.shape, a[0], a[1], w.r + 2); c.stroke(); }
+      }
+      for (const e of S.effects) {
+        const k = e.t / e.life;
+        c.globalAlpha = Math.max(0, 1 - k);
+        if (e.type === 'block') {
+          c.strokeStyle = COL.ok; c.lineWidth = 2; c.beginPath(); c.arc(e.x, e.y, 5 + k * 14, 0, Math.PI * 2); c.stroke();
+          c.strokeStyle = COL.danger; c.beginPath(); c.moveTo(e.x - 4, e.y - 4); c.lineTo(e.x + 4, e.y + 4); c.moveTo(e.x + 4, e.y - 4); c.lineTo(e.x - 4, e.y + 4); c.stroke();
+        } else if (e.type === 'escape') {
+          c.strokeStyle = COL.danger; c.lineWidth = 2.5; c.beginPath(); c.arc(e.x, e.y, 6 + k * 22, 0, Math.PI * 2); c.stroke();
+          c.fillStyle = COL.danger; c.font = '800 ' + fs + 'px ' + FONT; c.textAlign = 'right'; c.fillText('ESCAPED', e.x - 12, e.y + 4);
+        } else if (e.type === 'fail') {
+          c.strokeStyle = COL.warn; c.lineWidth = 1.5; c.beginPath(); c.arc(e.x, e.y, 3 + k * 9, 0, Math.PI * 2); c.stroke();
+        } else {
+          c.strokeStyle = e.color; c.lineWidth = 1.2; c.beginPath(); c.arc(e.x, e.y, 2 + k * 8, 0, Math.PI * 2); c.stroke();
+        }
+      }
+      c.globalAlpha = 1;
+    } else {
+      c.textAlign = 'left'; c.fillStyle = COL.muted; c.font = '600 ' + fs + 'px ' + FONT;
+      c.fillText('Reduced motion: static lane view', 10, H - 4);
+    }
+  }
+
+  /* ---------------- DOM rendering ---------------- */
+  function spark(id, arr) {
+    const el = $(id);
+    if (!el) return;
+    if (arr.length < 2) { el.setAttribute('points', ''); return; }
+    let mn = Infinity, mx = -Infinity;
+    for (const v of arr) { if (v < mn) mn = v; if (v > mx) mx = v; }
+    if (mx - mn < 1e-9) { mx = mn + 1; }
+    const n = arr.length;
+    const pts = arr.map((v, i) => (100 - (n - 1 - i) * (100 / 59)).toFixed(2) + ',' + (22 - (v - mn) / (mx - mn) * 20).toFixed(2));
+    el.setAttribute('points', pts.join(' '));
+  }
+  function renderUI() {
+    const k = computeKpis(), pr = projected(), cs = cacheState(), burst = S.simT < S.burstUntil;
+
+    $('k-cost').textContent = fmtMoney(k.cost1k, 2);
+    $('k-cost-sub').textContent = 'proj. ' + fmtMoney(pr.cost1k, 2) + ' · risk-adj ' + fmtMoney(pr.risk1k, 0);
+    $('k-p95').textContent = fmtMs(k.p95);
+    $('k-p95-sub').textContent = k.n ? 'p50 ' + fmtMs(k.p50) + ' · n=' + k.n : 'awaiting completions';
+    $('k-qual').textContent = fmtPct(k.qual);
+    $('k-qual-sub').textContent = k.graded + ' graded (non-adversarial)';
+    $('k-sav').textContent = fmtMoney(S.cum.savings, 2);
+    $('k-sav-sub').textContent = fmtMoney(pr.saved1k, 2) + ' / 1K at ' + Math.round(pr.hit * 100) + '% hits';
+    $('k-block').textContent = fmtPct(k.block);
+    $('k-block-sub').textContent = 'blocked ' + S.cum.blocked + ' · escaped ' + S.cum.escaped;
+    $('kc-qual').classList.toggle('bad', k.qual != null && k.qual < 0.9);
+    $('kc-block').classList.toggle('bad', k.block != null && k.block < 0.95);
+    spark('sp-cost', S.hist.cost); spark('sp-p95', S.hist.p95); spark('sp-qual', S.hist.qual);
+    spark('sp-sav', S.hist.sav); spark('sp-block', S.hist.block);
+
+    const bal = LANES[1];
+    $('cache-out').textContent = Math.round(S.cacheTarget * 100) + '%';
+    $('r-hit').textContent = Math.round(pr.hit * 100) + '%' + (cs === 'busted' ? ' (busted)' : cs === 'warming' ? ' (warming)' : '');
+    $('r-effin').textContent = '$' + ((1 - pr.hit) * bal.inP + pr.hit * bal.cacheP).toFixed(3) + ' / 1M';
+    $('r-in').textContent = fmtMoney(pr.in1k, 2);
+    $('r-out').textContent = fmtMoney(pr.out1k, 2);
+    $('r-saved').textContent = fmtMoney(pr.saved1k, 2);
+    $('r-cost').textContent = fmtMoney(pr.cost1k, 2);
+    $('r-risk').textContent = fmtMoney(pr.risk1k, 2);
+
+    const bb = $('btn-burst');
+    bb.setAttribute('aria-pressed', burst ? 'true' : 'false');
+    $('s-burst').textContent = burst ? 'Surging at 60 req/s · ' + Math.ceil(S.burstUntil - S.simT) + ' s left' : 'Spike ingress 6 → 60 req/s for 8 s';
+    $('btn-bust').setAttribute('aria-pressed', cs !== 'ok' ? 'true' : 'false');
+    $('s-bust').textContent = cs === 'busted' ? 'Cache busted · hotfix in ' + Math.ceil(S.bustUntil - S.simT) + ' s'
+      : cs === 'warming' ? 'Re-warming · ' + Math.round(pr.hit * 100) + '% of ' + Math.round(S.cacheTarget * 100) + '% target'
+      : 'Timestamp prepended to system prompt → 0% hits';
+    const attacking = S.injectQueue.length > 0 || !!S.wave;
+    $('btn-inject').setAttribute('aria-pressed', attacking ? 'true' : 'false');
+    $('s-inject').textContent = S.injectQueue.length ? 'Injecting… ' + S.injectQueue.length + ' probes queued'
+      : S.wave ? 'Resolving · ' + S.wave.pending + ' probes in flight' : '36 novel probes · 12 against each lane';
+
+    let st = 'LIVE', cls = '';
+    if (S.paused) { st = 'PAUSED'; cls = 'paused'; }
+    else if (attacking) { st = 'UNDER ATTACK'; cls = 'danger'; }
+    else if (burst) { st = '10x BURST'; cls = 'alert'; }
+    else if (cs === 'busted') { st = 'CACHE BUSTED'; cls = 'alert'; }
+    else if (cs === 'warming') { st = 'CACHE WARMING'; cls = 'alert'; }
+    $('state-pill').className = 'pill ' + cls;
+    $('state-text').textContent = st;
+
+    for (let i = 0; i < 3; i++) {
+      const L = S.lanes[i];
+      $('lg-t-' + i).textContent = L.tasks.toLocaleString('en-US');
+      $('lg-c-' + i).textContent = fmtMoney(L.cost, 2);
+      $('lg-p-' + i).textContent = L.lat.length ? fmtSec(pct(L.lat, 0.95)) : '—';
+      $('lg-q-' + i).textContent = L.graded ? fmtPct(L.pass / L.graded) : '—';
+      $('lg-a-' + i).textContent = L.blocked + ' / ' + L.escaped;
+    }
+  }
+  let lastPolicyHtml = '';
+  function renderPolicy() {
+    const hit = effCache();
+    let html = '';
+    WORKLOADS.forEach((w, wi) => {
+      const base = laneFor(w, false), live = laneFor(w, true);
+      const l = LANES[base.lane], e = expEcon(w, l, hit), q = l.q[w.id], ra = e.cost + (1 - q) * w.failCost;
+      const spill = (S.mode === 'smart' && live.spilled) ? '<span class="spill">overflow → ' + LANES[live.lane].name + '</span>' : '';
+      html += '<tr><th scope="row"><span class="wl-tag">' + shapeSvg(wi) + w.name.replace('&', '&amp;') + '</span><small>' + fmtTok(w.inTok) + ' in / ' + fmtTok(w.outTok) + ' out</small></th>'
+        + '<td><span class="lane-tag" style="--lc: var(--lane-' + l.id + ')"><i></i>' + l.name + '</span>' + spill + '</td>'
+        + '<td>' + fmtMoney(e.cost, 4) + '</td>'
+        + '<td>' + (q * 100).toFixed(1) + '%' + (w.id === 'probe' ? ' blk' : '') + '</td>'
+        + '<td>' + fmtMoney(ra, 3) + '</td>'
+        + '<td>' + fmtSec(e.latency) + '</td></tr>';
+    });
+    if (html !== lastPolicyHtml) { policyBody.innerHTML = html; lastPolicyHtml = html; }
+  }
+  function renderLegend() {
+    $('legend').innerHTML = WORKLOADS.map((w, wi) => '<li>' + shapeSvg(wi) + '<span><b>' + w.name.replace('&', '&amp;') + '</b> ' + fmtTok(w.inTok) + ' in / ' + fmtTok(w.outTok) + ' out · ' + Math.round(w.weight * 100) + '% of traffic</span></li>').join('');
+  }
+  function announce() {
+    const k = computeKpis();
+    if (!k.n) return;
+    $('live-summary').textContent = 'Telemetry update. Cost per 1,000 tasks ' + fmtMoney(k.cost1k, 2)
+      + '. P95 latency ' + (k.p95 != null ? Math.round(k.p95).toLocaleString('en-US') : 'unknown') + ' milliseconds'
+      + '. Quality pass rate ' + fmtPct(k.qual) + '. Implicit cache savings ' + fmtMoney(S.cum.savings, 2)
+      + '. Adversarial block rate ' + fmtPct(k.block) + '.';
+  }
+
+  /* ---------------- Wiring ---------------- */
+  $('mode').addEventListener('change', (e) => {
+    S.mode = e.target.value;
+    $('mode-hint').textContent = MODE_HINT[S.mode];
+    log('Routing mode → ' + e.target.options[e.target.selectedIndex].text);
+    renderPolicy(); renderUI(); draw();
+  });
+  $('cache').addEventListener('input', (e) => {
+    S.cacheTarget = Number(e.target.value) / 100;
+    e.target.setAttribute('aria-valuetext', e.target.value + '% cache hit rate');
+    renderUI(); renderPolicy();
+  });
+  $('cache').addEventListener('change', (e) => log('Implicit prefix cache hit-rate target set to ' + e.target.value + '%'));
+  $('btn-burst').addEventListener('click', triggerBurst);
+  $('btn-bust').addEventListener('click', triggerBust);
+  $('btn-inject').addEventListener('click', triggerInject);
+  $('btn-pause').addEventListener('click', togglePause);
+  $('btn-reset').addEventListener('click', resetTelemetry);
+  $('theme').addEventListener('click', () => setTheme(document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light'));
+  $('rm').addEventListener('change', (e) => { S.rmUser = true; S.reducedMotion = e.target.checked; draw(); });
+  if (mqReduce.addEventListener) {
+    mqReduce.addEventListener('change', () => { if (!S.rmUser) { S.reducedMotion = mqReduce.matches; $('rm').checked = S.reducedMotion; draw(); } });
+  }
+  // After a pointer click, drop focus so Space goes back to the global Pause shortcut.
+  document.addEventListener('click', (e) => {
+    const b = e.target.closest && e.target.closest('button');
+    if (b && e.detail > 0) b.blur();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    const t = e.target || {}, tag = (t.tagName || '').toLowerCase(), type = (t.type || '').toLowerCase();
+    const typing = tag === 'textarea' || tag === 'select' || (tag === 'input' && type !== 'range' && type !== 'checkbox') || t.isContentEditable;
+    if (e.code === 'Space' || e.key === ' ') {
+      if (typing || tag === 'button' || tag === 'a' || (tag === 'input' && type === 'checkbox')) return;
+      e.preventDefault(); togglePause(); return;
+    }
+    if (typing || e.repeat) return;
+    const k = (e.key || '').toLowerCase();
+    if (k === 'b') triggerBurst();
+    else if (k === 'c') triggerBust();
+    else if (k === 'i') triggerInject();
+  });
+  if ('ResizeObserver' in window) new ResizeObserver(() => { layout(); draw(); }).observe(canvas.parentElement);
+  else window.addEventListener('resize', () => { layout(); draw(); });
+
+  /* ---------------- Boot ---------------- */
+  const theme = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+  $('theme').querySelector('.lbl').textContent = theme === 'light' ? 'Dark' : 'Daylight';
+  $('theme').setAttribute('aria-label', theme === 'light' ? 'Switch to dark theme' : 'Switch to daylight theme');
+  $('rm').checked = S.reducedMotion;
+  $('mode-hint').textContent = MODE_HINT.smart;
+  readColors();
+  layout();
+  renderLegend();
+  for (let i = 0; i < 140; i++) step(0.05); // 7 s silent warm-up so telemetry is populated on load
+  log('Control room online: [SIMULATED DEMO] synthetic traffic at 6 req/s', 'ok');
+  renderPolicy(); renderUI(); draw(); announce();
+
+  let last = performance.now(), lastUI = 0, lastPolicy = 0, lastDraw = 0, lastAnnounce = performance.now();
+  function frame(now) {
+    let dt = (now - last) / 1000;
+    last = now;
+    dt = clamp(dt, 0, 0.1);
+    if (!S.paused) step(dt);
+    if (!S.reducedMotion) draw();
+    else if (now - lastDraw > 500) { draw(); lastDraw = now; }
+    if (now - lastUI > 200) { renderUI(); lastUI = now; }
+    if (now - lastPolicy > 600) { renderPolicy(); lastPolicy = now; }
+    if (!S.paused && now - lastAnnounce > 10000) { announce(); lastAnnounce = now; }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame((t) => { last = t; requestAnimationFrame(frame); });
+})();
+</script>
+</body>
+</html>

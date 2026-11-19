@@ -76,7 +76,7 @@
         <p style="margin-bottom: 0;">This engineering guide provides copy-pasteable, production-hardened TypeScript (<code>@google/genai</code> v3.4.0) and Python (<code>google-genai</code> v3.4.0) blueprints for: (1) Dynamic ToolSearch orchestration in the Interactions API, (2) Audio and document range slicing via static media processing, and (3) Batch multimodal embeddings with usage metadata reporting on the Gemini Enterprise API.</p>
       </div>
 
-      <h2>Blueprint 1: Dynamic ToolSearch in TypeScript (`@google/genai` v3.4.0)</h2>
+      <h2>Blueprint 1: Dynamic ToolSearch in TypeScript (<code>@google/genai</code> v3.4.0)</h2>
       <p>This pattern configures an agent with access to an enterprise registry of 250 tools. Instead of sending 250 schemas upfront, we pass a dynamic tool search handler that resolves and mounts only the tools matching Gemini’s intent.</p>
 
       <pre role="region" tabindex="0"><code>import { GoogleGenAI } from "@google/genai";
@@ -147,7 +147,7 @@ for (const step of interaction.steps || []) {
 
 console.log("Final Resolution:", interaction.output?.text);</code></pre>
 
-      <h2>Blueprint 2: Audio &amp; Document Static Media Slicing in Python (`google-genai` v3.4.0)</h2>
+      <h2>Blueprint 2: Audio &amp; Document Static Media Slicing in Python (<code>google-genai</code> v3.4.0)</h2>
       <p>Extract specific sections from a 60-minute audio call and target pages 42–45 of a 200-page financial PDF without local preprocessing:</p>
 
       <pre role="region" tabindex="0"><code>import os

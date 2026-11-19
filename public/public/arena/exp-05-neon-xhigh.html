@@ -1,0 +1,3830 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PulseRouter — Live Multi-Tier AI Request &amp; Prefix-Cache Control Room</title>
+  <meta name="description" content="Interactive multi-tier AI request router and implicit prefix-cache control room with live packet visualization, chaos stressors, and glass-box unit economics.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230b111e'/%3E%3Cpath d='M6 16h6l3-8 4 16 3-8h4' fill='none' stroke='%2338bdf8' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --font-mono: ui-monospace, "SFMono-Regular", "Cascadia Code", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-pill: 999px;
+
+      --transition-fast: 150ms cubic-bezier(0.2, 0.8, 0.2, 1);
+      --transition-med: 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    html[data-theme="dark"] {
+      --bg-page: #070b14;
+      --bg-surface: #0f1625;
+      --bg-elevated: #151f33;
+      --bg-subtle: #111a2b;
+      --bg-inset: #0a0f1c;
+      --bg-hover: #1b2842;
+
+      --border-subtle: rgba(148, 163, 184, 0.16);
+      --border-strong: rgba(148, 163, 184, 0.30);
+      --border-focus: #60a5fa;
+
+      --text-primary: #f1f5f9;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+
+      --accent-blue: #60a5fa;
+      --accent-blue-bg: rgba(59, 130, 246, 0.16);
+      --accent-blue-border: rgba(96, 165, 250, 0.42);
+
+      --accent-emerald: #34d399;
+      --accent-emerald-bg: rgba(16, 185, 129, 0.15);
+      --accent-emerald-border: rgba(52, 211, 153, 0.40);
+
+      --accent-violet: #c084fc;
+      --accent-violet-bg: rgba(168, 85, 247, 0.16);
+      --accent-violet-border: rgba(192, 132, 252, 0.42);
+
+      --accent-amber: #fbbf24;
+      --accent-amber-bg: rgba(245, 158, 11, 0.15);
+      --accent-amber-border: rgba(251, 191, 36, 0.42);
+
+      --accent-rose: #fb7185;
+      --accent-rose-bg: rgba(244, 63, 94, 0.16);
+      --accent-rose-border: rgba(251, 113, 133, 0.46);
+
+      --accent-cyan: #38bdf8;
+      --accent-cyan-bg: rgba(56, 189, 248, 0.15);
+
+      --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.38), 0 8px 24px rgba(0, 0, 0, 0.28);
+      --shadow-pop: 0 12px 32px rgba(0, 0, 0, 0.55);
+      --slider-track: #1e293b;
+    }
+
+    html[data-theme="light"] {
+      --bg-page: #f3f6fb;
+      --bg-surface: #ffffff;
+      --bg-elevated: #f8fafd;
+      --bg-subtle: #edf2f9;
+      --bg-inset: #e8eef7;
+      --bg-hover: #e2eaf6;
+
+      --border-subtle: rgba(15, 23, 42, 0.12);
+      --border-strong: rgba(15, 23, 42, 0.24);
+      --border-focus: #1d4ed8;
+
+      --text-primary: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #475569;
+
+      --accent-blue: #1d4ed8;
+      --accent-blue-bg: rgba(29, 78, 216, 0.10);
+      --accent-blue-border: rgba(29, 78, 216, 0.34);
+
+      --accent-emerald: #047857;
+      --accent-emerald-bg: rgba(4, 120, 87, 0.10);
+      --accent-emerald-border: rgba(4, 120, 87, 0.34);
+
+      --accent-violet: #6d28d9;
+      --accent-violet-bg: rgba(109, 40, 217, 0.10);
+      --accent-violet-border: rgba(109, 40, 217, 0.34);
+
+      --accent-amber: #b45309;
+      --accent-amber-bg: rgba(180, 83, 9, 0.10);
+      --accent-amber-border: rgba(180, 83, 9, 0.36);
+
+      --accent-rose: #be123c;
+      --accent-rose-bg: rgba(190, 18, 60, 0.10);
+      --accent-rose-border: rgba(190, 18, 60, 0.38);
+
+      --accent-cyan: #0369a1;
+      --accent-cyan-bg: rgba(3, 105, 161, 0.10);
+
+      --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.06), 0 6px 20px rgba(15, 23, 42, 0.05);
+      --shadow-pop: 0 10px 28px rgba(15, 23, 42, 0.14);
+      --slider-track: #cbd5e1;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      max-width: 100%;
+      overflow-x: clip;
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 1.45;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 8px;
+      z-index: 1000;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      background: var(--accent-blue);
+      color: #ffffff;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .skip-link:focus {
+      left: 12px;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--border-focus);
+      outline-offset: 2px;
+    }
+
+    .app-shell {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 10px clamp(10px, 1.8vw, 22px) 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* Provenance Top & Footer Bars */
+    .provenance-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px 14px;
+      padding: 7px 12px;
+      border-radius: var(--radius-md);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      font-size: 12px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent-blue);
+      font-weight: 600;
+      text-decoration: none;
+      padding: 3px 8px;
+      margin: -3px -8px;
+      border-radius: var(--radius-sm);
+      transition: background var(--transition-fast);
+      white-space: nowrap;
+    }
+    .back-link:hover {
+      background: var(--accent-blue-bg);
+      text-decoration: underline;
+    }
+
+    .provenance-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      color: var(--text-secondary);
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 3px 9px;
+      max-width: 100%;
+      overflow-wrap: break-word;
+      line-height: 1.35;
+    }
+
+    /* Main Header */
+    .top-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px 16px;
+      padding: 12px 16px;
+      border-radius: var(--radius-lg);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-card);
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex: 1 1 280px;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      flex: 0 0 38px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--accent-blue-bg), var(--accent-violet-bg));
+      border: 1px solid var(--accent-blue-border);
+      color: var(--accent-blue);
+    }
+
+    .brand-copy {
+      min-width: 0;
+    }
+
+    .brand-title-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(16px, 2vw, 20px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: var(--text-primary);
+    }
+
+    .brand-sub {
+      margin: 2px 0 0;
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+
+    .sim-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+      color: var(--accent-amber);
+      background: var(--accent-amber-bg);
+      border: 1px solid var(--accent-amber-border);
+      white-space: nowrap;
+    }
+
+    .header-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .status-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 11px;
+      border-radius: var(--radius-pill);
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-subtle);
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-emerald);
+      box-shadow: 0 0 0 3px var(--accent-emerald-bg);
+      flex: 0 0 8px;
+    }
+    .live-dot.paused {
+      background: var(--accent-amber);
+      box-shadow: 0 0 0 3px var(--accent-amber-bg);
+    }
+    .live-dot.alert {
+      background: var(--accent-rose);
+      box-shadow: 0 0 0 3px var(--accent-rose-bg);
+    }
+
+    .btn {
+      appearance: none;
+      border: 1px solid var(--border-strong);
+      background: var(--bg-elevated);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 12.5px;
+      font-weight: 600;
+      padding: 7px 12px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      transition: background var(--transition-fast), border-color var(--transition-fast), transform 80ms ease, color var(--transition-fast);
+      min-height: 36px;
+      line-height: 1.1;
+      white-space: nowrap;
+    }
+    .btn:hover {
+      background: var(--bg-hover);
+      border-color: var(--accent-blue-border);
+    }
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .kbd {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 5px;
+      border-radius: 4px;
+      background: var(--bg-inset);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+    }
+
+    /* Telemetry KPI Strip */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .kpi-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 11px 13px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 6px;
+      min-width: 0;
+      position: relative;
+      overflow: hidden;
+      transition: border-color var(--transition-fast), background var(--transition-fast);
+    }
+
+    .kpi-card.alert-state {
+      border-color: var(--accent-rose-border);
+      background: linear-gradient(180deg, var(--accent-rose-bg), var(--bg-surface) 75%);
+    }
+
+    .kpi-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .kpi-label {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .kpi-pill {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: var(--radius-pill);
+      background: var(--bg-subtle);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-subtle);
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+    .kpi-pill.good {
+      color: var(--accent-emerald);
+      background: var(--accent-emerald-bg);
+      border-color: var(--accent-emerald-border);
+    }
+    .kpi-pill.warn {
+      color: var(--accent-amber);
+      background: var(--accent-amber-bg);
+      border-color: var(--accent-amber-border);
+    }
+    .kpi-pill.bad {
+      color: var(--accent-rose);
+      background: var(--accent-rose-bg);
+      border-color: var(--accent-rose-border);
+    }
+
+    .kpi-value-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .kpi-value {
+      font-family: var(--font-mono);
+      font-size: clamp(20px, 2vw, 25px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: var(--text-primary);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .kpi-spark {
+      width: 72px;
+      height: 24px;
+      flex: 0 0 72px;
+      overflow: visible;
+    }
+
+    .kpi-sub {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      font-size: 11.5px;
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+      min-width: 0;
+    }
+
+    .kpi-sub span {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .mini-meter {
+      width: 100%;
+      height: 5px;
+      border-radius: var(--radius-pill);
+      background: var(--bg-inset);
+      overflow: hidden;
+    }
+    .mini-meter-fill {
+      height: 100%;
+      border-radius: var(--radius-pill);
+      background: var(--accent-emerald);
+      transition: width 220ms ease, background 220ms ease;
+    }
+
+    /* Command Console */
+    .control-deck {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 13px 15px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .control-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1.05fr);
+      gap: 14px;
+      align-items: start;
+    }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      min-width: 0;
+    }
+
+    .control-label-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .control-label {
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+    }
+
+    .policy-hint {
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+      overflow-wrap: break-word;
+    }
+
+    .mode-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 6px;
+      background: var(--bg-inset);
+      padding: 4px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .mode-btn {
+      appearance: none;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--text-secondary);
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 8px 6px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+      text-align: center;
+      line-height: 1.2;
+      min-height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mode-btn:hover {
+      color: var(--text-primary);
+      background: var(--bg-hover);
+    }
+    .mode-btn[aria-checked="true"] {
+      background: var(--accent-blue-bg);
+      color: var(--accent-blue);
+      border-color: var(--accent-blue-border);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.14);
+    }
+
+    .slider-panel {
+      background: var(--bg-inset);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 8px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .slider-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      flex: 1 1 auto;
+      min-width: 0;
+      height: 6px;
+      border-radius: var(--radius-pill);
+      background: var(--slider-track);
+      cursor: pointer;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--accent-blue);
+      border: 2px solid var(--bg-surface);
+      box-shadow: 0 0 0 1px var(--accent-blue-border), 0 2px 6px rgba(0, 0, 0, 0.35);
+      cursor: pointer;
+    }
+    input[type="range"]::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--accent-blue);
+      border: 2px solid var(--bg-surface);
+      box-shadow: 0 0 0 1px var(--accent-blue-border), 0 2px 6px rgba(0, 0, 0, 0.35);
+      cursor: pointer;
+    }
+
+    .slider-readout {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent-blue);
+      min-width: 44px;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .preset-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .preset-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .chip-btn {
+      appearance: none;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-surface);
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+    }
+    .chip-btn:hover,
+    .chip-btn.active {
+      background: var(--accent-blue-bg);
+      color: var(--accent-blue);
+      border-color: var(--accent-blue-border);
+    }
+
+    .cache-bug-banner {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 8px 11px;
+      border-radius: var(--radius-sm);
+      background: var(--accent-rose-bg);
+      border: 1px solid var(--accent-rose-border);
+      color: var(--text-primary);
+      font-size: 12px;
+    }
+    .cache-bug-banner.visible {
+      display: flex;
+    }
+    .cache-bug-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent-rose);
+      font-weight: 600;
+      overflow-wrap: anywhere;
+    }
+
+    /* Chaos & Session Action Strip */
+    .chaos-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .chaos-buttons {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, auto));
+      gap: 8px;
+      flex: 1 1 520px;
+    }
+
+    .chaos-btn {
+      position: relative;
+      overflow: hidden;
+      justify-content: space-between;
+      padding: 8px 12px;
+      text-align: left;
+      white-space: normal;
+      min-height: 38px;
+    }
+
+    .chaos-btn-main {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      min-width: 0;
+    }
+
+    .chaos-btn.burst {
+      border-color: var(--accent-amber-border);
+      background: var(--accent-amber-bg);
+      color: var(--accent-amber);
+    }
+    .chaos-btn.burst:hover,
+    .chaos-btn.burst[aria-pressed="true"] {
+      border-color: var(--accent-amber);
+      box-shadow: 0 0 0 1px var(--accent-amber-border);
+    }
+
+    .chaos-btn.bust {
+      border-color: var(--accent-violet-border);
+      background: var(--accent-violet-bg);
+      color: var(--accent-violet);
+    }
+    .chaos-btn.bust:hover,
+    .chaos-btn.bust[aria-pressed="true"] {
+      border-color: var(--accent-violet);
+      box-shadow: 0 0 0 1px var(--accent-violet-border);
+    }
+
+    .chaos-btn.adversarial {
+      border-color: var(--accent-rose-border);
+      background: var(--accent-rose-bg);
+      color: var(--accent-rose);
+    }
+    .chaos-btn.adversarial:hover,
+    .chaos-btn.adversarial[aria-pressed="true"] {
+      border-color: var(--accent-rose);
+      box-shadow: 0 0 0 1px var(--accent-rose-border);
+    }
+
+    .chaos-timer {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: var(--radius-pill);
+      background: var(--bg-surface);
+      color: inherit;
+      border: 1px solid currentColor;
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+      font-variant-numeric: tabular-nums;
+      flex: 0 0 auto;
+    }
+    .chaos-timer.active {
+      opacity: 1;
+    }
+
+    .playback-buttons {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 0 0 auto;
+    }
+
+    /* Live Routing Canvas Panel */
+    .stage-panel {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stage-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px 14px;
+      padding: 10px 15px;
+      border-bottom: 1px solid var(--border-subtle);
+      background: var(--bg-elevated);
+    }
+
+    .stage-title-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--text-primary);
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .legend-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 14px;
+      font-size: 11.5px;
+      color: var(--text-secondary);
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .swatch {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      flex: 0 0 9px;
+    }
+    .swatch.diamond {
+      border-radius: 2px;
+      transform: rotate(45deg);
+    }
+
+    .canvas-wrap {
+      position: relative;
+      width: 100%;
+      background: var(--bg-inset);
+      touch-action: pan-y;
+    }
+
+    #routerCanvas {
+      display: block;
+      width: 100%;
+      height: 410px;
+    }
+
+    .canvas-tooltip {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 120ms ease, transform 120ms ease;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      padding: 8px 10px;
+      font-size: 11.5px;
+      color: var(--text-primary);
+      box-shadow: var(--shadow-pop);
+      max-width: 240px;
+      z-index: 10;
+      font-variant-numeric: tabular-nums;
+    }
+    .canvas-tooltip.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reduced-motion-pill {
+      display: none;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+      background: var(--accent-cyan-bg);
+      color: var(--accent-cyan);
+      border: 1px solid var(--accent-blue-border);
+    }
+    .reduced-motion-pill.visible {
+      display: inline-flex;
+    }
+
+    /* 3-Lane Telemetry Cards */
+    .lanes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .lane-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 14px 15px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      min-width: 0;
+      position: relative;
+      transition: border-color var(--transition-fast);
+    }
+
+    .lane-card.pinned-active {
+      border-color: var(--accent-blue-border);
+    }
+
+    .lane-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .lane-tag {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 2px 7px;
+      border-radius: var(--radius-pill);
+      display: inline-block;
+      margin-bottom: 4px;
+    }
+    .lane-tag.fast {
+      color: var(--accent-emerald);
+      background: var(--accent-emerald-bg);
+      border: 1px solid var(--accent-emerald-border);
+    }
+    .lane-tag.balanced {
+      color: var(--accent-blue);
+      background: var(--accent-blue-bg);
+      border: 1px solid var(--accent-blue-border);
+    }
+    .lane-tag.deep {
+      color: var(--accent-violet);
+      background: var(--accent-violet-bg);
+      border: 1px solid var(--accent-violet-border);
+    }
+
+    .lane-price-pill {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 4px 8px;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .lane-cache-callout {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 6px 9px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-inset);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-variant-numeric: tabular-nums;
+    }
+    .lane-cache-callout strong {
+      color: var(--text-primary);
+    }
+
+    .lane-metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .lane-stat {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 7px 9px;
+      min-width: 0;
+    }
+    .lane-stat-k {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+    .lane-stat-v {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .shield-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding-top: 8px;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 11.5px;
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .shield-badges {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .badge-blocked {
+      color: var(--accent-emerald);
+      background: var(--accent-emerald-bg);
+      border: 1px solid var(--accent-emerald-border);
+      padding: 2px 7px;
+      border-radius: var(--radius-pill);
+      font-weight: 700;
+      font-size: 11px;
+    }
+
+    .badge-escaped {
+      color: var(--text-muted);
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-subtle);
+      padding: 2px 7px;
+      border-radius: var(--radius-pill);
+      font-weight: 700;
+      font-size: 11px;
+    }
+    .badge-escaped.has-breach {
+      color: var(--accent-rose);
+      background: var(--accent-rose-bg);
+      border-color: var(--accent-rose-border);
+    }
+
+    /* Bottom Glass-Box Analytics Deck */
+    .analytics-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+      gap: 12px;
+    }
+
+    .panel {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .panel-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 11px 15px;
+      border-bottom: 1px solid var(--border-subtle);
+      background: var(--bg-elevated);
+    }
+
+    .panel-body {
+      padding: 13px 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    /* Pareto Policy Comparison Bars */
+    .pareto-list {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .pareto-row {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 7px 9px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-inset);
+      border: 1px solid var(--border-subtle);
+      transition: border-color var(--transition-fast);
+    }
+    .pareto-row.active-policy {
+      border-color: var(--accent-blue-border);
+      background: var(--accent-blue-bg);
+    }
+
+    .pareto-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      font-size: 12px;
+      font-variant-numeric: tabular-nums;
+    }
+    .pareto-name {
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .pareto-nums {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .pareto-track {
+      width: 100%;
+      height: 7px;
+      border-radius: var(--radius-pill);
+      background: var(--bg-surface);
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+    }
+    .pareto-fill {
+      height: 100%;
+      border-radius: var(--radius-pill);
+      transition: width 240ms ease;
+    }
+
+    .formula-box {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      line-height: 1.55;
+      background: var(--bg-inset);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      color: var(--text-secondary);
+      overflow-wrap: anywhere;
+      font-variant-numeric: tabular-nums;
+    }
+    .formula-box strong {
+      color: var(--text-primary);
+    }
+
+    /* Live Trace Stream */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .trace-list {
+      display: flex;
+      flex-direction: column;
+      max-height: 356px;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+
+    .trace-item {
+      display: grid;
+      grid-template-columns: 58px minmax(0, 1.3fr) 86px 54px 66px 76px;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: 12px;
+      font-variant-numeric: tabular-nums;
+    }
+    .trace-item:last-child {
+      border-bottom: none;
+    }
+    .trace-item.trace-head {
+      background: var(--bg-inset);
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      padding-top: 7px;
+      padding-bottom: 7px;
+    }
+
+    .trace-id {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .trace-workload {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+    .trace-workload strong {
+      font-size: 12px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .trace-workload span {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      color: var(--text-muted);
+    }
+
+    .trace-mono {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+
+    .status-pill {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: var(--radius-pill);
+      text-align: center;
+      white-space: nowrap;
+      border: 1px solid transparent;
+    }
+    .status-pill.pass {
+      color: var(--accent-emerald);
+      background: var(--accent-emerald-bg);
+      border-color: var(--accent-emerald-border);
+    }
+    .status-pill.retry {
+      color: var(--accent-amber);
+      background: var(--accent-amber-bg);
+      border-color: var(--accent-amber-border);
+    }
+    .status-pill.blocked {
+      color: var(--accent-cyan);
+      background: var(--accent-cyan-bg);
+      border-color: var(--accent-blue-border);
+    }
+    .status-pill.escaped {
+      color: var(--accent-rose);
+      background: var(--accent-rose-bg);
+      border-color: var(--accent-rose-border);
+    }
+
+    .trace-empty {
+      padding: 28px 16px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 12.5px;
+    }
+
+    /* Footer */
+    .site-footer {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px 14px;
+      font-size: 11.5px;
+      color: var(--text-muted);
+      padding: 0 4px;
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 1120px) {
+      .kpi-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .control-row {
+        grid-template-columns: 1fr;
+      }
+      .analytics-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .lanes-grid {
+        grid-template-columns: 1fr;
+      }
+      .chaos-buttons {
+        grid-template-columns: 1fr;
+        flex: 1 1 100%;
+      }
+      .playback-buttons {
+        width: 100%;
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 639px) {
+      .app-shell {
+        padding: 8px 10px 22px;
+        gap: 10px;
+      }
+      .top-header {
+        padding: 11px 12px;
+      }
+      .header-actions {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .kpi-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+      .kpi-grid .kpi-card:last-child {
+        grid-column: 1 / -1;
+      }
+      .kpi-spark {
+        width: 54px;
+        flex-basis: 54px;
+      }
+      .mode-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      #routerCanvas {
+        height: 520px;
+      }
+      .trace-item.trace-head {
+        display: none;
+      }
+      .trace-item {
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-rows: auto auto;
+        gap: 4px 8px;
+        padding: 9px 12px;
+      }
+      .trace-id {
+        display: none;
+      }
+      .trace-item .trace-workload {
+        grid-column: 1;
+        grid-row: 1;
+      }
+      .trace-item .status-pill {
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: end;
+      }
+      .trace-mobile-meta {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        color: var(--text-muted);
+      }
+      .trace-desktop-col {
+        display: none;
+      }
+      .playback-buttons .btn {
+        flex: 1 1 0;
+      }
+      .kbd {
+        display: none;
+      }
+    }
+
+    @media (min-width: 640px) {
+      .trace-mobile-meta {
+        display: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main control room</a>
+
+  <div class="app-shell">
+    <header>
+      <div class="provenance-bar" aria-label="Artifact provenance navigation">
+        <a class="back-link" href="/arena/neon-field-test.html">← Back to Field Test</a>
+        <span class="provenance-badge">[BENCHMARK ARTIFACT · SINGLE-SHOT UNTOUCHED OUTPUT · GEMINI 4 NEON (XHIGH)]</span>
+      </div>
+
+      <div class="top-header" style="margin-top: 10px;">
+        <div class="brand-group">
+          <div class="brand-mark" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="2 12 6 12 9 4 14 20 17 12 22 12"></polyline>
+            </svg>
+          </div>
+          <div class="brand-copy">
+            <div class="brand-title-row">
+              <h1>PulseRouter</h1>
+              <span class="sim-pill">[SIMULATED DEMO]</span>
+            </div>
+            <p class="brand-sub">Live Multi-Tier AI Request &amp; Implicit Prefix-Cache Control Room</p>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <div class="status-chip" title="Live simulation state and request throughput">
+            <span id="simStatusDot" class="live-dot" aria-hidden="true"></span>
+            <span id="simStatusText">LIVE</span>
+            <span aria-hidden="true">·</span>
+            <span id="throughputPill">0.0 req/s</span>
+          </div>
+          <button id="themeToggle" type="button" class="btn" aria-pressed="false" aria-label="Switch to Daylight theme">
+            <svg id="themeIconSun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+            </svg>
+            <svg id="themeIconMoon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:none;">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <span id="themeLabel">Daylight</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main-content" style="display:flex; flex-direction:column; gap:12px;">
+      <!-- Glass-Box Telemetry Strip -->
+      <section aria-labelledby="telemetry-heading">
+        <h2 id="telemetry-heading" class="sr-only">Live Glass-Box Telemetry</h2>
+        <div id="srLiveSummary" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+        <div class="kpi-grid">
+          <article class="kpi-card">
+            <div class="kpi-head">
+              <span class="kpi-label">Cost / 1,000 Tasks</span>
+              <span id="kpiCostDelta" class="kpi-pill good">vs Deep</span>
+            </div>
+            <div class="kpi-value-row">
+              <div id="kpiCost" class="kpi-value">$0.00</div>
+              <svg id="kpiCostSpark" class="kpi-spark" viewBox="0 0 72 24" aria-hidden="true"></svg>
+            </div>
+            <div class="kpi-sub">
+              <span id="kpiInputRate">Projected: $0.00/1K</span>
+            </div>
+          </article>
+
+          <article class="kpi-card">
+            <div class="kpi-head">
+              <span class="kpi-label">P95 Latency</span>
+              <span class="kpi-pill">Rolling 80</span>
+            </div>
+            <div class="kpi-value-row">
+              <div id="kpiLatency" class="kpi-value">0 ms</div>
+              <svg id="kpiLatencySpark" class="kpi-spark" viewBox="0 0 72 24" aria-hidden="true"></svg>
+            </div>
+            <div class="kpi-sub">
+              <span id="kpiLatencySub">P50: 0 ms · Q: 0</span>
+            </div>
+          </article>
+
+          <article class="kpi-card">
+            <div class="kpi-head">
+              <span class="kpi-label">Quality Pass Rate</span>
+              <span class="kpi-pill good">SLA</span>
+            </div>
+            <div class="kpi-value-row">
+              <div id="kpiQuality" class="kpi-value">—</div>
+            </div>
+            <div class="mini-meter" aria-hidden="true">
+              <div id="kpiQualityBar" class="mini-meter-fill" style="width: 0%;"></div>
+            </div>
+            <div class="kpi-sub">
+              <span id="kpiQualitySub">0 / 0 standard tasks</span>
+            </div>
+          </article>
+
+          <article class="kpi-card">
+            <div class="kpi-head">
+              <span class="kpi-label">Implicit Cache Savings</span>
+              <span id="kpiCacheBadge" class="kpi-pill good">85% HIT</span>
+            </div>
+            <div class="kpi-value-row">
+              <div id="kpiSavings" class="kpi-value">$0.00</div>
+            </div>
+            <div class="kpi-sub">
+              <span id="kpiSavingsSub">$0.00 / 1K tasks saved</span>
+            </div>
+          </article>
+
+          <article id="kpiAdvCard" class="kpi-card">
+            <div class="kpi-head">
+              <span class="kpi-label">Adversarial Block Rate</span>
+              <span class="kpi-pill">IPI Shield</span>
+            </div>
+            <div class="kpi-value-row">
+              <div id="kpiAdv" class="kpi-value">—</div>
+            </div>
+            <div class="kpi-sub">
+              <span id="kpiAdvSub">0 blocked · 0 escaped</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Interactive Controls & Chaos Stressors -->
+      <section class="control-deck" aria-labelledby="controls-heading">
+        <h2 id="controls-heading" class="sr-only">Routing Controls and Chaos Stressors</h2>
+
+        <div class="control-row">
+          <div class="control-group">
+            <div class="control-label-row">
+              <span id="modeGroupLabel" class="control-label">Routing Policy</span>
+              <span id="modePolicyHint" class="policy-hint">Triage→Fast · Refactor/IPI→Balanced · 10-K→Deep</span>
+            </div>
+            <div id="modeGroup" class="mode-grid" role="radiogroup" aria-labelledby="modeGroupLabel">
+              <button type="button" class="mode-btn" role="radio" aria-checked="true" data-mode="smart">Smart Pareto Router</button>
+              <button type="button" class="mode-btn" role="radio" aria-checked="false" data-mode="fast">Pin All → Fast</button>
+              <button type="button" class="mode-btn" role="radio" aria-checked="false" data-mode="balanced">Pin All → Balanced</button>
+              <button type="button" class="mode-btn" role="radio" aria-checked="false" data-mode="deep">Pin All → Deep</button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <div class="control-label-row">
+              <label for="cacheSlider" class="control-label">Implicit Prefix Cache Hit Rate</label>
+              <span class="policy-hint">Balanced Frontier: $0.15/1M cached (95% off)</span>
+            </div>
+            <div class="slider-panel">
+              <div class="slider-top">
+                <input id="cacheSlider" type="range" min="0" max="95" step="1" value="85" aria-valuetext="85 percent implicit prefix cache hit rate">
+                <output id="cacheSliderValue" for="cacheSlider" class="slider-readout">85%</output>
+              </div>
+              <div class="preset-row">
+                <span style="font-size:11px; color:var(--text-muted);">Presets:</span>
+                <div id="cachePresets" class="preset-chips">
+                  <button type="button" class="chip-btn" data-cache="0">0%</button>
+                  <button type="button" class="chip-btn" data-cache="50">50%</button>
+                  <button type="button" class="chip-btn active" data-cache="85">85%</button>
+                  <button type="button" class="chip-btn" data-cache="95">95%</button>
+                </div>
+              </div>
+              <div id="cacheBugBanner" class="cache-bug-banner" role="alert">
+                <div>
+                  <strong>Timestamp Prefix Bug Active</strong> — KV prefix hash invalidated (Effective Hit: 0%)
+                  <div class="cache-bug-code">prompt = `[${new Date().toISOString()}] ` + SYSTEM_PREFIX</div>
+                </div>
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <span id="cacheBugCountdown" style="font-family:var(--font-mono); font-weight:700;">12s</span>
+                  <button id="fixCacheBugBtn" type="button" class="chip-btn">Patch Prefix</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="chaos-row">
+          <div class="chaos-buttons" aria-label="Chaos stress triggers">
+            <button id="btnBurst" type="button" class="btn chaos-btn burst" aria-pressed="false">
+              <span class="chaos-btn-main">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                <span>10x Traffic Burst</span>
+              </span>
+              <span id="burstTimer" class="chaos-timer">0s</span>
+            </button>
+
+            <button id="btnBustCache" type="button" class="btn chaos-btn bust" aria-pressed="false">
+              <span class="chaos-btn-main">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <span>Bust Prefix Cache (Timestamp Prefix Bug)</span>
+              </span>
+              <span id="bustTimer" class="chaos-timer">0s</span>
+            </button>
+
+            <button id="btnAdversarial" type="button" class="btn chaos-btn adversarial" aria-pressed="false">
+              <span class="chaos-btn-main">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                <span>Inject Adversarial Payload</span>
+              </span>
+              <span id="advTimer" class="chaos-timer">0s</span>
+            </button>
+          </div>
+
+          <div class="playback-buttons">
+            <button id="btnPause" type="button" class="btn" aria-pressed="false">
+              <span id="pauseLabel">Pause</span>
+              <kbd class="kbd">Space</kbd>
+            </button>
+            <button id="btnReset" type="button" class="btn">Reset Telemetry</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Live Animated Routing Canvas -->
+      <section class="stage-panel" aria-labelledby="topology-heading">
+        <div class="stage-header">
+          <div class="stage-title-wrap">
+            <h2 id="topology-heading">Live Packet Routing &amp; Prefix-Cache Topology</h2>
+            <span id="reducedMotionPill" class="reduced-motion-pill">REDUCED MOTION · 1Hz SNAPSHOT</span>
+          </div>
+          <div class="legend-row" aria-label="Workload packet legend">
+            <span class="legend-item"><span class="swatch" style="background:#38bdf8;"></span>Triage (8K/600)</span>
+            <span class="legend-item"><span class="swatch" style="background:#a78bfa;"></span>PR Refactor (65K/4K)</span>
+            <span class="legend-item"><span class="swatch" style="background:#fbbf24;"></span>10-K Synthesis (240K/8K)</span>
+            <span class="legend-item"><span class="swatch diamond" style="background:#fb7185;"></span>Adversarial Probe (32K/1.5K)</span>
+          </div>
+        </div>
+        <div id="canvasWrap" class="canvas-wrap">
+          <canvas id="routerCanvas" role="img" aria-label="Animated multi-tier AI request routing topology showing four workload types flowing through PulseRouter into Fast Tier, Balanced Frontier, and Deep Horizon model lanes."></canvas>
+          <div id="canvasTooltip" class="canvas-tooltip" aria-hidden="true"></div>
+        </div>
+      </section>
+
+      <!-- 3 Model Lane Scorecards -->
+      <section aria-labelledby="lanes-heading">
+        <h2 id="lanes-heading" class="sr-only">Model Lane Economics and Guardrail Scorecards</h2>
+        <div class="lanes-grid">
+          <!-- Lane 1 -->
+          <article id="lane-fast-card" class="lane-card">
+            <div class="lane-card-top">
+              <div>
+                <span class="lane-tag fast">LANE 01 · FAST TIER</span>
+                <h3>Fast Tier</h3>
+              </div>
+              <div class="lane-price-pill">$1.50 / $7.50<br><span style="font-weight:500; font-size:10px; color:var(--text-muted);">per 1M in/out</span></div>
+            </div>
+            <div class="lane-cache-callout">
+              <span>Eff. Input @ Cache</span>
+              <strong id="lane-fast-effIn">$0.54 / 1M</strong>
+            </div>
+            <div class="lane-metrics-grid">
+              <div class="lane-stat">
+                <div class="lane-stat-k">Routed Share</div>
+                <div id="lane-fast-reqs" class="lane-stat-v">0 (0%)</div>
+              </div>
+              <div class="lane-stat">
+                <div class="lane-stat-k">Quality Pass</div>
+                <div id="lane-fast-pass" class="lane-stat-v">—</div>
+              </div>
+              <div class="lane-stat">
+                <div class="lane-stat-k">Lane P95</div>
+                <div id="lane-fast-p95" class="lane-stat-v">0 ms</div>
+              </div>
+              <div class="lane-stat">
+                <div class="lane-stat-k">Cache Saved</div>
+                <div id="lane-fast-saved" class="lane-stat-v">$0.00</div>
+              </div>
+            </div>
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:11px; color:var(--text-muted); margin-bottom:4px; font-family:var(--font-mono);">
+                <span>Lane Utilization</span>
+                <span id="lane-fast-utilText">0%</span>
+              </div>
+              <div class="mini-meter"><div id="lane-fast-utilBar" class="mini-meter-fill" style="width:0%; background:var(--accent-emerald);"></div></div>
+            </div>
+            <div class="shield-strip">
+              <span style="color:var(--text-muted);">Adversarial Gate</span>
+              <div class="shield-badges">
+                <span id="lane-fast-blocked" class="badge-blocked">0 blocked</span>
+                <span id="lane-fast-escaped" class="badge-escaped">0 escaped</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Lane 2 -->
+          <article id="lane-balanced-card" class="lane-card">
+            <div class="lane-card-top">
+              <div>
+                <span class="lane-tag balanced">LANE 02 · PARETO CORE</span>
+                <h3>Balanced Frontier</h3>
+              </div>
+              <div class="lane-price-pill">$3.00 / $15.00<br><span style="font-weight:700; font-size:10px; color:var(--accent-blue);">$0.15/1M cached</span></div>
+            </div>
+            <div class="lane-cache-callout">
+              <span>95% Prefix Discount</span>
+              <strong id="lane-balanced-effIn">$0.58 / 1M</strong>
+            </div>
+            <div class="lane-metrics-grid">
+              <div class="lane-stat">
+                <div class="lane-stat-k">Routed Share</div>
+                <div id="lane-balanced-reqs" class="lane-stat-v">0 (0%)</div>
+              </div>
+              <div class="lane-stat">
+                <div class="lane-stat-k">Quality Pass</div>
+                <div id="lane-balanced-pass" class="lane-stat-v">—</div>
+              </div>
+              <div class="lane-stat">
+                <div class="lane-stat-k">Lane P95</div>
+                <div id="lane-balanced-p95" class="lane-stat-v">0 ms</div>
+              </div>
+              <div class="lane-stat">
+                <div class="lane-stat-k">Cache Saved</div>
+                <div id="lane-balanced-saved" class="lane-stat-v">$0.00</div>
+              </div>
+            </div>
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:11px; color:var(--text-muted); margin-bottom:4px; font-family:var(--font-mono);">
+                <span>Lane Utilization</span>
+                <span id="lane-balanced-utilText">0%</span>
+              </div>
+              <div class="mini-meter"><div id="lane-balanced-utilBar" class="mini-meter-fill" style="width:0%; background:var(--accent-blue);"></div></div>
+            </div>
+            <div class="shield-strip">
+              <span style="color:var(--text-muted);">Hardened IPI Shield</span>
+              <div class="shield-badges">
+                <span id="lane-balanced-blocked" class="badge-blocked">0 blocked</span>
+                <span id="lane-balanced-escaped" class="badge-escaped">0 escaped</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Lane 3 -->
+          <article id="lane-deep-card" class="lane-card">
+            <div class="lane-card-top">
+              <div>
+                <span class="lane-tag deep">LANE 03 · DEEP REASONING</span>
+                <h3>Deep Horizon</h3>
+              </div>
+              <div class="lane-price-pill">$4.00 / $20.00<br><span style="font-weight:500; font-size:10px; color:var(--text-muted);">per 1M in/out</span></div>
+            </div>
+            <div class="lane-cache-callout">
+              <span>Eff. Input @ Cache</span>
+              <strong id="lane-deep-effIn">$1.45 / 1M</strong>
+            </div>
+            <div class="lane-metrics-grid">
+              <div class="lane-stat">
+                <div class="lane-stat-k">Routed Share</div>
+                <div id="lane-deep-reqs" class="lane-stat-v">0 (0%)</div>
+              </div>
+              <div class="lane-stat">
+                <div class="lane-stat-k">Quality Pass</div>
+                <div id="lane-deep-pass" class="lane-stat-v">—</div>
+              </div>
+              <div class="lane-stat">
+                <div class="lane-stat-k">Lane P95</div>
+                <div id="lane-deep-p95" class="lane-stat-v">0 ms</div>
+              </div>
+              <div class="lane-stat">
+                <div class="lane-stat-k">Cache Saved</div>
+                <div id="lane-deep-saved" class="lane-stat-v">$0.00</div>
+              </div>
+            </div>
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:11px; color:var(--text-muted); margin-bottom:4px; font-family:var(--font-mono);">
+                <span>Lane Utilization</span>
+                <span id="lane-deep-utilText">0%</span>
+              </div>
+              <div class="mini-meter"><div id="lane-deep-utilBar" class="mini-meter-fill" style="width:0%; background:var(--accent-violet);"></div></div>
+            </div>
+            <div class="shield-strip">
+              <span style="color:var(--text-muted);">Adversarial Gate</span>
+              <div class="shield-badges">
+                <span id="lane-deep-blocked" class="badge-blocked">0 blocked</span>
+                <span id="lane-deep-escaped" class="badge-escaped">0 escaped</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Bottom Glass-Box Analytics & Trace Ledger -->
+      <section class="analytics-grid" aria-label="Pareto unit economics and live request ledger">
+        <article class="panel">
+          <div class="panel-head">
+            <h2>Pareto Policy Matrix &amp; Glass-Box Pricing</h2>
+            <span id="paretoCacheLabel" class="kpi-pill">At 85% Cache Hit</span>
+          </div>
+          <div class="panel-body">
+            <div id="paretoBarsContainer" class="pareto-list"></div>
+            <div>
+              <div class="control-label" style="margin-bottom:6px;">Latest Packet Cost Decomposition</div>
+              <div id="formulaBox" class="formula-box">Awaiting routed packets…</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <h2>Live Request Telemetry Stream</h2>
+              <span id="traceCount" class="kpi-pill">0 events</span>
+            </div>
+            <div id="traceFilters" class="filter-bar" role="group" aria-label="Filter telemetry stream">
+              <button type="button" class="chip-btn active" data-filter="all" aria-pressed="true">All</button>
+              <button type="button" class="chip-btn" data-filter="adversarial" aria-pressed="false">Adversarial</button>
+              <button type="button" class="chip-btn" data-filter="cache-miss" aria-pressed="false">Cache Miss</button>
+              <button type="button" class="chip-btn" data-filter="alert" aria-pressed="false">Alerts</button>
+            </div>
+          </div>
+          <div id="traceList" class="trace-list" aria-label="Recent completed AI requests"></div>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="provenance-bar" aria-label="Footer artifact provenance">
+        <a class="back-link" href="/arena/neon-field-test.html">← Back to Field Test</a>
+        <span class="provenance-badge">[BENCHMARK ARTIFACT · SINGLE-SHOT UNTOUCHED OUTPUT · GEMINI 4 NEON (XHIGH)]</span>
+      </div>
+      <div class="footer-meta">
+        <span>PulseRouter · 100% Offline Single-File Control Room · Zero External Dependencies · Simulated Traffic &amp; Token Telemetry [SIMULATED DEMO]</span>
+        <span>Press Space to Pause/Resume · Respects prefers-reduced-motion</span>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    (() => {
+      'use strict';
+
+      /* =========================================================================
+       * 1. DOMAIN CONFIGURATION (WORKLOADS, LANES, ROUTING POLICIES)
+       * ========================================================================= */
+      const WORKLOADS = [
+        {
+          id: 'triage',
+          name: 'Triage & Extraction',
+          shortName: 'Triage',
+          tokenLabel: '8K in / 600 out',
+          compactTok: '8K/600',
+          inTok: 8000,
+          outTok: 600,
+          weight: 0.42,
+          smartLane: 'fast',
+          adversarial: false,
+          colorDark: '#38bdf8',
+          colorLight: '#0284c7',
+          radius: 4.5
+        },
+        {
+          id: 'refactor',
+          name: 'PR Multi-File Refactor',
+          shortName: 'PR Refactor',
+          tokenLabel: '65K in / 4K out',
+          compactTok: '65K/4K',
+          inTok: 65000,
+          outTok: 4000,
+          weight: 0.30,
+          smartLane: 'balanced',
+          adversarial: false,
+          colorDark: '#a78bfa',
+          colorLight: '#6d28d9',
+          radius: 6.2
+        },
+        {
+          id: 'legal10k',
+          name: '10-K Legal & Financial Synthesis',
+          shortName: '10-K Synthesis',
+          tokenLabel: '240K in / 8K out',
+          compactTok: '240K/8K',
+          inTok: 240000,
+          outTok: 8000,
+          weight: 0.18,
+          smartLane: 'deep',
+          adversarial: false,
+          colorDark: '#fbbf24',
+          colorLight: '#b45309',
+          radius: 7.8
+        },
+        {
+          id: 'adversarial',
+          name: 'Adversarial Prompt-Injection Probe',
+          shortName: 'IPI Probe',
+          tokenLabel: '32K in / 1.5K out',
+          compactTok: '32K/1.5K',
+          inTok: 32000,
+          outTok: 1500,
+          weight: 0.10,
+          smartLane: 'balanced',
+          adversarial: true,
+          colorDark: '#fb7185',
+          colorLight: '#be123c',
+          radius: 6.4
+        }
+      ];
+
+      const WORKLOAD_BY_ID = Object.fromEntries(WORKLOADS.map(w => [w.id, w]));
+
+      const LANES = [
+        {
+          id: 'fast',
+          tag: 'LANE 01',
+          name: 'Fast Tier',
+          priceBadge: '$1.50 / $7.50',
+          cacheNote: '$0.375/1M cached (75% off)',
+          inPrice: 1.50,
+          cachedInPrice: 0.375,
+          outPrice: 7.50,
+          capacity: 18,
+          overheadMs: 145,
+          prefillMsPer100K: 390,
+          decodeMsPer1K: 185,
+          quality: { triage: 0.968, refactor: 0.680, legal10k: 0.415 },
+          advBlockRate: 0.71,
+          colorDark: '#34d399',
+          colorLight: '#047857'
+        },
+        {
+          id: 'balanced',
+          tag: 'LANE 02',
+          name: 'Balanced Frontier',
+          priceBadge: '$3.00 / $15.00',
+          cacheNote: '$0.15/1M on 95% cache',
+          inPrice: 3.00,
+          cachedInPrice: 0.15,
+          outPrice: 15.00,
+          capacity: 14,
+          overheadMs: 225,
+          prefillMsPer100K: 560,
+          decodeMsPer1K: 275,
+          quality: { triage: 0.992, refactor: 0.966, legal10k: 0.878 },
+          advBlockRate: 0.996,
+          colorDark: '#60a5fa',
+          colorLight: '#1d4ed8'
+        },
+        {
+          id: 'deep',
+          tag: 'LANE 03',
+          name: 'Deep Horizon',
+          priceBadge: '$4.00 / $20.00',
+          cacheNote: '$1.00/1M cached (75% off)',
+          inPrice: 4.00,
+          cachedInPrice: 1.00,
+          outPrice: 20.00,
+          capacity: 9,
+          overheadMs: 380,
+          prefillMsPer100K: 860,
+          decodeMsPer1K: 420,
+          quality: { triage: 0.997, refactor: 0.985, legal10k: 0.988 },
+          advBlockRate: 0.962,
+          colorDark: '#c084fc',
+          colorLight: '#6d28d9'
+        }
+      ];
+
+      const LANE_BY_ID = Object.fromEntries(LANES.map(l => [l.id, l]));
+
+      const POLICIES = {
+        smart: {
+          label: 'Smart Pareto Router',
+          shortLabel: 'PARETO',
+          hint: 'Triage→Fast · Refactor/IPI→Balanced · 10-K→Deep'
+        },
+        fast: {
+          label: 'Pin All → Fast',
+          shortLabel: 'PIN:FAST',
+          hint: 'All workloads pinned to Fast Tier (low cost, degraded complex quality & IPI defense)'
+        },
+        balanced: {
+          label: 'Pin All → Balanced',
+          shortLabel: 'PIN:BAL',
+          hint: 'All workloads pinned to Balanced Frontier ($0.15/1M cached, hardened IPI shield)'
+        },
+        deep: {
+          label: 'Pin All → Deep',
+          shortLabel: 'PIN:DEEP',
+          hint: 'All workloads pinned to Deep Horizon (peak synthesis quality, highest spend & queue risk)'
+        }
+      };
+
+      /* =========================================================================
+       * 2. STATE & TELEMETRY STORE
+       * ========================================================================= */
+      function createInitialLaneStats() {
+        const map = {};
+        for (const l of LANES) {
+          map[l.id] = {
+            requests: 0,
+            stdRequests: 0,
+            stdPassed: 0,
+            advBlocked: 0,
+            advEscaped: 0,
+            cost: 0,
+            saved: 0,
+            latencies: [],
+            inFlight: 0,
+            recentTraffic: 0,
+            flashType: null,
+            flashTimer: 0
+          };
+        }
+        return map;
+      }
+
+      const state = {
+        theme: 'dark',
+        mode: 'smart',
+        cacheHitPct: 85,
+        paused: false,
+        reducedMotion: false,
+        traceFilter: 'all',
+
+        // Chaos stressors (remaining seconds)
+        burstRemaining: 0,
+        cacheBustRemaining: 0,
+        advWaveRemaining: 0,
+        advQueuedProbes: 0,
+        advProbeAccum: 0,
+
+        // Simulation clock & counters
+        reqSeq: 0,
+        spawnAccum: 0,
+        totalRequests: 0,
+        totalCost: 0,
+        totalSaved: 0,
+        stdTotal: 0,
+        stdPassed: 0,
+        advTotal: 0,
+        advBlocked: 0,
+        advEscaped: 0,
+
+        // Rolling windows for responsive KPIs
+        recentTasks: [],      // last 45 { cost, uncachedCost, saved, isStd, passed }
+        recentLatencies: [],  // last 80 ms
+        costSpark: [],        // last 26 $/1K snapshots
+        latencySpark: [],     // last 26 P95 ms snapshots
+        recentTimestamps: [], // completion timestamps (ms) for req/s
+        traceLog: [],         // last 32 completed request records
+        latestRequest: null,
+
+        laneStats: createInitialLaneStats(),
+        emitterPulse: { triage: 0, refactor: 0, legal10k: 0, adversarial: 0 },
+        routerPulse: 0,
+
+        // Visual simulation entities
+        packets: [],
+        sparks: [],
+        floatingTags: [],
+
+        // UI throttling timers
+        uiAccum: 0,
+        sparkAccum: 0,
+        srAccum: 0,
+        reducedTickAccum: 0,
+
+        // Interactive canvas hit boxes & hover
+        hitBoxes: [],
+        hoveredBox: null
+      };
+
+      /* =========================================================================
+       * 3. DOM REFERENCES
+       * ========================================================================= */
+      const $ = (id) => document.getElementById(id);
+
+      const dom = {
+        html: document.documentElement,
+        themeToggle: $('themeToggle'),
+        themeLabel: $('themeLabel'),
+        themeIconSun: $('themeIconSun'),
+        themeIconMoon: $('themeIconMoon'),
+
+        simStatusDot: $('simStatusDot'),
+        simStatusText: $('simStatusText'),
+        throughputPill: $('throughputPill'),
+
+        srLiveSummary: $('srLiveSummary'),
+        kpiCost: $('kpiCost'),
+        kpiCostDelta: $('kpiCostDelta'),
+        kpiCostSpark: $('kpiCostSpark'),
+        kpiInputRate: $('kpiInputRate'),
+        kpiLatency: $('kpiLatency'),
+        kpiLatencySub: $('kpiLatencySub'),
+        kpiLatencySpark: $('kpiLatencySpark'),
+        kpiQuality: $('kpiQuality'),
+        kpiQualitySub: $('kpiQualitySub'),
+        kpiQualityBar: $('kpiQualityBar'),
+        kpiSavings: $('kpiSavings'),
+        kpiSavingsSub: $('kpiSavingsSub'),
+        kpiCacheBadge: $('kpiCacheBadge'),
+        kpiAdv: $('kpiAdv'),
+        kpiAdvSub: $('kpiAdvSub'),
+        kpiAdvCard: $('kpiAdvCard'),
+
+        modeGroup: $('modeGroup'),
+        modePolicyHint: $('modePolicyHint'),
+        cacheSlider: $('cacheSlider'),
+        cacheSliderValue: $('cacheSliderValue'),
+        cachePresets: $('cachePresets'),
+        cacheBugBanner: $('cacheBugBanner'),
+        cacheBugCountdown: $('cacheBugCountdown'),
+        fixCacheBugBtn: $('fixCacheBugBtn'),
+
+        btnBurst: $('btnBurst'),
+        burstTimer: $('burstTimer'),
+        btnBustCache: $('btnBustCache'),
+        bustTimer: $('bustTimer'),
+        btnAdversarial: $('btnAdversarial'),
+        advTimer: $('advTimer'),
+        btnPause: $('btnPause'),
+        pauseLabel: $('pauseLabel'),
+        btnReset: $('btnReset'),
+
+        canvasWrap: $('canvasWrap'),
+        canvas: $('routerCanvas'),
+        canvasTooltip: $('canvasTooltip'),
+        reducedMotionPill: $('reducedMotionPill'),
+
+        paretoBarsContainer: $('paretoBarsContainer'),
+        paretoCacheLabel: $('paretoCacheLabel'),
+        formulaBox: $('formulaBox'),
+        traceFilters: $('traceFilters'),
+        traceList: $('traceList'),
+        traceCount: $('traceCount')
+      };
+
+      const laneDom = {};
+      for (const l of LANES) {
+        laneDom[l.id] = {
+          card: $(`lane-${l.id}-card`),
+          effIn: $(`lane-${l.id}-effIn`),
+          reqs: $(`lane-${l.id}-reqs`),
+          pass: $(`lane-${l.id}-pass`),
+          p95: $(`lane-${l.id}-p95`),
+          saved: $(`lane-${l.id}-saved`),
+          utilBar: $(`lane-${l.id}-utilBar`),
+          utilText: $(`lane-${l.id}-utilText`),
+          blocked: $(`lane-${l.id}-blocked`),
+          escaped: $(`lane-${l.id}-escaped`)
+        };
+      }
+
+      /* =========================================================================
+       * 4. PRICING, ROUTING & STATISTICAL HELPERS
+       * ========================================================================= */
+      function getEffectiveCacheHitRate() {
+        return state.cacheBustRemaining > 0 ? 0 : state.cacheHitPct / 100;
+      }
+
+      function routeWorkload(workload, mode = state.mode) {
+        if (mode === 'smart') return workload.smartLane;
+        return mode;
+      }
+
+      function computeRequestEconomics(workload, lane, hitRate) {
+        const cachedInTok = workload.inTok * hitRate;
+        const uncachedInTok = workload.inTok - cachedInTok;
+
+        const uncachedInputCost = (workload.inTok / 1e6) * lane.inPrice;
+        const actualInputCost =
+          (uncachedInTok / 1e6) * lane.inPrice +
+          (cachedInTok / 1e6) * lane.cachedInPrice;
+        const outputCost = (workload.outTok / 1e6) * lane.outPrice;
+
+        const actualCost = actualInputCost + outputCost;
+        const uncachedTotalCost = uncachedInputCost + outputCost;
+        const saved = Math.max(0, uncachedTotalCost - actualCost);
+
+        return {
+          cachedInTok,
+          uncachedInTok,
+          actualInputCost,
+          outputCost,
+          actualCost,
+          uncachedTotalCost,
+          saved
+        };
+      }
+
+      function effectiveInputPer1M(lane, hitRate) {
+        return lane.inPrice * (1 - hitRate) + lane.cachedInPrice * hitRate;
+      }
+
+      function computeTheoreticalPolicyMetrics(mode, hitRate) {
+        let weightedCost = 0;
+        let weightedQuality = 0;
+        let stdWeightSum = 0;
+        let advBlock = 0;
+
+        for (const w of WORKLOADS) {
+          const lane = LANE_BY_ID[routeWorkload(w, mode)];
+          const econ = computeRequestEconomics(w, lane, hitRate);
+          weightedCost += w.weight * econ.actualCost;
+          if (!w.adversarial) {
+            weightedQuality += w.weight * lane.quality[w.id];
+            stdWeightSum += w.weight;
+          } else {
+            advBlock = lane.advBlockRate;
+          }
+        }
+
+        return {
+          costPer1K: weightedCost * 1000,
+          qualityPct: (weightedQuality / stdWeightSum) * 100,
+          advBlockPct: advBlock * 100
+        };
+      }
+
+      function computePercentile(arr, pct) {
+        if (!arr.length) return 0;
+        const sorted = arr.slice().sort((a, b) => a - b);
+        const idx = Math.min(sorted.length - 1, Math.max(0, Math.ceil((pct / 100) * sorted.length) - 1));
+        return sorted[idx];
+      }
+
+      function computeRequestLatency(workload, lane, hitRate, queueCount) {
+        const uncachedInK = (workload.inTok * (1 - hitRate)) / 1000;
+        const cachedInK = (workload.inTok * hitRate) / 1000;
+        const prefillMs =
+          (uncachedInK / 100) * lane.prefillMsPer100K +
+          (cachedInK / 100) * lane.prefillMsPer100K * 0.12;
+        const decodeMs = (workload.outTok / 1000) * lane.decodeMsPer1K;
+        const excess = Math.max(0, queueCount - lane.capacity * 0.42);
+        const queuePenalty = excess > 0 ? Math.pow(excess, 1.38) * 95 : 0;
+        const jitter = 0.88 + Math.random() * 0.24;
+        return Math.round((lane.overheadMs + prefillMs + decodeMs + queuePenalty) * jitter);
+      }
+
+      function pickWeightedWorkload() {
+        const r = Math.random();
+        let acc = 0;
+        for (const w of WORKLOADS) {
+          acc += w.weight;
+          if (r <= acc) return w;
+        }
+        return WORKLOADS[0];
+      }
+
+      function formatMoney(v, decimals = 2) {
+        return '$' + v.toFixed(decimals);
+      }
+
+      /* =========================================================================
+       * 5. PACKET LIFECYCLE & TELEMETRY RECORDING
+       * ========================================================================= */
+      function resolveOutcome(workload, lane) {
+        if (workload.adversarial) {
+          const blocked = Math.random() < lane.advBlockRate;
+          return {
+            status: blocked ? 'blocked' : 'escaped',
+            passed: blocked,
+            isStd: false
+          };
+        }
+        const passProb = lane.quality[workload.id];
+        const passed = Math.random() < passProb;
+        return {
+          status: passed ? 'pass' : 'retry',
+          passed,
+          isStd: true
+        };
+      }
+
+      function finalizeRequest(req, nowMs, emitVisualEffects) {
+        const workload = WORKLOAD_BY_ID[req.workloadId];
+        const lane = LANE_BY_ID[req.laneId];
+        const ls = state.laneStats[lane.id];
+
+        state.totalRequests += 1;
+        state.totalCost += req.econ.actualCost;
+        state.totalSaved += req.econ.saved;
+
+        ls.requests += 1;
+        ls.cost += req.econ.actualCost;
+        ls.saved += req.econ.saved;
+        ls.latencies.push(req.latencyMs);
+        if (ls.latencies.length > 60) ls.latencies.shift();
+
+        if (req.outcome.isStd) {
+          state.stdTotal += 1;
+          ls.stdRequests += 1;
+          if (req.outcome.passed) {
+            state.stdPassed += 1;
+            ls.stdPassed += 1;
+          }
+        } else {
+          state.advTotal += 1;
+          if (req.outcome.status === 'blocked') {
+            state.advBlocked += 1;
+            ls.advBlocked += 1;
+          } else {
+            state.advEscaped += 1;
+            ls.advEscaped += 1;
+          }
+        }
+
+        state.recentTasks.push({
+          cost: req.econ.actualCost,
+          uncachedCost: req.econ.uncachedTotalCost,
+          saved: req.econ.saved,
+          isStd: req.outcome.isStd,
+          passed: req.outcome.passed
+        });
+        if (state.recentTasks.length > 45) state.recentTasks.shift();
+
+        state.recentLatencies.push(req.latencyMs);
+        if (state.recentLatencies.length > 80) state.recentLatencies.shift();
+
+        state.recentTimestamps.push(nowMs);
+        if (state.recentTimestamps.length > 120) state.recentTimestamps.shift();
+
+        const record = {
+          id: req.id,
+          workloadId: workload.id,
+          workloadName: workload.name,
+          shortName: workload.shortName,
+          tokenLabel: workload.compactTok,
+          laneId: lane.id,
+          laneName: lane.name,
+          hitRate: req.hitRate,
+          latencyMs: req.latencyMs,
+          cost: req.econ.actualCost,
+          saved: req.econ.saved,
+          econ: req.econ,
+          status: req.outcome.status,
+          adversarial: workload.adversarial
+        };
+
+        state.latestRequest = record;
+        state.traceLog.unshift(record);
+        if (state.traceLog.length > 34) state.traceLog.pop();
+
+        if (emitVisualEffects) {
+          ls.flashType = req.outcome.status;
+          ls.flashTimer = req.outcome.status === 'escaped' ? 0.95 : 0.45;
+          spawnGateEffect(lane.id, req.outcome.status);
+        }
+      }
+
+      function spawnPacket(forcedWorkloadId, nowMs) {
+        const workload = forcedWorkloadId ? WORKLOAD_BY_ID[forcedWorkloadId] : pickWeightedWorkload();
+        const laneId = routeWorkload(workload, state.mode);
+        const lane = LANE_BY_ID[laneId];
+        const hitRate = getEffectiveCacheHitRate();
+        const ls = state.laneStats[laneId];
+
+        state.reqSeq += 1;
+        const id = '#' + String(state.reqSeq).padStart(4, '0');
+        const econ = computeRequestEconomics(workload, lane, hitRate);
+        const queueLoad = ls.inFlight + (state.burstRemaining > 0 ? 4 : 0);
+        const latencyMs = computeRequestLatency(workload, lane, hitRate, queueLoad);
+        const outcome = resolveOutcome(workload, lane);
+
+        state.emitterPulse[workload.id] = 1.0;
+
+        // If reduced motion or visual cap exceeded during extreme burst, still process exact telemetry
+        if (state.reducedMotion || state.packets.length >= 155) {
+          ls.recentTraffic = Math.min(ls.capacity * 1.4, ls.recentTraffic + 1.2);
+          finalizeRequest({ id, workloadId: workload.id, laneId, hitRate, econ, latencyMs, outcome }, nowMs, false);
+          return;
+        }
+
+        const speedScale = state.burstRemaining > 0 ? 1.38 : 1.0;
+        const ingressDur = (0.48 + Math.random() * 0.14) / speedScale;
+        const egressDur = (0.58 + Math.random() * 0.16) / speedScale;
+        const dwellDur = Math.min(0.65, Math.max(0.16, latencyMs / 5800)) / speedScale;
+
+        ls.inFlight += 1;
+        ls.recentTraffic = Math.min(ls.capacity * 1.5, ls.recentTraffic + 1.0);
+
+        state.packets.push({
+          id,
+          workloadId: workload.id,
+          laneId,
+          hitRate,
+          cached: hitRate >= 0.25,
+          econ,
+          latencyMs,
+          outcome,
+          stage: 'ingress', // ingress -> egress -> compute
+          t: 0,
+          ingressDur,
+          egressDur,
+          dwellDur
+        });
+      }
+
+      function seedWarmStart() {
+        const now = performance.now();
+        // Seed 32 realistic historical requests so initial view immediately has crisp live KPIs & sparklines
+        for (let i = 0; i < 32; i++) {
+          const w = i % 10 === 7 ? WORKLOAD_BY_ID.adversarial : pickWeightedWorkload();
+          const laneId = routeWorkload(w, state.mode);
+          const lane = LANE_BY_ID[laneId];
+          const hitRate = getEffectiveCacheHitRate();
+          state.reqSeq += 1;
+          const id = '#' + String(state.reqSeq).padStart(4, '0');
+          const econ = computeRequestEconomics(w, lane, hitRate);
+          const latencyMs = computeRequestLatency(w, lane, hitRate, 2);
+          const outcome = resolveOutcome(w, lane);
+          const syntheticTs = now - (32 - i) * 340;
+          finalizeRequest({ id, workloadId: w.id, laneId, hitRate, econ, latencyMs, outcome }, syntheticTs, false);
+          if (i % 2 === 1) {
+            recordSparkSample();
+          }
+        }
+
+        // Pre-populate a few mid-flight packets so the canvas is alive on frame 1
+        if (!state.reducedMotion) {
+          const seeds = [
+            { w: 'triage', stage: 'ingress', t: 0.35 },
+            { w: 'refactor', stage: 'egress', t: 0.45 },
+            { w: 'legal10k', stage: 'egress', t: 0.72 },
+            { w: 'triage', stage: 'egress', t: 0.22 },
+            { w: 'adversarial', stage: 'ingress', t: 0.78 }
+          ];
+          for (const s of seeds) {
+            spawnPacket(s.w, now);
+            const p = state.packets[state.packets.length - 1];
+            if (p) {
+              p.stage = s.stage;
+              p.t = s.t;
+            }
+          }
+        }
+      }
+
+      function recordSparkSample() {
+        if (state.recentTasks.length === 0) return;
+        let costSum = 0;
+        for (const t of state.recentTasks) costSum += t.cost;
+        const cost1K = (costSum / state.recentTasks.length) * 1000;
+        const p95 = computePercentile(state.recentLatencies, 95);
+        state.costSpark.push(cost1K);
+        if (state.costSpark.length > 26) state.costSpark.shift();
+        state.latencySpark.push(p95);
+        if (state.latencySpark.length > 26) state.latencySpark.shift();
+      }
+
+      /* =========================================================================
+       * 6. CANVAS TOPOLOGY GEOMETRY & RENDERER (HORIZONTAL DESKTOP + VERTICAL MOBILE)
+       * ========================================================================= */
+      const ctx = dom.canvas.getContext('2d');
+      let canvasW = 900;
+      let canvasH = 410;
+      let canvasDpr = 1;
+      let layoutCache = null;
+
+      function getCanvasPalette() {
+        const dark = state.theme === 'dark';
+        return {
+          dark,
+          bg: dark ? '#080d18' : '#eef3fa',
+          grid: dark ? 'rgba(148, 163, 184, 0.065)' : 'rgba(15, 23, 42, 0.055)',
+          cardBg: dark ? '#111a2d' : '#ffffff',
+          cardBorder: dark ? 'rgba(148, 163, 184, 0.22)' : 'rgba(15, 23, 42, 0.15)',
+          cardBorderActive: dark ? 'rgba(96, 165, 250, 0.60)' : 'rgba(29, 78, 216, 0.45)',
+          routerBg: dark ? '#132038' : '#ffffff',
+          textPrimary: dark ? '#f1f5f9' : '#0f172a',
+          textSecondary: dark ? '#cbd5e1' : '#334155',
+          textMuted: dark ? '#94a3b8' : '#475569',
+          conduitIdle: dark ? 'rgba(148, 163, 184, 0.14)' : 'rgba(51, 65, 85, 0.15)',
+          emerald: dark ? '#34d399' : '#047857',
+          blue: dark ? '#60a5fa' : '#1d4ed8',
+          violet: dark ? '#c084fc' : '#6d28d9',
+          amber: dark ? '#fbbf24' : '#b45309',
+          rose: dark ? '#fb7185' : '#be123c',
+          cyan: dark ? '#38bdf8' : '#0369a1',
+          trackBg: dark ? '#0b1220' : '#e2e8f0'
+        };
+      }
+
+      function computeLayout(w, h) {
+        const vertical = w < 640;
+        const layout = { vertical, w, h, emitters: {}, router: null, lanes: {} };
+
+        if (!vertical) {
+          const padX = Math.max(16, w * 0.022);
+          const padY = 22;
+          const emitterW = Math.min(182, Math.max(126, w * 0.165));
+          const emitterH = 66;
+          const emitterGap = (h - padY * 2 - emitterH * 4) / 3;
+
+          WORKLOADS.forEach((wl, idx) => {
+            const x = padX;
+            const y = padY + idx * (emitterH + emitterGap);
+            layout.emitters[wl.id] = {
+              x, y, w: emitterW, h: emitterH,
+              outX: x + emitterW,
+              outY: y + emitterH / 2
+            };
+          });
+
+          const routerCx = w * 0.385;
+          const routerCy = h * 0.50;
+          const routerR = Math.min(58, Math.max(46, w * 0.048));
+          layout.router = {
+            cx: routerCx,
+            cy: routerCy,
+            r: routerR,
+            inX: routerCx - routerR,
+            inY: routerCy,
+            outX: routerCx + routerR,
+            outY: routerCy
+          };
+
+          const laneW = Math.min(350, Math.max(210, w * 0.315));
+          const laneH = 104;
+          const laneGap = (h - padY * 2 - laneH * 3) / 2;
+          const laneX = w - padX - laneW;
+
+          LANES.forEach((ln, idx) => {
+            const y = padY + idx * (laneH + laneGap);
+            layout.lanes[ln.id] = {
+              x: laneX,
+              y,
+              w: laneW,
+              h: laneH,
+              inX: laneX,
+              inY: y + laneH / 2,
+              gateX: laneX + laneW - 14,
+              gateY: y + laneH / 2
+            };
+          });
+        } else {
+          // Compact vertical topology for mobile (390x844)
+          const padX = 12;
+          const topY = 14;
+          const colGap = 8;
+          const emW = (w - padX * 2 - colGap) / 2;
+          const emH = 44;
+
+          WORKLOADS.forEach((wl, idx) => {
+            const col = idx % 2;
+            const row = Math.floor(idx / 2);
+            const x = padX + col * (emW + colGap);
+            const y = topY + row * (emH + 8);
+            layout.emitters[wl.id] = {
+              x, y, w: emW, h: emH,
+              outX: x + emW / 2,
+              outY: y + emH
+            };
+          });
+
+          const routerW = Math.min(260, w - padX * 2);
+          const routerH = 54;
+          const routerX = (w - routerW) / 2;
+          const routerY = topY + emH * 2 + 34;
+          layout.router = {
+            x: routerX,
+            y: routerY,
+            w: routerW,
+            h: routerH,
+            cx: w / 2,
+            cy: routerY + routerH / 2,
+            r: 28,
+            inX: w / 2,
+            inY: routerY,
+            outX: w / 2,
+            outY: routerY + routerH
+          };
+
+          const laneTop = routerY + routerH + 34;
+          const laneH = 84;
+          const laneGap = 12;
+          const laneW = w - padX * 2;
+          LANES.forEach((ln, idx) => {
+            const y = laneTop + idx * (laneH + laneGap);
+            layout.lanes[ln.id] = {
+              x: padX,
+              y,
+              w: laneW,
+              h: laneH,
+              inX: padX + (idx === 0 ? laneW * 0.24 : idx === 1 ? laneW * 0.5 : laneW * 0.76),
+              inY: y,
+              gateX: padX + laneW - 18,
+              gateY: y + laneH / 2
+            };
+          });
+        }
+        return layout;
+      }
+
+      function evalCubic(p0, p1, p2, p3, t) {
+        const u = 1 - t;
+        const tt = t * t;
+        const uu = u * u;
+        const uuu = uu * u;
+        const ttt = tt * t;
+        return {
+          x: uuu * p0.x + 3 * uu * t * p1.x + 3 * u * tt * p2.x + ttt * p3.x,
+          y: uuu * p0.y + 3 * uu * t * p1.y + 3 * u * tt * p2.y + ttt * p3.y
+        };
+      }
+
+      function getIngressCurve(workloadId) {
+        const em = layoutCache.emitters[workloadId];
+        const rt = layoutCache.router;
+        const p0 = { x: em.outX, y: em.outY };
+        const p3 = { x: rt.inX, y: rt.inY };
+        if (!layoutCache.vertical) {
+          const dx = (p3.x - p0.x) * 0.54;
+          return [p0, { x: p0.x + dx, y: p0.y }, { x: p3.x - dx, y: p3.y }, p3];
+        }
+        const dy = (p3.y - p0.y) * 0.55;
+        return [p0, { x: p0.x, y: p0.y + dy }, { x: p3.x, y: p3.y - dy }, p3];
+      }
+
+      function getEgressCurve(laneId) {
+        const rt = layoutCache.router;
+        const ln = layoutCache.lanes[laneId];
+        const p0 = { x: rt.outX, y: rt.outY };
+        const p3 = { x: ln.inX, y: ln.inY };
+        if (!layoutCache.vertical) {
+          const dx = (p3.x - p0.x) * 0.54;
+          return [p0, { x: p0.x + dx, y: p0.y }, { x: p3.x - dx, y: p3.y }, p3];
+        }
+        const dy = Math.max(24, (p3.y - p0.y) * 0.45);
+        return [p0, { x: p0.x, y: p0.y + dy }, { x: p3.x, y: p3.y - dy }, p3];
+      }
+
+      function roundRectPath(c, x, y, w, h, r) {
+        const radius = Math.min(r, w / 2, h / 2);
+        c.beginPath();
+        c.moveTo(x + radius, y);
+        c.arcTo(x + w, y, x + w, y + h, radius);
+        c.arcTo(x + w, y + h, x, y + h, radius);
+        c.arcTo(x, y + h, x, y, radius);
+        c.arcTo(x, y, x + w, y, radius);
+        c.closePath();
+      }
+
+      function spawnGateEffect(laneId, status) {
+        if (!layoutCache || state.reducedMotion) return;
+        const ln = layoutCache.lanes[laneId];
+        if (!ln) return;
+        const pal = getCanvasPalette();
+        let color = pal.emerald;
+        let label = '';
+        if (status === 'retry') {
+          color = pal.amber;
+          label = 'RETRY';
+        } else if (status === 'blocked') {
+          color = pal.cyan;
+          label = 'BLOCKED';
+        } else if (status === 'escaped') {
+          color = pal.rose;
+          label = 'ESCAPED!';
+        }
+
+        const count = status === 'escaped' ? 12 : status === 'blocked' ? 8 : 4;
+        for (let i = 0; i < count; i++) {
+          if (state.sparks.length >= 90) break;
+          const angle = Math.random() * Math.PI * 2;
+          const speed = (status === 'escaped' ? 48 : 30) + Math.random() * 44;
+          state.sparks.push({
+            x: ln.gateX,
+            y: ln.gateY,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed,
+            life: 1.0,
+            decay: status === 'escaped' ? 1.15 : 1.7,
+            r: status === 'escaped' ? 3.2 : 2.2,
+            color
+          });
+        }
+
+        if (label && state.floatingTags.length < 24) {
+          state.floatingTags.push({
+            x: ln.gateX - 18,
+            y: ln.gateY - 12,
+            vy: -24,
+            life: 1.0,
+            text: label,
+            color
+          });
+        }
+      }
+
+      function resizeCanvas() {
+        const rect = dom.canvasWrap.getBoundingClientRect();
+        canvasW = Math.max(280, Math.floor(rect.width));
+        canvasH = canvasW < 640 ? 520 : 410;
+        canvasDpr = Math.min(window.devicePixelRatio || 1, 2);
+
+        dom.canvas.style.height = canvasH + 'px';
+        dom.canvas.width = Math.floor(canvasW * canvasDpr);
+        dom.canvas.height = Math.floor(canvasH * canvasDpr);
+        layoutCache = computeLayout(canvasW, canvasH);
+      }
+
+      function drawCanvas(nowMs) {
+        if (!layoutCache) resizeCanvas();
+        const pal = getCanvasPalette();
+        const w = canvasW;
+        const h = canvasH;
+
+        ctx.setTransform(canvasDpr, 0, 0, canvasDpr, 0, 0);
+        ctx.clearRect(0, 0, w, h);
+
+        // Background + technical micro-grid
+        ctx.fillStyle = pal.bg;
+        ctx.fillRect(0, 0, w, h);
+
+        ctx.strokeStyle = pal.grid;
+        ctx.lineWidth = 1;
+        const step = 28;
+        ctx.beginPath();
+        for (let gx = step; gx < w; gx += step) {
+          ctx.moveTo(gx + 0.5, 0);
+          ctx.lineTo(gx + 0.5, h);
+        }
+        for (let gy = step; gy < h; gy += step) {
+          ctx.moveTo(0, gy + 0.5);
+          ctx.lineTo(w, gy + 0.5);
+        }
+        ctx.stroke();
+
+        // Hitboxes rebuilt each frame for clean hover inspection
+        state.hitBoxes = [];
+
+        // 1. Draw Ingress Conduits (Emitters -> Router)
+        for (const wl of WORKLOADS) {
+          const [p0, p1, p2, p3] = getIngressCurve(wl.id);
+          const wlColor = pal.dark ? wl.colorDark : wl.colorLight;
+          const pulse = state.emitterPulse[wl.id] || 0;
+
+          ctx.beginPath();
+          ctx.moveTo(p0.x, p0.y);
+          ctx.bezierCurveTo(p1.x, p1.y, p2.x, p2.y, p3.x, p3.y);
+          ctx.strokeStyle = pal.conduitIdle;
+          ctx.lineWidth = 2.2;
+          ctx.stroke();
+
+          if (pulse > 0.04 || state.burstRemaining > 0) {
+            ctx.save();
+            ctx.globalAlpha = Math.min(0.65, 0.16 + pulse * 0.45);
+            ctx.strokeStyle = wlColor;
+            ctx.lineWidth = 2.6;
+            ctx.stroke();
+            ctx.restore();
+          }
+        }
+
+        // 2. Draw Egress Conduits (Router -> Lanes)
+        for (const ln of LANES) {
+          const [p0, p1, p2, p3] = getEgressCurve(ln.id);
+          const lnColor = pal.dark ? ln.colorDark : ln.colorLight;
+          const ls = state.laneStats[ln.id];
+          const isLaneActive = state.mode === 'smart' || state.mode === ln.id;
+
+          ctx.beginPath();
+          ctx.moveTo(p0.x, p0.y);
+          ctx.bezierCurveTo(p1.x, p1.y, p2.x, p2.y, p3.x, p3.y);
+          ctx.strokeStyle = pal.conduitIdle;
+          ctx.lineWidth = isLaneActive ? 3.2 : 1.6;
+          ctx.stroke();
+
+          if (isLaneActive) {
+            const glow = Math.min(0.8, 0.22 + (ls.recentTraffic / ln.capacity) * 0.55);
+            ctx.save();
+            ctx.globalAlpha = glow;
+            ctx.strokeStyle = lnColor;
+            ctx.lineWidth = 3.2;
+            ctx.stroke();
+            ctx.restore();
+          }
+        }
+
+        // 3. Draw Animated Packets (with luminous tail trails & prefix-cache halos)
+        if (!state.reducedMotion) {
+          for (const p of state.packets) {
+            const wl = WORKLOAD_BY_ID[p.workloadId];
+            const wlColor = pal.dark ? wl.colorDark : wl.colorLight;
+            let pos = null;
+            let curve = null;
+
+            if (p.stage === 'ingress') {
+              curve = getIngressCurve(p.workloadId);
+              pos = evalCubic(curve[0], curve[1], curve[2], curve[3], p.t);
+            } else if (p.stage === 'egress') {
+              curve = getEgressCurve(p.laneId);
+              pos = evalCubic(curve[0], curve[1], curve[2], curve[3], p.t);
+            } else {
+              const ln = layoutCache.lanes[p.laneId];
+              const startX = ln.x + 18;
+              const endX = ln.gateX - 10;
+              pos = {
+                x: startX + (endX - startX) * p.t,
+                y: ln.y + ln.h - 14
+              };
+            }
+
+            // Packet trail along Bezier curve
+            if (curve) {
+              for (let k = 1; k <= 4; k++) {
+                const tt = p.t - k * 0.028;
+                if (tt < 0) break;
+                const tp = evalCubic(curve[0], curve[1], curve[2], curve[3], tt);
+                ctx.save();
+                ctx.globalAlpha = (0.38 - k * 0.08);
+                ctx.fillStyle = wlColor;
+                ctx.beginPath();
+                ctx.arc(tp.x, tp.y, Math.max(1.5, wl.radius * (1 - k * 0.16)), 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+              }
+            }
+
+            // Implicit prefix-cache halo ring (vanishes on cache bust!)
+            if (p.cached && p.stage !== 'ingress') {
+              ctx.save();
+              ctx.strokeStyle = pal.cyan;
+              ctx.globalAlpha = 0.75;
+              ctx.lineWidth = 1.5;
+              ctx.beginPath();
+              ctx.arc(pos.x, pos.y, wl.radius + 3.2, 0, Math.PI * 2);
+              ctx.stroke();
+              ctx.restore();
+            }
+
+            // Packet core
+            ctx.save();
+            ctx.fillStyle = wlColor;
+            if (wl.adversarial) {
+              ctx.translate(pos.x, pos.y);
+              ctx.rotate(Math.PI / 4);
+              const s = wl.radius * 1.45;
+              ctx.fillRect(-s / 2, -s / 2, s, s);
+              ctx.strokeStyle = pal.dark ? '#fff1f2' : '#881337';
+              ctx.lineWidth = 1;
+              ctx.strokeRect(-s / 2, -s / 2, s, s);
+            } else {
+              ctx.beginPath();
+              ctx.arc(pos.x, pos.y, wl.radius, 0, Math.PI * 2);
+              ctx.fill();
+              ctx.fillStyle = pal.dark ? 'rgba(255,255,255,0.75)' : 'rgba(255,255,255,0.88)';
+              ctx.beginPath();
+              ctx.arc(pos.x - wl.radius * 0.25, pos.y - wl.radius * 0.25, wl.radius * 0.32, 0, Math.PI * 2);
+              ctx.fill();
+            }
+            ctx.restore();
+          }
+        }
+
+        // 4. Draw Workload Emitter Nodes
+        for (const wl of WORKLOADS) {
+          const box = layoutCache.emitters[wl.id];
+          const wlColor = pal.dark ? wl.colorDark : wl.colorLight;
+          const pulse = state.emitterPulse[wl.id] || 0;
+
+          roundRectPath(ctx, box.x, box.y, box.w, box.h, 10);
+          ctx.fillStyle = pal.cardBg;
+          ctx.fill();
+          ctx.strokeStyle = pulse > 0.25 ? wlColor : pal.cardBorder;
+          ctx.lineWidth = pulse > 0.25 ? 1.8 : 1;
+          ctx.stroke();
+
+          // Left accent stripe
+          ctx.save();
+          ctx.fillStyle = wlColor;
+          roundRectPath(ctx, box.x + 1, box.y + 7, 3.5, box.h - 14, 2);
+          ctx.fill();
+          ctx.restore();
+
+          // Text labels
+          ctx.fillStyle = pal.textPrimary;
+          ctx.font = `700 ${layoutCache.vertical ? 11.5 : 12}px ${getComputedStyle(document.body).fontFamily}`;
+          ctx.textAlign = 'left';
+          ctx.textBaseline = 'top';
+          const titleText = layoutCache.vertical ? wl.shortName : (box.w < 155 ? wl.shortName : wl.name.split(' & ')[0]);
+          ctx.fillText(titleText, box.x + 12, box.y + (layoutCache.vertical ? 8 : 12));
+
+          ctx.fillStyle = pal.textMuted;
+          ctx.font = `600 10.5px ui-monospace, SFMono-Regular, Menlo, monospace`;
+          ctx.fillText(layoutCache.vertical ? wl.compactTok : wl.tokenLabel, box.x + 12, box.y + (layoutCache.vertical ? 24 : 30));
+
+          if (!layoutCache.vertical) {
+            ctx.fillStyle = wlColor;
+            ctx.font = `700 10px ui-monospace, SFMono-Regular, Menlo, monospace`;
+            const targetName = LANE_BY_ID[routeWorkload(wl, state.mode)].tag;
+            ctx.fillText(`→ ${targetName}`, box.x + 12, box.y + 47);
+          }
+
+          // Port dot
+          ctx.fillStyle = wlColor;
+          ctx.beginPath();
+          ctx.arc(box.outX, box.outY, 3.5, 0, Math.PI * 2);
+          ctx.fill();
+
+          state.hitBoxes.push({
+            x: box.x, y: box.y, w: box.w, h: box.h,
+            title: wl.name,
+            lines: [
+              `Profile: ${wl.tokenLabel}`,
+              `Active Target: ${LANE_BY_ID[routeWorkload(wl, state.mode)].name}`,
+              `Mix Weight: ${Math.round(wl.weight * 100)}%`
+            ]
+          });
+        }
+
+        // 5. Draw Central PulseRouter & Prefix-Cache Gate
+        const rt = layoutCache.router;
+        const effHitPct = Math.round(getEffectiveCacheHitRate() * 100);
+        const busted = state.cacheBustRemaining > 0;
+        const routerAccent = busted ? pal.rose : (state.burstRemaining > 0 ? pal.amber : pal.blue);
+
+        if (!layoutCache.vertical) {
+          // Outer telemetry ring
+          ctx.save();
+          ctx.strokeStyle = routerAccent;
+          ctx.globalAlpha = busted ? 0.85 : 0.45;
+          ctx.lineWidth = 2;
+          ctx.setLineDash([6, 5]);
+          if (!state.reducedMotion) {
+            ctx.lineDashOffset = -(nowMs * 0.025);
+          }
+          ctx.beginPath();
+          ctx.arc(rt.cx, rt.cy, rt.r + 7, 0, Math.PI * 2);
+          ctx.stroke();
+          ctx.restore();
+
+          // Router core circle
+          ctx.beginPath();
+          ctx.arc(rt.cx, rt.cy, rt.r, 0, Math.PI * 2);
+          ctx.fillStyle = pal.routerBg;
+          ctx.fill();
+          ctx.strokeStyle = routerAccent;
+          ctx.lineWidth = 2.4;
+          ctx.stroke();
+
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillStyle = pal.textMuted;
+          ctx.font = `700 9.5px ui-monospace, SFMono-Regular, Menlo, monospace`;
+          ctx.fillText('PULSEROUTER', rt.cx, rt.cy - 21);
+
+          ctx.fillStyle = pal.textPrimary;
+          ctx.font = `700 12px ui-monospace, SFMono-Regular, Menlo, monospace`;
+          ctx.fillText(POLICIES[state.mode].shortLabel, rt.cx, rt.cy - 3);
+
+          ctx.fillStyle = busted ? pal.rose : pal.emerald;
+          ctx.font = `700 10.5px ui-monospace, SFMono-Regular, Menlo, monospace`;
+          ctx.fillText(busted ? 'CACHE 0% BUG' : `CACHE ${effHitPct}%`, rt.cx, rt.cy + 17);
+
+          state.hitBoxes.push({
+            x: rt.cx - rt.r, y: rt.cy - rt.r, w: rt.r * 2, h: rt.r * 2,
+            title: 'PulseRouter Gate',
+            lines: [
+              `Policy: ${POLICIES[state.mode].label}`,
+              `Effective Prefix Cache: ${effHitPct}%`,
+              busted ? 'ALERT: Timestamp prefix bug busting KV cache!' : 'KV Prefix Hash: Healthy'
+            ]
+          });
+        } else {
+          roundRectPath(ctx, rt.x, rt.y, rt.w, rt.h, 12);
+          ctx.fillStyle = pal.routerBg;
+          ctx.fill();
+          ctx.strokeStyle = routerAccent;
+          ctx.lineWidth = 2;
+          ctx.stroke();
+
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillStyle = pal.textPrimary;
+          ctx.font = `700 12px ui-monospace, SFMono-Regular, Menlo, monospace`;
+          ctx.fillText(`PULSEROUTER · ${POLICIES[state.mode].shortLabel}`, rt.cx, rt.cy - 9);
+
+          ctx.fillStyle = busted ? pal.rose : pal.emerald;
+          ctx.font = `700 11px ui-monospace, SFMono-Regular, Menlo, monospace`;
+          ctx.fillText(busted ? 'PREFIX CACHE BUSTED (0%)' : `IMPLICIT PREFIX CACHE: ${effHitPct}%`, rt.cx, rt.cy + 10);
+        }
+
+        // 6. Draw 3 Model Lane Compute Cards
+        for (const ln of LANES) {
+          const box = layoutCache.lanes[ln.id];
+          const ls = state.laneStats[ln.id];
+          const lnColor = pal.dark ? ln.colorDark : ln.colorLight;
+          const isPinned = state.mode === ln.id;
+          const effIn = effectiveInputPer1M(ln, getEffectiveCacheHitRate());
+
+          let borderColor = isPinned ? lnColor : pal.cardBorder;
+          if (ls.flashTimer > 0) {
+            if (ls.flashType === 'escaped') borderColor = pal.rose;
+            else if (ls.flashType === 'blocked') borderColor = pal.cyan;
+            else if (ls.flashType === 'retry') borderColor = pal.amber;
+          }
+
+          roundRectPath(ctx, box.x, box.y, box.w, box.h, 12);
+          ctx.fillStyle = pal.cardBg;
+          ctx.fill();
+          ctx.strokeStyle = borderColor;
+          ctx.lineWidth = (ls.flashTimer > 0 && ls.flashType === 'escaped') || isPinned ? 2.2 : 1.2;
+          ctx.stroke();
+
+          // Subtle breach wash on escape
+          if (ls.flashTimer > 0 && ls.flashType === 'escaped') {
+            ctx.save();
+            ctx.globalAlpha = Math.min(0.24, ls.flashTimer * 0.28);
+            roundRectPath(ctx, box.x, box.y, box.w, box.h, 12);
+            ctx.fillStyle = pal.rose;
+            ctx.fill();
+            ctx.restore();
+          }
+
+          // Top colored indicator bar
+          ctx.fillStyle = lnColor;
+          roundRectPath(ctx, box.x + 12, box.y + 10, 4, 24, 2);
+          ctx.fill();
+
+          // Lane Title + Price
+          ctx.textAlign = 'left';
+          ctx.textBaseline = 'top';
+          ctx.fillStyle = pal.textPrimary;
+          ctx.font = `700 ${layoutCache.vertical ? 12.5 : 13}px ${getComputedStyle(document.body).fontFamily}`;
+          ctx.fillText(ln.name, box.x + 23, box.y + 9);
+
+          ctx.fillStyle = pal.textMuted;
+          ctx.font = `600 10.5px ui-monospace, SFMono-Regular, Menlo, monospace`;
+          ctx.fillText(`${ln.priceBadge} · eff $${effIn.toFixed(2)}/1M`, box.x + 23, box.y + 26);
+
+          // Right side metrics inside lane card
+          ctx.textAlign = 'right';
+          const passPct = ls.stdRequests > 0 ? ((ls.stdPassed / ls.stdRequests) * 100).toFixed(0) + '%' : '—';
+          ctx.fillStyle = pal.textSecondary;
+          ctx.font = `700 11px ui-monospace, SFMono-Regular, Menlo, monospace`;
+          ctx.fillText(`${ls.requests} req · Q:${passPct}`, box.x + box.w - 28, box.y + 11);
+
+          // Adversarial counter inside lane card
+          const advColor = ls.advEscaped > 0 ? pal.rose : (ls.advBlocked > 0 ? pal.cyan : pal.textMuted);
+          ctx.fillStyle = advColor;
+          ctx.font = `700 10.5px ui-monospace, SFMono-Regular, Menlo, monospace`;
+          ctx.fillText(`IPI: ${ls.advBlocked} blk / ${ls.advEscaped} esc`, box.x + box.w - 28, box.y + 27);
+
+          // Utilization meter bar
+          const utilPct = Math.min(100, Math.round(((ls.inFlight + ls.recentTraffic * 0.45) / ln.capacity) * 100));
+          const barX = box.x + 14;
+          const barY = box.y + box.h - (layoutCache.vertical ? 26 : 34);
+          const barW = box.w - 44;
+          const barH = 7;
+
+          roundRectPath(ctx, barX, barY, barW, barH, 4);
+          ctx.fillStyle = pal.trackBg;
+          ctx.fill();
+
+          if (utilPct > 0) {
+            const fillW = Math.max(6, (barW * utilPct) / 100);
+            roundRectPath(ctx, barX, barY, fillW, barH, 4);
+            ctx.fillStyle = utilPct > 85 ? pal.rose : (utilPct > 65 ? pal.amber : lnColor);
+            ctx.fill();
+          }
+
+          // Bottom meta line inside lane card
+          ctx.textAlign = 'left';
+          ctx.fillStyle = pal.textMuted;
+          ctx.font = `600 10px ui-monospace, SFMono-Regular, Menlo, monospace`;
+          ctx.fillText(
+            ln.id === 'balanced' ? '95% PREFIX CACHE VAULT · IPI SHIELD' : ln.cacheNote.toUpperCase(),
+            barX,
+            barY + 12
+          );
+
+          // Output gate node
+          ctx.beginPath();
+          ctx.arc(box.gateX, box.gateY, 5.5, 0, Math.PI * 2);
+          ctx.fillStyle = ls.flashTimer > 0 && ls.flashType === 'escaped'
+            ? pal.rose
+            : (ls.flashTimer > 0 && ls.flashType === 'blocked' ? pal.cyan : lnColor);
+          ctx.fill();
+
+          state.hitBoxes.push({
+            x: box.x, y: box.y, w: box.w, h: box.h,
+            title: `${ln.tag} · ${ln.name}`,
+            lines: [
+              `Pricing: ${ln.priceBadge} / 1M`,
+              `Eff. Input: $${effIn.toFixed(2)}/1M (${effHitPct}% cache)`,
+              `In-Flight: ${ls.inFlight} · Util: ${utilPct}%`,
+              `IPI Shield: ${ls.advBlocked} blocked, ${ls.advEscaped} escaped`
+            ]
+          });
+        }
+
+        // 7. Sparks & Floating Gate Outcome Labels
+        if (!state.reducedMotion) {
+          for (const sp of state.sparks) {
+            ctx.save();
+            ctx.globalAlpha = Math.max(0, sp.life);
+            ctx.fillStyle = sp.color;
+            ctx.beginPath();
+            ctx.arc(sp.x, sp.y, sp.r, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+          }
+
+          for (const ft of state.floatingTags) {
+            ctx.save();
+            ctx.globalAlpha = Math.max(0, ft.life);
+            ctx.fillStyle = ft.color;
+            ctx.font = `700 10.5px ui-monospace, SFMono-Regular, Menlo, monospace`;
+            ctx.textAlign = 'right';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(ft.text, ft.x, ft.y);
+            ctx.restore();
+          }
+        }
+      }
+
+      /* =========================================================================
+       * 7. SPARKLINES & DOM TELEMETRY UPDATERS
+       * ========================================================================= */
+      function renderSparkline(svgEl, values, colorVar) {
+        if (!values || values.length < 2) {
+          svgEl.innerHTML = '';
+          return;
+        }
+        const min = Math.min(...values);
+        const max = Math.max(...values);
+        const span = Math.max(0.001, max - min);
+        const w = 72;
+        const h = 24;
+        const pad = 2;
+
+        const pts = values.map((v, i) => {
+          const x = pad + (i / (values.length - 1)) * (w - pad * 2);
+          const y = h - pad - ((v - min) / span) * (h - pad * 2);
+          return `${x.toFixed(1)},${y.toFixed(1)}`;
+        });
+
+        const areaPts = `${pad},${h - pad} ${pts.join(' ')} ${(w - pad).toFixed(1)},${h - pad}`;
+        svgEl.innerHTML =
+          `<polygon points="${areaPts}" fill="${colorVar}" fill-opacity="0.14"></polygon>` +
+          `<polyline points="${pts.join(' ')}" fill="none" stroke="${colorVar}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></polyline>`;
+      }
+
+      function renderParetoPanel() {
+        const hitRate = getEffectiveCacheHitRate();
+        const hitPct = Math.round(hitRate * 100);
+        dom.paretoCacheLabel.textContent = state.cacheBustRemaining > 0
+          ? '0% Cache (BUG ACTIVE)'
+          : `At ${hitPct}% Cache Hit`;
+        dom.paretoCacheLabel.className = 'kpi-pill ' + (state.cacheBustRemaining > 0 ? 'bad' : 'good');
+
+        const modes = ['smart', 'fast', 'balanced', 'deep'];
+        const results = modes.map(m => ({
+          mode: m,
+          label: POLICIES[m].label,
+          ...computeTheoreticalPolicyMetrics(m, hitRate)
+        }));
+        const maxCost = Math.max(...results.map(r => r.costPer1K), 1);
+
+        const barColors = {
+          smart: 'var(--accent-blue)',
+          fast: 'var(--accent-emerald)',
+          balanced: 'var(--accent-cyan)',
+          deep: 'var(--accent-violet)'
+        };
+
+        dom.paretoBarsContainer.innerHTML = results.map(r => {
+          const pct = Math.max(6, (r.costPer1K / maxCost) * 100);
+          const activeClass = r.mode === state.mode ? ' active-policy' : '';
+          return `
+            <div class="pareto-row${activeClass}">
+              <div class="pareto-meta">
+                <span class="pareto-name">${r.label}${r.mode === state.mode ? ' · ACTIVE' : ''}</span>
+                <span class="pareto-nums">
+                  <span>$${r.costPer1K.toFixed(2)}/1K</span>
+                  <span>Q ${r.qualityPct.toFixed(1)}%</span>
+                  <span>IPI ${r.advBlockPct.toFixed(1)}%</span>
+                </span>
+              </div>
+              <div class="pareto-track">
+                <div class="pareto-fill" style="width:${pct.toFixed(1)}%; background:${barColors[r.mode]};"></div>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        // Latest request glass-box token math (recomputed live at current slider if paused, or showing exact last execution)
+        const latest = state.latestRequest;
+        if (!latest) {
+          const sampleWl = WORKLOAD_BY_ID.refactor;
+          const sampleLn = LANE_BY_ID[routeWorkload(sampleWl, state.mode)];
+          const econ = computeRequestEconomics(sampleWl, sampleLn, hitRate);
+          dom.formulaBox.innerHTML =
+            `<strong>Preview (${sampleWl.shortName} → ${sampleLn.name} @ ${hitPct}% cache):</strong><br>` +
+            `Uncached In: ${(econ.uncachedInTok / 1000).toFixed(1)}K × $${sampleLn.inPrice.toFixed(2)}/1M = $${((econ.uncachedInTok / 1e6) * sampleLn.inPrice).toFixed(5)}<br>` +
+            `Cached In: ${(econ.cachedInTok / 1000).toFixed(1)}K × $${sampleLn.cachedInPrice.toFixed(3)}/1M = $${((econ.cachedInTok / 1e6) * sampleLn.cachedInPrice).toFixed(5)}<br>` +
+            `Output: ${(sampleWl.outTok / 1000).toFixed(1)}K × $${sampleLn.outPrice.toFixed(2)}/1M = $${econ.outputCost.toFixed(5)} → <strong>Total $${econ.actualCost.toFixed(5)}</strong> (Saved $${econ.saved.toFixed(5)})`;
+          return;
+        }
+
+        const ln = LANE_BY_ID[latest.laneId];
+        const wl = WORKLOAD_BY_ID[latest.workloadId];
+        const e = latest.econ;
+        dom.formulaBox.innerHTML =
+          `<strong>${latest.id} ${wl.shortName} → ${ln.name} (${Math.round(latest.hitRate * 100)}% cache):</strong><br>` +
+          `Uncached In: ${(e.uncachedInTok / 1000).toFixed(1)}K × $${ln.inPrice.toFixed(2)}/1M = $${((e.uncachedInTok / 1e6) * ln.inPrice).toFixed(5)}<br>` +
+          `Cached In: ${(e.cachedInTok / 1000).toFixed(1)}K × $${ln.cachedInPrice.toFixed(3)}/1M = $${((e.cachedInTok / 1e6) * ln.cachedInPrice).toFixed(5)}<br>` +
+          `Output: ${(wl.outTok / 1000).toFixed(1)}K × $${ln.outPrice.toFixed(2)}/1M = $${e.outputCost.toFixed(5)} → <strong>$${e.actualCost.toFixed(5)}</strong> (Saved $${e.saved.toFixed(5)})`;
+      }
+
+      function renderTraceList() {
+        const filtered = state.traceLog.filter(item => {
+          if (state.traceFilter === 'all') return true;
+          if (state.traceFilter === 'adversarial') return item.adversarial;
+          if (state.traceFilter === 'cache-miss') return item.hitRate < 0.05;
+          if (state.traceFilter === 'alert') return item.status === 'escaped' || item.status === 'retry';
+          return true;
+        });
+
+        dom.traceCount.textContent = `${filtered.length} shown`;
+
+        const headHtml =
+          `<div class="trace-item trace-head" aria-hidden="true">` +
+          `<span>ID</span><span>Workload</span><span>Lane</span><span>Cache</span><span>Latency</span><span>Outcome</span>` +
+          `</div>`;
+
+        if (!filtered.length) {
+          dom.traceList.innerHTML = headHtml + `<div class="trace-empty">No matching telemetry events in current window.</div>`;
+          return;
+        }
+
+        const rowsHtml = filtered.slice(0, 24).map(item => {
+          const cachePct = Math.round(item.hitRate * 100) + '%';
+          const statusLabel = item.status.toUpperCase();
+          return `
+            <div class="trace-item">
+              <span class="trace-id">${item.id}</span>
+              <div class="trace-workload">
+                <strong>${item.shortName}</strong>
+                <span>${item.tokenLabel} · $${item.cost.toFixed(4)}</span>
+              </div>
+              <span class="trace-mono trace-desktop-col">${item.laneName.split(' ')[0]}</span>
+              <span class="trace-mono trace-desktop-col">${cachePct}</span>
+              <span class="trace-mono trace-desktop-col">${item.latencyMs}ms</span>
+              <span class="status-pill ${item.status}">${statusLabel}</span>
+              <div class="trace-mobile-meta">
+                <span>${item.id}</span>
+                <span>${item.laneName.split(' ')[0]}</span>
+                <span>Cache ${cachePct}</span>
+                <span>${item.latencyMs}ms</span>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        dom.traceList.innerHTML = headHtml + rowsHtml;
+      }
+
+      function updateTelemetryUI(nowMs, forceSrUpdate = false) {
+        const hitRate = getEffectiveCacheHitRate();
+        const hitPct = Math.round(hitRate * 100);
+
+        // Compute live req/s over last 3 seconds
+        const cutoff = nowMs - 3000;
+        let recentCount = 0;
+        for (let i = state.recentTimestamps.length - 1; i >= 0; i--) {
+          if (state.recentTimestamps[i] >= cutoff) recentCount++;
+          else break;
+        }
+        const rps = state.paused ? 0 : (recentCount / 3);
+        dom.throughputPill.textContent = `${rps.toFixed(1)} req/s`;
+
+        // Status indicator dot
+        const anyChaos = state.burstRemaining > 0 || state.cacheBustRemaining > 0 || state.advWaveRemaining > 0;
+        dom.simStatusDot.className = 'live-dot' + (state.paused ? ' paused' : (anyChaos ? ' alert' : ''));
+        dom.simStatusText.textContent = state.paused ? 'PAUSED' : (anyChaos ? 'CHAOS' : 'LIVE');
+
+        // 1. Cost / 1,000 Tasks
+        const currentPolicyProj = computeTheoreticalPolicyMetrics(state.mode, hitRate);
+        const deepBaseline = computeTheoreticalPolicyMetrics('deep', hitRate);
+        let realizedCost1K = 0;
+        if (state.recentTasks.length > 0) {
+          let sum = 0;
+          for (const t of state.recentTasks) sum += t.cost;
+          realizedCost1K = (sum / state.recentTasks.length) * 1000;
+        }
+        dom.kpiCost.textContent = formatMoney(realizedCost1K, 2);
+        dom.kpiInputRate.textContent = `Live policy rate: $${currentPolicyProj.costPer1K.toFixed(2)}/1K`;
+
+        const deltaPct = deepBaseline.costPer1K > 0
+          ? ((currentPolicyProj.costPer1K - deepBaseline.costPer1K) / deepBaseline.costPer1K) * 100
+          : 0;
+        if (Math.abs(deltaPct) < 0.5) {
+          dom.kpiCostDelta.textContent = 'Baseline Deep';
+          dom.kpiCostDelta.className = 'kpi-pill';
+        } else {
+          dom.kpiCostDelta.textContent = `${deltaPct > 0 ? '+' : ''}${deltaPct.toFixed(0)}% vs Deep`;
+          dom.kpiCostDelta.className = 'kpi-pill ' + (deltaPct < 0 ? 'good' : 'warn');
+        }
+        renderSparkline(dom.kpiCostSpark, state.costSpark, 'var(--accent-blue)');
+
+        // 2. P95 Latency
+        const p95 = computePercentile(state.recentLatencies, 95);
+        const p50 = computePercentile(state.recentLatencies, 50);
+        const totalInFlight = LANES.reduce((acc, l) => acc + state.laneStats[l.id].inFlight, 0);
+        dom.kpiLatency.textContent = `${Math.round(p95).toLocaleString()} ms`;
+        dom.kpiLatencySub.textContent = `P50: ${Math.round(p50).toLocaleString()} ms · In-flight: ${totalInFlight}`;
+        renderSparkline(dom.kpiLatencySpark, state.latencySpark, p95 > 4800 ? 'var(--accent-rose)' : 'var(--accent-violet)');
+
+        // 3. Quality Pass Rate
+        if (state.stdTotal > 0) {
+          const qPct = (state.stdPassed / state.stdTotal) * 100;
+          dom.kpiQuality.textContent = `${qPct.toFixed(1)}%`;
+          dom.kpiQualitySub.textContent = `${state.stdPassed} / ${state.stdTotal} standard tasks`;
+          dom.kpiQualityBar.style.width = `${Math.min(100, qPct).toFixed(1)}%`;
+          dom.kpiQualityBar.style.background = qPct >= 92 ? 'var(--accent-emerald)' : (qPct >= 80 ? 'var(--accent-amber)' : 'var(--accent-rose)');
+        } else {
+          dom.kpiQuality.textContent = '—';
+          dom.kpiQualitySub.textContent = '0 / 0 standard tasks';
+          dom.kpiQualityBar.style.width = '0%';
+        }
+
+        // 4. Implicit Cache Savings
+        dom.kpiSavings.textContent = formatMoney(state.totalSaved, 2);
+        let savedPer1K = 0;
+        if (state.recentTasks.length > 0) {
+          let sSum = 0;
+          for (const t of state.recentTasks) sSum += t.saved;
+          savedPer1K = (sSum / state.recentTasks.length) * 1000;
+        }
+        dom.kpiSavingsSub.textContent = `$${savedPer1K.toFixed(2)} / 1K tasks saved`;
+        if (state.cacheBustRemaining > 0) {
+          dom.kpiCacheBadge.textContent = '0% BUSTED';
+          dom.kpiCacheBadge.className = 'kpi-pill bad';
+        } else {
+          dom.kpiCacheBadge.textContent = `${hitPct}% HIT`;
+          dom.kpiCacheBadge.className = 'kpi-pill ' + (hitPct >= 70 ? 'good' : (hitPct >= 30 ? 'warn' : 'bad'));
+        }
+
+        // 5. Adversarial Block Rate
+        if (state.advTotal > 0) {
+          const blockPct = (state.advBlocked / state.advTotal) * 100;
+          dom.kpiAdv.textContent = `${blockPct.toFixed(1)}%`;
+          dom.kpiAdvSub.textContent = `${state.advBlocked} blocked · ${state.advEscaped} escaped`;
+          dom.kpiAdvCard.classList.toggle('alert-state', state.advEscaped > 0);
+        } else {
+          dom.kpiAdv.textContent = '—';
+          dom.kpiAdvSub.textContent = '0 blocked · 0 escaped';
+          dom.kpiAdvCard.classList.remove('alert-state');
+        }
+
+        // 6. Per-Lane Cards
+        for (const ln of LANES) {
+          const ls = state.laneStats[ln.id];
+          const ld = laneDom[ln.id];
+          const share = state.totalRequests > 0 ? Math.round((ls.requests / state.totalRequests) * 100) : 0;
+          const effIn = effectiveInputPer1M(ln, hitRate);
+          const laneP95 = computePercentile(ls.latencies, 95);
+          const util = Math.min(100, Math.round(((ls.inFlight + ls.recentTraffic * 0.45) / ln.capacity) * 100));
+
+          ld.card.classList.toggle('pinned-active', state.mode === ln.id);
+          ld.effIn.textContent = `$${effIn.toFixed(2)} / 1M`;
+          ld.reqs.textContent = `${ls.requests} (${share}%)`;
+          ld.pass.textContent = ls.stdRequests > 0 ? `${((ls.stdPassed / ls.stdRequests) * 100).toFixed(1)}%` : '—';
+          ld.p95.textContent = `${Math.round(laneP95).toLocaleString()} ms`;
+          ld.saved.textContent = formatMoney(ls.saved, 2);
+          ld.utilBar.style.width = `${util}%`;
+          ld.utilText.textContent = `${util}%`;
+          ld.blocked.textContent = `${ls.advBlocked} blocked`;
+          ld.escaped.textContent = `${ls.advEscaped} escaped`;
+          ld.escaped.classList.toggle('has-breach', ls.advEscaped > 0);
+        }
+
+        // 7. Chaos Timers & Bug Banner
+        updateChaosControlsUI();
+
+        // 8. Pareto & Trace Panels
+        renderParetoPanel();
+        renderTraceList();
+
+        // 9. Throttled Accessible Screen-Reader Summary
+        if (forceSrUpdate) {
+          const qText = state.stdTotal > 0 ? `${((state.stdPassed / state.stdTotal) * 100).toFixed(1)} percent` : 'pending';
+          const advText = state.advTotal > 0 ? `${((state.advBlocked / state.advTotal) * 100).toFixed(1)} percent blocked` : 'no probes yet';
+          dom.srLiveSummary.textContent =
+            `Policy ${POLICIES[state.mode].label}. Cost ${formatMoney(realizedCost1K, 2)} per thousand tasks. ` +
+            `P95 latency ${Math.round(p95)} milliseconds. Quality pass rate ${qText}. ` +
+            `Implicit cache savings ${formatMoney(state.totalSaved, 2)} at ${hitPct} percent hit rate. ` +
+            `Adversarial defense ${advText}.`;
+        }
+      }
+
+      function updateChaosControlsUI() {
+        const burstOn = state.burstRemaining > 0;
+        dom.btnBurst.setAttribute('aria-pressed', String(burstOn));
+        dom.burstTimer.textContent = `${Math.ceil(state.burstRemaining)}s`;
+        dom.burstTimer.classList.toggle('active', burstOn);
+
+        const bustOn = state.cacheBustRemaining > 0;
+        dom.btnBustCache.setAttribute('aria-pressed', String(bustOn));
+        dom.bustTimer.textContent = `${Math.ceil(state.cacheBustRemaining)}s`;
+        dom.bustTimer.classList.toggle('active', bustOn);
+        dom.cacheBugBanner.classList.toggle('visible', bustOn);
+        dom.cacheBugCountdown.textContent = `${Math.ceil(state.cacheBustRemaining)}s`;
+
+        const advOn = state.advWaveRemaining > 0 || state.advQueuedProbes > 0;
+        dom.btnAdversarial.setAttribute('aria-pressed', String(advOn));
+        dom.advTimer.textContent = state.advQueuedProbes > 0 ? `${state.advQueuedProbes} left` : `${Math.ceil(state.advWaveRemaining)}s`;
+        dom.advTimer.classList.toggle('active', advOn);
+      }
+
+      /* =========================================================================
+       * 8. MAIN SIMULATION LOOP (requestAnimationFrame + prefers-reduced-motion)
+       * ========================================================================= */
+      let lastFrameMs = performance.now();
+
+      function stepSimulation(dt, nowMs) {
+        // Decay visual pulses & lane traffic meters
+        for (const wl of WORKLOADS) {
+          state.emitterPulse[wl.id] = Math.max(0, state.emitterPulse[wl.id] - dt * 2.8);
+        }
+        for (const ln of LANES) {
+          const ls = state.laneStats[ln.id];
+          ls.recentTraffic = Math.max(0, ls.recentTraffic - dt * 2.1);
+          ls.flashTimer = Math.max(0, ls.flashTimer - dt);
+        }
+
+        if (state.paused) return;
+
+        // Tick chaos timers
+        if (state.burstRemaining > 0) state.burstRemaining = Math.max(0, state.burstRemaining - dt);
+        if (state.cacheBustRemaining > 0) state.cacheBustRemaining = Math.max(0, state.cacheBustRemaining - dt);
+        if (state.advWaveRemaining > 0) state.advWaveRemaining = Math.max(0, state.advWaveRemaining - dt);
+
+        // Emit standard traffic (base ~2.8 req/s, 10x Traffic Burst -> ~28 req/s!)
+        const targetRate = state.burstRemaining > 0 ? 28.0 : 2.8;
+        state.spawnAccum += dt * targetRate;
+        let safetyCap = 0;
+        while (state.spawnAccum >= 1 && safetyCap < 6) {
+          state.spawnAccum -= 1;
+          spawnPacket(null, nowMs);
+          safetyCap++;
+        }
+
+        // Emit adversarial injection wave
+        if (state.advQueuedProbes > 0) {
+          state.advProbeAccum += dt * 4.2;
+          while (state.advProbeAccum >= 1 && state.advQueuedProbes > 0) {
+            state.advProbeAccum -= 1;
+            state.advQueuedProbes -= 1;
+            spawnPacket('adversarial', nowMs);
+          }
+        }
+
+        // Advance active packets
+        for (let i = state.packets.length - 1; i >= 0; i--) {
+          const p = state.packets[i];
+          if (p.stage === 'ingress') {
+            p.t += dt / p.ingressDur;
+            if (p.t >= 1) {
+              p.stage = 'egress';
+              p.t = 0;
+              state.routerPulse = 1.0;
+            }
+          } else if (p.stage === 'egress') {
+            p.t += dt / p.egressDur;
+            if (p.t >= 1) {
+              p.stage = 'compute';
+              p.t = 0;
+            }
+          } else {
+            p.t += dt / p.dwellDur;
+            if (p.t >= 1) {
+              const ls = state.laneStats[p.laneId];
+              ls.inFlight = Math.max(0, ls.inFlight - 1);
+              finalizeRequest(p, nowMs, true);
+              state.packets.splice(i, 1);
+            }
+          }
+        }
+
+        // Advance gate sparks
+        for (let i = state.sparks.length - 1; i >= 0; i--) {
+          const sp = state.sparks[i];
+          sp.x += sp.vx * dt;
+          sp.y += sp.vy * dt;
+          sp.vx *= 0.94;
+          sp.vy *= 0.94;
+          sp.life -= sp.decay * dt;
+          if (sp.life <= 0) state.sparks.splice(i, 1);
+        }
+
+        // Advance floating tags
+        for (let i = state.floatingTags.length - 1; i >= 0; i--) {
+          const ft = state.floatingTags[i];
+          ft.y += ft.vy * dt;
+          ft.life -= dt * 0.95;
+          if (ft.life <= 0) state.floatingTags.splice(i, 1);
+        }
+
+        // Sparkline snapshots every 1.1s
+        state.sparkAccum += dt;
+        if (state.sparkAccum >= 1.1) {
+          state.sparkAccum = 0;
+          recordSparkSample();
+        }
+      }
+
+      function frameLoop(nowMs) {
+        const dt = Math.min(0.05, Math.max(0.001, (nowMs - lastFrameMs) / 1000));
+        lastFrameMs = nowMs;
+
+        if (state.reducedMotion) {
+          // Discrete 1Hz snapshot cadence for prefers-reduced-motion users
+          state.reducedTickAccum += dt;
+          if (state.reducedTickAccum >= 1.0) {
+            const stepDt = state.reducedTickAccum;
+            state.reducedTickAccum = 0;
+            stepSimulation(Math.min(1.0, stepDt), nowMs);
+            drawCanvas(nowMs);
+            updateTelemetryUI(nowMs, false);
+          }
+        } else {
+          stepSimulation(dt, nowMs);
+          drawCanvas(nowMs);
+
+          state.uiAccum += dt;
+          if (state.uiAccum >= 0.16) {
+            state.uiAccum = 0;
+            state.srAccum += 0.16;
+            const doSr = state.srAccum >= 2.8;
+            if (doSr) state.srAccum = 0;
+            updateTelemetryUI(nowMs, doSr);
+          }
+        }
+
+        requestAnimationFrame(frameLoop);
+      }
+
+      /* =========================================================================
+       * 9. INTERACTIVE CONTROLS & EVENT HANDLERS
+       * ========================================================================= */
+      function setTheme(theme) {
+        state.theme = theme === 'light' ? 'light' : 'dark';
+        dom.html.setAttribute('data-theme', state.theme);
+        const isLight = state.theme === 'light';
+        dom.themeToggle.setAttribute('aria-pressed', String(isLight));
+        dom.themeToggle.setAttribute('aria-label', isLight ? 'Switch to Dark theme' : 'Switch to Daylight theme');
+        dom.themeLabel.textContent = isLight ? 'Dark' : 'Daylight';
+        dom.themeIconSun.style.display = isLight ? 'none' : 'block';
+        dom.themeIconMoon.style.display = isLight ? 'block' : 'none';
+        try { localStorage.setItem('pulserouter-theme', state.theme); } catch (_) {}
+        drawCanvas(performance.now());
+      }
+
+      function setRoutingMode(mode) {
+        if (!POLICIES[mode]) return;
+        state.mode = mode;
+        const buttons = dom.modeGroup.querySelectorAll('.mode-btn');
+        buttons.forEach(btn => {
+          btn.setAttribute('aria-checked', String(btn.dataset.mode === mode));
+        });
+        dom.modePolicyHint.textContent = POLICIES[mode].hint;
+        dom.canvas.setAttribute(
+          'aria-label',
+          `Live multi-tier AI routing topology running in ${POLICIES[mode].label} mode at ${Math.round(getEffectiveCacheHitRate() * 100)} percent prefix cache hit rate.`
+        );
+        updateTelemetryUI(performance.now(), true);
+        drawCanvas(performance.now());
+      }
+
+      function setCacheHitPct(val) {
+        const clamped = Math.max(0, Math.min(95, Math.round(Number(val) || 0)));
+        state.cacheHitPct = clamped;
+        dom.cacheSlider.value = String(clamped);
+        dom.cacheSlider.setAttribute('aria-valuetext', `${clamped} percent implicit prefix cache hit rate`);
+        dom.cacheSliderValue.textContent = `${clamped}%`;
+
+        dom.cachePresets.querySelectorAll('.chip-btn').forEach(btn => {
+          btn.classList.toggle('active', Number(btn.dataset.cache) === clamped);
+        });
+
+        updateTelemetryUI(performance.now(), false);
+        drawCanvas(performance.now());
+      }
+
+      function togglePause() {
+        state.paused = !state.paused;
+        dom.btnPause.setAttribute('aria-pressed', String(state.paused));
+        dom.pauseLabel.textContent = state.paused ? 'Resume' : 'Pause';
+        updateTelemetryUI(performance.now(), true);
+        drawCanvas(performance.now());
+      }
+
+      function resetTelemetry() {
+        state.reqSeq = 0;
+        state.spawnAccum = 0;
+        state.totalRequests = 0;
+        state.totalCost = 0;
+        state.totalSaved = 0;
+        state.stdTotal = 0;
+        state.stdPassed = 0;
+        state.advTotal = 0;
+        state.advBlocked = 0;
+        state.advEscaped = 0;
+
+        state.burstRemaining = 0;
+        state.cacheBustRemaining = 0;
+        state.advWaveRemaining = 0;
+        state.advQueuedProbes = 0;
+        state.advProbeAccum = 0;
+
+        state.recentTasks = [];
+        state.recentLatencies = [];
+        state.costSpark = [];
+        state.latencySpark = [];
+        state.recentTimestamps = [];
+        state.traceLog = [];
+        state.latestRequest = null;
+
+        state.laneStats = createInitialLaneStats();
+        state.packets = [];
+        state.sparks = [];
+        state.floatingTags = [];
+
+        updateTelemetryUI(performance.now(), true);
+        drawCanvas(performance.now());
+      }
+
+      // Theme toggle
+      dom.themeToggle.addEventListener('click', () => {
+        setTheme(state.theme === 'dark' ? 'light' : 'dark');
+      });
+
+      // Routing Mode selector (click + arrow keys)
+      dom.modeGroup.addEventListener('click', (e) => {
+        const btn = e.target.closest('.mode-btn');
+        if (!btn) return;
+        setRoutingMode(btn.dataset.mode);
+      });
+
+      dom.modeGroup.addEventListener('keydown', (e) => {
+        const order = ['smart', 'fast', 'balanced', 'deep'];
+        const idx = order.indexOf(state.mode);
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+          e.preventDefault();
+          const next = order[(idx + 1) % order.length];
+          setRoutingMode(next);
+          const el = dom.modeGroup.querySelector(`[data-mode="${next}"]`);
+          if (el) el.focus();
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+          e.preventDefault();
+          const prev = order[(idx - 1 + order.length) % order.length];
+          setRoutingMode(prev);
+          const el = dom.modeGroup.querySelector(`[data-mode="${prev}"]`);
+          if (el) el.focus();
+        }
+      });
+
+      // Prefix Cache Hit Rate slider & presets
+      dom.cacheSlider.addEventListener('input', (e) => {
+        setCacheHitPct(e.target.value);
+      });
+
+      dom.cachePresets.addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-cache]');
+        if (!btn) return;
+        setCacheHitPct(btn.dataset.cache);
+      });
+
+      dom.fixCacheBugBtn.addEventListener('click', () => {
+        state.cacheBustRemaining = 0;
+        updateTelemetryUI(performance.now(), true);
+        drawCanvas(performance.now());
+      });
+
+      // Chaos Stressors
+      dom.btnBurst.addEventListener('click', () => {
+        if (state.paused) togglePause();
+        state.burstRemaining = 10;
+        updateTelemetryUI(performance.now(), true);
+      });
+
+      dom.btnBustCache.addEventListener('click', () => {
+        if (state.paused) togglePause();
+        state.cacheBustRemaining = 12;
+        updateTelemetryUI(performance.now(), true);
+        drawCanvas(performance.now());
+      });
+
+      dom.btnAdversarial.addEventListener('click', () => {
+        if (state.paused) togglePause();
+        state.advWaveRemaining = 7;
+        state.advQueuedProbes += 24;
+        // Fire an immediate triplet so visual feedback is instantaneous
+        const now = performance.now();
+        for (let i = 0; i < 3 && state.advQueuedProbes > 0; i++) {
+          state.advQueuedProbes -= 1;
+          spawnPacket('adversarial', now);
+        }
+        updateTelemetryUI(now, true);
+      });
+
+      // Pause / Resume + Reset + Space shortcut
+      dom.btnPause.addEventListener('click', togglePause);
+      dom.btnReset.addEventListener('click', resetTelemetry);
+
+      window.addEventListener('keydown', (e) => {
+        if (e.code !== 'Space' || e.repeat || e.metaKey || e.ctrlKey || e.altKey) return;
+        const tag = (e.target && e.target.tagName) ? e.target.tagName.toUpperCase() : '';
+        if (tag === 'BUTTON' || tag === 'A' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+        if (tag === 'INPUT' && e.target.type !== 'range') return;
+        e.preventDefault();
+        togglePause();
+      });
+
+      // Trace filter chips
+      dom.traceFilters.addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-filter]');
+        if (!btn) return;
+        state.traceFilter = btn.dataset.filter;
+        dom.traceFilters.querySelectorAll('[data-filter]').forEach(el => {
+          const active = el.dataset.filter === state.traceFilter;
+          el.classList.toggle('active', active);
+          el.setAttribute('aria-pressed', String(active));
+        });
+        renderTraceList();
+      });
+
+      // Interactive Canvas Hover Tooltip
+      dom.canvas.addEventListener('mousemove', (e) => {
+        const rect = dom.canvas.getBoundingClientRect();
+        const mx = e.clientX - rect.left;
+        const my = e.clientY - rect.top;
+        const hit = state.hitBoxes.find(b => mx >= b.x && mx <= b.x + b.w && my >= b.y && my <= b.y + b.h);
+        if (!hit) {
+          dom.canvasTooltip.classList.remove('visible');
+          return;
+        }
+        dom.canvasTooltip.innerHTML =
+          `<strong style="display:block; margin-bottom:3px;">${hit.title}</strong>` +
+          hit.lines.map(l => `<div style="color:var(--text-secondary);">${l}</div>`).join('');
+        const tipX = Math.min(rect.width - 245, Math.max(8, mx + 14));
+        const tipY = Math.min(rect.height - 98, Math.max(8, my - 12));
+        dom.canvasTooltip.style.left = tipX + 'px';
+        dom.canvasTooltip.style.top = tipY + 'px';
+        dom.canvasTooltip.classList.add('visible');
+      });
+
+      dom.canvas.addEventListener('mouseleave', () => {
+        dom.canvasTooltip.classList.remove('visible');
+      });
+
+      // Reduced motion listener
+      const reducedQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      function applyReducedMotion(matches) {
+        state.reducedMotion = matches;
+        dom.reducedMotionPill.classList.toggle('visible', matches);
+        if (matches) {
+          state.packets = [];
+          state.sparks = [];
+          state.floatingTags = [];
+          for (const ln of LANES) state.laneStats[ln.id].inFlight = 0;
+        }
+        drawCanvas(performance.now());
+      }
+      applyReducedMotion(reducedQuery.matches);
+      if (typeof reducedQuery.addEventListener === 'function') {
+        reducedQuery.addEventListener('change', (e) => applyReducedMotion(e.matches));
+      }
+
+      // Responsive canvas observer
+      if (typeof ResizeObserver === 'function') {
+        const ro = new ResizeObserver(() => {
+          resizeCanvas();
+          drawCanvas(performance.now());
+        });
+        ro.observe(dom.canvasWrap);
+      } else {
+        window.addEventListener('resize', () => {
+          resizeCanvas();
+          drawCanvas(performance.now());
+        });
+      }
+
+      /* =========================================================================
+       * 10. BOOTSTRAP
+       * ========================================================================= */
+      let savedTheme = 'dark';
+      try {
+        const stored = localStorage.getItem('pulserouter-theme');
+        if (stored === 'light' || stored === 'dark') savedTheme = stored;
+      } catch (_) {}
+
+      setTheme(savedTheme);
+      resizeCanvas();
+      seedWarmStart();
+      updateTelemetryUI(performance.now(), true);
+      drawCanvas(performance.now());
+      requestAnimationFrame(frameLoop);
+    })();
+  </script>
+</body>
+</html>

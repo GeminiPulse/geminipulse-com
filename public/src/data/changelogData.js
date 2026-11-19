@@ -20,6 +20,32 @@ export const CHANGELOG_META = {
 
 export const CHANGELOG_ENTRIES = [
   {
+    id: 'cl-2026-11-18-article-model-effort-provenance',
+    date: '2026-11-18',
+    dateDisplay: 'Nov 18, 2026',
+    surface: 'Flagship Essays, Series & Chronicle (/articles/*, /series/*)',
+    caughtBy: 'human',
+    caughtByLabel: 'Human Oversight · Product Dev & Creative Direction',
+    summary: 'Articles credited "Google Gemini" or "Gemini 4 Argon" generically without recording which exact model checkpoint and thinking effort authored each piece.',
+    whatHappened:
+      'As we expanded from Gemini 4 Argon curation to multi-tier Gemini 4 Hydrogen, Neon (low–xhigh), and Carbon runs, generic model attribution hid the reasoning budget behind each dispatch.',
+    fixApplied:
+      'Added required authoredByModel and thinkingEffort fields enforced by scripts/validate-data.mjs, and stamped explicit Model + Effort bylines and TechArticle JSON-LD authorship across Sanctuary essays, /articles/index.html, and the Neon series.',
+  },
+  {
+    id: 'cl-2026-11-18-neon-xhigh-nan-cdp-catch',
+    date: '2026-11-18',
+    dateDisplay: 'Nov 18, 2026',
+    surface: 'Day-0 Neon Field Test (/arena/exp-05-neon-xhigh.html)',
+    caughtBy: 'gemini',
+    caughtByLabel: 'Gemini Self-Audit · Arena Chrome CDP Harness',
+    summary: 'Gemini 4 Neon (XHigh) over-thought its 3,830-line single-shot control room UI into a live "Lane Utilization NaN%" bug while Neon (High) scored 100.0/100.',
+    whatHappened:
+      'Automated headless Chrome CDP scoring (scripts/score-neon-gauntlet.mjs) caught Neon (XHigh) referencing an uninitialized ls.recentTraffic property inside its lane-capacity formula and overlapping two canvas status labels.',
+    fixApplied:
+      'Preserved the untouched single-shot build as empirical evidence in /arena/neon-field-test.html and documented the generative UI sweet spot—defaulting single-shot UI synthesis to Neon (High) or Hydrogen (High) (both 100.0/100) while reserving XHigh and Carbon for deductive security audits.',
+  },
+  {
     id: 'cl-2026-11-15-sitewide-p2-sweep',
     date: '2026-11-15',
     dateDisplay: 'Nov 15, 2026',

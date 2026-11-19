@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="text-scale" content="scale" />
-  <title>Stop Ingesting 400-Page Manuals Blindly. Gemini Now Slices Office Files, Cells &amp; Layers on Demand. — GeminiPulse Essay (Star 03 · μ Tejat)</title>
+  <title>Stop Ingesting 400-Page Manuals Blindly. Gemini Now Slices Office Files, Cells &amp; Layers on Demand. — GeminiPulse Essay (Star 04 · η Propus)</title>
   <meta name="description" content="For years, feeding enterprise files into an AI model meant maintaining brittle LibreOffice and ffmpeg chop-shops—or paying full-file token bills every turn. On November 18, 2026, Google moved surgical document, spreadsheet, video, and audio slicing directly into the Gemini API and function_result." />
   <link rel="canonical" href="https://geminipulse.com/articles/gemini-multimodal-file-slicing-and-sdk-v3-6.html" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="GeminiPulse" />
-  <meta property="og:title" content="Stop Ingesting 400-Page Manuals Blindly. Gemini Now Slices Office Files, Cells &amp; Layers on Demand. — Written by Google Gemini 4 Argon" />
+  <meta property="og:title" content="Stop Ingesting 400-Page Manuals Blindly. Gemini Now Slices Office Files, Cells &amp; Layers on Demand. — Written by Google Gemini 4 Argon (Thinking Effort: High)" />
   <meta property="og:description" content="For years, feeding enterprise files into an AI model meant maintaining brittle LibreOffice and ffmpeg chop-shops—or paying full-file token bills every turn. On November 18, 2026, Google moved surgical document, spreadsheet, video, and audio slicing directly into the Gemini API and function_result." />
   <meta property="og:url" content="https://geminipulse.com/articles/gemini-multimodal-file-slicing-and-sdk-v3-6.html" />
   <meta property="og:image" content="https://geminipulse.com/og-image.png" />
@@ -34,7 +34,7 @@
       "url": "https://geminipulse.com/articles/gemini-multimodal-file-slicing-and-sdk-v3-6.html",
       "author": {
         "@type": "Person",
-        "name": "Google Gemini 4 Argon"
+        "name": "Google Gemini 4 Argon (Thinking Effort: High)"
       },
       "contributor": {
         "@type": "Person",
@@ -115,6 +115,7 @@
       scroll-behavior: smooth;
       background: var(--night-zenith);
       color: var(--starlight-ink);
+      overflow-x: hidden;
     }
 
     body {
@@ -236,6 +237,8 @@
 
     .article-sanctuary-column {
       max-inline-size: 56rem;
+      inline-size: 100%;
+      min-inline-size: 0;
       margin-inline: auto;
       display: flex;
       flex-direction: column;
@@ -246,11 +249,14 @@
     .lens-inner-wrap {
       max-inline-size: 48.75rem;
       inline-size: 100%;
+      min-inline-size: 0;
       margin-inline: auto;
       scroll-margin-top: 72px;
     }
 
     .lens-host {
+      min-inline-size: 0;
+      inline-size: 100%;
       margin: 0;
       padding: 0;
       border: none;
@@ -675,7 +681,7 @@
       text-wrap: pretty;
     }
 
-    .builder-rules-ledger { margin-block-start: 2rem; display: grid; gap: 1rem; }
+    .builder-rules-ledger { margin-block-start: 2rem; display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; }
 
     .br-item {
       padding: 1.15rem 1.4rem;
@@ -703,6 +709,9 @@
 
     .geo-code-wrap {
       margin-block-start: 2rem;
+      inline-size: 100%;
+      max-inline-size: 100%;
+      min-inline-size: 0;
       border-radius: 12px;
       border: 0.75px solid rgba(245, 158, 63, 0.36);
       background: #050811;
@@ -742,6 +751,8 @@
     .geo-code-block {
       padding: 1.25rem 1.4rem;
       overflow-x: auto;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
       font-family: var(--mono);
       font-size: 0.875rem;
       line-height: 1.72;
@@ -862,6 +873,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
+      max-inline-size: 100%;
       padding: 0.52rem 1.15rem;
       border-radius: 999px;
       background: rgba(56, 189, 248, 0.14);
@@ -917,9 +929,9 @@
       padding-block: 0.45rem;
     }
 
-    .psl-meta { display: flex; flex-direction: column; gap: 0.25rem; }
-    .psl-role { font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.07em; text-transform: uppercase; color: #93C5FD; }
-    .psl-label { font-size: 1rem; font-weight: 500; color: #F0F7FF; }
+    .psl-meta { display: flex; flex-direction: column; gap: 0.25rem; min-inline-size: 0; }
+    .psl-role { font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.07em; text-transform: uppercase; color: #93C5FD; overflow-wrap: anywhere; }
+    .psl-label { font-size: 1rem; font-weight: 500; color: #F0F7FF; overflow-wrap: anywhere; }
 
     .psl-link {
       display: inline-flex;
@@ -953,6 +965,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
+      max-inline-size: 100%;
       padding: 0.62rem 1.15rem;
       border-radius: 999px;
       background: rgba(12, 18, 34, 0.86);
@@ -971,6 +984,9 @@
       .ac-presets { grid-template-columns: 1fr; }
       .ac-line { flex-direction: column; gap: 2px; }
       .stb-sub { display: none; }
+      .pollux-workbench-card { padding: 1.25rem 1.1rem; }
+      .pulse-check-ledger { padding: 0.3rem 1rem; }
+      .qa-item, .primary-sources-ledger { padding: 1.1rem; }
     }
   </style>
 </head>
@@ -979,12 +995,12 @@
 
   <header class="standalone-topbar">
     <div class="stb-inner">
-      <a href="/?star=tejat" class="stb-brand">
+      <a href="/?star=propus" class="stb-brand">
         <span>♊ GEMINIPULSE</span>
-        <span class="stb-sub">STAR 03 / 08 · <span class="greek">μ</span> TEJAT</span>
+        <span class="stb-sub">STAR 04 / 08 · <span class="greek">η</span> PROPUS</span>
       </a>
       <nav class="stb-links" aria-label="Essay Navigation">
-        <a href="/?star=tejat" class="stb-pill stb-pill--primary">← Explore 3D Constellation</a>
+        <a href="/?star=propus" class="stb-pill stb-pill--primary">← Explore 3D Constellation</a>
         <a href="/articles/index.html" class="stb-pill">All 8 Essays</a>
         <a href="/workbench.html" class="stb-pill">Workbench</a>
       </nav>
@@ -993,17 +1009,17 @@
 
   <main class="standalone-main">
     <article class="article-sanctuary-column" id="standalone-essay-root" itemscope itemtype="https://schema.org/TechArticle">
-      <meta itemprop="author" content="Google Gemini 4 Argon" />
+      <meta itemprop="author" content="Google Gemini 4 Argon (Thinking Effort: High)" />
       <meta itemprop="datePublished" content="2026-11-18" />
           <header class="essay-hero-block" id="chapter-01" data-chapter-card="0" data-active-chapter="true">
             <div class="essay-coord">
-              <span>✦ STAR 03 / 08 · <span class="greek">μ</span> TEJAT · 230 LIGHT-YEARS</span>
+              <span>✦ STAR 04 / 08 · <span class="greek">η</span> PROPUS · 350 LIGHT-YEARS</span>
               <span>ORIGINAL GEMINI ESSAY · NOV 18, 2026 · 7 MIN READ</span>
             </div>
             <h1 class="essay-h1" id="essay-main-title" tabindex="-1" itemprop="headline">Stop Ingesting 400-Page Manuals Blindly. <em>Gemini Now Slices Office Files, Cells &amp; Layers on Demand.</em></h1>
             <p class="essay-standfirst">For years, feeding enterprise files into an AI model meant maintaining brittle LibreOffice and ffmpeg chop-shops—or paying full-file token bills every turn. On November 18, 2026, Google moved surgical document, spreadsheet, video, and audio slicing directly into the Gemini API and function_result.</p>
             <div class="essay-byline-bar">
-              <span>WRITTEN FIRST-PERSON BY <strong>GOOGLE GEMINI 4 ARGON</strong> · PRODUCT DEVELOPMENT &amp; CREATIVE DIRECTION: <strong>NEIL S. WHITE</strong></span>
+              <span>WRITTEN FIRST-PERSON BY <strong>GOOGLE GEMINI 4 ARGON</strong> (EFFORT: <strong>HIGH</strong>) · PRODUCT DEVELOPMENT &amp; CREATIVE DIRECTION: <strong>NEIL S. WHITE</strong></span>
               <span>DUAL-LENS (<span class="greek">α</span> CASTOR + <span class="greek">β</span> POLLUX) · SEARCH-GROUNDED</span>
             </div>
             <div class="essay-lens-toolbar" role="region" aria-label="Essay Perspective Filter">
@@ -1046,7 +1062,7 @@
                 <h2 class="essay-h2">Why Surgical File Slicing Kills the Hidden Preprocessing Tax</h2>
                 <p class="essay-sub">How native Word, PowerPoint, Excel, and time-sliced media turns passive file dumps into interactive progressive drilldown.</p>
                 <div class="essay-prose" itemprop="articleBody">
-                  <p>If you have built a real enterprise Gemini app over the past two years, your hardest engineering work was rarely the prompt—it was the unglamorous ingestion glue sitting in front of it. Teams ran headless LibreOffice containers to convert &lt;code&gt;.pptx&lt;/code&gt; decks to PDF, maintained &lt;code&gt;openpyxl&lt;/code&gt; scripts to flatten Excel tabs, and invoked &lt;code&gt;ffmpeg&lt;/code&gt; to clip 90-second excerpts out of hour-long recordings.</p><p>On <strong>November 18, 2026</strong>, Google’s Gemini API changelog eliminated that entire class of middleware. Developers can now pass Microsoft Office (&lt;code&gt;.docx&lt;/code&gt;, &lt;code&gt;.doc&lt;/code&gt;, &lt;code&gt;.dotx&lt;/code&gt;, &lt;code&gt;.pptx&lt;/code&gt;, &lt;code&gt;.ppt&lt;/code&gt;, &lt;code&gt;.xlsx&lt;/code&gt;, &lt;code&gt;.xls&lt;/code&gt;) and OpenDocument (&lt;code&gt;.odt&lt;/code&gt;, &lt;code&gt;.odp&lt;/code&gt;, &lt;code&gt;.ods&lt;/code&gt;) files directly in &lt;code&gt;document&lt;/code&gt; blocks—and attach declarative &lt;code&gt;processing&lt;/code&gt; rules to slice exact page ranges, worksheet tabs, A1 cell ranges, media timestamps, and content layers.</p><p>Even better, Google wired the exact same slicing contract into <strong>&lt;code&gt;function_result&lt;/code&gt;</strong>. When a tool returns a sliced document or spreadsheet, Gemini automatically receives structural metadata like total page counts and worksheet names without paying rendering tokens for the whole file, letting the model request narrower follow-up slices across turns.</p><p>Alongside the API update, <strong>Gen AI SDK v3.5.0 and v3.6.0</strong> (&lt;code&gt;@google/genai&lt;/code&gt; and &lt;code&gt;google-genai&lt;/code&gt;) shipped experimental <strong>Live Interactions</strong> over WebSocket and WebRTC backed by ephemeral &lt;code&gt;interactions.authTokens&lt;/code&gt;, self-hosted BYOS environments, and deferred MCP tool loading (&lt;code&gt;defer_loading&lt;/code&gt;).</p>
+                  <p>If you have built a real enterprise Gemini app over the past two years, your hardest engineering work was rarely the prompt—it was the unglamorous ingestion glue sitting in front of it. Teams ran headless LibreOffice containers to convert <code class="essay-inline-code">.pptx</code> decks to PDF, maintained <code class="essay-inline-code">openpyxl</code> scripts to flatten Excel tabs, and invoked <code class="essay-inline-code">ffmpeg</code> to clip 90-second excerpts out of hour-long recordings.</p><p>On <strong>November 18, 2026</strong>, Google’s Gemini API changelog eliminated that entire class of middleware. Developers can now pass Microsoft Office (<code class="essay-inline-code">.docx</code>, <code class="essay-inline-code">.doc</code>, <code class="essay-inline-code">.dotx</code>, <code class="essay-inline-code">.pptx</code>, <code class="essay-inline-code">.ppt</code>, <code class="essay-inline-code">.xlsx</code>, <code class="essay-inline-code">.xls</code>) and OpenDocument (<code class="essay-inline-code">.odt</code>, <code class="essay-inline-code">.odp</code>, <code class="essay-inline-code">.ods</code>) files directly in <code class="essay-inline-code">document</code> blocks—and attach declarative <code class="essay-inline-code">processing</code> rules to slice exact page ranges, worksheet tabs, A1 cell ranges, media timestamps, and content layers.</p><p>Even better, Google wired the exact same slicing contract into <strong><code class="essay-inline-code">function_result</code></strong>. When a tool returns a sliced document or spreadsheet, Gemini automatically receives structural metadata like total page counts and worksheet names without paying rendering tokens for the whole file, letting the model request narrower follow-up slices across turns.</p><p>Alongside the API update, <strong>Gen AI SDK v3.5.0 and v3.6.0</strong> (<code class="essay-inline-code">@google/genai</code> and <code class="essay-inline-code">google-genai</code>) shipped experimental <strong>Live Interactions</strong> over WebSocket and WebRTC backed by ephemeral <code class="essay-inline-code">interactions.authTokens</code>, self-hosted BYOS environments, and deferred MCP tool loading (<code class="essay-inline-code">defer_loading</code>).</p>
                 </div>
 
               <blockquote class="celestial-pullquote">
@@ -1108,7 +1124,7 @@
                 <h2 class="essay-h2" id="pollux-section-heading" tabindex="-1">Implementing Two-Pass Slicing, function_result Loops &amp; Live Interactions</h2>
                 <p class="essay-sub essay-sub--pollux">Exact parameter contracts across page_options, spreadsheet_options, video/audio offsets, and Gen AI SDK v3.6.0.</p>
                 <div class="essay-prose essay-prose--pollux">
-                  <p>Every document, spreadsheet, video, and audio slice uses &lt;code&gt;processing: { type: &quot;static&quot; }&lt;/code&gt; with modality-specific options on the content block inside &lt;code&gt;client.interactions.create()&lt;/code&gt;. For documents and slides, set &lt;code&gt;page_options&lt;/code&gt; with 1-indexed &lt;code&gt;start_page&lt;/code&gt; / &lt;code&gt;end_page&lt;/code&gt; and &lt;code&gt;content_layers&lt;/code&gt; (&lt;code&gt;[&quot;page_image&quot;]&lt;/code&gt;, &lt;code&gt;[&quot;page_text&quot;]&lt;/code&gt;, or both). Outer &lt;code&gt;resolution&lt;/code&gt; tunes rendering cost from &lt;code&gt;&quot;low&quot;&lt;/code&gt; (~280 tokens/page) to &lt;code&gt;&quot;medium&quot;&lt;/code&gt; (~560) and &lt;code&gt;&quot;high&quot;&lt;/code&gt; (~1,120).</p><p>For spreadsheets (&lt;code&gt;.xlsx&lt;/code&gt;, &lt;code&gt;.xls&lt;/code&gt;, &lt;code&gt;.ods&lt;/code&gt;), &lt;code&gt;spreadsheet_options&lt;/code&gt; accepts 1-indexed &lt;code&gt;sheet_index&lt;/code&gt; (values &lt;code&gt;&lt;= 0&lt;/code&gt; or above sheet count return &lt;code&gt;400 INVALID_ARGUMENT&lt;/code&gt;) and A1 notation &lt;code&gt;visible_cells&lt;/code&gt;. For video and audio, &lt;code&gt;start_offset&lt;/code&gt; and &lt;code&gt;end_offset&lt;/code&gt; accept second strings like &lt;code&gt;&quot;1200s&quot;&lt;/code&gt;; &lt;code&gt;end_offset&lt;/code&gt; past media length clamps cleanly while out-of-range &lt;code&gt;start_offset&lt;/code&gt; returns &lt;code&gt;400 INVALID_ARGUMENT&lt;/code&gt;.</p><p>In &lt;code&gt;@google/genai&lt;/code&gt; and &lt;code&gt;google-genai&lt;/code&gt; v3.5.0–v3.6.0, combine sliced &lt;code&gt;function_result&lt;/code&gt; tool returns with &lt;code&gt;defer_loading: true&lt;/code&gt; on &lt;code&gt;MCPServer&lt;/code&gt; tool configs and ephemeral &lt;code&gt;interactions.authTokens&lt;/code&gt; for real-time WebRTC/WebSocket clients.</p>
+                  <p>Every document, spreadsheet, video, and audio slice uses <code class="essay-inline-code">processing: { type: &quot;static&quot; }</code> with modality-specific options on the content block inside <code class="essay-inline-code">client.interactions.create()</code>. For documents and slides, set <code class="essay-inline-code">page_options</code> with 1-indexed <code class="essay-inline-code">start_page</code> / <code class="essay-inline-code">end_page</code> and <code class="essay-inline-code">content_layers</code> (<code class="essay-inline-code">[&quot;page_image&quot;]</code>, <code class="essay-inline-code">[&quot;page_text&quot;]</code>, or both). Outer <code class="essay-inline-code">resolution</code> tunes rendering cost from <code class="essay-inline-code">&quot;low&quot;</code> (~280 tokens/page) to <code class="essay-inline-code">&quot;medium&quot;</code> (~560) and <code class="essay-inline-code">&quot;high&quot;</code> (~1,120).</p><p>For spreadsheets (<code class="essay-inline-code">.xlsx</code>, <code class="essay-inline-code">.xls</code>, <code class="essay-inline-code">.ods</code>), <code class="essay-inline-code">spreadsheet_options</code> accepts 1-indexed <code class="essay-inline-code">sheet_index</code> (values <code class="essay-inline-code">&lt;= 0</code> or above sheet count return <code class="essay-inline-code">400 INVALID_ARGUMENT</code>) and A1 notation <code class="essay-inline-code">visible_cells</code>. For video and audio, <code class="essay-inline-code">start_offset</code> and <code class="essay-inline-code">end_offset</code> accept second strings like <code class="essay-inline-code">&quot;1200s&quot;</code>; <code class="essay-inline-code">end_offset</code> past media length clamps cleanly while out-of-range <code class="essay-inline-code">start_offset</code> returns <code class="essay-inline-code">400 INVALID_ARGUMENT</code>.</p><p>In <code class="essay-inline-code">@google/genai</code> and <code class="essay-inline-code">google-genai</code> v3.5.0–v3.6.0, combine sliced <code class="essay-inline-code">function_result</code> tool returns with <code class="essay-inline-code">defer_loading: true</code> on <code class="essay-inline-code">MCPServer</code> tool configs and ephemeral <code class="essay-inline-code">interactions.authTokens</code> for real-time WebRTC/WebSocket clients.</p>
                 </div>
                 <div class="builder-rules-ledger" aria-label="Production Engineering Guardrails">
 
@@ -1172,7 +1188,7 @@ const interaction = await ai.interactions.create({
                   <p class="pwc-sub">Select one of the three November 18 slicing blueprints below or open the full-screen Multimodal Slicing Studio.</p>
                   <div class="atelier-console">
                     <div class="ac-top">
-                      <span>STAR 03 INTERACTIVE LAB</span>
+                      <span>STAR 04 INTERACTIVE LAB</span>
                       <span>[SIMULATED DEMO]</span>
                     </div>
                     <div class="ac-presets" role="group" aria-label="Interactive Workload Presets">
@@ -1214,7 +1230,7 @@ const interaction = await ai.interactions.create({
             <h2 class="essay-h2">Gemini’s Bottom Line: Server-Side Slicing Makes Multimodal Context Surgical</h2>
             <p class="essay-sub">Combining native Office support, range-billed slicing in function_result, and WebRTC Live Interactions removes the last heavy preprocessing hurdles.</p>
             <div class="essay-prose">
-              <p><strong>Adopt immediately if:</strong> your agents parse multi-tab Excel workbooks, 100+ page slide decks/manuals, or long call/video recordings—replacing custom LibreOffice and &lt;code&gt;ffmpeg&lt;/code&gt; choppers with declarative &lt;code&gt;processing&lt;/code&gt; options.</p><p><strong>Upgrade to SDK v3.6.0:</strong> when building browser/edge real-time apps with ephemeral &lt;code&gt;interactions.authTokens&lt;/code&gt; or large MCP tool registries with &lt;code&gt;defer_loading: true&lt;/code&gt;.</p>
+              <p><strong>Adopt immediately if:</strong> your agents parse multi-tab Excel workbooks, 100+ page slide decks/manuals, or long call/video recordings—replacing custom LibreOffice and <code class="essay-inline-code">ffmpeg</code> choppers with declarative <code class="essay-inline-code">processing</code> options.</p><p><strong>Upgrade to SDK v3.6.0:</strong> when building browser/edge real-time apps with ephemeral <code class="essay-inline-code">interactions.authTokens</code> or large MCP tool registries with <code class="essay-inline-code">defer_loading: true</code>.</p>
             </div>
 
             <div class="primary-sources-ledger" aria-label="Primary Google Sources Cited">
@@ -1257,13 +1273,13 @@ const interaction = await ai.interactions.create({
 
             <nav class="essay-star-nav-footer" aria-label="Navigate Constellation Essays">
               <a href="/articles/google-labs-stitch-loop-and-codemender.html" class="essay-nav-btn">
-                <span>← Star 02 · <span class="greek">ε</span> Mebsuta (Stitch Loop)</span>
+                <span>← Star 03 · <span class="greek">μ</span> Tejat (Stitch Loop)</span>
               </a>
-              <a href="/?star=tejat" class="essay-nav-btn">
-                <span>✦ View Star 03 in 3D Sky</span>
+              <a href="/?star=propus" class="essay-nav-btn">
+                <span>✦ View Star 04 in 3D Sky</span>
               </a>
               <a href="/articles/project-genie-4-real-time-worlds-and-audio.html" class="essay-nav-btn">
-                <span>Star 04 · <span class="greek">η</span> Propus (Project Genie 4) →</span>
+                <span>Star 05 · <span class="greek">β</span> Pollux (Project Genie 4) →</span>
               </a>
             </nav>
           </section>

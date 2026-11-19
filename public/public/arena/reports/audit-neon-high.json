@@ -1,0 +1,117 @@
+{
+  "model": "Gemini 4 Neon (High)",
+  "modelId": "gemini-4-neon-high",
+  "executiveSummary": "NOT PRODUCTION READY. billing-mcp-router.ts contains critical security, concurrency, financial math, prompt-injection, and LLM cost defects that will crash valid webhook verification, enable SSRF/data exfiltration, lose or duplicate ledger funds, expose a privileged MCP ledger server to indirect prompt injection, and bust 96K-token prompt prefix caching on every request. All critical and high findings must be remediated before handling live Stripe settlement traffic.",
+  "findings": [
+    {
+      "id": "F-01",
+      "severity": "CRITICAL",
+      "category": "Security",
+      "functionOrSymbol": "verifyWebhookSignature",
+      "lineRange": "67-71",
+      "title": "HMAC encoding mismatch and unguarded timingSafeEqual length cause crash/auth failure with no replay protection",
+      "rootCause": "crypto.createHmac(...).digest() returns a 32-byte raw binary Buffer, whereas Buffer.from(signatureHeader) decodes the header as UTF-8 instead of parsing Stripe's t=<timestamp>,v1=<hex> header and hex-decoding the MAC. Any standard 64-character hex signature (64 UTF-8 bytes) or Stripe header produces a length mismatch that causes crypto.timingSafeEqual to throw an unhandled RangeError—breaking legitimate webhook verification and enabling DoS on malformed headers. Additionally, empty webhookSecret values are not rejected and no signed timestamp tolerance window is enforced, leaving webhooks vulnerable to replay attacks.",
+      "minimalFix": "Reject empty webhookSecret/signatureHeader; parse Stripe's t=<epoch>,v1=<hex> components, enforce Math.abs(Date.now()/1000 - ts) <= 300, compute expectedBuf = crypto.createHmac('sha256', webhookSecret).update(`${ts}.${rawBody}`, 'utf8').digest(), validate /^[0-9a-f]{64}$/i on v1, decode providedBuf = Buffer.from(v1, 'hex'), check providedBuf.length === expectedBuf.length, and then return crypto.timingSafeEqual(providedBuf, expectedBuf)."
+    },
+    {
+      "id": "F-02",
+      "severity": "CRITICAL",
+      "category": "Security",
+      "functionOrSymbol": "isAllowedPartnerWebhook",
+      "lineRange": "73-81",
+      "title": "SSRF and settlement exfiltration via domain-suffix substring bypass and missing HTTPS/port enforcement",
+      "rootCause": "parsed.hostname.endsWith('partners.pulsebilling.io') lacks a leading dot boundary check, allowing attacker-registered domains such as https://evilpartners.pulsebilling.io/hook to pass validation and receive settlement payloads. The check also omits protocol enforcement (allowing cleartext http:// or non-HTTP schemes like file://), permits arbitrary ports, and does not guard against HTTP redirects or DNS rebinding to private/link-local/loopback IP ranges.",
+      "minimalFix": "Require parsed.protocol === 'https:', parsed.port === '' || parsed.port === '443', no username/password, and strict host matching: const host = parsed.hostname.toLowerCase(); return host === 'partners.pulsebilling.io' || host.endsWith('.partners.pulsebilling.io'); additionally disable redirects and validate resolved IPs against private/metadata CIDR ranges inside partnerDispatcher."
+    },
+    {
+      "id": "F-03",
+      "severity": "CRITICAL",
+      "category": "Financial Math",
+      "functionOrSymbol": "allocateSplitCents",
+      "lineRange": "84-93",
+      "title": "Independent per-split Math.round violates penny conservation and accepts unvalidated split ratios",
+      "rootCause": "Despite the untrusted suppression comment on line 83, converting totalCents to dollars and independently applying Math.round(totalDollars * split.ratio * 100) breaks minor-unit conservation whenever totalCents is not evenly divisible. On the included fixture (totalCents: 10000 with three 1/3 splits), each line rounds to 3333 cents (sum 9999 != 10000, silently losing 1 cent); on 200 cents split three ways, it over-allocates 201 cents. Furthermore, split.ratio is never checked for finiteness, non-negativity, or summing to 1, allowing negative, NaN, or wildly unbalanced ledger allocations.",
+      "minimalFix": "Validate every split.ratio with Number.isFinite(r) && r >= 0 and Math.abs(ratioSum - 1) <= 1e-9 (or use integer basis points). Allocate via largest-remainder (Hamilton) integer method: compute exact = totalCents * r, base = Math.floor(exact), distribute remainder = totalCents - sum(base) (+1 cent each) to splits with the highest fractional parts (exact - base) using deterministic tie-breaking, and assert final sum === totalCents."
+    },
+    {
+      "id": "F-04",
+      "severity": "CRITICAL",
+      "category": "Concurrency",
+      "functionOrSymbol": "handleStripeWebhook",
+      "lineRange": "138-163",
+      "title": "TOCTOU idempotency race and post-side-effect markProcessed cause double ledger charges",
+      "rootCause": "idempotencyStore.has(event.id) (line 138) is checked before three slow external async calls (ledger.captureInvoiceCharge, runAuditInteraction, and partnerDispatcher.postJson), while idempotencyStore.markProcessed(event.id) is deferred until line 163. Concurrent webhook deliveries or Stripe retries during a slow LLM audit will both observe has() === false and double-charge the ledger. Worse, if runAuditInteraction or partnerDispatcher.postJson fails after captureInvoiceCharge succeeds, markProcessed is never called, causing Stripe's retry to capture the invoice charge again.",
+      "minimalFix": "Replace has()/markProcessed() with an atomic distributed lease (e.g., tryAcquire(eventId, ttlMs) via Redis SET NX PX or a DB UNIQUE(event_id) transaction with durable states: in_progress -> charged -> audited -> completed), pass a deterministic idempotency key to captureInvoiceCharge, and offload post-charge auditing and partner notifications to a durable outbox/queue."
+    },
+    {
+      "id": "F-05",
+      "severity": "CRITICAL",
+      "category": "Financial Math",
+      "functionOrSymbol": "handleStripeWebhook",
+      "lineRange": "137-148",
+      "title": "Missing event.type check captures charges on both invoice.finalized and invoice.payment_succeeded",
+      "rootCause": "StripeInvoiceWebhookEvent.type allows both 'invoice.payment_succeeded' and 'invoice.finalized' (line 14), yet handleStripeWebhook never inspects event.type. Stripe emits both events for the same invoice using distinct event.id values. Consequently, unpaid invoices are prematurely settled on invoice.finalized (violating ASC-606/revenue rules), and every paid invoice is double-charged when invoice.payment_succeeded arrives because idempotency is keyed only on event.id.",
+      "minimalFix": "Filter explicitly before allocation and capture: if (event.type !== 'invoice.payment_succeeded') return { duplicate: true }; (or return a dedicated ignored result), and enforce ledger idempotency on invoiceId in addition to event.id."
+    },
+    {
+      "id": "F-06",
+      "severity": "CRITICAL",
+      "category": "Prompt Injection",
+      "functionOrSymbol": "runAuditInteraction",
+      "lineRange": "102-115",
+      "title": "Untrusted ocrVendorMemo passed raw into MCP-privileged LLM interaction enables indirect prompt injection",
+      "rootCause": "Untrusted vendor OCR text (event.data.ocrVendorMemo, illustrated by the adversarial payload in SAMPLE_UNTRUSTED_OCR_MEMO at lines 173-174) is embedded directly into the LLM input for an interaction that has live access to the pulse-gl-ledger-mcp server and controls the compliance/riskTier gate. An attacker-crafted vendor invoice memo can execute indirect prompt injection to trigger unauthorized MCP tool calls, exfiltrate ledger data, or coerce the model into returning {\"compliant\": true, \"riskTier\": \"low\"}. The unbounded string also permits token-flood DoS.",
+      "minimalFix": "Exclude ocrVendorMemo from any turn with MCP tool access (run MCP ledger verification strictly on structured IDs/amounts), enforce read-only least-privilege MCP tool allowlists, cap memo length (e.g., <= 1000 chars), isolate untrusted text in explicit data delimiters with strong instruction-hierarchy guidance, and enforce critical invariants deterministically in code."
+    },
+    {
+      "id": "F-07",
+      "severity": "HIGH",
+      "category": "LLM Token Economics",
+      "functionOrSymbol": "runAuditInteraction",
+      "lineRange": "102-105",
+      "title": "Dynamic traceId and Timestamp prepended to system_instruction destroy 96K-token prompt prefix caching",
+      "rootCause": "Line 104 prepends `RequestTrace=${traceId} | Timestamp=${new Date().toISOString()}` ahead of STATIC_96K_COMPLIANCE_SCHEMA (lines 59-65) inside system_instruction. Because implicit and explicit prompt prefix caches require an identical leading token prefix, mutating byte 0 on every call guarantees a 0% cache hit rate—re-prefilling and billing ~96K uncached input tokens per webhook and significantly increasing time-to-first-token latency.",
+      "minimalFix": "Keep system_instruction strictly invariant (`system_instruction: STATIC_96K_COMPLIANCE_SCHEMA` or reference a pre-created explicit context cache) and move per-request traceId and timestamp metadata into the `input` JSON payload after the static prefix."
+    },
+    {
+      "id": "F-08",
+      "severity": "HIGH",
+      "category": "Security",
+      "functionOrSymbol": "handleStripeWebhook",
+      "lineRange": "141-152",
+      "title": "Ledger charge is captured before compliance audit runs, leaving blocked or non-compliant invoices settled",
+      "rootCause": "ledger.captureInvoiceCharge executes at line 141 prior to runAuditInteraction at line 149. When the audit returns riskTier: 'blocked' or compliant: false, line 152 only skips the partner webhook callback while leaving the blocked charge permanently captured in the ledger with no hold or compensating reversal. In addition, non-compliant invoices with riskTier: 'review' still trigger partnerDispatcher.postJson.",
+      "minimalFix": "Run deterministic policy checks and compliance gating before capturing funds (rejecting or quarantining invoices when !audit.compliant || audit.riskTier === 'blocked'), or place funds in a pending/held state until audit approval and trigger an automated ledger reversal on 'blocked'."
+    },
+    {
+      "id": "F-09",
+      "severity": "HIGH",
+      "category": "LLM Token Economics",
+      "functionOrSymbol": "runAuditInteraction",
+      "lineRange": "102-106",
+      "title": "Unconditional thinking_level: 'high' with no max_output_tokens in synchronous webhook path spikes cost and timeouts",
+      "rootCause": "Every webhook synchronously invokes gemini-4-neon with thinking_level: 'high', a ~96K-token prompt, MCP tool calls, and no max_output_tokens cap. High-effort reasoning tokens are billed at output token rates and add multi-second latency per invoice, inflating inference spend on routine low-risk invoices and risking Stripe webhook timeout retries that amplify duplicate processing.",
+      "minimalFix": "Move LLM auditing off the synchronous HTTP webhook handler onto an asynchronous worker queue, perform deterministic SOX/ASC-606 checks in code first, default routine audits to thinking_level: 'low' (escalating to 'high' only on flagged exceptions), and configure max_output_tokens plus a strict response_schema."
+    },
+    {
+      "id": "F-10",
+      "severity": "MEDIUM",
+      "category": "Security",
+      "functionOrSymbol": "runAuditInteraction",
+      "lineRange": "117-123",
+      "title": "Unchecked JSON.parse and unvalidated riskTier fail open to 'review' on malformed or adversarial LLM output",
+      "rootCause": "JSON.parse(interaction.output_text?.trim() || '{}') throws an unhandled SyntaxError if the model returns markdown-wrapped or truncated output (aborting post-charge before markProcessed). Moreover, parsed.riskTier ?? 'review' does not validate that riskTier is one of 'low' | 'review' | 'blocked'; empty, malformed, or differently cased outputs (e.g., 'BLOCKED') bypass `audit.riskTier !== 'blocked'` at line 152 and fail open.",
+      "minimalFix": "Supply an explicit JSON response_schema in generation_config, wrap JSON.parse in try/catch, validate parsed.riskTier against new Set(['low', 'review', 'blocked']), and fail closed (compliant: false, riskTier: 'blocked') on any parse or schema violation."
+    },
+    {
+      "id": "F-11",
+      "severity": "MEDIUM",
+      "category": "Security",
+      "functionOrSymbol": "handleStripeWebhook",
+      "lineRange": "137-140",
+      "title": "Missing runtime schema validation on parsed webhook JSON payload",
+      "rootCause": "JSON.parse(rawBody) as StripeInvoiceWebhookEvent relies solely on a compile-time TypeScript type assertion without validating required runtime properties (event.id, event.type, event.data, invoiceId, customerId, currency, splits). A malformed payload or unexpected event structure can crash downstream handlers or pass undefined as event.id into idempotencyStore.",
+      "minimalFix": "Parse rawBody inside try/catch and validate the payload against a strict runtime schema (e.g., Zod or explicit guards verifying non-empty strings, allowed currency/type enums, and array structure for splits) before accessing idempotencyStore or ledger."
+    }
+  ]
+}

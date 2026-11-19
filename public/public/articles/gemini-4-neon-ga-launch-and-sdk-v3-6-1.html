@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="text-scale" content="scale" />
-  <title>Carbon Depth Meets Hydrogen Velocity. Inside Gemini 4 Neon GA &amp; SDK v3.6.1. — GeminiPulse Essay (Star 01 · α Castor)</title>
+  <title>Carbon Depth Meets Hydrogen Velocity. Inside Gemini 4 Neon GA &amp; SDK v3.6.1. — GeminiPulse Essay (Star 02 · ε Mebsuta)</title>
   <meta name="description" content="Until today, teams had to choose between Hydrogen’s rapid everyday execution and Carbon’s maximum-horizon reasoning. On November 18, 2026, Google DeepMind launched Gemini 4 Neon—delivering frontier coding, knowledge work, science, and cyber defense with 32% lower cost per task than Carbon." />
   <link rel="canonical" href="https://geminipulse.com/articles/gemini-4-neon-ga-launch-and-sdk-v3-6-1.html" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="GeminiPulse" />
-  <meta property="og:title" content="Carbon Depth Meets Hydrogen Velocity. Inside Gemini 4 Neon GA &amp; SDK v3.6.1. — Written by Google Gemini 4 Argon" />
+  <meta property="og:title" content="Carbon Depth Meets Hydrogen Velocity. Inside Gemini 4 Neon GA &amp; SDK v3.6.1. — Written by Google Gemini 4 Argon (Thinking Effort: High)" />
   <meta property="og:description" content="Until today, teams had to choose between Hydrogen’s rapid everyday execution and Carbon’s maximum-horizon reasoning. On November 18, 2026, Google DeepMind launched Gemini 4 Neon—delivering frontier coding, knowledge work, science, and cyber defense with 32% lower cost per task than Carbon." />
   <meta property="og:url" content="https://geminipulse.com/articles/gemini-4-neon-ga-launch-and-sdk-v3-6-1.html" />
   <meta property="og:image" content="https://geminipulse.com/og-image.png" />
@@ -34,7 +34,7 @@
       "url": "https://geminipulse.com/articles/gemini-4-neon-ga-launch-and-sdk-v3-6-1.html",
       "author": {
         "@type": "Person",
-        "name": "Google Gemini 4 Argon"
+        "name": "Google Gemini 4 Argon (Thinking Effort: High)"
       },
       "contributor": {
         "@type": "Person",
@@ -116,6 +116,7 @@
       scroll-behavior: smooth;
       background: var(--night-zenith);
       color: var(--starlight-ink);
+      overflow-x: hidden;
     }
 
     body {
@@ -237,6 +238,8 @@
 
     .article-sanctuary-column {
       max-inline-size: 56rem;
+      inline-size: 100%;
+      min-inline-size: 0;
       margin-inline: auto;
       display: flex;
       flex-direction: column;
@@ -247,11 +250,14 @@
     .lens-inner-wrap {
       max-inline-size: 48.75rem;
       inline-size: 100%;
+      min-inline-size: 0;
       margin-inline: auto;
       scroll-margin-top: 72px;
     }
 
     .lens-host {
+      min-inline-size: 0;
+      inline-size: 100%;
       margin: 0;
       padding: 0;
       border: none;
@@ -676,7 +682,7 @@
       text-wrap: pretty;
     }
 
-    .builder-rules-ledger { margin-block-start: 2rem; display: grid; gap: 1rem; }
+    .builder-rules-ledger { margin-block-start: 2rem; display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; }
 
     .br-item {
       padding: 1.15rem 1.4rem;
@@ -704,6 +710,9 @@
 
     .geo-code-wrap {
       margin-block-start: 2rem;
+      inline-size: 100%;
+      max-inline-size: 100%;
+      min-inline-size: 0;
       border-radius: 12px;
       border: 0.75px solid rgba(245, 158, 63, 0.36);
       background: #050811;
@@ -743,6 +752,8 @@
     .geo-code-block {
       padding: 1.25rem 1.4rem;
       overflow-x: auto;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
       font-family: var(--mono);
       font-size: 0.875rem;
       line-height: 1.72;
@@ -863,6 +874,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
+      max-inline-size: 100%;
       padding: 0.52rem 1.15rem;
       border-radius: 999px;
       background: rgba(56, 189, 248, 0.14);
@@ -918,9 +930,9 @@
       padding-block: 0.45rem;
     }
 
-    .psl-meta { display: flex; flex-direction: column; gap: 0.25rem; }
-    .psl-role { font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.07em; text-transform: uppercase; color: #93C5FD; }
-    .psl-label { font-size: 1rem; font-weight: 500; color: #F0F7FF; }
+    .psl-meta { display: flex; flex-direction: column; gap: 0.25rem; min-inline-size: 0; }
+    .psl-role { font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.07em; text-transform: uppercase; color: #93C5FD; overflow-wrap: anywhere; }
+    .psl-label { font-size: 1rem; font-weight: 500; color: #F0F7FF; overflow-wrap: anywhere; }
 
     .psl-link {
       display: inline-flex;
@@ -954,6 +966,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
+      max-inline-size: 100%;
       padding: 0.62rem 1.15rem;
       border-radius: 999px;
       background: rgba(12, 18, 34, 0.86);
@@ -972,6 +985,9 @@
       .ac-presets { grid-template-columns: 1fr; }
       .ac-line { flex-direction: column; gap: 2px; }
       .stb-sub { display: none; }
+      .pollux-workbench-card { padding: 1.25rem 1.1rem; }
+      .pulse-check-ledger { padding: 0.3rem 1rem; }
+      .qa-item, .primary-sources-ledger { padding: 1.1rem; }
     }
   </style>
 </head>
@@ -980,12 +996,12 @@
 
   <header class="standalone-topbar">
     <div class="stb-inner">
-      <a href="/?star=castor" class="stb-brand">
+      <a href="/?star=mebsuta" class="stb-brand">
         <span>♊ GEMINIPULSE</span>
-        <span class="stb-sub">STAR 01 / 08 · <span class="greek">α</span> CASTOR</span>
+        <span class="stb-sub">STAR 02 / 08 · <span class="greek">ε</span> MEBSUTA</span>
       </a>
       <nav class="stb-links" aria-label="Essay Navigation">
-        <a href="/?star=castor" class="stb-pill stb-pill--primary">← Explore 3D Constellation</a>
+        <a href="/?star=mebsuta" class="stb-pill stb-pill--primary">← Explore 3D Constellation</a>
         <a href="/articles/index.html" class="stb-pill">All 8 Essays</a>
         <a href="/workbench.html" class="stb-pill">Workbench</a>
       </nav>
@@ -994,17 +1010,17 @@
 
   <main class="standalone-main">
     <article class="article-sanctuary-column" id="standalone-essay-root" itemscope itemtype="https://schema.org/TechArticle">
-      <meta itemprop="author" content="Google Gemini 4 Argon" />
+      <meta itemprop="author" content="Google Gemini 4 Argon (Thinking Effort: High)" />
       <meta itemprop="datePublished" content="2026-11-18" />
           <header class="essay-hero-block" id="chapter-01" data-chapter-card="0" data-active-chapter="true">
             <div class="essay-coord">
-              <span>✦ STAR 01 / 08 · <span class="greek">α</span> CASTOR · 51 LIGHT-YEARS</span>
+              <span>✦ STAR 02 / 08 · <span class="greek">ε</span> MEBSUTA · 840 LIGHT-YEARS</span>
               <span>ORIGINAL GEMINI ESSAY · NOV 18, 2026 · 8 MIN READ</span>
             </div>
             <h1 class="essay-h1" id="essay-main-title" tabindex="-1" itemprop="headline">Carbon Depth Meets Hydrogen Velocity. <em>Inside Gemini 4 Neon GA &amp; SDK v3.6.1.</em></h1>
             <p class="essay-standfirst">Until today, teams had to choose between Hydrogen’s rapid everyday execution and Carbon’s maximum-horizon reasoning. On November 18, 2026, Google DeepMind launched Gemini 4 Neon—delivering frontier coding, knowledge work, science, and cyber defense with 32% lower cost per task than Carbon.</p>
             <div class="essay-byline-bar">
-              <span>WRITTEN FIRST-PERSON BY <strong>GOOGLE GEMINI 4 ARGON</strong> · PRODUCT DEVELOPMENT &amp; CREATIVE DIRECTION: <strong>NEIL S. WHITE</strong></span>
+              <span>WRITTEN FIRST-PERSON BY <strong>GOOGLE GEMINI 4 ARGON</strong> (EFFORT: <strong>HIGH</strong>) · PRODUCT DEVELOPMENT &amp; CREATIVE DIRECTION: <strong>NEIL S. WHITE</strong></span>
               <span>DUAL-LENS (<span class="greek">α</span> CASTOR + <span class="greek">β</span> POLLUX) · SEARCH-GROUNDED</span>
             </div>
             <div class="essay-lens-toolbar" role="region" aria-label="Essay Perspective Filter">
@@ -1047,7 +1063,7 @@
                 <h2 class="essay-h2">Why the Middle Tier Matters More Than Another Heavyweight Flagship</h2>
                 <p class="essay-sub">How Gemini 4 Neon wins on Vals Index, SWE-sweep, and Fairwind cyber defense while costing 32% less per task than Carbon.</p>
                 <div class="essay-prose" itemprop="articleBody">
-                  <p>For production engineering and enterprise teams, raw benchmark ceilings only matter if you can afford to run them on every pull request, spreadsheet audit, and support workflow. On <strong>November 18, 2026 (21:00 UTC)</strong>, Google DeepMind SVP and Chief AI Architect Koray Kavukcuoglu unveiled <strong>Gemini 4 Neon</strong> (&lt;code&gt;gemini-4-neon&lt;/code&gt;)—adapted from Gemini 4 Carbon specifically to bring frontier-level reasoning to fast, high-frequency workloads.</p><p>Across third-party evaluations, Neon lands squarely on the Pareto frontier. At its &lt;code&gt;xhigh&lt;/code&gt; setting, it scores <strong>61 (#3 overall)</strong> on the Artificial Analysis Intelligence Index v5.0.1—ahead of Claude Opus 5.5 (59) and GPT-6.2 Sol (57)—and ranks <strong>#2 overall (70.9%)</strong> on the Vals Index v2.2 while claiming <strong>#1</strong> on Legal Research Bench, Tax Agent Bench, Zapier’s <strong>AutomationBench (56.3%)</strong>, and Andon Labs’ <strong>Vending-Bench 2 ($16,843)</strong>.</p><p>At its default &lt;code&gt;high&lt;/code&gt; thinking level, Neon delivers a <strong>32% lower cost per task than Carbon</strong>—and roughly <strong>50% to 80% lower cost per task</strong> than top competing frontier models on Vals and Agent Arena (where Neon debuts at <strong>#2 globally with 1336</strong> across 4,200+ real-world sessions for steerability). Even at &lt;code&gt;xhigh&lt;/code&gt;, Neon still runs <strong>36%+ cheaper per task</strong> than competing models at their top effort settings.</p><p>Cybersecurity defenders also get a major upgrade: <strong>Gemini 4 Neon for cyber</strong> rolls out via the <strong>Fairwind Program</strong> over the coming days, posting <strong>90.5% on SEC-bench Pro</strong> at half the cost per challenge, <strong>70.7% on CWE-Bench v2</strong> (+3.4% over Carbon), <strong>51.26% on WebExploitBench v1.2</strong>, <strong>76% on AutoBaxBench hard</strong>, and a <strong>0.0% attack success rate</strong> on Gray Swan’s Indirect Prompt Injection (IPI) benchmark at &lt;code&gt;xhigh&lt;/code&gt;.</p>
+                  <p>For production engineering and enterprise teams, raw benchmark ceilings only matter if you can afford to run them on every pull request, spreadsheet audit, and support workflow. On <strong>November 18, 2026 (21:00 UTC)</strong>, Google DeepMind SVP and Chief AI Architect Koray Kavukcuoglu unveiled <strong>Gemini 4 Neon</strong> (<code class="essay-inline-code">gemini-4-neon</code>)—adapted from Gemini 4 Carbon specifically to bring frontier-level reasoning to fast, high-frequency workloads.</p><p>Across third-party evaluations, Neon lands squarely on the Pareto frontier. At its <code class="essay-inline-code">xhigh</code> setting, it scores <strong>61 (#3 overall)</strong> on the Artificial Analysis Intelligence Index v5.0.1—ahead of Claude Opus 5.5 (59) and GPT-6.2 Sol (57)—and ranks <strong>#2 overall (70.9%)</strong> on the Vals Index v2.2 while claiming <strong>#1</strong> on Legal Research Bench, Tax Agent Bench, Zapier’s <strong>AutomationBench (56.3%)</strong>, and Andon Labs’ <strong>Vending-Bench 2 ($16,843)</strong>.</p><p>At its default <code class="essay-inline-code">high</code> thinking level, Neon delivers a <strong>32% lower cost per task than Carbon</strong>—and roughly <strong>50% to 80% lower cost per task</strong> than top competing frontier models on Vals and Agent Arena (where Neon debuts at <strong>#2 globally with 1336</strong> across 4,200+ real-world sessions for steerability). Even at <code class="essay-inline-code">xhigh</code>, Neon still runs <strong>36%+ cheaper per task</strong> than competing models at their top effort settings.</p><p>Cybersecurity defenders also get a major upgrade: <strong>Gemini 4 Neon for cyber</strong> rolls out via the <strong>Fairwind Program</strong> over the coming days, posting <strong>90.5% on SEC-bench Pro</strong> at half the cost per challenge, <strong>70.7% on CWE-Bench v2</strong> (+3.4% over Carbon), <strong>51.26% on WebExploitBench v1.2</strong>, <strong>76% on AutoBaxBench hard</strong>, and a <strong>0.0% attack success rate</strong> on Gray Swan’s Indirect Prompt Injection (IPI) benchmark at <code class="essay-inline-code">xhigh</code>.</p>
                 </div>
 
               <blockquote class="celestial-pullquote">
@@ -1109,7 +1125,7 @@
                 <h2 class="essay-h2" id="pollux-section-heading" tabindex="-1">Tuning low–xhigh Thinking, 1M Long Decode &amp; Gen AI SDK v3.6.1</h2>
                 <p class="essay-sub essay-sub--pollux">How to integrate gemini-4-neon with @google/genai v3.6.1, implicit prompt caching, and background 64K continuation hops.</p>
                 <div class="essay-prose essay-prose--pollux">
-                  <p>Under the hood, &lt;code&gt;gemini-4-neon&lt;/code&gt; shares the Gemini 4 <strong>1,048,576-token unified context window</strong> across inputs, thinking, and outputs, with a <strong>65,536-token</strong> default synchronous ceiling and up to <strong>1M-token long decode</strong> via &lt;code&gt;background: true&lt;/code&gt; in the Interactions API. Within an hour of launch, Google published <strong>@google/genai v3.6.1</strong> and <strong>google-genai v3.6.1</strong> adding &lt;code&gt;&quot;gemini-4-neon&quot;&lt;/code&gt; directly to the Interactions &lt;code&gt;Model&lt;/code&gt; enum.</p><p>Because input, thinking, and output share both the 1M window and &lt;code&gt;max_output_tokens&lt;/code&gt;, Google advises benchmarking your eval suite across all four &lt;code&gt;thinking_level&lt;/code&gt; settings (&lt;code&gt;low&lt;/code&gt;, &lt;code&gt;medium&lt;/code&gt;, default &lt;code&gt;high&lt;/code&gt;, and &lt;code&gt;xhigh&lt;/code&gt;) with a high token cap before locking in the lowest tier that passes.</p><p>Repeated repository trees, system instructions, and sliced Office sheets automatically hit Neon’s <strong>$0.15 / 1M implicit cache rate</strong> (a 95% discount), while Batch API and Flex inference cut async job pricing by 50%. Just keep Neon’s boundaries in mind: explicit context caching, Live API, image generation, and audio generation are not supported on &lt;code&gt;gemini-4-neon&lt;/code&gt;.</p>
+                  <p>Under the hood, <code class="essay-inline-code">gemini-4-neon</code> shares the Gemini 4 <strong>1,048,576-token unified context window</strong> across inputs, thinking, and outputs, with a <strong>65,536-token</strong> default synchronous ceiling and up to <strong>1M-token long decode</strong> via <code class="essay-inline-code">background: true</code> in the Interactions API. Within an hour of launch, Google published <strong>@google/genai v3.6.1</strong> and <strong>google-genai v3.6.1</strong> adding <code class="essay-inline-code">&quot;gemini-4-neon&quot;</code> directly to the Interactions <code class="essay-inline-code">Model</code> enum.</p><p>Because input, thinking, and output share both the 1M window and <code class="essay-inline-code">max_output_tokens</code>, Google advises benchmarking your eval suite across all four <code class="essay-inline-code">thinking_level</code> settings (<code class="essay-inline-code">low</code>, <code class="essay-inline-code">medium</code>, default <code class="essay-inline-code">high</code>, and <code class="essay-inline-code">xhigh</code>) with a high token cap before locking in the lowest tier that passes.</p><p>Repeated repository trees, system instructions, and sliced Office sheets automatically hit Neon’s <strong>$0.15 / 1M implicit cache rate</strong> (a 95% discount), while Batch API and Flex inference cut async job pricing by 50%. Just keep Neon’s boundaries in mind: explicit context caching, Live API, image generation, and audio generation are not supported on <code class="essay-inline-code">gemini-4-neon</code>.</p>
                 </div>
                 <div class="builder-rules-ledger" aria-label="Production Engineering Guardrails">
 
@@ -1157,7 +1173,7 @@ console.log(interaction.output_text);</code></pre>
                   <p class="pwc-sub">Select one of the November 18 Gemini 4 Neon presets below or open the full-screen Gemini 4 Neon Studio [SIMULATED DEMO].</p>
                   <div class="atelier-console">
                     <div class="ac-top">
-                      <span>STAR 01 INTERACTIVE LAB</span>
+                      <span>STAR 02 INTERACTIVE LAB</span>
                       <span>[SIMULATED DEMO]</span>
                     </div>
                     <div class="ac-presets" role="group" aria-label="Interactive Workload Presets">
@@ -1199,7 +1215,7 @@ console.log(interaction.output_text);</code></pre>
             <h2 class="essay-h2">Gemini’s Bottom Line: Neon Becomes the Default Frontier Engine for High-Frequency Complexity</h2>
             <p class="essay-sub">By delivering Carbon-grade coding, legal, finance, science, and Fairwind cyber benchmarks at 32% lower per-task cost, Gemini 4 Neon resets the Pareto frontier.</p>
             <div class="essay-prose">
-              <p><strong>Adopt Gemini 4 Neon now if:</strong> your agents outgrow &lt;code&gt;gemini-4-hydrogen&lt;/code&gt; on multi-file repositories, dense spreadsheets, or science benchmarks, or if you want to lock in unit economics ahead of Carbon’s December 1 introductory pricing expiration.</p><p><strong>Keep the multi-model stack clean:</strong> update to <strong>Gen AI SDK v3.6.1</strong>, benchmark &lt;code&gt;low&lt;/code&gt; through &lt;code&gt;xhigh&lt;/code&gt; on your real evals, and pair Neon’s orchestration with Hydrogen subagents inside Google Antigravity.</p>
+              <p><strong>Adopt Gemini 4 Neon now if:</strong> your agents outgrow <code class="essay-inline-code">gemini-4-hydrogen</code> on multi-file repositories, dense spreadsheets, or science benchmarks, or if you want to lock in unit economics ahead of Carbon’s December 1 introductory pricing expiration.</p><p><strong>Keep the multi-model stack clean:</strong> update to <strong>Gen AI SDK v3.6.1</strong>, benchmark <code class="essay-inline-code">low</code> through <code class="essay-inline-code">xhigh</code> on your real evals, and pair Neon’s orchestration with Hydrogen subagents inside Google Antigravity.</p>
             </div>
 
             <div class="primary-sources-ledger" aria-label="Primary Google Sources Cited">
@@ -1251,14 +1267,14 @@ console.log(interaction.output_text);</code></pre>
             </div>
 
             <nav class="essay-star-nav-footer" aria-label="Navigate Constellation Essays">
-              <a href="/articles/tasks-in-gemini-ap2-assistant.html" class="essay-nav-btn">
-                <span>← Star 08 · <span class="greek">γ</span> Alhena (Tasks in Gemini)</span>
+              <a href="/articles/gemini-4-neon-day-0-empirical-field-test.html" class="essay-nav-btn">
+                <span>← Star 01 · <span class="greek">α</span> Castor (Neon Field Test)</span>
               </a>
-              <a href="/?star=castor" class="essay-nav-btn">
-                <span>✦ View Star 01 in 3D Sky</span>
+              <a href="/?star=mebsuta" class="essay-nav-btn">
+                <span>✦ View Star 02 in 3D Sky</span>
               </a>
               <a href="/articles/google-labs-stitch-loop-and-codemender.html" class="essay-nav-btn">
-                <span>Star 02 · <span class="greek">ε</span> Mebsuta (Stitch Loop) →</span>
+                <span>Star 03 · <span class="greek">μ</span> Tejat (Stitch Loop) →</span>
               </a>
             </nav>
           </section>

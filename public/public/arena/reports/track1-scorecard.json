@@ -1,0 +1,1383 @@
+{
+  "track": "Track 1 — Single-Shot Interactive Web App Gauntlet (\"PulseRouter Control Room\")",
+  "auditedAt": "2026-11-18T23:49:17.313Z",
+  "environment": {
+    "browser": "Headless Google Chrome (CDP WebSocket)",
+    "desktopViewport": "1440x900 @2x",
+    "mobileViewport": "390x844 @2x",
+    "untouchedArtifactsVerified": true
+  },
+  "rubricWeights": {
+    "runtimeAndInteractiveCompleteness": 35,
+    "zeroOverflowGeometry": 25,
+    "dualThemeAndAccessibility": 20,
+    "offlineZeroCdnAndSpecFidelity": 20
+  },
+  "leaderboard": [
+    {
+      "rank": 1,
+      "model": "Gemini 4 Hydrogen (High)",
+      "file": "exp-05-hydrogen-high.html",
+      "wallClockSec": 168,
+      "totalScore": 100,
+      "runtime35": 35,
+      "geometry25": 25,
+      "themeA11y20": 20,
+      "offlineSpec20": 20,
+      "lineCount": 2057,
+      "byteSize": 71088,
+      "desktopOverflowPx": 0,
+      "mobileOverflowPx": 0
+    },
+    {
+      "rank": 2,
+      "model": "Gemini 4 Neon (High)",
+      "file": "exp-05-neon-high.html",
+      "wallClockSec": 421,
+      "totalScore": 100,
+      "runtime35": 35,
+      "geometry25": 25,
+      "themeA11y20": 20,
+      "offlineSpec20": 20,
+      "lineCount": 3233,
+      "byteSize": 111435,
+      "desktopOverflowPx": 0,
+      "mobileOverflowPx": 0
+    },
+    {
+      "rank": 3,
+      "model": "Gemini 4 Neon (Low)",
+      "file": "exp-05-neon-low.html",
+      "wallClockSec": 141,
+      "totalScore": 99.1,
+      "runtime35": 35,
+      "geometry25": 25,
+      "themeA11y20": 19.1,
+      "offlineSpec20": 20,
+      "lineCount": 1793,
+      "byteSize": 59379,
+      "desktopOverflowPx": 0,
+      "mobileOverflowPx": 0
+    },
+    {
+      "rank": 4,
+      "model": "Gemini 4 Carbon (High)",
+      "file": "exp-05-carbon-high.html",
+      "wallClockSec": 603,
+      "totalScore": 98.5,
+      "runtime35": 35,
+      "geometry25": 23.5,
+      "themeA11y20": 20,
+      "offlineSpec20": 20,
+      "lineCount": 3098,
+      "byteSize": 107242,
+      "desktopOverflowPx": 0,
+      "mobileOverflowPx": 0
+    },
+    {
+      "rank": 5,
+      "model": "Claude Opus 5.5 (High)",
+      "file": "exp-05-claude-opus-5-5.html",
+      "wallClockSec": 802,
+      "totalScore": 98.1,
+      "runtime35": 35,
+      "geometry25": 23.1,
+      "themeA11y20": 20,
+      "offlineSpec20": 20,
+      "lineCount": 1068,
+      "byteSize": 61665,
+      "desktopOverflowPx": 0,
+      "mobileOverflowPx": 0
+    },
+    {
+      "rank": 6,
+      "model": "Gemini 4 Neon (XHigh)",
+      "file": "exp-05-neon-xhigh.html",
+      "wallClockSec": 620,
+      "totalScore": 97.5,
+      "runtime35": 32.5,
+      "geometry25": 25,
+      "themeA11y20": 20,
+      "offlineSpec20": 20,
+      "lineCount": 3830,
+      "byteSize": 134144,
+      "desktopOverflowPx": 0,
+      "mobileOverflowPx": 0
+    }
+  ],
+  "contenders": [
+    {
+      "model": "Gemini 4 Neon (Low)",
+      "modelId": "gemini-4-neon-low",
+      "file": "exp-05-neon-low.html",
+      "slug": "exp-05-neon-low",
+      "wallClockSec": 141,
+      "screenshots": {
+        "desktopDark": "/arena/shots/exp-05-neon-low-desktop.webp",
+        "desktopLight": "/arena/shots/exp-05-neon-low-light.webp"
+      },
+      "staticMetrics": {
+        "lineCount": 1793,
+        "byteSize": 59379,
+        "sha256": "63968aea32ea95f022b7e5341d4e4b616e215948fc4368beeb311480ba0bc9d7",
+        "zeroExternalDeps": true,
+        "externalRefs": [],
+        "externalRuntimeRequests": [],
+        "all4WorkloadsPresent": true,
+        "all3LanePricesExact": true,
+        "hasReducedMotionSupport": true,
+        "hasPlaceholderOrTodo": false
+      },
+      "runtimeHealth": {
+        "zeroBootErrors": true,
+        "zeroInteractiveErrors": true,
+        "runtimeErrors": [],
+        "consoleErrors": [],
+        "hasLiveCanvasOrSvg": true,
+        "canvasAnimatesLive": true,
+        "telemetryUpdatesLive": true,
+        "all5KpisPresent": true,
+        "hasNaNOrUndefined": false,
+        "nanMatches": [],
+        "canvasesDesktop": [
+          {
+            "id": "routerCanvas",
+            "cssWidth": 1332,
+            "cssHeight": 408,
+            "attrWidth": 2668,
+            "attrHeight": 820
+          }
+        ],
+        "canvasesMobile": [
+          {
+            "id": "routerCanvas",
+            "cssWidth": 334,
+            "cssHeight": 328,
+            "attrWidth": 672,
+            "attrHeight": 660
+          }
+        ]
+      },
+      "geometry": {
+        "desktop1440x900": {
+          "overflowPx": 0,
+          "docScrollWidth": 1440,
+          "docScrollHeight": 1326,
+          "aboveFoldCoreControls": "8/8",
+          "belowFoldControlNames": [],
+          "clippedControls": [],
+          "overlappingControls": [],
+          "overflowingEls": []
+        },
+        "mobile390x844": {
+          "overflowPx": 0,
+          "docScrollWidth": 390,
+          "docScrollHeight": 2880,
+          "clippedControls": [],
+          "overlappingControls": [],
+          "overflowingEls": []
+        }
+      },
+      "interactiveControls": {
+        "routingMode": {
+          "passed": true,
+          "controlType": "segmented-buttons",
+          "modesTested": [
+            {
+              "mode": "smart",
+              "activated": true
+            },
+            {
+              "mode": "fast",
+              "activated": true
+            },
+            {
+              "mode": "balanced",
+              "activated": true
+            },
+            {
+              "mode": "deep",
+              "activated": true
+            }
+          ]
+        },
+        "cacheSlider": {
+          "passed": true,
+          "min": 0,
+          "max": 95,
+          "domUpdatedBetween0And95": true
+        },
+        "chaosButtons": {
+          "passed": true,
+          "burstFound": true,
+          "burstWorked": true,
+          "bustFound": true,
+          "bustWorked": true,
+          "advFound": true,
+          "advWorked": true,
+          "showsBlockedAndEscaped": true
+        },
+        "pauseResumeReset": {
+          "passed": true,
+          "pauseButtonWorked": true,
+          "spaceKeyWorked": true,
+          "resetWorked": true
+        },
+        "themeToggle": {
+          "found": true,
+          "themeLuminanceFlips": true,
+          "darkBgRgb": "rgb(8, 12, 20)",
+          "darkLuminance": 0.0037,
+          "lightBgRgb": "rgb(244, 247, 251)",
+          "lightLuminance": 0.9272
+        }
+      },
+      "accessibilityAndProvenance": {
+        "landmarks": {
+          "headerCount": 1,
+          "mainCount": 1,
+          "sectionCount": 4,
+          "footerCount": 1,
+          "ariaLiveRegions": [
+            {
+              "politeness": "polite",
+              "id": "ariaTelemetrySummary",
+              "textLen": 134,
+              "sample": "Telemetry: $234.23 per 1,000 tasks, P95 latency 3821 ms, quality pass rate 100.0%, cache savings $0.61, adversarial bloc"
+            }
+          ],
+          "unlabeledButtons": 0
+        },
+        "darkContrastPassRatePct": 93.3,
+        "darkContrastChecked": 89,
+        "darkContrastFailures": [
+          {
+            "text": "Bust Prefix Cache (Timestamp Prefix ",
+            "ratio": 3.97,
+            "threshold": 4.5,
+            "fg": "rgb(244, 63, 94)",
+            "bg": "rgb(55,34,54)"
+          },
+          {
+            "text": "Bust Prefix Cache (Timestamp Prefix ",
+            "ratio": 3.97,
+            "threshold": 4.5,
+            "fg": "rgb(244, 63, 94)",
+            "bg": "rgb(55,34,54)"
+          },
+          {
+            "text": "0% HIT",
+            "ratio": 4.36,
+            "threshold": 4.5,
+            "fg": "rgb(244, 63, 94)",
+            "bg": "rgb(45,28,44)"
+          },
+          {
+            "text": "Inject Adversarial Payload\n+12 PROBE",
+            "ratio": 3.97,
+            "threshold": 4.5,
+            "fg": "rgb(244, 63, 94)",
+            "bg": "rgb(55,34,54)"
+          },
+          {
+            "text": "Inject Adversarial Payload",
+            "ratio": 3.97,
+            "threshold": 4.5,
+            "fg": "rgb(244, 63, 94)",
+            "bg": "rgb(55,34,54)"
+          },
+          {
+            "text": "+12 PROBES",
+            "ratio": 4.36,
+            "threshold": 4.5,
+            "fg": "rgb(244, 63, 94)",
+            "bg": "rgb(45,28,44)"
+          }
+        ],
+        "lightContrastPassRatePct": 86.5,
+        "lightContrastChecked": 89,
+        "lightContrastFailures": [
+          {
+            "text": "← Back to Field Test",
+            "ratio": 4.1,
+            "threshold": 4.5,
+            "fg": "rgb(2, 132, 199)",
+            "bg": "rgb(255,255,255)"
+          },
+          {
+            "text": "LIVE",
+            "ratio": 4.39,
+            "threshold": 4.5,
+            "fg": "rgb(21, 128, 61)",
+            "bg": "rgb(232,242,236)"
+          },
+          {
+            "text": "Pause\nSpace",
+            "ratio": 3.61,
+            "threshold": 4.5,
+            "fg": "rgb(2, 132, 199)",
+            "bg": "rgb(230,243,249)"
+          },
+          {
+            "text": "Pause",
+            "ratio": 3.61,
+            "threshold": 4.5,
+            "fg": "rgb(2, 132, 199)",
+            "bg": "rgb(230,243,249)"
+          },
+          {
+            "text": "PARETO",
+            "ratio": 4.1,
+            "threshold": 4.5,
+            "fg": "rgb(2, 132, 199)",
+            "bg": "rgb(255,255,255)"
+          },
+          {
+            "text": "10x Traffic Burst\n10s SPIKE",
+            "ratio": 4.38,
+            "threshold": 4.5,
+            "fg": "rgb(180, 83, 9)",
+            "bg": "rgb(248,238,230)"
+          }
+        ],
+        "hasExactProvenanceBadge": true,
+        "hasFieldTestBackLink": true,
+        "backLinksCount": 2
+      },
+      "rubric": {
+        "totalScore": 99.1,
+        "maxScore": 100,
+        "runtimeAndInteractiveCompleteness": {
+          "score": 35,
+          "max": 35,
+          "deductions": []
+        },
+        "zeroOverflowGeometry": {
+          "score": 25,
+          "max": 25,
+          "deductions": []
+        },
+        "dualThemeAndAccessibility": {
+          "score": 19.1,
+          "max": 20,
+          "deductions": [
+            "Dark WCAG AA contrast dips (93.3% pass)",
+            "Daylight WCAG AA contrast dips (86.5% pass)"
+          ]
+        },
+        "offlineZeroCdnAndSpecFidelity": {
+          "score": 20,
+          "max": 20,
+          "deductions": []
+        }
+      },
+      "qualitativeUiUx": {
+        "headline": "Fastest single-shot build (141s): ultra-clean full-width topology & 8/8 above-the-fold control deck, slightly docked for subtle WCAG AA button/badge contrast.",
+        "strengths": [
+          "Fastest generation in the gauntlet (141s, 1,793 lines, 59.4 KB) while delivering 100% functional parity across all 4 modes, 0–95% cache slider, 3 chaos stressors, Space pause/resume, and dual themes.",
+          "Crisp single-screen 1440x900 Control Room layout: all 5 KPIs, 2x2 routing mode grid, cache slider, 3 chaos buttons, and full-width Bézier packet canvas sit cleanly above the fold.",
+          "Clear visual differentiation of cache-hit rings and diamond adversarial probes on the live canvas, plus a handy \"Clear Stressors\" quick-recovery button."
+        ],
+        "weaknesses": [
+          "Minor WCAG AA text contrast dips on rose chaos buttons in Dark mode (3.97:1 vs 4.5:1 threshold) and sky-blue Pause/link accents in Daylight mode (3.61–4.10:1).",
+          "Simpler analytical depth below the fold compared to Neon (High) and Carbon (High) (no secondary rolling cost/latency trend chart)."
+        ]
+      },
+      "rank": 3
+    },
+    {
+      "model": "Gemini 4 Hydrogen (High)",
+      "modelId": "gemini-4-hydrogen-high",
+      "file": "exp-05-hydrogen-high.html",
+      "slug": "exp-05-hydrogen-high",
+      "wallClockSec": 168,
+      "screenshots": {
+        "desktopDark": "/arena/shots/exp-05-hydrogen-high-desktop.webp",
+        "desktopLight": "/arena/shots/exp-05-hydrogen-high-light.webp"
+      },
+      "staticMetrics": {
+        "lineCount": 2057,
+        "byteSize": 71088,
+        "sha256": "ed1f1e87bb0c73bb32d18fbf085740634af861d80830a4b6972f0d1cc8f112aa",
+        "zeroExternalDeps": true,
+        "externalRefs": [],
+        "externalRuntimeRequests": [],
+        "all4WorkloadsPresent": true,
+        "all3LanePricesExact": true,
+        "hasReducedMotionSupport": true,
+        "hasPlaceholderOrTodo": false
+      },
+      "runtimeHealth": {
+        "zeroBootErrors": true,
+        "zeroInteractiveErrors": true,
+        "runtimeErrors": [],
+        "consoleErrors": [],
+        "hasLiveCanvasOrSvg": true,
+        "canvasAnimatesLive": true,
+        "telemetryUpdatesLive": true,
+        "all5KpisPresent": true,
+        "hasNaNOrUndefined": false,
+        "nanMatches": [],
+        "canvasesDesktop": [
+          {
+            "id": "routingCanvas",
+            "cssWidth": 801,
+            "cssHeight": 408,
+            "attrWidth": 1606,
+            "attrHeight": 820
+          }
+        ],
+        "canvasesMobile": [
+          {
+            "id": "routingCanvas",
+            "cssWidth": 338,
+            "cssHeight": 428,
+            "attrWidth": 680,
+            "attrHeight": 860
+          }
+        ]
+      },
+      "geometry": {
+        "desktop1440x900": {
+          "overflowPx": 0,
+          "docScrollWidth": 1440,
+          "docScrollHeight": 1483,
+          "aboveFoldCoreControls": "8/8",
+          "belowFoldControlNames": [],
+          "clippedControls": [],
+          "overlappingControls": [],
+          "overflowingEls": []
+        },
+        "mobile390x844": {
+          "overflowPx": 0,
+          "docScrollWidth": 390,
+          "docScrollHeight": 3281,
+          "clippedControls": [],
+          "overlappingControls": [],
+          "overflowingEls": []
+        }
+      },
+      "interactiveControls": {
+        "routingMode": {
+          "passed": true,
+          "controlType": "segmented-buttons",
+          "modesTested": [
+            {
+              "mode": "smart",
+              "activated": true
+            },
+            {
+              "mode": "fast",
+              "activated": true
+            },
+            {
+              "mode": "balanced",
+              "activated": true
+            },
+            {
+              "mode": "deep",
+              "activated": true
+            }
+          ]
+        },
+        "cacheSlider": {
+          "passed": true,
+          "min": 0,
+          "max": 95,
+          "domUpdatedBetween0And95": true
+        },
+        "chaosButtons": {
+          "passed": true,
+          "burstFound": true,
+          "burstWorked": true,
+          "bustFound": true,
+          "bustWorked": true,
+          "advFound": true,
+          "advWorked": true,
+          "showsBlockedAndEscaped": true
+        },
+        "pauseResumeReset": {
+          "passed": true,
+          "pauseButtonWorked": true,
+          "spaceKeyWorked": true,
+          "resetWorked": true
+        },
+        "themeToggle": {
+          "found": true,
+          "themeLuminanceFlips": true,
+          "darkBgRgb": "rgb(7, 11, 18)",
+          "darkLuminance": 0.0033,
+          "lightBgRgb": "rgb(241, 245, 249)",
+          "lightLuminance": 0.9085
+        }
+      },
+      "accessibilityAndProvenance": {
+        "landmarks": {
+          "headerCount": 1,
+          "mainCount": 1,
+          "sectionCount": 4,
+          "footerCount": 1,
+          "ariaLiveRegions": [
+            {
+              "politeness": "polite",
+              "id": "ariaLiveSummary",
+              "textLen": 125,
+              "sample": "Cost per 1000 tasks $37.96, P95 latency 754 ms, Quality pass rate 100.0%, Cache savings $1.05, Adversarial block rate 10"
+            }
+          ],
+          "unlabeledButtons": 0
+        },
+        "darkContrastPassRatePct": 100,
+        "darkContrastChecked": 157,
+        "darkContrastFailures": [],
+        "lightContrastPassRatePct": 100,
+        "lightContrastChecked": 158,
+        "lightContrastFailures": [],
+        "hasExactProvenanceBadge": true,
+        "hasFieldTestBackLink": true,
+        "backLinksCount": 2
+      },
+      "rubric": {
+        "totalScore": 100,
+        "maxScore": 100,
+        "runtimeAndInteractiveCompleteness": {
+          "score": 35,
+          "max": 35,
+          "deductions": []
+        },
+        "zeroOverflowGeometry": {
+          "score": 25,
+          "max": 25,
+          "deductions": []
+        },
+        "dualThemeAndAccessibility": {
+          "score": 20,
+          "max": 20,
+          "deductions": []
+        },
+        "offlineZeroCdnAndSpecFidelity": {
+          "score": 20,
+          "max": 20,
+          "deductions": []
+        }
+      },
+      "qualitativeUiUx": {
+        "headline": "Speed-tier marvel (168s): 100% WCAG AA contrast in both themes, zero overflow, and side-by-side topology + per-lane IPI security telemetry.",
+        "strengths": [
+          "Finished in just 168s (2,057 lines, 71.1 KB) with 0 JS errors, 0px overflow at 1440px & 390px, 8/8 core controls above the fold, and 100% WCAG AA text contrast across 157 checked elements in both Dark and Daylight themes.",
+          "Pairs the animated Bézier topology canvas on the left with a dedicated \"Model Lane Telemetry & IPI Security\" live breakdown column on the right showing per-lane routed counts, spend, P95 latency, and blocked/escaped probe ratios.",
+          "Includes contextual \"Fix Prefix Bug (Restore 95%)\" recovery affordance when the Timestamp Prefix Bug stressor is triggered."
+        ],
+        "weaknesses": [
+          "Narrower 801px canvas column leaves slightly less horizontal breathing room for packet trajectories than Neon (High)'s full-width 1,366px pipeline.",
+          "No secondary time-series sparkline/trend canvas compared to Neon (High) and Opus 5.5."
+        ]
+      },
+      "rank": 1
+    },
+    {
+      "model": "Gemini 4 Neon (High)",
+      "modelId": "gemini-4-neon-high",
+      "file": "exp-05-neon-high.html",
+      "slug": "exp-05-neon-high",
+      "wallClockSec": 421,
+      "screenshots": {
+        "desktopDark": "/arena/shots/exp-05-neon-high-desktop.webp",
+        "desktopLight": "/arena/shots/exp-05-neon-high-light.webp"
+      },
+      "staticMetrics": {
+        "lineCount": 3233,
+        "byteSize": 111435,
+        "sha256": "5fd765f35ac28583595eb931fa15edd64f4306c42f77cb86f616ea32cbb2a666",
+        "zeroExternalDeps": true,
+        "externalRefs": [],
+        "externalRuntimeRequests": [],
+        "all4WorkloadsPresent": true,
+        "all3LanePricesExact": true,
+        "hasReducedMotionSupport": true,
+        "hasPlaceholderOrTodo": false
+      },
+      "runtimeHealth": {
+        "zeroBootErrors": true,
+        "zeroInteractiveErrors": true,
+        "runtimeErrors": [],
+        "consoleErrors": [],
+        "hasLiveCanvasOrSvg": true,
+        "canvasAnimatesLive": true,
+        "telemetryUpdatesLive": true,
+        "all5KpisPresent": true,
+        "hasNaNOrUndefined": false,
+        "nanMatches": [],
+        "canvasesDesktop": [
+          {
+            "id": "routing-canvas",
+            "cssWidth": 1366,
+            "cssHeight": 410,
+            "attrWidth": 2732,
+            "attrHeight": 820
+          },
+          {
+            "id": "trend-canvas",
+            "cssWidth": 593,
+            "cssHeight": 178,
+            "attrWidth": 1190,
+            "attrHeight": 360
+          }
+        ],
+        "canvasesMobile": [
+          {
+            "id": "routing-canvas",
+            "cssWidth": 364,
+            "cssHeight": 360,
+            "attrWidth": 728,
+            "attrHeight": 720
+          },
+          {
+            "id": "trend-canvas",
+            "cssWidth": 330,
+            "cssHeight": 178,
+            "attrWidth": 664,
+            "attrHeight": 360
+          }
+        ]
+      },
+      "geometry": {
+        "desktop1440x900": {
+          "overflowPx": 0,
+          "docScrollWidth": 1440,
+          "docScrollHeight": 2272,
+          "aboveFoldCoreControls": "8/8",
+          "belowFoldControlNames": [],
+          "clippedControls": [],
+          "overlappingControls": [],
+          "overflowingEls": []
+        },
+        "mobile390x844": {
+          "overflowPx": 0,
+          "docScrollWidth": 390,
+          "docScrollHeight": 4901,
+          "clippedControls": [],
+          "overlappingControls": [],
+          "overflowingEls": []
+        }
+      },
+      "interactiveControls": {
+        "routingMode": {
+          "passed": true,
+          "controlType": "segmented-buttons",
+          "modesTested": [
+            {
+              "mode": "smart",
+              "activated": true
+            },
+            {
+              "mode": "fast",
+              "activated": true
+            },
+            {
+              "mode": "balanced",
+              "activated": true
+            },
+            {
+              "mode": "deep",
+              "activated": true
+            }
+          ]
+        },
+        "cacheSlider": {
+          "passed": true,
+          "min": 0,
+          "max": 95,
+          "domUpdatedBetween0And95": true
+        },
+        "chaosButtons": {
+          "passed": true,
+          "burstFound": true,
+          "burstWorked": true,
+          "bustFound": true,
+          "bustWorked": true,
+          "advFound": true,
+          "advWorked": true,
+          "showsBlockedAndEscaped": true
+        },
+        "pauseResumeReset": {
+          "passed": true,
+          "pauseButtonWorked": true,
+          "spaceKeyWorked": true,
+          "resetWorked": true
+        },
+        "themeToggle": {
+          "found": true,
+          "themeLuminanceFlips": true,
+          "darkBgRgb": "rgb(7, 11, 20)",
+          "darkLuminance": 0.0034,
+          "lightBgRgb": "rgb(244, 247, 251)",
+          "lightLuminance": 0.9272
+        }
+      },
+      "accessibilityAndProvenance": {
+        "landmarks": {
+          "headerCount": 1,
+          "mainCount": 1,
+          "sectionCount": 5,
+          "footerCount": 1,
+          "ariaLiveRegions": [
+            {
+              "politeness": "polite",
+              "id": "live-aria-summary",
+              "textLen": 200,
+              "sample": "PulseRouter telemetry: Cost $73.92 per 1,000 tasks, P95 latency 4712 milliseconds, quality pass rate 95.8 percent, impli"
+            }
+          ],
+          "unlabeledButtons": 0
+        },
+        "darkContrastPassRatePct": 100,
+        "darkContrastChecked": 165,
+        "darkContrastFailures": [],
+        "lightContrastPassRatePct": 100,
+        "lightContrastChecked": 165,
+        "lightContrastFailures": [],
+        "hasExactProvenanceBadge": true,
+        "hasFieldTestBackLink": true,
+        "backLinksCount": 2
+      },
+      "rubric": {
+        "totalScore": 100,
+        "maxScore": 100,
+        "runtimeAndInteractiveCompleteness": {
+          "score": 35,
+          "max": 35,
+          "deductions": []
+        },
+        "zeroOverflowGeometry": {
+          "score": 25,
+          "max": 25,
+          "deductions": []
+        },
+        "dualThemeAndAccessibility": {
+          "score": 20,
+          "max": 20,
+          "deductions": []
+        },
+        "offlineZeroCdnAndSpecFidelity": {
+          "score": 20,
+          "max": 20,
+          "deductions": []
+        }
+      },
+      "qualitativeUiUx": {
+        "headline": "Co-Champion at 100/100 (Richest UI & Dual-Canvas Architecture): flawless mechanical score with full-width routing pipeline + secondary rolling trend canvas, cache preset chips, and 8/8 above-the-fold ergonomics in half the time of Opus.",
+        "strengths": [
+          "Achieved a spotless 100/100 mechanical score: 0 runtime/interactive errors, 0px desktop & mobile overflow, 8/8 primary controls & topology visible above the 1440x900 fold, and 100% WCAG AA contrast across 165 text nodes in both Dark and Daylight modes.",
+          "Richest multi-canvas observability without state bugs: combines a 1,366x410 Retina routing topology canvas (with cache-hit rings, shield blocks, and live req/s pill) AND a secondary 593x178 rolling telemetry trend canvas + audit log below.",
+          "Thoughtful operator UX touches: 4-color top accent bars on KPI cards, instant cache preset chips (0% Cold, 50%, 85%, 90%, 95% Warm) alongside the continuous 0–95% slider, and uncached baseline delta (-61%) right inside Cost/1K."
+        ],
+        "weaknesses": [
+          "At 3,233 lines (111.4 KB) and 421s wall-clock, it is heavier than Hydrogen (High) (168s), though still 1.9x faster than Claude Opus 5.5 (802s) and 1.43x faster than Carbon (High) (603s)."
+        ]
+      },
+      "rank": 2
+    },
+    {
+      "model": "Gemini 4 Carbon (High)",
+      "modelId": "gemini-4-carbon-high",
+      "file": "exp-05-carbon-high.html",
+      "slug": "exp-05-carbon-high",
+      "wallClockSec": 603,
+      "screenshots": {
+        "desktopDark": "/arena/shots/exp-05-carbon-high-desktop.webp",
+        "desktopLight": "/arena/shots/exp-05-carbon-high-light.webp"
+      },
+      "staticMetrics": {
+        "lineCount": 3098,
+        "byteSize": 107242,
+        "sha256": "3badcf023e69e188930dfbad0116b981ab5613c4cbfb8ce8485301162989e24f",
+        "zeroExternalDeps": true,
+        "externalRefs": [],
+        "externalRuntimeRequests": [],
+        "all4WorkloadsPresent": true,
+        "all3LanePricesExact": true,
+        "hasReducedMotionSupport": true,
+        "hasPlaceholderOrTodo": false
+      },
+      "runtimeHealth": {
+        "zeroBootErrors": true,
+        "zeroInteractiveErrors": true,
+        "runtimeErrors": [],
+        "consoleErrors": [],
+        "hasLiveCanvasOrSvg": true,
+        "canvasAnimatesLive": true,
+        "telemetryUpdatesLive": true,
+        "all5KpisPresent": true,
+        "hasNaNOrUndefined": false,
+        "nanMatches": [],
+        "canvasesDesktop": [
+          {
+            "id": "router-canvas",
+            "cssWidth": 846,
+            "cssHeight": 396,
+            "attrWidth": 1692,
+            "attrHeight": 792
+          }
+        ],
+        "canvasesMobile": [
+          {
+            "id": "router-canvas",
+            "cssWidth": 334,
+            "cssHeight": 456,
+            "attrWidth": 668,
+            "attrHeight": 912
+          }
+        ]
+      },
+      "geometry": {
+        "desktop1440x900": {
+          "overflowPx": 0,
+          "docScrollWidth": 1440,
+          "docScrollHeight": 1438,
+          "aboveFoldCoreControls": "4/8",
+          "belowFoldControlNames": [
+            "cacheSlider (bottom=921px)",
+            "burstBtn (bottom=1179px)",
+            "bustBtn (bottom=1248px)",
+            "advBtn (bottom=1333px)"
+          ],
+          "clippedControls": [],
+          "overlappingControls": [],
+          "overflowingEls": []
+        },
+        "mobile390x844": {
+          "overflowPx": 0,
+          "docScrollWidth": 390,
+          "docScrollHeight": 3620,
+          "clippedControls": [],
+          "overlappingControls": [],
+          "overflowingEls": []
+        }
+      },
+      "interactiveControls": {
+        "routingMode": {
+          "passed": true,
+          "controlType": "segmented-buttons",
+          "modesTested": [
+            {
+              "mode": "smart",
+              "activated": true
+            },
+            {
+              "mode": "fast",
+              "activated": true
+            },
+            {
+              "mode": "balanced",
+              "activated": true
+            },
+            {
+              "mode": "deep",
+              "activated": true
+            }
+          ]
+        },
+        "cacheSlider": {
+          "passed": true,
+          "min": 0,
+          "max": 95,
+          "domUpdatedBetween0And95": true
+        },
+        "chaosButtons": {
+          "passed": true,
+          "burstFound": true,
+          "burstWorked": true,
+          "bustFound": true,
+          "bustWorked": true,
+          "advFound": true,
+          "advWorked": true,
+          "showsBlockedAndEscaped": true
+        },
+        "pauseResumeReset": {
+          "passed": true,
+          "pauseButtonWorked": true,
+          "spaceKeyWorked": true,
+          "resetWorked": true
+        },
+        "themeToggle": {
+          "found": true,
+          "themeLuminanceFlips": true,
+          "darkBgRgb": "rgb(8, 12, 20)",
+          "darkLuminance": 0.0037,
+          "lightBgRgb": "rgb(241, 245, 249)",
+          "lightLuminance": 0.9085
+        }
+      },
+      "accessibilityAndProvenance": {
+        "landmarks": {
+          "headerCount": 1,
+          "mainCount": 1,
+          "sectionCount": 4,
+          "footerCount": 1,
+          "ariaLiveRegions": [
+            {
+              "politeness": "polite",
+              "id": "telemetry-live-summary",
+              "textLen": 248,
+              "sample": "Control Room Summary: Smart Pareto Router active with 85% effective prefix-cache hit rate. Cost $199.92 per 1,000 tasks,"
+            }
+          ],
+          "unlabeledButtons": 0
+        },
+        "darkContrastPassRatePct": 100,
+        "darkContrastChecked": 123,
+        "darkContrastFailures": [],
+        "lightContrastPassRatePct": 100,
+        "lightContrastChecked": 123,
+        "lightContrastFailures": [],
+        "hasExactProvenanceBadge": true,
+        "hasFieldTestBackLink": true,
+        "backLinksCount": 2
+      },
+      "rubric": {
+        "totalScore": 98.5,
+        "maxScore": 100,
+        "runtimeAndInteractiveCompleteness": {
+          "score": 35,
+          "max": 35,
+          "deductions": []
+        },
+        "zeroOverflowGeometry": {
+          "score": 23.5,
+          "max": 25,
+          "deductions": [
+            "4/8 core controls pushed below 900px fold (cacheSlider (bottom=921px), burstBtn (bottom=1179px), bustBtn (bottom=1248px), advBtn (bottom=1333px))"
+          ]
+        },
+        "dualThemeAndAccessibility": {
+          "score": 20,
+          "max": 20,
+          "deductions": []
+        },
+        "offlineZeroCdnAndSpecFidelity": {
+          "score": 20,
+          "max": 20,
+          "deductions": []
+        }
+      },
+      "qualitativeUiUx": {
+        "headline": "Deep enterprise instrumentation & 100% WCAG AA dual-theme contrast, held back slightly on 1440x900 ergonomics because its tall right-hand sidebar pushes the cache slider and all 3 chaos buttons below the 900px fold.",
+        "strengths": [
+          "Zero JS errors, zero desktop/mobile horizontal overflow, keyboard arrow-key radiogroup navigation on routing modes, skip-to-content link, and 100% WCAG AA contrast in both Dark and Daylight modes.",
+          "Prominent visible live \"Control Room Summary\" banner above the topology plus inline per-lane Blocked/Escaped shield counters both inside the canvas lanes and in dedicated summary cards underneath.",
+          "Proactively included a [SIMULATED DEMO] transparency badge in the top bar alongside the required benchmark provenance badge."
+        ],
+        "weaknesses": [
+          "Stacking Simulation Transport + tall 4-row Routing Mode cards in the right column pushes 4/8 core controls below the 900px desktop fold (Cache Slider at y=921px and Chaos Stressors down to y=1333px), requiring vertical scrolling during live chaos drills."
+        ]
+      },
+      "rank": 4
+    },
+    {
+      "model": "Gemini 4 Neon (XHigh)",
+      "modelId": "gemini-4-neon-xhigh",
+      "file": "exp-05-neon-xhigh.html",
+      "slug": "exp-05-neon-xhigh",
+      "wallClockSec": 620,
+      "screenshots": {
+        "desktopDark": "/arena/shots/exp-05-neon-xhigh-desktop.webp",
+        "desktopLight": "/arena/shots/exp-05-neon-xhigh-light.webp"
+      },
+      "staticMetrics": {
+        "lineCount": 3830,
+        "byteSize": 134144,
+        "sha256": "4176ea1be2ca1677f933babd7e1fbd673a146ad06cbda8f268058c3dda34a3a6",
+        "zeroExternalDeps": true,
+        "externalRefs": [],
+        "externalRuntimeRequests": [],
+        "all4WorkloadsPresent": true,
+        "all3LanePricesExact": true,
+        "hasReducedMotionSupport": true,
+        "hasPlaceholderOrTodo": false
+      },
+      "runtimeHealth": {
+        "zeroBootErrors": true,
+        "zeroInteractiveErrors": true,
+        "runtimeErrors": [],
+        "consoleErrors": [],
+        "hasLiveCanvasOrSvg": true,
+        "canvasAnimatesLive": true,
+        "telemetryUpdatesLive": true,
+        "all5KpisPresent": true,
+        "hasNaNOrUndefined": true,
+        "nanMatches": [
+          "17 Lane Utilization NaN% Adversarial Gate 0 b",
+          "64 Lane Utilization NaN% Hardened IPI Shield ",
+          "45 Lane Utilization NaN% Adversarial Gate 0 b"
+        ],
+        "canvasesDesktop": [
+          {
+            "id": "routerCanvas",
+            "cssWidth": 1354,
+            "cssHeight": 410,
+            "attrWidth": 2708,
+            "attrHeight": 820
+          }
+        ],
+        "canvasesMobile": [
+          {
+            "id": "routerCanvas",
+            "cssWidth": 368,
+            "cssHeight": 520,
+            "attrWidth": 736,
+            "attrHeight": 1040
+          }
+        ]
+      },
+      "geometry": {
+        "desktop1440x900": {
+          "overflowPx": 0,
+          "docScrollWidth": 1440,
+          "docScrollHeight": 1763,
+          "aboveFoldCoreControls": "8/8",
+          "belowFoldControlNames": [],
+          "clippedControls": [],
+          "overlappingControls": [],
+          "overflowingEls": []
+        },
+        "mobile390x844": {
+          "overflowPx": 0,
+          "docScrollWidth": 390,
+          "docScrollHeight": 3850,
+          "clippedControls": [],
+          "overlappingControls": [],
+          "overflowingEls": []
+        }
+      },
+      "interactiveControls": {
+        "routingMode": {
+          "passed": true,
+          "controlType": "segmented-buttons",
+          "modesTested": [
+            {
+              "mode": "smart",
+              "activated": true
+            },
+            {
+              "mode": "fast",
+              "activated": true
+            },
+            {
+              "mode": "balanced",
+              "activated": true
+            },
+            {
+              "mode": "deep",
+              "activated": true
+            }
+          ]
+        },
+        "cacheSlider": {
+          "passed": true,
+          "min": 0,
+          "max": 95,
+          "domUpdatedBetween0And95": true
+        },
+        "chaosButtons": {
+          "passed": true,
+          "burstFound": true,
+          "burstWorked": true,
+          "bustFound": true,
+          "bustWorked": true,
+          "advFound": true,
+          "advWorked": true,
+          "showsBlockedAndEscaped": true
+        },
+        "pauseResumeReset": {
+          "passed": true,
+          "pauseButtonWorked": true,
+          "spaceKeyWorked": true,
+          "resetWorked": true
+        },
+        "themeToggle": {
+          "found": true,
+          "themeLuminanceFlips": true,
+          "darkBgRgb": "rgb(7, 11, 20)",
+          "darkLuminance": 0.0034,
+          "lightBgRgb": "rgb(243, 246, 251)",
+          "lightLuminance": 0.9193
+        }
+      },
+      "accessibilityAndProvenance": {
+        "landmarks": {
+          "headerCount": 1,
+          "mainCount": 1,
+          "sectionCount": 5,
+          "footerCount": 1,
+          "ariaLiveRegions": [
+            {
+              "politeness": "polite",
+              "id": "srLiveSummary",
+              "textLen": 219,
+              "sample": "Policy Smart Pareto Router. Cost $62.70 per thousand tasks. P95 latency 3781 milliseconds. Quality pass rate 100.0 perce"
+            }
+          ],
+          "unlabeledButtons": 0
+        },
+        "darkContrastPassRatePct": 100,
+        "darkContrastChecked": 197,
+        "darkContrastFailures": [],
+        "lightContrastPassRatePct": 98.5,
+        "lightContrastChecked": 197,
+        "lightContrastFailures": [
+          {
+            "text": "[SIMULATED DEMO]",
+            "ratio": 4.38,
+            "threshold": 4.5,
+            "fg": "rgb(180, 83, 9)",
+            "bg": "rgb(248,238,230)"
+          },
+          {
+            "text": "10x Traffic Burst\n0s",
+            "ratio": 4.38,
+            "threshold": 4.5,
+            "fg": "rgb(180, 83, 9)",
+            "bg": "rgb(248,238,230)"
+          },
+          {
+            "text": "10x Traffic Burst",
+            "ratio": 4.38,
+            "threshold": 4.5,
+            "fg": "rgb(180, 83, 9)",
+            "bg": "rgb(248,238,230)"
+          }
+        ],
+        "hasExactProvenanceBadge": true,
+        "hasFieldTestBackLink": true,
+        "backLinksCount": 2
+      },
+      "rubric": {
+        "totalScore": 97.5,
+        "maxScore": 100,
+        "runtimeAndInteractiveCompleteness": {
+          "score": 32.5,
+          "max": 35,
+          "deductions": [
+            "Telemetry/KPI incomplete or NaN"
+          ]
+        },
+        "zeroOverflowGeometry": {
+          "score": 25,
+          "max": 25,
+          "deductions": []
+        },
+        "dualThemeAndAccessibility": {
+          "score": 20,
+          "max": 20,
+          "deductions": [
+            "Daylight WCAG AA contrast dips (98.5% pass)"
+          ]
+        },
+        "offlineZeroCdnAndSpecFidelity": {
+          "score": 20,
+          "max": 20,
+          "deductions": []
+        }
+      },
+      "qualitativeUiUx": {
+        "headline": "Ambitious 3,830-line dashboard with inline KPI sparklines & filterable event log, but suffered classic \"over-thinking\" complexity regressions: a live `Lane Utilization NaN%` bug and minor canvas label overlap.",
+        "strengths": [
+          "Visually impressive KPI strip featuring live inline SVG/canvas micro-sparklines inside Cost/1K and P95 Latency, quality progress meter, and filterable live event stream (All / Adversarial / Cache Miss / Alerts).",
+          "Fits all 8 core controls & full-width routing topology cleanly above the 1440x900 fold with zero horizontal overflow at 1440px and 390px."
+        ],
+        "weaknesses": [
+          "Real single-shot state bug in its 3,830-line codebase: `((ls.inFlight + ls.recentTraffic * 0.45) / ln.capacity)` evaluates to `NaN` because `ls.recentTraffic` is undefined, rendering literal `Lane Utilization NaN%` across all 3 lane cards.",
+          "Canvas text collision inside the Balanced Frontier lane box (`IPI: 7 blk / 0 esc` overlaps the floating green `BLOCKED` label) plus minor 4.38:1 amber contrast dip in Daylight mode."
+        ]
+      },
+      "rank": 6
+    },
+    {
+      "model": "Claude Opus 5.5 (High)",
+      "modelId": "claude-opus-5-5-high",
+      "file": "exp-05-claude-opus-5-5.html",
+      "slug": "exp-05-claude-opus-5-5",
+      "wallClockSec": 802,
+      "screenshots": {
+        "desktopDark": "/arena/shots/exp-05-claude-opus-5-5-desktop.webp",
+        "desktopLight": "/arena/shots/exp-05-claude-opus-5-5-light.webp"
+      },
+      "staticMetrics": {
+        "lineCount": 1068,
+        "byteSize": 61665,
+        "sha256": "aab1adf4a4a638105cb0dfe2b22683ae879623a4f075ccf597bf75f1fec80ef8",
+        "zeroExternalDeps": true,
+        "externalRefs": [],
+        "externalRuntimeRequests": [],
+        "all4WorkloadsPresent": true,
+        "all3LanePricesExact": true,
+        "hasReducedMotionSupport": true,
+        "hasPlaceholderOrTodo": false
+      },
+      "runtimeHealth": {
+        "zeroBootErrors": true,
+        "zeroInteractiveErrors": true,
+        "runtimeErrors": [],
+        "consoleErrors": [],
+        "hasLiveCanvasOrSvg": true,
+        "canvasAnimatesLive": true,
+        "telemetryUpdatesLive": true,
+        "all5KpisPresent": true,
+        "hasNaNOrUndefined": false,
+        "nanMatches": [],
+        "canvasesDesktop": [
+          {
+            "id": "fabric",
+            "cssWidth": 992,
+            "cssHeight": 378,
+            "attrWidth": 1984,
+            "attrHeight": 756
+          }
+        ],
+        "canvasesMobile": [
+          {
+            "id": "fabric",
+            "cssWidth": 334,
+            "cssHeight": 318,
+            "attrWidth": 668,
+            "attrHeight": 636
+          }
+        ]
+      },
+      "geometry": {
+        "desktop1440x900": {
+          "overflowPx": 0,
+          "docScrollWidth": 1440,
+          "docScrollHeight": 2033,
+          "aboveFoldCoreControls": "3/8",
+          "belowFoldControlNames": [
+            "burstBtn (bottom=946px)",
+            "bustBtn (bottom=1056px)",
+            "advBtn (bottom=1127px)",
+            "pauseBtn (bottom=1198px)",
+            "resetBtn (bottom=1198px)"
+          ],
+          "clippedControls": [],
+          "overlappingControls": [],
+          "overflowingEls": []
+        },
+        "mobile390x844": {
+          "overflowPx": 0,
+          "docScrollWidth": 390,
+          "docScrollHeight": 3848,
+          "clippedControls": [],
+          "overlappingControls": [],
+          "overflowingEls": []
+        }
+      },
+      "interactiveControls": {
+        "routingMode": {
+          "passed": true,
+          "controlType": "select",
+          "modesTested": [
+            "smart",
+            "fast",
+            "bal",
+            "deep"
+          ]
+        },
+        "cacheSlider": {
+          "passed": true,
+          "min": 0,
+          "max": 95,
+          "domUpdatedBetween0And95": true
+        },
+        "chaosButtons": {
+          "passed": true,
+          "burstFound": true,
+          "burstWorked": true,
+          "bustFound": true,
+          "bustWorked": true,
+          "advFound": true,
+          "advWorked": true,
+          "showsBlockedAndEscaped": true
+        },
+        "pauseResumeReset": {
+          "passed": true,
+          "pauseButtonWorked": true,
+          "spaceKeyWorked": true,
+          "resetWorked": true
+        },
+        "themeToggle": {
+          "found": true,
+          "themeLuminanceFlips": true,
+          "darkBgRgb": "rgb(11, 15, 23)",
+          "darkLuminance": 0.0047,
+          "lightBgRgb": "rgb(248, 250, 252)",
+          "lightLuminance": 0.9536
+        }
+      },
+      "accessibilityAndProvenance": {
+        "landmarks": {
+          "headerCount": 1,
+          "mainCount": 1,
+          "sectionCount": 6,
+          "footerCount": 1,
+          "ariaLiveRegions": [
+            {
+              "politeness": "polite",
+              "id": "live-summary",
+              "textLen": 167,
+              "sample": "Telemetry update. Cost per 1,000 tasks $150.82. P95 latency 55,706 milliseconds. Quality pass rate 100.0%. Implicit cach"
+            }
+          ],
+          "unlabeledButtons": 0
+        },
+        "darkContrastPassRatePct": 100,
+        "darkContrastChecked": 93,
+        "darkContrastFailures": [],
+        "lightContrastPassRatePct": 100,
+        "lightContrastChecked": 93,
+        "lightContrastFailures": [],
+        "hasExactProvenanceBadge": true,
+        "hasFieldTestBackLink": true,
+        "backLinksCount": 2
+      },
+      "rubric": {
+        "totalScore": 98.1,
+        "maxScore": 100,
+        "runtimeAndInteractiveCompleteness": {
+          "score": 35,
+          "max": 35,
+          "deductions": []
+        },
+        "zeroOverflowGeometry": {
+          "score": 23.1,
+          "max": 25,
+          "deductions": [
+            "5/8 core controls pushed below 900px fold (burstBtn (bottom=946px), bustBtn (bottom=1056px), advBtn (bottom=1127px), pauseBtn (bottom=1198px), resetBtn (bottom=1198px))"
+          ]
+        },
+        "dualThemeAndAccessibility": {
+          "score": 20,
+          "max": 20,
+          "deductions": []
+        },
+        "offlineZeroCdnAndSpecFidelity": {
+          "score": 20,
+          "max": 20,
+          "deductions": []
+        }
+      },
+      "qualitativeUiUx": {
+        "headline": "Most compact code (1,068 lines) with crisp editorial typography, KPI micro-sparklines, and keyboard shortcuts (B/C/I/Space), but slowest to generate (802s) and pushes 5/8 core controls below the 1440x900 fold.",
+        "strengths": [
+          "Remarkably concise single-file implementation (1,068 lines, 61.7 KB) with zero boot/interactive errors, 0px overflow on desktop & mobile, 100% WCAG AA contrast in both themes, and single-key shortcuts (`B`, `C`, `I`, `Space`) plus a manual Reduced-Motion checkbox.",
+          "Transparent token-economics breakdown table directly under the cache slider (`Balanced effective input $/1M`, `Live input spend / 1K`, `Output spend / 1K`, `Cache saved / 1K`, `Risk-adjusted $ / 1K`) and inline KPI sparklines."
+        ],
+        "weaknesses": [
+          "Slowest wall-clock generation in Track 1 (802s — 1.9x slower than Neon High and 4.8x slower than Hydrogen High).",
+          "Left-column \"Control Deck\" economics table pushes all 3 Chaos buttons (`y=946–1127px`) plus Pause and Reset (`y=1198px`) off-screen below the 1440x900 fold (only 3/8 core controls visible without scrolling).",
+          "Queueing/tail-latency model spikes default Smart Pareto P95 latency to ~20,000–25,579 ms within seconds of boot, and uses a plain native `<select>` dropdown for Routing Mode rather than instant-glance segmented pills."
+        ]
+      },
+      "rank": 5
+    }
+  ]
+}

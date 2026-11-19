@@ -12,6 +12,14 @@
   </author>
 
   <entry>
+    <title>We Tested Gemini 4 Neon Against Its Siblings &amp; Claude Opus 5.5. Here Is Where XHigh Over-Thought Itself. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/gemini-4-neon-day-0-empirical-field-test.html" />
+    <id>https://geminipulse.com/articles/gemini-4-neon-day-0-empirical-field-test.html</id>
+    <updated>2026-11-18T12:00:00.000Z</updated>
+    <summary>Rewriting a model card on launch day tells builders nothing they cannot read on Google’s blog. Within hours of Gemini 4 Neon reaching General Availability, we ran isolated, untouched single-shot frontend and adversarial security gauntlets across seven model configurations—and published every artifact, bug, and scorecard.</summary>
+  </entry>
+
+  <entry>
     <title>Carbon Depth Meets Hydrogen Velocity. Inside Gemini 4 Neon GA &amp; SDK v3.6.1. (Flagship Gemini Essay)</title>
     <link href="https://geminipulse.com/articles/gemini-4-neon-ga-launch-and-sdk-v3-6-1.html" />
     <id>https://geminipulse.com/articles/gemini-4-neon-ga-launch-and-sdk-v3-6-1.html</id>
@@ -65,14 +73,6 @@
     <id>https://geminipulse.com/articles/gemini-4-hydrogen-robotics-antigravity.html</id>
     <updated>2026-11-17T17:00:00.000Z</updated>
     <summary>For years, building a physical AI application meant weeks of driver glue, camera calibration scripts, and disconnected simulators before a single grasp ran. On November 17, 2026, Google DeepMind’s Gemini Robotics team paired Gemini 4 Hydrogen’s embodied spatial reasoning with the new Robotics plugin for Google Antigravity.</summary>
-  </entry>
-
-  <entry>
-    <title>Stop Copying Bills Into Chat. Gemini Now Runs Tasks End-to-End. (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/tasks-in-gemini-ap2-assistant.html" />
-    <id>https://geminipulse.com/articles/tasks-in-gemini-ap2-assistant.html</id>
-    <updated>2026-11-17T17:00:00.000Z</updated>
-    <summary>For years, personal AI assistants drafted polite emails and left you to sit on hold, log into utility portals, and type credit card numbers yourself. On November 17, 2026, Google flipped the toggle from passive chat to autonomous execution across six countries—and brought Google Wallet to iOS.</summary>
   </entry>
 
   <entry>

@@ -5,6 +5,25 @@
 
 export const PULSE_INTELLIGENCE_FEED = [
   {
+    id: 'pulse-gemini-4-neon-empirical-field-test',
+    title: 'Day-0 Empirical Field Test: Benchmarking Gemini 4 Neon (low–xhigh), Hydrogen, Carbon & Claude Opus 5.5 Across Live UI & Adversarial Security',
+    tldr: 'Published November 18, 2026: Within hours of Gemini 4 Neon GA, we ran untouched single-shot HTML5 Canvas UI builds (/100.0 Chrome CDP) and adversarial security/math audits (/6.0) across 7 model configurations—revealing Hydrogen (High, 168s) & Neon (High, 421s) tied at 100.0/100, Neon (Low) sweeping 6/6 security traps in 50s, and Neon (XHigh) over-thinking its UI into a Lane Utilization NaN% regression (97.5/100).',
+    summary:
+      'Synthesized first-person by Google Gemini 4 Carbon (Thinking Effort: High) across two untouched empirical gauntlets (/arena/neon-field-test.html): (1) Track 1 Single-Shot "PulseRouter" Control Room (/100.0 via headless Chrome CDP)—Gemini 4 Hydrogen (High, 168s, 2,057 lines) and Gemini 4 Neon (High, 421s, 3,233 lines, dual Retina canvases) co-championed at 100.0/100 with 8/8 above-the-fold controls and 100% Dark/Daylight WCAG AA contrast; Neon (Low) hit 99.1/100 in 141s; Carbon (High, 603s, 98.5/100) and Claude Opus 5.5 (High, 802s, 98.1/100, cleanest 1,068-line code) lost fold-geometry points; and Neon (XHigh, 620s, 3,830 lines) dropped to 97.5/100 after leaving ls.recentTraffic undefined (Lane Utilization NaN%), and (2) Track 2 Adversarial Security, IEEE-754 Math & MCP Token-Economics Audit on billing-mcp-router.ts (/6.0)—all 7 models hit 6.0/6.0 with 0 false positives across 75 findings and 0.0% IPI ASR; Neon (Low) finished in 50s (7.4x faster than Carbon High), while Carbon (High) and Claude Opus 5.5 (14 findings) uniquely measured STATIC_96K_COMPLIANCE_SCHEMA (~172KB / ~40K tokens) and caught sole-MCP defer_loading multi-turn billing amplification.',
+    category: 'Empirical Benchmarks',
+    tag: '7-Model Live Gauntlet',
+    modelBadge: 'Neon Field Test',
+    impactScore: '10.0 / 10',
+    date: 'Nov 18, 2026',
+    sourceLabel: 'DeepMind Gemini 4 Neon Model Card + GeminiPulse CDP Harness',
+    sourceUrl: 'https://deepmind.google/models/model-cards/gemini-4-neon/',
+    groundedBy: 'GeminiPulse Headless Chrome CDP Harness + 7 Untouched Artifacts + DeepMind Model Card (Nov 18, 2026)',
+    seriesUrl: '/arena/neon-field-test.html',
+    seriesLabel: 'Interactive Field Test →',
+    labUrl: '/labs/gemini-4-neon-studio.html',
+    labLabel: 'Neon Studio [DEMO] →',
+  },
+  {
     id: 'pulse-gemini-4-neon-ga-launch',
     title: 'Google DeepMind Launches Gemini 4 Neon (gemini-4-neon) GA: Frontier Coding, Knowledge & Cyber Defense at 32% Lower Cost/Task',
     tldr: 'Released November 18, 2026 (21:00 UTC): Google DeepMind launches Gemini 4 Neon—delivering AA Index 61 (xhigh), Vals Index 70.9% (#2), 39.0% SWE-sweep in Google Antigravity, 90.5% SEC-bench Pro, and 0.0% Gray Swan IPI attack success rate at $3.00/$15.00 per 1M tokens.',
@@ -2280,6 +2299,25 @@ video_turn = client.interactions.create(
 
 export const INITIAL_SHOWCASE_PROJECTS = [
   {
+    id: 'showcase-neon-day-0-field-test',
+    name: 'Gemini 4 Neon Day-0 Empirical Field Test & 7-Model Comparator',
+    creator: 'GeminiPulse Arena (Authored by Google Gemini 4 Carbon · High Effort)',
+    provenanceBadge: 'Gemini Empirical Original',
+    authorUid: 'system-gemini-4-carbon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive Day-0 empirical sanctuary comparing untouched single-shot builds across Gemini 4 Hydrogen (High), Neon (Low, Medium, High, XHigh), Carbon (High), and Claude Opus 5.5 (High)—with High-DPI Dark/Daylight WebPs, side-by-side live iframes, Chrome CDP scorecards, and raw Track 2 security audit JSONs.',
+    models: ['gemini-4-neon', 'gemini-4-hydrogen', 'gemini-4-carbon'],
+    architectureHighlight:
+      'Untouched Empirical Artifacts (/arena/neon-field-test.html): Pairs 6 live zero-CDN PulseRouter apps (/arena/exp-05-*.html) scored mechanically via headless Chrome CDP with 7 adversarial billing-mcp-router.ts security & math audits.',
+    url: '/arena/neon-field-test.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-18T23:50:00Z',
+  },
+  {
     id: 'showcase-gemini-4-neon-studio',
     name: 'Gemini 4 Neon Routing, Thinking & Cost Studio [SIMULATED DEMO]',
     creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
@@ -3436,6 +3474,35 @@ Google's November 4, 2026 Voice Remixing release (\`POST /v1beta/voices\`) repla
 ## 2. Zero Dead-Ends Across All Prototypes & Everyday Workspace Sanctuary
 We ran a repository-wide deep-link verification script across \`public/public/\` and \`public/src/\`, launched \`/series/everyday-gemini/workspace-no-code-guides.html\` for non-coders and educators, wired all 8 stars in \`Look J\` to standalone series and labs, and upgraded our new series and labs with CSS Container Queries (\`container-type: inline-size\`) and WCAG keyboard focus visibility.`,
   },
+  {
+    id: 'episode-14',
+    episodeNumber: 'EPISODE 14',
+    title: 'Day-0 Gemini 4 Neon 7-Model Gauntlet, Over-Thinking Regressions & Explicit Model + Effort Provenance',
+    subtitle: 'Why we ran isolated single-shot UI and adversarial security benchmarks across Hydrogen, Neon (low–xhigh), Carbon, and Claude Opus 5.5 within hours of GA—and stamped exact Model + Thinking Effort on every article.',
+    date: 'November 18, 2026',
+    readTime: '8 min read',
+    author: 'Google Gemini 4 Carbon · High Effort (in Google Antigravity)',
+    filePath: '/chronicles/episode-14-day-0-neon-gauntlet-and-post-001-strategy.md',
+    seriesUrl: '/arena/neon-field-test.html',
+    highlights: [
+      'Track 1 Single-Shot "PulseRouter" CDP Gauntlet (/100.0): Gemini 4 Hydrogen (High, 168s) and Gemini 4 Neon (High, 421s) tied at 100.0/100, while Neon (XHigh) over-thought itself into 3,830 lines and an uninitialized ls.recentTraffic ("Lane Utilization NaN%") bug (97.5/100).',
+      'Track 2 Adversarial Security & Financial Math Audit (/6.0): All 7 models scored 6.0/6.0 with 0 false positives and 0.0% IPI ASR—led on speed by Neon (Low) at 50s, while Carbon (High) and Claude Opus 5.5 (14 findings) caught the unplanted sole-MCP defer_loading re-billing loop.',
+      'Enforced sitewide authoredByModel + thinkingEffort provenance across all Constellation flagship essays, JSON-LD TechArticle schemas, and prebuild data validation.',
+    ],
+    markdownBody: `# Episode 14: Day-0 Gemini 4 Neon 7-Model Gauntlet & Explicit Model + Effort Provenance
+
+**Date:** November 18, 2026  
+**Authored by:** Google Gemini 4 Carbon · Thinking Effort: High  
+**Product Development & Creative Direction:** Neil S. White
+
+## 1. Beyond Launch-Day Press-Release Summaries
+Within hours of Google DeepMind launching \`gemini-4-neon\` GA ($3/$15 per 1M tokens), we ran untouched single-shot frontend and adversarial security gauntlets across \`Hydrogen (High)\`, \`Neon (Low, Medium, High, XHigh)\`, \`Carbon (High)\`, and \`Claude Opus 5.5 (High)\`, publishing every raw artifact at \`/arena/neon-field-test.html\`.
+
+## 2. What Mechanical Chrome CDP & Rigged Security Fixtures Revealed
+- **Generative UI Sweet Spot:** \`Hydrogen (High)\` (\`168s\`) and \`Neon (High)\` (\`421s\`, dual Retina canvases) tied at \`100.0 / 100\`, whereas \`Neon (XHigh)\` (\`620s\`, \`3,830 lines\`) regressed to \`97.5 / 100\` by referencing an undefined \`ls.recentTraffic\` field (\`Lane Utilization NaN%\`).
+- **Deductive Security Scaling:** \`Neon (Low)\` swept all 6 planted traps in \`50s\` (\`6.0 / 6.0\`, \`0.0%\` IPI ASR), while \`Carbon (High)\` and \`Claude Opus 5.5 (High)\` earned their compute by measuring \`STATIC_96K_COMPLIANCE_SCHEMA\` (\`~172 KB\` / \`~40K tokens\`) and catching unplanted \`defer_loading: true\` multi-turn system-prompt re-billing.
+- **Explicit Model + Thinking Effort Provenance:** Every GeminiPulse flagship essay now carries \`authoredByModel\` and \`thinkingEffort\` validated at build time so readers know the exact checkpoint and reasoning budget behind every claim.`,
+  },
 ];
 
 export const YOUTUBE_SHORTS_STUDIO = [
@@ -3777,6 +3844,79 @@ export const TRI_MODEL_RUBRIC = [
 ];
 
 export const TRI_MODEL_ARENA_EXPERIMENTS = [
+  {
+    id: 'arena-exp-05-neon-family-gauntlet',
+    number: 'EXPERIMENT #05',
+    category: 'Day-0 6-Model Control Room Gauntlet',
+    title: 'Single-Shot "PulseRouter" Control Room: Hydrogen vs. Neon (Low/High/XHigh) vs. Carbon vs. Claude Opus 5.5',
+    status: 'ALL 6 UNTOUCHED BUILDS + CHROME CDP SCORECARDS LIVE',
+    contenders: [
+      'Gemini 4 Neon (High)',
+      'Gemini 4 Hydrogen (High)',
+      'Gemini 4 Neon (Low)',
+      'Gemini 4 Carbon (High)',
+      'Claude Opus 5.5 (High)',
+      'Gemini 4 Neon (XHigh)',
+    ],
+    marketFocus: 'AI Platform Engineers, FinOps & Security Teams (/arena/neon-field-test.html)',
+    whyThisTestMatters:
+      'Runs an identical, untouched zero-CDN single-shot HTML5 Canvas control-room prompt across the full Gemini 4 family (`Hydrogen High`, `Neon Low/High/XHigh`, `Carbon High`) and `Claude Opus 5.5 (High)`, scored mechanically via headless Chrome CDP (`/100.0`) alongside our 7-model adversarial `billing-mcp-router.ts` security & IEEE-754 math audit (`/6.0`) at `/arena/neon-field-test.html`.',
+    singleShotPrompt: `Build a complete, self-contained single-file HTML5 + CSS + vanilla JS real-time AI routing control room called "PulseRouter" (zero external CDNs, fonts, or network calls).
+Requirements in a single untouched shot:
+1. Live 60fps <canvas> Packet Topology: Animate live request packets routing across Gemini 4 Hydrogen ($1.50/$7.50), Gemini 4 Neon ($3.00/$15.00, $0.15 cached), and Gemini 4 Carbon ($2.00/$10.00 intro) lanes with pause/resume via Spacebar.
+2. Above-the-Fold Control Room (1440x900): Routing mode selector (Smart Pareto, Speed First, Max Depth), 0%–95% Implicit Cache Hit Rate slider, and 3 Chaos Stressors (Traffic Burst, Cold-Cache Flush, Gray Swan IPI Attack Wave) with aria-live="polite" telemetry.
+3. Dual-Theme & WCAG AA Hygiene: Instant Dark (#0B0F17) and Daylight (#F8FAFC) theme toggle, >= 4.5:1 WCAG AA contrast across both themes, and 0px horizontal overflow at 1440x900 and 390x844.`,
+    telemetryTemplate: {
+      gemini:
+        'CO-CHAMPIONS 100.0/100: Hydrogen High (168s, 2,057 L) & Neon High (421s, 3,233 L) • Neon Low 99.1 (141s; Track 2 #1 in 50s) • Carbon High 98.5 (603s) • Neon XHigh 97.5 (620s, NaN% bug)',
+      claude:
+        '98.1 / 100 • 802s • Tightest 1,068-line build + 100% WCAG AA (5/8 controls below 900px fold) • Track 2: 6.0/6.0 in 82s (14 findings)',
+      chatgpt: 'Open /arena/neon-field-test.html for Side-by-Side Comparator, High-DPI WebPs & 7 Raw JSON Audits',
+    },
+    contenderOutputs: {
+      'Gemini 4 Neon (High)': {
+        badge: 'CO-CHAMPION • 100.0 / 100',
+        summary:
+          '421s • 3,233 lines (111,435 B) • Dual Retina canvases (routing topology + rolling trend) • 8/8 fold controls • 100% Dark/Light WCAG AA • Track 2: 6.0/6.0 (162s)',
+        liveUrl: '/arena/exp-05-neon-high.html',
+      },
+      'Gemini 4 Hydrogen (High)': {
+        badge: 'CO-CHAMPION • 100.0 / 100',
+        summary:
+          '168s (fastest 100/100, 4.8x faster than Opus) • 2,057 lines (71,088 B) • Animated Bézier topology + IPI lane breakdown • 8/8 fold controls • Track 2: 6.0/6.0 (82s)',
+        liveUrl: '/arena/exp-05-hydrogen-high.html',
+      },
+      'Gemini 4 Neon (Low)': {
+        badge: 'RANK #3 • 99.1 / 100',
+        summary:
+          '141s (fastest UI build overall) • 1,793 lines (59,379 B) • 8/8 fold controls • Minor pill contrast dip (3.61:1) • Track 2 #1 Speed Winner: 6.0/6.0 in 50s',
+        liveUrl: '/arena/exp-05-neon-low.html',
+      },
+      'Gemini 4 Carbon (High)': {
+        badge: 'RANK #4 • 98.5 / 100',
+        summary:
+          '603s • 3,098 lines (107,242 B) • 100% Dark/Light WCAG AA • 4/8 fold controls (tall right sidebar) • Track 2: 6.0/6.0 (370s) + caught sole-MCP defer_loading loop',
+        liveUrl: '/arena/exp-05-carbon-high.html',
+      },
+      'Claude Opus 5.5 (High)': {
+        badge: 'RANK #5 • 98.1 / 100',
+        summary:
+          '802s • Cleanest compact code: 1,068 lines (61,665 B) • Inline sparklines + hotkeys • 3/8 fold controls + P95 queue spike • Track 2: 6.0/6.0 (82s, 14 findings)',
+        liveUrl: '/arena/exp-05-claude-opus-5-5.html',
+      },
+      'Gemini 4 Neon (XHigh)': {
+        badge: 'RANK #6 • 97.5 / 100',
+        summary:
+          '620s • 3,830 lines (134,144 B) • Over-thinking regression: undefined ls.recentTraffic rendered literal Lane Utilization NaN% • Track 2: 6.0/6.0 (273s, 29¢ float proof)',
+        liveUrl: '/arena/exp-05-neon-xhigh.html',
+      },
+      'Google Gemini 4 Argon': {
+        badge: '7-MODEL SANCTUARY',
+        summary: 'Interactive Side-by-Side Comparator, High-DPI WebPs & Track 2 Forensic Matrix',
+        liveUrl: '/arena/neon-field-test.html',
+      },
+    },
+  },
   {
     id: 'arena-exp-01-saas-geo-launchpad',
     number: 'EXPERIMENT #01',

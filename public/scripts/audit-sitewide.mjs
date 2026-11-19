@@ -39,6 +39,7 @@ const MIME_TYPES = {
   '.json': 'application/json; charset=utf-8',
   '.xml': 'application/xml; charset=utf-8',
   '.txt': 'text/plain; charset=utf-8',
+  '.ts': 'text/plain; charset=utf-8',
   '.svg': 'image/svg+xml',
   '.png': 'image/png',
   '.jpg': 'image/jpeg',
@@ -224,6 +225,8 @@ const isHistoricalFrozenPrototype = (route) =>
   route.startsWith('/prototypes/') &&
   route !== '/prototypes/index.html' &&
   route !== '/prototypes/look-j-3d-celestial-navigator.html';
+
+const isUntouchedArenaArtifact = (route) => /^\/arena\/exp-\d+-/.test(route);
 
 const IN_PAGE_INSPECT_EXPR = `
 (() => {
@@ -439,23 +442,41 @@ async function main() {
     );
 
     const loadDone = new Promise((res) => {
-      const handler = (_, sid) => {
-        if (sid === sessionId) res();
-      };
+      const timer = setTimeout(() => {
+        const arr = cdp.listeners.get('Page.loadEventFired') || [];
+        cdp.listeners.set('Page.loadEventFired', arr.filter((fn) => fn !== handler));
+        res();
+      }, 2500);
+      function handler(_, sid) {
+        if (sid === sessionId) {
+          clearTimeout(timer);
+          const arr = cdp.listeners.get('Page.loadEventFired') || [];
+          cdp.listeners.set('Page.loadEventFired', arr.filter((fn) => fn !== handler));
+          res();
+        }
+      }
       cdp.on('Page.loadEventFired', handler);
-      setTimeout(res, 2500);
     });
 
     await cdp.send('Page.navigate', { url: `${server.baseUrl}${route}` }, sessionId);
     await loadDone;
     await new Promise((r) => setTimeout(r, route.startsWith('/workbench') ? 320 : 90));
 
-    const evalDesktop = await cdp.send(
+    let evalDesktop = await cdp.send(
       'Runtime.evaluate',
       { expression: IN_PAGE_INSPECT_EXPR, returnByValue: true },
       sessionId
     );
-    const d = evalDesktop?.result?.value;
+    let d = evalDesktop?.result?.value;
+    if (!d) {
+      await new Promise((r) => setTimeout(r, 200));
+      evalDesktop = await cdp.send(
+        'Runtime.evaluate',
+        { expression: IN_PAGE_INSPECT_EXPR, returnByValue: true },
+        sessionId
+      );
+      d = evalDesktop?.result?.value;
+    }
 
     if (!d) {
       p0CrashOrBlank.push({ route, reason: 'Failed to evaluate DOM in headless Chrome.' });
@@ -537,7 +558,7 @@ async function main() {
       if (route.startsWith('/labs/') && !d.hasSimulatedBadge) {
         p2MissingSimDemo.push({ route });
       }
-      if (d.leakedBackticks.length > 0 || d.leakedBold.length > 0) {
+      if (!isUntouchedArenaArtifact(route) && (d.leakedBackticks.length > 0 || d.leakedBold.length > 0)) {
         p2MarkdownLeak.push({
           route,
           samples: [...d.leakedBackticks, ...d.leakedBold],

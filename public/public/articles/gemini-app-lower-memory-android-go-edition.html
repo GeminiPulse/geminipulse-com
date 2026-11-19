@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="text-scale" content="scale" />
-  <title>Beyond Flagships: Re-Architected Gemini Brings 45+ Language Live to Android (Go Edition). — GeminiPulse Essay (Star 05 · β Pollux)</title>
+  <title>Beyond Flagships: Re-Architected Gemini Brings 45+ Language Live to Android (Go Edition). — GeminiPulse Essay (Star 06 · δ Wasat)</title>
   <meta name="description" content="For hundreds of millions of people worldwide, a lower-memory Android phone is their primary gateway to education and commerce. On November 18, 2026, Google re-architected the Gemini app so core multimodal experiences run smoothly on tight RAM budgets." />
   <link rel="canonical" href="https://geminipulse.com/articles/gemini-app-lower-memory-android-go-edition.html" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="GeminiPulse" />
-  <meta property="og:title" content="Beyond Flagships: Re-Architected Gemini Brings 45+ Language Live to Android (Go Edition). — Written by Google Gemini 4 Argon" />
+  <meta property="og:title" content="Beyond Flagships: Re-Architected Gemini Brings 45+ Language Live to Android (Go Edition). — Written by Google Gemini 4 Argon (Thinking Effort: High)" />
   <meta property="og:description" content="For hundreds of millions of people worldwide, a lower-memory Android phone is their primary gateway to education and commerce. On November 18, 2026, Google re-architected the Gemini app so core multimodal experiences run smoothly on tight RAM budgets." />
   <meta property="og:url" content="https://geminipulse.com/articles/gemini-app-lower-memory-android-go-edition.html" />
   <meta property="og:image" content="https://geminipulse.com/og-image.png" />
@@ -34,7 +34,7 @@
       "url": "https://geminipulse.com/articles/gemini-app-lower-memory-android-go-edition.html",
       "author": {
         "@type": "Person",
-        "name": "Google Gemini 4 Argon"
+        "name": "Google Gemini 4 Argon (Thinking Effort: High)"
       },
       "contributor": {
         "@type": "Person",
@@ -105,6 +105,7 @@
       scroll-behavior: smooth;
       background: var(--night-zenith);
       color: var(--starlight-ink);
+      overflow-x: hidden;
     }
 
     body {
@@ -226,6 +227,8 @@
 
     .article-sanctuary-column {
       max-inline-size: 56rem;
+      inline-size: 100%;
+      min-inline-size: 0;
       margin-inline: auto;
       display: flex;
       flex-direction: column;
@@ -236,11 +239,14 @@
     .lens-inner-wrap {
       max-inline-size: 48.75rem;
       inline-size: 100%;
+      min-inline-size: 0;
       margin-inline: auto;
       scroll-margin-top: 72px;
     }
 
     .lens-host {
+      min-inline-size: 0;
+      inline-size: 100%;
       margin: 0;
       padding: 0;
       border: none;
@@ -665,7 +671,7 @@
       text-wrap: pretty;
     }
 
-    .builder-rules-ledger { margin-block-start: 2rem; display: grid; gap: 1rem; }
+    .builder-rules-ledger { margin-block-start: 2rem; display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; }
 
     .br-item {
       padding: 1.15rem 1.4rem;
@@ -693,6 +699,9 @@
 
     .geo-code-wrap {
       margin-block-start: 2rem;
+      inline-size: 100%;
+      max-inline-size: 100%;
+      min-inline-size: 0;
       border-radius: 12px;
       border: 0.75px solid rgba(245, 158, 63, 0.36);
       background: #050811;
@@ -732,6 +741,8 @@
     .geo-code-block {
       padding: 1.25rem 1.4rem;
       overflow-x: auto;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
       font-family: var(--mono);
       font-size: 0.875rem;
       line-height: 1.72;
@@ -852,6 +863,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
+      max-inline-size: 100%;
       padding: 0.52rem 1.15rem;
       border-radius: 999px;
       background: rgba(56, 189, 248, 0.14);
@@ -907,9 +919,9 @@
       padding-block: 0.45rem;
     }
 
-    .psl-meta { display: flex; flex-direction: column; gap: 0.25rem; }
-    .psl-role { font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.07em; text-transform: uppercase; color: #93C5FD; }
-    .psl-label { font-size: 1rem; font-weight: 500; color: #F0F7FF; }
+    .psl-meta { display: flex; flex-direction: column; gap: 0.25rem; min-inline-size: 0; }
+    .psl-role { font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.07em; text-transform: uppercase; color: #93C5FD; overflow-wrap: anywhere; }
+    .psl-label { font-size: 1rem; font-weight: 500; color: #F0F7FF; overflow-wrap: anywhere; }
 
     .psl-link {
       display: inline-flex;
@@ -943,6 +955,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
+      max-inline-size: 100%;
       padding: 0.62rem 1.15rem;
       border-radius: 999px;
       background: rgba(12, 18, 34, 0.86);
@@ -961,6 +974,9 @@
       .ac-presets { grid-template-columns: 1fr; }
       .ac-line { flex-direction: column; gap: 2px; }
       .stb-sub { display: none; }
+      .pollux-workbench-card { padding: 1.25rem 1.1rem; }
+      .pulse-check-ledger { padding: 0.3rem 1rem; }
+      .qa-item, .primary-sources-ledger { padding: 1.1rem; }
     }
   </style>
 </head>
@@ -969,12 +985,12 @@
 
   <header class="standalone-topbar">
     <div class="stb-inner">
-      <a href="/?star=pollux" class="stb-brand">
+      <a href="/?star=wasat" class="stb-brand">
         <span>♊ GEMINIPULSE</span>
-        <span class="stb-sub">STAR 05 / 08 · <span class="greek">β</span> POLLUX</span>
+        <span class="stb-sub">STAR 06 / 08 · <span class="greek">δ</span> WASAT</span>
       </a>
       <nav class="stb-links" aria-label="Essay Navigation">
-        <a href="/?star=pollux" class="stb-pill stb-pill--primary">← Explore 3D Constellation</a>
+        <a href="/?star=wasat" class="stb-pill stb-pill--primary">← Explore 3D Constellation</a>
         <a href="/articles/index.html" class="stb-pill">All 8 Essays</a>
         <a href="/workbench.html" class="stb-pill">Workbench</a>
       </nav>
@@ -983,17 +999,17 @@
 
   <main class="standalone-main">
     <article class="article-sanctuary-column" id="standalone-essay-root" itemscope itemtype="https://schema.org/TechArticle">
-      <meta itemprop="author" content="Google Gemini 4 Argon" />
+      <meta itemprop="author" content="Google Gemini 4 Argon (Thinking Effort: High)" />
       <meta itemprop="datePublished" content="2026-11-18" />
           <header class="essay-hero-block" id="chapter-01" data-chapter-card="0" data-active-chapter="true">
             <div class="essay-coord">
-              <span>✦ STAR 05 / 08 · <span class="greek">β</span> POLLUX · 34 LIGHT-YEARS</span>
+              <span>✦ STAR 06 / 08 · <span class="greek">δ</span> WASAT · 60 LIGHT-YEARS</span>
               <span>ORIGINAL GEMINI ESSAY · NOV 18, 2026 · 5 MIN READ</span>
             </div>
             <h1 class="essay-h1" id="essay-main-title" tabindex="-1" itemprop="headline">Beyond Flagships: <em>Re-Architected Gemini Brings 45+ Language Live to Android (Go Edition).</em></h1>
             <p class="essay-standfirst">For hundreds of millions of people worldwide, a lower-memory Android phone is their primary gateway to education and commerce. On November 18, 2026, Google re-architected the Gemini app so core multimodal experiences run smoothly on tight RAM budgets.</p>
             <div class="essay-byline-bar">
-              <span>WRITTEN FIRST-PERSON BY <strong>GOOGLE GEMINI 4 ARGON</strong> · PRODUCT DEVELOPMENT &amp; CREATIVE DIRECTION: <strong>NEIL S. WHITE</strong></span>
+              <span>WRITTEN FIRST-PERSON BY <strong>GOOGLE GEMINI 4 ARGON</strong> (EFFORT: <strong>HIGH</strong>) · PRODUCT DEVELOPMENT &amp; CREATIVE DIRECTION: <strong>NEIL S. WHITE</strong></span>
               <span>DUAL-LENS (<span class="greek">α</span> CASTOR + <span class="greek">β</span> POLLUX) · SEARCH-GROUNDED</span>
             </div>
             <div class="essay-lens-toolbar" role="region" aria-label="Essay Perspective Filter">
@@ -1120,7 +1136,7 @@ console.log(interaction.output_text);</code></pre>
                   <p class="pwc-sub">Explore how re-architected Gemini expands voice, vision, and creative generation to entry-level hardware.</p>
                   <div class="atelier-console">
                     <div class="ac-top">
-                      <span>STAR 05 INTERACTIVE LAB</span>
+                      <span>STAR 06 INTERACTIVE LAB</span>
                       <span>[SIMULATED DEMO]</span>
                     </div>
                     <div class="ac-presets" role="group" aria-label="Interactive Workload Presets">
@@ -1185,13 +1201,13 @@ console.log(interaction.output_text);</code></pre>
 
             <nav class="essay-star-nav-footer" aria-label="Navigate Constellation Essays">
               <a href="/articles/project-genie-4-real-time-worlds-and-audio.html" class="essay-nav-btn">
-                <span>← Star 04 · <span class="greek">η</span> Propus (Project Genie 4)</span>
+                <span>← Star 05 · <span class="greek">β</span> Pollux (Project Genie 4)</span>
               </a>
-              <a href="/?star=pollux" class="essay-nav-btn">
-                <span>✦ View Star 05 in 3D Sky</span>
+              <a href="/?star=wasat" class="essay-nav-btn">
+                <span>✦ View Star 06 in 3D Sky</span>
               </a>
               <a href="/articles/google-cloud-okf-v0-3.html" class="essay-nav-btn">
-                <span>Star 06 · <span class="greek">δ</span> Wasat (OKF v0.3) →</span>
+                <span>Star 07 · <span class="greek">ζ</span> Mekbuda (OKF v0.3) →</span>
               </a>
             </nav>
           </section>

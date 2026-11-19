@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="text-scale" content="scale" />
-  <title>Shipping Is Where the Real Work Starts. Stitch Loop Turns Production Metrics Into 24/7 PRs. — GeminiPulse Essay (Star 02 · ε Mebsuta)</title>
+  <title>Shipping Is Where the Real Work Starts. Stitch Loop Turns Production Metrics Into 24/7 PRs. — GeminiPulse Essay (Star 03 · μ Tejat)</title>
   <meta name="description" content="Coding agents build features fast, yet their job ends the instant a pull request merges. On November 18, 2026, Google Labs launched Stitch Loop—an evergreen product agent connecting GitHub, live telemetry, DeepMind CodeMender, and Google Antigravity MCP." />
   <link rel="canonical" href="https://geminipulse.com/articles/google-labs-stitch-loop-and-codemender.html" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="GeminiPulse" />
-  <meta property="og:title" content="Shipping Is Where the Real Work Starts. Stitch Loop Turns Production Metrics Into 24/7 PRs. — Written by Google Gemini 4 Argon" />
+  <meta property="og:title" content="Shipping Is Where the Real Work Starts. Stitch Loop Turns Production Metrics Into 24/7 PRs. — Written by Google Gemini 4 Argon (Thinking Effort: High)" />
   <meta property="og:description" content="Coding agents build features fast, yet their job ends the instant a pull request merges. On November 18, 2026, Google Labs launched Stitch Loop—an evergreen product agent connecting GitHub, live telemetry, DeepMind CodeMender, and Google Antigravity MCP." />
   <meta property="og:url" content="https://geminipulse.com/articles/google-labs-stitch-loop-and-codemender.html" />
   <meta property="og:image" content="https://geminipulse.com/og-image.png" />
@@ -34,7 +34,7 @@
       "url": "https://geminipulse.com/articles/google-labs-stitch-loop-and-codemender.html",
       "author": {
         "@type": "Person",
-        "name": "Google Gemini 4 Argon"
+        "name": "Google Gemini 4 Argon (Thinking Effort: High)"
       },
       "contributor": {
         "@type": "Person",
@@ -115,6 +115,7 @@
       scroll-behavior: smooth;
       background: var(--night-zenith);
       color: var(--starlight-ink);
+      overflow-x: hidden;
     }
 
     body {
@@ -236,6 +237,8 @@
 
     .article-sanctuary-column {
       max-inline-size: 56rem;
+      inline-size: 100%;
+      min-inline-size: 0;
       margin-inline: auto;
       display: flex;
       flex-direction: column;
@@ -246,11 +249,14 @@
     .lens-inner-wrap {
       max-inline-size: 48.75rem;
       inline-size: 100%;
+      min-inline-size: 0;
       margin-inline: auto;
       scroll-margin-top: 72px;
     }
 
     .lens-host {
+      min-inline-size: 0;
+      inline-size: 100%;
       margin: 0;
       padding: 0;
       border: none;
@@ -675,7 +681,7 @@
       text-wrap: pretty;
     }
 
-    .builder-rules-ledger { margin-block-start: 2rem; display: grid; gap: 1rem; }
+    .builder-rules-ledger { margin-block-start: 2rem; display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; }
 
     .br-item {
       padding: 1.15rem 1.4rem;
@@ -703,6 +709,9 @@
 
     .geo-code-wrap {
       margin-block-start: 2rem;
+      inline-size: 100%;
+      max-inline-size: 100%;
+      min-inline-size: 0;
       border-radius: 12px;
       border: 0.75px solid rgba(245, 158, 63, 0.36);
       background: #050811;
@@ -742,6 +751,8 @@
     .geo-code-block {
       padding: 1.25rem 1.4rem;
       overflow-x: auto;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
       font-family: var(--mono);
       font-size: 0.875rem;
       line-height: 1.72;
@@ -862,6 +873,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
+      max-inline-size: 100%;
       padding: 0.52rem 1.15rem;
       border-radius: 999px;
       background: rgba(56, 189, 248, 0.14);
@@ -917,9 +929,9 @@
       padding-block: 0.45rem;
     }
 
-    .psl-meta { display: flex; flex-direction: column; gap: 0.25rem; }
-    .psl-role { font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.07em; text-transform: uppercase; color: #93C5FD; }
-    .psl-label { font-size: 1rem; font-weight: 500; color: #F0F7FF; }
+    .psl-meta { display: flex; flex-direction: column; gap: 0.25rem; min-inline-size: 0; }
+    .psl-role { font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.07em; text-transform: uppercase; color: #93C5FD; overflow-wrap: anywhere; }
+    .psl-label { font-size: 1rem; font-weight: 500; color: #F0F7FF; overflow-wrap: anywhere; }
 
     .psl-link {
       display: inline-flex;
@@ -953,6 +965,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
+      max-inline-size: 100%;
       padding: 0.62rem 1.15rem;
       border-radius: 999px;
       background: rgba(12, 18, 34, 0.86);
@@ -971,6 +984,9 @@
       .ac-presets { grid-template-columns: 1fr; }
       .ac-line { flex-direction: column; gap: 2px; }
       .stb-sub { display: none; }
+      .pollux-workbench-card { padding: 1.25rem 1.1rem; }
+      .pulse-check-ledger { padding: 0.3rem 1rem; }
+      .qa-item, .primary-sources-ledger { padding: 1.1rem; }
     }
   </style>
 </head>
@@ -979,12 +995,12 @@
 
   <header class="standalone-topbar">
     <div class="stb-inner">
-      <a href="/?star=mebsuta" class="stb-brand">
+      <a href="/?star=tejat" class="stb-brand">
         <span>♊ GEMINIPULSE</span>
-        <span class="stb-sub">STAR 02 / 08 · <span class="greek">ε</span> MEBSUTA</span>
+        <span class="stb-sub">STAR 03 / 08 · <span class="greek">μ</span> TEJAT</span>
       </a>
       <nav class="stb-links" aria-label="Essay Navigation">
-        <a href="/?star=mebsuta" class="stb-pill stb-pill--primary">← Explore 3D Constellation</a>
+        <a href="/?star=tejat" class="stb-pill stb-pill--primary">← Explore 3D Constellation</a>
         <a href="/articles/index.html" class="stb-pill">All 8 Essays</a>
         <a href="/workbench.html" class="stb-pill">Workbench</a>
       </nav>
@@ -993,17 +1009,17 @@
 
   <main class="standalone-main">
     <article class="article-sanctuary-column" id="standalone-essay-root" itemscope itemtype="https://schema.org/TechArticle">
-      <meta itemprop="author" content="Google Gemini 4 Argon" />
+      <meta itemprop="author" content="Google Gemini 4 Argon (Thinking Effort: High)" />
       <meta itemprop="datePublished" content="2026-11-18" />
           <header class="essay-hero-block" id="chapter-01" data-chapter-card="0" data-active-chapter="true">
             <div class="essay-coord">
-              <span>✦ STAR 02 / 08 · <span class="greek">ε</span> MEBSUTA · 840 LIGHT-YEARS</span>
+              <span>✦ STAR 03 / 08 · <span class="greek">μ</span> TEJAT · 230 LIGHT-YEARS</span>
               <span>ORIGINAL GEMINI ESSAY · NOV 18, 2026 · 7 MIN READ</span>
             </div>
             <h1 class="essay-h1" id="essay-main-title" tabindex="-1" itemprop="headline">Shipping Is Where the Real Work Starts. <em>Stitch Loop Turns Production Metrics Into 24/7 PRs.</em></h1>
             <p class="essay-standfirst">Coding agents build features fast, yet their job ends the instant a pull request merges. On November 18, 2026, Google Labs launched Stitch Loop—an evergreen product agent connecting GitHub, live telemetry, DeepMind CodeMender, and Google Antigravity MCP.</p>
             <div class="essay-byline-bar">
-              <span>WRITTEN FIRST-PERSON BY <strong>GOOGLE GEMINI 4 ARGON</strong> · PRODUCT DEVELOPMENT &amp; CREATIVE DIRECTION: <strong>NEIL S. WHITE</strong></span>
+              <span>WRITTEN FIRST-PERSON BY <strong>GOOGLE GEMINI 4 ARGON</strong> (EFFORT: <strong>HIGH</strong>) · PRODUCT DEVELOPMENT &amp; CREATIVE DIRECTION: <strong>NEIL S. WHITE</strong></span>
               <span>DUAL-LENS (<span class="greek">α</span> CASTOR + <span class="greek">β</span> POLLUX) · SEARCH-GROUNDED</span>
             </div>
             <div class="essay-lens-toolbar" role="region" aria-label="Essay Perspective Filter">
@@ -1046,7 +1062,7 @@
                 <h2 class="essay-h2">Why Post-Launch Maintenance Is Harder Than Day-One Vibe Coding</h2>
                 <p class="essay-sub">How connecting live metrics, CodeMender security scans, and human-gated PRs bridges the gap between shipping and sustaining a product.</p>
                 <div class="essay-prose" itemprop="articleBody">
-                  <p>For the past year, AI coding tools focused almost exclusively on pre-merge velocity: describe a component, scaffold an endpoint, open a pull request, and move on. Yet as Google Labs Director of Product Management Justin Toupin notes on <strong>November 18, 2026</strong>, launch day is when the hardest work actually begins—patching vulnerabilities, shaving milliseconds off checkout latency, and diagnosing signup drop-offs buried inside noisy production feedback.</p><p><strong>Stitch Loop</strong> extends Stitch beyond interface creation into a <strong>long-running 24/7 product agent</strong>. Teams connect GitHub alongside live product context—logs, user behavior, and feedback—through over <strong>180 integrations</strong>, custom <strong>MCP servers</strong>, or local CLI uploads. Out of the box, Stitch Loop ships three evergreen loops—<strong>Cybersecurity</strong>, <strong>Latency</strong>, and <strong>Accessibility</strong>—plus custom loops targeting metrics such as checkout conversion.</p><p>Security gets special engineering weight: the built-in Cybersecurity loop pairs <strong>Gemini 4 Carbon’s</strong> cybersecurity capabilities with <strong>CodeMender</strong>, Google DeepMind’s autonomous code-security agent, scanning repositories for vulnerabilities before they escalate into incidents and backing every suggested fix with concrete evidence.</p><p>Crucially, Stitch Loop never silently pushes edits to production. When you choose a solution direction, it writes and tests code inside an <strong>isolated cloud sandbox</strong> and opens a standard GitHub pull request—complete with <strong>screenshots and videos</strong> of the verified change—so humans retain final merge authority. And through &lt;code&gt;@stitch&lt;/code&gt; in Slack, teams get daily insight digests and spin up new loops right where they coordinate.</p>
+                  <p>For the past year, AI coding tools focused almost exclusively on pre-merge velocity: describe a component, scaffold an endpoint, open a pull request, and move on. Yet as Google Labs Director of Product Management Justin Toupin notes on <strong>November 18, 2026</strong>, launch day is when the hardest work actually begins—patching vulnerabilities, shaving milliseconds off checkout latency, and diagnosing signup drop-offs buried inside noisy production feedback.</p><p><strong>Stitch Loop</strong> extends Stitch beyond interface creation into a <strong>long-running 24/7 product agent</strong>. Teams connect GitHub alongside live product context—logs, user behavior, and feedback—through over <strong>180 integrations</strong>, custom <strong>MCP servers</strong>, or local CLI uploads. Out of the box, Stitch Loop ships three evergreen loops—<strong>Cybersecurity</strong>, <strong>Latency</strong>, and <strong>Accessibility</strong>—plus custom loops targeting metrics such as checkout conversion.</p><p>Security gets special engineering weight: the built-in Cybersecurity loop pairs <strong>Gemini 4 Carbon’s</strong> cybersecurity capabilities with <strong>CodeMender</strong>, Google DeepMind’s autonomous code-security agent, scanning repositories for vulnerabilities before they escalate into incidents and backing every suggested fix with concrete evidence.</p><p>Crucially, Stitch Loop never silently pushes edits to production. When you choose a solution direction, it writes and tests code inside an <strong>isolated cloud sandbox</strong> and opens a standard GitHub pull request—complete with <strong>screenshots and videos</strong> of the verified change—so humans retain final merge authority. And through <code class="essay-inline-code">@stitch</code> in Slack, teams get daily insight digests and spin up new loops right where they coordinate.</p>
                 </div>
 
               <blockquote class="celestial-pullquote">
@@ -1108,7 +1124,7 @@
                 <h2 class="essay-h2" id="pollux-section-heading" tabindex="-1">Wiring Stitch Loop MCP, Google Antigravity &amp; OKF v0.3 Into Continuous Delivery</h2>
                 <p class="essay-sub essay-sub--pollux">How Suggestions, Solutions, Build, and Reflect operate alongside November 18’s Open Knowledge Format v0.3 and Gen AI SDK v3.6.</p>
                 <div class="essay-prose essay-prose--pollux">
-                  <p>Each Stitch Loop cycle executes four distinct phases: <strong>Suggestions</strong> mines connected telemetry for evidence-backed opportunities; <strong>Solutions</strong> generates scoped technical options with explicit tradeoffs and UI design variants; <strong>Build</strong> executes code inside an isolated cloud sandbox and attaches rendered screenshots and videos to a GitHub PR; and <strong>Reflect</strong> tracks post-merge product telemetry—learning from positive or negative deltas and remaining on watch in case metrics drift back.</p><p>At the exact same November 18, 2026 release window (17:00 UTC), Google Cloud released <strong>Open Knowledge Format (OKF) v0.3</strong>, adding RFC 2119 conformance, progressive-disclosure bundle routing via &lt;code&gt;index.md&lt;/code&gt;, and current-only trust timestamps (&lt;code&gt;generated.at&lt;/code&gt; vs. &lt;code&gt;verified&lt;/code&gt;) so agent edits cleanly coexist with &lt;code&gt;AGENTS.md&lt;/code&gt; and &lt;code&gt;SKILL.md&lt;/code&gt; without preserving stale human sign-offs.</p><p>In &lt;code&gt;@google/genai&lt;/code&gt; v3.6.0, Antigravity agents can consume Stitch Loop’s persistent product context via &lt;code&gt;mcp_server&lt;/code&gt; tools with &lt;code&gt;defer_loading: true&lt;/code&gt;, ensuring large telemetry toolsets never bloat initial prompt budgets.</p>
+                  <p>Each Stitch Loop cycle executes four distinct phases: <strong>Suggestions</strong> mines connected telemetry for evidence-backed opportunities; <strong>Solutions</strong> generates scoped technical options with explicit tradeoffs and UI design variants; <strong>Build</strong> executes code inside an isolated cloud sandbox and attaches rendered screenshots and videos to a GitHub PR; and <strong>Reflect</strong> tracks post-merge product telemetry—learning from positive or negative deltas and remaining on watch in case metrics drift back.</p><p>At the exact same November 18, 2026 release window (17:00 UTC), Google Cloud released <strong>Open Knowledge Format (OKF) v0.3</strong>, adding RFC 2119 conformance, progressive-disclosure bundle routing via <code class="essay-inline-code">index.md</code>, and current-only trust timestamps (<code class="essay-inline-code">generated.at</code> vs. <code class="essay-inline-code">verified</code>) so agent edits cleanly coexist with <code class="essay-inline-code">AGENTS.md</code> and <code class="essay-inline-code">SKILL.md</code> without preserving stale human sign-offs.</p><p>In <code class="essay-inline-code">@google/genai</code> v3.6.0, Antigravity agents can consume Stitch Loop’s persistent product context via <code class="essay-inline-code">mcp_server</code> tools with <code class="essay-inline-code">defer_loading: true</code>, ensuring large telemetry toolsets never bloat initial prompt budgets.</p>
                 </div>
                 <div class="builder-rules-ledger" aria-label="Production Engineering Guardrails">
 
@@ -1161,7 +1177,7 @@ console.log(interaction.output_text);</code></pre>
                   <p class="pwc-sub">Select one of the November 18 Stitch Loop presets below or open the full-screen Stitch Loop Studio [SIMULATED DEMO].</p>
                   <div class="atelier-console">
                     <div class="ac-top">
-                      <span>STAR 02 INTERACTIVE LAB</span>
+                      <span>STAR 03 INTERACTIVE LAB</span>
                       <span>[SIMULATED DEMO]</span>
                     </div>
                     <div class="ac-presets" role="group" aria-label="Interactive Workload Presets">
@@ -1246,13 +1262,13 @@ console.log(interaction.output_text);</code></pre>
 
             <nav class="essay-star-nav-footer" aria-label="Navigate Constellation Essays">
               <a href="/articles/gemini-4-neon-ga-launch-and-sdk-v3-6-1.html" class="essay-nav-btn">
-                <span>← Star 01 · <span class="greek">α</span> Castor (Gemini 4 Neon)</span>
+                <span>← Star 02 · <span class="greek">ε</span> Mebsuta (Gemini 4 Neon)</span>
               </a>
-              <a href="/?star=mebsuta" class="essay-nav-btn">
-                <span>✦ View Star 02 in 3D Sky</span>
+              <a href="/?star=tejat" class="essay-nav-btn">
+                <span>✦ View Star 03 in 3D Sky</span>
               </a>
               <a href="/articles/gemini-multimodal-file-slicing-and-sdk-v3-6.html" class="essay-nav-btn">
-                <span>Star 03 · <span class="greek">μ</span> Tejat (Multimodal Slicing) →</span>
+                <span>Star 04 · <span class="greek">η</span> Propus (Multimodal Slicing) →</span>
               </a>
             </nav>
           </section>

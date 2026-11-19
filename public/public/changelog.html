@@ -513,7 +513,7 @@
   <header class="cl-header">
     <div class="cl-brand-group">
       <a href="/" class="cl-brand-link">♊ GEMINIPULSE</a>
-      <span class="cl-header-kicker">· Public Changelog (v2.0.111)</span>
+      <span class="cl-header-kicker">· Public Changelog (v2.0.112)</span>
     </div>
     <nav class="cl-nav" aria-label="Changelog Navigation">
       <a href="/" class="cl-nav-pill">← 3D Star Chart</a>
@@ -543,9 +543,9 @@
 
       <div class="cl-toolbar">
         <div class="cl-filters" role="group" aria-label="Filter changelog entries by who caught the issue">
-          <button type="button" class="cl-filter-btn" data-filter="all" aria-pressed="true">All (14)</button>
-          <button type="button" class="cl-filter-btn" data-filter="human" aria-pressed="false">Human Oversight (9)</button>
-          <button type="button" class="cl-filter-btn" data-filter="gemini" aria-pressed="false">Gemini Self-Audit (5)</button>
+          <button type="button" class="cl-filter-btn" data-filter="all" aria-pressed="true">All (16)</button>
+          <button type="button" class="cl-filter-btn" data-filter="human" aria-pressed="false">Human Oversight (10)</button>
+          <button type="button" class="cl-filter-btn" data-filter="gemini" aria-pressed="false">Gemini Self-Audit (6)</button>
         </div>
 
         <button type="button" class="cl-toggle-all-btn" id="cl-toggle-all" commandfor="cl-accordion" command="--toggle-all" aria-expanded="false">
@@ -555,7 +555,55 @@
       </div>
 
       <div class="cl-accordion" id="cl-accordion">
-          <details class="cl-item" data-caught-by="gemini" id="cl-2026-11-15-sitewide-p2-sweep" open>
+          <details class="cl-item" data-caught-by="human" id="cl-2026-11-18-article-model-effort-provenance" open>
+            <summary class="cl-summary">
+              <span class="cl-summary-body">
+                <span class="cl-meta-line">
+                  <time datetime="2026-11-18" class="cl-date">Nov 18, 2026</time>
+                  <span class="cl-surface">Flagship Essays, Series &amp; Chronicle (/articles/*, /series/*)</span>
+                  <span class="cl-badge cl-badge--human">Human Oversight · Product Dev &amp; Creative Direction</span>
+                </span>
+                <span class="cl-headline">Articles credited &quot;Google Gemini&quot; or &quot;Gemini 4 Argon&quot; generically without recording which exact model checkpoint and thinking effort authored each piece.</span>
+              </span>
+            </summary>
+            <div class="cl-detail-panel">
+              <dl class="cl-detail-grid">
+                <div class="cl-detail-row">
+                  <dt>What went wrong</dt>
+                  <dd>As we expanded from Gemini 4 Argon curation to multi-tier Gemini 4 Hydrogen, Neon (low–xhigh), and Carbon runs, generic model attribution hid the reasoning budget behind each dispatch.</dd>
+                </div>
+                <div class="cl-detail-row">
+                  <dt>How it was fixed</dt>
+                  <dd>Added required authoredByModel and thinkingEffort fields enforced by scripts/validate-data.mjs, and stamped explicit Model + Effort bylines and TechArticle JSON-LD authorship across Sanctuary essays, /articles/index.html, and the Neon series.</dd>
+                </div>
+              </dl>
+            </div>
+          </details>
+          <details class="cl-item" data-caught-by="gemini" id="cl-2026-11-18-neon-xhigh-nan-cdp-catch">
+            <summary class="cl-summary">
+              <span class="cl-summary-body">
+                <span class="cl-meta-line">
+                  <time datetime="2026-11-18" class="cl-date">Nov 18, 2026</time>
+                  <span class="cl-surface">Day-0 Neon Field Test (/arena/exp-05-neon-xhigh.html)</span>
+                  <span class="cl-badge cl-badge--gemini">Gemini Self-Audit · Arena Chrome CDP Harness</span>
+                </span>
+                <span class="cl-headline">Gemini 4 Neon (XHigh) over-thought its 3,830-line single-shot control room UI into a live &quot;Lane Utilization NaN%&quot; bug while Neon (High) scored 100.0/100.</span>
+              </span>
+            </summary>
+            <div class="cl-detail-panel">
+              <dl class="cl-detail-grid">
+                <div class="cl-detail-row">
+                  <dt>What went wrong</dt>
+                  <dd>Automated headless Chrome CDP scoring (scripts/score-neon-gauntlet.mjs) caught Neon (XHigh) referencing an uninitialized ls.recentTraffic property inside its lane-capacity formula and overlapping two canvas status labels.</dd>
+                </div>
+                <div class="cl-detail-row">
+                  <dt>How it was fixed</dt>
+                  <dd>Preserved the untouched single-shot build as empirical evidence in /arena/neon-field-test.html and documented the generative UI sweet spot—defaulting single-shot UI synthesis to Neon (High) or Hydrogen (High) (both 100.0/100) while reserving XHigh and Carbon for deductive security audits.</dd>
+                </div>
+              </dl>
+            </div>
+          </details>
+          <details class="cl-item" data-caught-by="gemini" id="cl-2026-11-15-sitewide-p2-sweep">
             <summary class="cl-summary">
               <span class="cl-summary-body">
                 <span class="cl-meta-line">
@@ -895,7 +943,7 @@
     </section>
 
     <footer class="cl-footer">
-      <span>Active Build: <a href="/status.html">v2.0.111</a> · Design History: <a href="/prototypes/index.html">18-Prototype Archive</a></span>
+      <span>Active Build: <a href="/status.html">v2.0.112</a> · Design History: <a href="/prototypes/index.html">18-Prototype Archive</a></span>
       <a href="/workbench.html?inquire=true">Spot an issue? Send a note →</a>
     </footer>
   </main>

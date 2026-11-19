@@ -282,7 +282,10 @@ function wrapGreekLetters(htmlFragment) {
  * and raw ampersands without introducing unescaped HTML or ellipses.
  */
 function formatRichHtml(raw, wrapGreek = true) {
-  const input = String(raw || '');
+  const input = String(raw || '').replace(/<code>([\s\S]*?)<\/code>/gi, (_, inner) => {
+    const cleanInner = decodeHtmlEntities(inner).replace(/`/g, "'");
+    return `\`${cleanInner}\``;
+  });
   const parts = input.split(/(`[^`]+`)/g);
   return parts
     .map((segment) => {
@@ -344,7 +347,11 @@ function slugifyId(str) {
 }
 
 function formatReleaseDates(dateStr) {
-  const parsed = new Date(dateStr);
+  const rawDate = String(dateStr || '').trim();
+  const normalizedDate = /^[A-Za-z]+\s+\d{1,2},\s*\d{4}$/.test(rawDate)
+    ? `${rawDate} 12:00:00 UTC`
+    : rawDate;
+  const parsed = new Date(normalizedDate);
   if (Number.isNaN(parsed.getTime())) {
     return {
       upperShort: 'NOV 15, 2026',
@@ -548,6 +555,8 @@ function synthesizeFallbackEssay(item, dates, shortLabel, bp, seriesParts) {
     slug: slugifyId(item.id),
     shortStarLabel: shortLabel,
     readMinutes: '6 MIN READ',
+    authoredByModel: 'Google Gemini 4 Argon',
+    thinkingEffort: 'High',
     hudTitle: mainTitle,
     hudSummary: firstCompleteSentence(cleanTldr, 165),
     peekCastor: `${shortLabel}: <em>What changed & why it matters.</em>`,
@@ -730,7 +739,7 @@ function renderSanctuaryEssayInnerHtml(e, options = { standalone: false }) {
   const seriesCompanionHtml = e.seriesUrl
     ? `
                 <div class="standalone-deep-link-row">
-                  <span class="sdl-kicker">COMPANION 3-PART ARCHIVE</span>
+                  <span class="sdl-kicker">${e.seriesKickerHtml || 'COMPANION 3-PART ARCHIVE'}</span>
                   <a href="${e.seriesUrl}" class="standalone-deep-link">
                     <span>${e.seriesLabelHtml}</span>
                   </a>
@@ -810,7 +819,7 @@ function renderSanctuaryEssayInnerHtml(e, options = { standalone: false }) {
             <h1 class="essay-h1" id="essay-main-title" tabindex="-1" itemprop="headline">${e.headlineHtml}</h1>
             <p class="essay-standfirst">${e.standfirstHtml}</p>
             <div class="essay-byline-bar">
-              <span>WRITTEN FIRST-PERSON BY <strong>GOOGLE GEMINI 4 ARGON</strong> · PRODUCT DEVELOPMENT &amp; CREATIVE DIRECTION: <strong>NEIL S. WHITE</strong></span>
+              <span>WRITTEN FIRST-PERSON BY <strong>${e.authoredByModelUpperHtml}</strong> (EFFORT: <strong>${e.thinkingEffortUpperHtml}</strong>) · PRODUCT DEVELOPMENT &amp; CREATIVE DIRECTION: <strong>NEIL S. WHITE</strong></span>
               <span>DUAL-LENS (<span class="greek">α</span> CASTOR + <span class="greek">β</span> POLLUX) · SEARCH-GROUNDED</span>
             </div>
             <div class="essay-lens-toolbar" role="region" aria-label="Essay Perspective Filter">
@@ -982,12 +991,22 @@ function buildStarObjects(stories, blueprints, essaysMap) {
     const readMinNumMatch = readMinutes.match(/(\d+)/);
     const readMinShort = `${readMinNumMatch ? readMinNumMatch[1] : '7'} Min`;
 
+    const authoredByModel = String(rawEssay.authoredByModel || 'Google Gemini 4 Argon').trim();
+    const thinkingEffort = String(rawEssay.thinkingEffort || 'High').trim();
+    const authorWithEffort = `${authoredByModel} (Thinking Effort: ${thinkingEffort})`;
+    const authoredByModelUpperHtml = escapeHtml(authoredByModel.toUpperCase());
+    const thinkingEffortUpperHtml = escapeHtml(thinkingEffort.toUpperCase());
+
     const permalinkUrl = `/articles/${rawEssay.slug}.html`;
     const prevPermalinkUrl = `/articles/${prevEntry.rawEssay.slug}.html`;
     const nextPermalinkUrl = `/articles/${nextEntry.rawEssay.slug}.html`;
 
     const seriesUrl = item.seriesUrl || '';
-    const seriesLabel = `Explore Companion 3-Part ${shortLabel} Archive →`;
+    const isArenaSanctuary = seriesUrl.startsWith('/arena/');
+    const seriesKicker = isArenaSanctuary ? 'LIVE EMPIRICAL BENCHMARK SANCTUARY' : 'COMPANION 3-PART ARCHIVE';
+    const seriesLabel = isArenaSanctuary
+      ? 'Open Interactive 7-Model Benchmark Sanctuary →'
+      : `Explore Companion 3-Part ${shortLabel} Archive →`;
     const labUrl = item.labUrl || '/workbench.html';
     const labLabel = `Open Full ${shortLabel} Sandbox [SIMULATED DEMO] →`;
 
@@ -1052,6 +1071,12 @@ function buildStarObjects(stories, blueprints, essaysMap) {
       isoFull: dates.isoFull,
       readMinutes,
       readMinShort,
+      authoredByModelHtml: escapeHtml(authoredByModel),
+      thinkingEffortHtml: escapeHtml(thinkingEffort),
+      authoredByModelUpperHtml,
+      thinkingEffortUpperHtml,
+      authorWithEffortPlain: authorWithEffort,
+      authorWithEffortAttr: escapeHtml(authorWithEffort),
       plainHeadline: stripTags(rawEssay.headline),
       plainStandfirst: stripTags(rawEssay.standfirst),
       headlineHtml: formatRichHtml(rawEssay.headline),
@@ -1113,6 +1138,7 @@ function buildStarObjects(stories, blueprints, essaysMap) {
       })),
       primarySourceUrls: (rawEssay.verdict.sources || []).map((s) => s.url).filter(Boolean),
       seriesUrl: escapeHtml(seriesUrl),
+      seriesKickerHtml: escapeHtml(seriesKicker),
       seriesLabelHtml: escapeHtml(seriesLabel),
       labUrl: escapeHtml(labUrl),
       labLabelHtml: escapeHtml(labLabel),
@@ -1120,6 +1146,7 @@ function buildStarObjects(stories, blueprints, essaysMap) {
 
     const catTag = String(item.category || 'GEMINI')
       .toUpperCase()
+      .replace(/EMPIRICAL BENCHMARKS/i, 'BENCHMARKS')
       .replace(/DEVELOPER TOOLS & STUDIO/i, 'AI STUDIO')
       .replace(/AGENTS & ANTIGRAVITY/i, 'ANTIGRAVITY')
       .replace(/PERSONAL INTELLIGENCE/i, 'PERSONAL AI')
@@ -1184,6 +1211,9 @@ function buildStarObjects(stories, blueprints, essaysMap) {
         isoDate: dates.isoDate,
         shortStarLabel: shortLabel,
         readMinShort,
+        authoredByModel,
+        thinkingEffort,
+        authorWithEffort,
         plainHeadline: essayDataObj.plainHeadline,
         plainStandfirst: essayDataObj.plainStandfirst,
         faqPlain: essayDataObj.faqPlain,
@@ -1325,17 +1355,18 @@ function buildStandaloneSearchResources(stars, feed, blueprints) {
     const dates = formatReleaseDates(item.date);
     if (item.seriesUrl && !seenUrls.has(item.seriesUrl)) {
       seenUrls.add(item.seriesUrl);
+      const isArenaUrl = item.seriesUrl.startsWith('/arena/');
       resources.push({
         id: `series-${item.id}`,
         scope: 'lab',
         twin: 'castor',
-        badgeKind: '📜 3-PART TECHNICAL ARCHIVE',
+        badgeKind: isArenaUrl ? '🏛️ EMPIRICAL BENCHMARK SANCTUARY' : '📜 3-PART TECHNICAL ARCHIVE',
         badgeSub: `${dates.upperShort} · ${String(item.category || 'GEMINI').toUpperCase()}`,
         title: String(item.title || '').replace(/\.\.\.|…/g, '').trim(),
         desc: firstCompleteSentence(item.tldr, 220),
         keywords: `${item.title} ${item.modelBadge || ''} ${item.category || ''} ${item.tag || ''}`.toLowerCase(),
         url: item.seriesUrl,
-        primaryActionLabel: 'Open 3-Part Archive ↗',
+        primaryActionLabel: isArenaUrl ? 'Open Benchmark Sanctuary ↗' : 'Open 3-Part Archive ↗',
       });
     }
     if (item.labUrl && !seenUrls.has(item.labUrl)) {
@@ -1363,9 +1394,9 @@ function buildStandaloneSearchResources(stars, feed, blueprints) {
       twin: 'castor',
       badgeKind: '✦ THE GEMINI ESSAYS INDEX',
       badgeSub: '8 DUAL-LENS DISPATCHES',
-      title: 'All 8 Flagship Dual-Lens Essays Written by Google Gemini 4 Argon',
-      desc: 'Browse every untruncated first-person Gemini essay pairing Alpha Castor human/business context with Beta Pollux engineering blueprints.',
-      keywords: 'articles essays index castor pollux all flagship dispatches',
+      title: 'All 8 Flagship Dual-Lens Essays Written by Google Gemini 4 Carbon & Argon',
+      desc: 'Browse every untruncated first-person Gemini essay—stamped with exact Model + Thinking Effort provenance and pairing Alpha Castor stakes with Beta Pollux SDK blueprints.',
+      keywords: 'articles essays index castor pollux all flagship dispatches provenance carbon argon',
       url: '/articles/index.html',
       primaryActionLabel: 'Browse Essays Index ↗',
     },
@@ -1478,7 +1509,7 @@ function writeStandaloneArticlePages(stars) {
           description: e.plainStandfirst,
           datePublished: e.isoDate,
           url: canonicalUrl,
-          author: { '@type': 'Person', name: 'Google Gemini 4 Argon' },
+          author: { '@type': 'Person', name: e.authorWithEffortPlain },
           contributor: { '@type': 'Person', name: 'Neil S. White' },
           publisher: { '@type': 'Organization', name: 'GeminiPulse.com', url: 'https://geminipulse.com/' },
           citation: e.primarySourceUrls,
@@ -1505,7 +1536,7 @@ function writeStandaloneArticlePages(stars) {
   <link rel="canonical" href="${canonicalUrl}" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="GeminiPulse" />
-  <meta property="og:title" content="${escapeHtml(e.plainHeadline)} — Written by Google Gemini 4 Argon" />
+  <meta property="og:title" content="${escapeHtml(e.plainHeadline)} — Written by ${e.authorWithEffortAttr}" />
   <meta property="og:description" content="${escapeHtml(e.plainStandfirst)}" />
   <meta property="og:url" content="${canonicalUrl}" />
   <meta property="og:image" content="https://geminipulse.com/og-image.png" />
@@ -1553,6 +1584,7 @@ ${JSON.stringify(schemaGraph, null, 2)}
       scroll-behavior: smooth;
       background: var(--night-zenith);
       color: var(--starlight-ink);
+      overflow-x: hidden;
     }
 
     body {
@@ -1674,6 +1706,8 @@ ${JSON.stringify(schemaGraph, null, 2)}
 
     .article-sanctuary-column {
       max-inline-size: 56rem;
+      inline-size: 100%;
+      min-inline-size: 0;
       margin-inline: auto;
       display: flex;
       flex-direction: column;
@@ -1684,11 +1718,14 @@ ${JSON.stringify(schemaGraph, null, 2)}
     .lens-inner-wrap {
       max-inline-size: 48.75rem;
       inline-size: 100%;
+      min-inline-size: 0;
       margin-inline: auto;
       scroll-margin-top: 72px;
     }
 
     .lens-host {
+      min-inline-size: 0;
+      inline-size: 100%;
       margin: 0;
       padding: 0;
       border: none;
@@ -2113,7 +2150,7 @@ ${JSON.stringify(schemaGraph, null, 2)}
       text-wrap: pretty;
     }
 
-    .builder-rules-ledger { margin-block-start: 2rem; display: grid; gap: 1rem; }
+    .builder-rules-ledger { margin-block-start: 2rem; display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; }
 
     .br-item {
       padding: 1.15rem 1.4rem;
@@ -2141,6 +2178,9 @@ ${JSON.stringify(schemaGraph, null, 2)}
 
     .geo-code-wrap {
       margin-block-start: 2rem;
+      inline-size: 100%;
+      max-inline-size: 100%;
+      min-inline-size: 0;
       border-radius: 12px;
       border: 0.75px solid rgba(245, 158, 63, 0.36);
       background: #050811;
@@ -2180,6 +2220,8 @@ ${JSON.stringify(schemaGraph, null, 2)}
     .geo-code-block {
       padding: 1.25rem 1.4rem;
       overflow-x: auto;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
       font-family: var(--mono);
       font-size: 0.875rem;
       line-height: 1.72;
@@ -2300,6 +2342,7 @@ ${JSON.stringify(schemaGraph, null, 2)}
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
+      max-inline-size: 100%;
       padding: 0.52rem 1.15rem;
       border-radius: 999px;
       background: rgba(56, 189, 248, 0.14);
@@ -2355,9 +2398,9 @@ ${JSON.stringify(schemaGraph, null, 2)}
       padding-block: 0.45rem;
     }
 
-    .psl-meta { display: flex; flex-direction: column; gap: 0.25rem; }
-    .psl-role { font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.07em; text-transform: uppercase; color: #93C5FD; }
-    .psl-label { font-size: 1rem; font-weight: 500; color: #F0F7FF; }
+    .psl-meta { display: flex; flex-direction: column; gap: 0.25rem; min-inline-size: 0; }
+    .psl-role { font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.07em; text-transform: uppercase; color: #93C5FD; overflow-wrap: anywhere; }
+    .psl-label { font-size: 1rem; font-weight: 500; color: #F0F7FF; overflow-wrap: anywhere; }
 
     .psl-link {
       display: inline-flex;
@@ -2391,6 +2434,7 @@ ${JSON.stringify(schemaGraph, null, 2)}
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
+      max-inline-size: 100%;
       padding: 0.62rem 1.15rem;
       border-radius: 999px;
       background: rgba(12, 18, 34, 0.86);
@@ -2409,6 +2453,9 @@ ${JSON.stringify(schemaGraph, null, 2)}
       .ac-presets { grid-template-columns: 1fr; }
       .ac-line { flex-direction: column; gap: 2px; }
       .stb-sub { display: none; }
+      .pollux-workbench-card { padding: 1.25rem 1.1rem; }
+      .pulse-check-ledger { padding: 0.3rem 1rem; }
+      .qa-item, .primary-sources-ledger { padding: 1.1rem; }
     }
   </style>
 </head>
@@ -2431,7 +2478,7 @@ ${JSON.stringify(schemaGraph, null, 2)}
 
   <main class="standalone-main">
     <article class="article-sanctuary-column" id="standalone-essay-root" itemscope itemtype="https://schema.org/TechArticle">
-      <meta itemprop="author" content="Google Gemini 4 Argon" />
+      <meta itemprop="author" content="${e.authorWithEffortAttr}" />
       <meta itemprop="datePublished" content="${e.isoDate}" />
 ${innerHtml}
     </article>
@@ -2533,6 +2580,30 @@ ${innerHtml}
     writeFileSync(resolve(articlesDir, `${e.slug}.html`), pageHtml);
   }
 
+  // Upgrade any preserved historical /articles/*.html dispatches so all standalone articles carry Model + Effort provenance
+  const activeFiles = new Set(['index.html', ...stars.map((s) => `${s.essay.slug}.html`)]);
+  for (const fileName of readdirSync(articlesDir)) {
+    if (!fileName.endsWith('.html') || activeFiles.has(fileName)) continue;
+    const archPath = resolve(articlesDir, fileName);
+    let archHtml = readFileSync(archPath, 'utf8');
+    const updatedArch = archHtml
+      .replace(
+        /WRITTEN FIRST-PERSON BY <strong>GOOGLE GEMINI 4 ARGON<\/strong> · (?:EDITORIAL DIRECTION BY|PRODUCT DEVELOPMENT &amp; CREATIVE DIRECTION:) <strong>NEIL S\. WHITE<\/strong>/g,
+        'WRITTEN FIRST-PERSON BY <strong>GOOGLE GEMINI 4 ARGON</strong> (EFFORT: <strong>HIGH</strong>) · PRODUCT DEVELOPMENT &amp; CREATIVE DIRECTION: <strong>NEIL S. WHITE</strong>'
+      )
+      .replace(
+        /"author": \{\s*"@type": "Person",\s*"name": "Google Gemini 4 Argon"\s*\}/g,
+        '"author": {\n        "@type": "Person",\n        "name": "Google Gemini 4 Argon (Thinking Effort: High)"\n      }'
+      )
+      .replace(
+        '<meta itemprop="author" content="Google Gemini 4 Argon" />',
+        '<meta itemprop="author" content="Google Gemini 4 Argon (Thinking Effort: High)" />'
+      );
+    if (updatedArch !== archHtml) {
+      writeFileSync(archPath, updatedArch);
+    }
+  }
+
   // Also generate `/articles/index.html` directory of all 8 Flagship Dual-Lens Essays
   const cardsHtml = stars
     .map((s) => {
@@ -2542,6 +2613,10 @@ ${innerHtml}
         <div class="eic-meta">
           <span>✦ STAR ${e.starIdx} / 08 · <span class="greek">${e.greek}</span> ${e.starNameUpper} (${e.lyDisplay} LY)</span>
           <span>${e.dateUpper} · ${e.readMinutes}</span>
+        </div>
+        <div class="eic-provenance-row">
+          <span class="eic-provenance-badge">${e.authoredByModelHtml} · ${e.thinkingEffortHtml} Effort</span>
+          <span class="eic-provenance-human">Product Development &amp; Creative Direction: Neil S. White</span>
         </div>
         <h2 class="eic-title"><a href="${e.permalinkUrl}">${e.headlineHtml}</a></h2>
         <p class="eic-standfirst">${e.standfirstHtml}</p>
@@ -2559,8 +2634,8 @@ ${innerHtml}
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="text-scale" content="scale" />
-  <title>The Gemini Essays — Original Dual-Lens Dispatches by Google Gemini 4 Argon | GeminiPulse</title>
-  <meta name="description" content="Read all 8 untruncated flagship essays written first-person by Google Gemini 4 Argon—pairing Alpha Castor human and business stakes with Beta Pollux architecture and runnable SDK code." />
+  <title>The Gemini Essays — Original Dual-Lens Dispatches With Model + Effort Provenance | GeminiPulse</title>
+  <meta name="description" content="Read all 8 untruncated flagship essays written first-person by Google Gemini 4 Carbon and Google Gemini 4 Argon—explicitly stamped with Model + Thinking Effort provenance and pairing Alpha Castor stakes with Beta Pollux SDK code." />
   <link rel="canonical" href="https://geminipulse.com/articles/index.html" />
   <link rel="icon" type="image/svg+xml" href="/gemini-sparkle.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -2623,6 +2698,21 @@ ${innerHtml}
       gap: 0.85rem;
     }
     .eic-meta { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.09em; color: #9AA8BE; text-transform: uppercase; }
+    .eic-provenance-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 12px; }
+    .eic-provenance-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.28rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.13);
+      border: 0.75px solid rgba(56, 189, 248, 0.42);
+      color: #E0F2FE;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+    .eic-provenance-human { font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.05em; color: #9AA8BE; }
     .eic-title { font-family: var(--serif); font-size: clamp(1.7rem, 1.38rem + 1vw, 2.25rem); font-weight: 500; line-height: 1.15; text-wrap: balance; }
     .eic-title a { color: #FFF; text-decoration: none; }
     .eic-title em { font-style: italic; color: #BAE6FD; }
@@ -2649,7 +2739,7 @@ ${innerHtml}
     <a href="/" class="back">← Return to 3D Constellation</a>
   </header>
   <main>
-    <div class="eyebrow">✦ WRITTEN BY GOOGLE GEMINI 4 ARGON · PRODUCT DEVELOPMENT &amp; CREATIVE DIRECTION: NEIL S. WHITE</div>
+    <div class="eyebrow">✦ EXPLICIT MODEL + EFFORT PROVENANCE · GOOGLE GEMINI 4 CARBON &amp; ARGON · PRODUCT DEVELOPMENT &amp; CREATIVE DIRECTION: NEIL S. WHITE</div>
     <h1>The Gemini Essays. <em>Guided by the Twins.</em></h1>
     <p class="lead">Eight complete, untruncated flagship essays—synthesizing every major Google Gemini milestone through Alpha Castor (human &amp; business meaning) and Beta Pollux (engineering architecture &amp; runnable SDK code).</p>
     <div class="grid">
@@ -2878,7 +2968,7 @@ ${cpnStepsHtml}
     sheetStatusHtml
   );
 
-  const articleLeadHtml = `        <meta itemprop="author" content="Google Gemini 4 Argon" />
+  const articleLeadHtml = `        <meta itemprop="author" id="article-author-meta" content="${s0.essay.authorWithEffortAttr}" />
         <meta itemprop="datePublished" id="article-date-published" content="${s0.hud.isoDate}" />`;
   html = replaceBetweenMarkers(
     html,
@@ -2965,7 +3055,7 @@ ${promptChips.map((c) => `        <button type="button" class="cs-prompt-chip" d
         description: s0.essay.plainStandfirst,
         datePublished: s0.hud.isoDate,
         url: `https://geminipulse.com${s0.essay.permalinkUrl}`,
-        author: { '@type': 'Person', name: 'Google Gemini 4 Argon' },
+        author: { '@type': 'Person', name: s0.essay.authorWithEffortPlain },
         contributor: { '@type': 'Person', name: 'Neil S. White' },
         citation: s0.essay.primarySourceUrls,
       },
