@@ -328,6 +328,26 @@ const IN_PAGE_INSPECT_EXPR = `
 
   const hasSimulatedBadge = /\\[SIMULATED DEMO\\]|SIMULATED DEMO/i.test(bodyText);
   const inquiryModalMounted = Boolean(document.getElementById('inquiry-name'));
+  const gpAnalytics = window.__GP_ANALYTICS__;
+  const wbAnalytics = window.__GP_WORKBENCH_ANALYTICS__;
+  const hasStaticAnalytics = Boolean(
+    gpAnalytics &&
+      gpAnalytics.measurementId === 'G-1BWMQWZJQ5' &&
+      Array.isArray(gpAnalytics.eventsBuffer) &&
+      gpAnalytics.eventsBuffer.some(
+        (ev) =>
+          ev.event === 'page_view' &&
+          ev.params &&
+          ev.params.authored_model &&
+          ev.params.thinking_effort &&
+          ev.params.content_surface
+      )
+  );
+  const hasWorkbenchAnalytics = Boolean(
+    wbAnalytics &&
+      wbAnalytics.measurementId === 'G-1BWMQWZJQ5' &&
+      wbAnalytics.content_surface === 'workbench_spa'
+  );
 
   return {
     isVerificationToken: false,
@@ -343,6 +363,8 @@ const IN_PAGE_INSPECT_EXPR = `
     cheeseHits,
     hasSimulatedBadge,
     inquiryModalMounted,
+    hasStaticAnalytics,
+    hasWorkbenchAnalytics,
   };
 })()
 `;
@@ -425,6 +447,7 @@ async function main() {
   const p0CrashOrBlank = [];
   const p1BrokenLinks = [];
   const p1LayoutOrHeader = [];
+  const p1MissingAnalytics = [];
   const p2MissingSimDemo = [];
   const p2MarkdownLeak = [];
   const p2CheeseTone = [];
@@ -568,6 +591,21 @@ async function main() {
         p2CheeseTone.push({ route, hits: d.cheeseHits });
       }
     }
+
+    if (!d.isVerificationToken && !isUntouchedArenaArtifact(route)) {
+      const isWorkbenchRoute = route.startsWith('/workbench');
+      const analyticsActive = isWorkbenchRoute
+        ? Boolean(d.hasWorkbenchAnalytics || d.hasStaticAnalytics)
+        : Boolean(d.hasStaticAnalytics);
+      if (!analyticsActive) {
+        p1MissingAnalytics.push({
+          route,
+          reason: isWorkbenchRoute
+            ? 'Missing Workbench GA4 handle (window.__GP_WORKBENCH_ANALYTICS__)'
+            : 'Missing static GA4 + provenance page_view (window.__GP_ANALYTICS__)',
+        });
+      }
+    }
   }
 
   cdp.close();
@@ -589,6 +627,7 @@ async function main() {
     `- **Routes & States Crawled:** **${routesToAudit.length}** (Desktop \`1440x900\` + Mobile \`390x844\`, Headless Chrome CDP)`,
     `- **P0 Runtime Crashes / Blank Screens / Broken Inquiry Modal:** **${p0CrashOrBlank.length}**`,
     `- **P1 Broken Internal Links / Images / Sitemap / Feed URLs:** **${p1BrokenLinks.length + sitemapBroken.length + feedBroken.length}**`,
+    `- **P1 Routes Missing GA4 + Provenance Telemetry (\`G-1BWMQWZJQ5\`):** **${p1MissingAnalytics.length}**`,
     `- **P1/P2 Viewport Overflow or Header Clipping (Active Pages):** **${p1LayoutOrHeader.length}**`,
     `- **P2 Labs Missing \`[SIMULATED DEMO]\` Badge:** **${p2MissingSimDemo.length}**`,
     `- **P2 Leaked Raw Markdown (\`\\\`code\\\`\` or \`**bold**\`) in Prose:** **${p2MarkdownLeak.length}**`,
@@ -616,25 +655,31 @@ async function main() {
           ...p1BrokenLinks.map((b) => `- \`${b.route}\` -> missing target \`${b.target}\``),
         ]),
     '',
-    '## 4. P1/P2 Active-Page Horizontal Overflow & Sticky Header Geometry (`1440px` & `390px`)',
+    '## 4. P1 Sitewide GA4 & Model-Provenance Telemetry (`G-1BWMQWZJQ5`)',
+    '',
+    ...(p1MissingAnalytics.length === 0
+      ? ['- **100% active route telemetry coverage.** Every non-benchmark static route verified `window.__GP_ANALYTICS__` (`page_view` + `authored_model` + `thinking_effort`), `/workbench.html` verified `window.__GP_WORKBENCH_ANALYTICS__`, and untouched `/arena/exp-*` single-shot artifacts remained byte-identical.']
+      : p1MissingAnalytics.map((a) => `- \`${a.route}\` — ${a.reason}`)),
+    '',
+    '## 5. P1/P2 Active-Page Horizontal Overflow & Sticky Header Geometry (`1440px` & `390px`)',
     '',
     ...(p1LayoutOrHeader.length === 0
       ? ['- **0 active-page horizontal overflows or clipped header controls.**']
       : p1LayoutOrHeader.map((l) => `- \`${l.route}\` (${l.viewport}): ${l.detail}`)),
     '',
-    '## 5. P2 Interactive Labs `[SIMULATED DEMO]` Labeling (House Rule #5)',
+    '## 6. P2 Interactive Labs `[SIMULATED DEMO]` Labeling (House Rule #5)',
     '',
     ...(p2MissingSimDemo.length === 0
       ? ['- **All `/labs/*.html` pages display an explicit `[SIMULATED DEMO]` label.**']
       : p2MissingSimDemo.map((m) => `- \`${m.route}\` missing explicit \`[SIMULATED DEMO]\` text`)),
     '',
-    '## 6. P2 Leaked Raw Markdown Syntax in Visible Prose',
+    '## 7. P2 Leaked Raw Markdown Syntax in Visible Prose',
     '',
     ...(p2MarkdownLeak.length === 0
       ? ['- **0 leaked markdown backticks or `**bold**` tokens in visible prose.**']
       : p2MarkdownLeak.map((m) => `- \`${m.route}\`: ${m.samples.map((s) => `\`${s.replace(/`/g, "'")}\``).join(' · ')}`)),
     '',
-    '## 7. P2 Legacy Role Attribution / High-Cheese Copy Locations',
+    '## 8. P2 Legacy Role Attribution / High-Cheese Copy Locations',
     '',
     ...(p2CheeseTone.length === 0
       ? ['- **0 leftover high-cheese / legacy role title strings across active pages.**']
@@ -648,13 +693,18 @@ async function main() {
   console.log(`  Routes audited:       ${routesToAudit.length}`);
   console.log(`  P0 Crashes / Blank:   ${p0CrashOrBlank.length}`);
   console.log(`  P1 Broken Links/XML:  ${p1BrokenLinks.length + sitemapBroken.length + feedBroken.length}`);
+  console.log(`  P1 Missing Analytics: ${p1MissingAnalytics.length}`);
   console.log(`  P1/P2 Layout/Header:  ${p1LayoutOrHeader.length}`);
   console.log(`  P2 Missing Sim Demo:  ${p2MissingSimDemo.length}`);
   console.log(`  P2 Markdown Leaks:    ${p2MarkdownLeak.length}`);
   console.log(`  P2 Tone/Role Hits:    ${p2CheeseTone.length}`);
   console.log(`  Manifest written to:  docs/sitewide-audit-manifest.md\n`);
 
-  if (p0CrashOrBlank.length > 0 || (STRICT_MODE && (p1BrokenLinks.length > 0 || p1LayoutOrHeader.length > 0))) {
+  if (
+    p0CrashOrBlank.length > 0 ||
+    p1MissingAnalytics.length > 0 ||
+    (STRICT_MODE && (p1BrokenLinks.length > 0 || p1LayoutOrHeader.length > 0))
+  ) {
     process.exit(1);
   }
 }

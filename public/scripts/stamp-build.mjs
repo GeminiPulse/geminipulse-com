@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { validateData } from './validate-data.mjs';
 import { syncConstellation } from './sync-constellation.mjs';
 import { syncChangelog } from './sync-changelog.mjs';
+import { syncAnalytics } from './sync-analytics.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(__dirname, '../..');
@@ -42,7 +43,7 @@ const meta = {
   parentSha: lastCommitSha,
   builtAtUtc: isoUtc,
   builtAtEdt: edtFormatted,
-  ga4MeasurementId: 'G-1BWMQWZJQ5 (Active — Post-Paint Deferred)',
+  ga4MeasurementId: 'G-1BWMQWZJQ5 (Active Sitewide — Static + SPA, Model/Effort Provenance, Bot-Filtered)',
   lighthouseDesktop: '100 / 100 / 100 / 100',
   lighthouseMobile: '99 / 100 / 100 / 100',
 };
@@ -197,8 +198,8 @@ const statusHtml = `<!doctype html>
             <span class="ok">● OPERATIONAL</span>
           </div>
           <div class="row">
-            <span><strong>Google Analytics 4 Telemetry</strong> (<code>G-1BWMQWZJQ5</code> — Post-Paint Deferred Loader)</span>
-            <span class="ok">● ACTIVE &amp; RECORDING</span>
+            <span><strong>Google Analytics 4 &amp; Provenance Telemetry</strong> (<code>G-1BWMQWZJQ5</code> — Sitewide Static + SPA, <code>authored_model</code> &amp; <code>thinking_effort</code> Custom Dimensions)</span>
+            <span class="ok">● ACTIVE SITEWIDE (BOT-FILTERED)</span>
           </div>
           <div class="row">
             <span><strong>3x/Day Embargo Triad Curator</strong> (<code>8:45 AM</code>, <code>12:45 PM</code>, <code>5:45 PM ET</code> — Direct Google Primary Sources Only)</span>
@@ -237,4 +238,7 @@ const statusHtml = `<!doctype html>
 
 writeFileSync(resolve(__dirname, '../public/status.html'), statusHtml);
 
-console.log(`[stamp-build] Stamped ${buildId} (${edtFormatted}) -> src/buildMeta.json, public/status.html, public/changelog.html, index.html & /articles/*`);
+// 4. Inject sitewide GA4 + Model/Effort provenance telemetry across static HTML routes (including status.html & changelog.html)
+await syncAnalytics();
+
+console.log(`[stamp-build] Stamped ${buildId} (${edtFormatted}) -> src/buildMeta.json, public/status.html, public/changelog.html, index.html, /articles/* & pulse-analytics`);

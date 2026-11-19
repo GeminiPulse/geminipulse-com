@@ -68,7 +68,10 @@ node_modules/
 !.env.example
 *.pem
 *service-account*.json
+*analytics-reader*.json
+*analytics-config*.json
 *credentials*.json
+.analytics/
 
 # Vite production build output
 public/dist/

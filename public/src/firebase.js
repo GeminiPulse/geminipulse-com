@@ -15,6 +15,27 @@ export const isFirebaseConfigured = Boolean(
   firebaseConfig.apiKey && firebaseConfig.projectId
 );
 
+const BOT_OR_AUDIT_UA_RE =
+  /HeadlessChrome|Lighthouse|Chrome-Lighthouse|PTST|Speed Insights|Googlebot|bingbot|Slurp|DuckDuckBot/i;
+
+export function isAutomatedAuditOrBot() {
+  if (typeof window === 'undefined') return true;
+  if (window.__GP_FORCE_GTAG__ === true) return false;
+  if (typeof navigator !== 'undefined' && navigator.webdriver === true) return true;
+  const ua = typeof navigator !== 'undefined' ? navigator.userAgent || '' : '';
+  return BOT_OR_AUDIT_UA_RE.test(ua);
+}
+
+if (typeof window !== 'undefined' && !window.__GP_WORKBENCH_ANALYTICS__) {
+  window.__GP_WORKBENCH_ANALYTICS__ = {
+    measurementId: firebaseConfig.measurementId || 'G-1BWMQWZJQ5',
+    authored_model: 'gemini-4-argon',
+    thinking_effort: 'high',
+    content_surface: 'workbench_spa',
+    eventsBuffer: [],
+  };
+}
+
 let runtimePromise = null;
 let lastInitError = null;
 
@@ -47,7 +68,7 @@ export function loadFirebaseRuntime() {
 
       let analytics = null;
       let analyticsMod = null;
-      if (firebaseConfig.measurementId && typeof window !== 'undefined') {
+      if (firebaseConfig.measurementId && typeof window !== 'undefined' && !isAutomatedAuditOrBot()) {
         try {
           analyticsMod = await import('firebase/analytics');
           const supported = await analyticsMod.isSupported();
@@ -80,10 +101,24 @@ export function loadFirebaseRuntime() {
 }
 
 export async function trackPulseEvent(eventName, params = {}) {
+  const enrichedParams = {
+    authored_model: 'gemini-4-argon',
+    thinking_effort: 'high',
+    content_surface: 'workbench_spa',
+    ...params,
+  };
+  if (typeof window !== 'undefined' && window.__GP_WORKBENCH_ANALYTICS__) {
+    window.__GP_WORKBENCH_ANALYTICS__.eventsBuffer.push({
+      event: eventName,
+      params: enrichedParams,
+      ts: Date.now(),
+    });
+  }
+  if (isAutomatedAuditOrBot()) return;
   try {
     const { analytics, analyticsMod } = await loadFirebaseRuntime();
     if (analytics && analyticsMod) {
-      analyticsMod.logEvent(analytics, eventName, params);
+      analyticsMod.logEvent(analytics, eventName, enrichedParams);
     }
   } catch {
     // Non-blocking telemetry

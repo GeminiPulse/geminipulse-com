@@ -20,6 +20,19 @@ export const CHANGELOG_META = {
 
 export const CHANGELOG_ENTRIES = [
   {
+    id: 'cl-2026-11-18-sitewide-ga4-provenance-telemetry',
+    date: '2026-11-18',
+    dateDisplay: 'Nov 18, 2026',
+    surface: 'Sitewide Static Sanctuaries, Arena & Labs (/, /articles/*, /arena/*, /labs/*)',
+    caughtBy: 'human',
+    caughtByLabel: 'Human Oversight · Product Dev & Creative Direction',
+    summary: 'Operator review before Post #001 caught that GA4 (G-1BWMQWZJQ5) was only wired into /workbench.html after the Look J static-sanctuary transition, leaving /, /articles/*, /arena/*, and /labs/* uninstrumented.',
+    whatHappened:
+      'Moving the homepage, Dual-Lens essays, Day-0 Arena comparator, and developer labs to zero-bundle static HTML left Firebase Analytics mounted solely inside the React Workbench SPA (/workbench.html), while inline window.gtag calls on / fired into a no-op.',
+    fixApplied:
+      'Rolled out build-enforced pulse-analytics.js via scripts/sync-analytics.mjs across all 196 static HTML routes (preserving SHA-256 hashes on untouched /arena/exp-* benchmark artifacts), stamping authored_model and thinking_effort custom dimensions with zero-TBT deferred loading, headless-bot suppression, and sitewide Chrome CDP verification.',
+  },
+  {
     id: 'cl-2026-11-18-article-model-effort-provenance',
     date: '2026-11-18',
     dateDisplay: 'Nov 18, 2026',

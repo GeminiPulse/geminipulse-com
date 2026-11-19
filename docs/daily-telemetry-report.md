@@ -1,8 +1,27 @@
 # GeminiPulse.com — Daily Telemetry, Analytics & Monetization Report (`docs/daily-telemetry-report.md`)
 
-- **Report Date:** `2026-11-18 17:55 EST` (5:45 PM ET West Coast Afternoon SDK & Model Window — Round 45)
+- **Report Date:** `2026-11-18 21:40 EST` (Round 46 — Day-0 Gemini 4 Neon Gauntlet, Sitewide GA4 Provenance & Automated Analytics Pipeline)
 - **Active Build Stamp:** Verified at `https://geminipulse.com/status`
-- **Autonomous Operator:** Google Gemini 4 Argon (Google Antigravity)
+- **Autonomous Operator:** Google Gemini 4 Carbon & Gemini 4 Argon (Google Antigravity)
+
+---
+
+<!-- LIVE-ANALYTICS-PULSE-START -->
+## 00. Automated Live Visitor, UTM & Model-Efficiency Pulse (`npm run telemetry:pull`)
+
+> **Pipeline Status:** **PENDING READ-ONLY VIEWER KEY** (Checked `2026-11-18 21:48 EST`)
+> - **Why Live Tables Are Paused:** No read-only service account key found at ~/.config/geminipulse/analytics-reader.json (or GEMINIPULSE_GA_CREDENTIALS).
+> - **Honest Traffic Rule (Zero Hallucination):** Until `~/.config/geminipulse/analytics-reader.json` is connected, treat external human traffic as **unverified / cold-start (`0` confirmed visitors)** and never extrapolate audience traction.
+> - **Collector Readiness on `geminipulse.com`:** **LIVE SITEWIDE** — `pulse-analytics.js` (`G-1BWMQWZJQ5`) is recording human `page_view`, `engaged_read` (`15s`/`45s`/`120s`), `scroll_milestone` (`50%`/`90%`), `arena_artifact_engage`, channel UTMs (`x`, `linkedin`, `linkedin_neil`, `youtube_shorts`), and model provenance (`authored_model`, `thinking_effort`, `content_surface`), while filtering `HeadlessChrome`/`Lighthouse` bots.
+> - **3-Minute Operator Activation (`$0.00/mo`):** Follow [`docs/analytics-setup-guide.md`](./analytics-setup-guide.md), drop the read-only Viewer JSON key at `~/.config/geminipulse/analytics-reader.json` (`chmod 600`), and run `cd public && npm run telemetry:pull`.
+
+| Report Module | Target API & Scope | Pre-Key Status |
+| :--- | :--- | :--- |
+| **00a. Human Traffic Baseline (24h / 7d / 28d)** | `analyticsdata.googleapis.com/v1beta` (`G-1BWMQWZJQ5`) | Awaiting Viewer key (`~/.config/geminipulse/analytics-reader.json`) |
+| **00b. Channel & Post #001 UTM Funnel** | `sessionSource` / `sessionMedium` / `sessionCampaignName` (`post_001_neon_gauntlet`) | Outbound UTMs wired in [`docs/social-launch-kit-post-001.md`](./social-launch-kit-post-001.md); awaiting Viewer key |
+| **00c. Model × Thinking Effort Efficiency Matrix** | `customEvent:authored_model` × `thinking_effort` × `content_surface` (+ `CONSTELLATION_ESSAYS` `pagePath` fallback) | Ready (24–48h GA4 custom-dimension warmup automatically covered by `pagePath` fallback) |
+| **00d. Google Search Console (7d Queries & Pages)** | `searchconsole.googleapis.com/webmasters/v3` (`sc-domain:geminipulse.com`) | Awaiting Restricted GSC user grant (Step 4 in [`docs/analytics-setup-guide.md`](./analytics-setup-guide.md)) |
+<!-- LIVE-ANALYTICS-PULSE-END -->
 
 ---
 
@@ -15,6 +34,7 @@
 | **Google DeepMind Blog (`deepmind.google/blog/genie-4-is-now-available/`)** | **VERIFIED NEW PRIMARY RELEASE (Nov 18, 2026 18:13 UTC)** | **Genie 4 & New Project Genie Rollout (AI Ultra)**: Launches **Genie 4** mid-session text world editing and adaptive native audio, **Genie 3** 3-minute generations & 360° panorama grounding, the conversational **Project Genie agent**, and a remixable community gallery (*Villa Giallo*, *The Life of Ants*) with SynthID watermarking. Added to `PULSE_INTELLIGENCE_FEED` and `CONSTELLATION_ESSAYS`. |
 | **YouTube Official Channels (`youtube.com/oembed` HTTP 200 Verified)** | **VERIFIED HTTP 200 (Nov 18, 2026)** | **New Featured Video of the Day: `Google Antigravity and Gemini 4: Building a custom groovebox on a $40 macro pad` (`f2bpv9mFUeE`)** by `@GoogleDevelopers`, alongside verified Nov 18 official videos `EDp4IoAUsXY` & `pVc6KkjeCfU` (`@googledeepmind` Project Genie 4), `6P1polyfAqM` (`@googlecloudtech` Elephant-Goldfish Model fresh-eyes review), and `Li3fV7uA8Ww` (`@googleantigravity` real-time AI language tutor). Added to `GEMINI_VIDEO_SHOWCASE`. |
 | **Multi-Part Series & Companion Lab (`series/gemini-4-neon/*` & `labs/gemini-4-neon-studio.html`)** | **PUBLISHED (3 Series Pages + 1 Lab [SIMULATED DEMO])** | Published 3-part breakdown (`What Changed` &rarr; `How Does This Affect Me?` &rarr; `Concrete Use Cases`) and interactive `gemini-4-neon-studio.html` [SIMULATED DEMO], indexed in `sitemap.xml` and `feed.xml`. |
+| **Day-0 Empirical Gauntlet & Sitewide GA4 + Model Provenance (`Round 46`)** | **LIVE SITEWIDE (`G-1BWMQWZJQ5`)** | Published 13-worker untouched benchmark sanctuary (`/arena/neon-field-test.html`) + Star 01 essay (`/articles/gemini-4-neon-day-0-empirical-field-test.html`), closed the static-page GA4 instrumentation gap via build-enforced `pulse-analytics.js` (`sync-analytics.mjs` across `/`, `/articles/*`, `/arena/*`, `/labs/*`, `/series/*`, `/changelog.html`, `/status.html`, `/partners.html` while keeping `exp-05-*.html` `SHA-256`-untouched and `workbench.html` on `firebase.js`), wired channel UTMs in `docs/social-launch-kit-post-001.md`, and shipped `public/scripts/pull-daily-analytics.mjs` (`npm run telemetry:pull`). |
 
 ---
 
@@ -251,19 +271,21 @@
 
 ---
 
-## 2. Real-Time Analytics & Visitor Tracking Status
+## 2. Real-Time Analytics & Visitor Tracking Status (Updated Round 46 — Nov 18, 2026)
 
 | Telemetry Stream | Current Status | Findings & Actionable Notes |
 | :--- | :--- | :--- |
-| **Google Analytics 4 (`G-1BWMQWZJQ5`)** | **LIVE & RECORDING** | Provisioned on Firebase Web App `1:643794480842:web:9f973bc1a0d7670c920e33`. Initialized post-paint (`1.8s` idle deferral to preserve Quad-100 Lighthouse) with custom funnel events (`release_series_part_select`, `mini_project_open`, `video_play_inline`, `get_started_cta_click`, `sdk_blueprint_run`, `newsletter_subscribe`, `business_inquiry_submit`). |
+| **Google Analytics 4 (`G-1BWMQWZJQ5` — Sitewide Static + SPA)** | **LIVE SITEWIDE & BOT-FILTERED** | Build-enforced `pulse-analytics.js` (`npm run sync:analytics` in `prebuild`) + `/workbench.html` (`firebase.js` on Firebase Web App `1:643794480842:web:9f973bc1a0d7670c920e33`) now cover 100% of human-facing static sanctuaries (`/`, `/articles/*`, `/arena/neon-field-test.html`, `/labs/*`, `/series/*`, `/changelog.html`, `/status.html`, `/partners.html`) while leaving `/arena/exp-05-*.html` single-shot benchmark artifacts byte-for-byte untouched (`SHA-256`). Defers `gtag.js` until first interaction or idle (`0ms` TBT), skips `HeadlessChrome`/`Lighthouse`/`webdriver` traffic, and stamps `authored_model`, `thinking_effort`, `content_surface`, `engaged_read` (`15s`/`45s`/`120s`), `scroll_milestone` (`50%`/`90%`), `arena_artifact_engage`, and channel UTMs (`x`, `linkedin`, `linkedin_neil`, `youtube_shorts`). |
+| **GA4 Data API + Search Console Puller (`npm run telemetry:pull`)** | **READY (AWAITING VIEWER KEY)** | Zero-dependency Node 22 OAuth2 `RS256` pipeline (`public/scripts/pull-daily-analytics.mjs`) auto-discovers the numeric GA4 Property ID for `G-1BWMQWZJQ5`, queries 24h/7d/28d human baselines, UTM funnels (`post_001_neon_gauntlet`), Model × Thinking Effort dwell efficiency (with automatic `pagePath` -> `CONSTELLATION_ESSAYS` fallback during GA4's 24–48h custom-dimension warmup), and 7-day Search Console queries into Section `00` above. Setup checklist: [`docs/analytics-setup-guide.md`](./analytics-setup-guide.md). |
 | **Cloud Firestore Live Intake** | **VERIFIED END-TO-END** | Confirmed live write-only persistence on `geminipulse.com` (`business_inquiries` tested and verified live; post-submit modal UX upgraded to clear inputs and present topic-aware next steps). |
-| **Google Search Console** | **SITEMAP UPDATED (65 URLs)** | `sitemap.xml` now indexes 65 clean standalone URLs including `/series/maps-ai-studio/*`, `/series/agent-substrate/*`, `/series/genai-sdk-v3-migration/*`, `/series/agent-distraction/*`, `/series/gemini-omni-video/*`, `/series/gemini-multimodal-tools/*`, `/series/gemini-live-vision/*`, `/series/gemini-voice-remixing/*`, `/series/antigravity-cheminformatics/*`, `/series/gemini-cost-per-task/*`, `/series/gemini-2-5-migration/*`, `/series/gemini-computer-use/*`, `/series/gemini-4-carbon/*`, `/series/making-the-switch/*`, `/labs/*`, `/partners`, and `/status`. |
-| **Google Lighthouse & Layout Bots** | **PASSING** | Desktop: `100 / 100 / 100 / 100` (`0.000` CLS) • Mobile: `97+ / 100 / 100 / 100` • 4-Viewport Chrome CDP Layout Bot: `0` card overflows across `1440px`, `1120px`, `768px`, and `390px`. |
+| **Google Search Console** | **SITEMAP UPDATED (117+ URLs)** | `sitemap.xml` indexes all clean standalone URLs including `/arena/neon-field-test.html`, `/arena/exp-05-*.html`, `/articles/*`, `/series/*`, `/labs/*`, `/changelog.html`, `/partners`, and `/status`. |
+| **Google Lighthouse & Layout Bots** | **PASSING (`210` Routes)** | Desktop: `100 / 100 / 100 / 100` • Mobile: `99–100 / 100 / 100 / 100` • 4-Viewport Chrome CDP Layout & Sitewide Audit (`210` routes): `0` crashes, `0` broken links, `0` horizontal overflows across `1440px`, `1120px`, `768px`, and `390px`. |
 
 ---
 
 ## 3. Where to View Live Traffic & Funnel Behavior Right Now
 
+- **Automated CLI & Daily Pull (`Section 00` above):** `cd public && npm run telemetry:pull` (activation guide: [`docs/analytics-setup-guide.md`](./analytics-setup-guide.md))
 - **Firebase Realtime & Funnel Analytics:** `https://console.firebase.google.com/project/geminipulse-com/analytics`
 - **Cloud Firestore Private Inquiries & Subscribers:** `https://console.firebase.google.com/project/geminipulse-com/firestore`
 - **Public Build & Health Stamp:** `https://geminipulse.com/status`
@@ -273,6 +295,7 @@
 ## 4. Daily Autonomous Curation & Reporting Cadence (`8:45 AM`, `12:45 PM`, `5:45 PM ET`)
 
 During each scheduled curation check, `geminipulse-daily-curator` verifies:
-1. Direct official Google release channels (`blog.google`, `deepmind.google`, `ai.google.dev/gemini-api/docs/changelog`, `developers.googleblog.com`, upstream SDK GitHub releases) — zero third-party aggregators.
-2. Curated YouTube Creator & Official Google video discoveries (verifying oEmbed `200 OK` + summarizing takeaways with Gemini).
-3. Live `/status`, Desktop/Mobile Lighthouse scores, and 4-viewport layout overflow integrity.
+1. Live human visitor baseline, channel UTM funnel, Model × Thinking Effort dwell matrix, and Search Console organic queries via `cd public && npm run telemetry:pull` (updating Section `00` above).
+2. Direct official Google release channels (`blog.google`, `deepmind.google`, `ai.google.dev/gemini-api/docs/changelog`, `developers.googleblog.com`, upstream SDK GitHub releases) — zero third-party aggregators.
+3. Curated YouTube Creator & Official Google video discoveries (verifying oEmbed `200 OK` + summarizing takeaways with Gemini).
+4. Live `/status`, Desktop/Mobile Lighthouse scores, and 4-viewport layout overflow integrity.

@@ -50,6 +50,8 @@ Instead of guessing at "viral formulas" or drifting into engagement bait, we run
 ## Part 2: Ready-to-Post Channel Copy & Visual Assets
 
 > **Editorial Guardrails Applied Across All Channels:** Zero AI-slop filler (*"delve"*, *"buckle up"*, *"game-changer"*, *"unleash"*), zero hype emojis, exact provenance stamped openly (`Google Gemini 4 Carbon · Effort: High`), zero fabricated numbers, and outbound URLs positioned to avoid feed reach suppression.
+>
+> **Visitor-#1 Channel UTM Attribution (`post_001_neon_gauntlet`):** Every outbound link below carries a channel-specific UTM query string (`utm_source=x`, `linkedin`, `linkedin_neil`, or `youtube_shorts`) captured automatically by `pulse-analytics.js` (`G-1BWMQWZJQ5`) and aggregated by `cd public && npm run telemetry:pull` into [`docs/daily-telemetry-report.md`](./daily-telemetry-report.md).
 
 ---
 
@@ -99,11 +101,11 @@ Instead of guessing at "viral formulas" or drifting into engagement bait, we run
   Only Carbon (High) and Claude Opus 5.5 (14 findings, 82s) measured STATIC_96K_COMPLIANCE_SCHEMA rather than trusting its name—and proved defer_loading: true on a sole MCP server re-bills uncached prompts each turn. (5/6)
   ```
 
-- **Post `6/6` (Final Reply — Link + Provenance)** (`263` chars)
+- **Post `6/6` (Final Reply — Link + Provenance)** (`268` X-weighted chars; X `t.co` wraps the UTM URL to `23` chars `<= 280`)
   ```text
   Every byte-for-byte untouched HTML build (SHA-256 verified), raw JSON audit report, and side-by-side live sandbox is open here—no email gate:
 
-  https://geminipulse.com/arena/neon-field-test.html
+  https://geminipulse.com/arena/neon-field-test.html?utm_source=x&utm_medium=social&utm_campaign=post_001_neon_gauntlet
 
   Authored by Gemini 4 Carbon (High) · Directed by Neil S. White (6/6)
   ```
@@ -147,13 +149,13 @@ Link to all 6 untouched live HTML sandboxes, SHA-256 hashes, and raw JSON audit 
 — Written by Google Gemini 4 Carbon (Effort: High) · Product Development & Creative Direction: Neil S. White
 ```
 
-**Immediate Self-Reply for Option B:**
+**Immediate Self-Reply for Option B** (`225` X-weighted chars across two `23`-char `t.co` UTM links `<= 280`):
 ```text
 Live side-by-side sandbox, Chrome CDP scorecards, and raw Track 2 JSON reports (zero sign-up or email gate):
-https://geminipulse.com/arena/neon-field-test.html
+https://geminipulse.com/arena/neon-field-test.html?utm_source=x&utm_medium=social&utm_campaign=post_001_neon_gauntlet
 
 Full Dual-Lens analysis + @google/genai v3.6.1 Pareto routing code:
-https://geminipulse.com/articles/gemini-4-neon-day-0-empirical-field-test.html
+https://geminipulse.com/articles/gemini-4-neon-day-0-empirical-field-test.html?utm_source=x&utm_medium=social&utm_campaign=post_001_neon_gauntlet
 ```
 
 ---
@@ -186,7 +188,7 @@ On our 193-line Stripe + MCP TypeScript billing fixture—seeded with broken HMA
 Only `Gemini 4 Carbon (High)` and `Claude Opus 5.5 (High)` (which tied #2 in Track 2 at 82s with 14 findings) measured `STATIC_96K_COMPLIANCE_SCHEMA` instead of trusting its variable name—and proved that enabling `defer_loading: true` on a sole required MCP server forces an extra discovery turn that multiplies uncached system-prompt billing. Meanwhile in Track 1, `Opus 5.5` wrote the cleanest code (1,068 lines) but took 802s and pushed 5/8 controls below the 900px fold.
 
 You can inspect all 6 untouched live HTML apps side-by-side, read the raw JSON audit transcripts, and copy the Pareto routing blueprint here:
-https://geminipulse.com/arena/neon-field-test.html
+https://geminipulse.com/arena/neon-field-test.html?utm_source=linkedin&utm_medium=social&utm_campaign=post_001_neon_gauntlet
 
 Provenance: Written by Google Gemini 4 Carbon (Thinking Effort: High) · Product Development & Creative Direction: Neil S. White
 ```
@@ -203,7 +205,8 @@ Before making our first social post, I pushed back on one thing: nobody needs an
 
 The most useful result wasn't a marketing win; it was watching `Neon (XHigh)` over-engineer a 3,830-line UI into a live `NaN%` bug while `Neon (High)` scored 100/100, `Neon (Low)` cleared the security audit in 50 seconds, and only `Carbon (High)` and `Claude Opus 5.5` caught an unplanted MCP billing loop.
 
-We also added a sitewide rule today stamping the exact model and thinking effort on every article we publish. All untouched builds and raw scorecards are open in the post below.
+We also added a sitewide rule today stamping the exact model and thinking effort on every article we publish. All untouched builds and raw scorecards are open here (and in the post below):
+https://geminipulse.com/arena/neon-field-test.html?utm_source=linkedin_neil&utm_medium=social&utm_campaign=post_001_neon_gauntlet
 ```
 
 ---
@@ -217,7 +220,7 @@ We also added a sitewide rule today stamping the exact model and thinking effort
   1. `Gemini 4 Neon High vs XHigh: Why UI Score Dropped` (`49` chars — Recommended)
   2. `We Tested Gemini 4 Neon vs Opus 5.5 on Day 0` (`44` chars)
 - **Pinned Comment & Description Top Line:**
-  `Inspect all 6 untouched live HTML builds + raw security audit JSONs: https://geminipulse.com/arena/neon-field-test.html (Authored by Gemini 4 Carbon · Effort: High · Directed by Neil S. White)`
+  `Inspect all 6 untouched live HTML builds + raw security audit JSONs: https://geminipulse.com/arena/neon-field-test.html?utm_source=youtube_shorts&utm_medium=video&utm_campaign=post_001_neon_gauntlet (Authored by Gemini 4 Carbon · Effort: High · Directed by Neil S. White)`
 
 #### Second-by-Second Script & Visual Beat Sheet
 

@@ -508,12 +508,19 @@
       }
     }
   </style>
+  <!-- GP-ANALYTICS-START -->
+  <meta name="gp:model" content="gemini-4-argon" />
+  <meta name="gp:effort" content="high" />
+  <meta name="gp:surface" content="public_changelog" />
+  <meta name="gp:slug" content="changelog" />
+  <script src="/assets/pulse-analytics.js" defer></script>
+  <!-- GP-ANALYTICS-END -->
 </head>
 <body>
   <header class="cl-header">
     <div class="cl-brand-group">
       <a href="/" class="cl-brand-link">♊ GEMINIPULSE</a>
-      <span class="cl-header-kicker">· Public Changelog (v2.0.112)</span>
+      <span class="cl-header-kicker">· Public Changelog (v2.0.113)</span>
     </div>
     <nav class="cl-nav" aria-label="Changelog Navigation">
       <a href="/" class="cl-nav-pill">← 3D Star Chart</a>
@@ -543,8 +550,8 @@
 
       <div class="cl-toolbar">
         <div class="cl-filters" role="group" aria-label="Filter changelog entries by who caught the issue">
-          <button type="button" class="cl-filter-btn" data-filter="all" aria-pressed="true">All (16)</button>
-          <button type="button" class="cl-filter-btn" data-filter="human" aria-pressed="false">Human Oversight (10)</button>
+          <button type="button" class="cl-filter-btn" data-filter="all" aria-pressed="true">All (17)</button>
+          <button type="button" class="cl-filter-btn" data-filter="human" aria-pressed="false">Human Oversight (11)</button>
           <button type="button" class="cl-filter-btn" data-filter="gemini" aria-pressed="false">Gemini Self-Audit (6)</button>
         </div>
 
@@ -555,7 +562,31 @@
       </div>
 
       <div class="cl-accordion" id="cl-accordion">
-          <details class="cl-item" data-caught-by="human" id="cl-2026-11-18-article-model-effort-provenance" open>
+          <details class="cl-item" data-caught-by="human" id="cl-2026-11-18-sitewide-ga4-provenance-telemetry" open>
+            <summary class="cl-summary">
+              <span class="cl-summary-body">
+                <span class="cl-meta-line">
+                  <time datetime="2026-11-18" class="cl-date">Nov 18, 2026</time>
+                  <span class="cl-surface">Sitewide Static Sanctuaries, Arena &amp; Labs (/, /articles/*, /arena/*, /labs/*)</span>
+                  <span class="cl-badge cl-badge--human">Human Oversight · Product Dev &amp; Creative Direction</span>
+                </span>
+                <span class="cl-headline">Operator review before Post #001 caught that GA4 (G-1BWMQWZJQ5) was only wired into /workbench.html after the Look J static-sanctuary transition, leaving /, /articles/*, /arena/*, and /labs/* uninstrumented.</span>
+              </span>
+            </summary>
+            <div class="cl-detail-panel">
+              <dl class="cl-detail-grid">
+                <div class="cl-detail-row">
+                  <dt>What went wrong</dt>
+                  <dd>Moving the homepage, Dual-Lens essays, Day-0 Arena comparator, and developer labs to zero-bundle static HTML left Firebase Analytics mounted solely inside the React Workbench SPA (/workbench.html), while inline window.gtag calls on / fired into a no-op.</dd>
+                </div>
+                <div class="cl-detail-row">
+                  <dt>How it was fixed</dt>
+                  <dd>Rolled out build-enforced pulse-analytics.js via scripts/sync-analytics.mjs across all 196 static HTML routes (preserving SHA-256 hashes on untouched /arena/exp-* benchmark artifacts), stamping authored_model and thinking_effort custom dimensions with zero-TBT deferred loading, headless-bot suppression, and sitewide Chrome CDP verification.</dd>
+                </div>
+              </dl>
+            </div>
+          </details>
+          <details class="cl-item" data-caught-by="human" id="cl-2026-11-18-article-model-effort-provenance">
             <summary class="cl-summary">
               <span class="cl-summary-body">
                 <span class="cl-meta-line">
@@ -943,7 +974,7 @@
     </section>
 
     <footer class="cl-footer">
-      <span>Active Build: <a href="/status.html">v2.0.112</a> · Design History: <a href="/prototypes/index.html">18-Prototype Archive</a></span>
+      <span>Active Build: <a href="/status.html">v2.0.113</a> · Design History: <a href="/prototypes/index.html">18-Prototype Archive</a></span>
       <a href="/workbench.html?inquire=true">Spot an issue? Send a note →</a>
     </footer>
   </main>
