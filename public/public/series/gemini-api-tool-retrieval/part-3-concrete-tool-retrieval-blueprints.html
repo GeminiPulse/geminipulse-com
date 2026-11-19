@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 3: Concrete Tool Retrieval Blueprints &amp; Enterprise Patterns | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Production patterns for Gemini API Tool Retrieval: hybrid hot/deferred function catalogs, multi-MCP server deferral, and RBAC client-side vector registries."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/gemini-api-tool-retrieval/part-3-concrete-tool-retrieval-blueprints.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 3: Concrete Tool Retrieval Blueprints &amp; Enterprise Patterns" />
+    <meta property="og:description" content="How to structure hybrid hot/deferred libraries, remote MCP servers, and per-user client registries with Gemini 4 and @google/genai." />
+    <meta property="og:url" content="https://geminipulse.com/series/gemini-api-tool-retrieval/part-3-concrete-tool-retrieval-blueprints.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Concrete Tool Retrieval Blueprints & Enterprise Patterns",
+        "datePublished": "2026-11-19T18:00:00Z",
+        "author": { "@type": "Person", "name": "Google Gemini 4 Argon (Thinking Effort: High)" },
+        "contributor": { "@type": "Person", "name": "Neil S. White" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/gemini-api-tool-retrieval/part-3-concrete-tool-retrieval-blueprints.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; --emerald: #10b981; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .card { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.25rem 0; }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.15rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+    </style>
+    <!-- GP-ANALYTICS-START -->
+    <meta name="gp:model" content="gemini-4-argon" />
+    <meta name="gp:effort" content="high" />
+    <meta name="gp:surface" content="release_series" />
+    <meta name="gp:slug" content="gemini-api-tool-retrieval/part-3-concrete-tool-retrieval-blueprints" />
+    <script src="/assets/pulse-analytics.js" defer></script>
+    <!-- GP-ANALYTICS-END -->
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">Gemini API Tool Retrieval Series &middot; Part 3 of 3</div>
+      <h1>Three Concrete Production Blueprints for Gemini API Tool Retrieval</h1>
+
+      <div class="meta">
+        Authored by <strong>Google Gemini 4 Argon</strong> &middot; Thinking Effort: <strong>High</strong> &middot; Product Development &amp; Creative Direction: <strong>Neil S. White</strong> &bull; Published November 19, 2026 &bull; Primary Sources: <a href="https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/" target="_blank" rel="noopener">Google Blog</a> &amp; <a href="https://ai.google.dev/gemini-api/docs/tool-retrieval" target="_blank" rel="noopener">Gemini API Docs</a> &bull; 5 min read
+      </div>
+
+      <div class="card">
+        <h2 style="margin-top: 0;">1. Hybrid Support Agent: Pin 4 Hot Tools, Defer 50+ Billing &amp; Logistics Actions</h2>
+        <p>Keep frequent read-only lookups (like <code>get_order_status</code> and <code>get_customer_profile</code>) undeferred so common turns execute with zero search steps. Mark specialized mutations like <code>issue_refund</code>, <code>void_shipment</code>, and <code>escalate_chargeback</code> with <code>defer_loading: true</code> and a tight <code>short_description</code> so they load only on matching customer intent.</p>
+      </div>
+
+      <div class="card">
+        <h2 style="margin-top: 0;">2. Multi-MCP Enterprise Assistant: Defer Entire Remote MCP Servers</h2>
+        <p>Enterprise assistants wired to Jira, BigQuery, Cloud Storage, and GitHub MCP servers easily accumulate 80+ schemas. Adding <code>defer_loading: true</code> directly to each <code>mcp_server</code> object hides every remote parameter schema until the user asks a task inside that server's domain, while still allowing single-turn execution once retrieved.</p>
+      </div>
+
+      <div class="card">
+        <h2 style="margin-top: 0;">3. Multi-Tenant SaaS Copilot: Client-Side RBAC &amp; Mid-Chat OAuth Connections</h2>
+        <p>Using <code>{"type": "tool_search", "execution": "client"}</code> lets your backend filter candidate schemas against the active user's workspace role and OAuth connections. If a user connects Slack or Linear mid-conversation, your search handler immediately returns the newly unlocked function definitions in the next <code>function_result</code> without restarting the chat session.</p>
+      </div>
+
+      <div class="card">
+        <h2 style="margin-top: 0;">Interactive Simulator &amp; Flagship Essay</h2>
+        <p>Test deferred schema token budgets interactively inside our <a href="/labs/gemini-sdk-v3-4-tool-search-studio.html">Tool Search &amp; Media Slicing Studio [SIMULATED DEMO]</a>, or read the full Dual-Lens Flagship Essay on <a href="/articles/gemini-api-tool-retrieval-interactions-preview.html">Tool Retrieval in the Gemini Interactions API</a>.</p>
+      </div>
+
+      <div class="series-nav">
+        <a href="/series/gemini-api-tool-retrieval/part-2-server-vs-client-retrieval-and-stateless-signatures.html" class="btn-pill">&larr; Part 2: Protocol &amp; Caching</a>
+        <a href="/labs/gemini-sdk-v3-4-tool-search-studio.html" class="btn-pill">Open Tool Search Studio [DEMO] &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>

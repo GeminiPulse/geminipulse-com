@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 1: What Changed With Tool Retrieval in the Gemini API — Static Schemas vs. On-Demand Loading | GeminiPulse</title>
+    <meta
+      name="description"
+      content="November 19, 2026 Google Gemini API release breakdown: Tool Retrieval enters preview in the Interactions API (v1beta) across Gemini 3.6+ and all Gemini 4 models."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/gemini-api-tool-retrieval/part-1-what-changed-with-tool-retrieval.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 1: What Changed With Tool Retrieval in the Gemini API" />
+    <meta property="og:description" content="Comparing static tool loading, server-side tool_search + defer_loading, and client-side execution: 'client' retrieval in the Gemini Interactions API v1beta." />
+    <meta property="og:url" content="https://geminipulse.com/series/gemini-api-tool-retrieval/part-1-what-changed-with-tool-retrieval.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Part 1: Tool Retrieval in the Gemini Interactions API (v1beta)" />
+    <meta name="twitter:description" content="How tool_search and defer_loading eliminate input token bloat and tool-selection decay across large agent and MCP catalogs." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "What Changed With Tool Retrieval in the Gemini API — Static Schemas vs. On-Demand Loading",
+        "datePublished": "2026-11-19T18:00:00Z",
+        "author": { "@type": "Person", "name": "Google Gemini 4 Argon (Thinking Effort: High)" },
+        "contributor": { "@type": "Person", "name": "Neil S. White" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/gemini-api-tool-retrieval/part-1-what-changed-with-tool-retrieval.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; --emerald: #10b981; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: #cbd5e1; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .box.info { border-left: 4px solid var(--accent); }
+      .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+      table { width: 100%; border-collapse: collapse; font-size: 0.92rem; text-align: left; }
+      th, td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+      th { background: rgba(255,255,255,0.03); color: #f1f5f9; font-weight: 600; }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.15rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+    </style>
+    <!-- GP-ANALYTICS-START -->
+    <meta name="gp:model" content="gemini-4-argon" />
+    <meta name="gp:effort" content="high" />
+    <meta name="gp:surface" content="release_series" />
+    <meta name="gp:slug" content="gemini-api-tool-retrieval/part-1-what-changed-with-tool-retrieval" />
+    <script src="/assets/pulse-analytics.js" defer></script>
+    <!-- GP-ANALYTICS-END -->
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">Gemini API Tool Retrieval Series &middot; Part 1 of 3</div>
+      <h1>What Changed With Tool Retrieval in the Gemini API: On-Demand Schemas for Large Agent Libraries</h1>
+
+      <div class="meta">
+        Authored by <strong>Google Gemini 4 Argon</strong> &middot; Thinking Effort: <strong>High</strong> &middot; Product Development &amp; Creative Direction: <strong>Neil S. White</strong> &bull; Published November 19, 2026 &bull; Primary Sources:
+        <a href="https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/" target="_blank" rel="noopener">Google Blog: Introducing Tool Retrieval</a>,
+        <a href="https://ai.google.dev/gemini-api/docs/tool-retrieval" target="_blank" rel="noopener">Gemini API Tool Retrieval Docs</a> &amp;
+        <a href="https://ai.google.dev/gemini-api/docs/changelog#11-19-2026" target="_blank" rel="noopener">Changelog</a> &bull; 6 min read
+      </div>
+
+      <div class="box info">
+        <h3 style="margin-top: 0; color: #38bdf8;">Release Summary: November 19, 2026 (18:00 UTC)</h3>
+        <p style="margin-bottom: 0;">Google launched <strong>Tool Retrieval</strong> in preview inside the <strong>Gemini Interactions API (<code>v1beta</code>)</strong> across Gemini 3.6 and all Gemini 4 models. By adding <code>{"type": "tool_search"}</code> and setting <code>defer_loading: true</code> on long-tail functions or remote <code>mcp_server</code> declarations—or wiring <code>execution: "client"</code> to a private registry—agents avoid paying per-turn input token rent on unused JSON parameter schemas while keeping tool-selection accuracy sharp.</p>
+      </div>
+
+      <h2>1. The Two-Front Scaling Problem Static Tool Declarations Created</h2>
+      <p>Before November 19, 2026, calling functions or remote MCP servers on the Gemini API required sending every complete JSON Schema inside the initial prompt context on every single turn. Once an enterprise assistant connected to 30 internal APIs and three MCP servers, two regressions hit simultaneously:</p>
+      <ul>
+        <li><strong>Context Token Bloat:</strong> A few dozen nested parameter definitions routinely consume tens of thousands of input tokens on every turn—even when the user simply asks a status question that uses zero tools or one function.</li>
+        <li><strong>Routing Accuracy Decay:</strong> Pushing dozens of dense, overlapping parameter schemas into the prompt degrades function-selection precision as the candidate list expands.</li>
+      </ul>
+
+      <h2>2. Static Loading vs. Server-Side vs. Client-Side Retrieval</h2>
+      <div class="table-wrap" role="region" aria-label="Tool retrieval mode comparison table" tabindex="0">
+        <table>
+          <thead>
+            <tr>
+              <th>Capability</th>
+              <th>Static Tool Loading</th>
+              <th>Server-Side Retrieval (Default)</th>
+              <th>Client-Side Retrieval (<code>execution: "client"</code>)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>How Schemas Reach Gemini</strong></td>
+              <td>All schemas sent on every request</td>
+              <td>Gemini loads deferred schemas on demand inside one API call</td>
+              <td>Your application searches and returns schemas in <code>function_result</code></td>
+            </tr>
+            <tr>
+              <td><strong>Retrieval Code Needed</strong></td>
+              <td>None</td>
+              <td>None (declarative <code>tool_search</code> + <code>defer_loading</code>)</td>
+              <td>Custom search, ranking, or per-user RBAC filter</td>
+            </tr>
+            <tr>
+              <td><strong>Upfront Declaration</strong></td>
+              <td>Required</td>
+              <td>Required (name + description / <code>short_description</code>)</td>
+              <td>Not required (can inject newly connected tools mid-chat)</td>
+            </tr>
+            <tr>
+              <td><strong>Remote MCP Support</strong></td>
+              <td>Yes</td>
+              <td>Yes (<code>defer_loading: true</code> defers all server tools)</td>
+              <td>Not applicable</td>
+            </tr>
+            <tr>
+              <td><strong>Extra Round Trips</strong></td>
+              <td>None</td>
+              <td>None</td>
+              <td>One extra round trip per search invocation</td>
+            </tr>
+            <tr>
+              <td><strong>Ideal Use Case</strong></td>
+              <td>Fewer than ~20 stable tools</td>
+              <td>Large fixed tool libraries &amp; multi-MCP assistants</td>
+              <td>Proprietary vector registries, namespaces &amp; strict per-user RBAC</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>3. Scope, Pricing &amp; Compatibility Boundaries</h2>
+      <ul>
+        <li><strong>Interactions API (<code>v1beta</code>) Exclusive:</strong> Tool Retrieval requires the Interactions API on <code>v1beta</code> and works with Gemini 3.6 and later models, including all Gemini 4 models (<code>gemini-4-hydrogen</code>, <code>gemini-4-neon</code>, <code>gemini-4-carbon</code>, <code>gemini-4-argon</code>). It is not supported on <code>generateContent</code>.</li>
+        <li><strong>Pricing Structure:</strong> Google charges no separate retrieval fee. Enabling <code>tool_search</code> adds a small fixed block of input tokens, and each schema loaded during a conversation is billed as standard input tokens for subsequent turns in that session.</li>
+      </ul>
+
+      <div class="series-nav">
+        <a href="/" class="btn-pill">&larr; Constellation Home</a>
+        <a href="/series/gemini-api-tool-retrieval/part-2-server-vs-client-retrieval-and-stateless-signatures.html" class="btn-pill">Part 2: Protocol, Caching &amp; Stateless Rules &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>

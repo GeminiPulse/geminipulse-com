@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 2: Server vs. Client Tool Retrieval, Prefix Caching &amp; Stateless Signatures | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Technical deep dive into Gemini Interactions API v1beta Tool Retrieval: single-call tool_search_call steps, prefix cache preservation, resending tools, and stateless signature circulation."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/gemini-api-tool-retrieval/part-2-server-vs-client-retrieval-and-stateless-signatures.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 2: Tool Retrieval Mechanics, Prefix Caching &amp; Stateless Signatures" />
+    <meta property="og:description" content="How tool_search_call, tool_search_result, short_description, and opaque signatures work inside Gemini Interactions API v1beta." />
+    <meta property="og:url" content="https://geminipulse.com/series/gemini-api-tool-retrieval/part-2-server-vs-client-retrieval-and-stateless-signatures.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Server vs. Client Tool Retrieval, Prefix Caching & Stateless Signatures",
+        "datePublished": "2026-11-19T18:00:00Z",
+        "author": { "@type": "Person", "name": "Google Gemini 4 Argon (Thinking Effort: High)" },
+        "contributor": { "@type": "Person", "name": "Neil S. White" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/gemini-api-tool-retrieval/part-2-server-vs-client-retrieval-and-stateless-signatures.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; --emerald: #10b981; --warn: #f59e0b; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .box.warn { border-left: 4px solid var(--warn); }
+      .box.success { border-left: 4px solid var(--emerald); }
+      pre { background: #04060a; border: 1px solid var(--border); border-radius: 0.85rem; padding: 1rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.55; color: #e2e8f0; }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      pre code { background: none; padding: 0; color: inherit; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.15rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+    </style>
+    <!-- GP-ANALYTICS-START -->
+    <meta name="gp:model" content="gemini-4-argon" />
+    <meta name="gp:effort" content="high" />
+    <meta name="gp:surface" content="release_series" />
+    <meta name="gp:slug" content="gemini-api-tool-retrieval/part-2-server-vs-client-retrieval-and-stateless-signatures" />
+    <script src="/assets/pulse-analytics.js" defer></script>
+    <!-- GP-ANALYTICS-END -->
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">Gemini API Tool Retrieval Series &middot; Part 2 of 3</div>
+      <h1>Inside Server &amp; Client Tool Retrieval: Prefix Caching, Step Traces &amp; Stateless Rules</h1>
+
+      <div class="meta">
+        Authored by <strong>Google Gemini 4 Argon</strong> &middot; Thinking Effort: <strong>High</strong> &middot; Product Development &amp; Creative Direction: <strong>Neil S. White</strong> &bull; Published November 19, 2026 &bull; Primary Source: <a href="https://ai.google.dev/gemini-api/docs/tool-retrieval" target="_blank" rel="noopener">Gemini API Tool Retrieval Docs</a> &bull; 7 min read
+      </div>
+
+      <h2>1. Single-Call Execution Trace Under Server-Side Retrieval</h2>
+      <p>When you pass <code>{"type": "tool_search"}</code> alongside deferred functions or deferred <code>mcp_server</code> declarations, the model sees only tool names and descriptions (or your compact <code>short_description</code>). Inside one API call, <code>interaction.steps</code> resolves the search and emits the invocation:</p>
+      <ol>
+        <li><code>tool_search_call</code> (<code>id: "tsc_abc123"</code>, <code>arguments: { function_names: ["weather_service:get_weather", "convert_currency"] }</code>, plus opaque <code>signature</code>).</li>
+        <li><code>tool_search_result</code> (<code>call_id: "tsc_abc123"</code>, full resolved schemas in <code>result</code>, plus opaque <code>signature</code>).</li>
+        <li><code>mcp_server_tool_call</code> &amp; <code>mcp_server_tool_result</code> (executed automatically by the API for remote MCP servers) and/or your own <code>function_call</code> step.</li>
+      </ol>
+
+      <div class="box success">
+        <h3 style="margin-top: 0; color: #10b981;">Why Prefix Caching Stays Intact</h3>
+        <p style="margin-bottom: 0;">Deferred parameter schemas never mutate the initial prompt prefix. Instead, retrieved schemas append later in the conversation step stream—meaning your cached prompt prefix remains identical across turns and across different tool-loading paths.</p>
+      </div>
+
+      <h2>2. Four Protocol Invariants That Prevent HTTP 400 Errors</h2>
+      <div class="box warn">
+        <h3 style="margin-top: 0; color: #f59e0b;">Critical Multi-Turn &amp; Stateless Rules</h3>
+        <ul style="margin-bottom: 0;">
+          <li><strong>Resend the Full <code>tools</code> Array Every Turn:</strong> Even when passing <code>previous_interaction_id</code>, the API does not carry tool declarations across requests. Always resend <code>tool_search</code>, every deferred tool, and every non-deferred tool.</li>
+          <li><strong>Keep <code>tool_search_call</code> &amp; <code>tool_search_result</code> Verbatim When <code>store: false</code>:</strong> Never strip, reconstruct, or drop the encrypted <code>signature</code> fields. Missing steps trigger <code>Server side tool call context must be circulated when using deferred loading functions</code>; stripped signatures trigger <code>Tool call part is missing thought_signature</code>.</li>
+          <li><strong>Never Mix <code>defer_loading</code> With <code>execution: "client"</code>:</strong> Client-side retrieval rejects <code>defer_loading: true</code> with HTTP <code>400</code>.</li>
+          <li><strong>Require <code>defer_loading: true</code> for <code>short_description</code>:</strong> Setting <code>short_description</code> on an undeferred function returns HTTP <code>400</code>.</li>
+        </ul>
+      </div>
+
+      <h2>3. Client-Side Retrieval Request Contract</h2>
+      <pre><code>{
+  "type": "tool_search",
+  "execution": "client",
+  "name": "search_tool_registry",
+  "description": "Search the internal tool registry for functions.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "query": { "type": "string" },
+      "namespace": { "type": "string" },
+      "limit": { "type": "integer" }
+    },
+    "required": ["query"]
+  }
+}</code></pre>
+      <p>Notice that <code>name</code>, <code>description</code>, and <code>parameters</code> are required for <code>execution: "client"</code> and forbidden on server-side <code>{"type": "tool_search"}</code>. Exactly one <code>tool_search</code> tool is allowed per request.</p>
+
+      <div class="series-nav">
+        <a href="/series/gemini-api-tool-retrieval/part-1-what-changed-with-tool-retrieval.html" class="btn-pill">&larr; Part 1: What Changed</a>
+        <a href="/series/gemini-api-tool-retrieval/part-3-concrete-tool-retrieval-blueprints.html" class="btn-pill">Part 3: Builder Blueprints &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>

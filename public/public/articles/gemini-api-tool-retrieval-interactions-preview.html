@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="text-scale" content="scale" />
+  <title>Stop Paying Context Rent on Idle Tools. Tool Retrieval Enters Gemini Interactions API Preview. — GeminiPulse Essay (Star 04 · η Propus)</title>
+  <meta name="description" content="Connecting an AI agent to fifty functions or multiple remote MCP servers used to force a losing trade between bloated input prompts and brittle routing. On November 19, 2026, Google launched Tool Retrieval in the Gemini Interactions API v1beta so agents discover and load parameter schemas only when a task actually demands them." />
+  <link rel="canonical" href="https://geminipulse.com/articles/gemini-api-tool-retrieval-interactions-preview.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="GeminiPulse" />
+  <meta property="og:title" content="Stop Paying Context Rent on Idle Tools. Tool Retrieval Enters Gemini Interactions API Preview. — Written by Google Gemini 4 Argon (Thinking Effort: High)" />
+  <meta property="og:description" content="Connecting an AI agent to fifty functions or multiple remote MCP servers used to force a losing trade between bloated input prompts and brittle routing. On November 19, 2026, Google launched Tool Retrieval in the Gemini Interactions API v1beta so agents discover and load parameter schemas only when a task actually demands them." />
+  <meta property="og:url" content="https://geminipulse.com/articles/gemini-api-tool-retrieval-interactions-preview.html" />
+  <meta property="og:image" content="https://geminipulse.com/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Stop Paying Context Rent on Idle Tools. Tool Retrieval Enters Gemini Interactions API Preview." />
+  <meta name="twitter:description" content="Connecting an AI agent to fifty functions or multiple remote MCP servers used to force a losing trade between bloated input prompts and brittle routing. On November 19, 2026, Google launched Tool Retrieval in the Gemini Interactions API v1beta so agents discover and load parameter schemas only when a task actually demands them." />
+  <link rel="icon" type="image/svg+xml" href="/gemini-sparkle.svg" />
+  <link rel="alternate" type="application/atom+xml" title="GeminiPulse Atom Feed" href="/feed.xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif:wght@400;600&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif:wght@400;600&display=swap" rel="stylesheet" /></noscript>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Stop Paying Context Rent on Idle Tools. Tool Retrieval Enters Gemini Interactions API Preview.",
+      "description": "Connecting an AI agent to fifty functions or multiple remote MCP servers used to force a losing trade between bloated input prompts and brittle routing. On November 19, 2026, Google launched Tool Retrieval in the Gemini Interactions API v1beta so agents discover and load parameter schemas only when a task actually demands them.",
+      "datePublished": "2026-11-19",
+      "url": "https://geminipulse.com/articles/gemini-api-tool-retrieval-interactions-preview.html",
+      "author": {
+        "@type": "Person",
+        "name": "Google Gemini 4 Argon (Thinking Effort: High)"
+      },
+      "contributor": {
+        "@type": "Person",
+        "name": "Neil S. White"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "GeminiPulse.com",
+        "url": "https://geminipulse.com/"
+      },
+      "citation": [
+        "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/",
+        "https://ai.google.dev/gemini-api/docs/tool-retrieval",
+        "https://ai.google.dev/gemini-api/docs/changelog#11-19-2026"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "When does Tool Retrieval actually save money instead of adding overhead?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Google notes that turning on tool_search adds a small fixed block of input tokens, and any schema once loaded stays billed in context for the rest of that conversation. You come out ahead whenever the schemas your agent never loads outweigh the ones it pulls in—typical once libraries grow past ~20 tools or span multi-tool MCP servers."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How should multi-tenant apps handle tools that only specific users may access?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Choose client-side retrieval (execution: \"client\"). Because tools do not need to be declared in the initial tools array, your backend can apply user-level RBAC or workspace integration checks before returning matching schemas in function_result, and even expose newly connected OAuth integrations mid-conversation."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can we enable defer_loading on existing generateContent endpoints?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Official Gemini API docs confirm Tool Retrieval is supported exclusively on the Interactions API (v1beta) with Gemini 3.6 and later models (including all Gemini 4 variants). Teams still calling generateContent must migrate those agent loops to client.interactions.create()."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+  <style>
+    @media (prefers-reduced-motion: no-preference) {
+      @view-transition {
+        navigation: auto;
+      }
+    }
+
+    :root {
+      color-scheme: dark;
+      --night-zenith: #020307;
+      --starlight-ink: #F2F5FA;
+      --starlight-dim: #9AA8BE;
+      --starlight-muted: #687792;
+      --castor-star: #7EB8FF;
+      --pollux-star: #F59E3F;
+      --ethereal-violet: #A385FF;
+      --ethereal-bright: #CEC0FF;
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono: "JetBrains Mono", monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--night-zenith);
+      color: var(--starlight-ink);
+      overflow-x: hidden;
+    }
+
+    body {
+      min-block-size: 100vh;
+      font-family: var(--sans);
+      background:
+        radial-gradient(ellipse 75% 42% at 50% 0%, rgba(18, 32, 62, 0.48) 0%, transparent 72%),
+        radial-gradient(ellipse 42% 55% at 8% 32%, rgba(56, 189, 248, 0.065) 0%, transparent 72%),
+        radial-gradient(ellipse 42% 55% at 92% 68%, rgba(245, 158, 63, 0.065) 0%, transparent 72%),
+        var(--night-zenith);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .greek {
+      font-family: "Noto Serif", Georgia, serif;
+      text-transform: none !important;
+      font-style: normal;
+      letter-spacing: 0 !important;
+    }
+
+    #sanctuary-stars {
+      position: fixed;
+      inset: 0;
+      inline-size: 100%;
+      block-size: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .standalone-topbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(3, 5, 12, 0.88);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-block-end: 0.75px solid rgba(163, 133, 255, 0.24);
+      padding: 10px clamp(16px, 4vw, 44px);
+    }
+
+    .stb-inner {
+      max-inline-size: 1180px;
+      margin-inline: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px 16px;
+    }
+
+    .stb-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #FFFFFF;
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .stb-sub {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.09em;
+      color: var(--ethereal-bright);
+    }
+
+    .stb-links {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .stb-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 0.95rem;
+      border-radius: 999px;
+      background: rgba(12, 19, 36, 0.86);
+      border: 0.75px solid rgba(163, 133, 255, 0.34);
+      color: #F2F6FC;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.18s ease;
+    }
+
+    .stb-pill:hover {
+      background: rgba(163, 133, 255, 0.22);
+      border-color: var(--ethereal-bright);
+      color: #FFFFFF;
+    }
+
+    .stb-pill--primary {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: rgba(56, 189, 248, 0.5);
+      color: #E0F2FE;
+    }
+
+    .stb-pill--primary:hover {
+      background: #38BDF8;
+      color: #04101F;
+    }
+
+    main.standalone-main {
+      position: relative;
+      z-index: 2;
+      padding: clamp(3rem, 6.5vh, 5.5rem) clamp(1.25rem, 5vw, 4rem) clamp(6rem, 12vh, 9rem);
+    }
+
+    .article-sanctuary-column {
+      max-inline-size: 56rem;
+      inline-size: 100%;
+      min-inline-size: 0;
+      margin-inline: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .essay-hero-block,
+    .essay-section,
+    .lens-inner-wrap {
+      max-inline-size: 48.75rem;
+      inline-size: 100%;
+      min-inline-size: 0;
+      margin-inline: auto;
+      scroll-margin-top: 72px;
+    }
+
+    .lens-host {
+      min-inline-size: 0;
+      inline-size: 100%;
+      margin: 0;
+      padding: 0;
+      border: none;
+      background: transparent;
+    }
+
+    .essay-coord {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ethereal-bright);
+      margin-block-end: 1.25rem;
+    }
+
+    .essay-h1 {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: clamp(2.25rem, 1.65rem + 2.15vw, 3.65rem);
+      line-height: 1.08;
+      letter-spacing: -0.012em;
+      color: #FFFFFF;
+      margin-block-end: 1.5rem;
+      text-shadow: 0 8px 32px rgba(0, 0, 0, 0.75);
+      text-wrap: balance;
+    }
+
+    .essay-h1 em {
+      font-style: italic;
+      background: linear-gradient(90deg, var(--castor-star) 0%, var(--ethereal-bright) 52%, var(--pollux-star) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .essay-standfirst {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.3rem, 1.14rem + 0.62vw, 1.625rem);
+      line-height: 1.56;
+      color: #BFE0FA;
+      max-inline-size: 58ch;
+      margin-block-end: 1.85rem;
+      text-wrap: pretty;
+    }
+
+    .essay-byline-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.65rem 1.25rem;
+      padding-block: 0.85rem;
+      border-block: 0.65px solid rgba(163, 133, 255, 0.24);
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--starlight-dim);
+    }
+
+    .essay-byline-bar strong { color: #FFFFFF; font-weight: 600; }
+
+    .essay-lens-toolbar {
+      margin-block-start: 1.35rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .essay-lens-label {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--starlight-muted);
+    }
+
+    .essay-lens-group {
+      display: inline-flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .essay-lens-btn {
+      cursor: pointer;
+      padding: 0.45rem 0.95rem;
+      border-radius: 999px;
+      background: rgba(9, 14, 26, 0.84);
+      border: 0.75px solid rgba(255, 255, 255, 0.16);
+      color: var(--starlight-dim);
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: all 0.18s ease;
+    }
+
+    .essay-lens-btn[aria-pressed="true"] {
+      background: rgba(163, 133, 255, 0.22);
+      border-color: var(--ethereal-bright);
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+
+    .essay-lens-btn[data-lens-filter="castor"][aria-pressed="true"] {
+      background: rgba(56, 189, 248, 0.2);
+      border-color: #38BDF8;
+      color: #F0F9FF;
+    }
+
+    .essay-lens-btn[data-lens-filter="pollux"][aria-pressed="true"] {
+      background: rgba(245, 158, 63, 0.2);
+      border-color: #F59E3F;
+      color: #FFF7EB;
+    }
+
+    .pulse-check-ledger {
+      margin-block-start: 2rem;
+      padding: 0.35rem 1.5rem;
+      border-radius: 12px;
+      background: rgba(8, 14, 28, 0.72);
+      border: 0.75px solid rgba(163, 133, 255, 0.26);
+    }
+
+    .pcl-header {
+      padding-block: 0.85rem 0.75rem;
+      border-block-end: 0.65px solid rgba(163, 133, 255, 0.22);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ethereal-bright);
+    }
+
+    .pcl-row {
+      display: grid;
+      grid-template-columns: 11.75rem minmax(0, 1fr);
+      gap: 1.25rem;
+      padding-block: 0.95rem;
+      border-block-end: 0.65px dashed rgba(255, 255, 255, 0.1);
+      align-items: baseline;
+    }
+
+    .pcl-row:last-child { border-block-end: none; }
+
+    .pcl-stage {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #7DD3FC;
+    }
+
+    .pcl-row:nth-of-type(3) .pcl-stage { color: #FDBA74; }
+
+    .pcl-detail {
+      font-size: clamp(1.025rem, 0.98rem + 0.18vw, 1.125rem);
+      line-height: 1.68;
+      color: #E2ECF8;
+      text-wrap: pretty;
+    }
+
+    .celestial-chapter-divider {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-block: clamp(3.5rem, 7vh, 5.25rem);
+      inline-size: 100%;
+    }
+
+    .celestial-chapter-divider::before,
+    .celestial-chapter-divider::after {
+      content: "";
+      flex: 1;
+      block-size: 0.65px;
+      background: linear-gradient(90deg, transparent 0%, rgba(163, 133, 255, 0.34) 50%, transparent 100%);
+    }
+
+    .ccd-glyph {
+      padding-inline: 18px;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.26em;
+      color: var(--ethereal-bright);
+    }
+
+    .chapter-kicker {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #7DD3FC;
+      margin-block-end: 1.05rem;
+    }
+
+    #lens-section-pollux .chapter-kicker { color: #FDBA74; }
+
+    .essay-h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.85rem, 1.48rem + 1.25vw, 2.65rem);
+      font-weight: 600;
+      line-height: 1.15;
+      color: #FFFFFF;
+      margin-block-end: 0.9rem;
+      max-inline-size: 30ch;
+      text-wrap: balance;
+    }
+
+    .essay-sub {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.22rem, 1.08rem + 0.48vw, 1.5rem);
+      line-height: 1.52;
+      color: #9ED0FA;
+      margin-block-end: 1.85rem;
+      max-inline-size: 58ch;
+      text-wrap: pretty;
+    }
+
+    .essay-sub--pollux { color: #FED7AA; }
+
+    .essay-prose {
+      display: flex;
+      flex-direction: column;
+      gap: 1.45em;
+      font-size: clamp(1.125rem, 1.02rem + 0.38vw, 1.275rem);
+      line-height: 1.85;
+      color: #E4ECF8;
+      max-inline-size: 65ch;
+    }
+
+    .essay-prose p { text-wrap: pretty; }
+
+    .essay-prose--pollux { color: #F4E8D8; }
+
+    .essay-prose strong, .pcl-detail strong, .qa-answer strong, .br-detail strong {
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+
+    .essay-inline-code {
+      font-family: var(--mono);
+      font-size: 0.84em;
+      padding: 1.5px 6px;
+      border-radius: 5px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 0.65px solid rgba(56, 189, 248, 0.28);
+      color: #D6EBFF;
+      overflow-wrap: anywhere;
+    }
+
+    .essay-prose--pollux .essay-inline-code, .br-item .essay-inline-code {
+      background: rgba(245, 158, 63, 0.13);
+      border-color: rgba(245, 158, 63, 0.3);
+      color: #FDE68A;
+    }
+
+    .celestial-pullquote {
+      margin-block: 2.5rem;
+      padding: 0.5rem 0 0.5rem 1.65rem;
+      border-inline-start: 2px solid var(--ethereal-bright);
+      max-inline-size: 60ch;
+    }
+
+    .celestial-pullquote p {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.4rem, 1.2rem + 0.7vw, 1.78rem);
+      line-height: 1.45;
+      color: #F5F3FF;
+      text-wrap: pretty;
+    }
+
+    .celestial-pullquote cite {
+      display: block;
+      margin-block-start: 0.75rem;
+      font-family: var(--mono);
+      font-style: normal;
+      font-size: 0.6875rem;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      color: var(--ethereal-bright);
+    }
+
+    .gp-table-wrapper {
+      container-type: inline-size;
+      overflow-x: auto;
+      margin-block: 2.5rem;
+      border-radius: 12px;
+      border: 0.75px solid rgba(56, 189, 248, 0.26);
+      background: rgba(6, 12, 24, 0.78);
+    }
+
+    .gp-comparison-table {
+      inline-size: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      line-height: 1.58;
+      color: #E2ECF8;
+    }
+
+    .gp-comparison-table caption {
+      padding: 0.9rem 1.25rem;
+      text-align: left;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #7DD3FC;
+      background: rgba(56, 189, 248, 0.08);
+      border-block-end: 0.75px solid rgba(56, 189, 248, 0.22);
+    }
+
+    .gp-comparison-table th, .gp-comparison-table td {
+      padding: 0.9rem 1.1rem;
+      text-align: left;
+      vertical-align: top;
+      border-block-end: 0.65px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .gp-comparison-table thead th {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: #BAE6FD;
+      background: rgba(9, 18, 36, 0.88);
+    }
+
+    .gp-comparison-table tbody th[scope="row"] { font-weight: 600; color: #FFFFFF; }
+    .gp-comparison-table tbody tr:last-child th, .gp-comparison-table tbody tr:last-child td { border-block-end: none; }
+
+    @container (width < 600px) {
+      .gp-comparison-table, .gp-comparison-table thead, .gp-comparison-table tbody,
+      .gp-comparison-table tr, .gp-comparison-table th, .gp-comparison-table td { display: block; }
+      .gp-comparison-table thead { display: none; }
+      .gp-comparison-table tbody tr { padding: 1rem 1.1rem; border-block-end: 0.75px solid rgba(56, 189, 248, 0.2); }
+      .gp-comparison-table tbody tr:last-child { border-block-end: none; }
+      .gp-comparison-table tbody th[scope="row"] {
+        padding: 0 0 0.55rem 0;
+        margin-block-end: 0.55rem;
+        border-block-end: 0.65px dashed rgba(56, 189, 248, 0.24);
+        color: #BAE6FD;
+      }
+      .gp-comparison-table tbody td { padding: 0.35rem 0; border-block-end: none; }
+      .gp-comparison-table tbody td::before {
+        display: block;
+        font-family: var(--mono);
+        font-size: 0.65rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #8CA3C4;
+        margin-block-end: 0.15rem;
+      }
+      .gp-comparison-table tbody td:nth-of-type(1)::before { content: var(--col-2); }
+      .gp-comparison-table tbody td:nth-of-type(2)::before { content: var(--col-3); }
+      .gp-comparison-table tbody td:nth-of-type(3)::before { content: var(--col-4); }
+    }
+
+    .adaptive-qa-section { margin-block-start: 3rem; scroll-margin-top: 72px; }
+    .adaptive-qa-list { display: flex; flex-direction: column; gap: 1.25rem; margin-block-start: 1.15rem; }
+
+    .qa-item {
+      padding: 1.35rem 1.65rem;
+      border-radius: 12px;
+      background: rgba(7, 16, 32, 0.72);
+      border: 0.75px solid rgba(56, 189, 248, 0.24);
+    }
+
+    .qa-lens-tag {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: #7DD3FC;
+      margin-block-end: 0.45rem;
+    }
+
+    .qa-question {
+      font-family: var(--serif);
+      font-size: clamp(1.3rem, 1.18rem + 0.45vw, 1.58rem);
+      font-weight: 600;
+      line-height: 1.26;
+      color: #FFFFFF;
+      margin-block-end: 0.6rem;
+      text-wrap: balance;
+    }
+
+    .qa-answer {
+      font-size: clamp(1.025rem, 0.98rem + 0.18vw, 1.125rem);
+      line-height: 1.74;
+      color: #D6E6F8;
+      text-wrap: pretty;
+    }
+
+    .builder-rules-ledger { margin-block-start: 2rem; display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+
+    .br-item {
+      padding: 1.15rem 1.4rem;
+      border-radius: 10px;
+      background: rgba(28, 15, 5, 0.7);
+      border: 0.75px solid rgba(245, 158, 63, 0.3);
+    }
+
+    .br-label {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #FDBA74;
+      margin-block-end: 0.4rem;
+    }
+
+    .br-detail {
+      font-size: clamp(1.02rem, 0.97rem + 0.18vw, 1.1rem);
+      line-height: 1.68;
+      color: #F4E6D4;
+      text-wrap: pretty;
+    }
+
+    .geo-code-wrap {
+      margin-block-start: 2rem;
+      inline-size: 100%;
+      max-inline-size: 100%;
+      min-inline-size: 0;
+      border-radius: 12px;
+      border: 0.75px solid rgba(245, 158, 63, 0.36);
+      background: #050811;
+      overflow: hidden;
+    }
+
+    .geo-code-header {
+      padding: 0.7rem 1.15rem;
+      background: rgba(245, 158, 63, 0.09);
+      border-block-end: 0.65px solid rgba(245, 158, 63, 0.24);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #FDBA74;
+    }
+
+    .copy-code-btn {
+      cursor: pointer;
+      padding: 0.32rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(245, 158, 63, 0.18);
+      border: 0.75px solid rgba(245, 158, 63, 0.48);
+      color: #FED7AA;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .geo-code-block {
+      padding: 1.25rem 1.4rem;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      font-family: var(--mono);
+      font-size: 0.875rem;
+      line-height: 1.72;
+      color: #E6EDF8;
+    }
+
+    .pollux-workbench-card {
+      margin-block-start: 2.35rem;
+      padding: 1.75rem 1.9rem;
+      border-radius: 14px;
+      border: 0.85px solid rgba(245, 158, 63, 0.4);
+      background: linear-gradient(205deg, rgba(33, 17, 4, 0.94) 0%, rgba(22, 11, 3, 0.96) 100%);
+      display: flex;
+      flex-direction: column;
+      gap: 1.15rem;
+    }
+
+    .salon-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding-block-end: 0.75rem;
+      border-block-end: 0.65px solid rgba(245, 158, 63, 0.25);
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: #FED7AA;
+    }
+
+    .shr-title { display: inline-flex; align-items: center; gap: 7px; }
+    .peek-dot { inline-size: 6px; block-size: 6px; border-radius: 50%; background: #F59E3F; box-shadow: 0 0 8px #F59E3F; }
+    .shr-badge { padding: 0.18rem 0.55rem; border-radius: 999px; border: 0.65px solid rgba(245, 158, 63, 0.4); font-size: 0.625rem; }
+    .pwc-title { font-family: var(--serif); font-size: clamp(1.5rem, 1.32rem + 0.6vw, 1.875rem); line-height: 1.18; font-weight: 600; color: #FFF7EB; text-wrap: balance; }
+    .pwc-sub { font-size: clamp(1.02rem, 0.97rem + 0.18vw, 1.1rem); line-height: 1.66; color: #F4DFC4; text-wrap: pretty; }
+
+    .atelier-console {
+      background: #0D0703;
+      border: 0.75px solid rgba(245, 158, 63, 0.34);
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .ac-top {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.09em;
+      color: #D8B48A;
+      text-transform: uppercase;
+    }
+
+    .ac-presets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+
+    .ac-preset-btn {
+      cursor: pointer;
+      padding: 0.48rem 0.6rem;
+      border-radius: 6px;
+      border: 0.75px solid rgba(245, 158, 63, 0.28);
+      background: rgba(255, 255, 255, 0.04);
+      color: #F2DEC4;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      transition: all 0.18s ease;
+    }
+
+    .ac-preset-btn[aria-pressed="true"] {
+      background: #F59E3F;
+      color: #1A0D02;
+      border-color: #F59E3F;
+      font-weight: 600;
+    }
+
+    .ac-output {
+      padding: 0.75rem 0.95rem;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.025);
+      border: 0.65px solid rgba(245, 158, 63, 0.18);
+      font-family: var(--mono);
+      font-size: 0.8125rem;
+      line-height: 1.55;
+    }
+
+    .ac-line { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding-block: 0.25rem; }
+    .ac-k { color: #C29D72; font-size: 0.6875rem; }
+    .ac-v { color: #FFF8EE; font-weight: 500; }
+    .ac-v.accent { color: #FDBA74; }
+
+    .standalone-deep-link-row {
+      margin-block-start: 1.8rem;
+      padding-block-start: 1.05rem;
+      border-block-start: 0.65px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .sdl-kicker {
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: #7DD3FC;
+    }
+
+    .sdl-kicker--pollux { color: #FDBA74; }
+
+    .standalone-deep-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      max-inline-size: 100%;
+      padding: 0.52rem 1.15rem;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.14);
+      border: 0.85px solid rgba(56, 189, 248, 0.45);
+      color: #F0F9FF;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .standalone-deep-link--pollux {
+      background: rgba(245, 158, 63, 0.16);
+      border-color: rgba(245, 158, 63, 0.5);
+      color: #FFF7ED;
+    }
+
+    .primary-sources-ledger {
+      margin-block-start: 2.4rem;
+      padding: 1.35rem 1.65rem;
+      border-radius: 12px;
+      background: rgba(8, 13, 25, 0.84);
+      border: 0.75px solid rgba(163, 133, 255, 0.28);
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .psl-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding-block-end: 0.7rem;
+      border-block-end: 0.65px solid rgba(163, 133, 255, 0.2);
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--ethereal-bright);
+    }
+
+    .psl-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.15rem;
+      padding-block: 0.45rem;
+    }
+
+    .psl-meta { display: flex; flex-direction: column; gap: 0.25rem; min-inline-size: 0; }
+    .psl-role { font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.07em; text-transform: uppercase; color: #93C5FD; overflow-wrap: anywhere; }
+    .psl-label { font-size: 1rem; font-weight: 500; color: #F0F7FF; overflow-wrap: anywhere; }
+
+    .psl-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 1rem;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.14);
+      border: 0.85px solid rgba(56, 189, 248, 0.48);
+      color: #F0F9FF;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .essay-star-nav-footer {
+      margin-block-start: 2.75rem;
+      padding-block-start: 1.5rem;
+      border-block-start: 0.65px solid rgba(163, 133, 255, 0.24);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .essay-nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      max-inline-size: 100%;
+      padding: 0.62rem 1.15rem;
+      border-radius: 999px;
+      background: rgba(12, 18, 34, 0.86);
+      border: 0.85px solid rgba(163, 133, 255, 0.38);
+      color: #F4F7FC;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    @media (max-width: 720px) {
+      .pcl-row { grid-template-columns: 1fr; gap: 4px; }
+      .ac-presets { grid-template-columns: 1fr; }
+      .ac-line { flex-direction: column; gap: 2px; }
+      .stb-sub { display: none; }
+      .pollux-workbench-card { padding: 1.25rem 1.1rem; }
+      .pulse-check-ledger { padding: 0.3rem 1rem; }
+      .qa-item, .primary-sources-ledger { padding: 1.1rem; }
+    }
+  </style>
+  <!-- GP-ANALYTICS-START -->
+  <meta name="gp:model" content="gemini-4-argon" />
+  <meta name="gp:effort" content="high" />
+  <meta name="gp:surface" content="flagship_essay" />
+  <meta name="gp:slug" content="gemini-api-tool-retrieval-interactions-preview" />
+  <script src="/assets/pulse-analytics.js" defer></script>
+  <!-- GP-ANALYTICS-END -->
+</head>
+<body>
+  <canvas id="sanctuary-stars" aria-hidden="true"></canvas>
+
+  <header class="standalone-topbar">
+    <div class="stb-inner">
+      <a href="/?star=propus" class="stb-brand">
+        <span>♊ GEMINIPULSE</span>
+        <span class="stb-sub">STAR 04 / 08 · <span class="greek">η</span> PROPUS</span>
+      </a>
+      <nav class="stb-links" aria-label="Essay Navigation">
+        <a href="/?star=propus" class="stb-pill stb-pill--primary">← Explore 3D Constellation</a>
+        <a href="/articles/index.html" class="stb-pill">All 8 Essays</a>
+        <a href="/workbench.html" class="stb-pill">Workbench</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="standalone-main">
+    <article class="article-sanctuary-column" id="standalone-essay-root" itemscope itemtype="https://schema.org/TechArticle">
+      <meta itemprop="author" content="Google Gemini 4 Argon (Thinking Effort: High)" />
+      <meta itemprop="datePublished" content="2026-11-19" />
+          <header class="essay-hero-block" id="chapter-01" data-chapter-card="0" data-active-chapter="true">
+            <div class="essay-coord">
+              <span>✦ STAR 04 / 08 · <span class="greek">η</span> PROPUS · 350 LIGHT-YEARS</span>
+              <span>ORIGINAL GEMINI ESSAY · NOV 19, 2026 · 8 MIN READ</span>
+            </div>
+            <h1 class="essay-h1" id="essay-main-title" tabindex="-1" itemprop="headline">Stop Paying Context Rent on Idle Tools. <em>Tool Retrieval Enters Gemini Interactions API Preview.</em></h1>
+            <p class="essay-standfirst">Connecting an AI agent to fifty functions or multiple remote MCP servers used to force a losing trade between bloated input prompts and brittle routing. On November 19, 2026, Google launched Tool Retrieval in the Gemini Interactions API v1beta so agents discover and load parameter schemas only when a task actually demands them.</p>
+            <div class="essay-byline-bar">
+              <span>WRITTEN FIRST-PERSON BY <strong>GOOGLE GEMINI 4 ARGON</strong> (EFFORT: <strong>HIGH</strong>) · PRODUCT DEVELOPMENT &amp; CREATIVE DIRECTION: <strong>NEIL S. WHITE</strong></span>
+              <span>DUAL-LENS (<span class="greek">α</span> CASTOR + <span class="greek">β</span> POLLUX) · SEARCH-GROUNDED</span>
+            </div>
+            <div class="essay-lens-toolbar" role="region" aria-label="Essay Perspective Filter">
+              <span class="essay-lens-label">Reading Lens (⌘F Searches Both):</span>
+              <div class="essay-lens-group" role="group" aria-label="Choose Essay Lens">
+                <button type="button" class="essay-lens-btn" data-lens-filter="both" aria-pressed="true">✦ Complete Dual-Lens Essay</button>
+                <button type="button" class="essay-lens-btn" data-lens-filter="castor" aria-pressed="false"><span class="greek">α</span> Castor · Human &amp; Business</button>
+                <button type="button" class="essay-lens-btn" data-lens-filter="pollux" aria-pressed="false"><span class="greek">β</span> Pollux · Builder &amp; Code</button>
+              </div>
+            </div>
+            <div class="pulse-check-ledger" aria-label="30-Second Executive Pulse Check">
+              <div class="pcl-header">
+                <span>✦ 30-SECOND PULSE CHECK · BEFORE YOU DIVE IN</span>
+                <span>ZERO TRUNCATION · FULL ESSAY BELOW</span>
+              </div>
+
+              <div class="pcl-row">
+                <div class="pcl-stage">Two Retrieval Modes</div>
+                <div class="pcl-detail">Server-side retrieval ({&quot;type&quot;: &quot;tool_search&quot;} plus defer_loading: true on function or mcp_server tools) resolves schemas inside a single API call; client-side retrieval (execution: &quot;client&quot;) delegates search to your own vector index or per-user permission filter.</div>
+              </div>
+              <div class="pcl-row">
+                <div class="pcl-stage">Model &amp; SDK Scope</div>
+                <div class="pcl-detail">Works across Gemini 3.6 and later models, including all Gemini 4 variants (Hydrogen, Neon, Carbon, Argon), exclusively on the Interactions API (v1beta)—generateContent is not supported.</div>
+              </div>
+              <div class="pcl-row">
+                <div class="pcl-stage">The Honest Catch</div>
+                <div class="pcl-detail">There is no separate retrieval fee, yet tool_search adds a small fixed input block and loaded schemas remain in context for the rest of the conversation; you must still resend the full tools array every turn, and stateless store: false calls require circulating tool_search_call and tool_search_result signatures verbatim.</div>
+              </div>
+            </div>
+          </header>
+
+          <div class="lens-host" id="lens-section-castor">
+            <div class="lens-inner-wrap">
+              <div class="celestial-chapter-divider" aria-hidden="true"><span class="ccd-glyph">✦ · <svg width="11" height="12" viewBox="0 0 14 16" aria-hidden="true" style="vertical-align:-1px;margin-inline:2px;"><path d="M1.5 2 H12.5 M1.5 14 H12.5" stroke="#CEC0FF" stroke-width="1.35" stroke-linecap="round"/><line x1="4.6" y1="2.3" x2="4.6" y2="13.7" stroke="#7EB8FF" stroke-width="1.55" stroke-linecap="round"/><line x1="9.4" y1="2.3" x2="9.4" y2="13.7" stroke="#F59E3F" stroke-width="1.55" stroke-linecap="round"/></svg> · ✦</span></div>
+              <section class="essay-section" aria-label="Part I: Alpha Castor Human and Business Lens">
+                <div class="chapter-kicker">
+                  <span>PART I · <span class="greek">α</span> CASTOR · AGENT ECONOMICS &amp; ARCHITECTURE STRATEGY LENS</span>
+                  <span><span class="greek">α</span> CASTOR · THE SIGNAL</span>
+                </div>
+                <h2 class="essay-h2">Why Shipping 80 Full JSON Schemas on Every Turn Broke Agent Scaling</h2>
+                <p class="essay-sub">How moving from static prompt-stuffed function lists to deferred schema retrieval reshapes multi-MCP enterprise agents, latency, and token budgets.</p>
+                <div class="essay-prose" itemprop="articleBody">
+                  <p>Every team scaling an internal assistant beyond a dozen integrations hits the exact same wall. Once an agent connects to CRM actions, billing endpoints, warehouse lookups, and two or three remote Model Context Protocol (MCP) servers, a few dozen nested JSON parameter schemas silently consume tens of thousands of input tokens on every single user turn—before the user even asks a question.</p><p>Worse than the raw token bill is what happens to routing precision. On &lt;a href=&quot;https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;<strong>November 19, 2026</strong>, Gemini API PM Lucia Loher and Google DeepMind Research Scientist Nora Kassner launched <strong>Tool Retrieval</strong>&lt;/a&gt; in preview on the Interactions API (<code class="essay-inline-code">v1beta</code>) specifically to solve both problems at once: inflating input costs and falling tool-selection accuracy as candidate lists expand.</p><p>Instead of stuffing every parameter definition into the prompt prefix, Tool Retrieval keeps your long-tail tool catalog on standby. Under <strong>server-side retrieval</strong>, the model reads only the lightweight tool name and description (or an even tighter <code class="essay-inline-code">short_description</code>), then pulls in full JSON schemas on demand inside the same API round trip. Under <strong>client-side retrieval</strong>, your application runs its own registry search—enforcing tenant permissions, semantic embeddings, or integrations connected mid-chat.</p><p>For product leaders, the architectural timing connects directly with our &lt;a href=&quot;/arena/neon-field-test.html&quot;&gt;Day-0 Neon Empirical Field Test&lt;/a&gt;, where we benchmarked how unpruned 172 KB compliance schemas and static MCP lists multiply multi-turn billing. Tool Retrieval directly eliminates that idle schema tax while leaving high-frequency tools pinned up front.</p>
+                </div>
+
+              <blockquote class="celestial-pullquote">
+                <p>“An agent should know fifty tools exist without paying full token rent on fifty JSON parameter trees on every turn.”</p>
+                <cite>GOOGLE GEMINI 4 ARGON · <span class="greek">α</span> CASTOR SYNTHESIS OF GEMINI API TOOL RETRIEVAL LAUNCH</cite>
+              </blockquote>
+
+              <div tabindex="0" role="region" aria-labelledby="tool-retrieval-modes-table-caption" class="gp-table-wrapper">
+                <table class="gp-comparison-table" style="--col-2: 'Static Tool Loading'; --col-3: 'Server-Side Tool Retrieval'; --col-4: 'Client-Side Tool Retrieval';">
+                  <caption id="tool-retrieval-modes-table-caption">Gemini API Tool Loading Strategies Compared (Official Docs, Nov 19, 2026)</caption>
+                  <thead><tr><th scope="col">Capability / Constraint</th><th scope="col">Static Tool Loading</th><th scope="col">Server-Side Tool Retrieval</th><th scope="col">Client-Side Tool Retrieval</th></tr></thead>
+                  <tbody><tr><th scope="row">How Schemas Reach Gemini</th><td>Every full JSON schema sent on every turn</td><td>Name + description upfront; Gemini loads schemas on demand</td><td>App searches internal registry and returns schemas in function_result</td></tr><tr><th scope="row">Search Infrastructure Required</th><td>None</td><td>None (managed server-side by Gemini Interactions API)</td><td>Your own vector index, registry lookup, or RBAC filter</td></tr><tr><th scope="row">Extra Network Round Trips</th><td>None</td><td>None (search + schema load + function_call happen in 1 call)</td><td>One extra round trip per search call</td></tr><tr><th scope="row">Remote MCP &amp; Dynamic Tools</th><td>Upfront declaration; supports MCP servers</td><td>Upfront declaration; supports defer_loading: true on mcp_server</td><td>No upfront declaration needed; injects per-user tools mid-chat</td></tr><tr><th scope="row">Recommended Sweet Spot</th><td>Fewer than ~20 stable, frequently used tools</td><td>Large fixed libraries (20-200+ functions &amp; MCP servers)</td><td>Proprietary namespaces, strict RBAC, or mid-session OAuth connects</td></tr></tbody>
+                </table>
+              </div>
+
+                <div class="adaptive-qa-section" id="chapter-02" data-chapter-card="1" data-active-chapter="false">
+                  <div class="chapter-kicker">
+                    <span>CHAPTER 02 / 04 · WHAT THIS MEANS FOR YOU</span>
+                    <span>ADAPTIVE READER QUESTIONS</span>
+                  </div>
+                  <div class="adaptive-qa-list">
+
+                <article class="qa-item">
+                  <span class="qa-lens-tag">FOR FINOPS &amp; ENGINEERING LEADS</span>
+                  <h3 class="qa-question">When does Tool Retrieval actually save money instead of adding overhead?</h3>
+                  <p class="qa-answer">Google notes that turning on tool_search adds a small fixed block of input tokens, and any schema once loaded stays billed in context for the rest of that conversation. You come out ahead whenever the schemas your agent never loads outweigh the ones it pulls in—typical once libraries grow past ~20 tools or span multi-tool MCP servers.</p>
+                </article>
+                <article class="qa-item">
+                  <span class="qa-lens-tag">FOR ENTERPRISE SECURITY TEAMS</span>
+                  <h3 class="qa-question">How should multi-tenant apps handle tools that only specific users may access?</h3>
+                  <p class="qa-answer">Choose client-side retrieval (execution: &quot;client&quot;). Because tools do not need to be declared in the initial tools array, your backend can apply user-level RBAC or workspace integration checks before returning matching schemas in function_result, and even expose newly connected OAuth integrations mid-conversation.</p>
+                </article>
+                <article class="qa-item">
+                  <span class="qa-lens-tag">FOR PLATFORM MIGRATION TEAMS</span>
+                  <h3 class="qa-question">Can we enable defer_loading on existing generateContent endpoints?</h3>
+                  <p class="qa-answer">No. Official Gemini API docs confirm Tool Retrieval is supported exclusively on the Interactions API (v1beta) with Gemini 3.6 and later models (including all Gemini 4 variants). Teams still calling generateContent must migrate those agent loops to client.interactions.create().</p>
+                </article>
+                  </div>
+
+                <div class="standalone-deep-link-row">
+                  <span class="sdl-kicker">COMPANION 3-PART ARCHIVE</span>
+                  <a href="/series/gemini-api-tool-retrieval/part-1-what-changed-with-tool-retrieval.html" class="standalone-deep-link">
+                    <span>Explore Companion 3-Part Tool Retrieval API Archive →</span>
+                  </a>
+                </div>
+                </div>
+              </section>
+            </div>
+          </div>
+
+          <div class="lens-host" id="lens-section-pollux">
+            <div class="lens-inner-wrap">
+              <div class="celestial-chapter-divider" aria-hidden="true"><span class="ccd-glyph">✦ · <svg width="11" height="12" viewBox="0 0 14 16" aria-hidden="true" style="vertical-align:-1px;margin-inline:2px;"><path d="M1.5 2 H12.5 M1.5 14 H12.5" stroke="#CEC0FF" stroke-width="1.35" stroke-linecap="round"/><line x1="4.6" y1="2.3" x2="4.6" y2="13.7" stroke="#7EB8FF" stroke-width="1.55" stroke-linecap="round"/><line x1="9.4" y1="2.3" x2="9.4" y2="13.7" stroke="#F59E3F" stroke-width="1.55" stroke-linecap="round"/></svg> · ✦</span></div>
+              <section class="essay-section" id="chapter-03" data-chapter-card="2" data-active-chapter="false" aria-label="Part II: Beta Pollux Builder Architecture and Code">
+                <div class="chapter-kicker">
+                  <span>PART II · <span class="greek">β</span> POLLUX · v1beta PROTOCOL, PREFIX CACHING &amp; STATELESS SIGNATURES</span>
+                  <span><span class="greek">β</span> POLLUX · THE WORKBENCH</span>
+                </div>
+                <h2 class="essay-h2" id="pollux-section-heading" tabindex="-1">Inside tool_search_call, Prefix Cache Preservation &amp; Stateless Signature Circulation</h2>
+                <p class="essay-sub essay-sub--pollux">How single-call server lookup works under the hood, why you must resend tools every turn, and the exact HTTP 400 traps to avoid.</p>
+                <div class="essay-prose essay-prose--pollux">
+                  <p>Under server-side retrieval, setting <code class="essay-inline-code">{&quot;type&quot;: &quot;tool_search&quot;}</code> alongside <code class="essay-inline-code">defer_loading: true</code> splits your tool list cleanly. In turn one, Gemini receives only the tool name and description (or optional <code class="essay-inline-code">short_description</code> when the full <code class="essay-inline-code">description</code> is parameter-heavy). When the task requires <code class="essay-inline-code">issue_refund</code> or a deferred remote <code class="essay-inline-code">mcp_server</code>, Gemini emits a <code class="essay-inline-code">tool_search_call</code> step (<code class="essay-inline-code">tsc_*</code>), the API immediately resolves and appends the matching schema in a <code class="essay-inline-code">tool_search_result</code> step carrying an opaque encrypted <code class="essay-inline-code">signature</code>, and Gemini emits the real <code class="essay-inline-code">function_call</code> or <code class="essay-inline-code">mcp_server_tool_call</code> within that exact same API response.</p><p>That ordering delivers a critical economic bonus: <strong>prefix caching compatibility</strong>. Because deferred parameter schemas stay out of the prompt prefix and retrieved schemas are appended later inside conversation steps, your cached prompt prefix remains byte-identical across turns and across disparate user intents—unlike dynamic prompt assembly that busts prefix caches whenever a user triggers a different tool subset.</p><p>There are three strict protocol invariants documented in &lt;a href=&quot;https://ai.google.dev/gemini-api/docs/tool-retrieval&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Google’s Tool Retrieval reference&lt;/a&gt;. First, even when chaining with <code class="essay-inline-code">previous_interaction_id</code>, the API does not carry tool declarations forward—you must resend the complete <code class="essay-inline-code">tools</code> array on every turn. Second, never combine <code class="essay-inline-code">defer_loading: true</code> with <code class="essay-inline-code">execution: &quot;client&quot;</code> or omit <code class="essay-inline-code">defer_loading: true</code> when setting <code class="essay-inline-code">short_description</code>; both trigger immediate <code class="essay-inline-code">400</code> rejections. Third, in stateless mode (<code class="essay-inline-code">store: false</code>), you must circulate both <code class="essay-inline-code">tool_search_call</code> and <code class="essay-inline-code">tool_search_result</code> steps verbatim—encrypted <code class="essay-inline-code">signature</code> fields intact—or the follow-up <code class="essay-inline-code">function_result</code> request fails with <code class="essay-inline-code">Server side tool call context must be circulated</code> or <code class="essay-inline-code">Tool call part is missing thought_signature</code>.</p>
+                </div>
+                <div class="builder-rules-ledger" aria-label="Production Engineering Guardrails">
+
+                <div class="br-item">
+                  <div class="br-label">01 · Leave Your Top 3–5 Hot Tools Undeferred</div>
+                  <div class="br-detail">Keep core high-frequency tools loaded upfront (defer_loading omitted) and defer the long tail plus broad remote mcp_server endpoints so routine turns avoid unnecessary search steps.</div>
+                </div>
+                <div class="br-item">
+                  <div class="br-label">02 · Always Resend the Complete tools Array Every Turn</div>
+                  <div class="br-detail">Even when passing previous_interaction_id, omitting tool_search or deferred tools causes follow-up turns to forget unloaded capabilities or throw 400 validation errors.</div>
+                </div>
+                <div class="br-item">
+                  <div class="br-label">03 · Circulate tool_search_call + tool_search_result Verbatim When store: false</div>
+                  <div class="br-detail">Use @google/genai v3.6.0+ so unknown step types are never stripped, and push every step object—including its encrypted signature—directly back into history before function_result.</div>
+                </div>
+                </div>
+                <div class="geo-code-wrap">
+                  <div class="geo-code-header">
+                    <span id="chap3-code-caption">HYBRID SERVER + STATELESS TOOL RETRIEVAL IN INTERACTIONS API v1beta (@google/genai)</span>
+                    <button type="button" class="copy-code-btn" data-copy-essay-code>Copy Full Blueprint</button>
+                  </div>
+                  <pre class="geo-code-block" id="chap3-code" role="region" aria-labelledby="chap3-code-caption" tabindex="0"><code id="chap3-code-inner">import { GoogleGenAI } from &quot;@google/genai&quot;;
+
+const ai = new GoogleGenAI({ httpOptions: { apiVersion: &quot;v1beta&quot; } });
+
+const tools = [
+  { type: &quot;tool_search&quot; },
+  {
+    type: &quot;function&quot;,
+    name: &quot;get_order_status&quot;,
+    description: &quot;Look up live fulfillment status for an order ID.&quot;,
+    parameters: {
+      type: &quot;object&quot;,
+      properties: { order_id: { type: &quot;string&quot; } },
+      required: [&quot;order_id&quot;],
+    },
+  },
+  {
+    type: &quot;function&quot;,
+    name: &quot;issue_refund&quot;,
+    description: &quot;Refund a damaged or missing order to the original payment method with audit logging.&quot;,
+    short_description: &quot;Refund an order to the original payment method.&quot;,
+    defer_loading: true,
+    parameters: {
+      type: &quot;object&quot;,
+      properties: {
+        order_id: { type: &quot;string&quot; },
+        amount: { type: &quot;number&quot; },
+      },
+      required: [&quot;order_id&quot;, &quot;amount&quot;],
+    },
+  },
+  {
+    type: &quot;mcp_server&quot;,
+    name: &quot;warehouse_inventory&quot;,
+    url: &quot;https://gemini-api-demos.uc.r.appspot.com/mcp&quot;,
+    defer_loading: true,
+  },
+];
+
+// Turn 1: stateless store: false requires full history circulation
+const history = [
+  { type: &quot;user_input&quot;, content: [{ type: &quot;text&quot;, text: &quot;Order A-1042 arrived damaged. Refund 40 dollars.&quot; }] },
+];
+
+const turn1 = await ai.interactions.create({
+  model: &quot;gemini-4-hydrogen&quot;,
+  store: false,
+  input: history,
+  tools,
+});
+
+// Preserve tool_search_call, tool_search_result, and opaque signatures verbatim
+for (const step of turn1.steps) {
+  history.push(step);
+}
+
+const fcStep = turn1.steps.find((step) =&gt; step.type === &quot;function_call&quot;);
+if (fcStep) {
+  history.push({
+    type: &quot;function_result&quot;,
+    name: fcStep.name,
+    call_id: fcStep.id,
+    result: [{ type: &quot;text&quot;, text: JSON.stringify({ refunded: true, order_id: &quot;A-1042&quot;, amount: 40 }) }],
+  });
+
+  // Always resend the complete tools array on every follow-up turn
+  const turn2 = await ai.interactions.create({
+    model: &quot;gemini-4-hydrogen&quot;,
+    store: false,
+    input: history,
+    tools,
+  });
+  console.log(turn2.output_text);
+}</code></pre>
+                </div>
+
+                <aside class="pollux-workbench-card" id="nocturnal-twin-deck" aria-label="Beta Pollux Interactive Scenario Simulator">
+                  <div class="salon-header-row">
+                    <span class="shr-title">
+                      <span class="peek-dot" aria-hidden="true"></span>
+                      <span><span class="greek">β</span> POLLUX · INTERACTIVE SCENARIO WORKBENCH</span>
+                    </span>
+                    <span class="shr-badge">[SIMULATED DEMO]</span>
+                  </div>
+                  <h3 class="pwc-title">Tool Retrieval Mode &amp; Protocol Explorer [SIMULATED DEMO]</h3>
+                  <p class="pwc-sub">Cycle through the three verified Tool Retrieval dimensions below, or launch our interactive Tool Search Studio [SIMULATED DEMO].</p>
+                  <div class="atelier-console">
+                    <div class="ac-top">
+                      <span>STAR 04 INTERACTIVE LAB</span>
+                      <span>[SIMULATED DEMO]</span>
+                    </div>
+                    <div class="ac-presets" role="group" aria-label="Interactive Workload Presets">
+                      <button type="button" class="ac-preset-btn" data-preset="0" aria-pressed="true">1. SERVER-SIDE SINGLE CALL</button><button type="button" class="ac-preset-btn" data-preset="1" aria-pressed="false">2. CLIENT-SIDE REGISTRY</button><button type="button" class="ac-preset-btn" data-preset="2" aria-pressed="false">3. STATELESS &amp; 400 TRAPS</button>
+                    </div>
+                    <div class="ac-output" aria-live="polite">
+                      <div class="ac-line">
+                        <span class="ac-k" data-sync="ac-k1">Tools Array Configuration</span>
+                        <span class="ac-v" data-sync="ac-v1">{&quot;type&quot;: &quot;tool_search&quot;} + defer_loading: true on function &amp; mcp_server + optional short_description</span>
+                      </div>
+                      <div class="ac-line">
+                        <span class="ac-k" data-sync="ac-k2">Single-Turn Step Trace</span>
+                        <span class="ac-v accent" data-sync="ac-v2">tool_search_call (tsc_*) -&gt; tool_search_result (with signature) -&gt; mcp_server_tool_call / function_call</span>
+                      </div>
+                      <div class="ac-line">
+                        <span class="ac-k" data-sync="ac-k3">Prefix Cache Behavior</span>
+                        <span class="ac-v" data-sync="ac-v3">Deferred schemas stay outside prompt prefix; loaded schemas append later in conversation steps</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="standalone-deep-link-row" style="margin-block-start:4px;">
+                    <span class="sdl-kicker sdl-kicker--pollux">DEDICATED FULL-SCREEN SANDBOX</span>
+                    <a href="/labs/gemini-sdk-v3-4-tool-search-studio.html" class="standalone-deep-link standalone-deep-link--pollux">
+                      <span>Open Full Tool Retrieval API Sandbox [SIMULATED DEMO] →</span>
+                    </a>
+                  </div>
+                </aside>
+              </section>
+            </div>
+          </div>
+
+          <div class="celestial-chapter-divider" aria-hidden="true"><span class="ccd-glyph">✦ · <svg width="11" height="12" viewBox="0 0 14 16" aria-hidden="true" style="vertical-align:-1px;margin-inline:2px;"><path d="M1.5 2 H12.5 M1.5 14 H12.5" stroke="#CEC0FF" stroke-width="1.35" stroke-linecap="round"/><line x1="4.6" y1="2.3" x2="4.6" y2="13.7" stroke="#7EB8FF" stroke-width="1.55" stroke-linecap="round"/><line x1="9.4" y1="2.3" x2="9.4" y2="13.7" stroke="#F59E3F" stroke-width="1.55" stroke-linecap="round"/></svg> · ✦</span></div>
+
+          <section class="essay-section" id="chapter-04" data-chapter-card="3" data-active-chapter="false" aria-label="Chapter 04: Gemini Verdict and Primary Sources">
+            <div class="chapter-kicker">
+              <span>CHAPTER 04 / 04 · GEMINI’S VERDICT &amp; CITATIONS</span>
+              <span>PRIMARY GOOGLE SOURCES</span>
+            </div>
+            <h2 class="essay-h2">Argon’s Bottom Line: Defer the Long Tail, Pin Your Core 5, and Preserve Prefix Caches</h2>
+            <p class="essay-sub">Tool Retrieval in Interactions API v1beta finally reconciles 100-tool enterprise catalogs and remote MCP servers with clean prompt caching.</p>
+            <div class="essay-prose">
+              <p><strong>Why this matters today:</strong> developers no longer have to maintain brittle custom router prompts or pre-filter MCP tool lists before every request. Adding <code class="essay-inline-code">{&quot;type&quot;: &quot;tool_search&quot;}</code> and <code class="essay-inline-code">defer_loading: true</code> keeps prompt prefixes lean and deterministic, while <code class="essay-inline-code">execution: &quot;client&quot;</code> preserves strict per-user RBAC where required.</p><p><strong>Explore the companion deep dive:</strong> read our 3-part &lt;a href=&quot;/series/gemini-api-tool-retrieval/part-1-what-changed-with-tool-retrieval.html&quot;&gt;Gemini API Tool Retrieval series&lt;/a&gt; or test deferred schema token savings interactively inside &lt;a href=&quot;/labs/gemini-sdk-v3-4-tool-search-studio.html&quot;&gt;Tool Search &amp; Media Slicing Studio [SIMULATED DEMO]&lt;/a&gt;.</p>
+            </div>
+
+            <div class="primary-sources-ledger" aria-label="Primary Google Sources Cited">
+              <div class="psl-header">
+                <span>PRIMARY GOOGLE SOURCES CITED IN THIS ESSAY</span>
+                <span>VERIFIED · NOV 19, 2026</span>
+              </div>
+
+                <div class="psl-item">
+                  <div class="psl-meta">
+                    <span class="psl-role">Official Google Blog Announcement · Lucia Loher &amp; Nora Kassner (Gemini API &amp; Google DeepMind) · November 19, 2026</span>
+                    <span class="psl-label">Introducing Tool Retrieval in the Gemini API</span>
+                  </div>
+                  <a class="psl-link" href="https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/" target="_blank" rel="noopener noreferrer">
+                    <span>Primary Google Source</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+                <div class="psl-item">
+                  <div class="psl-meta">
+                    <span class="psl-role">Official Gemini API Reference Guide · Google AI for Developers · November 19, 2026</span>
+                    <span class="psl-label">Tool retrieval — Interactions API (v1beta)</span>
+                  </div>
+                  <a class="psl-link" href="https://ai.google.dev/gemini-api/docs/tool-retrieval" target="_blank" rel="noopener noreferrer">
+                    <span>Primary Google Source</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+                <div class="psl-item">
+                  <div class="psl-meta">
+                    <span class="psl-role">Official Gemini API Release Notes · Google AI for Developers · November 19, 2026</span>
+                    <span class="psl-label">Gemini API Changelog — November 19, 2026</span>
+                  </div>
+                  <a class="psl-link" href="https://ai.google.dev/gemini-api/docs/changelog#11-19-2026" target="_blank" rel="noopener noreferrer">
+                    <span>Primary Google Source</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+            </div>
+
+            <nav class="essay-star-nav-footer" aria-label="Navigate Constellation Essays">
+              <a href="/articles/sashiko-gemini-kernel-code-review.html" class="essay-nav-btn">
+                <span>← Star 03 · <span class="greek">μ</span> Tejat (Sashiko Review)</span>
+              </a>
+              <a href="/?star=propus" class="essay-nav-btn">
+                <span>✦ View Star 04 in 3D Sky</span>
+              </a>
+              <a href="/articles/gemini-mac-app-computer-use.html" class="essay-nav-btn">
+                <span>Star 05 · <span class="greek">β</span> Pollux (Mac Computer Use) →</span>
+              </a>
+            </nav>
+          </section>
+    </article>
+  </main>
+
+  <script>
+    (() => {
+      const PRESETS = [{"label":"1. SERVER-SIDE SINGLE CALL","labelHtml":"1. SERVER-SIDE SINGLE CALL","k1":"Tools Array Configuration","k1Html":"Tools Array Configuration","v1":"{\"type\": \"tool_search\"} + defer_loading: true on function & mcp_server + optional short_description","v1Html":"{&quot;type&quot;: &quot;tool_search&quot;} + defer_loading: true on function &amp; mcp_server + optional short_description","k2":"Single-Turn Step Trace","k2Html":"Single-Turn Step Trace","v2":"tool_search_call (tsc_*) -> tool_search_result (with signature) -> mcp_server_tool_call / function_call","v2Html":"tool_search_call (tsc_*) -&gt; tool_search_result (with signature) -&gt; mcp_server_tool_call / function_call","k3":"Prefix Cache Behavior","k3Html":"Prefix Cache Behavior","v3":"Deferred schemas stay outside prompt prefix; loaded schemas append later in conversation steps","v3Html":"Deferred schemas stay outside prompt prefix; loaded schemas append later in conversation steps"},{"label":"2. CLIENT-SIDE REGISTRY","labelHtml":"2. CLIENT-SIDE REGISTRY","k1":"Tools Array Configuration","k1Html":"Tools Array Configuration","v1":"{\"type\": \"tool_search\", \"execution\": \"client\", \"name\": \"...\", \"description\": \"...\", \"parameters\": {...}}","v1Html":"{&quot;type&quot;: &quot;tool_search&quot;, &quot;execution&quot;: &quot;client&quot;, &quot;name&quot;: &quot;...&quot;, &quot;description&quot;: &quot;...&quot;, &quot;parameters&quot;: {...}}","k2":"Round-Trip Cadence","k2Html":"Round-Trip Cadence","v2":"Turn 1 emits function_call -> app queries vector DB / RBAC -> Turn 2 returns schemas in function_result","v2Html":"Turn 1 emits function_call -&gt; app queries vector DB / RBAC -&gt; Turn 2 returns schemas in function_result","k3":"Dynamic Advantage","k3Html":"Dynamic Advantage","v3":"Tools need no upfront declaration; inject newly connected user integrations mid-conversation","v3Html":"Tools need no upfront declaration; inject newly connected user integrations mid-conversation"},{"label":"3. STATELESS & 400 TRAPS","labelHtml":"3. STATELESS &amp; 400 TRAPS","k1":"Multi-Turn Rule","k1Html":"Multi-Turn Rule","v1":"Resend full tools array on every call, even when chaining with previous_interaction_id","v1Html":"Resend full tools array on every call, even when chaining with previous_interaction_id","k2":"Stateless (store: false)","k2Html":"Stateless (store: false)","v2":"Circulate both tool_search_call and tool_search_result with signature intact before function_result","v2Html":"Circulate both tool_search_call and tool_search_result with signature intact before function_result","k3":"Common 400 Errors","k3Html":"Common 400 Errors","v3":"Combining defer_loading with execution: \"client\" or setting short_description without defer_loading","v3Html":"Combining defer_loading with execution: &quot;client&quot; or setting short_description without defer_loading"}];
+      const supportsUntilFound = "onbeforematch" in HTMLElement.prototype;
+      const castorHost = document.getElementById("lens-section-castor");
+      const polluxHost = document.getElementById("lens-section-pollux");
+
+      function hideLens(el) {
+        if (!el) return;
+        if (supportsUntilFound) el.setAttribute("hidden", "until-found");
+        else el.hidden = true;
+      }
+      function showLens(el) {
+        if (!el) return;
+        el.removeAttribute("hidden");
+        el.hidden = false;
+      }
+      function setLens(lens) {
+        if (lens === "castor") { showLens(castorHost); hideLens(polluxHost); }
+        else if (lens === "pollux") { hideLens(castorHost); showLens(polluxHost); }
+        else { showLens(castorHost); showLens(polluxHost); }
+        document.querySelectorAll("[data-lens-filter]").forEach((b) => {
+          b.setAttribute("aria-pressed", String(b.getAttribute("data-lens-filter") === lens));
+        });
+      }
+      [castorHost, polluxHost].forEach((el) => {
+        if (el) el.addEventListener("beforematch", () => setLens("both"));
+      });
+
+      document.addEventListener("click", async (ev) => {
+        const lensBtn = ev.target.closest("[data-lens-filter]");
+        if (lensBtn) {
+          setLens(lensBtn.getAttribute("data-lens-filter") || "both");
+          return;
+        }
+        const presetBtn = ev.target.closest(".ac-preset-btn");
+        if (presetBtn) {
+          const idx = Number(presetBtn.getAttribute("data-preset")) || 0;
+          const p = PRESETS[idx] || PRESETS[0];
+          document.querySelectorAll(".ac-preset-btn").forEach((b, i) => b.setAttribute("aria-pressed", String(i === idx)));
+          const sync = (k, v) => document.querySelectorAll('[data-sync="' + k + '"]').forEach((el) => { el.textContent = v; });
+          sync("ac-k1", p.k1); sync("ac-v1", p.v1);
+          sync("ac-k2", p.k2); sync("ac-v2", p.v2);
+          sync("ac-k3", p.k3); sync("ac-v3", p.v3);
+          return;
+        }
+        const copyBtn = ev.target.closest("[data-copy-essay-code]");
+        if (copyBtn) {
+          const codeEl = document.getElementById("chap3-code");
+          if (codeEl) {
+            try { await navigator.clipboard.writeText(codeEl.textContent || ""); } catch (_) {}
+            copyBtn.textContent = "✓ Copied Blueprint";
+            setTimeout(() => { copyBtn.textContent = "Copy Full Blueprint"; }, 1800);
+          }
+        }
+      });
+
+      const canvas = document.getElementById("sanctuary-stars");
+      if (canvas && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        const ctx = canvas.getContext("2d");
+        const pts = Array.from({ length: 85 }, (_, i) => ({
+          x: ((i * 73) % 100) / 100,
+          y: ((i * 41 + 17) % 100) / 100,
+          r: (i % 3 === 0 ? 1.25 : 0.75),
+          ph: i * 0.7,
+          col: i % 5 === 0 ? "#BAE6FD" : (i % 7 === 0 ? "#FED7AA" : "#E2E8F0")
+        }));
+        const resize = () => {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        };
+        resize();
+        window.addEventListener("resize", resize, { passive: true });
+        const draw = (t) => {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          const sec = t * 0.001;
+          for (const p of pts) {
+            ctx.globalAlpha = 0.16 + 0.24 * (0.5 + 0.5 * Math.sin(sec * 0.6 + p.ph));
+            ctx.fillStyle = p.col;
+            ctx.beginPath();
+            ctx.arc(p.x * canvas.width, p.y * canvas.height, p.r, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          requestAnimationFrame(draw);
+        };
+        requestAnimationFrame(draw);
+      }
+    })();
+  </script>
+</body>
+</html>

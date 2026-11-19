@@ -24,6 +24,25 @@ export const PULSE_INTELLIGENCE_FEED = [
     labLabel: 'Neon Studio [DEMO] →',
   },
   {
+    id: 'pulse-gemini-api-tool-retrieval-preview',
+    title: 'Google Launches Tool Retrieval (Preview) in the Gemini Interactions API: On-Demand Parameter Schemas & Client Registries',
+    tldr: 'Released November 19, 2026 (18:00 UTC): Tool Retrieval enters preview in the Gemini Interactions API (v1beta) across Gemini 3.6+ and all Gemini 4 models—letting agents defer full tool and MCP schemas via tool_search + defer_loading: true or query custom client registries via execution: "client".',
+    summary:
+      'Announced on the Google Official Blog by Lucia Loher (PM, Gemini API) and Nora Kassner (Research Scientist, Google DeepMind) alongside the Gemini API Tool Retrieval docs and Nov 19 changelog: (1) Server-Side Retrieval (Single API Call)—add {"type": "tool_search"} and defer_loading: true on function or mcp_server tools (plus optional compact short_description) so the model sees names and descriptions up front, emits tool_search_call and tool_search_result steps inside the same request, preserves prefix caching across turns, and invokes the loaded schema immediately, (2) Client-Side Retrieval (execution: "client")—lets apps back tool_search with proprietary vector indexes, per-user permission filters, or mid-conversation integration lookups returned via function_result, (3) Multi-Turn & Stateless Rules—developers must resend the full tools array on every turn even with previous_interaction_id, and stateless store: false flows must circulate tool_search_call and tool_search_result steps with their opaque signature fields verbatim or trigger HTTP 400 errors, and (4) Zero Extra Surcharge—billed at standard model token rates across Gemini 3.6 and all Gemini 4 models on Interactions API v1beta.',
+    category: 'Interactions API & Agents',
+    tag: 'Gemini API Preview',
+    modelBadge: 'Tool Retrieval API · v1beta',
+    impactScore: '9.9 / 10',
+    date: '2026-11-19T18:00:00Z',
+    sourceLabel: 'Google Blog & Gemini API Docs: Introducing Tool Retrieval in the Gemini API (Nov 19, 2026)',
+    sourceUrl: 'https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/',
+    groundedBy: 'Google Official Blog + ai.google.dev/gemini-api/docs/tool-retrieval & changelog#11-19-2026 (Nov 19, 2026 18:00 UTC)',
+    seriesUrl: '/series/gemini-api-tool-retrieval/part-1-what-changed-with-tool-retrieval.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-sdk-v3-4-tool-search-studio.html',
+    labLabel: 'Tool Search Studio [DEMO] →',
+  },
+  {
     id: 'pulse-genie-4-gemini-api-ga',
     title: 'Google Releases Genie 4 (models/genie-4) GA on the Gemini API & Google AI Studio: Live 24 fps 720p Worlds + 48 kHz Stereo Audio',
     tldr: 'Released November 19, 2026 (17:00 UTC): Genie 4 (models/genie-4) is now generally available on the Gemini API Interactions API (v1beta) and Google AI Studio—streaming steerable 1280x720 24 fps video and 48 kHz stereo audio over WebRTC and WebSockets at ~$0.10/sec ($1.50 in / $17.50 video out per 1M tokens).',
@@ -73,6 +92,21 @@ export const PULSE_INTELLIGENCE_FEED = [
     sourceLabel: 'Google Cloud Blog: Introducing object enrichments in Cloud Storage',
     sourceUrl: 'https://cloud.google.com/blog/products/storage-data-transfer/cost-effective-ai-context-extraction-from-unstructured-gcs-data/',
     groundedBy: 'Google Cloud Official Blog (Nov 19, 2026 17:00 UTC)',
+  },
+  {
+    id: 'pulse-tunix-gemma-4-agentic-rl',
+    title: 'Google Details Multi-Turn Agentic RL with Tunix and Gemma 4 on Cloud TPU v6e-8: 9.4% to 95% Win Rate in 100 Steps',
+    tldr: 'Published November 19, 2026: Google Developers Blog walks through training google/gemma-4-E2B-it in thinking mode via Tunix agentic GRPO on a single Cloud TPU v6e-8 host—exploiting Gemma 4’s native <|tool_response> stop token to lift held-out Plane Strike win rate from 9.4% to 95%.',
+    summary:
+      'Authored by Google Developer Advocate Wei Wei on the Google Developers Blog with full open-source code in planestrike-gemma4-rl: (1) Native Gemma 4 In-Turn Tool Continuation—subclasses Gemma4ChatTemplateParser so Gemma 4 emits <|tool_call>...<tool_call|><|tool_response> as a native stop token, receives role="tool" board observations, and continues thinking within the same assistant turn without retokenization drift, (2) Modular Tunix Agentic RL Pipeline—combines BaseTaskEnv, ConversationAgentBase, asynchronous vllm-tpu rollouts (rollout_vllm_server_mode=True, enable_prefix_caching=True), and GRPOLearner (loss_algo="gspo-token", advantage_estimator="rloo", exact_token_continuity=True) on a single TPU v6e-8 host, and (3) Empirical Convergence—across 100 GRPO steps (8 boards x 8 games per step), tool-call compliance reaches ~100%, invalid moves drop to ~0, win rate surges from 9.4% (22.44 avg strikes) to 95%, and average strikes per game drop to ~16.',
+    category: 'Open Weights & TPU RL',
+    tag: 'Google Developers Guide',
+    modelBadge: 'Tunix + Gemma 4 Agentic RL',
+    impactScore: '9.4 / 10',
+    date: '2026-11-19T16:30:00Z',
+    sourceLabel: 'Google Developers Blog: Multi-Turn Agentic RL with Tunix and Gemma 4 on Google TPUs',
+    sourceUrl: 'https://developers.googleblog.com/multi-turn-agentic-reinforcement-learning-with-tunix-and-gemma-4-on-google-tpus/',
+    groundedBy: 'Google Developers Official Blog (Nov 19, 2026)',
   },
   {
     id: 'pulse-sashiko-gemini-kernel-review',
@@ -4709,9 +4743,26 @@ export const GET_STARTED_WITH_GEMINI_TRACKS = [
 
 export const GEMINI_VIDEO_SHOWCASE = [
   {
+    id: 'vid-google-deepmind-koray-path-to-agi',
+    videoId: 'FORdPIWOH5k',
+    featuredOfTheDay: true,
+    category: 'Frontier Research & AGI',
+    badge: 'FEATURED VIDEO OF THE DAY • GOOGLE DEEPMIND',
+    title: 'Gemini and the path to AGI with Koray Kavukcuoglu',
+    creatorName: 'Google DeepMind',
+    creatorHandle: '@googledeepmind',
+    creatorUrl: 'https://www.youtube.com/@googledeepmind',
+    watchUrl: 'https://www.youtube.com/watch?v=FORdPIWOH5k',
+    thumbnailUrl: 'https://i.ytimg.com/vi/FORdPIWOH5k/hqdefault.jpg',
+    geminiSummary:
+      'Published November 19, 2026 (19:58 UTC) by Google DeepMind—Koray Kavukcuoglu (SVP, Google DeepMind and Chief AI Architect, Google) discusses Gemini 4 model architecture, adaptive reasoning budgets, world models, and Google DeepMind’s trajectory toward AGI.',
+    whyFeatured:
+      'Verified HTTP 200 Nov 19 Google DeepMind flagship conversation with Chief AI Architect Koray Kavukcuoglu following the Gemini 4 Neon and Genie 4 releases.',
+  },
+  {
     id: 'vid-google-developers-antigravity-groovebox',
     videoId: 'f2bpv9mFUeE',
-    featuredOfTheDay: true,
+    featuredOfTheDay: false,
     category: 'Hardware & Agentic Coding',
     badge: 'FEATURED VIDEO OF THE DAY • GOOGLE FOR DEVELOPERS',
     title: 'Google Antigravity and Gemini 4: Building a custom groovebox on a $40 macro pad',

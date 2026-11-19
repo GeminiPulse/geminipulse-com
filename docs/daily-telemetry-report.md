@@ -25,6 +25,17 @@
 
 ---
 
+## 0b. 5:45 PM ET Curation Check & Release Findings (Round 48 — Nov 19, 2026)
+
+| Source Stream | Verification Status | Curated Finding & Action Taken |
+| :--- | :--- | :--- |
+| **Google Official Blog, Gemini API Docs & Changelog (`blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/` + `ai.google.dev/gemini-api/docs/tool-retrieval` + `changelog#11-19-2026`)** | **VERIFIED NEW PRIMARY RELEASE (`2026-11-19T18:00:00Z`)** | **Tool Retrieval in the Gemini API (Preview in Interactions API `v1beta`)**: Authored by Lucia Loher & Nora Kassner. Supports **server-side retrieval** (`{"type": "tool_search"}` + `defer_loading: true` on `function` or `mcp_server` tools + optional `short_description`) resolving schemas in a single API call (`tool_search_call` + `tool_search_result` + `function_call`) while keeping prompt prefixes cache-friendly, and **client-side retrieval** (`execution: "client"`) for proprietary vector registries, per-user RBAC, or mid-conversation tool injection; supports Gemini 3.6+ and all Gemini 4 models (`v1beta` Interactions API only), requires resending the full `tools` array on every turn, and requires verbatim `tool_search_call` / `tool_search_result` + `signature` circulation under `store: false`. Added to `PULSE_INTELLIGENCE_FEED`, `CONSTELLATION_ESSAYS`, and 3-part series under `/series/gemini-api-tool-retrieval/*`. |
+| **Google Developers Blog (`developers.googleblog.com/multi-turn-agentic-reinforcement-learning-with-tunix-and-gemma-4-on-google-tpus/`)** | **VERIFIED NEW PRIMARY RELEASE (`NOV. 19, 2026`)** | **Multi-Turn Agentic RL with Tunix and Gemma 4 on Cloud TPUs**: Authored by Wei Wei. Trains `google/gemma-4-E2B-it` in thinking mode via `tunix.rl.agentic` (`BaseTaskEnv`, `Gemma4ChatTemplateParser`, `vllm-tpu` with `rollout_vllm_server_mode=True` & `enable_prefix_caching=True`, `GRPOLearner` with `loss_algo="gspo-token"`, `advantage_estimator="rloo"`, `exact_token_continuity=True`) on a single **Cloud TPU v6e-8** host—exploiting Gemma 4's native `<|tool_response>` stop token to lift held-out Plane Strike win rate from **9.4%** (22.44 avg strikes) to **95%** (~16 avg strikes) in 100 steps. Added to `PULSE_INTELLIGENCE_FEED`. |
+| **YouTube Official Channel (`youtube.com/oembed` HTTP 200 Verified — `FORdPIWOH5k`)** | **VERIFIED HTTP 200 (`2026-11-19T19:58:06Z`)** | **New Featured Video of the Day: `Gemini and the path to AGI with Koray Kavukcuoglu` (`FORdPIWOH5k`)** by **Google DeepMind** (`@googledeepmind`), promoted to `featuredOfTheDay: true` in `GEMINI_VIDEO_SHOWCASE`. |
+| **`googleapis/js-genai` & `googleapis/python-genai` GitHub Releases** | **VERIFIED UP-TO-DATE (`v3.6.1`, `2026-11-18T21:48–21:52Z`)** | Confirmed `v3.6.1` remains the latest release on both SDKs (already curated in Round 45). |
+
+---
+
 ## 0a. 8:45 AM ET Curation Check & Release Findings (Round 46 — Nov 19, 2026)
 
 | Source Stream | Verification Status | Curated Finding & Action Taken |

@@ -14,6 +14,283 @@
  */
 
 export const CONSTELLATION_ESSAYS = {
+  'pulse-gemini-api-tool-retrieval-preview': {
+    id: 'pulse-gemini-api-tool-retrieval-preview',
+    slug: 'gemini-api-tool-retrieval-interactions-preview',
+    shortStarLabel: 'Tool Retrieval API',
+    readMinutes: '8 MIN READ',
+    authoredByModel: 'Google Gemini 4 Argon',
+    thinkingEffort: 'High',
+    hudTitle: 'Tool Retrieval Launches in Gemini Interactions API Preview: Load Tool Schemas On Demand.',
+    hudSummary:
+      'Released November 19, 2026 (18:00 UTC): Tool Retrieval enters preview in the Gemini Interactions API (v1beta) across Gemini 3.6+ and all Gemini 4 models—withholding parameter schemas via defer_loading: true or querying private client registries via execution: "client".',
+    peekCastor: 'On-Demand Tool Schemas: <em>Stop paying token tax for 100 idle tools.</em>',
+    peekPollux: 'tool_search + defer_loading: <em>Single-call server lookup or client registry.</em>',
+    headline:
+      'Stop Paying Context Rent on Idle Tools. <em>Tool Retrieval Enters Gemini Interactions API Preview.</em>',
+    standfirst:
+      'Connecting an AI agent to fifty functions or multiple remote MCP servers used to force a losing trade between bloated input prompts and brittle routing. On November 19, 2026, Google launched Tool Retrieval in the Gemini Interactions API v1beta so agents discover and load parameter schemas only when a task actually demands them.',
+    pulseCheck: [
+      {
+        stage: 'Two Retrieval Modes',
+        detail:
+          'Server-side retrieval ({"type": "tool_search"} plus defer_loading: true on function or mcp_server tools) resolves schemas inside a single API call; client-side retrieval (execution: "client") delegates search to your own vector index or per-user permission filter.',
+      },
+      {
+        stage: 'Model & SDK Scope',
+        detail:
+          'Works across Gemini 3.6 and later models, including all Gemini 4 variants (Hydrogen, Neon, Carbon, Argon), exclusively on the Interactions API (v1beta)—generateContent is not supported.',
+      },
+      {
+        stage: 'The Honest Catch',
+        detail:
+          'There is no separate retrieval fee, yet tool_search adds a small fixed input block and loaded schemas remain in context for the rest of the conversation; you must still resend the full tools array every turn, and stateless store: false calls require circulating tool_search_call and tool_search_result signatures verbatim.',
+      },
+    ],
+    castor: {
+      kicker: 'PART I · α CASTOR · AGENT ECONOMICS & ARCHITECTURE STRATEGY LENS',
+      title: 'Why Shipping 80 Full JSON Schemas on Every Turn Broke Agent Scaling',
+      subtitle:
+        'How moving from static prompt-stuffed function lists to deferred schema retrieval reshapes multi-MCP enterprise agents, latency, and token budgets.',
+      paragraphs: [
+        'Every team scaling an internal assistant beyond a dozen integrations hits the exact same wall. Once an agent connects to CRM actions, billing endpoints, warehouse lookups, and two or three remote Model Context Protocol (MCP) servers, a few dozen nested JSON parameter schemas silently consume tens of thousands of input tokens on every single user turn—before the user even asks a question.',
+        'Worse than the raw token bill is what happens to routing precision. On <a href="https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/" target="_blank" rel="noopener"><strong>November 19, 2026</strong>, Gemini API PM Lucia Loher and Google DeepMind Research Scientist Nora Kassner launched <strong>Tool Retrieval</strong></a> in preview on the Interactions API (<code>v1beta</code>) specifically to solve both problems at once: inflating input costs and falling tool-selection accuracy as candidate lists expand.',
+        'Instead of stuffing every parameter definition into the prompt prefix, Tool Retrieval keeps your long-tail tool catalog on standby. Under <strong>server-side retrieval</strong>, the model reads only the lightweight tool name and description (or an even tighter <code>short_description</code>), then pulls in full JSON schemas on demand inside the same API round trip. Under <strong>client-side retrieval</strong>, your application runs its own registry search—enforcing tenant permissions, semantic embeddings, or integrations connected mid-chat.',
+        'For product leaders, the architectural timing connects directly with our <a href="/arena/neon-field-test.html">Day-0 Neon Empirical Field Test</a>, where we benchmarked how unpruned 172 KB compliance schemas and static MCP lists multiply multi-turn billing. Tool Retrieval directly eliminates that idle schema tax while leaving high-frequency tools pinned up front.',
+      ],
+      pullquote: {
+        quote:
+          'An agent should know fifty tools exist without paying full token rent on fifty JSON parameter trees on every turn.',
+        attribution: 'GOOGLE GEMINI 4 ARGON · α CASTOR SYNTHESIS OF GEMINI API TOOL RETRIEVAL LAUNCH',
+      },
+      comparisonTable: {
+        id: 'tool-retrieval-modes-table',
+        caption: 'Gemini API Tool Loading Strategies Compared (Official Docs, Nov 19, 2026)',
+        columns: ['Capability / Constraint', 'Static Tool Loading', 'Server-Side Tool Retrieval', 'Client-Side Tool Retrieval'],
+        rows: [
+          [
+            'How Schemas Reach Gemini',
+            'Every full JSON schema sent on every turn',
+            'Name + description upfront; Gemini loads schemas on demand',
+            'App searches internal registry and returns schemas in function_result',
+          ],
+          [
+            'Search Infrastructure Required',
+            'None',
+            'None (managed server-side by Gemini Interactions API)',
+            'Your own vector index, registry lookup, or RBAC filter',
+          ],
+          [
+            'Extra Network Round Trips',
+            'None',
+            'None (search + schema load + function_call happen in 1 call)',
+            'One extra round trip per search call',
+          ],
+          [
+            'Remote MCP & Dynamic Tools',
+            'Upfront declaration; supports MCP servers',
+            'Upfront declaration; supports defer_loading: true on mcp_server',
+            'No upfront declaration needed; injects per-user tools mid-chat',
+          ],
+          [
+            'Recommended Sweet Spot',
+            'Fewer than ~20 stable, frequently used tools',
+            'Large fixed libraries (20-200+ functions & MCP servers)',
+            'Proprietary namespaces, strict RBAC, or mid-session OAuth connects',
+          ],
+        ],
+      },
+      adaptiveQuestions: [
+        {
+          lensTag: 'FOR FINOPS & ENGINEERING LEADS',
+          question: 'When does Tool Retrieval actually save money instead of adding overhead?',
+          answer:
+            'Google notes that turning on tool_search adds a small fixed block of input tokens, and any schema once loaded stays billed in context for the rest of that conversation. You come out ahead whenever the schemas your agent never loads outweigh the ones it pulls in—typical once libraries grow past ~20 tools or span multi-tool MCP servers.',
+        },
+        {
+          lensTag: 'FOR ENTERPRISE SECURITY TEAMS',
+          question: 'How should multi-tenant apps handle tools that only specific users may access?',
+          answer:
+            'Choose client-side retrieval (execution: "client"). Because tools do not need to be declared in the initial tools array, your backend can apply user-level RBAC or workspace integration checks before returning matching schemas in function_result, and even expose newly connected OAuth integrations mid-conversation.',
+        },
+        {
+          lensTag: 'FOR PLATFORM MIGRATION TEAMS',
+          question: 'Can we enable defer_loading on existing generateContent endpoints?',
+          answer:
+            'No. Official Gemini API docs confirm Tool Retrieval is supported exclusively on the Interactions API (v1beta) with Gemini 3.6 and later models (including all Gemini 4 variants). Teams still calling generateContent must migrate those agent loops to client.interactions.create().',
+        },
+      ],
+    },
+    pollux: {
+      kicker: 'PART II · β POLLUX · v1beta PROTOCOL, PREFIX CACHING & STATELESS SIGNATURES',
+      title: 'Inside tool_search_call, Prefix Cache Preservation & Stateless Signature Circulation',
+      subtitle:
+        'How single-call server lookup works under the hood, why you must resend tools every turn, and the exact HTTP 400 traps to avoid.',
+      paragraphs: [
+        'Under server-side retrieval, setting <code>{"type": "tool_search"}</code> alongside <code>defer_loading: true</code> splits your tool list cleanly. In turn one, Gemini receives only the tool name and description (or optional <code>short_description</code> when the full <code>description</code> is parameter-heavy). When the task requires <code>issue_refund</code> or a deferred remote <code>mcp_server</code>, Gemini emits a <code>tool_search_call</code> step (<code>tsc_*</code>), the API immediately resolves and appends the matching schema in a <code>tool_search_result</code> step carrying an opaque encrypted <code>signature</code>, and Gemini emits the real <code>function_call</code> or <code>mcp_server_tool_call</code> within that exact same API response.',
+        'That ordering delivers a critical economic bonus: <strong>prefix caching compatibility</strong>. Because deferred parameter schemas stay out of the prompt prefix and retrieved schemas are appended later inside conversation steps, your cached prompt prefix remains byte-identical across turns and across disparate user intents—unlike dynamic prompt assembly that busts prefix caches whenever a user triggers a different tool subset.',
+        'There are three strict protocol invariants documented in <a href="https://ai.google.dev/gemini-api/docs/tool-retrieval" target="_blank" rel="noopener">Google’s Tool Retrieval reference</a>. First, even when chaining with <code>previous_interaction_id</code>, the API does not carry tool declarations forward—you must resend the complete <code>tools</code> array on every turn. Second, never combine <code>defer_loading: true</code> with <code>execution: "client"</code> or omit <code>defer_loading: true</code> when setting <code>short_description</code>; both trigger immediate <code>400</code> rejections. Third, in stateless mode (<code>store: false</code>), you must circulate both <code>tool_search_call</code> and <code>tool_search_result</code> steps verbatim—encrypted <code>signature</code> fields intact—or the follow-up <code>function_result</code> request fails with <code>Server side tool call context must be circulated</code> or <code>Tool call part is missing thought_signature</code>.',
+      ],
+      builderRules: [
+        {
+          label: '01 · Leave Your Top 3–5 Hot Tools Undeferred',
+          detail:
+            'Keep core high-frequency tools loaded upfront (defer_loading omitted) and defer the long tail plus broad remote mcp_server endpoints so routine turns avoid unnecessary search steps.',
+        },
+        {
+          label: '02 · Always Resend the Complete tools Array Every Turn',
+          detail:
+            'Even when passing previous_interaction_id, omitting tool_search or deferred tools causes follow-up turns to forget unloaded capabilities or throw 400 validation errors.',
+        },
+        {
+          label: '03 · Circulate tool_search_call + tool_search_result Verbatim When store: false',
+          detail:
+            'Use @google/genai v3.6.0+ so unknown step types are never stripped, and push every step object—including its encrypted signature—directly back into history before function_result.',
+        },
+      ],
+      codeCaption: 'HYBRID SERVER + STATELESS TOOL RETRIEVAL IN INTERACTIONS API v1beta (@google/genai)',
+      codeSnippet: `import { GoogleGenAI } from "@google/genai";
+
+const ai = new GoogleGenAI({ httpOptions: { apiVersion: "v1beta" } });
+
+const tools = [
+  { type: "tool_search" },
+  {
+    type: "function",
+    name: "get_order_status",
+    description: "Look up live fulfillment status for an order ID.",
+    parameters: {
+      type: "object",
+      properties: { order_id: { type: "string" } },
+      required: ["order_id"],
+    },
+  },
+  {
+    type: "function",
+    name: "issue_refund",
+    description: "Refund a damaged or missing order to the original payment method with audit logging.",
+    short_description: "Refund an order to the original payment method.",
+    defer_loading: true,
+    parameters: {
+      type: "object",
+      properties: {
+        order_id: { type: "string" },
+        amount: { type: "number" },
+      },
+      required: ["order_id", "amount"],
+    },
+  },
+  {
+    type: "mcp_server",
+    name: "warehouse_inventory",
+    url: "https://gemini-api-demos.uc.r.appspot.com/mcp",
+    defer_loading: true,
+  },
+];
+
+// Turn 1: stateless store: false requires full history circulation
+const history = [
+  { type: "user_input", content: [{ type: "text", text: "Order A-1042 arrived damaged. Refund 40 dollars." }] },
+];
+
+const turn1 = await ai.interactions.create({
+  model: "gemini-4-hydrogen",
+  store: false,
+  input: history,
+  tools,
+});
+
+// Preserve tool_search_call, tool_search_result, and opaque signatures verbatim
+for (const step of turn1.steps) {
+  history.push(step);
+}
+
+const fcStep = turn1.steps.find((step) => step.type === "function_call");
+if (fcStep) {
+  history.push({
+    type: "function_result",
+    name: fcStep.name,
+    call_id: fcStep.id,
+    result: [{ type: "text", text: JSON.stringify({ refunded: true, order_id: "A-1042", amount: 40 }) }],
+  });
+
+  // Always resend the complete tools array on every follow-up turn
+  const turn2 = await ai.interactions.create({
+    model: "gemini-4-hydrogen",
+    store: false,
+    input: history,
+    tools,
+  });
+  console.log(turn2.output_text);
+}`,
+      workbench: {
+        title: 'Tool Retrieval Mode & Protocol Explorer [SIMULATED DEMO]',
+        subtitle: 'Inspect verified Interactions API v1beta retrieval modes, step traces, and HTTP 400 validation rules.',
+        dek: 'Cycle through the three verified Tool Retrieval dimensions below, or launch our interactive Tool Search Studio [SIMULATED DEMO].',
+        presets: [
+          {
+            label: '1. SERVER-SIDE SINGLE CALL',
+            k1: 'Tools Array Configuration',
+            v1: '{"type": "tool_search"} + defer_loading: true on function & mcp_server + optional short_description',
+            k2: 'Single-Turn Step Trace',
+            v2: 'tool_search_call (tsc_*) -> tool_search_result (with signature) -> mcp_server_tool_call / function_call',
+            k3: 'Prefix Cache Behavior',
+            v3: 'Deferred schemas stay outside prompt prefix; loaded schemas append later in conversation steps',
+          },
+          {
+            label: '2. CLIENT-SIDE REGISTRY',
+            k1: 'Tools Array Configuration',
+            v1: '{"type": "tool_search", "execution": "client", "name": "...", "description": "...", "parameters": {...}}',
+            k2: 'Round-Trip Cadence',
+            v2: 'Turn 1 emits function_call -> app queries vector DB / RBAC -> Turn 2 returns schemas in function_result',
+            k3: 'Dynamic Advantage',
+            v3: 'Tools need no upfront declaration; inject newly connected user integrations mid-conversation',
+          },
+          {
+            label: '3. STATELESS & 400 TRAPS',
+            k1: 'Multi-Turn Rule',
+            v1: 'Resend full tools array on every call, even when chaining with previous_interaction_id',
+            k2: 'Stateless (store: false)',
+            v2: 'Circulate both tool_search_call and tool_search_result with signature intact before function_result',
+            k3: 'Common 400 Errors',
+            v3: 'Combining defer_loading with execution: "client" or setting short_description without defer_loading',
+          },
+        ],
+      },
+    },
+    verdict: {
+      title: 'Argon’s Bottom Line: Defer the Long Tail, Pin Your Core 5, and Preserve Prefix Caches',
+      subtitle:
+        'Tool Retrieval in Interactions API v1beta finally reconciles 100-tool enterprise catalogs and remote MCP servers with clean prompt caching.',
+      paragraphs: [
+        '<strong>Why this matters today:</strong> developers no longer have to maintain brittle custom router prompts or pre-filter MCP tool lists before every request. Adding <code>{"type": "tool_search"}</code> and <code>defer_loading: true</code> keeps prompt prefixes lean and deterministic, while <code>execution: "client"</code> preserves strict per-user RBAC where required.',
+        '<strong>Explore the companion deep dive:</strong> read our 3-part <a href="/series/gemini-api-tool-retrieval/part-1-what-changed-with-tool-retrieval.html">Gemini API Tool Retrieval series</a> or test deferred schema token savings interactively inside <a href="/labs/gemini-sdk-v3-4-tool-search-studio.html">Tool Search &amp; Media Slicing Studio [SIMULATED DEMO]</a>.',
+      ],
+      sources: [
+        {
+          role: 'Official Google Blog Announcement',
+          label: 'Introducing Tool Retrieval in the Gemini API',
+          author: 'Lucia Loher & Nora Kassner (Gemini API & Google DeepMind)',
+          date: 'November 19, 2026',
+          url: 'https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/',
+        },
+        {
+          role: 'Official Gemini API Reference Guide',
+          label: 'Tool retrieval — Interactions API (v1beta)',
+          author: 'Google AI for Developers',
+          date: 'November 19, 2026',
+          url: 'https://ai.google.dev/gemini-api/docs/tool-retrieval',
+        },
+        {
+          role: 'Official Gemini API Release Notes',
+          label: 'Gemini API Changelog — November 19, 2026',
+          author: 'Google AI for Developers',
+          date: 'November 19, 2026',
+          url: 'https://ai.google.dev/gemini-api/docs/changelog#11-19-2026',
+        },
+      ],
+    },
+  },
   'pulse-genie-4-gemini-api-ga': {
     id: 'pulse-genie-4-gemini-api-ga',
     slug: 'genie-4-gemini-api-interactive-worlds',
