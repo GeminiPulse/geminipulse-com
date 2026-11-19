@@ -58,7 +58,12 @@ npx firebase-tools deploy --only functions
 ---
 
 ## 4. Mandatory House Rules (Synced with Neil's Claude Project Registry)
-1. **Git, Privacy & Remote Discipline:** Commit work to the `v2.0` branch (and `main` when releasing) and push to the `origin` remote (`https://github.com/GeminiPulse/geminipulse-com`). **Never push to the `agile` remote** (archived). **Zero-PII Rule:** Never commit API keys, `.env` files, personal email addresses, personal social handles, internal billing/affiliate account IDs, registrar details, domain portfolio lists, or local filesystem paths. Push at the end of every session.
+1. **Git, PR, Privacy & Remote Discipline:** Push only to the `origin` remote (`https://github.com/GeminiPulse/geminipulse-com`). **Never push to the `agile` remote** (archived).
+   - **Never push directly to `main` or `v2.0`.** Work on a branch and open a pull request (targeting `v2.0`, the repo default branch, or `main` when releasing).
+   - **Tag every PR with your session or task ID.** End every PR description with the line: `Built-by: <your session or task id>`
+   - **Never merge your own PR.** Leave it open so a second agent (Claude) can audit it and merge.
+   - **Scheduled automations require explicit path allowlisting.** If a scheduled task or automation (such as `geminipulse-daily-curator`) has to commit to `v2.0`/`main` by itself for data refreshes, digests, snapshots, or curation rounds, declare the exact file paths it writes so they can be allowlisted before enabling autonomous commits.
+   - **Zero-PII Rule:** Never commit API keys, `.env` files, personal email addresses, personal social handles, internal billing/affiliate account IDs, registrar details, domain portfolio lists, or local filesystem paths.
 2. **Repo Root Documentation:** Keep `GEMINI.md` (and `AGENTS.md`) updated at the repository root, updating the `Last touched:` line every session.
 3. **Billing Gate (Money is Neil's Call):** Before enabling anything that can bill (Firebase Blaze plan, Cloud Functions deployment, Cloud Scheduler, paid Gemini API usage beyond the free tier), state what it is and the expected monthly cost, and wait for Neil's explicit **yes**. Set a Cloud Billing budget alert as soon as Blaze is enabled.
 4. **Domain & DNS:** Never change the domain registrar or authoritative Cloudflare DNS nameservers. When connecting Firebase Hosting or subdomains, provide the exact DNS records (`type`, `name`, `value`) for operator review.
