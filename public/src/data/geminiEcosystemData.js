@@ -24,6 +24,57 @@ export const PULSE_INTELLIGENCE_FEED = [
     labLabel: 'Neon Studio [DEMO] →',
   },
   {
+    id: 'pulse-genie-4-gemini-api-ga',
+    title: 'Google Releases Genie 4 (models/genie-4) GA on the Gemini API & Google AI Studio: Live 24 fps 720p Worlds + 48 kHz Stereo Audio',
+    tldr: 'Released November 19, 2026 (17:00 UTC): Genie 4 (models/genie-4) is now generally available on the Gemini API Interactions API (v1beta) and Google AI Studio—streaming steerable 1280x720 24 fps video and 48 kHz stereo audio over WebRTC and WebSockets at ~$0.10/sec ($1.50 in / $17.50 video out per 1M tokens).',
+    summary:
+      'One day after Project Genie opened to Google AI Ultra consumers, Google opened Genie 4 (models/genie-4) directly to paid-tier developers via the Gemini API Interactions API (v1beta) and Google AI Studio Live: (1) Real-Time Interactive Streaming—streams continuous 1280x720 (16:9) 24 fps video (240 video tokens/frame = 5,760 tokens/sec) with synchronized 48 kHz stereo audio (Opus over WebRTC; 16-bit PCM over WebSocket) and SynthID watermarking, (2) Server Ephemeral Tokens & Live Controls—backends mint single-session auth_tokens via interactions.authTokens.create(), seed worlds with text and/or a 16:9 JPEG (< 48 KB on WebRTC to fit the 64 KB SCTP limit), steer with native WASD/arrow keys (~0.2–0.5s response), and trigger custom events via mid-session input impulses (10x at 150 ms) or Chekhov’s lever causal Rule: prompts, (3) Session Limits & Serving Geography—supports up to 120s per session (strongest coherence in 45–90s) from US data centers only (>150 ms RTT degrades steering), requiring explicit session.complete() to stop billing, and (4) Paid-Tier Pricing & Quotas—$1.50/1M input tokens, $9.00/1M text output, $17.50/1M video output (~$0.10/sec audio included) across Tier 1 (2 concurrent / 50 RPD), Tier 2 (5 / 250 RPD), and Tier 3 (10 / 1,000 RPD).',
+    category: 'World Models & API',
+    tag: 'Gemini API GA',
+    modelBadge: 'Genie 4 API · models/genie-4',
+    impactScore: '10.0 / 10',
+    date: '2026-11-19T17:00:00Z',
+    sourceLabel: 'Google Blog & Gemini API Docs: Genie 4 on the Gemini API (Nov 19, 2026)',
+    sourceUrl: 'https://blog.google/innovation-and-ai/technology/developers-tools/genie-4-in-gemini-api/',
+    groundedBy: 'Google Official Blog + ai.google.dev/gemini-api/docs/genie & changelog#11-19-2026 (Nov 19, 2026 17:00 UTC)',
+    seriesUrl: '/series/genie-4-gemini-api/part-1-what-changed-with-genie-4-api.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-genie-4-world-studio.html',
+    labLabel: 'Genie 4 Studio [DEMO] →',
+  },
+  {
+    id: 'pulse-gemini-mac-computer-use',
+    title: 'Google Launches Computer Use in the Gemini App for Mac: Isolated Background Window Across Local Files, Apps & Web',
+    tldr: 'Released November 19, 2026 (17:00 UTC): Google introduces computer use in the Gemini app for Mac (Apple Silicon, macOS Sequoia 15.0+, US English for Google AI Plus/Pro/Ultra 18+), executing multi-step tasks in an isolated background window while keeping your main screen and cursor free.',
+    summary:
+      'Announced by Michael Friedman (Group Product Manager, Gemini App) on the official Google Blog, computer use in the Gemini app for Mac automates repetitive multi-step tasks across local files, desktop applications, and the web without hijacking the user’s screen: (1) Isolated Background Execution—runs inside a separate background window with a live chat preview so users can keep typing, designing, or taking calls uninterrupted, (2) Built-In Safety & Human Oversight—users select which Mac apps Gemini may access, monitor every step live, pause at any time, and approve key actions before execution, (3) Launch Workflows—batch color-grading photos or setting up 3D scenes in creative software, extracting weights/dimensions/addresses from local PDFs into multi-box shipping quotes, pulling live regional dashboard metrics and screenshots into Google Slides, and staging resale listings from local clothing photos, and (4) Rollout Scope—available via gemini.google/mac in English in the U.S. on Apple Silicon Macs running macOS Sequoia 15.0+ for personal Google accounts (18+) with Google AI Plus, Pro, or Ultra.',
+    category: 'Gemini App & Desktop',
+    tag: 'Product Launch',
+    modelBadge: 'Gemini Mac Computer Use',
+    impactScore: '9.8 / 10',
+    date: '2026-11-19T17:00:00Z',
+    sourceLabel: 'Google Blog: Let Gemini tackle repetitive chores on your Mac',
+    sourceUrl: 'https://blog.google/innovation-and-ai/products/gemini-app/computer-use-mac/',
+    groundedBy: 'Google Official Blog (Nov 19, 2026 17:00 UTC)',
+    seriesUrl: '/series/gemini-mac-computer-use/part-1-what-changed-gemini-mac-computer-use.html',
+    seriesLabel: '3-Part Series →',
+  },
+  {
+    id: 'pulse-gcs-object-enrichments-gemini',
+    title: 'Google Cloud Storage Launches Object Enrichments With Native Gemini Multimodal Context at $700 per 10M Files',
+    tldr: 'Released November 19, 2026 (17:00 UTC): Google Cloud Storage introduces managed object enrichments (preview)—writing AI object detection, labeling, PDF classification, and upcoming native Gemini multimodal reasoning directly to in-place object context at 75% cost savings ($700 per 10M images/PDFs).',
+    summary:
+      'Announced on the Google Cloud Storage Blog by Himanshu Kohli and Manjul Sahay, object enrichments eliminates custom Cloud Run/GKE extraction plumbing and fragmented metadata stores: (1) In-Place Object Context—stores structured key-value context directly alongside raw Cloud Storage bytes so context inherits IAM governance, travels automatically on copy/move/replication, deletes with the object, and flows zero-ETL into BigQuery Storage Insights and the Cloud Storage MCP server, (2) 75% Cost Savings & Gemini Multimodal Path—offers five first-party Google Photos-grade vision and PDF classification models at $700 per 10 million images or PDFs, alongside upcoming native Gemini multimodal summarization, entity extraction, transcription, and translation, and (3) Production Outcomes—L’Oreal labeled creative archives 100x faster, Hyperscience lifted document classification accuracy 50%+ while cutting inference cost 2–3x, and Vivint cut AI development from 6 months to 1 month.',
+    category: 'Enterprise & Storage',
+    tag: 'Cloud Storage Preview',
+    modelBadge: 'GCS Object Enrichments · Gemini',
+    impactScore: '9.5 / 10',
+    date: '2026-11-19T17:00:00Z',
+    sourceLabel: 'Google Cloud Blog: Introducing object enrichments in Cloud Storage',
+    sourceUrl: 'https://cloud.google.com/blog/products/storage-data-transfer/cost-effective-ai-context-extraction-from-unstructured-gcs-data/',
+    groundedBy: 'Google Cloud Official Blog (Nov 19, 2026 17:00 UTC)',
+  },
+  {
     id: 'pulse-sashiko-gemini-kernel-review',
     title: 'Google Open-Sources Sashiko: Gemini-Powered Agentic Code Review Catching 75.8% of Bugs Missed by Linux Maintainers',
     tldr: 'Published November 19, 2026: Google AI & Infrastructure details 7 months of Sashiko running in production on the Linux kernel (241,000+ reviews, ~1,200+/day, 2,000+ commits, 528 official 2026 CVEs)—cutting the 60-day post-merge fix rate by 35% and catching 75.8% of human-missed kernel bugs with Gemini 4 Carbon (high).',
@@ -1342,6 +1393,65 @@ export const GEMINI_MODEL_MATRIX = [
 
 export const STUDIO_LAB_BLUEPRINTS = [
   {
+    id: 'lab-genie-4-world-studio',
+    title: 'Genie 4 Interactive World API Studio [SIMULATED DEMO]',
+    badge: 'Nov 19, 2026 API GA',
+    model: 'models/genie-4',
+    href: '/labs/gemini-genie-4-world-studio.html',
+    description:
+      'Interactive developer workbench modeling Google’s Nov 19 Genie 4 Gemini API (models/genie-4) GA release: estimate 5,760 tokens/sec ($0.10/sec) session budgets, lint causal Rule: Chekhov’s lever prompts, check WebRTC 48 KB JPEG SCTP limits, and copy Interactions API v1beta code.',
+    prompt:
+      'Seed a continuous 720p 24 fps WebRTC world with ephemeral auth tokens, causal Rule: triggers placed far away from me, and explicit session.complete() billing termination.',
+    tsCode: `import { GoogleGenAI } from "@google/genai";
+
+// Server-side: create interaction and mint single-session ephemeral auth token
+const serverAi = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY, apiVersion: "v1beta" });
+const interaction = await serverAi.interactions.create({ model: "models/genie-4", api_version: "v1beta" });
+const { auth_token } = await serverAi.interactions.authTokens.create(interaction.id, { api_version: "v1beta" });
+
+// Browser: connect over WebRTC and always call complete() on exit
+const clientAi = new GoogleGenAI({ apiKey: auth_token, apiVersion: "v1beta" });
+const session = await clientAi.interactions.connect(interaction.id, { transport: "webrtc", api_version: "v1beta" });
+session.transport.setVideoElement(document.querySelector("#world-video"));
+await session.send({
+  event_type: "world_setup",
+  world_prompt: { text: "First-person POV on a cedar boardwalk. Rule: Approaching the brass telescope far away from me reveals distant ships." },
+});
+await session.complete();`,
+    pyCode: `import asyncio
+from google import genai
+
+async def main():
+    client = genai.Client(http_options={"api_version": "v1beta"})
+    interaction = await client.aio.interactions.create(model="models/genie-4", api_version="v1beta")
+    async with client.aio.interactions.connect(interaction.id, api_version="v1beta") as session:
+        await session.send({"event_type": "world_setup", "world_prompt": {"text": "First-person POV inside a quiet botanical glasshouse."}})
+        frames = 0
+        async for event in session.receive():
+            if event.event_type == "step.delta" and getattr(event.delta, "type", None) == "video":
+                frames += 1
+                if frames == 1:
+                    await session.send({"event_type": "user_action", "action": "key_down", "input": "key_w"})
+                elif frames == 72:
+                    await session.complete()
+            elif event.event_type == "interaction.completed":
+                break`,
+    simulatedSteps: [
+      {
+        type: 'thought',
+        label: 'step[0] • Ephemeral Auth Token + 48 KB WebRTC Seed Validation',
+        detail:
+          'Server minted auth_tokens/session_9f2a on Interactions API v1beta without exposing GEMINI_API_KEY; checked 16:9 JPEG seed size (38.4 KB < 48 KB SCTP limit) and US-only serving RTT (< 42 ms).',
+      },
+      {
+        type: 'tool_call',
+        label: 'step[1] • 24 fps World Stream + session.complete() Billing Guard',
+        detail:
+          'Streamed 45s at 240 video tokens/frame (259,200 tokens, ~$4.54 with 48 kHz Opus audio), dispatched key_w movement + 10x/150ms custom E event, and closed via session.complete().',
+      },
+    ],
+  },
+  {
     id: 'lab-sashiko-agentic-review-studio',
     title: 'Sashiko, Envoy MCP & Antigravity Loop Studio [SIMULATED DEMO]',
     badge: 'Nov 19, 2026 Architecture',
@@ -2440,6 +2550,25 @@ video_turn = client.interactions.create(
 ];
 
 export const INITIAL_SHOWCASE_PROJECTS = [
+  {
+    id: 'showcase-gemini-genie-4-world-studio',
+    name: 'Genie 4 Interactive World API Studio [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive developer workbench modeling Google’s Nov 19 Genie 4 Gemini API (models/genie-4) GA release: 5,760 tokens/sec ($0.10/sec) session cost calculator, causal Rule: Chekhov’s lever prompt linter, and WebRTC/WebSocket Interactions API v1beta blueprints.',
+    models: ['models/genie-4'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-genie-4-world-studio.html): [SIMULATED DEMO] Models 240 tok/frame WebRTC streaming, ephemeral authTokens.create(), causal Rule: linting, and Tier 1-3 concurrency budgets.',
+    url: '/labs/gemini-genie-4-world-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-19T17:00:00Z',
+  },
   {
     id: 'showcase-gemini-sashiko-review-studio',
     name: 'Sashiko, Envoy MCP & Antigravity Loop Studio [SIMULATED DEMO]',

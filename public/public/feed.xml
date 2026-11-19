@@ -20,11 +20,35 @@
   </entry>
 
   <entry>
+    <title>World Models Leave the Sandbox. Genie 4 Opens Live 24 fps Streaming on the Gemini API. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/genie-4-gemini-api-interactive-worlds.html" />
+    <id>https://geminipulse.com/articles/genie-4-gemini-api-interactive-worlds.html</id>
+    <updated>2026-11-19T17:00:00.000Z</updated>
+    <summary>One day after Project Genie opened inside Google AI Ultra, developers gained direct API keys to steer continuous 720p worlds over WebRTC and WebSockets. On November 19, 2026, Google shipped models/genie-4 across the Interactions API and Google AI Studio.</summary>
+  </entry>
+
+  <entry>
     <title>Code Generation Outran Human Maintainers. How Gemini-Powered Sashiko Cut Linux Fixes by 35%. (Flagship Gemini Essay)</title>
     <link href="https://geminipulse.com/articles/sashiko-gemini-kernel-code-review.html" />
     <id>https://geminipulse.com/articles/sashiko-gemini-kernel-code-review.html</id>
     <updated>2026-11-19T12:00:00.000Z</updated>
     <summary>More AI-written code simply piles up in front of human reviewers unless verification scales alongside generation. On November 19, 2026, Google published seven months of Linux kernel production data from Sashiko—an open-source Gemini review system cited in 528 official 2026 CVEs.</summary>
+  </entry>
+
+  <entry>
+    <title>Desktop Agents Stop Stealing Your Mouse. Gemini for Mac Launches Background Computer Use. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/gemini-mac-app-computer-use.html" />
+    <id>https://geminipulse.com/articles/gemini-mac-app-computer-use.html</id>
+    <updated>2026-11-19T17:00:00.000Z</updated>
+    <summary>Early GUI agents forced operators to stop working while an AI hijacked the cursor across open windows. On November 19, 2026, Google rolled out computer use in the Gemini app for Mac inside an isolated background window.</summary>
+  </entry>
+
+  <entry>
+    <title>Google Cloud Storage Launches Object Enrichments With Native Gemini Multimodal Context at $700 per 10M Files. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/gcs-object-enrichments-gemini.html" />
+    <id>https://geminipulse.com/articles/gcs-object-enrichments-gemini.html</id>
+    <updated>2026-11-19T17:00:00.000Z</updated>
+    <summary>Google Cloud Storage introduces managed object enrichments (preview)—writing AI object detection, labeling, PDF classification, and upcoming native Gemini multimodal reasoning directly to in-place object context at 75% cost savings ($700 per 10M images/PDFs).</summary>
   </entry>
 
   <entry>
@@ -52,27 +76,19 @@
   </entry>
 
   <entry>
-    <title>Prompt Inside the World. Genie 4 Opens in Project Genie With Live Edits &amp; Native Audio. (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/project-genie-4-real-time-worlds-and-audio.html" />
-    <id>https://geminipulse.com/articles/project-genie-4-real-time-worlds-and-audio.html</id>
-    <updated>2026-11-18T18:13:42.000Z</updated>
-    <summary>Early world-model prototypes generated 60-second clips you could steer but rarely reshape on the fly. On November 18, 2026, Google DeepMind opened Genie 4 to Google AI Ultra subscribers with real-time mid-session prompting, native audio, and a remixable gallery.</summary>
+    <title>Genie 4 (models/genie-4) GA on Gemini API &amp; Google AI Studio (Parts 1–3) + World Studio [SIMULATED DEMO]</title>
+    <link href="https://geminipulse.com/series/genie-4-gemini-api/part-1-what-changed-with-genie-4-api.html" />
+    <id>https://geminipulse.com/series/genie-4-gemini-api/part-1-what-changed-with-genie-4-api.html</id>
+    <updated>2026-11-19T17:00:00Z</updated>
+    <summary>Direct primary-source breakdown of Google's November 19, 2026 (17:00 UTC) Genie 4 Gemini API release: models/genie-4 on Interactions API v1beta streaming steerable 1280x720 24 fps worlds with 48 kHz stereo audio over WebRTC and WebSockets ($1.50/$9.00/$17.50 per 1M tokens, ~$0.10/sec), ephemeral authTokens, causal Rule: prompting, and companion World Studio [SIMULATED DEMO].</summary>
   </entry>
 
   <entry>
-    <title>Beyond Flagships: Re-Architected Gemini Brings 45+ Language Live to Android (Go Edition). (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/gemini-app-lower-memory-android-go-edition.html" />
-    <id>https://geminipulse.com/articles/gemini-app-lower-memory-android-go-edition.html</id>
-    <updated>2026-11-18T17:00:00.000Z</updated>
-    <summary>For hundreds of millions of people worldwide, a lower-memory Android phone is their primary gateway to education and commerce. On November 18, 2026, Google re-architected the Gemini app so core multimodal experiences run smoothly on tight RAM budgets.</summary>
-  </entry>
-
-  <entry>
-    <title>Google Cloud Releases Open Knowledge Format (OKF) v0.3: RFC 2119 Agent Bundles, Current-Only Trust Tiers &amp; Coding Agent Skills. (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/google-cloud-okf-v0-3.html" />
-    <id>https://geminipulse.com/articles/google-cloud-okf-v0-3.html</id>
-    <updated>2026-11-18T17:00:00.000Z</updated>
-    <summary>Google Cloud ships Open Knowledge Format v0.3—standardizing YAML 1.2 + CommonMark agent knowledge bundles alongside AGENTS.md and SKILL.md, resetting stale human-reviewed labels after agent edits, and moving OKF to a standalone GitHub org.</summary>
+    <title>Computer Use in the Gemini App for Mac &amp; Cloud Storage Object Enrichments (Parts 1–3)</title>
+    <link href="https://geminipulse.com/series/gemini-mac-computer-use/part-1-what-changed-gemini-mac-computer-use.html" />
+    <id>https://geminipulse.com/series/gemini-mac-computer-use/part-1-what-changed-gemini-mac-computer-use.html</id>
+    <updated>2026-11-19T17:00:00Z</updated>
+    <summary>Direct primary-source breakdown of Google's November 19, 2026 (17:00 UTC) Mac &amp; Cloud Storage wave: Computer Use in the Gemini app for Mac (Apple Silicon, macOS Sequoia 15.0+, isolated background window, app allowlists &amp; key-action approvals) and Cloud Storage Object Enrichments with native Gemini multimodal context ($700 per 10M images/PDFs).</summary>
   </entry>
 
   <entry>

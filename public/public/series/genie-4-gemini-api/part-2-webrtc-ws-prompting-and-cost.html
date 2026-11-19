@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 2: How Genie 4 Affects Builders — WebRTC Ephemeral Tokens, Causal Rules &amp; $0.10/sec Tokenomics | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Technical breakdown of Genie 4 (models/genie-4) WebRTC vs. WebSocket transports, 48 KB SCTP reference image limit, five prompting patterns (Chekhov's lever), and Tier 1-3 rate limits."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/genie-4-gemini-api/part-2-webrtc-ws-prompting-and-cost.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 2: Genie 4 WebRTC Protocol, Causal Prompting &amp; Tokenomics" />
+    <meta property="og:description" content="How ephemeral auth tokens, 10x/150ms mid-session text impulses, Rule: triggers, and 5,760 tokens/sec billing shape real-world architecture." />
+    <meta property="og:url" content="https://geminipulse.com/series/genie-4-gemini-api/part-2-webrtc-ws-prompting-and-cost.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Part 2: Genie 4 WebRTC, Prompting Rules &amp; Cost" />
+    <meta name="twitter:description" content="Inside Google's five tested Genie 4 prompt patterns, 48 KB SCTP payload caps, and Tier 1-3 concurrency budgets." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "How Genie 4 Affects Builders — WebRTC Ephemeral Tokens, Causal Rules & $0.10/sec Tokenomics",
+        "datePublished": "2026-11-19T17:00:00Z",
+        "author": { "@type": "Person", "name": "Google Gemini 4 Argon (Thinking Effort: High)" },
+        "contributor": { "@type": "Person", "name": "Neil S. White" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/genie-4-gemini-api/part-2-webrtc-ws-prompting-and-cost.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; --emerald: #10b981; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .box.info { border-left: 4px solid var(--accent); }
+      .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+      table { width: 100%; border-collapse: collapse; font-size: 0.92rem; text-align: left; }
+      th, td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+      th { background: rgba(255,255,255,0.03); color: #f1f5f9; font-weight: 600; }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.15rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+    </style>
+    <!-- GP-ANALYTICS-START -->
+    <meta name="gp:model" content="gemini-4-argon" />
+    <meta name="gp:effort" content="high" />
+    <meta name="gp:surface" content="release_series" />
+    <meta name="gp:slug" content="genie-4-gemini-api/part-2-webrtc-ws-prompting-and-cost" />
+    <script src="/assets/pulse-analytics.js" defer></script>
+    <!-- GP-ANALYTICS-END -->
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">Genie 4 Gemini API Series &middot; Part 2 of 3</div>
+      <h1>How Does This Affect Builders? Transport Choices, Causal Prompting &amp; $0.10/sec Economics</h1>
+
+      <div class="meta">
+        Authored by <strong>Google Gemini 4 Argon</strong> &middot; Thinking Effort: <strong>High</strong> &middot; Product Development &amp; Creative Direction: <strong>Neil S. White</strong> &bull; Published November 19, 2026 &bull; Primary Sources:
+        <a href="https://ai.google.dev/gemini-api/docs/genie-prompting" target="_blank" rel="noopener">Genie 4 Prompt &amp; Controls Guide</a> &amp;
+        <a href="https://ai.google.dev/gemini-api/docs/rate-limits#genie-4" target="_blank" rel="noopener">Rate Limits</a> &bull; 6 min read
+      </div>
+
+      <h2>1. Four-Step Session Lifecycle &amp; Transport Tradeoffs</h2>
+      <p>Every <code>models/genie-4</code> integration follows one strict four-step pattern: (1) create the interaction server-side (and mint an <code>auth_tokens/...</code> ephemeral token for browsers), (2) connect via <strong>WebRTC</strong> (browsers) or <strong>WebSocket</strong> (Python, Node.js, or headless RL loops), (3) emit one <code>world_setup</code> event followed by <code>user_action</code> key/camera controls and mid-session text inputs, and (4) terminate billing cleanly with <code>await session.complete()</code>.</p>
+      <ul>
+        <li><strong>WebRTC Reference Image Budget:</strong> Browser SCTP data channels cap JSON payloads at <code>64 KB</code>. Keep compressed <code>16:9</code> JPEG seed images under <code>48 KB</code> so base64 encoding does not exceed the WebRTC frame limit.</li>
+        <li><strong>Mid-Session Impulse Pattern:</strong> Custom action bindings (such as <code>E</code>, <code>Q</code>, <code>R</code>) are not hardcoded by the model; clients send mid-session text impulses repeated <code>10x</code> at <code>150 ms</code> intervals with a <code>2-second</code> cooldown so the next world step reliably picks up the event.</li>
+        <li><strong>Initial Frame Warmup &amp; Session Drift:</strong> Expect <code>~5–9 seconds</code> before frame 1 arrives after <code>world_setup</code>. Camera and keyboard steering respond in <code>~0.2–0.5s</code>, while mid-session text shifts settle in <code>~1–2s</code>. Visual coherence is strongest during the first <code>45–90 seconds</code> up to the hard <code>120-second</code> session ceiling.</li>
+      </ul>
+
+      <h2>2. Five Tested Genie 4 Prompting Rules (Why Movie-Trailer Prompts Fail)</h2>
+      <div class="box info">
+        <p style="margin-top: 0;">Google’s engineering guide warns that cinematic phrasing like <em>"upbeat synth soundtrack"</em> or <em>"quick cuts to an aerial drone shot"</em> breaks a live <code>24 fps</code> camera stream: soundtrack words turn into physical in-world Foley noises, and camera cuts fracture spatial continuity.</p>
+        <ul style="margin-bottom: 0;">
+          <li><strong>Causal Object Rules ("Chekhov’s Lever"):</strong> Embed triggers as <code>Rule: Pulling the red lever...</code> bound to a physical object or character rather than an abstract room boundary, place the trigger <code>"far away from me"</code> so it does not misfire at frame 1, and instruct NPCs with <code>"who waits until a rule is triggered"</code>.</li>
+          <li><strong>Key-Bound Action Verbs:</strong> Pair walk-first exploration with explicit <code>E</code> / <code>Q</code> / <code>R</code> action bindings whenever deterministic button triggers matter more than probabilistic world triggers.</li>
+          <li><strong>Quoted Spoken Dialogue:</strong> Wrap mid-session character speech in quotation marks (<code>"\"What wine would you recommend?\""</code>) to trigger direct NPC voice replies inside the <code>48 kHz</code> audio stream.</li>
+        </ul>
+      </div>
+
+      <h2>3. Token Consumption &amp; Tier 1–3 Concurrency Budgets</h2>
+      <div class="table-wrap" role="region" aria-label="Genie 4 rate limits and cost math" tabindex="0">
+        <table>
+          <thead>
+            <tr>
+              <th>Tier / Metric</th>
+              <th>Concurrent Sessions</th>
+              <th>Requests / Day (RPD)</th>
+              <th>Estimated Cost &amp; Token Rate</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Free Tier</strong></td>
+              <td>Not supported</td>
+              <td>Not supported</td>
+              <td>Paid-tier Gemini API key required</td>
+            </tr>
+            <tr>
+              <td><strong>Tier 1</strong></td>
+              <td>2 concurrent</td>
+              <td>50 RPD</td>
+              <td><code>240</code> tok/frame &times; <code>24 fps</code> = <code>5,760</code> tok/s (<code>$0.1008/s</code>)</td>
+            </tr>
+            <tr>
+              <td><strong>Tier 2</strong></td>
+              <td>5 concurrent</td>
+              <td>250 RPD</td>
+              <td>30s interactive session &approx; <code>172,800</code> video tokens (<code>~$3.02</code>)</td>
+            </tr>
+            <tr>
+              <td><strong>Tier 3</strong></td>
+              <td>10 concurrent</td>
+              <td>1,000 RPD</td>
+              <td>60s session &approx; <code>$6.05</code>; 120s max session &approx; <code>$12.10</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Importantly, real-time in-session <code>user_action</code> keystrokes and mid-session <code>input</code> prompts do <strong>not</strong> consume separate RPM or RPD quota—only opening the session counts toward your daily RPD and concurrent session slots.</p>
+
+      <div class="series-nav">
+        <a href="/series/genie-4-gemini-api/part-1-what-changed-with-genie-4-api.html" class="btn-pill">&larr; Part 1: What Changed</a>
+        <a href="/series/genie-4-gemini-api/part-3-concrete-genie-4-builder-use-cases.html" class="btn-pill">Part 3: Concrete Use Cases &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>

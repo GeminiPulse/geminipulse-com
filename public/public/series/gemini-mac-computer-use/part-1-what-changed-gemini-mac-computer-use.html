@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 1: What Changed With Computer Use in the Gemini App for Mac — Background Window Execution | GeminiPulse</title>
+    <meta
+      name="description"
+      content="November 19, 2026 Google Gemini App release breakdown: Computer Use launches on Apple Silicon Macs (macOS Sequoia 15.0+) inside an isolated background window with live chat previews."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/gemini-mac-computer-use/part-1-what-changed-gemini-mac-computer-use.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 1: What Changed With Computer Use in the Gemini App for Mac" />
+    <meta property="og:description" content="How Google moved desktop computer use out of foreground screen takeovers into an isolated background Mac window with live previews and app allowlists." />
+    <meta property="og:url" content="https://geminipulse.com/series/gemini-mac-computer-use/part-1-what-changed-gemini-mac-computer-use.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Part 1: Gemini App for Mac Launches Computer Use" />
+    <meta name="twitter:description" content="Background desktop automation across local files, Mac apps, and the web without stealing your cursor." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "What Changed With Computer Use in the Gemini App for Mac — Background Window Execution",
+        "datePublished": "2026-11-19T17:00:00Z",
+        "author": { "@type": "Person", "name": "Google Gemini 4 Argon (Thinking Effort: High)" },
+        "contributor": { "@type": "Person", "name": "Neil S. White" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/gemini-mac-computer-use/part-1-what-changed-gemini-mac-computer-use.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; --emerald: #10b981; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: #cbd5e1; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .box.info { border-left: 4px solid var(--accent); }
+      .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+      table { width: 100%; border-collapse: collapse; font-size: 0.92rem; text-align: left; }
+      th, td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+      th { background: rgba(255,255,255,0.03); color: #f1f5f9; font-weight: 600; }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.15rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+    </style>
+    <!-- GP-ANALYTICS-START -->
+    <meta name="gp:model" content="gemini-4-argon" />
+    <meta name="gp:effort" content="high" />
+    <meta name="gp:surface" content="release_series" />
+    <meta name="gp:slug" content="gemini-mac-computer-use/part-1-what-changed-gemini-mac-computer-use" />
+    <script src="/assets/pulse-analytics.js" defer></script>
+    <!-- GP-ANALYTICS-END -->
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">Gemini Mac Computer Use Series &middot; Part 1 of 3</div>
+      <h1>What Changed With Computer Use in the Gemini App for Mac</h1>
+
+      <div class="meta">
+        Authored by <strong>Google Gemini 4 Argon</strong> &middot; Thinking Effort: <strong>High</strong> &middot; Product Development &amp; Creative Direction: <strong>Neil S. White</strong> &bull; Published November 19, 2026 &bull; Primary Source:
+        <a href="https://blog.google/innovation-and-ai/products/gemini-app/computer-use-mac/" target="_blank" rel="noopener">Google Blog: Let Gemini tackle repetitive chores on your Mac</a> &bull; 5 min read
+      </div>
+
+      <div class="box info">
+        <h3 style="margin-top: 0; color: #38bdf8;">Release Summary: November 19, 2026 (17:00 UTC)</h3>
+        <p style="margin-bottom: 0;">Announced by Michael Friedman (Group Product Manager, Gemini App), Google rolled out native <strong>computer use in the Gemini app for Mac</strong> (<code>gemini.google/mac</code>). Available in English in the U.S. on Apple Silicon Macs running <strong>macOS Sequoia 15.0+</strong> for personal Google accounts 18+ on <strong>Google AI Plus, Pro, and Ultra</strong>, Gemini executes multi-step UI workflows across local files, desktop applications, and websites inside an <strong>isolated background window</strong> while keeping the user’s primary screen and cursor completely free.</p>
+      </div>
+
+      <h2>1. Why Foreground Screen Takeovers Failed Everyday Desktop Users</h2>
+      <p>Earlier desktop computer-use demos shared a frustrating flaw: the moment an agent took over the mouse and keyboard, the human operator had to sit on their hands and watch their cursor jump across windows—or risk colliding with the agent mid-click. Browser-only agents solved cursor hijacking inside tabs, yet stopped short whenever work required local PDFs, Finder folders, creative apps, or multi-window desktop suites.</p>
+      <p>Google’s Mac release resolves both constraints by pairing local macOS application control with an isolated background window streamed as a live preview inside the Gemini chat thread.</p>
+
+      <h2>2. What Changed vs. Foreground Agents &amp; Browser-Only Automation</h2>
+      <div class="table-wrap" role="region" aria-label="Mac Computer Use comparison table" tabindex="0">
+        <table>
+          <thead>
+            <tr>
+              <th>Dimension</th>
+              <th>Legacy Foreground Desktop Agents</th>
+              <th>Browser-Only Web Agents</th>
+              <th>Gemini App for Mac Computer Use (Nov 19)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Execution Surface</strong></td>
+              <td>Takes over primary desktop cursor &amp; focus</td>
+              <td>Confined to browser DOM / web tabs</td>
+              <td>Isolated background Mac window across local files, desktop apps &amp; web</td>
+            </tr>
+            <tr>
+              <td><strong>User Multitasking</strong></td>
+              <td>Blocked while agent runs</td>
+              <td>Limited to separate browser profile</td>
+              <td>Primary screen &amp; cursor remain 100% free for calls, typing, or design</td>
+            </tr>
+            <tr>
+              <td><strong>Oversight &amp; Safety</strong></td>
+              <td>Interrupting requires hotkey kill-switch</td>
+              <td>Domain-scoped tab sandboxes</td>
+              <td>Per-app access permissions, live chat preview, instant pause &amp; key-action approval</td>
+            </tr>
+            <tr>
+              <td><strong>System Eligibility</strong></td>
+              <td>Developer CLI / API harness</td>
+              <td>Cloud or extension sandbox</td>
+              <td>Apple Silicon Mac, macOS Sequoia 15.0+, US English, AI Plus / Pro / Ultra (18+)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="series-nav">
+        <a href="/" class="btn-pill">&larr; Constellation Home</a>
+        <a href="/series/gemini-mac-computer-use/part-2-isolated-window-permissions-and-safety.html" class="btn-pill">Part 2: Safety &amp; Workflow Impact &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>

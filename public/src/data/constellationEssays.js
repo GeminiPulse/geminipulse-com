@@ -14,6 +14,435 @@
  */
 
 export const CONSTELLATION_ESSAYS = {
+  'pulse-genie-4-gemini-api-ga': {
+    id: 'pulse-genie-4-gemini-api-ga',
+    slug: 'genie-4-gemini-api-interactive-worlds',
+    shortStarLabel: 'Genie 4 API GA',
+    readMinutes: '8 MIN READ',
+    authoredByModel: 'Google Gemini 4 Argon',
+    thinkingEffort: 'High',
+    hudTitle: 'Genie 4 (models/genie-4) Opens on the Gemini API: 24 fps Worlds + 48 kHz Audio.',
+    hudSummary:
+      'Released November 19, 2026 (17:00 UTC): Genie 4 launches GA on the Gemini API Interactions API (v1beta) and Google AI Studio—streaming steerable 1280x720 24 fps worlds and 48 kHz stereo audio over WebRTC and WebSockets at ~$0.10/sec.',
+    peekCastor: 'Genie 4 on Gemini API: <em>Live WebRTC worlds at ~$0.10/sec.</em>',
+    peekPollux: 'Interactions API v1beta: <em>Ephemeral tokens, Rule: triggers & 5,760 tok/s.</em>',
+    headline:
+      'World Models Leave the Sandbox. <em>Genie 4 Opens Live 24 fps Streaming on the Gemini API.</em>',
+    standfirst:
+      'One day after Project Genie opened inside Google AI Ultra, developers gained direct API keys to steer continuous 720p worlds over WebRTC and WebSockets. On November 19, 2026, Google shipped models/genie-4 across the Interactions API and Google AI Studio.',
+    pulseCheck: [
+      {
+        stage: 'Stream & Audio Spec',
+        detail:
+          'models/genie-4 generates continuous 1280x720 (16:9) 24 fps video with synchronized 48 kHz stereo audio (Opus over WebRTC; 16-bit PCM over WebSocket) and SynthID watermarking up to 120 seconds per session.',
+      },
+      {
+        stage: 'Pricing & Concurrency',
+        detail:
+          'Paid-tier only ($1.50/1M input, $9.00/1M text output, $17.50/1M video output at 240 tokens/frame or 5,760 tokens/sec, roughly $0.10/sec audio included) across Tier 1 (2 concurrent / 50 RPD), Tier 2 (5 / 250 RPD), and Tier 3 (10 / 1,000 RPD).',
+      },
+      {
+        stage: 'The Honest Catch',
+        detail:
+          'Serves from US data centers only (>150 ms RTT degrades steering), visual coherence peaks in the first 45-90 seconds, WebRTC seed JPEGs must stay under 48 KB, and closing a tab does not stop billing unless your app calls session.complete().',
+      },
+    ],
+    castor: {
+      kicker: 'PART I · α CASTOR · PLATFORM SHIFT & PRODUCT ECONOMICS LENS',
+      title: 'Why Programmable World Streams Are Different From Generative Video',
+      subtitle:
+        'How moving from pre-rendered 15-second clips to interactive WebRTC streams changes prototyping, spatial design, and simulation.',
+      paragraphs: [
+        'For the past two years, generative video APIs operated like vending machines: submit a prompt, wait a minute, and download a fixed clip you could only play passively. On <strong>November 19, 2026</strong>, just 24 hours after opening Project Genie to Google AI Ultra subscribers, Google crossed a clear architectural threshold by launching <a href="https://blog.google/innovation-and-ai/technology/developers-tools/genie-4-in-gemini-api/" target="_blank" rel="noopener"><strong>Genie 4 (<code>models/genie-4</code>)</strong> on the Gemini API</a> and in Google AI Studio Live.',
+        'Instead of returning an MP4 file, <code>models/genie-4</code> exposes a live bidirectional session over WebRTC for browsers and async WebSockets for Python or Node.js backends. After a <code>5-9 second</code> initial world warmup from text or a <code>16:9</code> reference image, the model streams continuous <code>1280x720</code> video at <code>24 fps</code> paired with synchronized <code>48 kHz</code> stereo audio—responding to <code>WASD</code> and arrow steering in <code>~0.2-0.5s</code> and mid-session text shifts in <code>~1-2s</code>.',
+        'That economics sheet makes clear what Genie 4 is built for—and what it is not. At <code>240</code> video output tokens per frame (<code>5,760</code> tokens per second) and <code>$17.50</code> per million video output tokens, a live interactive stream runs roughly <code>$0.10/sec</code> (about <code>$3.02</code> for a 30-second spatial walkthrough or <code>$6.05</code> for a minute). Meanwhile, offline clip generation, multi-turn video editing, and 4K upsampling stay on <a href="/series/gemini-omni-video/part-1-what-changed-with-gemini-omni-video.html">Gemini Omni 1.2 Flash</a>.',
+        'Every output carries imperceptible SynthID watermarking, and Google explicitly highlights three immediate builder tracks: interactive product and game prototypes, spatial concept visualization, and robotics or AI agent stress-testing inside unpredictable 3D environments.',
+      ],
+      pullquote: {
+        quote:
+          'Offline video APIs render a movie you watch; Genie 4 streams a coherent spatial state you inhabit, steer, and perturb mid-flight over WebRTC.',
+        attribution: 'GOOGLE GEMINI 4 ARGON · α CASTOR SYNTHESIS OF GENIE 4 GEMINI API RELEASE',
+      },
+      comparisonTable: {
+        id: 'genie-4-api-vs-omni-table',
+        caption: 'Genie 4 Gemini API (Nov 19, 2026) vs. Project Genie Consumer & Gemini Omni 1.2 Flash',
+        columns: ['Capability / Spec', 'Gemini Omni 1.2 Flash', 'Project Genie (Nov 18)', 'Genie 4 API (models/genie-4)'],
+        rows: [
+          [
+            'Transport & API',
+            'GenerateContent / offline video jobs',
+            'Managed consumer web app (AI Ultra)',
+            'Interactions API v1beta over WebRTC or WebSocket',
+          ],
+          [
+            'Resolution & Frame Rate',
+            'Offline fixed clips up to 15s (4K upsampling)',
+            'Interactive web stream + SynthID',
+            'Live 1280x720 (16:9) at 24 fps + 48 kHz stereo audio + SynthID',
+          ],
+          [
+            'Billing & Session Limits',
+            'Per-render generation billing',
+            'Included in AI Ultra plan',
+            '$1.50 in / $9.00 text / $17.50 video per 1M (~$0.10/sec); max 120s',
+          ],
+          [
+            'Rate Limits & Geography',
+            'Standard API tiers',
+            'Consumer waitlist / Ultra access',
+            'Paid tier only: Tier 1 (2/50 RPD), Tier 2 (5/250), Tier 3 (10/1,000); US serving',
+          ],
+        ],
+      },
+      adaptiveQuestions: [
+        {
+          lensTag: 'FOR PRODUCT & GAME TEAMS',
+          question: 'When should we pick Genie 4 over Gemini Omni 1.2 Flash?',
+          answer:
+            'Use Genie 4 whenever the user or an AI agent needs live keyboard navigation, real-time camera steering, or mid-session natural-language interventions. Keep Gemini Omni 1.2 Flash for fixed marketing assets, 4K upsampling, and multi-turn offline video editing.',
+        },
+        {
+          lensTag: 'FOR GLOBAL WEB APPS',
+          question: 'What happens if our users connect from outside North America?',
+          answer:
+            'Google documents that Genie 4 currently serves from US data centers only, and round-trip latency above 150 ms noticeably delays reflex keyboard steering. Hosting backend token minters and relays in North America helps minimize overhead.',
+        },
+        {
+          lensTag: 'FOR FINANCE & OPS LEADS',
+          question: 'Can idle browser tabs run up runaway video token bills?',
+          answer:
+            'Yes, unless guarded. Closing a browser tab detaches WebRTC without immediately stopping server generation, so production clients must wire visibility/timeout hooks that call await session.complete(). Google AI Studio Live auto-pauses background tabs after 10 seconds.',
+        },
+      ],
+    },
+    pollux: {
+      kicker: 'PART II · β POLLUX · INTERACTIONS API v1beta, WEBRTC & CAUSAL RULE ENGINEERING',
+      title: 'Inside the Genie 4 Session Protocol & Five Tested Prompting Patterns',
+      subtitle:
+        'How ephemeral authTokens, 48 KB SCTP image caps, 10x text impulses, and Chekhov’s lever rules keep live worlds coherent.',
+      paragraphs: [
+        'Integrating <code>models/genie-4</code> in production requires a deliberate server-client split on <code>v1beta</code>. Your backend initializes the interaction with <code>serverAi.interactions.create({ model: "models/genie-4", api_version: "v1beta" })</code> and immediately mints a single-session ephemeral token via <code>interactions.authTokens.create(interaction.id)</code>. That token authorizes the browser’s <code>interactions.connect(interactionId, { transport: "webrtc" })</code> call so your long-lived <code>GEMINI_API_KEY</code> never touches client memory.',
+        'Over WebRTC, video and <code>48 kHz</code> Opus stereo audio decode natively into a standard <code>&lt;video autoplay playsinline&gt;</code> element, while JSON events ride an SCTP data channel capped at <code>64 KB</code>—meaning compressed <code>16:9</code> JPEG seed images inside <code>world_setup</code> must stay under <code>48 KB</code>. In Python, <code>client.aio.interactions.connect()</code> uses async WebSockets and yields base64 JPEG frames plus <code>48 kHz</code> 16-bit PCM audio chunks on <code>step.delta</code>.',
+        'Google’s <a href="https://ai.google.dev/gemini-api/docs/genie-prompting" target="_blank" rel="noopener">Genie 4 Prompt and Controls Guide</a> also surfaces empirical workarounds that prevent wasted tokens. Avoid movie-trailer keywords like <em>"upbeat synth soundtrack"</em> or <em>"quick cuts"</em>, bind causal <code>Rule:</code> triggers to concrete objects placed <code>"far away from me"</code> with NPCs told <code>"who waits until a rule is triggered"</code>, and repeat custom <code>E</code>/<code>Q</code>/<code>R</code> text impulses <code>10x</code> at <code>150 ms</code> intervals with a <code>2-second</code> cooldown.',
+      ],
+      builderRules: [
+        {
+          label: '01 · Always Call session.complete() on Unload & Idle Timeouts',
+          detail:
+            'Detach events do not halt server frame generation immediately; hook pagehide, stop buttons, and 90-second drift timers to session.complete() to cap spend.',
+        },
+        {
+          label: '02 · Keep WebRTC Reference JPEGs Under 48 KB',
+          detail:
+            'Base64 inflation pushes larger images over WebRTC’s 64 KB SCTP data channel limit; resize 16:9 seeds before encoding world_setup.',
+        },
+        {
+          label: '03 · Anchor Causal Rule: Triggers to Distant Physical Objects',
+          detail:
+            'Bind triggers to objects ("Pulling the red lever far away from me") rather than rooms ("Entering the bridge") so world_setup does not fire the event on frame 1.',
+        },
+      ],
+      codeCaption: 'GENIE 4 EPHEMERAL WEBRTC SESSION + CLEAN BILLING EXIT (@google/genai)',
+      codeSnippet: `import { GoogleGenAI } from "@google/genai";
+
+// 1. Server endpoint: mint single-session auth token on v1beta
+export async function mintWorldToken() {
+  const serverAi = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY, apiVersion: "v1beta" });
+  const interaction = await serverAi.interactions.create({
+    model: "models/genie-4",
+    api_version: "v1beta",
+  });
+  const { auth_token } = await serverAi.interactions.authTokens.create(interaction.id, {
+    api_version: "v1beta",
+  });
+  return { interactionId: interaction.id, authToken: auth_token };
+}
+
+// 2. Browser client: stream WebRTC video/audio, steer with WASD, and call complete()
+export async function connectWorld(interactionId, authToken, videoElement) {
+  const clientAi = new GoogleGenAI({ apiKey: authToken, apiVersion: "v1beta" });
+  const session = await clientAi.interactions.connect(
+    interactionId,
+    { transport: "webrtc", api_version: "v1beta" },
+    { timeout_ms: 30000 }
+  );
+  session.transport.setVideoElement(videoElement);
+  await session.send({
+    event_type: "world_setup",
+    world_prompt: {
+      text: "First-person POV on a cobblestone bridge at twilight. Rule: Approaching the lantern boat far away from me lights golden reflections across the water.",
+    },
+  });
+  return {
+    stepForward: () => session.send({ event_type: "user_action", action: "key_down", input: "key_w" }),
+    stopForward: () => session.send({ event_type: "user_action", action: "key_up", input: "key_w" }),
+    endSession: () => session.complete(),
+  };
+}`,
+      workbench: {
+        title: 'Genie 4 Stream Protocol & Cost Explorer',
+        subtitle: 'Inspect verified Interactions API v1beta mechanics, causal prompt rules, and tokenomics.',
+        dek: 'Cycle through the three Genie 4 API dimensions below, or open the interactive Genie 4 World Studio [SIMULATED DEMO].',
+        presets: [
+          {
+            label: '1. STREAM & AUDIO SPEC',
+            k1: 'Video & Audio Output',
+            v1: '1280x720 (16:9) at 24 fps + synchronized 48 kHz stereo audio + SynthID',
+            k2: 'Token Consumption Rate',
+            v2: '240 video output tokens/frame = 5,760 tokens/sec (~$0.1008/sec audio included)',
+            k3: 'Session Horizon',
+            v3: 'Up to 120s max duration (strongest spatial coherence in first 45-90s)',
+          },
+          {
+            label: '2. WEBRTC VS. WEBSOCKET',
+            k1: 'Browser Transport',
+            v1: 'WebRTC with server-minted authTokens.create(); keep JPEG seeds under 48 KB (64 KB SCTP)',
+            k2: 'Python Async Stream',
+            v2: 'client.aio.interactions.connect() yields step.delta JPEG frames + 16-bit PCM audio',
+            k3: 'Billing Termination',
+            v3: 'Must call await session.complete() so server generation halts immediately',
+          },
+          {
+            label: '3. CAUSAL PROMPTING',
+            k1: 'Chekhov’s Lever Rule',
+            v1: 'Bind Rule: to an object "far away from me" + tell NPCs "who waits until a rule is triggered"',
+            k2: 'Custom Key Impulses',
+            v2: 'Send E/Q/R mid-session text events 10x at 150 ms intervals with a 2s cooldown',
+            k3: 'Spoken NPC Dialogue',
+            v3: 'Wrap live lines in nested quotes to converse with characters over 48 kHz audio',
+          },
+        ],
+      },
+    },
+    verdict: {
+      title: 'Argon’s Bottom Line: Treat Genie 4 Sessions Like Metered WebRTC Calls',
+      subtitle:
+        'models/genie-4 unlocks real-time interactive worlds in any web or Python app—provided you engineer strict session.complete() guards and US relays.',
+      paragraphs: [
+        '<strong>Why this matters today:</strong> separating server token minting from browser WebRTC playback lets teams ship interactive 3D walkthroughs, language roleplay, and robotics stress tests in under 50 lines of <code>@google/genai</code> code.',
+        '<strong>Explore the companion deep dive:</strong> read our 3-part <a href="/series/genie-4-gemini-api/part-1-what-changed-with-genie-4-api.html">Genie 4 Gemini API series</a> or calculate session token budgets and lint causal prompts inside <a href="/labs/gemini-genie-4-world-studio.html">Genie 4 Interactive World API Studio [SIMULATED DEMO]</a>.',
+      ],
+      sources: [
+        {
+          role: 'Official Google Blog Announcement',
+          label: 'Genie 4 is now available on the Gemini API.',
+          author: 'Google DeepMind & Developer Tools',
+          date: 'November 19, 2026',
+          url: 'https://blog.google/innovation-and-ai/technology/developers-tools/genie-4-in-gemini-api/',
+        },
+        {
+          role: 'Official Gemini API Developer Guide',
+          label: 'Interactive world generation with Genie 4',
+          author: 'Google AI for Developers',
+          date: 'November 19, 2026',
+          url: 'https://ai.google.dev/gemini-api/docs/genie',
+        },
+        {
+          role: 'Official Model Reference & Changelog',
+          label: 'Genie 4 (models/genie-4) & Prompting Guide',
+          author: 'Google AI for Developers',
+          date: 'November 19, 2026',
+          url: 'https://ai.google.dev/gemini-api/docs/models/genie-4',
+        },
+      ],
+    },
+  },
+  'pulse-gemini-mac-computer-use': {
+    id: 'pulse-gemini-mac-computer-use',
+    slug: 'gemini-mac-app-computer-use',
+    shortStarLabel: 'Mac Computer Use',
+    readMinutes: '6 MIN READ',
+    authoredByModel: 'Google Gemini 4 Argon',
+    thinkingEffort: 'High',
+    hudTitle: 'Gemini for Mac Launches Computer Use in an Isolated Background Window.',
+    hudSummary:
+      'Released November 19, 2026 (17:00 UTC): Google brings computer use to the native Gemini app for Mac (Apple Silicon, macOS Sequoia 15.0+, US English, AI Plus/Pro/Ultra 18+)—automating local files, desktop apps, and web forms without stealing your cursor.',
+    peekCastor: 'Gemini for Mac: <em>Background automation that leaves your cursor free.</em>',
+    peekPollux: 'Human-in-the-Loop UI: <em>App allowlists, live chat preview & action gates.</em>',
+    headline:
+      'Desktop Agents Stop Stealing Your Mouse. <em>Gemini for Mac Launches Background Computer Use.</em>',
+    standfirst:
+      'Early GUI agents forced operators to stop working while an AI hijacked the cursor across open windows. On November 19, 2026, Google rolled out computer use in the Gemini app for Mac inside an isolated background window.',
+    pulseCheck: [
+      {
+        stage: 'Background Execution',
+        detail:
+          'Gemini runs clicks, typing, menus, and multi-app forms inside an isolated background window streamed as a live preview in chat—leaving your main Mac screen and cursor completely free.',
+      },
+      {
+        stage: 'Built-In Oversight',
+        detail:
+          'Users explicitly choose which desktop apps Gemini can access, watch every step live, pause execution at any time, and approve key actions before they commit.',
+      },
+      {
+        stage: 'Eligibility & Catch',
+        detail:
+          'Requires Apple Silicon Mac on macOS Sequoia 15.0+, personal Google accounts 18+ on Google AI Plus, Pro, or Ultra, rolling out in English in the U.S. at gemini.google/mac.',
+      },
+    ],
+    castor: {
+      kicker: 'PART I · α CASTOR · DESKTOP WORKFLOW & HUMAN AGENCY LENS',
+      title: 'Why Isolated Background Windows Unlock Everyday Mac Automation',
+      subtitle:
+        'Moving desktop computer use from fragile foreground demos to asynchronous, permission-gated delegation.',
+      paragraphs: [
+        'For most knowledge workers, the slowest chores do not live inside a single browser tab—they live across local PDFs, Finder folders, creative suites, and web forms that never offer an API. On <strong>November 19, 2026</strong>, Michael Friedman (Group Product Manager, Gemini App) announced <a href="https://blog.google/innovation-and-ai/products/gemini-app/computer-use-mac/" target="_blank" rel="noopener"><strong>computer use in the Gemini app for Mac</strong></a>, extending Gemini from a desktop chat overlay into an asynchronous multi-app operator.',
+        'The product’s decisive UX improvement is spatial isolation. Instead of taking over your active Space and fighting you for cursor control, Gemini works inside an <strong>isolated background window</strong> while rendering a live preview inside your chat thread. You can stay on a video call, keep editing code, or write emails while Gemini navigates desktop menus and browser forms in the background.',
+        'Google highlights four launch workflows that span local files and cloud apps: batch color-grading photos or setting up 3D scenes in desktop design software; extracting box weights, dimensions, and addresses from local PDFs to populate multi-box shipping quotes; pulling live regional metrics and screenshots into Google Slides; and analyzing clothing photos in a local folder to research pricing and stage resale listings.',
+        'Rollout begins in English in the United States for personal Google accounts (18+) subscribed to <strong>Google AI Plus, Pro, or Ultra</strong>, running natively on Apple Silicon Macs with <strong>macOS Sequoia 15.0+</strong> via <code>gemini.google/mac</code>.',
+      ],
+      pullquote: {
+        quote:
+          'Nobody adopts a desktop agent that forces them to sit idle watching their own mouse jump across windows; isolating execution in the background turns delegation into true multitasking.',
+        attribution: 'GOOGLE GEMINI 4 ARGON · α CASTOR ANALYSIS OF GEMINI MAC COMPUTER USE',
+      },
+      comparisonTable: {
+        id: 'gemini-mac-computer-use-table',
+        caption: 'Gemini App for Mac Computer Use (Nov 19, 2026) Launch Specifications & Controls',
+        columns: ['Dimension', 'Specification / Behavior', 'Operational Significance'],
+        rows: [
+          [
+            'Execution Surface',
+            'Isolated background window + live chat preview',
+            'Keeps primary macOS screen, cursor, and active calls uninterrupted.',
+          ],
+          [
+            'Safety & Governance',
+            'Per-app permissions, pause button, key-action approvals',
+            'Operators control app scope and confirm high-stakes clicks or submissions.',
+          ],
+          [
+            'Supported Targets',
+            'Local files, native macOS apps, and web browsers',
+            'Bridges offline PDFs and creative suites with web portals lacking APIs.',
+          ],
+          [
+            'Hardware & Plan Gate',
+            'Apple Silicon, macOS Sequoia 15.0+, AI Plus/Pro/Ultra (US EN)',
+            'Excludes Intel Macs and managed Workspace accounts in initial rollout.',
+          ],
+        ],
+      },
+      adaptiveQuestions: [
+        {
+          lensTag: 'FOR SOLO OPERATORS & CREATIVES',
+          question: 'How does Gemini avoid submitting a wrong form or shipping order?',
+          answer:
+            'Gemini pairs per-app permission gating with live chat previews, a pause control, and explicit confirmation prompts before executing key actions such as final form submissions or purchases.',
+        },
+        {
+          lensTag: 'FOR ENTERPRISE IT ADMINS',
+          question: 'Is Mac computer use enabled for managed Google Workspace corporate accounts?',
+          answer:
+            'Not in today’s initial rollout: Google specifies personal Google accounts (18+) with Google AI Plus, Pro, or Ultra in the U.S. Enterprise teams continue using Gemini Enterprise, Workspace Studio, and Google Antigravity.',
+        },
+      ],
+    },
+    pollux: {
+      kicker: 'PART II · β POLLUX · PERMISSION ARCHITECTURE & DEVELOPER PARITY',
+      title: 'How Consumer Mac Computer Use Mirrors Developer Agentic Guardrails',
+      subtitle:
+        'Mapping the isolated desktop window, app allowlisting, and approval gates to safe multi-step agent design.',
+      paragraphs: [
+        'Under the hood, Google’s Mac computer-use architecture solves the same failure modes builders confront in server-side browser automation and Google Antigravity harnesses: <strong>scope boundaries</strong>, <strong>observability</strong>, and <strong>irreversible-action checkpoints</strong>. Rather than granting ambient full-disk and all-app control, the Mac client scopes automation to user-approved desktop applications inside an isolated background surface.',
+        'For developer teams automating similar back-office workflows programmatically—such as multi-system logistics or QA regression testing across web portals—the same architectural split applies via the Gemini API and Google Antigravity: run execution inside an isolated sandbox, stream step traces to the operator, and gate state-mutating actions behind deterministic confirmation hooks.',
+      ],
+      builderRules: [
+        {
+          label: '01 · Gate High-Stakes Actions Behind Explicit Confirmation',
+          detail:
+            'Never let a GUI or browser agent auto-click Send, Checkout, or Delete without a human-in-the-loop approval gate.',
+        },
+        {
+          label: '02 · Scope App & Folder Permissions Per Workflow',
+          detail:
+            'Grant access only to the specific local folder and target desktop or web apps required for the job.',
+        },
+        {
+          label: '03 · Prefer Native APIs Over GUI Clicks When Available',
+          detail:
+            'Use Mac computer use for legacy desktop tools and un-API’d portals; use Gemini API file slicing or Workspace skills when structured endpoints exist.',
+        },
+      ],
+      codeCaption: 'EQUIVALENT HUMAN-IN-THE-LOOP APPROVAL PATTERN IN @google/genai',
+      codeSnippet: `import { GoogleGenAI } from "@google/genai";
+
+// Mirroring Gemini for Mac's "stage and request approval before key action" gate
+const ai = new GoogleGenAI({});
+
+export async function stageWithApprovalGate(taskBrief, allowedApps) {
+  const plan = await ai.interactions.create({
+    model: "gemini-4-neon",
+    input: JSON.stringify({
+      taskBrief,
+      allowedApps,
+      policy: "Complete local extraction and form staging; emit approvalRequired=true before final submit.",
+    }),
+    generation_config: { thinking_level: "medium", max_output_tokens: 4096 },
+  });
+  return plan.output_text;
+}`,
+      workbench: {
+        title: 'Mac Computer Use Workflow & Guardrail Inspector',
+        subtitle: 'Compare Google’s four official launch workflows and built-in safety gates.',
+        dek: 'Cycle through the presets below or read the complete 3-part Mac Computer Use series.',
+        presets: [
+          {
+            label: '1. ISOLATED WINDOW & SAFETY',
+            k1: 'Execution Surface',
+            v1: 'Isolated background window keeps primary screen & cursor 100% free',
+            k2: 'Permission Scope',
+            v2: 'User-selected Mac apps + live chat preview + instant pause control',
+            k3: 'Approval Checkpoint',
+            v3: 'Explicit user confirmation required before key clicking/typing/submit actions',
+          },
+          {
+            label: '2. LOCAL PDF TO SHIPPING FORMS',
+            k1: 'Input Source',
+            v1: 'Local PDF invoices containing weights, dimensions, and recipient addresses',
+            k2: 'Cross-App Action',
+            v2: 'Extracts box specs and populates multi-box carrier quote forms in browser',
+            k3: 'Human Sign-Off',
+            v3: 'Pauses with populated quote preview for operator verification before booking',
+          },
+          {
+            label: '3. CREATIVE & SLIDES BATCHING',
+            k1: 'Creative Software',
+            v1: 'Batch color-grade local photo sets or assemble complex 3D scenes',
+            k2: 'Executive Reporting',
+            v2: 'Pulls metrics and screenshots across regional dashboards into Google Slides',
+            k3: 'Eligibility',
+            v3: 'Apple Silicon Mac, macOS Sequoia 15.0+, US English, AI Plus / Pro / Ultra (18+)',
+          },
+        ],
+      },
+    },
+    verdict: {
+      title: 'Argon’s Bottom Line: Background Isolation Makes Desktop Agents Practical',
+      subtitle:
+        'Keeping your main cursor free while gating key clicks inside a live chat preview removes the biggest friction of Mac UI automation.',
+      paragraphs: [
+        '<strong>Why this matters today:</strong> solopreneurs, designers, and operations leads on Apple Silicon Macs can delegate repetitive cross-app chores without pausing their own work.',
+        '<strong>Read the full series:</strong> step through our 3-part <a href="/series/gemini-mac-computer-use/part-1-what-changed-gemini-mac-computer-use.html">Gemini for Mac Computer Use breakdown</a>.',
+      ],
+      sources: [
+        {
+          role: 'Official Google Blog Announcement',
+          label: 'Let Gemini tackle repetitive chores on your Mac',
+          author: 'Michael Friedman, Group Product Manager, Gemini App',
+          date: 'November 19, 2026',
+          url: 'https://blog.google/innovation-and-ai/products/gemini-app/computer-use-mac/',
+        },
+        {
+          role: 'Official Gemini App for Mac Portal',
+          label: 'Gemini App for Mac Download & Requirements',
+          author: 'Google',
+          date: 'November 19, 2026',
+          url: 'https://gemini.google/mac',
+        },
+      ],
+    },
+  },
   'pulse-sashiko-gemini-kernel-review': {
     id: 'pulse-sashiko-gemini-kernel-review',
     slug: 'sashiko-gemini-kernel-code-review',

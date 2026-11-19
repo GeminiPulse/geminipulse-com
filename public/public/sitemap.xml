@@ -31,7 +31,25 @@
     <priority>0.98</priority>
   </url>
   <url>
+    <loc>https://geminipulse.com/articles/genie-4-gemini-api-interactive-worlds.html</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
     <loc>https://geminipulse.com/articles/sashiko-gemini-kernel-code-review.html</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/articles/gemini-mac-app-computer-use.html</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/articles/gcs-object-enrichments-gemini.html</loc>
     <lastmod>2026-11-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.98</priority>
@@ -55,22 +73,46 @@
     <priority>0.98</priority>
   </url>
   <url>
-    <loc>https://geminipulse.com/articles/project-genie-4-real-time-worlds-and-audio.html</loc>
-    <lastmod>2026-11-18</lastmod>
+    <loc>https://geminipulse.com/series/genie-4-gemini-api/part-1-what-changed-with-genie-4-api.html</loc>
+    <lastmod>2026-11-19</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.98</priority>
+    <priority>0.99</priority>
   </url>
   <url>
-    <loc>https://geminipulse.com/articles/gemini-app-lower-memory-android-go-edition.html</loc>
-    <lastmod>2026-11-18</lastmod>
+    <loc>https://geminipulse.com/series/genie-4-gemini-api/part-2-webrtc-ws-prompting-and-cost.html</loc>
+    <lastmod>2026-11-19</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.98</priority>
+    <priority>0.99</priority>
   </url>
   <url>
-    <loc>https://geminipulse.com/articles/google-cloud-okf-v0-3.html</loc>
-    <lastmod>2026-11-18</lastmod>
+    <loc>https://geminipulse.com/series/genie-4-gemini-api/part-3-concrete-genie-4-builder-use-cases.html</loc>
+    <lastmod>2026-11-19</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.98</priority>
+    <priority>0.99</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/labs/gemini-genie-4-world-studio.html</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.99</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/gemini-mac-computer-use/part-1-what-changed-gemini-mac-computer-use.html</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.99</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/gemini-mac-computer-use/part-2-isolated-window-permissions-and-safety.html</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.99</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/gemini-mac-computer-use/part-3-concrete-mac-automation-use-cases.html</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.99</priority>
   </url>
   <url>
     <loc>https://geminipulse.com/series/sashiko-and-envoy-agentic-stack/part-1-sashiko-gemini-code-review.html</loc>

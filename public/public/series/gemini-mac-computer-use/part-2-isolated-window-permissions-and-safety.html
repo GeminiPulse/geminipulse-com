@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 2: How Isolated Window Execution &amp; App Permissions Affect Mac Workflows | GeminiPulse</title>
+    <meta
+      name="description"
+      content="How Gemini for Mac's isolated background window, per-app permission allowlist, live chat preview, pause controls, and key-action approvals protect human agency."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/gemini-mac-computer-use/part-2-isolated-window-permissions-and-safety.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 2: Isolated Window Safety &amp; Permissions in Gemini for Mac" />
+    <meta property="og:description" content="Understanding app allowlisting, live chat previews, action approvals, and rollout requirements for Gemini Computer Use on macOS." />
+    <meta property="og:url" content="https://geminipulse.com/series/gemini-mac-computer-use/part-2-isolated-window-permissions-and-safety.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Part 2: Gemini for Mac Safety &amp; Permissions" />
+    <meta name="twitter:description" content="Per-app permissions, live chat preview, and explicit approval gates for desktop computer use." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "How Isolated Window Execution & App Permissions Affect Mac Workflows",
+        "datePublished": "2026-11-19T17:00:00Z",
+        "author": { "@type": "Person", "name": "Google Gemini 4 Argon (Thinking Effort: High)" },
+        "contributor": { "@type": "Person", "name": "Neil S. White" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/gemini-mac-computer-use/part-2-isolated-window-permissions-and-safety.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .box.info { border-left: 4px solid var(--accent); }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.15rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+    </style>
+    <!-- GP-ANALYTICS-START -->
+    <meta name="gp:model" content="gemini-4-argon" />
+    <meta name="gp:effort" content="high" />
+    <meta name="gp:surface" content="release_series" />
+    <meta name="gp:slug" content="gemini-mac-computer-use/part-2-isolated-window-permissions-and-safety" />
+    <script src="/assets/pulse-analytics.js" defer></script>
+    <!-- GP-ANALYTICS-END -->
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">Gemini Mac Computer Use Series &middot; Part 2 of 3</div>
+      <h1>How Does This Affect Mac Users? Four Built-In Guardrails for Asynchronous Chores</h1>
+
+      <div class="meta">
+        Authored by <strong>Google Gemini 4 Argon</strong> &middot; Thinking Effort: <strong>High</strong> &middot; Product Development &amp; Creative Direction: <strong>Neil S. White</strong> &bull; Published November 19, 2026 &bull; Primary Source:
+        <a href="https://blog.google/innovation-and-ai/products/gemini-app/computer-use-mac/" target="_blank" rel="noopener">Google Blog</a> &bull; 5 min read
+      </div>
+
+      <h2>1. Keeping Your Screen Free While Maintaining Real-Time Oversight</h2>
+      <p>Giving a model GUI access on your personal computer immediately raises two practical questions: what if I need my Mac for a video call right now, and what stops the model from clicking something irreversible? Google’s implementation inside the Gemini app for Mac builds four explicit controls directly into the interaction model:</p>
+      <ul>
+        <li><strong>App-Level Access Selection:</strong> Users explicitly choose which Mac applications Gemini is allowed to access before tasks execute across them.</li>
+        <li><strong>Isolated Background Window + Live Chat Preview:</strong> Tasks run in an isolated off-focus window rendered live inside the Gemini chat pane so operators can watch every click, menu traversal, and form entry without yielding their main cursor.</li>
+        <li><strong>Instant Pause Control:</strong> Operators can pause background execution at any moment if a workflow drifts or needs clarification.</li>
+        <li><strong>Key-Action Approval Gates:</strong> High-impact or final actions require user confirmation before Gemini commits them.</li>
+      </ul>
+
+      <h2>2. Current Rollout Scope &amp; Eligibility Fine Print</h2>
+      <div class="box info">
+        <ul style="margin: 0;">
+          <li><strong>Hardware &amp; OS:</strong> Requires an <strong>Apple Silicon Mac</strong> running <strong>macOS Sequoia 15.0+</strong> (Intel Macs and older macOS releases are excluded).</li>
+          <li><strong>Accounts &amp; Geography:</strong> Rolling out in <strong>English in the U.S.</strong> for <strong>personal Google accounts (18+)</strong> on <strong>Google AI Plus, Pro, and Ultra</strong> subscriptions.</li>
+          <li><strong>Enterprise Note:</strong> Because eligibility targets personal Google accounts at launch, Workspace-managed corporate Macs will continue relying on Workspace Studio, Enterprise Workflow Builder, or Antigravity until Workspace admin governance rolls out.</li>
+        </ul>
+      </div>
+
+      <div class="series-nav">
+        <a href="/series/gemini-mac-computer-use/part-1-what-changed-gemini-mac-computer-use.html" class="btn-pill">&larr; Part 1: What Changed</a>
+        <a href="/series/gemini-mac-computer-use/part-3-concrete-mac-automation-use-cases.html" class="btn-pill">Part 3: Concrete Use Cases &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>
