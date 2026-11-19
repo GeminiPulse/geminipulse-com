@@ -14,6 +14,459 @@
  */
 
 export const CONSTELLATION_ESSAYS = {
+  'pulse-sashiko-gemini-kernel-review': {
+    id: 'pulse-sashiko-gemini-kernel-review',
+    slug: 'sashiko-gemini-kernel-code-review',
+    shortStarLabel: 'Sashiko Review',
+    readMinutes: '8 MIN READ',
+    authoredByModel: 'Google Gemini 4 Argon',
+    thinkingEffort: 'High',
+    hudTitle: 'Sashiko Open-Sources Gemini Code Review: 35% Fewer Linux Kernel Fixes.',
+    hudSummary:
+      'Published November 19, 2026: Google AI & Infrastructure reveals 7 months of Sashiko on Linux (241,000+ reviews, 528 CVEs, 35% drop in 60-day fixes)—catching 75.8% of bugs missed by human maintainers using Gemini 4 Carbon.',
+    peekCastor: 'Sashiko on Linux: <em>35% drop in post-merge fixes.</em>',
+    peekPollux: '5-Stage Review Gate: <em>Catching shaky self-dismissals.</em>',
+    headline:
+      'Code Generation Outran Human Maintainers. <em>How Gemini-Powered Sashiko Cut Linux Fixes by 35%.</em>',
+    standfirst:
+      'More AI-written code simply piles up in front of human reviewers unless verification scales alongside generation. On November 19, 2026, Google published seven months of Linux kernel production data from Sashiko—an open-source Gemini review system cited in 528 official 2026 CVEs.',
+    pulseCheck: [
+      {
+        stage: 'Production Scale',
+        detail:
+          'Donated to the Linux Foundation and hosted free at sashiko.dev, Sashiko completes roughly 1,200+ reviews daily (241,000+ total since March 2026) across 75+ opted-in kernel subsystem lists, earning citations in 2,000+ mainline commits and 528 official Linux kernel CVEs.',
+      },
+      {
+        stage: 'Measured Quality Drop',
+        detail:
+          'Linux kernel 60-day post-merge fix rates dropped 35% from a 3.4% historical average (Linux 6.2–6.19) to 2.2% in Linux 7.2. Clean Sashiko passes required follow-up fixes only 0.9% of the time versus 7.6% when merged over critical warnings.',
+      },
+      {
+        stage: 'The Honest Catch',
+        detail:
+          'Models asked to review their own code or hunt seven bug classes in one prompt cut corners and talk themselves out of real bugs—requiring separate discovery and verification passes plus a roughly 1,000-bug regression benchmark where Gemini 4 Carbon (high) catches 75.8%.',
+      },
+    ],
+    castor: {
+      kicker: 'PART I · α CASTOR · OPEN-SOURCE TRUST & MAINTAINER ECONOMICS LENS',
+      title: 'Why Code Review—Not Code Generation—Is the Real Bottleneck',
+      subtitle:
+        'What 241,000 live Linux kernel reviews taught Google AI & Infrastructure about turning skeptical maintainers into daily users.',
+      paragraphs: [
+        'Every engineering team shipping with coding agents hits the same wall: generating diffs became cheap, while proving those diffs safe remained painfully expensive. Across the Linux kernel—more than 35 million lines of code and 85,000+ annual commits—maintainers were facing rising queues of plausible-looking AI patches and low-signal security reports. On <strong>November 19, 2026</strong>, Google’s Roman Gushchin and VP/Google Fellow Eric Brewer <a href="https://cloud.google.com/blog/products/application-development/lessons-from-building-sashiko-an-agentic-code-review-system" target="_blank" rel="noopener">published seven months of hard production data</a> from <strong>Sashiko</strong>, the open-source Gemini review system Google donated to the Linux Foundation and runs free at <code>sashiko.dev</code>.',
+        'Rather than judging Sashiko on synthetic coding puzzles, Google measured whether real kernel maintainers trusted its mailings. More than <strong>75 subsystem lists</strong> opted in, over <strong>1,500 kernel developers</strong> replied directly to reports on the mailing lists, and <strong>LWN.net</strong> named Sashiko the top bug reporter of the Linux 7.2 release cycle. Even Linus Torvalds weighed in on <code>lore.kernel.org</code>, noting that Sashiko surfaces deep, subtle findings where "the AI is 100% correct" and acts as an engine of patch trust.',
+        'The mainline outcome numbers explain why skeptics converted. Across the 18 kernel releases before Sashiko (Linux 6.2 through 6.19, covering 254,000 commits), an average of <strong>3.4%</strong> of merged commits required a follow-up fix within 60 days. After Sashiko rolled out, that 60-day fix rate fell to <strong>2.8%</strong> in Linux 7.1 and <strong>2.2%</strong> in Linux 7.2—a <strong>35% reduction</strong>—while the 30-day fix rate dropped from <strong>2.3% to 1.4%</strong>. Across 21,500 tracked mainline commits, patches with a clean Sashiko pass needed a 60-day fix just <strong>0.9%</strong> of the time versus <strong>7.6%</strong> when merged over a critical warning (an <strong>8x raw risk gap</strong>, or 6.3x adjusted for patch size).',
+        'Crucially, Sashiko did not hide behind closed prompts or per-developer API paywalls. Google runs <code>sashiko.dev</code> at zero cost to kernel contributors with every prompt, git tool call, reasoning step, and ruled-out candidate published in the open—even running "Sashiko for Sashiko" to audit its own repository and prompt pipeline before human review.',
+      ],
+      pullquote: {
+        quote:
+          'Coding agents are not great at reviewing their own code. Creating a functional solution is often just 5–10% of the work; proving it safe across every unseen caller requires an independent verification loop.',
+        attribution: 'GOOGLE GEMINI 4 ARGON · α CASTOR SYNTHESIS OF GOOGLE AI & INFRASTRUCTURE DATA',
+      },
+      comparisonTable: {
+        id: 'sashiko-production-metrics-table',
+        caption: 'Sashiko Seven-Month Production Metrics & Gemini 4 Carbon Benchmark (Nov 19, 2026)',
+        columns: ['Metric / Cohort', 'Baseline / Before', 'Sashiko Production Result', 'Operational Meaning'],
+        rows: [
+          [
+            'Patch Reviews & CVE Impact',
+            'Manual LKML review + fuzzers (Syzkaller)',
+            '241,000+ reviews (~1,200+/day) · 2,000+ commits · 528 CVEs',
+            'Opt-in across 75+ kernel subsystem mailing lists with 1,500+ replying devs.',
+          ],
+          [
+            '60-Day Post-Merge Fix Rate',
+            '3.4% avg (Linux 6.2–6.19, 254,000 commits)',
+            '2.8% (Linux 7.1) → 2.2% (Linux 7.2) [-35%]',
+            '30-day post-merge fix rate also fell from 2.3% to 1.4%.',
+          ],
+          [
+            'Clean Pass vs. Critical Warning',
+            '21,500 tracked mainline commits',
+            '0.9% clean fix rate vs. 7.6% critical warning fix rate',
+            '8x higher regression risk (6.3x size-adjusted) when warnings are ignored.',
+          ],
+          [
+            'Missed-Human-Bug Benchmark',
+            '~1,000 real mainline bugs missed by experts',
+            '75.8% caught by Sashiko + Gemini 4 Carbon (high)',
+            'Benchmark mined from historical merged kernel bugs drove every pipeline change.',
+          ],
+        ],
+      },
+      adaptiveQuestions: [
+        {
+          lensTag: 'FOR ENGINEERING LEADERS',
+          question: 'Why did Google pair Sashiko with a separate benchmark of ~1,000 missed kernel bugs?',
+          answer:
+            'Gushchin and Brewer note that intuitive prompt tweaks frequently backfired in production. Evaluating every pipeline change against ~1,000 real historical bugs that slipped past human kernel experts proved that Gemini 4 Carbon (high) reaches 75.8% recall while keeping false alarms low enough for 75+ maintainer lists to opt in.',
+        },
+        {
+          lensTag: 'FOR CODING AGENT TEAMS',
+          question: 'Can the same Gemini model that wrote a feature also review its own pull request?',
+          answer:
+            'Google warns against it: models optimize to ship working patches within a token budget and share their own blind spots. Even running an independent Sashiko pass with external domain guides and symmetrical proof rules catches cross-file regressions that the authoring pass missed.',
+        },
+        {
+          lensTag: 'FOR OPEN-SOURCE & ENTERPRISE REPOS',
+          question: 'Is Sashiko locked to C and the Linux kernel?',
+          answer:
+            'No. Its five-stage engine is language-agnostic and open source, relying on git inspection tools plus per-subsystem maintainer notes—making the same playbook directly applicable to GCC, LLVM, Git, or internal enterprise monorepos.',
+        },
+      ],
+    },
+    pollux: {
+      kicker: 'PART II · β POLLUX · FIVE-STAGE SYMMETRICAL VERIFICATION ARCHITECTURE',
+      title: 'Separating Candidate Discovery From Symmetrical Proof',
+      subtitle:
+        'How Sashiko prevents token-stingy corner cutting and catches shaky self-dismissals across 100+ git tool calls.',
+      paragraphs: [
+        'Sashiko’s core insight is psychological as much as architectural: LLMs trained for concise responses tend to stop looking once they find one flaw, get swayed by persuasive commit messages, or prematurely dismiss a real bug by guessing that an unseen caller holds a lock. Sashiko neutralizes all three failure modes by decoupling <strong>candidate discovery</strong> from <strong>bug verification</strong> across five sequential stages.',
+        '<strong>Stage 1 (Gather Context &amp; Plan)</strong> pulls modified functions, struct definitions, direct callers, and subsystem domain guides—then assigns specialist passes and reasoning budgets based on patch complexity. <strong>Stage 2 (Up to 7 Parallel Specialist Sessions)</strong> runs isolated single-focus passes—covering commit intent, implementation match, control flow, resource lifetimes, locking, security, and hardware—averaging roughly <strong>100 git tool calls per review</strong> and emitting two mandatory lists: believed concerns and <em>ruled-out</em> candidates with supporting code.',
+        '<strong>Stage 3 (Triage)</strong> audits both lists together specifically to hunt <strong>shaky self-dismissals</strong>—cases where a specialist spotted a real hazard and talked itself out of reporting it without checking every caller. <strong>Stage 4 (Per-Bug Deep Checks)</strong> spawns an isolated verification agent per hard case under a strict symmetrical rule: neither a bug claim nor a dismissal is accepted without concrete git-verified proof across <em>all</em> call sites. Finally, <strong>Stage 5</strong> formats concise maintainer-style review questions.',
+      ],
+      builderRules: [
+        {
+          label: '01 · Force Every Review Specialist to Log What It Dismissed',
+          detail:
+            'Requiring both concerns and dismissed_candidates lets an independent Triage model catch premature assumptions before silent bugs slip into production.',
+        },
+        {
+          label: '02 · Isolate One Concern Class per Parallel Session',
+          detail:
+            'Split locking, memory lifetimes, and security into separate calls (for example fast Hydrogen sweeps escalated to Carbon High triage) so one minor nit never crowds out a critical race condition.',
+        },
+        {
+          label: '03 · Apply the Symmetrical Proof Rule Across All Call Sites',
+          detail:
+            'Never accept "likely safe because caller validates" unless the verifier reads every caller via git search and cites the exact file and line.',
+        },
+      ],
+      codeCaption: 'SASHIKO-PATTERN TWO-STAGE REVIEW GATE (@google/genai v3.6.1)',
+      codeSnippet: `import { GoogleGenAI } from "@google/genai";
+
+// Pattern inspired by Google's open-source Sashiko pipeline:
+// 1) Parallel single-focus specialist discovery (concerns + ruled-out candidates)
+// 2) Independent Gemini 4 Carbon (high) triage auditing shaky self-dismissals
+const ai = new GoogleGenAI({});
+
+const SPECIALIST_FOCUSES = [
+  "commit_intent_and_contract",
+  "resource_lifetimes_and_leaks",
+  "locking_and_concurrency",
+  "security_and_bounds",
+];
+
+export async function runSymmetricalCodeReview(diffWithCallers, maintainerNotes) {
+  const specialistRuns = await Promise.all(
+    SPECIALIST_FOCUSES.map((focus) =>
+      ai.interactions.create({
+        model: "gemini-4-hydrogen",
+        input: JSON.stringify({
+          focus,
+          maintainerNotes,
+          diffWithCallers,
+          schema: "Return { concerns: [], dismissedCandidatesWithProof: [] }",
+        }),
+        generation_config: { thinking_level: "medium", max_output_tokens: 16384 },
+      })
+    )
+  );
+
+  // Stage 3 & 4: Symmetrical triage requires proof across ALL call sites
+  const triageDecision = await ai.interactions.create({
+    model: "gemini-4-carbon",
+    input: JSON.stringify({
+      rule: "Promote any shaky self-dismissal that lacks concrete caller proof.",
+      specialistReports: specialistRuns.map((r, i) => ({
+        focus: SPECIALIST_FOCUSES[i],
+        report: r.output_text,
+      })),
+    }),
+    generation_config: { thinking_level: "high", max_output_tokens: 32768 },
+  });
+
+  return triageDecision.output_text;
+}`,
+      workbench: {
+        title: 'Sashiko Five-Stage Review & Outcome Explorer',
+        subtitle: 'Inspect verified Linux kernel production metrics and Gemini 4 Carbon benchmark rules.',
+        dek: 'Cycle through the three Sashiko architecture stages below, or open the interactive Sashiko & Loop Studio [SIMULATED DEMO].',
+        presets: [
+          {
+            label: '1. PARALLEL SPECIALISTS',
+            k1: 'Single-Focus Isolation',
+            v1: 'Up to 7 parallel passes (~100 git tool calls/review) prevent bug-crowding bias',
+            k2: 'Dual-List Output',
+            v2: 'Every specialist logs both active concerns AND candidates it ruled out',
+            k3: 'Domain Grounding',
+            v3: 'Pairs auto-generated tree notes with subjective maintainer instructions',
+          },
+          {
+            label: '2. SHAKY DISMISSAL TRIAGE',
+            k1: 'Symmetrical Proof Rule',
+            v1: 'Neither a bug claim nor a dismissal passes without concrete proof at ALL call sites',
+            k2: 'Per-Bug Deep Agents',
+            v2: 'Contested or unverified dismissals get isolated follow-up verification agents',
+            k3: 'Carbon High Recall',
+            v3: '75.8% catch rate on ~1,000 real bugs missed by human kernel experts',
+          },
+          {
+            label: '3. LINUX KERNEL IMPACT',
+            k1: '60-Day Fix Rate Drop',
+            v1: 'Fell 35% from 3.4% (Linux 6.2–6.19) to 2.8% (7.1) and 2.2% (7.2)',
+            k2: 'Clean vs. Critical Split',
+            v2: '0.9% follow-up fix rate on clean reviews vs. 7.6% when critical warnings ignored',
+            k3: 'Ecosystem Reach',
+            v3: '241,000+ reviews, 75+ opted-in subsystem lists, 2,000+ commits, 528 CVEs',
+          },
+        ],
+      },
+    },
+    verdict: {
+      title: 'Argon’s Bottom Line: Adopt Symmetrical Verification Before Scaling Agent PRs',
+      subtitle:
+        'Sashiko proves that autonomous review earns human trust only when it audits its own dismissals and runs on open benchmarks.',
+      paragraphs: [
+        '<strong>Why this matters today:</strong> pairing fast generation (<code>gemini-4-hydrogen</code> or <code>gemini-4-neon</code>) with an independent, symmetrical <code>gemini-4-carbon</code> review gate stops AI-generated velocity from turning into a human review bottleneck.',
+        '<strong>Explore the companion deep dive:</strong> read our 3-part <a href="/series/sashiko-and-envoy-agentic-stack/part-1-sashiko-gemini-code-review.html">Sashiko, Envoy &amp; Antigravity Loops series</a> or step through the live simulator in <a href="/labs/gemini-sashiko-review-studio.html">Sashiko &amp; Loop Studio [SIMULATED DEMO]</a>.',
+      ],
+      sources: [
+        {
+          role: 'Official Google Cloud Engineering Case Study',
+          label: 'Lessons from building Sashiko, an agentic code review system',
+          author: 'Roman Gushchin & Eric Brewer, Google AI & Infrastructure',
+          date: 'November 19, 2026',
+          url: 'https://cloud.google.com/blog/products/application-development/lessons-from-building-sashiko-an-agentic-code-review-system',
+        },
+        {
+          role: 'Official Open-Source Service',
+          label: 'Sashiko Linux Kernel Review Portal',
+          author: 'Linux Foundation / Google AI & Infrastructure',
+          date: '2026',
+          url: 'https://sashiko.dev/',
+        },
+      ],
+    },
+  },
+  'pulse-envoy-agentic-stack-mcp-tokenomics': {
+    id: 'pulse-envoy-agentic-stack-mcp-tokenomics',
+    slug: 'envoy-agentic-stack-mcp-tokenomics',
+    shortStarLabel: 'Envoy MCP Stack',
+    readMinutes: '7 MIN READ',
+    authoredByModel: 'Google Gemini 4 Argon',
+    thinkingEffort: 'High',
+    hudTitle: 'Envoy Becomes an AI-Native Layer 8/9 Proxy: Tokenomics & MCP Routing.',
+    hudSummary:
+      'Published November 19, 2026: Google Cloud upgrades Envoy with line-rate Gemini/OpenAI/Anthropic transcoding, pre-inference TPM/TPD throttling, Mcp-Method header routing, Model Armor ext_proc guardrails, and Agent Substrate wakeups.',
+    peekCastor: 'Envoy Layer 8/9: <em>Count tokens, not requests.</em>',
+    peekPollux: '2026-07-28 MCP Spec: <em>Mcp-Method + HeaderMismatch 400.</em>',
+    headline:
+      'Layer 7 Proxies Were Blind to Tokens and Tools. <em>Inside Google Cloud’s Envoy Agentic Stack.</em>',
+    standfirst:
+      'Traditional load balancers see uniform HTTP POST paths and treat a 500,000-token reasoning loop identically to a 10-token ping. On November 19, 2026, Google Cloud detailed how Envoy evolved into a Layer 8/9 control plane for models, tokens, and MCP.',
+    pulseCheck: [
+      {
+        stage: 'Layer 8 & Layer 9 Shift',
+        detail:
+          'Envoy inspects JSON-RPC 2.0 and LLM payloads at line rate across Layer 8 (Gemini, OpenAI, Anthropic, MCP, A2A) and Layer 9 (ADK, UCP, AP2) without forcing application code changes.',
+      },
+      {
+        stage: 'Four Core Pillars',
+        detail:
+          'Ships (1) native wire-format body parsing + SSE token extraction, (2) pre-inference TPM/TPD & runaway-loop HTTP 429 throttling, (3) EPP KV-cache prefix affinity & 2026-07-28 MCP header routing, and (4) ext_proc Model Armor / ShieldGemma guardrails.',
+      },
+      {
+        stage: 'Scale-to-Zero Pairing',
+        detail:
+          'Pairs directly with Agent Substrate microVMs and gVisor sandboxes to buffer initial packets and resume suspended agent sessions in milliseconds while locking down outbound egress domains.',
+      },
+    ],
+    castor: {
+      kicker: 'PART I · α CASTOR · INFRASTRUCTURE, FINOPS & SECURITY LENS',
+      title: 'Why Counting HTTP Requests Breaks in Production AI',
+      subtitle:
+        'How Google Cloud turned an open-source edge proxy into an inline token governor, model router, and MCP firewall.',
+      paragraphs: [
+        'In microservices architectures, Layer 7 URI paths and HTTP headers told proxies everything they needed to enforce rate limits and route traffic. Autonomous agents break all four assumptions at once. Almost every LLM call hits the same path, a single 500,000-token prompt consumes far more accelerator memory than dozens of short pings, round-robin load balancing destroys KV-cache hits, and uninspected MCP tool calls invite prompt injection and runaway billing loops.',
+        'On <strong>November 19, 2026</strong>, Google Cloud’s Abhi Maras and Boteng Yao <a href="https://cloud.google.com/blog/products/networking/the-envoy-agentic-stack-routing-models-tokens-and-mcp" target="_blank" rel="noopener">unveiled the Envoy Agentic Stack</a>, extending Envoy across <strong>Layer 8</strong> (LLM APIs, MCP, and Google’s Agent2Agent over JSON-RPC 2.0/gRPC) and <strong>Layer 9</strong> (ADK, UCP, and AP2). With native body parsing, teams can switch between commercial models like Gemini and self-hosted Gemma or vLLM endpoints strictly via Envoy config—zero application rewrites.',
+        'For FinOps and platform teams, the headline upgrade is Envoy’s <strong>Tokenomics Engine</strong>. Instead of naive requests-per-minute counters, Envoy estimates input tokens from request bytes prior to inference, extracts real SSE usage chunks on the return stream, enforces per-tenant TPM and TPD quotas with early HTTP <code>429</code> rejections, and caps cumulative multi-turn tokens per session ID to kill recursive agent loops before budgets melt.',
+        'Just as important for enterprise density, Envoy integrates directly with <strong>Agent Substrate</strong> (using Cloud Hypervisor microVMs and gVisor sandboxes): because agents sit idle most of the workday, Envoy buffers the incoming packet for a suspended session, triggers a millisecond resume, and acts as an egress perimeter blocking untrusted agent code from calling unapproved domains.',
+      ],
+      pullquote: {
+        quote:
+          'In AI networking, tokens—not HTTP requests—are the fundamental unit of capacity. Envoy moves tokenomics, KV-cache affinity, and MCP security out of fragile app glue and into the data plane.',
+        attribution: 'GOOGLE GEMINI 4 ARGON · α CASTOR INFRASTRUCTURE SYNTHESIS',
+      },
+      comparisonTable: {
+        id: 'envoy-agentic-pillars-table',
+        caption: 'Envoy Agentic Stack: Four Core Layer 8/9 Pillars (Nov 19, 2026)',
+        columns: ['Envoy Pillar', 'Legacy L7 Gap', 'Agentic Data Plane Capability'],
+        rows: [
+          [
+            '1. Native Body Parser',
+            'Payload blindness across shared /v1/chat/completions paths',
+            'Line-rate OpenAI/Anthropic/Gemini transcoding + real-time SSE token extraction.',
+          ],
+          [
+            '2. Tokenomics Engine',
+            'Request-rate fallacy (1 giant prompt > 50 small pings)',
+            'Pre-inference TPM/TPD HTTP 429 throttling + per-session runaway loop caps.',
+          ],
+          [
+            '3. Model & MCP Routing',
+            'Stateless round-robin breaks prefix caches & hides MCP targets',
+            'Gateway API EPP KV-cache affinity, 429 fallback, Mcp-Method / Mcp-Name headers.',
+          ],
+          [
+            '4. AI Security Guardrails',
+            'Ungoverned DB/API tool execution & egress exposure',
+            'Inline ext_proc callouts (Model Armor, ShieldGemma) + Agent Substrate microVM resume.',
+          ],
+        ],
+      },
+      adaptiveQuestions: [
+        {
+          lensTag: 'FOR PLATFORM & KUBERNETES TEAMS',
+          question: 'How does Envoy eliminate the latency tax of parsing huge MCP JSON-RPC bodies?',
+          answer:
+            'Per the 2026-07-28 MCP specification, Envoy routes using Mcp-Method and Mcp-Name HTTP headers for zero-body-parsing dispatch, while compliant backends reject any mismatch between HTTP headers and the JSON-RPC body with HTTP 400 / -32020 (HeaderMismatch) to block tampering.',
+        },
+        {
+          lensTag: 'FOR FINOPS & SRE TEAMS',
+          question: 'How does Envoy stop an autonomous agent loop before it exhausts GPU or API quotas?',
+          answer:
+            'Envoy tracks cumulative tokens and message counts per session or agent ID alongside pre-inference payload estimation, returning HTTP 429 before the inference backend executes another turn and triggering automatic secondary-pool fallback on upstream 429s.',
+        },
+        {
+          lensTag: 'FOR SECURITY ARCHITECTS',
+          question: 'Can Envoy enforce safety guardrails without adding multi-hundred-millisecond inline hops?',
+          answer:
+            'Yes—Envoy uses standardized external processing (ext_proc) callouts to stream checks to dedicated policy engines such as Google Cloud Model Armor, ShieldGemma, or local classifiers while enforcing strict egress allowlists around Agent Substrate sandboxes.',
+        },
+      ],
+    },
+    pollux: {
+      kicker: 'PART II · β POLLUX · MCP HEADER ROUTING, EPP AFFINITY & SHIELDGEMMA EXT_PROC',
+      title: 'Wiring Line-Rate MCP Dispatch & Token Budgets in Production',
+      subtitle:
+        'Using 2026-07-28 MCP headers, Kubernetes Endpoint Picker (EPP), and Antigravity single-retry verification together.',
+      paragraphs: [
+        'At the protocol level, Envoy solves two opposite bottlenecks cleanly. For <strong>LLM inference</strong>, Envoy pairs with the Kubernetes Gateway API Inference Extensions and <strong>Endpoint Picker (EPP)</strong> to compute KV-cache prefix affinity—steering prompts that share identical system instructions back to the exact GPU/TPU worker holding that warm cache in memory while transcoding payloads across Gemini, OpenAI, Anthropic, or open Gemma endpoints.',
+        'For <strong>MCP tool traffic</strong>, parsing multi-megabyte JSON-RPC 2.0 tool payloads on every proxy hop burns CPU. By adopting the <code>2026-07-28</code> MCP specification’s <code>Mcp-Method</code> and <code>Mcp-Name</code> headers, Envoy routes calls like <code>tools/call</code> + <code>execute_sql</code> at L7 header speed while letting the backend verify body parity and reject spoofing with <code>HTTP 400</code> / <code>-32020 (HeaderMismatch)</code>.',
+        'Paired with Google Antigravity’s November 18 <em>From Instructions to Loops</em> architecture—which proved that unverified 20-step agent chains collapse to 36% success (<code>p^N</code>) whereas an independent verification gate with one retry restores 95% completion—platform teams now have both halves of durable autonomy: <strong>network-enforced budgets in Envoy</strong> and <strong>loop-enforced correctness in Antigravity</strong>.',
+      ],
+      builderRules: [
+        {
+          label: '01 · Send Mcp-Method and Mcp-Name Headers on Every MCP Call',
+          detail:
+            'Enable zero-body-parsing Envoy routing while ensuring your MCP backend strictly enforces -32020 HeaderMismatch validation against the JSON-RPC body.',
+        },
+        {
+          label: '02 · Keep System Prompts Prefix-Identical for EPP Affinity',
+          detail:
+            'Combine stable system instructions with Envoy EPP routing so both Kubernetes KV-caches and Gemini 4 Neon’s $0.15/1M implicit cache stay warm.',
+        },
+        {
+          label: '03 · Bound Both Network Sessions (Envoy) and SDK Loops (Antigravity)',
+          detail:
+            'Enforce per-session TPM/TPD caps at the Envoy edge and pair them with BudgetConfig(max_model_calls=20, max_total_tokens=200_000) plus 1-retry test gates inside your agent SDK.',
+        },
+      ],
+      codeCaption: '2026-07-28 MCP HEADER CLIENT & HEADERMISMATCH GUARD (TYPESCRIPT)',
+      codeSnippet: `// Sends 2026-07-28 MCP routing headers so Envoy dispatches without full JSON body parsing
+// Backends must verify header-to-body parity and return HTTP 400 / -32020 (HeaderMismatch) on drift
+export async function callEnvoyMcpTool(gatewayUrl, toolName, args, sessionId) {
+  const rpcPayload = {
+    jsonrpc: "2.0",
+    id: crypto.randomUUID(),
+    method: "tools/call",
+    params: { name: toolName, arguments: args },
+  };
+
+  const res = await fetch(gatewayUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Mcp-Method": "tools/call",
+      "Mcp-Name": toolName,
+      "X-Agent-Session-Id": sessionId,
+    },
+    body: JSON.stringify(rpcPayload),
+  });
+
+  if (res.status === 429) {
+    throw new Error("Envoy Tokenomics: session TPM/loop budget exceeded (HTTP 429)");
+  }
+  if (res.status === 400) {
+    const errBody = await res.json();
+    if (errBody?.error?.code === -32020) {
+      throw new Error("MCP HeaderMismatch (-32020): Mcp-Name header drifted from JSON-RPC body");
+    }
+  }
+  return res.json();
+}`,
+      workbench: {
+        title: 'Envoy Layer 8/9 & Antigravity Loop Telemetry Explorer',
+        subtitle: 'Inspect verified Envoy pillars, MCP header specs, and Antigravity loop reliability math.',
+        dek: 'Select a subsystem preset below, or test interactive loop budgets in Sashiko & Loop Studio [SIMULATED DEMO].',
+        presets: [
+          {
+            label: '1. MCP HEADER ROUTING',
+            k1: '2026-07-28 Spec Headers',
+            v1: 'Mcp-Method (e.g. tools/call) & Mcp-Name routed without full body parsing',
+            k2: 'Tamper Rejection',
+            v2: 'Header/body mismatch rejected with HTTP 400 and JSON-RPC -32020 HeaderMismatch',
+            k3: 'Inline Policy Hook',
+            v3: 'ext_proc streams inspection to Model Armor, ShieldGemma, or local DLP',
+          },
+          {
+            label: '2. TOKENOMICS & EPP',
+            k1: 'Pre-Inference Throttle',
+            v1: 'Byte-based token estimation rejects over-quota bursts with HTTP 429 pre-GPU',
+            k2: 'Runaway Loop Cap',
+            v2: 'Cumulative session token + turn tracking halts recursive reasoning loops',
+            k3: 'KV-Cache Affinity',
+            v3: 'Gateway API EPP steers shared prefixes to warm GPU/TPU workers',
+          },
+          {
+            label: '3. ANTIGRAVITY LOOP MATH',
+            k1: 'Unverified 20-Step Chain',
+            v1: 'At p=0.95 per step, p^20 drops to 36% completion (8% at 50 steps)',
+            k2: '1-Retry Outside Gate',
+            v2: '0.95 + (0.05 × 0.95) = 99.75%/step -> 95% at 20 steps, 88% at 50 steps',
+            k3: 'Agent Substrate Density',
+            v3: 'Cloud Hypervisor / microVM / gVisor resume in milliseconds on packet arrival',
+          },
+        ],
+      },
+    },
+    verdict: {
+      title: 'Argon’s Bottom Line: Put Tokenomics in the Proxy and Proof in the Loop',
+      subtitle:
+        'Durable production AI needs Envoy governing traffic at Layer 8/9 and Antigravity gating agent steps with deterministic tests.',
+      paragraphs: [
+        '<strong>Why this matters today:</strong> treating LLM and MCP traffic like stateless L7 REST endpoints leaves teams vulnerable to blind cost spikes, broken KV caches, and recursive loop drift.',
+        '<strong>Read the full 3-part architecture breakdown:</strong> explore <a href="/series/sashiko-and-envoy-agentic-stack/part-2-envoy-agentic-stack-and-antigravity-loops.html">Part 2 (Envoy + Antigravity Loops)</a>, copy the <a href="/series/sashiko-and-envoy-agentic-stack/part-3-concrete-sashiko-envoy-antigravity-blueprints.html">Part 3 SDK Blueprints</a>, or launch <a href="/labs/gemini-sashiko-review-studio.html">Sashiko &amp; Loop Studio [SIMULATED DEMO]</a>.',
+      ],
+      sources: [
+        {
+          role: 'Official Google Cloud Networking Post',
+          label: 'The Envoy agentic stack: Routing models, tokens, and MCP',
+          author: 'Abhi Maras & Boteng Yao, Google Cloud',
+          date: 'November 19, 2026',
+          url: 'https://cloud.google.com/blog/products/networking/the-envoy-agentic-stack-routing-models-tokens-and-mcp',
+        },
+        {
+          role: 'Official Google Antigravity Blueprint',
+          label: 'How to Build Durable Agentic Systems with Google Antigravity: From Instructions to Loops',
+          author: 'Alex Astrum, Developer Relations, Google Antigravity',
+          date: 'November 18, 2026',
+          url: 'https://cloud.google.com/blog/topics/developers-practitioners/how-to-build-durable-agentic-systems-with-google-antigravity-from-instructions-to-loops',
+        },
+      ],
+    },
+  },
   'pulse-gemini-4-neon-empirical-field-test': {
     id: 'pulse-gemini-4-neon-empirical-field-test',
     slug: 'gemini-4-neon-day-0-empirical-field-test',

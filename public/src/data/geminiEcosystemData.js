@@ -24,6 +24,78 @@ export const PULSE_INTELLIGENCE_FEED = [
     labLabel: 'Neon Studio [DEMO] →',
   },
   {
+    id: 'pulse-sashiko-gemini-kernel-review',
+    title: 'Google Open-Sources Sashiko: Gemini-Powered Agentic Code Review Catching 75.8% of Bugs Missed by Linux Maintainers',
+    tldr: 'Published November 19, 2026: Google AI & Infrastructure details 7 months of Sashiko running in production on the Linux kernel (241,000+ reviews, ~1,200+/day, 2,000+ commits, 528 official 2026 CVEs)—cutting the 60-day post-merge fix rate by 35% and catching 75.8% of human-missed kernel bugs with Gemini 4 Carbon (high).',
+    summary:
+      'Authored by Roman Gushchin and VP/Google Fellow Eric Brewer on the Google Cloud Blog, Sashiko (donated to the Linux Foundation and hosted free at sashiko.dev) proves how separating bug discovery from symmetrical verification unlocks maintainer trust at Linux kernel scale (35M+ lines, 85,000+ annual commits): (1) Five-Stage Verification Pipeline—gathers diff callers, structs, and subsystem domain guides, launches up to 7 parallel single-focus specialist sessions (~100 git tool calls each across commit intent, implementation match, control flow, resource lifetimes, locking, security, and hardware) that output both concerns and dismissed candidates, audits shaky self-dismissals in Triage, runs per-bug deep checks requiring proof across all call sites, and emails maintainer-style reports, (2) Production Impact Across 75+ Opted-In Kernel Lists—completes ~1,200 reviews/day (241,000+ total), cited in 2,000+ mainline commits and 528 Linux kernel CVEs in 2026, while cutting the 60-day post-merge fix rate 35% from 3.4% (Linux 6.2–6.19) to 2.2% (Linux 7.2) and 30-day fixes from 2.3% to 1.4%, (3) Predictive Trust Signal—across 21,500 tracked commits, clean Sashiko passes needed a 60-day fix just 0.9% of the time vs. 7.6% when merged over critical warnings (8x risk; 6.3x size-adjusted), and (4) Gemini 4 Carbon Benchmark—on ~1,000 real bugs that slipped past human kernel reviewers, Sashiko with Gemini 4 Carbon (high thinking) catches 75.8%.',
+    category: 'Agentic Engineering',
+    tag: 'Open Source Case Study',
+    modelBadge: 'Sashiko · Gemini 4 Carbon',
+    impactScore: '10.0 / 10',
+    date: '2026-11-19T12:00:00Z',
+    sourceLabel: 'Google Cloud Blog: Lessons from building Sashiko, an agentic code review system',
+    sourceUrl: 'https://cloud.google.com/blog/products/application-development/lessons-from-building-sashiko-an-agentic-code-review-system',
+    groundedBy: 'Google Cloud Official Blog (Nov 19, 2026)',
+    seriesUrl: '/series/sashiko-and-envoy-agentic-stack/part-1-sashiko-gemini-code-review.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-sashiko-review-studio.html',
+    labLabel: 'Sashiko & Loop Lab [DEMO] →',
+  },
+  {
+    id: 'pulse-envoy-agentic-stack-mcp-tokenomics',
+    title: 'Google Cloud Evolves Envoy Into an AI-Native Layer 8/9 Agentic Data Plane: Tokenomics, KV-Cache Affinity & MCP Routing',
+    tldr: 'Published November 19, 2026: Google Cloud Networking unveils Envoy’s four agentic pillars—line-rate Gemini/OpenAI/Anthropic body transcoding, pre-inference TPM/TPD and runaway-loop throttling (HTTP 429), 2026-07-28 MCP header routing (Mcp-Method/Mcp-Name), ext_proc Model Armor/ShieldGemma callouts, and Agent Substrate millisecond wakeups.',
+    summary:
+      'Authored by Abhi Maras and Boteng Yao on the Google Cloud Blog, Envoy upgrades from traditional L4/L7 routing to handle Layer 8 (LLM APIs, MCP, A2A over JSON-RPC 2.0/gRPC) and Layer 9 (ADK, UCP, AP2) agent traffic: (1) Native Wire-Format Body Parser & SSE Extraction—inspects payloads at line rate and dynamically transcodes between OpenAI, Anthropic, Gemini, and self-hosted Gemma/vLLM with zero app code changes, (2) Tokenomics Engine—replaces request-rate limits with per-tenant TPM/TPD quotas, pre-inference byte estimation returning HTTP 429 before hitting GPUs/TPUs, and per-session cumulative token caps to halt recursive agent loops, (3) Model & MCP Routing—pairs Kubernetes Gateway API Inference Extensions and Endpoint Picker (EPP) for KV-cache prefix affinity, automatic 429 model fallback, and 2026-07-28 MCP spec Mcp-Method/Mcp-Name zero-body-parsing headers (rejecting mismatches with HTTP 400 / -32020 HeaderMismatch), and (4) Security Guardrails & Scale-to-Zero—wires ext_proc callouts to Model Armor or ShieldGemma and pairs with Agent Substrate microVMs/gVisor for millisecond resume and strict egress domain allowlisting.',
+    category: 'Infrastructure & MCP',
+    tag: 'Cloud Networking',
+    modelBadge: 'Envoy Agentic Stack',
+    impactScore: '9.8 / 10',
+    date: '2026-11-19T11:30:00Z',
+    sourceLabel: 'Google Cloud Blog: The Envoy agentic stack — Routing models, tokens, and MCP',
+    sourceUrl: 'https://cloud.google.com/blog/products/networking/the-envoy-agentic-stack-routing-models-tokens-and-mcp',
+    groundedBy: 'Google Cloud Official Blog (Nov 19, 2026)',
+    seriesUrl: '/series/sashiko-and-envoy-agentic-stack/part-2-envoy-agentic-stack-and-antigravity-loops.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-sashiko-review-studio.html',
+    labLabel: 'Sashiko & Loop Lab [DEMO] →',
+  },
+  {
+    id: 'pulse-antigravity-durable-loops-harness',
+    title: 'Google Antigravity Publishes "From Instructions to Loops" Architecture: Five Engineering Tiers, 99.75% Retry Loops & BudgetConfig SDK',
+    tldr: 'Published November 18, 2026: Antigravity DevRel Alex Astrum formalizes harness engineering—showing why unverified 20-step agent chains collapse to 36% success (p^N) while a deterministic verification gate with one retry lifts reliability to 95%, backed by google.antigravity BudgetConfig Python code.',
+    summary:
+      'Published on the Google Cloud Developers & Practitioners Blog, Alex Astrum lays out the architectural blueprint for moving from single-turn prompts to durable agentic loops in Google Antigravity: (1) Five Tiers of Engineering Work—simple question -> task/idea (Google AI Studio) -> app/feature (upstream specs & tests before loops) -> project/epic -> continuous system (AGENTS.md, skills, sidecars, verification gates), (2) The Mathematics of Autonomy—flat N-step chains degrade as p^N (95% per step collapses to 36% at 20 steps and 8% at 50 steps), whereas an outside verification gate with one targeted retry lifts step reliability to 99.75% (95% at 20 steps, 88% at 50 steps), and (3) Google Antigravity SDK Blueprint—ships working Python code using google.antigravity.Agent, LocalAgentConfig, and BudgetConfig(max_model_calls=20, max_total_tokens=200_000) that routes read-only codebase search to gemini-4-hydrogen, complex edits/orchestration to gemini-4-carbon, and deterministic test gating to zero-token subprocesses.',
+    category: 'Antigravity & Agents',
+    tag: 'Architecture Blueprint',
+    modelBadge: 'Antigravity SDK Loops',
+    impactScore: '9.7 / 10',
+    date: '2026-11-18T22:30:00Z',
+    sourceLabel: 'Google Cloud Blog: How to Build Durable Agentic Systems with Google Antigravity',
+    sourceUrl: 'https://cloud.google.com/blog/topics/developers-practitioners/how-to-build-durable-agentic-systems-with-google-antigravity-from-instructions-to-loops',
+    groundedBy: 'Google Cloud Official Blog (Nov 18, 2026)',
+    seriesUrl: '/series/sashiko-and-envoy-agentic-stack/part-2-envoy-agentic-stack-and-antigravity-loops.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-sashiko-review-studio.html',
+    labLabel: 'Sashiko & Loop Lab [DEMO] →',
+  },
+  {
+    id: 'pulse-gemini-enterprise-neon-canvas-ga',
+    title: 'Gemini Enterprise Ships Gemini 4 Neon GA Across Workflow Builder & Antigravity Dev Tools Plus Interactive HTML Apps in Canvas',
+    tldr: 'Released November 18, 2026: Gemini Enterprise adds Gemini 4 Neon (global, us, and eu data residency, enabled by default for Antigravity licensed dev tools) and reaches GA for interactive self-contained single-page HTML web apps in Canvas.',
+    summary:
+      'Per Google Cloud’s November 18, 2026 Gemini Enterprise release notes: (1) Gemini 4 Neon GA—available across the Gemini Enterprise web app, mobile app, Workflow Builder (agent flow nodes and no-code agents), and AI developer tools (on by default for Antigravity authorized models using default selection, with us and eu data residency and ML processing), and (2) Interactive Web Apps in Canvas GA—users can describe an app, dashboard, or prototype in chat and Canvas generates a self-contained single-page HTML web app with live preview, editing, export, and sharing.',
+    category: 'Enterprise & Workspace',
+    tag: 'Enterprise GA',
+    modelBadge: 'Gemini Enterprise · Neon & Canvas',
+    impactScore: '9.4 / 10',
+    date: '2026-11-18T21:30:00Z',
+    sourceLabel: 'Google Cloud Docs: Gemini Enterprise Release Notes (Nov 18, 2026)',
+    sourceUrl: 'https://docs.cloud.google.com/gemini/enterprise/docs/release-notes#November_18_2026',
+    groundedBy: 'Google Cloud Official Release Notes (Nov 18, 2026)',
+  },
+  {
     id: 'pulse-gemini-4-neon-ga-launch',
     title: 'Google DeepMind Launches Gemini 4 Neon (gemini-4-neon) GA: Frontier Coding, Knowledge & Cyber Defense at 32% Lower Cost/Task',
     tldr: 'Released November 18, 2026 (21:00 UTC): Google DeepMind launches Gemini 4 Neon—delivering AA Index 61 (xhigh), Vals Index 70.9% (#2), 39.0% SWE-sweep in Google Antigravity, 90.5% SEC-bench Pro, and 0.0% Gray Swan IPI attack success rate at $3.00/$15.00 per 1M tokens.',
@@ -1270,6 +1342,76 @@ export const GEMINI_MODEL_MATRIX = [
 
 export const STUDIO_LAB_BLUEPRINTS = [
   {
+    id: 'lab-sashiko-agentic-review-studio',
+    title: 'Sashiko, Envoy MCP & Antigravity Loop Studio [SIMULATED DEMO]',
+    badge: 'Nov 19, 2026 Architecture',
+    model: 'gemini-4-carbon',
+    href: '/labs/gemini-sashiko-review-studio.html',
+    description:
+      'Interactive developer workbench modeling Google Cloud’s Nov 18–19 agentic reliability triad: Sashiko’s 5-stage Linux code review pipeline (75.8% Carbon High catch rate), Antigravity p^N vs. 99.75% single-retry loop math, and Envoy Layer 8/9 MCP headers & Tokenomics throttling.',
+    prompt:
+      'Run Sashiko triage on a kernel lock patch, enforce Envoy Mcp-Method/Mcp-Name header parity, and cap the Antigravity supervisory loop at 20 model calls and 200,000 tokens.',
+    tsCode: `import { GoogleGenAI } from "@google/genai";
+
+// Two-stage Sashiko-inspired review gate: separate discovery from symmetrical verification
+const ai = new GoogleGenAI({});
+
+const specialistPasses = ["locking", "resource_lifetimes", "security"];
+const findings = await Promise.all(
+  specialistPasses.map((focus) =>
+    ai.interactions.create({
+      model: "gemini-4-hydrogen",
+      input: JSON.stringify({ focus, requirement: "Return candidate concerns AND dismissed candidates with caller proof." }),
+      generation_config: { thinking_level: "medium" },
+    })
+  )
+);
+
+// Escalate contested bugs & shaky self-dismissals to Gemini 4 Carbon (high)
+const verified = await ai.interactions.create({
+  model: "gemini-4-carbon",
+  input: JSON.stringify({ stage: "symmetrical_triage", candidateReports: findings.map((f) => f.output_text) }),
+  generation_config: { thinking_level: "high" },
+});
+console.log(verified.output_text);`,
+    pyCode: `from google.antigravity import Agent, LocalAgentConfig, types
+from google.antigravity.hooks import policy
+
+# Google Antigravity SDK supervisory loop: Hydrogen searches, Carbon edits, deterministic gate verifies
+researcher = types.SubagentConfig(
+    name="researcher",
+    description="Searches the codebase without modifying files.",
+    system_instructions="Analyze call sites and report back.",
+    model="gemini-4-hydrogen",
+    capabilities=types.SubagentCapabilities(
+        enabled_tools=[types.BuiltinTools.VIEW_FILE, types.BuiltinTools.SEARCH_DIR, types.BuiltinTools.FIND_FILE],
+    ),
+)
+
+supervisor_config = LocalAgentConfig(
+    model="gemini-4-carbon",
+    workspaces=["./workspace"],
+    subagents=[researcher],
+    policies=[policy.allow_all()],
+    budget_config=types.BudgetConfig(max_model_calls=20, max_total_tokens=200_000),
+    system_instructions="Delegate search to @researcher and enforce single-retry verification.",
+)`,
+    simulatedSteps: [
+      {
+        type: 'thought',
+        label: 'step[0] • Sashiko 7-Specialist Parallel Discovery & Shaky-Dismissal Triage',
+        detail:
+          'Locking specialist flagged a potential spinlock inversion; resource-lifetime specialist dismissed a cleanup leak by assuming an unseen caller lock. Triage promoted the shaky self-dismissal to per-bug deep verification (75.8% Carbon High catch rate).',
+      },
+      {
+        type: 'tool_call',
+        label: 'step[1] • Envoy Mcp-Method Check & Antigravity Single-Retry Gate',
+        detail:
+          'Envoy verified Mcp-Method: tools/call matched JSON-RPC payload and tracked cumulative session tokens below 200,000; deterministic test gate caught 1 failure and closed clean on targeted retry #1 (99.75% per-step reliability).',
+      },
+    ],
+  },
+  {
     id: 'lab-gemini-4-neon-studio',
     title: 'Gemini 4 Neon Routing, Thinking & Cost Studio [SIMULATED DEMO]',
     badge: 'Nov 18, 2026 Model GA',
@@ -2298,6 +2440,25 @@ video_turn = client.interactions.create(
 ];
 
 export const INITIAL_SHOWCASE_PROJECTS = [
+  {
+    id: 'showcase-gemini-sashiko-review-studio',
+    name: 'Sashiko, Envoy MCP & Antigravity Loop Studio [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive developer workbench modeling Google Cloud’s Nov 18–19 agentic reliability stack: Sashiko’s 5-stage Linux code review pipeline (75.8% Gemini 4 Carbon catch rate), Antigravity p^N vs. 99.75% single-retry loop calculator, and Envoy Layer 8/9 Tokenomics + MCP header inspection.',
+    models: ['gemini-4-carbon', 'gemini-4-hydrogen'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-sashiko-review-studio.html): [SIMULATED DEMO] Simulates shaky self-dismissal triage, 20-call BudgetConfig verification loops, and Mcp-Method / -32020 HeaderMismatch enforcement.',
+    url: '/labs/gemini-sashiko-review-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-19T12:00:00Z',
+  },
   {
     id: 'showcase-neon-day-0-field-test',
     name: 'Gemini 4 Neon Day-0 Empirical Field Test & 7-Model Comparator',

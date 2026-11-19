@@ -31,6 +31,12 @@
     <priority>0.98</priority>
   </url>
   <url>
+    <loc>https://geminipulse.com/articles/sashiko-gemini-kernel-code-review.html</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
     <loc>https://geminipulse.com/articles/gemini-4-neon-ga-launch-and-sdk-v3-6-1.html</loc>
     <lastmod>2026-11-18</lastmod>
     <changefreq>weekly</changefreq>
@@ -67,10 +73,28 @@
     <priority>0.98</priority>
   </url>
   <url>
-    <loc>https://geminipulse.com/articles/gemini-4-hydrogen-robotics-antigravity.html</loc>
-    <lastmod>2026-11-17</lastmod>
+    <loc>https://geminipulse.com/series/sashiko-and-envoy-agentic-stack/part-1-sashiko-gemini-code-review.html</loc>
+    <lastmod>2026-11-19</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.98</priority>
+    <priority>0.99</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/sashiko-and-envoy-agentic-stack/part-2-envoy-agentic-stack-and-antigravity-loops.html</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.99</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/sashiko-and-envoy-agentic-stack/part-3-concrete-sashiko-envoy-antigravity-blueprints.html</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.99</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/labs/gemini-sashiko-review-studio.html</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.99</priority>
   </url>
   <url>
     <loc>https://geminipulse.com/series/gemini-4-neon/part-1-what-changed-with-gemini-4-neon.html</loc>

@@ -25,6 +25,18 @@
 
 ---
 
+## 0a. 8:45 AM ET Curation Check & Release Findings (Round 46 — Nov 19, 2026)
+
+| Source Stream | Verification Status | Curated Finding & Action Taken |
+| :--- | :--- | :--- |
+| **Google Cloud Blog (`cloud.google.com/blog/products/application-development/lessons-from-building-sashiko-an-agentic-code-review-system`)** | **VERIFIED NEW PRIMARY RELEASE (`datePublished: 2026-11-19`)** | **Sashiko — Open-Source Gemini Agentic Code Review for Linux**: Authored by Roman Gushchin & VP/Google Fellow Eric Brewer. Seven months of Linux Foundation / `sashiko.dev` production data (**241,000+ reviews**, **~1,200+/day**, **75+ opted-in lists**, **2,000+ commits**, **528 official 2026 CVEs**) cut the 60-day post-merge fix rate **35%** from **3.4%** (Linux 6.2–6.19) to **2.2%** (Linux 7.2), with clean passes needing fixes only **0.9%** vs. **7.6%** over critical warnings (**8x risk**), and **Gemini 4 Carbon (high)** catching **75.8%** of ~1,000 bugs missed by human experts. Added to `PULSE_INTELLIGENCE_FEED` and `CONSTELLATION_ESSAYS` (Star 02 `ε Mebsuta`). |
+| **Google Cloud Blog (`cloud.google.com/blog/products/networking/the-envoy-agentic-stack-routing-models-tokens-and-mcp`)** | **VERIFIED NEW PRIMARY RELEASE (`datePublished: 2026-11-19`)** | **The Envoy Agentic Stack (Layer 8/9)**: Authored by Abhi Maras & Boteng Yao. Evolves Envoy with line-rate Gemini/OpenAI/Anthropic/vLLM body parsing + SSE token extraction, pre-inference TPM/TPD & runaway-loop HTTP `429` throttling, Kubernetes Gateway API EPP KV-cache affinity, **2026-07-28 MCP spec** `Mcp-Method`/`Mcp-Name` header routing (`HTTP 400 / -32020 HeaderMismatch`), `ext_proc` Model Armor / ShieldGemma callouts, and Agent Substrate millisecond microVM wakeups. Added to `PULSE_INTELLIGENCE_FEED` and `CONSTELLATION_ESSAYS` (Star 03 `μ Tejat`). |
+| **Google Cloud Blog (`cloud.google.com/blog/topics/developers-practitioners/how-to-build-durable-agentic-systems-with-google-antigravity-from-instructions-to-loops`)** | **VERIFIED NEW PRIMARY RELEASE (`datePublished: 2026-11-18`)** | **How to Build Durable Agentic Systems with Google Antigravity**: Authored by Alex Astrum (DevRel, Antigravity). Formalizes Five Tiers of Engineering Work, `p^N` vs. `99.75%` 1-retry evaluation loop math (lifting 20-step reliability from **36% to 95%**), and `google.antigravity` Python `BudgetConfig(max_model_calls=20, max_total_tokens=200_000)` splitting search (`gemini-4-hydrogen`) and execution (`gemini-4-carbon`). Added to `PULSE_INTELLIGENCE_FEED`. |
+| **Google Cloud Docs (`docs.cloud.google.com/gemini/enterprise/docs/release-notes#November_18_2026`)** | **VERIFIED NEW PRIMARY RELEASE (Nov 18, 2026)** | **Gemini Enterprise Release Notes**: Adds **Gemini 4 Neon GA** across web/mobile apps, Workflow Builder, and Antigravity AI developer tools (with `global`/`us`/`eu` data residency) plus GA for generating exportable self-contained single-page HTML web apps in **Canvas**. Added to `PULSE_INTELLIGENCE_FEED`. |
+| **Multi-Part Series & Companion Lab (`series/sashiko-and-envoy-agentic-stack/*` & `labs/gemini-sashiko-review-studio.html`)** | **PUBLISHED (3 Series Pages + 1 Lab [SIMULATED DEMO])** | Published 3-part breakdown (`Sashiko Code Review` &rarr; `Envoy & Antigravity Loops` &rarr; `Concrete SDK/MCP Blueprints`) and interactive `gemini-sashiko-review-studio.html` [SIMULATED DEMO], indexed in `sitemap.xml` and `feed.xml`. |
+
+---
+
 ## 0. 5:45 PM ET Curation Check & Release Findings (Round 45 — Nov 18, 2026)
 
 | Source Stream | Verification Status | Curated Finding & Action Taken |

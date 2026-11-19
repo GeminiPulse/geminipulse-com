@@ -20,6 +20,14 @@
   </entry>
 
   <entry>
+    <title>Code Generation Outran Human Maintainers. How Gemini-Powered Sashiko Cut Linux Fixes by 35%. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/sashiko-gemini-kernel-code-review.html" />
+    <id>https://geminipulse.com/articles/sashiko-gemini-kernel-code-review.html</id>
+    <updated>2026-11-19T12:00:00.000Z</updated>
+    <summary>More AI-written code simply piles up in front of human reviewers unless verification scales alongside generation. On November 19, 2026, Google published seven months of Linux kernel production data from Sashiko—an open-source Gemini review system cited in 528 official 2026 CVEs.</summary>
+  </entry>
+
+  <entry>
     <title>Carbon Depth Meets Hydrogen Velocity. Inside Gemini 4 Neon GA &amp; SDK v3.6.1. (Flagship Gemini Essay)</title>
     <link href="https://geminipulse.com/articles/gemini-4-neon-ga-launch-and-sdk-v3-6-1.html" />
     <id>https://geminipulse.com/articles/gemini-4-neon-ga-launch-and-sdk-v3-6-1.html</id>
@@ -68,11 +76,11 @@
   </entry>
 
   <entry>
-    <title>A Robot in a Box to a Working Conveyor in an Afternoon. Inside Hydrogen Robotics. (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/gemini-4-hydrogen-robotics-antigravity.html" />
-    <id>https://geminipulse.com/articles/gemini-4-hydrogen-robotics-antigravity.html</id>
-    <updated>2026-11-17T17:00:00.000Z</updated>
-    <summary>For years, building a physical AI application meant weeks of driver glue, camera calibration scripts, and disconnected simulators before a single grasp ran. On November 17, 2026, Google DeepMind’s Gemini Robotics team paired Gemini 4 Hydrogen’s embodied spatial reasoning with the new Robotics plugin for Google Antigravity.</summary>
+    <title>Sashiko Gemini Code Review, Envoy Layer 8/9 Agentic Stack &amp; Antigravity Durable Loops (Parts 1–3) + Studio [SIMULATED DEMO]</title>
+    <link href="https://geminipulse.com/series/sashiko-and-envoy-agentic-stack/part-1-sashiko-gemini-code-review.html" />
+    <id>https://geminipulse.com/series/sashiko-and-envoy-agentic-stack/part-1-sashiko-gemini-code-review.html</id>
+    <updated>2026-11-19T12:00:00Z</updated>
+    <summary>Direct primary-source breakdown of Google Cloud's November 18–19, 2026 agentic reliability launches: open-source Gemini-powered Sashiko (241,000+ Linux reviews, 35% drop in 60-day fixes, 528 CVEs, 75.8% Carbon High catch rate), Envoy Layer 8/9 Tokenomics and Mcp-Method routing, Antigravity BudgetConfig 1-retry loops, Gemini Enterprise Neon + Canvas GA, and companion Studio [SIMULATED DEMO].</summary>
   </entry>
 
   <entry>

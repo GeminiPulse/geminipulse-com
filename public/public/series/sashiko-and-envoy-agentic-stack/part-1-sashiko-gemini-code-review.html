@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 1: What Changed With Sashiko — Gemini-Powered Linux Code Review &amp; Symmetrical Verification | GeminiPulse</title>
+    <meta
+      name="description"
+      content="November 19, 2026 Google Cloud release breakdown: Sashiko open-source Gemini code review completes 241,000+ Linux reviews (~1,200+/day), cuts 60-day post-merge fixes 35%, and catches 75.8% of bugs missed by human experts using Gemini 4 Carbon."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/sashiko-and-envoy-agentic-stack/part-1-sashiko-gemini-code-review.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 1: What Changed With Sashiko — Gemini-Powered Agentic Code Review" />
+    <meta property="og:description" content="How separating candidate discovery from symmetrical verification cut Linux kernel 60-day post-merge fixes by 35% across 241,000+ reviews." />
+    <meta property="og:url" content="https://geminipulse.com/series/sashiko-and-envoy-agentic-stack/part-1-sashiko-gemini-code-review.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Part 1: Sashiko Gemini Code Review &amp; Linux Kernel Metrics" />
+    <meta name="twitter:description" content="241,000+ reviews, 528 official 2026 CVEs, 35% fewer post-merge fixes, and 75.8% catch rate on missed human bugs." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "What Changed With Sashiko — Gemini-Powered Linux Code Review & Symmetrical Verification",
+        "datePublished": "2026-11-19T12:00:00Z",
+        "author": { "@type": "Person", "name": "Google Gemini 4 Argon (Thinking Effort: High)" },
+        "contributor": { "@type": "Person", "name": "Neil S. White" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/sashiko-and-envoy-agentic-stack/part-1-sashiko-gemini-code-review.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; --emerald: #10b981; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: #cbd5e1; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .box.info { border-left: 4px solid var(--accent); }
+      .box.success { border-left: 4px solid var(--emerald); }
+      .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+      table { width: 100%; border-collapse: collapse; font-size: 0.92rem; text-align: left; }
+      th, td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+      th { background: rgba(255,255,255,0.03); color: #f1f5f9; font-weight: 600; }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.15rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+    </style>
+    <!-- GP-ANALYTICS-START -->
+    <meta name="gp:model" content="gemini-4-argon" />
+    <meta name="gp:effort" content="high" />
+    <meta name="gp:surface" content="release_series" />
+    <meta name="gp:slug" content="sashiko-and-envoy-agentic-stack/part-1-sashiko-gemini-code-review" />
+    <script src="/assets/pulse-analytics.js" defer></script>
+    <!-- GP-ANALYTICS-END -->
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">Agentic Verification Stack Series &middot; Part 1 of 3</div>
+      <h1>What Changed With Sashiko: Moving From Single-Pass AI Review to Symmetrical Verification</h1>
+
+      <div class="meta">
+        Authored by <strong>Google Gemini 4 Argon</strong> &middot; Thinking Effort: <strong>High</strong> &middot; Product Development &amp; Creative Direction: <strong>Neil S. White</strong> &bull; Published November 19, 2026 &bull; Primary Source:
+        <a href="https://cloud.google.com/blog/products/application-development/lessons-from-building-sashiko-an-agentic-code-review-system" target="_blank" rel="noopener">Google Cloud Blog: Lessons from building Sashiko</a> &amp;
+        <a href="https://sashiko.dev/" target="_blank" rel="noopener">sashiko.dev</a> &bull; 7 min read
+      </div>
+
+      <div class="box info">
+        <h3 style="margin-top: 0; color: #38bdf8;">Release Summary: November 19, 2026</h3>
+        <p style="margin-bottom: 0;">Google AI &amp; Infrastructure engineers Roman Gushchin and Eric Brewer (VP &amp; Google Fellow) released seven months of production data for <strong>Sashiko</strong>, an open-source Gemini-powered agentic code review system donated to the Linux Foundation and hosted free at <code>sashiko.dev</code>. Across <strong>241,000+ Linux kernel patch reviews (~1,200+/day)</strong>, Sashiko helped cut the 60-day post-merge fix rate by <strong>35%</strong> (from <strong>3.4%</strong> to <strong>2.2%</strong> in Linux 7.2), earned citations in <strong>2,000+ mainline commits</strong> and <strong>528 official 2026 CVEs</strong>, and caught <strong>75.8%</strong> of historical human-missed kernel bugs when paired with <strong>Gemini 4 Carbon (high)</strong>.</p>
+      </div>
+
+      <h2>1. Why Code Generation Accelerated Without Accelerating Shipping</h2>
+      <p>The Linux kernel spans more than 35 million lines of code and merges over 85,000 changes annually. While coding agents dramatically accelerated diff generation, human maintainer bandwidth stayed fixed—creating growing queues of plausible-looking patches and noisy AI-written security reports.</p>
+      <p>As Gushchin and Brewer document, naive "review this diff" LLM prompts consistently failed on complex systems for three concrete reasons:</p>
+      <ul>
+        <li><strong>Token-Stingy Shortcuts:</strong> LLMs trained to finish with fewer tokens cut corners, either dismissing hazards without checking callers or reporting shallow false positives.</li>
+        <li><strong>Multi-Concern Crowding &amp; Commit Bias:</strong> Asking one prompt to audit memory leaks, locking, and security causes the model to latch onto the first obvious nit and stop looking—or trust persuasive commit log prose.</li>
+        <li><strong>Self-Review Blindness:</strong> Coding agents share the blind spots of their own patches; producing code that compiles is only 5–10% of the effort compared to proving invariants hold across all existing callers.</li>
+      </ul>
+
+      <h2>2. What Changed vs. Traditional Single-Prompt AI Code Review</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Dimension</th>
+              <th>Single-Pass LLM PR Reviewer</th>
+              <th>Sashiko Five-Stage Architecture (Nov 19, 2026)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Context Scope</strong></td>
+              <td>Reads diff lines in isolation</td>
+              <td>Stage 1 loads modified functions, struct definitions, direct callers, and per-subsystem maintainer notes</td>
+            </tr>
+            <tr>
+              <td><strong>Bug Discovery</strong></td>
+              <td>One prompt checks all concerns at once</td>
+              <td>Stage 2 runs up to 7 parallel single-focus specialists (~100 git tool calls/review)</td>
+            </tr>
+            <tr>
+              <td><strong>Dismissed Findings</strong></td>
+              <td>Silently dropped inside the model’s chain of thought</td>
+              <td>Every specialist outputs both concerns AND ruled-out candidates with supporting code</td>
+            </tr>
+            <tr>
+              <td><strong>Self-Dismissal Audit</strong></td>
+              <td>None—assumed safe if model says "no issue"</td>
+              <td>Stage 3 Triage + Stage 4 isolated agents enforce symmetrical proof across all call sites</td>
+            </tr>
+            <tr>
+              <td><strong>Evaluation Basis</strong></td>
+              <td>Ad-hoc prompt tuning</td>
+              <td>~1,000 real merged Linux bugs missed by experts (Gemini 4 Carbon high catches <strong>75.8%</strong>)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>3. Seven Months of Production Proof on Mainline Linux</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Linux Kernel Metric</th>
+              <th>Before Sashiko</th>
+              <th>After Sashiko</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>60-Day Post-Merge Fix Rate</strong></td>
+              <td>3.4% average (Linux 6.2–6.19, 254,000 commits)</td>
+              <td>2.8% (Linux 7.1) &rarr; <strong>2.2%</strong> (Linux 7.2) [<strong>-35%</strong>]</td>
+            </tr>
+            <tr>
+              <td><strong>30-Day Post-Merge Fix Rate</strong></td>
+              <td>2.3% historical baseline</td>
+              <td><strong>1.4%</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Clean vs. Critical Warning Risk (21,500 commits)</strong></td>
+              <td>3.4% overall baseline</td>
+              <td><strong>0.9%</strong> clean pass vs. <strong>7.6%</strong> critical warning merged (8x risk; 6.3x size-adjusted)</td>
+            </tr>
+            <tr>
+              <td><strong>Community Adoption &amp; Citations</strong></td>
+              <td>Manual review + Syzkaller</td>
+              <td><strong>75+</strong> opted-in lists, <strong>1,500+</strong> replying devs, <strong>2,000+</strong> commits, <strong>528</strong> 2026 CVEs</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box success">
+        <h3 style="margin-top: 0; color: #34d399;">Next in Part 2: Infrastructure &amp; Loop Architecture</h3>
+        <p style="margin-bottom: 0;">In Part 2, we connect Sashiko’s verification discipline with two companion November 18–19 Google Cloud launches: <strong>Envoy’s Layer 8/9 Agentic Stack</strong> (tokenomics, KV-cache affinity, and <code>Mcp-Method</code> header routing) and <strong>Google Antigravity’s Durable Loops</strong> (<code>p^N</code> decay vs. <code>99.75%</code> single-retry verification).</p>
+      </div>
+
+      <div class="series-nav">
+        <a href="/labs/gemini-sashiko-review-studio.html" class="btn-pill">Open Sashiko &amp; Loop Studio [SIMULATED DEMO] &rarr;</a>
+        <a href="/series/sashiko-and-envoy-agentic-stack/part-2-envoy-agentic-stack-and-antigravity-loops.html" class="btn-pill">Part 2: How Envoy &amp; Antigravity Loops Affect Builders &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>

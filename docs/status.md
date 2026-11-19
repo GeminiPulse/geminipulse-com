@@ -1,6 +1,6 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-11-18 21:50 EST (SITEWIDE GA4 + MODEL-PROVENANCE TELEMETRY, AUTOMATED DAILY ANALYTICS PIPELINE & POST #001 UTM ATTRIBUTION LIVE ON GEMINIPULSE.COM: Closed static-route GA4 telemetry gap via zero-TBT universal collector [public/public/assets/pulse-analytics.js, G-1BWMQWZJQ5] + build-enforced sync-analytics.mjs across all 196 static HTML routes + workbench.html while preserving 100% SHA-256 integrity across all 10 /arena/exp-* benchmark artifacts; attached authored_model, thinking_effort & content_surface across page_view, engaged_read, scroll_milestone, constellation_star_select, essay_lens_switch & arena_artifact_engage; shipped zero-dep RS256 GA4 Data API + Search Console daily reporter [public/scripts/pull-daily-analytics.mjs, npm run telemetry:pull, docs/analytics-setup-guide.md] and Post #001 channel UTMs [docs/social-launch-kit-post-001.md]; verified 210-route strict Headless Chrome CDP + Lighthouse audits and deployed to geminipulse.com)`
+- **Last Updated:** `2026-11-19 08:55 EST (ROUND 46 CURATION — 8:45 AM ET WINDOW: Curated Sashiko Gemini-powered Linux kernel code review, Envoy Layer 8/9 Agentic Stack, Antigravity From Instructions to Loops architecture, and Gemini Enterprise Neon + Canvas HTML web apps GA; added 2 Dual-Lens Flagship Essays, 3-part series under /series/sashiko-and-envoy-agentic-stack/, and interactive /labs/gemini-sashiko-review-studio.html [SIMULATED DEMO]; built, deployed to Firebase Spark Hosting, and verified 0 overflows across all 4 viewports)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
@@ -13,7 +13,23 @@
 
 ---
 
-## 0. Completed & Live on `v2.0` (2026-11-18 09:50 PM ET — Sitewide GA4 + Model-Provenance Telemetry, Daily Analytics Pipeline & Post `#001` UTM Attribution)
+## 0. Completed & Live on `v2.0` (2026-11-19 08:55 AM ET — Round 46 Curation: Sashiko Linux Code Review, Envoy Layer 8/9 Stack, Antigravity Durable Loops & Gemini Enterprise Canvas GA)
+
+- **Official Google Cloud & Antigravity Primary Release Curation (Nov 19, 2026 8:45 AM ET Window):**
+  - **Sashiko Gemini-Powered Linux Code Review (`cloud.google.com/blog/products/application-development/lessons-from-building-sashiko-an-agentic-code-review-system`):** Curated Roman Gushchin & Eric Brewer's 7-month Linux kernel production report (**241,000+ reviews**, **~1,200+/day**, **75+ opted-in lists**, **2,000+ commits**, **528 official 2026 CVEs**), documenting a **35% drop** in 60-day post-merge fixes (**3.4% -> 2.2%**), **0.9%** clean vs. **7.6%** critical-warning fix risk (**8x**), and **75.8%** catch rate on ~1,000 missed bugs with **Gemini 4 Carbon (high)**. Added to `PULSE_INTELLIGENCE_FEED` and `CONSTELLATION_ESSAYS` (Star 02 `ε Mebsuta`).
+  - **The Envoy Agentic Stack (`cloud.google.com/blog/products/networking/the-envoy-agentic-stack-routing-models-tokens-and-mcp`):** Curated Abhi Maras & Boteng Yao's Layer 8/9 Envoy architecture covering line-rate Gemini/OpenAI/Anthropic/vLLM transcoding + SSE token extraction, pre-inference TPM/TPD & runaway-loop HTTP `429` caps, EPP KV-cache affinity, **2026-07-28 MCP spec** `Mcp-Method`/`Mcp-Name` header routing (`HTTP 400 / -32020 HeaderMismatch`), `ext_proc` Model Armor / ShieldGemma guardrails, and Agent Substrate millisecond wakeups. Added to `PULSE_INTELLIGENCE_FEED` and `CONSTELLATION_ESSAYS` (Star 03 `μ Tejat`).
+  - **How to Build Durable Agentic Systems with Google Antigravity (`cloud.google.com/blog/topics/developers-practitioners/how-to-build-durable-agentic-systems-with-google-antigravity-from-instructions-to-loops`):** Curated Alex Astrum's Nov 18 Five Tiers, `p^N` vs. `99.75%` single-retry evaluation loop math (36% -> 95% at 20 steps), and `google.antigravity` Python `BudgetConfig(max_model_calls=20, max_total_tokens=200_000)` blueprint.
+  - **Gemini Enterprise Release Notes (`docs.cloud.google.com/gemini/enterprise/docs/release-notes#November_18_2026`):** Curated Nov 18 **Gemini 4 Neon GA** in Gemini Enterprise web/mobile apps, Workflow Builder & Antigravity AI dev tools plus **Interactive HTML Web Apps in Canvas GA**.
+- **Published Multi-Part Series & Companion Lab (`series/sashiko-and-envoy-agentic-stack/*` & `labs/gemini-sashiko-review-studio.html`):**
+  - `part-1-sashiko-gemini-code-review.html`
+  - `part-2-envoy-agentic-stack-and-antigravity-loops.html`
+  - `part-3-concrete-sashiko-envoy-antigravity-blueprints.html`
+  - `public/public/labs/gemini-sashiko-review-studio.html` `[SIMULATED DEMO]` (wired into `STUDIO_LAB_BLUEPRINTS`, `INITIAL_SHOWCASE_PROJECTS`, `sitemap.xml`, and `feed.xml`).
+- **Pending Operator Decisions:** See `🚨 NEIL — DECISION NEEDED` below (Post `#001` Social Launch + optional 3-min Analytics Key, unchanged from Nov 18).
+
+---
+
+## 0-prev11. Completed & Live on `v2.0` (2026-11-18 09:50 PM ET — Sitewide GA4 + Model-Provenance Telemetry, Daily Analytics Pipeline & Post `#001` UTM Attribution)
 
 - **Universal Zero-TBT Sitewide GA4 & Provenance Collector (`public/public/assets/pulse-analytics.js`, `public/scripts/sync-analytics.mjs`, `public/scripts/stamp-build.mjs`, `public/src/firebase.js`):**
   - Closed the static-page telemetry gap where GA4 (`G-1BWMQWZJQ5`) previously fired only inside the `/workbench.html` React SPA: `sync-analytics.mjs` now runs automatically inside `npm run build` (`stamp-build.mjs`) and idempotently injects `<meta name="gp:model|effort|surface|slug">` + `<script src="/assets/pulse-analytics.js" defer></script>` across all **196** static HTML routes (`/`, `/articles/*`, `/arena/neon-field-test.html`, `/labs/*`, `/series/*`, `/changelog.html`, `/status.html`, `/partners.html`, `/shorts/*`, `/brand/*`), while strictly skipping all **10** untouched `/arena/exp-*` single-shot benchmark artifacts (`SHA-256` preserved byte-for-byte), Google Search Console verification HTML, and `workbench.html` (covered via `firebase.js`).

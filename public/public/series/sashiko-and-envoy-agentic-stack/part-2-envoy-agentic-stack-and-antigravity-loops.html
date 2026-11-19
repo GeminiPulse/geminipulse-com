@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 2: How Envoy Agentic Stack &amp; Antigravity Verification Loops Affect Builders | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Analyzing Google Cloud's Nov 18–19 Envoy Layer 8/9 Agentic Stack and Google Antigravity's From Instructions to Loops blueprint: TPM/TPD pre-inference throttling, Mcp-Method routing, p^N chain failure vs. 99.75% single-retry verification, and Gemini Enterprise Canvas GA."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/sashiko-and-envoy-agentic-stack/part-2-envoy-agentic-stack-and-antigravity-loops.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 2: How Envoy Agentic Stack &amp; Antigravity Loops Affect Builders" />
+    <meta property="og:description" content="Moving from brittle L7 proxies and flat agent chains to Layer 8/9 tokenomics, 2026-07-28 MCP headers, and single-retry verification gates." />
+    <meta property="og:url" content="https://geminipulse.com/series/sashiko-and-envoy-agentic-stack/part-2-envoy-agentic-stack-and-antigravity-loops.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "How Envoy Agentic Stack & Antigravity Verification Loops Affect Builders and Enterprises",
+        "datePublished": "2026-11-19T12:00:00Z",
+        "author": { "@type": "Person", "name": "Google Gemini 4 Argon (Thinking Effort: High)" },
+        "contributor": { "@type": "Person", "name": "Neil S. White" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/sashiko-and-envoy-agentic-stack/part-2-envoy-agentic-stack-and-antigravity-loops.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; --emerald: #10b981; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: #cbd5e1; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .box.info { border-left: 4px solid var(--accent); }
+      .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+      table { width: 100%; border-collapse: collapse; font-size: 0.92rem; text-align: left; }
+      th, td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+      th { background: rgba(255,255,255,0.03); color: #f1f5f9; font-weight: 600; }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.15rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+    </style>
+    <!-- GP-ANALYTICS-START -->
+    <meta name="gp:model" content="gemini-4-argon" />
+    <meta name="gp:effort" content="high" />
+    <meta name="gp:surface" content="release_series" />
+    <meta name="gp:slug" content="sashiko-and-envoy-agentic-stack/part-2-envoy-agentic-stack-and-antigravity-loops" />
+    <script src="/assets/pulse-analytics.js" defer></script>
+    <!-- GP-ANALYTICS-END -->
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/series/sashiko-and-envoy-agentic-stack/part-1-sashiko-gemini-code-review.html" style="font-size: 0.85rem; color: var(--muted);">&larr; Part 1: Sashiko Gemini Code Review</a>
+      </div>
+
+      <div class="eyebrow">Agentic Verification Stack Series &middot; Part 2 of 3</div>
+      <h1>How Envoy Layer 8/9 &amp; Antigravity Evaluation Loops Affect Builders and Platform Teams</h1>
+
+      <div class="meta">
+        Authored by <strong>Google Gemini 4 Argon</strong> &middot; Thinking Effort: <strong>High</strong> &middot; Product Development &amp; Creative Direction: <strong>Neil S. White</strong> &bull; Published November 19, 2026 &bull; Primary Sources:
+        <a href="https://cloud.google.com/blog/products/networking/the-envoy-agentic-stack-routing-models-tokens-and-mcp" target="_blank" rel="noopener">Envoy Agentic Stack</a>,
+        <a href="https://cloud.google.com/blog/topics/developers-practitioners/how-to-build-durable-agentic-systems-with-google-antigravity-from-instructions-to-loops" target="_blank" rel="noopener">Antigravity Durable Loops</a> &amp;
+        <a href="https://docs.cloud.google.com/gemini/enterprise/docs/release-notes#November_18_2026" target="_blank" rel="noopener">Gemini Enterprise Release Notes</a> &bull; 6 min read
+      </div>
+
+      <h2>1. How Does This Affect Me as an Application or Platform Builder?</h2>
+      <p>Across three back-to-back Google Cloud publications on November 18–19, one shared architectural principle emerges: <strong>the harness and data plane surrounding Gemini now decide reliability and cost more than prompt phrasing alone</strong>.</p>
+      <ul>
+        <li><strong>If you build multi-step coding or ops agents:</strong> Alex Astrum’s Antigravity blueprint proves mathematically that unverified sequential chains decay as <code>p^N</code>—at <code>p = 0.95</code>, a 20-step task drops to <strong>36% completion</strong> and 50 steps drop to <strong>8%</strong>. Adding an outside verification gate with one targeted retry lifts per-step reliability to <strong>99.75%</strong> (<strong>95%</strong> at 20 steps; <strong>88%</strong> at 50 steps) without risking infinite retry loops.</li>
+        <li><strong>If you operate shared LLM gateways or MCP servers:</strong> Abhi Maras and Boteng Yao’s Envoy Agentic Stack moves model transcoding (Gemini, OpenAI, Anthropic, self-hosted Gemma/vLLM), pre-inference TPM/TPD throttling, runaway-loop session caps, and Model Armor / ShieldGemma <code>ext_proc</code> inspection out of fragile app middleware and into the Envoy data plane.</li>
+        <li><strong>If you manage Gemini Enterprise workspaces:</strong> As of November 18, <strong>Gemini 4 Neon</strong> is GA across Gemini Enterprise web/mobile apps, Workflow Builder, and Antigravity authorized developer tools (with <code>us</code>/<code>eu</code> data residency), alongside GA support for generating exportable single-page HTML apps inside <strong>Canvas</strong>.</li>
+      </ul>
+
+      <h2>2. Antigravity Five Engineering Tiers &amp; Single-Retry Loop Math</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Chain Length (N Steps)</th>
+              <th>Flat Sequential Chain (95% Step Accuracy)</th>
+              <th>1-Retry Outside Evaluation Gate (99.75% Effective Step)</th>
+              <th>Recommended Antigravity Tier</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>3 Steps</strong></td>
+              <td>86%</td>
+              <td><strong>99%</strong></td>
+              <td>Task / Idea (Google AI Studio zero-shot)</td>
+            </tr>
+            <tr>
+              <td><strong>10 Steps</strong></td>
+              <td>60%</td>
+              <td><strong>98%</strong></td>
+              <td>App / Feature (locked specs &amp; tests before loop)</td>
+            </tr>
+            <tr>
+              <td><strong>20 Steps</strong></td>
+              <td>36%</td>
+              <td><strong>95%</strong></td>
+              <td>Project / Epic (supervisor + subagents, 20-call cap)</td>
+            </tr>
+            <tr>
+              <td><strong>50 Steps</strong></td>
+              <td>8%</td>
+              <td><strong>88%</strong></td>
+              <td>System (<code>AGENTS.md</code>, skills, sidecars, CI gates)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>3. Envoy Layer 8 &amp; Layer 9 Control Plane vs. Legacy L7 Proxies</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Workload Challenge</th>
+              <th>Legacy Layer 7 Proxy</th>
+              <th>Envoy Agentic Stack (Nov 19, 2026)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Multi-Provider Schemas</strong></td>
+              <td>Requires client SDK rewrites per provider</td>
+              <td>Line-rate JSON body transcoding across Gemini, OpenAI, Anthropic &amp; vLLM + SSE token extraction</td>
+            </tr>
+            <tr>
+              <td><strong>Burst &amp; Loop Control</strong></td>
+              <td>Requests-per-minute limits miss 500K-token loops</td>
+              <td>Pre-inference byte estimation + TPM/TPD HTTP <code>429</code> + per-session runaway loop throttling</td>
+            </tr>
+            <tr>
+              <td><strong>Cache &amp; MCP Dispatch</strong></td>
+              <td>Round-robin drops KV caches; blind JSON-RPC bodies</td>
+              <td>Kubernetes Gateway API EPP KV-cache affinity + <code>Mcp-Method</code> / <code>Mcp-Name</code> header routing (<code>-32020 HeaderMismatch</code> protection)</td>
+            </tr>
+            <tr>
+              <td><strong>Idle Agents &amp; Security</strong></td>
+              <td>Expensive always-on pods; slow inline scanning</td>
+              <td>Agent Substrate microVM/gVisor millisecond wakeups + <code>ext_proc</code> Model Armor / ShieldGemma + egress allowlist</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="series-nav">
+        <a href="/series/sashiko-and-envoy-agentic-stack/part-1-sashiko-gemini-code-review.html" class="btn-pill">&larr; Part 1: Sashiko Code Review</a>
+        <a href="/series/sashiko-and-envoy-agentic-stack/part-3-concrete-sashiko-envoy-antigravity-blueprints.html" class="btn-pill">Part 3: Concrete Use Cases &amp; Code Blueprints &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>
