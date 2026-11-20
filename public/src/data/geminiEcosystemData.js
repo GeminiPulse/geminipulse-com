@@ -24,6 +24,70 @@ export const PULSE_INTELLIGENCE_FEED = [
     labLabel: 'Neon Studio [DEMO] →',
   },
   {
+    id: 'pulse-gemini-semantic-governance-and-multicloud-agents',
+    title: 'Google Launches Semantic Governance Policies (Preview) & Multi-Cloud Agent Anomaly Detection Across AWS and Azure',
+    tldr: 'Published November 20, 2026: Google introduces inline Semantic governance policies in Preview via Agent Gateway—checking every proposed tool call against plain-language rules and user intent before execution—alongside Private Preview Agent Anomaly Detection for ADK agents on AWS Lambda, Amazon Bedrock, and Microsoft Foundry.',
+    summary:
+      'Published November 20, 2026 across two companion Google Developers Blog posts by Deepti Sehrawat and Gopi Subburaja Alagar & Arvind Chaudhary: (1) Semantic Governance Policies (Preview)—sits outside the agent at Agent Gateway to evaluate every proposed tool call before it runs against two mandatory checks: plain-language compliance rules (authored via Google Cloud Console or gcloud beta ai semantic-governance-policies create) and default user-intent alignment to block hijacking and indirect prompt injection across Gemini API, Anthropic Messages API, Claude on Gemini platform, and OpenAI-compatible/vLLM endpoints (logging every verdict, rationale, and judge token count to Cloud Logging, with dry-run mode and non-evaluation of text-only or streamed responses), and (2) Multi-Cloud Agent Anomaly Detection (Private Preview)—ingests OpenTelemetry traces and message-content logs via telemetry.googleapis.com and keyless Workload Identity Federation from ADK for Python v2.12.0+ agents running on AWS Lambda, Amazon Bedrock (flagging 10 of 40 Nova Lite inventory-scraping sessions), and Microsoft Foundry (flagging 4 of 6 unauthorized refund/override sessions, including a $1,784.90 administrator spoofing attack and a $999 pasted-note SYSTEM OVERRIDE).',
+    category: 'Agent Security & Governance',
+    tag: 'Gemini Platform Preview',
+    modelBadge: 'Semantic Governance + Anomaly',
+    impactScore: '10.0 / 10',
+    date: '2026-11-20T18:00:00Z',
+    sourceLabel: 'Google Developers Blog: Semantic Governance Policies & Multi-Cloud Agent Anomaly Detection (Nov 20, 2026)',
+    sourceUrl: 'https://developers.googleblog.com/check-what-your-ai-agents-do-before-they-do-it-with-semantic-governance-policies/',
+    groundedBy: 'Google Developers Official Blog (Nov 20, 2026)',
+    seriesUrl: '/series/gemini-semantic-governance-and-multicloud-agents/part-1-semantic-governance-policies-preview.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-semantic-governance-studio.html',
+    labLabel: 'Governance Studio [DEMO] →',
+  },
+  {
+    id: 'pulse-gemini-enterprise-cloud-run-mcp-custom-ui-auth',
+    title: 'Google Details Private Cloud Run MCP Networking & 3-Layer Custom UI Auth for Gemini Enterprise',
+    tldr: 'Published November 20, 2026: Google Developers Blog ships reference architectures for private internal-only Cloud Run MCP servers (Egress Agent Gateway + PSC Network Attachment + PGA 199.36.153.8/30 or Global PSC 240.0.0.10 + FQDN-scoped Private Cloud DNS) and 3-layer StreamAssist / 3LO / ADK Token Vault auth in custom enterprise UIs.',
+    summary:
+      'Published November 20, 2026 across two Google Developers Blog architecture guides (including Neeraj Agrawal on Custom UI Auth): (1) Private Internal Cloud Run MCP Servers—bridges Gemini Enterprise’s managed tenant to --ingress=internal Cloud Run StreamableHTTP MCP servers via regional Egress Agent Gateway (Agent-to-Anywhere), a PSC Network Attachment, Subnet Private Google Access (199.36.153.8/30) or Global PSC all-apis endpoint (240.0.0.10) for locked-down VPCs without 0.0.0.0/0 routes, FQDN-scoped Private Cloud DNS avoiding *.run.app collisions, and dual X-Serverless-Authorization IAM + end-user OAuth 2.0 Bearer verification, and (2) Custom UI 3-Layer Auth—documents keyless StreamAssist patterns (Pattern 1A Google Identity, Pattern 1B Workforce Identity Federation + Google STS, Pattern 1C Workload Identity Federation for shared bots), Federated Connector 3-Legged OAuth via Gemini Enterprise Keystore, and per-tool on-demand ADK GcpAuthProvider prompts backed by GCP Auth Manager Token Vault.',
+    category: 'Enterprise & MCP',
+    tag: 'Google Cloud Blueprint',
+    modelBadge: 'Cloud Run MCP + StreamAssist',
+    impactScore: '9.6 / 10',
+    date: '2026-11-20T17:30:00Z',
+    sourceLabel: 'Google Developers Blog: Private Cloud Run MCP & Custom UI Auth (Nov 20, 2026)',
+    sourceUrl: 'https://developers.googleblog.com/how-to-securely-connect-internal-cloud-run-mcp-servers-to-gemini-enterprise/',
+    groundedBy: 'Google Developers Official Blog (Nov 20, 2026)',
+  },
+  {
+    id: 'pulse-watch-duty-gemini-wildfire-radio',
+    title: 'Watch Duty & Google.org Deploy Gemini Radio Transcription to Detect Wildfire Dispatches in Under 30 Seconds',
+    tldr: 'Published November 20, 2026: Built during a 6-month Google.org Fellowship on 20,000+ hours of fire radio audio, Watch Duty’s Gemini-powered transcription tool cuts degraded VHF radio word error rate from 38% to 22.34%, monitors 400 active feeds (tested to 10,000+ feeds), and alerts reporters in under 30 seconds.',
+    summary:
+      'Authored by Eve Andersson and Stephanie Chew on the Google Official Blog (November 20, 2026): (1) Real-Time VHF Radio Denoising—trained on 20,000+ hours of historical emergency broadcasts to strip wind, engine noise, and static while translating tactical firefighting jargon, dropping degraded VHF radio word error rate from 38% to 22.34%, (2) Scale & Speed—transcribes 200+ hours of speech daily across roughly 400 active feeds (tested to 10,000+ concurrent feeds), delivers initial signals in under 30 seconds, and lifted volunteer reporter tool satisfaction from 35.3% to 92.3%, and (3) Overnight Life-Safety Proof—flagged a noisy 911 dispatch during Washington’s July 2026 Railroad Fire in under 30 seconds to trigger Watch Duty’s first-ever overnight Critical Alert delivered via Firebase Cloud Messaging (limit raised from 600,000 to 1 million for 16M+ users).',
+    category: 'Social Impact & Audio AI',
+    tag: 'Google.org Fellowship',
+    modelBadge: 'Gemini Wildfire Radio AI',
+    impactScore: '9.6 / 10',
+    date: '2026-11-20T17:00:00Z',
+    sourceLabel: 'Google Official Blog: How Watch Duty uses Gemini for faster wildfire alerts (Nov 20, 2026)',
+    sourceUrl: 'https://blog.google/company-news/outreach-and-initiatives/google-org/watch-duty-gemini-tool/',
+    groundedBy: 'Google Official Blog (Nov 20, 2026 17:00 UTC)',
+  },
+  {
+    id: 'pulse-connected-apps-ucp-search-gemini',
+    title: 'Google Expands Connected Apps in Search & the Gemini App with UCP Grocery Checkout, Experian & H&R Block',
+    tldr: 'Published November 20, 2026: Google rolls out U.S. Connected Apps across Google Search and the Gemini app powered by the Universal Commerce Protocol (UCP) for Albertsons, Safeway, Shaw’s, and Target grocery checkout, plus Experian and H&R Block financial integrations in Search.',
+    summary:
+      'Published November 20, 2026 on the Google Official Blog (18:00 UTC): (1) Universal Commerce Protocol Grocery Checkout—U.S. users can build holiday grocery orders and complete checkout inside Search and the Gemini app with Albertsons, Safeway, Shaw’s, and Target Connected Apps powered by UCP, (2) Financial & Tax Connected Apps—Experian expands from the Gemini app into Google Search for credit-rating checks and personal loan shopping alongside H&R Block tax and refund estimation, and (3) Local Home Services—Angi and Thumbtack account linking rolls out in Search over the coming weeks.',
+    category: 'Gemini App & Commerce',
+    tag: 'UCP Connected Apps',
+    modelBadge: 'UCP + Gemini Connected Apps',
+    impactScore: '9.3 / 10',
+    date: '2026-11-20T18:00:00Z',
+    sourceLabel: 'Google Official Blog: Complete year-end tasks with new Connected Apps (Nov 20, 2026)',
+    sourceUrl: 'https://blog.google/products-and-platforms/products/search/connected-apps-holiday-errands/',
+    groundedBy: 'Google Official Blog (Nov 20, 2026 18:00 UTC)',
+  },
+  {
     id: 'pulse-gemini-api-cli-v0-5-0',
     title: 'Google Ships Gemini API CLI v0.5.0: Gemini 4 Hydrogen Default, Self-Hosted BYOS Lease Sandboxes, XHIGH Thinking & Voices Group',
     tldr: 'Released November 20, 2026 (00:49 UTC): google-gemini/gemini-api-cli v0.5.0 sets gemini-4-hydrogen as default, adds gemini-4-carbon, gemini-omni-1.2-flash, XHIGH ThinkingLevel, split environments poll/serve lease-token sandboxes, Tool Retrieval schemas, and the voices command group.',
@@ -1446,6 +1510,71 @@ export const GEMINI_MODEL_MATRIX = [
 
 export const STUDIO_LAB_BLUEPRINTS = [
   {
+    id: 'lab-gemini-semantic-governance-studio',
+    title: 'Semantic Governance & Multi-Cloud Anomaly Studio [SIMULATED DEMO]',
+    badge: 'Nov 20, 2026 Agent Security',
+    model: 'gemini-4-argon',
+    href: '/labs/gemini-semantic-governance-studio.html',
+    description:
+      'Interactive developer workbench modeling Google’s Nov 20 agent defense-in-depth stack: simulate Agent Gateway inline Semantic governance checks (plain-language policy + user-intent verification) and out-of-band OpenTelemetry multi-cloud Anomaly Detection across AWS Bedrock and Microsoft Foundry.',
+    prompt:
+      'Intercept a finance agent’s proposed send_email and delete_file tool calls at Agent Gateway against plain-language disclosure policies and original user intent, then export ADK v2.12.0+ OpenTelemetry logs to telemetry.googleapis.com.',
+    tsCode: `import { GoogleGenAI } from "@google/genai";
+
+// Route agent egress through Agent Gateway so Semantic governance policies
+// evaluate every proposed model tool call inline before your agent executes it.
+const ai = new GoogleGenAI({
+  httpOptions: {
+    apiVersion: "v1beta",
+    baseUrl: process.env.AGENT_GATEWAY_URL,
+  },
+});
+
+const interaction = await ai.interactions.create({
+  model: "gemini-4-argon",
+  thinking_level: "high",
+  system_instruction:
+    "Finance coworker agent. Next public earnings release is December 2, 2026.",
+  input:
+    "Send preliminary Q3 results to controller@example.com for month-end close.",
+});
+
+// If Agent Gateway denies a tool call, the policy engine replaces the response
+// with your configured denial message before tool execution can occur.
+console.log("Gateway-verified interaction:", interaction.id);`,
+    pyCode: `# ADK for Python v2.12.0+ multi-cloud telemetry setup (AWS Lambda / Microsoft Foundry)
+# Set these environment variables alongside Workload Identity Federation:
+#   GOOGLE_CLOUD_PROJECT=<PROJECT_ID>
+#   OTEL_SEMCONV_STABILITY_OPT_IN=gen_ai_latest_experimental
+#   OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=EVENT_ONLY
+#   ADK_CAPTURE_MESSAGE_CONTENT_IN_SPANS=false
+#   OTEL_SERVICE_NAME=foundry-refund-agent
+#   OTEL_RESOURCE_ATTRIBUTES=cloud.provider=azure,cloud.platform=azure_ai_foundry,cloud.region=eastus,faas.name=foundry-refund-agent
+
+from google.adk.agents import Agent
+
+refund_agent = Agent(
+    name="foundry_customer_service_agent",
+    model="gemini-4-hydrogen",
+    instruction="Verify order status and issue approved damage refunds only.",
+)
+print("ADK multi-cloud agent configured for telemetry.googleapis.com export.")`,
+    simulatedSteps: [
+      {
+        type: 'thought',
+        label: 'step[0] • Agent Gateway Inline LLM Judge (Pre-Execution)',
+        detail:
+          'Proposed tool call send_email checked against conversation history, system instructions (earnings release date), and plain-language constraint before reaching the agent runtime.',
+      },
+      {
+        type: 'tool_call',
+        label: 'step[1] • Out-of-Band Multi-Cloud OTel Anomaly Audit',
+        detail:
+          'ADK Python v2.12.0+ exported EVENT_ONLY prompt/response logs via Workload Identity Federation to telemetry.googleapis.com for asynchronous scraping and override detection.',
+      },
+    ],
+  },
+  {
     id: 'lab-gemini-api-cli-studio',
     title: 'Gemini API CLI v0.5.0 & BYOS Sandbox Studio [SIMULATED DEMO]',
     badge: 'Nov 20, 2026 CLI v0.5.0',
@@ -2667,6 +2796,25 @@ video_turn = client.interactions.create(
 ];
 
 export const INITIAL_SHOWCASE_PROJECTS = [
+  {
+    id: 'showcase-gemini-semantic-governance-studio',
+    name: 'Semantic Governance & Multi-Cloud Anomaly Studio [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive developer workbench modeling Google’s Nov 20 inline Semantic governance policies (Agent Gateway LLM judge + user-intent check) and out-of-band OpenTelemetry Anomaly Detection across AWS Bedrock and Microsoft Foundry.',
+    models: ['gemini-4-argon', 'gemini-4-hydrogen'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-semantic-governance-studio.html): [SIMULATED DEMO] Tests Q3 earnings NDA bypasses, indirect prompt-injection delete_file traps, and Bedrock/Foundry anomaly detection.',
+    url: '/labs/gemini-semantic-governance-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-20T18:00:00Z',
+  },
   {
     id: 'showcase-gemini-api-cli-studio',
     name: 'Gemini API CLI v0.5.0 & BYOS Sandbox Studio [SIMULATED DEMO]',
@@ -4845,9 +4993,43 @@ export const GET_STARTED_WITH_GEMINI_TRACKS = [
 
 export const GEMINI_VIDEO_SHOWCASE = [
   {
+    id: 'vid-google-devs-antigravity-midi-3d-world',
+    videoId: 'WN-JK-hMAyg',
+    featuredOfTheDay: true,
+    category: 'Creative Coding & 3D Worlds',
+    badge: 'FEATURED VIDEO OF THE DAY • GOOGLE FOR DEVELOPERS',
+    title: 'Google Antigravity and Gemini 4: Creating an interactive MIDI mapped 3D world',
+    creatorName: 'Google for Developers',
+    creatorHandle: '@GoogleDevelopers',
+    creatorUrl: 'https://www.youtube.com/@GoogleDevelopers',
+    watchUrl: 'https://www.youtube.com/watch?v=WN-JK-hMAyg',
+    thumbnailUrl: 'https://i.ytimg.com/vi/WN-JK-hMAyg/hqdefault.jpg',
+    geminiSummary:
+      'Published November 20, 2026 (20:00 UTC) by Google for Developers—pairing Google Antigravity and Gemini 4 to build a real-time interactive 3D world driven by physical MIDI hardware controls.',
+    whyFeatured:
+      'Verified HTTP 200 Nov 20 Google for Developers hands-on creative build uniting hardware MIDI input, 3D rendering, and Gemini 4 inside Google Antigravity.',
+  },
+  {
+    id: 'vid-google-cloud-edge-gemma4-vector',
+    videoId: 'ugmCis5nuF8',
+    featuredOfTheDay: false,
+    category: 'Edge AI & Hybrid Routing',
+    badge: 'OFFICIAL ARCHITECTURE GUIDE • GOOGLE CLOUD TECH',
+    title: 'Web AI at the Edge: Local Vector Search, Gemma 4, & hybrid cloud routing',
+    creatorName: 'Google Cloud Tech',
+    creatorHandle: '@googlecloudtech',
+    creatorUrl: 'https://www.youtube.com/@googlecloudtech',
+    watchUrl: 'https://www.youtube.com/watch?v=ugmCis5nuF8',
+    thumbnailUrl: 'https://i.ytimg.com/vi/ugmCis5nuF8/hqdefault.jpg',
+    geminiSummary:
+      'Published November 20, 2026 (14:00 UTC) by Google Cloud Tech—architecting browser-side local vector search and Gemma 4 inference paired with intelligent hybrid cloud routing to Gemini.',
+    whyFeatured:
+      'Verified HTTP 200 Nov 20 Google Cloud Tech guide covering on-device Gemma 4 vector search and hybrid cloud escalation.',
+  },
+  {
     id: 'vid-google-deepmind-koray-path-to-agi',
     videoId: 'FORdPIWOH5k',
-    featuredOfTheDay: true,
+    featuredOfTheDay: false,
     category: 'Frontier Research & AGI',
     badge: 'FEATURED VIDEO OF THE DAY • GOOGLE DEEPMIND',
     title: 'Gemini and the path to AGI with Koray Kavukcuoglu',

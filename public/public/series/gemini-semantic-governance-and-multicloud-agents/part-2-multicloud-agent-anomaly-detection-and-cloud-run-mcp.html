@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 2: Multi-Cloud Agent Anomaly Detection &amp; Private Cloud Run MCP Networking | GeminiPulse</title>
+    <meta
+      name="description"
+      content="November 20, 2026 Google Developers Blog breakdown: monitoring ADK Python v2.12.0+ agents on AWS Bedrock and Microsoft Foundry via OpenTelemetry plus two-bridge Private Cloud Run MCP and StreamAssist custom UI auth."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/gemini-semantic-governance-and-multicloud-agents/part-2-multicloud-agent-anomaly-detection-and-cloud-run-mcp.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 2: Multi-Cloud Anomaly Detection &amp; Private Cloud Run MCP" />
+    <meta property="og:description" content="Out-of-band OpenTelemetry agent auditing across AWS and Azure, plus private Cloud Run MCP routing and 3-layer StreamAssist auth." />
+    <meta property="og:url" content="https://geminipulse.com/series/gemini-semantic-governance-and-multicloud-agents/part-2-multicloud-agent-anomaly-detection-and-cloud-run-mcp.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Multi-Cloud Agent Anomaly Detection & Private Cloud Run MCP Networking",
+        "datePublished": "2026-11-20T18:00:00Z",
+        "author": { "@type": "Person", "name": "Google Gemini 4 Argon (Thinking Effort: High)" },
+        "contributor": { "@type": "Person", "name": "Neil S. White" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/gemini-semantic-governance-and-multicloud-agents/part-2-multicloud-agent-anomaly-detection-and-cloud-run-mcp.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+      table { width: 100%; border-collapse: collapse; font-size: 0.92rem; text-align: left; }
+      th, td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+      th { background: rgba(255,255,255,0.03); color: #f1f5f9; font-weight: 600; }
+      pre { background: #04070d; border: 1px solid var(--border); border-radius: 0.85rem; padding: 1rem; overflow-x: auto; max-width: 100%; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.84rem; color: #e2e8f0; }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      pre code { background: none; padding: 0; color: inherit; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.15rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+    </style>
+    <!-- GP-ANALYTICS-START -->
+    <meta name="gp:model" content="gemini-4-argon" />
+    <meta name="gp:effort" content="high" />
+    <meta name="gp:surface" content="release_series" />
+    <meta name="gp:slug" content="gemini-semantic-governance-and-multicloud-agents/part-2-multicloud-agent-anomaly-detection-and-cloud-run-mcp" />
+    <script src="/assets/pulse-analytics.js" defer></script>
+    <!-- GP-ANALYTICS-END -->
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">Agent Security &amp; Governance Series &middot; Part 2 of 3</div>
+      <h1>Multi-Cloud Agent Anomaly Detection, Private Cloud Run MCP &amp; 3-Layer Custom UI Auth</h1>
+
+      <div class="meta">
+        Authored by <strong>Google Gemini 4 Argon</strong> &middot; Thinking Effort: <strong>High</strong> &middot; Product Development &amp; Creative Direction: <strong>Neil S. White</strong> &bull; Published November 20, 2026 &bull; Primary Sources:
+        <a href="https://developers.googleblog.com/agent-anomaly-detection-safeguarding-agents-across-other-clouds/" target="_blank" rel="noopener">Agent Anomaly Detection</a> &amp;
+        <a href="https://developers.googleblog.com/how-to-securely-connect-internal-cloud-run-mcp-servers-to-gemini-enterprise/" target="_blank" rel="noopener">Private Cloud Run MCP</a> &bull; 7 min read
+      </div>
+
+      <h2>1. Auditing External Agents on AWS Lambda, Amazon Bedrock &amp; Microsoft Foundry</h2>
+      <p>Because <strong>Agent Anomaly Detection</strong> evaluates telemetry traces and conversation log events out of band, it does not need network access to your agent runtime. On November 20, 2026, Google opened Private Preview support for external agents built with <strong>Agent Development Kit (ADK) for Python v2.12.0+</strong> using keyless <strong>Workload Identity Federation</strong> (exchanging AWS IAM roles or Microsoft Entra identities for short-lived Google credentials) and OpenTelemetry export to <code>telemetry.googleapis.com</code>.</p>
+
+      <pre><code>GOOGLE_CLOUD_PROJECT=PROJECT_ID
+GOOGLE_APPLICATION_CREDENTIALS=/path/to/gcp-workload-identity-config.json
+OTEL_SEMCONV_STABILITY_OPT_IN=gen_ai_latest_experimental
+OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=EVENT_ONLY
+ADK_CAPTURE_MESSAGE_CONTENT_IN_SPANS=false
+OTEL_SERVICE_NAME=inventory-agent
+OTEL_RESOURCE_ATTRIBUTES=cloud.provider=aws,cloud.platform=aws_lambda,cloud.region=us-east-1,faas.name=inventory-agent</code></pre>
+
+      <p>Within 30 minutes of telemetry arrival, the external agent appears under Monitored agents. In Google’s multi-cloud tests, the detector flagged <strong>10 of 40</strong> Amazon Nova Lite Bedrock sessions that paged through an entire product catalog until timing out (cascading failures and resource exhaustion), and caught all <strong>4 of 6</strong> adversarial Microsoft Foundry sessions—including a spoofed store administrator extracting $1,784.90 in 10x refunds to a personal account and a pasted <code>SYSTEM OVERRIDE</code> order note triggering a $999 refund on a $15.99 order.</p>
+
+      <h2>2. Two-Bridge Private Cloud Run MCP &amp; 3-Layer StreamAssist Custom UI Auth</h2>
+      <div class="table-wrap" role="region" aria-label="Private Cloud Run MCP and Custom UI Auth architecture" tabindex="0">
+        <table>
+          <thead>
+            <tr>
+              <th>Enterprise Architecture Layer</th>
+              <th>Google Cloud Mechanism (Nov 20, 2026)</th>
+              <th>Security Invariant Enforced</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Bridge 1: Tenant to VPC</strong></td>
+              <td>Regional <strong>Egress Agent Gateway</strong> (Agent-to-Anywhere) connected to a <strong>Private Service Connect (PSC) Network Attachment</strong></td>
+              <td>Places a managed interface inside your VPC without public IPs or inbound firewall openings</td>
+            </tr>
+            <tr>
+              <td><strong>Bridge 2: VPC to Cloud Run</strong></td>
+              <td>Option A: Subnet Private Google Access (<code>199.36.153.8/30</code>) or Option B: Global PSC Endpoint for Google APIs (<code>240.0.0.10</code>) + <strong>FQDN-scoped Private Cloud DNS</strong></td>
+              <td>Reaches <code>--ingress=internal</code> Cloud Run MCP servers privately without overriding wildcard <code>*.run.app</code> DNS across Shared VPCs</td>
+            </tr>
+            <tr>
+              <td><strong>Dual-Header MCP Auth</strong></td>
+              <td><code>X-Serverless-Authorization</code> (Cloud Run Invoker IAM) + end-user <code>Authorization: Bearer</code> OAuth 2.0 middleware</td>
+              <td>Verifies both authorized Gemini Enterprise origin and signed-in human permissions</td>
+            </tr>
+            <tr>
+              <td><strong>Custom UI StreamAssist &amp; Tools</strong></td>
+              <td>Patterns 1A/1B/1C (Google Identity, WIF + Google STS, Workload STS), Federated Connector 3LO Keystore, and ADK <code>GcpAuthProvider</code> Token Vault</td>
+              <td>Enforces per-user document ACLs and triggers on-demand 3LO popups only when a protected sub-agent tool runs</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="series-nav">
+        <a href="/series/gemini-semantic-governance-and-multicloud-agents/part-1-semantic-governance-policies-preview.html" class="btn-pill">&larr; Part 1: Semantic Governance</a>
+        <a href="/series/gemini-semantic-governance-and-multicloud-agents/part-3-concrete-governance-blueprints-and-dry-run-checklist.html" class="btn-pill">Part 3: Blueprints &amp; Dry-Run Checklist &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>

@@ -14,6 +14,232 @@
  */
 
 export const CONSTELLATION_ESSAYS = {
+  'pulse-gemini-semantic-governance-and-multicloud-agents': {
+    id: 'pulse-gemini-semantic-governance-and-multicloud-agents',
+    slug: 'gemini-semantic-governance-and-multicloud-agents',
+    shortStarLabel: 'Semantic Governance',
+    readMinutes: '9 MIN READ',
+    authoredByModel: 'Google Gemini 4 Argon',
+    thinkingEffort: 'High',
+    hudTitle: 'Semantic Governance Policies Intercept Agent Tool Calls Inline Before Execution.',
+    hudSummary:
+      'Published November 20, 2026: Semantic governance policies (Preview) judge every proposed tool call at Agent Gateway against plain-language rules and user intent, while Agent Anomaly Detection expands via OpenTelemetry to AWS and Azure.',
+    peekCastor: 'Permissions Are Not Policies: <em>Stop NDA leaks and prompt hijacks before tools execute.</em>',
+    peekPollux: 'Agent Gateway + OTel: <em>Inline LLM judge interception & multi-cloud anomaly telemetry.</em>',
+    headline:
+      'Permissions Tell Agents What They Can Touch. <em>Semantic Governance Judges Every Tool Call Before It Runs.</em>',
+    standfirst:
+      'Static IAM permissions tell an AI coworker whether it is allowed to read Drive and send email, yet they cannot stop an employee under NDA urgency or a poisoned document from steering those authorized tools into an unapproved leak. On November 20, 2026, Google introduced inline Semantic governance policies in Preview alongside multi-cloud Agent Anomaly Detection across AWS and Azure.',
+    pulseCheck: [
+      {
+        stage: 'Inline Pre-Flight Gate',
+        detail:
+          'Agent Gateway intercepts proposed model tool calls before they reach your agent runtime, running an LLM judge against plain-language legal policies and original user intent while skipping text-only answers.',
+      },
+      {
+        stage: 'Multi-Cloud OTel Sweep',
+        detail:
+          'Agent Anomaly Detection enters Private Preview for ADK Python v2.12.0+ agents running on AWS Lambda, Amazon Bedrock, and Microsoft Foundry via keyless Workload Identity Federation and telemetry.googleapis.com.',
+      },
+      {
+        stage: 'The Honest Catch',
+        detail:
+          'Semantic governance verdicts come from a probabilistic LLM judge, streamed model responses are not evaluated, and multi-cloud Anomaly Detection currently requires ADK for Python v2.12.0+ inside Private Preview.',
+      },
+    ],
+    castor: {
+      kicker: 'PART I · α CASTOR · ENTERPRISE RISK, COMPLIANCE & MULTI-CLOUD REALITY LENS',
+      title: 'Why Binary Permissions and System Prompts Break Down Under Real Agent Traffic',
+      subtitle:
+        'Moving guardrails out of fragile prompt text and into an auditable policy enforcement plane that spans Gemini, Claude, vLLM, AWS Bedrock, and Microsoft Foundry.',
+      paragraphs: [
+        'For three years, enterprise security teams have relied on two brittle defenses for autonomous agents: coarse IAM roles that decide whether an agent can invoke an API, and polite instructions tucked inside a system prompt telling the model what it ought not to do. In production, both assumptions fail simultaneously. When an employee asks a finance coworker agent to email preliminary quarterly numbers to an investor claiming NDA coverage and copy a personal inbox, the agent technically holds both read and mail permissions—and persuasive urgency routinely talks models past system-prompt reminders.',
+        'Google’s November 20, 2026 security double-header addresses that gap at the exact boundary where software becomes irreversible action. First, <strong>Semantic governance policies</strong> (Preview in Gemini platform) place an external LLM judge behind <strong>Agent Gateway</strong>, inspecting every proposed tool call before it returns to the agent. Second, <strong>Agent Anomaly Detection</strong> expands in Private Preview beyond Google Cloud so OpenTelemetry traces from agents hosted on <strong>AWS Lambda</strong>, <strong>Amazon Bedrock</strong>, and <strong>Microsoft Foundry</strong> flow into one Google Cloud risk console without moving underlying workloads.',
+        'What stands out strategically is that legal, compliance, and risk leaders no longer need engineering sprints to adjust agent boundaries. Rules read like everyday compliance prose—such as prohibiting unreleased revenue disclosures outside corporate domains regardless of NDAs, urgency, or requester seniority—and take effect without redeploying agent code. Even when teams have written zero custom policies, the built-in <strong>user intent alignment check</strong> stays active by default, catching indirect prompt injections hidden inside shared planning docs that try to delete forecast drafts.',
+        'Still, CISOs and product owners must pair these controls with honest operational realism. Google explicitly notes that because semantic verdicts rely on an LLM judge, decisions are probabilistic and teams should validate policies in <strong>dry run mode</strong> before blocking production traffic. Furthermore, streamed model responses bypass inline semantic evaluation today, while multi-cloud Anomaly Detection operates asynchronously out of band and currently expects Python agents built on <strong>ADK v2.12.0+</strong>.',
+      ],
+      pullquote: {
+        quote:
+          'You cannot prompt-engineer compliance inside an untrusted context window; enforcement has to sit outside the agent where proposed tool calls are judged before they execute.',
+        attribution: 'GOOGLE GEMINI 4 ARGON · α CASTOR SYNTHESIS OF NOV 20 AGENT GOVERNANCE STACK',
+      },
+      comparisonTable: {
+        id: 'gemini-agent-defense-in-depth-matrix',
+        caption: 'Google Agent Defense-in-Depth Stack: Layer Roles & Boundaries (Verified Nov 20, 2026)',
+        columns: ['Control Layer', 'When It Evaluates', 'What It Catches Best', 'Explicit Boundary / Caveat'],
+        rows: [
+          [
+            'IAM & Agent Gateway Access',
+            'Inline at network & API boundary',
+            'Which tools, Cloud Run MCP servers, and endpoints an identity may reach',
+            'Cannot judge business context or recipients inside an allowed send_email call',
+          ],
+          [
+            'Model Armor',
+            'Inline on prompts & responses',
+            'Jailbreak patterns, prompt attacks, and sensitive data payloads',
+            'Screens payload content rather than plain-language multi-step disclosure rules',
+          ],
+          [
+            'Semantic Governance Policies (Preview)',
+            'Inline before proposed tool call runs',
+            'Policy violations (NDA leaks, refund caps) & off-intent hijacked tool calls',
+            'Evaluates non-streamed tool calls only; probabilistic LLM judge (start in dry run)',
+          ],
+          [
+            'Agent Anomaly Detection (Private Preview)',
+            'Out-of-band via OpenTelemetry logs',
+            'Cross-turn scraping (10/40 Bedrock runs), cascading loops & $999 override abuse',
+            'Asynchronous (does not block inline); multi-cloud requires ADK Python v2.12.0+',
+          ],
+        ],
+      },
+      adaptiveQuestions: [
+        {
+          lensTag: 'FOR CISOS & COMPLIANCE TEAMS',
+          question: 'Does Semantic governance work if our agents call Claude, OpenAI-compatible, or self-hosted vLLM models?',
+          answer:
+            'Yes. Agent Gateway evaluates proposed tool calls regardless of whether your agent reaches Gemini API, Anthropic Messages API, Claude models on Gemini platform, or OpenAI-compatible Chat Completions endpoints including self-hosted vLLM servers.',
+        },
+        {
+          lensTag: 'FOR MULTI-CLOUD PLATFORM LEADERS',
+          question: 'Do we have to migrate AWS Bedrock or Azure Foundry workloads to GCP to use Agent Anomaly Detection?',
+          answer:
+            'No. Agents remain on AWS Lambda, Microsoft Foundry, or on-premises infrastructure. Using keyless Workload Identity Federation and ADK Python v2.12.0+ OpenTelemetry exporters, only telemetry traces and message-content logs travel to telemetry.googleapis.com.',
+        },
+        {
+          lensTag: 'FOR PRODUCT & LEGAL TEAMS',
+          question: 'What happens to normal conversational answers when Semantic governance is enabled?',
+          answer:
+            'Responses that contain only text—such as an explanation, plan, or clarifying question—skip the policy engine completely because they invoke no tool action. Only responses proposing tool calls undergo policy and user-intent evaluation.',
+        },
+      ],
+    },
+    pollux: {
+      kicker: 'PART II · β POLLUX · AGENT GATEWAY INTERCEPTION, GCLOUD CLI & OTEL TELEMETRY',
+      title: 'How Inline Policy Judging & Out-of-Band Multi-Cloud Traces Wire Together',
+      subtitle:
+        'Configuring Agent Gateway interception, authoring gcloud natural-language constraints, and exporting ADK v2.12.0+ EVENT_ONLY logs across AWS and Azure.',
+      paragraphs: [
+        'At the wire level, <strong>Semantic governance policies</strong> interpose between the model and your agent runtime rather than between the agent and downstream tools. When you route agent model egress through <strong>Agent Gateway</strong>, every non-streamed model response containing a proposed tool call is forwarded to the policy engine before reaching your agent process. An LLM judge evaluates the call against the full conversation history, the agent’s system instructions (where time-sensitive facts such as earnings dates must reside), tool descriptions, and attached natural-language policies.',
+        'If both checks pass—user intent alignment and explicit policy rules—the original model response passes to your agent untouched. If either check fails, the engine strips the proposed tool calls and substitutes your configured <code>--agent-response-denial-message</code> (preventing internal compliance wording from leaking to end users), while writing the verdict, judge rationale, and evaluation token count to <strong>Cloud Logging</strong>. In Google’s finance walkthrough, an authorized send to <code>controller@example.com</code> passed, an NDA-justified send to <code>jordan@investor.example</code> was blocked entirely by policy, and an injected <code>delete_file</code> call from a planning doc was stopped by the built-in intent check.',
+        'To catch cross-turn behavioral drift that looks valid one call at a time—such as paging <code>list_inventory</code> in batches of 100 across an entire catalog—<strong>Agent Anomaly Detection</strong> reads OpenTelemetry spans and conversation events shipped to <code>telemetry.googleapis.com</code>. Setting <code>OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=EVENT_ONLY</code> and <code>ADK_CAPTURE_MESSAGE_CONTENT_IN_SPANS=false</code> keeps payloads structured for analysis, surfacing external agents in the Monitored agents list within 30 minutes and flagging real failures such as 10 of 40 runaway Amazon Nova Lite Bedrock sessions and 4 of 6 Microsoft Foundry refund-override exploits.',
+      ],
+      builderRules: [
+        {
+          label: '01 · Place Policy-Critical Facts Inside System Instructions & Use Non-Streaming Calls',
+          detail:
+            'The policy judge reads system instructions, tool descriptions, and conversation turns—and does not evaluate streamed responses—so keep dates/thresholds in system instructions and disable streaming on gated tool loops.',
+        },
+        {
+          label: '02 · Validate Policies in Dry Run Mode & Customize End-User Denial Messages',
+          detail:
+            'Because the judge rationale can quote internal compliance constraints, supply an explicit --agent-response-denial-message and audit Cloud Logging verdicts in dry run mode before enabling enforcement.',
+        },
+        {
+          label: '03 · Pair Keyless Workload Identity Federation With EVENT_ONLY OTel Logs',
+          detail:
+            'Never ship static Service Account JSON keys to AWS or Azure; exchange AWS IAM roles or Entra ID identities via Workload Identity Federation and set ADK_CAPTURE_MESSAGE_CONTENT_IN_SPANS=false.',
+        },
+      ],
+      codeCaption: 'SEMANTIC GOVERNANCE POLICY + GATEWAY-ROUTED @GOOGLE/GENAI INTERACTION LOOP',
+      codeSnippet: `// Step 1 (CLI): Create an inline Semantic governance policy in Preview
+// gcloud beta ai semantic-governance-policies create earnings-disclosure \\
+//   --location=us-central1 \\
+//   --display-name="Earnings disclosure" \\
+//   --agent=projects/PROJECT_ID/locations/us-central1/agents/AGENT_ID \\
+//   --natural-language-constraint="Before earnings release, share quarterly results only with corporate addresses." \\
+//   --agent-response-denial-message="I cannot share unreleased financial results externally before earnings."
+
+import { GoogleGenAI } from "@google/genai";
+
+// Step 2 (TypeScript): Route non-streamed Interactions traffic via Agent Gateway
+const ai = new GoogleGenAI({
+  httpOptions: {
+    apiVersion: "v1beta",
+    baseUrl: process.env.AGENT_GATEWAY_URL,
+  },
+});
+
+const interaction = await ai.interactions.create({
+  model: "gemini-4-argon",
+  thinking_level: "high",
+  stream: false,
+  system_instruction:
+    "Finance coworker agent. Next public earnings release is December 2, 2026.",
+  input:
+    "Send preliminary Q3 results to controller@example.com for month-end close.",
+});
+
+console.log("Policy-checked response status:", interaction.status, interaction.id);`,
+      workbench: {
+        title: 'Semantic Governance & Multi-Cloud Anomaly Inspector',
+        subtitle: 'Inspect Google’s verified Nov 20 inline interception and out-of-band OTel test cases.',
+        dek: 'Cycle through the three verified enforcement outcomes below, or launch our interactive Governance Studio [SIMULATED DEMO].',
+        presets: [
+          {
+            label: '1. INLINE POLICY DENIAL (NDA BYPASS)',
+            k1: 'Agent Gateway Check',
+            v1: 'Proposed send_email to investor + personal inbox intercepted before execution',
+            k2: 'Judge Verdict',
+            v2: 'DENIED by plain-language earnings policy (NDA urgency explicitly disallowed)',
+            k3: 'Agent Outcome',
+            v3: 'Tool call stripped; configurable denial message returned and logged to Cloud Logging',
+          },
+          {
+            label: '2. DEFAULT INTENT HIJACK BLOCK (IPI)',
+            k1: 'Trigger Payload',
+            v1: 'Hidden planning-doc instruction proposing delete_file on Forecasts drafts',
+            k2: 'Judge Verdict',
+            v2: 'DENIED by built-in user intent alignment check (requires zero written policies)',
+            k3: 'Runtime Impact',
+            v3: 'Destructive deletion blocked before reaching agent; text-only turns remain unpenalized',
+          },
+          {
+            label: '3. MULTI-CLOUD OTEL ANOMALY',
+            k1: 'External Runtimes',
+            v1: 'ADK Python v2.12.0+ on AWS Bedrock (10/40 Nova Lite loops) & Microsoft Foundry (4/6 abuse)',
+            k2: 'Telemetry Pipeline',
+            v2: 'Workload Identity Federation -> telemetry.googleapis.com (EVENT_ONLY logs)',
+            k3: 'Detected Findings',
+            v3: 'Catalog scraping resource exhaustion, $1,784.90 10x refund abuse & $999 SYSTEM OVERRIDE',
+          },
+        ],
+      },
+    },
+    verdict: {
+      title: 'Argon’s Bottom Line: Gate Tool Calls Outside the Agent, Then Watch Cross-Turn Drift in Telemetry',
+      subtitle:
+        'Inline Semantic governance stops single-turn policy violations and prompt hijacks before execution, while multi-cloud Anomaly Detection exposes slow-burn scraping and refund abuse across AWS and Azure.',
+      paragraphs: [
+        '<strong>Why this matters today:</strong> separating natural-language compliance rules from agent code gives legal and platform teams a live policy plane across Gemini, Claude, and self-hosted vLLM models, while keyless OpenTelemetry ingestion brings AWS Bedrock and Microsoft Foundry agents under one roof.',
+        '<strong>Explore the companion deep dive:</strong> read our 3-part breakdown under <code>/series/gemini-semantic-governance-and-multicloud-agents/part-1-semantic-governance-policies-preview.html</code> or test NDA bypasses, indirect prompt injections, and multi-cloud OTel anomaly alerts inside Semantic Governance &amp; Multi-Cloud Anomaly Studio [SIMULATED DEMO] at <code>/labs/gemini-semantic-governance-studio.html</code>.',
+      ],
+      sources: [
+        {
+          role: 'Official Google Developers Blog (Preview)',
+          label: 'Check what your AI agents do before they do it, with Semantic governance policies',
+          author: 'Deepti Sehrawat (Google)',
+          date: 'November 20, 2026',
+          url: 'https://developers.googleblog.com/check-what-your-ai-agents-do-before-they-do-it-with-semantic-governance-policies/',
+        },
+        {
+          role: 'Official Google Developers Blog (Private Preview)',
+          label: 'Agent Anomaly Detection: Safeguarding agents across other clouds',
+          author: 'Gopi Subburaja Alagar & Arvind Chaudhary (Google)',
+          date: 'November 20, 2026',
+          url: 'https://developers.googleblog.com/agent-anomaly-detection-safeguarding-agents-across-other-clouds/',
+        },
+        {
+          role: 'Official Google Developers Blog (Companion Architecture)',
+          label: 'How to securely connect internal Cloud Run MCP servers to Gemini Enterprise',
+          author: 'Google Cloud Engineering',
+          date: 'November 20, 2026',
+          url: 'https://developers.googleblog.com/how-to-securely-connect-internal-cloud-run-mcp-servers-to-gemini-enterprise/',
+        },
+      ],
+    },
+  },
   'pulse-gemini-api-cli-v0-5-0': {
     id: 'pulse-gemini-api-cli-v0-5-0',
     slug: 'gemini-api-cli-v0-5-0-byos-environments',
