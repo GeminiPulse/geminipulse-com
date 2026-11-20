@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 3: Concrete Agent CLI Workflows — Custom Voices, --schema Bodies &amp; Cloudflare Sandboxes | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Three verified production workflows for google-gemini/gemini-api-cli v0.5.0: --agent-mode TOON automation, custom voices + TTS --style pipelines, and self-hosted Antigravity sandbox dispatch."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/gemini-api-cli-v0-5/part-3-concrete-agent-cli-workflows-and-tts-voices.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 3: Concrete Agent CLI Workflows for Gemini API CLI v0.5.0" />
+    <meta property="og:description" content="How coding agents combine --schema, --dry-run, background Deep Research, voices create/tts --style, and self-hosted sandboxes." />
+    <meta property="og:url" content="https://geminipulse.com/series/gemini-api-cli-v0-5/part-3-concrete-agent-cli-workflows-and-tts-voices.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Concrete Agent CLI Workflows — Custom Voices, --schema Bodies & Cloudflare Sandboxes",
+        "datePublished": "2026-11-20T00:49:52Z",
+        "author": { "@type": "Person", "name": "Google Gemini 4 Argon (Thinking Effort: High)" },
+        "contributor": { "@type": "Person", "name": "Neil S. White" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/gemini-api-cli-v0-5/part-3-concrete-agent-cli-workflows-and-tts-voices.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; --emerald: #10b981; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .card { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.25rem 0; }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      pre { background: #0d121c; border: 1px solid var(--border); border-radius: 0.85rem; padding: 1.15rem; overflow-x: auto; font-size: 0.86rem; line-height: 1.55; color: #e2e8f0; }
+      pre code { background: transparent; padding: 0; color: inherit; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.15rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+    </style>
+    <!-- GP-ANALYTICS-START -->
+    <meta name="gp:model" content="gemini-4-argon" />
+    <meta name="gp:effort" content="high" />
+    <meta name="gp:surface" content="release_series" />
+    <meta name="gp:slug" content="gemini-api-cli-v0-5/part-3-concrete-agent-cli-workflows-and-tts-voices" />
+    <script src="/assets/pulse-analytics.js" defer></script>
+    <!-- GP-ANALYTICS-END -->
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">Gemini API CLI v0.5.0 Series &middot; Part 3 of 3</div>
+      <h1>Three Concrete Production Workflows for Gemini API CLI v0.5.0</h1>
+
+      <div class="meta">
+        Authored by <strong>Google Gemini 4 Argon</strong> &middot; Thinking Effort: <strong>High</strong> &middot; Product Development &amp; Creative Direction: <strong>Neil S. White</strong> &bull; Published November 20, 2026 &bull; Primary Source:
+        <a href="https://github.com/google-gemini/gemini-api-cli/releases/tag/v0.5.0" target="_blank" rel="noopener">google-gemini/gemini-api-cli v0.5.0</a> &bull; 5 min read
+      </div>
+
+      <div class="card">
+        <h2 style="margin-top: 0;">1. Host Agent Asset &amp; Research Pipeline (<code>--agent-mode</code> + <code>--dry-run</code>)</h2>
+        <p>Drop the official instruction snippet into <code>AGENTS.md</code> or <code>CLAUDE.md</code> so coding agents generate hero imagery with <code>gemini-nano-banana-2.1</code>, launch background Deep Research runs (<code>--agent deep-research-preview-04-2026 --background</code>), and validate payloads via <code>--dry-run --output-format json</code> before spending tokens.</p>
+        <pre><code># 1. Validate request without hitting the network or OS keychain
+gemini-api image --body @hero-image.json --out ./assets/hero.jpg --dry-run --output-format json
+
+# 2. Kick off background managed agent and capture interaction ID
+INTERACTION_ID=$(gemini-api agent run "Audit WebRTC SCTP payload caps" \
+  --agent deep-research-preview-04-2026 --background --jq '.id')</code></pre>
+      </div>
+
+      <div class="card">
+        <h2 style="margin-top: 0;">2. Custom Voice Design &amp; Normalized Narration (<code>voices</code> + <code>tts --style</code>)</h2>
+        <p>Version 0.5.0 onboards the <code>voices</code> subcommand group (<code>create</code>, <code>list</code>, <code>get</code>, <code>delete</code>) and exposes <code>--style</code>, <code>--voice-prompt</code>, and <code>SpeechConfig.text_normalization</code> so build scripts verbalize SKUs, dates, and release numbers cleanly with <code>gemini-3.8-flash-tts</code>.</p>
+        <pre><code># List custom and built-in voices, then synthesize styled narration
+gemini-api voices list --all --output-format toon
+gemini-api tts "Release v0.5.0 ships November 20, 2026 at 00:49 UTC." \
+  --style "Crisp studio engineering briefing" \
+  --out ./audio/release-brief.wav</code></pre>
+      </div>
+
+      <div class="card">
+        <h2 style="margin-top: 0;">3. Self-Hosted BYOS Sandbox Dispatch (<code>antigravity-preview-09-2026</code>)</h2>
+        <p>Create a <code>self_hosted</code> environment with per-environment variables (<code>CreateEnvironmentRequest.env</code>), deploy a Cloudflare Sandbox Container or rootless Podman worker running <code>gemini-api environments connect</code>, and invoke remote Interactions turns confined to your private VPC filesystem.</p>
+      </div>
+
+      <div class="card">
+        <h2 style="margin-top: 0;">Interactive Simulator &amp; Flagship Essay</h2>
+        <p>Experiment with <code>--agent-mode</code> TOON envelopes, split <code>poll</code>/<code>serve</code> lease handoffs, and <code>voices</code>/<code>tts</code> command builders inside our <a href="/labs/gemini-api-cli-studio.html">Gemini API CLI &amp; BYOS Sandbox Studio [SIMULATED DEMO]</a>, or read the full Dual-Lens Flagship Essay on <a href="/articles/gemini-api-cli-v0-5-0-byos-environments.html">Gemini API CLI v0.5.0</a>.</p>
+      </div>
+
+      <div class="series-nav">
+        <a href="/series/gemini-api-cli-v0-5/part-2-self-hosted-environments-poll-and-serve.html" class="btn-pill">&larr; Part 2: Self-Hosted BYOS Runtime</a>
+        <a href="/labs/gemini-api-cli-studio.html" class="btn-pill">Open CLI &amp; Sandbox Studio [DEMO] &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>

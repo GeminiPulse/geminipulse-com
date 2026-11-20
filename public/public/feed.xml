@@ -20,6 +20,14 @@
   </entry>
 
   <entry>
+    <title>One Stateless Binary for Every Coding Agent. Gemini API CLI v0.5.0 Adds Gemini 4 Hydrogen &amp; Zero-Key BYOS Sandboxes. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/gemini-api-cli-v0-5-0-byos-environments.html" />
+    <id>https://geminipulse.com/articles/gemini-api-cli-v0-5-0-byos-environments.html</id>
+    <updated>2026-11-20T00:49:52.000Z</updated>
+    <summary>Coding agents running inside terminals already know how to call shell commands, yet giving them reliable multimodal tools or private execution sandboxes usually meant maintaining brittle wrapper scripts. On November 20, 2026, Google released gemini-api-cli v0.5.0 as a single stateless Go binary linking Antigravity, Claude Code, and Codex to Gemini 4 Hydrogen, split lease-token sandboxes, and custom voices.</summary>
+  </entry>
+
+  <entry>
     <title>World Models Leave the Sandbox. Genie 4 Opens Live 24 fps Streaming on the Gemini API. (Flagship Gemini Essay)</title>
     <link href="https://geminipulse.com/articles/genie-4-gemini-api-interactive-worlds.html" />
     <id>https://geminipulse.com/articles/genie-4-gemini-api-interactive-worlds.html</id>
@@ -68,11 +76,11 @@
   </entry>
 
   <entry>
-    <title>Carbon Depth Meets Hydrogen Velocity. Inside Gemini 4 Neon GA &amp; SDK v3.6.1. (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/gemini-4-neon-ga-launch-and-sdk-v3-6-1.html" />
-    <id>https://geminipulse.com/articles/gemini-4-neon-ga-launch-and-sdk-v3-6-1.html</id>
-    <updated>2026-11-18T21:00:00.000Z</updated>
-    <summary>Until today, teams had to choose between Hydrogen’s rapid everyday execution and Carbon’s maximum-horizon reasoning. On November 18, 2026, Google DeepMind launched Gemini 4 Neon—delivering frontier coding, knowledge work, science, and cyber defense with 32% lower cost per task than Carbon.</summary>
+    <title>Gemini API CLI v0.5.0: Gemini 4 Hydrogen Default, Split BYOS Lease Sandboxes &amp; Voices Group (Parts 1–3) + Studio [SIMULATED DEMO]</title>
+    <link href="https://geminipulse.com/series/gemini-api-cli-v0-5/part-1-what-changed-with-gemini-api-cli-v0-5.html" />
+    <id>https://geminipulse.com/series/gemini-api-cli-v0-5/part-1-what-changed-with-gemini-api-cli-v0-5.html</id>
+    <updated>2026-11-20T00:49:52Z</updated>
+    <summary>Direct primary-source breakdown of Google's November 20, 2026 (00:49 UTC) google-gemini/gemini-api-cli v0.5.0 release: gemini-4-hydrogen CLI default, gemini-4-carbon and gemini-omni-1.2-flash Interactions enums, XHIGH ThinkingLevel, split environments poll/serve zero-key lt_v1 sandboxes, Tool Retrieval schemas, voices CLI group + normalized TTS --style, and interactive CLI &amp; BYOS Studio [SIMULATED DEMO].</summary>
   </entry>
 
   <entry>

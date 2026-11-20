@@ -24,6 +24,25 @@ export const PULSE_INTELLIGENCE_FEED = [
     labLabel: 'Neon Studio [DEMO] →',
   },
   {
+    id: 'pulse-gemini-api-cli-v0-5-0',
+    title: 'Google Ships Gemini API CLI v0.5.0: Gemini 4 Hydrogen Default, Self-Hosted BYOS Lease Sandboxes, XHIGH Thinking & Voices Group',
+    tldr: 'Released November 20, 2026 (00:49 UTC): google-gemini/gemini-api-cli v0.5.0 sets gemini-4-hydrogen as default, adds gemini-4-carbon, gemini-omni-1.2-flash, XHIGH ThinkingLevel, split environments poll/serve lease-token sandboxes, Tool Retrieval schemas, and the voices command group.',
+    summary:
+      'Published on GitHub Releases (google-gemini/gemini-api-cli v0.5.0, Apache 2.0 single Go binary for macOS, Linux, and Windows), this milestone equips host coding agents (Google Antigravity, Claude Code, Codex, OpenClaw, Hermes) and CI pipelines with stateless Gemini API access: (1) Frontier Gemini 4 Defaults & Enum Parity—makes gemini-4-hydrogen the CLI default, adds gemini-4-carbon and gemini-omni-1.2-flash to the Interactions Model enum, and wires XHIGH / xhigh ThinkingLevel across GenAI SDKs and CLI, (2) Self-Hosted BYOS Environments Runtime—exposes CreateEnvironmentRequest.env, system_instruction, custom_config, and environment_key, updates the self-hosted agent version to antigravity-preview-09-2026, adds Cloudflare self-hosted sandbox one-click deploy docs alongside Docker/Podman/Cloud Run/Agent Substrate recipes, and separates trusted pollers (environments poll) from zero-API-key sandboxes (environments serve using short-lived lt_v1 lease tokens over 100% outbound HTTPS), (3) Tool Retrieval & Voices Group—adds tool_search and function result schemas plus static file processing options, onboards the voices command group (create, list, get, delete), and adds TTS --style, --voice-prompt, and SpeechConfig.text_normalization, and (4) Machine-First Agent Mode—supports --agent-mode TOON compact stdout, --schema introspection, redacted --dry-run HTTP previews, and semantic exit codes (0/1/2/3).',
+    category: 'CLI & Agent Runtime',
+    tag: 'Official CLI Release',
+    modelBadge: 'gemini-api-cli v0.5.0',
+    impactScore: '9.8 / 10',
+    date: '2026-11-20T00:49:52Z',
+    sourceLabel: 'GitHub Releases: google-gemini/gemini-api-cli v0.5.0',
+    sourceUrl: 'https://github.com/google-gemini/gemini-api-cli/releases/tag/v0.5.0',
+    groundedBy: 'Official Google GitHub Release v0.5.0 + README.md + docs/self-hosted/README.md (Nov 20, 2026 00:49 UTC)',
+    seriesUrl: '/series/gemini-api-cli-v0-5/part-1-what-changed-with-gemini-api-cli-v0-5.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-api-cli-studio.html',
+    labLabel: 'CLI & BYOS Studio [DEMO] →',
+  },
+  {
     id: 'pulse-gemini-api-tool-retrieval-preview',
     title: 'Google Launches Tool Retrieval (Preview) in the Gemini Interactions API: On-Demand Parameter Schemas & Client Registries',
     tldr: 'Released November 19, 2026 (18:00 UTC): Tool Retrieval enters preview in the Gemini Interactions API (v1beta) across Gemini 3.6+ and all Gemini 4 models—letting agents defer full tool and MCP schemas via tool_search + defer_loading: true or query custom client registries via execution: "client".',
@@ -1427,6 +1446,70 @@ export const GEMINI_MODEL_MATRIX = [
 
 export const STUDIO_LAB_BLUEPRINTS = [
   {
+    id: 'lab-gemini-api-cli-studio',
+    title: 'Gemini API CLI v0.5.0 & BYOS Sandbox Studio [SIMULATED DEMO]',
+    badge: 'Nov 20, 2026 CLI v0.5.0',
+    model: 'gemini-4-hydrogen',
+    href: '/labs/gemini-api-cli-studio.html',
+    description:
+      'Interactive developer workbench modeling google-gemini/gemini-api-cli v0.5.0: simulate --agent-mode TOON vs. JSON outputs, inspect split environments poll/serve lease-token isolation, and test voices + expressive TTS command builders.',
+    prompt:
+      'Run gemini-api v0.5.0 in --agent-mode with gemini-4-hydrogen, preview redacted payloads via --dry-run, and dispatch self-hosted interactions to zero-key containers using lt_v1 lease tokens.',
+    tsCode: `import { execFileSync } from "node:child_process";
+
+// Host agent validates payload via --dry-run, then invokes stateless CLI in --agent-mode
+const dryRun = execFileSync(
+  "gemini-api",
+  ["generate", "Audit API surface", "--model", "gemini-4-hydrogen", "--dry-run", "--output-format", "json"],
+  { encoding: "utf8" }
+);
+console.log("Redacted request preview:", JSON.parse(dryRun));
+
+// Synthesize styled briefing with v0.5.0 SpeechConfig.text_normalization
+const audioPath = execFileSync(
+  "gemini-api",
+  ["tts", "Release v0.5.0 launched November 20, 2026.", "--style", "Crisp briefing", "--out", "./brief.wav"],
+  { encoding: "utf8" }
+).trim();
+console.log("Generated audio artifact:", audioPath);`,
+    pyCode: `import json
+import subprocess
+
+# Launch background managed agent targeting a self-hosted BYOS environment
+proc = subprocess.run(
+    [
+        "gemini-api",
+        "agent",
+        "run",
+        "Run test suite inside self-hosted workspace",
+        "--agent",
+        "antigravity-preview-09-2026",
+        "--background",
+        "--output-format",
+        "json",
+    ],
+    check=True,
+    capture_output=True,
+    text=True,
+)
+interaction = json.loads(proc.stdout)
+print("Leased self-hosted interaction:", interaction["id"])`,
+    simulatedSteps: [
+      {
+        type: 'thought',
+        label: 'step[0] • --schema Introspection & Redacted --dry-run Validation',
+        detail:
+          'Host agent inspected gemini-api generate --schema, validated payload locally with --dry-run (0 network calls, credentials redacted), and selected gemini-4-hydrogen (v0.5.0 default) with thinking_level: "high".',
+      },
+      {
+        type: 'tool_call',
+        label: 'step[1] • Split environments poll / serve Lease-Token Isolation',
+        detail:
+          'Trusted control-plane poller leased interaction over outbound HTTPS POST /v1beta/environments:leaseInteractions and passed a short-lived lt_v1 lease token to an isolated container holding zero API keys.',
+      },
+    ],
+  },
+  {
     id: 'lab-genie-4-world-studio',
     title: 'Genie 4 Interactive World API Studio [SIMULATED DEMO]',
     badge: 'Nov 19, 2026 API GA',
@@ -2584,6 +2667,25 @@ video_turn = client.interactions.create(
 ];
 
 export const INITIAL_SHOWCASE_PROJECTS = [
+  {
+    id: 'showcase-gemini-api-cli-studio',
+    name: 'Gemini API CLI v0.5.0 & BYOS Sandbox Studio [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive developer workbench modeling google-gemini/gemini-api-cli v0.5.0: simulate --agent-mode TOON responses, split environments poll/serve lease-token handoffs, and voices + normalized TTS workflows.',
+    models: ['gemini-4-hydrogen', 'gemini-4-carbon', 'gemini-3.8-flash-tts'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-api-cli-studio.html): [SIMULATED DEMO] Models --dry-run credential redaction, zero-key sandbox lt_v1 lease isolation, and v0.5.0 CLI command assembly.',
+    url: '/labs/gemini-api-cli-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-20T00:49:52Z',
+  },
   {
     id: 'showcase-gemini-genie-4-world-studio',
     name: 'Genie 4 Interactive World API Studio [SIMULATED DEMO]',

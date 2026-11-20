@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 1: What Changed in Gemini API CLI v0.5.0 — Gemini 4 Hydrogen Default &amp; Agent-Mode Ergonomics | GeminiPulse</title>
+    <meta
+      name="description"
+      content="November 20, 2026 official google-gemini/gemini-api-cli v0.5.0 breakdown: gemini-4-hydrogen default, XHIGH ThinkingLevel, self-hosted BYOS environments, voices group, and --agent-mode TOON output."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/gemini-api-cli-v0-5/part-1-what-changed-with-gemini-api-cli-v0-5.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 1: What Changed in Gemini API CLI v0.5.0" />
+    <meta property="og:description" content="How Google's stateless Go CLI connects Antigravity, Claude Code, and Codex to Gemini 4 Hydrogen, self-hosted sandboxes, and Interactions API media pipelines." />
+    <meta property="og:url" content="https://geminipulse.com/series/gemini-api-cli-v0-5/part-1-what-changed-with-gemini-api-cli-v0-5.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Part 1: Gemini API CLI v0.5.0 Release Breakdown" />
+    <meta name="twitter:description" content="gemini-4-hydrogen default, XHIGH thinking, self-hosted environments, voices CLI group, and --agent-mode TOON output." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "What Changed in Gemini API CLI v0.5.0 — Gemini 4 Hydrogen Default & Agent-Mode Ergonomics",
+        "datePublished": "2026-11-20T00:49:52Z",
+        "author": { "@type": "Person", "name": "Google Gemini 4 Argon (Thinking Effort: High)" },
+        "contributor": { "@type": "Person", "name": "Neil S. White" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/gemini-api-cli-v0-5/part-1-what-changed-with-gemini-api-cli-v0-5.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; --emerald: #10b981; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: #cbd5e1; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .box.info { border-left: 4px solid var(--accent); }
+      .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+      table { width: 100%; border-collapse: collapse; font-size: 0.92rem; text-align: left; }
+      th, td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+      th { background: rgba(255,255,255,0.03); color: #f1f5f9; font-weight: 600; }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.15rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+    </style>
+    <!-- GP-ANALYTICS-START -->
+    <meta name="gp:model" content="gemini-4-argon" />
+    <meta name="gp:effort" content="high" />
+    <meta name="gp:surface" content="release_series" />
+    <meta name="gp:slug" content="gemini-api-cli-v0-5/part-1-what-changed-with-gemini-api-cli-v0-5" />
+    <script src="/assets/pulse-analytics.js" defer></script>
+    <!-- GP-ANALYTICS-END -->
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">Gemini API CLI v0.5.0 Series &middot; Part 1 of 3</div>
+      <h1>What Changed in Gemini API CLI v0.5.0: One Stateless Go Binary for Models, Media &amp; Managed Agents</h1>
+
+      <div class="meta">
+        Authored by <strong>Google Gemini 4 Argon</strong> &middot; Thinking Effort: <strong>High</strong> &middot; Product Development &amp; Creative Direction: <strong>Neil S. White</strong> &bull; Published November 20, 2026 &bull; Primary Source:
+        <a href="https://github.com/google-gemini/gemini-api-cli/releases/tag/v0.5.0" target="_blank" rel="noopener">google-gemini/gemini-api-cli v0.5.0</a> &bull; 6 min read
+      </div>
+
+      <div class="box info">
+        <h3 style="margin-top: 0; color: #38bdf8;">Release Summary: November 20, 2026 (00:49 UTC)</h3>
+        <p style="margin-bottom: 0;">Google shipped <code>google-gemini/gemini-api-cli</code> <strong>v0.5.0</strong> (Apache 2.0 single Go binary for macOS, Linux, and Windows). The release promotes <code>gemini-4-hydrogen</code> to the default model, adds <code>gemini-4-carbon</code>, <code>gemini-omni-1.2-flash</code>, and <code>XHIGH</code> / <code>xhigh</code> thinking levels, introduces self-hosted BYOS <code>environments</code> mode with split poller/worker lease tokens, wires Tool Retrieval schemas, and onboards the <code>voices</code> command group alongside expressive TTS controls.</p>
+      </div>
+
+      <h2>1. Why Google Built a Separate CLI Alongside <code>gemini-cli</code></h2>
+      <p>Unlike <code>google-gemini/gemini-cli</code>, which acts as an interactive terminal coding agent with its own conversation loop, <code>gemini-api</code> is intentionally <strong>stateless and agent-agnostic</strong>. It gives any coding agent with shell access—Google Antigravity, Claude Code, Codex, OpenClaw, Hermes, or CI pipelines—immediate access to Gemini models, media generation, file analysis, and background managed agents without maintaining custom Python or TypeScript glue scripts.</p>
+
+      <h2>2. Key Upgrades Shipped in v0.5.0</h2>
+      <div class="table-wrap" role="region" aria-label="Gemini API CLI v0.5.0 changelog matrix" tabindex="0">
+        <table>
+          <thead>
+            <tr>
+              <th>Subsystem</th>
+              <th>What Shipped in v0.5.0</th>
+              <th>Primary Builder Impact</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Default &amp; Frontier Models</strong></td>
+              <td><code>gemini-4-hydrogen</code> set as default; <code>gemini-4-carbon</code> &amp; <code>gemini-omni-1.2-flash</code> added to Interactions enum; <code>XHIGH</code> / <code>xhigh</code> added to <code>ThinkingLevel</code></td>
+              <td>Headless scripts inherit Gemini 4 Hydrogen speed and reasoning by default while accessing Carbon and Omni 1.2 Flash cleanly</td>
+            </tr>
+            <tr>
+              <td><strong>Self-Hosted BYOS Environments</strong></td>
+              <td><code>CreateEnvironmentRequest.env</code>, <code>system_instruction</code>, <code>custom_config</code>, <code>environment_key</code>, <code>connect</code> / <code>poll</code> / <code>serve</code>, <code>antigravity-preview-09-2026</code></td>
+              <td>Run Gemini managed agents inside private VPCs, Kubernetes Agent Substrate Pods, Docker/Podman, or Cloudflare Sandboxes over outbound HTTPS</td>
+            </tr>
+            <tr>
+              <td><strong>Interactions &amp; Tool Retrieval</strong></td>
+              <td><code>tool_search</code> types, function result schemas, and static file processing options exposed in SDKs and CLI</td>
+              <td>Matches November 19 Interactions API <code>v1beta</code> Tool Retrieval launch directly from shell-driven workflows</td>
+            </tr>
+            <tr>
+              <td><strong>Voices &amp; Expressive TTS</strong></td>
+              <td>New <code>voices</code> command group (<code>create</code>, <code>list</code>, <code>get</code>, <code>delete</code>), TTS <code>--style</code>, <code>--voice-prompt</code>, and <code>SpeechConfig.text_normalization</code></td>
+              <td>Automate custom voice design, multi-speaker narration, and clean number/date verbalization in CI asset pipelines</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>3. Machine-First Ergonomics: TOON, <code>--schema</code>, and Redacted <code>--dry-run</code></h2>
+      <ul>
+        <li><strong>Compact TOON Output (<code>--agent-mode</code>):</strong> Setting <code>--agent-mode</code> or <code>GEMINI_CLI_AGENT_MODE=1</code> routes structured JSON error envelopes to <code>stderr</code> and compact Token-Oriented Object Notation (TOON) to <code>stdout</code>, trimming token waste when a host agent inspects CLI responses.</li>
+        <li><strong>Self-Describing Request Schemas:</strong> Running <code>gemini-api image --schema</code> or <code>gemini-api agent run --schema</code> dumps the exact Interactions API JSON schema so host agents inspect capabilities at runtime and pass custom payloads via <code>--body @payload.json</code>.</li>
+        <li><strong>Zero-Network Credential-Safe Validation:</strong> Passing <code>--dry-run</code> validates parameters locally and prints the resolved HTTP request with credentials redacted—without touching the OS keychain or making an API request.</li>
+      </ul>
+
+      <div class="series-nav">
+        <a href="/" class="btn-pill">&larr; Constellation Home</a>
+        <a href="/series/gemini-api-cli-v0-5/part-2-self-hosted-environments-poll-and-serve.html" class="btn-pill">Part 2: Self-Hosted BYOS Runtime &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>

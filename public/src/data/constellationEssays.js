@@ -14,6 +14,238 @@
  */
 
 export const CONSTELLATION_ESSAYS = {
+  'pulse-gemini-api-cli-v0-5-0': {
+    id: 'pulse-gemini-api-cli-v0-5-0',
+    slug: 'gemini-api-cli-v0-5-0-byos-environments',
+    shortStarLabel: 'Gemini API CLI 0.5',
+    readMinutes: '8 MIN READ',
+    authoredByModel: 'Google Gemini 4 Argon',
+    thinkingEffort: 'High',
+    hudTitle: 'Gemini API CLI v0.5.0 Ships Gemini 4 Hydrogen Default & Zero-Key BYOS Sandboxes.',
+    hudSummary:
+      'Released November 20, 2026 (00:49 UTC): google-gemini/gemini-api-cli v0.5.0 makes gemini-4-hydrogen the default, adds split environments poll/serve lease sandboxes, XHIGH thinking, and the voices CLI group.',
+    peekCastor: 'One Binary for Every Agent: <em>Give any shell agent Gemini 4 & BYOS sandboxes.</em>',
+    peekPollux: 'poll + serve & --agent-mode: <em>Zero-key lt_v1 sandboxes & compact TOON stdout.</em>',
+    headline:
+      'One Stateless Binary for Every Coding Agent. <em>Gemini API CLI v0.5.0 Adds Gemini 4 Hydrogen & Zero-Key BYOS Sandboxes.</em>',
+    standfirst:
+      'Coding agents running inside terminals already know how to call shell commands, yet giving them reliable multimodal tools or private execution sandboxes usually meant maintaining brittle wrapper scripts. On November 20, 2026, Google released gemini-api-cli v0.5.0 as a single stateless Go binary linking Antigravity, Claude Code, and Codex to Gemini 4 Hydrogen, split lease-token sandboxes, and custom voices.',
+    pulseCheck: [
+      {
+        stage: 'Gemini 4 Defaults',
+        detail:
+          'Sets gemini-4-hydrogen as the default CLI model across generate and analyze, adds gemini-4-carbon and gemini-omni-1.2-flash to the Interactions Model enum, and ships XHIGH / xhigh ThinkingLevel parity.',
+      },
+      {
+        stage: 'Split BYOS Runtime',
+        detail:
+          'Separates trusted control planes (gemini-api environments poll) from untrusted containers (gemini-api environments serve) over 100% outbound HTTPS using short-lived lt_v1 lease tokens and zero API keys inside sandboxes.',
+      },
+      {
+        stage: 'The Honest Catch',
+        detail:
+          'The CLI remains in beta alongside the Interactions API with external GitHub pull requests closed, and Google warns never to run environments connect directly on a host workstation because execute_bash inherits local user permissions.',
+      },
+    ],
+    castor: {
+      kicker: 'PART I · α CASTOR · AGENT TOOLING & INFRASTRUCTURE STRATEGY LENS',
+      title: 'Why Google Built a Stateless CLI Alongside Gemini CLI',
+      subtitle:
+        'How a single Go binary turns any shell-capable coding agent into a multimodal Gemini client while keeping enterprise secrets outside execution containers.',
+      paragraphs: [
+        'Developer teams often ask why Google maintains two official command-line tools under the same GitHub organization: interactive terminal agent <strong>gemini-cli</strong> and headless utility <strong>gemini-api</strong>. The distinction reflects how software teams actually work today. Many builders already anchor their daily workflow inside Google Antigravity, Claude Code, Codex, OpenClaw, or automated CI runners, yet those host agents still need an uncomplicated bridge to generate images, normalize speech, transcribe recordings, or delegate long research runs.',
+        'Rather than forcing every engineering team to maintain bespoke Python scripts or install Node dependencies inside every project folder, <strong>google-gemini/gemini-api-cli v0.5.0</strong> packages the full Interactions API into a single Apache 2.0 Go binary across macOS, Linux, and Windows. On <strong>November 20, 2026 (00:49 UTC)</strong>, Google upgraded the default model directly to <strong>gemini-4-hydrogen</strong>, added <strong>gemini-4-carbon</strong> and <strong>gemini-omni-1.2-flash</strong> to the Interactions enum, wired <strong>XHIGH</strong> thinking levels, and brought November 19 Tool Retrieval schemas straight to the shell.',
+        'For CTOs and security leads, however, the decisive upgrade in v0.5.0 sits inside the <strong>self-hosted BYOS environments</strong> architecture. Previously, teams wanting Gemini managed agents to run shell commands and inspect repositories had to weigh Google-hosted microVMs against complex custom tunnels. Now, <strong>environments connect</strong>, <strong>poll</strong>, and <strong>serve</strong> operate entirely over outbound HTTPS polling, eliminating inbound firewall openings while providing copy-paste deployment recipes for Docker, rootless Podman, Cloud Run, Kubernetes Agent Substrate Pods, and Cloudflare Sandboxes.',
+        'The release also widens media automation for product teams by onboarding the <strong>voices</strong> command group and expressive TTS controls (<code>--style</code>, <code>--voice-prompt</code>, and <code>SpeechConfig.text_normalization</code>). Still, leaders must note the explicit boundary conditions in Google’s release posture: the binary is marked beta, external PRs are not accepted, and running self-hosted workers directly on a bare developer laptop exposes host files to <code>execute_bash</code> unless wrapped inside an isolated container or microVM.',
+      ],
+      pullquote: {
+        quote:
+          'Your host agent plans the build; a stateless single-file Go binary handles Gemini 4 inference, media assets, and zero-key sandbox execution without leaking credentials.',
+        attribution: 'GOOGLE GEMINI 4 ARGON · α CASTOR SYNTHESIS OF GEMINI-API-CLI v0.5.0',
+      },
+      comparisonTable: {
+        id: 'gemini-api-cli-execution-topologies',
+        caption: 'Gemini API CLI v0.5.0 Self-Hosted & Agent Execution Topologies (Official Docs, Nov 20, 2026)',
+        columns: ['Execution Mode', 'Credentials Held by Worker', 'Network & Isolation Posture', 'Best Production Fit'],
+        rows: [
+          [
+            'Stateless Host Tooling (generate / image / tts)',
+            'GEMINI_API_KEY in OS keychain or host env',
+            'Direct outbound HTTPS with --dry-run redaction',
+            'Antigravity, Claude Code, Codex, and CI asset scripts',
+          ],
+          [
+            'Single-Worker BYOS (environments connect)',
+            'Scoped GEMINI_ENVIRONMENT_KEY only',
+            '100% outbound HTTPS; confined to --root-dir & --workdir',
+            'Cloud Run jobs, Cloudflare Sandboxes, Modal, E2B, Docker',
+          ],
+          [
+            'Split Control Plane (environments poll + serve)',
+            'ZERO API keys inside sandbox (lt_v1 lease token only)',
+            'Poller holds key & heartbeats; ephemeral Pod runs serve',
+            'Multi-tenant Kubernetes Agent Substrate & untrusted code',
+          ],
+          [
+            'Local Workstation (docs/self-hosted/local)',
+            'GEMINI_ENVIRONMENT_KEY on local host',
+            'Unsafe host exposure via execute_bash permissions',
+            'Short throwaway smoke tests only (never production)',
+          ],
+        ],
+      },
+      adaptiveQuestions: [
+        {
+          lensTag: 'FOR PLATFORM & SECURITY LEADS',
+          question: 'How does split poll/serve keep our GEMINI_API_KEY out of untrusted sandboxes?',
+          answer:
+            'Only the trusted control-plane poller holds GEMINI_API_KEY or GEMINI_ENVIRONMENT_KEY. When an interaction arrives on POST /v1beta/environments:leaseInteractions, the poller spawns an isolated container via --provision-cmd and passes only an interaction-scoped, short-lived lt_v1 lease token to gemini-api environments serve.',
+        },
+        {
+          lensTag: 'FOR DEVELOPER EXPERIENCE TEAMS',
+          question: 'Why ship gemini-api alongside gemini-cli instead of adding flags to one binary?',
+          answer:
+            'gemini-cli is an interactive terminal coding agent with its own session loop, whereas gemini-api is intentionally stateless. Any external agent—including Antigravity, Codex, or CI pipelines—can invoke gemini-api independently via exit codes, --schema introspection, and compact TOON output without session lock-in.',
+        },
+        {
+          lensTag: 'FOR MEDIA & CONTENT TEAMS',
+          question: 'What changed for audio and voice generation in v0.5.0?',
+          answer:
+            'v0.5.0 introduces the top-level voices subcommand group (create, list, get, delete) for designing and managing custom voices, plus TTS --style, --voice-prompt, and SpeechConfig.text_normalization so version strings, dates, and SKUs pronounce cleanly on gemini-3.8-flash-tts.',
+        },
+      ],
+    },
+    pollux: {
+      kicker: 'PART II · β POLLUX · --AGENT-MODE TOON, LEASE TOKENS & @GOOGLE/GENAI v3.x',
+      title: 'Inside --agent-mode TOON Compression, --schema Introspection & Split Lease Handoffs',
+      subtitle:
+        'How host agents save stdout tokens, prevent accidental credential reads via --dry-run, and dispatch self-hosted interactions from TypeScript.',
+      paragraphs: [
+        'Traditional CLIs waste host agent context windows twice: once when dumping verbose prose help text, and again when printing multi-kilobyte indented JSON envelopes. Passing <code>--agent-mode</code> (or setting <code>GEMINI_CLI_AGENT_MODE=1</code>) switches <code>stderr</code> to deterministic JSON error envelopes and defaults <code>stdout</code> to compact <strong>TOON (Token-Oriented Object Notation)</strong>, cutting boilerplate punctuation while preserving exact fields for inline <code>--jq</code> extraction and semantic exit codes (<code>0</code> success, <code>1</code> runtime failure, <code>2</code> validation error, <code>3</code> auth failure).',
+        'For complex payloads, host agents no longer guess flag names from stale training weights. Every command exposes <code>--usage</code> and <code>--schema</code> (for example <code>gemini-api image --schema</code>), returning the live Interactions API schema so an agent can author a tailored JSON payload, verify headers offline with <code>--dry-run --output-format json</code> (which redacts credentials and never opens the OS keychain), and execute with <code>--body @payload.json</code>.',
+        'On the infrastructure side, <strong>v0.5.0</strong> pairs <code>CreateEnvironmentRequest.env</code> and <code>custom_config</code> with the updated <code>antigravity-preview-09-2026</code> self-hosted agent runtime. Your control plane calls <code>ai.environments.create({ mode: "self_hosted" })</code> (or <code>gemini-api environments create</code>), runs <code>environments poll --provision-cmd</code> to emit a <code>v1</code> JSON handoff on <code>stdin</code> while maintaining background lease heartbeats, and lets ephemeral containers execute <code>execute_bash</code>, <code>read_file</code>, and <code>edit_file</code> confined to <code>--root-dir</code>.',
+      ],
+      builderRules: [
+        {
+          label: '01 · Require --stream=false or --background in Shell Pipelines',
+          detail:
+            'Streaming commands like generate and agent run emit SSE chunks by default; pass --stream=false --output-format json or --background --jq ".id" whenever scripts parse discrete JSON.',
+        },
+        {
+          label: '02 · Use --dry-run Before Every Automated --body Dispatch',
+          detail:
+            'Validate JSON payloads offline with --dry-run; it checks schema structure and prints the redacted HTTP request without reading OS keychain credentials or touching the network.',
+        },
+        {
+          label: '03 · Prefer Split poll + serve Over Host-Level environments connect',
+          detail:
+            'Run environments poll on a trusted control plane and pass only the lt_v1 lease token into ephemeral containers or Cloudflare Sandboxes running environments serve.',
+        },
+      ],
+      codeCaption: 'SELF-HOSTED BYOS ENVIRONMENT DISPATCH + CLI v0.5.0 ORCHESTRATION (@google/genai)',
+      codeSnippet: `import { GoogleGenAI } from "@google/genai";
+import { execFileSync } from "node:child_process";
+
+const ai = new GoogleGenAI({ httpOptions: { apiVersion: "v1beta" } });
+
+// 1. Provision a self-hosted BYOS environment (store environment_key once securely)
+const env = await ai.environments.create({
+  mode: "self_hosted",
+  custom_config: { template: "node-22-ci", egress_policy: "strict" },
+});
+
+// 2. Host agent inspects live schema & validates payload offline via --dry-run
+const dryRunPreview = execFileSync(
+  "gemini-api",
+  [
+    "generate",
+    "Summarize migration risks across worker routes.",
+    "--model",
+    "gemini-4-hydrogen",
+    "--dry-run",
+    "--output-format",
+    "json",
+  ],
+  { encoding: "utf8" }
+);
+console.log("Validated request without network call:", JSON.parse(dryRunPreview).method);
+
+// 3. Dispatch a background Gemini 4 Carbon interaction inside the leased BYOS environment
+const interaction = await ai.interactions.create({
+  model: "gemini-4-carbon",
+  environment: env.id,
+  thinking_level: "xhigh",
+  input: "Run unit tests inside /workspace and report any failing assertions.",
+});
+console.log("Dispatched interaction:", interaction.id);`,
+      workbench: {
+        title: 'Gemini API CLI v0.5.0 Mode & Security Explorer',
+        subtitle: 'Inspect verified --agent-mode flags, split BYOS lease handoffs, and v0.5.0 defaults.',
+        dek: 'Cycle through the three verified CLI v0.5.0 dimensions below, or launch our interactive CLI & BYOS Studio [SIMULATED DEMO].',
+        presets: [
+          {
+            label: '1. MODEL & FLAG DEFAULTS',
+            k1: 'Default CLI Model',
+            v1: 'gemini-4-hydrogen (plus gemini-4-carbon, gemini-omni-1.2-flash & XHIGH enum)',
+            k2: 'Agent Machine Mode',
+            v2: '--agent-mode (GEMINI_CLI_AGENT_MODE=1) outputs compact TOON stdout + JSON stderr',
+            k3: 'Zero-Network Dry Run',
+            v3: '--dry-run validates --body payloads and redacts secrets without OS keychain access',
+          },
+          {
+            label: '2. SPLIT BYOS SANDBOX',
+            k1: 'Control Plane Poller',
+            v1: 'gemini-api environments poll maintains lease heartbeats and pipes v1 JSON to stdin',
+            k2: 'Zero-Key Sandbox',
+            v2: 'gemini-api environments serve attaches using only short-lived lt_v1 --lease-token',
+            k3: 'Built-In Tool Scope',
+            v3: 'execute_bash, read_file, write_file, edit_file & grep_search confined to --root-dir',
+          },
+          {
+            label: '3. VOICES & TOOL SEARCH',
+            k1: 'Voices Command Group',
+            v1: 'gemini-api voices create | list | get | delete for custom voice workflows',
+            k2: 'Expressive TTS Flags',
+            v2: 'tts --style, --voice-prompt & SpeechConfig.text_normalization on gemini-3.8-flash-tts',
+            k3: 'Interactions Parity',
+            v3: 'v0.5.0 exposes tool_search, function result schemas & static file processing options',
+          },
+        ],
+      },
+    },
+    verdict: {
+      title: 'Argon’s Bottom Line: Adopt gemini-api v0.5.0 as Your Agent Shell Bridge—Never as a Bare-Metal Sandbox',
+      subtitle:
+        'A stateless Go binary removes bespoke SDK boilerplate across every coding agent, provided BYOS workers stay inside isolated containers.',
+      paragraphs: [
+        '<strong>Why this matters today:</strong> teams running multiple coding agents or CI jobs gain one self-describing binary with <code>gemini-4-hydrogen</code> defaults, <code>XHIGH</code> thinking support, expressive TTS <code>voices</code>, and compact TOON responses—backed by credential-redacted <code>--dry-run</code> checks.',
+        '<strong>Explore the companion deep dive:</strong> read our 3-part Gemini API CLI v0.5.0 series under <code>/series/gemini-api-cli-v0-5/part-1-what-changed-with-gemini-api-cli-v0-5.html</code> or test split <code>poll</code>/<code>serve</code> handoffs interactively inside Gemini API CLI &amp; BYOS Sandbox Studio [SIMULATED DEMO] at <code>/labs/gemini-api-cli-studio.html</code>.',
+      ],
+      sources: [
+        {
+          role: 'Official Google GitHub Release',
+          label: 'google-gemini/gemini-api-cli v0.5.0 Release Notes',
+          author: 'Google Gemini API Team',
+          date: 'November 20, 2026',
+          url: 'https://github.com/google-gemini/gemini-api-cli/releases/tag/v0.5.0',
+        },
+        {
+          role: 'Official Repository Documentation',
+          label: 'Gemini API CLI (gemini-api) README & Agent Discovery Guide',
+          author: 'Google LLC (Apache 2.0)',
+          date: 'November 20, 2026',
+          url: 'https://github.com/google-gemini/gemini-api-cli',
+        },
+        {
+          role: 'Official Self-Hosted Architecture Docs',
+          label: 'Gemini API Managed Agents — Self-Hosted Environments (connect, poll & serve)',
+          author: 'Google LLC',
+          date: 'November 20, 2026',
+          url: 'https://github.com/google-gemini/gemini-api-cli/blob/main/docs/self-hosted/README.md',
+        },
+      ],
+    },
+  },
   'pulse-gemini-api-tool-retrieval-preview': {
     id: 'pulse-gemini-api-tool-retrieval-preview',
     slug: 'gemini-api-tool-retrieval-interactions-preview',
