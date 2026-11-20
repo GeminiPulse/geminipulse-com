@@ -1267,8 +1267,12 @@ function renderMajorStarsSvg(stars, initStarKey = 'castor') {
       const isActive = m.key === initStarKey ? 'true' : 'false';
       const nodeClass = m.twin === 'castor' ? 'star-node-castor' : 'star-node-pollux';
       const coreClass = m.twin === 'castor' ? 'star-core-castor' : 'star-core-pollux';
+      const visiblePrefix =
+        isActive === 'true'
+          ? `${m.greek} ${m.starName.toUpperCase()} ${s.shortLabel} ${m.idx} · ${s.dates.upperShort.replace(', 2026', '')} · ${m.lyDisplay} LY`
+          : `${m.greek} ${m.starName.toUpperCase()} ${s.shortLabel} ${m.lyDisplay} LY`;
       const ariaLabel = escapeHtml(
-        `${m.greek} ${m.starName.toUpperCase()} ${s.shortLabel} — ${m.ariaStar} (${s.dates.titleShort}): Click to focus or click twice to read Gemini's essay`
+        `${visiblePrefix} — ${m.ariaStar} (${s.dates.titleShort}): Click to focus or click twice to read Gemini's essay`
       );
 
       if (m.side === 'left') {
@@ -2839,7 +2843,7 @@ export async function syncConstellation() {
     .map((s) => {
       const m = s.meta;
       const ariaCur = m.key === 'castor' ? 'step' : 'false';
-      return `        <button type="button" class="cpn-step" data-chain-type="${m.twin}" data-select-star="${m.key}" aria-current="${ariaCur}" aria-label="${m.idx} ${m.ariaStar}: ${escapeHtml(s.shortLabel)}">
+      return `        <button type="button" class="cpn-step" data-chain-type="${m.twin}" data-select-star="${m.key}" aria-current="${ariaCur}" aria-label="${m.idx} · ${m.greek} ${m.starName} (${m.ariaStar}): ${escapeHtml(s.shortLabel)}">
           <span class="cpn-step-dot" aria-hidden="true"></span>
           <span class="cpn-step-label">${m.idx}<span class="cpn-step-name"> · <span class="greek">${m.greek}</span> ${m.starName}</span></span>
         </button>`;
@@ -2904,8 +2908,8 @@ ${cpnStepsHtml}
       </div>
 
       <div class="cpn-arrows">
-        <button type="button" class="cpn-arrow-btn" id="prev-star-btn" aria-label="Previous Star">← Prev</button>
-        <button type="button" class="cpn-arrow-btn" id="next-star-btn" aria-label="Next Star">Next Star →</button>
+        <button type="button" class="cpn-arrow-btn" id="prev-star-btn" aria-label="Prev — Previous Star">← Prev</button>
+        <button type="button" class="cpn-arrow-btn" id="next-star-btn" aria-label="Next Star →">Next Star →</button>
       </div>
     </nav>
 
@@ -3000,7 +3004,7 @@ ${renderSanctuaryEssayInnerHtml(s0.essay, { standalone: false })}
   const searchHeaderHtml = `    <div class="cs-top-header">
       <div class="cs-eyebrow-row">
         <span id="celestial-search-title">✦ CELESTIAL OBSERVATORY SEARCH &amp; COMMAND PALETTE · 8 STARS · 32 CHAPTERS · ${totalLabCount} ESSAYS, LABS &amp; ARCHIVES</span>
-        <button type="button" class="cs-close-pill" id="close-search-btn" aria-label="Close Search Dialog">ESC · CLOSE ×</button>
+        <button type="button" class="cs-close-pill" id="close-search-btn" aria-label="ESC · CLOSE × — Close Search Dialog">ESC · CLOSE ×</button>
       </div>
 
       <search aria-label="Search the Gemini Constellation, Dual-Lens Essays, and Interactive Labs">
