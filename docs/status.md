@@ -1,6 +1,6 @@
 # GeminiPulse.com — Session Status & Claude Registry Sync (`docs/status.md`)
 
-- **Last Updated:** `2026-11-21 08:53 EST (ROUND 51 CURATION — 8:45 AM ET DEEPMIND LONDON WINDOW: Curated Deferred Service Tier GA across Gemini Interactions API, ADK Python v2.10.0+ RunConfig, and Deep Research [50% PayGo savings stacking with caching, $0 cancelled/expired/failed turns, 95% <24h target, 7-day state retention, locations/global exclusivity], Google Research's Nov 20 architecture retrospective on Duplex evolving into Gemini 4 Hydrogen/Neon phone calling inside Tasks in Gemini, and Gemini Enterprise GA promotion of 70+ third-party data stores; authored today's single Dual-Lens Flagship Essay in constellationEssays.js [Star 02 ε Mebsuta], 3-part series under /series/gemini-deferred-service-tier/*, and interactive lab /labs/gemini-deferred-tier-studio.html [SIMULATED DEMO])`
+- **Last Updated:** `2026-11-21 17:50 EST (ROUND 52 CURATION — 5:45 PM ET WEST COAST SDK & YOUTUBE WINDOW: Verified primary Google blogs, changelogs, and GitHub SDK/CLI releases remain unchanged since Round 51; promoted Google Cloud Tech's Nov 21 official Build It video "From prototype to real Firebase backend (no code)" [0aUIWT6W_oU, HTTP 200 oEmbed verified, 2026-11-21T16:00:29Z] showcasing Google Antigravity workspace skills + Gemini + Firebase Auth/Firestore to Featured Video of the Day in GEMINI_VIDEO_SHOWCASE, and logged full primary-source verification in docs/daily-telemetry-report.md without adding filler feed items or duplicating today's Star 02 Flagship Essay)`
 - **Repository:** `https://github.com/GeminiPulse/geminipulse-com` (**PUBLIC** — `origin` remote only; `agile` remote untouched)
 - **Active Branch:** `v2.0` (Set as default branch on GitHub)
 - **Primary Production URL:** **`https://geminipulse.com`** (`HTTP/2 200`, Google-managed SSL active; `https://www.geminipulse.com` -> `301` redirect to `https://geminipulse.com/`)
@@ -13,7 +13,16 @@
 
 ---
 
-## 0. Completed & Live on `v2.0` (2026-11-21 08:53 AM ET — Round 51 Curation: Deferred Service Tier GA, Duplex-to-Gemini 4 Telephony & 70+ Enterprise Data Stores GA)
+## 0. Completed & Live on `v2.0` (2026-11-21 05:50 PM ET — Round 52 Curation: Nov 21 Featured Google Cloud Tech Antigravity + Firebase Video & Primary Source Verification)
+
+- **Official Google YouTube Showcase Curation (Nov 21, 2026 5:45 PM ET Window):**
+  - **Featured Video of the Day (`GEMINI_VIDEO_SHOWCASE`, HTTP 200 oEmbed verified):** Promoted `@googlecloudtech`'s Nov 21, 2026 `Build It` episode **`From prototype to real Firebase backend (no code)`** (`0aUIWT6W_oU`, `2026-11-21T16:00:29Z`, Devin Chasanoff) to `featuredOfTheDay: true` (set Nov 20 `WN-JK-hMAyg` to `featuredOfTheDay: false`), spotlighting Google Antigravity workspace skills + Gemini guiding live Firebase project setup, email/Google Sign-In, Cloud Firestore security rules, and persistent AI coach storage.
+  - **Primary Release & Zero-Filler Check:** Verified `blog.google`, `deepmind.google`, `ai.google.dev/gemini-api/docs/changelog`, `developers.googleblog.com`, `research.google/blog/`, `docs.cloud.google.com`, `googleapis/js-genai` (`v3.6.1`), `googleapis/python-genai` (`v3.6.1`), `google-gemini/gemini-api-cli` (`v0.5.0`), and `google/adk-python` (`v2.15.0`) published no new releases since Round 51; preserved Round 51's single daily Dual-Lens Flagship Essay (`Star 02 ε Mebsuta` — Deferred Service Tier GA) and logged verification results in `docs/daily-telemetry-report.md` Section `0e`.
+- **Pending Operator Decisions:** See `🚨 NEIL — DECISION NEEDED` below (Post `#001` Social Launch + optional 3-min Analytics Key).
+
+---
+
+## 0-prev17. Completed & Live on `v2.0` (2026-11-21 08:53 AM ET — Round 51 Curation: Deferred Service Tier GA, Duplex-to-Gemini 4 Telephony & 70+ Enterprise Data Stores GA)
 
 - **Official Google Primary Release Curation (Nov 21, 2026 8:45 AM ET DeepMind London Window):**
   - **Deferred Service Tier GA (`docs.cloud.google.com/gemini-enterprise-agent-platform/models/deferred-tier` [updated 2026-11-20 UTC], `cloud.google.com/blog/topics/inside-google-cloud/whats-new-google-cloud`, `adk.dev/agents/models/google-gemini/deferred-schedule/`):** Curated `service_tier="deferred"` GA across Interactions API, ADK Python v2.10.0+ (`RunConfig(service_tier=ServiceTier.DEFERRED)`), and Deep Research (`gemini-deep-research-1.0`)—delivering 50% off Standard PayGo stacking with implicit caching, $0 charges on cancelled/expired/failed turns, 95% completion within 24h, 7-day state retention via `previous_interaction_id`, and exclusive `locations/global` enforcement (`background=true`, `store=true`; regional/us/eu or `store=false` returns `HTTP 400 invalid_request`). Added to `PULSE_INTELLIGENCE_FEED`, authored Star 02 (`ε Mebsuta`) Dual-Lens Flagship Essay in `CONSTELLATION_ESSAYS` (`/articles/gemini-deferred-service-tier-ga.html`), published 3-part series (`/series/gemini-deferred-service-tier/*`), and built `/labs/gemini-deferred-tier-studio.html` `[SIMULATED DEMO]` (wired into `STUDIO_LAB_BLUEPRINTS`, `INITIAL_SHOWCASE_PROJECTS`, `sitemap.xml`, and `feed.xml`).

@@ -5117,11 +5117,28 @@ export const GET_STARTED_WITH_GEMINI_TRACKS = [
 
 export const GEMINI_VIDEO_SHOWCASE = [
   {
+    id: 'vid-google-cloud-antigravity-firebase-nocode',
+    videoId: '0aUIWT6W_oU',
+    featuredOfTheDay: true,
+    category: 'Antigravity & Firebase Backend',
+    badge: 'FEATURED VIDEO OF THE DAY • GOOGLE CLOUD TECH',
+    title: 'From prototype to real Firebase backend (no code)',
+    creatorName: 'Google Cloud Tech',
+    creatorHandle: '@googlecloudtech',
+    creatorUrl: 'https://www.youtube.com/@googlecloudtech',
+    watchUrl: 'https://www.youtube.com/watch?v=0aUIWT6W_oU',
+    thumbnailUrl: 'https://i.ytimg.com/vi/0aUIWT6W_oU/hqdefault.jpg',
+    geminiSummary:
+      'Published November 21, 2026 (16:00 UTC) by Google Cloud Tech (Devin Chasanoff, Build It)—using workspace skills and Gemini inside Google Antigravity to wire a prototype app to a live Firebase project, email and Google Sign-In, Cloud Firestore security rules, seeded exercise data, and persistent AI coach plans without manual backend boilerplate.',
+    whyFeatured:
+      'Verified HTTP 200 Nov 21 Google Cloud Tech walkthrough uniting Google Antigravity workspace skills, Gemini, Firebase Auth, and Cloud Firestore end-to-end.',
+  },
+  {
     id: 'vid-google-devs-antigravity-midi-3d-world',
     videoId: 'WN-JK-hMAyg',
-    featuredOfTheDay: true,
+    featuredOfTheDay: false,
     category: 'Creative Coding & 3D Worlds',
-    badge: 'FEATURED VIDEO OF THE DAY • GOOGLE FOR DEVELOPERS',
+    badge: 'OFFICIAL CREATIVE BUILD • GOOGLE FOR DEVELOPERS',
     title: 'Google Antigravity and Gemini 4: Creating an interactive MIDI mapped 3D world',
     creatorName: 'Google for Developers',
     creatorHandle: '@GoogleDevelopers',
