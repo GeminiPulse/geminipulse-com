@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deferred Service Tier Studio [SIMULATED DEMO] | Agile Labs</title>
+    <meta
+      name="description"
+      content="Interactive [SIMULATED DEMO] developer workbench modeling Google Cloud's GA Deferred Service Tier (service_tier='deferred') across Interactions API v1, ADK RunConfig, 50% batch economics, and global endpoint constraints."
+    />
+    <link rel="canonical" href="https://geminipulse.com/labs/gemini-deferred-tier-studio.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Deferred Service Tier Studio [SIMULATED DEMO]" />
+    <meta property="og:description" content="Simulate 50% PayGo savings, global endpoint guardrails, ADK RunConfig toggles, and multi-turn Interactions polling locally in your browser." />
+    <meta property="og:url" content="https://geminipulse.com/labs/gemini-deferred-tier-studio.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Deferred Service Tier Studio [SIMULATED DEMO]",
+        "url": "https://geminipulse.com/labs/gemini-deferred-tier-studio.html",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "All",
+        "creator": { "@type": "Organization", "name": "Agile Labs (via GeminiPulse.com)" },
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      }
+    </script>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #07090e;
+        --surface: #111622;
+        --surface-high: #182030;
+        --border: rgba(255, 255, 255, 0.1);
+        --text: #f3f5fb;
+        --muted: #9da4b8;
+        --accent: #38bdf8;
+        --success: #34d399;
+        --warning: #fbbf24;
+        --danger: #f87171;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+      .wrap { max-width: 1080px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .badge-sim {
+        display: inline-block;
+        font-family: ui-monospace, Menlo, monospace;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        padding: 0.25rem 0.65rem;
+        border-radius: 9999px;
+        background: rgba(245, 158, 11, 0.15);
+        color: #fbbf24;
+        border: 1px solid rgba(245, 158, 11, 0.35);
+        text-transform: uppercase;
+      }
+      .header-title { font-size: clamp(1.55rem, 3.2vw, 2.25rem); font-weight: 800; margin: 0.6rem 0 0.3rem; line-height: 1.2; }
+      .header-sub { font-size: 1rem; color: var(--muted); margin: 0 0 1.5rem; }
+      .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.25rem;
+        min-inline-size: 0;
+      }
+      @media (max-width: 820px) {
+        .grid-2 { grid-template-columns: minmax(0, 1fr); }
+      }
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+        padding: 1.25rem;
+        min-inline-size: 0;
+      }
+      .card-title { font-size: 1.05rem; font-weight: 700; margin: 0 0 0.85rem; color: #f8fafc; }
+      .preset-btn {
+        display: block;
+        width: 100%;
+        text-align: left;
+        background: var(--surface-high);
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        padding: 0.75rem 0.9rem;
+        margin-bottom: 0.6rem;
+        color: var(--text);
+        cursor: pointer;
+        font-family: inherit;
+      }
+      .preset-btn.active {
+        border-color: var(--accent);
+        background: rgba(56, 189, 248, 0.12);
+      }
+      .preset-title { display: block; font-size: 0.9rem; font-weight: 600; }
+      .preset-meta { display: block; font-size: 0.78rem; color: var(--muted); margin-top: 0.15rem; }
+      select, input[type="range"] {
+        width: 100%;
+        background: var(--surface-high);
+        color: var(--text);
+        border: 1px solid var(--border);
+        border-radius: 0.6rem;
+        padding: 0.55rem 0.75rem;
+        font-size: 0.88rem;
+      }
+      .metric-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.65rem;
+        margin-bottom: 0.9rem;
+      }
+      @media (max-width: 540px) {
+        .metric-grid { grid-template-columns: minmax(0, 1fr); }
+      }
+      .metric-box {
+        background: var(--surface-high);
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        padding: 0.65rem 0.8rem;
+      }
+      .metric-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+      .metric-val { font-size: 0.98rem; font-weight: 700; margin-top: 0.15rem; color: var(--success); }
+      .metric-val.denied { color: var(--danger); }
+      .metric-val.flagged { color: var(--warning); }
+      .log-box {
+        background: #04070d;
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        padding: 0.9rem;
+        font-family: ui-monospace, Menlo, Consolas, monospace;
+        font-size: 0.8rem;
+        line-height: 1.55;
+        color: #cbd5e1;
+        white-space: pre-wrap;
+        word-break: break-word;
+        min-height: 180px;
+      }
+      pre {
+        background: #04070d;
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        padding: 0.9rem;
+        overflow-x: auto;
+        max-width: 100%;
+        font-family: ui-monospace, Menlo, Consolas, monospace;
+        font-size: 0.82rem;
+        color: #e2e8f0;
+        margin: 0.75rem 0 0;
+      }
+    </style>
+    <!-- GP-ANALYTICS-START -->
+    <meta name="gp:model" content="gemini-4-argon" />
+    <meta name="gp:effort" content="high" />
+    <meta name="gp:surface" content="interactive_lab" />
+    <meta name="gp:slug" content="gemini-deferred-tier-studio" />
+    <script src="/assets/pulse-analytics.js" defer></script>
+    <!-- GP-ANALYTICS-END -->
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+        <a href="/series/gemini-deferred-service-tier/part-1-deferred-tier-interactions-ga.html" style="font-size: 0.85rem;">Read 3-Part Series &rarr;</a>
+      </div>
+
+      <span class="badge-sim">[SIMULATED DEMO] &middot; GEMINI DEFERRED SERVICE TIER GA</span>
+      <h1 class="header-title">Deferred Service Tier &amp; Multi-Turn Queue Studio</h1>
+      <p class="header-sub">
+        Model Google Cloud's GA Deferred tier (<code>service_tier="deferred"</code>) across Interactions API v1, ADK Python v2.10.0+ <code>RunConfig</code>, global endpoint validation, and 50% batch economics locally in your browser.
+      </p>
+
+      <div class="grid-2">
+        <section class="card" aria-label="Workload scenario selector">
+          <h2 class="card-title">1. Choose Agent Workload &amp; Endpoint Posture</h2>
+          <button type="button" class="preset-btn active" data-scenario="global-chain">
+            <span class="preset-title">Scenario A &middot; Global Multi-Turn Security Scan (50% Off)</span>
+            <span class="preset-meta">locations/global + background=true + store=true + previous_interaction_id</span>
+          </button>
+          <button type="button" class="preset-btn" data-scenario="requires-action">
+            <span class="preset-title">Scenario B &middot; Tool Handoff (requires_action &rarr; completed)</span>
+            <span class="preset-meta">Model pauses for local tool execution, then resumes with warm context</span>
+          </button>
+          <button type="button" class="preset-btn" data-scenario="regional-400">
+            <span class="preset-title">Scenario C &middot; Regional Endpoint or store=false Guard (HTTP 400)</span>
+            <span class="preset-meta">Sending deferred tier to us/eu or enforcing zero storage fails fast</span>
+          </button>
+          <button type="button" class="preset-btn" data-scenario="cancelled-zero">
+            <span class="preset-title">Scenario D &middot; Cancelled / Expired Turn ($0.00 Billed)</span>
+            <span class="preset-meta">Aborted queued work incurs zero token fees; final turns return 409</span>
+          </button>
+
+          <label for="turn-slider" style="display: block; font-size: 0.8rem; color: var(--muted); margin: 0.85rem 0 0.35rem;">
+            Simulated Nightly Agent Turns: <strong id="turn-count-label">120 turns</strong>
+          </label>
+          <input id="turn-slider" type="range" min="20" max="500" step="20" value="120" />
+        </section>
+
+        <section class="card" aria-label="Simulated queue and cost output">
+          <h2 class="card-title">2. Queue State, Endpoint Check &amp; Savings Output</h2>
+          <div class="metric-grid">
+            <div class="metric-box">
+              <div class="metric-label">API Outcome</div>
+              <div class="metric-val" id="m-status">COMPLETED</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-label">Cost Multiplier</div>
+              <div class="metric-val" id="m-cost" style="color: var(--accent);">50% PayGo</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-label">Target Window</div>
+              <div class="metric-val" id="m-window" style="color: var(--text);">95% &lt; 24h</div>
+            </div>
+          </div>
+          <div class="log-box" id="sim-log"></div>
+        </section>
+      </div>
+
+      <section class="card" style="margin-top: 1.25rem;" aria-label="Verified SDK and CLI Blueprints">
+        <h2 class="card-title">3. Verified Interactions API &amp; ADK Blueprints</h2>
+        <label for="code-select" style="display: block; font-size: 0.8rem; color: var(--muted); margin-bottom: 0.35rem;">
+          Select Reference Snippet
+        </label>
+        <select id="code-select">
+          <option value="ts">@google/genai TypeScript (locations/global + polling)</option>
+          <option value="adk">ADK Python v2.10.0+ (RunConfig ServiceTier.DEFERRED)</option>
+          <option value="rest">REST curl (aiplatform.googleapis.com/v1/projects/.../locations/global)</option>
+        </select>
+        <pre><code id="code-view"></code></pre>
+      </section>
+    </div>
+
+    <script>
+      const SCENARIOS = {
+        'global-chain': {
+          status: 'COMPLETED',
+          statusClass: '',
+          cost: '50% PayGo',
+          windowLabel: '95% < 24h',
+          log: (turns) => {
+            const std = (turns * 0.42).toFixed(2);
+            const def = (turns * 0.21).toFixed(2);
+            return `[POST] https://aiplatform.googleapis.com/v1/projects/PROJECT_ID/locations/global/interactions
+[CONFIG] model="gemini-4-argon" | service_tier="deferred" | background=true | store=true
+[QUEUE] queued -> in_progress -> completed (0 peak-hour 429 errors)
+[STATE] 7-day retention active; previous_interaction_id chained across ${turns} turns
+[ECONOMICS] Standard PayGo est: $${std} -> Deferred Tier est: $${def} (50% savings + implicit cache eligible)`;
+          },
+        },
+        'requires-action': {
+          status: 'REQUIRES_ACTION',
+          statusClass: 'flagged',
+          cost: '50% PayGo',
+          windowLabel: '7d Retention',
+          log: (turns) => `[TURN 1] status="requires_action" -> model emitted function_call(scan_dependencies)
+[LOCAL EXECUTION] Worker ran dependency check and returned structured JSON tool output
+[TURN 2] interactions.create(previous_interaction_id=turn1.id, service_tier="deferred", background=true, store=true)
+[RULE] Resent tools + system_instruction explicitly (turn-scoped fields do not auto-carry)
+[BATCH IMPACT] ${turns} stateful tool turns queued at 50% off without static JSONL input files`,
+        },
+        'regional-400': {
+          status: 'HTTP 400',
+          statusClass: 'denied',
+          cost: '$0.00 (Rejected)',
+          windowLabel: 'Fail-Fast',
+          log: () => `[REQUEST] location="us-central1" OR store=false OR stream=true on create
+[RESPONSE] HTTP 400 { "error": { "code": "invalid_request" } }
+[FIX 1] Set location="global" (locations/global on aiplatform.googleapis.com only)
+[FIX 2] Require background=true and store=true (disableAPIStorage org policy incompatible)
+[FIX 3] Omit stream=true on interactions.create; attach SSE only after status="in_progress"`,
+        },
+        'cancelled-zero': {
+          status: 'CANCELLED ($0)',
+          statusClass: 'flagged',
+          cost: '$0.00 Billed',
+          windowLabel: 'Pre-Final Cancel',
+          log: () => `[CHECK] interactions.get(id) -> status="queued"
+[ACTION] POST .../interactions/INTERACTION_ID:cancel
+[BILLING] Cancelled, expired, and failed turns incur $0.00 token charges
+[GUARDRAIL] Calling cancel on a final turn (completed/failed/requires_action) returns HTTP 409 aborted`,
+        },
+      };
+
+      const SNIPPETS = {
+        ts: `import { GoogleGenAI } from "@google/genai";
+
+const ai = new GoogleGenAI({
+  enterprise: true,
+  project: process.env.GOOGLE_CLOUD_PROJECT,
+  location: "global",
+});
+
+const created = await ai.interactions.create({
+  model: "gemini-4-argon",
+  input: "Audit service-to-service auth boundaries across the billing repository.",
+  service_tier: "deferred",
+  background: true,
+  store: true,
+});
+
+let current = await ai.interactions.get(created.id);
+let delayMs = 5000;
+while (current.status === "queued" || current.status === "in_progress") {
+  await new Promise((r) => setTimeout(r, delayMs));
+  delayMs = Math.min(delayMs * 2, 30000);
+  current = await ai.interactions.get(created.id);
+}
+console.log(current.status, current.output_text, current.usage);`,
+        adk: `from google.adk.agents import LlmAgent, RunConfig
+from google.adk.models import ServiceTier
+from google.adk.models.google_llm import Gemini
+
+agent = LlmAgent(
+    name="nightly_audit_agent",
+    model=Gemini(model="gemini-4-hydrogen", use_interactions_api=True),
+    instruction="Analyze repository logs and summarize regressions.",
+)
+
+# Per-run switch: keep the same agent interactive by day, deferred by night
+run_config = RunConfig(service_tier=ServiceTier.DEFERRED)`,
+        rest: `curl -X POST \\
+  -H "Authorization: Bearer $(gcloud auth print-access-token)" \\
+  -H "Content-Type: application/json; charset=utf-8" \\
+  -d '{
+    "model": "gemini-4-argon",
+    "input": "Summarize release regression deltas.",
+    "service_tier": "deferred",
+    "background": true,
+    "store": true
+  }' \\
+  "https://aiplatform.googleapis.com/v1/projects/PROJECT_ID/locations/global/interactions"`,
+      };
+
+      let activeScenario = 'global-chain';
+      const statusEl = document.getElementById('m-status');
+      const costEl = document.getElementById('m-cost');
+      const windowEl = document.getElementById('m-window');
+      const logEl = document.getElementById('sim-log');
+      const sliderEl = document.getElementById('turn-slider');
+      const turnLabelEl = document.getElementById('turn-count-label');
+      const codeSelectEl = document.getElementById('code-select');
+      const codeViewEl = document.getElementById('code-view');
+
+      function render() {
+        const s = SCENARIOS[activeScenario];
+        const turns = Number(sliderEl.value) || 120;
+        turnLabelEl.textContent = turns + ' turns';
+        statusEl.textContent = s.status;
+        statusEl.className = 'metric-val ' + s.statusClass;
+        costEl.textContent = s.cost;
+        windowEl.textContent = s.windowLabel;
+        logEl.textContent = s.log(turns);
+      }
+
+      document.querySelectorAll('.preset-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.preset-btn').forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+          activeScenario = btn.dataset.scenario;
+          render();
+        });
+      });
+
+      sliderEl.addEventListener('input', render);
+      codeSelectEl.addEventListener('change', () => {
+        codeViewEl.textContent = SNIPPETS[codeSelectEl.value];
+      });
+
+      codeViewEl.textContent = SNIPPETS.ts;
+      render();
+    </script>
+  </body>
+</html>

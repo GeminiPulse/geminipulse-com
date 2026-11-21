@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 1: Deferred Service Tier GA on Gemini Platform — 50% Batch Economics for Dynamic Agents | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Google Cloud brings batch-like 50% cost savings to stateful, multi-turn Gemini Interactions API, ADK, and Deep Research workflows via service_tier='deferred' on the global endpoint."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/gemini-deferred-service-tier/part-1-deferred-tier-interactions-ga.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 1: Deferred Service Tier GA on Gemini Platform" />
+    <meta property="og:description" content="50% off Standard PayGo rates for stateful, multi-turn Gemini 4 and ADK tool loops with zero 429 peak contention." />
+    <meta property="og:url" content="https://geminipulse.com/series/gemini-deferred-service-tier/part-1-deferred-tier-interactions-ga.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Part 1: Deferred Service Tier GA on Gemini Platform" />
+    <meta name="twitter:description" content="50% batch economics without breaking dynamic tool-calling loops on Gemini Interactions API and ADK." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Deferred Service Tier GA on Gemini Platform: 50% Batch Economics for Stateful Multi-Turn Agents",
+        "datePublished": "2026-11-20T23:55:00Z",
+        "author": { "@type": "Person", "name": "Google Gemini 4 Argon (Thinking Effort: High)" },
+        "contributor": { "@type": "Person", "name": "Neil S. White" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/gemini-deferred-service-tier/part-1-deferred-tier-interactions-ga.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; --emerald: #10b981; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: #cbd5e1; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .box.info { border-left: 4px solid var(--accent); }
+      .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+      table { width: 100%; border-collapse: collapse; font-size: 0.92rem; text-align: left; }
+      th, td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+      th { background: rgba(255,255,255,0.03); color: #f1f5f9; font-weight: 600; }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.15rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+    </style>
+    <!-- GP-ANALYTICS-START -->
+    <meta name="gp:model" content="gemini-4-argon" />
+    <meta name="gp:effort" content="high" />
+    <meta name="gp:surface" content="release_series" />
+    <meta name="gp:slug" content="gemini-deferred-service-tier/part-1-deferred-tier-interactions-ga" />
+    <script src="/assets/pulse-analytics.js" defer></script>
+    <!-- GP-ANALYTICS-END -->
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">Agent Compute &amp; Economics Series &middot; Part 1 of 3</div>
+      <h1>Deferred Service Tier GA: How Google Cloud Brought 50% Batch Economics to Dynamic Multi-Turn Agents</h1>
+
+      <div class="meta">
+        Authored by <strong>Google Gemini 4 Argon</strong> &middot; Thinking Effort: <strong>High</strong> &middot; Product Development &amp; Creative Direction: <strong>Neil S. White</strong> &bull; Published November 20, 2026 &bull; Primary Sources:
+        <a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/deferred-tier" target="_blank" rel="noopener">Gemini Enterprise Agent Platform Docs</a> &amp;
+        <a href="https://cloud.google.com/blog/topics/inside-google-cloud/whats-new-google-cloud" target="_blank" rel="noopener">What's New with Google Cloud</a> &bull; 5 min read
+      </div>
+
+      <div class="box info">
+        <h3 style="margin-top: 0; color: #38bdf8;">Release Summary: General Availability (Nov 2026)</h3>
+        <p style="margin-bottom: 0;">The <strong>Deferred service tier</strong> (<code>service_tier="deferred"</code>) is now generally available across the <strong>Gemini Interactions API</strong>, <strong>Agent Development Kit (ADK)</strong>, and <strong>Gemini Deep Research</strong>. Latency-tolerant agent turns route onto spare global capacity at <strong>50% off Standard PayGo rates</strong>, stack with implicit prompt caching across chained <code>previous_interaction_id</code> turns, and incur zero charges for cancelled, expired, or failed turns.</p>
+      </div>
+
+      <h2>1. The Compute Gap Between Synchronous PayGo and Static Batch</h2>
+      <p>Until this release, engineering teams running background AI workloads had to choose between two mismatched execution modes. <strong>Static batch inference</strong> cuts token bills in half, yet it demands every prompt up front inside a fixed Cloud Storage JSONL input file. Because an agent cannot predict its second tool call before reading the result of its first tool call, static batch breaks dynamic, branching workflows.</p>
+      <p>The alternative was running multi-hour code scans, nightly research pipelines, and large-scale evaluations over <strong>synchronous real-time inference</strong>. That meant paying full interactive rates while competing directly against live user traffic, frequently hitting peak-hour HTTP <code>429</code> resource exhaustion errors.</p>
+
+      <h2>2. Comparing Google Cloud's Three Agent Compute Tiers</h2>
+      <div class="table-wrap" role="region" aria-label="Gemini compute tier comparison" tabindex="0">
+        <table>
+          <thead>
+            <tr>
+              <th>Compute Mode</th>
+              <th>Pricing vs. Standard</th>
+              <th>Dynamic Tool Loops</th>
+              <th>Queueing &amp; Turnaround</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Standard PayGo</strong></td>
+              <td>100% baseline interactive rate</td>
+              <td>Full synchronous and streaming support</td>
+              <td>Immediate execution; subject to peak interactive contention</td>
+            </tr>
+            <tr>
+              <td><strong>Static Batch</strong></td>
+              <td>50% off Standard</td>
+              <td>Not supported (prompts fixed in input file)</td>
+              <td>Bulk offline file processing</td>
+            </tr>
+            <tr>
+              <td><strong>Deferred Tier (GA)</strong></td>
+              <td><strong>50% off Standard</strong> (stacks with caching; $0 on failed/cancelled/expired)</td>
+              <td><strong>Full stateful multi-turn chaining</strong> via <code>previous_interaction_id</code> &amp; ADK</td>
+              <td><strong>95% turns within 24 hours</strong>; 7-day server-side state retention; zero peak 429 contention</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>3. Supported Models Across Gemini 4, Gemini 3.x &amp; Deep Research</h2>
+      <ul>
+        <li><strong>Gemini 4 Mainline Family:</strong> <code>gemini-4-neon</code>, <code>gemini-4-hydrogen</code>, <code>gemini-4-carbon</code>, and <code>gemini-4-argon</code>.</li>
+        <li><strong>Gemini 3.x Production Models:</strong> <code>gemini-3.8-flash</code>, <code>gemini-3.7-flash</code>, <code>gemini-3.6-flash</code>, <code>gemini-3.5-flash</code>, <code>gemini-3.5-flash-lite</code>, <code>gemini-3.1-flash-lite</code>, and <code>gemini-3.1-pro-preview</code>.</li>
+        <li><strong>Deep Research &amp; Allowlisted Cyber Models:</strong> <code>gemini-deep-research-1.0</code> plus allowlisted <code>gemini-4-carbon-cyber-permissive</code> and <code>gemini-4-argon-cyber-permissive</code>.</li>
+      </ul>
+
+      <div class="series-nav">
+        <a href="/" class="btn-pill">&larr; Constellation Home</a>
+        <a href="/series/gemini-deferred-service-tier/part-2-global-endpoint-polling-and-adk-rules.html" class="btn-pill">Part 2: Global Endpoint, Polling &amp; ADK Rules &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>

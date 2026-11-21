@@ -20,6 +20,14 @@
   </entry>
 
   <entry>
+    <title>Static Batch Breaks Agent Loops. Deferred Tier Cuts Multi-Turn Compute in Half. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/gemini-deferred-service-tier-ga.html" />
+    <id>https://geminipulse.com/articles/gemini-deferred-service-tier-ga.html</id>
+    <updated>2026-11-20T23:55:00.000Z</updated>
+    <summary>Batch inference has always offered a 50% discount in exchange for freezing every prompt inside a static file up front, a deal that falls apart the moment an agent needs to read a tool result before deciding its next step. Now generally available across the Gemini Interactions API, ADK, and Deep Research, Google Cloud’s Deferred service tier lets dynamic multi-turn agents queue onto spare global capacity at half price.</summary>
+  </entry>
+
+  <entry>
     <title>Permissions Tell Agents What They Can Touch. Semantic Governance Judges Every Tool Call Before It Runs. (Flagship Gemini Essay)</title>
     <link href="https://geminipulse.com/articles/gemini-semantic-governance-and-multicloud-agents.html" />
     <id>https://geminipulse.com/articles/gemini-semantic-governance-and-multicloud-agents.html</id>
@@ -33,6 +41,14 @@
     <id>https://geminipulse.com/articles/gemini-api-cli-v0-5-0-byos-environments.html</id>
     <updated>2026-11-20T00:49:52.000Z</updated>
     <summary>Coding agents running inside terminals already know how to call shell commands, yet giving them reliable multimodal tools or private execution sandboxes usually meant maintaining brittle wrapper scripts. On November 20, 2026, Google released gemini-api-cli v0.5.0 as a single stateless Go binary linking Antigravity, Claude Code, and Codex to Gemini 4 Hydrogen, split lease-token sandboxes, and custom voices.</summary>
+  </entry>
+
+  <entry>
+    <title>Google Research Details How Duplex Evolved Into Gemini 4 Autonomous Phone Calling Inside Tasks in Gemini. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/google-duplex-tasks-in-gemini.html" />
+    <id>https://geminipulse.com/articles/google-duplex-tasks-in-gemini.html</id>
+    <updated>2026-11-20T19:00:00.000Z</updated>
+    <summary>Google Research (Yossi Matias, Yaniv Leviathan, and Janet Zhou) traces Google Duplex’s evolution from 2018 closed-domain RNNs and 2022 LaMDA hybrid stacks into a unified Gemini 4 Hydrogen and Gemini 4 Neon telephony stack now calling businesses inside Tasks in Gemini.</summary>
   </entry>
 
   <entry>
@@ -60,19 +76,11 @@
   </entry>
 
   <entry>
-    <title>World Models Leave the Sandbox. Genie 4 Opens Live 24 fps Streaming on the Gemini API. (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/genie-4-gemini-api-interactive-worlds.html" />
-    <id>https://geminipulse.com/articles/genie-4-gemini-api-interactive-worlds.html</id>
-    <updated>2026-11-19T17:00:00.000Z</updated>
-    <summary>One day after Project Genie opened inside Google AI Ultra, developers gained direct API keys to steer continuous 720p worlds over WebRTC and WebSockets. On November 19, 2026, Google shipped models/genie-4 across the Interactions API and Google AI Studio.</summary>
-  </entry>
-
-  <entry>
-    <title>Code Generation Outran Human Maintainers. How Gemini-Powered Sashiko Cut Linux Fixes by 35%. (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/sashiko-gemini-kernel-code-review.html" />
-    <id>https://geminipulse.com/articles/sashiko-gemini-kernel-code-review.html</id>
-    <updated>2026-11-19T12:00:00.000Z</updated>
-    <summary>More AI-written code simply piles up in front of human reviewers unless verification scales alongside generation. On November 19, 2026, Google published seven months of Linux kernel production data from Sashiko—an open-source Gemini review system cited in 528 official 2026 CVEs.</summary>
+    <title>Deferred Service Tier GA on Gemini Platform: 50% Batch Economics for Stateful Multi-Turn Agents (Parts 1-3) + Studio [SIMULATED DEMO]</title>
+    <link href="https://geminipulse.com/series/gemini-deferred-service-tier/part-1-deferred-tier-interactions-ga.html" />
+    <id>https://geminipulse.com/series/gemini-deferred-service-tier/part-1-deferred-tier-interactions-ga.html</id>
+    <updated>2026-11-20T23:55:00Z</updated>
+    <summary>Direct primary-source breakdown of Google Cloud's GA Deferred service tier (service_tier='deferred') across Interactions API, ADK Python v2.10.0+ RunConfig, and Deep Research: 50% off Standard PayGo stacking with prompt caching, $0 billed on cancelled/expired/failed turns, 95% completion within 24h, 7-day state retention, locations/global exclusivity, and companion Deferred Service Tier Studio [SIMULATED DEMO].</summary>
   </entry>
 
   <entry>

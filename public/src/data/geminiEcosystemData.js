@@ -24,6 +24,55 @@ export const PULSE_INTELLIGENCE_FEED = [
     labLabel: 'Neon Studio [DEMO] →',
   },
   {
+    id: 'pulse-gemini-deferred-service-tier-ga',
+    title: 'Google Cloud Launches Deferred Service Tier GA for Stateful Multi-Turn Agents: 50% Batch Economics Without Breaking Tool Loops',
+    tldr: 'Updated November 20, 2026: The Deferred service tier (service_tier="deferred") is now generally available across the Gemini Interactions API, Agent Development Kit (ADK), and Deep Research—cutting completed turn costs by 50% off Standard PayGo, stacking with prompt caching, charging $0 for failed or cancelled turns, and queuing multi-turn tool chains onto spare global capacity within a 24-hour target.',
+    summary:
+      'Documented across Google Cloud’s What’s New, Gemini Enterprise Agent Platform Deferred tier guide (updated November 20, 2026 UTC), and ADK Python v2.10.0+ scheduling docs: (1) Dynamic Batch Economics—replaces static JSONL batch input files with stateful, asynchronous multi-turn execution at 50% off Standard PayGo pricing, stacking with implicit prompt caching while billing $0 for cancelled, expired, or failed turns, (2) Per-Turn Stateful Queuing—targets 95% completion within 24 hours, retains server-side interaction state for 7 days across previous_interaction_id chains, and eliminates peak-hour HTTP 429 contention, (3) Global Endpoint Contract—supported exclusively on locations/global at aiplatform.googleapis.com with background=true and store=true across Gemini 4 Neon, Hydrogen, Carbon, Argon, Gemini 3.x Flash/Pro, Deep Research (gemini-deep-research-1.0), and allowlisted Cyber models (regional/us/eu endpoints or store=false return HTTP 400 invalid_request), and (4) Per-Run ADK Toggle—ADK RunConfig(service_tier=ServiceTier.DEFERRED) lets a single agent definition handle real-time user chat by day and discounted overnight scans at night.',
+    category: 'Agent Compute & Economics',
+    tag: 'Google Cloud GA',
+    modelBadge: 'Deferred Tier · 50% Off',
+    impactScore: '10.0 / 10',
+    date: '2026-11-20T23:55:00Z',
+    sourceLabel: 'Google Cloud Docs & Blog: Deferred Tier on Gemini Platform (Nov 20, 2026 UTC)',
+    sourceUrl: 'https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/deferred-tier',
+    groundedBy: 'Google Cloud Official Docs (Last updated 2026-11-20 UTC) + What’s New with Google Cloud + ADK Docs',
+    seriesUrl: '/series/gemini-deferred-service-tier/part-1-deferred-tier-interactions-ga.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-deferred-tier-studio.html',
+    labLabel: 'Deferred Studio [DEMO] →',
+  },
+  {
+    id: 'pulse-google-duplex-tasks-in-gemini',
+    title: 'Google Research Details How Duplex Evolved Into Gemini 4 Autonomous Phone Calling Inside Tasks in Gemini',
+    tldr: 'Published November 20, 2026: Google Research (Yossi Matias, Yaniv Leviathan, and Janet Zhou) traces Google Duplex’s evolution from 2018 closed-domain RNNs and 2022 LaMDA hybrid stacks into a unified Gemini 4 Hydrogen and Gemini 4 Neon telephony stack now calling businesses inside Tasks in Gemini.',
+    summary:
+      'Published November 20, 2026 on Google Research Blog: (1) Three Generations of Telephony AI—traces the 2018 pre-transformer RNN closed-domain system (whose verified merchant calls reached over one trillion views in Search and Maps by 2023 and powered five generations of Pixel Call Assist) through 2022 LaMDA hybrid stacks into free-text, unbounded Gemini 4 Hydrogen and Gemini 4 Neon workflows, (2) Real-Time Compressed-Line Engineering—combines pragmatic pre-call context (predicting which merchants accept group reservations) with sub-second streaming cadence and custom acoustic noise handling for espresso machines, kitchen clatter, and mid-sentence revisions, and (3) Transparent Merchant Safeguards—every call opens with upfront AI disclosure, requires zero merchant software, and honors Business Profile opt-outs or spoken stop requests while Tasks in Gemini coordinates Agent Payments Protocol (AP2), email, and RCS follow-ups.',
+    category: 'Voice Agents & Research',
+    tag: 'Google Research',
+    modelBadge: 'Duplex + Gemini 4',
+    impactScore: '9.6 / 10',
+    date: '2026-11-20T19:00:00Z',
+    sourceLabel: 'Google Research Blog: How Google Duplex evolved to also call businesses for you in Gemini (Nov 20, 2026)',
+    sourceUrl: 'https://research.google/blog/how-google-duplex-evolved-to-also-call-businesses-for-you-in-gemini/',
+    groundedBy: 'Google Research Official Blog (Nov 20, 2026)',
+  },
+  {
+    id: 'pulse-gemini-enterprise-third-party-stores-ga',
+    title: 'Gemini Enterprise Reaches GA Across 70+ Third-Party Data Stores Including GitLab, Linear, Stripe, FactSet & AWS Marketplace',
+    tldr: 'Released November 20, 2026: Google Cloud’s Gemini Enterprise Release Notes promote more than 70 third-party data store connectors to General Availability—spanning engineering (GitLab, Linear, Grafana, PagerDuty, Sourcegraph), finance (FactSet AI-Ready Data, Moody’s, MSCI, S&P Global, Stripe, Ramp), and knowledge hubs (Airtable, Asana, Atlan, Egnyte, Zapier).',
+    summary:
+      'Published in Google Cloud’s Gemini Enterprise Release Notes (November 20, 2026): moves 70+ enterprise data connectors from preview into General Availability for grounded Gemini Enterprise search and agents, including AirOps, Airtable, Apollo GraphOS, Asana, Atlan, Attio, AWS Marketplace, Calendly, Cisco Workspaces, Cohesity, Daloopa, Egnyte, Excalidraw, FactSet AI-Ready Data, Freshservice, Fullstory, GitLab, Google Stitch, Grafana, Guru, Hex, Hugging Face, iManage, Intercom, Linear, Microsoft Learn, Moody’s, MSCI, NetDocuments, PagerDuty, Pendo, Ramp, Relativity, S&P Global Deterministic Retrieval, Sourcegraph, Starburst, Stripe, SurveyMonkey, Tavily, Vanta, Webex Meetings, Wix, Zapier, Zoho Desk, and Zoho Projects.',
+    category: 'Enterprise Connectors',
+    tag: 'Gemini Enterprise GA',
+    modelBadge: '70+ Data Stores GA',
+    impactScore: '9.3 / 10',
+    date: '2026-11-20T17:00:00Z',
+    sourceLabel: 'Google Cloud Docs: Gemini Enterprise Release Notes (Nov 20, 2026)',
+    sourceUrl: 'https://docs.cloud.google.com/gemini/enterprise/docs/release-notes#November_20_2026',
+    groundedBy: 'Google Cloud Official Release Notes (Nov 20, 2026)',
+  },
+  {
     id: 'pulse-gemini-semantic-governance-and-multicloud-agents',
     title: 'Google Launches Semantic Governance Policies (Preview) & Multi-Cloud Agent Anomaly Detection Across AWS and Azure',
     tldr: 'Published November 20, 2026: Google introduces inline Semantic governance policies in Preview via Agent Gateway—checking every proposed tool call against plain-language rules and user intent before execution—alongside Private Preview Agent Anomaly Detection for ADK agents on AWS Lambda, Amazon Bedrock, and Microsoft Foundry.',
@@ -1510,6 +1559,62 @@ export const GEMINI_MODEL_MATRIX = [
 
 export const STUDIO_LAB_BLUEPRINTS = [
   {
+    id: 'lab-gemini-deferred-tier-studio',
+    title: 'Deferred Service Tier & Multi-Turn Queue Studio [SIMULATED DEMO]',
+    badge: 'Nov 2026 Agent Compute GA',
+    model: 'gemini-4-argon',
+    href: '/labs/gemini-deferred-tier-studio.html',
+    description:
+      'Interactive developer workbench modeling Google Cloud’s GA Deferred service tier (service_tier="deferred"): simulate 50% PayGo savings, locations/global endpoint validation, ADK RunConfig(ServiceTier.DEFERRED) toggles, and queued/requires_action/completed Interactions polling.',
+    prompt:
+      'Run an asynchronous multi-turn repository security audit on locations/global with service_tier="deferred", background=true, and store=true, then poll interactions.get and chain turn two via previous_interaction_id.',
+    tsCode: `import { GoogleGenAI } from "@google/genai";
+
+// Deferred tier requires enterprise mode on locations/global (regional endpoints return HTTP 400).
+const ai = new GoogleGenAI({
+  enterprise: true,
+  project: process.env.GOOGLE_CLOUD_PROJECT,
+  location: "global",
+});
+
+const created = await ai.interactions.create({
+  model: "gemini-4-argon",
+  input: "Audit service-to-service auth boundaries across gs://repo-snapshots/pr-412.tar.gz.",
+  service_tier: "deferred",
+  background: true,
+  store: true,
+});
+
+console.log("Queued deferred turn:", created.id, created.status, created.service_tier);`,
+    pyCode: `from google.adk.agents import LlmAgent, RunConfig
+from google.adk.models import ServiceTier
+from google.adk.models.google_llm import Gemini
+
+agent = LlmAgent(
+    name="nightly_audit_agent",
+    model=Gemini(model="gemini-4-hydrogen", use_interactions_api=True),
+    instruction="Analyze repository logs and produce structured security summaries.",
+)
+
+# Request off-peak capacity per run without duplicating your agent definition
+run_config = RunConfig(service_tier=ServiceTier.DEFERRED)
+print("ADK RunConfig armed for global deferred scheduling:", run_config.service_tier)`,
+    simulatedSteps: [
+      {
+        type: 'thought',
+        label: 'step[0] • Global Endpoint & Flag Validation',
+        detail:
+          'Confirmed locations/global target on aiplatform.googleapis.com with background=true and store=true; queued turn for 50% PayGo billing with zero peak 429 contention.',
+      },
+      {
+        type: 'tool_call',
+        label: 'step[1] • Stateful Multi-Turn Chaining (7-Day Window)',
+        detail:
+          'Polled interactions.get until completed and chained follow-up turn via previous_interaction_id while re-sending tools and system_instruction.',
+      },
+    ],
+  },
+  {
     id: 'lab-gemini-semantic-governance-studio',
     title: 'Semantic Governance & Multi-Cloud Anomaly Studio [SIMULATED DEMO]',
     badge: 'Nov 20, 2026 Agent Security',
@@ -2796,6 +2901,25 @@ video_turn = client.interactions.create(
 ];
 
 export const INITIAL_SHOWCASE_PROJECTS = [
+  {
+    id: 'showcase-gemini-deferred-tier-studio',
+    name: 'Deferred Service Tier & Multi-Turn Queue Studio [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive developer workbench modeling Google Cloud’s GA Deferred service tier: simulate 50% PayGo savings, locations/global vs. regional HTTP 400 checks, ADK RunConfig(ServiceTier.DEFERRED), and multi-turn polling lifecycles.',
+    models: ['gemini-4-argon', 'gemini-4-hydrogen'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-deferred-tier-studio.html): [SIMULATED DEMO] Models 95% 24-hour queue targets, 7-day state retention, requires_action tool handoffs, and $0 cancelled-turn economics.',
+    url: '/labs/gemini-deferred-tier-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-20T23:55:00Z',
+  },
   {
     id: 'showcase-gemini-semantic-governance-studio',
     name: 'Semantic Governance & Multi-Cloud Anomaly Studio [SIMULATED DEMO]',

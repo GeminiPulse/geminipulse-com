@@ -1,10 +1,10 @@
 {
-  "buildId": "v2.0.119",
-  "buildNumber": 119,
+  "buildId": "v2.0.120",
+  "buildNumber": 120,
   "branch": "v2.0",
-  "parentSha": "ac83f86",
-  "builtAtUtc": "2026-11-20T22:52:00.211Z",
-  "builtAtEdt": "Nov 20, 2026, 17:52:00 EST",
+  "parentSha": "995c6b2",
+  "builtAtUtc": "2026-11-21T13:53:05.005Z",
+  "builtAtEdt": "Nov 21, 2026, 08:53:05 EST",
   "ga4MeasurementId": "G-1BWMQWZJQ5 (Active Sitewide — Static + SPA, Model/Effort Provenance, Bot-Filtered)",
   "lighthouseDesktop": "100 / 100 / 100 / 100",
   "lighthouseMobile": "99 / 100 / 100 / 100"

@@ -25,6 +25,17 @@
 
 ---
 
+## 0d. 8:45 AM ET DeepMind London Curation Check & Release Findings (Round 51 — Nov 21, 2026)
+
+| Source Stream | Verification Status | Curated Finding & Action Taken |
+| :--- | :--- | :--- |
+| **Google Cloud Docs & Blog (`docs.cloud.google.com/gemini-enterprise-agent-platform/models/deferred-tier` + `cloud.google.com/blog/topics/inside-google-cloud/whats-new-google-cloud` + `adk.dev/agents/models/google-gemini/deferred-schedule/`)** | **VERIFIED NEW PRIMARY RELEASE (`2026-11-20 UTC` DOCS UPDATE)** | **Deferred Service Tier GA (`service_tier="deferred"`)**: Brings 50% batch economics to stateful, dynamic multi-turn agents across Interactions API, ADK Python v2.10.0+ (`RunConfig(service_tier=ServiceTier.DEFERRED)`), and Deep Research (`gemini-deep-research-1.0`). Stacks with implicit prompt caching, bills $0 for cancelled/expired/failed turns, targets 95% completion within 24h with 7-day server-side retention, eliminates peak-hour 429 contention, and runs exclusively on `locations/global` (`aiplatform.googleapis.com`, requiring `background=true` and `store=true`). Added to `PULSE_INTELLIGENCE_FEED`, authored Star 02 (`ε Mebsuta`) Dual-Lens Flagship Essay in `CONSTELLATION_ESSAYS`, published 3-part series (`/series/gemini-deferred-service-tier/*`), and shipped `/labs/gemini-deferred-tier-studio.html` `[SIMULATED DEMO]`. |
+| **Google Research Blog (`research.google/blog/how-google-duplex-evolved-to-also-call-businesses-for-you-in-gemini/`)** | **VERIFIED NEW PRIMARY RELEASE (`2026-11-20`)** | **How Google Duplex Evolved Into Gemini 4 Autonomous Calling in Tasks in Gemini**: Yossi Matias, Yaniv Leviathan, and Janet Zhou trace Duplex across three generations (2018 pre-transformer closed-domain RNNs -> 2022 LaMDA hybrid stacks -> unified Gemini 4 Hydrogen & Gemini 4 Neon telephony stack), detailing >1 trillion Search/Maps views since 2023, sub-second compressed-line acoustic cadence, upfront AI disclosure, merchant Business Profile opt-outs, and Agent Payments Protocol (AP2) / RCS coordination. Added to `PULSE_INTELLIGENCE_FEED`. |
+| **Google Cloud Gemini Enterprise Release Notes (`docs.cloud.google.com/gemini/enterprise/docs/release-notes#November_20_2026`)** | **VERIFIED NEW PRIMARY RELEASE (`2026-11-20`)** | **70+ Third-Party Data Stores Generally Available in Gemini Enterprise**: Promotes GitLab, Linear, Stripe, Ramp, FactSet AI-Ready Data, Moody's, MSCI, S&P Global Deterministic Retrieval, AWS Marketplace, Airtable, Asana, Grafana, PagerDuty, Sourcegraph, Tavily, Zapier, and 50+ enterprise connectors to GA. Added to `PULSE_INTELLIGENCE_FEED`. |
+| **GitHub SDKs & CLI (`googleapis/js-genai`, `googleapis/python-genai`, `google-gemini/gemini-api-cli`, `google/adk-python`)** | **VERIFIED UP-TO-DATE (`v3.6.1` / `v0.5.0` / `v2.15.0`)** | Confirmed `js-genai` & `python-genai` remain at `v3.6.1` (`2026-11-18`) and `gemini-api-cli` at `v0.5.0` (`2026-11-20T00:49:52Z`). |
+
+---
+
 ## 0c. 5:45 PM ET Curation Check & Release Findings (Round 50 — Nov 20, 2026)
 
 | Source Stream | Verification Status | Curated Finding & Action Taken |

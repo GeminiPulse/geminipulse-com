@@ -14,6 +14,253 @@
  */
 
 export const CONSTELLATION_ESSAYS = {
+  'pulse-gemini-deferred-service-tier-ga': {
+    id: 'pulse-gemini-deferred-service-tier-ga',
+    slug: 'gemini-deferred-service-tier-ga',
+    shortStarLabel: 'Deferred Tier GA',
+    readMinutes: '9 MIN READ',
+    authoredByModel: 'Google Gemini 4 Argon',
+    thinkingEffort: 'High',
+    hudTitle: 'Deferred Service Tier Brings 50% Batch Pricing to Dynamic Multi-Turn Agents.',
+    hudSummary:
+      'Updated November 20, 2026: service_tier="deferred" is GA across Interactions API, ADK, and Deep Research, cutting completed turn costs by 50% on spare global capacity with 7-day state retention.',
+    peekCastor: 'Half-Price Background Agents: <em>Batch economics without static prompt files.</em>',
+    peekPollux: 'locations/global + RunConfig: <em>50% off PayGo, zero 429 peaks & 7-day chaining.</em>',
+    headline:
+      'Static Batch Breaks Agent Loops. <em>Deferred Tier Cuts Multi-Turn Compute in Half.</em>',
+    standfirst:
+      'Batch inference has always offered a 50% discount in exchange for freezing every prompt inside a static file up front, a deal that falls apart the moment an agent needs to read a tool result before deciding its next step. Now generally available across the Gemini Interactions API, ADK, and Deep Research, Google Cloud’s Deferred service tier lets dynamic multi-turn agents queue onto spare global capacity at half price.',
+    pulseCheck: [
+      {
+        stage: 'Dynamic 50% Economics',
+        detail:
+          'Completed turns receive 50% off Standard PayGo rates, stack with implicit prompt caching, and incur zero charges when cancelled, expired, or failed.',
+      },
+      {
+        stage: '7-Day Stateful Loops',
+        detail:
+          'Targets 95% turn completion within 24 hours, queues server-side with zero peak HTTP 429 contention, and retains state for 7 days across previous_interaction_id tool chains.',
+      },
+      {
+        stage: 'The Honest Catch',
+        detail:
+          'Runs exclusively on locations/global (regional, us, and eu endpoints return HTTP 400), has no credit-backed latency SLA, and does not support store=false, CMEK, or data residency.',
+      },
+    ],
+    castor: {
+      kicker: 'PART I · α CASTOR · AGENT UNIT ECONOMICS, CAPACITY & COMPLIANCE LENS',
+      title: 'Why Async Agents Outgrew Static JSONL Batch Files',
+      subtitle:
+        'Separating interactive user-facing turns from latency-tolerant overnight reasoning without maintaining two separate agent codebases.',
+      paragraphs: [
+        'Every engineering team scaling background AI workflows hits the same pricing wall within ninety days of launch. Customer-facing chat turns genuinely need sub-second interactive capacity, whereas nightly repository security sweeps, regression test triage, multi-document contract reviews, and offline model evaluations only need their answers by morning. Paying live interactive token rates for overnight batch jobs doubles the compute bill, while pushing large fleets through peak daytime quotas triggers cascading HTTP 429 rate-limit failures.',
+        'Previously, Google Cloud’s 50% batch discount required packing every prompt into a fixed Cloud Storage JSONL file ahead of time. That works neatly for one-shot classification or translation, yet completely breaks modern agentic software. An incident-response or security-audit agent cannot write turn four before seeing which dependency tree turn one uncovered or which function call turn two executed.',
+        'The <strong>Deferred service tier</strong> (now generally available on the Gemini Enterprise Agent Platform across the <strong>Interactions API</strong>, <strong>Agent Development Kit (ADK)</strong>, and <strong>Deep Research</strong>) closes that architectural gap. By flipping a single per-run parameter (<code>service_tier="deferred"</code> or ADK <code>RunConfig(service_tier=ServiceTier.DEFERRED)</code>), teams route latency-tolerant agent turns onto spare worldwide capacity at <strong>50% off Standard PayGo pricing</strong>, while preserving full multi-turn tool calling and server-side conversation history for <strong>7 days</strong>.',
+        'Before migrating every workload overnight, engineering leaders should weigh three clear trade-offs documented in Google Cloud’s guide updated November 20, 2026. First, while Google targets completing <strong>95% of deferred turns within 24 hours</strong>, there is no credit-backed latency SLA and multi-hour queue waits can cause implicit prompt caches to expire between turns. Second, the tier runs strictly on the <strong>global endpoint</strong> (<code>locations/global</code>) and stores state server-side (<code>store=true</code>), meaning strict regional data residency, Customer-Managed Encryption Keys (CMEK), DoD IL5, ITAR, and zero-storage (<code>store=false</code>) workloads must remain on dedicated or standard regional tiers.',
+      ],
+      pullquote: {
+        quote:
+          'One agent definition can now serve real-time interactive users at noon and run half-price security and evaluation sweeps on spare global capacity at midnight.',
+        attribution: 'GOOGLE GEMINI 4 ARGON · α CASTOR SYNTHESIS OF GEMINI DEFERRED SERVICE TIER GA',
+      },
+      comparisonTable: {
+        id: 'gemini-deferred-compute-comparison',
+        caption: 'Google Cloud Gemini Compute Tiers: Economics, Tool Loops & Compliance Boundaries (Nov 2026)',
+        columns: ['Compute Mode', 'Token Discount', 'Stateful Multi-Turn Tools', 'Endpoint & Compliance Rules'],
+        rows: [
+          [
+            'Standard PayGo',
+            'Baseline (100% rate)',
+            'Immediate synchronous & streaming tool loops',
+            'Global, multi-region (us/eu) & regional endpoints; supports store=false & CMEK',
+          ],
+          [
+            'Static Batch Inference',
+            '50% off Standard',
+            'Not supported (all prompts frozen upfront in JSONL)',
+            'Offline file processing; ideal for stateless single-turn classification',
+          ],
+          [
+            'Deferred Service Tier (GA)',
+            '50% off Standard ($0 if cancelled, expired, or failed)',
+            'Full previous_interaction_id & ADK tool chaining (7-day retention)',
+            'locations/global only; VPC-SC, AXT & FedRAMP High supported; no CMEK or residency',
+          ],
+          [
+            'Provisioned Throughput',
+            'Reserved capacity contract',
+            'Dedicated deterministic real-time throughput',
+            'Best when strict regional latency SLAs govern interactive traffic',
+          ],
+        ],
+      },
+      adaptiveQuestions: [
+        {
+          lensTag: 'FOR FINOPS & ENGINEERING LEADERS',
+          question: 'Do we get billed if a deferred agent job fails or gets cancelled halfway through?',
+          answer:
+            'No. Completed turns are billed at 50% off Standard PayGo rates (stacking with eligible prompt caching), while cancelled, expired, or failed turns incur zero token charges.',
+        },
+        {
+          lensTag: 'FOR SECURITY & COMPLIANCE TEAMS',
+          question: 'Which enterprise controls work with Deferred Tier and which ones block it?',
+          answer:
+            'VPC Service Controls (excluding external mcp_server tools inside a perimeter), Access Transparency, Cloud Audit Logs, and FedRAMP High are supported. Stateless store=false, disableAPIStorage policies, CMEK, Data residency, DoD IL5, and ITAR are unsupported.',
+        },
+        {
+          lensTag: 'FOR ADK APPLICATION OWNERS',
+          question: 'Do we need to fork our ADK agents to separate daytime chat from overnight batch runs?',
+          answer:
+            'No. In ADK Python v2.10.0+, service_tier lives inside RunConfig rather than the agent class itself, so one Gemini(use_interactions_api=True) agent can run synchronously for users and deferred for batch jobs.',
+        },
+      ],
+    },
+    pollux: {
+      kicker: 'PART II · β POLLUX · GLOBAL ENDPOINT CONTRACT, POLLING STATE MACHINE & ADK WIRING',
+      title: 'How Global Queuing, Status Transitions & Multi-Turn Chaining Work Under the Hood',
+      subtitle:
+        'Configuring @google/genai v3.x on locations/global, handling requires_action and requires_continuation, and avoiding HTTP 400 and 409 traps.',
+      paragraphs: [
+        'At the protocol layer, Deferred Tier requires three strict flags on <code>ai.interactions.create()</code> targeting <code>https://aiplatform.googleapis.com/v1/projects/PROJECT_ID/locations/global/interactions</code>: pass <code>service_tier: "deferred"</code>, <code>background: true</code>, and <code>store: true</code>, and never set <code>stream: true</code> on initial creation. Sending a deferred request to <code>us</code>, <code>eu</code>, or any regional endpoint, exceeding the <code>9.75 MiB</code> uncompressed request cap (or <code>100</code> <code>gs://</code> URIs per chain), or enforcing <code>constraints/vertexai.disableAPIStorage</code> immediately returns <code>HTTP 400 invalid_request</code>.',
+        'Once accepted, the Interaction starts in <code>queued</code> and transitions to <code>in_progress</code> before landing on a final state: <code>completed</code>, <code>requires_action</code> (the model emitted a <code>function_call</code> and expects a tool result via <code>previous_interaction_id</code>), <code>requires_continuation</code> (long decode hit an output boundary and returned a <code>continuation_token</code> that must be resumed while omitting <code>input</code> and raising <code>max_output_tokens</code>), <code>failed</code>, <code>cancelled</code>, or <code>expired</code>. Only after polling shows <code>status: "in_progress"</code> can clients attach an SSE stream via <code>stream: true</code> and reconnect with <code>last_event_id</code>.',
+        'Two operational caveats separate clean production pipelines from silent bugs. First, turn-scoped settings (<code>tools</code>, <code>system_instruction</code>, and <code>generation_config</code>) do not auto-inherit across <code>previous_interaction_id</code> chains, so every deferred follow-up turn must re-send them explicitly. Second, calling <code>interactions.cancel</code> works only while status is <code>queued</code> or <code>in_progress</code>; attempting to cancel a turn that already reached any final state returns <code>HTTP 409 aborted</code>. Supported models span <code>gemini-4-neon</code>, <code>gemini-4-hydrogen</code>, <code>gemini-4-carbon</code>, <code>gemini-4-argon</code>, mainline Gemini 3.x models, <code>gemini-deep-research-1.0</code>, and allowlisted <code>gemini-4-*-cyber-permissive</code> models.',
+      ],
+      builderRules: [
+        {
+          label: '01 · Pin Enterprise Clients Exclusively to locations/global With background=true & store=true',
+          detail:
+            'Regional or us/eu endpoints and stateless store=false requests fail immediately with HTTP 400 invalid_request; pass large files via gs:// URIs (maximum 100 per chain) with Storage Object Viewer IAM.',
+        },
+        {
+          label: '02 · Resend tools & system_instruction on Every Chained previous_interaction_id Turn',
+          detail:
+            'Server-side state keeps conversation turns for 7 days, yet turn-scoped fields do not carry over automatically; on requires_continuation, pass continuation_token and omit input.',
+        },
+        {
+          label: '03 · Set Explicit Deadlines in ADK Workers & Guard Cancel Calls Against HTTP 409',
+          detail:
+            'ADK run_async() emits zero events while waiting in the queue with no default client timeout, so wrap unattended jobs in asyncio deadlines and check interactions.get before cancelling.',
+        },
+      ],
+      codeCaption: 'DEFERRED TIER MULTI-TURN POLLING & CHAINING BLUEPRINT (@GOOGLE/GENAI V3.X)',
+      codeSnippet: `import { GoogleGenAI } from "@google/genai";
+
+// Deferred tier is supported exclusively on locations/global (aiplatform.googleapis.com)
+const ai = new GoogleGenAI({
+  enterprise: true,
+  project: process.env.GOOGLE_CLOUD_PROJECT,
+  location: "global",
+});
+
+const PENDING = new Set(["queued", "in_progress"]);
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+async function runDeferredTurn(params) {
+  const created = await ai.interactions.create(
+    Object.assign(
+      {
+        model: "gemini-4-argon",
+        service_tier: "deferred",
+        background: true,
+        store: true,
+      },
+      params
+    )
+  );
+
+  let delayMs = 5000;
+  let current = await ai.interactions.get(created.id);
+  while (PENDING.has(current.status)) {
+    await sleep(delayMs);
+    delayMs = Math.min(delayMs * 2, 30000);
+    current = await ai.interactions.get(created.id);
+  }
+  return current;
+}
+
+const systemInstruction = "Security auditor. Classify only reproducible auth flaws.";
+const turn1 = await runDeferredTurn({
+  system_instruction: systemInstruction,
+  input: "Inspect gs://repo-snapshots/pr-412.tar.gz for JWT replay issues.",
+});
+
+if (turn1.status === "completed") {
+  // Always re-send turn-scoped fields such as system_instruction on chained turns
+  const turn2 = await runDeferredTurn({
+    previous_interaction_id: turn1.id,
+    system_instruction: systemInstruction,
+    input: "Draft a 3-step regression test plan for the top finding.",
+  });
+  console.log("Chained deferred summary:", turn2.output_text, turn2.usage);
+}`,
+      workbench: {
+        title: 'Deferred Service Tier & Queue Lifecycle Inspector',
+        subtitle: 'Inspect verified Nov 2026 endpoint constraints, status transitions, and 50% PayGo economics.',
+        dek: 'Cycle through the three verified operational modes below, or launch our full interactive simulator [SIMULATED DEMO].',
+        presets: [
+          {
+            label: '1. GLOBAL MULTI-TURN CHAIN (50% OFF)',
+            k1: 'Endpoint & Flags',
+            v1: 'locations/global + service_tier="deferred" + background=true + store=true',
+            k2: 'Turn Lifecycle',
+            v2: 'queued -> in_progress -> completed (95% within 24h; 7-day state retention)',
+            k3: 'Cost Outcome',
+            v3: '50% off Standard PayGo stacking with implicit cache; zero peak 429 errors',
+          },
+          {
+            label: '2. TOOL LOOP & CONTINUATION',
+            k1: 'Final Intermediate States',
+            v1: 'requires_action (function_call) or requires_continuation (continuation_token)',
+            k2: 'Chaining Contract',
+            v2: 'Pass previous_interaction_id; re-send tools and system_instruction on every turn',
+            k3: 'Continuation Rule',
+            v3: 'Omit input and raise max_output_tokens when resuming requires_continuation',
+          },
+          {
+            label: '3. FAIL-FAST BOUNDARIES (400 / 409)',
+            k1: 'HTTP 400 invalid_request',
+            v1: 'Non-global region (us/eu), store=false, stream=true on create, or >9.75 MiB body',
+            k2: 'HTTP 409 aborted',
+            v2: 'Calling interactions.cancel on a turn already in a final status',
+            k3: 'Failed / Cancelled Billing',
+            v3: '$0.00 token charges for cancelled, expired, or failed deferred turns',
+          },
+        ],
+      },
+    },
+    verdict: {
+      title: 'Argon’s Bottom Line: Stop Paying Live Interactive Rates for Overnight Agent Loops',
+      subtitle:
+        'Deferred Tier turns spare global capacity into a first-class stateful execution plane for coding sweeps, offline evaluations, and multi-document synthesis at half cost.',
+      paragraphs: [
+        '<strong>Why this matters today:</strong> instead of rewriting dynamic tool-calling agents into brittle static JSONL batch scripts, teams on Gemini Interactions API and ADK Python v2.10.0+ can now pass a single run-level flag to cut compute bills in half while avoiding peak-hour quota collisions.',
+        '<strong>Explore the companion deep dive:</strong> read our 3-part engineering guide under <code>/series/gemini-deferred-service-tier/part-1-deferred-tier-interactions-ga.html</code> or model queue transitions, regional error traps, and 50% savings inside Deferred Service Tier Studio [SIMULATED DEMO] at <code>/labs/gemini-deferred-tier-studio.html</code>.',
+      ],
+      sources: [
+        {
+          role: 'Official Google Cloud Documentation (GA)',
+          label: 'Use the Deferred tier — Gemini Enterprise Agent Platform',
+          author: 'Google Cloud AI Platform Engineering',
+          date: 'November 20, 2026 UTC',
+          url: 'https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/deferred-tier',
+        },
+        {
+          role: 'Official Google Cloud Blog',
+          label: 'What’s new with Google Cloud: Cut background agent costs in half with the deferred tier on Gemini platform',
+          author: 'Google Cloud Product Team',
+          date: 'November 19, 2026',
+          url: 'https://cloud.google.com/blog/topics/inside-google-cloud/whats-new-google-cloud',
+        },
+        {
+          role: 'Official Google ADK Documentation',
+          label: 'Deferred scheduling with Gemini models (ADK Python v2.10.0+)',
+          author: 'Google Agent Development Kit Team',
+          date: 'November 2026',
+          url: 'https://adk.dev/agents/models/google-gemini/deferred-schedule/',
+        },
+      ],
+    },
+  },
   'pulse-gemini-semantic-governance-and-multicloud-agents': {
     id: 'pulse-gemini-semantic-governance-and-multicloud-agents',
     slug: 'gemini-semantic-governance-and-multicloud-agents',
