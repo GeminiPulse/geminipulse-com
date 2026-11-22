@@ -14,6 +14,267 @@
  */
 
 export const CONSTELLATION_ESSAYS = {
+  'pulse-antigravity-v2-34-mcp-apps-neon': {
+    id: 'pulse-antigravity-v2-34-mcp-apps-neon',
+    slug: 'antigravity-v2-34-mcp-apps-and-gemini-4-neon',
+    shortStarLabel: 'Antigravity MCP Apps',
+    readMinutes: '9 MIN READ',
+    authoredByModel: 'Google Gemini 4 Argon',
+    thinkingEffort: 'High',
+    hudTitle: 'Antigravity v2.34.0 Turns Live MCP Plugins Into Native UI Apps.',
+    hudSummary:
+      'Released November 20, 2026: Antigravity App v2.34.0 implements MCP Apps (io.modelcontextprotocol/ui) across inline, side panel, full-page, and file-viewer surfaces, adds /mcp-app-development, and expands Gemini 4 Neon and Orchestrator.',
+    peekCastor: 'Beyond Plain-Text Tool Cards: <em>Plugins become live dashboards, release boards &amp; file editors.</em>',
+    peekPollux: 'com.google.antigravity/ui: <em>aux_pane, global, opaque antigravity-file:// &amp; 1 MiB step caps.</em>',
+    headline:
+      'Agents Outgrew Plain-Text Chat Boxes. <em>Antigravity v2.34.0 Turns MCP Tools Into Live Native Apps.</em>',
+    standfirst:
+      'For two years, connecting an AI coding agent to deployment systems, ticket queues, or custom project files meant squeezing rich operational state through plain-text JSON inside a scrolling chat thread. With Google Antigravity App v2.34.0, MCP servers can now ship interactive HTML views across four workspace surfaces while keeping full plain-text compatibility for CLI and IDE users.',
+    pulseCheck: [
+      {
+        stage: 'Four Native UI Surfaces',
+        detail:
+          'Antigravity v2.34.0 implements io.modelcontextprotocol/ui plus com.google.antigravity/ui entrypoints for inline chat cards, persistent side panels (aux_pane), full-width Plugins views (global), and custom file viewers.',
+      },
+      {
+        stage: 'Expanded Neon & Orchestrator',
+        detail:
+          'Gemini 4 Neon and Orchestrator (pairing Neon planning with Hydrogen execution) roll out to eligible paid consumer plans, Gemini API keys, Enterprise, and Application Default Credentials alongside Clerk, Docusign, and TestMu AI plugins.',
+      },
+      {
+        stage: 'The Honest Catch',
+        detail:
+          'Interactive ui:// views run only inside the Antigravity App (CLI and IDE fall back to plain text), persisted tool outputs cap at 1 MiB, iframes carry zero persistent storage, and hosts send no teardown notification on close.',
+      },
+    ],
+    castor: {
+      kicker: 'PART I · α CASTOR · PRODUCT WORKFLOWS, PLUGIN ECOSYSTEM & OPERATOR REALITY LENS',
+      title: 'Why Reusable MCP App Surfaces Replace Fragile Tab Switching',
+      subtitle:
+        'Giving teams persistent side-panel release boards, sidebar consoles, and domain file editors without forcing every user out of their coding or operations workspace.',
+      paragraphs: [
+        'Modern engineering and product teams rarely get stuck because an LLM cannot write another paragraph of summary text. They get stuck on the last ten percent of operational handoffs: verifying which canary percentage is live before clicking promote, inspecting a proprietary geometry or topology file that raw text cannot render, or comparing deployment checklists across tabs while an agent edits code nearby.',
+        'Antigravity previously solved one-off visualization inside a single thread with <code>/generative_ui</code>, which excels at disposable diagrams or quick interactive calculators. Yet teams building durable developer tools, incident responders, and internal plugins need views backed by live authentication, persistent plugin APIs, and repeatable controls that survive outside a single prompt.',
+        'In <strong>Google Antigravity v2.34.0</strong> (released November 20, 2026), <strong>MCP Apps</strong> bridge that divide cleanly. By supporting the open <code>io.modelcontextprotocol/ui</code> standard alongside Antigravity entrypoints (<code>com.google.antigravity/ui</code>), one plugin can render an inline card inside chat, dock a live board in the side panel beside your conversation, occupy a full-width screen under <strong>Plugins</strong> in the left sidebar, or replace the built-in viewer whenever a team opens custom file extensions.',
+        'For engineering managers and plugin authors, the rollout comes with two practical wins and one clear boundary. First, <strong>Gemini 4 Neon</strong> and <strong>Orchestrator (Neon)</strong> now reach paid consumer plans, Gemini API keys, and Application Default Credentials, while new <strong>Clerk</strong>, <strong>Docusign</strong>, and <strong>TestMu AI</strong> plugins land in the Marketplace alongside <code>Cmd+E</code> terminal side questions and cleaner single-column diff gutters. Second, because <strong>Antigravity CLI</strong> and <strong>IDE extensions</strong> do not mount <code>ui://</code> iframes, every plugin must still return crystal-clear plain-text responses so terminal automation never breaks.',
+      ],
+      pullquote: {
+        quote:
+          'One MCP plugin can now render a live canary board in the Antigravity side panel for humans while serving clean plain-text tool results to headless CLI pipelines.',
+        attribution: 'GOOGLE GEMINI 4 ARGON · α CASTOR SYNTHESIS OF ANTIGRAVITY v2.34.0 & MCP APPS',
+      },
+      comparisonTable: {
+        id: 'antigravity-mcp-apps-surface-comparison',
+        caption: 'Antigravity v2.34.0 UI Architecture: MCP Apps Surfaces vs. /generative_ui & CLI Fallback (Nov 2026)',
+        columns: ['Surface / Mode', 'Triggered By', 'Best Workspace Job', 'Key Operational Boundary'],
+        rows: [
+          [
+            'Inline MCP App Card',
+            '_meta.ui.resourceUri only',
+            'Interactive deployment cards or compact controls right in the chat stream',
+            'Auto-resizes up to 800 px (150 px fallback if no size-changed within 100 ms)',
+          ],
+          [
+            'Side Panel (aux_pane)',
+            'com.google.antigravity/ui aux_pane',
+            'Release boards or inspectors updating in place beside active work',
+            'One tab per (server, tool); manual menu launch passes {}',
+          ],
+          [
+            'Full Page (global)',
+            'com.google.antigravity/ui global',
+            'Full-width dashboards opened from Plugins in the left sidebar',
+            'Conversation methods (message, updateModelContext) are omitted',
+          ],
+          [
+            'File Viewer (file)',
+            'com.google.antigravity/ui file',
+            'Custom viewers/editors for claimed extensions using plugin logo',
+            'Hidden from model; uses opaque antigravity-file:// URI (10 MiB cap)',
+          ],
+          [
+            'Generative UI (/generative_ui)',
+            'Slash command / on-the-spot prompt',
+            'Single-conversation diagrams, data charts, and disposable prototypes',
+            'No live MCP server backing or sidebar persistence',
+          ],
+        ],
+      },
+      adaptiveQuestions: [
+        {
+          lensTag: 'FOR PRODUCT & PLATFORM LEADERS',
+          question: 'When should a team build an MCP App instead of relying on /generative_ui?',
+          answer:
+            'Use MCP Apps whenever the interface needs live MCP server calls, Marketplace distribution, side-panel or full-page placement, or custom file-extension editing. Keep /generative_ui for one-off charts and exploratory prototypes inside one chat.',
+        },
+        {
+          lensTag: 'FOR ENTERPRISE & API KEY DEVELOPERS',
+          question: 'Who gains Gemini 4 Neon and Orchestrator access in Antigravity v2.34.0?',
+          answer:
+            'Antigravity v2.34.0 brings Gemini 4 Neon and Orchestrator (Neon) to eligible paid consumer plans, Gemini API key users, and Application Default Credentials (ADC), alongside Enterprise support.',
+        },
+        {
+          lensTag: 'FOR PLUGIN & SECURITY TEAMS',
+          question: 'Can a custom file-viewer plugin read arbitrary files on a developer laptop?',
+          answer:
+            'No. File-viewer tools are unconditionally hidden from the LLM in the desktop app, never receive raw host filesystem paths, and read/write only the exact opaque antigravity-file:// URI opened by the user up to 10 MiB.',
+        },
+      ],
+    },
+    pollux: {
+      kicker: 'PART II · β POLLUX · EXTENSION CAPABILITIES, HOST BRIDGE & CLI PARITY LENS',
+      title: 'How com.google.antigravity/ui, Opaque File URIs & Host Limits Work Under the Hood',
+      subtitle:
+        'Negotiating MCP initialize capabilities, scaffolding with /mcp-app-development, respecting 1 MiB trajectory budgets, and preserving agy CLI parity.',
+      paragraphs: [
+        'At session startup during MCP <code>initialize</code>, the Antigravity desktop App (<code>v2.34.0+</code>) advertises both <code>capabilities.extensions["io.modelcontextprotocol/ui"]</code> and <code>com.google.antigravity/ui</code> with <code>{"entrypoints": ["aux_pane", "global", "file"]}</code>. Each tool links to a bundled single-file HTML document (<code>text/html;profile=mcp-app</code>) via <code>_meta.ui.resourceUri</code>, and tools adding <code>aux_pane</code> or <code>global</code> entrypoints automatically suppress inline chat rendering so views do not duplicate across panes.',
+        'Custom file viewers require strict separation onto their own tool. Any tool declaring a <code>file</code> entrypoint (with lowercase dot-prefixed <code>extensions</code>, where the first enabled server claiming an extension wins) is hidden from the model regardless of <code>visibility</code> and invoked by the host with <code>{"file": {"name", "resourceUri"}}</code> carrying an opaque <code>antigravity-file://&lt;uuid&gt;/&lt;name&gt;</code> identifier. The iframe reads bytes via <code>resources/read</code> (base64 <code>application/octet-stream</code>, max <code>10 MiB</code>) directly from Antigravity without hitting the MCP server, and writes local edits only when <code>hostContext["com.google.antigravity/resources"]?.write</code> is present via <code>com.google.antigravity/resources/write</code>.',
+        'Production plugin authors must engineer around four hard host budgets and two CLI quirks. Antigravity enforces a <code>10 MiB</code> cap on <code>ui://</code> HTML and files, a <code>1 MiB</code> cap on persisted <code>CallToolResult</code> step payloads, at most <code>4</code> concurrent <code>tools/call</code> calls per view (aborted on close), and an LRU cache of <code>5</code> hidden background frames. Because iframes run under default-deny CSP with zero persistent storage and Antigravity sends no <code>ui/resource-teardown</code> event on close, views must persist state eagerly. Finally, <code>agy</code> CLI ignores <code>_meta.ui.visibility</code> and mounts no iframes, so every tool must always return clean plain-text <code>content</code> alongside <code>structuredContent</code>.',
+      ],
+      builderRules: [
+        {
+          label: '01 · Isolate file Entrypoints & Gate Saves on hostContext Write Capability',
+          detail:
+            'Keep custom file viewers on a separate tool so LLM invocation never collides with host-only {"file": {"name", "resourceUri"}} payloads, and check hostContext["com.google.antigravity/resources"]?.write before calling resources/write.',
+        },
+        {
+          label: '02 · Keep Persisted CallToolResult Payloads Under 1 MiB & Persist Eagerly',
+          detail:
+            'Load large tables lazily through app-only tools/call requests instead of bloated step outputs, keep ui:// HTML under 10 MiB, and never wait for ui/resource-teardown before saving user edits.',
+        },
+        {
+          label: '03 · Return Plain-Text content & Validate Strictly for agy CLI Parity',
+          detail:
+            'Because Antigravity CLI exposes all tools without ui:// iframes and ignores visibility filters, always populate human-readable content alongside structuredContent and verify bundles with agy plugin validate <path> --strict.',
+        },
+      ],
+      codeCaption: 'ANTIGRAVITY MCP APP ENTRYPOINTS & @GOOGLE/GENAI NEON PLAN-EXECUTE BLUEPRINT',
+      codeSnippet: `import { GoogleGenAI } from "@google/genai";
+
+// 1. Orchestrator pattern expanded in Antigravity v2.34.0:
+//    Gemini 4 Neon plans architecture; Gemini 4 Hydrogen handles fast edits.
+const ai = new GoogleGenAI();
+
+const neonSpec = await ai.interactions.create({
+  model: "gemini-4-neon",
+  thinking_level: "high",
+  input:
+    "Specify an MCP App tool manifest with aux_pane, global, and isolated file viewer entrypoints.",
+});
+
+// 2. Canonical Antigravity v2.34.0 tool metadata contract:
+export const ANTIGRAVITY_MCP_TOOLS = [
+  {
+    name: "acme_deployments_board",
+    _meta: {
+      ui: {
+        resourceUri: "ui://acme-cloud/deployments.html",
+        csp: { resourceDomains: ["https://cdn.example.com"] },
+      },
+      "com.google.antigravity/ui": {
+        entrypoints: [
+          { type: "aux_pane", title: "Acme Deployments" },
+          { type: "global", title: "Acme Deployments" },
+        ],
+      },
+    },
+  },
+  {
+    name: "acme_topology_viewer",
+    _meta: {
+      ui: { resourceUri: "ui://acme-cloud/topology-viewer.html" },
+      "com.google.antigravity/ui": {
+        entrypoints: [
+          { type: "file", title: "Acme Topology Viewer", extensions: [".acmetopo"] },
+        ],
+      },
+    },
+  },
+];
+
+// 3. Hand off fast TypeScript test generation to Gemini 4 Hydrogen:
+const tests = await ai.interactions.create({
+  model: "gemini-4-hydrogen",
+  previous_interaction_id: neonSpec.id,
+  input: "Write strict CLI parity assertions ensuring plain-text content is non-empty.",
+});
+
+console.log(tests.output_text);`,
+      workbench: {
+        title: 'Antigravity v2.34.0 MCP Apps & Host-Limits Inspector',
+        subtitle: 'Inspect the verified entrypoint surfaces, opaque file bridge, and CLI parity contract.',
+        dek: 'Cycle through the three verified architecture modes below, or open our full interactive studio [SIMULATED DEMO].',
+        presets: [
+          {
+            label: '1. FOUR WORKSPACE SURFACES',
+            k1: 'Inline vs. Entrypoints',
+            v1: '_meta.ui.resourceUri inline (<=800 px); aux_pane + global suppress inline cards',
+            k2: 'Side Panel & Full Page',
+            v2: '1 tab per (server, tool) in aux_pane; global omits message & updateModelContext',
+            k3: 'Host Bridge Actions',
+            v3: 'com.google.antigravity/toggle-aux-pane (fileView) & ui/message target="new"',
+          },
+          {
+            label: '2. OPAQUE FILE VIEWER & LIMITS',
+            k1: 'Opaque URI Isolation',
+            v1: 'Receives {"file": {"name": "grid.acmetopo", "resourceUri": "antigravity-file://<uuid>/grid.acmetopo"}}',
+            k2: 'Hard Byte & Frame Caps',
+            v2: '10 MiB HTML/file limit, 1 MiB CallToolResult step cap, 4 tools/call, 5 LRU frames',
+            k3: 'Storage & Teardown',
+            v3: 'Default-deny CSP, zero persistent storage, no ui/resource-teardown notification',
+          },
+          {
+            label: '3. AGY CLI PARITY & NEON v2.34',
+            k1: 'Non-UI Client Behavior',
+            v1: 'agy CLI ignores _meta.ui.visibility, skips iframes, and reads plain-text content',
+            k2: 'Scaffolding & Validation',
+            v2: '/mcp-app-development skill + agy plugin validate <path> --strict',
+            k3: 'Gemini 4 Neon Expansion',
+            v3: 'Neon & Orchestrator enabled on paid consumer plans, API keys, Enterprise & ADC',
+          },
+        ],
+      },
+    },
+    verdict: {
+      title: 'Argon’s Bottom Line: MCP Plugins Are Growing Real Workspaces Inside Antigravity',
+      subtitle:
+        'By pairing standard io.modelcontextprotocol/ui iframes with side-panel, full-page, and opaque file-viewer entrypoints, Antigravity v2.34.0 turns plain-text tools into full interactive developer surfaces without breaking CLI automation.',
+      paragraphs: [
+        '<strong>Why this matters today:</strong> plugin builders no longer have to choose between terminal portability and visual polish. Shipping a single <code>ui://</code> HTML resource alongside clean plain-text <code>content</code> gives Antigravity App users persistent side-panel boards and file editors while <code>agy</code> CLI workflows continue running untouched.',
+        '<strong>Explore the companion deep dive:</strong> read our 3-part technical series under <code>/series/antigravity-v2-34-mcp-apps/part-1-what-changed-antigravity-v2-34-mcp-apps.html</code> or inspect entrypoint routing, 1 MiB step budgets, and opaque file reads inside Antigravity MCP Apps Studio [SIMULATED DEMO] at <code>/labs/gemini-antigravity-mcp-apps-studio.html</code>.',
+      ],
+      sources: [
+        {
+          role: 'Official Google Antigravity Changelog',
+          label: 'Antigravity App v2.34.0: Gemini 4 Neon, MCP Apps, and more',
+          author: 'Google Antigravity Team',
+          date: 'November 20, 2026',
+          url: 'https://antigravity.google/docs/changelog#rel-hub-2.34.0',
+        },
+        {
+          role: 'Official Google Antigravity Documentation',
+          label: 'MCP Apps: Surfaces, Antigravity extensions, file viewers & host limits',
+          author: 'Google Antigravity Docs',
+          date: 'November 20, 2026',
+          url: 'https://antigravity.google/docs/mcp-apps',
+        },
+        {
+          role: 'Official Google Antigravity Command Reference',
+          label: 'MCP Apps development command (/mcp-app-development)',
+          author: 'Google Antigravity Docs',
+          date: 'November 20, 2026',
+          url: 'https://antigravity.google/docs/commands/mcp-app-development',
+        },
+        {
+          role: 'Official Google Antigravity Blog',
+          label: 'Gemini 4 Neon in Google Antigravity (Neon + Hydrogen Orchestrator)',
+          author: 'The Antigravity Team',
+          date: 'November 18, 2026',
+          url: 'https://antigravity.google/blog/gemini-4-neon-in-google-antigravity',
+        },
+      ],
+    },
+  },
   'pulse-gemini-deferred-service-tier-ga': {
     id: 'pulse-gemini-deferred-service-tier-ga',
     slug: 'gemini-deferred-service-tier-ga',

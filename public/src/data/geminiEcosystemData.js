@@ -24,6 +24,25 @@ export const PULSE_INTELLIGENCE_FEED = [
     labLabel: 'Neon Studio [DEMO] →',
   },
   {
+    id: 'pulse-antigravity-v2-34-mcp-apps-neon',
+    title: 'Google Antigravity v2.34.0 Ships Interactive MCP Apps Across 4 Surfaces, Built-In /mcp-app-development & Expanded Gemini 4 Neon',
+    tldr: 'Released November 20, 2026: Antigravity App v2.34.0 implements the open MCP Apps specification (io.modelcontextprotocol/ui) plus Antigravity entrypoints (com.google.antigravity/ui) for inline chat, side panel (aux_pane), full-page (global), and opaque custom file viewers, ships the built-in /mcp-app-development command, and expands Gemini 4 Neon and Orchestrator (Neon) to paid consumer plans, Gemini API keys, and Application Default Credentials.',
+    summary:
+      'Documented in Google Antigravity Changelog v2.34.0, Antigravity MCP Apps Docs, and /mcp-app-development Reference: (1) Four MCP App Surfaces—renders ui:// single-file HTML views (text/html;profile=mcp-app, up to 10 MiB) inline in chat (150 px fallback, 800 px auto-resize ceiling), in the side panel (aux_pane, one tab per server+tool), full-width from the Plugins sidebar (global), and as custom file viewers (file entrypoint hidden from the model with opaque antigravity-file:// URIs and 10 MiB read/write caps), (2) Host Limits & Plain-Text CLI Parity—caps persisted CallToolResult trajectory payloads at 1 MiB, concurrent tools/call at 4 per view, and hidden background frames at 5 (LRU), enforces default-deny CSP without persistent storage, sends no teardown hook, and falls back to standard plain-text MCP tools on Antigravity CLI (agy) and IDE extensions, (3) Built-In /mcp-app-development & Partner Plugins—loads the MCP Apps scaffolding skill on turn one and adds Clerk, Docusign, and TestMu AI partner plugins, and (4) Gemini 4 Neon & 15 Workflow Upgrades—expands Gemini 4 Neon and Orchestrator (Neon + Hydrogen) to eligible paid consumer plans, Gemini API keys, and ADC accounts alongside Cmd+E terminal side questions, single-column color-coded diff gutters, and drag-and-drop conversation tabs.',
+    category: 'Antigravity & MCP Apps',
+    tag: 'Antigravity v2.34.0',
+    modelBadge: 'MCP Apps · Antigravity v2.34',
+    impactScore: '10.0 / 10',
+    date: '2026-11-20T23:58:00Z',
+    sourceLabel: 'Google Antigravity Docs & Changelog: v2.34.0 & MCP Apps (Nov 20, 2026)',
+    sourceUrl: 'https://antigravity.google/docs/changelog#rel-hub-2.34.0',
+    groundedBy: 'Google Antigravity Official Changelog v2.34.0 + antigravity.google/docs/mcp-apps + /docs/commands/mcp-app-development (Nov 20, 2026)',
+    seriesUrl: '/series/antigravity-v2-34-mcp-apps/part-1-what-changed-antigravity-v2-34-mcp-apps.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-antigravity-mcp-apps-studio.html',
+    labLabel: 'MCP Apps Studio [DEMO] →',
+  },
+  {
     id: 'pulse-gemini-deferred-service-tier-ga',
     title: 'Google Cloud Launches Deferred Service Tier GA for Stateful Multi-Turn Agents: 50% Batch Economics Without Breaking Tool Loops',
     tldr: 'Updated November 20, 2026: The Deferred service tier (service_tier="deferred") is now generally available across the Gemini Interactions API, Agent Development Kit (ADK), and Deep Research—cutting completed turn costs by 50% off Standard PayGo, stacking with prompt caching, charging $0 for failed or cancelled turns, and queuing multi-turn tool chains onto spare global capacity within a 24-hour target.',
@@ -1559,6 +1578,64 @@ export const GEMINI_MODEL_MATRIX = [
 
 export const STUDIO_LAB_BLUEPRINTS = [
   {
+    id: 'lab-gemini-antigravity-mcp-apps-studio',
+    title: 'Antigravity v2.34.0 MCP Apps & Entrypoint Studio [SIMULATED DEMO]',
+    badge: 'Nov 2026 Antigravity v2.34.0',
+    model: 'gemini-4-neon',
+    href: '/labs/gemini-antigravity-mcp-apps-studio.html',
+    description:
+      'Interactive developer workbench modeling Google Antigravity v2.34.0 MCP Apps (io.modelcontextprotocol/ui and com.google.antigravity/ui): test inline 800 px auto-resize, aux_pane/global tabs, opaque antigravity-file:// viewers, 1 MiB CallToolResult caps, and agy CLI plain-text parity.',
+    prompt:
+      'Scaffold an Antigravity MCP App plugin using /mcp-app-development with an aux_pane release board, a global Plugins dashboard, a hidden custom file viewer, and plain-text agy CLI parity.',
+    tsCode: `import { GoogleGenAI } from "@google/genai";
+
+// Orchestrator pattern expanded in Antigravity v2.34.0:
+// Gemini 4 Neon plans architecture while Gemini 4 Hydrogen handles fast code generation.
+const ai = new GoogleGenAI();
+
+const plan = await ai.interactions.create({
+  model: "gemini-4-neon",
+  thinking_level: "high",
+  input: "Design an Antigravity MCP App plugin with aux_pane, global, and file entrypoints.",
+});
+
+const code = await ai.interactions.create({
+  model: "gemini-4-hydrogen",
+  previous_interaction_id: plan.id,
+  input: "Emit tool metadata enforcing 10 MiB HTML limits, 1 MiB CallToolResult caps, and plain-text CLI content.",
+});
+
+console.log(code.output_text);`,
+    pyCode: `from google import genai
+
+client = genai.Client()
+
+response = client.interactions.create(
+    model="gemini-4-neon",
+    thinking_level="high",
+    input=(
+        "Generate mcp_config.json using PLUGIN_ROOT and PLUGIN_DATA plus "
+        "_meta['com.google.antigravity/ui'].entrypoints for aux_pane and file viewers."
+    ),
+)
+
+print(response.output_text)`,
+    simulatedSteps: [
+      {
+        type: 'thought',
+        label: 'step[0] · Capability & Entrypoint Negotiation',
+        detail:
+          'Advertised io.modelcontextprotocol/ui and com.google.antigravity/ui (aux_pane, global, file) during MCP initialize while keeping non-UI agy CLI fallback active via plain-text content.',
+      },
+      {
+        type: 'tool_call',
+        label: 'step[1] · Opaque File Read & Host Limit Check',
+        detail:
+          'Verified 10 MiB ui:// HTML and antigravity-file:// bounds, 1 MiB persisted CallToolResult trajectory budget, 4-call concurrency cap, and default-deny _meta.ui.csp origin policy.',
+      },
+    ],
+  },
+  {
     id: 'lab-gemini-deferred-tier-studio',
     title: 'Deferred Service Tier & Multi-Turn Queue Studio [SIMULATED DEMO]',
     badge: 'Nov 2026 Agent Compute GA',
@@ -2901,6 +2978,25 @@ video_turn = client.interactions.create(
 ];
 
 export const INITIAL_SHOWCASE_PROJECTS = [
+  {
+    id: 'showcase-gemini-antigravity-mcp-apps-studio',
+    name: 'Antigravity v2.34.0 MCP Apps & Entrypoint Studio [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive developer workbench modeling Google Antigravity v2.34.0 MCP Apps: simulate inline 800 px cards, aux_pane and global entrypoints, opaque antigravity-file:// viewers, 1 MiB step budgets, and agy CLI plain-text parity.',
+    models: ['gemini-4-neon', 'gemini-4-hydrogen'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-antigravity-mcp-apps-studio.html): [SIMULATED DEMO] Models com.google.antigravity/ui entrypoints, 10 MiB HTML/file caps, 5-frame LRU retention, and Gemini 4 Neon + Hydrogen Orchestrator codegen.',
+    url: '/labs/gemini-antigravity-mcp-apps-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-20T23:58:00Z',
+  },
   {
     id: 'showcase-gemini-deferred-tier-studio',
     name: 'Deferred Service Tier & Multi-Turn Queue Studio [SIMULATED DEMO]',
