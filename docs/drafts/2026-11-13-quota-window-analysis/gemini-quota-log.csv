@@ -1,0 +1,31 @@
+Date,Time,Weekly remaining %,Weekly "fully refresh in",Implied weekly reset,5-hr remaining %,5-hr "fully refresh in",Implied 5-hr reset,Notes
+Tue Nov 10,4:57:32 PM,91,3d 2h,Fri Nov 13 ~7-8 PM,100,(none),-,5-hr idle
+Tue Nov 10,5:36:56 PM,90,3d 2h,Fri Nov 13 ~7-8 PM,99,4h 59m,~10:36 PM,5-hr window starts at first use
+Tue Nov 10,5:59:51 PM,86,3d 1h,Fri Nov 13 ~7-8 PM,85,3h 57m,~9:57 PM,
+Wed Nov 11,12:57:31 AM,85,2d 18h,Fri Nov 13 ~7-8 PM,95,4h 40m,~5:38 AM,
+Wed Nov 11,12:58:06 AM,85,2d 18h,Fri Nov 13 ~7-8 PM,95,4h 40m,~5:38 AM,
+Wed Nov 11,2:06:34 AM,85,2d 17h,Fri Nov 13 ~7-8 PM,92,3h 31m,~5:38 AM,
+Wed Nov 11,2:24:46 AM,84,2d 17h,Fri Nov 13 ~7-8 PM,91,3h 13m,~5:38 AM,
+Wed Nov 11,2:29:18 AM,85,2d 16h,Fri Nov 13 ~6:30-7:30 PM,91,3h 8m,~5:37 AM,Weekly ticked UP 84->85 (rounding?)
+Wed Nov 11,3:31:16 AM,78,2d 15h,Fri Nov 13 ~6:30-7:30 PM,66,2h 6m,~5:37 AM,
+Wed Nov 11,3:38:45 AM,78,2d 15h,Fri Nov 13 ~6:30-7:30 PM,66,1h 59m,~5:38 AM,
+Wed Nov 11,11:15:00 AM,77,2d 8h,Fri Nov 13 ~7-8 PM,100,2h 30m,-,
+Thu Nov 12,8:39:21 PM,74,22h 46m,Fri Nov 13 7:25 PM,95,2h 6m,~10:45 PM,
+Fri Nov 13,12:56:49 PM,74,6h 28m,Fri Nov 13 7:25 PM,99,-,~5:46 PM,
+Fri Nov 13,2:15:41 PM,73,5h 9m,Fri Nov 13 7:25 PM,97,3h 30m,~5:46 PM,
+Fri Nov 13,2:27:46 PM,73,4h 57m,Fri Nov 13 7:25 PM,96,3h 18m,~5:46 PM,
+Fri Nov 13,3:03:30 PM,71,4h 21m,Fri Nov 13 7:25 PM,93,2h 42m,~5:46 PM,
+Fri Nov 13,4:11:38 PM,69,3h 13m,Fri Nov 13 7:25 PM,85,1h 34m,~5:46 PM,Started trying to use up the week
+Fri Nov 13,5:37:50 PM,59,1h 47m,Fri Nov 13 7:25 PM,42,8m,~5:46 PM,
+Fri Nov 13,5:41:00 PM,58,1h 44m,Fri Nov 13 7:25 PM,36,4m,~5:46 PM,
+Fri Nov 13,5:45:08 PM,55,1h 41m,Fri Nov 13 7:26 PM,27,1m,~5:46 PM,
+Fri Nov 13,5:45:53 PM,55,1h 40m,Fri Nov 13 7:26 PM,23,<1m,~5:46 PM,
+Fri Nov 13,6:00:11 PM,42,1h 25m,Fri Nov 13 7:25 PM,54,4h 45m,~10:45 PM,Old week still active per panel
+Fri Nov 13,6:11:24 PM,84,6d 23h,Fri Nov 20 ~5:52 PM,35,4h 40m,~10:51 PM,NEW WEEK - reset ~93 min early & backdated to ~5:52
+Fri Nov 13,6:13:31 PM,82,6d 23h,Fri Nov 20 ~5:52 PM,26,4h 38m,~10:51 PM,
+Fri Nov 13,6:17:24 PM,77,6d 23h,Fri Nov 20 ~5:52 PM,8,4h 34m,~10:51 PM,
+Fri Nov 13,6:19:07 PM,-,-,-,BLOCKED,4h 32m 32s,10:51:39 PM (exact),"Server error ""Individual quota reached"" (also 6:19:15 and 6:19:46, all -> 10:51:39 PM)"
+Fri Nov 13,6:19:26 PM,77,6d 23h,-,8,4h 34m,-,Stale panel (not refreshed)
+Fri Nov 13,6:20:00 PM,77,6d 23h,-,8,4h 34m,-,Stale panel (not refreshed)
+Fri Nov 13,6:20:04 PM,74,(5-hr limit hit),-,0,4h 31m,~10:51 PM,"After refresh: ""You have hit your 5-hour limit, so the weekly limit does not currently apply"""
+Fri Nov 13,6:23:02 PM,74,(5-hr limit hit),-,0,4h 28m,~10:51 PM,
