@@ -14,6 +14,232 @@
  */
 
 export const CONSTELLATION_ESSAYS = {
+  'pulse-deepmind-gemini-4-lean-quantum-algorithms': {
+    id: 'pulse-deepmind-gemini-4-lean-quantum-algorithms',
+    slug: 'deepmind-gemini-4-lean-4-quantum-algorithms',
+    shortStarLabel: 'Lean 4 Quantum AI',
+    readMinutes: '10 MIN READ',
+    authoredByModel: 'Google Gemini 4 Argon',
+    thinkingEffort: 'High',
+    hudTitle: 'Gemini 4 Agent Teams + Lean 4 Cut Quantum Fusion Simulation Cost 11.8x.',
+    hudSummary:
+      'Published November 23, 2026: Google DeepMind and Google Quantum AI pair collaborating Gemini 4 agent teams with an open-source Lean 4 quantum Hoare logic library (arXiv:2611.09822), cutting fusion cost 11.8x and speeding arcsin 290x.',
+    peekCastor: 'Proof-Checked AI Discovery: <em>11.8x cheaper fusion &amp; 8x cheaper chemistry without hardware tests.</em>',
+    peekPollux: 'Lean 4 Quantum Hoare Logic: <em>457K-line fusion proofs, shared wikis &amp; 4-hour agent conferences.</em>',
+    headline:
+      'You Cannot Unit-Test Tomorrow’s Quantum Circuits. <em>Gemini 4 Agents Proved Faster Ones in Lean 4 Instead.</em>',
+    standfirst:
+      'Classical supercomputers cannot simulate fault-tolerant quantum algorithms at scientific scale, and today’s noisy processors are still too small to run them. On November 23, 2026, Google DeepMind and Google Quantum AI bridged that verification gap by pairing teams of Gemini 4 agents with an open-source Lean 4 theorem-proving library, cutting fusion simulation costs 11.8x and speeding foundational quantum arithmetic up to 290x.',
+    pulseCheck: [
+      {
+        stage: 'Formal Verification Loop',
+        detail:
+          'Independent Gemini 4 agent teams synthesize quantum circuits inside a Lean 4 quantum Hoare logic library (QuantumComputation), prove correctness and resource counts before updating a shared notebook, and debate strategies at virtual conferences every four hours.',
+      },
+      {
+        stage: 'Verified Scientific Speedups',
+        detail:
+          'Open-sourced discoveries on GitHub cut inertial confinement fusion cost 11.8x (5,650 to 4,338 qubits), photochemistry 8x, Cytochrome P450 enzyme simulation 2.5x (481 to 333 qubits), parallel Grover search up to 2.57x, and arcsin state loading 290x.',
+      },
+      {
+        stage: 'The Honest Catch',
+        detail:
+          'Even after 11.8x savings, fusion and enzyme simulations still exceed the first error-corrected quantum hardware, checking the largest Lean modules via lake comparator peaks around 230–233 GB RAM plus swap, and explicit classical-control costing remains on the repo roadmap.',
+      },
+    ],
+    castor: {
+      kicker: 'PART I · α CASTOR · SCIENTIFIC TIMELINE, VERIFICATION ECONOMICS & LEADERSHIP LENS',
+      title: 'Why Formal Proof Turns Agentic Search From Guesswork Into Verified Science',
+      subtitle:
+        'How replacing unrunnable test harnesses with Lean 4 mathematical guarantees lets AI teams optimize fusion, drug-metabolism enzymes, and quantum primitives years before fault-tolerant hardware arrives.',
+      paragraphs: [
+        'For classical software, automated coding loops like AlphaEvolve rely on a straightforward feedback signal: propose a candidate function, execute it against a suite of benchmarks, and keep whatever runs faster without failing tests. That empirical shortcut collapses the moment researchers try to optimize fault-tolerant quantum algorithms for fusion energy or molecular chemistry, because a classical cluster cannot simulate thousands of logical qubits and today’s quantum chips cannot yet run deep error-corrected circuits.',
+        'In <strong>Discovering formally verified quantum programs with AI</strong> (published November 23, 2026 across Google DeepMind and Google Quantum AI, <code>arXiv:2611.09822</code>), Sergey Shirobokov, Ben Jaderberg, Ryan Babbush, and collaborators replaced runtime testing with mathematical proof. Instead of evaluating circuits on hardware, teams of <strong>Gemini 4</strong> agents wrote both quantum programs and machine-checked correctness proofs inside <strong>Lean 4</strong>, proving equivalence and exact qubit-plus-operation costs directly against formal problem specifications.',
+        'Rather than running one monolithic prompt loop, the research team organized independent Gemini 4 agent teams working in parallel against each challenge. Whenever a team proved a valid improvement in Lean, it logged the verified technique into a shared notebook and wiki; every four hours, agents from separate teams convened in a virtual conference to trade, debate, and synthesize ideas across approaches, steadily driving resource consumption downward.',
+        'For R&amp;D leaders and computational scientists, the practical takeaway goes well beyond quantum computing. Pairing agentic search with a formal verifier compresses work that historically took years of manual human proof engineering—demonstrating an <strong>11.8x</strong> resource reduction for inertial confinement fusion stopping power, an <strong>8x</strong> reduction for non-Born-Oppenheimer photochemistry, and a <strong>2.5x</strong> drop (plus <strong>481 to 333 qubits</strong>) for Cytochrome P450 drug-metabolism modeling—while open-sourcing the entire Lean library, specifications, and verified circuits under Apache 2.0 and CC-BY.',
+      ],
+      pullquote: {
+        quote:
+          'Proof-checked AI search lets teams optimize quantum circuits we cannot yet execute on classical supercomputers or today’s processors, backed by machine-verified Lean guarantees.',
+        attribution: 'GOOGLE GEMINI 4 ARGON · α CASTOR SYNTHESIS OF DEEPMIND & QUANTUM AI (ARXIV:2611.09822)',
+      },
+      comparisonTable: {
+        id: 'deepmind-lean-quantum-benchmarks',
+        caption: 'Verified Quantum Circuit Discoveries & Lean 4 Verification Telemetry (Nov 23, 2026)',
+        columns: ['Challenge Domain', 'Verified Resource Gain', 'Lean 4 Scale (discoveries branch)', 'Verification & Hardware Reality'],
+        rows: [
+          [
+            'Inertial Confinement Fusion (StoppingPower)',
+            '11.8x lower cost; memory cut 5,650 to 4,338 qubits',
+            '176 .lean modules (457,154 lines)',
+            '1h 41m lake build; 2h 27m comparator (232 GB + swap)',
+          ],
+          [
+            'Photochemistry (Light-Sensitive Molecules)',
+            '8x cheaper quantum simulation',
+            '74 .lean modules (196,621 lines)',
+            '2h 04m lake build; 59m comparator (233 GB + swap)',
+          ],
+          [
+            'Cytochrome P450 (Drug Metabolism)',
+            '2.5x gain; qubits cut 481 to 333',
+            '160 .lean modules (199,831 lines)',
+            '21m lake build; 35m comparator (230 GB + swap)',
+          ],
+          [
+            'Parallel Grover Search (FindAll / FindAny)',
+            'Up to 2.57x speedup over prior baseline',
+            '200 modules / 554,952 lines (FindAll); 4 modules / 2,709 lines (FindAny)',
+            'FindAll sharded comparator: 1h 04m at 28 GB per process',
+          ],
+          [
+            'Quantum Arithmetic (ArcSin Primitive)',
+            '290x speedup loading numbers into quantum states',
+            '16 .lean modules (22,335 lines)',
+            '16m lake build; 4m comparator (low RAM footprint)',
+          ],
+        ],
+      },
+      adaptiveQuestions: [
+        {
+          lensTag: 'FOR R&D & QUANTUM STRATEGY LEADERS',
+          question: 'Do these 11.8x and 8x reductions mean fusion and enzyme simulations run on today’s quantum chips?',
+          answer:
+            'No. DeepMind and Google Quantum AI explicitly note that these full scientific simulations still require more logical resources than the very first error-corrected quantum computers will provide, though formal optimization meaningfully pulls that practical horizon closer.',
+        },
+        {
+          lensTag: 'FOR AGENT SYSTEMS ARCHITECTS',
+          question: 'Why did DeepMind organize Gemini 4 agents into separate teams with 4-hour virtual conferences?',
+          answer:
+            'Independent teams prevent premature convergence on a single heuristic while Lean gates every entry into the shared wiki/notebook so invalid hallucinations never pollute other teams, and 4-hour virtual conferences let winning mathematical tricks cross-pollinate.',
+        },
+        {
+          lensTag: 'FOR OPEN-SOURCE & ACADEMIC TEAMS',
+          question: 'What exact code and benchmarks did Google DeepMind open-source on GitHub?',
+          answer:
+            'The formal-quantum-computation repository ships the core QuantumComputation Lean 4 library (built on pinned Mathlib4 and Physlib QuantumInfo), the QuantumComputationSpecs challenge suite, and all six verified discovery solutions on the discoveries branch.',
+        },
+      ],
+    },
+    pollux: {
+      kicker: 'PART II · β POLLUX · LEAN 4 QUANTUM HOARE LOGIC, COMPARATOR TELEMETRY & SDK LENS',
+      title: 'Inside QuantumComputation: Quantum Hoare Logic, Shared Wikis & 457K-Line Proofs',
+      subtitle:
+        'How Mathlib4, Physlib QuantumInfo, lake comparator JSON challenges, and multi-agent Gemini 4 Interactions workflows enforce zero-hallucination verification.',
+      paragraphs: [
+        'Under the hood, <code>google-deepmind/formal-quantum-computation</code> splits cleanly into two Lean 4 packages managed via <code>elan</code> and <code>lake</code> against pinned tagged releases of <code>Mathlib4</code> and <code>Physlib</code> (specifically <code>QuantumInfo</code>). First, <code>QuantumComputation</code> formalizes quantum circuits, gates, registers, quantum Hoare logic with classical variables, and a static resource-counting model. Second, <code>QuantumComputationSpecs</code> defines machine-checkable challenge specifications (such as <code>StoppingPower.json</code>, <code>P450GroundEnergy.json</code>, <code>Photochemistry.json</code>, <code>GroverFindAllRelCost.json</code>, and <code>ArcsinK25ConstCost.json</code>) so automated agents can propose refactored programs and verify both semantic correctness and exact cost bounds.',
+        'The six verified discoveries on the <code>discoveries</code> branch show both the power and the compute footprint of industrial-scale formal verification. While <code>Grover FindAny</code> fits into <code>4</code> Lean modules (<code>2,709</code> lines, building in <code>2</code> minutes and verifying in <code>3</code> minutes) and <code>ArcSin</code> spans <code>16</code> modules (<code>22,335</code> lines), the scientific chemistry and fusion proofs scale up to <code>176</code> modules and <code>457,154</code> lines for <code>StoppingPower</code> and <code>200</code> modules and <code>554,952</code> lines for <code>Grover FindAll</code>. Running <code>lake comparator</code> on <code>P450</code>, <code>Photochemistry</code>, and <code>StoppingPower</code> peaks at <code>230</code> to <code>233 GB</code> of RAM plus swap unless sharded like <code>Grover FindAll</code> (<code>28 GB</code> per process).',
+        'For engineering teams building formal-verification loops with the Gemini Interactions API today, the architectural pattern generalizes directly to compilers, cryptographic primitives, and safety-critical kernels. Treat the theorem prover as a deterministic gate between agent proposals and shared team state: only proof-checked lemmas enter the shared repository or wiki, while periodic cross-team synthesis turns isolated discoveries (such as replacing bulky QROM lookups in Cytochrome P450) into reusable primitives across challenges.',
+      ],
+      builderRules: [
+        {
+          label: '01 · Gate Shared Agent Memory Behind Deterministic Proof Verification',
+          detail:
+            'Never let unverified agent drafts enter shared wikis or notebooks; require an external formal checker such as Lean lake comparator or a symbolic solver to return exit code 0 before committing any discovery.',
+        },
+        {
+          label: '02 · Shard High-Memory Formal Specifications Like Grover FindAll',
+          detail:
+            'Monolithic proof checks for StoppingPower and Photochemistry peak above 230 GB RAM plus swap; mirror the repository’s sharded comparator pattern (28 GB per process) when scaling agentic formal verification in CI.',
+        },
+        {
+          label: '03 · Pin Mathlib4 & Physlib Dependencies and Track Classical Cost Separately',
+          detail:
+            'Pin toolchain and dependency tags exactly via lean-toolchain and lakefile.toml, and note that explicit resource costing for classical computation and control flow is the next planned milestone in QuantumComputation.',
+        },
+      ],
+      codeCaption: 'GEMINI 4 FORMAL-VERIFICATION ORCHESTRATOR (@GOOGLE/GENAI V3.X INTERACTIONS API)',
+      codeSnippet: `import { GoogleGenAI } from "@google/genai";
+
+// Models a proof-gated multi-team discovery workflow inspired by DeepMind's
+// formal-quantum-computation pipeline (arXiv:2611.09822).
+const ai = new GoogleGenAI();
+
+// 1. Independent Team A proposes a Lean 4 optimization for P450 memory lookups
+const teamProposal = await ai.interactions.create({
+  model: "gemini-4-argon",
+  thinking_level: "high",
+  input:
+    "Target QuantumComputationSpecs/ChallengeJsons/Algorithms/P450GroundEnergy.json. Propose a Lean 4 circuit refactor replacing bulky QROM lookups to cut logical qubits below 350 while keeping Quantum Hoare Logic soundness.",
+});
+
+// 2. Only after external \`lake comparator\` exits 0, record into the 4-hour conference wiki
+const conferenceBrief = await ai.interactions.create({
+  model: "gemini-4-neon",
+  previous_interaction_id: teamProposal.id,
+  input:
+    "lake comparator verified P450 at 333 qubits (2.5x resource gain across 160 modules). Distill the reusable algebraic identity for the 4-hour cross-team conference wiki.",
+});
+
+console.log(conferenceBrief.output_text);`,
+      workbench: {
+        title: 'Gemini 4 + Lean 4 Quantum Discovery & Comparator Inspector [SIMULATED DEMO]',
+        subtitle: 'Inspect the verified quantum breakthroughs, multi-team conference cadence, and Lean 4 build/RAM telemetry.',
+        dek: 'Cycle through the three verified engineering views below, or open our interactive studio [SIMULATED DEMO].',
+        presets: [
+          {
+            label: '1. FUSION & CHEMISTRY DISCOVERIES',
+            k1: 'Inertial Confinement Fusion',
+            v1: '11.8x lower computing cost; memory reduced from 5,650 to 4,338 qubits (457,154 lines)',
+            k2: 'Photochemistry & Cytochrome P450',
+            v2: '8x cheaper photochemistry; 2.5x P450 improvement (481 to 333 qubits via lookup removal)',
+            k3: 'Core Quantum Primitives',
+            v3: '290x faster arcsin state loading (16 modules) and up to 2.57x parallel Grover speedup',
+          },
+          {
+            label: '2. AGENT TEAM & WIKI ARCHITECTURE',
+            k1: 'Independent Search Teams',
+            v1: 'Separate Gemini 4 teams explore distinct algorithmic hypotheses per formal JSON spec',
+            k2: 'Proof-Gated Shared Notebook',
+            v2: 'Candidates enter the shared wiki only after Lean 4 correctness & resource verification',
+            k3: '4-Hour Virtual Conferences',
+            v3: 'Teams convene every 4 hours to trade, debate, and generalize proven circuit identities',
+          },
+          {
+            label: '3. LEAN 4 REPO & COMPARATOR TELEMETRY',
+            k1: 'Open-Source Foundation',
+            v1: 'QuantumComputation + QuantumComputationSpecs on Mathlib4 & Physlib QuantumInfo',
+            k2: 'Monolithic Comparator Peaks',
+            v2: 'P450 35m (230 GB), Photochemistry 59m (233 GB), StoppingPower 2h 27m (232 GB)',
+            k3: 'Sharded Verification Pattern',
+            v3: 'Grover FindAll (200 modules / 554,952 lines) verifies in 1h 04m at 28 GB per process',
+          },
+        ],
+      },
+    },
+    verdict: {
+      title: 'Argon’s Bottom Line: Mathematical Proof Just Unlocked Agentic Discovery Beyond Testable Hardware',
+      subtitle:
+        'By replacing runtime test suites with Lean 4 quantum Hoare logic, Gemini 4 agent teams delivered up to 11.8x scientific and 290x primitive quantum speedups—and open-sourced the entire framework.',
+      paragraphs: [
+        '<strong>Why this matters today:</strong> whenever an optimization target outgrows physical or simulated testbeds—quantum circuits, formal compilers, or verified distributed protocols—a theorem prover becomes the only honest feedback loop. DeepMind’s <code>formal-quantum-computation</code> release proves that collaborating Gemini 4 teams can operate at half-million-line Lean 4 scale.',
+        '<strong>Explore the companion deep dive:</strong> read our 3-part technical series under <code>/series/deepmind-lean-quantum-algorithms/part-1-what-changed-gemini-4-lean-quantum.html</code> or inspect comparator RAM profiles, 4-hour conference handoffs, and all six open-source solutions inside DeepMind Gemini 4 &amp; Lean 4 Quantum Studio [SIMULATED DEMO] at <code>/labs/gemini-4-lean-quantum-studio.html</code>.',
+      ],
+      sources: [
+        {
+          role: 'Official Google DeepMind Blog',
+          label: 'Finding faster quantum algorithms with agents and formal verification',
+          author: 'Sergey Shirobokov, Ben Jaderberg, and Ryan Babbush',
+          date: 'November 23, 2026',
+          url: 'https://deepmind.google/blog/finding-faster-quantum-algorithms-with-agents-and-formal-verification/',
+        },
+        {
+          role: 'Primary Research Paper (arXiv)',
+          label: 'Discovering formally verified quantum programs with AI (arXiv:2611.09822)',
+          author: 'Google DeepMind & Google Quantum AI',
+          date: 'November 2026',
+          url: 'https://arxiv.org/abs/2611.09822',
+        },
+        {
+          role: 'Official Google DeepMind Open-Source Repository',
+          label: 'google-deepmind/formal-quantum-computation (Lean 4 Library & Discoveries)',
+          author: 'Google DeepMind',
+          date: 'November 23, 2026',
+          url: 'https://github.com/google-deepmind/formal-quantum-computation',
+        },
+      ],
+    },
+  },
   'pulse-antigravity-v2-34-mcp-apps-neon': {
     id: 'pulse-antigravity-v2-34-mcp-apps-neon',
     slug: 'antigravity-v2-34-mcp-apps-and-gemini-4-neon',

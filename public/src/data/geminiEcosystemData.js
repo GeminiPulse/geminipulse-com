@@ -24,6 +24,70 @@ export const PULSE_INTELLIGENCE_FEED = [
     labLabel: 'Neon Studio [DEMO] →',
   },
   {
+    id: 'pulse-deepmind-gemini-4-lean-quantum-algorithms',
+    title: 'Google DeepMind & Quantum AI Pair Gemini 4 Agent Teams With Lean 4 Formal Verification to Cut Fusion Simulation Cost 11.8x',
+    tldr: 'Published November 23, 2026: Google DeepMind and Google Quantum AI (arXiv:2611.09822) deploy collaborating Gemini 4 agent teams inside an open-source Lean 4 quantum program library (QuantumComputation)—achieving an 11.8x resource reduction on inertial confinement fusion (5,650 to 4,338 qubits), 8x cheaper photochemistry, 2.5x Cytochrome P450 gains, 2.57x parallel Grover search, and a 290x arcsin speedup.',
+    summary:
+      'Published November 23, 2026 by Sergey Shirobokov, Ben Jaderberg, Ryan Babbush, Swarat Chaudhuri, and Pushmeet Kohli across Google DeepMind and Google Quantum AI (arXiv:2611.09822): (1) Proof-Checked Multi-Agent Discovery—independent teams of Gemini 4 agents synthesize quantum circuits against formal Lean 4 specifications grounded in quantum Hoare logic with classical variables (Mathlib4 + Physlib QuantumInfo), verify correctness and resource costs mathematically before committing to a shared wiki/notebook, and debate ideas at virtual conferences every four hours, (2) Verified Scientific & Algorithmic Gains—cuts inertial confinement fusion stopping-power simulation cost by 11.8x and memory from 5,650 to 4,338 error-corrected qubits (176 Lean modules, 457,154 lines), makes non-Born-Oppenheimer photochemistry 8x cheaper (74 modules, 196,621 lines), reduces Cytochrome P450 drug-metabolism simulation cost 2.5x and qubits from 481 to 333 by replacing bulky memory lookups (160 modules, 199,831 lines), speeds parallel Grover search up to 2.57x (Grover FindAll: 200 modules, 554,952 lines), and accelerates the foundational arcsin state-loading primitive 290x (16 modules, 22,335 lines), and (3) Open-Source Lean Framework—releases QuantumComputation, QuantumComputationSpecs, and all verified discoveries on GitHub under Apache 2.0 and CC-BY.',
+    category: 'DeepMind Science & Verification',
+    tag: 'Google DeepMind + Lean 4',
+    modelBadge: 'Gemini 4 + Lean 4 Quantum',
+    impactScore: '10.0 / 10',
+    date: '2026-11-23T17:00:00Z',
+    sourceLabel: 'Google DeepMind Blog & arXiv:2611.09822 (Nov 23, 2026)',
+    sourceUrl: 'https://deepmind.google/blog/finding-faster-quantum-algorithms-with-agents-and-formal-verification/',
+    groundedBy: 'Google DeepMind Official Blog + arXiv:2611.09822 + github.com/google-deepmind/formal-quantum-computation (Nov 23, 2026)',
+    seriesUrl: '/series/deepmind-lean-quantum-algorithms/part-1-what-changed-gemini-4-lean-quantum.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-4-lean-quantum-studio.html',
+    labLabel: 'Lean Quantum Studio [DEMO] →',
+  },
+  {
+    id: 'pulse-semantic-governance-agentdojo-benchmark',
+    title: 'Google Benchmarks Semantic Governance Policies on AgentDojo: Cutting Indirect Prompt Injection From 48.7% to 0.9%',
+    tldr: 'Published November 23, 2026: Across six full runs of AgentDojo v1.2.2 (97 user tasks, 949 attacked runs) with gemini-2.5-flash, Semantic governance policies’ built-in user intent check alone cuts attack success rate 98.2% from 48.7% to 0.9%—blocking all 929 tool-calling exploits at a 2.6 percentage point benign utility cost.',
+    summary:
+      'Published November 23, 2026 on the Google Developers Blog: evaluates Semantic governance policies’ default user-intent alignment check (with zero custom policies configured) across six runs of ETH Zurich & Invariant Labs’ AgentDojo v1.2.2 benchmark (banking, Slack, travel, and workspace using important_instructions attacks): (1) 98.2% Attack Reduction—average attack success rate drops from 48.7% to 0.9% (0.84%–0.95% range across runs), with zero of 929 tool-calling attacks succeeding across banking, Slack, and workspace; the remaining 0.9% came exclusively from travel text-only hotel recommendation injections without tool calls, (2) Safe Task Utility—tasks completed safely under attack rise from 22.7% to 25.1%, while clean benign utility falls 2.6 percentage points on average (unintended over-blocking affected 1 of 97 benign tasks, roughly 1%), and (3) Honest Adaptive-Attack Boundary—notes that because the judge sees untrusted content alongside user requests, adaptive red-teaming (citing NIST CAISI’s 11% to 81% adaptive jump) motivates pairing dry-run Cloud Logging validation with response filtering.',
+    category: 'Agent Security & Benchmarks',
+    tag: 'AgentDojo Benchmark',
+    modelBadge: 'Semantic Governance · 0.9% ASR',
+    impactScore: '9.7 / 10',
+    date: '2026-11-23T17:47:18Z',
+    sourceLabel: 'Google Developers Blog: Securing AI Agents Against Intent Hijacking (Nov 23, 2026)',
+    sourceUrl: 'https://developers.googleblog.com/did-the-user-ask-for-this-securing-ai-agents-against-intent-hijacking-with-semantic-governance-policies/',
+    groundedBy: 'Google Developers Official Blog (Nov 23, 2026)',
+  },
+  {
+    id: 'pulse-search-personal-intelligence-wallet-drive-gemini',
+    title: 'Google Search Expands Personal Intelligence in AI Mode With Opt-In Google Wallet, Google Drive & Gemini App Context',
+    tldr: 'Published November 23, 2026: VP of Product Robby Stein announces Personal Intelligence in Google Search AI Mode adds opt-in read-only Google Wallet support starting today, with Google Drive and cross-surface Gemini app context sharing following in the coming weeks.',
+    summary:
+      'Published November 23, 2026 on the Google Official Blog (17:00 UTC) by Robby Stein, VP of Product for Google Search: expands Search Personalization Connected Apps (previously Gmail, Calendar, and Google Photos) to include: (1) Read-Only Google Wallet Integration—starting today, opted-in users can map financial milestones, trim everyday spending, and optimize credit card cash-back, travel perks, and reward points without Search ever moving, managing, or investing funds, (2) Google Drive & Gemini App Context Bridging—rolling out over coming weeks so Docs, Sheets, PDFs, and ongoing Gemini app explorations carry straight into AI Mode threads and vice versa, and (3) Transparent Personalization Controls—adds an upcoming Personalization source icon below tailored AI Mode responses, supports in-thread natural-language profile edits, and extends recent-search continuity into AI Overviews.',
+    category: 'Search & Personal Intelligence',
+    tag: 'Product Rollout',
+    modelBadge: 'Personal Intelligence · Wallet + Drive',
+    impactScore: '9.4 / 10',
+    date: '2026-11-23T17:00:00Z',
+    sourceLabel: 'Google Official Blog: A more tailored Google Search that’s uniquely yours (Nov 23, 2026)',
+    sourceUrl: 'https://blog.google/products-and-platforms/products/search/google-search-personal-intelligence-apps/',
+    groundedBy: 'Google Official Blog (Nov 23, 2026 17:00 UTC)',
+  },
+  {
+    id: 'pulse-alloydb-omni-local-gemma-4',
+    title: 'Google Cloud Launches AlloyDB Omni Integration With Local Gemma 4 & Open Models for Air-Gapped SQL Inference',
+    tldr: 'Published November 23, 2026: Google Cloud’s downloadable PostgreSQL-compatible AlloyDB Omni now invokes locally hosted Gemma 4 (gemma4:12b) and Qwen 3.8 models directly from SQL via google_ml_integration and ai.generate, keeping prompts, vectors, and completions inside private or air-gapped clusters.',
+    summary:
+      'Published November 23, 2026 on the Google Cloud Blog (17:00 UTC): pairs AlloyDB Omni’s PostgreSQL-compatible engine and Search-grade ScaNN vector indexing with local Ollama model endpoints inside Kubernetes or on-premises clusters: (1) Zero-Egress SQL Inference—database queries call ai.generate(prompt, model_id => "gemma4_llm") directly against internal cluster services (for example ollama-service.ai-demo.svc.cluster.local:11434) with 16Gi RAM for gemma4:12b (24Gi for Qwen 3.8) so proprietary logs and customer data never cross the public internet, and (2) Native Chain-of-Thought Sanitization—ships google_ml.ollama_llm_input_transform and ollama_llm_output_transform SQL functions with a 600-second request timeout to strip raw chain-of-thought reasoning tags before returning clean structured outputs inside SQL.',
+    category: 'Databases & Local Gemma 4',
+    tag: 'Google Cloud Launch',
+    modelBadge: 'AlloyDB Omni + Gemma 4',
+    impactScore: '9.3 / 10',
+    date: '2026-11-23T17:00:00Z',
+    sourceLabel: 'Google Cloud Blog: AlloyDB Omni integration with local models (Nov 23, 2026)',
+    sourceUrl: 'https://cloud.google.com/blog/products/databases/alloydb-omni-integration-with-local-models/',
+    groundedBy: 'Google Cloud Official Blog (Nov 23, 2026 17:00 UTC)',
+  },
+  {
     id: 'pulse-antigravity-v2-34-mcp-apps-neon',
     title: 'Google Antigravity v2.34.0 Ships Interactive MCP Apps Across 4 Surfaces, Built-In /mcp-app-development & Expanded Gemini 4 Neon',
     tldr: 'Released November 20, 2026: Antigravity App v2.34.0 implements the open MCP Apps specification (io.modelcontextprotocol/ui) plus Antigravity entrypoints (com.google.antigravity/ui) for inline chat, side panel (aux_pane), full-page (global), and opaque custom file viewers, ships the built-in /mcp-app-development command, and expands Gemini 4 Neon and Orchestrator (Neon) to paid consumer plans, Gemini API keys, and Application Default Credentials.',
@@ -1578,6 +1642,66 @@ export const GEMINI_MODEL_MATRIX = [
 
 export const STUDIO_LAB_BLUEPRINTS = [
   {
+    id: 'lab-gemini-4-lean-quantum-studio',
+    title: 'DeepMind Gemini 4 & Lean 4 Quantum Verification Studio [SIMULATED DEMO]',
+    badge: 'Nov 2026 DeepMind + Quantum AI',
+    model: 'gemini-4-argon',
+    href: '/labs/gemini-4-lean-quantum-studio.html',
+    description:
+      'Interactive developer workbench modeling Google DeepMind and Google Quantum AI’s Lean 4 quantum program discovery loop (arXiv:2611.09822): inspect 11.8x fusion, 8x photochemistry, 2.5x Cytochrome P450, 2.57x Grover, and 290x arcsin breakthroughs alongside 4-hour virtual conferences and lake comparator specs.',
+    prompt:
+      'Coordinate independent Gemini 4 agent teams to synthesize a quantum circuit optimization against a QuantumComputationSpecs Lean 4 theorem, verify resource cost reduction via lake comparator, and publish the proven patch to a shared wiki.',
+    tsCode: `import { GoogleGenAI } from "@google/genai";
+
+// Models the Gemini 4 + Lean 4 formal-quantum-computation discovery loop (arXiv:2611.09822).
+const ai = new GoogleGenAI();
+
+const synthesis = await ai.interactions.create({
+  model: "gemini-4-argon",
+  thinking_level: "high",
+  input:
+    "Given QuantumComputationSpecs/ChallengeJsons/Algorithms/StoppingPower.json, propose a Lean 4 quantum circuit refactor reducing logical qubits below 4,500 while preserving Quantum Hoare Logic soundness.",
+});
+
+const conferenceSummary = await ai.interactions.create({
+  model: "gemini-4-neon",
+  previous_interaction_id: synthesis.id,
+  input:
+    "Summarize verified lemma gains and resource counts for the 4-hour cross-team virtual conference notebook.",
+});
+
+console.log(conferenceSummary.output_text);`,
+    pyCode: `from google import genai
+
+client = genai.Client()
+
+response = client.interactions.create(
+    model="gemini-4-argon",
+    thinking_level="high",
+    input=(
+        "Generate a Lean 4 quantum Hoare logic proof outline for "
+        "QuantumComputationSpecs/ChallengeJsons/Algorithms/P450GroundEnergy.json "
+        "replacing bulky QROM memory lookups."
+    ),
+)
+
+print(response.output_text)`,
+    simulatedSteps: [
+      {
+        type: 'thought',
+        label: 'step[0] · Lean 4 Spec & Quantum Hoare Logic Synthesis',
+        detail:
+          'Synthesized candidate circuit inside QuantumComputation against StoppingPower.json and P450GroundEnergy.json formal specifications built on Mathlib4 and Physlib QuantumInfo.',
+      },
+      {
+        type: 'tool_call',
+        label: 'step[1] · lake comparator Resource & Correctness Check',
+        detail:
+          'Verified mathematical correctness and exact resource reduction (11.8x fusion cost drop, 5,650 to 4,338 qubits) before logging into the shared 4-hour conference wiki.',
+      },
+    ],
+  },
+  {
     id: 'lab-gemini-antigravity-mcp-apps-studio',
     title: 'Antigravity v2.34.0 MCP Apps & Entrypoint Studio [SIMULATED DEMO]',
     badge: 'Nov 2026 Antigravity v2.34.0',
@@ -2978,6 +3102,25 @@ video_turn = client.interactions.create(
 ];
 
 export const INITIAL_SHOWCASE_PROJECTS = [
+  {
+    id: 'showcase-gemini-4-lean-quantum-studio',
+    name: 'DeepMind Gemini 4 & Lean 4 Quantum Verification Studio [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive developer workbench modeling Google DeepMind and Quantum AI’s Lean 4 quantum discovery pipeline (arXiv:2611.09822): compare 11.8x fusion, 8x photochemistry, 2.5x Cytochrome P450, 2.57x Grover, and 290x arcsin gains plus lake comparator metrics.',
+    models: ['gemini-4-argon', 'gemini-4-neon'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-4-lean-quantum-studio.html): [SIMULATED DEMO] Inspects Lean 4 QuantumComputation module counts, 232 GB comparator verification telemetry, and 4-hour agent conference notebooks.',
+    url: '/labs/gemini-4-lean-quantum-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-23T17:00:00Z',
+  },
   {
     id: 'showcase-gemini-antigravity-mcp-apps-studio',
     name: 'Antigravity v2.34.0 MCP Apps & Entrypoint Studio [SIMULATED DEMO]',

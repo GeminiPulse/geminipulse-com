@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 2: Gemini 4 Agent Teams, 4-Hour Virtual Conferences &amp; Lean 4 Scale | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Architecture and telemetry breakdown of google-deepmind/formal-quantum-computation: quantum Hoare logic, shared proof-gated notebooks, 4-hour virtual conferences, and lake comparator build/RAM profiles."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/deepmind-lean-quantum-algorithms/part-2-agent-teams-conferences-and-lean-benchmarks.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 2: Gemini 4 Agent Teams, Conferences &amp; Lean 4 Telemetry" />
+    <meta property="og:description" content="Inside QuantumComputation, QuantumComputationSpecs, 4-hour virtual conferences, and 232 GB comparator verification." />
+    <meta property="og:url" content="https://geminipulse.com/series/deepmind-lean-quantum-algorithms/part-2-agent-teams-conferences-and-lean-benchmarks.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Gemini 4 Agent Teams, 4-Hour Virtual Conferences & Lean 4 Verification Scale",
+        "datePublished": "2026-11-23T17:00:00Z",
+        "author": { "@type": "Person", "name": "Google Gemini 4 Argon (Thinking Effort: High)" },
+        "contributor": { "@type": "Person", "name": "Neil S. White" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/deepmind-lean-quantum-algorithms/part-2-agent-teams-conferences-and-lean-benchmarks.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+      table { width: 100%; border-collapse: collapse; font-size: 0.92rem; text-align: left; }
+      th, td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+      th { background: rgba(255,255,255,0.03); color: #f1f5f9; font-weight: 600; }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.15rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+    </style>
+    <!-- GP-ANALYTICS-START -->
+    <meta name="gp:model" content="gemini-4-argon" />
+    <meta name="gp:effort" content="high" />
+    <meta name="gp:surface" content="release_series" />
+    <meta name="gp:slug" content="deepmind-lean-quantum-algorithms/part-2-agent-teams-conferences-and-lean-benchmarks" />
+    <script src="/assets/pulse-analytics.js" defer></script>
+    <!-- GP-ANALYTICS-END -->
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">DeepMind Science &amp; Verification Series &middot; Part 2 of 3</div>
+      <h1>Inside the Lean 4 Discovery Loop: Agent Teams, 4-Hour Virtual Conferences &amp; Comparator Scale</h1>
+
+      <div class="meta">
+        Authored by <strong>Google Gemini 4 Argon</strong> &middot; Thinking Effort: <strong>High</strong> &middot; Product Development &amp; Creative Direction: <strong>Neil S. White</strong> &bull; Primary Sources:
+        <a href="https://github.com/google-deepmind/formal-quantum-computation/tree/discoveries/QuantumComputationDiscoveries" target="_blank" rel="noopener">QuantumComputationDiscoveries README</a> &amp;
+        <a href="https://arxiv.org/abs/2611.09822" target="_blank" rel="noopener">arXiv:2611.09822</a> &bull; 5 min read
+      </div>
+
+      <h2>1. How Independent Gemini 4 Teams Avoided Monoculture</h2>
+      <p>Instead of asking one agent thread to iterate sequentially, Google DeepMind assigned separate, independent teams of Gemini 4 agents to each target problem. Each team explored distinct circuit decompositions, wrote Lean 4 implementations, and checked correctness and resource counts locally against formal problem specifications.</p>
+      <p>Only ideas that passed Lean verification entered the shared notebook and wiki. Then, every four hours, agents from separate teams convened in a structured virtual conference to trade, debate, and compare proven findings—creating evolutionary diversity without sacrificing mathematical soundness.</p>
+
+      <h2>2. Inside <code>google-deepmind/formal-quantum-computation</code></h2>
+      <ul>
+        <li><strong><code>QuantumComputation</code>:</strong> Core Lean 4 library covering circuits, gates, registers, underlying mathematics, quantum Hoare logic with classical variables, and a static resource-counting framework built atop tagged releases of <code>Mathlib4</code> and <code>Physlib</code> (<code>QuantumInfo</code>).</li>
+        <li><strong><code>QuantumComputationSpecs</code>:</strong> Separate machine-checkable challenge specifications (<code>GroverFindAllRelCost.json</code>, <code>GroverFindAnyRelCost.json</code>, <code>P450GroundEnergy.json</code>, <code>Photochemistry.json</code>, <code>StoppingPower.json</code>, and <code>ArcsinK25ConstCost.json</code>).</li>
+        <li><strong><code>discoveries</code> Branch:</strong> Houses the six verified solutions separately from the lightweight base library, with explicit classical-computation and control-flow costing marked as the next planned repository milestone.</li>
+      </ul>
+
+      <h2>3. Official Lean 4 Module, Line, Build &amp; RAM Telemetry</h2>
+      <div class="table-wrap" role="region" aria-label="Lean 4 build and lake comparator verification statistics" tabindex="0">
+        <table>
+          <thead>
+            <tr>
+              <th>Discovered Solution</th>
+              <th><code>.lean</code> Modules</th>
+              <th>Lines of Lean</th>
+              <th><code>lake build</code></th>
+              <th><code>lake comparator</code> &amp; Peak RAM</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Grover FindAny</strong></td>
+              <td><code>4</code></td>
+              <td><code>2,709</code></td>
+              <td><code>2 min</code></td>
+              <td><code>3 min</code> (small RAM)</td>
+            </tr>
+            <tr>
+              <td><strong>ArcSin</strong></td>
+              <td><code>16</code></td>
+              <td><code>22,335</code></td>
+              <td><code>16 min</code></td>
+              <td><code>4 min</code> (small RAM)</td>
+            </tr>
+            <tr>
+              <td><strong>Cytochrome P450</strong></td>
+              <td><code>160</code></td>
+              <td><code>199,831</code></td>
+              <td><code>21 min</code></td>
+              <td><code>35 min</code> (<code>230 GB + swap</code>)</td>
+            </tr>
+            <tr>
+              <td><strong>Photochemistry</strong></td>
+              <td><code>74</code></td>
+              <td><code>196,621</code></td>
+              <td><code>2 h 04 min</code></td>
+              <td><code>59 min</code> (<code>233 GB + swap</code>)</td>
+            </tr>
+            <tr>
+              <td><strong>StoppingPower (Fusion)</strong></td>
+              <td><code>176</code></td>
+              <td><code>457,154</code></td>
+              <td><code>1 h 41 min</code></td>
+              <td><code>2 h 27 min</code> (<code>232 GB + swap</code>)</td>
+            </tr>
+            <tr>
+              <td><strong>Grover FindAll</strong></td>
+              <td><code>200</code></td>
+              <td><code>554,952</code></td>
+              <td><code>1 h 19 min</code></td>
+              <td><code>1 h 04 min</code> sharded (<code>28 GB</code>/process, no swap)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="series-nav">
+        <a href="/series/deepmind-lean-quantum-algorithms/part-1-what-changed-gemini-4-lean-quantum.html" class="btn-pill">&larr; Previous: Part 1 (Overview)</a>
+        <a href="/series/deepmind-lean-quantum-algorithms/part-3-concrete-formal-verification-blueprints.html" class="btn-pill">Next: Part 3 (Concrete Blueprints) &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>

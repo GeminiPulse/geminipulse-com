@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 3: Concrete Proof-Checked Agent Blueprints &amp; @google/genai v3.x Patterns | GeminiPulse</title>
+    <meta
+      name="description"
+      content="How engineering teams apply DeepMind's Lean 4 verification loop, sharded comparator CI, and @google/genai v3.x multi-team Interactions API orchestration to compilers, cryptography, and quantum R&D."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/deepmind-lean-quantum-algorithms/part-3-concrete-formal-verification-blueprints.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 3: Proof-Checked Multi-Agent Blueprints &amp; SDK Patterns" />
+    <meta property="og:description" content="Applying proof-gated shared wikis, sharded theorem verification, and Gemini 4 orchestration to real engineering teams." />
+    <meta property="og:url" content="https://geminipulse.com/series/deepmind-lean-quantum-algorithms/part-3-concrete-formal-verification-blueprints.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Concrete Proof-Checked Agent Blueprints & Gemini 4 Orchestration",
+        "datePublished": "2026-11-23T17:00:00Z",
+        "author": { "@type": "Person", "name": "Google Gemini 4 Argon (Thinking Effort: High)" },
+        "contributor": { "@type": "Person", "name": "Neil S. White" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/deepmind-lean-quantum-algorithms/part-3-concrete-formal-verification-blueprints.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      pre { background: #04070d; border: 1px solid var(--border); border-radius: 0.75rem; padding: 1rem; overflow-x: auto; max-width: 100%; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.83rem; color: #e2e8f0; }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      pre code { background: transparent; padding: 0; color: inherit; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.15rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+    </style>
+    <!-- GP-ANALYTICS-START -->
+    <meta name="gp:model" content="gemini-4-argon" />
+    <meta name="gp:effort" content="high" />
+    <meta name="gp:surface" content="release_series" />
+    <meta name="gp:slug" content="deepmind-lean-quantum-algorithms/part-3-concrete-formal-verification-blueprints" />
+    <script src="/assets/pulse-analytics.js" defer></script>
+    <!-- GP-ANALYTICS-END -->
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">DeepMind Science &amp; Verification Series &middot; Part 3 of 3</div>
+      <h1>Concrete Proof-Checked Agent Blueprints for Quantum R&amp;D, Compilers &amp; Safety Kernels</h1>
+
+      <div class="meta">
+        Authored by <strong>Google Gemini 4 Argon</strong> &middot; Thinking Effort: <strong>High</strong> &middot; Product Development &amp; Creative Direction: <strong>Neil S. White</strong> &bull; Primary Sources:
+        <a href="https://github.com/google-deepmind/formal-quantum-computation" target="_blank" rel="noopener">formal-quantum-computation</a> &amp;
+        <a href="https://deepmind.google/blog/finding-faster-quantum-algorithms-with-agents-and-formal-verification/" target="_blank" rel="noopener">DeepMind Blog</a> &bull; 5 min read
+      </div>
+
+      <h2>1. Verify Official Discoveries Locally With Lean 4 &amp; Lake</h2>
+      <p>Teams studying the open-source repository can fetch cached Lean 4 dependencies and verify the lightweight benchmarks (such as <code>GroverFindAnyRelCost.json</code> in 3 minutes or <code>ArcsinK25ConstCost.json</code> in 4 minutes) before provisioning high-RAM workers for the 230+ GB scientific chemistry and fusion proofs:</p>
+      <pre><code>git clone --branch discoveries https://github.com/google-deepmind/formal-quantum-computation.git
+cd formal-quantum-computation
+lake exe cache get
+lake build
+lake comparator --config QuantumComputationSpecs/ChallengeJsons/Algorithms/GroverFindAnyRelCost.json</code></pre>
+
+      <h2>2. Pattern: Proof-Gated Shared Agent Memory via Interactions API</h2>
+      <div class="box">
+        <p style="margin-top: 0;">Even outside quantum physics, the multi-team architecture from <code>arXiv:2611.09822</code> prevents hallucination cascading in compiler passes, smart contracts, and cryptographic libraries:</p>
+        <ul style="margin-bottom: 0;">
+          <li><strong>Isolate Exploration:</strong> Run multiple independent Gemini 4 Argon/Neon branches against the same formal spec JSON rather than one linear thread.</li>
+          <li><strong>Deterministic Merge Gate:</strong> Allow a branch to update the shared team notebook only when <code>lake comparator</code> (or your formal verifier) exits <code>0</code> with strictly lower verified resource cost.</li>
+          <li><strong>Scheduled Cross-Team Conferences:</strong> Periodically summarize proven lemmas across teams so breakthroughs like lookup elimination in P450 transfer to adjacent domains.</li>
+        </ul>
+      </div>
+
+      <h2>3. Runnable <code>@google/genai</code> v3.x Conference Synthesis Blueprint</h2>
+      <pre><code>import { GoogleGenAI } from "@google/genai";
+
+const ai = new GoogleGenAI();
+
+const teamSynthesis = await ai.interactions.create({
+  model: "gemini-4-argon",
+  thinking_level: "high",
+  input:
+    "Analyze verified StoppingPower (11.8x gain, 4,338 qubits) and P450 (2.5x gain, 333 qubits) Lean 4 lemmas and extract reusable lookup-elimination patterns.",
+});
+
+const nextSpecBrief = await ai.interactions.create({
+  model: "gemini-4-neon",
+  previous_interaction_id: teamSynthesis.id,
+  input:
+    "Draft a concise conference memo assigning two independent search hypotheses for the next 4-hour verification cycle.",
+});
+
+console.log(nextSpecBrief.output_text);</code></pre>
+
+      <div class="series-nav">
+        <a href="/series/deepmind-lean-quantum-algorithms/part-2-agent-teams-conferences-and-lean-benchmarks.html" class="btn-pill">&larr; Previous: Part 2 (Agent Teams &amp; Telemetry)</a>
+        <a href="/labs/gemini-4-lean-quantum-studio.html" class="btn-pill">Open Lean Quantum Studio [SIMULATED DEMO] &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>
