@@ -31,13 +31,31 @@
     <priority>0.98</priority>
   </url>
   <url>
+    <loc>https://geminipulse.com/articles/antigravity-v2-35-unlimited-history-conversation-api.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
     <loc>https://geminipulse.com/articles/deepmind-gemini-4-lean-4-quantum-algorithms.html</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.98</priority>
   </url>
   <url>
+    <loc>https://geminipulse.com/articles/google-research-deepcrossattention-residual-routing.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
     <loc>https://geminipulse.com/articles/semantic-governance-agentdojo-benchmark.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/articles/gemini-4-hydrogen-six-builder-projects-canvas.html</loc>
     <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.98</priority>
@@ -51,24 +69,6 @@
   <url>
     <loc>https://geminipulse.com/articles/alloydb-omni-local-gemma-4.html</loc>
     <lastmod>2026-11-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.98</priority>
-  </url>
-  <url>
-    <loc>https://geminipulse.com/articles/antigravity-v2-34-mcp-apps-and-gemini-4-neon.html</loc>
-    <lastmod>2026-11-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.98</priority>
-  </url>
-  <url>
-    <loc>https://geminipulse.com/articles/gemini-deferred-service-tier-ga.html</loc>
-    <lastmod>2026-11-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.98</priority>
-  </url>
-  <url>
-    <loc>https://geminipulse.com/articles/gemini-semantic-governance-and-multicloud-agents.html</loc>
-    <lastmod>2026-11-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.98</priority>
   </url>

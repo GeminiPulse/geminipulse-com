@@ -24,6 +24,55 @@ export const PULSE_INTELLIGENCE_FEED = [
     labLabel: 'Neon Studio [DEMO] →',
   },
   {
+    id: 'pulse-antigravity-v2-35-conversation-api-unlimited-history',
+    title: 'Google Antigravity v2.35.0 Ships Unlimited Conversation History, Conversation Management API & Cmd+F HTML Artifact Search',
+    tldr: 'Released November 23, 2026: Antigravity v2.35.0 removes the 500-conversation local pruning limit, adds a built-in Conversation Management API and conversations skill for agents and automations, adds Cmd+F search inside full-page HTML artifacts, upgrades Auto read/write permissions, and speeds up large Swarm boards.',
+    summary:
+      'Documented in Google Antigravity Changelog v2.35.0 (November 23, 2026, 20 improvements and 19 fixes): (1) Unlimited Local History & Conversation Management API—keeps local conversation history unlimited by default instead of pruning after 500 threads, and equips agents, scripts, plugins, and automations with the built-in Conversation Management API and conversations skill to create, list, inspect, rename, pin, star, archive, tag, group, and delete local conversations, (2) HTML Artifact Cmd+F Search & RTL Tabs—adds Cmd+F (Ctrl+F on Windows and Linux) in-artifact search with match highlighting and navigation inside full-page HTML artifacts, plus per-tab RTL prose toggles for Markdown and text files, (3) Environment-First UX, Auto Permissions & Swarm Scaling—places Environment (and SSH Host) ahead of Project and Branch, lets Auto permission mode approve out-of-project reads automatically while protecting sensitive config directories and suggesting directory-scoped write permissions, accelerates large Swarm boards via on-demand message paging and incremental updates, collapses consecutive parallel subagent launches, locks mid-turn selectors, and defaults Orchestrator and Executor models to High thinking effort, and (4) Marketplace & Gemini 4 Neon Guidance—adds ClickUp, Midpage Legal Research, and Descrybe Legal Engine plugins while updating the official Gemini API Marketplace plugin to v2.8.0 with Gemini 4 Neon usage and migration guidance.',
+    category: 'Antigravity & Agent Runtime',
+    tag: 'Antigravity v2.35.0',
+    modelBadge: 'Antigravity v2.35',
+    impactScore: '10.0 / 10',
+    date: '2026-11-23T23:55:00Z',
+    sourceLabel: 'Google Antigravity Docs & Changelog: v2.35.0 (Nov 23, 2026)',
+    sourceUrl: 'https://antigravity.google/docs/changelog#rel-hub-2.35.0',
+    groundedBy: 'Google Antigravity Official Changelog v2.35.0 (Nov 23, 2026)',
+    seriesUrl: '/series/antigravity-v2-35-conversation-api/part-1-what-changed-antigravity-v2-35.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-antigravity-conversation-studio.html',
+    labLabel: 'Conversation Studio [DEMO] →',
+  },
+  {
+    id: 'pulse-gemini-4-hydrogen-six-builder-projects-canvas',
+    title: 'Google Spotlights 6 Early Gemini 4 Hydrogen Builder Creations & Gemini Canvas Interactive Workflows',
+    tldr: 'Published November 23, 2026 (18:00 UTC): Google highlights six early Gemini 4 Hydrogen builds—including a Three.js rainy sci-fi skyline on High thinking, contrasting voxel and jelly koi ponds, a Carbon /swarm of Hydrogen workers animating a crimson moth, and a sub-minute 3D desert ranch—alongside four Gemini Canvas workflows.',
+    summary:
+      'Published November 23, 2026 across two companion Google Official Blog dispatches (Molly McHugh-Johnson on Gemini 4 Hydrogen builders and Gemini App Canvas workflows): (1) Six Gemini 4 Hydrogen Builds—showcases a Three.js rainy sci-fi skyline built with Hydrogen on High thinking in Google Antigravity, a morning-to-night seaplane flight, contrasting 3D voxel and soft jelly-like koi ponds, an interactive crimson moth orchestrated by Gemini 4 Carbon running a /swarm of Hydrogen workers (with Hydrogen recording the demo video), and a side-by-side animated 3D desert ranch benchmark showing Hydrogen completing in under one minute compared to Gemini 3.8 Flash, and (2) Four Gemini Canvas Workflows—highlights side-by-side web apps and 3D mini-games, interactive study quizzes and flashcards from PDFs, spreadsheet-to-calculator office boosters, and inline section-level writing edits.',
+    category: 'Gemini 4 Hydrogen & Builders',
+    tag: 'Google Official Blog',
+    modelBadge: 'Gemini 4 Hydrogen + Canvas',
+    impactScore: '9.4 / 10',
+    date: '2026-11-23T18:00:00Z',
+    sourceLabel: 'Google Official Blog: 6 Builders on Gemini 4 Hydrogen & Gemini Canvas (Nov 23, 2026)',
+    sourceUrl: 'https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-hydrogen-builders/',
+    groundedBy: 'Google Official Blog (Nov 23, 2026 18:00 UTC)',
+  },
+  {
+    id: 'pulse-google-research-deepcrossattention-residual-routing',
+    title: 'Google Research Details DeepCrossAttention (DCA): Dynamic Depth-Wise Residual Routing Reaching Quality 3x Faster',
+    tldr: 'Published November 23, 2026 (17:21 UTC): Google Research’s Kyriakos Axiotis and Thomas Fu detail DeepCrossAttention (DCA), replacing rigid point-wise residual summation with per-token dynamic layer routing and depth-wise split Q/K/V cross-attention—matching standard transformer quality up to 3x faster with under 0.2% parameter overhead.',
+    summary:
+      'Published November 23, 2026 on the Google Research Blog (building on Google Research’s ICML 2025 paper arXiv:2502.06785 with Mike Heddes, Adel Javanmard, MohammadHossein Bateni, and Vahab Mirrokni): (1) Solving Residual Information Dilution—replaces equal-weight point-wise skip additions with per-token dynamic mixing weights plus depth-wise cross-attention (split Q/K/V) across preceding layer embeddings, allowing each token to shift adaptively between sequential and parallel depth routing, (2) Verified Scaling Gains—reaches baseline transformer performance in up to 5x fewer training steps on C4 and LM1B (3x faster overall), beats a 42-layer standard transformer under 14 perplexity on LM1B using only 30 DCA layers (a 29% depth and parameter cut, and up to 30–40% parameter savings), adds under 0.2% parameters, and retrofits cleanly onto pre-trained checkpoints (-0.19 perplexity on LM1B vs. -0.02 for continued baseline training), and (3) Ecosystem Convergence—compares DCA directly against Moonshot AI’s Attention Residuals (Block AttnRes), Thinking Machines’ Inkling 2 (adopting Block AttnRes plus DCA’s split Q/K/V), Hyper-Connections, and Sinkhorn-Knopp Manifold-Constrained Hyper-Connections.',
+    category: 'Transformer Architecture & Research',
+    tag: 'Google Research',
+    modelBadge: 'DeepCrossAttention (DCA)',
+    impactScore: '9.8 / 10',
+    date: '2026-11-23T17:21:12Z',
+    sourceLabel: 'Google Research Blog: Supercharging Transformer Residual Connections (Nov 23, 2026)',
+    sourceUrl: 'https://research.google/blog/supercharging-transformer-residual-connections/',
+    groundedBy: 'Google Research Official Blog + arXiv:2502.06785 (Nov 23, 2026)',
+  },
+  {
     id: 'pulse-deepmind-gemini-4-lean-quantum-algorithms',
     title: 'Google DeepMind & Quantum AI Pair Gemini 4 Agent Teams With Lean 4 Formal Verification to Cut Fusion Simulation Cost 11.8x',
     tldr: 'Published November 23, 2026: Google DeepMind and Google Quantum AI (arXiv:2611.09822) deploy collaborating Gemini 4 agent teams inside an open-source Lean 4 quantum program library (QuantumComputation)—achieving an 11.8x resource reduction on inertial confinement fusion (5,650 to 4,338 qubits), 8x cheaper photochemistry, 2.5x Cytochrome P450 gains, 2.57x parallel Grover search, and a 290x arcsin speedup.',
@@ -1642,6 +1691,66 @@ export const GEMINI_MODEL_MATRIX = [
 
 export const STUDIO_LAB_BLUEPRINTS = [
   {
+    id: 'lab-gemini-antigravity-conversation-studio',
+    title: 'Antigravity v2.35.0 Conversation API & Swarm Paging Studio [SIMULATED DEMO]',
+    badge: 'Nov 2026 Antigravity v2.35.0',
+    model: 'gemini-4-neon',
+    href: '/labs/gemini-antigravity-conversation-studio.html',
+    description:
+      'Interactive developer workbench modeling Google Antigravity v2.35.0: simulate the built-in Conversation Management API (create, inspect, pin, star, tag, group, archive), unlimited local history retention vs. legacy 500-thread pruning, Auto out-of-project read permissions, Cmd+F HTML artifact search, and on-demand Swarm board paging.',
+    prompt:
+      'Use Antigravity v2.35.0 Conversation Management API and Gemini 4 Neon (High thinking default) to group active release threads by tag, pin critical verification runs, search generated HTML artifacts via Cmd+F, and inspect Swarm board paging telemetry.',
+    tsCode: `import { GoogleGenAI } from "@google/genai";
+
+// Models an automation workflow combining Antigravity v2.35.0 Conversation
+// Management API lifecycle actions with Gemini 4 Neon (High thinking default).
+const ai = new GoogleGenAI();
+
+const triage = await ai.interactions.create({
+  model: "gemini-4-neon",
+  thinking_level: "high",
+  input:
+    "Inspect unarchived conversations tagged 'release-audit', pin verified passing runs, and group stalled worker threads for follow-up.",
+});
+
+const digest = await ai.interactions.create({
+  model: "gemini-4-hydrogen",
+  previous_interaction_id: triage.id,
+  input:
+    "Generate a searchable HTML summary artifact for Cmd+F inspection inside the Antigravity v2.35.0 artifact viewer.",
+});
+
+console.log(digest.output_text);`,
+    pyCode: `from google import genai
+
+client = genai.Client()
+
+triage = client.interactions.create(
+    model="gemini-4-neon",
+    thinking_level="high",
+    input=(
+        "List local conversations beyond the old 500-thread limit, "
+        "star threads with unresolved Swarm tasks, and summarize next actions."
+    ),
+)
+
+print(triage.output_text)`,
+    simulatedSteps: [
+      {
+        type: 'thought',
+        label: 'step[0] · Unlimited History & Conversation Management API',
+        detail:
+          'Enumerated 742 local conversations (all preserved past the legacy 500-thread cap) and grouped active threads via tag, pin, star, and archive actions.',
+      },
+      {
+        type: 'tool_call',
+        label: 'step[1] · Swarm On-Demand Paging & Cmd+F HTML Artifact Index',
+        detail:
+          'Loaded Swarm messages incrementally with reduced hidden polling, collapsed consecutive parallel subagent launches, and enabled Cmd+F match navigation inside the full-page HTML artifact.',
+      },
+    ],
+  },
+  {
     id: 'lab-gemini-4-lean-quantum-studio',
     title: 'DeepMind Gemini 4 & Lean 4 Quantum Verification Studio [SIMULATED DEMO]',
     badge: 'Nov 2026 DeepMind + Quantum AI',
@@ -3102,6 +3211,25 @@ video_turn = client.interactions.create(
 ];
 
 export const INITIAL_SHOWCASE_PROJECTS = [
+  {
+    id: 'showcase-gemini-antigravity-conversation-studio',
+    name: 'Antigravity v2.35.0 Conversation API & Swarm Paging Studio [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive developer workbench modeling Google Antigravity v2.35.0: simulate Conversation Management API actions (pin, star, tag, group, archive), unlimited local history beyond 500 threads, Auto permission scoping, Cmd+F HTML artifact search, and Swarm on-demand paging.',
+    models: ['gemini-4-neon', 'gemini-4-hydrogen'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-antigravity-conversation-studio.html): [SIMULATED DEMO] Models the Antigravity v2.35.0 conversations skill, directory-scoped write suggestions, High default thinking effort, and Gemini API Marketplace plugin v2.8.0.',
+    url: '/labs/gemini-antigravity-conversation-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-23T23:55:00Z',
+  },
   {
     id: 'showcase-gemini-4-lean-quantum-studio',
     name: 'DeepMind Gemini 4 & Lean 4 Quantum Verification Studio [SIMULATED DEMO]',

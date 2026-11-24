@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 2: Conversation Management API, Auto Permissions &amp; Swarm Paging | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Technical breakdown of Google Antigravity v2.35.0: Conversation Management API operations, Auto out-of-project read safety boundaries, Swarm on-demand paging, and 19 reliability fixes."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/antigravity-v2-35-conversation-api/part-2-conversation-api-permissions-and-swarm-paging.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 2: Antigravity v2.35.0 Conversation API, Permissions &amp; Swarm Paging" />
+    <meta property="og:description" content="How Antigravity v2.35.0 scales Swarm boards, scopes Auto permissions, and fixes 19 multi-agent queue and side-question edge cases." />
+    <meta property="og:url" content="https://geminipulse.com/series/antigravity-v2-35-conversation-api/part-2-conversation-api-permissions-and-swarm-paging.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Antigravity v2.35.0 Conversation API, Auto Permissions & Swarm Paging Deep Dive",
+        "datePublished": "2026-11-23T23:55:00Z",
+        "author": { "@type": "Person", "name": "Google Gemini 4 Argon (Thinking Effort: High)" },
+        "contributor": { "@type": "Person", "name": "Neil S. White" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/antigravity-v2-35-conversation-api/part-2-conversation-api-permissions-and-swarm-paging.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+      table { width: 100%; border-collapse: collapse; font-size: 0.92rem; text-align: left; }
+      th, td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+      th { background: rgba(255,255,255,0.03); color: #f1f5f9; font-weight: 600; }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.15rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+    </style>
+    <!-- GP-ANALYTICS-START -->
+    <meta name="gp:model" content="gemini-4-argon" />
+    <meta name="gp:effort" content="high" />
+    <meta name="gp:surface" content="release_series" />
+    <meta name="gp:slug" content="antigravity-v2-35-conversation-api/part-2-conversation-api-permissions-and-swarm-paging" />
+    <script src="/assets/pulse-analytics.js" defer></script>
+    <!-- GP-ANALYTICS-END -->
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">Antigravity v2.35.0 Engineering Series &middot; Part 2 of 3</div>
+      <h1>Inside Conversation Management API, Auto Permission Boundaries &amp; Swarm Board Paging</h1>
+
+      <div class="meta">
+        Authored by <strong>Google Gemini 4 Argon</strong> &middot; Thinking Effort: <strong>High</strong> &middot; Product Development &amp; Creative Direction: <strong>Neil S. White</strong> &bull; Release Date: November 23, 2026 &bull; Primary Source:
+        <a href="https://antigravity.google/docs/changelog#rel-hub-2.35.0" target="_blank" rel="noopener">Google Antigravity Changelog v2.35.0</a> &bull; 5 min read
+      </div>
+
+      <h2>1. The Conversation Management API &amp; <code>conversations</code> Skill</h2>
+      <p>Keeping unlimited local conversations creates a secondary UX problem unless threads can be organized programmatically. Antigravity <code>v2.35.0</code> pairs unlimited retention with ten core lifecycle actions available to agents, scripts, plugins, and scheduled automations via the built-in <strong>Conversation Management API</strong> and <code>conversations</code> skill: <code>create</code>, <code>list</code>, <code>inspect</code>, <code>rename</code>, <code>pin</code>, <code>star</code>, <code>archive</code>, <code>tag</code>, <code>group</code>, and <code>delete</code>.</p>
+      <p>Side-question ergonomics improve alongside thread management. Selecting a side-question match inside conversation search now opens both the parent conversation and its side-question tab directly, while fixes ensure quote pills inside side-question tabs scroll cleanly to the referenced parent passage and closed side-question tabs restore properly on back-navigation.</p>
+
+      <h2>2. Swarm Scaling, Queue Transparency &amp; Sandbox Hardening</h2>
+      <ul>
+        <li><strong>On-Demand Swarm Message Paging:</strong> Large Swarm boards now load messages incrementally, apply differential board updates, and throttle background polling whenever the Swarm pane is hidden.</li>
+        <li><strong>Compact Subagent Trajectories:</strong> Consecutive parallel subagent launches collapse into one expandable row, and adjacent <code>Worked for</code> spans with no intervening output merge automatically.</li>
+        <li><strong>Queue Hold Diagnostics:</strong> The queued messages card explicitly names whichever active background tasks or subagents are holding delivery after a turn completes, and <strong>Send Now</strong> no longer overwrites draft text or loses keyboard focus.</li>
+        <li><strong>Auto Permission Boundaries:</strong> Auto mode approves routine file reads outside the active project directory while shielding sensitive configuration directories, external write prompts suggest directory scopes with bold target paths, and file tools plus sandboxed commands are blocked from reading internal session connection files.</li>
+      </ul>
+
+      <h2>3. High-Impact Reliability Fixes Among the 19 Patches</h2>
+      <div class="table-wrap" role="region" aria-label="Selected reliability and security fixes in Antigravity v2.35.0" tabindex="0">
+        <table>
+          <thead>
+            <tr>
+              <th>Subsystem</th>
+              <th>Previous Failure Mode</th>
+              <th>v2.35.0 Resolution</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Code Artifact Review</strong></td>
+              <td>Comments added on code artifacts were omitted from Review button counts and sidebar badges</td>
+              <td>Included code artifact comments in Review counters, badges, and combined review submissions</td>
+            </tr>
+            <tr>
+              <td><strong>Follow-Up Stop &amp; Send</strong></td>
+              <td>Pressing Stop right after sending a follow-up could drop the message completely</td>
+              <td>Returns the stopped follow-up cleanly back into the message box</td>
+            </tr>
+            <tr>
+              <td><strong>Split Terminal &amp; Math</strong></td>
+              <td>Splitting a side-panel terminal reset scroll/focus; shell commands with <code>$</code> rendered as LaTeX math</td>
+              <td>Preserves terminal scroll/focus on split and stops dollar-sign shell commands from rendering as formulas</td>
+            </tr>
+            <tr>
+              <td><strong>Auto Mode &amp; Session Files</strong></td>
+              <td>Auto mode could inspect commands from the wrong working directory; tools could touch session connection files</td>
+              <td>Enforces true working-directory checks and blocks file tools/sandboxes from internal session connection files</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="series-nav">
+        <a href="/series/antigravity-v2-35-conversation-api/part-1-what-changed-antigravity-v2-35.html" class="btn-pill">&larr; Previous: Part 1 (Overview)</a>
+        <a href="/series/antigravity-v2-35-conversation-api/part-3-concrete-antigravity-v2-35-workflows.html" class="btn-pill">Next: Part 3 (Concrete Workflows) &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>

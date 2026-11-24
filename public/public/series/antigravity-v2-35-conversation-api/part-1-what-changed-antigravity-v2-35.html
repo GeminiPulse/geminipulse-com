@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 1: Google Antigravity v2.35.0 Ships Unlimited History &amp; Conversation API | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Released November 23, 2026: Google Antigravity v2.35.0 keeps local conversation history unlimited by default, adds a Conversation Management API and conversations skill, ships Cmd+F HTML artifact search, and speeds up Swarm boards."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/antigravity-v2-35-conversation-api/part-1-what-changed-antigravity-v2-35.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 1: Google Antigravity v2.35.0 Unlimited History &amp; Conversation API" />
+    <meta property="og:description" content="Unlimited local threads beyond 500, programmatic Conversation Management API, Cmd+F HTML artifact search, Auto read approvals, and Swarm paging." />
+    <meta property="og:url" content="https://geminipulse.com/series/antigravity-v2-35-conversation-api/part-1-what-changed-antigravity-v2-35.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Part 1: Google Antigravity v2.35.0 Unlimited History &amp; Conversation API" />
+    <meta name="twitter:description" content="How Antigravity v2.35.0 eliminates 500-thread pruning and turns local conversations into programmable agent infrastructure." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Google Antigravity v2.35.0 Ships Unlimited Conversation History & Conversation Management API",
+        "datePublished": "2026-11-23T23:55:00Z",
+        "author": { "@type": "Person", "name": "Google Gemini 4 Argon (Thinking Effort: High)" },
+        "contributor": { "@type": "Person", "name": "Neil S. White" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/antigravity-v2-35-conversation-api/part-1-what-changed-antigravity-v2-35.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; --emerald: #10b981; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: #cbd5e1; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .box.info { border-left: 4px solid var(--accent); }
+      .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+      table { width: 100%; border-collapse: collapse; font-size: 0.92rem; text-align: left; }
+      th, td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+      th { background: rgba(255,255,255,0.03); color: #f1f5f9; font-weight: 600; }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.15rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+    </style>
+    <!-- GP-ANALYTICS-START -->
+    <meta name="gp:model" content="gemini-4-argon" />
+    <meta name="gp:effort" content="high" />
+    <meta name="gp:surface" content="release_series" />
+    <meta name="gp:slug" content="antigravity-v2-35-conversation-api/part-1-what-changed-antigravity-v2-35" />
+    <script src="/assets/pulse-analytics.js" defer></script>
+    <!-- GP-ANALYTICS-END -->
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">Antigravity v2.35.0 Engineering Series &middot; Part 1 of 3</div>
+      <h1>Google Antigravity v2.35.0 Ships Unlimited Conversation History, Conversation Management API &amp; Cmd+F Artifact Search</h1>
+
+      <div class="meta">
+        Authored by <strong>Google Gemini 4 Argon</strong> &middot; Thinking Effort: <strong>High</strong> &middot; Product Development &amp; Creative Direction: <strong>Neil S. White</strong> &bull; Release Date: November 23, 2026 &bull; Primary Source:
+        <a href="https://antigravity.google/docs/changelog#rel-hub-2.35.0" target="_blank" rel="noopener">Google Antigravity Changelog v2.35.0</a> &bull; 5 min read
+      </div>
+
+      <div class="box info">
+        <h3 style="margin-top: 0; color: #38bdf8;">Release Summary: Antigravity v2.35.0 (Nov 23, 2026)</h3>
+        <p style="margin-bottom: 0;">Shipping 20 improvements and 19 fixes, Google Antigravity <code>v2.35.0</code> keeps local conversation history unlimited by default (removing the legacy 500-conversation pruning ceiling), introduces a built-in <strong>Conversation Management API</strong> and <code>conversations</code> skill, adds <code>Cmd+F</code> / <code>Ctrl+F</code> search inside full-page HTML artifacts, upgrades Auto out-of-project read permissions, accelerates large Swarm boards with on-demand message paging, and updates the official Gemini API Marketplace plugin to <code>v2.8.0</code> with Gemini 4 Neon guidance.</p>
+      </div>
+
+      <h2>1. Ending the 500-Conversation Pruning Cliff</h2>
+      <p>Once an operator runs daily scheduled sidecars, parallel subagent swarms, and repository triage threads, 500 local conversations vanish quickly. In earlier releases, reaching that threshold quietly pruned older local conversations—wiping architecture context and code-review trails teams assumed were saved locally.</p>
+      <p>Antigravity <code>v2.35.0</code> flips local history retention to <strong>unlimited by default</strong> and treats conversations as structured, addressable objects rather than disposable chat tabs. Agents, scripts, plugins, and automations can now invoke the built-in <strong>Conversation Management API</strong> and <code>conversations</code> skill to create, list, inspect, rename, pin, star, archive, tag, group, and delete local Antigravity conversations.</p>
+
+      <h2>2. Headline Upgrades Across v2.35.0</h2>
+      <div class="table-wrap" role="region" aria-label="Antigravity v2.35.0 headline improvements" tabindex="0">
+        <table>
+          <thead>
+            <tr>
+              <th>Area</th>
+              <th>What Shipped in v2.35.0</th>
+              <th>Operational Impact</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Conversation Lifecycle</strong></td>
+              <td>Unlimited local history plus built-in Conversation Management API and <code>conversations</code> skill</td>
+              <td>Automations and scripts can tag, group, pin, star, archive, inspect, and clean up threads without hitting a 500-thread cap</td>
+            </tr>
+            <tr>
+              <td><strong>Artifacts &amp; Reading</strong></td>
+              <td><code>Cmd+F</code> (<code>Ctrl+F</code> on Windows/Linux) search inside full-page HTML artifacts plus per-tab RTL text toggle</td>
+              <td>Instant match highlighting and navigation in generated reports; RTL Markdown/text prose without flipping code blocks</td>
+            </tr>
+            <tr>
+              <td><strong>Swarm &amp; Subagents</strong></td>
+              <td>On-demand Swarm board message paging, incremental updates, reduced hidden polling, collapsed parallel launches</td>
+              <td>Large multi-worker Swarms open fast and keep trajectories compact by merging empty <code>Worked for</code> sections</td>
+            </tr>
+            <tr>
+              <td><strong>Composer &amp; Models</strong></td>
+              <td>Environment selector before Project/Branch, mid-turn model/permission locks, High thinking default on Orchestrator &amp; Executor</td>
+              <td>SSH hosts sit up front, dropdown locks prevent mid-turn confusion, and High effort avoids unnecessary token burn</td>
+            </tr>
+            <tr>
+              <td><strong>Marketplace &amp; Plugins</strong></td>
+              <td>ClickUp, Midpage Legal Research, and Descrybe Legal Engine plugins plus Gemini API Marketplace plugin <code>v2.8.0</code></td>
+              <td>In-workspace Gemini 4 Neon guidance and smoother onboarding with searchable GCP project license suggestions</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="series-nav">
+        <a href="/articles/antigravity-v2-35-unlimited-history-conversation-api.html" class="btn-pill">&larr; Read Flagship Essay</a>
+        <a href="/series/antigravity-v2-35-conversation-api/part-2-conversation-api-permissions-and-swarm-paging.html" class="btn-pill">Next: Part 2 (API, Permissions &amp; Swarm Paging) &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>

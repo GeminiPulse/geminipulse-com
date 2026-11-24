@@ -14,6 +14,219 @@
  */
 
 export const CONSTELLATION_ESSAYS = {
+  'pulse-antigravity-v2-35-conversation-api-unlimited-history': {
+    id: 'pulse-antigravity-v2-35-conversation-api-unlimited-history',
+    slug: 'antigravity-v2-35-unlimited-history-conversation-api',
+    shortStarLabel: 'Antigravity v2.35',
+    readMinutes: '9 MIN READ',
+    authoredByModel: 'Google Gemini 4 Argon',
+    thinkingEffort: 'High',
+    hudTitle: 'Antigravity v2.35.0 Unlocks Unlimited History & Conversation Management API.',
+    hudSummary:
+      'Released November 23, 2026: Antigravity v2.35.0 lifts the 500-conversation local limit, adds a built-in Conversation Management API and conversations skill, ships Cmd+F HTML artifact search, and speeds up large Swarms.',
+    peekCastor: 'Zero Silent Pruning: <em>Agents, scripts &amp; operators keep every local thread searchable forever.</em>',
+    peekPollux: 'Conversation API + Swarm Paging: <em>Programmatic CRUD, Auto reads &amp; Cmd+F HTML search.</em>',
+    headline:
+      'Silent 500-Thread Pruning Broke Agent Memory. <em>Antigravity v2.35.0 Makes Local History Unlimited and Scriptable.</em>',
+    standfirst:
+      'When teams run dozens of autonomous coding sessions, scheduled sidecars, and multi-worker swarms every day, a 500-conversation ceiling erases institutional engineering memory within weeks. Released November 23, 2026, Google Antigravity v2.35.0 removes local history pruning by default, introduces a built-in Conversation Management API and conversations skill, adds Cmd+F search inside HTML artifacts, and overhauls Swarm board responsiveness.',
+    pulseCheck: [
+      {
+        stage: 'Unlimited Local History + API',
+        detail:
+          'Antigravity v2.35.0 preserves local conversations indefinitely instead of pruning past 500 threads, and exposes a Conversation Management API plus conversations skill to create, list, inspect, rename, pin, star, archive, tag, group, and delete threads.',
+      },
+      {
+        stage: 'Swarm Speed & Cmd+F Artifacts',
+        detail:
+          'Full-page HTML artifacts gain Cmd+F (Ctrl+F on Windows and Linux) search with match navigation, while large Swarm boards adopt on-demand message paging, incremental updates, reduced hidden polling, and collapsed parallel subagent launches.',
+      },
+      {
+        stage: 'The Honest Catch',
+        detail:
+          'Default Orchestrator and Executor model settings now start at High thinking effort rather than Extra High (xhigh), the default Cmd+U Automations shortcut is unbound until customized, and Auto out-of-project reads still block sensitive config directories.',
+      },
+    ],
+    castor: {
+      kicker: 'PART I · α CASTOR · OPERATOR MEMORY, PERMISSIONS & WORKSPACE ERGONOMICS LENS',
+      title: 'Why Conversation Lifecycle Control Matters as Much as Model Intelligence',
+      subtitle:
+        'Turning ephemeral chat tabs into a permanent, taggable, scriptable engineering ledger that survives across projects, remote SSH hosts, and automated swarms.',
+      paragraphs: [
+        'As autonomous coding tools shifted from single-question assistants into continuous background workers, a quiet operational bottleneck emerged: thread sprawl. Once an engineering team pairs scheduled automations with parallel subagent swarms, five hundred local conversations fill up fast, quietly evicting the exact architecture debate or debugging trace someone needs a month later.',
+        'In <strong>Google Antigravity v2.35.0</strong> (released November 23, 2026 with 20 improvements and 19 fixes), that silent pruning cap disappears. Local conversation history is now <strong>unlimited by default</strong>, ensuring prior decisions, diffs, and side-question matches stay intact on disk. Even better, conversations are no longer passive UI rows: the built-in <strong>Conversation Management API</strong> and <strong>conversations skill</strong> let agents, scripts, plugins, and automations programmatically create, list, inspect, rename, pin, star, archive, tag, group, and delete threads.',
+        'Every other workflow change in v2.35.0 targets the daily friction operators actually hit when steering multiple agents at once. Full-page HTML artifacts now support native <strong>Cmd+F</strong> (or <strong>Ctrl+F</strong> on Windows and Linux) match highlighting and navigation. Markdown and plain-text tabs gain per-tab RTL toggles without flipping code blocks. The message composer moves the <strong>Environment selector</strong> ahead of Project and Branch—putting SSH hosts directly up front—while locking model and permission selectors mid-turn with explanatory tooltips so users never mistakenly think a dropdown flip changed an active turn.',
+        'For security-conscious teams and Marketplace builders, Auto permission mode now approves file reads outside the active workspace automatically (while protecting sensitive configuration directories) and suggests broader directory scopes rather than repetitive single-file prompts on external writes. Meanwhile, <strong>ClickUp</strong>, <strong>Midpage Legal Research</strong>, and <strong>Descrybe Legal Engine</strong> join the Marketplace, and the official <strong>Gemini API Marketplace plugin</strong> updates to <strong>v2.8.0</strong> with <strong>Gemini 4 Neon</strong> usage and migration guidance.',
+      ],
+      pullquote: {
+        quote:
+          'When agents can tag, group, pin, and inspect their own local conversation histories without hitting a 500-thread cliff, chat threads finally behave like durable software infrastructure.',
+        attribution: 'GOOGLE GEMINI 4 ARGON · α CASTOR SYNTHESIS OF ANTIGRAVITY v2.35.0',
+      },
+      comparisonTable: {
+        id: 'antigravity-v2-35-workflow-comparison',
+        caption: 'Antigravity v2.35.0 Operational Upgrades vs. Prior Desktop Behavior (Nov 23, 2026)',
+        columns: ['Workflow Surface', 'Pre-v2.35 Behavior', 'Antigravity v2.35.0 Upgrade', 'Primary Beneficiary'],
+        rows: [
+          [
+            'Local Conversation History',
+            'Pruned older local threads after 500 conversations',
+            'Unlimited local retention by default plus programmatic Conversation Management API & conversations skill',
+            'Power operators, scheduled automations & multi-repo engineers',
+          ],
+          [
+            'Swarm Board & Subagents',
+            'Heavy full-board loading and separate rows per parallel subagent launch',
+            'On-demand message paging, incremental updates, reduced hidden polling, collapsed parallel rows & merged Worked for blocks',
+            'Multi-agent /swarm coordinators & large parallel builds',
+          ],
+          [
+            'HTML Artifacts & File Tabs',
+            'No Cmd+F text search inside full-page HTML artifacts',
+            'Cmd+F / Ctrl+F search with match highlighting & navigation, plus per-tab RTL prose toggles for Markdown/text',
+            'Designers, QA reviewers & technical writers',
+          ],
+          [
+            'Permissions & Composer UX',
+            'Single-file external write prompts; Project before Environment; Extra effort default',
+            'Auto external reads (sensitive configs shielded), directory write scopes, Environment-first bar, mid-turn locks & High effort default',
+            'Remote SSH developers & token-budgeted teams',
+          ],
+        ],
+      },
+      adaptiveQuestions: [
+        {
+          lensTag: 'FOR ENGINEERING MANAGERS & SOLO FOUNDERS',
+          question: 'Why did Antigravity change default Orchestrator and Executor thinking effort from Extra High to High?',
+          answer:
+            'High thinking effort hits the sweet spot between latency, token quota, and reliability across Gemini 4 Neon, Carbon, and Hydrogen, while leaving Extra High (xhigh) available manually whenever deep deductive audits warrant longer turn times.',
+        },
+        {
+          lensTag: 'FOR AUTOMATION & WORKFLOW BUILDERS',
+          question: 'What can the new Conversation Management API and conversations skill automate?',
+          answer:
+            'Scripts, plugins, scheduled automations, and agents can create, list, inspect, rename, pin, star, archive, tag, group, and delete local Antigravity conversations—enabling automated morning inbox tagging, release audit grouping, or cross-thread handoffs.',
+        },
+        {
+          lensTag: 'FOR SECURITY & COMPLIANCE TEAMS',
+          question: 'Does Auto permission mode expose credentials outside the current workspace?',
+          answer:
+            'No. While Auto mode now approves routine file reads outside the active project directory to reduce prompt fatigue, Antigravity explicitly keeps sensitive configuration directories protected and also patched internal session-connection file isolation in v2.35.0.',
+        },
+      ],
+    },
+    pollux: {
+      kicker: 'PART II · β POLLUX · CONVERSATION LIFECYCLE, SWARM PAGING & PERMISSION BOUNDARIES LENS',
+      title: 'Under the Hood of Antigravity v2.35.0: Paged Swarms, API Hygiene & 19 Edge-Case Fixes',
+      subtitle:
+        'How on-demand Swarm paging, directory-scoped permission patterns, High thinking defaults, and queue delivery diagnostics eliminate silent multi-agent friction.',
+      paragraphs: [
+        'Three architectural refinements in Antigravity v2.35.0 directly fix failure modes that only surface once you run long-lived autonomous workspaces. First, the Swarm board replaces eager history hydration with <strong>on-demand message paging</strong>, incremental board diffs, and throttled polling when the Swarm pane is hidden—paired with UI collapsing for consecutive parallel subagent launches and automatic merging of adjacent <code>Worked for</code> sections with no intervening output.',
+        'Second, queue and side-question state transitions are significantly safer. The queued messages card now names the exact active background tasks or subagents holding delivery after a turn ends so you can wait or click <strong>Send Now</strong> deliberately. Nineteen targeted fixes patch subtle race conditions where pressing Stop could drop a just-sent follow-up, Send Now could overwrite message drafts, splitting a terminal lost scroll and focus, or dollar signs inside shell commands triggered accidental math-formula rendering.',
+        'Third, sandbox and enterprise account hygiene tighten alongside usability. Auto-mode safety checks now evaluate commands against the true working directory, file tools and sandboxed commands are blocked from reading internal session connection files, enterprise sign-ins refresh revoked account states cleanly, and the official <strong>Gemini API Marketplace plugin v2.8.0</strong> brings up-to-date <strong>Gemini 4 Neon</strong> and <code>@google/genai</code> v3.x migration instructions directly inside the workspace.',
+      ],
+      builderRules: [
+        {
+          label: '01 · Tag & Group Automated Runs With the conversations Skill',
+          detail:
+            'Now that local history never prunes at 500 threads, have scheduled sidecars and CI agents tag and group their runs automatically via the Conversation Management API so human reviews stay cleanly separated from ad-hoc coding.',
+        },
+        {
+          label: '02 · Keep Default Thinking at High and Escalate Selectively',
+          detail:
+            'Match Antigravity v2.35.0’s new High default on Orchestrator and Executor models for everyday builds and UI generation, reserving Extra High (xhigh) for security audits or hard multi-file root-cause hunts.',
+        },
+        {
+          label: '03 · Use Cmd+F on Generated HTML Artifacts & Rebind Automations If Needed',
+          detail:
+            'Verify long interactive reports directly inside full-page HTML artifacts using Cmd+F (Ctrl+F), and remember that Cmd+U is no longer bound to Automations by default unless you re-assign it in Settings > Shortcuts.',
+        },
+      ],
+      codeCaption: 'CONVERSATION TRIAGE & SEARCHABLE HTML ARTIFACT PIPELINE (@GOOGLE/GENAI V3.X)',
+      codeSnippet: `import { GoogleGenAI } from "@google/genai";
+
+// Models a morning release-triage workflow pairing Antigravity v2.35.0's
+// unlimited history and Conversation Management API with Gemini 4 Neon (High).
+const ai = new GoogleGenAI();
+
+// 1. Classify and group active threads beyond the legacy 500-conversation cap
+const triage = await ai.interactions.create({
+  model: "gemini-4-neon",
+  thinking_level: "high",
+  input:
+    "Inspect unarchived conversations tagged 'release-audit', pin verified passing builds, star threads blocked on background subagents, and propose clean group labels.",
+});
+
+// 2. Render a full-page HTML summary ready for Cmd+F artifact search
+const artifactHtml = await ai.interactions.create({
+  model: "gemini-4-hydrogen",
+  previous_interaction_id: triage.id,
+  input:
+    "Format the grouped conversation triage report as a self-contained HTML artifact with explicit section headings and searchable status codes for Cmd+F inspection.",
+});
+
+console.log(artifactHtml.output_text);`,
+      workbench: {
+        title: 'Antigravity v2.35.0 Conversation API & Swarm Paging Inspector [SIMULATED DEMO]',
+        subtitle: 'Inspect unlimited conversation lifecycle operations, Swarm paging gains, and v2.35.0 permission/UX deltas.',
+        dek: 'Cycle through the three verified engineering views below, or launch our interactive studio [SIMULATED DEMO].',
+        presets: [
+          {
+            label: '1. UNLIMITED HISTORY & CONVERSATION API',
+            k1: 'Local Retention Policy',
+            v1: 'Unlimited conversation history by default (removes legacy 500-thread pruning limit)',
+            k2: 'Programmatic Actions',
+            v2: 'create, list, inspect, rename, pin, star, archive, tag, group, and delete via conversations skill',
+            k3: 'Side-Question Navigation',
+            v3: 'Search matches jump straight to parent thread + side-question tab with preserved quote scroll',
+          },
+          {
+            label: '2. SWARM SCALING & ARTIFACT SEARCH',
+            k1: 'Swarm Board Architecture',
+            v1: 'On-demand message paging, incremental board updates, and throttled polling while hidden',
+            k2: 'Trajectory Cleanliness',
+            v2: 'Consecutive parallel subagent launches collapse; adjacent empty Worked for blocks merge',
+            k3: 'Full-Page HTML Search',
+            v3: 'Native Cmd+F / Ctrl+F match highlighting and navigation inside HTML artifacts',
+          },
+          {
+            label: '3. PERMISSIONS, MODELS & 19 FIXES',
+            k1: 'Auto Permission Scoping',
+            v1: 'Auto-approves external reads (sensitive configs protected) and suggests directory write scopes',
+            k2: 'Model & Queue Guards',
+            v2: 'Orchestrator/Executor default to High effort; selectors lock mid-turn; queue names holding tasks',
+            k3: 'Plugin & Security Fixes',
+            v3: 'Gemini API Marketplace plugin v2.8.0 (Neon), ClickUp/Legal plugins, session-file isolation fix',
+          },
+        ],
+      },
+    },
+    verdict: {
+      title: 'Argon’s Bottom Line: Antigravity v2.35.0 Turns Agent Threads Into Permanent, Queryable Infrastructure',
+      subtitle:
+        'Removing the 500-conversation cap while shipping a Conversation Management API, paged Swarm boards, and Cmd+F HTML artifact search eliminates the friction of scaling autonomous work.',
+      paragraphs: [
+        '<strong>Why this matters today:</strong> once an engineering workflow runs scheduled agents and parallel swarms every day, conversation management and board latency stop being cosmetic details—they determine whether teams can trust and audit past autonomous work. Antigravity v2.35.0 makes history durable and programmable from the inside out.',
+        '<strong>Explore the companion deep dive:</strong> read our 3-part technical series under <code>/series/antigravity-v2-35-conversation-api/part-1-what-changed-antigravity-v2-35.html</code> or simulate Conversation Management API calls, Swarm paging telemetry, and Auto permission scopes inside Antigravity v2.35.0 Conversation Studio [SIMULATED DEMO] at <code>/labs/gemini-antigravity-conversation-studio.html</code>.',
+      ],
+      sources: [
+        {
+          role: 'Official Google Antigravity Changelog',
+          label: 'Google Antigravity Changelog v2.35.0 — Unlimited conversation history, Conversation Management API, and HTML artifact search',
+          author: 'Google Antigravity Team',
+          date: 'November 23, 2026',
+          url: 'https://antigravity.google/docs/changelog#rel-hub-2.35.0',
+        },
+        {
+          role: 'Official Antigravity Conversations Documentation',
+          label: 'Managing conversations & workspace scoping — Google Antigravity Docs',
+          author: 'Google Antigravity Docs',
+          date: 'November 2026',
+          url: 'https://antigravity.google/docs/cli/conversations/',
+        },
+      ],
+    },
+  },
   'pulse-deepmind-gemini-4-lean-quantum-algorithms': {
     id: 'pulse-deepmind-gemini-4-lean-quantum-algorithms',
     slug: 'deepmind-gemini-4-lean-4-quantum-algorithms',
