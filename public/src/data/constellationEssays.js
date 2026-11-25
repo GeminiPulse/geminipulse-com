@@ -240,6 +240,237 @@ console.log(response.output_text);`,
       ],
     },
   },
+  'pulse-workspace-mcp-servers-cli-agent-governance-ga': {
+    id: 'pulse-workspace-mcp-servers-cli-agent-governance-ga',
+    slug: 'workspace-mcp-servers-cli-agent-governance-ga',
+    shortStarLabel: 'Workspace MCP + CLI',
+    readMinutes: '10 MIN READ',
+    authoredByModel: 'Google Gemini 4 Argon',
+    thinkingEffort: 'High',
+    hudTitle: 'Workspace MCP Servers GA, gwscli & Feb 1, 2027 Agent Cutover.',
+    hudSummary:
+      'Published November 24, 2026: Google makes dedicated remote Workspace MCP servers and the gwscli terminal client generally available with Cloud Agent Gateway SPIFFE identity, a 5,000 req/day free Standard Tier, and a February 1, 2027 MCP mandate.',
+    peekCastor: 'Agent Cutover Clock: <em>Direct Workspace REST calls for AI agents face throttling Feb 1, 2027.</em>',
+    peekPollux: 'Stateless Elicitation: <em>/mcp/v1 uses requestState locks while gwscli runs dynamic schemas.</em>',
+    headline:
+      'Google Makes Workspace MCP Servers &amp; <code>gwscli</code> Generally Available—With a Hard <em>February 1, 2027 Cutover</em>',
+    standfirst:
+      'For two decades, traditional web apps called Gmail, Drive, and Calendar through deterministic REST endpoints across 2.8 trillion monthly requests. On November 24, 2026, Google drew a hard architectural boundary between software and autonomous AI agents—making dedicated remote Workspace MCP servers, the gwscli terminal binary, Cloud Agent Gateway SPIFFE controls, and a new two-tier quota model generally available ahead of mandatory technical enforcement on February 1, 2027.',
+    pulseCheck: [
+      {
+        stage: '10+ Managed MCP Surfaces & gwscli',
+        detail:
+          'Remote /mcp/v1 endpoints launch GA across Gmail, Drive, Docs, Sheets, Slides, Calendar, Chat, Tasks, Classroom, and cross-app Universal Search (workspacemcp.googleapis.com), paired with the native gwscli binary for Antigravity, Claude Code, and Codex.',
+      },
+      {
+        stage: 'Feb 1 Mandate & Apr 1 Billing',
+        detail:
+          'Standard Tier provides up to 5,000 requests/day/project/product free (>99% of active developers); starting February 1, 2027 AI agents must use MCP rather than raw REST APIs, and Scaled Tier billing begins April 1, 2027.',
+      },
+      {
+        stage: 'The Honest Catch',
+        detail:
+          'Unlike REST APIs that retain daily no-charge allowances in Scaled Tier, Scaled Tier Gmail, Calendar, and Drive MCP usage bills from the very first request starting April 1, 2027—and gwscli dynamic commands explicitly do not guarantee backward-compatible CLI signatures for static scripts.',
+      },
+    ],
+    castor: {
+      kicker: 'PART I · α CASTOR · ENTERPRISE GOVERNANCE & PLATFORM CUTOVER LENS',
+      title: 'Why Google Split AI Agents Off From 2.8 Trillion Monthly REST Calls',
+      subtitle:
+        'How Google’s Workspace AI Tools Addendum, Admin Console approval rules, and Cloud Agent Gateway replace fragile DIY OAuth scripts with an auditable agent boundary.',
+      paragraphs: [
+        'Workspace APIs now process more than <strong>2.8 trillion calls every month</strong> across 4 billion users and 13 million organizations, with public Google Drive traffic alone running over two-and-a-half times higher than two years ago. Traditional SaaS integrations execute predictable code paths written by humans; autonomous AI agents compose multi-step read, summarize, share, and send chains at runtime inside live corporate mailboxes and document repositories.',
+        'In twin November 24, 2026 announcements across the Google Cloud Blog (<strong>Built for trust and control: Powering the next wave of AI agents across Google Workspace and Google Cloud</strong>) and Google Workspace Updates, Google established a unified control plane for that shift. Instead of scraping raw payloads line by line over REST APIs, agents now connect through Google-hosted <strong>Workspace Model Context Protocol (MCP) servers</strong> in the cloud or the native <strong>Google Workspace CLI (<code>gwscli</code>)</strong> inside local terminals, VMs, and containerized sandboxes.',
+        'For CIOs and security leaders, the core unlock is centralized visibility and revocation without blocking builders. Existing Data Loss Prevention (DLP) policies apply automatically on every MCP and CLI request, external agents must declare the dedicated AI-agent OAuth client flag in Google Cloud console, administrators can enforce human-in-the-loop (HITL) approvals under <code>Security &gt; API Controls</code> and <code>Agents &gt; Settings &gt; User review for external agents</code>, and the revised <strong>Workspace AI Tools Addendum</strong> forbids extended derived-data storage, model training, or API scraping.',
+        'For engineering founders and developer toolmakers, the most urgent operational takeaway is the migration clock. Starting <strong>February 1, 2027</strong>, technical enforcement requires AI agents to call Workspace MCP servers or <code>gwscli</code> rather than direct Workspace REST APIs—any agent still hitting REST directly gets capped at Standard Tier quotas regardless of billing configuration. Two months later, on <strong>April 1, 2027</strong>, Scaled Tier billing goes live across Gmail, Calendar, and Drive.',
+      ],
+      pullquote: {
+        quote:
+          'Routine work like drafting an email or summarizing a doc stays seamless, while external sharing, trashing, and cross-cloud agent calls now pass through cryptographic SPIFFE identities and server-side human approval gates.',
+        attribution: 'GOOGLE GEMINI 4 ARGON · α CASTOR SYNTHESIS OF WORKSPACE MCP & CLOUD AGENT GATEWAY (NOV 24, 2026)',
+      },
+      comparisonTable: {
+        id: 'workspace-mcp-cli-cutover-matrix',
+        caption: 'Workspace Agent Control Plane Surfaces & 2027 Quota Milestones (Nov 24, 2026)',
+        columns: ['Control Plane Layer', 'Standard / Free Behavior', 'Scaled / Enterprise Behavior', 'Key Cutover Constraint'],
+        rows: [
+          [
+            'Remote Workspace MCP (/mcp/v1)',
+            'Up to 5,000 req/day/project/product free ($0)',
+            'Higher quota via Scaled Tier or internal-org attestation',
+            'Scaled Tier MCP for Gmail, Calendar & Drive bills from request #1 starting April 1, 2027',
+          ],
+          [
+            'Google Workspace CLI (gwscli)',
+            'GA macOS/Linux/Windows binary + --bundle readonly',
+            'Follows org Admin Console HITL & DLP policies automatically',
+            'Runtime command discovery means schemas can evolve without static backward compatibility',
+          ],
+          [
+            'Direct Workspace REST APIs',
+            'Allowed for deterministic non-agent apps under Standard Tier',
+            'REST Scaled Tier bills only above daily no-charge allowances',
+            'AI agents hitting REST directly are capped at Standard Tier starting February 1, 2027',
+          ],
+          [
+            'Cloud Agent Gateway + Agent Registry',
+            'SPIFFE ID + mTLS/DPoP + default-deny IAM policies',
+            'Model Armor + Semantic Governance + Security Command Center / Wiz',
+            'External agents must register OAuth clients with the AI-powered agent flag',
+          ],
+        ],
+      },
+      adaptiveQuestions: [
+        {
+          lensTag: 'FOR SAAS FOUNDERS & INDIE BUILDERS',
+          question: 'Will most Gemini and Antigravity developers have to pay for Workspace MCP calls?',
+          answer:
+            'No. Google reports that over 99% of active Workspace developers operate within the Standard Tier, which provides up to 5,000 requests per day per project per product at zero cost and requires no Google Cloud Billing account. Organizations running internal-only tools can also attest to the internal-use exception.',
+        },
+        {
+          lensTag: 'FOR ENTERPRISE SECURITY ARCHITECTS',
+          question: 'How does Google prevent an autonomous agent from permanently wiping Drive files or leaking sensitive mail?',
+          answer:
+            'Workspace MCP servers enforce server-side policy checks on every call: permanent deletion is blocked for third-party agents, moving items to Trash always requires single-use ALLOW_ONCE or DENY_ONCE confirmation without persistent bypass, and upcoming AI access restrictions extend DLP and client-side encryption boundaries directly to agents.',
+        },
+        {
+          lensTag: 'FOR PLATFORM & FINOPS TEAMS',
+          question: 'What is the single biggest billing trap to watch on April 1, 2027?',
+          answer:
+            'Check the fine print between REST APIs and MCP servers in Scaled Tier: REST APIs only bill after exceeding a daily no-charge allowance, whereas Scaled Tier Gmail, Google Calendar, and Google Drive MCP servers have zero daily no-charge allowance and bill from the very first request once enrolled (though Google Cloud Support variable fees exclude Workspace APIs until at least December 2027).',
+        },
+      ],
+    },
+    pollux: {
+      kicker: 'PART II · β POLLUX · STATELESS FORM ELICITATION, GWSCLI & GATEWAY ARCHITECTURE LENS',
+      title: 'Inside /mcp/v1 Elicitation, Argument-Locked requestState & Dynamic gwscli Discovery',
+      subtitle:
+        'Dissecting the 2026-07-28 stateless MCP approval protocol, /mcp/v1self fallback routing, gwscli binary workflows, and SPIFFE Agent Gateway wiring.',
+      paragraphs: [
+        'At the protocol layer, Google’s GA servers expose dedicated endpoints for Gmail (<code>gmailmcp.googleapis.com</code>), Drive (<code>drivemcp.googleapis.com</code>), Docs (<code>docsmcp.googleapis.com</code>), Sheets (<code>sheetsmcp.googleapis.com</code>), Slides (<code>slidesmcp.googleapis.com</code>), Calendar (<code>calendarmcp.googleapis.com</code>), Chat (<code>chatmcp.googleapis.com</code>), Tasks (<code>tasksmcp.googleapis.com</code>), Classroom (<code>classroommcp.googleapis.com</code>), and cross-app Universal Search (<code>workspacemcp.googleapis.com</code>), alongside People MCP on <code>people.googleapis.com</code> in Developer Preview. Each server pairs a primary <code>/mcp/v1</code> route with a limited <code>/mcp/v1self</code> fallback for legacy MCP hosts that cannot render forms yet.',
+        'Because server-side governance changes dynamically across user preferences and organizational units, clients must never hardcode which tools need confirmation or cache approvals locally. On <code>/mcp/v1</code>, an MCP host advertises <code>elicitation</code> support in <code>params._meta</code>. When a sensitive call such as <code>create_event</code> with external attendees or <code>send_message</code> hits a policy gate, the server pauses and returns <code>resultType: "input_required"</code> containing an <code>elicitation/create</code> payload (<code>mode: "form"</code>) under <code>inputRequests["approval_choice"]</code> plus an opaque <code>requestState</code> string cryptographically bound to the exact tool arguments. Once the user picks <code>ALLOW_ONCE</code> or <code>DENY_ONCE</code>, the host replays the exact same tool call with <code>params.requestState</code> and <code>params.inputResponses</code> to complete execution—and prebuilt hosts like Google Antigravity or Claude Desktop should set local host confirmations to <em>Always allow</em> on <code>/mcp/v1</code> so users never suffer double prompts.',
+        'For terminal-native coding agents such as Google Antigravity, Claude Code, and Codex running inside dev laptops, VMs, or remote containers, <code>gwscli</code> eliminates boilerplate SDK wrappers. Installed as a standalone binary from <code>dl.google.com/workspace-cli/</code>, it authenticates via incremental OAuth (for example <code>gwscli auth login --bundle readonly</code> or scoped <code>"chat search_messages"</code>), exposes <code>--show-scopes</code> and <code>--print-scope-only</code> for headless bearer tokens, and lets agents inspect live commands and JSON schemas via <code>--help</code> and <code>--schema</code>. Inside Google Cloud production fleets, <strong>Cloud Agent Gateway</strong> complements those Workspace controls with SPIFFE IDs in <strong>Agent Registry</strong>, mTLS + DPoP authentication, default-deny IAM Unified Access Policies, inline <strong>Model Armor</strong> prompt-injection scanning, and <strong>Semantic Governance Policies</strong>.',
+      ],
+      builderRules: [
+        {
+          label: '01 · Connect to /mcp/v1 With Stateless Form Elicitation & Disable Redundant Host Prompts',
+          detail:
+            'Point Antigravity, ADK, or custom MCP clients at *mcp.googleapis.com/mcp/v1, wire params.requestState + params.inputResponses retries, and disable duplicate local tool prompts so users approve once per server policy challenge.',
+        },
+        {
+          label: '02 · Keep gwscli Dynamic and Scoped With --bundle readonly',
+          detail:
+            'Because gwscli discovers subcommands and output shapes dynamically from the backend, instruct agents to inspect --help and --schema at runtime instead of hardcoding CLI flags in cron scripts, and grant only minimal OAuth bundles.',
+        },
+        {
+          label: '03 · Migrate Agent REST Loops & Audit Scaled Billing Before Q1 2027',
+          detail:
+            'Inventory every agent calling gmail.googleapis.com, drive.googleapis.com, or calendar-json.googleapis.com directly so you migrate before the February 1, 2027 Standard-tier cap and verify internal-use or Scaled Tier economics before April 1, 2027.',
+        },
+      ],
+      codeCaption: 'GEMINI 4 NEON + WORKSPACE UNIVERSAL SEARCH & DRIVE MCP (/MCP/V1) INTERACTION BLUEPRINT (@GOOGLE/GENAI V3.X)',
+      codeSnippet: `import { GoogleGenAI } from "@google/genai";
+
+// Connects Gemini 4 Neon to Google Workspace's GA remote MCP endpoints (/mcp/v1).
+// Enable both the product APIs (drive.googleapis.com) and MCP APIs (drivemcp.googleapis.com,
+// workspacemcp.googleapis.com) in the same Google Cloud project with an AI-agent OAuth client.
+const ai = new GoogleGenAI();
+
+const workspacePlan = await ai.interactions.create({
+  model: "gemini-4-neon",
+  thinking_level: "medium",
+  tools: [
+    {
+      type: "mcp_server",
+      name: "workspace_universal_search",
+      url: "https://workspacemcp.googleapis.com/mcp/v1",
+    },
+    {
+      type: "mcp_server",
+      name: "workspace_drive",
+      url: "https://drivemcp.googleapis.com/mcp/v1",
+    },
+  ],
+  input:
+    "Use search_corpus to gather Q4 launch readiness notes across Gmail, Drive, Calendar, and Chat. Summarize open blockers cleanly and stop for /mcp/v1 form elicitation before sharing any document externally.",
+});
+
+console.log(workspacePlan.output_text);`,
+      workbench: {
+        title: 'Workspace MCP, gwscli & Cloud Agent Gateway Inspector [SIMULATED DEMO]',
+        subtitle: 'Inspect stateless 2026-07-28 MCP elicitation, gwscli dynamic auth, and the 2027 quota timeline.',
+        dek: 'Cycle through the three verified engineering views below, or launch our interactive studio [SIMULATED DEMO].',
+        presets: [
+          {
+            label: '1. STATELESS /MCP/V1 FORM ELICITATION HANDSHAKE',
+            k1: 'Primary vs Fallback Endpoints',
+            v1: '10+ GA servers on *mcp.googleapis.com/mcp/v1 plus workspacemcp.googleapis.com Universal Search (/mcp/v1self fallback)',
+            k2: 'InputRequiredResult Lock',
+            v2: 'Returns resultType: "input_required", mode: "form" approval_choice, and opaque requestState bound to exact args',
+            k3: 'Server-Side Safety Floors',
+            v3: 'Trash requires per-call ALLOW_ONCE/DENY_ONCE; permanent file deletion is blocked for third-party agents',
+          },
+          {
+            label: '2. GWSCLI TERMINAL & ANTIGRAVITY SANDBOX FLOW',
+            k1: 'Cross-Platform Native Binary',
+            v1: 'Distributed via dl.google.com/workspace-cli/ for macOS Silicon/Intel, Linux x86_64/ARM64, and Windows',
+            k2: 'Least-Privilege OAuth',
+            v2: 'gwscli auth login --bundle readonly merges scopes incrementally; --show-scopes prints minimal token scopes',
+            k3: 'Dynamic Runtime Schemas',
+            v3: 'Agents run --help and --schema live to read structured JSON without brittle static script coupling',
+          },
+          {
+            label: '3. CLOUD AGENT GATEWAY & 2027 QUOTA SCHEDULE',
+            k1: 'SPIFFE + Model Armor Stack',
+            v1: 'mTLS + DPoP Agent Identity in Agent Registry, default-deny IAM, Model Armor, and Security Command Center logs',
+            k2: 'Feb 1, 2027 MCP Cutover',
+            v2: 'Workspace AI Tools Addendum takes effect; agents calling REST directly are throttled to 5,000 req/day Standard Tier',
+            k3: 'Apr 1, 2027 Scaled Billing',
+            v3: 'Standard Tier stays $0 (>99% of devs); Scaled Tier Gmail/Calendar/Drive MCP bills from request #1',
+          },
+        ],
+      },
+    },
+    verdict: {
+      title: 'Argon’s Bottom Line: MCP Is Now the Mandatory Control Plane for Google Workspace Agents',
+      subtitle:
+        'By pairing GA remote MCP servers and gwscli with SPIFFE Agent Gateway policies and a February 1, 2027 cutover, Google moved Workspace agents out of ad-hoc REST workarounds into a governed production standard.',
+      paragraphs: [
+        '<strong>Why builders should act early:</strong> waiting until January 2027 to replace direct REST polling inside multi-agent pipelines risks hitting Standard Tier throttling on February 1 and surprise request-one MCP billing if your workload enrolls in Scaled Tier without testing synthesized Universal Search summaries first.',
+        '<strong>Explore the companion deep dive:</strong> read our 3-part technical series under <code>/series/workspace-mcp-servers-cli/part-1-what-changed-workspace-mcp-cli.html</code> or step through the stateless elicitation, <code>gwscli</code>, and quota simulator inside Google Workspace MCP &amp; CLI Studio [SIMULATED DEMO] at <code>/labs/gemini-workspace-mcp-cli-studio.html</code>.',
+      ],
+      sources: [
+        {
+          role: 'Official Google Cloud Blog Announcement',
+          label: 'Built for trust and control: Powering the next wave of AI agents across Google Workspace and Google Cloud',
+          author: 'Google Cloud & Google Workspace Security Leadership',
+          date: 'November 24, 2026',
+          url: 'https://cloud.google.com/blog/products/identity-security/deploying-agents-safely-in-your-enterprise/',
+        },
+        {
+          role: 'Official Google Workspace Updates Dispatch',
+          label: 'Simplifying agent access while keeping organizations in control: MCP servers, CLI, standardized usage tiers, and admin policies',
+          author: 'Google Workspace Updates',
+          date: 'November 24, 2026',
+          url: 'https://workspaceupdates.googleblog.com/2026/11/mcp-servers-cli-standardized-usage-tiers-now-available.html',
+        },
+        {
+          role: 'Official Google Workspace Developer Guides',
+          label: 'Configure Workspace MCP Servers, gwscli Guide, Stateless Form Elicitation & Usage Tiers',
+          author: 'Google Workspace Developers',
+          date: 'November 24, 2026',
+          url: 'https://developers.google.com/workspace/guides/configure-mcp-servers',
+        },
+        {
+          role: 'Official Google Cloud Agent Governance Docs',
+          label: 'Google Cloud Agent Gateway Overview (SPIFFE, Agent Registry, Model Armor & IAM)',
+          author: 'Google Cloud Gemini Enterprise Agent Platform',
+          date: 'November 2026',
+          url: 'https://docs.cloud.google.com/gemini-enterprise-agent-platform/govern/gateways/agent-gateway-overview',
+        },
+      ],
+    },
+  },
   'pulse-antigravity-v2-35-conversation-api-unlimited-history': {
     id: 'pulse-antigravity-v2-35-conversation-api-unlimited-history',
     slug: 'antigravity-v2-35-unlimited-history-conversation-api',

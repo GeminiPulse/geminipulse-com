@@ -88,6 +88,25 @@ export const PULSE_INTELLIGENCE_FEED = [
     groundedBy: 'Google Official Blog + hfe_tech_paper.pdf + Kaggle Leaderboard (Nov 24, 2026)',
   },
   {
+    id: 'pulse-workspace-mcp-servers-cli-agent-governance-ga',
+    title: 'Google Ships Workspace MCP Servers GA, gwscli Terminal Client, Cloud Agent Gateway & Mandatory Feb 1, 2027 Agent Cutover',
+    tldr: 'Published November 24, 2026: Google Cloud and Google Workspace make dedicated remote MCP servers (Gmail, Drive, Docs, Sheets, Slides, Calendar, Chat, Tasks, Classroom, plus Universal Search on workspacemcp.googleapis.com) and the gwscli binary generally available alongside Cloud Agent Gateway SPIFFE enforcement, a 5,000 req/day free Standard Tier, a February 1, 2027 MCP mandate, and April 1, 2027 Scaled Tier billing.',
+    summary:
+      'Published November 24, 2026 across Google Cloud Blog, Google Workspace Updates, and official Google Workspace Developer Guides (serving 2.8T+ monthly Workspace API calls): (1) Dedicated Remote MCP Servers & Stateless Form Elicitation—ships GA /mcp/v1 endpoints (gmailmcp, drivemcp, docsmcp, sheetsmcp, slidesmcp, calendarmcp, chatmcp, tasksmcp, classroommcp, workspacemcp Universal Search, plus people.googleapis.com in Preview and /mcp/v1self fallback) implementing the 2026-07-28 stateless form elicitation handshake (input_required + argument-locked requestState) and Admin Console HITL review rules, (2) Google Workspace CLI (gwscli, GA) & Cloud Agent Gateway—delivers native macOS/Linux/Windows binaries with packaged skills, runtime --schema discovery, structured JSON, and incremental --bundle readonly OAuth, backed on Google Cloud by Agent Gateway SPIFFE Agent Identities (mTLS + DPoP), default-deny IAM Unified Access Policies, Model Armor, and Semantic Governance, and (3) Standardized Usage Tiers & 2027 Deadlines—launches Standard Tier (5,000 req/day/project/product free, covering >99% of active developers) and Scaled Tier, establishes a February 1, 2027 technical MCP requirement capping direct REST agent calls at Standard limits, and begins April 1, 2027 Scaled Tier billing (where Gmail/Calendar/Drive MCP calls bill from request #1 with no daily free allowance).',
+    category: 'Workspace MCP, CLI & Enterprise Governance',
+    tag: 'GA · Feb 1, 2027 Mandate',
+    modelBadge: 'Workspace MCP + gwscli',
+    impactScore: '10.0 / 10',
+    date: '2026-11-24T17:02:59Z',
+    sourceLabel: 'Google Cloud Blog & Workspace Updates: MCP Servers, gwscli & Usage Tiers (Nov 24, 2026)',
+    sourceUrl: 'https://cloud.google.com/blog/products/identity-security/deploying-agents-safely-in-your-enterprise/',
+    groundedBy: 'Google Cloud Blog + Google Workspace Updates + developers.google.com/workspace/guides/* (Nov 24, 2026)',
+    seriesUrl: '/series/workspace-mcp-servers-cli/part-1-what-changed-workspace-mcp-cli.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-workspace-mcp-cli-studio.html',
+    labLabel: 'Workspace MCP Studio [DEMO] →',
+  },
+  {
     id: 'pulse-agent-retrieval-managed-ingestion-searchdocuments',
     title: 'Google Launches Managed Ingestion & SearchDocuments in Agent Retrieval (Public Preview): Cloud Storage Files to Cited Answers in One Call',
     tldr: 'Published November 24, 2026: Yingxin Jiang and Kaz Sato introduce Managed Ingestion and SearchDocuments (v1beta REST in us-east4 and europe-west4), turning Cloud Storage PDFs, Office docs, and videos into Gemini Embedding 2 hybrid-searchable segments with page numbers and 0.3–0.5s audio-aware video timestamps.',
@@ -1839,6 +1858,69 @@ print(response.output_text)`,
     ],
   },
   {
+    id: 'lab-gemini-workspace-mcp-cli-studio',
+    title: 'Google Workspace MCP Servers, gwscli & Agent Gateway Studio [SIMULATED DEMO]',
+    badge: 'Nov 2026 Workspace MCP + CLI',
+    model: 'gemini-4-neon',
+    href: '/labs/gemini-workspace-mcp-cli-studio.html',
+    description:
+      'Interactive control-plane workbench modeling Google’s GA Workspace MCP servers (/mcp/v1 vs /mcp/v1self), stateless 2026-07-28 MCP form elicitation, gwscli runtime schema discovery, Cloud Agent Gateway SPIFFE/Model Armor enforcement, and the Feb 1 / Apr 1, 2027 quota cutover.',
+    prompt:
+      'Connect Gemini 4 Neon to Google Workspace MCP endpoints (drivemcp.googleapis.com/mcp/v1 and workspacemcp.googleapis.com/mcp/v1), handle InputRequiredResult requestState round-trips, and inspect gwscli least-privilege --bundle readonly scopes.',
+    tsCode: `import { GoogleGenAI } from "@google/genai";
+
+// Models wiring Gemini 4 Neon with a remote Google Workspace MCP server (/mcp/v1)
+// alongside stateless 2026-07-28 form elicitation and Agent Gateway enforcement.
+const ai = new GoogleGenAI();
+
+const response = await ai.interactions.create({
+  model: "gemini-4-neon",
+  thinking_level: "medium",
+  tools: [
+    {
+      type: "mcp_server",
+      name: "workspace_universal_search",
+      url: "https://workspacemcp.googleapis.com/mcp/v1",
+    },
+  ],
+  input: "Search Gmail, Drive, Calendar, and Chat for Q4 compliance action items and draft a private summary without sharing external links.",
+});
+
+console.log(response.output_text);`,
+    pyCode: `from google import genai
+
+client = genai.Client()
+
+response = client.interactions.create(
+    model="gemini-4-neon",
+    thinking_level="medium",
+    tools=[
+        {
+            "type": "mcp_server",
+            "name": "workspace_drive",
+            "url": "https://drivemcp.googleapis.com/mcp/v1",
+        }
+    ],
+    input="Audit external sharing approvals on Drive files modified this week and flag calls triggering MCP form elicitation.",
+)
+
+print(response.output_text)`,
+    simulatedSteps: [
+      {
+        type: 'thought',
+        label: 'step[0] · Agent Gateway SPIFFE + MCP /mcp/v1 Form Elicitation',
+        detail:
+          'Assigned SPIFFE ID via mTLS/DPoP, routed tools/call to drivemcp.googleapis.com/mcp/v1, and received InputRequiredResult with opaque argument-locked requestState.',
+      },
+      {
+        type: 'tool_call',
+        label: 'step[1] · Human Approval + Standard Tier (5,000/day) Check',
+        detail:
+          'User approved ALLOW_ONCE, retried tools/call with requestState + inputResponses, and confirmed usage fits inside the $0 Standard Tier ahead of the Feb 1, 2027 mandate.',
+      },
+    ],
+  },
+  {
     id: 'lab-gemini-antigravity-conversation-studio',
     title: 'Antigravity v2.35.0 Conversation API & Swarm Paging Studio [SIMULATED DEMO]',
     badge: 'Nov 2026 Antigravity v2.35.0',
@@ -3377,6 +3459,25 @@ export const INITIAL_SHOWCASE_PROJECTS = [
     featured: true,
     status: 'published',
     createdAt: '2026-11-25T13:00:00Z',
+  },
+  {
+    id: 'showcase-gemini-workspace-mcp-cli-studio',
+    name: 'Google Workspace MCP Servers, gwscli & Agent Gateway Studio [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive developer workbench modeling Google Workspace’s GA MCP servers (/mcp/v1 vs /mcp/v1self), stateless 2026-07-28 form elicitation, gwscli dynamic schema discovery, Cloud Agent Gateway SPIFFE checks, and Feb 1 / Apr 1, 2027 quota tiers.',
+    models: ['gemini-4-neon', 'gemini-4-argon'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-workspace-mcp-cli-studio.html): [SIMULATED DEMO] Models dedicated *mcp.googleapis.com endpoints, requestState approval round-trips, gwscli --bundle readonly, and 5,000 req/day Standard vs Scaled billing.',
+    url: '/labs/gemini-workspace-mcp-cli-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-24T17:02:59Z',
   },
   {
     id: 'showcase-gemini-antigravity-conversation-studio',
@@ -5666,6 +5767,23 @@ export const GEMINI_VIDEO_SHOWCASE = [
       'Published November 25, 2026 (20:00 UTC) by Google for Developers (Google DeepMind’s Patrick Löber and Geneviève Huskens)—five practical techniques for long, complex Gemini 4 engineering runs in Google AI Studio and Google Antigravity: plan mode intent alignment, concrete test-suite/browser-screenshot verification, multimodal references, lead orchestrator sub-agent delegation, and distilling session lessons into reusable SKILL.md files.',
     whyFeatured:
       'Verified HTTP 200 Nov 25 Google for Developers + DeepMind field guide codifying plan mode, multimodal specs, orchestrator sub-agents, and reusable SKILL.md workflows for Gemini 4.',
+  },
+  {
+    id: 'vid-google-cloud-alloydb-express-remote-mcp',
+    videoId: 'g6NOVhxWGGk',
+    featuredOfTheDay: false,
+    category: 'AlloyDB Express & Remote MCP',
+    badge: 'OFFICIAL FEATURE • GOOGLE CLOUD TECH',
+    title: 'AlloyDB Express is here: Deploy PostgreSQL in seconds',
+    creatorName: 'Google Cloud Tech',
+    creatorHandle: '@googlecloudtech',
+    creatorUrl: 'https://www.youtube.com/@googlecloudtech',
+    watchUrl: 'https://www.youtube.com/watch?v=g6NOVhxWGGk',
+    thumbnailUrl: 'https://i.ytimg.com/vi/g6NOVhxWGGk/hqdefault.jpg',
+    geminiSummary:
+      'Published November 25, 2026 (20:00 UTC) by Google Cloud Tech—introduces AlloyDB Express, an instant-provisioning scale-to-zero PostgreSQL tier paired with AlloyDB remote MCP tools and Agent Development Kit (ADK) workflows.',
+    whyFeatured:
+      'Verified HTTP 200 Nov 25 Google Cloud Tech launch walkthrough demonstrating AlloyDB Express connected to ADK agents over remote MCP.',
   },
   {
     id: 'vid-google-deepmind-brain-ai-explaining',

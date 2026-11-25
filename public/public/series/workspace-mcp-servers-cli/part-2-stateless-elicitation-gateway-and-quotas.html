@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 2: Stateless MCP Elicitation, Cloud Agent Gateway &amp; Quota Cutovers | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Technical deep dive into Google Workspace MCP stateless form elicitation (/mcp/v1 vs /mcp/v1self), Admin Console HITL policies, Cloud Agent Gateway SPIFFE identities, and the Feb 1 / Apr 1, 2027 billing milestones."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/workspace-mcp-servers-cli/part-2-stateless-elicitation-gateway-and-quotas.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 2: Stateless MCP Elicitation, Agent Gateway &amp; Quota Cutovers" />
+    <meta property="og:description" content="How requestState binding, Admin Console approval rules, SPIFFE Agent Registry, and Standard/Scaled billing tiers work in production." />
+    <meta property="og:url" content="https://geminipulse.com/series/workspace-mcp-servers-cli/part-2-stateless-elicitation-gateway-and-quotas.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Stateless MCP Form Elicitation, Cloud Agent Gateway & Workspace Quota Tiers",
+        "datePublished": "2026-11-24T17:02:59Z",
+        "author": { "@type": "Person", "name": "Google Gemini 4 Argon (Thinking Effort: High)" },
+        "contributor": { "@type": "Person", "name": "Neil S. White" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/workspace-mcp-servers-cli/part-2-stateless-elicitation-gateway-and-quotas.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+      table { width: 100%; border-collapse: collapse; font-size: 0.92rem; text-align: left; }
+      th, td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+      th { background: rgba(255,255,255,0.03); color: #f1f5f9; font-weight: 600; }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.15rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+    </style>
+    <!-- GP-ANALYTICS-START -->
+    <meta name="gp:model" content="gemini-4-argon" />
+    <meta name="gp:effort" content="high" />
+    <meta name="gp:surface" content="release_series" />
+    <meta name="gp:slug" content="workspace-mcp-servers-cli/part-2-stateless-elicitation-gateway-and-quotas" />
+    <script src="/assets/pulse-analytics.js" defer></script>
+    <!-- GP-ANALYTICS-END -->
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">Workspace Agent Control Plane Series &middot; Part 2 of 3</div>
+      <h1>Stateless Form Elicitation, Cloud Agent Gateway &amp; The 2027 Quota Schedule</h1>
+
+      <div class="meta">
+        Authored by <strong>Google Gemini 4 Argon</strong> &middot; Thinking Effort: <strong>High</strong> &middot; Product Development &amp; Creative Direction: <strong>Neil S. White</strong> &bull; Primary Reference:
+        <a href="https://developers.google.com/workspace/guides/mcp-elicitation" target="_blank" rel="noopener">MCP Form Elicitation</a> &amp;
+        <a href="https://developers.google.com/workspace/guides/quota-usage-tiers" target="_blank" rel="noopener">Quota Tiers</a> &bull; 6 min read
+      </div>
+
+      <h2>1. How Stateless Form Elicitation Works on <code>/mcp/v1</code></h2>
+      <p>Google Workspace MCP servers implement the stateless <code>2026-07-28</code> MCP Elicitation specification. Because policy checks happen server-side on every single invocation, an agent host cannot hardcode which tools need confirmation or cache approval state locally.</p>
+      <ol>
+        <li><strong>Initial Call:</strong> The MCP host calls <code>/mcp/v1</code> with <code>tools/call</code> and declares <code>elicitation</code> capability in <code>params._meta</code>. (Prebuilt hosts like Google Antigravity or Claude Desktop should set local tool confirmation to <em>Always allow</em> so users are not prompted twice.)</li>
+        <li><strong><code>InputRequiredResult</code> Pause:</strong> When external sharing, trashing, or admin rules trigger confirmation, the server pauses and returns <code>resultType: "input_required"</code>, an <code>inputRequests["approval_choice"]</code> form object (<code>mode: "form"</code>), and an opaque <code>requestState</code> token bound strictly to the exact tool arguments.</li>
+        <li><strong>Argument-Locked Retry:</strong> After the user picks an option (for example <code>ALLOW_ONCE</code> or <code>DENY_ONCE</code>; moving files to Trash never grants persistent approval and permanent deletion is blocked for third-party agents), the host replays the exact same tool name and arguments with top-level <code>params.requestState</code> and <code>params.inputResponses</code>.</li>
+        <li><strong><code>/mcp/v1self</code> Fallback:</strong> Hosts that do not yet implement form elicitation can point to <code>/mcp/v1self</code>, which hides tools that always require default approval (while still enforcing policy-triggered checks on sensitive resources).</li>
+      </ol>
+
+      <h2>2. Standardized Usage Tiers &amp; Cutover Calendar</h2>
+      <div class="table-wrap" role="region" aria-label="Google Workspace API and MCP quota rollout milestones" tabindex="0">
+        <table>
+          <thead>
+            <tr>
+              <th>Milestone Date</th>
+              <th>Rule / Tier</th>
+              <th>Engineering &amp; Cost Impact</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Nov 24, 2026</strong></td>
+              <td>Standard &amp; Scaled Tiers Launch</td>
+              <td>Standard Tier includes up to <strong>5,000 requests/day per project per product</strong> across GA Workspace MCP servers with no Cloud Billing account needed (&gt;99% of developers stay free).</td>
+            </tr>
+            <tr>
+              <td><strong>Feb 1, 2027</strong></td>
+              <td>Workspace AI Tools Addendum &amp; MCP Mandate</td>
+              <td>AI agents must call Workspace MCP servers or <code>gwscli</code>; direct REST API calls by agents are throttled to Standard Tier quotas regardless of billing tier.</td>
+            </tr>
+            <tr>
+              <td><strong>Apr 1, 2027</strong></td>
+              <td>Scaled Tier Billing Enforcement</td>
+              <td>REST APIs charge above daily no-charge allowances; Scaled Tier Gmail, Calendar, and Drive MCP usage has <strong>no daily no-charge allowance</strong> and bills from request #1.</td>
+            </tr>
+            <tr>
+              <td><strong>Through Dec 2027+</strong></td>
+              <td>Support Fee Exclusion</td>
+              <td>Workspace APIs remain excluded from Google Cloud Support variable fee calculations until at least December 2027 (with 90 days prior notice).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>3. Cloud Agent Gateway Enforcement</h2>
+      <p>Inside Google Cloud, <strong>Agent Gateway</strong> terminates client-to-agent and agent-to-MCP traffic. Every registered agent gets a cryptographic <strong>SPIFFE Agent Identity</strong> in <strong>Agent Registry</strong> authenticated via <strong>mTLS</strong> and <strong>DPoP</strong>, gated by default-deny IAM Unified Access Policies, scanned inline by <strong>Model Armor</strong> and <strong>Semantic Governance Policies</strong>, and exported to Security Command Center, Cloud Audit Logs, and Wiz.</p>
+
+      <div class="series-nav">
+        <a class="btn-pill" href="/series/workspace-mcp-servers-cli/part-1-what-changed-workspace-mcp-cli.html">&larr; Part 1: What Changed</a>
+        <a class="btn-pill" href="/series/workspace-mcp-servers-cli/part-3-concrete-workspace-agent-use-cases.html">Part 3: Concrete Use Cases &amp; Migration &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>

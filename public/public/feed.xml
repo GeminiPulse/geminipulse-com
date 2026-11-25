@@ -44,6 +44,14 @@
   </entry>
 
   <entry>
+    <title>Google Makes Workspace MCP Servers &amp; gwscli Generally Available—With a Hard February 1, 2027 Cutover (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/workspace-mcp-servers-cli-agent-governance-ga.html" />
+    <id>https://geminipulse.com/articles/workspace-mcp-servers-cli-agent-governance-ga.html</id>
+    <updated>2026-11-24T17:02:59.000Z</updated>
+    <summary>For two decades, traditional web apps called Gmail, Drive, and Calendar through deterministic REST endpoints across 2.8 trillion monthly requests. On November 24, 2026, Google drew a hard architectural boundary between software and autonomous AI agents—making dedicated remote Workspace MCP servers, the gwscli terminal binary, Cloud Agent Gateway SPIFFE controls, and a new two-tier quota model generally available ahead of mandatory technical enforcement on February 1, 2027.</summary>
+  </entry>
+
+  <entry>
     <title>Google DeepMind Launches Humanity’s First Exam (HFE) &amp; Kaggle Hackathon: Measuring the 7.6–80.1 pp LLM Reliability Floor Gap. (Flagship Gemini Essay)</title>
     <link href="https://geminipulse.com/articles/deepmind-humanitys-first-exam-hfe.html" />
     <id>https://geminipulse.com/articles/deepmind-humanitys-first-exam-hfe.html</id>
@@ -65,14 +73,6 @@
     <id>https://geminipulse.com/articles/gemini-4-neon-builders-and-cyber-ga.html</id>
     <updated>2026-11-24T16:00:00.000Z</updated>
     <summary>Google spotlights five Gemini 4 Neon developer projects (3D Earth, xhigh Three.js butterflies, sub-5-minute /swarm hexagon flame shader, black hole lensing shader, and pendulum wave) alongside Gemini 4 Neon for cyber GA (345 tok/s per GSU) and CodeMender --model gemini-4-neon Preview.</summary>
-  </entry>
-
-  <entry>
-    <title>Silent 500-Thread Pruning Broke Agent Memory. Antigravity v2.35.0 Makes Local History Unlimited and Scriptable. (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/antigravity-v2-35-unlimited-history-conversation-api.html" />
-    <id>https://geminipulse.com/articles/antigravity-v2-35-unlimited-history-conversation-api.html</id>
-    <updated>2026-11-23T23:55:00.000Z</updated>
-    <summary>When teams run dozens of autonomous coding sessions, scheduled sidecars, and multi-worker swarms every day, a 500-conversation ceiling erases institutional engineering memory within weeks. Released November 23, 2026, Google Antigravity v2.35.0 removes local history pruning by default, introduces a built-in Conversation Management API and conversations skill, adds Cmd+F search inside HTML artifacts, and overhauls Swarm board responsiveness.</summary>
   </entry>
 
   <entry>

@@ -25,6 +25,16 @@
 
 ---
 
+## 0j. 5:45 PM ET West Coast SDK, Workspace & YouTube Curation Check (Round 57 — Nov 25, 2026)
+
+| Source Stream | Verification Status | Curated Finding & Action Taken |
+| :--- | :--- | :--- |
+| **Google Cloud Blog & Google Workspace Updates (`cloud.google.com/blog/products/identity-security/deploying-agents-safely-in-your-enterprise/`, `workspaceupdates.googleblog.com/2026/11/mcp-servers-cli-standardized-usage-tiers-now-available.html`, `developers.google.com/workspace/guides/*`)** | **VERIFIED NEW PRIMARY RELEASE (`NOV 24, 2026`, UNCURATED UNTIL ROUND 57)** | **Google Workspace MCP Servers GA, `gwscli` CLI GA, Cloud Agent Gateway & Standardized Usage Tiers**: Makes dedicated remote Workspace MCP endpoints GA (`gmailmcp`, `drivemcp`, `docsmcp`, `sheetsmcp`, `slidesmcp`, `calendarmcp`, `chatmcp`, `tasksmcp`, `classroommcp`, `workspacemcp` Universal Search on `/mcp/v1` + `/mcp/v1self` fallback, `people.googleapis.com` Preview) implementing `2026-07-28` stateless MCP form elicitation (`input_required` + argument-locked `requestState`); ships native `gwscli` binary (`--bundle readonly`, runtime `--help`/`--schema`), SPIFFE/mTLS/DPoP Cloud Agent Gateway + Model Armor policies, a **$0 Standard Tier (`5,000 req/day/project/product`, >99% of devs)**, a **February 1, 2027** mandatory MCP cutover capping direct agent REST calls, and **April 1, 2027** Scaled Tier billing (Gmail/Calendar/Drive MCP billed from request #1). Added to `PULSE_INTELLIGENCE_FEED`, authored Star 03 (`μ Tejat`) Dual-Lens Flagship Essay in `CONSTELLATION_ESSAYS` (`/articles/workspace-mcp-servers-cli-agent-governance-ga.html`), published 3-part series (`/series/workspace-mcp-servers-cli/*`), and built `/labs/gemini-workspace-mcp-cli-studio.html` `[SIMULATED DEMO]`. |
+| **YouTube Official Channels (`youtube.com/oembed` HTTP 200 Verified — `WN5O4vWCa54`, `g6NOVhxWGGk`)** | **VERIFIED HTTP 200 (`2026-11-25T20:00Z`)** | Confirmed `@GoogleDevelopers` Nov 25 **`5 developer tips for working with Gemini 4`** (`WN5O4vWCa54`, `20:00:15Z`) remains `featuredOfTheDay: true`; added `@googlecloudtech` Nov 25 **`AlloyDB Express is here: Deploy PostgreSQL in seconds`** (`g6NOVhxWGGk`, `20:00:08Z`, covering scale-to-zero AlloyDB Express + AlloyDB remote MCP with ADK) to `GEMINI_VIDEO_SHOWCASE`. |
+| **Official Blogs, Changelogs & GitHub SDKs (`blog.google/rss/`, `deepmind.google/blog/`, `research.google/blog/`, `developers.googleblog.com/rss/`, `ai.google.dev/gemini-api/docs/changelog`, `antigravity.google/docs/changelog`, `js-genai` `v3.6.1`, `python-genai` `v3.6.1`, `gemini-api-cli` `v0.5.0`, `adk-python` `v2.15.1`)** | **VERIFIED UP-TO-DATE (`2026-11-25 17:45 EST`)** | Confirmed no newer posts, changelog entries, or SDK tags published since Round 56 (`16:06 EST`) beyond the Workspace MCP/CLI/Agent Gateway primary release and Nov 25 `@googlecloudtech` video curated above. |
+
+---
+
 ## 0i. 5:45 PM ET West Coast SDK, DeepMind & YouTube Curation Check (Round 56 — Nov 25, 2026)
 
 | Source Stream | Verification Status | Curated Finding & Action Taken |

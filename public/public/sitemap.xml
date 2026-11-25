@@ -49,6 +49,12 @@
     <priority>0.98</priority>
   </url>
   <url>
+    <loc>https://geminipulse.com/articles/workspace-mcp-servers-cli-agent-governance-ga.html</loc>
+    <lastmod>2026-11-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.98</priority>
+  </url>
+  <url>
     <loc>https://geminipulse.com/articles/deepmind-humanitys-first-exam-hfe.html</loc>
     <lastmod>2026-11-24</lastmod>
     <changefreq>weekly</changefreq>
@@ -63,12 +69,6 @@
   <url>
     <loc>https://geminipulse.com/articles/gemini-4-neon-builders-and-cyber-ga.html</loc>
     <lastmod>2026-11-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.98</priority>
-  </url>
-  <url>
-    <loc>https://geminipulse.com/articles/antigravity-v2-35-unlimited-history-conversation-api.html</loc>
-    <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.98</priority>
   </url>
