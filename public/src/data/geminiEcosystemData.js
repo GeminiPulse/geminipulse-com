@@ -24,6 +24,100 @@ export const PULSE_INTELLIGENCE_FEED = [
     labLabel: 'Neon Studio [DEMO] →',
   },
   {
+    id: 'pulse-deepmind-mass-spec-skills-antigravity',
+    title: 'Google DeepMind Launches Mass Spec Skills for Google Antigravity: Lightweight Gemini 3.8 Flash Matches Frontier Chemistry at ~97% Accuracy',
+    tldr: 'Published November 25, 2026: Google DeepMind pairs Gemini inside Google Antigravity with open-source tandem mass spectrometry tools (matchms, SIRIUS, MAGMa, MetFrag, GNPS, MoNA, PubChem, RDKit)—lifting exact-match compound identification from under 4% (unassisted) to around 97% even on lightweight Gemini 3.8 Flash while cutting generated tokens nearly 4x.',
+    summary:
+      'Published November 25, 2026 on the Google DeepMind Blog (Robert Brunck, Stefan Ganscha, Swaroop Guntupalli, Dariusz Lasecki, Gabriella Marfani, Jack Mason, Hussain Masoom, Rose Mirshafian, Eliseo Papa, and Zoi Tsangalidou): (1) Illuminating Mass Spectrometry’s Dark Matter—traditional spectral libraries annotate roughly 5% of measured spectra (10% for human samples); Mass Spec Skills equips Google Antigravity agents to denoise spectra with matchms (stripping 1,700+ background spikes), query GNPS and MoNA, solve molecular formulas with SIRIUS, score PubChem isomers with MAGMa and MetFrag, and verify bond cleavages with RDKit, (2) End-to-End 100-Compound MoNA Benchmark—without tools or internet, accuracy stayed below 4% across Gemini 3.8 Flash, Gemini 4 Argon, and Gemini 4 Carbon; with internet access alone, brittle custom scripts missed 25%–33% on frontier models and over 75% on Flash; with Mass Spec Skills, all three models achieved around 97% exact-match accuracy while cutting generated tokens nearly 4x on Flash, by half on Argon, and nearly a fifth on Carbon, and (3) Tie-Breaking Chemistry Proof—on negative-mode [M−H]− m/z 395.1387 (1,761 raw peaks filtered to 19), the agent deduced C20H21ClN6O (−1.5 ppm, SIRIUS score 37.86), used sequential HCl + HNCO neutral losses to reject a tied 97.7%-intensity triazolobenzazepinol isomer (CID 154638626) and amide runner-up (CID 55558151, bond-break penalty 49.0), and confirmed CID 137835447 (bond-break score 26.0).',
+    category: 'DeepMind Science & Antigravity Skills',
+    tag: 'Google DeepMind + Antigravity',
+    modelBadge: 'Mass Spec Skills · 97%',
+    impactScore: '10.0 / 10',
+    date: '2026-11-25T13:00:00Z',
+    sourceLabel: 'Google DeepMind Blog: Mass Spec Skills for Google Antigravity (Nov 25, 2026)',
+    sourceUrl: 'https://deepmind.google/blog/interpreting-mass-spectra-with-google-antigravity/',
+    groundedBy: 'Google DeepMind Official Blog (Nov 25, 2026)',
+    seriesUrl: '/series/deepmind-mass-spec-skills-antigravity/part-1-what-changed-mass-spec-skills.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-mass-spec-skills-studio.html',
+    labLabel: 'Mass Spec Studio [DEMO] →',
+  },
+  {
+    id: 'pulse-antigravity-v2-35-1-2-35-2-turn-switch-resumption',
+    title: 'Google Antigravity v2.35.1 & v2.35.2 Ship Mid-Turn Model Switching, Restart Turn Resumption & Auto-Opening Plugin Panels (Plus ADK Python v2.15.1)',
+    tldr: 'Released November 24–25, 2026: Antigravity v2.35.2 unlocks the model selector while a turn is running for /btw side questions and follow-ups, while v2.35.1 auto-resumes interrupted turns on restart, opens plugin panel links in the side panel, and compresses diagnostic batches; ADK Python v2.15.1 ships A2A and Claude SDK fixes.',
+    summary:
+      'Documented across Google Antigravity Changelog v2.35.2 (Nov 25, 2026) and v2.35.1 (Nov 24, 2026) plus google/adk-python v2.15.1 (Nov 25, 2026 UTC): (1) Antigravity v2.35.2 Mid-Turn Selector Unlock—fixes the mid-turn model lock so developers can switch models before sending a /btw side question or queued follow-up, with a tooltip clarifying when the change takes effect, (2) Antigravity v2.35.1 Startup Resumption & Side Panels—automatically resumes active conversations interrupted by an app restart or update, opens plugin panel links from live agent replies directly in the side panel, and compresses background diagnostic uploads with batch-size caps, and (3) ADK Python v2.15.1—maintains compatibility across Anthropic SDK v1.x and v2.x, fixes RemoteA2aAgent streamed persistence without last_chunk, improves Apigee non-JSON tool argument errors, and fixes transient instruction routing.',
+    category: 'Antigravity & ADK Releases',
+    tag: 'Antigravity v2.35.2',
+    modelBadge: 'Antigravity v2.35.2 + ADK v2.15.1',
+    impactScore: '9.3 / 10',
+    date: '2026-11-25T12:00:00Z',
+    sourceLabel: 'Google Antigravity Changelog v2.35.2 + ADK Python v2.15.1 (Nov 25, 2026)',
+    sourceUrl: 'https://antigravity.google/docs/changelog#rel-hub-2.35.2',
+    groundedBy: 'Google Antigravity Official Changelog v2.35.1/v2.35.2 + github.com/google/adk-python/releases/tag/v2.15.1 (Nov 25, 2026)',
+  },
+  {
+    id: 'pulse-google-research-verifiable-social-reasoning',
+    title: 'Google Research Open-Sources Verifiable Social Reasoning Benchmark & 20K+ Multi-Agent Concordia Dataset for LLM Assistants',
+    tldr: 'Published November 25, 2026: Google Research’s Zorik Gekhman and Amir Taubenfeld introduce a user-mediated social reasoning benchmark (arXiv:2609.17496) built on Concordia multi-agent simulations—exposing how LLMs amplify biased user framing and underuse clarification questions across 12 evaluated models.',
+    summary:
+      'Published November 25, 2026 on the Google Research Blog (Zorik Gekhman and Amir Taubenfeld, arXiv:2609.17496, open-sourced in Google Research’s GitHub user-mediated social reasoning suite): (1) User-Mediated Reality With Verifiable Ground Truth—extends Google DeepMind’s Concordia library so a target agent with a known hidden motive interacts with a simulated user and auxiliary characters, then separates the simulation from an assistant debrief where the user recounts events subjectively, (2) 12-Model Evaluation Findings—demonstrates a steep assistant-observer accuracy gap compared to seeing objective transcripts firsthand, quantifies sensitivity to biased or insecure user framing (where models validate unfounded suspicions), shows models demand extra narrative detail humans do not need, and reveals multi-turn coherence anchoring rather than effective clarifying questions, and (3) Open-Source Release—publishes the full simulation/evaluation harness and 20,000+ generated social reasoning examples.',
+    category: 'Google Research & Evaluation',
+    tag: 'Google Research',
+    modelBadge: 'Concordia · 20K+',
+    impactScore: '9.4 / 10',
+    date: '2026-11-25T17:10:27Z',
+    sourceLabel: 'Google Research Blog: Verifiable Social Reasoning for LLM Assistants (Nov 25, 2026)',
+    sourceUrl: 'https://research.google/blog/verifiable-social-reasoning-for-llm-assistants/',
+    groundedBy: 'Google Research Official Blog + arXiv:2609.17496 (Nov 25, 2026)',
+  },
+  {
+    id: 'pulse-deepmind-humanitys-first-exam-hfe',
+    title: 'Google DeepMind Launches Humanity’s First Exam (HFE) & Kaggle Hackathon: Measuring the 7.6–80.1 pp LLM Reliability Floor Gap',
+    tldr: 'Published November 24, 2026 (19:30 UTC): Google DeepMind’s Oran Kelly and co-authors release Humanity’s First Exam (544 text and image prompts across 136 four-variant families and 20 subcategories) plus a Kaggle competition through December 15—showing top models hit 96%–98% pass@1 yet drop to 80.5%–92.4% on strict family pass4, with 73% of errors in visual perception.',
+    summary:
+      'Published November 24, 2026 across the Google Official Blog, Google DeepMind Technical Report (hfe_tech_paper.pdf), and Kaggle Benchmarks Leaderboard: (1) Floor Reliability Over Capability Ceilings—evaluates 18 frontier and fast-tier models across Google, OpenAI, and Anthropic using 544 prompts grouped into 136 four-prompt families passing Simplicity, Relatability, and Shock Value filters; while the top five models hit 96%–98% pass@1 and 100% family pass@4, strict family pass4 drops to an 85.8% average (7.6 to 80.1 pp Family Reliability Gap), (2) Gemini 4 & Competitor Table 4 Standings—GPT-6.2 Astra leads at 92.4% family pass4 (7.6 pp gap), GPT-6.2 Sol hits 86.9% (13.1 pp), Gemini 4 Neon (xhigh) ranks #3 overall at 85.8% family pass4 (96.8% pass@1, 14.2 pp gap), Gemini 4 Carbon (high) reaches 80.5% (#5), Gemini 4 Argon (high) 76.6% (#7), Gemini 4 Hydrogen (xhigh) 68.9% (#10), Claude Fable 5.2 (max) 73.7% (#9), Claude Opus 5.5 (max) 63.0% (#12), and Gemini 3.5 Flash-Lite 18.6% (80.1 pp gap), and (3) Vision Bottleneck & Community Hackathon—73% of wrong answers concentrate in visual perception (inverting human difficulty, Spearman rho = -0.64) where extra test-time thinking barely helps; open Kaggle submissions run through December 15, 2026.',
+    category: 'DeepMind Benchmarks & Reliability',
+    tag: 'Humanity’s First Exam',
+    modelBadge: 'HFE · 18-Model Leaderboard',
+    impactScore: '9.9 / 10',
+    date: '2026-11-24T19:30:00Z',
+    sourceLabel: 'Google Official Blog & DeepMind Technical Paper: Humanity’s First Exam (Nov 24, 2026)',
+    sourceUrl: 'https://blog.google/innovation-and-ai/models-and-research/google-deepmind/humanitys-first-exam/',
+    groundedBy: 'Google Official Blog + hfe_tech_paper.pdf + Kaggle Leaderboard (Nov 24, 2026)',
+  },
+  {
+    id: 'pulse-agent-retrieval-managed-ingestion-searchdocuments',
+    title: 'Google Launches Managed Ingestion & SearchDocuments in Agent Retrieval (Public Preview): Cloud Storage Files to Cited Answers in One Call',
+    tldr: 'Published November 24, 2026: Yingxin Jiang and Kaz Sato introduce Managed Ingestion and SearchDocuments (v1beta REST in us-east4 and europe-west4), turning Cloud Storage PDFs, Office docs, and videos into Gemini Embedding 2 hybrid-searchable segments with page numbers and 0.3–0.5s audio-aware video timestamps.',
+    summary:
+      'Published November 24, 2026 on the Google Developers Blog (vectorsearch.googleapis.com/v1beta): (1) Zero-Code Ingestion With Gemini Embedding 2—point an UNSTRUCTURED data store (PDF, DOCX, PPTX, XLSX, TXT) or VIDEO data store (MP4, MOV, WebM, MKV) at Cloud Storage gs:// URIs or JSONL manifests; Google’s test ingested 18 Alphabet investor PDFs to page-cited results in ~9 minutes using either 100–500 token chunk segmentation or page segmentation, (2) One-Call SearchDocuments & Reranking—replaces custom Collection schemas with a single documents:search REST call running automatic semantic + full-text hybrid search plus optional semantic-ranker-fast@latest reranking and metadata/page filters, and (3) Audio-Aware Multimodal Video Search—splits videos into configurable fixed windows (10–80s, default 30s) and embeds speech via audio_mode: ENABLED alongside frames, returning exact startOffset/endOffset timestamps across 19 minutes of video in 0.3–0.5 seconds per query with $0 separate managed-ingestion charges during Public Preview.',
+    category: 'Agent Retrieval & Multimodal RAG',
+    tag: 'Public Preview · v1beta',
+    modelBadge: 'SearchDocuments + Embedding 2',
+    impactScore: '9.6 / 10',
+    date: '2026-11-24T17:00:00Z',
+    sourceLabel: 'Google Developers Blog: Managed Ingestion & SearchDocuments in Agent Retrieval (Nov 24, 2026)',
+    sourceUrl: 'https://developers.googleblog.com/from-files-to-cited-answers-in-one-api-call-managed-ingestion-and-searchdocuments-in-agent-retrieval/',
+    groundedBy: 'Google Developers Official Blog (Nov 24, 2026)',
+  },
+  {
+    id: 'pulse-gemini-4-neon-builders-and-cyber-ga',
+    title: 'Google Highlights 5 Gemini 4 Neon Builder Demos, Ships Gemini 4 Neon for Cyber (GA) & Adds Neon Preview to CodeMender',
+    tldr: 'Published November 23–24, 2026: Google spotlights five Gemini 4 Neon developer projects (3D Earth, xhigh Three.js butterflies, sub-5-minute /swarm hexagon flame shader, black hole lensing shader, and pendulum wave) alongside Gemini 4 Neon for cyber GA (345 tok/s per GSU) and CodeMender --model gemini-4-neon Preview.',
+    summary:
+      'Published across the Google Official Blog (Nov 24, 2026 16:00 UTC by Zahra Thompson) and Gemini Enterprise Agent Platform Release Notes (Nov 23, 2026): (1) Five Gemini 4 Neon Builder Projects—showcases a glowing 3D Earth built on Neon High thinking in Google Antigravity, Three.js butterflies on xhigh thinking, a hexagon flame shader generated in under five minutes via /swarm, an interactive 3D black hole lensing shader, and a traveling pendulum wave simulation, alongside Golden State Warriors & Chase Center naming Gemini Official AI Assistant & Enterprise LLM Partner, (2) Gemini 4 Neon for Cyber (GA)—launches gemini-4-neon-cyber-permissive for Fairwind-approved defensive cybersecurity across global, us, and eu endpoints (1,048,576 context/decode, LOW/MEDIUM/HIGH/XHIGH, Computer Use, Office/OpenDocument inputs, and 345 tokens/sec per GSU Provisioned Throughput), and (3) CodeMender Preview—adds --model gemini-4-neon support to cm find, cm verify, and cm fix.',
+    category: 'Gemini 4 Neon & Security',
+    tag: 'Builders + Cyber GA',
+    modelBadge: 'Gemini 4 Neon Cyber',
+    impactScore: '9.4 / 10',
+    date: '2026-11-24T16:00:00Z',
+    sourceLabel: 'Google Official Blog & Agent Platform Release Notes (Nov 23–24, 2026)',
+    sourceUrl: 'https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-neon-builders/',
+    groundedBy: 'Google Official Blog (Nov 24) + Gemini Enterprise Agent Platform Release Notes (Nov 23, 2026)',
+  },
+  {
     id: 'pulse-antigravity-v2-35-conversation-api-unlimited-history',
     title: 'Google Antigravity v2.35.0 Ships Unlimited Conversation History, Conversation Management API & Cmd+F HTML Artifact Search',
     tldr: 'Released November 23, 2026: Antigravity v2.35.0 removes the 500-conversation local pruning limit, adds a built-in Conversation Management API and conversations skill for agents and automations, adds Cmd+F search inside full-page HTML artifacts, upgrades Auto read/write permissions, and speeds up large Swarm boards.',
@@ -1691,6 +1785,60 @@ export const GEMINI_MODEL_MATRIX = [
 
 export const STUDIO_LAB_BLUEPRINTS = [
   {
+    id: 'lab-gemini-mass-spec-skills-studio',
+    title: 'DeepMind Mass Spec Skills & Antigravity Structure Studio [SIMULATED DEMO]',
+    badge: 'Nov 2026 DeepMind + Antigravity',
+    model: 'gemini-3.8-flash',
+    href: '/labs/gemini-mass-spec-skills-studio.html',
+    description:
+      'Interactive scientific workbench modeling Google DeepMind’s Mass Spec Skills for Google Antigravity: simulate tandem MS/MS preprocessing (matchms), GNPS/MoNA library lookup, SIRIUS formula deduction, MAGMa/MetFrag PubChem isomer ranking, and neutral-loss tie-breaking where Gemini 3.8 Flash matches Gemini 4 Argon and Carbon at ~97% accuracy with ~4x fewer tokens.',
+    prompt:
+      'Run Mass Spec Skills inside Google Antigravity on negative-mode [M-H]- spectrum m/z 395.1387: denoise peaks with matchms, infer molecular formula with SIRIUS, score PubChem candidates with MAGMa/MetFrag, and resolve structural ties via diagnostic neutral losses and RDKit bond-break checks.',
+    tsCode: `import { GoogleGenAI } from "@google/genai";
+
+// Models how Mass Spec Skills inside Google Antigravity pairs lightweight
+// Gemini 3.8 Flash with deterministic chemistry tools (matchms, SIRIUS, MAGMa, RDKit).
+const ai = new GoogleGenAI();
+
+const elucidation = await ai.interactions.create({
+  model: "gemini-3.8-flash",
+  thinking_level: "high",
+  input:
+    "Given denoised MS/MS peaks for [M-H]- m/z 395.1387 (19 peaks), SIRIUS top formula C20H21ClN6O (-1.5 ppm, score 37.86), and tied 97.7% MAGMa intensity isomers CID 137835447, CID 55558151, and CID 154638626, test HCl and HNCO neutral losses to verify the true structure.",
+});
+
+console.log(elucidation.output_text);`,
+    pyCode: `from google import genai
+
+client = genai.Client()
+
+response = client.interactions.create(
+    model="gemini-3.8-flash",
+    thinking_level="high",
+    input=(
+        "Cross-check candidate PubChem isomers for C20H21ClN6O against complementary "
+        "cleavage halves m/z 162.1037 and m/z 232.0283, verifying RDKit valence "
+        "and bond-break penalty scores."
+    ),
+)
+
+print(response.output_text)`,
+    simulatedSteps: [
+      {
+        type: 'thought',
+        label: 'step[0] · matchms Denoising + GNPS/MoNA Library Screen',
+        detail:
+          'Converted precursor m/z 395.1387 ([M-H]-) to 396.1459 Da, stripped 1,742 noise spikes (1,761 -> 19 peaks), and confirmed no high-confidence GNPS/MoNA reference match.',
+      },
+      {
+        type: 'tool_call',
+        label: 'step[1] · SIRIUS Formula + MAGMa/RDKit Neutral-Loss Tie-Break',
+        detail:
+          'Locked formula C20H21ClN6O (-1.5 ppm, score 37.86 vs 28.33), ruled out non-urea CID 154638626 & amide CID 55558151 (penalty 49.0), and verified CID 137835447 (penalty 26.0, 97.7% intensity).',
+      },
+    ],
+  },
+  {
     id: 'lab-gemini-antigravity-conversation-studio',
     title: 'Antigravity v2.35.0 Conversation API & Swarm Paging Studio [SIMULATED DEMO]',
     badge: 'Nov 2026 Antigravity v2.35.0',
@@ -3211,6 +3359,25 @@ video_turn = client.interactions.create(
 ];
 
 export const INITIAL_SHOWCASE_PROJECTS = [
+  {
+    id: 'showcase-gemini-mass-spec-skills-studio',
+    name: 'DeepMind Mass Spec Skills & Antigravity Structure Studio [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive scientific workbench modeling Google DeepMind’s Mass Spec Skills for Google Antigravity: simulate matchms denoising, SIRIUS formula ranking, MAGMa/MetFrag scoring, HCl/HNCO neutral-loss tie-breaking, and ~97% lightweight Gemini 3.8 Flash parity.',
+    models: ['gemini-3.8-flash', 'gemini-4-argon', 'gemini-4-carbon'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-mass-spec-skills-studio.html): [SIMULATED DEMO] Models the 6-stage MS/MS elucidation pipeline (matchms, GNPS/MoNA, SIRIUS, MAGMa, MetFrag, RDKit) and 100-compound MoNA token/accuracy benchmarks.',
+    url: '/labs/gemini-mass-spec-skills-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-25T13:00:00Z',
+  },
   {
     id: 'showcase-gemini-antigravity-conversation-studio',
     name: 'Antigravity v2.35.0 Conversation API & Swarm Paging Studio [SIMULATED DEMO]',
@@ -5484,11 +5651,62 @@ export const GET_STARTED_WITH_GEMINI_TRACKS = [
 
 export const GEMINI_VIDEO_SHOWCASE = [
   {
+    id: 'vid-google-devs-five-tips-gemini-4',
+    videoId: 'WN5O4vWCa54',
+    featuredOfTheDay: true,
+    category: 'Gemini 4 Engineering Playbook',
+    badge: 'FEATURED VIDEO OF THE DAY • GOOGLE FOR DEVELOPERS',
+    title: '5 developer tips for working with Gemini 4',
+    creatorName: 'Google for Developers',
+    creatorHandle: '@GoogleDevelopers',
+    creatorUrl: 'https://www.youtube.com/@GoogleDevelopers',
+    watchUrl: 'https://www.youtube.com/watch?v=WN5O4vWCa54',
+    thumbnailUrl: 'https://i.ytimg.com/vi/WN5O4vWCa54/hqdefault.jpg',
+    geminiSummary:
+      'Published November 25, 2026 (20:00 UTC) by Google for Developers (Google DeepMind’s Patrick Löber and Geneviève Huskens)—five practical techniques for long, complex Gemini 4 engineering runs in Google AI Studio and Google Antigravity: plan mode intent alignment, concrete test-suite/browser-screenshot verification, multimodal references, lead orchestrator sub-agent delegation, and distilling session lessons into reusable SKILL.md files.',
+    whyFeatured:
+      'Verified HTTP 200 Nov 25 Google for Developers + DeepMind field guide codifying plan mode, multimodal specs, orchestrator sub-agents, and reusable SKILL.md workflows for Gemini 4.',
+  },
+  {
+    id: 'vid-google-deepmind-brain-ai-explaining',
+    videoId: 'K8rdrWQRd20',
+    featuredOfTheDay: false,
+    category: 'DeepMind Neuroscience & AI',
+    badge: 'OFFICIAL FEATURE • GOOGLE DEEPMIND',
+    title: 'The brain helped us build AI. Now AI is explaining the brain.',
+    creatorName: 'Google DeepMind',
+    creatorHandle: '@googledeepmind',
+    creatorUrl: 'https://www.youtube.com/@GoogleDeepMind',
+    watchUrl: 'https://www.youtube.com/watch?v=K8rdrWQRd20',
+    thumbnailUrl: 'https://i.ytimg.com/vi/K8rdrWQRd20/hqdefault.jpg',
+    geminiSummary:
+      'Published November 24, 2026 (17:51 UTC) by Google DeepMind—exploring how biological neuroscience inspired modern deep learning architectures and how AI models now map and explain neural computation.',
+    whyFeatured:
+      'Verified HTTP 200 Nov 24 Google DeepMind research film bridging computational neuroscience and frontier AI interpretability.',
+  },
+  {
+    id: 'vid-google-devs-antigravity-wildlife-field-guide',
+    videoId: 'fpQcDQJQLhg',
+    featuredOfTheDay: false,
+    category: 'Antigravity Offline Apps',
+    badge: 'OFFICIAL BUILD • GOOGLE FOR DEVELOPERS',
+    title: 'Google Antigravity in action: Building an offline wildlife field guide',
+    creatorName: 'Google for Developers',
+    creatorHandle: '@GoogleDevelopers',
+    creatorUrl: 'https://www.youtube.com/@GoogleDevelopers',
+    watchUrl: 'https://www.youtube.com/watch?v=fpQcDQJQLhg',
+    thumbnailUrl: 'https://i.ytimg.com/vi/fpQcDQJQLhg/hqdefault.jpg',
+    geminiSummary:
+      'Published November 23, 2026 (20:00 UTC) by Google for Developers—demonstrating Google Antigravity building a resilient offline-capable wildlife field guide application end-to-end.',
+    whyFeatured:
+      'Verified HTTP 200 Nov 23 Google for Developers hands-on walkthrough showcasing offline-first app engineering in Google Antigravity.',
+  },
+  {
     id: 'vid-google-cloud-antigravity-firebase-nocode',
     videoId: '0aUIWT6W_oU',
-    featuredOfTheDay: true,
+    featuredOfTheDay: false,
     category: 'Antigravity & Firebase Backend',
-    badge: 'FEATURED VIDEO OF THE DAY • GOOGLE CLOUD TECH',
+    badge: 'OFFICIAL BUILD IT • GOOGLE CLOUD TECH',
     title: 'From prototype to real Firebase backend (no code)',
     creatorName: 'Google Cloud Tech',
     creatorHandle: '@googlecloudtech',

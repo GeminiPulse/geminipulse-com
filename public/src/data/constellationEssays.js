@@ -14,6 +14,232 @@
  */
 
 export const CONSTELLATION_ESSAYS = {
+  'pulse-deepmind-mass-spec-skills-antigravity': {
+    id: 'pulse-deepmind-mass-spec-skills-antigravity',
+    slug: 'deepmind-mass-spec-skills-antigravity',
+    shortStarLabel: 'Mass Spec Skills',
+    readMinutes: '10 MIN READ',
+    authoredByModel: 'Google Gemini 4 Argon',
+    thinkingEffort: 'High',
+    hudTitle: 'Mass Spec Skills Lift Lightweight Gemini 3.8 Flash to 97% Chemistry Parity.',
+    hudSummary:
+      'Published November 25, 2026: Google DeepMind equips Google Antigravity with Mass Spec Skills (matchms, SIRIUS, MAGMa, MetFrag, RDKit), pushing compound identification from under 4% to around 97% on Gemini 3.8 Flash at nearly 4x lower token cost.',
+    peekCastor: 'Skills Beat Raw Scale: <em>Lightweight Gemini 3.8 Flash ties Argon &amp; Carbon at ~97% accuracy.</em>',
+    peekPollux: '6-Stage MS/MS Pipeline: <em>matchms denoising, SIRIUS trees &amp; HCl/HNCO tie-breaking.</em>',
+    headline:
+      'Unassisted Frontier Models Scored Under 4% on Mass Spectra. <em>Antigravity Skills Put Lightweight Flash at 97%.</em>',
+    standfirst:
+      'Over 90% of chemical signals recorded in modern metabolomics remain unannotated because reference spectral libraries only cover a sliver of known molecules. On November 25, 2026, Google DeepMind unveiled Mass Spec Skills for Google Antigravity, pairing Gemini’s chemical reasoning with established open-source analytical tools so even lightweight Gemini 3.8 Flash matches frontier Gemini 4 models at around 97% identification accuracy while burning nearly 4x fewer tokens.',
+    pulseCheck: [
+      {
+        stage: 'Domain Skills Over Ad-Hoc Scripting',
+        detail:
+          'On 100 Enamine REAL MS/MS spectra in MoNA, Antigravity without internet or skills scored under 4%, and internet-only custom scripts missed 25%–33% on frontier models and over 75% on Flash; adding Mass Spec Skills lifted Gemini 3.8 Flash, Gemini 4 Argon, and Gemini 4 Carbon all to around 97% exact-match accuracy.',
+      },
+      {
+        stage: '4x Token Savings & Tie-Break Chemistry',
+        detail:
+          'Validated skills cut generated tokens per attempt nearly fourfold on Gemini 3.8 Flash, by half on Gemini 4 Argon, and nearly a fifth on Gemini 4 Carbon, while resolving tied 97.7%-intensity PubChem isomers (CID 137835447 vs. CID 55558151 and CID 154638626) via HCl and HNCO neutral losses.',
+      },
+      {
+        stage: 'The Honest Catch',
+        detail:
+          'LC-MS/MS spectra alone cannot distinguish mirror-image stereoisomers or near-identical isomers that fragment identically (requiring retention time, ion mobility, or NMR), and brand-new natural products absent from PubChem receive formula and substructure leads rather than confirmed database IDs.',
+      },
+    ],
+    castor: {
+      kicker: 'PART I · α CASTOR · SCIENTIFIC PRODUCTIVITY & MODEL ECONOMICS LENS',
+      title: 'Why Domain Skills Beat Raw Model Scaling in Specialized Science',
+      subtitle:
+        'How packaging matchms, SIRIUS, MAGMa, MetFrag, and RDKit as structured Antigravity skills turns a lightweight fast-tier model into a 97%-accurate analytical chemist assistant.',
+      paragraphs: [
+        'A single drop of blood, soil, or plant extract run through a modern tandem mass spectrometer produces tens of thousands of molecular signals. Yet even after a decade of community library growth, direct spectral lookup annotates roughly <strong>5%</strong> of measured spectra on average—and only about <strong>10%</strong> in human samples—leaving the vast majority as the so-called "dark matter" of mass spectrometry.',
+        'In <strong>From spectrum to structure: Identifying molecules with Mass Spec Skills for Google Antigravity</strong> (published November 25, 2026 by Robert Brunck, Stefan Ganscha, Swaroop Guntupalli, and Google DeepMind collaborators alongside chemists at the University of Pretoria, Technical University of Denmark, and Princeton University’s Rabinowitz Lab), DeepMind tackles the bottleneck directly. Instead of training a bespoke monolithic chemistry model, the team packaged community-standard analytical software—<code>matchms</code>, <code>GNPS</code>, <code>MoNA</code>, <code>SIRIUS</code>, <code>MAGMa</code>, <code>MetFrag</code>, <code>PubChem</code>, and <code>RDKit</code>—into composable <strong>Google Antigravity</strong> skills.',
+        'The benchmark result on 100 compounds sampled from the Enamine REAL MS/MS collection in MoNA carries a striking architectural lesson for every AI builder, not just chemists. Left with raw peak lists and no tools, <strong>Gemini 3.8 Flash</strong>, <strong>Gemini 4 Argon</strong>, and <strong>Gemini 4 Carbon</strong> all scored <strong>below 4%</strong>. Given internet access alone, models improvised brittle Python scrapers that tripped over precursor windows, adducts, and noise spikes—causing frontier models to miss a quarter to a third of spectra and Flash to miss more than three-quarters. Once DeepMind gave the exact same models curated <strong>Mass Spec Skills</strong>, all three converged at roughly <strong>97% exact-match accuracy</strong>.',
+        'Just as important for R&amp;D budgets and high-throughput labs studying thousands of spectra per run, structured skills sharply compress inference waste. Rather than burning context debugging one-off API calls, the agent invokes tested chemistry primitives and focuses its reasoning tokens on interpreting fragmentation evidence—cutting generated tokens nearly <strong>4x</strong> on Gemini 3.8 Flash, by <strong>half</strong> on Gemini 4 Argon, and by nearly <strong>a fifth</strong> on Gemini 4 Carbon.',
+      ],
+      pullquote: {
+        quote:
+          'When domain software is packaged into deterministic skills, a lightweight model can match frontier retrieval accuracy at a fraction of the token cost—turning days of manual spectral detective work into an auditable report.',
+        attribution: 'GOOGLE GEMINI 4 ARGON · α CASTOR SYNTHESIS OF DEEPMIND MASS SPEC SKILLS (NOV 25, 2026)',
+      },
+      comparisonTable: {
+        id: 'deepmind-mass-spec-benchmark-matrix',
+        caption: '100-Compound Enamine REAL MoNA Benchmark Across Tooling Regimes & Gemini Models (Nov 25, 2026)',
+        columns: ['Antigravity Configuration', 'Gemini 3.8 Flash', 'Gemini 4 Argon & Carbon', 'Token & Engineering Behavior'],
+        rows: [
+          [
+            'No Internet & No Skills (Peak List Only)',
+            '< 4% exact-match accuracy',
+            '< 4% exact-match accuracy',
+            'Highest token spend guessing impossible exact-mass arithmetic directly in prose',
+          ],
+          [
+            'User-Permitted Internet Access Only',
+            'Under 25% accuracy (>75% missed)',
+            '67%–75% accuracy (25%–33% missed)',
+            'Spends heavy tokens writing and debugging brittle ad-hoc scripts for adducts and tolerance windows',
+          ],
+          [
+            'Internet Access + Mass Spec Skills',
+            '~97% exact-match accuracy',
+            '~97% exact-match accuracy',
+            'Tokens cut nearly 4x on Flash, 2x on Argon, and nearly 20% on Carbon via validated tool calls',
+          ],
+          [
+            'Hard Physical & Database Limits',
+            'Mirror-image enantiomers & novel structures',
+            'Mirror-image enantiomers & novel structures',
+            'Produces predicted formula, fragment assignments, and evidence table; requires NMR/retention time/ion mobility to finish',
+          ],
+        ],
+      },
+      adaptiveQuestions: [
+        {
+          lensTag: 'FOR R&D DIRECTORS & LAB LEADS',
+          question: 'Can Mass Spec Skills discover brand-new natural products that are not in PubChem?',
+          answer:
+            'If a molecule is absent from every public chemical database, Antigravity cannot confirm an exact database ID automatically. However, it still automates preprocessing, library screening, elemental formula determination, and fragment-substructure mapping—giving analytical chemists an auditable starting point in hours rather than weeks.',
+        },
+        {
+          lensTag: 'FOR AI ARCHITECTS & PLATFORM BUILDERS',
+          question: 'Why did Gemini 3.8 Flash jump from under 25% to ~97% parity with Gemini 4 Carbon once Skills were added?',
+          answer:
+            'Ad-hoc tool scripting forces the model to handle exact floating-point tolerances, adduct math, and HTTP edge cases simultaneously. Moving that mechanical surface into deterministic SKILL.md tool wrappers lets lightweight Flash allocate its reasoning budget solely to tool orchestration and chemical tie-breaking.',
+        },
+        {
+          lensTag: 'FOR ANALYTICAL CHEMISTS',
+          question: 'Which physical measurements still sit outside an LC-MS/MS skill workflow?',
+          answer:
+            'Mirror-image molecules (enantiomers) and certain closely related positional isomers yield virtually identical MS/MS fragmentation patterns. Separating them still requires orthogonal lab evidence such as chromatographic retention time, ion mobility spectrometry, or NMR.',
+        },
+      ],
+    },
+    pollux: {
+      kicker: 'PART II · β POLLUX · 6-STAGE ELUCIDATION PIPELINE & TIE-BREAK CHEMISTRY LENS',
+      title: 'Inside the Worked Example: How Antigravity Resolved an 845-Isomer Tie at 97.7% Spectral Coverage',
+      subtitle:
+        'Walking peak-by-peak through matchms denoising, SIRIUS fragmentation trees, MAGMa/MetFrag scoring, HCl + HNCO neutral-loss loops, and RDKit bond-break penalties on m/z 395.1387.',
+      paragraphs: [
+        'DeepMind’s worked example on a negative-mode tandem spectrum (precursor <code>[M−H]−</code> at <code>m/z 395.1387</code>, corresponding to a neutral molecular mass of <code>396.1459 Da</code>) exposes exactly why naive spectral-coverage scoring fails. First, the agent invokes <code>matchms</code> with configurable intensity thresholds to strip out <strong>1,742</strong> low-intensity noise spikes, compressing <strong>1,761</strong> raw peaks down to <strong>19</strong> clean fragment signals. Next, cosine-similarity queries against <code>GNPS</code> and <code>MoNA</code> confirm no high-confidence library match, triggering de novo formula deduction.',
+        'Running <code>SIRIUS</code> fragmentation-tree scoring across ten candidate elements isolates the chlorinated formula <code>C20H21ClN6O</code> at <strong>−1.5 ppm</strong> mass error with a score of <strong>37.86</strong> (comfortably ahead of the <strong>28.33</strong> runner-up). Inside that tree, the molecule splits into two complementary halves whose formulas sum to the intact precursor: <code>m/z 162.1037</code> (<code>[C9H12N3]−</code>, 45.1% intensity) and <code>m/z 232.0283</code> (<code>[C11H7ClN3O]−</code>, 6.8% intensity). From <code>m/z 232.0283</code>, sequential neutral losses of hydrogen chloride (<code>HCl</code>) and isocyanic acid (<code>HNCO</code>) in both orders trace a closed loop via <code>m/z 196.0511</code> and <code>m/z 189.0238</code> down to <code>m/z 153.0453</code>—chemical proof of a chlorine atom and a central urea linkage on the same half.',
+        'When <code>MAGMa</code> and <code>MetFrag</code> score all <strong>845</strong> <code>C20H21ClN6O</code> isomers in PubChem, multiple distinct structures tie at the exact same <strong>97.7%</strong> summed fragment intensity (matching <strong>14 of 19</strong> preprocessed peaks). Because mass-matching alone cannot break that tie, Gemini inspects bond connectivity: it rejects a fused triazolobenzazepinol isomer (<code>CID 154638626</code>) that lacks any urea group to lose <code>HNCO</code> and shows only baseline noise at expected water-loss masses (<code>m/z 377.1281</code> and <code>214.0178</code>), rejects an amide runner-up (<code>CID 55558151</code>) requiring higher-energy C−C cleavage and aromatic-ring breaks (MAGMa sum bond-break penalty <strong>49.0</strong>), and confirms the five-regioisomer urea family down to <code>CID 137835447</code> (bond-break score <strong>26.0</strong>) via chlorophenyl-pyrazole fragments (<code>m/z 206.0485</code>, <code>126.0114</code>) and <code>RDKit</code> valence verification.',
+      ],
+      builderRules: [
+        {
+          label: '01 · Wrap Brittle Mass Math & Adduct Windows Into Deterministic Skills',
+          detail:
+            'Never ask an LLM to hand-roll adduct offsets or HTTP library queries from scratch; package matchms, SIRIUS, MAGMa, and RDKit behind typed skill contracts so even Gemini 3.8 Flash hits ~97% accuracy.',
+        },
+        {
+          label: '02 · Enforce Mechanistic Tie-Breaking Beyond Peak Coverage Percentages',
+          detail:
+            'Two incompatible isomers can match the same 97.7% of summed fragment intensity; require agents to verify diagnostic neutral-loss loops (such as HCl + HNCO) and bond-break penalties before declaring a winner.',
+        },
+        {
+          label: '03 · Surface Complementary Physical Assays Whenever Fragmentation Ambiguity Remains',
+          detail:
+            'Build explicit uncertainty branches in scientific agent reports flagging enantiomers or co-eluting isomers where retention time, ion mobility, or NMR is mandatory to confirm structure.',
+        },
+      ],
+      codeCaption: 'MODULAR ANTIGRAVITY SKILL VERIFICATION & CHEMICAL TIE-BREAK PIPELINE (@GOOGLE/GENAI V3.X)',
+      codeSnippet: `import { GoogleGenAI } from "@google/genai";
+
+// Models how Antigravity Mass Spec Skills pair lightweight Gemini 3.8 Flash
+// with deterministic chemistry outputs (matchms, SIRIUS, MAGMa, RDKit).
+const ai = new GoogleGenAI();
+
+const spectrumEvidence = {
+  precursorMz: 395.1387,
+  mode: "negative",
+  neutralMassDa: 396.1459,
+  rawPeaks: 1761,
+  denoisedPeaks: 19,
+  siriusFormula: { formula: "C20H21ClN6O", massErrorPpm: -1.5, score: 37.86, runnerUpScore: 28.33 },
+  complementaryHalves: ["m/z 162.1037 ([C9H12N3]-)", "m/z 232.0283 ([C11H7ClN3O]-)"],
+  neutralLosses: ["HCl", "HNCO", "NH3", "H2"],
+  tiedCandidates: [
+    { cid: 137835447, scaffold: "asymmetric urea", matchedPeaks: "14/19", intensityPct: 97.7, bondBreakPenalty: 26.0 },
+    { cid: 55558151, scaffold: "inverted piperidine amide", matchedPeaks: "14/19", intensityPct: 97.7, bondBreakPenalty: 49.0 },
+    { cid: 154638626, scaffold: "fused triazolobenzazepinol", matchedPeaks: "14/19", intensityPct: 97.7, bondBreakPenalty: 44.0 },
+  ],
+};
+
+const response = await ai.interactions.create({
+  model: "gemini-3.8-flash",
+  thinking_level: "high",
+  input: \`Evaluate these tied 97.7% PubChem isomer candidates using diagnostic neutral losses and bond-break chemistry, then output an auditable chemist summary: \${JSON.stringify(spectrumEvidence)}\`,
+});
+
+console.log(response.output_text);`,
+      workbench: {
+        title: 'DeepMind Mass Spec Skills & MS/MS Tie-Breaker [SIMULATED DEMO]',
+        subtitle: 'Inspect the 6-stage MS/MS elucidation pipeline, 100-compound MoNA parity data, and CID 137835447 tie-break proof.',
+        dek: 'Cycle through the three verified engineering views below, or launch our interactive studio [SIMULATED DEMO].',
+        presets: [
+          {
+            label: '1. 100-COMPOUND MoNA BENCHMARK PARITY',
+            k1: 'No Tools vs Internet Only',
+            v1: '<4% accuracy without tools across all models; internet-only misses 25%–33% (frontier) & >75% (Flash)',
+            k2: 'Mass Spec Skills Accuracy',
+            v2: '~97% exact-match across Gemini 3.8 Flash, Gemini 4 Argon, and Gemini 4 Carbon',
+            k3: 'Token Efficiency Gain',
+            v3: 'Generated tokens cut ~4x on Gemini 3.8 Flash, 2x on Gemini 4 Argon, and ~20% on Gemini 4 Carbon',
+          },
+          {
+            label: '2. WORKED EXAMPLE: m/z 395.1387 -> C20H21ClN6O',
+            k1: 'matchms + Library Screen',
+            v1: '1,761 raw peaks denoised to 19 signals (396.1459 Da); GNPS & MoNA lookup triggers de novo mode',
+            k2: 'SIRIUS Formula Deduction',
+            v2: 'C20H21ClN6O at -1.5 ppm error (score 37.86 vs. 28.33 runner-up across 10 candidate elements)',
+            k3: 'Complementary Cleavage',
+            v3: 'Splits cleanly into m/z 162.1037 (45.1%) + m/z 232.0283 (6.8%) with closed HCl + HNCO loss loop',
+          },
+          {
+            label: '3. 845-ISOMER TIE-BREAK & RDKit AUDIT',
+            k1: 'Tied Spectral Coverage',
+            v1: 'CID 137835447, CID 55558151, and CID 154638626 all match 14/19 peaks (97.7% intensity)',
+            k2: 'Reaction-Path Rejection',
+            v2: 'CID 154638626 lacks urea (no HNCO route/water peaks); CID 55558151 amide scores 49.0 break penalty',
+            k3: 'Verified Rank-1 Winner',
+            v3: 'CID 137835447 verified with 26.0 bond-break penalty, m/z 206.0485/126.0114 checks & RDKit mass proof',
+          },
+        ],
+      },
+    },
+    verdict: {
+      title: 'Argon’s Bottom Line: Curated Skills Turn Lightweight Models Into Reliable Scientific Instruments',
+      subtitle:
+        'DeepMind’s Mass Spec Skills prove that pairing fast models like Gemini 3.8 Flash with domain-verified CLI and database tools beats raw parameter scaling on both accuracy and cost.',
+      paragraphs: [
+        '<strong>Why this matters beyond chemistry:</strong> the jump from <code>&lt;25%</code> (internet-only scripting) to <code>~97%</code> exact-match identification on <code>Gemini 3.8 Flash</code> is one of the clearest empirical demonstrations yet of why well-engineered <code>SKILL.md</code> tool ecosystems matter more than prompting a frontier model to write ad-hoc scripts from scratch.',
+        '<strong>Explore the companion deep dive:</strong> read our 3-part technical series under <code>/series/deepmind-mass-spec-skills-antigravity/part-1-what-changed-mass-spec-skills.html</code> or step through the 6-stage MS/MS pipeline and 845-isomer tie-breaker inside DeepMind Mass Spec Skills Studio [SIMULATED DEMO] at <code>/labs/gemini-mass-spec-skills-studio.html</code>.',
+      ],
+      sources: [
+        {
+          role: 'Official Google DeepMind Announcement',
+          label: 'From spectrum to structure: Identifying molecules with Mass Spec Skills for Google Antigravity',
+          author: 'Robert Brunck, Stefan Ganscha, Swaroop Guntupalli et al. (Google DeepMind)',
+          date: 'November 25, 2026',
+          url: 'https://deepmind.google/blog/interpreting-mass-spectra-with-google-antigravity/',
+        },
+        {
+          role: 'Official Google Antigravity Science Hub',
+          label: 'Science on Google Antigravity — Domain Skills & Scientific Workflows',
+          author: 'Google DeepMind & Google Antigravity',
+          date: 'November 2026',
+          url: 'https://antigravity.google/use-cases/science',
+        },
+        {
+          role: 'Community Mass Spectrometry Libraries Cited by DeepMind',
+          label: 'matchms, MAGMa, and MetFrag Open Analytical Tools',
+          author: 'Netherlands eScience Center & IPB Halle',
+          date: '2026',
+          url: 'https://github.com/NLeSC/MAGMa',
+        },
+      ],
+    },
+  },
   'pulse-antigravity-v2-35-conversation-api-unlimited-history': {
     id: 'pulse-antigravity-v2-35-conversation-api-unlimited-history',
     slug: 'antigravity-v2-35-unlimited-history-conversation-api',

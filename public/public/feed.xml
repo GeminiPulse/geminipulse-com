@@ -20,59 +20,59 @@
   </entry>
 
   <entry>
+    <title>Unassisted Frontier Models Scored Under 4% on Mass Spectra. Antigravity Skills Put Lightweight Flash at 97%. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/deepmind-mass-spec-skills-antigravity.html" />
+    <id>https://geminipulse.com/articles/deepmind-mass-spec-skills-antigravity.html</id>
+    <updated>2026-11-25T13:00:00.000Z</updated>
+    <summary>Over 90% of chemical signals recorded in modern metabolomics remain unannotated because reference spectral libraries only cover a sliver of known molecules. On November 25, 2026, Google DeepMind unveiled Mass Spec Skills for Google Antigravity, pairing Gemini’s chemical reasoning with established open-source analytical tools so even lightweight Gemini 3.8 Flash matches frontier Gemini 4 models at around 97% identification accuracy while burning nearly 4x fewer tokens.</summary>
+  </entry>
+
+  <entry>
+    <title>Google Research Open-Sources Verifiable Social Reasoning Benchmark &amp; 20K+ Multi-Agent Concordia Dataset for LLM Assistants. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/google-research-verifiable-social-reasoning.html" />
+    <id>https://geminipulse.com/articles/google-research-verifiable-social-reasoning.html</id>
+    <updated>2026-11-25T17:10:27.000Z</updated>
+    <summary>Google Research’s Zorik Gekhman and Amir Taubenfeld introduce a user-mediated social reasoning benchmark (arXiv:2609.17496) built on Concordia multi-agent simulations—exposing how LLMs amplify biased user framing and underuse clarification questions across 12 evaluated models.</summary>
+  </entry>
+
+  <entry>
+    <title>Google Antigravity v2.35.1 &amp; v2.35.2 Ship Mid-Turn Model Switching, Restart Turn Resumption &amp; Auto-Opening Plugin Panels (Plus ADK Python v2.15.1). (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/antigravity-v2-35-1-2-35-2-turn-switch-resumption.html" />
+    <id>https://geminipulse.com/articles/antigravity-v2-35-1-2-35-2-turn-switch-resumption.html</id>
+    <updated>2026-11-25T12:00:00.000Z</updated>
+    <summary>Antigravity v2.35.2 unlocks the model selector while a turn is running for /btw side questions and follow-ups, while v2.35.1 auto-resumes interrupted turns on restart, opens plugin panel links in the side panel, and compresses diagnostic batches; ADK Python v2.15.1 ships A2A and Claude SDK fixes.</summary>
+  </entry>
+
+  <entry>
+    <title>Google DeepMind Launches Humanity’s First Exam (HFE) &amp; Kaggle Hackathon: Measuring the 7.6–80.1 pp LLM Reliability Floor Gap. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/deepmind-humanitys-first-exam-hfe.html" />
+    <id>https://geminipulse.com/articles/deepmind-humanitys-first-exam-hfe.html</id>
+    <updated>2026-11-24T19:30:00.000Z</updated>
+    <summary>Google DeepMind’s Oran Kelly and co-authors release Humanity’s First Exam (544 text and image prompts across 136 four-variant families and 20 subcategories) plus a Kaggle competition through December 15—showing top models hit 96%–98% pass@1 yet drop to 80.5%–92.4% on strict family pass4, with 73% of errors in visual perception.</summary>
+  </entry>
+
+  <entry>
+    <title>Google Launches Managed Ingestion &amp; SearchDocuments in Agent Retrieval (Public Preview): Cloud Storage Files to Cited Answers in One Call. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/agent-retrieval-managed-ingestion-searchdocuments.html" />
+    <id>https://geminipulse.com/articles/agent-retrieval-managed-ingestion-searchdocuments.html</id>
+    <updated>2026-11-24T17:00:00.000Z</updated>
+    <summary>Yingxin Jiang and Kaz Sato introduce Managed Ingestion and SearchDocuments (v1beta REST in us-east4 and europe-west4), turning Cloud Storage PDFs, Office docs, and videos into Gemini Embedding 2 hybrid-searchable segments with page numbers and 0.3–0.5s audio-aware video timestamps.</summary>
+  </entry>
+
+  <entry>
+    <title>Google Highlights 5 Gemini 4 Neon Builder Demos, Ships Gemini 4 Neon for Cyber (GA) &amp; Adds Neon Preview to CodeMender. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/gemini-4-neon-builders-and-cyber-ga.html" />
+    <id>https://geminipulse.com/articles/gemini-4-neon-builders-and-cyber-ga.html</id>
+    <updated>2026-11-24T16:00:00.000Z</updated>
+    <summary>Google spotlights five Gemini 4 Neon developer projects (3D Earth, xhigh Three.js butterflies, sub-5-minute /swarm hexagon flame shader, black hole lensing shader, and pendulum wave) alongside Gemini 4 Neon for cyber GA (345 tok/s per GSU) and CodeMender --model gemini-4-neon Preview.</summary>
+  </entry>
+
+  <entry>
     <title>Silent 500-Thread Pruning Broke Agent Memory. Antigravity v2.35.0 Makes Local History Unlimited and Scriptable. (Flagship Gemini Essay)</title>
     <link href="https://geminipulse.com/articles/antigravity-v2-35-unlimited-history-conversation-api.html" />
     <id>https://geminipulse.com/articles/antigravity-v2-35-unlimited-history-conversation-api.html</id>
     <updated>2026-11-23T23:55:00.000Z</updated>
     <summary>When teams run dozens of autonomous coding sessions, scheduled sidecars, and multi-worker swarms every day, a 500-conversation ceiling erases institutional engineering memory within weeks. Released November 23, 2026, Google Antigravity v2.35.0 removes local history pruning by default, introduces a built-in Conversation Management API and conversations skill, adds Cmd+F search inside HTML artifacts, and overhauls Swarm board responsiveness.</summary>
-  </entry>
-
-  <entry>
-    <title>You Cannot Unit-Test Tomorrow’s Quantum Circuits. Gemini 4 Agents Proved Faster Ones in Lean 4 Instead. (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/deepmind-gemini-4-lean-4-quantum-algorithms.html" />
-    <id>https://geminipulse.com/articles/deepmind-gemini-4-lean-4-quantum-algorithms.html</id>
-    <updated>2026-11-23T17:00:00.000Z</updated>
-    <summary>Classical supercomputers cannot simulate fault-tolerant quantum algorithms at scientific scale, and today’s noisy processors are still too small to run them. On November 23, 2026, Google DeepMind and Google Quantum AI bridged that verification gap by pairing teams of Gemini 4 agents with an open-source Lean 4 theorem-proving library, cutting fusion simulation costs 11.8x and speeding foundational quantum arithmetic up to 290x.</summary>
-  </entry>
-
-  <entry>
-    <title>Google Research Details DeepCrossAttention (DCA): Dynamic Depth-Wise Residual Routing Reaching Quality 3x Faster. (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/google-research-deepcrossattention-residual-routing.html" />
-    <id>https://geminipulse.com/articles/google-research-deepcrossattention-residual-routing.html</id>
-    <updated>2026-11-23T17:21:12.000Z</updated>
-    <summary>Google Research’s Kyriakos Axiotis and Thomas Fu detail DeepCrossAttention (DCA), replacing rigid point-wise residual summation with per-token dynamic layer routing and depth-wise split Q/K/V cross-attention—matching standard transformer quality up to 3x faster with under 0.2% parameter overhead.</summary>
-  </entry>
-
-  <entry>
-    <title>Google Benchmarks Semantic Governance Policies on AgentDojo: Cutting Indirect Prompt Injection From 48.7% to 0.9%. (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/semantic-governance-agentdojo-benchmark.html" />
-    <id>https://geminipulse.com/articles/semantic-governance-agentdojo-benchmark.html</id>
-    <updated>2026-11-23T17:47:18.000Z</updated>
-    <summary>Across six full runs of AgentDojo v1.2.2 (97 user tasks, 949 attacked runs) with gemini-2.5-flash, Semantic governance policies’ built-in user intent check alone cuts attack success rate 98.2% from 48.7% to 0.9%—blocking all 929 tool-calling exploits at a 2.6 percentage point benign utility cost.</summary>
-  </entry>
-
-  <entry>
-    <title>Google Spotlights 6 Early Gemini 4 Hydrogen Builder Creations &amp; Gemini Canvas Interactive Workflows. (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/gemini-4-hydrogen-six-builder-projects-canvas.html" />
-    <id>https://geminipulse.com/articles/gemini-4-hydrogen-six-builder-projects-canvas.html</id>
-    <updated>2026-11-23T18:00:00.000Z</updated>
-    <summary>Google highlights six early Gemini 4 Hydrogen builds—including a Three.js rainy sci-fi skyline on High thinking, contrasting voxel and jelly koi ponds, a Carbon /swarm of Hydrogen workers animating a crimson moth, and a sub-minute 3D desert ranch—alongside four Gemini Canvas workflows.</summary>
-  </entry>
-
-  <entry>
-    <title>Google Search Expands Personal Intelligence in AI Mode With Opt-In Google Wallet, Google Drive &amp; Gemini App Context. (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/search-personal-intelligence-wallet-drive-gemini.html" />
-    <id>https://geminipulse.com/articles/search-personal-intelligence-wallet-drive-gemini.html</id>
-    <updated>2026-11-23T17:00:00.000Z</updated>
-    <summary>VP of Product Robby Stein announces Personal Intelligence in Google Search AI Mode adds opt-in read-only Google Wallet support starting today, with Google Drive and cross-surface Gemini app context sharing following in the coming weeks.</summary>
-  </entry>
-
-  <entry>
-    <title>Google Cloud Launches AlloyDB Omni Integration With Local Gemma 4 &amp; Open Models for Air-Gapped SQL Inference. (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/alloydb-omni-local-gemma-4.html" />
-    <id>https://geminipulse.com/articles/alloydb-omni-local-gemma-4.html</id>
-    <updated>2026-11-23T17:00:00.000Z</updated>
-    <summary>Google Cloud’s downloadable PostgreSQL-compatible AlloyDB Omni now invokes locally hosted Gemma 4 (gemma4:12b) and Qwen 3.8 models directly from SQL via google_ml_integration and ai.generate, keeping prompts, vectors, and completions inside private or air-gapped clusters.</summary>
   </entry>
 
   <entry>
