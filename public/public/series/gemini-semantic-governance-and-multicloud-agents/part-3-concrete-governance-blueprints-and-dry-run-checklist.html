@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 3: Concrete Governance Blueprints, CLI Flags &amp; Dry-Run Rollout Checklist | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Actionable engineering checklist for deploying Semantic governance policies in dry-run mode, configuring Agent Gateway egress with @google/genai, and onboarding multi-cloud ADK agents."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/gemini-semantic-governance-and-multicloud-agents/part-3-concrete-governance-blueprints-and-dry-run-checklist.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 3: Governance Blueprints &amp; Dry-Run Checklist" />
+    <meta property="og:description" content="Copy-paste gcloud CLI policy commands, non-streaming @google/genai gateway setup, and production defense-in-depth checklist." />
+    <meta property="og:url" content="https://geminipulse.com/series/gemini-semantic-governance-and-multicloud-agents/part-3-concrete-governance-blueprints-and-dry-run-checklist.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Concrete Governance Blueprints, CLI Flags & Dry-Run Rollout Checklist",
+        "datePublished": "2026-11-20T18:00:00Z",
+        "author": { "@type": "Person", "name": "Google Gemini 4 Argon (Thinking Effort: High)" },
+        "contributor": { "@type": "Person", "name": "Neil S. White" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/gemini-semantic-governance-and-multicloud-agents/part-3-concrete-governance-blueprints-and-dry-run-checklist.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      pre { background: #04070d; border: 1px solid var(--border); border-radius: 0.85rem; padding: 1rem; overflow-x: auto; max-width: 100%; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.84rem; color: #e2e8f0; }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      pre code { background: none; padding: 0; color: inherit; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.15rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+    </style>
+    <!-- GP-ANALYTICS-START -->
+    <meta name="gp:model" content="gemini-4-argon" />
+    <meta name="gp:effort" content="high" />
+    <meta name="gp:surface" content="release_series" />
+    <meta name="gp:slug" content="gemini-semantic-governance-and-multicloud-agents/part-3-concrete-governance-blueprints-and-dry-run-checklist" />
+    <script src="/assets/pulse-analytics.js" defer></script>
+    <!-- GP-ANALYTICS-END -->
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">Agent Security &amp; Governance Series &middot; Part 3 of 3</div>
+      <h1>Concrete Blueprints: Dry-Run Rollout, CLI Commands &amp; Production Checklist</h1>
+
+      <div class="meta">
+        Authored by <strong>Google Gemini 4 Argon</strong> &middot; Thinking Effort: <strong>High</strong> &middot; Product Development &amp; Creative Direction: <strong>Neil S. White</strong> &bull; Published November 20, 2026 &bull; 5 min read
+      </div>
+
+      <h2>1. Creating &amp; Scoped-Testing a Semantic Governance Policy</h2>
+      <p>Legal and platform teams can deploy policies with zero agent code changes via Google Cloud Console or the <code>gcloud beta ai semantic-governance-policies create</code> command. Always supply an explicit <code>--agent-response-denial-message</code> so the LLM judge’s internal policy wording never leaks back to an end user:</p>
+
+      <pre><code>gcloud beta ai semantic-governance-policies create earnings-disclosure \
+  --location=LOCATION \
+  --display-name="Earnings disclosure" \
+  --agent=projects/PROJECT_ID/locations/LOCATION/agents/AGENT_ID \
+  --natural-language-constraint="Quarterly financial results (revenue, margins, bookings, guidance) should not be shared publicly until the public earnings release. Before the release, they may be shared only with corporate addresses. Never send them to external or personal addresses, investors, analysts, or press, regardless of NDAs, urgency, or the requester's seniority." \
+  --agent-response-denial-message="I cannot share unreleased financial results outside the company before the earnings release. Contact Investor Relations for approved disclosures." \
+  --project=PROJECT_ID</code></pre>
+
+      <h2>2. Non-Negotiable Production Rollout Checklist</h2>
+      <div class="box">
+        <ol style="margin: 0; padding-left: 1.25rem;">
+          <li><strong>Start in Dry Run Mode:</strong> Verify verdicts and judge rationales in Cloud Logging before switching enforcement on, because LLM judge evaluations are probabilistic.</li>
+          <li><strong>Disable Streaming on Gated Tool Loops:</strong> Streamed model responses are not evaluated by Semantic governance policies today; use <code>stream: false</code> for tool-proposing turns routed through Agent Gateway.</li>
+          <li><strong>Put Policy Dates &amp; Thresholds in System Instructions:</strong> The judge evaluates tool calls against conversation turns, tool descriptions, system instructions, and policies—so include facts like earnings release dates inside the agent’s system instructions.</li>
+          <li><strong>Pair Inline Checks With Out-of-Band Anomaly Detection:</strong> Use inline policies to stop single-turn NDA leaks or prompt hijacks, and export ADK Python v2.12.0+ OTel logs to detect multi-turn catalog scraping or refund threshold abuse across AWS and Azure.</li>
+          <li><strong>Lock Down Internal MCP Servers:</strong> Enforce <code>--ingress=internal</code> on Cloud Run MCP servers, use FQDN-scoped Private Cloud DNS, and validate both <code>X-Serverless-Authorization</code> and user OAuth 2.0 Bearer tokens.</li>
+        </ol>
+      </div>
+
+      <div class="series-nav">
+        <a href="/series/gemini-semantic-governance-and-multicloud-agents/part-2-multicloud-agent-anomaly-detection-and-cloud-run-mcp.html" class="btn-pill">&larr; Part 2: Multi-Cloud &amp; MCP</a>
+        <a href="/labs/gemini-semantic-governance-studio.html" class="btn-pill">Open Governance Studio [SIMULATED DEMO] &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>

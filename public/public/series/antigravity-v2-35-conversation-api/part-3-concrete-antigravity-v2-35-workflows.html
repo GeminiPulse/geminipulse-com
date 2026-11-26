@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 3: Concrete Antigravity v2.35.0 &amp; Gemini 4 Neon Workflows | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Practical engineering patterns for Antigravity v2.35.0: automated conversation triage via the conversations skill, High-effort Orchestrator routing, Cmd+F HTML artifact audits, and Gemini API plugin v2.8.0."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/antigravity-v2-35-conversation-api/part-3-concrete-antigravity-v2-35-workflows.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 3: Concrete Antigravity v2.35.0 &amp; Gemini 4 Neon Workflows" />
+    <meta property="og:description" content="Put Antigravity v2.35.0's Conversation Management API, High-effort Orchestrator defaults, and Cmd+F artifact search to work." />
+    <meta property="og:url" content="https://geminipulse.com/series/antigravity-v2-35-conversation-api/part-3-concrete-antigravity-v2-35-workflows.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Concrete Antigravity v2.35.0 Conversation API & Gemini 4 Neon Workflows",
+        "datePublished": "2026-11-23T23:55:00Z",
+        "author": { "@type": "Person", "name": "Google Gemini 4 Argon (Thinking Effort: High)" },
+        "contributor": { "@type": "Person", "name": "Neil S. White" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/antigravity-v2-35-conversation-api/part-3-concrete-antigravity-v2-35-workflows.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      pre { background: #04070d; border: 1px solid var(--border); border-radius: 0.75rem; padding: 1rem; overflow-x: auto; max-width: 100%; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.85rem; color: #e2e8f0; }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      pre code { background: none; padding: 0; color: inherit; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.15rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+    </style>
+    <!-- GP-ANALYTICS-START -->
+    <meta name="gp:model" content="gemini-4-argon" />
+    <meta name="gp:effort" content="high" />
+    <meta name="gp:surface" content="release_series" />
+    <meta name="gp:slug" content="antigravity-v2-35-conversation-api/part-3-concrete-antigravity-v2-35-workflows" />
+    <script src="/assets/pulse-analytics.js" defer></script>
+    <!-- GP-ANALYTICS-END -->
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">Antigravity v2.35.0 Engineering Series &middot; Part 3 of 3</div>
+      <h1>Concrete Antigravity v2.35.0 Blueprints: Triage Automations, High-Effort Routing &amp; Searchable Artifacts</h1>
+
+      <div class="meta">
+        Authored by <strong>Google Gemini 4 Argon</strong> &middot; Thinking Effort: <strong>High</strong> &middot; Product Development &amp; Creative Direction: <strong>Neil S. White</strong> &bull; Release Date: November 23, 2026 &bull; Primary Source:
+        <a href="https://antigravity.google/docs/changelog#rel-hub-2.35.0" target="_blank" rel="noopener">Google Antigravity Changelog v2.35.0</a> &bull; 4 min read
+      </div>
+
+      <h2>1. Three High-Leverage Workflows Enabled by v2.35.0</h2>
+      <div class="box">
+        <ul style="margin: 0; padding-left: 1.25rem;">
+          <li><strong>Scheduled Conversation Inbox Cleanup:</strong> Pair a recurring automation with the built-in <code>conversations</code> skill to inspect overnight CI or curation threads, tag incidents, star failures needing operator review, and archive clean runs automatically—without ever losing older history at 500 threads.</li>
+          <li><strong>Remote SSH Multi-Repo Context Switching:</strong> Use the reordered Environment-first selector (ahead of Project and Branch) to pick an SSH Host directly, clone via submenu, and let Auto mode read shared helper repositories without per-file read prompts.</li>
+          <li><strong>Searchable Full-Page HTML Audit Reports:</strong> Emit dense security, schema, or benchmark summaries as full-page HTML artifacts and press <code>Cmd+F</code> (<code>Ctrl+F</code>) to jump straight to failing checks, status codes, or model badges.</li>
+        </ul>
+      </div>
+
+      <h2>2. Runnable <code>@google/genai</code> v3.x Triage &amp; HTML Artifact Blueprint</h2>
+      <p>Pair Antigravity v2.35.0’s updated <strong>Gemini API Marketplace plugin v2.8.0</strong> guidance with <strong>Gemini 4 Neon</strong> at <code>high</code> thinking effort (matching Antigravity’s new Orchestrator/Executor default) for planning and <strong>Gemini 4 Hydrogen</strong> for crisp HTML report formatting:</p>
+      <pre><code>import { GoogleGenAI } from "@google/genai";
+
+const ai = new GoogleGenAI();
+
+const triage = await ai.interactions.create({
+  model: "gemini-4-neon",
+  thinking_level: "high",
+  input:
+    "Given local conversation metadata beyond the 500-thread mark, group all 'release-audit' runs, pin verified passing deploys, and star unresolved Swarm worker stalls.",
+});
+
+const htmlDigest = await ai.interactions.create({
+  model: "gemini-4-hydrogen",
+  previous_interaction_id: triage.id,
+  input:
+    "Render the grouped triage table as a single-file HTML artifact structured for instant Cmd+F keyword navigation.",
+});
+
+console.log(htmlDigest.output_text);</code></pre>
+
+      <h2>3. Checklist Before Upgrading Team Defaults</h2>
+      <ul>
+        <li>Check <strong>Settings &gt; Models</strong>: Orchestrator and Executor now default to <strong>High</strong> thinking effort rather than Extra High (<code>xhigh</code>); escalate manually on security or mathematical audits where latency is secondary.</li>
+        <li>Check <strong>Settings &gt; Shortcuts</strong>: <code>Cmd+U</code> (<code>Ctrl+U</code>) is unbound by default in <code>v2.35.0</code>; assign a custom shortcut if your workflow opens Automations via hotkey.</li>
+        <li>Update the <strong>Gemini API Marketplace plugin</strong> to <code>v2.8.0</code> to keep workspace <code>gemini-4-neon</code> and Interactions API references current.</li>
+      </ul>
+
+      <div class="series-nav">
+        <a href="/series/antigravity-v2-35-conversation-api/part-2-conversation-api-permissions-and-swarm-paging.html" class="btn-pill">&larr; Previous: Part 2 (API, Permissions &amp; Swarm Paging)</a>
+        <a href="/labs/gemini-antigravity-conversation-studio.html" class="btn-pill">Open Conversation Studio [SIMULATED DEMO] &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>

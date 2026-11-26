@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 2: Global Endpoint, State Chaining &amp; ADK RunConfig Rules for Deferred Tier | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Technical mechanics for Gemini Deferred Tier: exclusive locations/global endpoint rule, background=true + store=true flags, SSE reconnection, ADK RunConfig(ServiceTier.DEFERRED), and VPC-SC boundaries."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/gemini-deferred-service-tier/part-2-global-endpoint-polling-and-adk-rules.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 2: Global Endpoint, Polling &amp; ADK Rules for Deferred Tier" />
+    <meta property="og:description" content="Exact flags, status transitions, error codes, and ADK Python RunConfig wiring for service_tier='deferred'." />
+    <meta property="og:url" content="https://geminipulse.com/series/gemini-deferred-service-tier/part-2-global-endpoint-polling-and-adk-rules.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Global Endpoint, State Chaining & ADK RunConfig Rules for Gemini Deferred Tier",
+        "datePublished": "2026-11-20T23:55:00Z",
+        "author": { "@type": "Person", "name": "Google Gemini 4 Argon (Thinking Effort: High)" },
+        "contributor": { "@type": "Person", "name": "Neil S. White" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/gemini-deferred-service-tier/part-2-global-endpoint-polling-and-adk-rules.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+      table { width: 100%; border-collapse: collapse; font-size: 0.92rem; text-align: left; }
+      th, td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+      th { background: rgba(255,255,255,0.03); color: #f1f5f9; font-weight: 600; }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.15rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+    </style>
+    <!-- GP-ANALYTICS-START -->
+    <meta name="gp:model" content="gemini-4-argon" />
+    <meta name="gp:effort" content="high" />
+    <meta name="gp:surface" content="release_series" />
+    <meta name="gp:slug" content="gemini-deferred-service-tier/part-2-global-endpoint-polling-and-adk-rules" />
+    <script src="/assets/pulse-analytics.js" defer></script>
+    <!-- GP-ANALYTICS-END -->
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">Agent Compute &amp; Economics Series &middot; Part 2 of 3</div>
+      <h1>Global Endpoint Routing, Polling Lifecycle &amp; ADK Per-Run Configuration</h1>
+
+      <div class="meta">
+        Authored by <strong>Google Gemini 4 Argon</strong> &middot; Thinking Effort: <strong>High</strong> &middot; Product Development &amp; Creative Direction: <strong>Neil S. White</strong> &bull; Published November 20, 2026 &bull; Primary Sources:
+        <a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/deferred-tier" target="_blank" rel="noopener">Deferred Tier Guide</a> &amp;
+        <a href="https://adk.dev/agents/models/google-gemini/deferred-schedule/" target="_blank" rel="noopener">ADK Deferred Scheduling Docs</a> &bull; 5 min read
+      </div>
+
+      <h2>1. Non-Negotiable Request Contract on <code>interactions.create</code></h2>
+      <p>Because the scheduler pulls capacity from a worldwide pool, Deferred Tier operates exclusively on <code>locations/global</code> at <code>aiplatform.googleapis.com</code>. Routing a deferred request to <code>us</code>, <code>eu</code>, or any single region returns <code>HTTP 400 invalid_request</code>. Every creation call must also set <code>service_tier: "deferred"</code>, <code>background: true</code>, and <code>store: true</code>, while omitting <code>stream: true</code> on initial creation.</p>
+      <p>Once <code>interactions.get</code> reports <code>status: "in_progress"</code>, clients can optionally attach an SSE stream via <code>stream: true</code> and resume dropped connections using <code>last_event_id</code>. Note that turn-scoped settings such as <code>tools</code>, <code>system_instruction</code>, and <code>generation_config</code> do not carry across turns automatically and must be re-sent on each chained <code>previous_interaction_id</code> call.</p>
+
+      <h2>2. Interaction Status Lifecycle &amp; Billing State Machine</h2>
+      <div class="table-wrap" role="region" aria-label="Deferred interaction status transitions" tabindex="0">
+        <table>
+          <thead>
+            <tr>
+              <th>Status Value</th>
+              <th>Final?</th>
+              <th>Required Client Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>queued</code></td>
+              <td>No</td>
+              <td>Accepted and waiting for off-peak global capacity. Poll <code>interactions.get</code> with exponential backoff (up to 30s intervals); do not pass <code>stream=true</code> yet.</td>
+            </tr>
+            <tr>
+              <td><code>in_progress</code></td>
+              <td>No</td>
+              <td>Actively decoding. Continue polling <code>interactions.get</code> or attach an SSE stream with <code>stream=true</code> and <code>last_event_id</code>.</td>
+            </tr>
+            <tr>
+              <td><code>requires_action</code></td>
+              <td>Yes</td>
+              <td>Model emitted a <code>function_call</code> step. Execute the tool locally and submit the tool result in a new turn referencing <code>previous_interaction_id</code>.</td>
+            </tr>
+            <tr>
+              <td><code>requires_continuation</code></td>
+              <td>Yes</td>
+              <td>Long decode paused with a <code>continuation_token</code>. Resume with <code>previous_interaction_id</code> + <code>continuation_token</code>, omit <code>input</code>, and raise <code>max_output_tokens</code>.</td>
+            </tr>
+            <tr>
+              <td><code>completed</code></td>
+              <td>Yes</td>
+              <td>Turn succeeded at 50% PayGo pricing. Read <code>output_text</code> and <code>usage</code>, or chain the next step within the 7-day state window.</td>
+            </tr>
+            <tr>
+              <td><code>failed</code> / <code>cancelled</code> / <code>expired</code></td>
+              <td>Yes</td>
+              <td>Zero token charges incurred. Cancel only while <code>queued</code> or <code>in_progress</code> (cancelling a final turn returns <code>HTTP 409 aborted</code>).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>3. ADK Per-Run Toggle &amp; Enterprise Security Boundaries</h2>
+      <p>In <strong>ADK Python v2.10.0+</strong>, deferred scheduling lives inside <code>RunConfig(service_tier=ServiceTier.DEFERRED)</code> rather than on the agent definition itself. Provided the model uses <code>Gemini(..., use_interactions_api=True)</code>, one deployed agent can handle real-time user requests interactively and run overnight batch loops at half price without maintaining two agent codebases. Note that <code>run_async()</code> yields no events while waiting in the queue, so headless workers should set explicit client deadlines or show progress state.</p>
+      <p>On the security front, Google Cloud supports <strong>VPC Service Controls</strong> (external <code>mcp_server</code> tools are disallowed inside a VPC-SC perimeter), <strong>Access Transparency</strong>, <strong>Cloud Audit Logs</strong>, and <strong>FedRAMP High</strong>. However, stateless zero data retention (<code>store=false</code> or <code>constraints/vertexai.disableAPIStorage</code>), <strong>CMEK</strong>, <strong>Data residency</strong>, <strong>DoD IL5</strong>, and <strong>ITAR</strong> are not supported on the Deferred tier.</p>
+
+      <div class="series-nav">
+        <a href="/series/gemini-deferred-service-tier/part-1-deferred-tier-interactions-ga.html" class="btn-pill">&larr; Part 1: Economics &amp; Models</a>
+        <a href="/series/gemini-deferred-service-tier/part-3-concrete-deferred-agent-workloads.html" class="btn-pill">Part 3: Concrete Workloads &amp; Studio &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>

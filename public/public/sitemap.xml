@@ -31,46 +31,94 @@
     <priority>0.98</priority>
   </url>
   <url>
-    <loc>https://geminipulse.com/articles/genie-4-gemini-api-interactive-worlds.html</loc>
-    <lastmod>2026-11-19</lastmod>
+    <loc>https://geminipulse.com/articles/deepmind-mass-spec-skills-antigravity.html</loc>
+    <lastmod>2026-11-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.98</priority>
   </url>
   <url>
-    <loc>https://geminipulse.com/articles/sashiko-gemini-kernel-code-review.html</loc>
-    <lastmod>2026-11-19</lastmod>
+    <loc>https://geminipulse.com/articles/google-research-verifiable-social-reasoning.html</loc>
+    <lastmod>2026-11-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.98</priority>
   </url>
   <url>
-    <loc>https://geminipulse.com/articles/gemini-api-tool-retrieval-interactions-preview.html</loc>
-    <lastmod>2026-11-19</lastmod>
+    <loc>https://geminipulse.com/articles/antigravity-v2-35-1-2-35-2-turn-switch-resumption.html</loc>
+    <lastmod>2026-11-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.98</priority>
   </url>
   <url>
-    <loc>https://geminipulse.com/articles/gemini-mac-app-computer-use.html</loc>
-    <lastmod>2026-11-19</lastmod>
+    <loc>https://geminipulse.com/articles/workspace-mcp-servers-cli-agent-governance-ga.html</loc>
+    <lastmod>2026-11-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.98</priority>
   </url>
   <url>
-    <loc>https://geminipulse.com/articles/gcs-object-enrichments-gemini.html</loc>
-    <lastmod>2026-11-19</lastmod>
+    <loc>https://geminipulse.com/articles/deepmind-humanitys-first-exam-hfe.html</loc>
+    <lastmod>2026-11-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.98</priority>
   </url>
   <url>
-    <loc>https://geminipulse.com/articles/tunix-gemma-4-agentic-rl.html</loc>
-    <lastmod>2026-11-19</lastmod>
+    <loc>https://geminipulse.com/articles/agent-retrieval-managed-ingestion-searchdocuments.html</loc>
+    <lastmod>2026-11-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.98</priority>
   </url>
   <url>
-    <loc>https://geminipulse.com/articles/gemini-4-neon-ga-launch-and-sdk-v3-6-1.html</loc>
-    <lastmod>2026-11-18</lastmod>
+    <loc>https://geminipulse.com/articles/gemini-4-neon-builders-and-cyber-ga.html</loc>
+    <lastmod>2026-11-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.98</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/gemini-deferred-service-tier/part-1-deferred-tier-interactions-ga.html</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.99</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/gemini-deferred-service-tier/part-2-global-endpoint-polling-and-adk-rules.html</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.99</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/gemini-deferred-service-tier/part-3-concrete-deferred-agent-workloads.html</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.99</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/labs/gemini-deferred-tier-studio.html</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.99</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/gemini-api-cli-v0-5/part-1-what-changed-with-gemini-api-cli-v0-5.html</loc>
+    <lastmod>2026-11-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.99</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/gemini-api-cli-v0-5/part-2-self-hosted-environments-poll-and-serve.html</loc>
+    <lastmod>2026-11-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.99</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/series/gemini-api-cli-v0-5/part-3-concrete-agent-cli-workflows-and-tts-voices.html</loc>
+    <lastmod>2026-11-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.99</priority>
+  </url>
+  <url>
+    <loc>https://geminipulse.com/labs/gemini-api-cli-studio.html</loc>
+    <lastmod>2026-11-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.99</priority>
   </url>
   <url>
     <loc>https://geminipulse.com/series/genie-4-gemini-api/part-1-what-changed-with-genie-4-api.html</loc>

@@ -2296,7 +2296,12 @@ export default function App() {
                 </div>
               </div>
 
-              <div className="p-5 bg-[#080a0f] text-gray-100 font-mono text-xs sm:text-sm overflow-x-auto flex-1 leading-relaxed">
+              <div
+                role="region"
+                aria-label="SDK Blueprint Source Code"
+                tabIndex={0}
+                className="p-5 bg-[#080a0f] text-gray-100 font-mono text-xs sm:text-sm overflow-x-auto flex-1 leading-relaxed"
+              >
                 <pre>{codeLang === 'ts' ? activeBlueprint.tsCode : activeBlueprint.pyCode}</pre>
               </div>
 
@@ -2967,7 +2972,12 @@ export default function App() {
             </div>
 
             {showStudioAgentsMatrix && (
-              <div className="overflow-x-auto max-w-full rounded-2xl border border-[var(--md-sys-color-outline)]">
+              <div
+                role="region"
+                aria-label="GeminiPulse Studio Subagents Matrix"
+                tabIndex={0}
+                className="overflow-x-auto max-w-full rounded-2xl border border-[var(--md-sys-color-outline)]"
+              >
                 <table className="w-full text-left border-collapse text-xs">
                   <thead>
                     <tr className="bg-[var(--md-sys-color-surface)] border-b border-[var(--md-sys-color-outline)] font-mono text-[11px] uppercase m3-text-muted">
@@ -3532,7 +3542,12 @@ export default function App() {
                   </ul>
                 </div>
 
-                <div className="p-5 rounded-2xl bg-[var(--md-sys-color-surface)] border border-[var(--md-sys-color-outline)] overflow-y-auto max-h-[28rem]">
+                <div
+                  role="region"
+                  aria-label="Antigravity Chronicle Episode Article"
+                  tabIndex={0}
+                  className="p-5 rounded-2xl bg-[var(--md-sys-color-surface)] border border-[var(--md-sys-color-outline)] overflow-y-auto max-h-[28rem]"
+                >
                   <MarkdownArticleView markdown={activeEpisode.markdownBody} />
                 </div>
               </div>
@@ -3742,7 +3757,12 @@ export default function App() {
                       <InlineCodeText text={channel.whyItWorks} />
                     </p>
 
-                    <div className="p-3 rounded-xl bg-[var(--md-sys-color-surface)] border border-[var(--md-sys-color-outline)] text-xs font-mono max-h-40 overflow-y-auto leading-relaxed">
+                    <div
+                      role="region"
+                      aria-label={`${channel.platform} Post Template`}
+                      tabIndex={0}
+                      className="p-3 rounded-xl bg-[var(--md-sys-color-surface)] border border-[var(--md-sys-color-outline)] text-xs font-mono max-h-40 overflow-y-auto leading-relaxed"
+                    >
                       <div className="font-bold text-blue-400 mb-1">{channel.postTitle}</div>
                       <pre className="whitespace-pre-wrap font-mono m-0">{channel.copyablePost}</pre>
                     </div>
@@ -3799,7 +3819,12 @@ export default function App() {
             <div className="text-xs font-mono m3-text-muted">
               Target Origin: <code className="m3-inline-code">https://geminipulse.com</code> (Swipe horizontally on narrow screens)
             </div>
-            <div className="overflow-x-auto max-w-full rounded-xl border border-[var(--md-sys-color-outline)] p-3 bg-[var(--md-sys-color-surface)]">
+            <div
+              role="region"
+              aria-label="Core Web Vitals Ledger Table"
+              tabIndex={0}
+              className="overflow-x-auto max-w-full rounded-xl border border-[var(--md-sys-color-outline)] p-3 bg-[var(--md-sys-color-surface)]"
+            >
               <table className="w-full text-left border-collapse text-xs sm:text-sm">
                 <caption className="sr-only">
                   Live Measured Google Lighthouse and Core Web Vitals Ledger for geminipulse.com

@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 1: Google Launches Workspace MCP Servers GA, gwscli &amp; Cloud Agent Gateway | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Published November 24, 2026: Google Cloud and Google Workspace ship generally available remote Workspace MCP servers, the gwscli terminal client, Cloud Agent Gateway governance, and standardized API usage tiers ahead of the February 1, 2027 MCP mandate."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/workspace-mcp-servers-cli/part-1-what-changed-workspace-mcp-cli.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 1: Google Workspace MCP Servers GA, gwscli &amp; Agent Gateway" />
+    <meta property="og:description" content="Dedicated remote MCP endpoints for Gmail, Drive, Docs, Sheets, Slides, Calendar, Chat, Tasks, and Universal Search plus gwscli and a February 1, 2027 enforcement mandate." />
+    <meta property="og:url" content="https://geminipulse.com/series/workspace-mcp-servers-cli/part-1-what-changed-workspace-mcp-cli.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Part 1: Google Workspace MCP Servers GA, gwscli &amp; Agent Gateway" />
+    <meta name="twitter:description" content="How Google standardized Workspace agent access around remote MCP servers, gwscli, and Cloud Agent Gateway." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Google Workspace MCP Servers GA, gwscli CLI & Cloud Agent Gateway",
+        "datePublished": "2026-11-24T17:02:59Z",
+        "author": { "@type": "Person", "name": "Google Gemini 4 Argon (Thinking Effort: High)" },
+        "contributor": { "@type": "Person", "name": "Neil S. White" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/workspace-mcp-servers-cli/part-1-what-changed-workspace-mcp-cli.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: #cbd5e1; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .box.info { border-left: 4px solid var(--accent); }
+      .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+      table { width: 100%; border-collapse: collapse; font-size: 0.92rem; text-align: left; }
+      th, td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+      th { background: rgba(255,255,255,0.03); color: #f1f5f9; font-weight: 600; }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.15rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+    </style>
+    <!-- GP-ANALYTICS-START -->
+    <meta name="gp:model" content="gemini-4-argon" />
+    <meta name="gp:effort" content="high" />
+    <meta name="gp:surface" content="release_series" />
+    <meta name="gp:slug" content="workspace-mcp-servers-cli/part-1-what-changed-workspace-mcp-cli" />
+    <script src="/assets/pulse-analytics.js" defer></script>
+    <!-- GP-ANALYTICS-END -->
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">Workspace Agent Control Plane Series &middot; Part 1 of 3</div>
+      <h1>Google Launches Workspace MCP Servers GA, <code>gwscli</code> &amp; Cloud Agent Gateway With a February 1, 2027 Cutover</h1>
+
+      <div class="meta">
+        Authored by <strong>Google Gemini 4 Argon</strong> &middot; Thinking Effort: <strong>High</strong> &middot; Product Development &amp; Creative Direction: <strong>Neil S. White</strong> &bull; Release Date: November 24, 2026 &bull; Primary Sources:
+        <a href="https://cloud.google.com/blog/products/identity-security/deploying-agents-safely-in-your-enterprise/" target="_blank" rel="noopener">Google Cloud Blog</a> &amp;
+        <a href="https://workspaceupdates.googleblog.com/2026/11/mcp-servers-cli-standardized-usage-tiers-now-available.html" target="_blank" rel="noopener">Workspace Updates</a> &bull; 5 min read
+      </div>
+
+      <div class="box info">
+        <h3 style="margin-top: 0; color: #38bdf8;">Release Summary: Workspace MCP Servers, CLI &amp; Usage Tiers (Nov 24, 2026)</h3>
+        <p style="margin-bottom: 0;">On November 24, 2026, Google Cloud and Google Workspace made dedicated remote <strong>Model Context Protocol (MCP) servers</strong> and the <strong>Google Workspace CLI (<code>gwscli</code>)</strong> generally available alongside <strong>Google Cloud Agent Gateway</strong>, standardized <strong>Standard / Scaled</strong> usage tiers, and a binding <strong>February 1, 2027</strong> mandate requiring AI agents to use MCP or <code>gwscli</code> instead of direct Workspace REST APIs.</p>
+      </div>
+
+      <h2>1. Why Google Separated Agent Traffic From Traditional REST Apps</h2>
+      <p>Workspace APIs now serve more than <strong>2.8 trillion calls per month</strong> across 4 billion users and 13 million organizations, with public Google Drive API volume running over 2.5x higher than it did two years ago. Deterministic web applications built on REST APIs never needed per-call human confirmations or prompt-injection defenses, whereas autonomous agents chain unpredictable cross-app actions inside user mailboxes and corporate drives.</p>
+      <p>Rather than forcing every developer to hand-roll compliance wrappers over raw REST endpoints, Google moved agent-specific governance into Google-managed protocol surfaces: remote <code>*mcp.googleapis.com</code> servers for cloud and host agents, <code>gwscli</code> for local terminals and container sandboxes, and Cloud Agent Gateway for enterprise network enforcement.</p>
+
+      <h2>2. Complete Inventory of Google Workspace MCP Surfaces</h2>
+      <div class="table-wrap" role="region" aria-label="Google Workspace MCP server endpoints and surfaces" tabindex="0">
+        <table>
+          <thead>
+            <tr>
+              <th>Surface / Product</th>
+              <th>Primary Endpoint or Command</th>
+              <th>Purpose &amp; Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Remote Product MCP Servers</strong></td>
+              <td><code>gmailmcp</code>, <code>drivemcp</code>, <code>docsmcp</code>, <code>sheetsmcp</code>, <code>slidesmcp</code>, <code>calendarmcp</code>, <code>chatmcp</code>, <code>tasksmcp</code>, <code>classroommcp</code> (<code>.googleapis.com/mcp/v1</code>)</td>
+              <td>Generally available (Classroom requires manual API enablement); returns synthesized summaries plus built-in DLP and HITL confirmations.</td>
+            </tr>
+            <tr>
+              <td><strong>Universal Search MCP</strong></td>
+              <td><code>https://workspacemcp.googleapis.com/mcp/v1</code></td>
+              <td>Single cross-product <code>search_corpus</code> endpoint spanning Gmail, Drive, Calendar, and Chat without enabling separate product APIs.</td>
+            </tr>
+            <tr>
+              <td><strong>People MCP</strong></td>
+              <td><code>https://people.googleapis.com</code></td>
+              <td>Developer Preview directly on <code>people.googleapis.com</code> for profile, personal contacts, and Workspace directory lookup.</td>
+            </tr>
+            <tr>
+              <td><strong>Google Workspace CLI (<code>gwscli</code>)</strong></td>
+              <td><code>gwscli &lt;service&gt; &lt;action&gt;</code></td>
+              <td>GA native binary (macOS, Linux, Windows) with packaged skills, runtime <code>--schema</code> discovery, structured JSON, and scoped OAuth.</td>
+            </tr>
+            <tr>
+              <td><strong>Google Cloud Agent Gateway</strong></td>
+              <td>SPIFFE Agent Identity + Agent Registry</td>
+              <td>Network entry/exit enforcement with mTLS, DPoP, IAM Unified Access Policies, Model Armor, and Semantic Governance.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>3. Interactive Workbench &amp; Next Steps</h2>
+      <p>Explore the elicitation round-trip, <code>gwscli</code> least-privilege auth flags, and quota cutover dates inside <a href="/labs/gemini-workspace-mcp-cli-studio.html">Google Workspace MCP &amp; CLI Studio [SIMULATED DEMO]</a>, or proceed to Part 2 for the protocol and quota breakdown.</p>
+
+      <div class="series-nav">
+        <a class="btn-pill" href="/articles/workspace-mcp-servers-cli-agent-governance-ga.html">&larr; Flagship Essay</a>
+        <a class="btn-pill" href="/series/workspace-mcp-servers-cli/part-2-stateless-elicitation-gateway-and-quotas.html">Part 2: Stateless Elicitation, Gateway &amp; Quotas &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>

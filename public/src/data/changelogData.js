@@ -20,6 +20,19 @@ export const CHANGELOG_META = {
 
 export const CHANGELOG_ENTRIES = [
   {
+    id: 'cl-2026-11-25-wcag-253-and-scrollable-regions',
+    date: '2026-11-25',
+    dateDisplay: 'Nov 25, 2026',
+    surface: '3D Constellation Hero & Developer Workbench (/, /workbench.html)',
+    caughtBy: 'human',
+    caughtByLabel: 'Human Oversight · Product Dev & Creative Direction',
+    summary: 'Running AgileADA Monitor against geminipulse.com flagged 20 WCAG 2.5.3 label-in-name mismatches (84/100) that Lighthouse missed, plus 6 unfocusable scroll boxes on /workbench.html.',
+    whatHappened:
+      'Google Lighthouse disables axe-core label-content-name-mismatch by default, while an earlier WCAG 2.5.3 pull request stalled in merge conflict behind daily curation rounds and /workbench.html had 6 scrollable code/article panels without keyboard tabIndex.',
+    fixApplied:
+      'Reconciled the WCAG 2.5.3 accessible-name fixes against latest v2.0 (prefixing visible Search ⌘K, Greek star labels, and Prev/Next text inside aria-label), added role="region" + aria-label + tabIndex={0} to all scrollable Workbench panels, and verified 0 axe-core WCAG 2.2 AA violations (100/100).',
+  },
+  {
     id: 'cl-2026-11-18-sitewide-ga4-provenance-telemetry',
     date: '2026-11-18',
     dateDisplay: 'Nov 18, 2026',

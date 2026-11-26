@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Antigravity v2.34.0 MCP Apps &amp; Entrypoint Studio [SIMULATED DEMO] | Agile Labs</title>
+    <meta
+      name="description"
+      content="Interactive [SIMULATED DEMO] developer workbench modeling Google Antigravity v2.34.0 MCP Apps (io.modelcontextprotocol/ui and com.google.antigravity/ui), four UI entrypoints, opaque antigravity-file:// viewers, CSP limits, and agy CLI plain-text parity."
+    />
+    <link rel="canonical" href="https://geminipulse.com/labs/gemini-antigravity-mcp-apps-studio.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Antigravity v2.34.0 MCP Apps &amp; Entrypoint Studio [SIMULATED DEMO]" />
+    <meta property="og:description" content="Simulate inline, aux_pane, global, and file MCP App surfaces alongside 10 MiB / 1 MiB host limits and agy CLI parity." />
+    <meta property="og:url" content="https://geminipulse.com/labs/gemini-antigravity-mcp-apps-studio.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Antigravity v2.34.0 MCP Apps & Entrypoint Studio [SIMULATED DEMO]",
+        "url": "https://geminipulse.com/labs/gemini-antigravity-mcp-apps-studio.html",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "All",
+        "creator": { "@type": "Organization", "name": "Agile Labs (via GeminiPulse.com)" },
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      }
+    </script>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #07090e;
+        --surface: #111622;
+        --surface-high: #182030;
+        --border: rgba(255, 255, 255, 0.1);
+        --text: #f3f5fb;
+        --muted: #9da4b8;
+        --accent: #38bdf8;
+        --success: #34d399;
+        --warning: #fbbf24;
+        --danger: #f87171;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+      .wrap { max-width: 1080px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .badge-sim {
+        display: inline-block;
+        font-family: ui-monospace, Menlo, monospace;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        padding: 0.25rem 0.65rem;
+        border-radius: 9999px;
+        background: rgba(245, 158, 11, 0.15);
+        color: #fbbf24;
+        border: 1px solid rgba(245, 158, 11, 0.35);
+        text-transform: uppercase;
+      }
+      .header-title { font-size: clamp(1.55rem, 3.2vw, 2.25rem); font-weight: 800; margin: 0.6rem 0 0.3rem; line-height: 1.2; }
+      .header-sub { font-size: 1rem; color: var(--muted); margin: 0 0 1.5rem; }
+      .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.25rem;
+        min-inline-size: 0;
+      }
+      @media (max-width: 820px) {
+        .grid-2 { grid-template-columns: minmax(0, 1fr); }
+      }
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+        padding: 1.25rem;
+        min-inline-size: 0;
+      }
+      .card-title { font-size: 1.05rem; font-weight: 700; margin: 0 0 0.85rem; color: #f8fafc; }
+      .preset-btn {
+        display: block;
+        width: 100%;
+        text-align: left;
+        background: var(--surface-high);
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        padding: 0.75rem 0.9rem;
+        margin-bottom: 0.6rem;
+        color: var(--text);
+        cursor: pointer;
+        font-family: inherit;
+      }
+      .preset-btn.active {
+        border-color: var(--accent);
+        background: rgba(56, 189, 248, 0.12);
+      }
+      .preset-title { display: block; font-size: 0.9rem; font-weight: 600; }
+      .preset-meta { display: block; font-size: 0.78rem; color: var(--muted); margin-top: 0.15rem; }
+      select, input[type="range"] {
+        width: 100%;
+        background: var(--surface-high);
+        color: var(--text);
+        border: 1px solid var(--border);
+        border-radius: 0.6rem;
+        padding: 0.55rem 0.75rem;
+        font-size: 0.88rem;
+      }
+      .metric-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.65rem;
+        margin-bottom: 0.9rem;
+      }
+      @media (max-width: 540px) {
+        .metric-grid { grid-template-columns: minmax(0, 1fr); }
+      }
+      .metric-box {
+        background: var(--surface-high);
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        padding: 0.65rem 0.8rem;
+      }
+      .metric-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+      .metric-val { font-size: 0.98rem; font-weight: 700; margin-top: 0.15rem; color: var(--success); }
+      .metric-val.denied { color: var(--danger); }
+      .metric-val.flagged { color: var(--warning); }
+      .log-box {
+        background: #04070d;
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        padding: 0.9rem;
+        font-family: ui-monospace, Menlo, Consolas, monospace;
+        font-size: 0.8rem;
+        line-height: 1.55;
+        color: #cbd5e1;
+        white-space: pre-wrap;
+        word-break: break-word;
+        min-height: 190px;
+      }
+      pre {
+        background: #04070d;
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        padding: 0.9rem;
+        overflow-x: auto;
+        max-width: 100%;
+        font-family: ui-monospace, Menlo, Consolas, monospace;
+        font-size: 0.82rem;
+        color: #e2e8f0;
+        margin: 0.75rem 0 0;
+      }
+    </style>
+    <!-- GP-ANALYTICS-START -->
+    <meta name="gp:model" content="gemini-4-argon" />
+    <meta name="gp:effort" content="high" />
+    <meta name="gp:surface" content="interactive_lab" />
+    <meta name="gp:slug" content="gemini-antigravity-mcp-apps-studio" />
+    <script src="/assets/pulse-analytics.js" defer></script>
+    <!-- GP-ANALYTICS-END -->
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+        <a href="/series/antigravity-v2-34-mcp-apps/part-1-what-changed-antigravity-v2-34-mcp-apps.html" style="font-size: 0.85rem;">Read 3-Part Series &rarr;</a>
+      </div>
+
+      <span class="badge-sim">[SIMULATED DEMO] &middot; ANTIGRAVITY v2.34.0 MCP APPS</span>
+      <h1 class="header-title">Antigravity MCP Apps &amp; Entrypoint Studio</h1>
+      <p class="header-sub">
+        Inspect how Google Antigravity <code>v2.34.0</code> routes <code>io.modelcontextprotocol/ui</code> and <code>com.google.antigravity/ui</code> entrypoints across inline cards, side panels, full-page views, opaque file viewers, and <code>agy</code> CLI fallback locally in your browser.
+      </p>
+
+      <div class="grid-2">
+        <section class="card" aria-label="Surface and host limit scenario selector">
+          <h2 class="card-title">1. Select MCP App Surface or Host Constraint</h2>
+          <button type="button" class="preset-btn active" data-scenario="inline-card">
+            <span class="preset-title">Surface A &middot; Inline Chat Card (<code>_meta.ui.resourceUri</code>)</span>
+            <span class="preset-meta">Replaces collapsed step card; auto-resizes up to 800 px (150 px fallback at 100 ms)</span>
+          </button>
+          <button type="button" class="preset-btn" data-scenario="aux-global">
+            <span class="preset-title">Surface B &middot; Side Panel (<code>aux_pane</code>) &amp; Full Page (<code>global</code>)</span>
+            <span class="preset-meta">One tab per (server, tool); manual launches pass {}; 5-frame LRU cache</span>
+          </button>
+          <button type="button" class="preset-btn" data-scenario="file-viewer">
+            <span class="preset-title">Surface C &middot; Custom File Viewer (<code>antigravity-file://</code>)</span>
+            <span class="preset-meta">Hidden from model; opaque URI read/write capped at 10 MiB</span>
+          </button>
+          <button type="button" class="preset-btn" data-scenario="cli-fallback">
+            <span class="preset-title">Surface D &middot; Antigravity CLI (<code>agy</code>) Plain-Text Parity</span>
+            <span class="preset-meta">No ui:// iframe mounted; ignores visibility and reads plain-text content</span>
+          </button>
+
+          <label for="payload-slider" style="display: block; font-size: 0.8rem; color: var(--muted); margin: 0.85rem 0 0.35rem;">
+            Simulated <code>CallToolResult</code> Trajectory Payload: <strong id="payload-label">512 KiB</strong>
+          </label>
+          <input id="payload-slider" type="range" min="128" max="2048" step="128" value="512" />
+        </section>
+
+        <section class="card" aria-label="Simulated MCP App lifecycle and limit check">
+          <h2 class="card-title">2. Host Capability, Limits &amp; Lifecycle Telemetry</h2>
+          <div class="metric-grid">
+            <div class="metric-box">
+              <div class="metric-label">Surface Mode</div>
+              <div class="metric-val" id="m-surface">INLINE (800px)</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-label">Step Payload Check</div>
+              <div class="metric-val" id="m-payload" style="color: var(--accent);">512 KiB / 1 MiB OK</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-label">Model Visibility</div>
+              <div class="metric-val" id="m-vis" style="color: var(--text);">Callable Tool</div>
+            </div>
+          </div>
+          <div class="log-box" id="sim-log"></div>
+        </section>
+      </div>
+
+      <section class="card" style="margin-top: 1.25rem;" aria-label="Verified Antigravity MCP Apps Blueprints">
+        <h2 class="card-title">3. Verified Antigravity v2.34.0 &amp; GenAI SDK Blueprints</h2>
+        <label for="code-select" style="display: block; font-size: 0.8rem; color: var(--muted); margin-bottom: 0.35rem;">
+          Select Reference Snippet
+        </label>
+        <select id="code-select">
+          <option value="manifest">Tool _meta Entrypoints (aux_pane + global + file)</option>
+          <option value="bridge">Iframe Host Bridge (toggle-aux-pane &amp; resources/write)</option>
+          <option value="genai">Gemini 4 Neon + Hydrogen Plan-Execute (@google/genai v3.x)</option>
+        </select>
+        <pre><code id="code-view"></code></pre>
+      </section>
+    </div>
+
+    <script>
+      const SCENARIOS = {
+        'inline-card': {
+          surface: 'INLINE (800px)',
+          surfaceClass: '',
+          vis: 'Callable Tool',
+          log: (kib) => `[INITIALIZE] capabilities.extensions["io.modelcontextprotocol/ui"] advertised
+[TOOL META] _meta.ui.resourceUri = "ui://acme-cloud/release-checklist.html" (no aux_pane/global)
+[RENDER] Collapsed MCP tool step card replaced inline in conversation stream
+[RESIZE] size-changed received within 100 ms -> height clamped <= 800 px (fallback 150 px)
+[STORAGE] Persisted CallToolResult = ${kib} KiB (${kib > 1024 ? 'EXCEEDS 1 MiB step cap: offload bulk rows to app-only tools/call' : 'Within 1 MiB trajectory step cap'})`,
+        },
+        'aux-global': {
+          surface: 'AUX_PANE / GLOBAL',
+          surfaceClass: '',
+          vis: 'Callable + Manual',
+          log: (kib) => `[INITIALIZE] com.google.antigravity/ui = {"entrypoints": ["aux_pane", "global", "file"]}
+[SIDE PANEL] aux_pane opens beside chat (1 tab per server+tool; repeat calls update in place)
+[FULL PAGE] global opens full-width from Plugins sidebar ({} params; message/updateModelContext omitted)
+[LRU & CONCURRENCY] Up to 5 hidden frames kept in memory; max 4 concurrent tools/call per view
+[STEP PAYLOAD] ${kib} KiB ${kib > 1024 ? '-> WARNING: over 1 MiB persisted CallToolResult limit' : '-> OK (< 1 MiB step budget)'}`,
+        },
+        'file-viewer': {
+          surface: 'FILE VIEWER (OPAQUE)',
+          surfaceClass: 'flagged',
+          vis: 'Hidden From Model',
+          log: (kib) => `[EXTENSION MATCH] First enabled plugin claiming ".acmetopo" wins; plugin logo becomes tab icon
+[SECURITY] Tool hidden from LLM regardless of visibility; receives {"file": {"name": "grid.acmetopo", "resourceUri": "antigravity-file://<uuid>/grid.acmetopo"}}
+[READ] iframe calls resources/read -> host returns base64 blob (application/octet-stream, max 10 MiB)
+[WRITE] Check hostContext["com.google.antigravity/resources"]?.write before com.google.antigravity/resources/write (10 MiB max)
+[NOTE] Persist edits eagerly: Antigravity sends no ui/resource-teardown event on close (step payload ${kib} KiB)`,
+        },
+        'cli-fallback': {
+          surface: 'CLI PLAIN-TEXT',
+          surfaceClass: 'flagged',
+          vis: 'All Tools Exposed',
+          log: (kib) => `[CLIENT] Antigravity CLI (agy) connecting to <plugin>_<server> via /mcp
+[IFRAME] No ui:// iframe mounted; reads standard plain-text content alongside structuredContent
+[VISIBILITY] agy ignores _meta.ui.visibility (exposes visibility:["app"] helpers and file tools)
+[VALIDATION] agy plugin validate <path> --strict && agy plugin install <path>
+[STEP PAYLOAD] ${kib} KiB (${kib > 1024 ? 'Split large outputs across follow-up calls under 1 MiB' : 'Clean plain-text response size'})`,
+        },
+      };
+
+      const SNIPPETS = {
+        manifest: `{
+  "tools": [
+    {
+      "name": "acme_deployments_board",
+      "_meta": {
+        "ui": { "resourceUri": "ui://acme-cloud/deployments.html" },
+        "com.google.antigravity/ui": {
+          "entrypoints": [
+            { "type": "aux_pane", "title": "Acme Deployments" },
+            { "type": "global", "title": "Acme Deployments" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "acme_topology_viewer",
+      "_meta": {
+        "ui": { "resourceUri": "ui://acme-cloud/topology-viewer.html" },
+        "com.google.antigravity/ui": {
+          "entrypoints": [
+            { "type": "file", "title": "Acme Topology", "extensions": [".acmetopo"] }
+          ]
+        }
+      }
+    }
+  ]
+}`,
+        bridge: `import { App } from "@modelcontextprotocol/ext-apps";
+
+const app = new App({ name: "AcmeDeployments", version: "1.0.0" });
+await app.connect();
+
+// 1. Open a workspace file inside the Antigravity side panel
+try {
+  await app.request({
+    method: "com.google.antigravity/toggle-aux-pane",
+    params: { tabType: "fileView", uri: "file:///workspace/deploy.yaml" }
+  });
+} catch (err) {
+  if (err.code !== -32601) throw err;
+}
+
+// 2. Write local edits back to an opaque antigravity-file:// viewer URI
+const ctx = app.getHostContext();
+if (ctx?.["com.google.antigravity/resources"]?.write) {
+  await app.request({
+    method: "com.google.antigravity/resources/write",
+    params: { uri: currentOpaqueUri, text: updatedContent }
+  });
+}`,
+        genai: `import { GoogleGenAI } from "@google/genai";
+
+// Orchestrator pattern: Gemini 4 Neon plans, Gemini 4 Hydrogen executes fast edits
+const ai = new GoogleGenAI();
+
+const plan = await ai.interactions.create({
+  model: "gemini-4-neon",
+  thinking_level: "high",
+  input: "Design an MCP App plugin with inline card, aux_pane board, and plain-text CLI fallback."
+});
+
+const implementation = await ai.interactions.create({
+  model: "gemini-4-hydrogen",
+  previous_interaction_id: plan.id,
+  input: "Generate the TypeScript MCP server and ui:// bundle compliant with 10 MiB and CSP caps."
+});
+
+console.log(implementation.output_text);`,
+      };
+
+      let activeScenario = 'inline-card';
+      const surfaceEl = document.getElementById('m-surface');
+      const payloadEl = document.getElementById('m-payload');
+      const visEl = document.getElementById('m-vis');
+      const logEl = document.getElementById('sim-log');
+      const sliderEl = document.getElementById('payload-slider');
+      const payloadLabelEl = document.getElementById('payload-label');
+      const codeSelectEl = document.getElementById('code-select');
+      const codeViewEl = document.getElementById('code-view');
+
+      function render() {
+        const s = SCENARIOS[activeScenario];
+        const kib = Number(sliderEl.value) || 512;
+        payloadLabelEl.textContent = kib + ' KiB';
+        surfaceEl.textContent = s.surface;
+        surfaceEl.className = 'metric-val ' + s.surfaceClass;
+        payloadEl.textContent = kib > 1024 ? kib + ' KiB (> 1 MiB CAP)' : kib + ' KiB / 1 MiB OK';
+        payloadEl.className = 'metric-val ' + (kib > 1024 ? 'denied' : '');
+        visEl.textContent = s.vis;
+        logEl.textContent = s.log(kib);
+      }
+
+      document.querySelectorAll('.preset-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.preset-btn').forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+          activeScenario = btn.dataset.scenario;
+          render();
+        });
+      });
+
+      sliderEl.addEventListener('input', render);
+      codeSelectEl.addEventListener('change', () => {
+        codeViewEl.textContent = SNIPPETS[codeSelectEl.value];
+      });
+
+      codeViewEl.textContent = SNIPPETS.manifest;
+      render();
+    </script>
+  </body>
+</html>

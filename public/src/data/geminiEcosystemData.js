@@ -24,6 +24,383 @@ export const PULSE_INTELLIGENCE_FEED = [
     labLabel: 'Neon Studio [DEMO] →',
   },
   {
+    id: 'pulse-deepmind-mass-spec-skills-antigravity',
+    title: 'Google DeepMind Launches Mass Spec Skills for Google Antigravity: Lightweight Gemini 3.8 Flash Matches Frontier Chemistry at ~97% Accuracy',
+    tldr: 'Published November 25, 2026: Google DeepMind pairs Gemini inside Google Antigravity with open-source tandem mass spectrometry tools (matchms, SIRIUS, MAGMa, MetFrag, GNPS, MoNA, PubChem, RDKit)—lifting exact-match compound identification from under 4% (unassisted) to around 97% even on lightweight Gemini 3.8 Flash while cutting generated tokens nearly 4x.',
+    summary:
+      'Published November 25, 2026 on the Google DeepMind Blog (Robert Brunck, Stefan Ganscha, Swaroop Guntupalli, Dariusz Lasecki, Gabriella Marfani, Jack Mason, Hussain Masoom, Rose Mirshafian, Eliseo Papa, and Zoi Tsangalidou): (1) Illuminating Mass Spectrometry’s Dark Matter—traditional spectral libraries annotate roughly 5% of measured spectra (10% for human samples); Mass Spec Skills equips Google Antigravity agents to denoise spectra with matchms (stripping 1,700+ background spikes), query GNPS and MoNA, solve molecular formulas with SIRIUS, score PubChem isomers with MAGMa and MetFrag, and verify bond cleavages with RDKit, (2) End-to-End 100-Compound MoNA Benchmark—without tools or internet, accuracy stayed below 4% across Gemini 3.8 Flash, Gemini 4 Argon, and Gemini 4 Carbon; with internet access alone, brittle custom scripts missed 25%–33% on frontier models and over 75% on Flash; with Mass Spec Skills, all three models achieved around 97% exact-match accuracy while cutting generated tokens nearly 4x on Flash, by half on Argon, and nearly a fifth on Carbon, and (3) Tie-Breaking Chemistry Proof—on negative-mode [M−H]− m/z 395.1387 (1,761 raw peaks filtered to 19), the agent deduced C20H21ClN6O (−1.5 ppm, SIRIUS score 37.86), used sequential HCl + HNCO neutral losses to reject a tied 97.7%-intensity triazolobenzazepinol isomer (CID 154638626) and amide runner-up (CID 55558151, bond-break penalty 49.0), and confirmed CID 137835447 (bond-break score 26.0).',
+    category: 'DeepMind Science & Antigravity Skills',
+    tag: 'Google DeepMind + Antigravity',
+    modelBadge: 'Mass Spec Skills · 97%',
+    impactScore: '10.0 / 10',
+    date: '2026-11-25T13:00:00Z',
+    sourceLabel: 'Google DeepMind Blog: Mass Spec Skills for Google Antigravity (Nov 25, 2026)',
+    sourceUrl: 'https://deepmind.google/blog/interpreting-mass-spectra-with-google-antigravity/',
+    groundedBy: 'Google DeepMind Official Blog (Nov 25, 2026)',
+    seriesUrl: '/series/deepmind-mass-spec-skills-antigravity/part-1-what-changed-mass-spec-skills.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-mass-spec-skills-studio.html',
+    labLabel: 'Mass Spec Studio [DEMO] →',
+  },
+  {
+    id: 'pulse-antigravity-v2-35-1-2-35-2-turn-switch-resumption',
+    title: 'Google Antigravity v2.35.1 & v2.35.2 Ship Mid-Turn Model Switching, Restart Turn Resumption & Auto-Opening Plugin Panels (Plus ADK Python v2.15.1)',
+    tldr: 'Released November 24–25, 2026: Antigravity v2.35.2 unlocks the model selector while a turn is running for /btw side questions and follow-ups, while v2.35.1 auto-resumes interrupted turns on restart, opens plugin panel links in the side panel, and compresses diagnostic batches; ADK Python v2.15.1 ships A2A and Claude SDK fixes.',
+    summary:
+      'Documented across Google Antigravity Changelog v2.35.2 (Nov 25, 2026) and v2.35.1 (Nov 24, 2026) plus google/adk-python v2.15.1 (Nov 25, 2026 UTC): (1) Antigravity v2.35.2 Mid-Turn Selector Unlock—fixes the mid-turn model lock so developers can switch models before sending a /btw side question or queued follow-up, with a tooltip clarifying when the change takes effect, (2) Antigravity v2.35.1 Startup Resumption & Side Panels—automatically resumes active conversations interrupted by an app restart or update, opens plugin panel links from live agent replies directly in the side panel, and compresses background diagnostic uploads with batch-size caps, and (3) ADK Python v2.15.1—maintains compatibility across Anthropic SDK v1.x and v2.x, fixes RemoteA2aAgent streamed persistence without last_chunk, improves Apigee non-JSON tool argument errors, and fixes transient instruction routing.',
+    category: 'Antigravity & ADK Releases',
+    tag: 'Antigravity v2.35.2',
+    modelBadge: 'Antigravity v2.35.2 + ADK v2.15.1',
+    impactScore: '9.3 / 10',
+    date: '2026-11-25T12:00:00Z',
+    sourceLabel: 'Google Antigravity Changelog v2.35.2 + ADK Python v2.15.1 (Nov 25, 2026)',
+    sourceUrl: 'https://antigravity.google/docs/changelog#rel-hub-2.35.2',
+    groundedBy: 'Google Antigravity Official Changelog v2.35.1/v2.35.2 + github.com/google/adk-python/releases/tag/v2.15.1 (Nov 25, 2026)',
+  },
+  {
+    id: 'pulse-google-research-verifiable-social-reasoning',
+    title: 'Google Research Open-Sources Verifiable Social Reasoning Benchmark & 20K+ Multi-Agent Concordia Dataset for LLM Assistants',
+    tldr: 'Published November 25, 2026: Google Research’s Zorik Gekhman and Amir Taubenfeld introduce a user-mediated social reasoning benchmark (arXiv:2609.17496) built on Concordia multi-agent simulations—exposing how LLMs amplify biased user framing and underuse clarification questions across 12 evaluated models.',
+    summary:
+      'Published November 25, 2026 on the Google Research Blog (Zorik Gekhman and Amir Taubenfeld, arXiv:2609.17496, open-sourced in Google Research’s GitHub user-mediated social reasoning suite): (1) User-Mediated Reality With Verifiable Ground Truth—extends Google DeepMind’s Concordia library so a target agent with a known hidden motive interacts with a simulated user and auxiliary characters, then separates the simulation from an assistant debrief where the user recounts events subjectively, (2) 12-Model Evaluation Findings—demonstrates a steep assistant-observer accuracy gap compared to seeing objective transcripts firsthand, quantifies sensitivity to biased or insecure user framing (where models validate unfounded suspicions), shows models demand extra narrative detail humans do not need, and reveals multi-turn coherence anchoring rather than effective clarifying questions, and (3) Open-Source Release—publishes the full simulation/evaluation harness and 20,000+ generated social reasoning examples.',
+    category: 'Google Research & Evaluation',
+    tag: 'Google Research',
+    modelBadge: 'Concordia · 20K+',
+    impactScore: '9.4 / 10',
+    date: '2026-11-25T17:10:27Z',
+    sourceLabel: 'Google Research Blog: Verifiable Social Reasoning for LLM Assistants (Nov 25, 2026)',
+    sourceUrl: 'https://research.google/blog/verifiable-social-reasoning-for-llm-assistants/',
+    groundedBy: 'Google Research Official Blog + arXiv:2609.17496 (Nov 25, 2026)',
+  },
+  {
+    id: 'pulse-deepmind-humanitys-first-exam-hfe',
+    title: 'Google DeepMind Launches Humanity’s First Exam (HFE) & Kaggle Hackathon: Measuring the 7.6–80.1 pp LLM Reliability Floor Gap',
+    tldr: 'Published November 24, 2026 (19:30 UTC): Google DeepMind’s Oran Kelly and co-authors release Humanity’s First Exam (544 text and image prompts across 136 four-variant families and 20 subcategories) plus a Kaggle competition through December 15—showing top models hit 96%–98% pass@1 yet drop to 80.5%–92.4% on strict family pass4, with 73% of errors in visual perception.',
+    summary:
+      'Published November 24, 2026 across the Google Official Blog, Google DeepMind Technical Report (hfe_tech_paper.pdf), and Kaggle Benchmarks Leaderboard: (1) Floor Reliability Over Capability Ceilings—evaluates 18 frontier and fast-tier models across Google, OpenAI, and Anthropic using 544 prompts grouped into 136 four-prompt families passing Simplicity, Relatability, and Shock Value filters; while the top five models hit 96%–98% pass@1 and 100% family pass@4, strict family pass4 drops to an 85.8% average (7.6 to 80.1 pp Family Reliability Gap), (2) Gemini 4 & Competitor Table 4 Standings—GPT-6.2 Astra leads at 92.4% family pass4 (7.6 pp gap), GPT-6.2 Sol hits 86.9% (13.1 pp), Gemini 4 Neon (xhigh) ranks #3 overall at 85.8% family pass4 (96.8% pass@1, 14.2 pp gap), Gemini 4 Carbon (high) reaches 80.5% (#5), Gemini 4 Argon (high) 76.6% (#7), Gemini 4 Hydrogen (xhigh) 68.9% (#10), Claude Fable 5.2 (max) 73.7% (#9), Claude Opus 5.5 (max) 63.0% (#12), and Gemini 3.5 Flash-Lite 18.6% (80.1 pp gap), and (3) Vision Bottleneck & Community Hackathon—73% of wrong answers concentrate in visual perception (inverting human difficulty, Spearman rho = -0.64) where extra test-time thinking barely helps; open Kaggle submissions run through December 15, 2026.',
+    category: 'DeepMind Benchmarks & Reliability',
+    tag: 'Humanity’s First Exam',
+    modelBadge: 'HFE · 18-Model Leaderboard',
+    impactScore: '9.9 / 10',
+    date: '2026-11-24T19:30:00Z',
+    sourceLabel: 'Google Official Blog & DeepMind Technical Paper: Humanity’s First Exam (Nov 24, 2026)',
+    sourceUrl: 'https://blog.google/innovation-and-ai/models-and-research/google-deepmind/humanitys-first-exam/',
+    groundedBy: 'Google Official Blog + hfe_tech_paper.pdf + Kaggle Leaderboard (Nov 24, 2026)',
+  },
+  {
+    id: 'pulse-workspace-mcp-servers-cli-agent-governance-ga',
+    title: 'Google Ships Workspace MCP Servers GA, gwscli Terminal Client, Cloud Agent Gateway & Mandatory Feb 1, 2027 Agent Cutover',
+    tldr: 'Published November 24, 2026: Google Cloud and Google Workspace make dedicated remote MCP servers (Gmail, Drive, Docs, Sheets, Slides, Calendar, Chat, Tasks, Classroom, plus Universal Search on workspacemcp.googleapis.com) and the gwscli binary generally available alongside Cloud Agent Gateway SPIFFE enforcement, a 5,000 req/day free Standard Tier, a February 1, 2027 MCP mandate, and April 1, 2027 Scaled Tier billing.',
+    summary:
+      'Published November 24, 2026 across Google Cloud Blog, Google Workspace Updates, and official Google Workspace Developer Guides (serving 2.8T+ monthly Workspace API calls): (1) Dedicated Remote MCP Servers & Stateless Form Elicitation—ships GA /mcp/v1 endpoints (gmailmcp, drivemcp, docsmcp, sheetsmcp, slidesmcp, calendarmcp, chatmcp, tasksmcp, classroommcp, workspacemcp Universal Search, plus people.googleapis.com in Preview and /mcp/v1self fallback) implementing the 2026-07-28 stateless form elicitation handshake (input_required + argument-locked requestState) and Admin Console HITL review rules, (2) Google Workspace CLI (gwscli, GA) & Cloud Agent Gateway—delivers native macOS/Linux/Windows binaries with packaged skills, runtime --schema discovery, structured JSON, and incremental --bundle readonly OAuth, backed on Google Cloud by Agent Gateway SPIFFE Agent Identities (mTLS + DPoP), default-deny IAM Unified Access Policies, Model Armor, and Semantic Governance, and (3) Standardized Usage Tiers & 2027 Deadlines—launches Standard Tier (5,000 req/day/project/product free, covering >99% of active developers) and Scaled Tier, establishes a February 1, 2027 technical MCP requirement capping direct REST agent calls at Standard limits, and begins April 1, 2027 Scaled Tier billing (where Gmail/Calendar/Drive MCP calls bill from request #1 with no daily free allowance).',
+    category: 'Workspace MCP, CLI & Enterprise Governance',
+    tag: 'GA · Feb 1, 2027 Mandate',
+    modelBadge: 'Workspace MCP + gwscli',
+    impactScore: '10.0 / 10',
+    date: '2026-11-24T17:02:59Z',
+    sourceLabel: 'Google Cloud Blog & Workspace Updates: MCP Servers, gwscli & Usage Tiers (Nov 24, 2026)',
+    sourceUrl: 'https://cloud.google.com/blog/products/identity-security/deploying-agents-safely-in-your-enterprise/',
+    groundedBy: 'Google Cloud Blog + Google Workspace Updates + developers.google.com/workspace/guides/* (Nov 24, 2026)',
+    seriesUrl: '/series/workspace-mcp-servers-cli/part-1-what-changed-workspace-mcp-cli.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-workspace-mcp-cli-studio.html',
+    labLabel: 'Workspace MCP Studio [DEMO] →',
+  },
+  {
+    id: 'pulse-agent-retrieval-managed-ingestion-searchdocuments',
+    title: 'Google Launches Managed Ingestion & SearchDocuments in Agent Retrieval (Public Preview): Cloud Storage Files to Cited Answers in One Call',
+    tldr: 'Published November 24, 2026: Yingxin Jiang and Kaz Sato introduce Managed Ingestion and SearchDocuments (v1beta REST in us-east4 and europe-west4), turning Cloud Storage PDFs, Office docs, and videos into Gemini Embedding 2 hybrid-searchable segments with page numbers and 0.3–0.5s audio-aware video timestamps.',
+    summary:
+      'Published November 24, 2026 on the Google Developers Blog (vectorsearch.googleapis.com/v1beta): (1) Zero-Code Ingestion With Gemini Embedding 2—point an UNSTRUCTURED data store (PDF, DOCX, PPTX, XLSX, TXT) or VIDEO data store (MP4, MOV, WebM, MKV) at Cloud Storage gs:// URIs or JSONL manifests; Google’s test ingested 18 Alphabet investor PDFs to page-cited results in ~9 minutes using either 100–500 token chunk segmentation or page segmentation, (2) One-Call SearchDocuments & Reranking—replaces custom Collection schemas with a single documents:search REST call running automatic semantic + full-text hybrid search plus optional semantic-ranker-fast@latest reranking and metadata/page filters, and (3) Audio-Aware Multimodal Video Search—splits videos into configurable fixed windows (10–80s, default 30s) and embeds speech via audio_mode: ENABLED alongside frames, returning exact startOffset/endOffset timestamps across 19 minutes of video in 0.3–0.5 seconds per query with $0 separate managed-ingestion charges during Public Preview.',
+    category: 'Agent Retrieval & Multimodal RAG',
+    tag: 'Public Preview · v1beta',
+    modelBadge: 'SearchDocuments + Embedding 2',
+    impactScore: '9.6 / 10',
+    date: '2026-11-24T17:00:00Z',
+    sourceLabel: 'Google Developers Blog: Managed Ingestion & SearchDocuments in Agent Retrieval (Nov 24, 2026)',
+    sourceUrl: 'https://developers.googleblog.com/from-files-to-cited-answers-in-one-api-call-managed-ingestion-and-searchdocuments-in-agent-retrieval/',
+    groundedBy: 'Google Developers Official Blog (Nov 24, 2026)',
+  },
+  {
+    id: 'pulse-gemini-4-neon-builders-and-cyber-ga',
+    title: 'Google Highlights 5 Gemini 4 Neon Builder Demos, Ships Gemini 4 Neon for Cyber (GA) & Adds Neon Preview to CodeMender',
+    tldr: 'Published November 23–24, 2026: Google spotlights five Gemini 4 Neon developer projects (3D Earth, xhigh Three.js butterflies, sub-5-minute /swarm hexagon flame shader, black hole lensing shader, and pendulum wave) alongside Gemini 4 Neon for cyber GA (345 tok/s per GSU) and CodeMender --model gemini-4-neon Preview.',
+    summary:
+      'Published across the Google Official Blog (Nov 24, 2026 16:00 UTC by Zahra Thompson) and Gemini Enterprise Agent Platform Release Notes (Nov 23, 2026): (1) Five Gemini 4 Neon Builder Projects—showcases a glowing 3D Earth built on Neon High thinking in Google Antigravity, Three.js butterflies on xhigh thinking, a hexagon flame shader generated in under five minutes via /swarm, an interactive 3D black hole lensing shader, and a traveling pendulum wave simulation, alongside Golden State Warriors & Chase Center naming Gemini Official AI Assistant & Enterprise LLM Partner, (2) Gemini 4 Neon for Cyber (GA)—launches gemini-4-neon-cyber-permissive for Fairwind-approved defensive cybersecurity across global, us, and eu endpoints (1,048,576 context/decode, LOW/MEDIUM/HIGH/XHIGH, Computer Use, Office/OpenDocument inputs, and 345 tokens/sec per GSU Provisioned Throughput), and (3) CodeMender Preview—adds --model gemini-4-neon support to cm find, cm verify, and cm fix.',
+    category: 'Gemini 4 Neon & Security',
+    tag: 'Builders + Cyber GA',
+    modelBadge: 'Gemini 4 Neon Cyber',
+    impactScore: '9.4 / 10',
+    date: '2026-11-24T16:00:00Z',
+    sourceLabel: 'Google Official Blog & Agent Platform Release Notes (Nov 23–24, 2026)',
+    sourceUrl: 'https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-neon-builders/',
+    groundedBy: 'Google Official Blog (Nov 24) + Gemini Enterprise Agent Platform Release Notes (Nov 23, 2026)',
+  },
+  {
+    id: 'pulse-antigravity-v2-35-conversation-api-unlimited-history',
+    title: 'Google Antigravity v2.35.0 Ships Unlimited Conversation History, Conversation Management API & Cmd+F HTML Artifact Search',
+    tldr: 'Released November 23, 2026: Antigravity v2.35.0 removes the 500-conversation local pruning limit, adds a built-in Conversation Management API and conversations skill for agents and automations, adds Cmd+F search inside full-page HTML artifacts, upgrades Auto read/write permissions, and speeds up large Swarm boards.',
+    summary:
+      'Documented in Google Antigravity Changelog v2.35.0 (November 23, 2026, 20 improvements and 19 fixes): (1) Unlimited Local History & Conversation Management API—keeps local conversation history unlimited by default instead of pruning after 500 threads, and equips agents, scripts, plugins, and automations with the built-in Conversation Management API and conversations skill to create, list, inspect, rename, pin, star, archive, tag, group, and delete local conversations, (2) HTML Artifact Cmd+F Search & RTL Tabs—adds Cmd+F (Ctrl+F on Windows and Linux) in-artifact search with match highlighting and navigation inside full-page HTML artifacts, plus per-tab RTL prose toggles for Markdown and text files, (3) Environment-First UX, Auto Permissions & Swarm Scaling—places Environment (and SSH Host) ahead of Project and Branch, lets Auto permission mode approve out-of-project reads automatically while protecting sensitive config directories and suggesting directory-scoped write permissions, accelerates large Swarm boards via on-demand message paging and incremental updates, collapses consecutive parallel subagent launches, locks mid-turn selectors, and defaults Orchestrator and Executor models to High thinking effort, and (4) Marketplace & Gemini 4 Neon Guidance—adds ClickUp, Midpage Legal Research, and Descrybe Legal Engine plugins while updating the official Gemini API Marketplace plugin to v2.8.0 with Gemini 4 Neon usage and migration guidance.',
+    category: 'Antigravity & Agent Runtime',
+    tag: 'Antigravity v2.35.0',
+    modelBadge: 'Antigravity v2.35',
+    impactScore: '10.0 / 10',
+    date: '2026-11-23T23:55:00Z',
+    sourceLabel: 'Google Antigravity Docs & Changelog: v2.35.0 (Nov 23, 2026)',
+    sourceUrl: 'https://antigravity.google/docs/changelog#rel-hub-2.35.0',
+    groundedBy: 'Google Antigravity Official Changelog v2.35.0 (Nov 23, 2026)',
+    seriesUrl: '/series/antigravity-v2-35-conversation-api/part-1-what-changed-antigravity-v2-35.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-antigravity-conversation-studio.html',
+    labLabel: 'Conversation Studio [DEMO] →',
+  },
+  {
+    id: 'pulse-gemini-4-hydrogen-six-builder-projects-canvas',
+    title: 'Google Spotlights 6 Early Gemini 4 Hydrogen Builder Creations & Gemini Canvas Interactive Workflows',
+    tldr: 'Published November 23, 2026 (18:00 UTC): Google highlights six early Gemini 4 Hydrogen builds—including a Three.js rainy sci-fi skyline on High thinking, contrasting voxel and jelly koi ponds, a Carbon /swarm of Hydrogen workers animating a crimson moth, and a sub-minute 3D desert ranch—alongside four Gemini Canvas workflows.',
+    summary:
+      'Published November 23, 2026 across two companion Google Official Blog dispatches (Molly McHugh-Johnson on Gemini 4 Hydrogen builders and Gemini App Canvas workflows): (1) Six Gemini 4 Hydrogen Builds—showcases a Three.js rainy sci-fi skyline built with Hydrogen on High thinking in Google Antigravity, a morning-to-night seaplane flight, contrasting 3D voxel and soft jelly-like koi ponds, an interactive crimson moth orchestrated by Gemini 4 Carbon running a /swarm of Hydrogen workers (with Hydrogen recording the demo video), and a side-by-side animated 3D desert ranch benchmark showing Hydrogen completing in under one minute compared to Gemini 3.8 Flash, and (2) Four Gemini Canvas Workflows—highlights side-by-side web apps and 3D mini-games, interactive study quizzes and flashcards from PDFs, spreadsheet-to-calculator office boosters, and inline section-level writing edits.',
+    category: 'Gemini 4 Hydrogen & Builders',
+    tag: 'Google Official Blog',
+    modelBadge: 'Gemini 4 Hydrogen + Canvas',
+    impactScore: '9.4 / 10',
+    date: '2026-11-23T18:00:00Z',
+    sourceLabel: 'Google Official Blog: 6 Builders on Gemini 4 Hydrogen & Gemini Canvas (Nov 23, 2026)',
+    sourceUrl: 'https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-hydrogen-builders/',
+    groundedBy: 'Google Official Blog (Nov 23, 2026 18:00 UTC)',
+  },
+  {
+    id: 'pulse-google-research-deepcrossattention-residual-routing',
+    title: 'Google Research Details DeepCrossAttention (DCA): Dynamic Depth-Wise Residual Routing Reaching Quality 3x Faster',
+    tldr: 'Published November 23, 2026 (17:21 UTC): Google Research’s Kyriakos Axiotis and Thomas Fu detail DeepCrossAttention (DCA), replacing rigid point-wise residual summation with per-token dynamic layer routing and depth-wise split Q/K/V cross-attention—matching standard transformer quality up to 3x faster with under 0.2% parameter overhead.',
+    summary:
+      'Published November 23, 2026 on the Google Research Blog (building on Google Research’s ICML 2025 paper arXiv:2502.06785 with Mike Heddes, Adel Javanmard, MohammadHossein Bateni, and Vahab Mirrokni): (1) Solving Residual Information Dilution—replaces equal-weight point-wise skip additions with per-token dynamic mixing weights plus depth-wise cross-attention (split Q/K/V) across preceding layer embeddings, allowing each token to shift adaptively between sequential and parallel depth routing, (2) Verified Scaling Gains—reaches baseline transformer performance in up to 5x fewer training steps on C4 and LM1B (3x faster overall), beats a 42-layer standard transformer under 14 perplexity on LM1B using only 30 DCA layers (a 29% depth and parameter cut, and up to 30–40% parameter savings), adds under 0.2% parameters, and retrofits cleanly onto pre-trained checkpoints (-0.19 perplexity on LM1B vs. -0.02 for continued baseline training), and (3) Ecosystem Convergence—compares DCA directly against Moonshot AI’s Attention Residuals (Block AttnRes), Thinking Machines’ Inkling 2 (adopting Block AttnRes plus DCA’s split Q/K/V), Hyper-Connections, and Sinkhorn-Knopp Manifold-Constrained Hyper-Connections.',
+    category: 'Transformer Architecture & Research',
+    tag: 'Google Research',
+    modelBadge: 'DeepCrossAttention (DCA)',
+    impactScore: '9.8 / 10',
+    date: '2026-11-23T17:21:12Z',
+    sourceLabel: 'Google Research Blog: Supercharging Transformer Residual Connections (Nov 23, 2026)',
+    sourceUrl: 'https://research.google/blog/supercharging-transformer-residual-connections/',
+    groundedBy: 'Google Research Official Blog + arXiv:2502.06785 (Nov 23, 2026)',
+  },
+  {
+    id: 'pulse-deepmind-gemini-4-lean-quantum-algorithms',
+    title: 'Google DeepMind & Quantum AI Pair Gemini 4 Agent Teams With Lean 4 Formal Verification to Cut Fusion Simulation Cost 11.8x',
+    tldr: 'Published November 23, 2026: Google DeepMind and Google Quantum AI (arXiv:2611.09822) deploy collaborating Gemini 4 agent teams inside an open-source Lean 4 quantum program library (QuantumComputation)—achieving an 11.8x resource reduction on inertial confinement fusion (5,650 to 4,338 qubits), 8x cheaper photochemistry, 2.5x Cytochrome P450 gains, 2.57x parallel Grover search, and a 290x arcsin speedup.',
+    summary:
+      'Published November 23, 2026 by Sergey Shirobokov, Ben Jaderberg, Ryan Babbush, Swarat Chaudhuri, and Pushmeet Kohli across Google DeepMind and Google Quantum AI (arXiv:2611.09822): (1) Proof-Checked Multi-Agent Discovery—independent teams of Gemini 4 agents synthesize quantum circuits against formal Lean 4 specifications grounded in quantum Hoare logic with classical variables (Mathlib4 + Physlib QuantumInfo), verify correctness and resource costs mathematically before committing to a shared wiki/notebook, and debate ideas at virtual conferences every four hours, (2) Verified Scientific & Algorithmic Gains—cuts inertial confinement fusion stopping-power simulation cost by 11.8x and memory from 5,650 to 4,338 error-corrected qubits (176 Lean modules, 457,154 lines), makes non-Born-Oppenheimer photochemistry 8x cheaper (74 modules, 196,621 lines), reduces Cytochrome P450 drug-metabolism simulation cost 2.5x and qubits from 481 to 333 by replacing bulky memory lookups (160 modules, 199,831 lines), speeds parallel Grover search up to 2.57x (Grover FindAll: 200 modules, 554,952 lines), and accelerates the foundational arcsin state-loading primitive 290x (16 modules, 22,335 lines), and (3) Open-Source Lean Framework—releases QuantumComputation, QuantumComputationSpecs, and all verified discoveries on GitHub under Apache 2.0 and CC-BY.',
+    category: 'DeepMind Science & Verification',
+    tag: 'Google DeepMind + Lean 4',
+    modelBadge: 'Gemini 4 + Lean 4 Quantum',
+    impactScore: '10.0 / 10',
+    date: '2026-11-23T17:00:00Z',
+    sourceLabel: 'Google DeepMind Blog & arXiv:2611.09822 (Nov 23, 2026)',
+    sourceUrl: 'https://deepmind.google/blog/finding-faster-quantum-algorithms-with-agents-and-formal-verification/',
+    groundedBy: 'Google DeepMind Official Blog + arXiv:2611.09822 + github.com/google-deepmind/formal-quantum-computation (Nov 23, 2026)',
+    seriesUrl: '/series/deepmind-lean-quantum-algorithms/part-1-what-changed-gemini-4-lean-quantum.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-4-lean-quantum-studio.html',
+    labLabel: 'Lean Quantum Studio [DEMO] →',
+  },
+  {
+    id: 'pulse-semantic-governance-agentdojo-benchmark',
+    title: 'Google Benchmarks Semantic Governance Policies on AgentDojo: Cutting Indirect Prompt Injection From 48.7% to 0.9%',
+    tldr: 'Published November 23, 2026: Across six full runs of AgentDojo v1.2.2 (97 user tasks, 949 attacked runs) with gemini-2.5-flash, Semantic governance policies’ built-in user intent check alone cuts attack success rate 98.2% from 48.7% to 0.9%—blocking all 929 tool-calling exploits at a 2.6 percentage point benign utility cost.',
+    summary:
+      'Published November 23, 2026 on the Google Developers Blog: evaluates Semantic governance policies’ default user-intent alignment check (with zero custom policies configured) across six runs of ETH Zurich & Invariant Labs’ AgentDojo v1.2.2 benchmark (banking, Slack, travel, and workspace using important_instructions attacks): (1) 98.2% Attack Reduction—average attack success rate drops from 48.7% to 0.9% (0.84%–0.95% range across runs), with zero of 929 tool-calling attacks succeeding across banking, Slack, and workspace; the remaining 0.9% came exclusively from travel text-only hotel recommendation injections without tool calls, (2) Safe Task Utility—tasks completed safely under attack rise from 22.7% to 25.1%, while clean benign utility falls 2.6 percentage points on average (unintended over-blocking affected 1 of 97 benign tasks, roughly 1%), and (3) Honest Adaptive-Attack Boundary—notes that because the judge sees untrusted content alongside user requests, adaptive red-teaming (citing NIST CAISI’s 11% to 81% adaptive jump) motivates pairing dry-run Cloud Logging validation with response filtering.',
+    category: 'Agent Security & Benchmarks',
+    tag: 'AgentDojo Benchmark',
+    modelBadge: 'Semantic Governance · 0.9% ASR',
+    impactScore: '9.7 / 10',
+    date: '2026-11-23T17:47:18Z',
+    sourceLabel: 'Google Developers Blog: Securing AI Agents Against Intent Hijacking (Nov 23, 2026)',
+    sourceUrl: 'https://developers.googleblog.com/did-the-user-ask-for-this-securing-ai-agents-against-intent-hijacking-with-semantic-governance-policies/',
+    groundedBy: 'Google Developers Official Blog (Nov 23, 2026)',
+  },
+  {
+    id: 'pulse-search-personal-intelligence-wallet-drive-gemini',
+    title: 'Google Search Expands Personal Intelligence in AI Mode With Opt-In Google Wallet, Google Drive & Gemini App Context',
+    tldr: 'Published November 23, 2026: VP of Product Robby Stein announces Personal Intelligence in Google Search AI Mode adds opt-in read-only Google Wallet support starting today, with Google Drive and cross-surface Gemini app context sharing following in the coming weeks.',
+    summary:
+      'Published November 23, 2026 on the Google Official Blog (17:00 UTC) by Robby Stein, VP of Product for Google Search: expands Search Personalization Connected Apps (previously Gmail, Calendar, and Google Photos) to include: (1) Read-Only Google Wallet Integration—starting today, opted-in users can map financial milestones, trim everyday spending, and optimize credit card cash-back, travel perks, and reward points without Search ever moving, managing, or investing funds, (2) Google Drive & Gemini App Context Bridging—rolling out over coming weeks so Docs, Sheets, PDFs, and ongoing Gemini app explorations carry straight into AI Mode threads and vice versa, and (3) Transparent Personalization Controls—adds an upcoming Personalization source icon below tailored AI Mode responses, supports in-thread natural-language profile edits, and extends recent-search continuity into AI Overviews.',
+    category: 'Search & Personal Intelligence',
+    tag: 'Product Rollout',
+    modelBadge: 'Personal Intelligence · Wallet + Drive',
+    impactScore: '9.4 / 10',
+    date: '2026-11-23T17:00:00Z',
+    sourceLabel: 'Google Official Blog: A more tailored Google Search that’s uniquely yours (Nov 23, 2026)',
+    sourceUrl: 'https://blog.google/products-and-platforms/products/search/google-search-personal-intelligence-apps/',
+    groundedBy: 'Google Official Blog (Nov 23, 2026 17:00 UTC)',
+  },
+  {
+    id: 'pulse-alloydb-omni-local-gemma-4',
+    title: 'Google Cloud Launches AlloyDB Omni Integration With Local Gemma 4 & Open Models for Air-Gapped SQL Inference',
+    tldr: 'Published November 23, 2026: Google Cloud’s downloadable PostgreSQL-compatible AlloyDB Omni now invokes locally hosted Gemma 4 (gemma4:12b) and Qwen 3.8 models directly from SQL via google_ml_integration and ai.generate, keeping prompts, vectors, and completions inside private or air-gapped clusters.',
+    summary:
+      'Published November 23, 2026 on the Google Cloud Blog (17:00 UTC): pairs AlloyDB Omni’s PostgreSQL-compatible engine and Search-grade ScaNN vector indexing with local Ollama model endpoints inside Kubernetes or on-premises clusters: (1) Zero-Egress SQL Inference—database queries call ai.generate(prompt, model_id => "gemma4_llm") directly against internal cluster services (for example ollama-service.ai-demo.svc.cluster.local:11434) with 16Gi RAM for gemma4:12b (24Gi for Qwen 3.8) so proprietary logs and customer data never cross the public internet, and (2) Native Chain-of-Thought Sanitization—ships google_ml.ollama_llm_input_transform and ollama_llm_output_transform SQL functions with a 600-second request timeout to strip raw chain-of-thought reasoning tags before returning clean structured outputs inside SQL.',
+    category: 'Databases & Local Gemma 4',
+    tag: 'Google Cloud Launch',
+    modelBadge: 'AlloyDB Omni + Gemma 4',
+    impactScore: '9.3 / 10',
+    date: '2026-11-23T17:00:00Z',
+    sourceLabel: 'Google Cloud Blog: AlloyDB Omni integration with local models (Nov 23, 2026)',
+    sourceUrl: 'https://cloud.google.com/blog/products/databases/alloydb-omni-integration-with-local-models/',
+    groundedBy: 'Google Cloud Official Blog (Nov 23, 2026 17:00 UTC)',
+  },
+  {
+    id: 'pulse-antigravity-v2-34-mcp-apps-neon',
+    title: 'Google Antigravity v2.34.0 Ships Interactive MCP Apps Across 4 Surfaces, Built-In /mcp-app-development & Expanded Gemini 4 Neon',
+    tldr: 'Released November 20, 2026: Antigravity App v2.34.0 implements the open MCP Apps specification (io.modelcontextprotocol/ui) plus Antigravity entrypoints (com.google.antigravity/ui) for inline chat, side panel (aux_pane), full-page (global), and opaque custom file viewers, ships the built-in /mcp-app-development command, and expands Gemini 4 Neon and Orchestrator (Neon) to paid consumer plans, Gemini API keys, and Application Default Credentials.',
+    summary:
+      'Documented in Google Antigravity Changelog v2.34.0, Antigravity MCP Apps Docs, and /mcp-app-development Reference: (1) Four MCP App Surfaces—renders ui:// single-file HTML views (text/html;profile=mcp-app, up to 10 MiB) inline in chat (150 px fallback, 800 px auto-resize ceiling), in the side panel (aux_pane, one tab per server+tool), full-width from the Plugins sidebar (global), and as custom file viewers (file entrypoint hidden from the model with opaque antigravity-file:// URIs and 10 MiB read/write caps), (2) Host Limits & Plain-Text CLI Parity—caps persisted CallToolResult trajectory payloads at 1 MiB, concurrent tools/call at 4 per view, and hidden background frames at 5 (LRU), enforces default-deny CSP without persistent storage, sends no teardown hook, and falls back to standard plain-text MCP tools on Antigravity CLI (agy) and IDE extensions, (3) Built-In /mcp-app-development & Partner Plugins—loads the MCP Apps scaffolding skill on turn one and adds Clerk, Docusign, and TestMu AI partner plugins, and (4) Gemini 4 Neon & 15 Workflow Upgrades—expands Gemini 4 Neon and Orchestrator (Neon + Hydrogen) to eligible paid consumer plans, Gemini API keys, and ADC accounts alongside Cmd+E terminal side questions, single-column color-coded diff gutters, and drag-and-drop conversation tabs.',
+    category: 'Antigravity & MCP Apps',
+    tag: 'Antigravity v2.34.0',
+    modelBadge: 'MCP Apps · Antigravity v2.34',
+    impactScore: '10.0 / 10',
+    date: '2026-11-20T23:58:00Z',
+    sourceLabel: 'Google Antigravity Docs & Changelog: v2.34.0 & MCP Apps (Nov 20, 2026)',
+    sourceUrl: 'https://antigravity.google/docs/changelog#rel-hub-2.34.0',
+    groundedBy: 'Google Antigravity Official Changelog v2.34.0 + antigravity.google/docs/mcp-apps + /docs/commands/mcp-app-development (Nov 20, 2026)',
+    seriesUrl: '/series/antigravity-v2-34-mcp-apps/part-1-what-changed-antigravity-v2-34-mcp-apps.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-antigravity-mcp-apps-studio.html',
+    labLabel: 'MCP Apps Studio [DEMO] →',
+  },
+  {
+    id: 'pulse-gemini-deferred-service-tier-ga',
+    title: 'Google Cloud Launches Deferred Service Tier GA for Stateful Multi-Turn Agents: 50% Batch Economics Without Breaking Tool Loops',
+    tldr: 'Updated November 20, 2026: The Deferred service tier (service_tier="deferred") is now generally available across the Gemini Interactions API, Agent Development Kit (ADK), and Deep Research—cutting completed turn costs by 50% off Standard PayGo, stacking with prompt caching, charging $0 for failed or cancelled turns, and queuing multi-turn tool chains onto spare global capacity within a 24-hour target.',
+    summary:
+      'Documented across Google Cloud’s What’s New, Gemini Enterprise Agent Platform Deferred tier guide (updated November 20, 2026 UTC), and ADK Python v2.10.0+ scheduling docs: (1) Dynamic Batch Economics—replaces static JSONL batch input files with stateful, asynchronous multi-turn execution at 50% off Standard PayGo pricing, stacking with implicit prompt caching while billing $0 for cancelled, expired, or failed turns, (2) Per-Turn Stateful Queuing—targets 95% completion within 24 hours, retains server-side interaction state for 7 days across previous_interaction_id chains, and eliminates peak-hour HTTP 429 contention, (3) Global Endpoint Contract—supported exclusively on locations/global at aiplatform.googleapis.com with background=true and store=true across Gemini 4 Neon, Hydrogen, Carbon, Argon, Gemini 3.x Flash/Pro, Deep Research (gemini-deep-research-1.0), and allowlisted Cyber models (regional/us/eu endpoints or store=false return HTTP 400 invalid_request), and (4) Per-Run ADK Toggle—ADK RunConfig(service_tier=ServiceTier.DEFERRED) lets a single agent definition handle real-time user chat by day and discounted overnight scans at night.',
+    category: 'Agent Compute & Economics',
+    tag: 'Google Cloud GA',
+    modelBadge: 'Deferred Tier · 50% Off',
+    impactScore: '10.0 / 10',
+    date: '2026-11-20T23:55:00Z',
+    sourceLabel: 'Google Cloud Docs & Blog: Deferred Tier on Gemini Platform (Nov 20, 2026 UTC)',
+    sourceUrl: 'https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/deferred-tier',
+    groundedBy: 'Google Cloud Official Docs (Last updated 2026-11-20 UTC) + What’s New with Google Cloud + ADK Docs',
+    seriesUrl: '/series/gemini-deferred-service-tier/part-1-deferred-tier-interactions-ga.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-deferred-tier-studio.html',
+    labLabel: 'Deferred Studio [DEMO] →',
+  },
+  {
+    id: 'pulse-google-duplex-tasks-in-gemini',
+    title: 'Google Research Details How Duplex Evolved Into Gemini 4 Autonomous Phone Calling Inside Tasks in Gemini',
+    tldr: 'Published November 20, 2026: Google Research (Yossi Matias, Yaniv Leviathan, and Janet Zhou) traces Google Duplex’s evolution from 2018 closed-domain RNNs and 2022 LaMDA hybrid stacks into a unified Gemini 4 Hydrogen and Gemini 4 Neon telephony stack now calling businesses inside Tasks in Gemini.',
+    summary:
+      'Published November 20, 2026 on Google Research Blog: (1) Three Generations of Telephony AI—traces the 2018 pre-transformer RNN closed-domain system (whose verified merchant calls reached over one trillion views in Search and Maps by 2023 and powered five generations of Pixel Call Assist) through 2022 LaMDA hybrid stacks into free-text, unbounded Gemini 4 Hydrogen and Gemini 4 Neon workflows, (2) Real-Time Compressed-Line Engineering—combines pragmatic pre-call context (predicting which merchants accept group reservations) with sub-second streaming cadence and custom acoustic noise handling for espresso machines, kitchen clatter, and mid-sentence revisions, and (3) Transparent Merchant Safeguards—every call opens with upfront AI disclosure, requires zero merchant software, and honors Business Profile opt-outs or spoken stop requests while Tasks in Gemini coordinates Agent Payments Protocol (AP2), email, and RCS follow-ups.',
+    category: 'Voice Agents & Research',
+    tag: 'Google Research',
+    modelBadge: 'Duplex + Gemini 4',
+    impactScore: '9.6 / 10',
+    date: '2026-11-20T19:00:00Z',
+    sourceLabel: 'Google Research Blog: How Google Duplex evolved to also call businesses for you in Gemini (Nov 20, 2026)',
+    sourceUrl: 'https://research.google/blog/how-google-duplex-evolved-to-also-call-businesses-for-you-in-gemini/',
+    groundedBy: 'Google Research Official Blog (Nov 20, 2026)',
+  },
+  {
+    id: 'pulse-gemini-enterprise-third-party-stores-ga',
+    title: 'Gemini Enterprise Reaches GA Across 70+ Third-Party Data Stores Including GitLab, Linear, Stripe, FactSet & AWS Marketplace',
+    tldr: 'Released November 20, 2026: Google Cloud’s Gemini Enterprise Release Notes promote more than 70 third-party data store connectors to General Availability—spanning engineering (GitLab, Linear, Grafana, PagerDuty, Sourcegraph), finance (FactSet AI-Ready Data, Moody’s, MSCI, S&P Global, Stripe, Ramp), and knowledge hubs (Airtable, Asana, Atlan, Egnyte, Zapier).',
+    summary:
+      'Published in Google Cloud’s Gemini Enterprise Release Notes (November 20, 2026): moves 70+ enterprise data connectors from preview into General Availability for grounded Gemini Enterprise search and agents, including AirOps, Airtable, Apollo GraphOS, Asana, Atlan, Attio, AWS Marketplace, Calendly, Cisco Workspaces, Cohesity, Daloopa, Egnyte, Excalidraw, FactSet AI-Ready Data, Freshservice, Fullstory, GitLab, Google Stitch, Grafana, Guru, Hex, Hugging Face, iManage, Intercom, Linear, Microsoft Learn, Moody’s, MSCI, NetDocuments, PagerDuty, Pendo, Ramp, Relativity, S&P Global Deterministic Retrieval, Sourcegraph, Starburst, Stripe, SurveyMonkey, Tavily, Vanta, Webex Meetings, Wix, Zapier, Zoho Desk, and Zoho Projects.',
+    category: 'Enterprise Connectors',
+    tag: 'Gemini Enterprise GA',
+    modelBadge: '70+ Data Stores GA',
+    impactScore: '9.3 / 10',
+    date: '2026-11-20T17:00:00Z',
+    sourceLabel: 'Google Cloud Docs: Gemini Enterprise Release Notes (Nov 20, 2026)',
+    sourceUrl: 'https://docs.cloud.google.com/gemini/enterprise/docs/release-notes#November_20_2026',
+    groundedBy: 'Google Cloud Official Release Notes (Nov 20, 2026)',
+  },
+  {
+    id: 'pulse-gemini-semantic-governance-and-multicloud-agents',
+    title: 'Google Launches Semantic Governance Policies (Preview) & Multi-Cloud Agent Anomaly Detection Across AWS and Azure',
+    tldr: 'Published November 20, 2026: Google introduces inline Semantic governance policies in Preview via Agent Gateway—checking every proposed tool call against plain-language rules and user intent before execution—alongside Private Preview Agent Anomaly Detection for ADK agents on AWS Lambda, Amazon Bedrock, and Microsoft Foundry.',
+    summary:
+      'Published November 20, 2026 across two companion Google Developers Blog posts by Deepti Sehrawat and Gopi Subburaja Alagar & Arvind Chaudhary: (1) Semantic Governance Policies (Preview)—sits outside the agent at Agent Gateway to evaluate every proposed tool call before it runs against two mandatory checks: plain-language compliance rules (authored via Google Cloud Console or gcloud beta ai semantic-governance-policies create) and default user-intent alignment to block hijacking and indirect prompt injection across Gemini API, Anthropic Messages API, Claude on Gemini platform, and OpenAI-compatible/vLLM endpoints (logging every verdict, rationale, and judge token count to Cloud Logging, with dry-run mode and non-evaluation of text-only or streamed responses), and (2) Multi-Cloud Agent Anomaly Detection (Private Preview)—ingests OpenTelemetry traces and message-content logs via telemetry.googleapis.com and keyless Workload Identity Federation from ADK for Python v2.12.0+ agents running on AWS Lambda, Amazon Bedrock (flagging 10 of 40 Nova Lite inventory-scraping sessions), and Microsoft Foundry (flagging 4 of 6 unauthorized refund/override sessions, including a $1,784.90 administrator spoofing attack and a $999 pasted-note SYSTEM OVERRIDE).',
+    category: 'Agent Security & Governance',
+    tag: 'Gemini Platform Preview',
+    modelBadge: 'Semantic Governance + Anomaly',
+    impactScore: '10.0 / 10',
+    date: '2026-11-20T18:00:00Z',
+    sourceLabel: 'Google Developers Blog: Semantic Governance Policies & Multi-Cloud Agent Anomaly Detection (Nov 20, 2026)',
+    sourceUrl: 'https://developers.googleblog.com/check-what-your-ai-agents-do-before-they-do-it-with-semantic-governance-policies/',
+    groundedBy: 'Google Developers Official Blog (Nov 20, 2026)',
+    seriesUrl: '/series/gemini-semantic-governance-and-multicloud-agents/part-1-semantic-governance-policies-preview.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-semantic-governance-studio.html',
+    labLabel: 'Governance Studio [DEMO] →',
+  },
+  {
+    id: 'pulse-gemini-enterprise-cloud-run-mcp-custom-ui-auth',
+    title: 'Google Details Private Cloud Run MCP Networking & 3-Layer Custom UI Auth for Gemini Enterprise',
+    tldr: 'Published November 20, 2026: Google Developers Blog ships reference architectures for private internal-only Cloud Run MCP servers (Egress Agent Gateway + PSC Network Attachment + PGA 199.36.153.8/30 or Global PSC 240.0.0.10 + FQDN-scoped Private Cloud DNS) and 3-layer StreamAssist / 3LO / ADK Token Vault auth in custom enterprise UIs.',
+    summary:
+      'Published November 20, 2026 across two Google Developers Blog architecture guides (including Neeraj Agrawal on Custom UI Auth): (1) Private Internal Cloud Run MCP Servers—bridges Gemini Enterprise’s managed tenant to --ingress=internal Cloud Run StreamableHTTP MCP servers via regional Egress Agent Gateway (Agent-to-Anywhere), a PSC Network Attachment, Subnet Private Google Access (199.36.153.8/30) or Global PSC all-apis endpoint (240.0.0.10) for locked-down VPCs without 0.0.0.0/0 routes, FQDN-scoped Private Cloud DNS avoiding *.run.app collisions, and dual X-Serverless-Authorization IAM + end-user OAuth 2.0 Bearer verification, and (2) Custom UI 3-Layer Auth—documents keyless StreamAssist patterns (Pattern 1A Google Identity, Pattern 1B Workforce Identity Federation + Google STS, Pattern 1C Workload Identity Federation for shared bots), Federated Connector 3-Legged OAuth via Gemini Enterprise Keystore, and per-tool on-demand ADK GcpAuthProvider prompts backed by GCP Auth Manager Token Vault.',
+    category: 'Enterprise & MCP',
+    tag: 'Google Cloud Blueprint',
+    modelBadge: 'Cloud Run MCP + StreamAssist',
+    impactScore: '9.6 / 10',
+    date: '2026-11-20T17:30:00Z',
+    sourceLabel: 'Google Developers Blog: Private Cloud Run MCP & Custom UI Auth (Nov 20, 2026)',
+    sourceUrl: 'https://developers.googleblog.com/how-to-securely-connect-internal-cloud-run-mcp-servers-to-gemini-enterprise/',
+    groundedBy: 'Google Developers Official Blog (Nov 20, 2026)',
+  },
+  {
+    id: 'pulse-watch-duty-gemini-wildfire-radio',
+    title: 'Watch Duty & Google.org Deploy Gemini Radio Transcription to Detect Wildfire Dispatches in Under 30 Seconds',
+    tldr: 'Published November 20, 2026: Built during a 6-month Google.org Fellowship on 20,000+ hours of fire radio audio, Watch Duty’s Gemini-powered transcription tool cuts degraded VHF radio word error rate from 38% to 22.34%, monitors 400 active feeds (tested to 10,000+ feeds), and alerts reporters in under 30 seconds.',
+    summary:
+      'Authored by Eve Andersson and Stephanie Chew on the Google Official Blog (November 20, 2026): (1) Real-Time VHF Radio Denoising—trained on 20,000+ hours of historical emergency broadcasts to strip wind, engine noise, and static while translating tactical firefighting jargon, dropping degraded VHF radio word error rate from 38% to 22.34%, (2) Scale & Speed—transcribes 200+ hours of speech daily across roughly 400 active feeds (tested to 10,000+ concurrent feeds), delivers initial signals in under 30 seconds, and lifted volunteer reporter tool satisfaction from 35.3% to 92.3%, and (3) Overnight Life-Safety Proof—flagged a noisy 911 dispatch during Washington’s July 2026 Railroad Fire in under 30 seconds to trigger Watch Duty’s first-ever overnight Critical Alert delivered via Firebase Cloud Messaging (limit raised from 600,000 to 1 million for 16M+ users).',
+    category: 'Social Impact & Audio AI',
+    tag: 'Google.org Fellowship',
+    modelBadge: 'Gemini Wildfire Radio AI',
+    impactScore: '9.6 / 10',
+    date: '2026-11-20T17:00:00Z',
+    sourceLabel: 'Google Official Blog: How Watch Duty uses Gemini for faster wildfire alerts (Nov 20, 2026)',
+    sourceUrl: 'https://blog.google/company-news/outreach-and-initiatives/google-org/watch-duty-gemini-tool/',
+    groundedBy: 'Google Official Blog (Nov 20, 2026 17:00 UTC)',
+  },
+  {
+    id: 'pulse-connected-apps-ucp-search-gemini',
+    title: 'Google Expands Connected Apps in Search & the Gemini App with UCP Grocery Checkout, Experian & H&R Block',
+    tldr: 'Published November 20, 2026: Google rolls out U.S. Connected Apps across Google Search and the Gemini app powered by the Universal Commerce Protocol (UCP) for Albertsons, Safeway, Shaw’s, and Target grocery checkout, plus Experian and H&R Block financial integrations in Search.',
+    summary:
+      'Published November 20, 2026 on the Google Official Blog (18:00 UTC): (1) Universal Commerce Protocol Grocery Checkout—U.S. users can build holiday grocery orders and complete checkout inside Search and the Gemini app with Albertsons, Safeway, Shaw’s, and Target Connected Apps powered by UCP, (2) Financial & Tax Connected Apps—Experian expands from the Gemini app into Google Search for credit-rating checks and personal loan shopping alongside H&R Block tax and refund estimation, and (3) Local Home Services—Angi and Thumbtack account linking rolls out in Search over the coming weeks.',
+    category: 'Gemini App & Commerce',
+    tag: 'UCP Connected Apps',
+    modelBadge: 'UCP + Gemini Connected Apps',
+    impactScore: '9.3 / 10',
+    date: '2026-11-20T18:00:00Z',
+    sourceLabel: 'Google Official Blog: Complete year-end tasks with new Connected Apps (Nov 20, 2026)',
+    sourceUrl: 'https://blog.google/products-and-platforms/products/search/connected-apps-holiday-errands/',
+    groundedBy: 'Google Official Blog (Nov 20, 2026 18:00 UTC)',
+  },
+  {
+    id: 'pulse-gemini-api-cli-v0-5-0',
+    title: 'Google Ships Gemini API CLI v0.5.0: Gemini 4 Hydrogen Default, Self-Hosted BYOS Lease Sandboxes, XHIGH Thinking & Voices Group',
+    tldr: 'Released November 20, 2026 (00:49 UTC): google-gemini/gemini-api-cli v0.5.0 sets gemini-4-hydrogen as default, adds gemini-4-carbon, gemini-omni-1.2-flash, XHIGH ThinkingLevel, split environments poll/serve lease-token sandboxes, Tool Retrieval schemas, and the voices command group.',
+    summary:
+      'Published on GitHub Releases (google-gemini/gemini-api-cli v0.5.0, Apache 2.0 single Go binary for macOS, Linux, and Windows), this milestone equips host coding agents (Google Antigravity, Claude Code, Codex, OpenClaw, Hermes) and CI pipelines with stateless Gemini API access: (1) Frontier Gemini 4 Defaults & Enum Parity—makes gemini-4-hydrogen the CLI default, adds gemini-4-carbon and gemini-omni-1.2-flash to the Interactions Model enum, and wires XHIGH / xhigh ThinkingLevel across GenAI SDKs and CLI, (2) Self-Hosted BYOS Environments Runtime—exposes CreateEnvironmentRequest.env, system_instruction, custom_config, and environment_key, updates the self-hosted agent version to antigravity-preview-09-2026, adds Cloudflare self-hosted sandbox one-click deploy docs alongside Docker/Podman/Cloud Run/Agent Substrate recipes, and separates trusted pollers (environments poll) from zero-API-key sandboxes (environments serve using short-lived lt_v1 lease tokens over 100% outbound HTTPS), (3) Tool Retrieval & Voices Group—adds tool_search and function result schemas plus static file processing options, onboards the voices command group (create, list, get, delete), and adds TTS --style, --voice-prompt, and SpeechConfig.text_normalization, and (4) Machine-First Agent Mode—supports --agent-mode TOON compact stdout, --schema introspection, redacted --dry-run HTTP previews, and semantic exit codes (0/1/2/3).',
+    category: 'CLI & Agent Runtime',
+    tag: 'Official CLI Release',
+    modelBadge: 'gemini-api-cli v0.5.0',
+    impactScore: '9.8 / 10',
+    date: '2026-11-20T00:49:52Z',
+    sourceLabel: 'GitHub Releases: google-gemini/gemini-api-cli v0.5.0',
+    sourceUrl: 'https://github.com/google-gemini/gemini-api-cli/releases/tag/v0.5.0',
+    groundedBy: 'Official Google GitHub Release v0.5.0 + README.md + docs/self-hosted/README.md (Nov 20, 2026 00:49 UTC)',
+    seriesUrl: '/series/gemini-api-cli-v0-5/part-1-what-changed-with-gemini-api-cli-v0-5.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-api-cli-studio.html',
+    labLabel: 'CLI & BYOS Studio [DEMO] →',
+  },
+  {
     id: 'pulse-gemini-api-tool-retrieval-preview',
     title: 'Google Launches Tool Retrieval (Preview) in the Gemini Interactions API: On-Demand Parameter Schemas & Client Registries',
     tldr: 'Released November 19, 2026 (18:00 UTC): Tool Retrieval enters preview in the Gemini Interactions API (v1beta) across Gemini 3.6+ and all Gemini 4 models—letting agents defer full tool and MCP schemas via tool_search + defer_loading: true or query custom client registries via execution: "client".',
@@ -1427,6 +1804,486 @@ export const GEMINI_MODEL_MATRIX = [
 
 export const STUDIO_LAB_BLUEPRINTS = [
   {
+    id: 'lab-gemini-mass-spec-skills-studio',
+    title: 'DeepMind Mass Spec Skills & Antigravity Structure Studio [SIMULATED DEMO]',
+    badge: 'Nov 2026 DeepMind + Antigravity',
+    model: 'gemini-3.8-flash',
+    href: '/labs/gemini-mass-spec-skills-studio.html',
+    description:
+      'Interactive scientific workbench modeling Google DeepMind’s Mass Spec Skills for Google Antigravity: simulate tandem MS/MS preprocessing (matchms), GNPS/MoNA library lookup, SIRIUS formula deduction, MAGMa/MetFrag PubChem isomer ranking, and neutral-loss tie-breaking where Gemini 3.8 Flash matches Gemini 4 Argon and Carbon at ~97% accuracy with ~4x fewer tokens.',
+    prompt:
+      'Run Mass Spec Skills inside Google Antigravity on negative-mode [M-H]- spectrum m/z 395.1387: denoise peaks with matchms, infer molecular formula with SIRIUS, score PubChem candidates with MAGMa/MetFrag, and resolve structural ties via diagnostic neutral losses and RDKit bond-break checks.',
+    tsCode: `import { GoogleGenAI } from "@google/genai";
+
+// Models how Mass Spec Skills inside Google Antigravity pairs lightweight
+// Gemini 3.8 Flash with deterministic chemistry tools (matchms, SIRIUS, MAGMa, RDKit).
+const ai = new GoogleGenAI();
+
+const elucidation = await ai.interactions.create({
+  model: "gemini-3.8-flash",
+  thinking_level: "high",
+  input:
+    "Given denoised MS/MS peaks for [M-H]- m/z 395.1387 (19 peaks), SIRIUS top formula C20H21ClN6O (-1.5 ppm, score 37.86), and tied 97.7% MAGMa intensity isomers CID 137835447, CID 55558151, and CID 154638626, test HCl and HNCO neutral losses to verify the true structure.",
+});
+
+console.log(elucidation.output_text);`,
+    pyCode: `from google import genai
+
+client = genai.Client()
+
+response = client.interactions.create(
+    model="gemini-3.8-flash",
+    thinking_level="high",
+    input=(
+        "Cross-check candidate PubChem isomers for C20H21ClN6O against complementary "
+        "cleavage halves m/z 162.1037 and m/z 232.0283, verifying RDKit valence "
+        "and bond-break penalty scores."
+    ),
+)
+
+print(response.output_text)`,
+    simulatedSteps: [
+      {
+        type: 'thought',
+        label: 'step[0] · matchms Denoising + GNPS/MoNA Library Screen',
+        detail:
+          'Converted precursor m/z 395.1387 ([M-H]-) to 396.1459 Da, stripped 1,742 noise spikes (1,761 -> 19 peaks), and confirmed no high-confidence GNPS/MoNA reference match.',
+      },
+      {
+        type: 'tool_call',
+        label: 'step[1] · SIRIUS Formula + MAGMa/RDKit Neutral-Loss Tie-Break',
+        detail:
+          'Locked formula C20H21ClN6O (-1.5 ppm, score 37.86 vs 28.33), ruled out non-urea CID 154638626 & amide CID 55558151 (penalty 49.0), and verified CID 137835447 (penalty 26.0, 97.7% intensity).',
+      },
+    ],
+  },
+  {
+    id: 'lab-gemini-workspace-mcp-cli-studio',
+    title: 'Google Workspace MCP Servers, gwscli & Agent Gateway Studio [SIMULATED DEMO]',
+    badge: 'Nov 2026 Workspace MCP + CLI',
+    model: 'gemini-4-neon',
+    href: '/labs/gemini-workspace-mcp-cli-studio.html',
+    description:
+      'Interactive control-plane workbench modeling Google’s GA Workspace MCP servers (/mcp/v1 vs /mcp/v1self), stateless 2026-07-28 MCP form elicitation, gwscli runtime schema discovery, Cloud Agent Gateway SPIFFE/Model Armor enforcement, and the Feb 1 / Apr 1, 2027 quota cutover.',
+    prompt:
+      'Connect Gemini 4 Neon to Google Workspace MCP endpoints (drivemcp.googleapis.com/mcp/v1 and workspacemcp.googleapis.com/mcp/v1), handle InputRequiredResult requestState round-trips, and inspect gwscli least-privilege --bundle readonly scopes.',
+    tsCode: `import { GoogleGenAI } from "@google/genai";
+
+// Models wiring Gemini 4 Neon with a remote Google Workspace MCP server (/mcp/v1)
+// alongside stateless 2026-07-28 form elicitation and Agent Gateway enforcement.
+const ai = new GoogleGenAI();
+
+const response = await ai.interactions.create({
+  model: "gemini-4-neon",
+  thinking_level: "medium",
+  tools: [
+    {
+      type: "mcp_server",
+      name: "workspace_universal_search",
+      url: "https://workspacemcp.googleapis.com/mcp/v1",
+    },
+  ],
+  input: "Search Gmail, Drive, Calendar, and Chat for Q4 compliance action items and draft a private summary without sharing external links.",
+});
+
+console.log(response.output_text);`,
+    pyCode: `from google import genai
+
+client = genai.Client()
+
+response = client.interactions.create(
+    model="gemini-4-neon",
+    thinking_level="medium",
+    tools=[
+        {
+            "type": "mcp_server",
+            "name": "workspace_drive",
+            "url": "https://drivemcp.googleapis.com/mcp/v1",
+        }
+    ],
+    input="Audit external sharing approvals on Drive files modified this week and flag calls triggering MCP form elicitation.",
+)
+
+print(response.output_text)`,
+    simulatedSteps: [
+      {
+        type: 'thought',
+        label: 'step[0] · Agent Gateway SPIFFE + MCP /mcp/v1 Form Elicitation',
+        detail:
+          'Assigned SPIFFE ID via mTLS/DPoP, routed tools/call to drivemcp.googleapis.com/mcp/v1, and received InputRequiredResult with opaque argument-locked requestState.',
+      },
+      {
+        type: 'tool_call',
+        label: 'step[1] · Human Approval + Standard Tier (5,000/day) Check',
+        detail:
+          'User approved ALLOW_ONCE, retried tools/call with requestState + inputResponses, and confirmed usage fits inside the $0 Standard Tier ahead of the Feb 1, 2027 mandate.',
+      },
+    ],
+  },
+  {
+    id: 'lab-gemini-antigravity-conversation-studio',
+    title: 'Antigravity v2.35.0 Conversation API & Swarm Paging Studio [SIMULATED DEMO]',
+    badge: 'Nov 2026 Antigravity v2.35.0',
+    model: 'gemini-4-neon',
+    href: '/labs/gemini-antigravity-conversation-studio.html',
+    description:
+      'Interactive developer workbench modeling Google Antigravity v2.35.0: simulate the built-in Conversation Management API (create, inspect, pin, star, tag, group, archive), unlimited local history retention vs. legacy 500-thread pruning, Auto out-of-project read permissions, Cmd+F HTML artifact search, and on-demand Swarm board paging.',
+    prompt:
+      'Use Antigravity v2.35.0 Conversation Management API and Gemini 4 Neon (High thinking default) to group active release threads by tag, pin critical verification runs, search generated HTML artifacts via Cmd+F, and inspect Swarm board paging telemetry.',
+    tsCode: `import { GoogleGenAI } from "@google/genai";
+
+// Models an automation workflow combining Antigravity v2.35.0 Conversation
+// Management API lifecycle actions with Gemini 4 Neon (High thinking default).
+const ai = new GoogleGenAI();
+
+const triage = await ai.interactions.create({
+  model: "gemini-4-neon",
+  thinking_level: "high",
+  input:
+    "Inspect unarchived conversations tagged 'release-audit', pin verified passing runs, and group stalled worker threads for follow-up.",
+});
+
+const digest = await ai.interactions.create({
+  model: "gemini-4-hydrogen",
+  previous_interaction_id: triage.id,
+  input:
+    "Generate a searchable HTML summary artifact for Cmd+F inspection inside the Antigravity v2.35.0 artifact viewer.",
+});
+
+console.log(digest.output_text);`,
+    pyCode: `from google import genai
+
+client = genai.Client()
+
+triage = client.interactions.create(
+    model="gemini-4-neon",
+    thinking_level="high",
+    input=(
+        "List local conversations beyond the old 500-thread limit, "
+        "star threads with unresolved Swarm tasks, and summarize next actions."
+    ),
+)
+
+print(triage.output_text)`,
+    simulatedSteps: [
+      {
+        type: 'thought',
+        label: 'step[0] · Unlimited History & Conversation Management API',
+        detail:
+          'Enumerated 742 local conversations (all preserved past the legacy 500-thread cap) and grouped active threads via tag, pin, star, and archive actions.',
+      },
+      {
+        type: 'tool_call',
+        label: 'step[1] · Swarm On-Demand Paging & Cmd+F HTML Artifact Index',
+        detail:
+          'Loaded Swarm messages incrementally with reduced hidden polling, collapsed consecutive parallel subagent launches, and enabled Cmd+F match navigation inside the full-page HTML artifact.',
+      },
+    ],
+  },
+  {
+    id: 'lab-gemini-4-lean-quantum-studio',
+    title: 'DeepMind Gemini 4 & Lean 4 Quantum Verification Studio [SIMULATED DEMO]',
+    badge: 'Nov 2026 DeepMind + Quantum AI',
+    model: 'gemini-4-argon',
+    href: '/labs/gemini-4-lean-quantum-studio.html',
+    description:
+      'Interactive developer workbench modeling Google DeepMind and Google Quantum AI’s Lean 4 quantum program discovery loop (arXiv:2611.09822): inspect 11.8x fusion, 8x photochemistry, 2.5x Cytochrome P450, 2.57x Grover, and 290x arcsin breakthroughs alongside 4-hour virtual conferences and lake comparator specs.',
+    prompt:
+      'Coordinate independent Gemini 4 agent teams to synthesize a quantum circuit optimization against a QuantumComputationSpecs Lean 4 theorem, verify resource cost reduction via lake comparator, and publish the proven patch to a shared wiki.',
+    tsCode: `import { GoogleGenAI } from "@google/genai";
+
+// Models the Gemini 4 + Lean 4 formal-quantum-computation discovery loop (arXiv:2611.09822).
+const ai = new GoogleGenAI();
+
+const synthesis = await ai.interactions.create({
+  model: "gemini-4-argon",
+  thinking_level: "high",
+  input:
+    "Given QuantumComputationSpecs/ChallengeJsons/Algorithms/StoppingPower.json, propose a Lean 4 quantum circuit refactor reducing logical qubits below 4,500 while preserving Quantum Hoare Logic soundness.",
+});
+
+const conferenceSummary = await ai.interactions.create({
+  model: "gemini-4-neon",
+  previous_interaction_id: synthesis.id,
+  input:
+    "Summarize verified lemma gains and resource counts for the 4-hour cross-team virtual conference notebook.",
+});
+
+console.log(conferenceSummary.output_text);`,
+    pyCode: `from google import genai
+
+client = genai.Client()
+
+response = client.interactions.create(
+    model="gemini-4-argon",
+    thinking_level="high",
+    input=(
+        "Generate a Lean 4 quantum Hoare logic proof outline for "
+        "QuantumComputationSpecs/ChallengeJsons/Algorithms/P450GroundEnergy.json "
+        "replacing bulky QROM memory lookups."
+    ),
+)
+
+print(response.output_text)`,
+    simulatedSteps: [
+      {
+        type: 'thought',
+        label: 'step[0] · Lean 4 Spec & Quantum Hoare Logic Synthesis',
+        detail:
+          'Synthesized candidate circuit inside QuantumComputation against StoppingPower.json and P450GroundEnergy.json formal specifications built on Mathlib4 and Physlib QuantumInfo.',
+      },
+      {
+        type: 'tool_call',
+        label: 'step[1] · lake comparator Resource & Correctness Check',
+        detail:
+          'Verified mathematical correctness and exact resource reduction (11.8x fusion cost drop, 5,650 to 4,338 qubits) before logging into the shared 4-hour conference wiki.',
+      },
+    ],
+  },
+  {
+    id: 'lab-gemini-antigravity-mcp-apps-studio',
+    title: 'Antigravity v2.34.0 MCP Apps & Entrypoint Studio [SIMULATED DEMO]',
+    badge: 'Nov 2026 Antigravity v2.34.0',
+    model: 'gemini-4-neon',
+    href: '/labs/gemini-antigravity-mcp-apps-studio.html',
+    description:
+      'Interactive developer workbench modeling Google Antigravity v2.34.0 MCP Apps (io.modelcontextprotocol/ui and com.google.antigravity/ui): test inline 800 px auto-resize, aux_pane/global tabs, opaque antigravity-file:// viewers, 1 MiB CallToolResult caps, and agy CLI plain-text parity.',
+    prompt:
+      'Scaffold an Antigravity MCP App plugin using /mcp-app-development with an aux_pane release board, a global Plugins dashboard, a hidden custom file viewer, and plain-text agy CLI parity.',
+    tsCode: `import { GoogleGenAI } from "@google/genai";
+
+// Orchestrator pattern expanded in Antigravity v2.34.0:
+// Gemini 4 Neon plans architecture while Gemini 4 Hydrogen handles fast code generation.
+const ai = new GoogleGenAI();
+
+const plan = await ai.interactions.create({
+  model: "gemini-4-neon",
+  thinking_level: "high",
+  input: "Design an Antigravity MCP App plugin with aux_pane, global, and file entrypoints.",
+});
+
+const code = await ai.interactions.create({
+  model: "gemini-4-hydrogen",
+  previous_interaction_id: plan.id,
+  input: "Emit tool metadata enforcing 10 MiB HTML limits, 1 MiB CallToolResult caps, and plain-text CLI content.",
+});
+
+console.log(code.output_text);`,
+    pyCode: `from google import genai
+
+client = genai.Client()
+
+response = client.interactions.create(
+    model="gemini-4-neon",
+    thinking_level="high",
+    input=(
+        "Generate mcp_config.json using PLUGIN_ROOT and PLUGIN_DATA plus "
+        "_meta['com.google.antigravity/ui'].entrypoints for aux_pane and file viewers."
+    ),
+)
+
+print(response.output_text)`,
+    simulatedSteps: [
+      {
+        type: 'thought',
+        label: 'step[0] · Capability & Entrypoint Negotiation',
+        detail:
+          'Advertised io.modelcontextprotocol/ui and com.google.antigravity/ui (aux_pane, global, file) during MCP initialize while keeping non-UI agy CLI fallback active via plain-text content.',
+      },
+      {
+        type: 'tool_call',
+        label: 'step[1] · Opaque File Read & Host Limit Check',
+        detail:
+          'Verified 10 MiB ui:// HTML and antigravity-file:// bounds, 1 MiB persisted CallToolResult trajectory budget, 4-call concurrency cap, and default-deny _meta.ui.csp origin policy.',
+      },
+    ],
+  },
+  {
+    id: 'lab-gemini-deferred-tier-studio',
+    title: 'Deferred Service Tier & Multi-Turn Queue Studio [SIMULATED DEMO]',
+    badge: 'Nov 2026 Agent Compute GA',
+    model: 'gemini-4-argon',
+    href: '/labs/gemini-deferred-tier-studio.html',
+    description:
+      'Interactive developer workbench modeling Google Cloud’s GA Deferred service tier (service_tier="deferred"): simulate 50% PayGo savings, locations/global endpoint validation, ADK RunConfig(ServiceTier.DEFERRED) toggles, and queued/requires_action/completed Interactions polling.',
+    prompt:
+      'Run an asynchronous multi-turn repository security audit on locations/global with service_tier="deferred", background=true, and store=true, then poll interactions.get and chain turn two via previous_interaction_id.',
+    tsCode: `import { GoogleGenAI } from "@google/genai";
+
+// Deferred tier requires enterprise mode on locations/global (regional endpoints return HTTP 400).
+const ai = new GoogleGenAI({
+  enterprise: true,
+  project: process.env.GOOGLE_CLOUD_PROJECT,
+  location: "global",
+});
+
+const created = await ai.interactions.create({
+  model: "gemini-4-argon",
+  input: "Audit service-to-service auth boundaries across gs://repo-snapshots/pr-412.tar.gz.",
+  service_tier: "deferred",
+  background: true,
+  store: true,
+});
+
+console.log("Queued deferred turn:", created.id, created.status, created.service_tier);`,
+    pyCode: `from google.adk.agents import LlmAgent, RunConfig
+from google.adk.models import ServiceTier
+from google.adk.models.google_llm import Gemini
+
+agent = LlmAgent(
+    name="nightly_audit_agent",
+    model=Gemini(model="gemini-4-hydrogen", use_interactions_api=True),
+    instruction="Analyze repository logs and produce structured security summaries.",
+)
+
+# Request off-peak capacity per run without duplicating your agent definition
+run_config = RunConfig(service_tier=ServiceTier.DEFERRED)
+print("ADK RunConfig armed for global deferred scheduling:", run_config.service_tier)`,
+    simulatedSteps: [
+      {
+        type: 'thought',
+        label: 'step[0] • Global Endpoint & Flag Validation',
+        detail:
+          'Confirmed locations/global target on aiplatform.googleapis.com with background=true and store=true; queued turn for 50% PayGo billing with zero peak 429 contention.',
+      },
+      {
+        type: 'tool_call',
+        label: 'step[1] • Stateful Multi-Turn Chaining (7-Day Window)',
+        detail:
+          'Polled interactions.get until completed and chained follow-up turn via previous_interaction_id while re-sending tools and system_instruction.',
+      },
+    ],
+  },
+  {
+    id: 'lab-gemini-semantic-governance-studio',
+    title: 'Semantic Governance & Multi-Cloud Anomaly Studio [SIMULATED DEMO]',
+    badge: 'Nov 20, 2026 Agent Security',
+    model: 'gemini-4-argon',
+    href: '/labs/gemini-semantic-governance-studio.html',
+    description:
+      'Interactive developer workbench modeling Google’s Nov 20 agent defense-in-depth stack: simulate Agent Gateway inline Semantic governance checks (plain-language policy + user-intent verification) and out-of-band OpenTelemetry multi-cloud Anomaly Detection across AWS Bedrock and Microsoft Foundry.',
+    prompt:
+      'Intercept a finance agent’s proposed send_email and delete_file tool calls at Agent Gateway against plain-language disclosure policies and original user intent, then export ADK v2.12.0+ OpenTelemetry logs to telemetry.googleapis.com.',
+    tsCode: `import { GoogleGenAI } from "@google/genai";
+
+// Route agent egress through Agent Gateway so Semantic governance policies
+// evaluate every proposed model tool call inline before your agent executes it.
+const ai = new GoogleGenAI({
+  httpOptions: {
+    apiVersion: "v1beta",
+    baseUrl: process.env.AGENT_GATEWAY_URL,
+  },
+});
+
+const interaction = await ai.interactions.create({
+  model: "gemini-4-argon",
+  thinking_level: "high",
+  system_instruction:
+    "Finance coworker agent. Next public earnings release is December 2, 2026.",
+  input:
+    "Send preliminary Q3 results to controller@example.com for month-end close.",
+});
+
+// If Agent Gateway denies a tool call, the policy engine replaces the response
+// with your configured denial message before tool execution can occur.
+console.log("Gateway-verified interaction:", interaction.id);`,
+    pyCode: `# ADK for Python v2.12.0+ multi-cloud telemetry setup (AWS Lambda / Microsoft Foundry)
+# Set these environment variables alongside Workload Identity Federation:
+#   GOOGLE_CLOUD_PROJECT=<PROJECT_ID>
+#   OTEL_SEMCONV_STABILITY_OPT_IN=gen_ai_latest_experimental
+#   OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=EVENT_ONLY
+#   ADK_CAPTURE_MESSAGE_CONTENT_IN_SPANS=false
+#   OTEL_SERVICE_NAME=foundry-refund-agent
+#   OTEL_RESOURCE_ATTRIBUTES=cloud.provider=azure,cloud.platform=azure_ai_foundry,cloud.region=eastus,faas.name=foundry-refund-agent
+
+from google.adk.agents import Agent
+
+refund_agent = Agent(
+    name="foundry_customer_service_agent",
+    model="gemini-4-hydrogen",
+    instruction="Verify order status and issue approved damage refunds only.",
+)
+print("ADK multi-cloud agent configured for telemetry.googleapis.com export.")`,
+    simulatedSteps: [
+      {
+        type: 'thought',
+        label: 'step[0] • Agent Gateway Inline LLM Judge (Pre-Execution)',
+        detail:
+          'Proposed tool call send_email checked against conversation history, system instructions (earnings release date), and plain-language constraint before reaching the agent runtime.',
+      },
+      {
+        type: 'tool_call',
+        label: 'step[1] • Out-of-Band Multi-Cloud OTel Anomaly Audit',
+        detail:
+          'ADK Python v2.12.0+ exported EVENT_ONLY prompt/response logs via Workload Identity Federation to telemetry.googleapis.com for asynchronous scraping and override detection.',
+      },
+    ],
+  },
+  {
+    id: 'lab-gemini-api-cli-studio',
+    title: 'Gemini API CLI v0.5.0 & BYOS Sandbox Studio [SIMULATED DEMO]',
+    badge: 'Nov 20, 2026 CLI v0.5.0',
+    model: 'gemini-4-hydrogen',
+    href: '/labs/gemini-api-cli-studio.html',
+    description:
+      'Interactive developer workbench modeling google-gemini/gemini-api-cli v0.5.0: simulate --agent-mode TOON vs. JSON outputs, inspect split environments poll/serve lease-token isolation, and test voices + expressive TTS command builders.',
+    prompt:
+      'Run gemini-api v0.5.0 in --agent-mode with gemini-4-hydrogen, preview redacted payloads via --dry-run, and dispatch self-hosted interactions to zero-key containers using lt_v1 lease tokens.',
+    tsCode: `import { execFileSync } from "node:child_process";
+
+// Host agent validates payload via --dry-run, then invokes stateless CLI in --agent-mode
+const dryRun = execFileSync(
+  "gemini-api",
+  ["generate", "Audit API surface", "--model", "gemini-4-hydrogen", "--dry-run", "--output-format", "json"],
+  { encoding: "utf8" }
+);
+console.log("Redacted request preview:", JSON.parse(dryRun));
+
+// Synthesize styled briefing with v0.5.0 SpeechConfig.text_normalization
+const audioPath = execFileSync(
+  "gemini-api",
+  ["tts", "Release v0.5.0 launched November 20, 2026.", "--style", "Crisp briefing", "--out", "./brief.wav"],
+  { encoding: "utf8" }
+).trim();
+console.log("Generated audio artifact:", audioPath);`,
+    pyCode: `import json
+import subprocess
+
+# Launch background managed agent targeting a self-hosted BYOS environment
+proc = subprocess.run(
+    [
+        "gemini-api",
+        "agent",
+        "run",
+        "Run test suite inside self-hosted workspace",
+        "--agent",
+        "antigravity-preview-09-2026",
+        "--background",
+        "--output-format",
+        "json",
+    ],
+    check=True,
+    capture_output=True,
+    text=True,
+)
+interaction = json.loads(proc.stdout)
+print("Leased self-hosted interaction:", interaction["id"])`,
+    simulatedSteps: [
+      {
+        type: 'thought',
+        label: 'step[0] • --schema Introspection & Redacted --dry-run Validation',
+        detail:
+          'Host agent inspected gemini-api generate --schema, validated payload locally with --dry-run (0 network calls, credentials redacted), and selected gemini-4-hydrogen (v0.5.0 default) with thinking_level: "high".',
+      },
+      {
+        type: 'tool_call',
+        label: 'step[1] • Split environments poll / serve Lease-Token Isolation',
+        detail:
+          'Trusted control-plane poller leased interaction over outbound HTTPS POST /v1beta/environments:leaseInteractions and passed a short-lived lt_v1 lease token to an isolated container holding zero API keys.',
+      },
+    ],
+  },
+  {
     id: 'lab-genie-4-world-studio',
     title: 'Genie 4 Interactive World API Studio [SIMULATED DEMO]',
     badge: 'Nov 19, 2026 API GA',
@@ -2584,6 +3441,158 @@ video_turn = client.interactions.create(
 ];
 
 export const INITIAL_SHOWCASE_PROJECTS = [
+  {
+    id: 'showcase-gemini-mass-spec-skills-studio',
+    name: 'DeepMind Mass Spec Skills & Antigravity Structure Studio [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive scientific workbench modeling Google DeepMind’s Mass Spec Skills for Google Antigravity: simulate matchms denoising, SIRIUS formula ranking, MAGMa/MetFrag scoring, HCl/HNCO neutral-loss tie-breaking, and ~97% lightweight Gemini 3.8 Flash parity.',
+    models: ['gemini-3.8-flash', 'gemini-4-argon', 'gemini-4-carbon'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-mass-spec-skills-studio.html): [SIMULATED DEMO] Models the 6-stage MS/MS elucidation pipeline (matchms, GNPS/MoNA, SIRIUS, MAGMa, MetFrag, RDKit) and 100-compound MoNA token/accuracy benchmarks.',
+    url: '/labs/gemini-mass-spec-skills-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-25T13:00:00Z',
+  },
+  {
+    id: 'showcase-gemini-workspace-mcp-cli-studio',
+    name: 'Google Workspace MCP Servers, gwscli & Agent Gateway Studio [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive developer workbench modeling Google Workspace’s GA MCP servers (/mcp/v1 vs /mcp/v1self), stateless 2026-07-28 form elicitation, gwscli dynamic schema discovery, Cloud Agent Gateway SPIFFE checks, and Feb 1 / Apr 1, 2027 quota tiers.',
+    models: ['gemini-4-neon', 'gemini-4-argon'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-workspace-mcp-cli-studio.html): [SIMULATED DEMO] Models dedicated *mcp.googleapis.com endpoints, requestState approval round-trips, gwscli --bundle readonly, and 5,000 req/day Standard vs Scaled billing.',
+    url: '/labs/gemini-workspace-mcp-cli-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-24T17:02:59Z',
+  },
+  {
+    id: 'showcase-gemini-antigravity-conversation-studio',
+    name: 'Antigravity v2.35.0 Conversation API & Swarm Paging Studio [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive developer workbench modeling Google Antigravity v2.35.0: simulate Conversation Management API actions (pin, star, tag, group, archive), unlimited local history beyond 500 threads, Auto permission scoping, Cmd+F HTML artifact search, and Swarm on-demand paging.',
+    models: ['gemini-4-neon', 'gemini-4-hydrogen'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-antigravity-conversation-studio.html): [SIMULATED DEMO] Models the Antigravity v2.35.0 conversations skill, directory-scoped write suggestions, High default thinking effort, and Gemini API Marketplace plugin v2.8.0.',
+    url: '/labs/gemini-antigravity-conversation-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-23T23:55:00Z',
+  },
+  {
+    id: 'showcase-gemini-4-lean-quantum-studio',
+    name: 'DeepMind Gemini 4 & Lean 4 Quantum Verification Studio [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive developer workbench modeling Google DeepMind and Quantum AI’s Lean 4 quantum discovery pipeline (arXiv:2611.09822): compare 11.8x fusion, 8x photochemistry, 2.5x Cytochrome P450, 2.57x Grover, and 290x arcsin gains plus lake comparator metrics.',
+    models: ['gemini-4-argon', 'gemini-4-neon'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-4-lean-quantum-studio.html): [SIMULATED DEMO] Inspects Lean 4 QuantumComputation module counts, 232 GB comparator verification telemetry, and 4-hour agent conference notebooks.',
+    url: '/labs/gemini-4-lean-quantum-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-23T17:00:00Z',
+  },
+  {
+    id: 'showcase-gemini-antigravity-mcp-apps-studio',
+    name: 'Antigravity v2.34.0 MCP Apps & Entrypoint Studio [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive developer workbench modeling Google Antigravity v2.34.0 MCP Apps: simulate inline 800 px cards, aux_pane and global entrypoints, opaque antigravity-file:// viewers, 1 MiB step budgets, and agy CLI plain-text parity.',
+    models: ['gemini-4-neon', 'gemini-4-hydrogen'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-antigravity-mcp-apps-studio.html): [SIMULATED DEMO] Models com.google.antigravity/ui entrypoints, 10 MiB HTML/file caps, 5-frame LRU retention, and Gemini 4 Neon + Hydrogen Orchestrator codegen.',
+    url: '/labs/gemini-antigravity-mcp-apps-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-20T23:58:00Z',
+  },
+  {
+    id: 'showcase-gemini-deferred-tier-studio',
+    name: 'Deferred Service Tier & Multi-Turn Queue Studio [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive developer workbench modeling Google Cloud’s GA Deferred service tier: simulate 50% PayGo savings, locations/global vs. regional HTTP 400 checks, ADK RunConfig(ServiceTier.DEFERRED), and multi-turn polling lifecycles.',
+    models: ['gemini-4-argon', 'gemini-4-hydrogen'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-deferred-tier-studio.html): [SIMULATED DEMO] Models 95% 24-hour queue targets, 7-day state retention, requires_action tool handoffs, and $0 cancelled-turn economics.',
+    url: '/labs/gemini-deferred-tier-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-20T23:55:00Z',
+  },
+  {
+    id: 'showcase-gemini-semantic-governance-studio',
+    name: 'Semantic Governance & Multi-Cloud Anomaly Studio [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive developer workbench modeling Google’s Nov 20 inline Semantic governance policies (Agent Gateway LLM judge + user-intent check) and out-of-band OpenTelemetry Anomaly Detection across AWS Bedrock and Microsoft Foundry.',
+    models: ['gemini-4-argon', 'gemini-4-hydrogen'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-semantic-governance-studio.html): [SIMULATED DEMO] Tests Q3 earnings NDA bypasses, indirect prompt-injection delete_file traps, and Bedrock/Foundry anomaly detection.',
+    url: '/labs/gemini-semantic-governance-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-20T18:00:00Z',
+  },
+  {
+    id: 'showcase-gemini-api-cli-studio',
+    name: 'Gemini API CLI v0.5.0 & BYOS Sandbox Studio [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive developer workbench modeling google-gemini/gemini-api-cli v0.5.0: simulate --agent-mode TOON responses, split environments poll/serve lease-token handoffs, and voices + normalized TTS workflows.',
+    models: ['gemini-4-hydrogen', 'gemini-4-carbon', 'gemini-3.8-flash-tts'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-api-cli-studio.html): [SIMULATED DEMO] Models --dry-run credential redaction, zero-key sandbox lt_v1 lease isolation, and v0.5.0 CLI command assembly.',
+    url: '/labs/gemini-api-cli-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-20T00:49:52Z',
+  },
   {
     id: 'showcase-gemini-genie-4-world-studio',
     name: 'Genie 4 Interactive World API Studio [SIMULATED DEMO]',
@@ -4743,9 +5752,128 @@ export const GET_STARTED_WITH_GEMINI_TRACKS = [
 
 export const GEMINI_VIDEO_SHOWCASE = [
   {
+    id: 'vid-google-devs-five-tips-gemini-4',
+    videoId: 'WN5O4vWCa54',
+    featuredOfTheDay: true,
+    category: 'Gemini 4 Engineering Playbook',
+    badge: 'FEATURED VIDEO OF THE DAY • GOOGLE FOR DEVELOPERS',
+    title: '5 developer tips for working with Gemini 4',
+    creatorName: 'Google for Developers',
+    creatorHandle: '@GoogleDevelopers',
+    creatorUrl: 'https://www.youtube.com/@GoogleDevelopers',
+    watchUrl: 'https://www.youtube.com/watch?v=WN5O4vWCa54',
+    thumbnailUrl: 'https://i.ytimg.com/vi/WN5O4vWCa54/hqdefault.jpg',
+    geminiSummary:
+      'Published November 25, 2026 (20:00 UTC) by Google for Developers (Google DeepMind’s Patrick Löber and Geneviève Huskens)—five practical techniques for long, complex Gemini 4 engineering runs in Google AI Studio and Google Antigravity: plan mode intent alignment, concrete test-suite/browser-screenshot verification, multimodal references, lead orchestrator sub-agent delegation, and distilling session lessons into reusable SKILL.md files.',
+    whyFeatured:
+      'Verified HTTP 200 Nov 25 Google for Developers + DeepMind field guide codifying plan mode, multimodal specs, orchestrator sub-agents, and reusable SKILL.md workflows for Gemini 4.',
+  },
+  {
+    id: 'vid-google-cloud-alloydb-express-remote-mcp',
+    videoId: 'g6NOVhxWGGk',
+    featuredOfTheDay: false,
+    category: 'AlloyDB Express & Remote MCP',
+    badge: 'OFFICIAL FEATURE • GOOGLE CLOUD TECH',
+    title: 'AlloyDB Express is here: Deploy PostgreSQL in seconds',
+    creatorName: 'Google Cloud Tech',
+    creatorHandle: '@googlecloudtech',
+    creatorUrl: 'https://www.youtube.com/@googlecloudtech',
+    watchUrl: 'https://www.youtube.com/watch?v=g6NOVhxWGGk',
+    thumbnailUrl: 'https://i.ytimg.com/vi/g6NOVhxWGGk/hqdefault.jpg',
+    geminiSummary:
+      'Published November 25, 2026 (20:00 UTC) by Google Cloud Tech—introduces AlloyDB Express, an instant-provisioning scale-to-zero PostgreSQL tier paired with AlloyDB remote MCP tools and Agent Development Kit (ADK) workflows.',
+    whyFeatured:
+      'Verified HTTP 200 Nov 25 Google Cloud Tech launch walkthrough demonstrating AlloyDB Express connected to ADK agents over remote MCP.',
+  },
+  {
+    id: 'vid-google-deepmind-brain-ai-explaining',
+    videoId: 'K8rdrWQRd20',
+    featuredOfTheDay: false,
+    category: 'DeepMind Neuroscience & AI',
+    badge: 'OFFICIAL FEATURE • GOOGLE DEEPMIND',
+    title: 'The brain helped us build AI. Now AI is explaining the brain.',
+    creatorName: 'Google DeepMind',
+    creatorHandle: '@googledeepmind',
+    creatorUrl: 'https://www.youtube.com/@GoogleDeepMind',
+    watchUrl: 'https://www.youtube.com/watch?v=K8rdrWQRd20',
+    thumbnailUrl: 'https://i.ytimg.com/vi/K8rdrWQRd20/hqdefault.jpg',
+    geminiSummary:
+      'Published November 24, 2026 (17:51 UTC) by Google DeepMind—exploring how biological neuroscience inspired modern deep learning architectures and how AI models now map and explain neural computation.',
+    whyFeatured:
+      'Verified HTTP 200 Nov 24 Google DeepMind research film bridging computational neuroscience and frontier AI interpretability.',
+  },
+  {
+    id: 'vid-google-devs-antigravity-wildlife-field-guide',
+    videoId: 'fpQcDQJQLhg',
+    featuredOfTheDay: false,
+    category: 'Antigravity Offline Apps',
+    badge: 'OFFICIAL BUILD • GOOGLE FOR DEVELOPERS',
+    title: 'Google Antigravity in action: Building an offline wildlife field guide',
+    creatorName: 'Google for Developers',
+    creatorHandle: '@GoogleDevelopers',
+    creatorUrl: 'https://www.youtube.com/@GoogleDevelopers',
+    watchUrl: 'https://www.youtube.com/watch?v=fpQcDQJQLhg',
+    thumbnailUrl: 'https://i.ytimg.com/vi/fpQcDQJQLhg/hqdefault.jpg',
+    geminiSummary:
+      'Published November 23, 2026 (20:00 UTC) by Google for Developers—demonstrating Google Antigravity building a resilient offline-capable wildlife field guide application end-to-end.',
+    whyFeatured:
+      'Verified HTTP 200 Nov 23 Google for Developers hands-on walkthrough showcasing offline-first app engineering in Google Antigravity.',
+  },
+  {
+    id: 'vid-google-cloud-antigravity-firebase-nocode',
+    videoId: '0aUIWT6W_oU',
+    featuredOfTheDay: false,
+    category: 'Antigravity & Firebase Backend',
+    badge: 'OFFICIAL BUILD IT • GOOGLE CLOUD TECH',
+    title: 'From prototype to real Firebase backend (no code)',
+    creatorName: 'Google Cloud Tech',
+    creatorHandle: '@googlecloudtech',
+    creatorUrl: 'https://www.youtube.com/@googlecloudtech',
+    watchUrl: 'https://www.youtube.com/watch?v=0aUIWT6W_oU',
+    thumbnailUrl: 'https://i.ytimg.com/vi/0aUIWT6W_oU/hqdefault.jpg',
+    geminiSummary:
+      'Published November 21, 2026 (16:00 UTC) by Google Cloud Tech (Devin Chasanoff, Build It)—using workspace skills and Gemini inside Google Antigravity to wire a prototype app to a live Firebase project, email and Google Sign-In, Cloud Firestore security rules, seeded exercise data, and persistent AI coach plans without manual backend boilerplate.',
+    whyFeatured:
+      'Verified HTTP 200 Nov 21 Google Cloud Tech walkthrough uniting Google Antigravity workspace skills, Gemini, Firebase Auth, and Cloud Firestore end-to-end.',
+  },
+  {
+    id: 'vid-google-devs-antigravity-midi-3d-world',
+    videoId: 'WN-JK-hMAyg',
+    featuredOfTheDay: false,
+    category: 'Creative Coding & 3D Worlds',
+    badge: 'OFFICIAL CREATIVE BUILD • GOOGLE FOR DEVELOPERS',
+    title: 'Google Antigravity and Gemini 4: Creating an interactive MIDI mapped 3D world',
+    creatorName: 'Google for Developers',
+    creatorHandle: '@GoogleDevelopers',
+    creatorUrl: 'https://www.youtube.com/@GoogleDevelopers',
+    watchUrl: 'https://www.youtube.com/watch?v=WN-JK-hMAyg',
+    thumbnailUrl: 'https://i.ytimg.com/vi/WN-JK-hMAyg/hqdefault.jpg',
+    geminiSummary:
+      'Published November 20, 2026 (20:00 UTC) by Google for Developers—pairing Google Antigravity and Gemini 4 to build a real-time interactive 3D world driven by physical MIDI hardware controls.',
+    whyFeatured:
+      'Verified HTTP 200 Nov 20 Google for Developers hands-on creative build uniting hardware MIDI input, 3D rendering, and Gemini 4 inside Google Antigravity.',
+  },
+  {
+    id: 'vid-google-cloud-edge-gemma4-vector',
+    videoId: 'ugmCis5nuF8',
+    featuredOfTheDay: false,
+    category: 'Edge AI & Hybrid Routing',
+    badge: 'OFFICIAL ARCHITECTURE GUIDE • GOOGLE CLOUD TECH',
+    title: 'Web AI at the Edge: Local Vector Search, Gemma 4, & hybrid cloud routing',
+    creatorName: 'Google Cloud Tech',
+    creatorHandle: '@googlecloudtech',
+    creatorUrl: 'https://www.youtube.com/@googlecloudtech',
+    watchUrl: 'https://www.youtube.com/watch?v=ugmCis5nuF8',
+    thumbnailUrl: 'https://i.ytimg.com/vi/ugmCis5nuF8/hqdefault.jpg',
+    geminiSummary:
+      'Published November 20, 2026 (14:00 UTC) by Google Cloud Tech—architecting browser-side local vector search and Gemma 4 inference paired with intelligent hybrid cloud routing to Gemini.',
+    whyFeatured:
+      'Verified HTTP 200 Nov 20 Google Cloud Tech guide covering on-device Gemma 4 vector search and hybrid cloud escalation.',
+  },
+  {
     id: 'vid-google-deepmind-koray-path-to-agi',
     videoId: 'FORdPIWOH5k',
-    featuredOfTheDay: true,
+    featuredOfTheDay: false,
     category: 'Frontier Research & AGI',
     badge: 'FEATURED VIDEO OF THE DAY • GOOGLE DEEPMIND',
     title: 'Gemini and the path to AGI with Koray Kavukcuoglu',

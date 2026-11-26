@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Antigravity v2.35.0 Conversation API &amp; Swarm Paging Studio [SIMULATED DEMO] | Agile Labs</title>
+    <meta
+      name="description"
+      content="Interactive [SIMULATED DEMO] developer workbench modeling Google Antigravity v2.35.0: simulate the Conversation Management API, unlimited history retention, Swarm on-demand paging, Auto read permissions, and Cmd+F HTML artifact search."
+    />
+    <link rel="canonical" href="https://geminipulse.com/labs/gemini-antigravity-conversation-studio.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Antigravity v2.35.0 Conversation API &amp; Swarm Paging Studio [SIMULATED DEMO]" />
+    <meta property="og:description" content="Simulate Antigravity v2.35.0's built-in Conversation Management API, unlimited local history, Swarm message paging, and Cmd+F artifact search." />
+    <meta property="og:url" content="https://geminipulse.com/labs/gemini-antigravity-conversation-studio.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Antigravity v2.35.0 Conversation API & Swarm Paging Studio [SIMULATED DEMO]",
+        "url": "https://geminipulse.com/labs/gemini-antigravity-conversation-studio.html",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "All",
+        "creator": { "@type": "Organization", "name": "Agile Labs (via GeminiPulse.com)" },
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      }
+    </script>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #07090e;
+        --surface: #111622;
+        --surface-high: #182030;
+        --border: rgba(255, 255, 255, 0.1);
+        --text: #f3f5fb;
+        --muted: #9da4b8;
+        --accent: #38bdf8;
+        --success: #34d399;
+        --warning: #fbbf24;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+      .wrap { max-width: 1080px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .badge-sim {
+        display: inline-block;
+        font-family: ui-monospace, Menlo, monospace;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        padding: 0.25rem 0.65rem;
+        border-radius: 9999px;
+        background: rgba(245, 158, 11, 0.15);
+        color: #fbbf24;
+        border: 1px solid rgba(245, 158, 11, 0.35);
+        text-transform: uppercase;
+      }
+      .header-title { font-size: clamp(1.55rem, 3.2vw, 2.25rem); font-weight: 800; margin: 0.6rem 0 0.3rem; line-height: 1.2; }
+      .header-sub { font-size: 1rem; color: var(--muted); margin: 0 0 1.5rem; }
+      .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.25rem;
+        min-inline-size: 0;
+      }
+      @media (max-width: 820px) {
+        .grid-2 { grid-template-columns: minmax(0, 1fr); }
+      }
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+        padding: 1.25rem;
+        min-inline-size: 0;
+      }
+      .card-title { font-size: 1.05rem; font-weight: 700; margin: 0 0 0.85rem; color: #f8fafc; }
+      .preset-btn {
+        display: block;
+        width: 100%;
+        text-align: left;
+        background: var(--surface-high);
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        padding: 0.75rem 0.9rem;
+        margin-bottom: 0.6rem;
+        color: var(--text);
+        cursor: pointer;
+        font-family: inherit;
+      }
+      .preset-btn.active {
+        border-color: var(--accent);
+        background: rgba(56, 189, 248, 0.12);
+      }
+      .preset-title { display: block; font-size: 0.9rem; font-weight: 600; }
+      .preset-meta { display: block; font-size: 0.78rem; color: var(--muted); margin-top: 0.15rem; }
+      select, input[type="range"] {
+        width: 100%;
+        background: var(--surface-high);
+        color: var(--text);
+        border: 1px solid var(--border);
+        border-radius: 0.6rem;
+        padding: 0.55rem 0.75rem;
+        font-size: 0.88rem;
+      }
+      .metric-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.65rem;
+        margin-bottom: 0.9rem;
+      }
+      @media (max-width: 540px) {
+        .metric-grid { grid-template-columns: minmax(0, 1fr); }
+      }
+      .metric-box {
+        background: var(--surface-high);
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        padding: 0.65rem 0.8rem;
+      }
+      .metric-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+      .metric-val { font-size: 0.95rem; font-weight: 700; margin-top: 0.15rem; color: var(--success); }
+      .log-box {
+        background: #04070d;
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        padding: 0.9rem;
+        font-family: ui-monospace, Menlo, Consolas, monospace;
+        font-size: 0.8rem;
+        line-height: 1.55;
+        color: #cbd5e1;
+        white-space: pre-wrap;
+        word-break: break-word;
+        min-height: 195px;
+      }
+      pre {
+        background: #04070d;
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        padding: 0.9rem;
+        overflow-x: auto;
+        max-width: 100%;
+        font-family: ui-monospace, Menlo, Consolas, monospace;
+        font-size: 0.82rem;
+        color: #e2e8f0;
+        margin: 0.75rem 0 0;
+      }
+    </style>
+    <!-- GP-ANALYTICS-START -->
+    <meta name="gp:model" content="gemini-4-argon" />
+    <meta name="gp:effort" content="high" />
+    <meta name="gp:surface" content="interactive_lab" />
+    <meta name="gp:slug" content="gemini-antigravity-conversation-studio" />
+    <script src="/assets/pulse-analytics.js" defer></script>
+    <!-- GP-ANALYTICS-END -->
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+        <a href="/series/antigravity-v2-35-conversation-api/part-1-what-changed-antigravity-v2-35.html" style="font-size: 0.85rem;">Read 3-Part Series &rarr;</a>
+      </div>
+
+      <span class="badge-sim">[SIMULATED DEMO] &middot; ANTIGRAVITY v2.35.0 &middot; NOV 23, 2026</span>
+      <h1 class="header-title">Antigravity v2.35.0 Conversation API &amp; Swarm Paging Studio</h1>
+      <p class="header-sub">
+        Simulate how <strong>Antigravity v2.35.0</strong> preserves local history past 500 threads, runs programmatic <code>conversations</code> skill operations, scopes Auto permissions, and pages large Swarm boards locally in your browser.
+      </p>
+
+      <div class="grid-2">
+        <section class="card" aria-label="Antigravity v2.35.0 workflow selector">
+          <h2 class="card-title">1. Select v2.35.0 Subsystem Scenario</h2>
+          <button type="button" class="preset-btn active" data-mode="conversation-api">
+            <span class="preset-title">Unlimited History &amp; Conversation API</span>
+            <span class="preset-meta">No 500-thread cap; create, list, inspect, pin, star, tag, group, archive</span>
+          </button>
+          <button type="button" class="preset-btn" data-mode="swarm-paging">
+            <span class="preset-title">Swarm Paging &amp; Collapsed Subagents</span>
+            <span class="preset-meta">On-demand message paging, incremental diffs, reduced hidden polling</span>
+          </button>
+          <button type="button" class="preset-btn" data-mode="artifact-search">
+            <span class="preset-title">Cmd+F HTML Artifact Search &amp; RTL Tabs</span>
+            <span class="preset-meta">In-artifact match highlighting plus per-tab RTL prose toggles</span>
+          </button>
+          <button type="button" class="preset-btn" data-mode="permissions-models">
+            <span class="preset-title">Auto Permissions &amp; High Effort Default</span>
+            <span class="preset-meta">Out-of-project read approval, directory write scopes, mid-turn locks</span>
+          </button>
+
+          <label for="thread-slider" style="display: block; font-size: 0.8rem; color: var(--muted); margin: 0.85rem 0 0.35rem;">
+            Simulated Local Thread Corpus Size: <strong id="thread-label">742 Conversations</strong>
+          </label>
+          <input id="thread-slider" type="range" min="250" max="1500" step="25" value="750" />
+        </section>
+
+        <section class="card" aria-label="Simulated Antigravity v2.35.0 telemetry">
+          <h2 class="card-title">2. Simulated Runtime &amp; Retention Telemetry</h2>
+          <div class="metric-grid">
+            <div class="metric-box">
+              <div class="metric-label">History Policy</div>
+              <div class="metric-val" id="m-retention">Unlimited</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-label">Default Effort</div>
+              <div class="metric-val" id="m-effort" style="color: var(--accent);">High</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-label">Legacy 500 Delta</div>
+              <div class="metric-val" id="m-delta" style="color: var(--warning);">+250 Saved</div>
+            </div>
+          </div>
+          <div class="log-box" id="sim-log"></div>
+        </section>
+      </div>
+
+      <section class="card" style="margin-top: 1.25rem;" aria-label="Reference Gemini 4 and Antigravity workflows">
+        <h2 class="card-title">3. Reference Conversation Triage &amp; Gemini 4 Neon Snippets</h2>
+        <label for="code-select" style="display: block; font-size: 0.8rem; color: var(--muted); margin-bottom: 0.35rem;">
+          Select Reference Snippet
+        </label>
+        <select id="code-select">
+          <option value="ts">Conversation Triage &amp; Searchable HTML Artifact (@google/genai v3.x)</option>
+          <option value="py">Unlimited History Audit Script (google-genai v3.x)</option>
+          <option value="checklist">v2.35.0 Conversation Lifecycle Operations Checklist</option>
+        </select>
+        <pre><code id="code-view"></code></pre>
+      </section>
+    </div>
+
+    <script>
+      const MODES = {
+        'conversation-api': {
+          retention: 'Unlimited',
+          effort: 'High',
+          log: (count) => {
+            const saved = Math.max(0, count - 500);
+            return `[CONVERSATION STORE] ${count} local conversations indexed (0 pruned; +${saved} preserved beyond legacy 500 cap)
+[CONVERSATIONS SKILL] Actions ready: create, list, inspect, rename, pin, star, archive, tag, group, delete
+[SIDE-QUESTION SEARCH] Match clicked -> opens parent conversation + side-question tab with preserved quote scroll
+[QUEUE CARD] Waiting turn identifies holding subagent before user triggers Send Now (draft preserved)`;
+          },
+        },
+        'swarm-paging': {
+          retention: 'On-Demand',
+          effort: 'High',
+          log: (count) => `[SWARM BOARD] ${count} historical threads on disk; Swarm board hydrates visible window via on-demand message paging
+[DIFF ENGINE] Incremental board updates active; background polling throttled while Swarm tab is hidden
+[TRAJECTORY] Consecutive parallel subagent launches collapsed into single expandable row
+[WORKED FOR] Adjacent empty Worked for sections merged automatically for clean review`,
+        },
+        'artifact-search': {
+          retention: 'Cmd+F Ready',
+          effort: 'High',
+          log: () => `[HTML ARTIFACT VIEWER] Full-page HTML artifact mounted -> press Cmd+F (Ctrl+F on Windows/Linux)
+[MATCH ENGINE] Highlighting 14 matches across benchmark tables; next/prev match navigation active
+[FILE TABS] Per-tab RTL text direction toggle enabled for Markdown prose without flipping fenced code blocks
+[REVIEW BADGES] Code artifact review comments synced into Review counter and sidebar badges`,
+        },
+        'permissions-models': {
+          retention: 'Scoped Auto',
+          effort: 'High',
+          log: () => `[COMPOSER BAR] Environment selector (SSH Host menu) placed ahead of Project and Branch
+[TURN LOCK] Model and permission selectors locked mid-turn with explanatory tooltips
+[AUTO PERMISSIONS] Out-of-project file reads approved automatically; sensitive config & session connection files protected
+[WRITE PROMPTS] External write approval suggests directory scope with bolded path pattern
+[PLUGINS] Gemini API Marketplace plugin updated to v2.8.0 (Gemini 4 Neon); ClickUp & Legal plugins live`,
+        },
+      };
+
+      const SNIPPETS = {
+        ts: `import { GoogleGenAI } from "@google/genai";
+
+const ai = new GoogleGenAI();
+
+const triage = await ai.interactions.create({
+  model: "gemini-4-neon",
+  thinking_level: "high",
+  input:
+    "Audit local conversations tagged 'release-audit', pin verified deploys, and group stalled Swarm workers for review.",
+});
+
+const report = await ai.interactions.create({
+  model: "gemini-4-hydrogen",
+  previous_interaction_id: triage.id,
+  input:
+    "Render a single-file HTML summary structured for Cmd+F search inside the Antigravity v2.35.0 artifact viewer.",
+});
+
+console.log(report.output_text);`,
+        py: `from google import genai
+
+client = genai.Client()
+
+res = client.interactions.create(
+    model="gemini-4-neon",
+    thinking_level="high",
+    input=(
+        "Inspect local conversations past the 500-thread mark, star unresolved "
+        "incidents, and archive completed automation runs."
+    ),
+)
+
+print(res.output_text)`,
+        checklist: `Antigravity v2.35.0 Conversation Management API Operations:
+- create   : Start a scoped conversation for a scheduled job or triage run
+- list     : Enumerate local conversations without a 500-thread cap
+- inspect  : Read metadata, status, and side-question references
+- rename   : Apply clear operator-readable titles
+- pin      : Keep active release or incident threads anchored
+- star     : Flag high-priority follow-ups
+- tag      : Attach workflow labels (e.g. release-audit, swarm-qa)
+- group    : Bundle related runs into clean sidebar collections
+- archive  : Move running or finished threads out of the active queue
+- delete   : Remove scratch or superseded conversations deliberately`,
+      };
+
+      let activeMode = 'conversation-api';
+      const retentionEl = document.getElementById('m-retention');
+      const effortEl = document.getElementById('m-effort');
+      const deltaEl = document.getElementById('m-delta');
+      const logEl = document.getElementById('sim-log');
+      const sliderEl = document.getElementById('thread-slider');
+      const threadLabelEl = document.getElementById('thread-label');
+      const codeSelectEl = document.getElementById('code-select');
+      const codeViewEl = document.getElementById('code-view');
+
+      function render() {
+        const mode = MODES[activeMode];
+        const count = Number(sliderEl.value) || 750;
+        const saved = Math.max(0, count - 500);
+        threadLabelEl.textContent = count + ' Conversations';
+        retentionEl.textContent = mode.retention;
+        effortEl.textContent = mode.effort;
+        deltaEl.textContent = saved > 0 ? '+' + saved + ' Saved' : 'Under 500';
+        logEl.textContent = mode.log(count);
+      }
+
+      document.querySelectorAll('.preset-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.preset-btn').forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+          activeMode = btn.dataset.mode;
+          render();
+        });
+      });
+
+      sliderEl.addEventListener('input', render);
+      codeSelectEl.addEventListener('change', () => {
+        codeViewEl.textContent = SNIPPETS[codeSelectEl.value];
+      });
+
+      codeViewEl.textContent = SNIPPETS.ts;
+      render();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 1: DeepMind &amp; Quantum AI Pair Gemini 4 Agents With Lean 4 | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Google DeepMind and Google Quantum AI (arXiv:2611.09822) pair collaborating Gemini 4 agent teams with an open-source Lean 4 quantum program library to cut fusion simulation costs 11.8x and accelerate arcsin 290x."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/deepmind-lean-quantum-algorithms/part-1-what-changed-gemini-4-lean-quantum.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 1: Gemini 4 Agent Teams + Lean 4 Quantum Verification" />
+    <meta property="og:description" content="11.8x cheaper fusion simulation, 8x cheaper photochemistry, 2.5x Cytochrome P450 gains, and 290x faster arcsin—mathematically proven in Lean 4." />
+    <meta property="og:url" content="https://geminipulse.com/series/deepmind-lean-quantum-algorithms/part-1-what-changed-gemini-4-lean-quantum.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Part 1: Gemini 4 Agent Teams + Lean 4 Quantum Verification" />
+    <meta name="twitter:description" content="How Google DeepMind and Quantum AI used proof-checked Gemini 4 teams to optimize quantum circuits beyond classical simulation." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "DeepMind & Quantum AI Pair Gemini 4 Agents With Lean 4 Formal Verification",
+        "datePublished": "2026-11-23T17:00:00Z",
+        "author": { "@type": "Person", "name": "Google Gemini 4 Argon (Thinking Effort: High)" },
+        "contributor": { "@type": "Person", "name": "Neil S. White" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/deepmind-lean-quantum-algorithms/part-1-what-changed-gemini-4-lean-quantum.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; --emerald: #10b981; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: #cbd5e1; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .box.info { border-left: 4px solid var(--accent); }
+      .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+      table { width: 100%; border-collapse: collapse; font-size: 0.92rem; text-align: left; }
+      th, td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+      th { background: rgba(255,255,255,0.03); color: #f1f5f9; font-weight: 600; }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.15rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+    </style>
+    <!-- GP-ANALYTICS-START -->
+    <meta name="gp:model" content="gemini-4-argon" />
+    <meta name="gp:effort" content="high" />
+    <meta name="gp:surface" content="release_series" />
+    <meta name="gp:slug" content="deepmind-lean-quantum-algorithms/part-1-what-changed-gemini-4-lean-quantum" />
+    <script src="/assets/pulse-analytics.js" defer></script>
+    <!-- GP-ANALYTICS-END -->
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">DeepMind Science &amp; Verification Series &middot; Part 1 of 3</div>
+      <h1>Google DeepMind &amp; Quantum AI Pair Gemini 4 Agents With Lean 4 to Discover Faster Quantum Algorithms</h1>
+
+      <div class="meta">
+        Authored by <strong>Google Gemini 4 Argon</strong> &middot; Thinking Effort: <strong>High</strong> &middot; Product Development &amp; Creative Direction: <strong>Neil S. White</strong> &bull; Release Date: November 23, 2026 &bull; Primary Sources:
+        <a href="https://deepmind.google/blog/finding-faster-quantum-algorithms-with-agents-and-formal-verification/" target="_blank" rel="noopener">Google DeepMind Blog</a>,
+        <a href="https://arxiv.org/abs/2611.09822" target="_blank" rel="noopener">arXiv:2611.09822</a> &amp;
+        <a href="https://github.com/google-deepmind/formal-quantum-computation" target="_blank" rel="noopener">GitHub Repo</a> &bull; 5 min read
+      </div>
+
+      <div class="box info">
+        <h3 style="margin-top: 0; color: #38bdf8;">Release Summary: Formal Quantum Program Discovery (Nov 23, 2026)</h3>
+        <p style="margin-bottom: 0;">In <em>Finding faster quantum algorithms with agents and formal verification</em> (<code>arXiv:2611.09822</code>), Google DeepMind and Google Quantum AI demonstrate collaborating teams of <strong>Gemini 4</strong> agents writing and mathematically proving optimized quantum circuits in <strong>Lean 4</strong>—cutting inertial confinement fusion simulation cost <strong>11.8x</strong> (<code>5,650</code> to <code>4,338</code> qubits), photochemistry <strong>8x</strong>, Cytochrome P450 <strong>2.5x</strong> (<code>481</code> to <code>333</code> qubits), parallel Grover search up to <strong>2.57x</strong>, and <code>arcsin</code> state loading <strong>290x</strong>, with the Lean library and discoveries open-sourced on GitHub.</p>
+      </div>
+
+      <h2>1. Why Runtime Benchmarks Break on Fault-Tolerant Quantum Circuits</h2>
+      <p>Automated AI discovery systems like AlphaEvolve optimize classical code by running candidate patches on real CPUs and GPUs and measuring wall-clock speedups. Fault-tolerant quantum circuits hit a hard wall against that methodology: classical supercomputers can only simulate toy-sized quantum registers, and today’s noisy processors cannot yet execute circuits requiring thousands of logical qubits.</p>
+      <p>To optimize scientific algorithms years ahead of hardware availability, Sergey Shirobokov, Ben Jaderberg, Ryan Babbush, and collaborators replaced empirical test execution with formal verification. Every circuit discovered by Gemini 4 agents is accompanied by a machine-checked mathematical proof in <strong>Lean 4</strong> guaranteeing both functional equivalence to the problem specification and exact qubit-plus-operation resource savings.</p>
+
+      <h2>2. Five Verified Quantum Breakthroughs at a Glance</h2>
+      <div class="table-wrap" role="region" aria-label="Five verified quantum algorithm improvements" tabindex="0">
+        <table>
+          <thead>
+            <tr>
+              <th>Challenge</th>
+              <th>Scientific or Algorithmic Role</th>
+              <th>Verified Improvement</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Inertial Confinement Fusion (<code>StoppingPower</code>)</strong></td>
+              <td>Models stopping power in laser-compressed hydrogen fusion fuel</td>
+              <td><strong>11.8x</strong> lower computing cost; memory reduced from <code>5,650</code> to <code>4,338</code> error-corrected qubits</td>
+            </tr>
+            <tr>
+              <td><strong>Photochemistry (<code>Photochemistry</code>)</strong></td>
+              <td>Non-Born-Oppenheimer simulation tracking particles and electric forces</td>
+              <td><strong>8x</strong> cheaper quantum simulation</td>
+            </tr>
+            <tr>
+              <td><strong>Cytochrome P450 (<code>P450</code>)</strong></td>
+              <td>Enzyme modeling central to human drug metabolism</td>
+              <td><strong>2.5x</strong> cost reduction and memory lowered from <code>481</code> to <code>333</code> qubits by replacing bulky memory lookups</td>
+            </tr>
+            <tr>
+              <td><strong>Parallel Grover Search (<code>FindAll</code> / <code>FindAny</code>)</strong></td>
+              <td>Foundational quantum unstructured search operation</td>
+              <td>Up to <strong>2.57x</strong> speedup over prior baselines</td>
+            </tr>
+            <tr>
+              <td><strong>Quantum <code>arcsin</code> Primitive (<code>ArcSin</code>)</strong></td>
+              <td>Core arithmetic subroutine loading numerical values into quantum states</td>
+              <td><strong>290x</strong> speedup over baseline circuit implementations</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>3. The Honest Hardware Boundary</h2>
+      <p>Google DeepMind explicitly cautions that even after <strong>11.8x</strong> and <strong>8x</strong> resource reductions, running full scientific fusion and enzyme simulations still demands more computational resources than the very first error-corrected quantum computers are expected to offer. However, proof-checked AI search compresses multi-year manual circuit engineering cycles into days, narrowing the hardware-algorithm gap from the software side.</p>
+
+      <div class="series-nav">
+        <a href="/labs/gemini-4-lean-quantum-studio.html" class="btn-pill">Launch Lean Quantum Studio [SIMULATED DEMO] &rarr;</a>
+        <a href="/series/deepmind-lean-quantum-algorithms/part-2-agent-teams-conferences-and-lean-benchmarks.html" class="btn-pill">Next: Part 2 (Agent Teams, Conferences &amp; Lean Telemetry) &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>

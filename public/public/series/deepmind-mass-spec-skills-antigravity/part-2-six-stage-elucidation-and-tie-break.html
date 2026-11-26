@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 2: Inside the 6-Stage MS/MS Pipeline &amp; 845-Isomer Tie-Break | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Technical breakdown of Google DeepMind’s Mass Spec Skills worked example (m/z 395.1387 -> C20H21ClN6O): matchms noise removal, GNPS/MoNA lookup, SIRIUS trees, MAGMa/MetFrag scoring, HCl/HNCO neutral losses, and RDKit verification."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/deepmind-mass-spec-skills-antigravity/part-2-six-stage-elucidation-and-tie-break.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 2: Inside the 6-Stage MS/MS Pipeline &amp; 845-Isomer Tie-Break" />
+    <meta property="og:description" content="How Gemini inside Antigravity broke a 97.7% spectral-coverage tie across 845 PubChem isomers using HCl and HNCO neutral-loss chemistry." />
+    <meta property="og:url" content="https://geminipulse.com/series/deepmind-mass-spec-skills-antigravity/part-2-six-stage-elucidation-and-tie-break.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Inside the 6-Stage MS/MS Pipeline and 845-Isomer Tie-Break in Mass Spec Skills",
+        "datePublished": "2026-11-25T13:00:00Z",
+        "author": { "@type": "Person", "name": "Google Gemini 4 Argon (Thinking Effort: High)" },
+        "contributor": { "@type": "Person", "name": "Neil S. White" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/deepmind-mass-spec-skills-antigravity/part-2-six-stage-elucidation-and-tie-break.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+      table { width: 100%; border-collapse: collapse; font-size: 0.92rem; text-align: left; }
+      th, td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+      th { background: rgba(255,255,255,0.03); color: #f1f5f9; font-weight: 600; }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.15rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+    </style>
+    <!-- GP-ANALYTICS-START -->
+    <meta name="gp:model" content="gemini-4-argon" />
+    <meta name="gp:effort" content="high" />
+    <meta name="gp:surface" content="release_series" />
+    <meta name="gp:slug" content="deepmind-mass-spec-skills-antigravity/part-2-six-stage-elucidation-and-tie-break" />
+    <script src="/assets/pulse-analytics.js" defer></script>
+    <!-- GP-ANALYTICS-END -->
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">DeepMind Mass Spec Skills Series &middot; Part 2 of 3</div>
+      <h1>Inside the 6-Stage Elucidation Pipeline: How Antigravity Resolved an 845-Isomer Tie at 97.7% Intensity</h1>
+
+      <div class="meta">
+        Authored by <strong>Google Gemini 4 Argon</strong> &middot; Thinking Effort: <strong>High</strong> &middot; Product Development &amp; Creative Direction: <strong>Neil S. White</strong> &bull; Release Date: November 25, 2026 &bull; 6 min read
+      </div>
+
+      <h2>1. Step-by-Step Walkthrough of Negative-Mode Spectrum m/z 395.1387</h2>
+      <p>Negative-ion tandem spectra are notoriously sparse in public libraries compared to positive-ion datasets. In DeepMind’s end-to-end demonstration (with reference library matching intentionally bypassed after screening), the Antigravity agent executed six deterministic stages from a single natural-language request:</p>
+
+      <div class="table-wrap" role="region" aria-label="Six-stage MS/MS workflow mechanics" tabindex="0">
+        <table>
+          <thead>
+            <tr>
+              <th>Stage</th>
+              <th>Community Tool / Skill</th>
+              <th>Verified Run Telemetry (m/z 395.1387)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1. Preprocess &amp; Denoise</strong></td>
+              <td><code>matchms</code></td>
+              <td>Converts negative precursor <code>[M−H]−</code> at <code>m/z 395.1387</code> to <code>396.1459 Da</code> neutral mass and strips 1,742 background spikes (<code>1,761</code> raw peaks reduced to <code>19</code> fragment peaks).</td>
+            </tr>
+            <tr>
+              <td><strong>2. Library Lookup</strong></td>
+              <td><code>GNPS</code> &amp; <code>MoNA</code></td>
+              <td>Scores denoised peaks by cosine similarity within instrument tolerances; finding no confident match, escalates to de novo formula inference.</td>
+            </tr>
+            <tr>
+              <td><strong>3. Formula Deduction</strong></td>
+              <td><code>SIRIUS</code></td>
+              <td>Evaluates fragmentation trees across 10 candidate elements, pinning down <code>C20H21ClN6O</code> at <code>−1.5 ppm</code> mass error (score <code>37.86</code> vs. <code>28.33</code> runner-up).</td>
+            </tr>
+            <tr>
+              <td><strong>4. Neutral-Loss Loop</strong></td>
+              <td><code>MAGMa</code>, <code>MetFrag</code> &amp; Neutral-Loss Lookup</td>
+              <td>Splits precursor into <code>m/z 162.1037</code> (45.1%) and <code>m/z 232.0283</code> (6.8%), tracing sequential <code>HCl</code> and <code>HNCO</code> losses via <code>m/z 196.0511</code> and <code>189.0238</code> to <code>153.0453</code>.</td>
+            </tr>
+            <tr>
+              <td><strong>5. Reaction-Path Tie-Break</strong></td>
+              <td>Gemini Chemical Reasoning + <code>PubChem</code></td>
+              <td>Scores 845 isomers; rules out tied 97.7%-intensity <code>CID 154638626</code> (no urea, no water-loss peaks) and amide <code>CID 55558151</code> (bond-break score <code>49.0</code>) to isolate <code>CID 137835447</code> (<code>26.0</code>).</td>
+            </tr>
+            <tr>
+              <td><strong>6. Valence &amp; Cleavage Check</strong></td>
+              <td><code>RDKit</code></td>
+              <td>Confirms valid valences, exact mass match, and renders the 2D molecule highlighting the central asymmetric urea cleavage alongside secondary chlorophenyl-pyrazole peaks (<code>m/z 206.0485</code>, <code>126.0114</code>).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>2. Honest Physical &amp; Database Boundaries</h2>
+      <div class="box">
+        <p style="margin: 0;">DeepMind notes two clear scientific limits: first, mirror-image molecules (enantiomers) and certain near-identical isomers produce virtually indistinguishable LC-MS/MS spectra and still require retention time, ion mobility, or NMR to separate. Second, genuinely novel compounds absent from PubChem cannot be matched to an existing registry ID, though Antigravity still gives chemists the predicted formula, annotated fragment ions, and partial structural clues.</p>
+      </div>
+
+      <div class="series-nav">
+        <a class="btn-pill" href="/series/deepmind-mass-spec-skills-antigravity/part-1-what-changed-mass-spec-skills.html">&larr; Part 1: Overview &amp; Benchmarks</a>
+        <a class="btn-pill" href="/series/deepmind-mass-spec-skills-antigravity/part-3-concrete-skill-blueprints.html">Part 3: Skill Architecture Blueprints &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>

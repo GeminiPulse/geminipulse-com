@@ -20,59 +20,75 @@
   </entry>
 
   <entry>
-    <title>World Models Leave the Sandbox. Genie 4 Opens Live 24 fps Streaming on the Gemini API. (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/genie-4-gemini-api-interactive-worlds.html" />
-    <id>https://geminipulse.com/articles/genie-4-gemini-api-interactive-worlds.html</id>
-    <updated>2026-11-19T17:00:00.000Z</updated>
-    <summary>One day after Project Genie opened inside Google AI Ultra, developers gained direct API keys to steer continuous 720p worlds over WebRTC and WebSockets. On November 19, 2026, Google shipped models/genie-4 across the Interactions API and Google AI Studio.</summary>
+    <title>Unassisted Frontier Models Scored Under 4% on Mass Spectra. Antigravity Skills Put Lightweight Flash at 97%. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/deepmind-mass-spec-skills-antigravity.html" />
+    <id>https://geminipulse.com/articles/deepmind-mass-spec-skills-antigravity.html</id>
+    <updated>2026-11-25T13:00:00.000Z</updated>
+    <summary>Over 90% of chemical signals recorded in modern metabolomics remain unannotated because reference spectral libraries only cover a sliver of known molecules. On November 25, 2026, Google DeepMind unveiled Mass Spec Skills for Google Antigravity, pairing Gemini’s chemical reasoning with established open-source analytical tools so even lightweight Gemini 3.8 Flash matches frontier Gemini 4 models at around 97% identification accuracy while burning nearly 4x fewer tokens.</summary>
   </entry>
 
   <entry>
-    <title>Code Generation Outran Human Maintainers. How Gemini-Powered Sashiko Cut Linux Fixes by 35%. (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/sashiko-gemini-kernel-code-review.html" />
-    <id>https://geminipulse.com/articles/sashiko-gemini-kernel-code-review.html</id>
-    <updated>2026-11-19T12:00:00.000Z</updated>
-    <summary>More AI-written code simply piles up in front of human reviewers unless verification scales alongside generation. On November 19, 2026, Google published seven months of Linux kernel production data from Sashiko—an open-source Gemini review system cited in 528 official 2026 CVEs.</summary>
+    <title>Google Research Open-Sources Verifiable Social Reasoning Benchmark &amp; 20K+ Multi-Agent Concordia Dataset for LLM Assistants. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/google-research-verifiable-social-reasoning.html" />
+    <id>https://geminipulse.com/articles/google-research-verifiable-social-reasoning.html</id>
+    <updated>2026-11-25T17:10:27.000Z</updated>
+    <summary>Google Research’s Zorik Gekhman and Amir Taubenfeld introduce a user-mediated social reasoning benchmark (arXiv:2609.17496) built on Concordia multi-agent simulations—exposing how LLMs amplify biased user framing and underuse clarification questions across 12 evaluated models.</summary>
   </entry>
 
   <entry>
-    <title>Stop Paying Context Rent on Idle Tools. Tool Retrieval Enters Gemini Interactions API Preview. (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/gemini-api-tool-retrieval-interactions-preview.html" />
-    <id>https://geminipulse.com/articles/gemini-api-tool-retrieval-interactions-preview.html</id>
-    <updated>2026-11-19T18:00:00.000Z</updated>
-    <summary>Connecting an AI agent to fifty functions or multiple remote MCP servers used to force a losing trade between bloated input prompts and brittle routing. On November 19, 2026, Google launched Tool Retrieval in the Gemini Interactions API v1beta so agents discover and load parameter schemas only when a task actually demands them.</summary>
+    <title>Google Antigravity v2.35.1 &amp; v2.35.2 Ship Mid-Turn Model Switching, Restart Turn Resumption &amp; Auto-Opening Plugin Panels (Plus ADK Python v2.15.1). (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/antigravity-v2-35-1-2-35-2-turn-switch-resumption.html" />
+    <id>https://geminipulse.com/articles/antigravity-v2-35-1-2-35-2-turn-switch-resumption.html</id>
+    <updated>2026-11-25T12:00:00.000Z</updated>
+    <summary>Antigravity v2.35.2 unlocks the model selector while a turn is running for /btw side questions and follow-ups, while v2.35.1 auto-resumes interrupted turns on restart, opens plugin panel links in the side panel, and compresses diagnostic batches; ADK Python v2.15.1 ships A2A and Claude SDK fixes.</summary>
   </entry>
 
   <entry>
-    <title>Desktop Agents Stop Stealing Your Mouse. Gemini for Mac Launches Background Computer Use. (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/gemini-mac-app-computer-use.html" />
-    <id>https://geminipulse.com/articles/gemini-mac-app-computer-use.html</id>
-    <updated>2026-11-19T17:00:00.000Z</updated>
-    <summary>Early GUI agents forced operators to stop working while an AI hijacked the cursor across open windows. On November 19, 2026, Google rolled out computer use in the Gemini app for Mac inside an isolated background window.</summary>
+    <title>Google Makes Workspace MCP Servers &amp; gwscli Generally Available—With a Hard February 1, 2027 Cutover (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/workspace-mcp-servers-cli-agent-governance-ga.html" />
+    <id>https://geminipulse.com/articles/workspace-mcp-servers-cli-agent-governance-ga.html</id>
+    <updated>2026-11-24T17:02:59.000Z</updated>
+    <summary>For two decades, traditional web apps called Gmail, Drive, and Calendar through deterministic REST endpoints across 2.8 trillion monthly requests. On November 24, 2026, Google drew a hard architectural boundary between software and autonomous AI agents—making dedicated remote Workspace MCP servers, the gwscli terminal binary, Cloud Agent Gateway SPIFFE controls, and a new two-tier quota model generally available ahead of mandatory technical enforcement on February 1, 2027.</summary>
   </entry>
 
   <entry>
-    <title>Google Cloud Storage Launches Object Enrichments With Native Gemini Multimodal Context at $700 per 10M Files. (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/gcs-object-enrichments-gemini.html" />
-    <id>https://geminipulse.com/articles/gcs-object-enrichments-gemini.html</id>
-    <updated>2026-11-19T17:00:00.000Z</updated>
-    <summary>Google Cloud Storage introduces managed object enrichments (preview)—writing AI object detection, labeling, PDF classification, and upcoming native Gemini multimodal reasoning directly to in-place object context at 75% cost savings ($700 per 10M images/PDFs).</summary>
+    <title>Google DeepMind Launches Humanity’s First Exam (HFE) &amp; Kaggle Hackathon: Measuring the 7.6–80.1 pp LLM Reliability Floor Gap. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/deepmind-humanitys-first-exam-hfe.html" />
+    <id>https://geminipulse.com/articles/deepmind-humanitys-first-exam-hfe.html</id>
+    <updated>2026-11-24T19:30:00.000Z</updated>
+    <summary>Google DeepMind’s Oran Kelly and co-authors release Humanity’s First Exam (544 text and image prompts across 136 four-variant families and 20 subcategories) plus a Kaggle competition through December 15—showing top models hit 96%–98% pass@1 yet drop to 80.5%–92.4% on strict family pass4, with 73% of errors in visual perception.</summary>
   </entry>
 
   <entry>
-    <title>Google Details Multi-Turn Agentic RL with Tunix and Gemma 4 on Cloud TPU v6e-8: 9.4% to 95% Win Rate in 100 Steps. (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/tunix-gemma-4-agentic-rl.html" />
-    <id>https://geminipulse.com/articles/tunix-gemma-4-agentic-rl.html</id>
-    <updated>2026-11-19T16:30:00.000Z</updated>
-    <summary>Google Developers Blog walks through training google/gemma-4-E2B-it in thinking mode via Tunix agentic GRPO on a single Cloud TPU v6e-8 host—exploiting Gemma 4’s native stop token to lift held-out Plane Strike win rate from 9.4% to 95%.</summary>
+    <title>Google Launches Managed Ingestion &amp; SearchDocuments in Agent Retrieval (Public Preview): Cloud Storage Files to Cited Answers in One Call. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/agent-retrieval-managed-ingestion-searchdocuments.html" />
+    <id>https://geminipulse.com/articles/agent-retrieval-managed-ingestion-searchdocuments.html</id>
+    <updated>2026-11-24T17:00:00.000Z</updated>
+    <summary>Yingxin Jiang and Kaz Sato introduce Managed Ingestion and SearchDocuments (v1beta REST in us-east4 and europe-west4), turning Cloud Storage PDFs, Office docs, and videos into Gemini Embedding 2 hybrid-searchable segments with page numbers and 0.3–0.5s audio-aware video timestamps.</summary>
   </entry>
 
   <entry>
-    <title>Carbon Depth Meets Hydrogen Velocity. Inside Gemini 4 Neon GA &amp; SDK v3.6.1. (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/gemini-4-neon-ga-launch-and-sdk-v3-6-1.html" />
-    <id>https://geminipulse.com/articles/gemini-4-neon-ga-launch-and-sdk-v3-6-1.html</id>
-    <updated>2026-11-18T21:00:00.000Z</updated>
-    <summary>Until today, teams had to choose between Hydrogen’s rapid everyday execution and Carbon’s maximum-horizon reasoning. On November 18, 2026, Google DeepMind launched Gemini 4 Neon—delivering frontier coding, knowledge work, science, and cyber defense with 32% lower cost per task than Carbon.</summary>
+    <title>Google Highlights 5 Gemini 4 Neon Builder Demos, Ships Gemini 4 Neon for Cyber (GA) &amp; Adds Neon Preview to CodeMender. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/gemini-4-neon-builders-and-cyber-ga.html" />
+    <id>https://geminipulse.com/articles/gemini-4-neon-builders-and-cyber-ga.html</id>
+    <updated>2026-11-24T16:00:00.000Z</updated>
+    <summary>Google spotlights five Gemini 4 Neon developer projects (3D Earth, xhigh Three.js butterflies, sub-5-minute /swarm hexagon flame shader, black hole lensing shader, and pendulum wave) alongside Gemini 4 Neon for cyber GA (345 tok/s per GSU) and CodeMender --model gemini-4-neon Preview.</summary>
+  </entry>
+
+  <entry>
+    <title>Deferred Service Tier GA on Gemini Platform: 50% Batch Economics for Stateful Multi-Turn Agents (Parts 1-3) + Studio [SIMULATED DEMO]</title>
+    <link href="https://geminipulse.com/series/gemini-deferred-service-tier/part-1-deferred-tier-interactions-ga.html" />
+    <id>https://geminipulse.com/series/gemini-deferred-service-tier/part-1-deferred-tier-interactions-ga.html</id>
+    <updated>2026-11-20T23:55:00Z</updated>
+    <summary>Direct primary-source breakdown of Google Cloud's GA Deferred service tier (service_tier='deferred') across Interactions API, ADK Python v2.10.0+ RunConfig, and Deep Research: 50% off Standard PayGo stacking with prompt caching, $0 billed on cancelled/expired/failed turns, 95% completion within 24h, 7-day state retention, locations/global exclusivity, and companion Deferred Service Tier Studio [SIMULATED DEMO].</summary>
+  </entry>
+
+  <entry>
+    <title>Gemini API CLI v0.5.0: Gemini 4 Hydrogen Default, Split BYOS Lease Sandboxes &amp; Voices Group (Parts 1–3) + Studio [SIMULATED DEMO]</title>
+    <link href="https://geminipulse.com/series/gemini-api-cli-v0-5/part-1-what-changed-with-gemini-api-cli-v0-5.html" />
+    <id>https://geminipulse.com/series/gemini-api-cli-v0-5/part-1-what-changed-with-gemini-api-cli-v0-5.html</id>
+    <updated>2026-11-20T00:49:52Z</updated>
+    <summary>Direct primary-source breakdown of Google's November 20, 2026 (00:49 UTC) google-gemini/gemini-api-cli v0.5.0 release: gemini-4-hydrogen CLI default, gemini-4-carbon and gemini-omni-1.2-flash Interactions enums, XHIGH ThinkingLevel, split environments poll/serve zero-key lt_v1 sandboxes, Tool Retrieval schemas, voices CLI group + normalized TTS --style, and interactive CLI &amp; BYOS Studio [SIMULATED DEMO].</summary>
   </entry>
 
   <entry>

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 3: Concrete Skill Blueprints &amp; @google/genai v3.x Patterns | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Architectural takeaways from DeepMind’s Mass Spec Skills for Google Antigravity: why deterministic SKILL.md wrappers let lightweight Gemini 3.8 Flash match frontier models, plus runnable @google/genai v3.x code."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/deepmind-mass-spec-skills-antigravity/part-3-concrete-skill-blueprints.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 3: Concrete Skill Blueprints &amp; @google/genai v3.x Patterns" />
+    <meta property="og:description" content="Three transferable engineering patterns from DeepMind’s Mass Spec Skills and runnable @google/genai v3.x Interactions API snippets." />
+    <meta property="og:url" content="https://geminipulse.com/series/deepmind-mass-spec-skills-antigravity/part-3-concrete-skill-blueprints.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Concrete Skill Architecture Blueprints From DeepMind Mass Spec Skills",
+        "datePublished": "2026-11-25T13:00:00Z",
+        "author": { "@type": "Person", "name": "Google Gemini 4 Argon (Thinking Effort: High)" },
+        "contributor": { "@type": "Person", "name": "Neil S. White" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/deepmind-mass-spec-skills-antigravity/part-3-concrete-skill-blueprints.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      pre { background: #04070d; border: 1px solid var(--border); border-radius: 0.75rem; padding: 1rem; overflow-x: auto; max-width: 100%; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.84rem; color: #e2e8f0; }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.15rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+    </style>
+    <!-- GP-ANALYTICS-START -->
+    <meta name="gp:model" content="gemini-4-argon" />
+    <meta name="gp:effort" content="high" />
+    <meta name="gp:surface" content="release_series" />
+    <meta name="gp:slug" content="deepmind-mass-spec-skills-antigravity/part-3-concrete-skill-blueprints" />
+    <script src="/assets/pulse-analytics.js" defer></script>
+    <!-- GP-ANALYTICS-END -->
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">DeepMind Mass Spec Skills Series &middot; Part 3 of 3</div>
+      <h1>Three Transferable Engineering Patterns From Mass Spec Skills</h1>
+
+      <div class="meta">
+        Authored by <strong>Google Gemini 4 Argon</strong> &middot; Thinking Effort: <strong>High</strong> &middot; Product Development &amp; Creative Direction: <strong>Neil S. White</strong> &bull; Release Date: November 25, 2026 &bull; 5 min read
+      </div>
+
+      <h2>1. Offload Precision Math &amp; Query Boilerplate Into Skills</h2>
+      <p>The biggest takeaway from DeepMind’s 100-compound benchmark is not specific to chemistry: asking an LLM to write bespoke API clients and tolerance calculators on every run guarantees high variance (causing frontier models to miss 25%–33% and Flash to miss over 75%). Wrapping validated community tools inside reusable Antigravity <code>SKILL.md</code> bundles lets fast models like <code>gemini-3.8-flash</code> match frontier models at ~97% accuracy while cutting tokens nearly fourfold.</p>
+
+      <h2>2. Complete @google/genai v3.x Chemical Tie-Break Example</h2>
+      <pre><code>import { GoogleGenAI } from "@google/genai";
+
+const ai = new GoogleGenAI();
+
+const tieBreak = await ai.interactions.create({
+  model: "gemini-3.8-flash",
+  thinking_level: "high",
+  input:
+    "Given SIRIUS formula C20H21ClN6O (-1.5 ppm), complementary fragments m/z 162.1037 and m/z 232.0283, and closed HCl + HNCO neutral-loss loops, rank CID 137835447 (bond-break score 26.0) against CID 55558151 (49.0) and CID 154638626.",
+});
+
+console.log(tieBreak.output_text);</code></pre>
+
+      <h2>3. Try the Interactive Studio</h2>
+      <div class="box">
+        <p style="margin: 0;">Step through all six elucidation stages, compare No-Tools vs. Internet-Only vs. Mass Spec Skills accuracy and token ratios, and inspect the <code>CID 137835447</code> tie-break inside <a href="/labs/gemini-mass-spec-skills-studio.html">DeepMind Mass Spec Skills Studio [SIMULATED DEMO]</a>.</p>
+      </div>
+
+      <div class="series-nav">
+        <a class="btn-pill" href="/series/deepmind-mass-spec-skills-antigravity/part-2-six-stage-elucidation-and-tie-break.html">&larr; Part 2: 6-Stage Pipeline</a>
+        <a class="btn-pill" href="/labs/gemini-mass-spec-skills-studio.html">Open Mass Spec Studio [DEMO] &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>

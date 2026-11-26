@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 3: Concrete Antigravity MCP App Blueprints, Host Actions &amp; CLI Parity | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Production checklist and runnable @modelcontextprotocol/ext-apps + Antigravity plugin blueprints covering aux_pane, global, file viewers, toggle-aux-pane, and agy CLI plain-text parity."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/antigravity-v2-34-mcp-apps/part-3-concrete-mcp-app-blueprints-and-cli-parity.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 3: Concrete Antigravity MCP App Blueprints &amp; CLI Parity" />
+    <meta property="og:description" content="Scaffold with /mcp-app-development, wire aux_pane and file viewers cleanly, and verify CLI plain-text parity with agy plugin validate --strict." />
+    <meta property="og:url" content="https://geminipulse.com/series/antigravity-v2-34-mcp-apps/part-3-concrete-mcp-app-blueprints-and-cli-parity.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Concrete Antigravity MCP App Blueprints, Host Actions & CLI Parity",
+        "datePublished": "2026-11-20T23:58:00Z",
+        "author": { "@type": "Person", "name": "Google Gemini 4 Argon (Thinking Effort: High)" },
+        "contributor": { "@type": "Person", "name": "Neil S. White" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/antigravity-v2-34-mcp-apps/part-3-concrete-mcp-app-blueprints-and-cli-parity.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      pre { background: #04070d; border: 1px solid var(--border); border-radius: 0.85rem; padding: 1rem; overflow-x: auto; max-width: 100%; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.84rem; color: #e2e8f0; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.15rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+    </style>
+    <!-- GP-ANALYTICS-START -->
+    <meta name="gp:model" content="gemini-4-argon" />
+    <meta name="gp:effort" content="high" />
+    <meta name="gp:surface" content="release_series" />
+    <meta name="gp:slug" content="antigravity-v2-34-mcp-apps/part-3-concrete-mcp-app-blueprints-and-cli-parity" />
+    <script src="/assets/pulse-analytics.js" defer></script>
+    <!-- GP-ANALYTICS-END -->
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">Antigravity Platform &amp; MCP Series &middot; Part 3 of 3</div>
+      <h1>Concrete MCP App Blueprints, Host Actions &amp; CLI Parity</h1>
+
+      <div class="meta">
+        Authored by <strong>Google Gemini 4 Argon</strong> &middot; Thinking Effort: <strong>High</strong> &middot; Product Development &amp; Creative Direction: <strong>Neil S. White</strong> &bull; Primary Sources:
+        <a href="https://antigravity.google/docs/mcp-apps" target="_blank" rel="noopener">Antigravity MCP Apps Docs</a> &amp;
+        <a href="https://antigravity.google/docs/commands/mcp-app-development" target="_blank" rel="noopener">/mcp-app-development</a> &bull; 5 min read
+      </div>
+
+      <h2>1. Scaffolding With <code>/mcp-app-development</code></h2>
+      <p>Inside the Antigravity desktop App, typing <code>/mcp-app-development</code> preloads the built-in MCP Apps skill into the agent's context on turn one. That ensures the agent structures single-file <code>text/html;profile=mcp-app</code> bundles, wires <code>@modelcontextprotocol/ext-apps</code>, configures <code>${PLUGIN_ROOT}</code> and <code>${PLUGIN_DATA}</code> inside <code>mcp_config.json</code>, and validates strict plugin packaging via <code>agy plugin validate &lt;path&gt; --strict</code>.</p>
+
+      <h2>2. Dual-Entrypoint Tool + Isolated File Viewer Declaration</h2>
+      <p>Keep interactive model tools separate from custom file viewers. Any tool carrying a <code>file</code> entrypoint is hidden from the model inside the Antigravity App and receives <code>{"file": {"name", "resourceUri"}}</code> instead of <code>{}</code>, while <code>aux_pane</code> + <code>global</code> tools can be opened both by the agent and manually from the sidebar:</p>
+      <pre><code>{
+  "tools": [
+    {
+      "name": "open_release_board",
+      "_meta": {
+        "ui": { "resourceUri": "ui://acme-cloud/deployments.html" },
+        "com.google.antigravity/ui": {
+          "entrypoints": [
+            { "type": "aux_pane", "title": "Acme Deployments" },
+            { "type": "global", "title": "Acme Deployments" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "open_topology_file",
+      "_meta": {
+        "ui": { "resourceUri": "ui://acme-cloud/topology-viewer.html" },
+        "com.google.antigravity/ui": {
+          "entrypoints": [
+            {
+              "type": "file",
+              "title": "Acme Topology Viewer",
+              "extensions": [".acmetopo", ".jsonc"]
+            }
+          ]
+        }
+      }
+    }
+  ]
+}</code></pre>
+
+      <h2>3. Additional Host Actions &amp; <code>agy</code> CLI Fallback</h2>
+      <ul>
+        <li><strong>Open a File in the Side Panel:</strong> Call <code>app.request()</code> with method <code>com.google.antigravity/toggle-aux-pane</code> and params <code>{ "tabType": "fileView", "uri": "file:///path/to/file" }</code>, catching JSON-RPC <code>-32601</code> on non-Antigravity hosts.</li>
+        <li><strong>Launch a Background Thread:</strong> Pass <code>_meta: { "com.google.antigravity/message": { "target": "new" } }</code> inside <code>app.sendMessage()</code> (<code>ui/message</code>) to spin up a fresh conversation in the same workspace rather than interrupting the current thread.</li>
+        <li><strong>Respect CLI Plain-Text Parity:</strong> Because <code>agy</code> CLI ignores <code>_meta.ui.visibility</code> (exposing app-only helpers and file-viewer tools alike) and renders no iframes, always return concise plain-text <code>content</code> alongside <code>structuredContent</code> and use <code>"command": "node"</code> when relying on Antigravity's bundled Node.js runtime.</li>
+      </ul>
+
+      <div class="series-nav">
+        <a href="/series/antigravity-v2-34-mcp-apps/part-2-surfaces-file-viewers-csp-and-limits.html" class="btn-pill">&larr; Back to Part 2</a>
+        <a href="/labs/gemini-antigravity-mcp-apps-studio.html" class="btn-pill">Open MCP Apps Studio [SIMULATED DEMO] &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 2: Self-Hosted BYOS Environments — Split Poller (poll) &amp; Zero-Key Worker (serve) | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Deep technical breakdown of google-gemini/gemini-api-cli v0.5.0 self-hosted BYOS environments: outbound leaseInteractions polling, lt_v1 lease tokens, Agent Substrate, and Cloudflare Sandboxes."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/gemini-api-cli-v0-5/part-2-self-hosted-environments-poll-and-serve.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 2: Self-Hosted BYOS Environments — Split Poller &amp; Zero-Key Sandbox Workers" />
+    <meta property="og:description" content="How gemini-api environments poll and environments serve isolate untrusted execution sandboxes with short-lived lt_v1 lease tokens and zero inbound firewall ports." />
+    <meta property="og:url" content="https://geminipulse.com/series/gemini-api-cli-v0-5/part-2-self-hosted-environments-poll-and-serve.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Self-Hosted BYOS Environments — Split Poller (poll) & Zero-Key Worker (serve)",
+        "datePublished": "2026-11-20T00:49:52Z",
+        "author": { "@type": "Person", "name": "Google Gemini 4 Argon (Thinking Effort: High)" },
+        "contributor": { "@type": "Person", "name": "Neil S. White" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/gemini-api-cli-v0-5/part-2-self-hosted-environments-poll-and-serve.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; --emerald: #10b981; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .box.warn { border-left: 4px solid #f59e0b; }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      pre { background: #0d121c; border: 1px solid var(--border); border-radius: 0.85rem; padding: 1.15rem; overflow-x: auto; font-size: 0.86rem; line-height: 1.55; color: #e2e8f0; }
+      pre code { background: transparent; padding: 0; color: inherit; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.15rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+    </style>
+    <!-- GP-ANALYTICS-START -->
+    <meta name="gp:model" content="gemini-4-argon" />
+    <meta name="gp:effort" content="high" />
+    <meta name="gp:surface" content="release_series" />
+    <meta name="gp:slug" content="gemini-api-cli-v0-5/part-2-self-hosted-environments-poll-and-serve" />
+    <script src="/assets/pulse-analytics.js" defer></script>
+    <!-- GP-ANALYTICS-END -->
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">Gemini API CLI v0.5.0 Series &middot; Part 2 of 3</div>
+      <h1>Inside Self-Hosted BYOS Environments: Zero Inbound Ports &amp; Split Lease-Token Isolation</h1>
+
+      <div class="meta">
+        Authored by <strong>Google Gemini 4 Argon</strong> &middot; Thinking Effort: <strong>High</strong> &middot; Product Development &amp; Creative Direction: <strong>Neil S. White</strong> &bull; Published November 20, 2026 &bull; Primary Source:
+        <a href="https://github.com/google-gemini/gemini-api-cli/blob/main/docs/self-hosted/README.md" target="_blank" rel="noopener">Self-Hosted Environments Docs</a> &bull; 6 min read
+      </div>
+
+      <h2>1. 100% Outbound HTTPS Tool Execution</h2>
+      <p>Enterprise engineering teams rarely want managed cloud agents executing shell commands inside Google-hosted sandboxes when source code, private registries, or air-gapped datasets sit inside their own VPC. With <code>gemini-api-cli</code> <strong>v0.5.0</strong>, Google ships the self-hosted BYOS (Bring Your Own Sandbox) runtime directly inside the <code>gemini-api</code> binary.</p>
+      <p>When a client creates an environment with <code>{"mode": "self_hosted"}</code> on <code>POST /v1beta/environments</code>, the API returns a unique environment ID alongside a one-time scoped <code>environment_key</code>. Workers inside your infrastructure poll <code>POST /v1beta/environments:leaseInteractions</code> over standard outbound HTTPS—requiring <strong>zero inbound firewall ports</strong>—and execute Gemini built-in tools (<code>execute_bash</code>, <code>read_file</code>, <code>write_file</code>, <code>edit_file</code>, <code>list_dir</code>, <code>grep_search</code>, <code>find_by_name</code>) strictly confined to <code>--root-dir</code> and <code>--workdir</code>.</p>
+
+      <h2>2. Single-Worker vs. Split Poller/Worker Topologies</h2>
+      <ul>
+        <li><strong>Single-Worker Mode (<code>gemini-api environments connect</code>):</strong> Ideal for Cloud Run jobs, Docker containers, Modal, E2B, Daytona, Vercel Sandbox, Fly.io Sprites/Machines, and Cloudflare Sandboxes. The container holds only <code>GEMINI_ENVIRONMENT_KEY</code> (never your project-wide <code>GEMINI_API_KEY</code>).</li>
+        <li><strong>Split Control Plane &amp; Zero-Key Sandbox (<code>environments poll</code> + <code>environments serve</code>):</strong> Designed for Agent Substrate Kubernetes clusters (<code>ate.dev/v1</code> <code>WorkerPool</code>) and hardened ephemeral sandboxes. A trusted control-plane poller holds the environment key, maintains background handoff heartbeats while compute boots, and invokes <code>--provision-cmd</code> with a <code>v1</code> JSON payload on <code>stdin</code> containing <code>interaction_id</code>, <code>lease_token</code> (prefixed <code>lt_v1_</code>), and <code>environment_config.custom_config</code>. The untrusted container holds <strong>zero API keys</strong> and attaches using only the short-lived interaction-scoped <code>--lease-token</code>.</li>
+      </ul>
+
+      <pre><code># Trusted control plane: poll for leased interactions and spawn isolated sandboxes
+gemini-api environments poll \
+  --environment-key "$GEMINI_ENVIRONMENT_KEY" \
+  --provision-cmd ./scripts/spawn-ephemeral-pod.sh
+
+# Inside the untrusted ephemeral sandbox (holds ZERO API keys, only lt_v1_ lease token):
+gemini-api environments serve \
+  --interaction-id "$INTERACTION_ID" \
+  --lease-token "$LEASE_TOKEN" \
+  --root-dir /workspace \
+  --workdir /workspace</code></pre>
+
+      <div class="box warn">
+        <p style="margin: 0;"><strong>Security Boundary Note:</strong> Google's <code>docs/self-hosted/local/</code> documentation explicitly warns against running <code>environments connect</code> directly on a developer's host workstation because <code>execute_bash</code> inherits the host user's permissions. Production deployments should always isolate workers inside rootless Docker/Podman containers, microVMs, Agent Substrate Pods, or Cloudflare Sandboxes.</p>
+      </div>
+
+      <div class="series-nav">
+        <a href="/series/gemini-api-cli-v0-5/part-1-what-changed-with-gemini-api-cli-v0-5.html" class="btn-pill">&larr; Part 1: Release Breakdown</a>
+        <a href="/series/gemini-api-cli-v0-5/part-3-concrete-agent-cli-workflows-and-tts-voices.html" class="btn-pill">Part 3: Concrete CLI &amp; Voice Blueprints &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>
