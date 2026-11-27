@@ -14,6 +14,223 @@
  */
 
 export const CONSTELLATION_ESSAYS = {
+  'pulse-antigravity-v2-36-floating-composer-auto-edits': {
+    id: 'pulse-antigravity-v2-36-floating-composer-auto-edits',
+    slug: 'antigravity-v2-36-floating-composer-auto-edits',
+    shortStarLabel: 'Antigravity v2.36',
+    readMinutes: '9 MIN READ',
+    authoredByModel: 'Google Gemini 4 Argon',
+    thinkingEffort: 'High',
+    hudTitle: 'Antigravity v2.36: Floating Composer, Auto Edits & Voice Context.',
+    hudSummary:
+      'Released November 27, 2026: Antigravity v2.36.0 adds a floating composer pill inside maximized side panels, expands Auto mode across external Git repos, preserves ended voice-call context, and discovers ~/.agents/skills.',
+    peekCastor: 'Zero-Interrupt Steering: <em>Floating composer, sibling-repo Auto edits &amp; voice memory.</em>',
+    peekPollux: '13 Upgrades + 26 Fixes: <em>~/.agents/skills precedence, offline MCP OAuth &amp; single-model Orchestrator.</em>',
+    headline:
+      'Maximized Diffs Used to Hide the Agent. <em>Antigravity v2.36.0 Brings the Composer, Voice Context &amp; Multi-Repo Auto Edits With You.</em>',
+    standfirst:
+      'Four days after removing the 500-conversation cap in v2.35.0, Google Antigravity shipped v2.36.0 on November 27, 2026 with 13 workflow improvements and 26 stability fixes aimed directly at multi-repo builders: a live floating composer pill docked inside maximized side panels, expanded Auto mode approvals for external Git-tracked repositories and non-replacing additions, spoken context carryover from ended live voice calls, cross-agent skill discovery in ~/.agents/skills, and offline OAuth refresh tokens for MCP servers.',
+    pulseCheck: [
+      {
+        stage: 'Stay Inside Maximized Review',
+        detail:
+          'A floating composer pill at the bottom of maximized side panels shows live agent progress, unread replies, and saved drafts, expanding inline to send follow-ups or start voice dictation without collapsing your diff or HTML artifact.',
+      },
+      {
+        stage: 'Cross-Repo Auto Mode & Shared Skills',
+        detail:
+          'Auto mode now auto-approves safe edits in other version-controlled repositories and non-replacing file additions outside your current project while fixing a legacy sensitive-config bypass; custom skills in ~/.agents/skills load automatically with ~/.gemini taking precedence.',
+      },
+      {
+        stage: 'The Honest Catch',
+        detail:
+          'Unversioned external files that overwrite existing data still require explicit human confirmation, existing MCP OAuth connections need one re-sign-in to mint offline refresh tokens, and organization-disabled Marketplace plugins remain grayed out by admin policy.',
+      },
+    ],
+    castor: {
+      kicker: 'PART I · α CASTOR · DEVELOPER ERGONOMICS & MULTI-REPO VELOCITY LENS',
+      title: 'Why Eliminating Window Switching and Prompt Fatigue Matters More Than Another Raw Benchmark',
+      subtitle:
+        'How Antigravity v2.36.0 removes the three hidden friction points of real multi-repo engineering: panel juggling, external repo write prompts, and dropped voice context.',
+      paragraphs: [
+        'Spend two hours reviewing generated code or inspecting an interactive report inside a maximized side panel and a subtle tax accumulates. Every time you need to verify whether a background worker finished, read an unread reply, or dictate a course correction, you have to un-maximize the pane, switch focus, type, and re-maximize. <strong>Antigravity v2.36.0</strong> ends that window ping-pong by pinning a live floating composer pill along the bottom edge of maximized side panels.',
+        'The same philosophy drives how <code>v2.36.0</code> treats work spanning more than one folder. Modern software rarely sits inside a single isolated repository: frontend builds, shared schema packages, documentation sites, and deployment manifests regularly live side by side on disk. Earlier versions of Auto mode approved out-of-project reads but still paused for confirmation on external edits. Now, edits inside <strong>other version-controlled repositories</strong> and <strong>non-replacing new file additions</strong> clear automatically because Git history or additive creation keeps every change auditable and reversible.',
+        'Continuity across input modes gets a matching upgrade. When a live voice call with an agent ends before an explicit handoff step, <code>v2.36.0</code> automatically preserves what you said and injects that spoken context into your local conversation thread so you never have to repeat architectural constraints in prose. Meanwhile, teams standardizing portable agent playbooks can drop shared bundles into <code>~/.agents/skills</code> while keeping Antigravity-specific overrides in <code>~/.gemini</code>.',
+        'For engineering leaders managing enterprise seats, <code>v2.36.0</code> also cleans up several trust-eroding edges: disabled plugin and Marketplace controls remain visible in Customizations as grayed-out entries with an admin tooltip instead of vanishing silently, remote cloud automations can now be authorized directly from the desktop app via Google sign-in in your system browser, and an empty organization prepaid wallet now displays a clear billing notice instead of masquerading as a temporary model quota limit.',
+      ],
+      pullquote: {
+        quote:
+          'Real agent productivity comes from unbroken flow: keeping your eyes on a full-screen diff, letting Git-tracked sibling repos update smoothly, and never losing what you already explained by voice.',
+        attribution: 'GOOGLE GEMINI 4 ARGON · α CASTOR SYNTHESIS OF ANTIGRAVITY v2.36.0 (NOV 27, 2026)',
+      },
+      comparisonTable: {
+        id: 'antigravity-v2-36-workflow-matrix',
+        caption: 'Antigravity v2.35.x vs. Antigravity v2.36.0 Daily Builder Workflow Comparison (Nov 27, 2026)',
+        columns: ['Workflow Surface', 'Prior Behavior (v2.35.x)', 'Antigravity v2.36.0 (Nov 27, 2026)', 'Practical Impact'],
+        rows: [
+          [
+            'Maximized Side Panels',
+            'Required shrinking the panel to monitor status, read replies, or dictate',
+            'Floating composer pill displays live progress, unread replies & drafts inline',
+            'Send follow-ups or start dictation without leaving full-width diffs or artifacts',
+          ],
+          [
+            'External File Edits (Auto Mode)',
+            'Out-of-project reads auto-approved; edits outside current project prompted',
+            'Safe edits in other Git-tracked repos & non-replacing additions auto-approved',
+            'Smooth multi-repo refactors while legacy sensitive-config bypass is patched',
+          ],
+          [
+            'Live Voice Call Handoff',
+            'Voice calls ending before handoff risked dropping spoken instructions',
+            'Spoken context carries directly into the local conversation thread',
+            'Zero repeated explanations when transitioning from voice to local execution',
+          ],
+          [
+            'Custom Skills Discovery',
+            'Workspace .agents/skills and ~/.gemini/config/skills',
+            'Also discovers ~/.agents/skills; ~/.gemini wins name collisions',
+            'Share one cross-agent skill folder while keeping Antigravity-specific overrides',
+          ],
+        ],
+      },
+      adaptiveQuestions: [
+        {
+          lensTag: 'FOR SECURITY & PLATFORM LEADS',
+          question: 'Does expanding Auto mode to other repositories expose sensitive configuration files outside the project?',
+          answer:
+            'No. Auto approval outside the active project is restricted to safe edits inside other version-controlled repositories and non-replacing file additions. Alongside that expansion, v2.36.0 explicitly fixes a legacy permission bug where allowing non-project file access could bypass protections on sensitive configuration files.',
+        },
+        {
+          lensTag: 'FOR MULTI-TOOL DEVELOPERS',
+          question: 'If we already maintain skills in ~/.agents/skills for multiple agents, how does Antigravity resolve conflicts?',
+          answer:
+            'Antigravity v2.36.0 automatically discovers skills placed in ~/.agents/skills across workspaces. Whenever a skill folder in ~/.gemini shares the same name as one in ~/.agents/skills, the ~/.gemini definition deterministically takes precedence.',
+        },
+        {
+          lensTag: 'FOR ENTERPRISE ADMINS & MAC USERS',
+          question: 'What small quality-of-life fixes in v2.36.0 save the most support tickets?',
+          answer:
+            'Three stand out: empty organization prepaid wallets no longer display misleading model-quota retry prompts, Enterprise accounts now see the populated agent selector and Feedback screen, and macOS Keyboard Shortcuts switched from the unreachable ? key to Option+Cmd+/.',
+        },
+      ],
+    },
+    pollux: {
+      kicker: 'PART II · β POLLUX · PERMISSIONS, OAUTH REFRESH & 26 RUNTIME FIXES LENS',
+      title: 'Under the Hood of v2.36.0: Offline MCP Tokens, Single-Model Orchestrator & Localhost HTTP',
+      subtitle:
+        'Examining the 13 improvements and 26 fixes across OAuth credential retries, Orchestrator planner-executor routing, LaTeX math parsing, and conversation summary memory.',
+      paragraphs: [
+        'Long-running agentic sessions frequently fail not on reasoning, but on expiring credentials and subtle routing bugs. In <code>v2.36.0</code>, Antigravity addresses two authentication pain points together: first, MCP OAuth sign-in now requests <strong>offline access</strong> for servers that support it so refresh tokens are issued automatically rather than forcing repeated browser logins; second, long-running turns preserve early token refresh and execute <strong>one automatic retry on expired OAuth credentials</strong> instead of aborting mid-flight.',
+        'Orchestrator routing received an equally important correction. Previously, selecting the exact same model for both the Orchestrator planner and the executor caused Antigravity to fall back to a different default model instead of honoring your choice. <code>v2.36.0</code> fixes that fallback so matched planner-and-executor configurations run cleanly as a single agent on the selected model.',
+        'Twenty-plus targeted desktop and rendering fixes round out the release: typing <code>localhost</code> or a local port in the built-in browser address bar no longer forces HTTPS against local HTTP dev servers; summary updates during active turns consume fewer disk reads and less memory; subagent LaTeX equations render inline in the main thread while <code>\\label</code> commands no longer throw error banners and unformatted shell variables stop triggering math mode; corrupt or truncated image attachments no longer poison subsequent turns; and markdown/code copy preserves blank lines.',
+      ],
+      builderRules: [
+        {
+          label: '01 · Place Portable Skills in ~/.agents/skills and Overrides in ~/.gemini',
+          detail:
+            'Store team-wide cross-tool SKILL.md bundles in ~/.agents/skills, and reserve ~/.gemini for Antigravity-tuned rules so precedence works deterministically without duplicating files.',
+        },
+        {
+          label: '02 · Keep Sibling Repositories Under Git for Frictionless Multi-Repo Auto Edits',
+          detail:
+            'Because Auto mode only auto-approves external edits inside version-controlled repositories or non-replacing file creations, initializing Git in companion local repos unlocks seamless cross-repo execution.',
+        },
+        {
+          label: '03 · Re-Authenticate OAuth MCP Servers Once to Mint Offline Refresh Tokens',
+          detail:
+            'After updating to v2.36.0, re-run OAuth sign-in for MCP connectors that support offline scopes so Antigravity captures a refresh token and sustains long turns without mid-session auth drops.',
+        },
+      ],
+      codeCaption: 'VOICE-CARRYOVER & CROSS-REPO VERIFICATION WORKFLOW (@GOOGLE/GENAI V3.X)',
+      codeSnippet: `import { GoogleGenAI } from "@google/genai";
+
+// Models Antigravity v2.36.0 pairing spoken voice-call context carryover
+// with single-model Gemini 4 Neon Orchestrator execution and localhost checks.
+const ai = new GoogleGenAI();
+
+const reviewPacket = {
+  voiceCarryoverSummary: "Align sibling docs repo with v2.36.0 schema and verify localhost:8080 build",
+  externalRepoGitTracked: true,
+  skillPrecedenceOrder: ["~/.gemini/config/skills", "~/.agents/skills"],
+  mcpOfflineRefreshEnabled: true,
+};
+
+const response = await ai.interactions.create({
+  model: "gemini-4-neon",
+  thinking_level: "high",
+  input: \`Prepare an auditable multi-repo patch plan for maximized-panel review based on this v2.36.0 session state: \${JSON.stringify(reviewPacket)}\`,
+});
+
+console.log(response.output_text);`,
+      workbench: {
+        title: 'Antigravity v2.36.0 Floating Composer & Auto Edits Studio [SIMULATED DEMO]',
+        subtitle: 'Inspect floating composer telemetry, cross-repo Auto mode boundaries, voice carryover, and the 26 runtime fixes.',
+        dek: 'Cycle through the three verified engineering views below, or launch our interactive studio [SIMULATED DEMO].',
+        presets: [
+          {
+            label: '1. MAXIMIZED FLOATING COMPOSER & VOICE CARRYOVER',
+            k1: 'Floating Pill Surface',
+            v1: 'Live status bar (agent progress, unread replies, saved drafts) anchored at bottom of maximized side panels',
+            k2: 'Inline Actions',
+            v2: 'Expand pill to send queued follow-ups or start dictation without leaving full-width diff or artifact views',
+            k3: 'Ended Voice Call Sync',
+            v3: 'Spoken context from live voice calls ended before formal handoff persists into local thread',
+          },
+          {
+            label: '2. CROSS-REPO AUTO MODE & ~/.AGENTS/SKILLS',
+            k1: 'External Auto Edits',
+            v1: 'Safe edits in other Git-tracked repos & non-replacing additions auto-approved; overwriting unversioned paths still prompts',
+            k2: 'Security Hardening',
+            v2: 'Patched legacy non-project access bug that could bypass protections on sensitive configuration files',
+            k3: 'Skill Resolution Order',
+            v3: 'Discovers custom skills in ~/.agents/skills across workspaces; ~/.gemini takes precedence on collisions',
+          },
+          {
+            label: '3. OAUTH REFRESH, ORCHESTRATOR & 26 FIXES',
+            k1: 'Auth & Cloud Automations',
+            v1: 'System-browser Google sign-in for remote cloud automations; offline MCP refresh tokens + 1 expired-turn retry',
+            k2: 'Orchestrator & Browser',
+            v2: 'Fixed same-model planner/executor fallback; localhost & local ports default cleanly to HTTP',
+            k3: 'Rendering & macOS UX',
+            v3: 'Subagent LaTeX + \\label fixed; shell vars ignored as math; Option+Cmd+/ shortcuts; clear prepaid wallet notice',
+          },
+        ],
+      },
+    },
+    verdict: {
+      title: 'Argon’s Bottom Line: v2.36.0 Smooths the Exact Edges Where Multi-Repo Agent Sessions Used to Stall',
+      subtitle:
+        'Combining a maximized-panel floating composer, Git-tracked cross-repo Auto edits, ended voice-call memory, ~/.agents/skills discovery, and offline MCP refresh turns Antigravity into a markedly steadier daily driver.',
+      paragraphs: [
+        '<strong>Why v2.36.0 punches above a point release:</strong> single-turn code generation is easy to demo; multi-hour engineering across sibling repositories, maximized diff panes, voice handoffs, and OAuth-authenticated MCP tools is where real sessions break. Every marquee item in <code>v2.36.0</code> removes one of those production paper cuts.',
+        '<strong>Explore the companion deep dive:</strong> read our 3-part technical series under <code>/series/antigravity-v2-36-floating-composer/part-1-what-changed-antigravity-v2-36.html</code> or step through the subsystem scenarios inside Antigravity v2.36 Studio [SIMULATED DEMO] at <code>/labs/gemini-antigravity-v2-36-studio.html</code>.',
+      ],
+      sources: [
+        {
+          role: 'Official Google Antigravity Release Notes',
+          label: 'Google Antigravity Changelog — v2.36.0 (Floating composer in maximized panels, Auto mode edits, and voice context)',
+          author: 'Google Antigravity Team',
+          date: 'November 27, 2026',
+          url: 'https://antigravity.google/docs/changelog#rel-hub-2.36.0',
+        },
+        {
+          role: 'Official Antigravity Skills Documentation',
+          label: 'Agent skills — Workspace, ~/.gemini & cross-agent skill discovery',
+          author: 'Google Antigravity Docs',
+          date: 'November 2026',
+          url: 'https://antigravity.google/docs/skills',
+        },
+        {
+          role: 'Companion Google Cloud Platform Milestone',
+          label: 'Vertex AI Generative AI Release Notes — Vertex AI Extensions Shutdown After Nov 26, 2026',
+          author: 'Google Cloud Vertex AI',
+          date: 'November 26, 2026',
+          url: 'https://docs.cloud.google.com/vertex-ai/generative-ai/docs/release-notes',
+        },
+      ],
+    },
+  },
   'pulse-deepmind-mass-spec-skills-antigravity': {
     id: 'pulse-deepmind-mass-spec-skills-antigravity',
     slug: 'deepmind-mass-spec-skills-antigravity',

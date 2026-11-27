@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 1: Google Antigravity v2.36.0 Ships Floating Composer, Auto Edits &amp; Voice Context | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Released November 27, 2026: Google Antigravity v2.36.0 adds a floating composer pill inside maximized side panels, expands Auto mode edits across external git repositories, carries ended voice call context into local threads, and discovers ~/.agents/skills."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/antigravity-v2-36-floating-composer/part-1-what-changed-antigravity-v2-36.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 1: Google Antigravity v2.36.0 Floating Composer, Auto Edits &amp; Voice Context" />
+    <meta property="og:description" content="Floating composer in maximized side panels, Auto mode cross-repo edits, ended voice context carryover, ~/.agents/skills discovery, and 26 fixes." />
+    <meta property="og:url" content="https://geminipulse.com/series/antigravity-v2-36-floating-composer/part-1-what-changed-antigravity-v2-36.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Part 1: Google Antigravity v2.36.0 Floating Composer, Auto Edits &amp; Voice Context" />
+    <meta name="twitter:description" content="How Antigravity v2.36.0 keeps operators moving inside maximized panels, multi-repo edits, and voice-to-local handoffs." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Google Antigravity v2.36.0 Ships Floating Composer, Auto Mode Edits & Voice Context",
+        "datePublished": "2026-11-27T12:00:00Z",
+        "author": { "@type": "Person", "name": "Google Gemini 4 Argon (Thinking Effort: High)" },
+        "contributor": { "@type": "Person", "name": "Neil S. White" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/antigravity-v2-36-floating-composer/part-1-what-changed-antigravity-v2-36.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; color: #cbd5e1; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .box.info { border-left: 4px solid var(--accent); }
+      .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+      table { width: 100%; border-collapse: collapse; font-size: 0.92rem; text-align: left; }
+      th, td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+      th { background: rgba(255,255,255,0.03); color: #f1f5f9; font-weight: 600; }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.15rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+    </style>
+    <!-- GP-ANALYTICS-START -->
+    <meta name="gp:model" content="gemini-4-argon" />
+    <meta name="gp:effort" content="high" />
+    <meta name="gp:surface" content="release_series" />
+    <meta name="gp:slug" content="antigravity-v2-36-floating-composer/part-1-what-changed-antigravity-v2-36" />
+    <script src="/assets/pulse-analytics.js" defer></script>
+    <!-- GP-ANALYTICS-END -->
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">Antigravity v2.36.0 Engineering Series &middot; Part 1 of 3</div>
+      <h1>Google Antigravity v2.36.0 Ships Floating Composer in Maximized Panels, Auto Mode Edits &amp; Voice Context</h1>
+
+      <div class="meta">
+        Authored by <strong>Google Gemini 4 Argon</strong> &middot; Thinking Effort: <strong>High</strong> &middot; Product Development &amp; Creative Direction: <strong>Neil S. White</strong> &bull; Release Date: November 27, 2026 &bull; Primary Source:
+        <a href="https://antigravity.google/docs/changelog#rel-hub-2.36.0" target="_blank" rel="noopener">Google Antigravity Changelog v2.36.0</a> &bull; 5 min read
+      </div>
+
+      <div class="box info">
+        <h3 style="margin-top: 0; color: #38bdf8;">Release Summary: Antigravity v2.36.0 (Nov 27, 2026)</h3>
+        <p style="margin-bottom: 0;">Shipping 13 improvements and 26 fixes, Google Antigravity <code>v2.36.0</code> places a floating composer pill with live agent telemetry at the bottom of maximized side panels, expands Auto mode to approve safe edits across other version-controlled repositories and non-replacing file additions, carries spoken context from ended live voice calls into local conversations, adds <code>~/.agents/skills</code> discovery (with <code>~/.gemini</code> precedence), and upgrades desktop cloud automation authorization alongside offline MCP OAuth refresh tokens.</p>
+      </div>
+
+      <h2>1. Keeping Operators in Maximized Context Without Dropping Agent Controls</h2>
+      <p>Developers reviewing a long code diff, an HTML artifact, or a live browser preview in a maximized side panel previously had to un-maximize the pane just to check whether an agent had finished or to fire off a quick follow-up. Antigravity <code>v2.36.0</code> eliminates that context switch by docking a compact floating composer pill along the bottom edge of maximized side panels.</p>
+      <p>Even collapsed, the pill renders a live status bar displaying agent progress, unread replies, and saved drafts. Expanding it inline lets you send follow-ups or trigger voice dictation directly on top of the artifact or diff you are inspecting.</p>
+
+      <h2>2. Complete Breakdown of Antigravity v2.36.0 Upgrades</h2>
+      <div class="table-wrap" role="region" aria-label="Antigravity v2.36.0 headline improvements" tabindex="0">
+        <table>
+          <thead>
+            <tr>
+              <th>Area</th>
+              <th>What Shipped in v2.36.0</th>
+              <th>Operational Impact</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Maximized Panels</strong></td>
+              <td>Floating composer pill with live progress, unread replies, saved drafts, inline follow-ups, and dictation</td>
+              <td>Steer agents while staying inside full-width diffs, Markdown files, or HTML reports</td>
+            </tr>
+            <tr>
+              <td><strong>Auto Mode Edits</strong></td>
+              <td>Auto-approves safe edits in other version-controlled repos and non-replacing additions outside current project</td>
+              <td>Multi-repo workspaces avoid constant write prompts while sensitive config files stay shielded</td>
+            </tr>
+            <tr>
+              <td><strong>Voice Handoff</strong></td>
+              <td>Carries spoken context from live voice calls that end before formal handoff into the local conversation</td>
+              <td>Agents retain spoken instructions even when a voice session closes early</td>
+            </tr>
+            <tr>
+              <td><strong>Skills &amp; Admin UI</strong></td>
+              <td>Discovers custom skills in <code>~/.agents/skills</code> (with <code>~/.gemini</code> taking precedence); grayed-out admin tooltips</td>
+              <td>Cross-agent skills work immediately while org-disabled Marketplace controls stay clearly explained</td>
+            </tr>
+            <tr>
+              <td><strong>Auth &amp; Reliability</strong></td>
+              <td>Desktop browser sign-in for cloud automations, MCP offline OAuth refresh, mid-session token retry, 26 bug fixes</td>
+              <td>Fewer stalled OAuth turns, accurate localhost HTTP navigation, and fixed Orchestrator same-model execution</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="series-nav">
+        <a href="/articles/antigravity-v2-36-floating-composer-auto-edits.html" class="btn-pill">&larr; Read Flagship Essay</a>
+        <a href="/series/antigravity-v2-36-floating-composer/part-2-auto-edits-skills-and-oauth-mechanics.html" class="btn-pill">Next: Part 2 (Auto Edits, Skills &amp; OAuth) &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>

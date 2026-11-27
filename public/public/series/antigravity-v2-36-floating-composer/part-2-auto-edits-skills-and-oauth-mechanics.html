@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Part 2: Inside Auto Mode Cross-Repo Edits, ~/.agents/skills Precedence &amp; OAuth Fixes | GeminiPulse</title>
+    <meta
+      name="description"
+      content="Technical mechanics of Antigravity v2.36.0: how Auto mode balances cross-repo edits with sensitive file protections, how ~/.agents/skills resolves collisions against ~/.gemini, and how MCP offline OAuth plus Orchestrator single-model fixes prevent stalled turns."
+    />
+    <link rel="canonical" href="https://geminipulse.com/series/antigravity-v2-36-floating-composer/part-2-auto-edits-skills-and-oauth-mechanics.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="GeminiPulse" />
+    <meta property="og:title" content="Part 2: Antigravity v2.36.0 Auto Edits, Skills Precedence &amp; OAuth Mechanics" />
+    <meta property="og:description" content="Cross-repo Auto permissions, ~/.agents/skills vs ~/.gemini precedence, MCP offline OAuth refresh, and the 26 runtime fixes." />
+    <meta property="og:url" content="https://geminipulse.com/series/antigravity-v2-36-floating-composer/part-2-auto-edits-skills-and-oauth-mechanics.html" />
+    <meta property="og:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@geminipulse" />
+    <meta name="twitter:title" content="Part 2: Antigravity v2.36.0 Auto Edits, Skills Precedence &amp; OAuth Mechanics" />
+    <meta name="twitter:description" content="How Antigravity v2.36.0 hardens permissions, skill discovery, OAuth refresh tokens, and localhost development." />
+    <meta name="twitter:image" content="https://geminipulse.com/brand/geminipulse-og-card.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Inside Auto Mode Cross-Repo Edits, ~/.agents/skills Precedence & OAuth Fixes in Antigravity v2.36.0",
+        "datePublished": "2026-11-27T12:00:00Z",
+        "author": { "@type": "Person", "name": "Google Gemini 4 Argon (Thinking Effort: High)" },
+        "contributor": { "@type": "Person", "name": "Neil S. White" },
+        "publisher": { "@type": "Organization", "name": "GeminiPulse" },
+        "mainEntityOfPage": "https://geminipulse.com/series/antigravity-v2-36-floating-composer/part-2-auto-edits-skills-and-oauth-mechanics.html"
+      }
+    </script>
+    <style>
+      :root { color-scheme: dark; --bg: #07090e; --surface: #111622; --border: rgba(255,255,255,0.1); --text: #f3f5fb; --muted: #9da4b8; --accent: #38bdf8; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      a { color: #7dd3fc; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .eyebrow { font-family: ui-monospace, Menlo, monospace; font-size: 0.78rem; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em; }
+      h1 { font-size: clamp(1.75rem, 3.4vw, 2.45rem); line-height: 1.2; margin: 0.5rem 0 0.75rem; }
+      h2 { font-size: 1.35rem; margin: 2rem 0 0.65rem; color: #e2e8f0; }
+      p, li { color: #cbd5e1; font-size: 1rem; }
+      .meta { font-size: 0.85rem; color: var(--muted); padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.75rem; }
+      .box { background: var(--surface); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin: 1.5rem 0; }
+      .table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+      table { width: 100%; border-collapse: collapse; font-size: 0.92rem; text-align: left; }
+      th, td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+      th { background: rgba(255,255,255,0.03); color: #f1f5f9; font-weight: 600; }
+      code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(255,255,255,0.08); padding: 0.15rem 0.35rem; border-radius: 0.35rem; color: #38bdf8; }
+      .series-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+      .btn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.15rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); font-size: 0.85rem; font-weight: 500; }
+      .btn-pill:hover { background: rgba(56, 189, 248, 0.2); text-decoration: none; }
+    </style>
+    <!-- GP-ANALYTICS-START -->
+    <meta name="gp:model" content="gemini-4-argon" />
+    <meta name="gp:effort" content="high" />
+    <meta name="gp:surface" content="release_series" />
+    <meta name="gp:slug" content="antigravity-v2-36-floating-composer/part-2-auto-edits-skills-and-oauth-mechanics" />
+    <script src="/assets/pulse-analytics.js" defer></script>
+    <!-- GP-ANALYTICS-END -->
+  </head>
+  <body>
+    <div class="wrap">
+      <div style="margin-bottom: 1.5rem;">
+        <a href="/" style="font-size: 0.85rem; color: var(--muted);">&larr; Back to GeminiPulse</a>
+      </div>
+
+      <div class="eyebrow">Antigravity v2.36.0 Engineering Series &middot; Part 2 of 3</div>
+      <h1>Inside Auto Mode Cross-Repo Edits, <code>~/.agents/skills</code> Precedence &amp; OAuth Mechanics</h1>
+
+      <div class="meta">
+        Authored by <strong>Google Gemini 4 Argon</strong> &middot; Thinking Effort: <strong>High</strong> &middot; Product Development &amp; Creative Direction: <strong>Neil S. White</strong> &bull; Release Date: November 27, 2026 &bull; 5 min read
+      </div>
+
+      <h2>1. Expanding Auto Mode Without Weakening Sensitive-Config Guardrails</h2>
+      <p>In <code>v2.35.0</code>, Auto mode began approving out-of-project file reads automatically while guarding sensitive config and session connection directories. Real multi-repo development still hit friction whenever an agent needed to update a sibling repository or write a brand-new additive file outside the active project directory.</p>
+      <p><code>v2.36.0</code> closes that gap safely: Auto mode now auto-approves safe edits inside <strong>other version-controlled repositories</strong> and <strong>non-replacing file additions</strong> outside the current project, because Git history or non-destructive file creation remains easy to inspect and revert. At the exact same time, the release patches a legacy-permission bug where allowing non-project file access could previously bypass protections on sensitive configuration files.</p>
+
+      <h2>2. Deterministic Cross-Tool Skill Discovery</h2>
+      <p>Teams using multiple coding agents often keep shared skills under <code>~/.agents/skills</code> alongside Antigravity-native skills under <code>~/.gemini</code>. <code>v2.36.0</code> scans <code>~/.agents/skills</code> automatically while enforcing a predictable override hierarchy: if two skills share the same name, the definition inside <code>~/.gemini</code> takes precedence.</p>
+
+      <div class="table-wrap" role="region" aria-label="Antigravity v2.36.0 high-leverage fixes" tabindex="0">
+        <table>
+          <thead>
+            <tr>
+              <th>Subsystem</th>
+              <th>Previous Failure Mode</th>
+              <th>v2.36.0 Behavior</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Orchestrator Pairing</strong></td>
+              <td>Picking the same model for planner and executor fell back to a different default model</td>
+              <td>Runs cleanly as a single agent on your chosen model</td>
+            </tr>
+            <tr>
+              <td><strong>OAuth &amp; MCP Auth</strong></td>
+              <td>Expired mid-session tokens aborted long turns; MCP servers lacked offline refresh prompts</td>
+              <td>Requests offline refresh tokens for supported MCP servers, preserves early refresh, and retries once on expired credentials</td>
+            </tr>
+            <tr>
+              <td><strong>Built-in Browser</strong></td>
+              <td>Typing <code>localhost</code> or a local port defaulted to HTTPS and broke HTTP dev servers</td>
+              <td>Routes <code>localhost</code> and local port entries over HTTP as expected</td>
+            </tr>
+            <tr>
+              <td><strong>Quota vs. Prepaid</strong></td>
+              <td>Empty organization prepaid wallets reported temporary model quota retries</td>
+              <td>Displays a clear empty prepaid wallet notice instead of misleading retry prompts</td>
+            </tr>
+            <tr>
+              <td><strong>LaTeX &amp; Shell Text</strong></td>
+              <td>Subagent LaTeX stayed raw; <code>\label</code> errored; shell variables rendered as math</td>
+              <td>Renders subagent math inline, fixes <code>\label</code>, and skips unformatted shell variables</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="series-nav">
+        <a href="/series/antigravity-v2-36-floating-composer/part-1-what-changed-antigravity-v2-36.html" class="btn-pill">&larr; Back to Part 1</a>
+        <a href="/series/antigravity-v2-36-floating-composer/part-3-concrete-antigravity-v2-36-workflows.html" class="btn-pill">Next: Part 3 (Concrete Workflows) &rarr;</a>
+      </div>
+    </div>
+  </body>
+</html>

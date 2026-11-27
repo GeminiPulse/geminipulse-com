@@ -24,6 +24,40 @@ export const PULSE_INTELLIGENCE_FEED = [
     labLabel: 'Neon Studio [DEMO] →',
   },
   {
+    id: 'pulse-antigravity-v2-36-floating-composer-auto-edits',
+    title: 'Google Antigravity v2.36.0 Ships Floating Composer in Maximized Panels, Cross-Repo Auto Edits & Voice Call Context Carryover',
+    tldr: 'Released November 27, 2026: Antigravity v2.36.0 (13 improvements, 26 fixes) docks a live floating composer pill inside maximized side panels, expands Auto mode to approve safe edits in other Git-tracked repos and non-replacing additions, carries spoken context from ended voice calls into local threads, discovers ~/.agents/skills with ~/.gemini precedence, and adds MCP offline OAuth refresh.',
+    summary:
+      'Documented in Google Antigravity Changelog v2.36.0 (November 27, 2026, 13 improvements and 26 fixes): (1) Maximized-Panel Floating Composer—adds a bottom pill inside maximized side panels with a live status bar showing agent progress, unread replies, and saved drafts, expanding inline for follow-ups or dictation, (2) Cross-Repo Auto Edits & Sensitive-Config Hardening—lets Auto mode approve safe edits in other version-controlled repositories and non-replacing file additions outside the current project while patching legacy non-project access so sensitive config protections hold, (3) Voice Carryover & ~/.agents/skills Precedence—persists spoken context from ended live voice calls into local conversations, discovers custom skills in ~/.agents/skills with ~/.gemini winning name collisions, keeps org-disabled Marketplace controls visible with admin tooltips, and authorizes cloud automations via system-browser Google sign-in, and (4) Auth & 26 Runtime Fixes—requests offline OAuth refresh tokens for MCP servers, retries expired mid-session credentials once, fixes same-model Orchestrator fallback, routes localhost over HTTP in the built-in browser, switches macOS shortcuts to Option+Cmd+/, renders subagent LaTeX equations, and separates empty prepaid wallets from model quota limits.',
+    category: 'Antigravity & Agent Runtime',
+    tag: 'Antigravity v2.36.0',
+    modelBadge: 'Antigravity v2.36',
+    impactScore: '10.0 / 10',
+    date: '2026-11-27T12:00:00Z',
+    sourceLabel: 'Google Antigravity Changelog: v2.36.0 (Nov 27, 2026)',
+    sourceUrl: 'https://antigravity.google/docs/changelog#rel-hub-2.36.0',
+    groundedBy: 'Google Antigravity Official Changelog v2.36.0 (Nov 27, 2026)',
+    seriesUrl: '/series/antigravity-v2-36-floating-composer/part-1-what-changed-antigravity-v2-36.html',
+    seriesLabel: '3-Part Series →',
+    labUrl: '/labs/gemini-antigravity-v2-36-studio.html',
+    labLabel: 'Antigravity v2.36 Studio [DEMO] →',
+  },
+  {
+    id: 'pulse-vertex-ai-extensions-shutdown-agent-platform',
+    title: 'Vertex AI Extensions Passes Final Deprecation Shutdown Milestone (Nov 26, 2026) in Favor of Agent Platform',
+    tldr: 'Updated November 26, 2026: Vertex AI Generative AI release notes record the final deprecation and post-November 26, 2026 shutdown cutoff for Vertex AI Extensions, instructing developers to migrate production tool integrations to Google Cloud Agent Platform.',
+    summary:
+      'Documented in Google Cloud Vertex AI Generative AI Release Notes (November 26, 2026): confirms that Vertex AI Extensions is deprecated and scheduled for shutdown after November 26, 2026, directing enterprise teams to migrate tool orchestration, connector governance, and remote MCP workflows onto Agent Platform to prevent service disruption.',
+    category: 'Vertex AI & Agent Platform',
+    tag: 'Deprecation Milestone',
+    modelBadge: 'Agent Platform Migration',
+    impactScore: '8.9 / 10',
+    date: '2026-11-26T17:00:00Z',
+    sourceLabel: 'Vertex AI Generative AI Release Notes: Extensions Shutdown (Nov 26, 2026)',
+    sourceUrl: 'https://docs.cloud.google.com/vertex-ai/generative-ai/docs/release-notes',
+    groundedBy: 'Google Cloud Vertex AI Official Release Notes (Nov 26, 2026)',
+  },
+  {
     id: 'pulse-deepmind-mass-spec-skills-antigravity',
     title: 'Google DeepMind Launches Mass Spec Skills for Google Antigravity: Lightweight Gemini 3.8 Flash Matches Frontier Chemistry at ~97% Accuracy',
     tldr: 'Published November 25, 2026: Google DeepMind pairs Gemini inside Google Antigravity with open-source tandem mass spectrometry tools (matchms, SIRIUS, MAGMa, MetFrag, GNPS, MoNA, PubChem, RDKit)—lifting exact-match compound identification from under 4% (unassisted) to around 97% even on lightweight Gemini 3.8 Flash while cutting generated tokens nearly 4x.',
@@ -1804,6 +1838,59 @@ export const GEMINI_MODEL_MATRIX = [
 
 export const STUDIO_LAB_BLUEPRINTS = [
   {
+    id: 'lab-gemini-antigravity-v2-36-studio',
+    title: 'Antigravity v2.36.0 Floating Composer, Auto Edits & Voice Context Studio [SIMULATED DEMO]',
+    badge: 'Nov 27, 2026 Antigravity v2.36.0',
+    model: 'gemini-4-neon',
+    href: '/labs/gemini-antigravity-v2-36-studio.html',
+    description:
+      'Interactive runtime workbench modeling Google Antigravity v2.36.0: simulate the maximized-panel floating composer pill, cross-repo Auto mode edits, ended voice call context carryover, ~/.agents/skills vs ~/.gemini precedence, and MCP offline OAuth refresh.',
+    prompt:
+      'Verify cross-repo edits across sibling Git repositories under Antigravity v2.36.0 Auto mode, persist ended voice-call context into the local thread, and confirm ~/.gemini skill override precedence over ~/.agents/skills.',
+    tsCode: `import { GoogleGenAI } from "@google/genai";
+
+// Models Antigravity v2.36.0 voice-call context carryover paired with
+// single-model Gemini 4 Neon Orchestrator execution (same-model fallback fixed).
+const ai = new GoogleGenAI();
+
+const response = await ai.interactions.create({
+  model: "gemini-4-neon",
+  thinking_level: "high",
+  input:
+    "Given the spoken context saved from the ended voice session, verify safe edits across our sibling Git repository and summarize changes for maximized-panel review.",
+});
+
+console.log(response.output_text);`,
+    pyCode: `from google import genai
+
+client = genai.Client()
+
+response = client.interactions.create(
+    model="gemini-4-neon",
+    thinking_level="high",
+    input=(
+        "Inspect custom skills across ~/.agents/skills and ~/.gemini/config/skills, "
+        "confirming ~/.gemini precedence on colliding skill names."
+    ),
+)
+
+print(response.output_text)`,
+    simulatedSteps: [
+      {
+        type: 'thought',
+        label: 'step[0] · Floating Composer + Voice Context Carryover',
+        detail:
+          'Docked floating composer pill at bottom of 1120px maximized side panel with live progress, unread replies, saved draft, and persisted spoken context from ended voice call.',
+      },
+      {
+        type: 'tool_call',
+        label: 'step[1] · Cross-Repo Auto Gate + ~/.gemini Precedence + Offline OAuth',
+        detail:
+          'Auto-approved edit in sibling Git repo while blocking sensitive config under legacy permissions, resolved ~/.gemini skill override over ~/.agents/skills, and issued MCP offline refresh token.',
+      },
+    ],
+  },
+  {
     id: 'lab-gemini-mass-spec-skills-studio',
     title: 'DeepMind Mass Spec Skills & Antigravity Structure Studio [SIMULATED DEMO]',
     badge: 'Nov 2026 DeepMind + Antigravity',
@@ -3441,6 +3528,25 @@ video_turn = client.interactions.create(
 ];
 
 export const INITIAL_SHOWCASE_PROJECTS = [
+  {
+    id: 'showcase-gemini-antigravity-v2-36-studio',
+    name: 'Antigravity v2.36.0 Floating Composer & Auto Edits Studio [SIMULATED DEMO]',
+    creator: 'GeminiPulse Labs (Built with Google Gemini 4 Argon)',
+    provenanceBadge: 'Gemini Labs Original',
+    authorUid: 'system-gemini-4-argon',
+    category: 'Tools & Labs',
+    tagline:
+      'Interactive developer workbench modeling Google Antigravity v2.36.0: simulate the maximized-panel floating composer pill, cross-repo Auto edits, ended voice context carryover, ~/.agents/skills precedence, and MCP offline OAuth refresh.',
+    models: ['gemini-4-neon', 'gemini-4-hydrogen'],
+    architectureHighlight:
+      'Gemini Labs Original (/labs/gemini-antigravity-v2-36-studio.html): [SIMULATED DEMO] Models the v2.36.0 floating composer status bar, sibling-repo Auto approvals, sensitive-config guards, and single-model Orchestrator execution.',
+    url: '/labs/gemini-antigravity-v2-36-studio.html',
+    upvotes: 1,
+    verifiedByGemini: true,
+    featured: true,
+    status: 'published',
+    createdAt: '2026-11-27T12:00:00Z',
+  },
   {
     id: 'showcase-gemini-mass-spec-skills-studio',
     name: 'DeepMind Mass Spec Skills & Antigravity Structure Studio [SIMULATED DEMO]',
