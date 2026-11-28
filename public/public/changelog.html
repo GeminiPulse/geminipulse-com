@@ -520,7 +520,7 @@
   <header class="cl-header">
     <div class="cl-brand-group">
       <a href="/" class="cl-brand-link">♊ GEMINIPULSE</a>
-      <span class="cl-header-kicker">· Public Changelog (v2.0.127)</span>
+      <span class="cl-header-kicker">· Public Changelog (v2.0.129)</span>
     </div>
     <nav class="cl-nav" aria-label="Changelog Navigation">
       <a href="/" class="cl-nav-pill">← 3D Star Chart</a>
@@ -550,8 +550,8 @@
 
       <div class="cl-toolbar">
         <div class="cl-filters" role="group" aria-label="Filter changelog entries by who caught the issue">
-          <button type="button" class="cl-filter-btn" data-filter="all" aria-pressed="true">All (17)</button>
-          <button type="button" class="cl-filter-btn" data-filter="human" aria-pressed="false">Human Oversight (11)</button>
+          <button type="button" class="cl-filter-btn" data-filter="all" aria-pressed="true">All (18)</button>
+          <button type="button" class="cl-filter-btn" data-filter="human" aria-pressed="false">Human Oversight (12)</button>
           <button type="button" class="cl-filter-btn" data-filter="gemini" aria-pressed="false">Gemini Self-Audit (6)</button>
         </div>
 
@@ -562,7 +562,31 @@
       </div>
 
       <div class="cl-accordion" id="cl-accordion">
-          <details class="cl-item" data-caught-by="human" id="cl-2026-11-18-sitewide-ga4-provenance-telemetry" open>
+          <details class="cl-item" data-caught-by="human" id="cl-2026-11-25-wcag-253-and-scrollable-regions" open>
+            <summary class="cl-summary">
+              <span class="cl-summary-body">
+                <span class="cl-meta-line">
+                  <time datetime="2026-11-25" class="cl-date">Nov 25, 2026</time>
+                  <span class="cl-surface">3D Constellation Hero &amp; Developer Workbench (/, /workbench.html)</span>
+                  <span class="cl-badge cl-badge--human">Human Oversight · Product Dev &amp; Creative Direction</span>
+                </span>
+                <span class="cl-headline">Running AgileADA Monitor against geminipulse.com flagged 20 WCAG 2.5.3 label-in-name mismatches (84/100) that Lighthouse missed, plus 6 unfocusable scroll boxes on /workbench.html.</span>
+              </span>
+            </summary>
+            <div class="cl-detail-panel">
+              <dl class="cl-detail-grid">
+                <div class="cl-detail-row">
+                  <dt>What went wrong</dt>
+                  <dd>Google Lighthouse disables axe-core label-content-name-mismatch by default, while an earlier WCAG 2.5.3 pull request stalled in merge conflict behind daily curation rounds and /workbench.html had 6 scrollable code/article panels without keyboard tabIndex.</dd>
+                </div>
+                <div class="cl-detail-row">
+                  <dt>How it was fixed</dt>
+                  <dd>Reconciled the WCAG 2.5.3 accessible-name fixes against latest v2.0 (prefixing visible Search ⌘K, Greek star labels, and Prev/Next text inside aria-label), added role=&quot;region&quot; + aria-label + tabIndex={0} to all scrollable Workbench panels, and verified 0 axe-core WCAG 2.2 AA violations (100/100).</dd>
+                </div>
+              </dl>
+            </div>
+          </details>
+          <details class="cl-item" data-caught-by="human" id="cl-2026-11-18-sitewide-ga4-provenance-telemetry">
             <summary class="cl-summary">
               <span class="cl-summary-body">
                 <span class="cl-meta-line">
@@ -974,7 +998,7 @@
     </section>
 
     <footer class="cl-footer">
-      <span>Active Build: <a href="/status.html">v2.0.127</a> · Design History: <a href="/prototypes/index.html">18-Prototype Archive</a></span>
+      <span>Active Build: <a href="/status.html">v2.0.129</a> · Design History: <a href="/prototypes/index.html">18-Prototype Archive</a></span>
       <a href="/workbench.html?inquire=true">Spot an issue? Send a note →</a>
     </footer>
   </main>
