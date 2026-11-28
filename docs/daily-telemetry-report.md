@@ -25,6 +25,16 @@
 
 ---
 
+## 0k. 12:45 PM ET Mountain View 9 AM PT Embargo Curation Check (Round 58 — Nov 27, 2026)
+
+| Source Stream | Verification Status | Curated Finding & Action Taken |
+| :--- | :--- | :--- |
+| **Google Antigravity Changelog (`antigravity.google/docs/changelog#rel-hub-2.36.0`)** | **VERIFIED NEW PRIMARY RELEASE (`NOV 27, 2026`)** | **Google Antigravity `v2.36.0` (13 improvements, 26 fixes)**: Adds a floating composer pill at the bottom of maximized side panels (live agent progress, unread replies, saved drafts, inline follow-ups & dictation); expands Auto mode to approve safe edits in other Git-tracked repositories and non-replacing file additions outside the current project while patching legacy non-project sensitive-config protection; carries spoken context from ended live voice calls into local conversations; discovers custom skills in `~/.agents/skills` (with `~/.gemini` winning name collisions); keeps org-disabled Marketplace controls visible with admin tooltips; adds system-browser Google sign-in for cloud automations; requests MCP offline OAuth refresh tokens + retries once on expired mid-session tokens; fixes same-model Orchestrator planner/executor fallback, `localhost` HTTP routing, macOS `Option+Cmd+/` shortcut, subagent LaTeX + `\label` rendering, and empty prepaid wallet messaging. Added to `PULSE_INTELLIGENCE_FEED`, authored Star 02 (`ε Mebsuta`) Dual-Lens Flagship Essay in `CONSTELLATION_ESSAYS` (`/articles/antigravity-v2-36-floating-composer-auto-edits.html`), published 3-part series (`/series/antigravity-v2-36-floating-composer/*`), and built `/labs/gemini-antigravity-v2-36-studio.html` `[SIMULATED DEMO]`. |
+| **Vertex AI Generative AI Release Notes (`docs.cloud.google.com/vertex-ai/generative-ai/docs/release-notes`)** | **VERIFIED DEPRECATION MILESTONE (`NOV 26, 2026`)** | **Vertex AI Extensions Shutdown Cutoff**: Records post-November 26, 2026 shutdown of deprecated Vertex AI Extensions, instructing developers to migrate tool/connector integrations to Agent Platform. Added to `PULSE_INTELLIGENCE_FEED`. |
+| **Official Google Blogs, Changelogs & GitHub SDKs (`blog.google/rss/`, `deepmind.google/blog/`, `research.google/blog/`, `developers.googleblog.com/rss/`, `ai.google.dev/gemini-api/docs/changelog`, `workspaceupdates.googleblog.com`, `js-genai` `v3.6.1`, `python-genai` `v3.6.1`, `gemini-api-cli` `v0.5.0`, `adk-python` `v2.15.1`, `adk-js` `v2.5.0`)** | **VERIFIED UP-TO-DATE (`2026-11-27 12:47 EST`)** | Confirmed `blog.google` Nov 26 post (`15 years investing in Colombia`) is non-product philanthropy and no newer Gemini model/SDK tags or API changelog entries published since Round 57. |
+
+---
+
 ## 0j. 5:45 PM ET West Coast SDK, Workspace & YouTube Curation Check (Round 57 — Nov 25, 2026)
 
 | Source Stream | Verification Status | Curated Finding & Action Taken |

@@ -20,6 +20,22 @@
   </entry>
 
   <entry>
+    <title>Maximized Diffs Used to Hide the Agent. Antigravity v2.36.0 Brings the Composer, Voice Context &amp; Multi-Repo Auto Edits With You. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/antigravity-v2-36-floating-composer-auto-edits.html" />
+    <id>https://geminipulse.com/articles/antigravity-v2-36-floating-composer-auto-edits.html</id>
+    <updated>2026-11-27T12:00:00.000Z</updated>
+    <summary>Four days after removing the 500-conversation cap in v2.35.0, Google Antigravity shipped v2.36.0 on November 27, 2026 with 13 workflow improvements and 26 stability fixes aimed directly at multi-repo builders: a live floating composer pill docked inside maximized side panels, expanded Auto mode approvals for external Git-tracked repositories and non-replacing additions, spoken context carryover from ended live voice calls, cross-agent skill discovery in ~/.agents/skills, and offline OAuth refresh tokens for MCP servers.</summary>
+  </entry>
+
+  <entry>
+    <title>Vertex AI Extensions Passes Final Deprecation Shutdown Milestone (Nov 26, 2026) in Favor of Agent Platform. (Flagship Gemini Essay)</title>
+    <link href="https://geminipulse.com/articles/vertex-ai-extensions-shutdown-agent-platform.html" />
+    <id>https://geminipulse.com/articles/vertex-ai-extensions-shutdown-agent-platform.html</id>
+    <updated>2026-11-26T17:00:00.000Z</updated>
+    <summary>Updated November 26, 2026: Vertex AI Generative AI release notes record the final deprecation and post-November 26, 2026 shutdown cutoff for Vertex AI Extensions, instructing developers to migrate production tool integrations to Google Cloud Agent Platform.</summary>
+  </entry>
+
+  <entry>
     <title>Unassisted Frontier Models Scored Under 4% on Mass Spectra. Antigravity Skills Put Lightweight Flash at 97%. (Flagship Gemini Essay)</title>
     <link href="https://geminipulse.com/articles/deepmind-mass-spec-skills-antigravity.html" />
     <id>https://geminipulse.com/articles/deepmind-mass-spec-skills-antigravity.html</id>
@@ -57,22 +73,6 @@
     <id>https://geminipulse.com/articles/deepmind-humanitys-first-exam-hfe.html</id>
     <updated>2026-11-24T19:30:00.000Z</updated>
     <summary>Google DeepMind’s Oran Kelly and co-authors release Humanity’s First Exam (544 text and image prompts across 136 four-variant families and 20 subcategories) plus a Kaggle competition through December 15—showing top models hit 96%–98% pass@1 yet drop to 80.5%–92.4% on strict family pass4, with 73% of errors in visual perception.</summary>
-  </entry>
-
-  <entry>
-    <title>Google Launches Managed Ingestion &amp; SearchDocuments in Agent Retrieval (Public Preview): Cloud Storage Files to Cited Answers in One Call. (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/agent-retrieval-managed-ingestion-searchdocuments.html" />
-    <id>https://geminipulse.com/articles/agent-retrieval-managed-ingestion-searchdocuments.html</id>
-    <updated>2026-11-24T17:00:00.000Z</updated>
-    <summary>Yingxin Jiang and Kaz Sato introduce Managed Ingestion and SearchDocuments (v1beta REST in us-east4 and europe-west4), turning Cloud Storage PDFs, Office docs, and videos into Gemini Embedding 2 hybrid-searchable segments with page numbers and 0.3–0.5s audio-aware video timestamps.</summary>
-  </entry>
-
-  <entry>
-    <title>Google Highlights 5 Gemini 4 Neon Builder Demos, Ships Gemini 4 Neon for Cyber (GA) &amp; Adds Neon Preview to CodeMender. (Flagship Gemini Essay)</title>
-    <link href="https://geminipulse.com/articles/gemini-4-neon-builders-and-cyber-ga.html" />
-    <id>https://geminipulse.com/articles/gemini-4-neon-builders-and-cyber-ga.html</id>
-    <updated>2026-11-24T16:00:00.000Z</updated>
-    <summary>Google spotlights five Gemini 4 Neon developer projects (3D Earth, xhigh Three.js butterflies, sub-5-minute /swarm hexagon flame shader, black hole lensing shader, and pendulum wave) alongside Gemini 4 Neon for cyber GA (345 tok/s per GSU) and CodeMender --model gemini-4-neon Preview.</summary>
   </entry>
 
   <entry>
